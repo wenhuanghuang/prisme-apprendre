@@ -36,7 +36,7 @@ Application de référence : https://pixel-code-mission-ia-2026.wenhuanghuang.ch
 
 - **Couverture apparente** : toutes les matières et tous les niveaux ont des séances navigables ; Prisme n'a de leçons interactives que sur 11 parcours (les 144 autres listent les domaines officiels, « à venir »).
 - **Synthèse vocale** et ambiance très accueillante pour les plus jeunes.
-- **Interpréteur pas à pas** du mode « J'explore » (Prisme exécute le programme d'un coup).
+- **Interpréteur pas à pas** du mode « J'explore » (Prisme propose un dessin pas à pas, segment par segment, mais sans suivi de la ligne en cours ni des variables).
 
 ## Ce que Prisme apporte et que l'autre n'a pas
 

@@ -46,5 +46,5 @@ Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chi
 5. Correction des rédactions assistée par IA, **locale de préférence** ; une IA distante ne serait activée qu'avec l'accord explicite d'un parent (l'espace Parents indique aujourd'hui qu'aucune IA distante n'est utilisée ; fonctionnalité non implémentée).
 6. Synthèse vocale des énoncés, mode dyslexie, taille de texte réglable.
 7. Synchronisation optionnelle entre les deux ordinateurs (aujourd'hui : export / import manuel).
-8. Exécution pas à pas des programmes Tortue.
+8. Mise en évidence de la ligne en cours pendant l'exécution pas à pas des programmes (le dessin pas à pas existe déjà).
 9. Relecture de l'ensemble des contenus par un enseignant.

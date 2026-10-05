@@ -55,9 +55,9 @@ function svgEl(tag, attrs = {}) {
 /** Zone de dessin : modèle en pointillés, dessin de l'élève par-dessus. */
 export function createCanvas() {
   const svg = svgEl('svg', { class: 'turtle-svg', viewBox: '-150 -150 300 300', role: 'img', 'aria-label': 'Dessin de la tortue' });
-  const draw = ({ target = [], student = [], turtle = null }) => {
+  const draw = ({ target = [], student = [], turtle = null, fit = null }) => {
     while (svg.firstChild) svg.removeChild(svg.firstChild);
-    const all = [...target, ...student];
+    const all = fit ? [...target, ...fit] : [...target, ...student];
     let minX = -60; let maxX = 60; let minY = -60; let maxY = 60;
     for (const sg of all) { minX = Math.min(minX, sg.x1, sg.x2); maxX = Math.max(maxX, sg.x1, sg.x2); minY = Math.min(minY, sg.y1, sg.y2); maxY = Math.max(maxY, sg.y1, sg.y2); }
     const m = 20; const w = Math.max(maxX - minX, maxY - minY) + 2 * m;
@@ -146,6 +146,30 @@ export function createCodeEditor({ start = '', target = '', mode = 'both', onRun
   const textPane = h('div', { class: 'pane-text' }, textarea, h('p', { class: 'muted small' }, 'Langage : avance 50 · droite 90 · gauche 45 · répète 4 [ … ] · lève · pose · mets c à 10 · si c > 5 [ … ]'));
   textarea.addEventListener('input', () => run());
 
+  // exécution pas à pas : les segments apparaissent un par un, la tortue montre où elle en est
+  const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let stepTimer = null;
+  const stepBtn = h('button', { type: 'button', class: 'btn btn--ghost btn--small' }, '▶ Pas à pas');
+  const stopStep = () => { if (stepTimer) clearInterval(stepTimer); stepTimer = null; stepBtn.textContent = '▶ Pas à pas'; };
+  stepBtn.addEventListener('click', () => {
+    if (stepTimer) { stopStep(); run(); return; }
+    let r;
+    try { r = runProgram(program()); } catch { run(); return; }
+    if (!r.segments.length) { run(); return; }
+    let k = 0;
+    stepBtn.textContent = '■ Arrêter';
+    stepTimer = setInterval(() => {
+      if (!el.isConnected) { stopStep(); return; }
+      k += 1;
+      const segs = r.segments.slice(0, k);
+      const last = segs[segs.length - 1];
+      canvas.draw({ target: targetSegs, student: segs, fit: r.segments, turtle: { x: last.x2, y: last.y2, heading: (Math.atan2(last.y2 - last.y1, last.x2 - last.x1) * 180) / Math.PI } });
+      msg.className = 'turtle-msg';
+      msg.textContent = `Segment ${k} sur ${r.segments.length}`;
+      if (k >= r.segments.length) { stopStep(); msg.textContent = `Terminé : ${r.instructions} instruction(s), ${r.segments.length} segment(s).`; }
+    }, reduced ? 60 : 380);
+  });
+
   const switchBtn = h('button', { type: 'button', class: 'btn btn--ghost btn--small' });
   const setMode = (m) => {
     if (m === 'blocks') {
@@ -163,7 +187,7 @@ export function createCodeEditor({ start = '', target = '', mode = 'both', onRun
   switchBtn.addEventListener('click', () => setMode(current === 'blocks' ? 'text' : 'blocks'));
 
   const el = h('div', { class: 'code-editor' },
-    h('div', { class: 'code-left' }, h('div', { class: 'code-toolbar' }, h('strong', {}, 'Programme'), mode !== 'text' ? switchBtn : null), blocksPane, textPane),
+    h('div', { class: 'code-left' }, h('div', { class: 'code-toolbar' }, h('strong', {}, 'Programme'), h('span', { class: 'btn-row' }, stepBtn, mode !== 'text' ? switchBtn : null)), blocksPane, textPane),
     h('div', { class: 'code-right' }, canvas.el, h('p', { class: 'muted small' }, target ? 'En pointillés : le dessin à obtenir.' : ''), msg));
   renderBlocks();
   setMode(current);
@@ -172,7 +196,7 @@ export function createCodeEditor({ start = '', target = '', mode = 'both', onRun
     program,
     run,
     showResult() { run(); },
-    lock(b) { locked = b; textarea.disabled = b; el.querySelectorAll('button, input').forEach((x) => { x.disabled = b; }); },
+    lock(b) { locked = b; stopStep(); textarea.disabled = b; el.querySelectorAll('button, input').forEach((x) => { x.disabled = b; }); },
     focus() { (current === 'text' ? textarea : palette.querySelector('button')).focus(); },
   };
 }

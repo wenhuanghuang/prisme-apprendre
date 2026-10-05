@@ -1,5 +1,7 @@
 # Prisme — apprendre en manipulant
 
+**Application en ligne : https://wenhuanghuang.github.io/prisme-apprendre/** (installable depuis Chrome ou Edge, fonctionne ensuite hors connexion).
+
 Application éducative en français, du CP à la Terminale, fondée sur la **manipulation** et sur un **moteur adaptatif compétence par compétence** : elle repère précisément ce qui coince (notion, calcul, signe, lecture, méthode, justification, unité…) et propose le bon exercice au bon moment, en expliquant pourquoi, à l'élève comme au parent.
 
 - **Démonstration approfondie** : mathématiques (5e, 4e, début de 3e), physique-chimie (cycle 4), programmation et intelligence artificielle ; échantillons en français et en histoire.
@@ -18,7 +20,7 @@ Autres captures dans [docs/captures/](docs/captures/) (régénérables avec `nod
 
 ## Démarrer
 
-Prérequis : Node.js 20 ou plus (aucune dépendance à installer).
+Prérequis : Node.js 20 ou plus. Aucune dépendance pour l'application et les tests ; `npm install` n'est utile que pour les tests dans le navigateur (`playwright-core`, qui utilise Edge ou Chrome déjà installé).
 
 ```bash
 npm run build
@@ -52,9 +54,14 @@ Les leçons sont des fichiers JSON (`app/content/lessons/`), sans code : voir [d
 | [docs/MOTEUR-ADAPTATIF.md](docs/MOTEUR-ADAPTATIF.md) | diagnostic, modèle de l'élève, recommandations, choix des exercices |
 | [docs/MATRICE-PROGRAMMES.md](docs/MATRICE-PROGRAMMES.md) | correspondance programmes officiels 2026-2027 ↔ contenus (générée) |
 | [docs/PROFILS-FICTIFS.md](docs/PROFILS-FICTIFS.md) | élèves fictifs : diagnostic, recommandations, exercices choisis (généré par le moteur) |
+| [docs/DEMONSTRATION.md](docs/DEMONSTRATION.md) | démonstration guidée (≈ 20 min) en mathématiques et en physique |
 | [docs/COMPARAISON.md](docs/COMPARAISON.md) | comparaison avec l'application de référence |
 | [docs/ETAT-DU-PROJET.md](docs/ETAT-DU-PROJET.md) | ce qui est terminé, ce qui reste à développer |
 | [research/](research/) | recherche documentaire sourcée (programmes, Lumni, analyse de l'application de référence) |
+
+## Publication
+
+`bash tools/deploy.sh` reconstruit, vérifie que tout est commité, puis publie le dossier `app/` sur la branche `gh-pages` (GitHub Pages).
 
 ## Licence
 
