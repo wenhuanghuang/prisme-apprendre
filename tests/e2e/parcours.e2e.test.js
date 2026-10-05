@@ -131,3 +131,77 @@ test('débogage : l’éditeur s’ouvre avec le programme à corriger (jamais v
   assert.ok(texts.length > 0, 'des éditeurs en mode texte sont affichés');
   assert.ok(texts.every((t) => t.trim().length > 0), 'aucun éditeur texte vide');
 });
+
+test('Espace exercices : une série par matière (5e et 4e) démarre sans erreur', async () => {
+  for (const level of ['5e', '4e']) {
+    await page.goto(`${BASE}#/exercices`);
+    await page.waitForSelector('.series-form select');
+    await page.locator('.series-form select').first().selectOption(level);
+    await page.waitForTimeout(150);
+    const subjects = await page.locator('.series-form select').nth(1).evaluate((s) => [...s.options].map((o) => o.value));
+    assert.ok(subjects.length >= 3, `${level} : seulement ${subjects.join(', ')}`);
+    for (const subject of subjects) {
+      // adresse unique : revenir à la même adresse ne recharge pas la vue
+      await page.goto(`${BASE}#/exercices?essai=${level}-${subject}`);
+      await page.waitForSelector('.series-form select');
+      await page.locator('.series-form select').first().selectOption(level);
+      await page.waitForTimeout(100);
+      await page.locator('.series-form select').nth(1).selectOption(subject);
+      await page.waitForTimeout(150);
+      await page.getByRole('button', { name: 'Commencer la série' }).click();
+      await page.waitForSelector('.series-stage .ex', { timeout: 8000 });
+      const problems = await pageTextProblems();
+      assert.deepEqual(problems, [], `${level} ${subject} : ${problems.join(' | ')}`);
+    }
+  }
+  assert.deepEqual(errors, [], errors.join('\n'));
+});
+
+test('Espace exercices : chaque générateur produit un exercice corrigeable', async () => {
+  await page.goto(`${BASE}#/exercices?onglet=generateurs`);
+  await page.waitForSelector('.gen-card');
+  await page.locator('.series-grid select').first().selectOption('tous');
+  await page.waitForTimeout(150);
+  const n = await page.locator('.gen-card').count();
+  assert.ok(n >= 17, `${n} générateurs`);
+  for (let i = 0; i < n; i++) {
+    await page.goto(`${BASE}#/exercices?onglet=generateurs&essai=${i}`);
+    await page.waitForSelector('.gen-card');
+    await page.locator('.series-grid select').first().selectOption('tous');
+    await page.waitForTimeout(100);
+    const card = page.locator('.gen-card').nth(i);
+    const title = await card.locator('h3').innerText();
+    await card.getByRole('button', { name: 'S’entraîner' }).click();
+    await page.waitForSelector('.ex', { timeout: 8000 });
+    const problems = await pageTextProblems();
+    assert.deepEqual(problems, [], `${title} : ${problems.join(' | ')}`);
+    await page.getByRole('button', { name: 'Voir la correction' }).click();
+    await page.getByRole('button', { name: /Voir la correction|voir quand même/ }).click();
+    await page.waitForSelector('.solution, .ex-extra section', { timeout: 4000 });
+  }
+  assert.deepEqual(errors, [], errors.join('\n'));
+});
+
+test('mots à repérer : utilisables au clavier (flèches + Espace)', async () => {
+  const hl = index.exercises.find((e) => e.type === 'highlight' && e.track === 'classe');
+  assert.ok(hl, 'au moins un exercice de repérage');
+  await page.goto(`${BASE}#/lecon/${hl.lesson}`);
+  const word = page.locator('.hl-word').first();
+  await word.waitFor({ timeout: 8000 });
+  await word.focus();
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Space');
+  assert.equal(await page.locator('.hl-word').nth(1).getAttribute('aria-pressed'), 'true');
+});
+
+test('fiche imprimable : énoncés puis corrigé', async () => {
+  await page.goto(`${BASE}#/exercices`);
+  await page.waitForSelector('.series-form');
+  await page.evaluate(() => { window.print = () => { window.__printed = true; }; });
+  await page.getByRole('button', { name: /Imprimer une fiche/ }).click();
+  await page.waitForFunction(() => window.__printed === true, null, { timeout: 8000 });
+  const sheet = await page.locator('.print-sheet').evaluate((s) => ({ items: s.querySelectorAll(':scope > .ps-list > li').length, answers: s.querySelectorAll('.ps-answers li').length, text: s.textContent }));
+  assert.ok(sheet.items >= 5, `${sheet.items} exercices imprimés`);
+  assert.equal(sheet.items, sheet.answers);
+  assert.ok(!/undefined|NaN/.test(sheet.text), 'fiche sans valeur manquante');
+});

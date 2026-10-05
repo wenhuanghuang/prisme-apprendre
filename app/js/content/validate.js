@@ -8,6 +8,7 @@ import { interpolateDeep } from '../core/template.js';
 import { expectedValue } from '../core/checkers/numeric.js';
 import { parseWithParams } from '../core/template.js';
 import { equivalent, evaluate } from '../core/expr.js';
+import { generateFromData, canonicalResponse, DATA_KINDS } from '../generators/data-kinds.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 export const ROLES = ['guide', 'libre', 'reinvestissement', 'transfert', 'remediation', 'defi', 'mission', 'verification', 'labo', 'debug'];
@@ -134,4 +135,51 @@ export function exerciseMeta(ex, lesson) {
     difficulty: ex.difficulty || 2, representation: ex.representation || 'symbolique',
     targets: ex.targets || [], justify: Boolean(ex.justify && ex.justify.required), expectedSeconds: ex.expectedSeconds || 120,
   };
+}
+
+/* ------------------------------ Générateurs de données ------------------------------ */
+
+/** Valide un générateur (fichier app/content/generators/<id>.json) en produisant 25 exercices et en les corrigeant. */
+export function validateGenerator(gen, skillIds) {
+  const errs = [];
+  const at = `générateur ${gen.id || '(sans id)'}`;
+  for (const f of ['id', 'label', 'subject', 'levels', 'skill', 'kind', 'data']) if (gen[f] === undefined) errs.push(`${at} : champ « ${f} » manquant`);
+  if (errs.length) return errs;
+  if (!DATA_KINDS.includes(gen.kind)) return [`${at} : genre inconnu « ${gen.kind} » (attendu : ${DATA_KINDS.join(', ')})`];
+  if (!skillIds.has(gen.skill)) errs.push(`${at} : compétence inconnue « ${gen.skill} »`);
+  const d = gen.data;
+  if (gen.kind === 'conjugaison') {
+    if (!Array.isArray(d.pronouns) || d.pronouns.length !== 6) errs.push(`${at} : 6 pronoms attendus`);
+    for (const [v, info] of Object.entries(d.verbs || {})) {
+      for (const [t, forms] of Object.entries(info.forms || {})) {
+        if (!d.tenses[t]) errs.push(`${at} : ${v} — temps inconnu « ${t} »`);
+        if (!Array.isArray(forms) || forms.length !== 6 || forms.some((x) => !String(x).trim())) errs.push(`${at} : ${v} au ${t} — 6 formes attendues`);
+      }
+    }
+  }
+  if (gen.kind === 'vocab' && (!Array.isArray(d.pairs) || d.pairs.length < 4)) errs.push(`${at} : au moins 4 paires de vocabulaire`);
+  if (gen.kind === 'chronologie' && (!Array.isArray(d.events) || d.events.length < 5 || d.events.some((e) => !Number.isInteger(e.year) || !e.label))) errs.push(`${at} : au moins 5 événements {label, year entier}`);
+  if (gen.kind === 'categorize' && (!Array.isArray(d.items) || d.items.some((i) => !d.categories.some((c) => c.id === i.category)))) errs.push(`${at} : chaque élément doit avoir une catégorie existante`);
+  if (gen.kind === 'match' && (!Array.isArray(d.pairs) || d.pairs.length < 3)) errs.push(`${at} : au moins 3 paires`);
+  if (gen.kind === 'cloze' && (!Array.isArray(d.items) || d.items.some((i) => !String(i.sentence || '').includes('___') || !i.accept))) errs.push(`${at} : chaque phrase doit contenir « ___ » et une réponse`);
+  if (errs.length) return errs;
+  const optionSets = [{}];
+  for (const o of gen.options || []) for (const v of o.values || []) optionSets.push({ [o.id]: v.id });
+  for (const opts of optionSets) {
+    for (let seed = 1; seed <= 25; seed++) {
+      let def;
+      try { def = generateFromData(gen, seed, opts); } catch (e) { errs.push(`${at} [${JSON.stringify(opts)} tirage ${seed}] : ${e.message}`); break; }
+      const d1 = check(instantiate(def, seed), canonicalResponse(def));
+      if (d1.verdict !== 'correct') { errs.push(`${at} [tirage ${seed}] : la réponse attendue n'est pas acceptée (${d1.feedback})`); break; }
+      for (const mc of def.misconceptions || []) {
+        if ((def.accept || []).some((a) => String(a).trim().toLowerCase() === String(mc.answer).trim().toLowerCase())) { errs.push(`${at} [tirage ${seed}] : idée fausse identique à une réponse acceptée (${mc.answer})`); break; }
+      }
+    }
+    if (errs.length) break;
+  }
+  return errs;
+}
+
+export function generatorMeta(gen) {
+  return { id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, kind: gen.kind, description: gen.description || '', options: gen.options || [], track: gen.track || 'classe' };
 }

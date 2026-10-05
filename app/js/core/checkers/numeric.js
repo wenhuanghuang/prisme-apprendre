@@ -27,12 +27,14 @@ export function readNumber(text, expectUnit) {
   if (!raw) return { empty: true };
   if (expectUnit) {
     const q = parseQuantity(raw);
-    if (q && !q.unitText) return { value: q.value, unit: null, unitText: '', badUnit: true };
-    if (q && q.unit) return { value: q.value, unit: q.unit, unitText: q.unitText };
+    // node : l'écriture lue, pour vérifier aussi l'arrondi et que le calcul est terminé
+    if (q && !q.unitText) return { value: q.value, unit: null, unitText: '', badUnit: true, node: q.node };
+    if (q && q.unit) return { value: q.value, unit: q.unit, unitText: q.unitText, node: q.node };
     if (q && q.unknownUnit) return { error: `je ne reconnais pas l'unité « ${q.unitText} » (exemples : ${expectUnit}, km/h, g/cm³)` };
-    if (q && !q.unit) return { value: q.value, unit: null, unitText: q.unitText, badUnit: true };
+    if (q && !q.unit) return { value: q.value, unit: null, unitText: q.unitText, badUnit: true, node: q.node };
   }
-  // sans unité attendue : « 8 x 3 » = 8 × 3 (la lettre x employée pour « fois » entre deux nombres)
+  // sans unité attendue : un montant « 7,50 € » se lit 7,5 ; « 8 x 3 » = 8 × 3 (la lettre x pour « fois »)
+  raw = raw.replace(/\s*(?:€|euros?)\s*$/i, '');
   raw = raw.replace(/(\d)\s*[xX]\s*(?=[\d(])/g, '$1 × ');
   const parsed = tryParse(raw);
   if (!parsed.ok) return { error: parsed.error };
@@ -74,7 +76,12 @@ export function checkNumeric(def, params, response) {
   if (def.unit) {
     const target = parseUnit(def.unit);
     if (!read.unit || read.badUnit) {
-      unitNote = `Précise l'unité (attendu : ${def.unit}).`;
+      // conversion « 2,5 km = … m » : l'unité est imposée par l'énoncé, le nombre seul suffit
+      if (!def.unitOptional) unitNote = `Précise l'unité (attendu : ${def.unit}).`;
+    } else if (def.strictUnit && sameDimension(read.unit, target) && Math.abs(read.unit.factor - target.factor) > 1e-12 * target.factor) {
+      const v = (read.value * read.unit.factor) / target.factor;
+      if (closeEnough(v, expected, def)) return diagnosis({ verdict: 'incorrect', score: 0, errorType: 'unite', feedback: `Tu as gardé la même grandeur dans une autre unité : il faut l'exprimer en ${def.unit}.` });
+      value = v;
     } else if (!sameDimension(read.unit, target)) {
       return diagnosis({ verdict: 'incorrect', errorType: 'unite', feedback: `L'unité « ${read.unitText} » ne correspond pas à la grandeur demandée (${def.unit}).` });
     } else {

@@ -5,9 +5,10 @@
 import { h, tabs, pct } from '../dom.js';
 import { store, loadCourse, skillLevel } from '../../app/store.js';
 import { LEVELS as MASTERY } from '../../engine/mastery.js';
+import { allGenerators } from '../../generators/registry.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
-const SUBJECT_ICONS = { maths: '∑', pc: '⚗', numerique: '⌘', francais: '¶', hg: '⌖', svt: '❦', techno: '⚙', emc: '⚖', lv: '✎', eps: '⚑' };
+const SUBJECT_ICONS = { maths: '∑', pc: '⚗', numerique: '⌘', francais: '¶', hg: '⌖', svt: '❦', techno: '⚙', emc: '⚖', lv: '✎', eps: '⚑', musique: '♪', 'arts-plastiques': '◐' };
 
 function ring(value, label) {
   const r = 24; const c = 2 * Math.PI * r;
@@ -25,7 +26,7 @@ export async function render(root, { args, params }) {
   const lvParam = params.get('niveau');
   const level = lvParam || levelId(store.profile.level);
   const levelCourses = catalog.courses.filter((c) => c.level === level);
-  const ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg', 'svt', 'techno', 'sciences-techno', 'qlm', 'lv', 'emc', 'snt', 'nsi', 'ens-sci', 'ses', 'philo'];
+  const ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg', 'svt', 'techno', 'sciences-techno', 'qlm', 'lv', 'emc', 'musique', 'arts-plastiques', 'snt', 'nsi', 'ens-sci', 'ses', 'philo'];
   const rank = (s) => { const c = levelCourses.find((x) => x.subject === s); const i = ORDER.indexOf(s); return (c.coverage !== 'reference' ? 0 : 100) + (i === -1 ? 50 : i); };
   const subjects = [...new Set(levelCourses.map((c) => c.subject))].sort((a, b) => rank(a) - rank(b));
   const subject = args[0] && subjects.includes(args[0]) ? args[0] : subjects[0];
@@ -56,6 +57,8 @@ export async function render(root, { args, params }) {
         h('p', { class: 'small' }, ...(p.links || []).slice(0, 3).map((l) => h('a', { href: l.url, target: '_blank', rel: 'noopener noreferrer', style: { marginRight: '12px' } }, `${l.label}${l.verified ? '' : ' (lien non vérifié)'}`)))))) : null,
     course.coverage === 'reference' ? h('p', { class: 'demo-banner' }, 'Ce parcours présente les domaines et notions du programme officiel. Les leçons interactives sont à développer : rien n’est encore exercé ici.') : null));
 
+  const gens = allGenerators(store.index);
+  const trainable = (skills) => skills.some((s) => store.index.exercises.some((e) => e.skill === s) || gens.some((g) => g.skill === s));
   const trail = h('div', { class: `trail subj-${subject}` });
   for (const ch of course.chapters || []) {
     const skills = ch.skills || [];
@@ -69,14 +72,16 @@ export async function render(root, { args, params }) {
       h('div', { class: 'station-body' },
         h('h3', {}, ch.title),
         h('div', { class: 'station-meta' },
-          soon ? h('span', { class: 'chip chip--soon' }, 'À venir') : h('span', { class: `chip chip--status-${ch.status || 'programme'}` }, 'Programme'),
+          soon ? h('span', { class: 'chip chip--soon' }, 'À venir') : h('span', { class: `chip chip--status-${ch.status || 'programme'}` }, { approfondissement: 'Approfondissement · facultatif', 'hors-programme': 'Hors programme · facultatif' }[ch.status] || 'Programme'),
           extra ? h('span', { class: 'chip chip--track-expert' }, `◆ ✦ ${extra} défis facultatifs`) : null),
         ch.note ? h('p', { class: 'small muted' }, ch.note) : null,
         skills.length ? h('div', { class: 'skill-pills' }, skills.map((s) => {
           const lv = skillLevel(s); const meta = store.index.skills.get(s);
           return meta ? h('span', { class: `skill-pill lvl-${lv}`, title: MASTERY[lv].label }, `${meta.label}${meta.status !== 'programme' ? ' ◆' : ''}`) : null;
         })) : null,
-        lessons.length ? h('div', { class: 'btn-row', style: { marginTop: '10px' } }, lessons.map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, `${l.title} →`))) : null,
+        lessons.length || trainable(skills) ? h('div', { class: 'btn-row', style: { marginTop: '10px' } },
+          lessons.map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, `${l.title} →`)),
+          trainable(skills) ? h('a', { class: 'btn btn--small btn--ghost', href: `#/exercices?niveau=${level}&matiere=${subject}&notions=${skills.join(',')}` }, 'S’entraîner ↻') : null) : null,
         (ch.official && ch.official.length) || (ch.notions && ch.notions.length)
           ? h('details', { class: 'small', style: { marginTop: '8px' } }, h('summary', {}, 'Ce que dit le programme'),
             h('ul', {}, ...(ch.official || []).map((o) => h('li', {}, o.label)), ...(ch.notions || []).map((n) => h('li', {}, n)))) : null)));

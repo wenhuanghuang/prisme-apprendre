@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CODE_GENERATORS, codeGeneratorMeta } from '../app/js/generators/maths-pc.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const content = join(root, 'app', 'content');
@@ -94,6 +95,17 @@ for (const c of catalog.courses.filter((x) => x.coverage !== 'reference')) {
     const counts = (ch.lessons || []).reduce((acc, id) => { const e = exByLesson[id]; if (e) { acc[0] += e.classe; acc[1] += e.approfondissement; acc[2] += e.expert; } return acc; }, [0, 0, 0]);
     out(`| ${ch.title} | ${ch.state === 'disponible' ? 'rédigé' : 'à venir'} | ${att.replace(/\|/g, '/')} | ${ls} | ${ch.lessons && ch.lessons.length ? counts.join(' / ') : '—'} |`);
   }
+}
+out();
+out('## Générateurs d’exercices (Espace exercices)');
+out();
+const gens = [...CODE_GENERATORS.map(codeGeneratorMeta), ...(index.generators || [])];
+out(`${gens.length} générateurs produisent des exercices nouveaux à chaque tirage, corrigés et diagnostiqués comme les autres.`);
+out();
+out('| Générateur | Matière | Classes | Compétence | Genre |');
+out('|---|---|---|---|---|');
+for (const g of gens.sort((a, b) => a.subject.localeCompare(b.subject) || a.label.localeCompare(b.label))) {
+  out(`| ${g.label} | ${subjLabel(g.subject)} | ${g.levels.join(', ')} | ${(skills.get(g.skill) || { label: g.skill }).label} | ${g.kind} |`);
 }
 out();
 out('## Compétences et statut (programme / approfondissement / hors programme)');

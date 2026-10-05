@@ -11,6 +11,16 @@ app/content/
 └── lessons/<id>.json       une leçon = sections pédagogiques + exercices + parcours facultatifs
 ```
 
+## 0. Parcours (`courses/<matière>-<niveau>.json`)
+
+```json
+{ "id": "svt-5e", "level": "5e", "subject": "svt", "authored": true, "coverage": "partiel", "programmes": ["svt-c4-2020"],
+  "progressionNote": "… (dire si le programme est défini par cycle : ordre éditorial)",
+  "chapters": [ { "id": "svt5-…", "title": "…", "status": "programme", "state": "disponible", "lessons": ["svt5-…"], "skills": ["…"], "official": [{"id": "…", "label": "attendu officiel"}] },
+                { "id": "svt5-…", "title": "…", "status": "programme", "state": "a-venir", "lessons": [], "skills": [], "official": [] } ] }
+```
+Identifiants de matière : `maths`, `francais`, `hg`, `emc`, `svt`, `pc`, `techno`, `lv` (langues vivantes : anglais, espagnol… dans le même parcours), `musique`, `arts-plastiques`, `numerique`. Les chapitres non rédigés restent listés avec `"state": "a-venir"` : le nombre de chapitres suit le programme réel.
+
 ## 1. Compétence (`skills/*.json`)
 
 ```json
@@ -98,10 +108,20 @@ Champs communs :
 | `qcm` | `choices: [{text, correct, feedback, error, misconception}]` — **vérification rapide seulement** | `{selected: [i]}` |
 | `code` | `reference` (programme modèle), `start`, `codeConstraints` (`maxInstructions`, `mustUse`), `misconceptions: [{program, id, error, feedback}]` (dessin typique d'une idée fausse) | `{program}` |
 | `composite` | `parts: [définitions sans id]` (partagent les paramètres) | `{parts: [réponses]}` |
+| `highlight` | `text` avec les mots à repérer entre crochets : `"Le [petit] chat [noir] dort."` (un groupe de mots possible : `[sont venus]`), `instruction`, `misconceptions: [{word, id, error, feedback}]` (mot sélectionné à tort) | `{selected: [index des mots]}` |
+| `match` | `left: [{id,label}]`, `right: [{id,label}]`, `pairs: {idGauche: idDroite}`, `leftTitle`, `rightTitle`, `misconceptions: [{pair: [g, d], id, error, feedback}]` | `{pairs: {}}` |
+| `categorize` | `categories: [{id,label}]`, `items: [{id,label,category}]`, `misconceptions: [{item, category, id, error, feedback}]` | `{assign: {item: categorie}}` |
+| `dictation` | `answer` (phrase attendue, ou liste de variantes), `audio: {text, lang}` obligatoire, `misconceptions: [{word, id, error, feedback}]` (mot mal écrit typique). Correction mot à mot ; la ponctuation n'est pas notée | `{value}` |
+
+### Écoute (synthèse vocale locale)
+Tout exercice peut porter `"audio": { "text": "The cat is sleeping.", "lang": "en-GB" }` : un bouton « ▶ Écouter » (et « lentement ») lit le texte avec les voix installées sur l'ordinateur (aucun envoi de données). Langues : `fr-FR`, `en-GB`, `en-US`, `es-ES`, `de-DE`, `it-IT`. `"after": true` ne propose l'écoute qu'après la réponse (pour vérifier la prononciation sans donner la réponse). Chaque énoncé dispose en plus d'un bouton « Lire l'énoncé » en français.
+
+### Réponse courte en langue étrangère
+Pour `text`, `accept` liste toutes les réponses acceptables (synonymes, avec ou sans article : `["house", "a house", "the house"]`). Les majuscules sont ignorées sauf `caseSensitive: true` ; une faute d'accent seule est signalée sans être comptée fausse.
 
 ### Idées fausses (`misconceptions`)
 ```json
 { "answer": "a + b", "id": "mc:moins-moins", "error": "notion",
   "prerequisite": "m5.relatifs.reperage", "feedback": "Soustraire un nombre négatif revient à ajouter son opposé." }
 ```
-`error` est un type de la typologie (`notion`, `calcul`, `signe`, `lecture`, `methode`, `forme`, `unite`, `precision`, `raisonnement`). Si `prerequisite` est renseigné, le moteur propose ce prérequis quand l'erreur se répète.
+`error` est un type de la typologie (`notion`, `calcul`, `signe`, `lecture`, `methode`, `forme`, `orthographe`, `unite`, `precision`, `raisonnement`). Dans une dictée, un mot reconnu mais mal écrit (accent, une ou deux lettres) est classé `orthographe` automatiquement. Si `prerequisite` est renseigné, le moteur propose ce prérequis quand l'erreur se répète.

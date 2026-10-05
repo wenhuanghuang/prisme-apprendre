@@ -9,6 +9,7 @@ import { interpolate, parseWithParams } from '../core/template.js';
 import { createNumberLine } from './visual-inputs.js';
 import { createGraphInput } from './graph-input.js';
 import { createCodeEditor } from '../activities/turtle-editor.js';
+import { tokenizeHighlight } from '../core/checkers/language.js';
 
 let uid = 0;
 const nextId = (p) => `${p}-${++uid}`;
@@ -303,6 +304,142 @@ function compositeInput(inst, def, ctx) {
   };
 }
 
+/* ------------------- Français, langues, histoire-géographie, SVT… ------------------- */
+
+/** Mots à repérer : chaque mot est un bouton à bascule (clic, Espace ou Entrée) ; flèches pour circuler. */
+function highlightInput(inst, def) {
+  const tokens = tokenizeHighlight(interpolate(def.text || '', inst.params));
+  const selected = new Set();
+  const buttons = [];
+  const count = h('span', { class: 'muted small', 'aria-live': 'polite' });
+  const refresh = () => { count.textContent = selected.size ? `${selected.size} mot${selected.size > 1 ? 's' : ''} sélectionné${selected.size > 1 ? 's' : ''}` : ''; };
+  const text = h('p', { class: 'hl-text', role: 'group', 'aria-label': def.instruction || 'Texte : clique sur les mots demandés' });
+  for (const t of tokens) {
+    if (!t.word) { text.append(t.text); continue; }
+    const b = h('button', { type: 'button', class: 'hl-word', 'aria-pressed': 'false', tabindex: buttons.length ? '-1' : '0', dataset: { index: String(t.index) } }, t.text);
+    b.addEventListener('click', () => {
+      if (selected.has(t.index)) selected.delete(t.index); else selected.add(t.index);
+      b.setAttribute('aria-pressed', String(selected.has(t.index)));
+      refresh();
+    });
+    b.addEventListener('keydown', (e) => {
+      const i = buttons.indexOf(b);
+      const keys = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: buttons.length - 1 };
+      const j = keys[e.key];
+      if (j === undefined || j < 0 || j >= buttons.length) return;
+      e.preventDefault();
+      b.tabIndex = -1; buttons[j].tabIndex = 0; buttons[j].focus();
+    });
+    buttons.push(b);
+    text.append(b);
+  }
+  const el = h('div', { class: 'hl' },
+    h('p', { class: 'muted small' }, def.instruction || 'Clique sur les mots demandés (clique de nouveau pour annuler). Au clavier : flèches puis Espace.'),
+    text, count);
+  return {
+    el,
+    getResponse: () => ({ selected: [...selected].sort((a, b) => a - b) }),
+    show(d) {
+      for (const det of d.details || []) {
+        const b = buttons[det.index];
+        if (!b) continue;
+        const ok = det.target && det.selected; const ko = !det.target && det.selected;
+        b.classList.toggle('is-ok', ok);
+        b.classList.toggle('is-ko', ko);
+        if (ok || ko) b.setAttribute('aria-label', `${det.text} : ${ok ? 'juste' : 'en trop'}`); else b.removeAttribute('aria-label');
+      }
+    },
+    revealAnswer() {
+      tokens.filter((t) => t.target).forEach((t) => {
+        const b = buttons[t.index];
+        if (b && !selected.has(t.index)) { b.classList.add('is-missed'); b.setAttribute('aria-label', `${t.text} : à repérer, oublié`); }
+      });
+    },
+    lock: (lk) => buttons.forEach((b) => { b.disabled = lk; }),
+    focus: () => buttons[0] && buttons[0].focus(),
+  };
+}
+
+/** Ligne corrigée : couleur ET texte (« ✓ juste », « ✗ à revoir »), pour ne pas dépendre de la couleur seule. */
+function markRow(row, status, ok, answered) {
+  row.classList.toggle('is-ok', ok);
+  row.classList.toggle('is-ko', !ok && answered);
+  status.textContent = ok ? '✓ juste' : answered ? '✗ à revoir' : '';
+}
+
+/** Associer : une liste déroulante par élément de gauche (utilisable au clavier et au lecteur d'écran). */
+function matchInput(inst, def) {
+  const right = shuffled(def.right || [], inst.seed);
+  const rows = (def.left || []).map((l) => {
+    const id = nextId('mt');
+    const sel = h('select', { id, class: 'field-input' }, h('option', { value: '' }, '— choisir —'), right.map((r) => h('option', { value: r.id }, r.label)));
+    const status = h('span', { class: 'row-status', 'aria-live': 'polite' });
+    const row = h('div', { class: 'match-row' }, h('label', { class: 'match-left', for: id, html: inlineHTML(l.label) }), h('span', { class: 'match-arrow', 'aria-hidden': 'true' }, '↔'), sel, status);
+    return { l, sel, row, status };
+  });
+  const el = h('div', { class: 'match' },
+    def.leftTitle || def.rightTitle ? h('div', { class: 'match-row match-head', 'aria-hidden': 'true' }, h('span', {}, def.leftTitle || ''), h('span', {}), h('span', {}, def.rightTitle || '')) : null,
+    rows.map((r) => r.row));
+  return {
+    el,
+    getResponse: () => ({ pairs: Object.fromEntries(rows.filter((r) => r.sel.value).map((r) => [r.l.id, r.sel.value])) }),
+    show(d) { for (const det of d.details || []) { const r = rows.find((x) => x.l.id === det.left); if (r) markRow(r.row, r.status, det.ok, Boolean(det.given)); } },
+    lock: (b) => lockAll(el, b),
+    focus: () => rows[0] && rows[0].sel.focus(),
+  };
+}
+
+/** Classer : pour chaque élément, un groupe de boutons radio (les catégories côte à côte). */
+function categorizeInput(inst, def) {
+  const cats = def.categories || [];
+  const items = shuffled(def.items || [], inst.seed);
+  const rows = items.map((it) => {
+    const name = nextId('cat');
+    const radios = cats.map((c) => {
+      const rid = `${name}-${c.id}`;
+      const input = h('input', { type: 'radio', name, id: rid, value: c.id });
+      return { input, el: h('span', { class: 'cat-opt' }, input, h('label', { for: rid }, c.label)) };
+    });
+    const status = h('span', { class: 'row-status', 'aria-live': 'polite' });
+    const row = h('fieldset', { class: 'cat-row' }, h('legend', { class: 'cat-item', html: inlineHTML(it.label) }), h('div', { class: 'cat-opts' }, radios.map((r) => r.el), status));
+    return { it, radios, row, status };
+  });
+  const el = h('div', { class: 'cat' }, h('p', { class: 'muted small' }, `Pour chaque élément, choisis : ${cats.map((c) => c.label).join(' · ')}.`), rows.map((r) => r.row));
+  const chosen = (r) => { const x = r.radios.find((y) => y.input.checked); return x ? x.input.value : ''; };
+  return {
+    el,
+    getResponse: () => ({ assign: Object.fromEntries(rows.map((r) => [r.it.id, chosen(r)]).filter(([, v]) => v)) }),
+    show(d) { for (const det of d.details || []) { const r = rows.find((x) => x.it.id === det.id); if (r) markRow(r.row, r.status, det.ok, Boolean(det.given)); } },
+    lock: (b) => lockAll(el, b),
+    focus: () => rows[0] && rows[0].radios[0] && rows[0].radios[0].input.focus(),
+  };
+}
+
+/** Dictée : zone de texte ; après correction, les mots fautifs sont barrés et les oublis signalés. */
+function dictationInput(inst, def) {
+  const id = nextId('dict');
+  const ta = h('textarea', { id, class: 'field-textarea', rows: 3, spellcheck: 'false', autocomplete: 'off', autocapitalize: 'off', lang: (def.audio && def.audio.lang) || 'fr-FR', placeholder: 'Écris ce que tu entends…' });
+  const result = h('p', { class: 'dict-result', 'aria-live': 'polite' });
+  const el = h('div', { class: 'dict' }, h('label', { class: 'field-label', for: id }, 'Ce que tu as entendu'), ta, result);
+  return {
+    el,
+    getResponse: () => ({ value: ta.value }),
+    show(d) {
+      clear(result);
+      if (!Array.isArray(d.details) || d.verdict === 'correct') return;
+      result.append(h('span', { class: 'sr-only' }, 'Relecture : '));
+      for (const op of d.details) {
+        if (op.type === 'ok') result.append(h('span', { class: 'dw dw-ok' }, op.given), ' ');
+        else if (op.type === 'sub') result.append(h('span', { class: 'dw dw-ko', title: 'mot à corriger' }, h('s', {}, op.given), h('span', { class: 'sr-only' }, ' (à corriger)')), ' ');
+        else if (op.type === 'missing') result.append(h('span', { class: 'dw dw-miss', title: 'mot oublié' }, h('span', { class: 'sr-only' }, 'mot oublié'), h('span', { 'aria-hidden': 'true' }, '▢')), ' ');
+        else result.append(h('span', { class: 'dw dw-extra', title: 'mot en trop' }, h('s', {}, op.given), h('span', { class: 'sr-only' }, ' (en trop)')), ' ');
+      }
+    },
+    lock: (b) => { ta.disabled = b; },
+    focus: () => ta.focus(),
+  };
+}
+
 export function justificationField(spec = {}) {
   const id = nextId('just');
   const ta = h('textarea', { id, class: 'field-textarea small', rows: 3, placeholder: 'Explique ta démarche ou écris ton calcul…' });
@@ -314,6 +451,7 @@ const FACTORIES = {
   numeric: numericInput, expression: expressionInput, equation: equationInput, steps: stepsInput, open: openInput, text: textInput,
   counterexample: counterexampleInput, multi: multiInput, table: tableInput, order: orderInput, qcm: qcmInput,
   numberline: numberlineInput, graph: graphInput, code: codeInput, composite: compositeInput,
+  highlight: highlightInput, match: matchInput, categorize: categorizeInput, dictation: dictationInput,
 };
 
 export function createAnswer(inst, def, ctx) {

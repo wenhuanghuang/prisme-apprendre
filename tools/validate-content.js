@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { validateLesson, exerciseMeta } from '../app/js/content/validate.js';
+import { validateLesson, exerciseMeta, validateGenerator, generatorMeta } from '../app/js/content/validate.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const contentDir = join(root, 'app', 'content');
@@ -25,9 +25,11 @@ export function loadAll() {
     .map((f) => ({ file: f, data: readJson(join(contentDir, 'lessons', f)) }));
   const courses = readdirSync(join(contentDir, 'courses')).filter((x) => x.endsWith('.json')).sort()
     .map((f) => ({ file: f, data: readJson(join(contentDir, 'courses', f)) }));
+  const genDir = join(contentDir, 'generators');
+  const generators = existsSync(genDir) ? readdirSync(genDir).filter((x) => x.endsWith('.json')).sort().map((f) => ({ file: f, data: readJson(join(genDir, f)) })) : [];
   const catalog = existsSync(join(contentDir, 'catalog.json')) ? readJson(join(contentDir, 'catalog.json')) : null;
   const programmes = existsSync(join(contentDir, 'programmes.json')) ? readJson(join(contentDir, 'programmes.json')) : null;
-  return { skills, lessons, courses, catalog, programmes };
+  return { skills, lessons, courses, generators, catalog, programmes };
 }
 
 export function validateAll(all) {
@@ -54,6 +56,13 @@ export function validateAll(all) {
     }
   }
   for (const { data } of all.lessons) for (const p of data.programmes || []) if (all.programmes && !programmeIds.has(p)) errors.push(`${data.id} : programme inconnu ${p}`);
+  const genIds = new Set();
+  for (const { file, data } of all.generators || []) {
+    if (`${data.id}.json` !== file) errors.push(`${file} : le nom du fichier doit être <id>.json`);
+    if (genIds.has(data.id)) errors.push(`générateur en double : ${data.id}`);
+    genIds.add(data.id);
+    errors.push(...validateGenerator(data, skillIds));
+  }
   return errors;
 }
 
@@ -73,6 +82,7 @@ export function buildIndex(all) {
       },
     })),
     exercises: all.lessons.flatMap(({ data }) => data.exercises.map((e) => exerciseMeta(e, data))),
+    generators: (all.generators || []).map(({ data }) => generatorMeta(data)),
   };
 }
 
@@ -82,6 +92,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   if (onlyArg) {
     const only = new Set(onlyArg.slice(7).split(','));
     all.lessons = all.lessons.filter((l) => only.has(l.data.id));
+    all.generators = (all.generators || []).filter((g) => only.has(g.data.id));
     all.courses = [];
     process.argv.push('--check');
   }
@@ -92,7 +103,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     for (const e of errors) console.error('  - ' + e);
     process.exitCode = 1;
   } else {
-    console.log(`✓ Contenus valides : ${all.skills.length} compétences, ${all.lessons.length} leçons, ${nEx} exercices (réponses types rejouées sur 7 tirages).`);
+    console.log(`✓ Contenus valides : ${all.skills.length} compétences, ${all.lessons.length} leçons, ${nEx} exercices (réponses types rejouées sur 7 tirages), ${(all.generators || []).length} générateurs.`);
   }
   // --force : écrit quand même l'index (développement, contenus en cours de rédaction)
   if (!process.argv.includes('--check') && (!errors.length || process.argv.includes('--force'))) {

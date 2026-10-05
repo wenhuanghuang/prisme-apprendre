@@ -1,0 +1,139 @@
+{
+  "id": "fr-accords",
+  "label": "Accords : groupe nominal, sujet-verbe, participe passé avec être, pluriel des noms",
+  "description": "Une phrase à compléter avec la forme correcte du mot entre parenthèses. L'erreur est diagnostiquée : accord oublié, mauvais genre, mauvais sujet, participe confondu avec l'infinitif, pluriel irrégulier.",
+  "subject": "francais",
+  "levels": ["5e", "4e"],
+  "skill": "fr.orthographe.accords-gn",
+  "kind": "cloze",
+  "data": {
+    "prompt": "Écris la forme correcte du mot entre parenthèses :",
+    "hint": "Cherche le mot qui commande l'accord (le nom, le sujet), puis son genre et son nombre.",
+    "items": [
+      { "sentence": "Des fleurs ___ (blanc) décoraient la table.", "accept": ["blanches"],
+        "misconceptions": [
+          { "answer": "blanc", "id": "mc:accord-adjectif", "error": "forme", "feedback": "L'adjectif s'accorde avec le nom « fleurs », féminin pluriel : blanches." },
+          { "answer": "blancs", "id": "mc:accord-adjectif-genre", "error": "forme", "feedback": "Le pluriel est bon, mais « fleurs » est féminin : blanches." },
+          { "answer": "blanche", "id": "mc:accord-adjectif", "error": "forme", "feedback": "« fleurs » est au pluriel : blanches." }
+        ], "rule": "L'adjectif s'accorde en genre et en nombre avec le nom qu'il qualifie." },
+      { "sentence": "Les ___ (vieux) maisons du village ont été rénovées.", "accept": ["vieilles"],
+        "misconceptions": [
+          { "answer": "vieux", "id": "mc:accord-adjectif-genre", "error": "forme", "feedback": "« maisons » est féminin pluriel ; le féminin de vieux est vieille → vieilles." },
+          { "answer": "vieille", "id": "mc:accord-adjectif", "error": "forme", "feedback": "« maisons » est au pluriel : vieilles." }
+        ], "rule": "vieux → vieille au féminin." },
+      { "sentence": "Une robe et un chapeau ___ (noir) étaient posés sur le lit.", "accept": ["noirs"],
+        "misconceptions": [
+          { "answer": "noires", "id": "mc:accord-adjectif-genre", "error": "notion", "feedback": "Un nom féminin + un nom masculin : l'adjectif se met au masculin pluriel → noirs." },
+          { "answer": "noir", "id": "mc:accord-adjectif", "error": "forme", "feedback": "L'adjectif qualifie deux noms : il se met au pluriel → noirs." }
+        ], "rule": "Masculin + féminin → masculin pluriel." },
+      { "sentence": "Ces exercices sont vraiment ___ (difficile).", "accept": ["difficiles"],
+        "misconceptions": [ { "answer": "difficile", "id": "mc:accord-attribut", "error": "forme", "feedback": "L'attribut du sujet s'accorde avec le sujet « ces exercices » (pluriel) : difficiles." } ],
+        "rule": "L'adjectif attribut s'accorde avec le sujet." },
+      { "sentence": "Les ___ (nouveau) élèves visitent le collège.", "accept": ["nouveaux"],
+        "misconceptions": [
+          { "answer": "nouveaus", "id": "mc:pluriel-eau", "error": "forme", "feedback": "Les mots en -eau prennent un x au pluriel : nouveaux." },
+          { "answer": "nouveau", "id": "mc:accord-adjectif", "error": "forme", "feedback": "« élèves » est au pluriel : nouveaux." }
+        ], "rule": "-eau → -eaux au pluriel." },
+      { "sentence": "Il a reçu de ___ (beau) cadeaux.", "accept": ["beaux"],
+        "misconceptions": [
+          { "answer": "beaus", "id": "mc:pluriel-eau", "error": "forme", "feedback": "Les mots en -eau prennent un x au pluriel : beaux." },
+          { "answer": "beau", "id": "mc:accord-adjectif", "error": "forme", "feedback": "« cadeaux » est au pluriel : beaux." }
+        ], "rule": "beau → beaux au masculin pluriel." },
+      { "sentence": "Mes tantes sont très ___ (gentil) avec moi.", "accept": ["gentilles"],
+        "misconceptions": [
+          { "answer": "gentils", "id": "mc:accord-adjectif-genre", "error": "forme", "feedback": "« Mes tantes » est féminin pluriel : gentilles (avec deux l)." },
+          { "answer": "gentiles", "id": "mc:accord-adjectif", "error": "forme", "feedback": "Le féminin de gentil double le l : gentille → gentilles." },
+          { "answer": "gentil", "id": "mc:accord-attribut", "error": "forme", "feedback": "L'attribut s'accorde avec le sujet « mes tantes » : gentilles." }
+        ], "rule": "gentil → gentille (le l double au féminin)." },
+      { "sentence": "J'ai lu deux romans ___ (passionnant).", "accept": ["passionnants"],
+        "misconceptions": [ { "answer": "passionnant", "id": "mc:accord-adjectif", "error": "forme", "feedback": "« deux romans » est au pluriel : passionnants." } ],
+        "rule": "L'adjectif s'accorde avec le nom." },
+      { "sentence": "Les vagues étaient ___ (haut) ce jour-là.", "accept": ["hautes"],
+        "misconceptions": [
+          { "answer": "hauts", "id": "mc:accord-adjectif-genre", "error": "forme", "feedback": "« les vagues » est féminin pluriel : hautes." },
+          { "answer": "haut", "id": "mc:accord-attribut", "error": "forme", "feedback": "L'attribut s'accorde avec le sujet « les vagues » : hautes." }
+        ], "rule": "L'attribut du sujet s'accorde avec le sujet." },
+      { "sentence": "Les oiseaux du jardin ___ (chanter, présent) dès l'aube.", "accept": ["chantent"],
+        "misconceptions": [ { "answer": "chante", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "Le sujet est « les oiseaux du jardin » ; son noyau, « oiseaux », est au pluriel. « du jardin » n'est qu'un complément du nom : ils chantent." } ],
+        "rule": "Le verbe s'accorde avec le noyau du sujet." },
+      { "sentence": "Mon frère et moi ___ (aller, présent) au collège à pied.", "accept": ["allons"],
+        "misconceptions": [
+          { "answer": "vont", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "« Mon frère et moi » = nous : nous allons." },
+          { "answer": "va", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "Le sujet contient deux personnes dont « moi » : on accorde à la 1re personne du pluriel → allons." }
+        ], "rule": "« toi et moi », « lui et moi » = nous." },
+      { "sentence": "Tu ___ (finir, présent) toujours le premier.", "accept": ["finis"],
+        "misconceptions": [ { "answer": "finit", "id": "mc:accord-sujet-verbe", "error": "forme", "feedback": "Avec « tu », le verbe se termine presque toujours par -s : tu finis." } ],
+        "rule": "tu → -s." },
+      { "sentence": "Le chat les ___ (observer, présent) sans bouger.", "accept": ["observe"],
+        "misconceptions": [ { "answer": "observent", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "« les » est un pronom COD placé devant le verbe, pas le sujet. Qui observe ? le chat → observe." } ],
+        "rule": "Le sujet n'est pas toujours le mot placé juste avant le verbe." },
+      { "sentence": "C'est toi qui ___ (avoir, présent) raison.", "accept": ["as"],
+        "misconceptions": [ { "answer": "a", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "Le pronom relatif « qui » reprend « toi » (2e personne) : c'est toi qui as raison." } ],
+        "rule": "Après « moi qui », « toi qui », le verbe s'accorde avec ce pronom." },
+      { "sentence": "Dans la forêt ___ (vivre, présent) des cerfs et des sangliers.", "accept": ["vivent"],
+        "misconceptions": [ { "answer": "vit", "id": "mc:accord-sujet-verbe", "error": "notion", "feedback": "Le sujet est placé après le verbe : ce sont « des cerfs et des sangliers » qui vivent → vivent." } ],
+        "rule": "Attention au sujet inversé." },
+      { "sentence": "Vous ___ (dire, présent) toujours la vérité.", "accept": ["dites"],
+        "misconceptions": [ { "answer": "disez", "id": "mc:conjugaison-irreguliere", "error": "forme", "feedback": "Forme irrégulière : vous dites (comme vous faites, vous êtes)." } ],
+        "rule": "vous dites, vous faites, vous êtes : formes irrégulières." },
+      { "sentence": "Autrefois, nous ___ (manger, imparfait) souvent chez nos voisins.", "accept": ["mangions"],
+        "misconceptions": [ { "answer": "mangeions", "id": "mc:ge-devant-i", "error": "forme", "feedback": "Devant i, le g se prononce déjà [ʒ] : pas besoin de e → nous mangions." } ],
+        "rule": "On ajoute un e après g seulement devant a et o." },
+      { "sentence": "Mes cousines sont ___ (venir) en train.", "accept": ["venues"],
+        "misconceptions": [
+          { "answer": "venu", "id": "mc:pp-etre", "error": "notion", "feedback": "Avec l'auxiliaire être, le participe s'accorde avec le sujet « mes cousines » (féminin pluriel) : venues." },
+          { "answer": "venus", "id": "mc:pp-etre", "error": "forme", "feedback": "« mes cousines » est féminin : venues." }
+        ], "rule": "Avec être, le participe passé s'accorde avec le sujet." },
+      { "sentence": "La porte est ___ (fermer) à clé.", "accept": ["fermée"],
+        "misconceptions": [
+          { "answer": "fermé", "id": "mc:pp-etre", "error": "forme", "feedback": "« La porte » est féminin singulier : fermée." },
+          { "answer": "fermer", "id": "mc:pp-infinitif", "error": "notion", "feedback": "Après « est », il faut un participe (comme « ouverte ») : fermée." }
+        ], "rule": "Avec être, accord avec le sujet." },
+      { "sentence": "Les volets sont ___ (ouvrir) depuis ce matin.", "accept": ["ouverts"],
+        "misconceptions": [ { "answer": "ouvert", "id": "mc:pp-etre", "error": "forme", "feedback": "« Les volets » est masculin pluriel : ouverts." } ],
+        "rule": "Avec être, accord avec le sujet." },
+      { "sentence": "Ma grand-mère est ___ (naître) en 1950.", "accept": ["née"],
+        "misconceptions": [ { "answer": "né", "id": "mc:pp-etre", "error": "forme", "feedback": "« Ma grand-mère » est féminin : née." } ],
+        "rule": "Avec être, accord avec le sujet." },
+      { "sentence": "Les feuilles sont ___ (tomber) pendant la nuit.", "accept": ["tombées"],
+        "misconceptions": [
+          { "answer": "tombé", "id": "mc:pp-etre", "error": "forme", "feedback": "« Les feuilles » est féminin pluriel : tombées." },
+          { "answer": "tombés", "id": "mc:pp-etre", "error": "forme", "feedback": "« feuilles » est féminin : tombées." }
+        ], "rule": "Avec être, accord avec le sujet." },
+      { "sentence": "Cette maison a été ___ (construire) en 1900.", "accept": ["construite"],
+        "misconceptions": [ { "answer": "construit", "id": "mc:pp-etre", "error": "forme", "feedback": "À la voix passive (a été construite), le participe s'accorde avec le sujet « cette maison » : construite." } ],
+        "rule": "Voix passive : le participe s'accorde avec le sujet." },
+      { "sentence": "Les deux garçons sont ___ (rentrer) trempés.", "accept": ["rentrés"],
+        "misconceptions": [ { "answer": "rentré", "id": "mc:pp-etre", "error": "forme", "feedback": "« Les deux garçons » est masculin pluriel : rentrés." } ],
+        "rule": "Avec être, accord avec le sujet." },
+      { "sentence": "Il a ___ (manger) une pomme.", "accept": ["mangé"],
+        "misconceptions": [
+          { "answer": "manger", "id": "mc:pp-infinitif", "error": "notion", "feedback": "Remplace par « vendre » : on dit « il a vendu », pas « il a vendre ». Il faut donc le participe passé : mangé." },
+          { "answer": "mangée", "id": "mc:pp-avoir-sujet", "error": "notion", "feedback": "Avec avoir et un COD placé après (une pomme), pas d'accord : mangé." }
+        ], "rule": "Après avoir ou être : participe passé (-é) ; après un autre verbe ou une préposition : infinitif (-er)." },
+      { "sentence": "Je vais ___ (chercher) du pain.", "accept": ["chercher"],
+        "misconceptions": [ { "answer": "cherché", "id": "mc:pp-infinitif", "error": "notion", "feedback": "Remplace par « prendre » : on dit « je vais prendre », pas « je vais pris ». C'est l'infinitif : chercher." } ],
+        "rule": "Après « aller », on emploie l'infinitif." },
+      { "sentence": "Elle a ___ (terminer) ses devoirs.", "accept": ["terminé"],
+        "misconceptions": [
+          { "answer": "terminer", "id": "mc:pp-infinitif", "error": "notion", "feedback": "Remplace par « finir » : on dit « elle a fini », pas « elle a finir ». Participe passé : terminé." },
+          { "answer": "terminés", "id": "mc:pp-cod-apres", "error": "notion", "feedback": "Avec avoir, le COD « ses devoirs » est placé après : pas d'accord → terminé." }
+        ], "rule": "Avec avoir, pas d'accord avec un COD placé après." },
+      { "sentence": "Les ___ (cheval) galopent dans le pré.", "accept": ["chevaux"],
+        "misconceptions": [ { "answer": "chevals", "id": "mc:pluriel-noms", "error": "forme", "feedback": "La plupart des noms en -al font leur pluriel en -aux : chevaux." } ],
+        "rule": "-al → -aux (sauf bal, carnaval, festival, chacal, récital, régal)." },
+      { "sentence": "Elle porte deux ___ (bijou) en or.", "accept": ["bijoux"],
+        "misconceptions": [ { "answer": "bijous", "id": "mc:pluriel-noms", "error": "forme", "feedback": "bijou fait partie des sept noms en -ou qui prennent un x : bijoux, cailloux, choux, genoux, hiboux, joujoux, poux." } ],
+        "rule": "Sept noms en -ou prennent un x au pluriel." },
+      { "sentence": "Les ___ (feu) d'artifice illuminent le ciel.", "accept": ["feux"],
+        "misconceptions": [ { "answer": "feus", "id": "mc:pluriel-noms", "error": "forme", "feedback": "Les noms en -eu prennent un x au pluriel : feux (sauf bleu, pneu, émeu)." } ],
+        "rule": "-eu → -eux (sauf bleus, pneus, émeus)." },
+      { "sentence": "Les ___ (travail) de la cuisine avancent bien.", "accept": ["travaux"],
+        "misconceptions": [ { "answer": "travails", "id": "mc:pluriel-noms", "error": "forme", "feedback": "Quelques noms en -ail font leur pluriel en -aux : travaux (comme coraux, vitraux, émaux)." } ],
+        "rule": "travail → travaux." },
+      { "sentence": "Ces ___ (festival) attirent des milliers de spectateurs.", "accept": ["festivals"],
+        "misconceptions": [ { "answer": "festivaux", "id": "mc:pluriel-noms", "error": "forme", "feedback": "Exception : festival fait festivals (comme bals, carnavals, chacals, récitals, régals)." } ],
+        "rule": "Exceptions en -als : bals, carnavals, chacals, festivals, récitals, régals." }
+    ]
+  }
+}

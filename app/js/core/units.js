@@ -21,8 +21,8 @@ const OHM = [2, 1, -3, -2, 0];
 const UNITS = {
   m: [1, DIM.L], km: [1000, DIM.L], hm: [100, DIM.L], dam: [10, DIM.L], dm: [0.1, DIM.L], cm: [0.01, DIM.L], mm: [0.001, DIM.L],
   'µm': [1e-6, DIM.L], um: [1e-6, DIM.L], nm: [1e-9, DIM.L], 'a.l.': [9.461e15, DIM.L], al: [9.461e15, DIM.L], ua: [1.496e11, DIM.L],
-  g: [0.001, DIM.M], kg: [1, DIM.M], mg: [1e-6, DIM.M], t: [1000, DIM.M], cg: [1e-5, DIM.M], dg: [1e-4, DIM.M],
-  s: [1, DIM.T], ms: [0.001, DIM.T], 'µs': [1e-6, DIM.T], min: [60, DIM.T], h: [3600, DIM.T], j: [86400, DIM.T],
+  g: [0.001, DIM.M], kg: [1, DIM.M], hg: [0.1, DIM.M], dag: [0.01, DIM.M], mg: [1e-6, DIM.M], t: [1000, DIM.M], cg: [1e-5, DIM.M], dg: [1e-4, DIM.M],
+  s: [1, DIM.T], ms: [0.001, DIM.T], 'µs': [1e-6, DIM.T], min: [60, DIM.T], h: [3600, DIM.T], j: [86400, DIM.T], jours: [86400, DIM.T], an: [31557600, DIM.T], ans: [31557600, DIM.T], 'siècle': [3155760000, DIM.T], 'siècles': [3155760000, DIM.T],
   A: [1, DIM.I], mA: [0.001, DIM.I],
   K: [1, DIM.K], '°C': [1, [0, 0, 0, 0, 2]], // dimension fictive : °C et K ne se convertissent pas par simple facteur
   L: [0.001, [3, 0, 0, 0, 0]], l: [0.001, [3, 0, 0, 0, 0]], dL: [1e-4, [3, 0, 0, 0, 0]], cL: [1e-5, [3, 0, 0, 0, 0]], mL: [1e-6, [3, 0, 0, 0, 0]],
@@ -34,6 +34,9 @@ const UNITS = {
   'Ω': [1, OHM], ohm: [1, OHM], 'kΩ': [1000, OHM], kohm: [1000, OHM], 'MΩ': [1e6, OHM],
   pouce: [0.0254, DIM.L], pouces: [0.0254, DIM.L], po: [0.0254, DIM.L], in: [0.0254, DIM.L],
   Hz: [1, [0, 0, -1, 0, 0]], kHz: [1000, [0, 0, -1, 0, 0]],
+  // information : dimension fictive (comme °C) ; préfixes du SI (1 ko = 1 000 o) et binaires (1 Kio = 1 024 o)
+  o: [1, [0, 0, 0, 0, 3]], ko: [1e3, [0, 0, 0, 0, 3]], Mo: [1e6, [0, 0, 0, 0, 3]], Go: [1e9, [0, 0, 0, 0, 3]], To: [1e12, [0, 0, 0, 0, 3]],
+  Kio: [1024, [0, 0, 0, 0, 3]], Mio: [1024 ** 2, [0, 0, 0, 0, 3]], Gio: [1024 ** 3, [0, 0, 0, 0, 3]], bit: [0.125, [0, 0, 0, 0, 3]], bits: [0.125, [0, 0, 0, 0, 3]],
 };
 
 function normalizeUnit(u) {
@@ -111,14 +114,15 @@ export function parseQuantity(text) {
     const unitText = s.slice(i).trim();
     if (!numText || !/^[-+(\d.,]/.test(numText)) continue;
     if (unitText && /^[\d(]/.test(unitText)) continue;
-    const r = tryParse(numText.replace(/(\d)\s*[xX]\s*(?=10)/g, '$1\u00d7'));
+    // la lettre x employ\u00e9e pour \u00ab fois \u00bb entre deux nombres : \u00ab 456 x 0,001 \u00bb, \u00ab 3 x 10^8 \u00bb
+    const r = tryParse(numText.replace(/(\d)\s*[xX]\s*(?=[\d(])/g, '$1\u00d7'));
     if (!r.ok || variables(r.node).size) continue;
     let value;
     try { value = evaluate(r.node); } catch { continue; }
     if (!Number.isFinite(value)) continue;
     const unit = parseUnit(unitText);
-    if (unit) return { value, unitText, unit };
-    return { value, unitText, unit: null, unknownUnit: true };
+    if (unit) return { value, unitText, unit, node: r.node };
+    return { value, unitText, unit: null, unknownUnit: true, node: r.node };
   }
   return null;
 }

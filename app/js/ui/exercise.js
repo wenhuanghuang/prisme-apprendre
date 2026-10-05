@@ -5,7 +5,8 @@
  */
 import { h, richText, inlineHTML, announce } from './dom.js';
 import { instantiate, check } from '../core/checkers/index.js';
-import { interpolateDeep } from '../core/template.js';
+import { interpolateDeep, interpolate } from '../core/template.js';
+import { listenButtons, plainForSpeech, speak, stopSpeaking } from './speech.js';
 import { ERROR_TYPES } from '../core/errors.js';
 import { createAnswer, justificationField } from './answers.js';
 import { mountActivity } from '../activities/registry.js';
@@ -57,9 +58,15 @@ export function mountExercise(container, opts) {
     h('span', { class: `chip chip--track-${def.track || 'classe'}` }, TRACK_ICONS[def.track || 'classe'], ' ', TRACK_LABELS[def.track || 'classe']),
     def.role ? h('span', { class: `chip chip--role chip--role-${def.role}` }, ROLE_LABELS[def.role] || def.role) : null,
     difficultyDots(def.difficulty),
-    skill ? h('span', { class: 'ex-skill' }, skill.label) : null);
+    skill ? h('span', { class: 'ex-skill' }, skill.label) : null,
+    h('button', { type: 'button', class: 'btn btn--small btn--quiet ex-read', title: "Lire l'énoncé à voix haute", dataset: { keepEnabled: '1' }, onclick: () => readPrompt() }, h('span', { 'aria-hidden': 'true' }, '🔊 '), 'Lire l’énoncé'));
 
   const prompt = richText(inst.prompt, 'rich ex-prompt');
+  async function readPrompt() {
+    if (!(await speak(plainForSpeech(inst.prompt), { lang: 'fr-FR' }))) announce('Aucune voix française n’est installée sur cet ordinateur : la lecture à voix haute est impossible.');
+  }
+  const audio = def.audio && def.audio.text ? { ...def.audio, text: interpolate(def.audio.text, inst.params) } : null;
+  const listenBefore = audio && !audio.after ? listenButtons({ text: audio.text, lang: audio.lang || 'fr-FR', label: def.type === 'dictation' ? 'Écouter la dictée' : 'Écouter' }) : null;
   let activityEl = null;
   if (def.activity) {
     activityEl = h('div', { class: 'ex-activity' });
@@ -80,14 +87,15 @@ export function mountExercise(container, opts) {
   const btnSubmit = h('button', { type: 'button', class: 'btn btn--primary', onclick: () => submit() }, def.type === 'open' ? 'Soumettre ma réponse' : 'Valider');
   const btnHint = h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => showHint(), disabled: !inst.hints.length }, inst.hints.length ? `Indice (${inst.hints.length})` : 'Pas d’indice');
   const btnSolution = h('button', { type: 'button', class: 'btn btn--ghost btn--quiet', onclick: () => giveUp() }, 'Voir la correction');
-  const btnNext = h('button', { type: 'button', class: 'btn btn--primary', hidden: true, onclick: () => { finish(); if (opts.onNext) opts.onNext(lastDiag); } }, opts.nextLabel || 'Continuer');
+  // désactivé dès le premier clic : un double-clic ne doit pas sauter l'exercice suivant
+  const btnNext = h('button', { type: 'button', class: 'btn btn--primary', hidden: true, onclick: () => { if (btnNext.disabled) return; btnNext.disabled = true; finish(); if (opts.onNext) opts.onNext(lastDiag); } }, opts.nextLabel || 'Continuer');
   const btnNewVersion = h('button', { type: 'button', class: 'btn btn--ghost', hidden: true, onclick: () => newVersion() }, 'Améliorer ma réponse (nouvelle version)');
   const actions = h('div', { class: 'ex-actions' }, btnSubmit, btnHint, btnSolution, btnNewVersion, btnNext);
 
   const why = opts.why && opts.why.length ? h('details', { class: 'why' }, h('summary', {}, 'Pourquoi cet exercice ?'), h('ul', {}, opts.why.map((w) => h('li', {}, w)))) : null;
 
   const card = h('article', { class: `ex ex--${def.type} ${opts.compact ? 'ex--compact' : ''}`, 'aria-label': 'Exercice' },
-    head, why, prompt, activityEl, criteria, h('div', { class: 'ex-answer' }, answer.el, just ? just.el : null), actions, hintsBox, feedback, extra);
+    head, why, prompt, listenBefore, activityEl, criteria, h('div', { class: 'ex-answer' }, answer.el, just ? just.el : null), actions, hintsBox, feedback, extra);
   container.append(card);
 
   function showHint() {
@@ -105,7 +113,9 @@ export function mountExercise(container, opts) {
     feedback.hidden = false;
     feedback.className = `feedback feedback--${ui.cls}`;
     const et = d.errorType && ERROR_TYPES[d.errorType];
-    const steps = d.stepsTotal ? h('p', { class: 'fb-steps' }, `${d.stepsOk}/${d.stepsTotal} étape${d.stepsTotal > 1 ? 's' : ''} juste${d.stepsTotal > 1 ? 's' : ''}`) : null;
+    // ces types donnent déjà le décompte dans leur message (« 2/3 trouvés », « 1 faute »…)
+    const counted = ['highlight', 'match', 'categorize', 'dictation', 'composite'].includes(def.type);
+    const steps = d.stepsTotal && !counted ? h('p', { class: 'fb-steps' }, `${d.stepsOk}/${d.stepsTotal} étape${d.stepsTotal > 1 ? 's' : ''} juste${d.stepsTotal > 1 ? 's' : ''}`) : null;
     const message = d.verdict === 'correct' && tries === 1 && hintsUsed === 0 ? 'Réussi du premier coup, sans indice.' : d.feedback;
     feedback.replaceChildren(
       photon(ui.mood),
@@ -122,6 +132,8 @@ export function mountExercise(container, opts) {
     if (extra.dataset.shown) return;
     extra.dataset.shown = '1';
     const blocks = [];
+    if (audio && audio.after) blocks.push(h('section', { class: 'listen-after' }, h('h4', {}, 'Écouter la bonne réponse'), listenButtons({ text: audio.text, lang: audio.lang || 'fr-FR' })));
+    if (def.type === 'dictation') blocks.push(h('section', { class: 'solution' }, h('h4', {}, 'Le texte de la dictée'), h('p', { lang: (def.audio && def.audio.lang) || 'fr-FR' }, Array.isArray(def.answer) ? def.answer[0] : def.answer)));
     if (inst.solution) blocks.push(h('section', { class: 'solution' }, h('h4', {}, reason === 'giveup' ? 'Correction détaillée' : 'Correction'), richText(inst.solution)));
     if (inst.methods.length) blocks.push(h('section', { class: 'methods' }, h('h4', {}, 'Autres démarches valables'), h('ol', {}, inst.methods.map((m) => h('li', { html: inlineHTML(m) })))));
     if (inst.models.length) blocks.push(h('section', { class: 'models' }, h('h4', {}, 'Exemples de bonnes réponses'), ...inst.models.map((m) => h('blockquote', { class: 'model' }, richText(m)))));
@@ -187,6 +199,7 @@ export function mountExercise(container, opts) {
     const d = lastDiag || { verdict: 'incorrect', score: 0, errorType: null };
     tries = Math.max(tries, 1);
     await record({ ...d, verdict: d.verdict === 'correct' ? 'correct' : 'incorrect' });
+    if (answer.revealAnswer) answer.revealAnswer();
     done();
     showSolution('giveup');
   }
@@ -206,6 +219,6 @@ export function mountExercise(container, opts) {
   return {
     el: card,
     instance: inst,
-    destroy() { finish(); cleanups.forEach((c) => c && c()); },
+    destroy() { finish(); stopSpeaking(); cleanups.forEach((c) => c && c()); },
   };
 }

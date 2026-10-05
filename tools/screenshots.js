@@ -81,6 +81,28 @@ try {
   await page.goto(`${BASE}#/labo?g=numerique&a=knn-lab`);
   await page.waitForSelector('.knn-svg');
   await shot('10-labo-ia');
+
+  await page.goto(`${BASE}#/exercices`);
+  await page.waitForSelector('.series-form select');
+  await shot('11-espace-exercices', { fullPage: false });
+
+  // mots à repérer en français, corrigés : juste / en trop restent lisibles sans la couleur
+  await page.goto(`${BASE}#/lecon/fr5-classes-fonctions`);
+  const hl = page.locator('.ex--highlight').first();
+  await hl.waitFor();
+  await hl.locator('.hl-word').nth(1).click();
+  await hl.locator('.hl-word').nth(3).click();
+  await hl.getByRole('button', { name: 'Valider' }).click();
+  await hl.locator('.feedback').waitFor();
+  await hl.scrollIntoViewIfNeeded();
+  await hl.screenshot({ path: join(out, '12-mots-a-reperer.png') });
+  console.log('✓ 12-mots-a-reperer.png');
+
+  await page.goto(`${BASE}#/exercices?onglet=generateurs`);
+  await page.waitForSelector('.gen-card');
+  await page.locator('.gen-card').filter({ hasText: 'Fractions : additions' }).getByRole('button', { name: 'S’entraîner' }).click();
+  await page.waitForSelector('.ex');
+  await shot('13-generateur-fractions', { fullPage: false });
 } finally {
   await browser.close();
   server.kill();

@@ -124,15 +124,8 @@ courses.push(
     { id: 'n4-code', title: 'Variables, conditions, procédures', status: 'programme', state: 'disponible', lessons: ['code-variables'], skills: ['code.variables', 'code.procedures'], official: official(['m4-ap-01'], mathsAttendus) },
     { id: 'n4-ia', title: 'Les modèles de langage et l’usage responsable de l’IA', status: 'programme', state: 'disponible', lessons: ['ia-modeles-langage'], skills: ['ia.generative', 'ia.usage'], official: [] },
   ] },
-  { id: 'francais-5e', level: '5e', subject: 'francais', programmes: ['francais-c4-2026'], coverage: 'partiel', progressionNote: 'Programme de français 2026 de 5e. Un seul chapitre est rédigé pour l’instant : il sert à démontrer les réponses rédigées, l’auto-évaluation et la validation par un adulte.', chapters: [
-    { id: 'f5-ecrire', title: 'Écrire et réviser un texte à partir de critères', status: 'programme', state: 'disponible', lessons: ['fr-reviser-texte'], skills: ['fr.ecrire.reviser'], official: [] },
-  ] },
-  { id: 'francais-4e', level: '4e', subject: 'francais', programmes: ['francais-c4-2020'], coverage: 'partiel', progressionNote: 'Programme de français de 2020 (encore applicable en 4e en 2026-2027). Un seul chapitre de langue est rédigé pour l’instant.', chapters: [
-    { id: 'f4-accord', title: 'Accord du participe passé', status: 'programme', state: 'disponible', lessons: ['fr-accord-participe'], skills: ['fr.langue.accord-pp'], official: [] },
-  ] },
-  { id: 'hg-4e', level: '4e', subject: 'hg', programmes: ['hg-c4-2020'], coverage: 'partiel', progressionNote: 'Programme d’histoire-géographie du cycle 4 (2020), défini par année. Un seul chapitre est rédigé pour l’instant.', chapters: [
-    { id: 'h4-revolution', title: 'La Révolution française (1789-1799)', status: 'programme', state: 'disponible', lessons: ['hg-revolution'], skills: ['hg.revolution.reperes', 'hg.raisonner.document'], official: [] },
-  ] },
+  // Les parcours de français, histoire-géographie, EMC, SVT, technologie, langues, musique et arts
+  // sont rédigés directement dans app/content/courses/ ("authored": true).
 );
 
 for (const c of courses) writeFileSync(join(out, `${c.id}.json`), JSON.stringify({ ...c, authored: true }, null, 1));
