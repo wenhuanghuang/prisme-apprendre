@@ -2,7 +2,7 @@
  * Démarrage : charge l'index des contenus, restaure le dernier profil, puis route selon l'adresse (#/…).
  */
 import { store, init, subscribe } from './app/store.js';
-import { h, clear } from './ui/dom.js';
+import { h, clear, focusPendingTab } from './ui/dom.js';
 
 const ROUTES = [
   { re: /^\/?$/, view: () => import('./ui/views/today.js'), needsProfile: true, nav: 'today' },
@@ -66,13 +66,16 @@ async function route() {
   try {
     const mod = await match.r.view();
     if (token !== renderToken) return;
-    clear(app);
-    const cleanup = await mod.render(app, { params, args: match.m.slice(1), path });
-    if (token !== renderToken) { if (cleanup) cleanup(); return; }
+    // chaque vue a son propre conteneur : une vue encore en chargement ne peut pas s'ajouter sous la suivante
+    const view = h('div', { class: 'view' });
+    app.replaceChildren(view);
+    const cleanup = await mod.render(view, { params, args: match.m.slice(1), path });
+    if (token !== renderToken || !view.isConnected) { if (cleanup) cleanup(); view.remove(); return; }
     currentCleanup = cleanup || null;
-    app.focus({ preventScroll: true });
+    if (!focusPendingTab()) app.focus({ preventScroll: true });
     window.scrollTo(0, 0);
   } catch (e) {
+    if (token !== renderToken) return;
     clear(app);
     app.append(h('div', { class: 'card' }, h('h2', {}, 'Oups, cette page n’a pas pu s’afficher.'), h('p', { class: 'muted' }, e.message), h('a', { class: 'btn', href: '#/' }, 'Retour à l’accueil')));
   }
@@ -93,9 +96,30 @@ async function start() {
   });
   if (!store.profile && !location.hash.match(/^#\/(profils|labo|parents|programmes|a-propos)/)) location.hash = '#/profils';
   else route();
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-    navigator.serviceWorker.register('sw.js').catch(() => { /* hors ligne indisponible : l'application fonctionne quand même */ });
-  }
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') setupServiceWorker();
+}
+
+/** Hors connexion + mises à jour : une nouvelle version s'installe en arrière-plan, puis on propose de recharger. */
+async function setupServiceWorker() {
+  let reloading = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!reloading) { reloading = true; location.reload(); } });
+  try {
+    const reg = await navigator.serviceWorker.register('sw.js');
+    const offer = (worker) => {
+      if (!worker || !navigator.serviceWorker.controller || document.querySelector('.update-banner')) return;
+      const banner = h('div', { class: 'update-banner', role: 'status' },
+        h('span', {}, 'Une nouvelle version de Prisme est prête.'),
+        h('button', { type: 'button', class: 'btn btn--small btn--primary', onclick: () => worker.postMessage('activer-nouvelle-version') }, 'Recharger maintenant'),
+        h('button', { type: 'button', class: 'btn btn--small btn--ghost', onclick: () => banner.remove() }, 'Plus tard'));
+      document.body.append(banner);
+    };
+    const track = (w) => { if (w) w.addEventListener('statechange', () => { if (w.state === 'installed') offer(w); }); };
+    if (reg.waiting) offer(reg.waiting);
+    track(reg.installing); // une installation a pu commencer avant que l'on écoute
+    reg.addEventListener('updatefound', () => track(reg.installing));
+    reg.update().catch(() => {});
+    setInterval(() => reg.update().catch(() => {}), 60 * 60 * 1000);
+  } catch { /* hors ligne indisponible : l'application fonctionne quand même */ }
 }
 
 start();

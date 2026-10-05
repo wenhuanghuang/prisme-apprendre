@@ -58,6 +58,14 @@ function skillTable(list, empty) {
 }
 
 async function dashboardFor(container, profileId) {
+  try {
+    await renderDashboard(container, profileId);
+  } catch (e) {
+    fill(container, h('p', { class: 'card warn' }, `Le tableau de bord de ce profil n'a pas pu être affiché (${e.message}). Ses données sont peut-être abîmées : vous pouvez l'exporter, ou l'effacer plus bas.`));
+  }
+}
+
+async function renderDashboard(container, profileId) {
   const data = await profileData(profileId);
   if (!data) return;
   const now = store.now();
@@ -162,14 +170,14 @@ async function pinSection(rerender) {
 }
 
 export async function render(root) {
-  const rerender = () => { root.replaceChildren(); render(root); };
+  const rerender = () => { if (!root.isConnected) return; root.replaceChildren(); render(root); };
   if (!unlocked && await hasParentPin()) {
     const input = h('input', { class: 'field-input', type: 'password', inputmode: 'numeric', autocomplete: 'off', maxlength: 8, 'aria-label': 'Code parent' });
     const msg = h('p', { class: 'warn', 'aria-live': 'assertive' });
     root.append(h('form', { class: 'card', style: { maxWidth: '420px' }, onsubmit: async (e) => { e.preventDefault(); if (await checkParentPin(input.value)) { unlocked = true; rerender(); } else { msg.textContent = 'Code incorrect.'; input.value = ''; } } },
       h('h1', {}, 'Espace parents'), h('label', { class: 'field-label' }, 'Code parent'), input, msg, h('button', { class: 'btn btn--primary', type: 'submit' }, 'Entrer')));
     input.focus();
-    return;
+    return relock;
   }
   root.append(h('div', { class: 'page-head' }, h('div', {}, h('p', { class: 'eyebrow' }, 'Espace parents'), h('h1', {}, 'Tableau de bord pédagogique'),
     h('p', { class: 'lede' }, 'Un enfant à la fois, comparé uniquement à lui-même : ce qui est maîtrisé, ce qui est fragile, les erreurs qui reviennent, et ce que Prisme propose ensuite.'))));
@@ -185,4 +193,8 @@ export async function render(root) {
     await dashboardFor(dash, current);
   }
   root.append(h('div', { class: 'grid', style: { marginTop: '24px' } }, dataSection(rerender), await pinSection(rerender)));
+  return relock;
 }
+
+/** En quittant l'espace parents, le code est redemandé à la prochaine visite. */
+function relock() { unlocked = false; }

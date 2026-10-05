@@ -3,7 +3,7 @@
  * L'équivalence est testée numériquement, la forme est vérifiée sur l'arbre syntaxique.
  */
 import {
-  tryParse, equivalent, isDeveloped, isReduced, isFactored, isIrreducibleFraction, isNumberLiteral, variables, evaluate, toText,
+  tryParse, equivalent, alignVariableCase, isDeveloped, isReduced, isFactored, isIrreducibleFraction, isNumberLiteral, variables, evaluate, toText,
 } from '../expr.js';
 import { parseWithParams } from '../template.js';
 import { diagnosis } from '../errors.js';
@@ -78,8 +78,8 @@ export function checkExpression(def, params, response) {
   if (!raw) return diagnosis({ verdict: 'vide', feedback: 'Écris ton expression avant de valider.' });
   const parsed = tryParse(raw);
   if (!parsed.ok) return diagnosis({ verdict: 'illisible', feedback: `Je n'arrive pas à lire cette écriture (${parsed.error}). Exemple : 3x² − 2(x + 1).` });
-  const student = parsed.node;
   const expected = parseWithParams(def.answer, params);
+  const student = alignVariableCase(parsed.node, expected);
   const form = FORMS[def.form || 'any'] || FORMS.any;
 
   if (equivalent(student, expected)) {

@@ -55,7 +55,10 @@ function checkComposite(def, params, response) {
   // « à valider » et « incertain » relèvent d'un adulte : ils ne comptent ni juste ni faux
   const HUMAN = ['a-valider', 'incertain'];
   const scorable = results.filter((r) => !HUMAN.includes(r.verdict));
-  const allOk = scorable.every((r) => r.verdict === 'correct');
+  const allOk = scorable.length > 0 && scorable.every((r) => r.verdict === 'correct');
+  if (!scorable.length && results.length) {
+    return diagnosis({ verdict: 'a-valider', needsHuman: true, details: results, feedback: 'Réponses enregistrées : elles seront relues par un adulte.' });
+  }
   const anyHuman = results.some((r) => r.needsHuman);
   const firstBad = results.find((r) => !['correct', ...HUMAN].includes(r.verdict));
   const score = scorable.length ? scorable.reduce((s, r) => s + r.score, 0) / scorable.length : 0;

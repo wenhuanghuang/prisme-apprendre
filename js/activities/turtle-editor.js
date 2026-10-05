@@ -177,7 +177,9 @@ export function createCodeEditor({ start = '', target = '', mode = 'both', onRun
       if (!b) { msg.className = 'turtle-msg warn'; msg.textContent = 'Ce programme utilise des instructions qui n’existent qu’en mode texte : on reste en texte.'; return; }
       blocks = b; current = 'blocks'; renderBlocks();
     } else {
-      textarea.value = serialize(blocks); current = 'text';
+      // on ne convertit les blocs en texte que lors d'un vrai passage blocs → texte
+      if (current === 'blocks') textarea.value = serialize(blocks);
+      current = 'text';
     }
     blocksPane.hidden = current !== 'blocks';
     textPane.hidden = current !== 'text';

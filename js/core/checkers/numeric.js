@@ -29,8 +29,11 @@ export function readNumber(text, expectUnit) {
     const q = parseQuantity(raw);
     if (q && !q.unitText) return { value: q.value, unit: null, unitText: '', badUnit: true };
     if (q && q.unit) return { value: q.value, unit: q.unit, unitText: q.unitText };
+    if (q && q.unknownUnit) return { error: `je ne reconnais pas l'unité « ${q.unitText} » (exemples : ${expectUnit}, km/h, g/cm³)` };
     if (q && !q.unit) return { value: q.value, unit: null, unitText: q.unitText, badUnit: true };
   }
+  // sans unité attendue : « 8 x 3 » = 8 × 3 (la lettre x employée pour « fois » entre deux nombres)
+  raw = raw.replace(/(\d)\s*[xX]\s*(?=[\d(])/g, '$1 × ');
   const parsed = tryParse(raw);
   if (!parsed.ok) return { error: parsed.error };
   try {
@@ -80,7 +83,9 @@ export function checkNumeric(def, params, response) {
   }
 
   // « 85 % » : on accepte la valeur écrite (85) ou sa forme décimale (0,85) selon ce qui est attendu
-  if (read.percent && !closeEnough(value, expected, def) && closeEnough(value / 100, expected, def)) value /= 100;
+  // « 85 % » : si la réponse attendue est un pourcentage (85), on garde 85 ; si c'est une proportion (0,85), 85 % = 0,85.
+  // Ainsi « 0,85 % » n'est pas accepté pour 0,85.
+  if (read.percent && Math.abs(expected) < 1) value /= 100;
   if (closeEnough(value, expected, def)) {
     if (unitNote) return diagnosis({ verdict: 'partiel', score: 0.7, errorType: 'unite', feedback: `La valeur est juste. ${unitNote}` });
     if (def.round !== undefined && read.node) {

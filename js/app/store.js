@@ -4,7 +4,7 @@
  */
 import * as db from '../storage/db.js';
 import { buildBackup, validateBackup } from '../storage/backup.js';
-import { applyAttempt, emptySkillState, masteryLevel, DAY } from '../engine/mastery.js';
+import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } from '../engine/mastery.js';
 import { recommend } from '../engine/recommend.js';
 import { summarizeAttempts, computeBadges, skillBadges } from '../engine/badges.js';
 import { DEMO_PROFILES, simulateProfile } from '../engine/demo-profiles.js';
@@ -117,7 +117,7 @@ export async function selectProfile(id, opts = {}) {
   const profile = store.profiles.find((p) => p.id === id);
   if (!profile) return;
   store.profile = profile;
-  store.states = (await db.get('states', id)) || { profileId: id, skills: {}, lessons: {} };
+  store.states = normalizeStates(await db.get('states', id), id);
   store.attempts = (await db.byProfile('attempts', id)).sort((a, b) => a.ts - b.ts);
   store.submissions = await db.byProfile('submissions', id);
   localStorageSet('prisme:last-profile', id);

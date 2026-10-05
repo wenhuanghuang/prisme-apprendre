@@ -13,7 +13,8 @@ import { matches } from './recommend.js';
 export function targetDifficulty(state, session = []) {
   const pL = state ? state.pL : 0.12;
   let d = 1 + Math.round(pL * 3.5); // 1 à 4.5 → les 5 sont réservés aux défis
-  const last = session.slice(-3);
+  // les réponses en attente d'un adulte (crédit null) ne comptent ni comme réussite ni comme échec
+  const last = session.filter((a) => a.credit !== null && a.credit !== undefined).slice(-3);
   const fails = [...last].reverse().findIndex((a) => a.credit >= 0.7);
   const consecutiveFails = fails === -1 ? last.length : fails;
   const quickWins = last.length === 3 && last.every((a) => a.credit >= 0.9 && (!a.timeRatio || a.timeRatio <= 1));
@@ -42,19 +43,20 @@ export function selectExercise(pool, query, state, session = [], recentIds = [],
   if (query.track === 'approfondissement') target = Math.max(target, 3);
   if (query.track === 'expert') target = Math.max(target, 4);
 
-  const lastFail = [...session].reverse().find((a) => a.credit < 0.4);
-  const lastAttempt = session[session.length - 1];
+  const scored = session.filter((a) => a.credit !== null && a.credit !== undefined);
+  const lastFail = [...scored].reverse().find((a) => a.credit < 0.4);
+  const lastAttempt = scored[scored.length - 1];
   if (lastAttempt && lastAttempt.credit < 0.4 && lastAttempt.misconception && consecutiveFails < 2) {
     target = Math.max(1, target - 1);
     reasons.push('idée fausse détectée : on reprend un cran plus bas, sur ce point précis');
   }
-  const failedReps = new Set(session.filter((a) => a.credit < 0.4).map((a) => a.representation).filter(Boolean));
+  const failedReps = new Set(scored.filter((a) => a.credit < 0.4).map((a) => a.representation).filter(Boolean));
   const wantTargets = new Set([...(query.targets || []), lastFail && lastFail.errorType, lastFail && lastFail.misconception].filter(Boolean));
   const preferRep = query.preferRepresentation || (consecutiveFails >= 2 ? ['visuelle', 'manipulation', 'concrete', 'symbolique'].filter((r) => !failedReps.has(r)) : null);
   const seenInSession = new Set(session.map((a) => a.exerciseId));
   const recent = new Set(recentIds);
 
-  const scored = candidates.map((e) => {
+  const ranked = candidates.map((e) => {
     let score = -Math.abs((e.difficulty || 2) - target) * 2;
     const why = [];
     const hits = (e.targets || []).filter((t) => wantTargets.has(t));
@@ -67,7 +69,7 @@ export function selectExercise(pool, query, state, session = [], recentIds = [],
     return { e, score, why };
   }).sort((a, b) => b.score - a.score);
 
-  const pick = scored[0];
+  const pick = ranked[0];
   const explanation = [
     `Difficulté ${pick.e.difficulty || 2}/5 (visée : ${target})`,
     ...reasons,

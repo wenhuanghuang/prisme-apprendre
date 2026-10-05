@@ -200,7 +200,7 @@ export function mountExercise(container, opts) {
   }
 
   function finish() {
-    if (!recorded && tries > 0 && lastDiag) record(lastDiag);
+    if (!recorded && tries > 0 && lastDiag) record(lastDiag).catch(() => { /* enregistrement impossible : l'exercice reste utilisable */ });
   }
 
   return {

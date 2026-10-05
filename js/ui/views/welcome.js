@@ -77,5 +77,5 @@ export function render(root) {
         h('h3', {}, 'Découvrir avec des élèves fictifs'),
         h('p', { class: 'muted small' }, 'Cinq profils fictifs dont l’historique est simulé par le vrai moteur : idéal pour voir le diagnostic et le tableau de bord parent.'),
         demos.length ? list(demos) : null,
-        h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: async (e) => { e.target.disabled = true; await loadDemoProfiles(); root.replaceChildren(); render(root); } }, demos.length ? 'Recharger les profils fictifs' : 'Charger les profils fictifs')))));
+        h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: async (e) => { e.target.disabled = true; await loadDemoProfiles(); if (root.isConnected) { root.replaceChildren(); render(root); } } }, demos.length ? 'Recharger les profils fictifs' : 'Charger les profils fictifs')))));
 }
