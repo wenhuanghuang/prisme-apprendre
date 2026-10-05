@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banc d'essai des activités</title>
+  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/labs-maths.css">
+  <link rel="stylesheet" href="../css/labs-pc.css">
+  <link rel="stylesheet" href="../css/labs-numerique.css">
+</head>
+<body>
+  <main>
+    <h1>Banc d'essai</h1>
+    <p class="muted">Usage : <code>labs.html?w=ohm-lab&amp;c={"R":220}</code> — page de développement, non liée à l'application.</p>
+    <div id="slot"></div>
+  </main>
+  <script type="module">
+    import { mountActivity, ACTIVITY_INFO } from '../js/activities/registry.js';
+    const q = new URLSearchParams(location.search);
+    const slot = document.getElementById('slot');
+    const w = q.get('w');
+    if (!w) {
+      slot.innerHTML = Object.keys(ACTIVITY_INFO).map((k) => `<p><a href="?w=${k}">${k}</a></p>`).join('');
+    } else {
+      let cfg = {};
+      try { cfg = JSON.parse(q.get('c') || '{}'); } catch { cfg = {}; }
+      window.__cleanup = mountActivity(slot, w, cfg);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+{
+  "id": "m5-litteral",
+  "title": "Calcul littéral : produire, tester, développer, démontrer",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.litteral.expression", "m5.litteral.tester", "m5.litteral.distributivite", "m5.calcul.priorites"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 60,
+  "summary": "Une lettre pour dire « n'importe quel nombre » : on écrit des formules, on les teste, on les transforme avec la distributivité, et on démontre des propriétés vraies pour tous les nombres.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Les carrés d'allumettes",
+      "body": "On aligne des carrés faits d'allumettes ; deux carrés voisins partagent une allumette.\n\n- 1 carré : 4 allumettes\n- 2 carrés : 7 allumettes\n- 3 carrés : 10 allumettes\n\nCombien faut-il d'allumettes pour 10 carrés ? Pour 100 carrés ? Pour **n'importe quel nombre** de carrés ?\n\nTrois élèves ont compté de trois façons différentes… et ils trouvent tous 301 allumettes pour 100 carrés. Comment est-ce possible ?"
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour revoir l'idée en vidéo ou sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "Une **expression littérale** contient une ou plusieurs lettres qui désignent des nombres : $3n + 1$, $2 × (L + ℓ)$…\n\nConventions d'écriture : $3 × x$ s'écrit $3x$ ; $1x$ s'écrit $x$ ; $x × x$ s'écrit $x²$. Attention : pour $x = 4$, $3x$ vaut $3 × 4 = 12$, et non 34.\n\n**Calculer la valeur** d'une expression : on remplace la lettre par le nombre (en rétablissant le signe ×), puis on calcule en respectant les **priorités** : parenthèses d'abord, puis multiplications et divisions, enfin additions et soustractions.\n\n**Somme ou produit ?** C'est la dernière opération à effectuer qui décide : $3(x + 2)$ est un produit, $3x + 2$ est une somme.\n\n**Tester une égalité** pour une valeur : on calcule chaque membre séparément, puis on compare.\n\n> Une égalité « pour tout $x$ » :\n> - un seul **contre-exemple** suffit pour prouver qu'elle est fausse ;\n> - des exemples, même nombreux, ne suffisent pas pour prouver qu'elle est vraie : il faut une **démonstration** avec le calcul littéral.\n\n**Distributivité** : pour tous nombres $k$, $a$, $b$ :\n\n> $k(a + b) = ka + kb$ et $k(a − b) = ka − kb$.\n\nDe gauche à droite, on **développe** ; de droite à gauche, on **factorise**. Elle permet aussi de **réduire** : $3x + 2x = (3 + 2)x = 5x$. En revanche, $3 + 2x$ ne se réduit pas : 3 n'est pas multiplié par $x$."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Tester une égalité avec la balance",
+      "body": "Chaque sac contient le même nombre $x$ de billes. La balance traduit l'égalité $2x + 3 = x + 7$.\n\nTester une valeur, c'est imaginer ce que contient chaque sac : si $x$ valait 2, la balance serait-elle en équilibre ? Et si $x$ valait 4 ? Calcule les deux plateaux à chaque fois, puis vérifie avec la balance.",
+      "activity": { "widget": "balance", "config": { "a": 2, "b": 3, "c": 1, "d": 7, "x": 4, "mode": "explore" } }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : trois façons de compter, une seule formule",
+      "steps": [
+        { "text": "Méthode 1 : une allumette de départ, puis 3 allumettes par carré.", "math": "1 + 3n" },
+        { "text": "Méthode 2 : 4 allumettes pour le premier carré, puis 3 pour chacun des $n − 1$ suivants.", "math": "4 + 3(n − 1)" },
+        { "text": "Méthode 3 : 4 allumettes par carré, moins les $n − 1$ allumettes partagées, comptées deux fois.", "math": "4n − (n − 1)" },
+        { "text": "On développe la méthode 2 avec la distributivité :", "math": "4 + 3(n − 1) = 4 + 3n − 3 = 3n + 1" },
+        { "text": "On transforme la méthode 3 : enlever $(n − 1)$, c'est enlever $n$ puis rajouter 1.", "math": "4n − (n − 1) = 4n − n + 1 = 3n + 1" },
+        { "text": "Les trois expressions sont égales pour tout $n$ : c'est démontré, pas seulement vérifié sur des exemples. Pour 100 carrés : $3 × 100 + 1 = 301$.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Pour les calculs, écris une étape par ligne : le logiciel vérifie chaque ligne.",
+      "exercises": ["m5-litteral-allumettes", "m5-litteral-valeur", "m5-litteral-tester", "m5-litteral-contre-exemple", "m5-litteral-developper", "m5-litteral-reduire", "m5-litteral-consecutifs"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m5-litteral-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : le programme de calcul",
+      "exercises": ["m5-litteral-programme"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la margelle de la piscine",
+      "body": "Le fabricant de carrelage veut une formule fiable pour toutes les tailles de bassins. Plusieurs employés proposent des formules différentes : sont-elles toutes justes ?",
+      "exercises": ["m5-litteral-carrelage"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **$3x$ pour $x = 4$ ne vaut pas 34** : $3x = 3 × x = 12$.\n- **Oublier les priorités.** $5 + 2 × 4 = 5 + 8 = 13$, et non $7 × 4 = 28$.\n- **Distribuer à moitié.** $3(x + 2) = 3x + 6$ : le 3 multiplie les DEUX termes.\n- **Regrouper ce qui ne se regroupe pas.** $2x + 3 ≠ 5x$ : teste avec $x = 2$ ($7 ≠ 10$).\n- **Croire qu'un exemple prouve.** Une égalité vraie pour $x = 1$ peut être fausse pour $x = 2$. Pour réfuter, un contre-exemple suffit ; pour prouver « pour tout $x$ », il faut une démonstration."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera quelques développements et quelques tests d'égalités dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Inventer une égalité toujours vraie, et déjouer un piège : une égalité vraie pour deux valeurs… mais pas pour toutes.",
+      "exercises": ["m5-litteral-identite", "m5-litteral-piege"]
+    },
+    "expert": {
+      "intro": "Facultatif : démontrer, généraliser, inventer. Que devient la propriété des trois entiers consécutifs avec quatre ou cinq entiers ? Et comment construire un tour de magie qui marche à tous les coups ?",
+      "exercises": ["m5-litteral-consecutifs-plus", "m5-litteral-tour-magique"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-litteral-allumettes", "type": "expression", "form": "any", "skill": "m5.litteral.expression", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:compter-tout"], "expectedSeconds": 240,
+      "prompt": "On aligne des carrés d'allumettes, chaque carré partageant un côté avec le suivant : 1 carré demande 4 allumettes, 2 carrés en demandent 7, 3 carrés en demandent 10. Écris le nombre d'allumettes nécessaires pour $n$ carrés, en fonction de $n$.",
+      "answer": "3n + 1",
+      "misconceptions": [
+        { "answer": "4n", "id": "mc:compter-tout", "error": "raisonnement", "feedback": "Avec $4n$, tu comptes 4 allumettes par carré. Mais deux carrés voisins partagent une allumette : pour 2 carrés, $4 × 2 = 8$, alors qu'il en faut 7. Vérifie toujours ta formule sur les figures connues." },
+        { "answer": "3n", "id": "mc:oubli-premiere", "error": "raisonnement", "feedback": "Chaque nouveau carré ajoute bien 3 allumettes, mais le tout premier en demande 4 : pour 1 carré, $3 × 1 = 3$ au lieu de 4. Il manque une allumette." },
+        { "answer": "n + 3", "id": "mc:ajout-produit", "error": "notion", "feedback": "$n + 3$ ajoute 3 allumettes en tout, et non 3 allumettes par carré. Teste avec $n = 3$ : $3 + 3 = 6$, mais il faut 10 allumettes." }
+      ],
+      "hints": ["Prolonge la liste : 1 carré → 4, 2 → 7, 3 → 10, 4 → ?, 10 → ?", "Chaque nouveau carré ajoute toujours le même nombre d'allumettes : combien ?", "Une allumette au départ, puis 3 allumettes par carré (un « C » couché)."],
+      "solution": "Pour $n$ carrés : $3n + 1$ allumettes (une allumette de départ, puis 3 par carré). Vérification : pour $n = 3$, $3 × 3 + 1 = 10$. D'autres écritures sont justes, par exemple $4 + 3(n − 1)$ ou $4n − (n − 1)$.",
+      "methods": ["Une allumette de départ, puis 3 par carré : $1 + 3n$.", "4 pour le premier carré, puis 3 pour chacun des $n − 1$ suivants : $4 + 3(n − 1)$.", "4 par carré, moins les $n − 1$ allumettes partagées comptées deux fois : $4n − (n − 1)$.", "Les allumettes horizontales ($2n$) plus les verticales ($n + 1$) : $2n + (n + 1)$."],
+      "selfTest": [
+        { "response": { "value": "3n+1" }, "expect": "correct" },
+        { "response": { "value": "4 + 3(n - 1)" }, "expect": "correct" },
+        { "response": { "value": "4n" }, "expect": "mc:compter-tout" }
+      ]
+    },
+    {
+      "id": "m5-litteral-valeur", "type": "steps", "mode": "calcul", "skill": "m5.litteral.expression", "skills": ["m5.calcul.priorites"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:priorites", "mc:juxtaposition"], "expectedSeconds": 90,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "v": { "int": [2, 9] } },
+      "start": "a + b*v",
+      "minSteps": 2,
+      "prompt": "On considère l'expression $ A = {a} + {b}x $. Calcule A pour $ x = {v} $. Écris d'abord le calcul en remplaçant $x$ par {v} (en rétablissant le signe ×), puis effectue-le.",
+      "misconceptions": [
+        { "answer": "(a+b)*v", "id": "mc:priorites", "error": "notion", "prerequisite": "m5.calcul.priorites", "feedback": "la multiplication est prioritaire sur l'addition : on calcule d'abord $ {b} × {v} = {b*v} $, puis on ajoute {a}." },
+        { "answer": "a + 10*b + v", "id": "mc:juxtaposition", "error": "notion", "feedback": "$ {b}x $ signifie $ {b} × x $ : pour $ x = {v} $, cela fait $ {b} × {v} = {b*v} $, et non le nombre {10*b+v} obtenu en écrivant les chiffres côte à côte." }
+      ],
+      "hints": ["Remplace $x$ par {v} sans oublier le signe × : $ A = {a} + {b} × {v} $.", "Priorités : la multiplication passe avant l'addition.", "$ {b} × {v} = {b*v} $, puis on ajoute {a}."],
+      "solution": "$ A = {a} + {b} × {v} = {a} + {b*v} = {a+b*v} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a} + {b} × {v}", "{a} + {b*v}", "{a+b*v}"] }, "expect": "correct" },
+        { "response": { "lines": ["{(a+b)*v}"] }, "expect": "mc:priorites" },
+        { "response": { "lines": ["{a+10*b+v}"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m5-litteral-tester", "type": "numeric", "skill": "m5.litteral.tester", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "expectedSeconds": 240,
+      "params": { "a": { "int": [3, 7] }, "c": { "int": [1, 2] }, "s": { "int": [0, 6] }, "b": { "int": [1, 9] }, "d": { "expr": "(a-c)*s + b" } },
+      "prompt": "Teste les nombres entiers 0, 1, 2, 3, 4, 5 et 6. Pour lequel l'égalité $ {a}x + {b} = {c|c}x + {d} $ est-elle vraie ?",
+      "answer": "s",
+      "justify": { "required": true, "minWords": 4, "prompt": "Écris le calcul des deux membres pour le nombre trouvé." },
+      "hints": ["Tester, c'est remplacer $x$ par un nombre dans CHAQUE membre, puis comparer les deux résultats.", "Pour $ x = 0 $ : le membre de gauche vaut {b} et celui de droite vaut {d}. Compare.", "Quand $x$ augmente de 1, le membre de gauche augmente de {a} et celui de droite de {c} : l'écart entre les deux se réduit de {a-c} à chaque fois."],
+      "solution": "Pour $ x = {s} $ : $ {a} × {s} + {b} = {a*s+b} $ et $ {c} × {s} + {d} = {c*s+d} $. Les deux membres sont égaux : l'égalité est vraie pour $ x = {s} $, et fausse pour les autres nombres testés.",
+      "methods": ["Tester les nombres un par un dans un tableau : valeur de $x$, membre de gauche, membre de droite.", "Observer l'écart entre les deux membres : il vaut {d-b} pour $ x = 0 $ et diminue de {a-c} chaque fois que $x$ augmente de 1."],
+      "selfTest": [
+        { "response": { "value": "{s}", "justification": "{a} × {s} + {b} = {a*s+b} et {c} × {s} + {d} = {c*s+d}" }, "expect": "correct" },
+        { "response": { "value": "{s+1}" }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-litteral-contre-exemple", "type": "counterexample", "skill": "m5.litteral.tester", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:regrouper-termes"], "expectedSeconds": 150,
+      "claim": "Pour tout nombre x, 2x + 3 = 5x.",
+      "prompt": "Jules a écrit $ 2x + 3 = 5x $, « car 2 + 3 = 5 ». Il a vérifié avec $ x = 1 $ : $ 2 × 1 + 3 = 5 $ et $ 5 × 1 = 5 $. Il en conclut que l'égalité est vraie pour tout nombre $x$. Prouve-lui qu'il a tort : donne une valeur de $x$ pour laquelle l'égalité est fausse.",
+      "vars": ["x"],
+      "refutes": "2*x + 3 != 5*x",
+      "refuteHint": "Pour $ x = 1 $, l'égalité est vraie… mais « pour tout $x$ » exige qu'elle soit vraie pour TOUS les nombres. Essaie une autre valeur.",
+      "hints": ["Un seul nombre pour lequel l'égalité est fausse suffit à prouver qu'elle n'est pas toujours vraie.", "Essaie $ x = 2 $ : calcule séparément $ 2 × 2 + 3 $ et $ 5 × 2 $."],
+      "solution": "Avec $ x = 2 $ : $ 2 × 2 + 3 = 7 $ mais $ 5 × 2 = 10 $. L'égalité est fausse pour $ x = 2 $, donc elle n'est pas vraie pour tout $x$. Le nombre 3 n'est pas multiplié par $x$ : on ne peut pas « regrouper » $2x$ et 3. Un exemple qui marche ne prouve rien ; un seul contre-exemple suffit à prouver que c'est faux.",
+      "selfTest": [
+        { "response": { "values": { "x": "2" } }, "expect": "correct" },
+        { "response": { "values": { "x": "1" } }, "expect": "raisonnement" },
+        { "response": { "claimTrue": true }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m5-litteral-developper", "type": "composite", "skill": "m5.litteral.distributivite", "skills": ["m5.litteral.expression"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:distrib-partielle", "mc:somme-produit"], "expectedSeconds": 300,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [1, 9] }, "k": { "int": [2, 9] }, "m": { "int": [2, 9] } },
+      "prompt": "Distributivité : pour tous nombres $k$, $a$ et $b$, $ k(a + b) = ka + kb $.",
+      "parts": [
+        { "type": "text", "prompt": "L'expression $ {a}(x + {b}) $ est-elle une somme ou un produit ?", "accept": ["produit", "un produit", "c'est un produit"],
+          "misconceptions": [
+            { "answer": "somme", "id": "mc:somme-produit", "error": "notion", "feedback": "La dernière opération à effectuer est la multiplication par {a} (on calcule d'abord la parenthèse) : c'est un produit, dont l'un des facteurs est la somme $ x + {b} $." },
+            { "answer": "une somme", "id": "mc:somme-produit", "error": "notion", "feedback": "La dernière opération à effectuer est la multiplication par {a} (on calcule d'abord la parenthèse) : c'est un produit, dont l'un des facteurs est la somme $ x + {b} $." }
+          ] },
+        { "type": "steps", "mode": "expression", "prompt": "Développe $ {a}(x + {b}) $. Écris une étape par ligne.", "start": "a*(x + b)", "minSteps": 2,
+          "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "il faut multiplier CHAQUE terme de la parenthèse par {a} : $ {a} × x + {a} × {b} = {a}x + {a*b} $." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ {k}x + {k*m} $.", "answer": "k*(x + m)",
+          "misconceptions": [ { "answer": "k*(x + k*m)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Vérifie en développant : $ {k}(x + {k*m}) = {k}x + {k*k*m} $, et non $ {k}x + {k*m} $. Le facteur commun {k} doit être « sorti » des deux termes : $ {k*m} = {k} × {m} $." } ] }
+      ],
+      "hints": ["Dans $ {a}(x + {b}) $, on calcule d'abord la parenthèse, puis on multiplie.", "Développer : $ {a}(x + {b}) = {a} × x + {a} × {b} $.", "Factoriser, c'est l'inverse : $ {k*m} = {k} × {m} $, donc $ {k}x + {k*m} = {k} × x + {k} × {m} $."],
+      "solution": "$ {a}(x + {b}) $ est un produit. Développement : $ {a}(x + {b}) = {a} × x + {a} × {b} = {a}x + {a*b} $. Factorisation : $ {k}x + {k*m} = {k} × x + {k} × {m} = {k}(x + {m}) $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "produit" }, { "lines": ["{a} × x + {a} × {b}", "{a}x + {a*b}"] }, { "value": "{k}(x + {m})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "produit" }, { "lines": ["{a}x + {b}"] }, { "value": "{k}(x + {m})" } ] }, "expect": "mc:distrib-partielle" },
+        { "response": { "parts": [ { "value": "somme" }, { "lines": ["{a} × x + {a} × {b}", "{a}x + {a*b}"] }, { "value": "{k}(x + {m})" } ] }, "expect": "mc:somme-produit" }
+      ]
+    },
+    {
+      "id": "m5-litteral-reduire", "type": "steps", "mode": "expression", "skill": "m5.litteral.expression", "skills": ["m5.litteral.distributivite"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:regrouper-termes"], "expectedSeconds": 120,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "c": { "int": [2, 9] }, "d": { "int": [1, 9] } },
+      "constraints": ["b != d"],
+      "start": "a*x + b + c*x - d",
+      "minSteps": 2,
+      "prompt": "Réduis l'expression $ {a}x + {b} + {c}x − {d} $. Commence par regrouper les termes de même nature.",
+      "misconceptions": [
+        { "answer": "(a+b+c-d)*x", "id": "mc:regrouper-termes", "error": "notion", "feedback": "on ne peut pas regrouper des termes « en $x$ » avec des nombres seuls. $ {a}x $ et $ {c}x $ s'ajoutent ($ {a+c}x $), mais {b} et {d} sont des nombres, qu'on regroupe à part." },
+        { "answer": "(a+c)*x + b + d", "id": "mc:signe-terme", "error": "signe", "feedback": "le signe − placé devant {d} fait partie du terme : on calcule $ {b} − {d} = {b-d} $." }
+      ],
+      "hints": ["Repère les termes « en $x$ » et les nombres seuls.", "Regroupe : $ {a}x + {c}x + {b} − {d} $.", "$ {a}x + {c}x = ({a} + {c})x = {a+c}x $ : c'est la distributivité."],
+      "solution": "$ {a}x + {b} + {c}x − {d} = {a}x + {c}x + {b} − {d} = {a+c}x {b-d|s} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a}x + {c}x + {b} - {d}", "{a+c}x {b-d|s}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a+b+c-d}x"] }, "expect": "mc:regrouper-termes" },
+        { "response": { "lines": ["{a+c}x + {b+d}"] }, "expect": "mc:signe-terme" }
+      ]
+    },
+    {
+      "id": "m5-litteral-consecutifs", "type": "composite", "skill": "mx.arith.preuve-entiers", "skills": ["m5.litteral.distributivite", "m5.litteral.expression"], "track": "classe", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:consecutifs"], "expectedSeconds": 600,
+      "prompt": "Choisis trois nombres entiers qui se suivent, par exemple 7, 8 et 9, et calcule leur somme. Recommence avec d'autres. Il semble que la somme soit toujours un multiple de 3… Mais des exemples ne suffisent pas : démontrons-le pour TOUS les entiers.",
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "On appelle $n$ le plus petit des trois nombres. Écris la somme des trois nombres en fonction de $n$, sous forme réduite.", "answer": "3n + 3",
+          "misconceptions": [ { "answer": "3n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les trois nombres sont $n$, $n + 1$ et $n + 2$ (et non trois fois $n$) : leur somme vaut $ 3n + 3 $." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise cette somme pour faire apparaître le facteur 3.", "answer": "3(n + 1)" },
+        { "type": "open", "prompt": "Rédige la démonstration : pourquoi la somme de trois entiers consécutifs est-elle toujours un multiple de 3 ? Que représente $n + 1$ ?", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'écris les trois nombres avec la lettre $n$", "keywords": [["n + 1", "n+1", "n + 2", "n+2"]] },
+            { "id": "c2", "label": "J'obtiens $3n + 3 = 3(n + 1)$", "keywords": [["3(n + 1)", "3(n+1)", "3 × (n + 1)", "3n + 3", "3n+3"]] },
+            { "id": "c3", "label": "Je conclus : c'est 3 fois un entier, donc un multiple de 3, quel que soit $n$", "keywords": [["multiple de 3", "3 fois", "divisible par 3"]] },
+            { "id": "c4", "label": "Je remarque que $n + 1$ est le nombre du milieu", "keywords": [["milieu"]] }
+          ] }
+      ],
+      "hints": ["Si le plus petit est $n$, le suivant est $n + 1$. Et le troisième ?", "$ n + (n + 1) + (n + 2) = 3n + 3 $.", "$ 3n + 3 = 3 × n + 3 × 1 = 3(n + 1) $ : c'est 3 fois un nombre entier."],
+      "solution": "Les trois nombres sont $n$, $n + 1$ et $n + 2$. Leur somme vaut $ n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1) $. Comme $n + 1$ est un entier, la somme est 3 fois un entier : c'est un multiple de 3, quel que soit l'entier $n$. De plus, $n + 1$ est le nombre du milieu : la somme vaut 3 fois le nombre du milieu ($ 7 + 8 + 9 = 3 × 8 $).",
+      "methods": ["Appeler $n$ le plus petit des trois nombres.", "Appeler $m$ le nombre du milieu : les trois nombres sont $m − 1$, $m$ et $m + 1$, et leur somme vaut directement $3m$."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3n+3" }, { "value": "3(n+1)" }, { "text": "Les trois nombres sont n, n + 1 et n + 2. La somme vaut 3n + 3 = 3(n + 1), c'est 3 fois un entier donc un multiple de 3 pour tout n. n + 1 est le nombre du milieu.", "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3n" }, { "value": "3(n+1)" }, { "text": "La somme vaut 3n donc c'est un multiple de 3." } ] }, "expect": "mc:consecutifs" }
+      ]
+    },
+    {
+      "id": "m5-litteral-expliquer", "type": "open", "skill": "m5.litteral.distributivite", "skills": ["m5.calcul.priorites", "m5.litteral.tester"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 360, "minWords": 30,
+      "prompt": "Pour calculer le périmètre d'un rectangle de longueur $L$ et de largeur $ℓ$, trois élèves proposent :\n- Léo : $ 2 × L + 2 × ℓ $\n- Sara : $ 2 × (L + ℓ) $\n- Tom : $ L + ℓ × 2 $\n\nQui a raison ? Explique pourquoi, en utilisant la distributivité, les priorités de calcul et un test avec des nombres.",
+      "criteria": [
+        { "id": "c1", "label": "Léo et Sara ont raison, et leurs expressions sont égales par distributivité", "keywords": [["distributiv", "leo et sara", "sara et leo"]] },
+        { "id": "c2", "label": "Tom a tort : à cause des priorités, il ne double que la largeur", "keywords": [["priorit", "multiplication d abord", "seulement la largeur", "que la largeur"]] },
+        { "id": "c3", "label": "Je teste avec des valeurs numériques", "keywords": [["par exemple", "si l =", "avec l =", "teste", "test"]] }
+      ],
+      "models": [
+        "Avec L = 5 et ℓ = 3 : Léo trouve 2 × 5 + 2 × 3 = 16, Sara 2 × (5 + 3) = 16 et Tom 5 + 3 × 2 = 11. Le vrai périmètre est 5 + 3 + 5 + 3 = 16. Léo et Sara ont raison : par la distributivité, 2 × (L + ℓ) = 2 × L + 2 × ℓ pour toutes les valeurs. Tom a tort : la multiplication est prioritaire, son calcul ne double que la largeur. Il aurait fallu écrire (L + ℓ) × 2."
+      ],
+      "hints": ["Choisis des valeurs, par exemple $L = 5$ et $ℓ = 3$, et calcule les trois expressions. Compare avec le vrai périmètre, $5 + 3 + 5 + 3$.", "Dans $ L + ℓ × 2 $, quelle opération fait-on en premier ?", "Développe $ 2 × (L + ℓ) $ : que retrouves-tu ?"],
+      "solution": "Léo et Sara ont raison, et leurs expressions sont égales par distributivité : $ 2 × (L + ℓ) = 2 × L + 2 × ℓ $. Tom a tort : dans $ L + ℓ × 2 $, la multiplication est prioritaire, seule la largeur est doublée. Il fallait écrire $ (L + ℓ) × 2 $. Un test (par exemple $L = 5$, $ℓ = 3$) suffit à montrer que Tom se trompe ; la distributivité prouve que Léo et Sara ont raison pour toutes les valeurs.",
+      "selfTest": [ { "response": { "text": "Par exemple avec L = 5 et l = 3, Léo et Sara trouvent 16 et Tom trouve 11. Léo et Sara ont raison grâce à la distributivité. Tom a tort à cause de la priorité de la multiplication : il ne double que la largeur." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-litteral-programme", "type": "composite", "skill": "m5.litteral.expression", "skills": ["m5.litteral.distributivite", "m5.calcul.priorites"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:parentheses-programme"], "expectedSeconds": 420,
+      "prompt": "Voici un programme de calcul :\n- choisir un nombre ;\n- lui ajouter 3 ;\n- multiplier le résultat par 4 ;\n- soustraire 12 au résultat.",
+      "parts": [
+        { "type": "numeric", "prompt": "Applique le programme au nombre 5. Quel résultat obtiens-tu ?", "answer": 20,
+          "misconceptions": [ { "answer": 5, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplier le résultat par 4 » porte sur TOUT le résultat précédent, $5 + 3 = 8$ : on calcule $ (5 + 3) × 4 − 12 = 20 $, et non $ 5 + 3 × 4 − 12 = 5 $." } ] },
+        { "type": "expression", "form": "any", "prompt": "Écris, en une seule expression, le résultat obtenu en partant d'un nombre $x$.", "answer": "4(x + 3) - 12",
+          "misconceptions": [ { "answer": "x + 3*4 - 12", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Il manque des parenthèses : c'est $x + 3$ tout entier qui est multiplié par 4. On écrit $ (x + 3) × 4 − 12 $." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Développe et réduis cette expression. Que remarques-tu ?", "answer": "4x" },
+        { "type": "numeric", "prompt": "Quel nombre faut-il choisir au départ pour obtenir 100 ?", "answer": 25,
+          "misconceptions": [ { "answer": 400, "id": "mc:operation-inverse", "error": "methode", "feedback": "Le programme revient à multiplier par 4 : pour obtenir 100, il faut partir de $ 100 ÷ 4 = 25 $ (on fait l'opération inverse)." } ] }
+      ],
+      "hints": ["Écris chaque étape : 5 → 8 → 32 → 20.", "« Multiplier le résultat par 4 » : il faut des parenthèses autour de $x + 3$.", "$ (x + 3) × 4 − 12 = 4x + 12 − 12 $."],
+      "solution": "Avec 5 : $5 + 3 = 8$, $8 × 4 = 32$, $32 − 12 = 20$. Avec $x$ : $ (x + 3) × 4 − 12 = 4x + 12 − 12 = 4x $. Ce programme revient donc à multiplier le nombre de départ par 4 ! Pour obtenir 100, on choisit $ 100 ÷ 4 = 25 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "20" }, { "value": "(x+3)×4-12" }, { "value": "4x" }, { "value": "25" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5" }, { "value": "(x+3)×4-12" }, { "value": "4x" }, { "value": "25" } ] }, "expect": "mc:parentheses-programme" }
+      ]
+    },
+    {
+      "id": "m5-litteral-carrelage", "type": "composite", "skill": "m5.litteral.expression", "skills": ["m5.litteral.distributivite"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:coins"], "expectedSeconds": 600,
+      "prompt": "Un bassin carré mesure $n$ carreaux de côté. On l'entoure d'une bordure d'une seule rangée de carreaux identiques, les quatre coins compris.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien faut-il de carreaux de bordure pour un bassin de 5 carreaux de côté ?", "answer": 24,
+          "misconceptions": [ { "answer": 20, "id": "mc:coins", "error": "raisonnement", "feedback": "Tu as compté 4 côtés de 5 carreaux, mais il faut aussi les 4 carreaux des coins : $ 20 + 4 = 24 $." } ] },
+        { "type": "expression", "form": "any", "prompt": "Écris le nombre de carreaux de bordure en fonction de $n$.", "answer": "4n + 4",
+          "misconceptions": [ { "answer": "4n", "id": "mc:coins", "error": "raisonnement", "feedback": "$4n$ oublie les 4 carreaux des coins. Teste avec $ n = 5 $ : il faut 24 carreaux, pas 20." } ] },
+        { "type": "open", "prompt": "Sami a écrit $ 4(n + 1) $ et Jade a écrit $ 2n + 2(n + 2) $. Explique comment chacun a compté les carreaux, puis prouve que leurs formules sont égales à la tienne.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'explique le comptage de Sami : 4 paquets de $n + 1$ carreaux", "keywords": [["n + 1", "n+1", "4 paquets", "4 groupes", "quatre paquets"]] },
+            { "id": "c2", "label": "J'explique le comptage de Jade : deux côtés de $n$ carreaux et deux côtés de $n + 2$", "keywords": [["n + 2", "n+2"]] },
+            { "id": "c3", "label": "Je prouve l'égalité des formules en développant", "keywords": [["develop", "4n + 4", "4n+4", "distributiv"]] }
+          ] }
+      ],
+      "hints": ["Dessine la bordure pour $ n = 3 $ et compte : tu dois trouver 16 carreaux.", "Chaque côté du bassin est longé par $n$ carreaux ; il reste les 4 coins.", "Sami fait le tour du bassin en comptant des paquets « un côté + un coin »."],
+      "solution": "Pour $ n = 5 $ : 24 carreaux. Formule : $ 4n + 4 $ (4 côtés de $n$ carreaux, plus 4 coins). Sami compte 4 paquets de $n + 1$ carreaux (un côté et un coin) : $ 4(n + 1) = 4n + 4 $. Jade compte deux côtés de $n$ carreaux et deux côtés de $n + 2$ carreaux (coins compris) : $ 2n + 2(n + 2) = 2n + 2n + 4 = 4n + 4 $. Les trois formules sont égales pour tout $n$.",
+      "methods": ["4 côtés de $n$ carreaux, plus 4 coins : $4n + 4$.", "4 paquets « un côté + un coin » : $4(n + 1)$.", "Deux côtés courts de $n$ et deux côtés longs de $n + 2$ : $2n + 2(n + 2)$.", "Le grand carré moins le bassin : $(n + 2)² − n²$ (on le démontrera en 3e)."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "24" }, { "value": "4(n+1)" }, { "text": "Sami fait 4 paquets de n + 1 carreaux : un côté et un coin. Jade compte deux côtés de n et deux côtés de n + 2. En développant, 4(n + 1) = 4n + 4 et 2n + 2(n + 2) = 4n + 4.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "20" }, { "value": "4n" }, { "text": "Je ne sais pas." } ] }, "expect": "mc:coins" }
+      ]
+    },
+    {
+      "id": "m5-litteral-remed-aire", "type": "expression", "form": "developpee-reduite", "skill": "m5.litteral.distributivite", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:distrib-partielle"], "expectedSeconds": 120,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] } },
+      "prompt": "Autre représentation : un grand rectangle de largeur {a} est formé de deux rectangles collés, l'un de longueur $x$, l'autre de longueur {b}. Son aire vaut $ {a}(x + {b}) $. Écris-la aussi comme la somme des aires des deux petits rectangles, sous forme réduite.",
+      "answer": "a*x + a*b",
+      "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le petit rectangle de droite a lui aussi une largeur de {a} : son aire vaut $ {a} × {b} = {a*b} $, et non {b}. L'aire totale est $ {a}x + {a*b} $." } ],
+      "hints": ["Aire du rectangle de gauche : $ {a} × x $.", "Aire du rectangle de droite : $ {a} × {b} $.", "La largeur {a} est commune aux deux rectangles : elle multiplie les DEUX longueurs."],
+      "solution": "$ {a}(x + {b}) = {a} × x + {a} × {b} = {a}x + {a*b} $ : la largeur {a} multiplie les deux longueurs.",
+      "selfTest": [
+        { "response": { "value": "{a}x + {a*b}" }, "expect": "correct" },
+        { "response": { "value": "{a}x + {b}" }, "expect": "mc:distrib-partielle" },
+        { "response": { "value": "{a}(x + {b})" }, "expect": "forme" }
+      ]
+    },
+    {
+      "id": "m5-litteral-remed-papeterie", "type": "numeric", "skill": "m5.calcul.priorites", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:priorites"], "expectedSeconds": 60,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 6] }, "c": { "int": [2, 5] } },
+      "prompt": "À la papeterie, tu achètes un classeur à {a} € et {b} stylos à {c} € l'un. Le prix total s'écrit $ {a} + {b} × {c} $. Combien payes-tu ?",
+      "answer": "a + b*c",
+      "misconceptions": [ { "answer": "(a+b)*c", "id": "mc:priorites", "error": "notion", "prerequisite": "m5.calcul.priorites", "feedback": "Calculer d'abord $ {a} + {b} $ reviendrait à payer le classeur {c} € lui aussi ! Ce sont les {b} stylos qui coûtent {c} € chacun : $ {b} × {c} = {b*c} $, puis on ajoute le classeur. C'est pour cela que la multiplication est prioritaire." } ],
+      "hints": ["Combien coûtent les stylos seuls ?", "Les stylos coûtent $ {b} × {c} $ euros ; ajoute ensuite le prix du classeur."],
+      "solution": "$ {a} + {b} × {c} = {a} + {b*c} = {a+b*c} $ €. La multiplication passe avant l'addition : c'est exactement ce que dit la situation.",
+      "selfTest": [ { "response": { "value": "{a+b*c}" }, "expect": "correct" }, { "response": { "value": "{(a+b)*c}" }, "expect": "mc:priorites" } ]
+    },
+    {
+      "id": "m5-litteral-identite", "type": "equation", "skill": "m5.litteral.distributivite", "skills": ["m5.litteral.tester"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "expectedSeconds": 240,
+      "prompt": "À toi d'inventer ! Écris une égalité entre deux expressions différentes, avec $x$ dans les deux membres, qui soit vraie **pour toutes les valeurs** de $x$. Utilise la distributivité : par exemple, des parenthèses d'un côté et pas de l'autre.",
+      "expectKind": "all", "varBothSides": true,
+      "hints": ["Pars d'une expression avec parenthèses, comme $ 5(x + 2) $, et développe-la.", "$ 5(x + 2) = 5x + 10 $ est vraie pour tout $x$. Peux-tu en inventer une autre, avec une soustraction ?"],
+      "solution": "Par exemple $ 5(x + 2) = 5x + 10 $, ou $ 3(2x − 1) = 6x − 3 $, ou encore $ 4x + 2x = 6x $. Une égalité vraie pour toutes les valeurs de la lettre s'appelle une **identité**.",
+      "selfTest": [
+        { "response": { "value": "3(x + 2) = 3x + 6" }, "expect": "correct" },
+        { "response": { "value": "3(x + 2) = 3x + 2" }, "expect": "raisonnement" },
+        { "response": { "value": "2x + 3 = 5x" }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m5-litteral-piege", "type": "counterexample", "skill": "m5.litteral.tester", "skills": ["m4.raisonner.preuve"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "expectedSeconds": 240,
+      "claim": "Pour tout nombre x, x × x + 2 = 3x.",
+      "prompt": "Inès teste l'égalité $ x × x + 2 = 3x $. Pour $ x = 1 $ : $ 1 + 2 = 3 $ et $ 3 × 1 = 3 $. Pour $ x = 2 $ : $ 4 + 2 = 6 $ et $ 3 × 2 = 6 $. « Deux essais réussis : c'est toujours vrai ! » A-t-elle raison ? Si non, trouve une valeur de $x$ qui le prouve.",
+      "vars": ["x"],
+      "refutes": "x*x + 2 != 3*x",
+      "refuteHint": "Inès a testé justement les deux seuls nombres pour lesquels l'égalité est vraie ! Essaie 0, 3, 10…",
+      "hints": ["Teste d'autres nombres que 1 et 2 : 0, 3, 10…", "Pour $ x = 3 $ : $ 3 × 3 + 2 = 11 $, et $ 3 × 3 = 9 $."],
+      "solution": "Avec $ x = 3 $ : $ 3 × 3 + 2 = 11 $ alors que $ 3 × 3 = 9 $. L'égalité est fausse pour 3 : elle n'est donc pas toujours vraie. Elle n'est vraie que pour $ x = 1 $ et $ x = 2 $ (tu sauras le démontrer au lycée). Morale : des essais réussis, même nombreux, ne prouvent pas une égalité « pour tout $x$ » ; un seul contre-exemple suffit à la réfuter.",
+      "selfTest": [
+        { "response": { "values": { "x": "3" } }, "expect": "correct" },
+        { "response": { "values": { "x": "0" } }, "expect": "correct" },
+        { "response": { "values": { "x": "2" } }, "expect": "raisonnement" },
+        { "response": { "claimTrue": true }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m5-litteral-consecutifs-plus", "type": "composite", "skill": "mx.arith.preuve-entiers", "skills": ["m5.litteral.distributivite", "m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:consecutifs"], "expectedSeconds": 720,
+      "prompt": "Tu as démontré que la somme de trois entiers consécutifs est toujours un multiple de 3. Et avec quatre entiers consécutifs ? Avec cinq ?",
+      "parts": [
+        { "type": "counterexample", "claim": "La somme de quatre entiers consécutifs est toujours un multiple de 4.", "prompt": "Montre que l'affirmation « la somme de quatre entiers consécutifs est toujours un multiple de 4 » est fausse : donne le plus petit $n$ de quatre entiers consécutifs $n$, $n + 1$, $n + 2$, $n + 3$ dont la somme n'est pas un multiple de 4.",
+          "vars": ["n"], "domain": "estentier(n)", "domainLabel": "n entier", "refutes": "mod(4*n + 6; 4) != 0", "show": "4*n + 6", "showLabel": "la somme" },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme de quatre entiers consécutifs en fonction du plus petit, $n$, sous forme réduite.", "answer": "4n + 6",
+          "misconceptions": [ { "answer": "4n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les quatre nombres sont $n$, $n + 1$, $n + 2$ et $n + 3$ : en plus des quatre $n$, il y a $ 1 + 2 + 3 = 6 $." } ] },
+        { "type": "open", "prompt": "Explique pourquoi la somme de quatre entiers consécutifs n'est JAMAIS un multiple de 4. Cherche ensuite ce qui se passe avec cinq entiers consécutifs, et démontre-le.", "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "J'écris $4n + 6 = 4(n + 1) + 2$", "keywords": [["4(n + 1) + 2", "4(n+1)+2", "4n + 4 + 2", "4n+4+2"]] },
+            { "id": "c2", "label": "Je conclus : c'est un multiple de 4 plus 2, donc jamais un multiple de 4", "keywords": [["jamais", "pas un multiple", "reste 2", "plus 2"]] },
+            { "id": "c3", "label": "Cinq entiers consécutifs : $5n + 10 = 5(n + 2)$, toujours un multiple de 5", "keywords": [["5n + 10", "5n+10", "5(n + 2)", "5(n+2)", "multiple de 5"]] }
+          ] }
+      ],
+      "hints": ["Essaie $ 1 + 2 + 3 + 4 $, puis $ 2 + 3 + 4 + 5 $.", "$ n + (n + 1) + (n + 2) + (n + 3) = 4n + 6 $.", "$ 4n + 6 = 4n + 4 + 2 = 4(n + 1) + 2 $ : un multiple de 4, plus 2."],
+      "solution": "$ 1 + 2 + 3 + 4 = 10 $ n'est pas un multiple de 4. En général : $ 4n + 6 = 4(n + 1) + 2 $, c'est toujours un multiple de 4 augmenté de 2, donc jamais un multiple de 4. Avec cinq entiers consécutifs : $ 5n + 10 = 5(n + 2) $, toujours un multiple de 5. Plus généralement, la somme d'un nombre IMPAIR d'entiers consécutifs est un multiple de ce nombre : elle vaut le nombre du milieu multiplié par le nombre de termes.",
+      "methods": ["Conjecturer sur des exemples, puis démontrer avec une lettre.", "Partir du nombre du milieu (pour un nombre impair de termes) : les écarts au milieu se compensent."],
+      "selfTest": [
+        { "response": { "parts": [ { "values": { "n": "1" } }, { "value": "4n+6" }, { "text": "4n + 6 = 4(n + 1) + 2 donc c'est un multiple de 4 plus 2, jamais un multiple de 4. Avec cinq : 5n + 10 = 5(n + 2), toujours un multiple de 5.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "values": { "n": "1" } }, { "value": "4n" }, { "text": "La somme vaut 4n donc c'est un multiple de 4." } ] }, "expect": "mc:consecutifs" }
+      ]
+    },
+    {
+      "id": "m5-litteral-tour-magique", "type": "composite", "skill": "m5.litteral.expression", "skills": ["mx.arith.preuve-entiers", "m5.litteral.distributivite"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:oubli-etape"], "expectedSeconds": 600,
+      "prompt": "Le tour de magie de Nadia :\n- pense à un nombre ;\n- ajoute 7 ;\n- multiplie le résultat par 2 ;\n- soustrais 4 ;\n- soustrais le double du nombre de départ.\n\n« Je devine ton résultat sans le connaître ! »",
+      "parts": [
+        { "type": "numeric", "prompt": "Fais le tour avec le nombre 5. Quel résultat obtiens-tu ?", "answer": 10 },
+        { "type": "numeric", "prompt": "Et avec 1 000 ?", "answer": 10 },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris le résultat en partant d'un nombre $x$, puis réduis-le : c'est ainsi qu'on prouve que le tour marche pour TOUS les nombres.", "answer": "10",
+          "misconceptions": [ { "answer": "2x + 10", "id": "mc:oubli-etape", "error": "lecture", "feedback": "Tu as oublié la dernière étape : soustraire le double du nombre de départ, c'est-à-dire $2x$." } ] },
+        { "type": "open", "prompt": "Invente ton propre tour de magie, dont le résultat est toujours 5, et prouve-le avec une lettre.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Mon programme a au moins quatre étapes" },
+            { "id": "c2", "label": "J'écris le résultat en fonction de $x$" },
+            { "id": "c3", "label": "Je développe et je réduis jusqu'à obtenir 5", "keywords": [["= 5", "=5"]] }
+          ] }
+      ],
+      "hints": ["Avec 5 : $5 + 7 = 12$, $12 × 2 = 24$, $24 − 4 = 20$, $20 − 10 = 10$.", "Avec $x$ : $ (x + 7) × 2 − 4 − 2x $.", "Développe : $ 2x + 14 − 4 − 2x $. Que deviennent les termes en $x$ ?"],
+      "solution": "$ (x + 7) × 2 − 4 − 2x = 2x + 14 − 4 − 2x = 10 $ : les termes en $x$ s'annulent, le résultat vaut 10 quel que soit le nombre choisi. Pour un tour qui donne toujours 5 : par exemple « ajoute 4, multiplie par 3, soustrais 7, soustrais le triple du nombre de départ » : $ 3(x + 4) − 7 − 3x = 3x + 12 − 7 − 3x = 5 $.",
+      "methods": ["Tester plusieurs nombres pour conjecturer, puis démontrer avec une lettre.", "Raisonner sans lettre : en multipliant par 2, on obtient le double du nombre de départ plus 14 ; ce double est retiré à la fin, il ne reste que $ 14 − 4 = 10 $."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "10" }, { "value": "10" }, { "value": "10" }, { "text": "Ajoute 4, multiplie par 3, soustrais 7, soustrais le triple du nombre : 3(x + 4) − 7 − 3x = 3x + 12 − 7 − 3x = 5.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "10" }, { "value": "10" }, { "value": "2x+10" }, { "text": "Je ne sais pas encore." } ] }, "expect": "mc:oubli-etape" }
+      ]
+    }
+  ]
+}
