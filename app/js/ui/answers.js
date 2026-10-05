@@ -221,8 +221,13 @@ function orderInput(inst, def, ctx) {
       li.addEventListener('dragover', (e) => { e.preventDefault(); });
       li.addEventListener('drop', (e) => { e.preventDefault(); if (!dragId || dragId === id) return; const to = order.indexOf(id); order = [...order.filter((x) => x !== dragId).slice(0, to), dragId, ...order.filter((x) => x !== dragId).slice(to)]; render(); });
       list.append(li);
-      if (focusId === id) requestAnimationFrame(() => { const b = li.querySelector(focusDir < 0 ? '.order-btns button:first-child' : '.order-btns button:last-child'); (b && !b.disabled ? b : li.querySelector('button:not([disabled])')).focus(); });
     });
+    // le focus suit l'élément déplacé (utilisation au clavier)
+    const moved = focusId ? [...list.children].find((li) => li.dataset.id === focusId) : null;
+    if (moved && moved.isConnected) {
+      const b = moved.querySelector(focusDir < 0 ? '.order-btns button:first-child' : '.order-btns button:last-child');
+      (b && !b.disabled ? b : moved.querySelector('button:not([disabled])')).focus();
+    }
   };
   const move = (idx, dir) => { const j = idx + dir; if (j < 0 || j >= order.length) return; const next = order.slice(); [next[idx], next[j]] = [next[j], next[idx]]; order = next; render(next[j], dir); };
   render();

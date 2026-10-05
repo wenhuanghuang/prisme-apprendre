@@ -35,10 +35,10 @@ Date de référence : 05/10/2026.
    - À l’élève : Tu as réussi cette notion il y a 9 jour(s). La revoir maintenant, juste avant de l'oublier, la fixe durablement.
    - Au parent : Révision espacée programmée (intervalle actuel : 1 j). Une réussite maintenant comptera comme « réussite différée ».
    - Exercice choisi : `m5-fractions-quelconques` (steps, classe, difficulté 3, symbolique) — Difficulté 3/5 (visée : 4)
-5. **Nouvelle notion : Améliorer son texte à partir de critères explicites** (suite, priorité 58)
+5. **Nouvelle notion : Effectuer un calcul en respectant les priorités opératoires** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `fr-reviser-texte-connecteur` (text, classe, difficulté 2, verbale) — Difficulté 2/5 (visée : 1)
+   - Exercice choisi : `m5-litteral-valeur` (steps, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
 6. **Approfondissement : Additionner et soustraire des nombres relatifs** (defi, priorité 53)
    - À l’élève : Tu réussis vite et sans aide (83 % de réussites autonomes). Un problème d’approfondissement t'attend : facultatif, il ne change pas ta progression du programme.
    - Au parent : Réussite autonome (83 %), temps médian 100 % du temps prévu. Proposition facultative hors progression officielle (parcours approfondissement).
@@ -62,18 +62,18 @@ Date de référence : 05/10/2026.
    - À l’élève : Tu as réussi cette notion il y a 3 jour(s). La revoir maintenant, juste avant de l'oublier, la fixe durablement.
    - Au parent : Révision espacée programmée (intervalle actuel : 1 j). Une réussite maintenant comptera comme « réussite différée ».
    - Exercice choisi : `m4-relatifs-produit-temperature` (composite, classe, difficulté 3, concrete) — Difficulté 3/5 (visée : 4)
-2. **Nouvelle notion : Accorder le participe passé employé avec être et avec avoir** (suite, priorité 58)
+2. **Nouvelle notion : Démontrer qu'un triangle est rectangle ou ne l'est pas** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `fr-accord-participe-etre` (text, classe, difficulté 1, verbale) — Difficulté 1/5 (visée : 1)
-3. **Nouvelle notion : Situer et ordonner les grandes étapes de la Révolution française** (suite, priorité 58)
+   - Exercice choisi : `m4-pythagore-reciproque` (composite, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
+3. **Nouvelle notion : Mesurer et utiliser la masse volumique (ρ = m / V)** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `hg-revolution-annees` (composite, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
-4. **Nouvelle notion : Analyser un document et justifier une interprétation** (suite, priorité 58)
+   - Exercice choisi : `pc-masse-volumique-calcul` (numeric, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
+4. **Nouvelle notion : Utiliser une variable et une condition** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `hg-revolution-ddhc` (open, classe, difficulté 3, verbale) — Difficulté 3/5 (visée : 1)
+   - Exercice choisi : `code-variables-valeur` (numeric, classe, difficulté 1, symbolique) — Difficulté 1/5 (visée : 1)
 5. **Défi expert : Résoudre une équation du premier degré** (defi, priorité 57)
    - À l’élève : Tu réussis vite et sans aide (100 % de réussites autonomes). Un défi de niveau expert t'attend : facultatif, il ne change pas ta progression du programme.
    - Au parent : Réussite autonome (100 %), temps médian 45 % du temps prévu. Proposition facultative hors progression officielle (parcours expert).
@@ -81,7 +81,7 @@ Date de référence : 05/10/2026.
 6. **Approfondissement : Calculer une longueur avec le théorème de Pythagore** (defi, priorité 57)
    - À l’élève : Tu réussis vite et sans aide (100 % de réussites autonomes). Un problème d’approfondissement t'attend : facultatif, il ne change pas ta progression du programme.
    - Au parent : Réussite autonome (100 %), temps médian 50 % du temps prévu. Proposition facultative hors progression officielle (parcours approfondissement).
-   - Exercice choisi : `m4-pythagore-pave` (composite, approfondissement, difficulté 4, concrete) — Difficulté 4/5 (visée : 4)
+   - Exercice choisi : `m4-pythagore-quadrillage` (composite, approfondissement, difficulté 4, visuelle) — Difficulté 4/5 (visée : 4)
 
 ## Nova (3e)
 
@@ -99,7 +99,7 @@ Date de référence : 05/10/2026.
 1. **D'abord : Utiliser la distributivité simple pour développer ou factoriser** (prerequis, priorité 90)
    - À l’élève : Tes erreurs sur « Développer avec la double distributivité et réduire » viennent souvent de « Utiliser la distributivité simple pour développer ou factoriser ». On consolide ce point avec un exercice plus simple, puis on revient.
    - Au parent : 3 erreur(s) récente(s) sur « Développer avec la double distributivité et réduire » correspondent à une idée fausse rattachée au prérequis « Utiliser la distributivité simple pour développer ou factoriser ».
-   - Exercice choisi : `m4-double-distributivite-remed-etapes` (composite, classe, difficulté 1, symbolique) — Difficulté 1/5 (visée : 1)
+   - Exercice choisi : `m5-litteral-remed-aire` (expression, classe, difficulté 1, visuelle) — Difficulté 1/5 (visée : 1)
 2. **Point précis : Développer avec la double distributivité et réduire** (remediation, priorité 88)
    - À l’élève : 3 erreurs du même type (« notion non comprise ») sur cette notion. Voici une courte explication ciblée et des exercices sur ce point précis, présentés autrement (schéma ou figure).
    - Au parent : Erreur récurrente « notion non comprise » (3 fois en 3 semaines), idée fausse identifiée : mc:distrib-partielle. Changement de représentation proposé car la même approche a échoué.
@@ -111,7 +111,7 @@ Date de référence : 05/10/2026.
 4. **Nouvelle notion : Distinguer poids et masse ; utiliser P = m × g** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `pc-poids-masse-expliquer` (composite, classe, difficulté 2, verbale) — Difficulté 2/5 (visée : 1)
+   - Exercice choisi : `pc-poids-masse-comparer` (composite, classe, difficulté 2, concrete) — Difficulté 2/5 (visée : 1)
 
 ## Quasar (5e)
 
@@ -130,14 +130,14 @@ Date de référence : 05/10/2026.
    - À l’élève : Tu as commencé cette notion : encore quelques exercices pour la maîtriser.
    - Au parent : Notion en cours (maîtrise estimée 59 %).
    - Exercice choisi : `m5-triangles-echelle` (composite, classe, difficulté 3, concrete) — Difficulté 3/5 (visée : 3)
-2. **Nouvelle notion : Améliorer son texte à partir de critères explicites** (suite, priorité 58)
+2. **Nouvelle notion : Interpréter un changement d'état (palier, conservation de la masse)** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `fr-reviser-texte-reperer` (multi, classe, difficulté 2, verbale) — Difficulté 2/5 (visée : 1)
-3. **Nouvelle notion : Effectuer un calcul en respectant les priorités opératoires** (suite, priorité 58)
+   - Exercice choisi : `pc-changements-etat-vocabulaire` (composite, classe, difficulté 2, verbale) — Difficulté 2/5 (visée : 1)
+3. **Nouvelle notion : Écrire une suite d'instructions pour obtenir un résultat précis** (suite, priorité 58)
    - À l’élève : Prochaine notion du programme de ta classe : ses prérequis sont en place.
    - Au parent : Notion du programme non commencée, prérequis acquis ou non requis.
-   - Exercice choisi : `m5-litteral-valeur` (steps, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
+   - Exercice choisi : `code-tortue-boucles-rectangle` (code, classe, difficulté 1, manipulation) — Difficulté 1/5 (visée : 1)
 
 ## Pulsar (4e)
 
@@ -155,7 +155,7 @@ Date de référence : 05/10/2026.
 1. **D'abord : Tester si une égalité est vraie pour une valeur de la lettre** (prerequis, priorité 86)
    - À l’élève : « Résoudre une équation du premier degré » s'appuie sur « Tester si une égalité est vraie pour une valeur de la lettre », qui n'est pas encore solide. On commence par là.
    - Au parent : Compétence fragile (« Résoudre une équation du premier degré ») dont le prérequis « Tester si une égalité est vraie pour une valeur de la lettre » est lui-même peu ou pas maîtrisé.
-   - Exercice choisi : `m5-litteral-tester` (numeric, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
+   - Exercice choisi : `m5-litteral-contre-exemple` (counterexample, classe, difficulté 2, symbolique) — Difficulté 2/5 (visée : 1)
 2. **D'abord : Additionner et soustraire des nombres relatifs** (prerequis, priorité 86)
    - À l’élève : « Résoudre une équation du premier degré » s'appuie sur « Additionner et soustraire des nombres relatifs », qui n'est pas encore solide. On commence par là.
    - Au parent : Compétence fragile (« Résoudre une équation du premier degré ») dont le prérequis « Additionner et soustraire des nombres relatifs » est lui-même peu ou pas maîtrisé.

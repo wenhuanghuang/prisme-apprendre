@@ -72,7 +72,7 @@ Fichier `engine/recommend.js`. Règles par priorité :
 | 55 | notion maîtrisée sans réinvestissement | **problème de transfert** | « Ce problème vérifie que tu sais l'utiliser dans une situation nouvelle. » |
 | 48-57 | réussite rapide (temps ≤ 1,2 × prévu) et autonome (≥ 75 %) | **approfondissement, puis expert** après 2 réussites en approfondissement (facultatif) | « Un défi t'attend : facultatif, il ne change pas ta progression du programme. » |
 
-Chaque recommandation porte deux textes : `reasonStudent` (tutoiement, motivant) et `reasonParent` (factuel : nombre d'erreurs, type, idée fausse, intervalle de révision, taux d'autonomie). Au plus 3 « nouvelles notions » sont proposées à la fois, et le meilleur défi facultatif est toujours conservé pour les élèves très à l'aise.
+Chaque recommandation porte deux textes : `reasonStudent` (tutoiement, motivant) et `reasonParent` (factuel : nombre d'erreurs, type, idée fausse, intervalle de révision, taux d'autonomie). Au plus 3 « nouvelles notions » sont proposées à la fois (une par matière, mathématiques et sciences d'abord), et le meilleur défi facultatif est toujours conservé pour les élèves très à l'aise.
 
 ## 4. Le choix de l'exercice
 

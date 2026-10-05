@@ -8,7 +8,7 @@ Légende : **rédigé** = leçons interactives présentes ; **référence** = do
 
 - 155 parcours niveau × matière structurés à partir des textes officiels (CP → Terminale), dont **11 avec des leçons rédigées**.
 - 23 leçons, 341 exercices : 230 niveau de la classe, 54 approfondissement, 57 expert.
-- QCM : 15 sur 341 (4 %), réservés aux vérifications rapides.
+- QCM : 18 questions sur 755 (2,4 %), réservées aux vérifications rapides.
 - 50 compétences dans le graphe (avec prérequis).
 
 ## Vue d’ensemble (niveaux × matières)

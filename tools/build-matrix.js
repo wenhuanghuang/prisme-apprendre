@@ -43,7 +43,15 @@ out('## Synthèse');
 out();
 out(`- ${totals.courses} parcours niveau × matière structurés à partir des textes officiels (CP → Terminale), dont **${totals.authored} avec des leçons rédigées**.`);
 out(`- ${totals.lessons} leçons, ${totals.exercises} exercices : ${byTrack.classe} niveau de la classe, ${byTrack.approfondissement} approfondissement, ${byTrack.expert} expert.`);
-out(`- QCM : ${qcm} sur ${totals.exercises} (${Math.round((qcm / totals.exercises) * 100)} %), réservés aux vérifications rapides.`);
+// questions réelles : les problèmes composés comptent pour leurs sous-questions
+let questions = 0; let qcmAll = 0;
+for (const f of readdirSync(join(content, 'lessons'))) {
+  for (const e of read(join(content, 'lessons', f)).exercises) {
+    const items = e.type === 'composite' ? e.parts || [] : [e];
+    questions += items.length; qcmAll += items.filter((x) => x.type === 'qcm').length;
+  }
+}
+out(`- QCM : ${qcmAll} questions sur ${questions} (${(qcmAll / questions * 100).toFixed(1).replace('.', ',')} %), réservées aux vérifications rapides.`);
 out(`- ${index.skills.length} compétences dans le graphe (avec prérequis).`);
 out();
 

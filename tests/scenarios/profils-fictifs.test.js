@@ -171,3 +171,11 @@ test('Un échec dans un parcours facultatif ne fait pas baisser la progression d
   const win = applyAttempt(s, { ts: NOW + 600000, verdict: 'correct', score: 1, track: 'expert', type: 'counterexample' }).state;
   assert.ok(win.pL >= before, 'une réussite facultative peut confirmer la maîtrise');
 });
+
+test('Nouveau profil : une nouvelle notion par matière, en commençant par les mathématiques', () => {
+  const recs = recommend(index, {}, { now: NOW, level: '4e' }).filter((r) => r.kind === 'suite');
+  assert.ok(recs.length >= 2 && recs.length <= 3);
+  assert.equal(index.skills.get(recs[0].skill).subject, 'maths');
+  const subjects = recs.map((r) => index.skills.get(r.skill).subject + ':' + r.skill.split('.')[0]);
+  assert.equal(new Set(subjects.map((x) => x.split(':')[0] === 'transversal' ? x : x.split(':')[0])).size, recs.length, 'une seule par matière');
+});

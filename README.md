@@ -8,6 +8,14 @@ Application éducative en français, du CP à la Terminale, fondée sur la **man
 - **Vie privée** : pseudo seulement, tout reste sur l'ordinateur (IndexedDB), aucun appel réseau, export / restauration / effacement.
 - **PWA** installable dans Chrome ou Edge, utilisable hors connexion.
 
+## Aperçu
+
+| Diagnostic ligne par ligne | Tableau de bord parent | Laboratoire (loi d'Ohm) |
+|---|---|---|
+| ![Diagnostic d'une équation étape par étape](docs/captures/04-diagnostic-etapes.png) | ![Tableau de bord parent](docs/captures/07-parents-nova.png) | ![Laboratoire loi d'Ohm](docs/captures/06-labo-ohm.png) |
+
+Autres captures dans [docs/captures/](docs/captures/) (régénérables avec `node tools/screenshots.js`).
+
 ## Démarrer
 
 Prérequis : Node.js 20 ou plus (aucune dépendance à installer).

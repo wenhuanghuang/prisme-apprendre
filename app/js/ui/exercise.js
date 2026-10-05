@@ -50,7 +50,7 @@ export function mountExercise(container, opts) {
   const inst = instantiate(def, opts.seed ?? Math.floor(Math.random() * 1e9));
   const started = Date.now();
   let tries = 0; let hintsUsed = 0; let solutionShown = false; let finished = false; let recorded = false;
-  let lastDiag = null; let firstError = null; const cleanups = [];
+  let lastDiag = null; let firstError = null; let giveUpArmed = false; const cleanups = [];
 
   const skill = store.index && store.index.skills.get(def.skill);
   const head = h('header', { class: 'ex-head' },
@@ -177,7 +177,12 @@ export function mountExercise(container, opts) {
 
   async function giveUp() {
     if (finished) return;
-    if (tries === 0 && !confirm('Voir la correction maintenant ? Essayer d’abord (même faux) aide beaucoup plus à retenir.')) return;
+    if (tries === 0 && !giveUpArmed) {
+      giveUpArmed = true;
+      btnSolution.textContent = 'Essayer d’abord aide à retenir — voir quand même ?';
+      announce('Essayer d’abord, même faux, aide beaucoup plus à retenir. Clique à nouveau pour voir la correction.');
+      return;
+    }
     solutionShown = true;
     const d = lastDiag || { verdict: 'incorrect', score: 0, errorType: null };
     tries = Math.max(tries, 1);
