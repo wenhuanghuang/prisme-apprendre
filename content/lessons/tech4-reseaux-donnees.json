@@ -1,0 +1,398 @@
+{
+  "id": "tech4-reseaux-donnees",
+  "title": "Réseaux et données : bits, octets, adresses IP et serveurs",
+  "subject": "techno",
+  "level": "4e",
+  "skills": ["techno.donnees.binaire", "techno.donnees.unites", "techno.reseaux.local", "techno.reseaux.adresse-ip", "techno.reseaux.client-serveur"],
+  "status": "programme",
+  "programmes": ["techno-c4-2024"],
+  "duration": 60,
+  "summary": "Une photo devient une suite de bits, se mesure en octets, puis circule de terminal en commutateur et de routeur en routeur grâce aux adresses IP, jusqu'au serveur qui la garde et la transmet.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La clé USB qui a « perdu » 2 Go",
+      "body": "Tu achètes une clé USB vendue « 32 Go ». Branchée sur l'ordinateur, elle annonce **29,8 Go**. Le vendeur t'a-t-il volé plus de 2 Go ?\n\nIndice : tout dépend de ce qu'on appelle « kilo », « méga » et « giga ». Pour le fabricant, comme pour le kilomètre, kilo veut dire 1 000. Mais certains logiciels comptent autrement…\n\nDans cette leçon, tu vas apprendre à mesurer l'information (bits, octets et leurs multiples), puis à suivre son trajet dans un réseau."
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "**Le bit** (0 ou 1) est la plus petite quantité d'information : un signal bas ou haut, un interrupteur ouvert ou fermé. Avec n bits, on peut écrire 2ⁿ valeurs différentes : 8 bits donnent 256 valeurs, de 0 à 255.\n\n**Le binaire** : on compte en base 2. De droite à gauche, chaque rang vaut le double du précédent : 1, 2, 4, 8, 16, 32, 64, 128. Exemple : 1011 = 8 + 0 + 2 + 1 = 11.\n\n**L'octet** (symbole **o** ; en anglais *byte*, symbole B) est un groupe de **8 bits**. Le bit a pour symbole **bit** (ou b).\n\n> 1 octet = 8 bits. Un débit de 100 Mbit/s (mégabits par seconde) transporte au mieux 12,5 Mo par seconde (100 ÷ 8).\n\n**Les multiples du Système international** valent des puissances de 10, comme pour les mètres ou les grammes :\n- 1 ko (kilooctet) = 1 000 o ;\n- 1 Mo (mégaoctet) = 1 000 ko = 1 000 000 o ;\n- 1 Go (gigaoctet) = 1 000 Mo ;\n- 1 To (téraoctet) = 1 000 Go.\n\n**Les multiples binaires** utilisent des puissances de 2 et ont leurs propres noms : 1 Kio (kibioctet) = 1 024 o ; 1 Mio (mébioctet) = 1 024 Kio ; 1 Gio (gibioctet) = 1 024 Mio.\n\n> **1 ko = 1 000 o, et non 1 024 o.** 1 024 octets, c'est 1 Kio. Certains logiciels calculent en Kio, Mio, Gio mais affichent « Ko », « Mo », « Go » : c'est l'origine de la confusion, et de la clé de 32 Go qui affiche 29,8.\n\n**Ordres de grandeur** : un SMS ≈ 140 octets ; une page de texte ≈ quelques ko ; une photo de smartphone ≈ quelques Mo ; une minute de vidéo HD ≈ une centaine de Mo ; un film ≈ quelques Go ; le disque d'un ordinateur ≈ 1 To.\n\n**Le réseau local** relie des **terminaux** (ordinateurs, smartphones, imprimantes, objets connectés), chacun muni d'une **carte réseau**, par des **liaisons filaires** (câble Ethernet) ou **sans fil** (WiFi, grâce à un **point d'accès**). Le **commutateur** (switch) relie les appareils d'un même réseau local et envoie chaque message au bon destinataire. Le **routeur** relie des réseaux différents : ton réseau local et Internet. La box Internet contient un routeur, un commutateur et un point d'accès WiFi.\n\n**L'adresse IP** identifie un appareil sur un réseau, comme une adresse postale. Une adresse IPv4 s'écrit avec 4 nombres de 0 à 255 séparés par des points, par exemple 192.168.1.25 : ce sont 4 octets, soit 32 bits. Dans un réseau local domestique (masque habituel 255.255.255.0), tous les appareils ont le même début d'adresse (192.168.1.) : c'est la partie **réseau** ; le dernier nombre identifie l'appareil.\n\n> Pour une adresse IP fixe : même début que le réseau ; un dernier nombre entre 1 et 254 (0 désigne le réseau lui-même, 255 sert à envoyer à tous les appareils) ; et jamais une adresse déjà utilisée.\n\n**Client et serveur** : un **client** (ton navigateur, une application) envoie une **requête** ; un **serveur** (un ordinateur qui fonctionne en permanence) la traite et renvoie une **réponse** (une page web, une vidéo…). Les données voyagent découpées en **paquets**, que les routeurs d'Internet font passer de réseau en réseau.\n\n**Le débit** mesure la quantité de données transmises par seconde, en bit/s (kbit/s, Mbit/s, Gbit/s). Durée de transfert ≈ taille en bits ÷ débit : pensez à convertir les octets en bits (× 8)."
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : du nombre 13 aux octets d'un message",
+      "steps": [
+        { "text": "**Écrire 13 en binaire** : on cherche les rangs 8, 4, 2, 1 qui, additionnés, font 13. 13 = 8 + 4 + 1.", "math": "" },
+        { "text": "On met 1 sous les rangs utilisés et 0 sous les autres : rang 8 → 1 ; rang 4 → 1 ; rang 2 → 0 ; rang 1 → 1. Donc 13 s'écrit **1101** en binaire.", "math": "" },
+        { "text": "**Vérification** : 1 × 8 + 1 × 4 + 0 × 2 + 1 × 1 = 13.", "math": "" },
+        { "text": "**Taille d'un message** : « BONJOUR » contient 7 caractères. En code ASCII, chaque caractère occupe 1 octet : 7 octets, soit 7 × 8 = 56 bits.", "math": "" },
+        { "text": "**Le piège** : 7 octets, ce n'est pas 7 bits. Le bit est 8 fois plus petit que l'octet.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Les erreurs typiques (1 ko = 1 024 o, bits et octets inversés, deux routeurs confondus…) sont repérées et expliquées.",
+      "exercises": ["tech4-rd-binaire", "tech4-rd-conversions", "tech4-rd-cle-usb", "tech4-rd-composants", "tech4-rd-ip", "tech4-rd-requete"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["tech4-rd-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : installer une caméra connectée",
+      "body": "Le club de robotique installe une caméra dans son atelier. Choisis son adresse IP, puis calcule la place nécessaire sur le serveur du collège.",
+      "exercises": ["tech4-rd-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **« 1 ko = 1 024 octets. »** Faux dans le Système international : kilo = 1 000, donc 1 ko = 1 000 o. 1 024 octets, c'est 1 Kio (kibioctet).\n- **Confondre bit et octet.** 1 octet = 8 bits. Les débits sont en bits par seconde, les tailles de fichiers en octets : il faut multiplier ou diviser par 8.\n- **Lire un nombre binaire comme un nombre décimal.** 1011 en binaire vaut 11, pas mille onze.\n- **Commutateur ou routeur ?** Le commutateur relie les appareils d'un même réseau ; le routeur relie des réseaux différents.\n- **Adresse IP invalide.** Chaque nombre va de 0 à 255 ; le début doit être celui du réseau ; deux appareils ne doivent jamais avoir la même adresse.\n- **Croire qu'un message va directement d'un téléphone à l'autre.** Il passe généralement par des serveurs et de nombreux routeurs."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des conversions dans quelques jours. Le générateur « Unités et vocabulaire des réseaux » t'entraîne autant que tu veux."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Calculer une durée de téléchargement à partir d'un débit, puis suivre un paquet avec une table de routage (repère de 3e).",
+      "exercises": ["tech4-rd-debit", "tech4-rd-routage"]
+    },
+    "expert": {
+      "intro": "Facultatif et au-delà des repères de 4e : coder du texte en binaire (ASCII), et comprendre pourquoi les adresses IPv4 ne suffisent plus.",
+      "exercises": ["tech4-rd-ascii", "tech4-rd-ipv4"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "tech4-rd-binaire", "type": "composite", "skill": "techno.donnees.binaire", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:binaire-decimal", "mc:sens-poids", "mc:somme-chiffres"], "expectedSeconds": 180,
+      "params": { "b": { "choice": [0, 1] }, "c": { "choice": [0, 1] }, "d": { "choice": [0, 1] }, "e": { "choice": [0, 1] }, "f": { "choice": [0, 1] }, "g": { "choice": [0, 1] } },
+      "constraints": ["d = 0 ou b != c", "g = 0 ou e != f", "b != e ou c != f ou d != g"],
+      "prompt": "Dans un nombre binaire de 4 chiffres, les rangs valent, de droite à gauche : **1, 2, 4, 8**.",
+      "parts": [
+        { "type": "numeric", "prompt": "Convertis en décimal le nombre binaire **1{b}{c}{d}**.", "answer": "8 + 4*b + 2*c + d",
+          "misconceptions": [
+            { "answer": "1000 + 100*b + 10*c + d", "id": "mc:binaire-decimal", "error": "notion", "feedback": "Tu as lu le nombre binaire comme un nombre décimal. En binaire, chaque chiffre est multiplié par 8, 4, 2 ou 1 selon son rang." },
+            { "answer": "1 + b + c + d", "id": "mc:somme-chiffres", "error": "notion", "feedback": "Tu as compté les 1. Il faut additionner les VALEURS des rangs où se trouve un 1 : 8, 4, 2 ou 1." },
+            { "answer": "1 + 2*b + 4*c + 8*d", "id": "mc:sens-poids", "error": "notion", "feedback": "Les rangs se lisent de droite à gauche : le chiffre de droite vaut 1, celui de gauche vaut 8." }
+          ] },
+        { "type": "numeric", "prompt": "Écris en binaire, avec 4 chiffres, le nombre **{8+4*e+2*f+g}**.", "answer": "1000 + 100*e + 10*f + g",
+          "misconceptions": [
+            { "answer": "1 + 10*e + 100*f + 1000*g", "id": "mc:sens-poids", "error": "notion", "feedback": "Tes chiffres sont écrits à l'envers : le rang 8 est à GAUCHE, le rang 1 à droite." }
+          ] }
+      ],
+      "hints": ["Écris les rangs 8 4 2 1 au-dessus des chiffres.", "Pour convertir en décimal : additionne les rangs où il y a un 1.", "Pour écrire en binaire : commence par le rang 8, puis vois ce qu'il reste."],
+      "solution": "1{b}{c}{d} = 8 + {4*b} + {2*c} + {d} = {8+4*b+2*c+d}. Et {8+4*e+2*f+g} = 8 + {4*e} + {2*f} + {g}, donc il s'écrit 1{e}{f}{g} en binaire.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{8+4*b+2*c+d}" }, { "value": "1{e}{f}{g}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1{b}{c}{d}" }, { "value": "1{e}{f}{g}" } ] }, "expect": "mc:binaire-decimal" },
+        { "response": { "parts": [ { "value": "{8+4*b+2*c+d}" }, { "value": "{g}{f}{e}1" } ] }, "expect": "mc:sens-poids" }
+      ]
+    },
+    {
+      "id": "tech4-rd-conversions", "type": "table", "skill": "techno.donnees.unites", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:ko-1024", "mc:bit-octet"], "expectedSeconds": 240,
+      "prompt": "Convertis, avec les unités du Système international (1 ko = 1 000 o ; 1 octet = 8 bits). Écris seulement le nombre.",
+      "columns": ["Quantité", "Convertir en", "Résultat"],
+      "rows": [
+        ["3 ko", "octets (o)", "?u1"],
+        ["2,5 Mo", "ko", "?u2"],
+        ["4 octets", "bits", "?u3"],
+        ["64 bits", "octets", "?u4"],
+        ["1,5 Go", "Mo", "?u5"],
+        ["5 000 o", "ko", "?u6"]
+      ],
+      "cells": {
+        "u1": { "answer": 3000, "misconceptions": [ { "answer": 3072, "id": "mc:ko-1024", "error": "unite", "feedback": "3 × 1 024 = 3 072 octets, c'est 3 Kio. Dans le Système international, kilo = 1 000 : 3 ko = 3 000 o." } ] },
+        "u2": { "answer": 2500, "misconceptions": [ { "answer": 2560, "id": "mc:ko-1024", "error": "unite", "feedback": "1 Mo = 1 000 ko (et non 1 024) : 2,5 Mo = 2 500 ko." } ] },
+        "u3": { "answer": 32, "misconceptions": [ { "answer": 0.5, "id": "mc:bit-octet", "error": "unite", "feedback": "Le bit est plus petit que l'octet : il y en a plus. 4 octets = 4 × 8 = 32 bits." } ] },
+        "u4": { "answer": 8, "misconceptions": [ { "answer": 512, "id": "mc:bit-octet", "error": "unite", "feedback": "On passe des bits aux octets en DIVISANT par 8 : 64 ÷ 8 = 8 octets." } ] },
+        "u5": { "answer": 1500, "misconceptions": [ { "answer": 1536, "id": "mc:ko-1024", "error": "unite", "feedback": "1 Go = 1 000 Mo dans le Système international : 1,5 Go = 1 500 Mo." } ] },
+        "u6": { "answer": 5, "tolerance": 0.01, "misconceptions": [ { "answer": "5000/1024", "id": "mc:ko-1024", "error": "unite", "feedback": "On divise par 1 000, pas par 1 024 : 5 000 o = 5 ko." } ] }
+      },
+      "hints": ["Kilo = 1 000, méga = 1 000 kilo, giga = 1 000 méga, comme pour les mètres.", "Pour passer d'octets en bits, multiplie par 8 ; de bits en octets, divise par 8.", "Vers une unité plus grande, le nombre diminue."],
+      "solution": "3 ko = 3 000 o ; 2,5 Mo = 2 500 ko ; 4 o = 32 bits ; 64 bits = 8 o ; 1,5 Go = 1 500 Mo ; 5 000 o = 5 ko.",
+      "selfTest": [
+        { "response": { "cells": { "u1": "3000", "u2": "2500", "u3": "32", "u4": "8", "u5": "1500", "u6": "5" } }, "expect": "correct" },
+        { "response": { "cells": { "u1": "3072", "u2": "2560", "u3": "32", "u4": "8", "u5": "1536", "u6": "4,88" } }, "expect": "mc:ko-1024" },
+        { "response": { "cells": { "u1": "3000", "u2": "2500", "u3": "0,5", "u4": "512", "u5": "1500", "u6": "5" } }, "expect": "mc:bit-octet" }
+      ]
+    },
+    {
+      "id": "tech4-rd-cle-usb", "type": "composite", "skill": "techno.donnees.unites", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:ko-1024"], "expectedSeconds": 300,
+      "prompt": "Une clé USB est vendue « **32 Go** ». Le fabricant utilise le Système international : 1 Go = 1 000 000 000 octets (10⁹ o).",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'octets la clé contient-elle ? (tu peux écrire une puissance de 10, par exemple 5 × 10^9)", "answer": "32*10^9", "allowExpression": true,
+          "misconceptions": [ { "answer": "32*1024^3", "id": "mc:ko-1024", "error": "unite", "feedback": "Le fabricant compte en puissances de 10 : 1 Go = 10⁹ octets, pas 1 024 × 1 024 × 1 024." } ] },
+        { "type": "numeric", "prompt": "Certains systèmes d'exploitation divisent ce nombre d'octets par 1 073 741 824 (= 1 024 × 1 024 × 1 024) et affichent le résultat. Quel nombre s'affiche ? (arrondi au dixième)", "answer": "32*10^9/1024^3", "tolerance": 0.05,
+          "misconceptions": [ { "answer": 32, "id": "mc:ko-1024", "error": "unite", "feedback": "32 serait le résultat d'une division par 1 000 000 000. L'ordinateur divise par un nombre plus grand (1 073 741 824) : il affiche donc moins, environ 29,8." } ] },
+        { "type": "text", "prompt": "Avec ce calcul, quel est le symbole exact de l'unité affichée ?", "inputLabel": "Symbole de l'unité",
+          "accept": ["Gio", "gibioctet", "gibioctets", "un gibioctet", "Gio (gibioctet)"],
+          "misconceptions": [ { "answer": "Go", "id": "mc:ko-1024", "error": "unite", "feedback": "C'est ce que l'ordinateur écrit… mais il a divisé par 1 024³ : l'unité exacte est le gibioctet, Gio. Les 32 Go du fabricant valent environ 29,8 Gio : rien n'a été volé." } ] }
+      ],
+      "hints": ["32 Go = 32 × 1 000 000 000 octets.", "32 000 000 000 ÷ 1 073 741 824 : utilise la calculatrice.", "Les multiples en puissances de 2 ont un « i » dans leur symbole : Kio, Mio, Gio."],
+      "solution": "32 Go = 32 × 10⁹ = 32 000 000 000 octets. 32 000 000 000 ÷ 1 073 741 824 ≈ 29,8 : l'ordinateur affiche « 29,8 Go », mais ce sont en réalité 29,8 **Gio**. Même quantité d'octets, deux unités différentes.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "32 × 10^9" }, { "value": "29,8" }, { "value": "Gio" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "32000000000" }, { "value": "29,8" }, { "value": "Go" } ] }, "expect": "mc:ko-1024" },
+        { "response": { "parts": [ { "value": "32 × 1024^3" }, { "value": "29,8" }, { "value": "Gio" } ] }, "expect": "mc:ko-1024" }
+      ]
+    },
+    {
+      "id": "tech4-rd-composants", "type": "match", "skill": "techno.reseaux.local", "skills": ["techno.numerique.vocabulaire"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:switch-routeur"], "expectedSeconds": 180,
+      "prompt": "Associe chaque composant d'un réseau à son rôle.",
+      "leftTitle": "Composant",
+      "rightTitle": "Rôle",
+      "left": [
+        { "id": "l1", "label": "Terminal" },
+        { "id": "l2", "label": "Carte réseau" },
+        { "id": "l3", "label": "Commutateur (switch)" },
+        { "id": "l4", "label": "Routeur" },
+        { "id": "l5", "label": "Point d'accès WiFi" },
+        { "id": "l6", "label": "Serveur" }
+      ],
+      "right": [
+        { "id": "r4", "label": "Relie des réseaux différents entre eux (par exemple le réseau local et Internet)" },
+        { "id": "r1", "label": "Appareil en bout de réseau, qui émet ou reçoit des données : ordinateur, tablette, imprimante…" },
+        { "id": "r6", "label": "Ordinateur qui fonctionne en permanence pour fournir un service (site web, fichiers, messagerie)" },
+        { "id": "r3", "label": "Relie les appareils d'un même réseau local et envoie chaque message au bon destinataire" },
+        { "id": "r5", "label": "Relie sans fil, par ondes radio, des appareils au réseau local" },
+        { "id": "r2", "label": "Composant d'un appareil qui lui permet de se connecter au réseau" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" },
+      "misconceptions": [
+        { "pair": ["l3", "r4"], "id": "mc:switch-routeur", "error": "notion", "feedback": "Le commutateur reste à l'intérieur d'un même réseau local. C'est le routeur qui relie des réseaux différents." },
+        { "pair": ["l4", "r3"], "id": "mc:switch-routeur", "error": "notion", "feedback": "Relier les appareils d'un même réseau local, c'est le rôle du commutateur. Le routeur, lui, fait passer les données d'un réseau à un autre." }
+      ],
+      "hints": ["Le mot « routeur » vient de « route » : il choisit le chemin entre plusieurs réseaux.", "Le commutateur « commute » : il aiguille les messages à l'intérieur d'un réseau local."],
+      "solution": "Terminal : appareil en bout de réseau. Carte réseau : permet à un appareil de se connecter. Commutateur : relie les appareils d'un même réseau local. Routeur : relie des réseaux différents. Point d'accès WiFi : liaison sans fil. Serveur : fournit un service en permanence.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r4", "l4": "r3", "l5": "r5", "l6": "r6" } }, "expect": "mc:switch-routeur" }
+      ]
+    },
+    {
+      "id": "tech4-rd-ip", "type": "categorize", "skill": "techno.reseaux.adresse-ip", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:ip-octet-255", "mc:ip-reseau-different", "mc:ip-doublon"], "expectedSeconds": 240,
+      "prompt": "Le réseau local du CDI utilise des adresses de la forme **192.168.10.x** (masque 255.255.255.0). Sont déjà prises : **192.168.10.1** (la box) et **192.168.10.20** (l'ordinateur du documentaliste).\n\nOn veut donner une **adresse IP fixe** à une nouvelle imprimante. Classe chaque proposition.",
+      "categories": [
+        { "id": "ok", "label": "Adresse utilisable" },
+        { "id": "ko", "label": "Adresse impossible" }
+      ],
+      "items": [
+        { "id": "i1", "label": "192.168.10.35", "category": "ok" },
+        { "id": "i2", "label": "192.168.10.20", "category": "ko" },
+        { "id": "i3", "label": "192.168.10.256", "category": "ko" },
+        { "id": "i4", "label": "192.168.11.35", "category": "ko" },
+        { "id": "i5", "label": "192.168.10.200", "category": "ok" },
+        { "id": "i6", "label": "192.168.10.255", "category": "ko" },
+        { "id": "i7", "label": "192.168.10.99", "category": "ok" }
+      ],
+      "misconceptions": [
+        { "item": "i2", "category": "ok", "id": "mc:ip-doublon", "error": "raisonnement", "feedback": "Cette adresse est déjà celle de l'ordinateur du documentaliste : deux appareils ayant la même adresse provoquent un conflit, les messages ne sauraient pas où aller." },
+        { "item": "i3", "category": "ok", "id": "mc:ip-octet-255", "error": "notion", "feedback": "Chaque nombre d'une adresse IPv4 tient sur un octet : il va de 0 à 255. 256 est impossible." },
+        { "item": "i4", "category": "ok", "id": "mc:ip-reseau-different", "error": "notion", "feedback": "192.168.11.x n'est pas le même réseau que 192.168.10.x : l'imprimante ne pourrait pas communiquer directement avec les ordinateurs du CDI." },
+        { "item": "i6", "category": "ok", "id": "mc:ip-diffusion", "error": "notion", "feedback": "Avec ce masque, le dernier nombre 255 est réservé : c'est l'adresse de diffusion, qui envoie un message à tous les appareils du réseau." }
+      ],
+      "hints": ["Vérifie trois choses : le début (192.168.10.), le dernier nombre (entre 1 et 254), et que l'adresse n'est pas déjà prise.", "Un octet ne peut pas dépasser 255."],
+      "solution": "Utilisables : 192.168.10.35, 192.168.10.200, 192.168.10.99. Impossibles : .20 (déjà prise), .256 (dépasse 255), 192.168.11.35 (autre réseau), .255 (adresse de diffusion).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "ok", "i2": "ko", "i3": "ko", "i4": "ko", "i5": "ok", "i6": "ko", "i7": "ok" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "ok", "i2": "ko", "i3": "ok", "i4": "ko", "i5": "ok", "i6": "ko", "i7": "ok" } }, "expect": "mc:ip-octet-255" },
+        { "response": { "assign": { "i1": "ok", "i2": "ko", "i3": "ko", "i4": "ok", "i5": "ok", "i6": "ko", "i7": "ok" } }, "expect": "mc:ip-reseau-different" }
+      ]
+    },
+    {
+      "id": "tech4-rd-requete", "type": "order", "skill": "techno.reseaux.client-serveur", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "expectedSeconds": 150,
+      "prompt": "Tu tapes l'adresse d'un site dans ton navigateur. Range les étapes de l'échange entre le **client** et le **serveur**.",
+      "orderLabel": "dans l'ordre",
+      "items": [
+        { "id": "q1", "label": "Le navigateur (le client) envoie une requête : « donne-moi cette page »" },
+        { "id": "q2", "label": "La requête passe par la box (routeur), puis par d'autres routeurs d'Internet" },
+        { "id": "q3", "label": "Le serveur web reçoit la requête et prépare la page" },
+        { "id": "q4", "label": "Le serveur renvoie la réponse : la page, découpée en paquets" },
+        { "id": "q5", "label": "Les paquets arrivent sur ton ordinateur, qui les rassemble et affiche la page" }
+      ],
+      "hints": ["C'est toujours le client qui commence en demandant.", "La réponse refait le chemin en sens inverse, en morceaux."],
+      "solution": "Requête du client → traversée des routeurs → traitement par le serveur → réponse en paquets → réassemblage et affichage. Avant tout cela, un annuaire d'Internet (le DNS) a traduit le nom du site en adresse IP du serveur.",
+      "selfTest": [
+        { "response": { "order": ["q1", "q2", "q3", "q4", "q5"] }, "expect": "correct" },
+        { "response": { "order": ["q3", "q1", "q2", "q4", "q5"] }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "tech4-rd-expliquer", "type": "open", "skill": "techno.donnees.unites", "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "verbale", "expectedSeconds": 300, "minWords": 35,
+      "prompt": "Ta grand-mère a acheté une clé USB de 32 Go, et son ordinateur affiche 29,8 Go. Elle pense qu'on l'a trompée. Explique-lui ce qui se passe, simplement mais avec les bons mots.",
+      "criteria": [
+        { "id": "c1", "label": "J'explique que pour le fabricant, giga = 1 milliard (Système international, comme kilo = 1 000)", "keywords": [["milliard", "1 000", "1000", "10^9", "systeme international", "puissance de 10"]] },
+        { "id": "c2", "label": "J'explique que l'ordinateur compte en puissances de 2 (1 024)", "keywords": [["1024", "1 024", "puissance de 2", "puissances de 2"]] },
+        { "id": "c3", "label": "Je donne le nom exact de l'unité de l'ordinateur (Gio, gibioctet)", "keywords": [["gio", "gibioctet"]] },
+        { "id": "c4", "label": "Je conclus que c'est la même quantité d'octets, exprimée dans deux unités", "keywords": [["meme quantite", "meme nombre", "pas vole", "pas trompe", "rien perdu", "meme place", "deux unites"]] }
+      ],
+      "models": [
+        "On ne t'a rien volé ! Le fabricant compte comme pour les kilomètres : 1 Go = 1 milliard d'octets, donc la clé a 32 milliards d'octets. Ton ordinateur, lui, compte en puissances de 2 : il divise par 1 024 × 1 024 × 1 024. Il trouve 29,8 et écrit « Go », mais la vraie unité est le gibioctet (Gio). C'est la même place, exprimée dans deux unités différentes.",
+        "C'est comme si l'un mesurait en mètres et l'autre en pas : la longueur ne change pas. La clé contient 32 000 000 000 octets. 1 Go vaut 1 000 000 000 octets, mais 1 Gio vaut 1 073 741 824 octets. En Gio, on trouve donc un nombre plus petit : 29,8 Gio. L'ordinateur aurait dû écrire « Gio »."
+      ],
+      "solution": "32 Go = 32 × 10⁹ octets (le fabricant utilise kilo = 1 000). L'ordinateur divise par 1 024³ et trouve 29,8 : ce sont des Gio, même s'il écrit « Go ». Même quantité d'information, deux unités différentes.",
+      "selfTest": [ { "response": { "text": "Le fabricant compte 1 Go = 1 milliard d'octets, mais l'ordinateur divise par 1024 trois fois, en puissances de 2. Il affiche 29,8 mais ce sont des Gio. C'est la même quantité, on n'a rien perdu." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "tech4-rd-mission", "type": "composite", "skill": "techno.reseaux.adresse-ip", "skills": ["techno.donnees.unites", "techno.reseaux.client-serveur"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:bit-octet", "mc:ko-1024"], "expectedSeconds": 600,
+      "prompt": "Le club de robotique installe une caméra connectée. Son réseau local utilise les adresses **192.168.1.x** (masque 255.255.255.0). Sont déjà prises : **192.168.1.1** (la box) et **192.168.1.10 à 192.168.1.14** (cinq ordinateurs). La caméra envoie sa vidéo au **serveur** du collège, qui l'enregistre.",
+      "parts": [
+        { "type": "multi", "prompt": "Propose deux adresses IP fixes possibles pour la caméra. Le début 192.168.1. est imposé : écris seulement le **dernier nombre**.", "count": 2,
+          "predicate": "v >= 2 et v <= 254 et (v < 10 ou v > 14) et estentier(v)" },
+        { "type": "numeric", "prompt": "La caméra envoie sa vidéo avec un débit de **2 Mbit/s** (2 millions de bits par seconde). Combien de **mégaoctets** (Mo) envoie-t-elle en une minute ? Écris seulement le nombre.", "answer": 15,
+          "misconceptions": [
+            { "answer": 120, "id": "mc:bit-octet", "error": "unite", "feedback": "2 × 60 = 120, mais ce sont des mégaBITS. 1 octet = 8 bits : 120 ÷ 8 = 15 Mo." },
+            { "answer": 960, "id": "mc:bit-octet", "error": "unite", "feedback": "Les octets sont plus gros que les bits : on divise par 8, on ne multiplie pas. 120 Mbit = 15 Mo." }
+          ] },
+        { "type": "numeric", "prompt": "Le serveur garde 8 h d'enregistrement par jour, pendant 5 jours. Quelle place faut-il prévoir, en **Go** ? (1 Go = 1 000 Mo) Écris seulement le nombre.", "answer": 36, "rel": 0.01,
+          "misconceptions": [
+            { "answer": "36000/1024", "id": "mc:ko-1024", "error": "unite", "feedback": "Dans le Système international, 1 Go = 1 000 Mo : divise par 1 000, pas par 1 024." },
+            { "answer": 288, "id": "mc:bit-octet", "error": "unite", "feedback": "Tu as gardé des mégabits au lieu des mégaoctets : la caméra envoie 15 Mo par minute, pas 120." }
+          ] }
+      ],
+      "hints": ["Le dernier nombre doit être entre 1 et 254, et ne pas être déjà pris (1, 10, 11, 12, 13, 14).", "En une minute : 2 Mbit/s × 60 s, puis convertis les bits en octets.", "15 Mo par minute × 60 minutes × 8 heures × 5 jours, puis divise par 1 000 pour avoir des Go."],
+      "solution": "Adresse : par exemple 192.168.1.2 ou 192.168.1.50 (tout nombre de 2 à 254 sauf 10 à 14). Une minute : 2 × 60 = 120 Mbit = 120 ÷ 8 = **15 Mo**. Stockage : 15 × 60 × 8 × 5 = 36 000 Mo = **36 Go**. On choisit une adresse fixe pour que le serveur retrouve toujours la caméra au même endroit.",
+      "selfTest": [
+        { "response": { "parts": [ { "values": ["50", "100"] }, { "value": "15" }, { "value": "36" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "values": ["50", "100"] }, { "value": "120" }, { "value": "36" } ] }, "expect": "mc:bit-octet" },
+        { "response": { "parts": [ { "values": ["50", "100"] }, { "value": "15" }, { "value": "35,16" } ] }, "expect": "mc:ko-1024" }
+      ]
+    },
+    {
+      "id": "tech4-rd-remed-ko", "type": "numeric", "skill": "techno.donnees.unites", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:ko-1024"], "expectedSeconds": 60,
+      "params": { "k": { "int": [2, 9] } },
+      "prompt": "Rappel ciblé : « kilo » veut toujours dire **mille** : 1 km = 1 000 m, 1 kg = 1 000 g, donc **1 ko = 1 000 o**. (1 024 octets, c'est 1 Kio, un kibioctet.)\n\nCombien d'octets y a-t-il dans **{k} ko** ? Écris seulement le nombre.",
+      "answer": "1000*k",
+      "misconceptions": [ { "answer": "1024*k", "id": "mc:ko-1024", "error": "unite", "feedback": "{k} × 1 024 = {1024*k} octets, ce sont {k} Kio. Pour des ko : {k} × 1 000 = {1000*k} octets." } ],
+      "hints": ["Comme {k} km = {1000*k} m."],
+      "solution": "{k} ko = {k} × 1 000 = {1000*k} octets.",
+      "selfTest": [
+        { "response": { "value": "{1000*k}" }, "expect": "correct" },
+        { "response": { "value": "{1024*k}" }, "expect": "mc:ko-1024" }
+      ]
+    },
+    {
+      "id": "tech4-rd-remed-bit", "type": "numeric", "skill": "techno.donnees.unites", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:bit-octet"], "expectedSeconds": 60,
+      "params": { "o": { "int": [3, 40] } },
+      "prompt": "Rappel ciblé : **1 octet = 8 bits**. Le bit (0 ou 1) est la plus petite quantité d'information ; un octet en regroupe 8, comme une boîte de 8 cases.\n\nUn message occupe **{o} octets**. Combien de **bits** cela fait-il ? Écris seulement le nombre.",
+      "answer": "8*o",
+      "misconceptions": [ { "answer": "o/8", "id": "mc:bit-octet", "error": "unite", "feedback": "Chaque octet contient 8 bits : il y a donc PLUS de bits que d'octets. On multiplie par 8 : {o} × 8 = {8*o} bits." } ],
+      "hints": ["{o} boîtes de 8 cases : combien de cases en tout ?"],
+      "solution": "{o} octets = {o} × 8 = {8*o} bits.",
+      "selfTest": [
+        { "response": { "value": "{8*o}" }, "expect": "correct" },
+        { "response": { "value": "{o/8}" }, "expect": "mc:bit-octet" }
+      ]
+    },
+    {
+      "id": "tech4-rd-debit", "type": "numeric", "skill": "techno.donnees.debit", "skills": ["techno.donnees.unites"], "track": "approfondissement", "role": "transfert", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:bit-octet", "mc:giga-mega"], "expectedSeconds": 300,
+      "params": { "g": { "choice": [2, 5, 10, 20] }, "d": { "choice": [100, 200, 500, 1000] } },
+      "prompt": "Tu télécharges un jeu de **{g} Go** avec une connexion fibre dont le débit réel est **{d} Mbit/s**. Combien de temps faut-il, au mieux ? Donne la durée avec une unité (s, min ou h).",
+      "answer": "g*8000/d", "unit": "s", "rel": 0.01,
+      "misconceptions": [
+        { "answer": "g*1000/d", "id": "mc:bit-octet", "error": "unite", "feedback": "Le débit est en mégaBITS par seconde, la taille en gigaOCTETS : convertis d'abord la taille en bits (× 8)." },
+        { "answer": "g*8/d", "id": "mc:giga-mega", "error": "unite", "feedback": "1 Go = 1 000 Mo : {g} Go = {g*1000} Mo, soit {g*8000} Mbit." }
+      ],
+      "hints": ["Convertis la taille en mégaoctets : {g} Go = {g*1000} Mo.", "Puis en mégabits : × 8.", "Durée = taille en Mbit ÷ débit en Mbit/s."],
+      "solution": "{g} Go = {g*1000} Mo = {g*8000} Mbit. Durée : {g*8000} ÷ {d} = {g*8000/d} s. Sans le × 8, on trouverait une durée huit fois trop courte. En réalité, c'est souvent un peu plus long : le débit varie et une partie sert à gérer les échanges.",
+      "methods": ["Tout convertir en mégabits, puis diviser par le débit.", "Convertir le débit en mégaoctets par seconde ({d} ÷ 8 = {d/8} Mo/s), puis diviser la taille en Mo par ce débit."],
+      "selfTest": [
+        { "response": { "value": "{g*8000/d} s" }, "expect": "correct" },
+        { "response": { "value": "{g*1000/d} s" }, "expect": "mc:bit-octet" }
+      ]
+    },
+    {
+      "id": "tech4-rd-routage", "type": "composite", "skill": "techno.reseaux.internet", "skills": ["techno.reseaux.adresse-ip"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:lecture-table"], "expectedSeconds": 240,
+      "prompt": "Le routeur **R1** reçoit des paquets. Sa **table de routage** (simplifiée) indique où les envoyer :\n- destination **10.0.1.x** → routeur **R2** ;\n- destination **10.0.2.x** → routeur **R3** ;\n- toute autre destination → routeur **R4** (vers Internet).",
+      "parts": [
+        { "type": "text", "prompt": "Un paquet est adressé à **10.0.2.17**. À quel routeur R1 l'envoie-t-il ?", "inputLabel": "R…",
+          "accept": ["R3", "routeur R3", "le routeur R3", "au routeur R3"],
+          "misconceptions": [ { "answer": "R2", "id": "mc:lecture-table", "error": "lecture", "feedback": "Compare le début de l'adresse : 10.0.2.17 commence par 10.0.2, pas 10.0.1. C'est la deuxième ligne : R3." } ] },
+        { "type": "text", "prompt": "Un paquet est adressé à **172.16.5.4**. Où va-t-il ?", "inputLabel": "R…",
+          "accept": ["R4", "routeur R4", "le routeur R4", "au routeur R4"],
+          "misconceptions": [ { "answer": "R1", "id": "mc:lecture-table", "error": "lecture", "feedback": "R1 reçoit le paquet et doit le faire suivre. Aucune ligne précise ne correspond : on prend la route « toute autre destination », R4." } ] },
+        { "type": "text", "prompt": "Un paquet est adressé à **10.0.1.250**. Où va-t-il ?", "inputLabel": "R…",
+          "accept": ["R2", "routeur R2", "le routeur R2", "au routeur R2"],
+          "misconceptions": [ { "answer": "R4", "id": "mc:lecture-table", "error": "lecture", "feedback": "10.0.1.250 commence bien par 10.0.1 : c'est la première ligne, R2. Le dernier nombre ne compte pas pour choisir la route." } ] }
+      ],
+      "hints": ["Ne regarde que le début de l'adresse (les trois premiers nombres) et compare-le à chaque ligne.", "Si aucune ligne précise ne correspond, on utilise la dernière : la route par défaut."],
+      "solution": "10.0.2.17 → R3 ; 172.16.5.4 → R4 (route par défaut) ; 10.0.1.250 → R2. Chaque routeur ne connaît pas tout le chemin : il choisit seulement le « prochain saut ». De routeur en routeur, le paquet traverse Internet.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "R3" }, { "value": "R4" }, { "value": "R2" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "R2" }, { "value": "R4" }, { "value": "R2" } ] }, "expect": "mc:lecture-table" }
+      ]
+    },
+    {
+      "id": "tech4-rd-ascii", "type": "composite", "skill": "techno.donnees.codage", "skills": ["techno.donnees.binaire", "techno.donnees.unites"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:decalage-un", "mc:sens-poids", "mc:bit-octet", "mc:compter-zero"], "expectedSeconds": 480,
+      "prompt": "Le code **ASCII** associe un nombre à chaque caractère : A = 65, B = 66, C = 67… jusqu'à Z = 90. Dans un fichier texte, chaque caractère ASCII occupe **1 octet** (8 bits).",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel nombre code la lettre **E** ?", "answer": 69,
+          "misconceptions": [
+            { "answer": 70, "id": "mc:decalage-un", "error": "calcul", "feedback": "E est la 5e lettre, mais A vaut déjà 65 : on ajoute 4, pas 5 (A = 65, B = 66, C = 67, D = 68, E = 69)." },
+            { "answer": 5, "id": "mc:rang-lettre", "error": "lecture", "feedback": "5 est le rang de E dans l'alphabet. En ASCII, A vaut 65." }
+          ] },
+        { "type": "numeric", "prompt": "Écris **69** en binaire sur 8 bits (rangs, de gauche à droite : 128, 64, 32, 16, 8, 4, 2, 1).", "answer": 1000101,
+          "misconceptions": [ { "answer": 10100010, "id": "mc:sens-poids", "error": "notion", "feedback": "Tes chiffres sont à l'envers : le rang 128 est à gauche, le rang 1 à droite. 69 = 64 + 4 + 1 → 01000101." } ] },
+        { "type": "numeric", "prompt": "Combien d'**octets** occupe le mot **TECHNO** dans un fichier texte ASCII ?", "answer": 6,
+          "misconceptions": [ { "answer": 48, "id": "mc:bit-octet", "error": "unite", "feedback": "48, ce sont des bits (6 × 8). En octets : 1 caractère = 1 octet, donc 6 octets." } ] },
+        { "type": "numeric", "prompt": "Avec 8 bits, combien de valeurs différentes peut-on écrire ?", "answer": 256,
+          "misconceptions": [
+            { "answer": 255, "id": "mc:compter-zero", "error": "raisonnement", "feedback": "La plus grande valeur est 255, mais il faut compter aussi 0 : de 0 à 255, il y a 256 valeurs." },
+            { "answer": 16, "id": "mc:puissance-produit", "error": "calcul", "feedback": "Chaque bit double le nombre de possibilités : 2 × 2 × … × 2 (8 fois) = 2⁸ = 256, et non 2 × 8." }
+          ] }
+      ],
+      "hints": ["Compte à partir de A = 65.", "69 = 64 + 4 + 1 : mets un 1 sous ces rangs, un 0 ailleurs.", "Un bit : 2 valeurs ; deux bits : 4 valeurs ; trois bits : 8 valeurs… qu'est-ce qui se passe à chaque bit ajouté ?"],
+      "solution": "E = 69. 69 = 64 + 4 + 1, donc 01000101 sur 8 bits. TECHNO : 6 caractères, 6 octets (48 bits). Avec 8 bits : 2⁸ = 256 valeurs (de 0 à 255). Les lettres accentuées (é, è…) ne sont pas dans l'ASCII de base : d'autres codes, comme UTF-8, les codent sur plusieurs octets.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "69" }, { "value": "01000101" }, { "value": "6" }, { "value": "256" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "70" }, { "value": "01000101" }, { "value": "6" }, { "value": "256" } ] }, "expect": "mc:decalage-un" },
+        { "response": { "parts": [ { "value": "69" }, { "value": "01000101" }, { "value": "6" }, { "value": "255" } ] }, "expect": "mc:compter-zero" }
+      ]
+    },
+    {
+      "id": "tech4-rd-ipv4", "type": "numeric", "skill": "techno.donnees.codage", "skills": ["techno.reseaux.adresse-ip"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:compter-zero", "mc:puissance-produit"], "expectedSeconds": 300,
+      "prompt": "Une adresse IPv4 est formée de 4 nombres de 0 à 255 : 4 octets, soit 32 bits. Combien d'adresses IPv4 différentes existe-t-il en tout ? Donne le résultat exact (tu peux l'écrire sous forme de puissance, par exemple 3^5).",
+      "answer": "2^32", "allowExpression": true,
+      "misconceptions": [
+        { "answer": "255^4", "id": "mc:compter-zero", "error": "raisonnement", "feedback": "Chaque nombre a 256 valeurs possibles (de 0 à 255, en comptant 0) : 256 × 256 × 256 × 256." },
+        { "answer": "4*256", "id": "mc:puissance-produit", "error": "calcul", "feedback": "Les possibilités se multiplient : pour chaque valeur du premier nombre, il y a 256 choix pour le deuxième… donc 256 × 256 × 256 × 256, pas 4 × 256." },
+        { "answer": "2*32", "id": "mc:puissance-produit", "error": "calcul", "feedback": "2³² n'est pas 2 × 32 = 64 : c'est 2 multiplié 32 fois par lui-même." }
+      ],
+      "hints": ["Un nombre de l'adresse peut prendre 256 valeurs.", "Combien de couples avec deux nombres ? 256 × 256.", "256 = 2⁸, donc 256⁴ = 2 à la puissance…"],
+      "solution": "256⁴ = (2⁸)⁴ = 2³² = 4 294 967 296, environ 4,3 milliards d'adresses. C'est moins que le nombre d'appareils connectés dans le monde : c'est pourquoi on a créé IPv6, avec des adresses de 128 bits. En attendant, une box partage une seule adresse publique entre tous les appareils de la maison.",
+      "selfTest": [
+        { "response": { "value": "2^32" }, "expect": "correct" },
+        { "response": { "value": "4294967296" }, "expect": "correct" },
+        { "response": { "value": "256^4" }, "expect": "correct" },
+        { "response": { "value": "255^4" }, "expect": "mc:compter-zero" },
+        { "response": { "value": "1024" }, "expect": "mc:puissance-produit" }
+      ]
+    }
+  ]
+}

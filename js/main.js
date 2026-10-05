@@ -10,6 +10,7 @@ const ROUTES = [
   { re: /^\/carte(?:\/([\w-]+))?$/, view: () => import('./ui/views/map.js'), needsProfile: true, nav: 'map' },
   { re: /^\/lecon\/([\w-]+)$/, view: () => import('./ui/views/lesson.js'), needsProfile: true, nav: 'map' },
   { re: /^\/seance$/, view: () => import('./ui/views/session.js'), needsProfile: true, nav: 'today' },
+  { re: /^\/exercices$/, view: () => import('./ui/views/exercices.js'), needsProfile: true, nav: 'exercices' },
   { re: /^\/labo$/, view: () => import('./ui/views/labo.js'), nav: 'labo' },
   { re: /^\/carnet$/, view: () => import('./ui/views/carnet.js'), needsProfile: true, nav: 'carnet' },
   { re: /^\/parents$/, view: () => import('./ui/views/parents.js'), nav: 'parents' },
@@ -20,6 +21,7 @@ const ROUTES = [
 const NAV = [
   { id: 'today', href: '#/', label: "Aujourd'hui", needsProfile: true },
   { id: 'map', href: '#/carte', label: 'Carte', needsProfile: true },
+  { id: 'exercices', href: '#/exercices', label: 'Exercices', needsProfile: true },
   { id: 'labo', href: '#/labo', label: 'Labo' },
   { id: 'carnet', href: '#/carnet', label: 'Mon carnet', needsProfile: true },
   { id: 'parents', href: '#/parents', label: 'Parents' },

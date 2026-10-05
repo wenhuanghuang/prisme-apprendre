@@ -4,7 +4,7 @@ import { store, badges, skillLevel } from '../../app/store.js';
 import { LEVELS as MASTERY } from '../../engine/mastery.js';
 import { subjectOf } from './today.js';
 
-const SUBJECT_LABEL = { maths: 'Mathématiques', pc: 'Physique-chimie', numerique: 'Programmation et IA', francais: 'Français', hg: 'Histoire-géographie', autre: 'Autres' };
+const SUBJECT_LABEL = { maths: 'Mathématiques', pc: 'Physique-chimie', numerique: 'Programmation et IA', francais: 'Français', hg: 'Histoire-géographie', emc: 'Enseignement moral et civique', svt: 'Sciences de la vie et de la Terre', techno: 'Technologie', lv: 'Langues vivantes', musique: 'Éducation musicale', 'arts-plastiques': 'Arts plastiques', autre: 'Autres' };
 
 export function render(root) {
   const b = badges();

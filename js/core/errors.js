@@ -60,6 +60,13 @@ export const ERROR_TYPES = {
     student: "Ta réponse est juste, mais elle n'est pas écrite sous la forme demandée.",
     parent: 'Réponse mathématiquement correcte mais pas sous la forme demandée (développée, réduite, irréductible…).',
   },
+  orthographe: {
+    label: "Erreur d'orthographe",
+    short: 'orthographe',
+    family: 'execution',
+    student: 'Le mot est le bon, mais il est mal écrit : relis-le lettre par lettre (accents, accords, lettres muettes).',
+    parent: "Le mot attendu est reconnu mais mal orthographié (orthographe lexicale ou grammaticale).",
+  },
   unite: {
     label: "Erreur d'unité ou de conversion",
     short: 'unité',

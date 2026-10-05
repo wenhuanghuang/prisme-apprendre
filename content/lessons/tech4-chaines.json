@@ -1,0 +1,481 @@
+{
+  "id": "tech4-chaines",
+  "title": "Chaîne d'information et chaîne d'énergie : comment un objet automatique perçoit, décide et agit",
+  "subject": "techno",
+  "level": "4e",
+  "skills": ["techno.chaines.information", "techno.chaines.energie", "techno.chaines.constituants", "techno.energie.conversions", "techno.programmation.algorithme"],
+  "status": "programme",
+  "programmes": ["techno-c4-2024"],
+  "duration": 60,
+  "summary": "Un portail automatique, un robot aspirateur ou une serre connectée suivent le même schéma : la chaîne d'information acquiert, traite et communique ; la chaîne d'énergie alimente, distribue, convertit et transmet pour agir. Le programme fait le lien entre les deux.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le portail qui ne veut pas écraser la voiture",
+      "body": "Tu appuies sur la télécommande : le portail s'ouvre. Pendant qu'il se referme, une voiture passe entre les deux piliers : il s'arrête net, puis repart dans l'autre sens.\n\n- Comment le portail « sait-il » qu'il y a une voiture ?\n- Qui décide de s'arrêter ?\n- Et d'où vient la force qui pousse ses lourds battants ?\n\nDans tout objet automatique, on retrouve des **sens** (les capteurs), un **cerveau** (le microcontrôleur et son programme) et des **muscles** (les actionneurs et ce qui les alimente)."
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "Un objet automatique est organisé en **deux chaînes** qui travaillent ensemble.\n\n**La chaîne d'information** (les sens et le cerveau) :\n- **Acquérir** : des **capteurs** (température, présence, distance, luminosité, humidité…) et les boutons d'une interface humain-machine (IHM) transforment une grandeur physique ou une action en information : un signal électrique, une donnée ;\n- **Traiter** : un **microcontrôleur** (sur une carte programmable) exécute le **programme** : il compare les données, teste les conditions et décide ;\n- **Communiquer** : il envoie des **ordres** à la chaîne d'énergie et des **messages** à l'utilisateur ou à d'autres objets (afficheur, voyant, buzzer d'alerte, liaison WiFi ou Bluetooth).\n\n**La chaîne d'énergie** (les muscles) :\n- **Alimenter** : fournir l'énergie (pile, batterie, réseau électrique 230 V, panneau solaire) ;\n- **Distribuer** : laisser passer ou couper l'énergie vers l'actionneur, sur ordre (interrupteur, relais, transistor, carte de commande de moteur, variateur) ;\n- **Convertir** : transformer l'énergie en une forme utile ; c'est le rôle de l'**actionneur** (moteur électrique, lampe, résistance chauffante, vérin, électroaimant) ;\n- **Transmettre** : transmettre et adapter le mouvement jusqu'à la pièce qui agit (engrenages, poulies et courroie, chaîne et pignons, pignon-crémaillère, vis-écrou).\n\n> **Capteur ou actionneur ?** Un capteur **prend** une information dans l'environnement (chaîne d'information). Un actionneur **agit** sur l'environnement en convertissant de l'énergie (chaîne d'énergie). Le détecteur de mouvement est un capteur ; le moteur qui ouvre la porte est un actionneur.\n\n**Conversions d'énergie** des principaux constituants :\n- moteur électrique : électrique → mécanique (mouvement) ;\n- lampe, LED : électrique → lumineuse ;\n- radiateur, résistance chauffante : électrique → thermique ;\n- génératrice (dynamo, éolienne) : mécanique → électrique, l'inverse d'un moteur ;\n- vérin pneumatique : énergie de l'air comprimé → mécanique (mouvement en ligne droite).\n\nToute conversion a des **pertes**, le plus souvent sous forme de chaleur : un moteur tiédit quand il tourne.\n\n> On classe un constituant selon **ce qu'il fait dans le système**. Une LED qui éclaire une pièce **convertit** de l'énergie ; une LED témoin « batterie chargée » **communique** une information.\n\n**Le programme relie les deux chaînes.** Il s'écrit d'abord en langage naturel : « SI la température mesurée est inférieure à 19 °C ALORS allumer le chauffage SINON l'éteindre ». Avec **ET**, les deux conditions doivent être vraies ; avec **OU**, une seule suffit. Attention aux seuils : « inférieure à 19 » (<) exclut 19, « inférieure ou égale » (≤) l'inclut."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Le chronogramme d'un thermostat",
+      "body": "Voici le programme d'un thermostat, testé avec des températures qui montent de 15 °C à 22 °C (une mesure par pas). La tortue dessine un **chronogramme** : un palier **haut** quand le chauffage est allumé, un palier **bas** quand il est éteint. Change la consigne 19 ou la température de départ, et observe le dessin.",
+      "activity": { "widget": "turtle", "config": { "program": "# palier haut = chauffage allumé ; palier bas = éteint\npour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" } }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : le portail automatique",
+      "steps": [
+        { "text": "**Acquérir** : le récepteur radio reçoit l'appui sur la télécommande ; les cellules photoélectriques (un faisceau infrarouge entre les piliers) détectent un obstacle ; des capteurs de fin de course signalent « portail ouvert » ou « fermé ».", "math": "" },
+        { "text": "**Traiter** : la carte électronique (avec son microcontrôleur) exécute le programme.", "math": "" },
+        { "text": "**Communiquer** : elle envoie l'ordre « ouvrir » ou « fermer » à la partie puissance, et allume le feu clignotant orange pour prévenir les passants.", "math": "" },
+        { "text": "**Alimenter** : le réseau électrique 230 V. **Distribuer** : des relais alimentent le moteur dans un sens ou dans l'autre. **Convertir** : le moteur électrique (électrique → mécanique). **Transmettre** : un réducteur à engrenages et un bras articulé poussent le battant.", "math": "" },
+        { "text": "**L'algorithme de sécurité**, en langage naturel : SI le portail se ferme ET la cellule détecte un obstacle ALORS arrêter le moteur, puis le faire tourner dans l'autre sens.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Commence par bien distinguer capteurs et actionneurs : c'est la clé de tout le reste.",
+      "exercises": ["tech4-ch-capteur-actionneur", "tech4-ch-aspirateur", "tech4-ch-energie-store", "tech4-ch-conversions", "tech4-ch-thermostat"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["tech4-ch-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Tester un algorithme avec des mesures",
+      "exercises": ["tech4-ch-eclairage"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la serre automatique du club jardinage",
+      "body": "Le club jardinage veut arroser ses plantes automatiquement : quand le capteur d'humidité du sol mesure moins de 30 %, la carte programmable met en marche une pompe pendant 10 s. Le tout fonctionne sur une batterie rechargée par un panneau solaire.",
+      "exercises": ["tech4-ch-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Confondre capteur et actionneur.** Le capteur prend l'information (il « sent ») ; l'actionneur agit (il bouge, chauffe, éclaire). Un détecteur de présence n'allume rien tout seul : c'est le programme qui décide, puis la lampe qui éclaire.\n- **Croire que le relais ou l'interrupteur transforme l'énergie.** Il la laisse passer ou la coupe : il **distribue**.\n- **Mettre les engrenages dans « convertir ».** L'énergie reste mécanique : ils **transmettent** et adaptent le mouvement.\n- **Inverser moteur et génératrice.** Le moteur reçoit de l'électricité et produit un mouvement ; la génératrice fait l'inverse.\n- **Inverser une condition ou se tromper de seuil.** « > 19 » au lieu de « < 19 » fait chauffer quand il fait chaud ; « ≤ 19 » allume encore à 19 °C. On teste toujours un programme avec des valeurs autour du seuil.\n- **Confondre ET et OU.** Avec ET, les deux conditions doivent être vraies en même temps."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des constituants à classer dans quelques jours. Le générateur « Chaînes d'information et d'énergie » en fournit autant que tu veux."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Compléter un programme avec une condition ET, et calculer comment une transmission par chaîne et pignons adapte le mouvement.",
+      "exercises": ["tech4-ch-fenetre", "tech4-ch-transmission"]
+    },
+    "expert": {
+      "intro": "Facultatif et au-delà des repères de 4e : les pertes d'énergie et le rendement d'un moteur, puis un thermostat qui « se souvient » de son état (hystérésis).",
+      "exercises": ["tech4-ch-rendement", "tech4-ch-hysteresis"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "tech4-ch-capteur-actionneur", "type": "categorize", "skill": "techno.chaines.constituants", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:capteur-actionneur"], "expectedSeconds": 120,
+      "prompt": "Capteur ou actionneur ? Range chaque constituant.",
+      "categories": [
+        { "id": "capteur", "label": "Capteur (acquiert une information)" },
+        { "id": "actionneur", "label": "Actionneur (agit en convertissant l'énergie)" }
+      ],
+      "items": [
+        { "id": "c1", "label": "Détecteur de mouvement infrarouge", "category": "capteur" },
+        { "id": "c2", "label": "Moteur électrique d'un store", "category": "actionneur" },
+        { "id": "c3", "label": "Capteur de température", "category": "capteur" },
+        { "id": "c4", "label": "Résistance chauffante d'un grille-pain", "category": "actionneur" },
+        { "id": "c5", "label": "Capteur de distance à ultrasons", "category": "capteur" },
+        { "id": "c6", "label": "Vérin qui pousse un colis sur un tapis", "category": "actionneur" },
+        { "id": "c7", "label": "Photorésistance qui mesure la lumière", "category": "capteur" },
+        { "id": "c8", "label": "Lampe d'éclairage d'un couloir", "category": "actionneur" }
+      ],
+      "misconceptions": [
+        { "item": "c1", "category": "actionneur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le détecteur ne fait rien bouger : il repère une présence et envoie une information. C'est un capteur." },
+        { "item": "c2", "category": "capteur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le moteur ne mesure rien : il transforme l'énergie électrique en mouvement. C'est un actionneur." },
+        { "item": "c5", "category": "actionneur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le capteur à ultrasons émet un son, mais c'est pour mesurer une distance (le temps de retour de l'écho) : il acquiert une information." },
+        { "item": "c8", "category": "capteur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "La lampe agit sur l'environnement (elle éclaire) en convertissant l'énergie électrique en lumière : actionneur." }
+      ],
+      "hints": ["Pose-toi la question : est-ce qu'il « sent » quelque chose, ou est-ce qu'il « fait » quelque chose ?", "Un actionneur reçoit de l'énergie et la transforme : mouvement, chaleur, lumière."],
+      "solution": "Capteurs : détecteur de mouvement, capteur de température, capteur à ultrasons, photorésistance. Actionneurs : moteur, résistance chauffante, vérin, lampe.",
+      "selfTest": [
+        { "response": { "assign": { "c1": "capteur", "c2": "actionneur", "c3": "capteur", "c4": "actionneur", "c5": "capteur", "c6": "actionneur", "c7": "capteur", "c8": "actionneur" } }, "expect": "correct" },
+        { "response": { "assign": { "c1": "actionneur", "c2": "capteur", "c3": "capteur", "c4": "actionneur", "c5": "capteur", "c6": "actionneur", "c7": "capteur", "c8": "actionneur" } }, "expect": "mc:capteur-actionneur" }
+      ]
+    },
+    {
+      "id": "tech4-ch-aspirateur", "type": "highlight", "skill": "techno.chaines.information", "skills": ["techno.chaines.constituants"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:capteur-actionneur", "mc:traiter-acquerir"], "expectedSeconds": 180,
+      "prompt": "Lis la description de ce robot aspirateur.",
+      "instruction": "Clique sur les constituants qui **acquièrent** une information (capteurs et boutons), et seulement sur eux.",
+      "text": "Le robot aspirateur démarre quand on appuie sur son [bouton] de mise en marche. Ses [capteurs de chute], placés sous le robot, repèrent le bord des escaliers. Son [pare-chocs à contacts] signale qu'il a heurté un meuble, et son [capteur de distance] infrarouge mesure l'écart avec les murs. Le microcontrôleur compare ces informations et décide : il commande les deux moteurs des roues. Une brosse entraînée par un autre moteur ramasse la poussière. Quand la batterie est presque vide, un voyant clignote et le robot rejoint sa base.",
+      "misconceptions": [
+        { "word": "moteurs", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Les moteurs ne prennent aucune information : ils font tourner les roues. Ce sont des actionneurs (convertir)." },
+        { "word": "moteur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le moteur de la brosse agit : c'est un actionneur (convertir), pas un capteur." },
+        { "word": "brosse", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "La brosse agit sur la poussière : elle ne prend aucune information." },
+        { "word": "microcontrôleur", "id": "mc:traiter-acquerir", "error": "notion", "feedback": "Le microcontrôleur reçoit les informations des capteurs et décide : il traite, il n'acquiert pas." },
+        { "word": "voyant", "id": "mc:communiquer-acquerir", "error": "notion", "feedback": "Le voyant donne une information à l'utilisateur : il communique, il n'acquiert pas." },
+        { "word": "batterie", "id": "mc:alimenter-acquerir", "error": "notion", "feedback": "La batterie fournit l'énergie (alimenter) : elle fait partie de la chaîne d'énergie." }
+      ],
+      "hints": ["Un constituant qui acquiert « repère », « détecte », « mesure » ou « signale » quelque chose au robot.", "Il y en a quatre. L'un d'eux est actionné par la personne qui utilise le robot."],
+      "solution": "Acquérir : le bouton (action de l'utilisateur), les capteurs de chute, le pare-chocs à contacts, le capteur de distance. Le microcontrôleur traite ; le voyant communique ; les moteurs convertissent ; la batterie alimente.",
+      "selfTest": [
+        { "response": { "selected": [9, 15, 26, 36] }, "expect": "correct" },
+        { "response": { "selected": [9, 15, 26, 36, 55] }, "expect": "mc:capteur-actionneur" },
+        { "response": { "selected": [9, 15, 26, 36, 45] }, "expect": "mc:traiter-acquerir" }
+      ]
+    },
+    {
+      "id": "tech4-ch-energie-store", "type": "categorize", "skill": "techno.chaines.energie", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:distribuer-convertir", "mc:convertir-transmettre"], "expectedSeconds": 180,
+      "prompt": "Voici les constituants de la **chaîne d'énergie** d'un store motorisé de terrasse. Associe chacun à sa fonction.",
+      "categories": [
+        { "id": "alimenter", "label": "Alimenter" },
+        { "id": "distribuer", "label": "Distribuer" },
+        { "id": "convertir", "label": "Convertir" },
+        { "id": "transmettre", "label": "Transmettre" }
+      ],
+      "items": [
+        { "id": "e1", "label": "Prise du réseau électrique 230 V", "category": "alimenter" },
+        { "id": "e2", "label": "Relais commandé par la carte électronique", "category": "distribuer" },
+        { "id": "e3", "label": "Moteur électrique logé dans le tube d'enroulement", "category": "convertir" },
+        { "id": "e4", "label": "Réducteur à engrenages qui ralentit la rotation", "category": "transmettre" },
+        { "id": "e5", "label": "LED qui éclaire la terrasse", "category": "convertir" },
+        { "id": "e6", "label": "Batterie de secours en cas de coupure", "category": "alimenter" }
+      ],
+      "misconceptions": [
+        { "item": "e2", "category": "convertir", "id": "mc:distribuer-convertir", "error": "notion", "feedback": "Le relais ne transforme pas l'énergie : sur ordre de la carte, il la laisse passer vers le moteur ou la coupe. Il distribue." },
+        { "item": "e3", "category": "transmettre", "id": "mc:convertir-transmettre", "error": "notion", "feedback": "Le moteur change la forme de l'énergie (électrique → mécanique) : il convertit. La transmission vient après." },
+        { "item": "e4", "category": "convertir", "id": "mc:convertir-transmettre", "error": "notion", "feedback": "Avant et après les engrenages, l'énergie est mécanique : elle ne change pas de forme. Ils transmettent le mouvement en l'adaptant (plus lent, plus de force)." },
+        { "item": "e2", "category": "alimenter", "id": "mc:distribuer-alimenter", "error": "notion", "feedback": "Le relais ne fournit pas d'énergie : il la laisse passer ou non. Il distribue." }
+      ],
+      "hints": ["Suis le trajet de l'énergie : d'où vient-elle ? qui l'ouvre ou la ferme ? qui la transforme ? qui la conduit jusqu'à la toile ?", "Un constituant qui convertit change la forme de l'énergie (électrique → mécanique, électrique → lumineuse…)."],
+      "solution": "Alimenter : prise 230 V, batterie de secours. Distribuer : relais. Convertir : moteur (électrique → mécanique), LED (électrique → lumineuse). Transmettre : réducteur à engrenages.",
+      "selfTest": [
+        { "response": { "assign": { "e1": "alimenter", "e2": "distribuer", "e3": "convertir", "e4": "transmettre", "e5": "convertir", "e6": "alimenter" } }, "expect": "correct" },
+        { "response": { "assign": { "e1": "alimenter", "e2": "convertir", "e3": "convertir", "e4": "transmettre", "e5": "convertir", "e6": "alimenter" } }, "expect": "mc:distribuer-convertir" },
+        { "response": { "assign": { "e1": "alimenter", "e2": "distribuer", "e3": "convertir", "e4": "convertir", "e5": "convertir", "e6": "alimenter" } }, "expect": "mc:convertir-transmettre" }
+      ]
+    },
+    {
+      "id": "tech4-ch-conversions", "type": "match", "skill": "techno.energie.conversions", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:sens-conversion"], "expectedSeconds": 150,
+      "prompt": "Associe chaque constituant à la conversion d'énergie qu'il réalise (forme en entrée → forme en sortie).",
+      "leftTitle": "Constituant",
+      "rightTitle": "Conversion",
+      "left": [
+        { "id": "l1", "label": "Moteur électrique" },
+        { "id": "l2", "label": "Radiateur électrique" },
+        { "id": "l3", "label": "Lampe à LED" },
+        { "id": "l4", "label": "Génératrice (dynamo de vélo)" },
+        { "id": "l5", "label": "Vérin pneumatique" },
+        { "id": "l6", "label": "Panneau solaire photovoltaïque" }
+      ],
+      "right": [
+        { "id": "r4", "label": "mécanique → électrique" },
+        { "id": "r6", "label": "lumineuse → électrique" },
+        { "id": "r1", "label": "électrique → mécanique" },
+        { "id": "r5", "label": "pneumatique (air comprimé) → mécanique" },
+        { "id": "r3", "label": "électrique → lumineuse" },
+        { "id": "r2", "label": "électrique → thermique" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" },
+      "misconceptions": [
+        { "pair": ["l4", "r1"], "id": "mc:sens-conversion", "error": "notion", "feedback": "La dynamo fait l'inverse d'un moteur : c'est la roue qui la fait tourner (énergie mécanique), et elle produit de l'électricité pour la lampe." },
+        { "pair": ["l1", "r4"], "id": "mc:sens-conversion", "error": "notion", "feedback": "Un moteur reçoit de l'énergie électrique et produit un mouvement : électrique → mécanique." },
+        { "pair": ["l6", "r3"], "id": "mc:sens-conversion", "error": "notion", "feedback": "Le panneau solaire reçoit la lumière du Soleil et produit de l'électricité : lumineuse → électrique. La lampe fait l'inverse." },
+        { "pair": ["l3", "r6"], "id": "mc:sens-conversion", "error": "notion", "feedback": "La lampe reçoit de l'électricité et produit de la lumière : électrique → lumineuse." }
+      ],
+      "hints": ["Pour chaque constituant, demande-toi ce qu'il reçoit, puis ce qu'il produit.", "Deux paires de constituants font des conversions inverses l'une de l'autre."],
+      "solution": "Moteur : électrique → mécanique. Radiateur : électrique → thermique. LED : électrique → lumineuse. Dynamo : mécanique → électrique. Vérin pneumatique : air comprimé → mécanique. Panneau solaire : lumineuse → électrique. Moteur et génératrice sont inverses, comme lampe et panneau solaire.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r4", "l2": "r2", "l3": "r3", "l4": "r1", "l5": "r5", "l6": "r6" } }, "expect": "mc:sens-conversion" }
+      ]
+    },
+    {
+      "id": "tech4-ch-thermostat", "type": "code", "skill": "techno.programmation.algorithme", "skills": ["code.variables"], "track": "classe", "role": "debug", "difficulty": 2,
+      "representation": "manipulation", "targets": ["mc:condition-inversee", "mc:seuil-inclus"], "expectedSeconds": 240,
+      "prompt": "Le chauffage doit s'allumer quand la température mesurée est **strictement inférieure à 19 °C** (à 19 °C, il reste éteint). On teste le programme avec des températures de 15 à 22 °C ; la tortue trace le chronogramme (palier haut = allumé).\n\nMais ce programme chauffe quand il fait déjà chaud ! Exécute-le, trouve le bug et corrige-le.",
+      "start": "# palier haut = chauffage allumé ; palier bas = éteint\npour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\n# test : la température mesurée passe de 15 °C à 22 °C\nmets temperature à 15\nrépète 8 [\n  si temperature > 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]",
+      "reference": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]",
+      "codeConstraints": { "mustUse": ["si"] },
+      "misconceptions": [
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature > 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:condition-inversee", "error": "notion", "feedback": "Le chronogramme n'a pas changé : le chauffage s'allume encore à 20, 21 et 22 °C. Il faut allumer quand la température est plus PETITE que 19 : « < »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature <= 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:seuil-inclus", "error": "precision", "feedback": "Presque : avec « <= », le chauffage s'allume aussi à 19 °C pile (un palier haut de trop). La consigne dit « strictement inférieure » : « < »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n]\najoute 1 à temperature", "id": "mc:mise-a-jour-hors-boucle", "error": "notion", "feedback": "La température n'augmente plus pendant le test : « ajoute 1 à temperature » est sorti de la boucle. Elle reste à 15 °C et le chauffage reste allumé." }
+      ],
+      "hints": ["Exécute le programme : à quelles températures le chauffage est-il allumé ?", "Le bug est dans la condition de la ligne « si ».", "On veut allumer quand temperature est plus petite que 19 : « temperature < 19 »."],
+      "solution": "La condition était inversée. Correction : « si temperature < 19 [ allume ] sinon [ eteint ] ». Le chronogramme montre alors 4 paliers hauts (15, 16, 17 et 18 °C) puis 4 paliers bas (19 à 22 °C). On aurait aussi pu garder « > » en échangeant les blocs, mais avec « >= 19 [ eteint ] sinon [ allume ] ».",
+      "methods": ["Corriger le signe : « temperature < 19 ».", "Garder l'idée « au-dessus » mais échanger les actions : « si temperature >= 19 [ eteint ] sinon [ allume ] »."],
+      "selfTest": [
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "correct" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature >= 19 [ eteint ] sinon [ allume ]\n  ajoute 1 à temperature\n]" }, "expect": "correct" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature > 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "mc:condition-inversee" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature <= 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "mc:seuil-inclus" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nallume allume allume allume eteint eteint eteint eteint" }, "expect": "methode" }
+      ]
+    },
+    {
+      "id": "tech4-ch-eclairage", "type": "table", "skill": "techno.programmation.algorithme", "skills": ["techno.chaines.information"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:et-ou", "mc:seuil-inclus"], "expectedSeconds": 240,
+      "prompt": "Algorithme de l'éclairage automatique d'un couloir :\n> SI présence = 1 ET luminosité < 200 lux ALORS lampe ← 1 (allumée)\n> SINON lampe ← 0 (éteinte)\n\nPour tester le programme, on lui donne cinq jeux de mesures. Complète la dernière colonne.",
+      "columns": ["Test", "Présence (1 = quelqu'un)", "Luminosité (lux)", "Lampe (1 ou 0)"],
+      "rows": [
+        ["1", "1", "50", "?t1"],
+        ["2", "0", "50", "?t2"],
+        ["3", "1", "450", "?t3"],
+        ["4", "0", "450", "?t4"],
+        ["5", "1", "200", "?t5"]
+      ],
+      "cells": {
+        "t1": { "answer": 1 },
+        "t2": { "answer": 0, "misconceptions": [ { "answer": 1, "id": "mc:et-ou", "error": "raisonnement", "feedback": "Il fait sombre, mais personne n'est là. Avec ET, les DEUX conditions doivent être vraies : la lampe reste éteinte." } ] },
+        "t3": { "answer": 0, "misconceptions": [ { "answer": 1, "id": "mc:et-ou", "error": "raisonnement", "feedback": "Quelqu'un est là, mais il fait déjà clair (450 lux). Avec ET, il faut aussi la deuxième condition : la lampe reste éteinte." } ] },
+        "t4": { "answer": 0 },
+        "t5": { "answer": 0, "misconceptions": [ { "answer": 1, "id": "mc:seuil-inclus", "error": "precision", "feedback": "200 n'est pas strictement inférieur à 200 : la condition « luminosité < 200 » est fausse, donc lampe éteinte. Les seuils se testent toujours." } ] }
+      },
+      "hints": ["Pour chaque test, évalue d'abord « présence = 1 » (vrai ou faux), puis « luminosité < 200 » (vrai ou faux).", "VRAI ET VRAI donne VRAI ; dans tous les autres cas, ET donne FAUX.", "Regarde bien le test 5 : 200 est-il plus petit que 200 ?"],
+      "solution": "Test 1 : vrai ET vrai → 1. Test 2 : faux ET vrai → 0. Test 3 : vrai ET faux → 0. Test 4 : faux ET faux → 0. Test 5 : vrai ET faux (200 n'est pas < 200) → 0. Un bon jeu de tests essaie toutes les combinaisons et la valeur exacte du seuil.",
+      "selfTest": [
+        { "response": { "cells": { "t1": "1", "t2": "0", "t3": "0", "t4": "0", "t5": "0" } }, "expect": "correct" },
+        { "response": { "cells": { "t1": "1", "t2": "1", "t3": "1", "t4": "0", "t5": "1" } }, "expect": "mc:et-ou" },
+        { "response": { "cells": { "t1": "1", "t2": "0", "t3": "0", "t4": "0", "t5": "1" } }, "expect": "mc:seuil-inclus" }
+      ]
+    },
+    {
+      "id": "tech4-ch-expliquer", "type": "open", "skill": "techno.chaines.information", "skills": ["techno.chaines.energie"], "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "verbale", "expectedSeconds": 300, "minWords": 35,
+      "prompt": "On dit souvent qu'un robot aspirateur a des « sens », un « cerveau » et des « muscles ». Explique cette image à un camarade : pour chacun, cite au moins un constituant du robot et la **fonction** de la chaîne correspondante. N'oublie pas d'où vient l'énergie.",
+      "criteria": [
+        { "id": "c1", "label": "Je cite un capteur et la fonction « acquérir »", "keywords": [["capteur", "acqu", "detect"]] },
+        { "id": "c2", "label": "Je cite le microcontrôleur (ou la carte) et la fonction « traiter »", "keywords": [["microcontroleur", "carte", "processeur", "trait", "programme", "decid"]] },
+        { "id": "c3", "label": "Je cite un actionneur (moteur) et la fonction « convertir »", "keywords": [["moteur", "actionneur", "convert"]] },
+        { "id": "c4", "label": "Je parle de l'alimentation en énergie (batterie)", "keywords": [["batterie", "aliment", "energie"]] }
+      ],
+      "models": [
+        "Les sens, ce sont les capteurs : par exemple le capteur de chute, qui acquiert l'information « bord d'escalier ». Le cerveau, c'est le microcontrôleur : il traite les informations avec son programme et décide. Les muscles, ce sont les moteurs des roues : ce sont des actionneurs qui convertissent l'énergie électrique de la batterie en mouvement.",
+        "Chaîne d'information : acquérir (pare-chocs, capteur de distance), traiter (la carte programmable qui exécute le programme), communiquer (ordres aux moteurs, voyant pour l'utilisateur). Chaîne d'énergie : la batterie alimente, la carte de commande distribue, les moteurs convertissent l'énergie électrique en énergie mécanique, et des engrenages transmettent le mouvement aux roues."
+      ],
+      "solution": "Sens = capteurs (acquérir) ; cerveau = microcontrôleur et programme (traiter, puis communiquer des ordres) ; muscles = actionneurs comme les moteurs (convertir), alimentés par la batterie (alimenter) via une carte de commande (distribuer), le mouvement étant transmis aux roues (transmettre).",
+      "selfTest": [ { "response": { "text": "Les sens sont les capteurs qui acquièrent les informations, le cerveau est le microcontrôleur qui traite avec le programme, et les muscles sont les moteurs, des actionneurs qui convertissent l'énergie de la batterie en mouvement." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "tech4-ch-mission", "type": "composite", "skill": "techno.chaines.constituants", "skills": ["techno.chaines.information", "techno.chaines.energie", "techno.energie.conversions"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:oubli-repetitions", "mc:capteur-actionneur"], "expectedSeconds": 480,
+      "prompt": "La serre automatique du club jardinage : quand le capteur d'humidité du sol mesure **moins de 30 %**, la carte programmable met en marche une pompe pendant **10 s**. Une batterie, rechargée par un panneau solaire, fournit l'énergie.",
+      "parts": [
+        { "type": "order", "prompt": "Il est 8 h ; la terre est sèche. Range ce qui se passe, dans l'ordre.", "orderLabel": "dans l'ordre chronologique",
+          "items": [
+            { "id": "s1", "label": "Le capteur d'humidité mesure 25 % dans la terre (acquérir)" },
+            { "id": "s2", "label": "La carte programmable compare : 25 % < 30 %, il faut arroser (traiter)" },
+            { "id": "s3", "label": "Elle envoie l'ordre de mise en marche au relais (communiquer)" },
+            { "id": "s4", "label": "Le relais laisse passer le courant de la batterie vers la pompe (distribuer)" },
+            { "id": "s5", "label": "La pompe convertit l'énergie électrique en mouvement de l'eau (convertir)" },
+            { "id": "s6", "label": "L'eau arrive au pied des plantes par les tuyaux" }
+          ] },
+        { "type": "numeric", "prompt": "La pompe a une puissance de **12 W**. Il y a **6 arrosages** de 10 s par jour. Quelle énergie la pompe consomme-t-elle par jour ? (avec l'unité J ; énergie en J = puissance en W × durée en s)", "answer": 720, "unit": "J",
+          "misconceptions": [
+            { "answer": 120, "id": "mc:oubli-repetitions", "error": "calcul", "feedback": "120 J, c'est l'énergie d'un seul arrosage (12 × 10). Il y en a 6 par jour." },
+            { "answer": 72, "id": "mc:oubli-duree", "error": "methode", "feedback": "12 × 6 oublie la durée : chaque arrosage dure 10 s. Énergie = puissance × durée totale (60 s)." }
+          ] },
+        { "type": "text", "prompt": "Quand le réservoir d'eau est vide, la pompe tourne à vide et s'abîme. Quel **capteur** faut-il ajouter pour l'éviter ?",
+          "accept": ["capteur de niveau", "un capteur de niveau", "capteur de niveau d'eau", "un capteur de niveau d'eau", "détecteur de niveau", "un détecteur de niveau", "flotteur", "un flotteur", "capteur à flotteur", "un capteur à flotteur", "interrupteur à flotteur", "un interrupteur à flotteur", "capteur de niveau du réservoir"],
+          "openEnded": true,
+          "misconceptions": [
+            { "answer": "capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut mesurer le niveau d'eau du réservoir : un capteur de niveau (par exemple à flotteur)." },
+            { "answer": "un capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut un capteur de niveau." },
+            { "answer": "pompe", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "La pompe est un actionneur : elle agit, elle ne mesure rien. Il faut un capteur qui surveille le niveau d'eau." }
+          ] }
+      ],
+      "hints": ["Suis la chaîne : acquérir → traiter → communiquer → distribuer → convertir.", "Durée totale de pompage par jour : 6 × 10 s.", "Quelle grandeur faut-il surveiller dans le réservoir ?"],
+      "solution": "Ordre : capteur → carte → ordre au relais → relais → pompe → eau aux plantes. Énergie : 12 W × 60 s = **720 J** par jour. Pour protéger la pompe, on ajoute un **capteur de niveau** (par exemple à flotteur) dans le réservoir, et on complète le programme : SI humidité < 30 % ET réservoir non vide ALORS arroser.",
+      "selfTest": [
+        { "response": { "parts": [ { "order": ["s1", "s2", "s3", "s4", "s5", "s6"] }, { "value": "720 J" }, { "value": "capteur de niveau" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "order": ["s1", "s2", "s3", "s4", "s5", "s6"] }, { "value": "120 J" }, { "value": "capteur de niveau" } ] }, "expect": "mc:oubli-repetitions" },
+        { "response": { "parts": [ { "order": ["s1", "s2", "s3", "s4", "s5", "s6"] }, { "value": "720 J" }, { "value": "pompe" } ] }, "expect": "mc:capteur-actionneur" }
+      ]
+    },
+    {
+      "id": "tech4-ch-remed-capteur", "type": "categorize", "skill": "techno.chaines.constituants", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:capteur-actionneur"], "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : un **capteur** est comme un œil, il **prend** une information. Un **actionneur** est comme un muscle, il **agit** (il bouge, chauffe, éclaire, verrouille). Les constituants vont par paires : dans chaque paire, l'un sent, l'autre agit.",
+      "categories": [
+        { "id": "capteur", "label": "Capteur (l'œil)" },
+        { "id": "actionneur", "label": "Actionneur (le muscle)" }
+      ],
+      "items": [
+        { "id": "p1", "label": "Capteur de température de la serre", "category": "capteur" },
+        { "id": "p2", "label": "Ventilateur de la serre", "category": "actionneur" },
+        { "id": "p3", "label": "Capteur de pluie sur le pare-brise", "category": "capteur" },
+        { "id": "p4", "label": "Moteur des essuie-glaces", "category": "actionneur" },
+        { "id": "p5", "label": "Lecteur de badge à l'entrée du collège", "category": "capteur" },
+        { "id": "p6", "label": "Gâche électrique qui déverrouille la porte", "category": "actionneur" }
+      ],
+      "misconceptions": [
+        { "item": "p1", "category": "actionneur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le capteur de température ne refroidit rien : il mesure. C'est le ventilateur qui agit." },
+        { "item": "p4", "category": "capteur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le moteur ne détecte pas la pluie : c'est le capteur de pluie qui la détecte, puis le moteur fait bouger les essuie-glaces." },
+        { "item": "p5", "category": "actionneur", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "Le lecteur lit l'identifiant du badge : il acquiert une information. C'est la gâche qui agit sur la porte." }
+      ],
+      "hints": ["Dans chaque paire, lequel « sent » et lequel « fait » ?"],
+      "solution": "Capteurs : température, pluie, lecteur de badge. Actionneurs : ventilateur, moteur des essuie-glaces, gâche électrique. Entre les deux, toujours un programme qui décide.",
+      "selfTest": [
+        { "response": { "assign": { "p1": "capteur", "p2": "actionneur", "p3": "capteur", "p4": "actionneur", "p5": "capteur", "p6": "actionneur" } }, "expect": "correct" },
+        { "response": { "assign": { "p1": "actionneur", "p2": "actionneur", "p3": "capteur", "p4": "actionneur", "p5": "capteur", "p6": "actionneur" } }, "expect": "mc:capteur-actionneur" }
+      ]
+    },
+    {
+      "id": "tech4-ch-remed-conversion", "type": "match", "skill": "techno.energie.conversions", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:sens-conversion"], "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : pour trouver une conversion, on se demande **ce que le constituant reçoit**, puis **ce qu'il produit**. Associe chaque constituant à sa description.",
+      "leftTitle": "Constituant",
+      "rightTitle": "Ce qu'il reçoit et ce qu'il produit",
+      "left": [
+        { "id": "l1", "label": "Moteur électrique" },
+        { "id": "l2", "label": "Dynamo de vélo" },
+        { "id": "l3", "label": "Radiateur électrique" },
+        { "id": "l4", "label": "Ampoule" }
+      ],
+      "right": [
+        { "id": "r2", "label": "Reçoit un mouvement, produit de l'électricité" },
+        { "id": "r4", "label": "Reçoit de l'électricité, produit de la lumière" },
+        { "id": "r1", "label": "Reçoit de l'électricité, produit un mouvement" },
+        { "id": "r3", "label": "Reçoit de l'électricité, produit de la chaleur" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l2", "r1"], "id": "mc:sens-conversion", "error": "notion", "feedback": "C'est la roue du vélo qui fait tourner la dynamo : elle reçoit un mouvement et produit l'électricité de la lampe." },
+        { "pair": ["l1", "r2"], "id": "mc:sens-conversion", "error": "notion", "feedback": "On branche un moteur pour le faire tourner : il reçoit de l'électricité et produit un mouvement." }
+      ],
+      "hints": ["Sur un vélo, qui fait tourner la dynamo ?"],
+      "solution": "Moteur : électricité → mouvement. Dynamo : mouvement → électricité (l'inverse du moteur). Radiateur : électricité → chaleur. Ampoule : électricité → lumière.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r2", "l2": "r1", "l3": "r3", "l4": "r4" } }, "expect": "mc:sens-conversion" }
+      ]
+    },
+    {
+      "id": "tech4-ch-fenetre", "type": "code", "skill": "techno.programmation.algorithme", "skills": ["code.variables"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "manipulation", "targets": ["mc:et-ou", "mc:condition-inversee"], "expectedSeconds": 300,
+      "prompt": "Nouvelle fonctionnalité : chauffer fenêtre ouverte gaspille l'énergie. Un capteur d'ouverture donne **fenetre = 1** quand la fenêtre est ouverte, **0** quand elle est fermée. Dans le test ci-dessous, la fenêtre est ouverte à 16 et 17 °C.\n\nModifie la condition pour que le chauffage s'allume seulement si la température est inférieure à 19 °C **et** la fenêtre fermée.",
+      "start": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  # capteur d'ouverture : 1 = fenêtre ouverte\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]",
+      "reference": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 et fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]",
+      "codeConstraints": { "mustUse": ["si"] },
+      "misconceptions": [
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:oubli-condition", "error": "methode", "feedback": "Le chronogramme n'a pas changé : le chauffage reste allumé à 16 et 17 °C alors que la fenêtre est ouverte. Ajoute la condition sur « fenetre »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 ou fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:et-ou", "error": "raisonnement", "feedback": "Avec « ou », une seule condition suffit : le chauffage s'allume dès que la fenêtre est fermée, même à 22 °C. Il faut que les DEUX conditions soient vraies : « et »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 et fenetre = 1 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:condition-inversee", "error": "notion", "feedback": "Le chauffage s'allume seulement quand la fenêtre est ouverte : c'est l'inverse ! Fenêtre fermée, c'est « fenetre = 0 »." }
+      ],
+      "hints": ["Le chauffage doit rester éteint à 16 et 17 °C.", "Deux conditions doivent être vraies en même temps : on les relie par « et ».", "« si temperature < 19 et fenetre = 0 [ allume ] sinon [ eteint ] »."],
+      "solution": "« si temperature < 19 et fenetre = 0 [ allume ] sinon [ eteint ] ». Chronogramme : allumé à 15 °C, éteint à 16 et 17 °C (fenêtre ouverte), allumé à 18 °C, éteint ensuite. On peut aussi imbriquer deux « si » : « si temperature < 19 [ si fenetre = 0 [ allume ] sinon [ eteint ] ] sinon [ eteint ] ».",
+      "methods": ["Une seule condition avec « et ».", "Deux « si » imbriqués : on ne teste la fenêtre que s'il fait froid."],
+      "selfTest": [
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 et fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "correct" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 [ si fenetre = 0 [ allume ] sinon [ eteint ] ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "correct" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 ou fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "mc:et-ou" },
+        { "response": { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]" }, "expect": "mc:oubli-condition" }
+      ]
+    },
+    {
+      "id": "tech4-ch-transmission", "type": "composite", "skill": "techno.energie.transmission", "skills": ["techno.chaines.energie"], "track": "approfondissement", "role": "transfert", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:rapport-inverse", "mc:rapport-effort"], "expectedSeconds": 360,
+      "params": { "z": { "choice": [12, 16, 24] } },
+      "prompt": "Sur un vélo, la chaîne **transmet** le mouvement du plateau (à l'avant, **48 dents**) au pignon de la roue arrière (**{z} dents**). À chaque tour de plateau, 48 maillons de chaîne passent, et entraînent 48 dents du pignon.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quand le pédalier fait 1 tour, combien de tours fait la roue arrière ?", "answer": "48/z", "rel": 0.02,
+          "misconceptions": [ { "answer": "z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le petit pignon tourne plus vite que le grand plateau, pas moins : 48 dents passent, soit 48 ÷ {z} tours de pignon (et donc de roue)." } ] },
+        { "type": "numeric", "prompt": "La roue a une circonférence de 2,1 m. Quelle distance le vélo parcourt-il pour 1 tour de pédalier ? (avec l'unité m)", "answer": "2.1*48/z", "unit": "m", "rel": 0.01,
+          "misconceptions": [
+            { "answer": 2.1, "id": "mc:oubli-rapport", "error": "methode", "feedback": "2,1 m, c'est la distance pour UN tour de roue. Or la roue fait {48/z} tours pour un tour de pédalier." },
+            { "answer": "2.1*z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le rapport est inversé : la roue fait {48/z} tours par tour de pédalier, pas {z/48}." }
+          ] },
+        { "type": "text", "prompt": "Pour monter une côte raide, vaut-il mieux passer sur un pignon arrière **plus grand** ou **plus petit** ?",
+          "accept": ["plus grand", "un plus grand", "grand", "un grand pignon", "le plus grand", "un pignon plus grand", "plus grand pignon", "le grand pignon"],
+          "misconceptions": [
+            { "answer": "plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon fait avancer plus loin à chaque tour de pédale… mais demande plus de force. En côte, on choisit un grand pignon : moins de distance par tour, un pédalage plus facile." },
+            { "answer": "petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, on choisit un grand pignon." },
+            { "answer": "un plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, on choisit un grand pignon." }
+          ] }
+      ],
+      "hints": ["Combien de tours fait un pignon de {z} dents quand 48 dents passent ?", "Distance = nombre de tours de roue × circonférence.", "Plus le pignon arrière est grand, moins la roue tourne à chaque coup de pédale."],
+      "solution": "Rapport de transmission : 48 ÷ {z} = {48/z} tours de roue par tour de pédalier. Distance : {48/z} × 2,1 = {2.1*48/z} m. En côte, un grand pignon donne moins de tours de roue par tour de pédale : on avance moins vite, mais il faut moins de force. La transmission ne crée pas d'énergie : elle échange de la vitesse contre de la force.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{48/z}" }, { "value": "{2.1*48/z} m" }, { "value": "plus grand" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{z/48}" }, { "value": "{2.1*48/z} m" }, { "value": "plus grand" } ] }, "expect": "mc:rapport-inverse" },
+        { "response": { "parts": [ { "value": "{48/z}" }, { "value": "{2.1*48/z} m" }, { "value": "plus petit" } ] }, "expect": "mc:rapport-effort" }
+      ]
+    },
+    {
+      "id": "tech4-ch-rendement", "type": "composite", "skill": "techno.energie.conversions", "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:utile-perdue", "mc:rendement-inverse", "mc:perte-forme"], "expectedSeconds": 360,
+      "params": { "a": { "choice": [40, 50, 60, 80] }, "r": { "choice": [0.7, 0.75, 0.8, 0.9] } },
+      "prompt": "Le moteur d'un ventilateur reçoit une puissance électrique de **{a} W** et fournit une puissance mécanique de **{a*r} W** aux pales. Toute l'énergie reçue ressort, mais pas entièrement sous la forme utile.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle puissance est perdue ? (avec l'unité W)", "answer": "a - a*r", "unit": "W", "rel": 0.001,
+          "misconceptions": [ { "answer": "a*r", "id": "mc:utile-perdue", "error": "lecture", "feedback": "{a*r} W est la puissance utile (elle fait tourner les pales). La perte, c'est ce qui manque : {a} − {a*r}." } ] },
+        { "type": "text", "prompt": "Sous quelle forme cette énergie perdue apparaît-elle surtout ?",
+          "accept": ["thermique", "chaleur", "énergie thermique", "de la chaleur", "sous forme de chaleur", "en chaleur", "l'énergie thermique"],
+          "misconceptions": [
+            { "answer": "mécanique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie mécanique est l'énergie utile : les pales tournent. La perte, c'est le moteur qui chauffe : énergie thermique." },
+            { "answer": "électrique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie électrique est celle que le moteur reçoit. Ce qui est perdu ressort surtout en chaleur : énergie thermique." }
+          ] },
+        { "type": "numeric", "prompt": "Le **rendement** est le quotient puissance utile ÷ puissance reçue. Calcule-le (en % ou en nombre décimal).", "answer": "r", "rel": 0.001,
+          "misconceptions": [ { "answer": "1/r", "id": "mc:rendement-inverse", "error": "methode", "feedback": "Un rendement est toujours inférieur à 1 (100 %) : on ne récupère jamais plus que ce qu'on fournit. Divise la puissance utile par la puissance reçue." } ] }
+      ],
+      "hints": ["Puissance reçue = puissance utile + puissance perdue.", "Touche un moteur qui a tourné longtemps : il est tiède.", "Rendement = {a*r} ÷ {a}."],
+      "solution": "Perte : {a} − {a*r} = {a-a*r} W, surtout sous forme de chaleur (énergie thermique). Rendement : {a*r} ÷ {a} = {r}, soit {r*100} %. Un bon moteur électrique a un rendement élevé ; une ampoule à incandescence, elle, perd l'essentiel de son énergie en chaleur.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a-a*r} W" }, { "value": "chaleur" }, { "value": "{r*100} %" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a*r} W" }, { "value": "chaleur" }, { "value": "{r}" } ] }, "expect": "mc:utile-perdue" },
+        { "response": { "parts": [ { "value": "{a-a*r} W" }, { "value": "chaleur" }, { "value": "{1/r}" } ] }, "expect": "mc:rendement-inverse" }
+      ]
+    },
+    {
+      "id": "tech4-ch-hysteresis", "type": "table", "skill": "techno.programmation.algorithme", "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:hysteresis-memoire", "mc:seuil-inclus"], "expectedSeconds": 360,
+      "prompt": "Un thermostat plus malin, avec deux seuils :\n> SI température < 18 °C ALORS allumer le chauffage\n> SI température > 20 °C ALORS éteindre le chauffage\n> Entre les deux, le programme ne change rien : le chauffage **garde son état**.\n\nAu départ, le chauffage est **éteint** (0). Complète son état après chaque mesure.",
+      "columns": ["Mesure", "Température (°C)", "Chauffage (1 = allumé, 0 = éteint)"],
+      "rows": [
+        ["1", "19", "?h1"],
+        ["2", "17", "?h2"],
+        ["3", "18", "?h3"],
+        ["4", "19", "?h4"],
+        ["5", "20", "?h5"],
+        ["6", "21", "?h6"],
+        ["7", "19", "?h7"],
+        ["8", "17", "?h8"]
+      ],
+      "cells": {
+        "h1": { "answer": 0, "misconceptions": [ { "answer": 1, "id": "mc:hysteresis-memoire", "error": "raisonnement", "feedback": "19 °C n'est pas en dessous de 18 °C : aucune règle ne s'applique, le chauffage garde son état de départ (éteint)." } ] },
+        "h2": { "answer": 1 },
+        "h3": { "answer": 1, "misconceptions": [ { "answer": 0, "id": "mc:hysteresis-memoire", "error": "raisonnement", "feedback": "18 n'est pas < 18, donc la première règle ne s'applique pas… mais la deuxième non plus : le chauffage garde son état précédent, allumé." } ] },
+        "h4": { "answer": 1, "misconceptions": [ { "answer": 0, "id": "mc:hysteresis-memoire", "error": "raisonnement", "feedback": "Entre 18 et 20 °C, rien ne change : le chauffage, allumé à la mesure 2, reste allumé." } ] },
+        "h5": { "answer": 1, "misconceptions": [ { "answer": 0, "id": "mc:seuil-inclus", "error": "precision", "feedback": "20 n'est pas strictement supérieur à 20 : la règle d'extinction ne s'applique pas encore." } ] },
+        "h6": { "answer": 0 },
+        "h7": { "answer": 0, "misconceptions": [ { "answer": 1, "id": "mc:hysteresis-memoire", "error": "raisonnement", "feedback": "Le chauffage a été éteint à 21 °C. À 19 °C, aucune règle ne s'applique : il reste éteint." } ] },
+        "h8": { "answer": 1 }
+      },
+      "hints": ["Pour chaque mesure, teste d'abord « < 18 », puis « > 20 ». Si aucune n'est vraie, recopie l'état de la ligne précédente.", "Le programme a une « mémoire » : son état dépend des mesures passées.", "Attention aux valeurs exactes 18 et 20."],
+      "solution": "0, 1, 1, 1, 1, 0, 0, 1. À 19 °C, le chauffage est éteint à la mesure 1 mais allumé à la mesure 4 : tout dépend de ce qui s'est passé avant. Cet écart entre les deux seuils (l'hystérésis) évite que le chauffage s'allume et s'éteigne sans arrêt autour d'une seule valeur, ce qui userait le relais.",
+      "selfTest": [
+        { "response": { "cells": { "h1": "0", "h2": "1", "h3": "1", "h4": "1", "h5": "1", "h6": "0", "h7": "0", "h8": "1" } }, "expect": "correct" },
+        { "response": { "cells": { "h1": "0", "h2": "1", "h3": "0", "h4": "0", "h5": "0", "h6": "0", "h7": "0", "h8": "1" } }, "expect": "mc:hysteresis-memoire" },
+        { "response": { "cells": { "h1": "0", "h2": "1", "h3": "1", "h4": "1", "h5": "0", "h6": "0", "h7": "0", "h8": "1" } }, "expect": "mc:seuil-inclus" }
+      ]
+    }
+  ]
+}

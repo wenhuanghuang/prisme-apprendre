@@ -12,6 +12,7 @@ import { checkOpen, checkText, wordCount, detectCriterion } from './open.js';
 import { checkCounterexample, checkMulti, checkEquation } from './logic.js';
 import { checkTable, checkOrder, checkNumberline, checkGraph, checkQcm } from './structured.js';
 import { runProgram, sameDrawing, TurtleError, programKeywords } from '../turtle.js';
+import { checkHighlight, checkMatch, checkCategorize, checkDictation } from './language.js';
 
 function checkCode(def, params, response) {
   const src = String(response.program || '');
@@ -91,6 +92,10 @@ export const CHECKERS = {
   graph: { check: checkGraph, label: 'Repère' },
   qcm: { check: checkQcm, label: 'Vérification rapide (QCM)' },
   code: { check: checkCode, label: 'Programme à écrire' },
+  highlight: { check: checkHighlight, label: 'Mots à repérer dans un texte' },
+  match: { check: checkMatch, label: 'Associations' },
+  categorize: { check: checkCategorize, label: 'Classement' },
+  dictation: { check: checkDictation, label: 'Dictée' },
   composite: { check: checkComposite, label: 'Problème en plusieurs questions' },
 };
 

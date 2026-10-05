@@ -210,7 +210,7 @@ export function recommend(index, states, ctx) {
   // au plus 3 « nouvelles notions » à la fois, pour laisser la place aux remédiations et aux défis
   const others = sorted.filter((r) => r.kind !== 'suite');
   // nouvelles notions : une par matière au plus (mathématiques et sciences d'abord), trois en tout
-  const SUBJECT_ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg'];
+  const SUBJECT_ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg', 'lv', 'svt', 'techno', 'emc', 'musique', 'arts-plastiques'];
   const subjectOf = (id) => { const sk = index.skills.get(id) || {}; return sk.subject === 'transversal' ? id.split('.')[0] : sk.subject; };
   const rank = (r) => { const i = SUBJECT_ORDER.indexOf(subjectOf(r.skill)); return i === -1 ? 9 : i; };
   const seenSubjects = new Set();

@@ -80,7 +80,6 @@ function normalizeInput(src) {
   return String(src)
     .replace(/[−–—]/g, '-') // signes moins typographiques
     .replace(/[×·∙⋅]/g, '*')
-    .replace(/÷/g, '/')
     .replace(/≤/g, '<=').replace(/≥/g, '>=').replace(/≠/g, '!=')
     .replace(/ | /g, ' ');
 }
@@ -119,9 +118,9 @@ export function tokenize(src) {
       i = j;
       continue;
     }
-    if (/[A-Za-zÀ-ÿα-ωπ_]/.test(c)) {
+    if (/[A-Za-zÀ-ÖØ-öø-ÿα-ωπ_]/.test(c)) {
       let j = i;
-      while (j < s.length && /[A-Za-zÀ-ÿα-ωπ_0-9]/.test(s[j])) j++;
+      while (j < s.length && /[A-Za-zÀ-ÖØ-öø-ÿα-ωπ_0-9]/.test(s[j])) j++;
       // les chiffres collés à une lettre (x2) sont rendus au flux : x2 -> x * 2 est ambigu, on coupe avant les chiffres
       let word = s.slice(i, j);
       const m = word.match(/^([^0-9]+)([0-9].*)$/);
@@ -139,12 +138,14 @@ export function tokenize(src) {
       i += 2;
       continue;
     }
-    if ('+-*/^()[]=<>|!;:√,'.includes(c)) {
+    if ('+-*/^()[]=<>|!;:√,÷'.includes(c)) {
       let v = c;
       if (c === '[') v = '('; else if (c === ']') v = ')';
-      else if (c === ':') v = '/';
       else if (c === ',') v = ';';
-      out.push({ k: 'op', v, pos: i });
+      // « ÷ » et « : » : division écrite en ligne (affichée telle quelle, pas en fraction empilée)
+      const inline = c === ':' || c === '÷';
+      if (inline) v = '/';
+      out.push({ k: 'op', v, pos: i, ...(inline ? { inline: true } : {}) });
       i++;
       continue;
     }
@@ -210,7 +211,7 @@ export function parse(src, opts = {}) {
     let a = parseUnary();
     for (;;) {
       if (isOp('*')) { p++; a = { t: '*', a, b: parseUnary() }; }
-      else if (isOp('/')) { p++; a = { t: '/', a, b: parseUnary() }; }
+      else if (isOp('/')) { const inline = peek().inline; p++; a = { t: '/', a, b: parseUnary(), ...(inline ? { inline: true } : {}) }; }
       else if (startsPrimary(peek())) { a = { t: '*', a, b: parsePower(), implicit: true }; }
       else return a;
     }
@@ -637,7 +638,7 @@ export function toText(node) {
       const implicitOk = node.b.t === 'var' || (node.b.t === '^' && node.b.a.t === 'var') || (/^\(/.test(right) && node.b.t !== 'neg');
       return implicitOk ? `${left}${right}` : `${left} × ${right}`;
     }
-    case '/': return `${wrap(node.a, 6)}/${wrap(node.b, 6, true)}`;
+    case '/': return `${wrap(node.a, 6)}${node.inline ? ' ÷ ' : '/'}${wrap(node.b, 6, true)}`;
     case '^': {
       const base = wrap(node.a, 9);
       if (node.b.t === 'num' && Number.isInteger(node.b.v) && node.b.v >= 0 && node.b.v < 10) return base + '⁰¹²³⁴⁵⁶⁷⁸⁹'[node.b.v];
@@ -662,6 +663,8 @@ function esc(s) {
 export function toHTML(node) {
   const wrap = (child, parentPrec, right = false) => {
     const s = toHTML(child);
+    // une fraction empilée se lit d'un bloc : pas de parenthèses autour d'elle dans un produit ou un quotient
+    if (child.t === '/' && !child.inline && parentPrec <= PREC['/']) return s;
     const cp = PREC[child.t] ?? 10;
     const needs = cp < parentPrec || (right && cp === parentPrec) || (right && child.t === 'neg');
     return needs ? `<span class="m-par">(</span>${s}<span class="m-par">)</span>` : s;
@@ -677,7 +680,9 @@ export function toHTML(node) {
       const implicitOk = node.b.t === 'var' || (node.b.t === '^' && node.b.a.t === 'var') || (right.startsWith('<span class="m-par">') && node.b.t !== 'neg');
       return implicitOk ? `${wrap(node.a, 6)}${right}` : `${wrap(node.a, 6)} × ${right}`;
     }
-    case '/': return `<span class="m-frac"><span class="m-numer">${toHTML(node.a)}</span><span class="m-denom">${toHTML(node.b)}</span></span>`;
+    case '/': return node.inline
+      ? `${wrap(node.a, 6)} ÷ ${wrap(node.b, 6, true)}`
+      : `<span class="m-frac"><span class="m-numer">${toHTML(node.a)}</span><span class="m-denom">${toHTML(node.b)}</span></span>`;
     case '^': return `${wrap(node.a, 9)}<sup>${toHTML(node.b)}</sup>`;
     case 'fact': return wrap(node.a, 9) + '!';
     case 'abs': return `|${toHTML(node.a)}|`;
