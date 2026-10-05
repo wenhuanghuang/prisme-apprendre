@@ -6,7 +6,7 @@
  * Le diagnostic indique les étapes justes, la première étape fausse et la nature probable de l'erreur.
  */
 import {
-  tryParse, evaluate, equivalent, equationsEquivalent, solveLinear, sumTerms, isSolvedForm, variables, formatNumber,
+  tryParse, evaluate, equivalent, alignVariableCase, equationsEquivalent, solveLinear, sumTerms, isSolvedForm, variables, formatNumber,
 } from '../expr.js';
 import { parseWithParams } from '../template.js';
 import { diagnosis } from '../errors.js';
@@ -18,6 +18,30 @@ function cleanLine(line) {
 
 function readLines(lines) {
   return (lines || []).map(cleanLine).filter((l) => l.length > 0);
+}
+
+/** Découpe « a = b = c » au niveau des signes = hors parenthèses. */
+export function splitEqualities(line) {
+  const parts = []; let depth = 0; let cur = '';
+  for (const ch of line) {
+    if (ch === '(' || ch === '[') depth++;
+    if (ch === ')' || ch === ']') depth--;
+    if (ch === '=' && depth === 0) { parts.push(cur); cur = ''; } else cur += ch;
+  }
+  parts.push(cur);
+  return parts.map((x) => x.trim()).filter((x) => x.length);
+}
+
+/**
+ * En calcul (et en expression), on accepte les écritures usuelles des élèves :
+ * « A = 7 + 8 × 3 », « 7 + 8 × 3 = 31 » (égalités chaînées), et la lettre x pour « fois » entre deux nombres.
+ */
+export function normalizeCalcLine(line, mode, variable) {
+  let t = line;
+  if (mode === 'calcul') t = t.replace(/(\d)\s*[xX]\s*(?=[\d(−-])/g, '$1 × ');
+  const parts = splitEqualities(t);
+  if (parts.length > 1 && /^[A-Za-z]$/.test(parts[0]) && parts[0] !== variable) parts.shift();
+  return parts;
 }
 
 /** Valeur de x d'une ligne « x = … » ou « … = x » */
@@ -85,24 +109,28 @@ export function checkSteps(def, params, response) {
   let expectedValue = null;
   if (mode === 'calcul') expectedValue = evaluate(start);
 
-  const nodes = [];
+  const nodes = []; const extraParts = [];
   for (let i = 0; i < lines.length; i++) {
-    const r = tryParse(lines[i]);
-    if (!r.ok) {
-      return diagnosis({ verdict: 'illisible', firstBadStep: i, stepsOk: i, stepsTotal: lines.length, feedback: `Ligne ${i + 1} : je n'arrive pas à lire « ${lines[i]} » (${r.error}).` });
+    const pieces = mode === 'equation' ? [lines[i]] : normalizeCalcLine(lines[i], mode, v);
+    const parsed = pieces.map((x) => tryParse(x));
+    const bad = parsed.findIndex((r) => !r.ok);
+    if (bad !== -1 || !parsed.length) {
+      return diagnosis({ verdict: 'illisible', firstBadStep: i, stepsOk: i, stepsTotal: lines.length, feedback: `Ligne ${i + 1} : je n'arrive pas à lire « ${lines[i]} »${parsed[bad] ? ` (${parsed[bad].error})` : ''}. Pour multiplier, utilise × ou *.` });
     }
-    nodes.push(r.node);
+    nodes.push(alignVariableCase(parsed[parsed.length - 1].node, start)); // le dernier membre est l'étape « écrite »
+    extraParts.push(parsed.slice(0, -1).map((r) => alignVariableCase(r.node, start)));
   }
 
-  const lineOk = (node) => {
-    try {
-      if (mode === 'calcul') return node.t !== 'cmp' && Math.abs(evaluate(node) - expectedValue) <= 1e-9 * Math.max(1, Math.abs(expectedValue));
-      if (mode === 'expression') return node.t !== 'cmp' && equivalent(node, start);
-      return node.t === 'cmp' && equationsEquivalent(node, start);
-    } catch { return false; }
+  const oneOk = (node) => {
+    if (mode === 'calcul') return node.t !== 'cmp' && Math.abs(evaluate(node) - expectedValue) <= 1e-9 * Math.max(1, Math.abs(expectedValue));
+    if (mode === 'expression') return node.t !== 'cmp' && equivalent(node, start);
+    return node.t === 'cmp' && equationsEquivalent(node, start);
+  };
+  const lineOk = (node, i) => {
+    try { return oneOk(node) && extraParts[i].every(oneOk); } catch { return false; }
   };
 
-  const details = nodes.map((n, i) => ({ line: i + 1, text: lines[i], ok: lineOk(n) }));
+  const details = nodes.map((n, i) => ({ line: i + 1, text: lines[i], ok: lineOk(n, i) }));
   const firstBad = details.findIndex((d) => !d.ok);
 
   if (firstBad === -1) {

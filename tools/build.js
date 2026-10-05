@@ -37,4 +37,7 @@ let h = 0;
 for (const f of files) h = hashString(`${h}:${f}:${hashString(readFileSync(join(app, f)).toString('latin1'))}`);
 const version = h.toString(36);
 writeFileSync(join(app, 'precache.json'), JSON.stringify({ version, files: ['./', ...files] }));
+// la version est inscrite dans sw.js : le fichier change, donc le navigateur installe la nouvelle version
+const swPath = join(app, 'sw.js');
+writeFileSync(swPath, readFileSync(swPath, 'utf8').replace(/const VERSION = '[^']*';/, `const VERSION = '${version}';`));
 console.log(`✓ Pré-cache : ${files.length} fichiers, version ${version}`);

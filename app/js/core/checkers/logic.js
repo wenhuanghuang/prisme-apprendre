@@ -104,7 +104,19 @@ export function checkEquation(def, params, response) {
     return diagnosis({ verdict: 'partiel', score: 0.5, errorType: 'lecture', feedback: `Consigne : ${v} doit apparaître dans les deux membres.` });
   }
   const sol = solveLinear(eq, v);
-  if (sol.kind === 'nonlinear') return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: "Cette équation n'est pas du premier degré." });
+  if (sol.kind === 'nonlinear') {
+    if (def.expectKind === 'all') {
+      // une « identité » fausse : on montre une valeur qui la met en défaut (ex. √(x²) = x pour x = −3)
+      for (const x of [-3, -1, 0.5, 2, -7.5]) {
+        let l; let r;
+        try { l = evaluate(eq.a, { [v]: x }); r = evaluate(eq.b, { [v]: x }); } catch { continue; }
+        if (!Number.isFinite(l) || !Number.isFinite(r) || Math.abs(l - r) > 1e-9 * Math.max(1, Math.abs(l))) {
+          return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: `Pour ${v} = ${formatNumber(x)}, les deux membres ne sont pas égaux : ton égalité n'est pas vraie pour tout ${v}.` });
+        }
+      }
+    }
+    return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: "Cette équation n'est pas du premier degré." });
+  }
   const kindLabel = { unique: 'une seule solution', none: 'aucune solution', all: 'une infinité de solutions' };
   if (sol.kind !== def.expectKind) {
     return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: `Ton équation a ${kindLabel[sol.kind]}${sol.kind === 'unique' ? ` (${v} = ${formatNumber(sol.x)})` : ''} : ce n'est pas ce qui est demandé.` });

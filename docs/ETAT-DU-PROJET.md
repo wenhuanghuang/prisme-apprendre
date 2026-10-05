@@ -10,7 +10,7 @@ Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chi
 - Sauvegarde JSON avec empreinte de contrôle, restauration profil par profil (copie ou remplacement), effacement d'un profil ou de tout, code parent.
 - Aucun appel réseau applicatif (politique de sécurité stricte), aucune IA distante.
 - Contenus en JSON, ajout de chapitres sans code ; validateur qui rejoue les réponses types de chaque exercice sur 7 tirages.
-- Tests : 44 tests automatiques (moteur d'expressions, correcteurs, élèves fictifs, bout en bout dans un vrai navigateur).
+- Tests : 58 tests automatiques (moteur d'expressions, correcteurs, élèves fictifs, bout en bout dans un vrai navigateur).
 
 ### Moteur pédagogique
 - Diagnostic par type d'erreur (notion, prérequis, calcul, signe, lecture, méthode, justification, forme, unité, arrondi, raisonnement) et par idée fausse (296 idées fausses déclarées dans les contenus).
@@ -21,7 +21,7 @@ Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chi
 - Cinq élèves fictifs simulés par le moteur, chargeables dans l'application, et rapport généré.
 
 ### Contenus
-- **23 leçons, 341 exercices** (230 niveau de la classe, 54 approfondissement, 341PERT expert), QCM ≈ 18PCT % des questions.
+- **23 leçons, 341 exercices** (230 niveau de la classe, 54 approfondissement, 57 expert), QCM ≈ 2,4 % des questions.
 - Mathématiques 5e (programme 2026) : relatifs, fractions, calcul littéral (preuve et contre-exemple), triangles (dont démonstration de la somme des angles), probabilités.
 - Mathématiques 4e (programme 2020) : relatifs (produit), puissances, équations, Pythagore ; 3e : double distributivité.
 - Physique-chimie (cycle 4) : changements d'état, masse volumique, vitesse, loi d'Ohm, son et lumière, poids et masse.

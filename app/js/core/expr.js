@@ -33,6 +33,10 @@ const FUNCTIONS = {
 };
 
 const CONSTANTS = { pi: Math.PI, 'π': Math.PI };
+// tables sans prototype : « constructor » ou « __proto__ » ne sont ni des fonctions ni des constantes
+Object.setPrototypeOf(FUNCTIONS, null);
+Object.setPrototypeOf(CONSTANTS, null);
+const own = (o, k) => o !== null && o !== undefined && Object.prototype.hasOwnProperty.call(o, k);
 
 export function gcd(a, b) {
   a = Math.abs(Math.round(a)); b = Math.abs(Math.round(b));
@@ -69,6 +73,8 @@ export class ParseError extends Error {
 
 const SUPERSCRIPTS = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '-' };
 const WORD_OPS = { et: 'and', and: 'and', ou: 'or', or: 'or', non: 'not', not: 'not' };
+Object.setPrototypeOf(SUPERSCRIPTS, null);
+Object.setPrototypeOf(WORD_OPS, null);
 
 function normalizeInput(src) {
   return String(src)
@@ -224,7 +230,7 @@ export function parse(src, opts = {}) {
     for (;;) {
       const t = peek();
       if (t && t.k === 'sup') { p++; a = { t: '^', a, b: numNode(t.v) }; }
-      else if (isOp('!') && !(toks[p + 1] && toks[p + 1].k === 'op' && toks[p + 1].v === '=')) { p++; a = { t: 'fact', a }; }
+      else if (isOp('!')) { p++; a = { t: 'fact', a }; }
       else return a;
     }
   }
@@ -297,7 +303,7 @@ export function evaluate(node, env = {}) {
     case 'num': return node.v;
     case 'var': {
       if (node.n === 'π') return Math.PI;
-      if (env[node.n] === undefined) throw new Error(`Variable inconnue : ${node.n}`);
+      if (!own(env, node.n) || env[node.n] === undefined) throw new Error(`Variable inconnue : ${node.n}`);
       return env[node.n];
     }
     case 'neg': return -evaluate(node.a, env);
@@ -354,7 +360,7 @@ export function variables(node, acc = new Set()) {
 
 /** Remplace les variables présentes dans env par leur valeur numérique. */
 export function substitute(node, env) {
-  if (node.t === 'var' && env[node.n] !== undefined) {
+  if (node.t === 'var' && own(env, node.n) && env[node.n] !== undefined) {
     const v = env[node.n];
     return v < 0 ? { t: 'neg', a: numNode(-v) } : numNode(v);
   }
@@ -413,20 +419,21 @@ export function equationsEquivalent(e1, e2, opts = {}) {
   const f2 = { t: '-', a: e2.a, b: e2.b };
   const vars = [...new Set([...variables(f1), ...variables(f2)])];
   const rnd = sampler(opts.seed || 4242);
-  let ratio = null; let tested = 0;
+  let ratio = null; let tested = 0; let bothZero = 0;
   for (let k = 0; k < 40 && tested < 8; k++) {
     const env = {};
     for (const v of vars) env[v] = Math.round((rnd() * 20 - 10) * 1000) / 1000 + 0.377;
     let v1; let v2;
     try { v1 = evaluate(f1, env); v2 = evaluate(f2, env); } catch { return false; }
     if (!Number.isFinite(v1) || !Number.isFinite(v2)) continue;
-    if (Math.abs(v1) < 1e-12 && Math.abs(v2) < 1e-12) { tested++; continue; }
+    if (Math.abs(v1) < 1e-12 && Math.abs(v2) < 1e-12) { tested++; bothZero++; continue; }
     if (Math.abs(v1) < 1e-12 || Math.abs(v2) < 1e-12) return false;
     const r = v2 / v1;
     if (ratio === null) ratio = r;
     else if (!close(r, ratio, 1e-6)) return false;
     tested++;
   }
+  if (tested > 0 && bothZero === tested) return true; // deux identités (vraies pour tout x)
   return tested > 0 && ratio !== null && Math.abs(ratio) > 1e-12;
 }
 
@@ -434,9 +441,13 @@ export function equationsEquivalent(e1, e2, opts = {}) {
 export function solveLinear(eq, v = 'x') {
   const f = { t: '-', a: eq.a, b: eq.b };
   const at = (x) => evaluate(f, { [v]: x });
-  const f0 = at(0); const f1 = at(1); const f2 = at(2);
+  const f0 = at(0); const f1 = at(1);
   const slope = f1 - f0;
-  if (!close(f2 - f1, slope, 1e-9)) return { kind: 'nonlinear' };
+  // linéarité vérifiée aussi en des points négatifs et non entiers (√(x²) ou |x| ne sont pas linéaires)
+  for (const x of [2, -3.7, 5.3, -11, 0.45]) {
+    const fx = at(x);
+    if (!Number.isFinite(fx) || Math.abs(fx - (f0 + slope * x)) > 1e-9 * Math.max(1, Math.abs(fx))) return { kind: 'nonlinear' };
+  }
   if (Math.abs(slope) < 1e-12) return Math.abs(f0) < 1e-12 ? { kind: 'all' } : { kind: 'none' };
   return { kind: 'unique', x: -f0 / slope };
 }
@@ -508,6 +519,7 @@ function monomialInfo(term) {
 export function isReduced(node) {
   if (!isDeveloped(node)) return false;
   const terms = sumTerms(node);
+  if (terms.length === 1 && terms[0].node.t === 'num' && terms[0].node.v === 0) return true; // « 0 » est réduit
   const seen = new Set();
   for (const { node: t } of terms) {
     const info = monomialInfo(t);
@@ -676,4 +688,26 @@ export function toHTML(node) {
     case 'not': return `non ${toHTML(node.a)}`;
     default: return '?';
   }
+}
+
+/**
+ * Harmonise la casse des variables avec celles de la réponse attendue : un élève qui tape « 2X + 3 »
+ * pour « 2x + 3 » n'a pas fait d'erreur de mathématiques.
+ */
+export function alignVariableCase(node, reference) {
+  const expected = variables(reference);
+  const map = {};
+  for (const v of variables(node)) {
+    if (!expected.has(v) && expected.has(v.toLowerCase())) map[v] = v.toLowerCase();
+    else if (!expected.has(v) && expected.has(v.toUpperCase())) map[v] = v.toUpperCase();
+  }
+  if (!Object.keys(map).length) return node;
+  const walk = (n) => {
+    if (n.t === 'var' && Object.prototype.hasOwnProperty.call(map, n.n)) return { ...n, n: map[n.n] };
+    const c = { ...n };
+    for (const k of ['a', 'b']) if (n[k]) c[k] = walk(n[k]);
+    if (n.args) c.args = n.args.map(walk);
+    return c;
+  };
+  return walk(node);
 }

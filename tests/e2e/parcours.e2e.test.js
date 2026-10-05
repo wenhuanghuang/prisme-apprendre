@@ -120,3 +120,14 @@ test('chaque laboratoire se charge', async () => {
   }
   assert.deepEqual(errors, [], errors.join('\n'));
 });
+
+test('débogage : l’éditeur s’ouvre avec le programme à corriger (jamais vide)', async () => {
+  const lesson = JSON.parse(readFileSync(join(root, 'app', 'content', 'lessons', 'code-variables.json'), 'utf8'));
+  const withStart = lesson.exercises.filter((e) => e.type === 'code' && e.start && /\b(mets|ajoute|si|pour)\b/.test(e.start));
+  assert.ok(withStart.length > 0, 'au moins un programme de départ en mode texte');
+  await page.goto(`${BASE}#/lecon/code-variables`);
+  await page.waitForSelector('.code-editor');
+  const texts = await page.locator('.code-editor .code-text').evaluateAll((tas) => tas.filter((t) => !t.closest('[hidden]')).map((t) => t.value));
+  assert.ok(texts.length > 0, 'des éditeurs en mode texte sont affichés');
+  assert.ok(texts.every((t) => t.trim().length > 0), 'aucun éditeur texte vide');
+});

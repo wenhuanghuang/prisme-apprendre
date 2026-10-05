@@ -136,7 +136,7 @@ export async function render(root, { args, params }) {
       for (const en of entries) {
         if (!en.isIntersecting) continue;
         const idx = Number(en.target.dataset.idx);
-        markLessonSection(lessonId, idx);
+        markLessonSection(lessonId, idx).catch(() => {});
         const link = rail.querySelector(`a[data-idx="${idx}"]`);
         if (link) link.classList.add('is-seen');
       }

@@ -124,6 +124,16 @@ export function relDays(ts, now = Date.now()) {
   return d > 0 ? `dans ${d} jours` : `il y a ${-d} jours`;
 }
 
+let pendingTab = null;
+/** Remet le focus sur l'onglet choisi au clavier, dans la page réelle (la liste a pu être reconstruite). */
+export function focusPendingTab() {
+  if (!pendingTab) return false;
+  const lists = [...document.querySelectorAll('[role="tablist"]')].filter((l) => l.getAttribute('aria-label') === pendingTab.label);
+  const btn = lists.map((l) => [...l.querySelectorAll('[data-tab]')].find((b) => b.dataset.tab === pendingTab.id)).find(Boolean);
+  if (btn) { btn.focus(); pendingTab = null; return true; }
+  return false;
+}
+
 /** Petit composant d'onglets accessible au clavier (flèches gauche/droite). */
 export function tabs(items, active, onSelect, label = 'Onglets') {
   const list = h('div', { class: 'tabs', role: 'tablist', 'aria-label': label });
@@ -136,8 +146,9 @@ export function tabs(items, active, onSelect, label = 'Onglets') {
         if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
           e.preventDefault();
           const next = items[(i + (e.key === 'ArrowRight' ? 1 : items.length - 1)) % items.length];
+          pendingTab = { label, id: next.id };
           onSelect(next.id);
-          requestAnimationFrame(() => { const btn = list.querySelector(`[data-tab="${next.id}"]`); if (btn) btn.focus(); });
+          focusPendingTab();
         }
       },
       dataset: { tab: it.id },

@@ -62,8 +62,8 @@ export function createNumberLine({ min = -5, max = 5, step = 0.5, points = [], i
       if (locked) return;
       e.preventDefault(); g.focus(); g.setPointerCapture(e.pointerId);
       const move = (ev) => { const pt = toSvg(ev); place(vOf(pt.x)); };
-      const up = () => { g.removeEventListener('pointermove', move); g.removeEventListener('pointerup', up); };
-      g.addEventListener('pointermove', move); g.addEventListener('pointerup', up);
+      const up = () => { g.removeEventListener('pointermove', move); g.removeEventListener('pointerup', up); g.removeEventListener('pointercancel', up); };
+      g.addEventListener('pointermove', move); g.addEventListener('pointerup', up); g.addEventListener('pointercancel', up);
     });
   });
   function toSvg(ev) {

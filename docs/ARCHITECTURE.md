@@ -102,4 +102,4 @@ Ajouter un **type d'exercice** : un correcteur dans `core/checkers/`, une zone d
 
 ## 7. Déploiement
 
-Site statique : `app/` est publié tel quel (GitHub Pages). `npm run build` régénère l'index, le catalogue, les ressources et la liste de pré-cache (dont la version change à chaque modification de contenu, ce qui met à jour le hors-connexion).
+Site statique : `app/` est publié tel quel (GitHub Pages, `bash tools/deploy.sh`). `npm run build` régénère l'index, le catalogue, les ressources et la liste de pré-cache, et inscrit l'empreinte de la version dans `sw.js`. Le navigateur détecte donc chaque nouvelle version, l'installe en arrière-plan dans un cache séparé, et l'application affiche « Une nouvelle version de Prisme est prête — Recharger maintenant » : un onglet ouvert ne mélange jamais l'ancien et le nouveau code (scénario vérifié dans Edge).

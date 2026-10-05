@@ -19,12 +19,12 @@ export class TurtleError extends Error {
   constructor(message, line) { super(line ? `Ligne ${line} : ${message}` : message); this.line = line; }
 }
 
-const ALIASES = {
+const ALIASES = Object.assign(Object.create(null), {
   avance: 'avance', av: 'avance', recule: 'recule', re: 'recule',
   droite: 'droite', dr: 'droite', td: 'droite', gauche: 'gauche', ga: 'gauche', tg: 'gauche',
   tourne: 'tourne', 'répète': 'repete', repete: 'repete', 'lève': 'leve', leve: 'leve', pose: 'pose',
   couleur: 'couleur', mets: 'mets', ajoute: 'ajoute', si: 'si', sinon: 'sinon', pour: 'pour',
-};
+});
 
 export function tokenizeProgram(src) {
   const toks = [];
@@ -67,7 +67,7 @@ export function programKeywords(src) {
 export function parseProgram(src) {
   const toks = tokenizeProgram(src);
   let p = 0;
-  const procs = {};
+  const procs = Object.create(null);
 
   function block() {
     const t = toks[p];
@@ -165,6 +165,7 @@ export function runProgram(src, opts = {}) {
       switch (s.op) {
         case 'avance': case 'recule': {
           const d = evalNode(s.arg, scope) * (s.op === 'recule' ? -1 : 1);
+          if (!Number.isFinite(d) || Math.abs(d) > 100000) throw new TurtleError('distance impossible ou trop grande (100 000 au plus)', s.line);
           const rad = (st.heading * Math.PI) / 180;
           const nx = st.x + d * Math.cos(rad); const ny = st.y + d * Math.sin(rad);
           if (st.pen) {
@@ -174,8 +175,12 @@ export function runProgram(src, opts = {}) {
           st.x = nx; st.y = ny;
           break;
         }
-        case 'droite': st.heading -= evalNode(s.arg, scope); break;
-        case 'gauche': st.heading += evalNode(s.arg, scope); break;
+        case 'droite': case 'gauche': {
+          const a = evalNode(s.arg, scope);
+          if (!Number.isFinite(a)) throw new TurtleError('angle impossible', s.line);
+          st.heading += s.op === 'gauche' ? a : -a;
+          break;
+        }
         case 'repete': {
           const n = Math.round(evalNode(s.arg, scope));
           if (n < 0 || n > 10000) throw new TurtleError('nombre de répétitions invalide', s.line);
@@ -254,9 +259,13 @@ function coverage(a, b, tol = 1.6) {
 
 /** Les deux dessins sont-ils identiques (au symétrique près par rapport à la direction de départ) ? */
 export function sameDrawing(segA, segB) {
-  const a = samplePoints(segA);
-  const b = samplePoints(segB);
+  // pas d'échantillonnage adapté à la taille du dessin (au plus ≈ 20 000 points), tolérance en conséquence
+  const length = (segs) => segs.reduce((t, s) => t + Math.hypot(s.x2 - s.x1, s.y2 - s.y1), 0);
+  const step = Math.max(1, Math.max(length(segA), length(segB)) / 20000);
+  const tol = Math.max(1.6, step * 1.5);
+  const a = samplePoints(segA, step);
+  const b = samplePoints(segB, step);
   const bMirror = b.map(([x, y]) => [x, -y]);
-  const score = (u, v) => Math.min(coverage(u, v), coverage(v, u));
+  const score = (u, v) => Math.min(coverage(u, v, tol), coverage(v, u, tol));
   return Math.max(score(a, b), score(a, bMirror)) >= 0.97;
 }

@@ -36,7 +36,7 @@ Chaque type de réponse a son correcteur. Tous renvoient le même diagnostic :
 
 **La démarche, pas seulement la réponse** : en calcul et en équations, **chaque ligne** est vérifiée (même valeur, ou même ensemble de solutions) ; l'élève voit quelles étapes sont justes et où se situe la première erreur. Pour les expressions, l'égalité est testée sur de nombreuses valeurs, puis la **forme** est analysée sur l'arbre syntaxique.
 
-**Honnêteté** : une rédaction n'est jamais déclarée fausse ; les critères « repérés » le sont à titre indicatif ; une réponse courte inconnue d'un exercice ouvert passe en « incertain » ; une erreur interne du correcteur produit « incertain » + validation humaine, jamais « faux ».
+**Honnêteté** : une rédaction n'est jamais déclarée fausse ; les verdicts « à valider » et « incertain » ne modifient pas la maîtrise estimée (ni en bien ni en mal) tant qu'un adulte n'a pas tranché ; les critères « repérés » le sont à titre indicatif ; une réponse courte inconnue d'un exercice ouvert passe en « incertain » ; une erreur interne du correcteur produit « incertain » + validation humaine, jamais « faux ».
 
 ## 2. Le modèle de l'élève (par compétence)
 

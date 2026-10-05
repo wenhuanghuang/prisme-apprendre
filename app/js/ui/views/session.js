@@ -71,6 +71,11 @@ export async function render(root, { params }) {
   }
 
   const next = async () => {
+    try { await nextStep(); } catch (e) {
+      stage.append(h('p', { class: 'card warn' }, `Impossible de charger l'exercice suivant (${e.message}).`), h('a', { class: 'btn', href: '#/' }, 'Retour à Aujourd’hui'));
+    }
+  };
+  const nextStep = async () => {
     if (current) { current.destroy(); current = null; }
     if (history.length >= total) return summary();
     const pick = selectExercise(store.index.exercises, rec.query, store.states.skills[rec.query.skill || skill], history, recentExerciseIds(20));
@@ -85,8 +90,9 @@ export async function render(root, { params }) {
       nextLabel: history.length + 1 >= total ? 'Voir le bilan' : 'Exercice suivant',
       onNext: () => {
         const last = store.attempts[store.attempts.length - 1];
+        const humanVerdict = last && ['a-valider', 'incertain'].includes(last.verdict);
         if (last && last.exerciseId === loaded.def.id) {
-          history.push({ exerciseId: last.exerciseId, credit: last.credit, representation: last.representation, errorType: last.errorType, misconception: last.misconception, timeRatio: last.durationMs && last.expectedSeconds ? last.durationMs / 1000 / last.expectedSeconds : null });
+          history.push({ exerciseId: last.exerciseId, credit: humanVerdict ? null : last.credit, representation: last.representation, errorType: last.errorType, misconception: last.misconception, timeRatio: last.durationMs && last.expectedSeconds ? last.durationMs / 1000 / last.expectedSeconds : null });
         } else history.push({ exerciseId: loaded.def.id, credit: 0 });
         next();
       },

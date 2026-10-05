@@ -10,10 +10,10 @@ export function tokenize(text) {
 }
 
 export function train(tokens) {
-  const table = {};
+  const table = Object.create(null); // « __proto__ » ou « constructor » sont de simples mots
   for (let i = 0; i < tokens.length - 1; i++) {
     const a = tokens[i]; const b = tokens[i + 1];
-    table[a] = table[a] || {};
+    table[a] = table[a] || Object.create(null);
     table[a][b] = (table[a][b] || 0) + 1;
   }
   return table;

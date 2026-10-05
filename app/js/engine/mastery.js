@@ -96,7 +96,9 @@ export function applyAttempt(prev, attempt, opts = {}) {
   const s = structuredCloneSafe(prev);
   const now = attempt.ts;
   const flags = { resurgence: false, delayed: false };
-  const human = attempt.verdict === 'a-valider';
+  // « à valider » (rédaction) et « incertain » (le logiciel ne sait pas trancher) relèvent d'un adulte :
+  // ils ne comptent ni comme réussite ni comme échec.
+  const human = attempt.verdict === 'a-valider' || attempt.verdict === 'incertain';
   const credit = creditOf(attempt);
   const success = !human && credit >= 0.7;
   const failure = !human && credit < 0.4;
@@ -231,4 +233,36 @@ export function recurringErrors(state, now, windowDays = 21) {
   }
   return Object.values(byType).filter((x) => x.count >= 2).sort((a, b) => b.count - a.count)
     .map((x) => ({ ...x, representations: [...x.representations] }));
+}
+
+/**
+ * Reconstruit un état de compétence sûr à partir de données externes (sauvegarde importée, ancienne version) :
+ * chaque champ manquant ou d'un mauvais type reprend sa valeur par défaut.
+ */
+export function normalizeSkillState(raw, skillId) {
+  const base = emptySkillState(skillId);
+  if (!raw || typeof raw !== 'object') return base;
+  const out = { ...base };
+  for (const [k, def] of Object.entries(base)) {
+    const v = raw[k];
+    if (v === undefined || v === null) continue;
+    if (typeof def === 'number' && Number.isFinite(v)) out[k] = v;
+    else if (def === null && (typeof v === 'number' && Number.isFinite(v))) out[k] = v;
+    else if (typeof def === 'boolean' && typeof v === 'boolean') out[k] = v;
+    else if (Array.isArray(def) && Array.isArray(v)) out[k] = v.filter((x) => (typeof x === 'number' && Number.isFinite(x)) || (x && typeof x === 'object'));
+    else if (def && typeof def === 'object' && !Array.isArray(def) && typeof v === 'object' && !Array.isArray(v)) out[k] = { ...def, ...v };
+  }
+  out.skill = skillId;
+  out.pL = Math.min(1, Math.max(0, out.pL));
+  out.recentErrors = out.recentErrors.filter((e) => typeof e.type === 'string' && Number.isFinite(e.ts));
+  out.history = out.history.filter((h) => Number.isFinite(h.day) && Number.isFinite(h.pL));
+  return out;
+}
+
+export function normalizeStates(raw, profileId) {
+  const skills = {};
+  const src = raw && raw.skills && typeof raw.skills === 'object' ? raw.skills : {};
+  for (const [id, st] of Object.entries(src)) if (typeof id === 'string') skills[id] = normalizeSkillState(st, id);
+  const lessons = raw && raw.lessons && typeof raw.lessons === 'object' && !Array.isArray(raw.lessons) ? raw.lessons : {};
+  return { profileId, skills, lessons };
 }

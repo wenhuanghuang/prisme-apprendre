@@ -13,7 +13,7 @@ Application de référence : https://pixel-code-mission-ia-2026.wenhuanghuang.ch
 | Volume affiché | 7 648 séances = 5 × 1 268 + 12 × 109 (générées au chargement) | **23** leçons rédigées, **341** exercices (dont 755 questions), chacun différent ; 155 parcours niveau × matière structurés à partir des programmes, dont 11 rédigés |
 | Contenu original | ≈ 1 texte original pour 11 séances ; 16,6 % de combinaisons distinctes ; « expert » : 9 exemples pour 1 704 séances | Chaque exercice est écrit pour une difficulté précise ; les exercices paramétrés changent de valeurs à chaque tirage (et sont vérifiés sur 7 tirages) |
 | Maths et physique réellement exercées | 0 calcul évalué dans les 7 648 séances (78 QCM justes dans 26 chapitres « historiques ») | Calculs vérifiés ligne par ligne, expressions (forme développée, factorisée…), grandeurs avec unités, mesures en laboratoire virtuel, contre-exemples, démonstrations |
-| Part de QCM | 75 % des tâches corrigées ; 79,4 % devinables par le titre ; doublons dans 30 % | **18** QCM sur 755 questions (≈ 18PCT %), réservés aux « vérifications rapides » |
+| Part de QCM | 75 % des tâches corrigées ; 79,4 % devinables par le titre ; doublons dans 30 % | **18** QCM sur 755 questions (≈ 2,4 %), réservés aux « vérifications rapides » |
 | Types de réponses | QCM + réordonnancement générique | 15 types : étapes de calcul et d'équations, expression, numérique avec unité, réponse courte, rédaction critériée, contre-exemple, réponses multiples, équation à inventer, tableau, frise, droite graduée, repère, programme (blocs puis texte), problèmes à plusieurs questions… |
 | Analyse de la démarche | aucune | étapes justes / première étape fausse ; type d'erreur ; idée fausse ; prérequis en cause |
 | Retour sur erreur | l'indice affiche la bonne réponse | indices progressifs (2-3), correction détaillée seulement à la demande ou après réussite, autres démarches valables, nouvelle version possible |
@@ -30,7 +30,7 @@ Application de référence : https://pixel-code-mission-ia-2026.wenhuanghuang.ch
 | IA et code | bons laboratoires (k plus proches voisins, prédiction du mot suivant, interpréteur pas à pas) — **point fort réel** | laboratoires équivalents (classifieur avec matrice d'erreurs et données biaisées, mini modèle de langage), programmation par blocs **puis** en texte, débogage, diagnostic par le dessin produit |
 | Accessibilité | ARIA abondant, synthèse vocale ; pas de gestion clavier spécifique | manipulations utilisables au clavier (droite graduée, repère, frise, blocs), lien d'évitement, focus visible ; **pas de synthèse vocale** (à faire) |
 | PWA | oui (icône SVG seule) | oui (icônes PNG, hors ligne complet, contenus compris) |
-| Tests | non observables | **44** tests (unitaires, scénarios d'élèves fictifs, bout en bout dans Edge) + rejeu des réponses types de chaque exercice |
+| Tests | non observables | **58** tests (52 unitaires et scénarios d'élèves fictifs, 6 de bout en bout dans Edge) + rejeu des réponses types de chaque exercice |
 
 ## Ce que Pixel & Code fait mieux aujourd'hui (honnêtement)
 

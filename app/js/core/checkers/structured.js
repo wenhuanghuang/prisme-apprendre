@@ -107,7 +107,7 @@ export function checkGraph(def, params, response) {
 
 /** QCM : vérification rapide uniquement. def.choices = [{text, correct, feedback, error, misconception}] */
 export function checkQcm(def, params, response) {
-  const sel = (response.selected || []).slice().sort();
+  const sel = (response.selected || []).slice().sort((a, b) => a - b);
   if (!sel.length) return diagnosis({ verdict: 'vide', feedback: 'Choisis une réponse.' });
   const isCorrect = (c) => (typeof c.correct === 'string' ? Boolean(evaluate(parse(c.correct, { names: new Set(Object.keys(params)) }), params)) : Boolean(c.correct));
   const correct = def.choices.map((c, i) => (isCorrect(c) ? i : -1)).filter((i) => i >= 0);

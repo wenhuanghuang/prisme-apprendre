@@ -3,6 +3,7 @@
  * conversion vers le Système international et comparaison de dimensions.
  * Dimensions : [longueur, masse, temps, intensité, température]
  */
+import { tryParse, evaluate, variables } from './expr.js';
 
 const DIM = {
   L: [1, 0, 0, 0, 0], M: [0, 1, 0, 0, 0], T: [0, 0, 1, 0, 0], I: [0, 0, 0, 1, 0], K: [0, 0, 0, 0, 1], N: [0, 0, 0, 0, 0],
@@ -23,7 +24,7 @@ const UNITS = {
   g: [0.001, DIM.M], kg: [1, DIM.M], mg: [1e-6, DIM.M], t: [1000, DIM.M], cg: [1e-5, DIM.M], dg: [1e-4, DIM.M],
   s: [1, DIM.T], ms: [0.001, DIM.T], 'µs': [1e-6, DIM.T], min: [60, DIM.T], h: [3600, DIM.T], j: [86400, DIM.T],
   A: [1, DIM.I], mA: [0.001, DIM.I],
-  K: [1, DIM.K], '°C': [1, DIM.K],
+  K: [1, DIM.K], '°C': [1, [0, 0, 0, 0, 2]], // dimension fictive : °C et K ne se convertissent pas par simple facteur
   L: [0.001, [3, 0, 0, 0, 0]], l: [0.001, [3, 0, 0, 0, 0]], dL: [1e-4, [3, 0, 0, 0, 0]], cL: [1e-5, [3, 0, 0, 0, 0]], mL: [1e-6, [3, 0, 0, 0, 0]],
   ml: [1e-6, [3, 0, 0, 0, 0]], cl: [1e-5, [3, 0, 0, 0, 0]], dl: [1e-4, [3, 0, 0, 0, 0]], hL: [0.1, [3, 0, 0, 0, 0]],
   N: [1, FORCE], kN: [1000, FORCE],
@@ -45,14 +46,23 @@ function normalizeUnit(u) {
     .replace(/ohms?/gi, 'Ω');
 }
 
+const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+
+/** Symbole d'unité connu ; tolère une majuscule initiale (« Km » pour « km »). */
+function lookupUnit(sym) {
+  if (has(UNITS, sym)) return UNITS[sym];
+  const lower = sym.charAt(0).toLowerCase() + sym.slice(1);
+  if (has(UNITS, lower)) return UNITS[lower];
+  return null;
+}
+
 function parseFactor(f) {
-  const m = f.match(/^(.+?)(?:\^?(-?\d))?$/);
+  // exposant explicite (^2, ^-1) ou chiffre final 2 ou 3 (« cm3 », « m2 ») — jamais 0
+  const m = f.match(/^(.+?)(?:\^(-?[1-3])|([23]))?$/);
   if (!m) return null;
-  let sym = m[1];
-  let exp = m[2] ? Number(m[2]) : 1;
-  // « cm3 » écrit sans ^ : le chiffre final est l'exposant
-  if (!UNITS[sym] && /\d$/.test(sym)) { exp = Number(sym.slice(-1)); sym = sym.slice(0, -1); }
-  const def = UNITS[sym];
+  const sym = m[1];
+  const exp = m[2] ? Number(m[2]) : m[3] ? Number(m[3]) : 1;
+  const def = lookupUnit(sym);
   if (!def) return null;
   return [def[0] ** exp, scale(def[1], exp)];
 }
@@ -87,16 +97,30 @@ export function sameDimension(a, b) {
  */
 export function parseQuantity(text) {
   const s = String(text).trim()
-    .replace(/[−]/g, '-')
-    .replace(/ | /g, ' ');
-  const m = s.match(/^([-+]?\s*\d[\d\s]*(?:[.,]\d+)?)(?:\s*(?:[×x*·]\s*10\s*\^?\s*([-+]?\d+)|[eE]([-+]?\d+)))?\s*(.*)$/);
-  if (!m) return null;
-  let value = Number(m[1].replace(/\s/g, '').replace(',', '.'));
-  const exp = m[2] ?? m[3];
-  if (exp !== undefined) value *= 10 ** Number(exp);
-  const unitText = m[4].trim();
-  const unit = parseUnit(unitText);
-  return { value, unitText, unit };
+    .replace(/\u2212/g, '-')
+    .replace(/[\u00a0\u202f]/g, ' ');
+  if (!s) return null;
+  // durées écrites à la française : « 2 h 00 », « 1h30 », « 1 h 30 min 15 s », « 7 min 30 s »
+  let d = s.match(/^(\d+)\s*h\s*(\d{1,2})\s*(?:min)?\s*(?:(\d{1,2})\s*s)?$/i);
+  if (d) return { value: Number(d[1]) + Number(d[2]) / 60 + (d[3] ? Number(d[3]) / 3600 : 0), unitText: 'h', unit: parseUnit('h') };
+  d = s.match(/^(\d+)\s*min\s*(\d{1,2})\s*s?$/i);
+  if (d) return { value: Number(d[1]) + Number(d[2]) / 60, unitText: 'min', unit: parseUnit('min') };
+  // sinon : la plus longue partie numérique (nombre, fraction, écriture scientifique), puis l'unité
+  for (let i = s.length; i > 0; i--) {
+    const numText = s.slice(0, i).trim();
+    const unitText = s.slice(i).trim();
+    if (!numText || !/^[-+(\d.,]/.test(numText)) continue;
+    if (unitText && /^[\d(]/.test(unitText)) continue;
+    const r = tryParse(numText.replace(/(\d)\s*[xX]\s*(?=10)/g, '$1\u00d7'));
+    if (!r.ok || variables(r.node).size) continue;
+    let value;
+    try { value = evaluate(r.node); } catch { continue; }
+    if (!Number.isFinite(value)) continue;
+    const unit = parseUnit(unitText);
+    if (unit) return { value, unitText, unit };
+    return { value, unitText, unit: null, unknownUnit: true };
+  }
+  return null;
 }
 
 /** Convertit une valeur d'une unité vers une autre (null si dimensions incompatibles). */

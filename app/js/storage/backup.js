@@ -4,6 +4,7 @@
  * jamais tous les profils d'un coup) ; un profil déjà présent peut être remplacé ou copié.
  */
 import { hashString } from '../core/template.js';
+import { normalizeStates } from '../engine/mastery.js';
 
 export const BACKUP_FORMAT = 'prisme-sauvegarde';
 export const BACKUP_VERSION = 1;
@@ -35,11 +36,15 @@ export function validateBackup(obj) {
     if (!prof || typeof prof.id !== 'string' || !PSEUDO_RE.test(String(prof.pseudo || ''))) { errors.push(`Profil n°${i + 1} invalide.`); continue; }
     if (p.states && typeof p.states !== 'object') { errors.push(`Profil ${prof.pseudo} : états invalides.`); continue; }
     if (p.attempts && !Array.isArray(p.attempts)) { errors.push(`Profil ${prof.pseudo} : historique invalide.`); continue; }
+    const LEVELS = ['CP', 'CE1', 'CE2', 'CM1', 'CM2', '6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'];
     profiles.push({
-      profile: { id: prof.id, pseudo: prof.pseudo, symbol: String(prof.symbol || '◆').slice(0, 2), color: /^#[0-9a-f]{6}$/i.test(prof.color || '') ? prof.color : '#3b4cca', level: String(prof.level || '5e'), createdAt: prof.createdAt || null, demo: Boolean(prof.demo) },
-      states: p.states || { profileId: prof.id, skills: {}, lessons: {} },
-      attempts: (p.attempts || []).filter((a) => a && typeof a === 'object' && typeof a.ts === 'number'),
-      submissions: (p.submissions || []).filter((s) => s && typeof s === 'object' && typeof s.id === 'string'),
+      profile: { id: String(prof.id).slice(0, 64), pseudo: prof.pseudo, symbol: String(prof.symbol || '◆').slice(0, 2), color: /^#[0-9a-f]{6}$/i.test(prof.color || '') ? prof.color : '#3b4cca', level: LEVELS.includes(prof.level) ? prof.level : '5e', createdAt: Number.isFinite(prof.createdAt) ? prof.createdAt : null, demo: Boolean(prof.demo) },
+      // chaque état est reconstruit champ par champ : un fichier abîmé ne peut pas casser l'application
+      states: normalizeStates(p.states, prof.id),
+      attempts: (p.attempts || []).filter((a) => a && typeof a === 'object' && Number.isFinite(a.ts) && typeof a.skill === 'string')
+        .map((a) => ({ ...a, credit: Number.isFinite(a.credit) ? a.credit : 0, score: Number.isFinite(a.score) ? a.score : 0 })),
+      submissions: (p.submissions || []).filter((s) => s && typeof s === 'object' && typeof s.id === 'string' && Array.isArray(s.versions) && s.versions.length && typeof s.skill === 'string')
+        .map((s) => ({ ...s, prompt: String(s.prompt || ''), status: ['en-attente', 'valide', 'a-retravailler'].includes(s.status) ? s.status : 'en-attente', comment: String(s.comment || '') })),
     });
   }
   return { ok: errors.length === 0, errors, profiles };
