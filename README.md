@@ -59,6 +59,16 @@ Les leçons sont des fichiers JSON (`app/content/lessons/`), sans code : voir [d
 | [docs/ETAT-DU-PROJET.md](docs/ETAT-DU-PROJET.md) | ce qui est terminé, ce qui reste à développer |
 | [research/](research/) | recherche documentaire sourcée (programmes, Lumni, analyse de l'application de référence) |
 
+## Installer sur un PC Windows (application locale)
+
+Prérequis : Node.js 20+ et Microsoft Edge (présent sur Windows). Depuis le dossier du projet, créer les raccourcis :
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools\windows\installer-raccourcis.ps1
+```
+
+Le raccourci « Prisme » (Bureau et menu Démarrer) démarre le serveur local sur le port 10090 s'il ne tourne pas, vérifie que c'est bien Prisme qui répond, puis ouvre l'application dans sa propre fenêtre Edge. Les données des élèves restent dans Edge, sur ce PC (adresse `http://localhost:10090`) : elles sont distinctes de celles de la version en ligne (utiliser Export / Restauration pour passer de l'une à l'autre).
+
 ## Publication
 
 `bash tools/deploy.sh` reconstruit, vérifie que tout est commité, puis publie le dossier `app/` sur la branche `gh-pages` (GitHub Pages).
