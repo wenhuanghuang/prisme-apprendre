@@ -14,7 +14,6 @@ function prismHero() {
     <path d="M200 20 L290 190 H110 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
     <path d="M200 20 L290 190 H110 Z" fill="currentColor" opacity=".04"/>
     ${[['#3b4cca', 70], ['#0f7b7d', 102], ['#7a4cc2', 134], ['#a16207', 166], ['#c2410c', 198]].map(([c, y]) => `<line x1="246" y1="118" x2="400" y2="${y}" stroke="${c}" stroke-width="5" stroke-linecap="round"/>`).join('')}
-    <text x="404" y="74" font-size="11" text-anchor="end" fill="#3b4cca">maths</text>
   </svg>`;
   return wrap;
 }

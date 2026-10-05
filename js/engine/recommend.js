@@ -209,7 +209,15 @@ export function recommend(index, states, ctx) {
   const sorted = [...best.values()].sort((a, b) => b.priority - a.priority);
   // au plus 3 « nouvelles notions » à la fois, pour laisser la place aux remédiations et aux défis
   const others = sorted.filter((r) => r.kind !== 'suite');
-  const suite = sorted.filter((r) => r.kind === 'suite').slice(0, 3);
+  // nouvelles notions : une par matière au plus (mathématiques et sciences d'abord), trois en tout
+  const SUBJECT_ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg'];
+  const subjectOf = (id) => { const sk = index.skills.get(id) || {}; return sk.subject === 'transversal' ? id.split('.')[0] : sk.subject; };
+  const rank = (r) => { const i = SUBJECT_ORDER.indexOf(subjectOf(r.skill)); return i === -1 ? 9 : i; };
+  const seenSubjects = new Set();
+  const suite = sorted.filter((r) => r.kind === 'suite')
+    .sort((x, y) => y.priority - x.priority || rank(x) - rank(y))
+    .filter((r) => { const sub = subjectOf(r.skill); if (seenSubjects.has(sub)) return false; seenSubjects.add(sub); return true; })
+    .slice(0, 3);
   let result = [...others, ...suite].sort((a, b) => b.priority - a.priority).slice(0, limit);
   const bestDefi = others.find((r) => r.kind === 'defi');
   if (bestDefi && !result.includes(bestDefi)) result = [...result.slice(0, limit - 1), bestDefi];

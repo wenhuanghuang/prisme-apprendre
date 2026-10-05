@@ -623,7 +623,7 @@ export function toText(node) {
       const left = wrap(node.a, 6);
       const right = wrap(node.b, 6, true);
       const implicitOk = node.b.t === 'var' || (node.b.t === '^' && node.b.a.t === 'var') || (/^\(/.test(right) && node.b.t !== 'neg');
-      return implicitOk && node.a.t !== 'var' ? `${left}${right}` : `${left} × ${right}`;
+      return implicitOk ? `${left}${right}` : `${left} × ${right}`;
     }
     case '/': return `${wrap(node.a, 6)}/${wrap(node.b, 6, true)}`;
     case '^': {
@@ -663,7 +663,7 @@ export function toHTML(node) {
     case '*': {
       const right = wrap(node.b, 6, true);
       const implicitOk = node.b.t === 'var' || (node.b.t === '^' && node.b.a.t === 'var') || (right.startsWith('<span class="m-par">') && node.b.t !== 'neg');
-      return implicitOk && node.a.t !== 'var' ? `${wrap(node.a, 6)}${right}` : `${wrap(node.a, 6)} × ${right}`;
+      return implicitOk ? `${wrap(node.a, 6)}${right}` : `${wrap(node.a, 6)} × ${right}`;
     }
     case '/': return `<span class="m-frac"><span class="m-numer">${toHTML(node.a)}</span><span class="m-denom">${toHTML(node.b)}</span></span>`;
     case '^': return `${wrap(node.a, 9)}<sup>${toHTML(node.b)}</sup>`;
