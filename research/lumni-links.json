@@ -1,0 +1,769 @@
+{
+  "generatedAt": "2026-10-05",
+  "searchUrlPattern": "https://www.lumni.fr/recherche?query={terme}",
+  "searchUrlNotes": "Format relevé dans le JSON-LD SearchAction de la page d'accueil Lumni (urlTemplate https://www.lumni.fr/recherche?query={search_term_string}). Testé : https://www.lumni.fr/recherche?query=loi%20d%27ohm%20%C3%A9lectricit%C3%A9 répond HTTP 200 et pré-remplit le champ de recherche (value=\"loi d'ohm électricité\"). Le paramètre ?q= répond aussi 200 mais ne pré-remplit PAS le champ (inutilisable). Les résultats sont chargés ensuite côté navigateur par JavaScript (le HTML initial ne contient aucune carte de résultat) : l'URL sert à ouvrir la recherche dans un navigateur, pas à récupérer des résultats par simple requête HTTP. Le site appelle en interne GET https://www.lumni.fr/ajax/search-beta-v2/results?query=...&levels=quatrieme&thematics=physique-chimie&page=1&order_by=relevance&collections= (endpoint non documenté, observé dans le code JS et testé le 2026-10-05 : ne pas en dépendre en production). Filtres observés : levels = sixieme|cinquieme|quatrieme|troisieme ; thematics = physique-chimie, technologie, education-aux-medias-et-a-l-information, etc. (pas de filtre « mathematiques » : utiliser les pages /college/{niveau}/mathematiques).",
+  "browsePatterns": {
+    "matiere": "https://www.lumni.fr/college/{sixieme|cinquieme|quatrieme|troisieme}/{mathematiques|physique-chimie|technologie|education-aux-medias-et-a-l-information}",
+    "tousLesQuiz": "https://www.lumni.fr/college/{niveau}/tous-les-quiz",
+    "note": "Pages de matière et de thème rendues côté serveur (liens vidéo/quiz/fiche présents dans le HTML). Pas de page physique-chimie en 6e (404)."
+  },
+  "verification": {
+    "verifiedAt": "2026-10-05",
+    "method": "WebFetch refuse le domaine lumni.fr (« unable to fetch »). Chaque page a donc été vérifiée par GET HTTP direct (curl/urllib) : statut 200, URL finale identique, titre exact = <h1> = og:title, type et niveaux lus dans le JSON-LD (VideoObject.educationalAlignment) ou, pour les quiz et fiches, dans les pages de thème où ils sont listés. Un chemin inventé renvoie bien 404 (test témoin), donc 200 = la page existe. Les espaces insécables placées avant « ? » ou « : » dans les titres de la page ont été remplacées par des espaces simples ; les apostrophes typographiques (’) sont conservées.",
+    "counts": {
+      "notionsDemandees": 20,
+      "notionsAvecLienVerifie": 20,
+      "notionsSansLien": 0,
+      "liensAlternatifsVerifies": 40
+    }
+  },
+  "caveats": [
+    "Les « cours Lumni - Collège » (profs Cyril et Nicolas, Pascale et Guillaume, Jérémy et Marion) datent de la période 2020 et suivent l'ancien programme de cycle 4 : à utiliser avec prudence pour la 5e 2026-2027 (nouveau programme).",
+    "Lumni modifie ses contenus : un lien vérifié le 2026-10-05 peut disparaître. Re-vérifier avant publication.",
+    "Les niveaux affichés sont ceux déclarés par Lumni, pas ceux du programme officiel."
+  ],
+  "links": [
+    {
+      "notion": "nombres relatifs (addition)",
+      "title": "Comment additionner des nombres relatifs ?",
+      "url": "https://www.lumni.fr/video/comment-additionner-des-nombres-relatifs",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "6e",
+        "5e",
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 198,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Vidéo courte (3 min) ; niveaux Lumni 6e à 3e. Le cours de 29 min « Les nombres relatifs » est un cours de 5e.",
+      "alternates": [
+        {
+          "title": "Les nombres relatifs",
+          "url": "https://www.lumni.fr/video/les-nombres-relatifs-revisions-exercices-en-situation-et-petits-problemes-de-calcul-24-mars",
+          "type": "video",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Les nombres relatifs",
+          "url": "https://www.lumni.fr/quiz/les-nombres-relatifs",
+          "type": "quiz",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "fractions (addition)",
+      "title": "Comment additionner les fractions ?",
+      "url": "https://www.lumni.fr/video/comment-additionner-les-fractions",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "6e",
+        "5e",
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 188,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Vidéo courte (3 min). Le cours « Opérations avec les fractions » (4e/3e) couvre aussi multiplication et division.",
+      "alternates": [
+        {
+          "title": "Opérations avec les fractions",
+          "url": "https://www.lumni.fr/video/operations-sur-les-fractions",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Les fractions : comparaison et opérations",
+          "url": "https://www.lumni.fr/quiz/les-fractions",
+          "type": "quiz",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "calcul littéral / distributivité",
+      "title": "Calcul littéral : la distributivité simple",
+      "url": "https://www.lumni.fr/video/calcul-litteral-la-distributivite-simple",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1827,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 30 min (niveaux Lumni 4e/3e). Pour un élève de 5e, privilégier « Le calcul littéral » (cours 5e/4e) en alternative.",
+      "alternates": [
+        {
+          "title": "Le calcul littéral",
+          "url": "https://www.lumni.fr/video/le-calcul-litteral-4-mai",
+          "type": "video",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Calcul littéral : développement et factorisation",
+          "url": "https://www.lumni.fr/quiz/calcul-litteral-developpement-et-factorisation",
+          "type": "quiz",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "équations du premier degré",
+      "title": "Résolutions d'équations",
+      "url": "https://www.lumni.fr/quiz/les-equations",
+      "verified": true,
+      "type": "quiz",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": null,
+      "lumniSubject": null,
+      "notes": "Quiz dont la description cible « une équation du premier degré à une inconnue » (4e/3e). Pour une explication, voir la vidéo « Comment résoudre une équation ? (1/2) ».",
+      "alternates": [
+        {
+          "title": "Comment résoudre une équation ? (1/2)",
+          "url": "https://www.lumni.fr/video/comment-resoudre-une-equation-12",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Comment résoudre une équation ? (2/2)",
+          "url": "https://www.lumni.fr/video/comment-resoudre-une-equation-22",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Équations du premier degré - exercice",
+          "url": "https://www.lumni.fr/quiz/equations-du-premier-degre",
+          "type": "quiz",
+          "levels": [
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Calcul littéral : les équations",
+          "url": "https://www.lumni.fr/video/calcul-litteral-les-equations",
+          "type": "video",
+          "levels": [
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "théorème de Pythagore",
+      "title": "Le théorème de Pythagore",
+      "url": "https://www.lumni.fr/video/le-theoreme-de-pythagore",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1901,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 31 min (4e/3e).",
+      "alternates": [
+        {
+          "title": "Le théorème de Pythagore",
+          "url": "https://www.lumni.fr/quiz/le-theoreme-de-pythagore",
+          "type": "quiz",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Théorème de Pythagore - fiche de révision",
+          "url": "https://www.lumni.fr/article/theoreme-de-pythagore-fiche-de-revisions",
+          "type": "fiche",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "C’est quoi la réciproque du théorème de Pythagore ?",
+          "url": "https://www.lumni.fr/video/c-est-quoi-la-reciproque-de-pythagore",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "proportionnalité",
+      "title": "La proportionnalité",
+      "url": "https://www.lumni.fr/video/proportionnalites-suite-31-mars",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "5e",
+        "4e"
+      ],
+      "durationSeconds": 1850,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 31 min destiné aux 5e (niveaux Lumni 5e/4e). L'URL contient « suite-31-mars » mais le titre de la page est bien « La proportionnalité ».",
+      "alternates": [
+        {
+          "title": "La proportionnalité",
+          "url": "https://www.lumni.fr/quiz/la-proportionnalite",
+          "type": "quiz",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Quand utiliser la proportionnalité ? (1/2)",
+          "url": "https://www.lumni.fr/video/quand-utiliser-la-proportionnalite-12",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "puissances",
+      "title": "Puissances et notation scientifique",
+      "url": "https://www.lumni.fr/video/puissances-de-10-et-notation-scientifique",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1834,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 31 min (4e/3e) : puissances et notation scientifique.",
+      "alternates": [
+        {
+          "title": "Puissances - fiche de révision",
+          "url": "https://www.lumni.fr/article/puissances-fiche-de-revisions",
+          "type": "fiche",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "A quoi servent les puissances ?",
+          "url": "https://www.lumni.fr/video/a-quoi-servent-les-puissances-1",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Calculs avec des puissances - exercice",
+          "url": "https://www.lumni.fr/quiz/calculs-avec-des-puissances",
+          "type": "quiz",
+          "levels": [
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "probabilités",
+      "title": "Introduction aux probabilités",
+      "url": "https://www.lumni.fr/video/introduction-aux-probabilites",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1826,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 30 min (4e/3e).",
+      "alternates": [
+        {
+          "title": "Les probabilités",
+          "url": "https://www.lumni.fr/quiz/les-probabilites",
+          "type": "quiz",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Comment déterminer une probabilité ?",
+          "url": "https://www.lumni.fr/video/comment-determiner-une-probabilite",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "statistiques (moyenne/médiane)",
+      "title": "Statistiques : moyenne et médiane",
+      "url": "https://www.lumni.fr/video/statistiques-moyenne-et-mediane",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1628,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 27 min (4e/3e) : moyenne, médiane, étendue.",
+      "alternates": [
+        {
+          "title": "Les statistiques",
+          "url": "https://www.lumni.fr/quiz/les-statistiques",
+          "type": "quiz",
+          "levels": [
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "C’est quoi une moyenne ?",
+          "url": "https://www.lumni.fr/video/c-est-quoi-une-moyenne",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "Scratch / algorithmique",
+      "title": "Algorithmique et programmation en Scratch : variables, boucles, tests",
+      "url": "https://www.lumni.fr/video/algorithmique-et-programmation-en-scratch-variables-boucles-tests",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1876,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Cours de 31 min (4e/3e). Pour la 5e, voir « Algorithmique sur Scratch : constructions géométriques » (5e/4e).",
+      "alternates": [
+        {
+          "title": "Algorithmique sur Scratch : constructions géométriques",
+          "url": "https://www.lumni.fr/video/algorithmique-sur-scratch-constructions-geometriques-25-mai",
+          "type": "video",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Découverte de Scratch (1/8)",
+          "url": "https://www.lumni.fr/video/decouverte-de-la-plateforme-de-programmation-coder-un-jeu-sur-scratch-1-8",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "masse volumique",
+      "title": "Autour de la masse volumique",
+      "url": "https://www.lumni.fr/video/autour-de-la-masse-volumique",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1876,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Cours de physique-chimie de 31 min (4e/3e).",
+      "alternates": []
+    },
+    {
+      "notion": "changements d'état",
+      "title": "Les états physiques, du macroscopique au microscopique",
+      "url": "https://www.lumni.fr/video/les-etats-physiques-du-macroscopique-au-microscopique-30-avril",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "6e",
+        "5e"
+      ],
+      "durationSeconds": 1826,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Cours de 30 min (6e/5e) : fusion, vaporisation, liquéfaction, solidification, conservation de la masse. « Les états de la matière » (3 min) signale lui-même une erreur dans la vidéo : non retenu comme lien principal.",
+      "alternates": [
+        {
+          "title": "Les molécules d'eau dans ses différents états",
+          "url": "https://www.lumni.fr/video/les-molecules-dans-l-eau-sous-ses-differents-etats",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Les états de la matière",
+          "url": "https://www.lumni.fr/video/les-etats-de-la-matiere",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "vitesse",
+      "title": "Comment calculer une vitesse ?",
+      "url": "https://www.lumni.fr/video/comment-calculer-une-vitesse",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "6e",
+        "5e",
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 176,
+      "lumniSubject": "Collège - Maths",
+      "notes": "Vidéo de maths de 3 min (série « Logique : les maths au quotidien ») ; aucune vidéo de physique-chimie dédiée à la seule relation v = d/t trouvée pour le collège.",
+      "alternates": [
+        {
+          "title": "Lumière : vitesse et distances",
+          "url": "https://www.lumni.fr/quiz/lumiere-vitesse-et-distances",
+          "type": "quiz",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Mouvement et interactions",
+          "url": "https://www.lumni.fr/video/mouvement-et-interactions",
+          "type": "video",
+          "levels": [
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "poids et masse",
+      "title": "Poids et masse",
+      "url": "https://www.lumni.fr/video/poids-et-masse",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "3e"
+      ],
+      "durationSeconds": 183,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Vidéo de 3 min (niveau Lumni : 3e uniquement), série « Les bons profs : physique-chimie Collège ».",
+      "alternates": [
+        {
+          "title": "La pesanteur sur la Lune",
+          "url": "https://www.lumni.fr/video/la-pesanteur-sur-la-lune",
+          "type": "video",
+          "levels": [
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "loi d'Ohm",
+      "title": "Electricité : la loi d'Ohm",
+      "url": "https://www.lumni.fr/video/la-loi-dohm",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 1839,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Cours de 31 min (4e/3e). Ne pas confondre avec /video/la-loi-d-ohm (niveau lycée).",
+      "alternates": [
+        {
+          "title": "Electricité : dérivation et puissance",
+          "url": "https://www.lumni.fr/video/les-lois-de-lelectricite-2-2",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "circuit électrique en série/dérivation",
+      "title": "Les lois de l’électricité",
+      "url": "https://www.lumni.fr/video/les-lois-de-lelectricite-14-mai",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "5e",
+        "4e"
+      ],
+      "durationSeconds": 1857,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Cours de 31 min (5e/4e) : dipôles, circuit en série, mesures de tension et d'intensité.",
+      "alternates": [
+        {
+          "title": "Electricité : dérivation et puissance",
+          "url": "https://www.lumni.fr/video/les-lois-de-lelectricite-2-2",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "propagation du son",
+      "title": "La propagation du son",
+      "url": "https://www.lumni.fr/quiz/la-propagation-du-son",
+      "verified": true,
+      "type": "quiz",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": null,
+      "lumniSubject": null,
+      "notes": "Quiz de 9 questions (4e/3e).",
+      "alternates": [
+        {
+          "title": "Les signaux sonores et lumineux",
+          "url": "https://www.lumni.fr/video/les-signaux-sonores-et-lumineux",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Le son",
+          "url": "https://www.lumni.fr/quiz/le-son",
+          "type": "quiz",
+          "levels": [
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "propagation de la lumière",
+      "title": "Lumière : sources et propagation",
+      "url": "https://www.lumni.fr/quiz/lumiere-sources-et-propagation",
+      "verified": true,
+      "type": "quiz",
+      "levels": [
+        "5e",
+        "4e"
+      ],
+      "durationSeconds": null,
+      "lumniSubject": null,
+      "notes": "Quiz de 8 questions (5e/4e).",
+      "alternates": [
+        {
+          "title": "Lumière : vitesse et distances",
+          "url": "https://www.lumni.fr/quiz/lumiere-vitesse-et-distances",
+          "type": "quiz",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Les signaux sonores et lumineux",
+          "url": "https://www.lumni.fr/video/les-signaux-sonores-et-lumineux",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Qu’est-ce que la lumière ?",
+          "url": "https://www.lumni.fr/video/qu-est-ce-que-la-lumiere",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "intelligence artificielle (comprendre l'IA)",
+      "title": "L'IA est-elle vraiment intelligente ?",
+      "url": "https://www.lumni.fr/video/l-ia-est-elle-vraiment-intelligente",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 215,
+      "lumniSubject": "Collège - Techno",
+      "notes": "Vidéo de 3 min de la série « Ma vie avec l'IA » (4e/3e) : cohérente avec le parcours Pix IA de 4e.",
+      "alternates": [
+        {
+          "title": "Que se passe-t-il quand on écrit un prompt ?",
+          "url": "https://www.lumni.fr/video/que-se-passe-t-il-quand-on-ecrit-un-prompt",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Peut-on faire confiance à l'IA ?",
+          "url": "https://www.lumni.fr/video/peut-on-faire-confiance-a-l-ia",
+          "type": "video",
+          "levels": [
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        },
+        {
+          "title": "Comprendre l'intelligence artificielle avec @ia.amelie",
+          "url": "https://www.lumni.fr/video/comprendre-l-intelligence-artificielle-avec-iaamelie",
+          "type": "video",
+          "levels": [
+            "5e",
+            "4e",
+            "3e"
+          ],
+          "verified": true
+        }
+      ]
+    },
+    {
+      "notion": "atomes et molécules",
+      "title": "Molécules, atomes et ions",
+      "url": "https://www.lumni.fr/video/molecules-atomes-et-ions",
+      "verified": true,
+      "type": "video",
+      "levels": [
+        "4e",
+        "3e"
+      ],
+      "durationSeconds": 221,
+      "lumniSubject": "Collège - Physique-chimie",
+      "notes": "Vidéo de 4 min (4e/3e) : atomes, molécules, ions.",
+      "alternates": [
+        {
+          "title": "Les molécules d'eau dans ses différents états",
+          "url": "https://www.lumni.fr/video/les-molecules-dans-l-eau-sous-ses-differents-etats",
+          "type": "video",
+          "levels": [
+            "6e",
+            "5e",
+            "4e"
+          ],
+          "verified": true
+        }
+      ]
+    }
+  ]
+}

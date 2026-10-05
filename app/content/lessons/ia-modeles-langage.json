@@ -1,0 +1,973 @@
+{
+  "id": "ia-modeles-langage",
+  "title": "Les modèles de langage : prédire le mot suivant, et s'en servir avec discernement",
+  "subject": "numerique",
+  "level": "4e",
+  "skills": ["ia.generative", "ia.usage"],
+  "status": "programme",
+  "programmes": ["ia-numerique-cadre-2026"],
+  "duration": 60,
+  "summary": "Construire un modèle de langage miniature qui prédit le mot suivant à partir de statistiques, comprendre pourquoi il peut inventer avec assurance, et adopter les bons réflexes : vérifier, citer, protéger ses données, utiliser l'IA pour comprendre et non pour faire à sa place.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Devine le mot suivant",
+      "body": "Complète : « Il pleut, je prends mon … ». Tu as sûrement pensé « parapluie ». Tu n'as pas consulté la météo : tu as utilisé ton expérience de la langue, ce qui vient **le plus souvent** après ces mots.\n\nLes assistants conversationnels (les « chatbots ») reposent sur ce principe : ce sont des **modèles de langage**, qui prédisent mot après mot une suite **probable**.\n\nLe laboratoire contient un modèle miniature qui n'a lu que cinq phrases. Choisis un mot de départ et regarde-le écrire. Lance-le plusieurs fois : écrit-il toujours la même chose ?",
+      "activity": {
+        "widget": "bigram-lab",
+        "config": {
+          "corpus": "le chat mange la souris.\nle chat mange le fromage.\nle chien mange la soupe.\nle chat dort sur le lit.\nla souris regarde le chat.",
+          "start": "le"
+        }
+      }
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "**Un modèle de langage prédit le mot suivant.** Il a « lu » une énorme quantité de textes, son **corpus**, et en a tiré des statistiques : quels mots suivent souvent quels mots. Pour écrire, il répète une boucle : regarder le texte déjà écrit, calculer la probabilité de chaque mot suivant possible, en choisir un, l'ajouter, recommencer.\n\n**Le modèle miniature du laboratoire** ne regarde que le dernier mot écrit. Il lit son texte d'un seul tenant, en minuscules, et compte la **ponctuation comme un mot** : le point « . » suit le dernier mot de chaque phrase, et il est lui-même suivi du premier mot de la phrase suivante. C'est ainsi que le modèle apprend aussi… où s'arrêter. Si, dans un corpus, le mot « il » est suivi 10 fois d'un mot, dont 6 fois de « pleut », alors :\n\n> Probabilité que « pleut » suive « il » = 6 ÷ 10 = 0,6.\n> On divise par le nombre de fois où « il » est suivi d'un mot, et non par le nombre total de mots du texte.\n\nLes vrais modèles tiennent compte de beaucoup plus de contexte et ont été entraînés sur des milliards de phrases, mais le principe reste le même : produire une suite **probable**.\n\n**Pourquoi un modèle peut inventer.** Probable ne veut pas dire vrai. Un modèle de langage ne consulte pas une liste de faits vérifiés : il enchaîne des mots plausibles. S'il manque d'informations, ou si ses textes contiennent des erreurs, il peut produire une phrase fausse… avec le même ton assuré qu'une phrase vraie. On appelle cela une **hallucination**. Il peut aussi inventer des références : un livre, un article ou une adresse de site qui n'existent pas. Certains assistants savent chercher sur Internet et citer des pages ; il faut quand même vérifier que ces pages existent et disent bien ce qui est affirmé.\n\n**Utiliser une IA de façon responsable.**\n- **Vérifier** : une information importante se vérifie dans des sources fiables (manuel, encyclopédie, site officiel), si possible plusieurs.\n- **Citer** : si une IA t'a aidé, dis-le ; et cite les vraies sources que tu as vérifiées.\n- **Protéger ses données** : ne donne ni ton nom complet, ni ton adresse, ni le nom de ton collège, ni de photo ou d'information sur d'autres personnes. Ce que tu écris peut être conservé et réutilisé.\n- **Respecter le droit d'auteur** : reprendre un texte, une image ou une musique protégés sans autorisation n'est pas permis, même par l'intermédiaire d'une IA. Et présenter comme le tien un texte écrit par une IA, c'est tromper ton lecteur.\n- **Les devoirs** : une IA peut t'aider à **comprendre** (expliquer autrement, proposer un exemple, te poser des questions, relire ton raisonnement). Si elle fait le travail à ta place, tu n'apprends rien, et ton professeur ne peut plus voir où tu as besoin d'aide. En classe, on l'utilise dans le cadre fixé par le professeur."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Modifie le corpus, change le modèle",
+      "body": "Ajoute des phrases au corpus, puis clique sur « Entraîner le modèle » et observe comment les probabilités changent. Que se passe-t-il si tu ajoutes trois fois « le chien dort. » ? Compare les deux façons de choisir : « Toujours le plus probable » et « Tirer au hasard selon les probabilités ». Essaie enfin de faire écrire au modèle une phrase fausse, simplement en choisissant ce qu'il lit.",
+      "activity": {
+        "widget": "bigram-lab",
+        "config": {
+          "corpus": "le chat mange la souris.\nle chat mange le fromage.\nle chien mange la soupe.\nle chat dort sur le lit.\nla souris regarde le chat.",
+          "start": "la"
+        }
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : les mots qui suivent « la »",
+      "steps": [
+        {
+          "text": "Corpus de 5 phrases : « le chat mange la souris. le chat mange le fromage. le chien mange la soupe. le chat dort sur le lit. la souris regarde le chat. » Le point compte comme un mot.",
+          "math": ""
+        },
+        {
+          "text": "On repère chaque « la » suivi d'un mot : phrase 1 (« la souris »), phrase 3 (« la soupe »), phrase 5 (« la souris »).",
+          "math": "3 fois"
+        },
+        {"text": "Ce qui suit « la » : souris 2 fois, soupe 1 fois.", "math": "2 + 1 = 3"},
+        {"text": "Probabilités :", "math": "P(souris) = 2/3 ≈ 0,67 ; P(soupe) = 1/3 ≈ 0,33"},
+        {"text": "Vérification : la somme des probabilités des mots possibles vaut 1.", "math": "2/3 + 1/3 = 1"},
+        {
+          "text": "Autre exemple : « chat » est suivi 4 fois : mange, mange, dort… et le point final de la dernière phrase. Donc P(mange après chat) = 2/4 : le point est un « mot suivant » comme les autres.",
+          "math": "2/4 = 0,5"
+        },
+        {
+          "text": "Pour écrire, le modèle choisit un mot (souvent le plus probable), l'ajoute au texte, puis recommence à partir de ce nouveau dernier mot. Aucune étape ne vérifie si la phrase obtenue est vraie.",
+          "math": ""
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Compte à la main avant d'utiliser le laboratoire : c'est en comptant que l'on comprend d'où viennent les probabilités.",
+      "exercises": ["ia-modeles-langage-suivant", "ia-modeles-langage-proba", "ia-modeles-langage-ordre", "ia-modeles-langage-verif"]
+    },
+    {"kind": "libre", "title": "Avec tes mots : vérifier une affirmation", "exercises": ["ia-modeles-langage-hallucination"]},
+    {"kind": "reinvestissement", "title": "Bien demander de l'aide à une IA", "exercises": ["ia-modeles-langage-devoirs"]},
+    {
+      "kind": "mission",
+      "title": "Mission : construis et analyse ton propre mini-modèle",
+      "body": "Un nouveau corpus de quatre phrases : à toi de calculer ce que le modèle va écrire, puis de découvrir qu'il peut produire une phrase qu'il n'a jamais lue.",
+      "exercises": ["ia-modeles-langage-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Diviser par le nombre total de mots.** La probabilité qu'un mot B suive un mot A se calcule parmi les fois où A est suivi d'un mot, pas parmi tous les mots du texte.\n- **Croire que tous les mots suivants sont aussi probables.** Deux mots possibles ne font pas « une chance sur deux » : il faut compter combien de fois chacun apparaît.\n- **Confondre « le plus probable » et « le vrai ».** Le modèle reproduit les fréquences de ses textes, erreurs comprises.\n- **Se fier au ton assuré.** Une hallucination est écrite avec la même assurance qu'un fait exact.\n- **Diaboliser ou idéaliser.** Ces outils donnent souvent des réponses justes et peuvent beaucoup aider à comprendre ; on ne sait simplement pas, sans vérifier, lesquelles sont fausses.\n- **Donner ses données personnelles, recopier une réponse.** On protège sa vie privée, on rédige avec ses mots, on vérifie et on cite."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera un petit corpus à analyser et une affirmation à vérifier dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Probabilité d'une phrase entière, et effet d'une modification du corpus sur ce que le modèle écrit.",
+      "exercises": ["ia-modeles-langage-phrase", "ia-modeles-langage-frequence"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà du programme : pourquoi « plus probable » ne veut pas dire « vrai », ce que change la taille du corpus, et ce que règle la « température » d'un modèle.",
+      "exercises": ["ia-modeles-langage-sydney", "ia-modeles-langage-corpus", "ia-modeles-langage-temperature"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "ia-modeles-langage-suivant",
+      "type": "text",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:frequence-globale"],
+      "expectedSeconds": 120,
+      "prompt": "Voici le corpus du modèle miniature (le point compte comme un mot) :\n- le chat mange la souris.\n- le chat mange le fromage.\n- le chien mange la soupe.\n- le chat dort sur le lit.\n- la souris regarde le chat.\n\nQuel mot le modèle a-t-il le plus de chances d'écrire juste après « le » ?",
+      "inputLabel": "Mot le plus probable",
+      "accept": ["chat"],
+      "misconceptions": [
+        {
+          "answer": "le",
+          "id": "mc:frequence-globale",
+          "error": "lecture",
+          "feedback": "« le » est le mot le plus fréquent du corpus, mais la question porte sur le mot qui **suit** « le ». Repère chaque « le » et regarde le mot juste après."
+        },
+        {
+          "answer": "mange",
+          "id": "mc:frequence-globale",
+          "error": "lecture",
+          "feedback": "« mange » ne vient jamais juste après « le ». Repère chaque « le » et note le mot qui le suit immédiatement."
+        }
+      ],
+      "hints": [
+        "Repère chaque « le » du corpus (il y en a 7) et souligne le mot qui vient juste après.",
+        "Après « le », on trouve : chat, chat, fromage, chien, chat, lit, chat.",
+        "Quel mot revient le plus souvent dans cette liste ?"
+      ],
+      "solution": "Après « le » : chat (4 fois), fromage, chien et lit (1 fois chacun). Le mot le plus probable est « chat », avec 4 chances sur 7.",
+      "methods": ["Souligner chaque « le » et lister les mots qui suivent.", "Faire un tableau : mot suivant, nombre de fois."],
+      "selfTest": [{"response": {"value": "chat"}, "expect": "correct"}, {"response": {"value": "le"}, "expect": "mc:frequence-globale"}]
+    },
+    {
+      "id": "ia-modeles-langage-proba",
+      "type": "numeric",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:proba-sur-total", "mc:equiprobable", "mc:effectif"],
+      "expectedSeconds": 180,
+      "prompt": "Même corpus :\n- le chat mange la souris.\n- le chat mange le fromage.\n- le chien mange la soupe.\n- le chat dort sur le lit.\n- la souris regarde le chat.\n\nQuelle est la probabilité que le modèle écrive « la » juste après « mange » ? Donne une fraction, ou un nombre décimal arrondi au centième.",
+      "answer": "2/3",
+      "tolerance": 0.007,
+      "misconceptions": [
+        {
+          "answer": "3/26",
+          "id": "mc:proba-sur-total",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre total de mots du corpus. Il faut diviser par le nombre de fois où « mange » est suivi d'un mot : 3."
+        },
+        {
+          "answer": "3/31",
+          "id": "mc:proba-sur-total",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre total de mots du corpus (points compris). Il faut diviser par le nombre de fois où « mange » est suivi d'un mot : 3."
+        },
+        {
+          "answer": "1/2",
+          "id": "mc:equiprobable",
+          "error": "notion",
+          "feedback": "Deux mots différents suivent « mange » (« la » et « le »), mais ils ne sont pas aussi fréquents : « la » apparaît 2 fois sur 3."
+        },
+        {
+          "answer": 2,
+          "id": "mc:effectif",
+          "error": "notion",
+          "feedback": "2 est le nombre de fois où « la » suit « mange ». Une probabilité se calcule en divisant par le nombre total de cas (3) : elle est toujours comprise entre 0 et 1."
+        }
+      ],
+      "hints": [
+        "Repère chaque « mange » et le mot qui le suit.",
+        "« mange » apparaît 3 fois : suivi de « la », de « le », puis de « la ».",
+        "Probabilité = nombre de fois « mange la » ÷ nombre de fois où « mange » est suivi d'un mot."
+      ],
+      "solution": "« mange » est suivi 3 fois d'un mot : la, le, la. « la » apparaît 2 fois sur 3 : P = 2/3 ≈ 0,67.",
+      "methods": [
+        "Compter les paires « mange + mot suivant ».",
+        "Faire le tableau des mots qui suivent « mange » avec leurs effectifs, puis diviser chaque effectif par le total : la 2/3, le 1/3."
+      ],
+      "selfTest": [
+        {"response": {"value": "2/3"}, "expect": "correct"},
+        {"response": {"value": "0,67"}, "expect": "correct"},
+        {"response": {"value": "3/26"}, "expect": "mc:proba-sur-total"},
+        {"response": {"value": "0,12"}, "expect": "mc:proba-sur-total"},
+        {"response": {"value": "1/2"}, "expect": "mc:equiprobable"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-ordre",
+      "type": "order",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:modele-sait-le-vrai"],
+      "expectedSeconds": 120,
+      "prompt": "Range dans l'ordre les étapes qu'un modèle de langage répète pour écrire un texte.",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        {"id": "g1", "label": "Lire le texte déjà écrit (le début de la phrase)"},
+        {"id": "g2", "label": "Calculer, pour chaque mot possible, la probabilité qu'il vienne ensuite"},
+        {"id": "g3", "label": "Choisir un mot : le plus probable, ou un mot tiré au sort selon les probabilités"},
+        {"id": "g4", "label": "Ajouter ce mot à la fin du texte"},
+        {"id": "g5", "label": "Recommencer avec le texte allongé, jusqu'à la fin de la réponse"}
+      ],
+      "hints": [
+        "Le modèle ne peut calculer des probabilités qu'à partir d'un début de texte.",
+        "Il choisit un seul mot à la fois.",
+        "C'est une boucle : la dernière étape ramène à la première."
+      ],
+      "solution": "Lire le texte déjà écrit → calculer les probabilités des mots suivants → choisir un mot → l'ajouter → recommencer. Remarque importante : aucune de ces étapes ne vérifie que ce qui est écrit est vrai.",
+      "selfTest": [
+        {"response": {"order": ["g1", "g2", "g3", "g4", "g5"]}, "expect": "correct"},
+        {"response": {"order": ["g1", "g3", "g2", "g4", "g5"]}, "expect": "partiel"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-verif",
+      "type": "qcm",
+      "skill": "ia.generative",
+      "skills": ["ia.usage"],
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:assurance-donc-vrai", "mc:modele-sait-le-vrai"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide : un assistant conversationnel affirme une information avec beaucoup d'assurance, sans citer de source. Que peut-on en conclure ?",
+      "choices": [
+        {
+          "text": "Elle est forcément vraie : sinon, il ne serait pas aussi affirmatif",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:assurance-donc-vrai",
+          "feedback": "Le ton assuré vient de la façon dont le modèle écrit (des phrases fluides et probables), pas d'une vérification. Une hallucination est écrite avec la même assurance qu'un fait exact."
+        },
+        {
+          "text": "C'est une suite de mots probable d'après ce que le modèle a appris : elle peut être juste ou fausse, il faut la vérifier",
+          "correct": true,
+          "feedback": "Exact : probable ne veut pas dire vrai. On vérifie dans des sources fiables avant de s'en servir."
+        },
+        {
+          "text": "Elle est forcément fausse : les IA se trompent tout le temps",
+          "correct": false,
+          "error": "raisonnement",
+          "misconception": "mc:ia-toujours-fausse",
+          "feedback": "Non : ces modèles donnent souvent des informations exactes. Le problème est qu'on ne sait pas, sans vérifier, lesquelles sont fausses."
+        },
+        {
+          "text": "Le modèle a vérifié l'information dans une base de faits avant de l'écrire",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:modele-sait-le-vrai",
+          "feedback": "Un modèle de langage génère des mots probables ; il ne contrôle pas ce qu'il écrit dans une base de faits vérifiés. Même un assistant qui fait une recherche sur Internet peut mal résumer ou citer une page peu fiable."
+        }
+      ],
+      "solution": "Un modèle de langage produit une suite de mots probable d'après ses données. L'information peut être juste ou fausse : son assurance ne prouve rien. On la vérifie dans des sources fiables.",
+      "selfTest": [{"response": {"selected": [1]}, "expect": "correct"}, {"response": {"selected": [0]}, "expect": "mc:assurance-donc-vrai"}]
+    },
+    {
+      "id": "ia-modeles-langage-hallucination",
+      "type": "open",
+      "skill": "ia.usage",
+      "skills": ["ia.generative"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:assurance-donc-vrai"],
+      "expectedSeconds": 480,
+      "minWords": 40,
+      "prompt": "Pour un exposé, Malik demande à un assistant conversationnel : « Quand la tour Eiffel a-t-elle été construite ? » Réponse : « La tour Eiffel a été construite en 1789 pour célébrer la Révolution française. »\n\n1. Pourquoi un modèle de langage peut-il produire une phrase fausse avec autant d'assurance ?\n2. Décris précisément la démarche que Malik doit suivre avant d'utiliser cette information dans son exposé.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que le modèle produit une suite de mots probable, pas une information vérifiée",
+          "keywords": [["probable", "plausible", "statisti", "mot suivant", "ne verifie pas", "pas verifie"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je repère pourquoi l'erreur est plausible (la tour a été construite pour l'Exposition de 1889, centenaire de la Révolution)",
+          "keywords": [["1889", "centenaire", "exposition", "melange", "confond"]]
+        },
+        {
+          "id": "c3",
+          "label": "Je propose de vérifier dans au moins une source fiable (encyclopédie, manuel, site officiel)",
+          "keywords": [["source", "encyclopedie", "manuel", "site officiel", "dictionnaire", "livre"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je propose de recouper plusieurs sources et de citer celle que j'utilise",
+          "keywords": [["plusieurs sources", "recouper", "comparer", "citer", "deux sources"]]
+        }
+      ],
+      "models": [
+        "Un modèle de langage écrit la suite de mots la plus probable d'après ses textes ; il ne vérifie pas si c'est vrai. « tour Eiffel », « Révolution française » et « 1789 » apparaissent souvent ensemble, car la tour a été construite pour l'Exposition universelle de 1889, qui célébrait le centenaire de la Révolution. Le modèle mélange ces informations et produit une phrase plausible mais fausse, sur le même ton qu'une phrase vraie. Malik doit vérifier dans une source fiable, par exemple une encyclopédie ou le site officiel du monument, puis recouper avec une deuxième source. Il trouvera : construction de 1887 à 1889. Dans son exposé, il cite les sources vérifiées et peut signaler qu'il a utilisé une IA pour démarrer sa recherche."
+      ],
+      "solution": "La tour Eiffel a été construite de 1887 à 1889, pour l'Exposition universelle de 1889 organisée pour le centenaire de la Révolution française. La date 1789 est une erreur plausible : le modèle associe des mots qui vont souvent ensemble, sans vérifier. Démarche : repérer l'affirmation précise à contrôler (la date, la raison), chercher dans une ou deux sources fiables et indépendantes, comparer, corriger, puis citer les sources utilisées.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Le modèle écrit une suite de mots probable, il ne vérifie pas si c'est vrai. Il a sans doute mélangé 1789 et l'Exposition universelle de 1889, qui fêtait le centenaire de la Révolution. Malik doit vérifier dans une encyclopédie ou sur le site officiel, recouper avec une deuxième source, puis citer sa source dans l'exposé.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "L'IA a raison car elle a lu tout Internet."}, "expect": "a-valider"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-devoirs",
+      "type": "open",
+      "skill": "ia.usage",
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:ia-fait-a-ma-place"],
+      "expectedSeconds": 480,
+      "minWords": 40,
+      "prompt": "Léa doit préparer un exposé sur les volcans. Elle écrit à un assistant conversationnel :\n\n« Je m'appelle Léa Martin, je suis en 4e B au collège des Tilleuls. Écris-moi un exposé de deux pages sur les volcans pour demain, je le recopierai. »\n\n1. Repère ce qui pose problème dans cette demande.\n2. Réécris une demande qui utilise l'IA pour **comprendre** et **progresser**, sans donnée personnelle.\n3. Explique comment Léa doit ensuite utiliser la réponse pour son exposé.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je repère les données personnelles à retirer (nom complet, classe, collège)",
+          "keywords": [["nom", "donnees personnelles", "college", "personnel", "prive", "classe"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je repère que Léa veut faire faire son travail et le recopier",
+          "keywords": [["recopi", "a sa place", "faire le travail", "triche", "pas son travail", "copier"]]
+        },
+        {
+          "id": "c3",
+          "label": "Ma nouvelle demande vise à comprendre (explications, questions, relecture du plan…)",
+          "keywords": [["explique", "comprendre", "aide-moi", "pose-moi", "questions", "plan", "relis"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je dis qu'il faut rédiger soi-même, vérifier les informations et citer ses sources (et l'usage de l'IA)",
+          "keywords": [["verifi", "source", "citer", "cite", "signaler", "ses mots", "elle-meme"]]
+        }
+      ],
+      "models": [
+        "Problèmes : Léa donne son nom complet, sa classe et son collège, qui n'ont rien à faire dans la demande ; et elle demande à l'IA de faire l'exposé à sa place pour le recopier : c'est tricher, et elle n'apprendra rien. Nouvelle demande : « Je prépare un exposé sur les volcans pour la classe de 4e. Peux-tu m'expliquer simplement comment se produit une éruption, puis me poser trois questions pour vérifier que j'ai compris ? Ensuite, je te proposerai mon plan pour que tu me dises ce qui manque. » Ensuite, Léa rédige elle-même avec ses mots, vérifie les informations importantes dans son manuel ou une encyclopédie, cite ces sources, et indique qu'elle s'est aidée d'une IA si son professeur le demande."
+      ],
+      "solution": "À retirer : le nom complet, la classe, le collège (données personnelles inutiles). À changer : demander d'expliquer, de questionner, de relire un plan, plutôt que de faire l'exposé. Ensuite : rédiger soi-même, vérifier dans des sources fiables, citer ses sources et l'aide reçue.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Léa donne son nom, sa classe et son collège : ce sont des données personnelles à retirer. Elle veut aussi recopier le travail fait à sa place. Nouvelle demande : « Explique-moi comment se forme une éruption volcanique, puis pose-moi trois questions pour vérifier que j'ai compris. » Ensuite elle rédige avec ses mots, vérifie dans son manuel et cite ses sources.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "Il faut juste enlever « je le recopierai » pour que le professeur ne le sache pas."}, "expect": "a-valider"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-mission",
+      "type": "composite",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:equiprobable", "mc:recopie-seulement"],
+      "expectedSeconds": 600,
+      "prompt": "Le corpus de ton mini-modèle (le point compte comme un mot) :\n- je mange une pomme.\n- je mange une poire.\n- je bois une limonade.\n- tu manges une pomme.\n\nCalcule d'abord à la main, puis utilise le laboratoire pour vérifier (bouton « Entraîner le modèle », puis clique sur un mot pour voir ses probabilités).",
+      "activity": {
+        "widget": "bigram-lab",
+        "config": {"corpus": "je mange une pomme.\nje mange une poire.\nje bois une limonade.\ntu manges une pomme.", "start": "je"}
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité que « mange » suive « je » ?",
+          "answer": "2/3",
+          "tolerance": 0.007,
+          "misconceptions": [
+            {
+              "answer": "1/2",
+              "id": "mc:equiprobable",
+              "error": "notion",
+              "feedback": "« je » est suivi de deux mots différents, mais « mange » apparaît 2 fois sur 3."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité que « pomme » suive « une » ?",
+          "answer": "1/2",
+          "tolerance": 0.007,
+          "misconceptions": [
+            {
+              "answer": "1/3",
+              "id": "mc:equiprobable",
+              "error": "notion",
+              "feedback": "Trois mots différents suivent « une », mais « pomme » apparaît 2 fois sur 4."
+            },
+            {
+              "answer": "2/16",
+              "id": "mc:proba-sur-total",
+              "error": "notion",
+              "feedback": "On ne divise pas par le nombre total de mots du corpus, mais par le nombre de fois où « une » est suivi d'un mot (4)."
+            },
+            {
+              "answer": "2/20",
+              "id": "mc:proba-sur-total",
+              "error": "notion",
+              "feedback": "On ne divise pas par le nombre total de mots du corpus (points compris), mais par le nombre de fois où « une » est suivi d'un mot (4)."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quelle phrase de 4 mots, commençant par « je », le modèle écrit-il s'il choisit toujours le mot le plus probable ?",
+          "accept": ["je mange une pomme"],
+          "misconceptions": [
+            {
+              "answer": "je mange une poire",
+              "id": "mc:greedy-mal-applique",
+              "error": "methode",
+              "feedback": "Après « une », « pomme » (2 fois sur 4) est plus probable que « poire » (1 fois sur 4)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le modèle peut aussi écrire « je bois une pomme », une phrase qui n'est pas dans son corpus. En partant de « je », quelle est la probabilité qu'il l'écrive ?",
+          "answer": "1/6",
+          "tolerance": 0.005,
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:recopie-seulement",
+              "error": "notion",
+              "feedback": "Le modèle ne recopie pas des phrases entières : il enchaîne des paires de mots qu'il a vues. « je bois », « bois une » et « une pomme » existent toutes dans le corpus."
+            },
+            {
+              "answer": "1/3 + 1 + 1/2",
+              "id": "mc:somme-probas",
+              "error": "notion",
+              "feedback": "On n'additionne pas les probabilités d'étapes successives (on dépasserait 1) : chaque étape doit se produire, on multiplie."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Que montre la phrase « je bois une pomme » sur la façon dont un modèle de langage peut « inventer » ?",
+          "minWords": 25,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J'explique que la phrase est construite morceau par morceau, à partir de paires de mots déjà vues",
+              "keywords": [["morceau", "paire", "mot par mot", "assemble", "enchaine"]]
+            },
+            {
+              "id": "c2",
+              "label": "Je remarque qu'elle est grammaticalement correcte mais n'a pas de sens",
+              "keywords": [["sens", "absurde", "bizarre", "faux", "impossible"]]
+            },
+            {
+              "id": "c3",
+              "label": "Je fais le lien avec les hallucinations des vrais modèles",
+              "keywords": [["hallucin", "invente", "vrais modeles", "assistant"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pour chaque probabilité : compte les fois où le premier mot est suivi d'un mot, puis celles où il est suivi du mot demandé.",
+        "« une » est suivi 4 fois : pomme, poire, limonade, pomme.",
+        "Pour une phrase entière, on multiplie les probabilités de chaque passage : P(bois après je) × P(une après bois) × P(pomme après une)."
+      ],
+      "solution": "P(mange après je) = 2/3. P(pomme après une) = 2/4 = 1/2. Phrase la plus probable : « je mange une pomme ». « je bois une pomme » : 1/3 × 1 × 1/2 = 1/6, environ une chance sur six. Le modèle peut l'écrire alors qu'il ne l'a jamais lue : il assemble des morceaux plausibles sans savoir qu'on ne boit pas une pomme. C'est, en miniature, le mécanisme des hallucinations.",
+      "methods": [
+        "Tableau des mots suivants pour « je » et pour « une ».",
+        "Arbre des choix depuis « je » : on suit la branche voulue et on multiplie les probabilités le long de cette branche."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "2/3"},
+              {"value": "1/2"},
+              {"value": "je mange une pomme"},
+              {"value": "1/6"},
+              {
+                "text": "Le modèle assemble la phrase mot par mot avec des paires qu'il a déjà vues. La phrase est correcte en grammaire mais elle n'a pas de sens : c'est comme les hallucinations des vrais modèles.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "1/2"}, {"value": "1/3"}, {"value": "je mange une pomme"}, {"value": "0"}, {"text": "Il ne peut pas l'écrire."}]},
+          "expect": "mc:equiprobable"
+        },
+        {
+          "response": {
+            "parts": [{"value": "2/3"}, {"value": "0,1"}, {"value": "je mange une pomme"}, {"value": "1/6"}, {"text": "Il assemble des paires de mots."}]
+          },
+          "expect": "mc:proba-sur-total"
+        }
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-remed-proba",
+      "type": "numeric",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:proba-sur-total", "mc:equiprobable", "mc:effectif"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : la probabilité qu'un mot B suive un mot A se calcule **seulement parmi les fois où A est suivi d'un mot** :\n\n> Probabilité de B après A = (nombre de fois « A B ») ÷ (nombre de fois où A est suivi d'un mot)\n\nCorpus :\n- il pleut.\n- il fait beau.\n- il pleut fort.\n- il neige.\n\nQuelle est la probabilité que « pleut » suive « il » ?",
+      "answer": "1/2",
+      "tolerance": 0.005,
+      "misconceptions": [
+        {
+          "answer": "2/10",
+          "id": "mc:proba-sur-total",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre total de mots (10). « il » est suivi 4 fois d'un mot : c'est par 4 qu'on divise."
+        },
+        {
+          "answer": "2/14",
+          "id": "mc:proba-sur-total",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre total de mots, points compris (14). « il » est suivi 4 fois d'un mot : c'est par 4 qu'on divise."
+        },
+        {
+          "answer": "1/3",
+          "id": "mc:equiprobable",
+          "error": "notion",
+          "feedback": "Trois mots différents suivent « il » (pleut, fait, neige), mais « pleut » apparaît 2 fois sur 4."
+        },
+        {
+          "answer": 2,
+          "id": "mc:effectif",
+          "error": "notion",
+          "feedback": "2 est le nombre de fois où « pleut » suit « il » ; on le divise par le nombre total de cas (4)."
+        }
+      ],
+      "hints": ["« il » apparaît 4 fois, toujours suivi d'un mot.", "Parmi ces 4 fois, combien de fois est-il suivi de « pleut » ?"],
+      "solution": "« il » est suivi 4 fois d'un mot, dont 2 fois de « pleut » : 2 ÷ 4 = 1/2 = 0,5.",
+      "selfTest": [
+        {"response": {"value": "1/2"}, "expect": "correct"},
+        {"response": {"value": "0,2"}, "expect": "mc:proba-sur-total"},
+        {"response": {"value": "1/3"}, "expect": "mc:equiprobable"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-remed-baleine",
+      "type": "text",
+      "skill": "ia.generative",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:modele-sait-le-vrai", "mc:assurance-donc-vrai"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : un modèle de langage ne sait pas ce qui est vrai. Il choisit ce qui est **fréquent dans ses textes**.\n\nUn modèle a été entraîné sur ce corpus :\n- la baleine est un poisson\n- la baleine est un poisson\n- la baleine est un poisson\n- la baleine est un mammifère\n\nQuel mot a-t-il le plus de chances d'écrire juste après « un » ?",
+      "inputLabel": "Mot le plus probable",
+      "accept": ["poisson"],
+      "misconceptions": [
+        {
+          "answer": "mammifère",
+          "id": "mc:modele-sait-le-vrai",
+          "error": "notion",
+          "feedback": "C'est la bonne réponse en biologie : la baleine est un mammifère. Mais le modèle ne le sait pas : après « un », il a vu 3 fois « poisson » et 1 fois « mammifère ». Il écrira donc le plus souvent une phrase fausse, avec assurance."
+        },
+        {
+          "answer": "mammifere",
+          "id": "mc:modele-sait-le-vrai",
+          "error": "notion",
+          "feedback": "C'est la bonne réponse en biologie : la baleine est un mammifère. Mais le modèle ne le sait pas : après « un », il a vu 3 fois « poisson » et 1 fois « mammifère ». Il écrira donc le plus souvent une phrase fausse, avec assurance."
+        }
+      ],
+      "hints": ["Ne te demande pas ce qui est vrai : compte ce qui suit « un » dans le corpus.", "« poisson » : 3 fois ; « mammifère » : 1 fois."],
+      "solution": "Après « un » : poisson (3 fois sur 4), mammifère (1 fois sur 4). Le modèle écrira le plus souvent « la baleine est un poisson » : c'est probable dans son corpus, mais faux, car la baleine est un mammifère (elle respire de l'air et allaite ses petits). Plus une erreur est répandue dans les textes, plus un modèle risque de la répéter.",
+      "selfTest": [{"response": {"value": "poisson"}, "expect": "correct"}, {"response": {"value": "mammifère"}, "expect": "mc:modele-sait-le-vrai"}]
+    },
+    {
+      "id": "ia-modeles-langage-phrase",
+      "type": "numeric",
+      "skill": "ia.generative",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:somme-probas", "mc:oubli-point"],
+      "expectedSeconds": 300,
+      "prompt": "Corpus du cours (le point compte comme un mot) : « le chat mange la souris. le chat mange le fromage. le chien mange la soupe. le chat dort sur le lit. la souris regarde le chat. »\n\nLe modèle part du mot « le » et tire au sort chaque mot suivant, selon les probabilités. Quelle est la probabilité qu'il écrive exactement « le chat mange la souris » ? Donne une fraction, ou un arrondi au millième.\n\nAttention : « chat » est suivi 4 fois, dont une fois par le point final de la dernière phrase.",
+      "answer": "8/63",
+      "tolerance": 0.0015,
+      "misconceptions": [
+        {
+          "answer": "32/189",
+          "id": "mc:oubli-point",
+          "error": "lecture",
+          "feedback": "Après « chat », le point compte comme un mot suivant : « chat » est suivi 4 fois (mange, mange, dort, et le point). P(mange après chat) = 2/4, et non 2/3."
+        },
+        {
+          "answer": "4/7 + 2/4 + 2/3 + 2/3",
+          "id": "mc:somme-probas",
+          "error": "notion",
+          "feedback": "On n'additionne pas les probabilités d'étapes successives (on obtiendrait plus que 1, ce qui est impossible). Chaque étape doit se produire : on multiplie."
+        },
+        {
+          "answer": "2/9",
+          "id": "mc:oubli-premier-mot",
+          "error": "lecture",
+          "feedback": "« le » est donné, mais le modèle doit encore choisir « chat » après « le » : 4 chances sur 7. Il y a 4 choix successifs, donc 4 probabilités à multiplier."
+        },
+        {
+          "answer": "4/7",
+          "id": "mc:premier-choix-seul",
+          "error": "raisonnement",
+          "feedback": "4/7 est seulement la probabilité du premier choix (« chat » après « le »). Les trois choix suivants doivent aussi se produire."
+        }
+      ],
+      "hints": [
+        "La phrase se construit en 4 choix successifs : « chat » après « le », « mange » après « chat », « la » après « mange », « souris » après « la ».",
+        "Probabilités : 4/7, puis 2/4 (le point compte), puis 2/3, puis 2/3.",
+        "Pour que tous les choix se produisent, on multiplie : 4/7 × 2/4 × 2/3 × 2/3."
+      ],
+      "solution": "4/7 × 2/4 × 2/3 × 2/3 = 16/126 = 8/63 ≈ 0,127. Même la phrase « la plus probable » n'a qu'environ 13 % de chances d'être écrite lors d'un tirage au sort : les autres suites possibles se partagent le reste. Les vrais modèles ont des milliers de mots possibles à chaque étape : la probabilité d'une phrase précise devient minuscule, d'où la variété de leurs réponses.",
+      "methods": [
+        "Arbre des choix : on suit la branche « chat → mange → la → souris » et on multiplie les probabilités le long de la branche.",
+        "Raisonner en effectifs : sur 7 × 4 × 3 × 3 = 252 « chemins » également possibles, 4 × 2 × 2 × 2 = 32 donnent cette phrase, soit 32/252 = 8/63."
+      ],
+      "selfTest": [
+        {"response": {"value": "8/63"}, "expect": "correct"},
+        {"response": {"value": "0,127"}, "expect": "correct"},
+        {"response": {"value": "32/189"}, "expect": "mc:oubli-point"},
+        {"response": {"value": "2/9"}, "expect": "mc:oubli-premier-mot"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-frequence",
+      "type": "multi",
+      "skill": "ia.generative",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:modele-sait-le-vrai"],
+      "expectedSeconds": 240,
+      "prompt": "Dans le corpus du cours, « le » est suivi 4 fois de « chat » et 1 fois de « chien » (sur 7). On ajoute au corpus des phrases du type « le chien joue. », qui contiennent chacune une seule fois « le », suivi de « chien ».\n\nCombien de phrases faut-il ajouter pour que « chien » devienne **strictement plus probable** que « chat » après « le » ? Donne trois nombres de phrases qui conviennent, entre 1 et 10. Tu peux le vérifier dans le laboratoire en ajoutant ces phrases au corpus.",
+      "count": 3,
+      "predicate": "estentier(v) and 1 + v > 4 and v <= 10",
+      "distinct": true,
+      "hints": [
+        "Après l'ajout de v phrases, « le » est suivi v fois de plus de « chien ». Le nombre de « le chat » ne change pas.",
+        "On veut : nombre de « le chien » > nombre de « le chat », c'est-à-dire 1 + v > 4.",
+        "Toute valeur de v à partir de 4 convient."
+      ],
+      "solution": "Après l'ajout de v phrases, « le chien » apparaît 1 + v fois et « le chat » toujours 4 fois. « chien » devient plus probable si 1 + v > 4, c'est-à-dire v ≥ 4 : 4, 5, 6… conviennent. Avec v = 4 : P(chien après le) = 5/11, contre 4/11 pour « chat ». Moralité : on change ce que dit un modèle en changeant ses données. C'est pourquoi la qualité, la variété et la provenance du corpus comptent tant : une affirmation répétée un grand nombre de fois dans les textes peut influencer ce qu'un modèle écrit.",
+      "methods": ["Inéquation : 1 + v > 4.", "Essais successifs : v = 1, 2, 3, 4… en recomptant les effectifs à chaque fois."],
+      "selfTest": [
+        {"response": {"values": ["4", "5", "6"]}, "expect": "correct"},
+        {"response": {"values": ["3", "4", "5"]}, "expect": "partiel"},
+        {"response": {"values": ["1", "2", "3"]}, "expect": "incorrect"}
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-sydney",
+      "type": "composite",
+      "skill": "ia.generative",
+      "skills": ["ia.usage"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "verbale",
+      "targets": ["mc:modele-sait-le-vrai"],
+      "expectedSeconds": 480,
+      "prompt": "Un modèle de langage a été entraîné sur des textes où l'on trouve :\n- 3 fois « la capitale de l'Australie est Sydney »\n- 1 fois « la capitale de l'Australie est Canberra »\n\nLa bonne réponse est Canberra : Sydney est la plus grande ville du pays, mais pas sa capitale.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quel mot le modèle a-t-il le plus de chances d'écrire juste après « est » ?",
+          "accept": ["Sydney"],
+          "misconceptions": [
+            {
+              "answer": "Canberra",
+              "id": "mc:modele-sait-le-vrai",
+              "error": "notion",
+              "feedback": "Canberra est la bonne réponse… mais le modèle ne le sait pas. Il a vu « est Sydney » 3 fois sur 4 : c'est ce mot qu'il juge le plus probable."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec quelle probabilité écrit-il « Sydney » ?",
+          "answer": "3/4",
+          "tolerance": 0.005,
+          "misconceptions": [
+            {
+              "answer": "1/2",
+              "id": "mc:equiprobable",
+              "error": "notion",
+              "feedback": "Deux villes possibles ne font pas une chance sur deux : « Sydney » apparaît 3 fois sur 4."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique pourquoi « plus probable » ne veut pas dire « vrai ». Comment une erreur peut-elle être plus fréquente que la vérité dans des textes ? Qu'en conclus-tu pour ton usage de ces outils ?",
+          "minWords": 40,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J'explique que le modèle reproduit les fréquences de ses textes, sans vérifier",
+              "keywords": [["frequen", "souvent", "statisti", "ne verifie pas", "compte"]]
+            },
+            {
+              "id": "c2",
+              "label": "Je donne une raison pour laquelle une erreur peut être fréquente (idée reçue, ville plus connue, textes recopiés…)",
+              "keywords": [["idee recue", "connue", "celebre", "recopi", "repete", "erreur frequente"]]
+            },
+            {
+              "id": "c3",
+              "label": "J'en tire une règle d'usage : vérifier dans des sources fiables",
+              "keywords": [["verifi", "source", "encyclopedie", "fiable"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le modèle ne connaît que ses comptages : 3 contre 1.",
+        "Probabilité : 3 ÷ 4.",
+        "Une erreur répandue, recopiée de texte en texte, peut être plus fréquente que la réponse exacte."
+      ],
+      "solution": "Le modèle écrira « Sydney » 3 fois sur 4 : c'est la suite la plus probable dans ses textes, mais elle est fausse. Une erreur peut être plus fréquente que la vérité : idée reçue, ville plus célèbre, textes recopiés les uns sur les autres. Les vrais modèles, entraînés sur bien plus de textes et ajustés par diverses méthodes, répondent généralement juste à une question aussi connue ; mais le principe demeure : ils produisent ce qui est probable, pas ce qui est vérifié. Sur les sujets rares, récents ou pointus, le risque d'erreur augmente. D'où la règle : vérifier les informations importantes dans des sources fiables.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "Sydney"},
+              {"value": "3/4"},
+              {
+                "text": "Le modèle reproduit ce qui est fréquent dans ses textes, il ne vérifie pas. Une erreur peut être plus fréquente parce que Sydney est plus connue et que les gens recopient l'idée reçue. Donc il faut toujours vérifier dans une source fiable comme une encyclopédie.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "Canberra"}, {"value": "3/4"}, {"text": "Le modèle sait que c'est Canberra."}]},
+          "expect": "mc:modele-sait-le-vrai"
+        }
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-corpus",
+      "type": "composite",
+      "skill": "ia.generative",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:recopie-seulement"],
+      "expectedSeconds": 480,
+      "prompt": "On reprend le corpus du cours : « le chat mange la souris. le chat mange le fromage. le chien mange la soupe. le chat dort sur le lit. la souris regarde le chat. » Étudions l'effet de la **taille** du corpus.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité que le modèle écrive « dort » juste après « chien » ?",
+          "answer": 0,
+          "misconceptions": [
+            {
+              "answer": "1/4",
+              "id": "mc:confusion-contexte",
+              "error": "lecture",
+              "feedback": "1/4 est la probabilité de « dort » après « chat ». Après « chien », le corpus ne contient que « mange »."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de mots différents le modèle peut-il écrire juste après « le » ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 7,
+              "id": "mc:occurrences-vs-mots",
+              "error": "lecture",
+              "feedback": "« le » est suivi 7 fois d'un mot, mais certains mots reviennent : chat (4 fois), fromage, chien, lit. Cela fait 4 mots différents."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "« le chien dort » est une phrase banale, que ce modèle ne pourra pourtant jamais écrire. Explique ce que changerait un corpus beaucoup plus grand… et ce qu'il ne changerait pas.",
+          "minWords": 35,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J'explique qu'un petit corpus limite les enchaînements possibles (probabilité 0 pour ce qui n'a jamais été vu)",
+              "keywords": [["jamais vu", "jamais lu", "probabilite 0", "probabilite nulle", "zero", "pas dans le corpus"]]
+            },
+            {
+              "id": "c2",
+              "label": "J'explique qu'un grand corpus donne des textes plus variés et des statistiques plus fiables",
+              "keywords": [["varie", "plus de mots", "fiable", "naturel", "plus de phrases"]]
+            },
+            {
+              "id": "c3",
+              "label": "J'explique qu'un grand corpus ne garantit pas la vérité (erreurs, biais des textes)",
+              "keywords": [["pas forcement vrai", "erreurs", "biais", "ne garantit", "toujours verifier", "faux"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Après « chien », quels mots trouve-t-on dans le corpus ?",
+        "Après « le » : chat, chat, fromage, chien, chat, lit, chat. Combien de mots différents ?",
+        "Un modèle de ce type ne peut produire que des paires de mots qu'il a déjà vues."
+      ],
+      "solution": "P(dort après chien) = 0 : « chien » n'est suivi que de « mange ». Après « le », 4 mots différents sont possibles. Avec un petit corpus, le modèle recopie presque ses phrases et ne peut rien produire de vraiment nouveau : ce qu'il n'a jamais vu a une probabilité nulle. Avec un corpus immense, il a rencontré presque tous les enchaînements courants : ses textes deviennent variés et naturels. Mais il reprend aussi les erreurs, les idées reçues et les déséquilibres de ses textes : un grand corpus rend un modèle plus fluide, pas plus fiable sur les faits.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "0"},
+              {"value": "4"},
+              {
+                "text": "Avec un petit corpus, ce que le modèle n'a jamais vu a une probabilité nulle, il ne peut pas écrire le chien dort. Un corpus plus grand donnerait des phrases plus variées et des statistiques plus fiables, mais il ne garantit pas que ce soit vrai : les textes contiennent des erreurs et des biais.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "1/4"}, {"value": "7"}, {"text": "Plus de textes, c'est toujours mieux et toujours vrai."}]},
+          "expect": "mc:confusion-contexte"
+        }
+      ]
+    },
+    {
+      "id": "ia-modeles-langage-temperature",
+      "type": "composite",
+      "skill": "ia.generative",
+      "skills": ["ia.usage"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:temperature-zero-partout"],
+      "expectedSeconds": 600,
+      "prompt": "Les assistants ont un réglage appelé **température**, qui dose la part de hasard :\n- à température 0, le modèle choisit **toujours** le mot le plus probable (bouton « Toujours le plus probable » du laboratoire) ;\n- à température « normale », il **tire au sort** le mot suivant selon les probabilités : un mot qui a 4 chances sur 7 sort environ 4 fois sur 7 (bouton « Tirer au hasard selon les probabilités ») ;\n- à température élevée, il donne davantage de chances aux mots rares.\n\nOn reprend le corpus du cours : « le chat mange la souris. le chat mange le fromage. le chien mange la soupe. le chat dort sur le lit. la souris regarde le chat. »",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "À température 0, en partant de « le », quels sont les 4 mots suivants écrits par le modèle ?",
+          "accept": ["chat mange la souris", "le chat mange la souris"],
+          "misconceptions": [
+            {
+              "answer": "chat mange le fromage",
+              "id": "mc:greedy-mal-applique",
+              "error": "methode",
+              "feedback": "Après « mange », « la » (2 fois sur 3) est plus probable que « le » (1 fois sur 3)."
+            },
+            {
+              "answer": "chat dort sur le",
+              "id": "mc:greedy-mal-applique",
+              "error": "methode",
+              "feedback": "Après « chat », « mange » (2 fois sur 4) est plus probable que « dort » (1 fois sur 4)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À température normale, on génère 70 textes qui commencent par « le ». Environ combien de fois le deuxième mot sera-t-il « chien » ?",
+          "answer": 10,
+          "tolerance": 1,
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:temperature-zero-partout",
+              "error": "notion",
+              "feedback": "À température normale, le modèle tire au sort : un mot moins probable sort quand même de temps en temps, ici environ 1 fois sur 7."
+            },
+            {
+              "answer": 17.5,
+              "id": "mc:equiprobable",
+              "error": "notion",
+              "feedback": "Les 4 mots possibles après « le » n'ont pas la même probabilité : « chien » n'a que 1 chance sur 7."
+            },
+            {
+              "answer": 40,
+              "id": "mc:mauvais-mot",
+              "error": "lecture",
+              "feedback": "40, c'est pour « chat » (4 chances sur 7). La question porte sur « chien »."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique simplement à quoi sert la température : que gagne-t-on et que risque-t-on avec une température basse ? avec une température élevée ?",
+          "minWords": 40,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Température basse : réponses prévisibles, toujours les mêmes, parfois répétitives",
+              "keywords": [["meme", "previsible", "repetiti", "toujours"]]
+            },
+            {
+              "id": "c2",
+              "label": "Température élevée : réponses plus variées, plus « créatives »",
+              "keywords": [["varie", "creati", "original", "different"]]
+            },
+            {
+              "id": "c3",
+              "label": "Température élevée : plus de risques d'incohérences ou d'erreurs",
+              "keywords": [["erreur", "incoheren", "bizarre", "absurde", "risque"]]
+            },
+            {
+              "id": "c4",
+              "label": "Je précise que, quel que soit le réglage, le modèle ne vérifie pas la vérité",
+              "keywords": [["verifi", "vrai", "verite"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "À température 0 : à chaque étape, on prend le mot le plus fréquent après le dernier mot écrit.",
+        "Probabilité de « chien » après « le » : 1/7.",
+        "70 × 1/7 = ?"
+      ],
+      "solution": "Température 0 : le → chat (4/7) → mange (2/4) → la (2/3) → souris (2/3), soit « le chat mange la souris », à chaque fois la même phrase, recopiée du corpus. Température normale : « chien » sort avec une probabilité de 1/7, donc environ 70 × 1/7 = 10 fois (à quelques unités près : c'est du hasard). Une température basse donne des réponses sûres mais répétitives ; une température élevée donne des textes plus variés, parfois plus originaux, mais aussi plus de phrases bizarres ou fausses. Aucun réglage ne rend le modèle capable de vérifier ce qu'il écrit.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "chat mange la souris"},
+              {"value": "10"},
+              {
+                "text": "Avec une température basse, le modèle écrit toujours la même chose, c'est prévisible mais répétitif. Avec une température élevée, les réponses sont plus variées et créatives, mais il y a plus de risques d'erreurs et de phrases bizarres. Dans les deux cas, il ne vérifie pas si c'est vrai.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "chat mange le fromage"}, {"value": "10"}, {"text": "La température c'est la chaleur de l'ordinateur."}]},
+          "expect": "mc:greedy-mal-applique"
+        }
+      ]
+    }
+  ]
+}

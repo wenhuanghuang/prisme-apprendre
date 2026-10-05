@@ -1,0 +1,417 @@
+{
+  "id": "pc-vitesse",
+  "title": "Vitesse et nature d'un mouvement",
+  "subject": "pc",
+  "level": "4e",
+  "skills": ["pc.mouvement.vitesse"],
+  "status": "programme",
+  "programmes": ["pc-c4-2020"],
+  "duration": 60,
+  "summary": "Calculer une vitesse moyenne v = d / t, convertir entre m/s et km/h (× 3,6), reconnaître un mouvement uniforme, accéléré ou ralenti sur une chronophotographie et distinguer vitesse moyenne et vitesse instantanée. Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 4e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Que dit une chronophotographie ?",
+      "body": "Une chronophotographie superpose les positions d'un objet photographié à **intervalles de temps égaux**. Voici celle d'un skateur, une image toutes les 0,5 s.\n\nSans calculer, que peux-tu dire de son mouvement en regardant les écarts entre les positions ? Mesure ensuite la distance parcourue en une seconde.",
+      "activity": { "widget": "motion-lab", "config": { "mode": "uniforme", "v": 2, "dt": 0.5, "n": 8 } }
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour revoir la notion sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "Décrire un mouvement, c'est donner sa **trajectoire** (droite, courbe, cercle) et l'évolution de sa **vitesse**.\n\n> **Vitesse moyenne** : $v = d / t$, avec $d$ la distance parcourue et $t$ la durée du parcours.\n> Unités : m/s si $d$ est en m et $t$ en s ; km/h si $d$ est en km et $t$ en h.\n\n**Conversion.** 1 m/s, c'est 1 m chaque seconde, donc 3 600 m en une heure, soit 3,6 km/h :\n- de m/s vers km/h, on **multiplie** par 3,6 ;\n- de km/h vers m/s, on **divise** par 3,6.\n\n**Durées.** Une heure n'a pas 100 minutes : 1 h 30 min = 1,5 h ; 15 min = 0,25 h ; 0,1 h = 6 min. Avant de calculer, on convertit la durée dans l'unité voulue.\n\n**Nature du mouvement** sur une chronophotographie (images à intervalles égaux) :\n- écarts égaux : mouvement **uniforme** (vitesse constante) ;\n- écarts de plus en plus grands : mouvement **accéléré** ;\n- écarts de plus en plus petits : mouvement **ralenti**.\n\n**Moyenne ou instantanée ?** La vitesse moyenne résume tout un trajet. La vitesse **instantanée** est la vitesse à un instant donné (celle qu'affiche un compteur) ; on l'estime par une vitesse moyenne sur une durée très courte."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Mouvement accéléré",
+      "body": "Cette fois, l'objet part de l'arrêt et accélère. Observe les écarts entre positions successives, puis le graphique position-temps : la courbe n'est plus une droite. Compare avec le mode uniforme de la découverte.",
+      "activity": { "widget": "motion-lab", "config": { "mode": "accelere", "v": 0, "a": 1, "dt": 0.5, "n": 8 } }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        { "text": "Un cycliste parcourt 9 km en 30 min. On convertit la durée en heures :", "math": "t = 30 min = 0,5 h" },
+        { "text": "On applique la définition :", "math": "v = d / t = 9 / 0,5 = 18 km/h" },
+        { "text": "Conversion en m/s (on divise par 3,6) :", "math": "v = 18 / 3,6 = 5 m/s" },
+        { "text": "Vérification dans l'autre unité : 30 min = 1 800 s et 9 km = 9 000 m,", "math": "v = 9 000 / 1 800 = 5 m/s" },
+        { "text": "Utilisation dans l'autre sens : à cette vitesse, la durée pour 12 km est", "math": "t = d / v = 12 / 18 ≈ 0,67 h ≈ 40 min" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Écris tes résultats **avec leur unité** (18 km/h, 5 m/s, 150 s…) : le logiciel accepte toutes les unités équivalentes et repère les conversions oubliées.",
+      "exercises": ["pc-vitesse-calcul", "pc-vitesse-conversions", "pc-vitesse-labo", "pc-vitesse-chrono", "pc-vitesse-qcm"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["pc-vitesse-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Le radar tronçon",
+      "exercises": ["pc-vitesse-radar"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : organiser la sortie à vélo",
+      "body": "La classe organise une sortie à vélo. Tu es chargé(e) de prévoir les horaires et de vérifier que le programme est réaliste.",
+      "exercises": ["pc-vitesse-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Diviser des km par des minutes et annoncer des km/h.** 12 km en 30 min : $12 / 30 = 0,4$ km par MINUTE. En heures : $12 / 0,5 = 24$ km/h.\n- **Se tromper de sens dans la conversion.** Une vitesse en km/h est un nombre plus grand qu'en m/s : 10 m/s = 36 km/h (× 3,6), 36 km/h = 10 m/s (÷ 3,6).\n- **Écrire 1 h 30 min = 1,3 h.** Une heure compte 60 minutes : 30 min = 0,5 h, donc 1 h 30 min = 1,5 h.\n- **Confondre vitesse moyenne et instantanée.** Une moyenne de 50 km/h n'empêche pas d'avoir roulé à 90 km/h par moments.\n- **Faire la moyenne de deux vitesses.** La vitesse moyenne est toujours distance totale ÷ durée totale."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un calcul de vitesse et une conversion km/h ↔ m/s."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Modéliser des situations réelles : distance parcourue pendant le temps de réaction, vitesse moyenne d'un aller-retour.",
+      "exercises": ["pc-vitesse-reaction", "pc-vitesse-aller-retour"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà des attendus de 4e : un problème de rattrapage résolu de trois façons, et un ordre de grandeur astronomique.",
+      "exercises": ["pc-vitesse-rattrapage", "pc-vitesse-terre"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc-vitesse-calcul", "type": "numeric", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:min-non-converties", "unite"], "expectedSeconds": 120,
+      "params": { "d": { "choice": [6, 9, 12, 15] }, "t": { "choice": [20, 30, 45] } },
+      "prompt": "Un cycliste parcourt {d} km en {t} min à allure régulière. Calcule sa vitesse moyenne en km/h (écris l'unité).",
+      "answer": "60*d/t", "unit": "km/h", "rel": 0.01,
+      "misconceptions": [
+        { "answer": "d/t", "id": "mc:min-non-converties", "error": "unite", "feedback": "{d} ÷ {t} donne des kilomètres par MINUTE. Pour des km/h, la durée doit être en heures : {t} min = {t/60|d2} h." },
+        { "answer": "t/(60*d)", "id": "mc:v-inverse", "error": "notion", "feedback": "Tu as divisé la durée par la distance. v = d / t : distance divisée par durée." }
+      ],
+      "hints": ["Pour obtenir des km/h, il faut des km et des heures.", "{t} min = {t}/60 h = {t/60|d2} h.", "v = {d} / {t/60|d2}."],
+      "solution": "$t = {t}$ min $= {t/60|d2}$ h. $v = d / t = {d} / {t/60|d2} = {60*d/t|d1}$ km/h (soit environ {50*d/(3*t)|d1} m/s).",
+      "methods": ["Convertir la durée en heures, puis diviser.", "Proportionnalité : en {t} min, {d} km ; en 60 min, {d} × 60 / {t} = {60*d/t|d1} km."],
+      "selfTest": [
+        { "response": { "value": "{60*d/t} km/h" }, "expect": "correct" },
+        { "response": { "value": "{1000*d/(60*t)} m/s" }, "expect": "correct" },
+        { "response": { "value": "{d/t} km/h" }, "expect": "mc:min-non-converties" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-conversions", "type": "table", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:kmh-ms", "mc:oubli-temps", "unite"], "expectedSeconds": 240,
+      "prompt": "Complète le tableau (arrondis au dixième si besoin ; écris seulement les nombres, sans espace).",
+      "columns": ["Situation", "v en m/s", "v en km/h"],
+      "rows": [["Piéton", "?r0c1", "5"], ["Cycliste", "5", "?r1c2"], ["Voiture sur route", "?r2c1", "90"], ["Son dans l'air", "340", "?r3c2"]],
+      "cells": {
+        "r0c1": { "answer": "5/3.6", "rel": 0.02, "misconceptions": [
+          { "answer": 18, "id": "mc:kmh-ms", "error": "unite", "feedback": "De km/h vers m/s, on DIVISE par 3,6 : un piéton ne fait pas 18 m chaque seconde !" },
+          { "answer": 5000, "id": "mc:oubli-temps", "error": "unite", "feedback": "5 000 m, c'est la distance parcourue en une HEURE. Pour une seconde, il faut encore diviser par 3 600." } ] },
+        "r1c2": { "answer": 18, "rel": 0.01, "misconceptions": [
+          { "answer": "5/3.6", "id": "mc:kmh-ms", "error": "unite", "feedback": "De m/s vers km/h, on MULTIPLIE par 3,6 : le nombre de km/h est plus grand." },
+          { "answer": 0.005, "id": "mc:oubli-temps", "error": "unite", "feedback": "5 m = 0,005 km, mais c'est par SECONDE. En une heure (3 600 s), cela fait 18 km." } ] },
+        "r2c1": { "answer": 25, "rel": 0.01, "misconceptions": [
+          { "answer": 324, "id": "mc:kmh-ms", "error": "unite", "feedback": "De km/h vers m/s, on DIVISE par 3,6 : 90 / 3,6 = 25 m/s." },
+          { "answer": 90000, "id": "mc:oubli-temps", "error": "unite", "feedback": "90 000 m, c'est la distance parcourue en une heure. En une seconde : 90 000 / 3 600 = 25 m." } ] },
+        "r3c2": { "answer": 1224, "rel": 0.01, "misconceptions": [
+          { "answer": "340/3.6", "id": "mc:kmh-ms", "error": "unite", "feedback": "De m/s vers km/h, on MULTIPLIE par 3,6 : 340 × 3,6 = 1 224 km/h." } ] }
+      },
+      "hints": ["1 m/s = 3,6 km/h.", "m/s → km/h : × 3,6 ; km/h → m/s : ÷ 3,6.", "Contrôle : le nombre de km/h est toujours plus grand que le nombre de m/s."],
+      "solution": "Piéton : 5 / 3,6 ≈ 1,4 m/s. Cycliste : 5 × 3,6 = 18 km/h. Voiture : 90 / 3,6 = 25 m/s. Son : 340 × 3,6 = 1 224 km/h.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "1,39", "r1c2": "18", "r2c1": "25", "r3c2": "1224" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "18", "r1c2": "1,39", "r2c1": "324", "r3c2": "94,4" } }, "expect": "mc:kmh-ms" },
+        { "response": { "cells": { "r0c1": "5000", "r1c2": "18", "r2c1": "25", "r3c2": "1224" } }, "expect": "mc:oubli-temps" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-labo", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "labo", "difficulty": 2,
+      "representation": "manipulation", "targets": ["mc:distance-vitesse", "mc:nature-mouvement"], "expectedSeconds": 300,
+      "params": { "v": { "choice": [2, 3, 4, 5] } },
+      "prompt": "La chronophotographie montre un skateur photographié toutes les 0,5 s. Utilise la règle pour mesurer les distances entre positions successives.",
+      "activity": { "widget": "motion-lab", "config": { "mode": "uniforme", "v": "{v}", "dt": 0.5, "n": 8 } },
+      "parts": [
+        { "type": "numeric", "prompt": "Distance entre deux positions successives (avec l'unité) :", "answer": "v/2", "unit": "m", "rel": 0.05 },
+        { "type": "numeric", "prompt": "Vitesse du skateur (avec l'unité) :", "answer": "v", "unit": "m/s", "rel": 0.05,
+          "misconceptions": [ { "answer": "v/2", "id": "mc:distance-vitesse", "error": "notion", "feedback": "{v/2} m, c'est la distance parcourue en 0,5 s. La vitesse est la distance parcourue par seconde : v = d / t = {v/2} / 0,5." } ] },
+        { "type": "text", "prompt": "Comment qualifies-tu ce mouvement : uniforme, accéléré ou ralenti ?", "accept": ["uniforme", "mouvement uniforme", "rectiligne uniforme", "mouvement rectiligne uniforme"],
+          "misconceptions": [ { "answer": "accéléré", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Les positions sont également espacées : l'objet parcourt la même distance pendant chaque intervalle de temps, le mouvement est uniforme." }, { "answer": "ralenti", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Les positions sont également espacées : le mouvement est uniforme." } ] }
+      ],
+      "hints": ["Mesure plusieurs écarts : sont-ils égaux ?", "Durée entre deux images : 0,5 s.", "v = (distance entre deux images) / 0,5 s."],
+      "solution": "Les positions sont espacées de {v/2} m, toutes égales : le mouvement est uniforme. $v = {v/2} / 0,5 = {v}$ m/s, soit {3.6*v} km/h.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{v/2} m" }, { "value": "{v} m/s" }, { "value": "uniforme" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{v/2} m" }, { "value": "{v/2} m/s" }, { "value": "uniforme" } ] }, "expect": "mc:distance-vitesse" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-chrono", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:nature-mouvement", "mc:moyenne-instantanee", "mc:position-distance"], "expectedSeconds": 420,
+      "prompt": "Chronophotographie d'une bille qui descend une pente, une position toutes les 0,5 s (x est la distance au point de départ) :\n- t = 0 s : x = 0 m\n- t = 0,5 s : x = 0,20 m\n- t = 1,0 s : x = 0,80 m\n- t = 1,5 s : x = 1,80 m\n- t = 2,0 s : x = 3,20 m",
+      "parts": [
+        { "type": "text", "prompt": "Nature du mouvement : uniforme, accéléré ou ralenti ?", "accept": ["accéléré", "accelere", "mouvement accéléré", "mouvement accelere", "rectiligne accéléré", "mouvement rectiligne accéléré"],
+          "misconceptions": [ { "answer": "uniforme", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Calcule les distances parcourues pendant chaque 0,5 s : 0,20 m, puis 0,60 m, 1,00 m, 1,40 m. Elles augmentent : le mouvement est accéléré." }, { "answer": "ralenti", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Les écarts entre positions successives augmentent (0,20 m ; 0,60 m ; 1,00 m ; 1,40 m) : la bille va de plus en plus vite." } ] },
+        { "type": "numeric", "prompt": "Vitesse moyenne entre t = 0 s et t = 2,0 s (avec l'unité) :", "answer": 1.6, "unit": "m/s", "rel": 0.01,
+          "misconceptions": [ { "answer": "2/3.2", "id": "mc:v-inverse", "error": "notion", "feedback": "v = d / t : distance divisée par durée." } ] },
+        { "type": "numeric", "prompt": "Vitesse moyenne entre t = 1,5 s et t = 2,0 s (avec l'unité) :", "answer": 2.8, "unit": "m/s", "rel": 0.01,
+          "misconceptions": [
+            { "answer": 1.6, "id": "mc:moyenne-instantanee", "error": "lecture", "feedback": "1,6 m/s est la moyenne sur TOUT le trajet. Entre 1,5 s et 2,0 s, la bille parcourt 3,20 − 1,80 = 1,40 m en 0,5 s." },
+            { "answer": 6.4, "id": "mc:position-distance", "error": "lecture", "feedback": "3,20 m est la POSITION à 2,0 s, pas la distance parcourue entre 1,5 s et 2,0 s : 3,20 − 1,80 = 1,40 m." }
+          ] },
+        { "type": "open", "prompt": "Pourquoi la vitesse moyenne sur tout le trajet décrit-elle mal la vitesse de la bille à la fin ?", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "La vitesse change au cours du mouvement (elle augmente)", "keywords": [["augmente", "accelere", "change", "plus vite"]] },
+            { "id": "c2", "label": "La moyenne mélange le début lent et la fin rapide ; une moyenne sur une courte durée est plus proche de la vitesse instantanée", "keywords": [["moyenne", "instantan", "courte", "debut"]] }
+          ] }
+      ],
+      "hints": ["Calcule la distance parcourue pendant chaque intervalle de 0,5 s.", "Sur tout le trajet : 3,20 m en 2,0 s.", "Entre 1,5 s et 2,0 s : distance = 3,20 − 1,80."],
+      "solution": "Écarts successifs : 0,20 ; 0,60 ; 1,00 ; 1,40 m : mouvement accéléré. Moyenne sur 2,0 s : 3,20 / 2,0 = 1,6 m/s. Entre 1,5 et 2,0 s : 1,40 / 0,5 = 2,8 m/s, bien plus que la moyenne : la vitesse instantanée à la fin est encore plus grande que 2,8 m/s.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "accéléré" }, { "value": "1,6 m/s" }, { "value": "2,8 m/s" }, { "text": "La vitesse augmente pendant la descente, la moyenne mélange le début lent et la fin rapide.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "uniforme" }, { "value": "1,6 m/s" }, { "value": "2,8 m/s" }, { "text": "La vitesse augmente pendant la descente." } ] }, "expect": "mc:nature-mouvement" },
+        { "response": { "parts": [ { "value": "accéléré" }, { "value": "1,6 m/s" }, { "value": "6,4 m/s" }, { "text": "La vitesse augmente pendant la descente." } ] }, "expect": "mc:position-distance" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-qcm", "type": "qcm", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:moyenne-instantanee"], "expectedSeconds": 60,
+      "prompt": "Vérification rapide : sur l'autoroute, Sami parcourt 260 km en 2 h. Que peut-on affirmer avec certitude ?",
+      "choices": [
+        { "text": "Le compteur a affiché 130 km/h pendant tout le trajet.", "correct": false, "error": "notion", "misconception": "mc:moyenne-instantanee", "feedback": "On ne connaît que la distance totale et la durée totale : on peut seulement calculer une vitesse MOYENNE. Sami a pu accélérer, ralentir, s'arrêter." },
+        { "text": "Sa vitesse moyenne est de 130 km/h.", "correct": true, "feedback": "Exact : 260 / 2 = 130 km/h en moyenne." },
+        { "text": "Il n'a jamais dépassé 130 km/h.", "correct": false, "error": "notion", "misconception": "mc:moyenne-instantanee", "feedback": "S'il s'est arrêté ou a ralenti à un moment, il a forcément roulé plus vite que 130 km/h à d'autres moments pour garder cette moyenne." }
+      ],
+      "justify": { "required": true, "minWords": 6, "prompt": "Justifie ton choix.", "keywords": [["moyenne"]] },
+      "solution": "$v = d / t = 260 / 2 = 130$ km/h : c'est une vitesse moyenne. Elle ne dit rien de la vitesse à chaque instant.",
+      "selfTest": [
+        { "response": { "selected": [1], "justification": "260 / 2 = 130 km/h, c'est une vitesse moyenne sur tout le trajet." }, "expect": "correct" },
+        { "response": { "selected": [0], "justification": "Il a roulé à 130 km/h car 260 divisé par 2 fait 130." }, "expect": "mc:moyenne-instantanee" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-expliquer", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:moyenne-instantanee", "mc:min-non-converties"], "expectedSeconds": 360,
+      "prompt": "En ville, un bus met 30 min pour parcourir 10 km. Pendant le trajet, son compteur a souvent indiqué 50 km/h, et 0 km/h aux arrêts.",
+      "parts": [
+        { "type": "numeric", "prompt": "Vitesse moyenne du bus (avec l'unité) :", "answer": 20, "unit": "km/h", "rel": 0.01,
+          "misconceptions": [ { "answer": "10/30", "id": "mc:min-non-converties", "error": "unite", "feedback": "10 / 30 donne des km par minute. 30 min = 0,5 h : v = 10 / 0,5." } ] },
+        { "type": "open", "prompt": "Explique comment le bus peut avoir une vitesse moyenne de 20 km/h alors que son compteur a souvent indiqué 50 km/h.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je distingue vitesse moyenne (sur tout le trajet) et vitesse instantanée (lue sur le compteur à un instant)", "keywords": [["instantan", "a un instant", "compteur"]] },
+            { "id": "c2", "label": "J'explique que les arrêts et les ralentissements font baisser la moyenne", "keywords": [["arret", "feu", "ralent", "0 km/h"]] },
+            { "id": "c3", "label": "J'utilise la définition v = d / t sur l'ensemble du trajet", "keywords": [["d / t", "d/t", "distance", "duree"]] }
+          ],
+          "models": ["Le compteur indique la vitesse instantanée, à chaque instant. La vitesse moyenne se calcule sur tout le trajet : distance totale / durée totale = 10 km / 0,5 h = 20 km/h. Comme le bus passe beaucoup de temps arrêté ou à faible vitesse (arrêts, feux, embouteillages), la moyenne est bien inférieure aux 50 km/h atteints entre deux arrêts."] }
+      ],
+      "hints": ["30 min = 0,5 h.", "Que mesure un compteur ? Que résume une moyenne ?"],
+      "solution": "$v = 10 / 0,5 = 20$ km/h. Le compteur donne la vitesse instantanée ; la moyenne tient compte des arrêts et des ralentissements, pendant lesquels le bus avance peu.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "20 km/h" }, { "text": "Le compteur donne la vitesse instantanée. La vitesse moyenne c'est la distance divisée par la durée totale, et avec les arrêts et les feux le bus perd du temps donc la moyenne baisse.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,33 km/h" }, { "text": "Le compteur donne la vitesse instantanée, la moyenne baisse à cause des arrêts." } ] }, "expect": "mc:min-non-converties" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-radar", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:heure-decimale", "mc:min-non-converties", "unite"], "expectedSeconds": 480,
+      "prompt": "Un radar « tronçon » mesure la durée mise par une voiture pour parcourir les 5,0 km qui séparent deux points de contrôle. La vitesse est limitée à 110 km/h. Une voiture met 2 min 30 s.",
+      "parts": [
+        { "type": "numeric", "prompt": "Durée du parcours (avec l'unité) :", "answer": 150, "unit": "s",
+          "misconceptions": [ { "answer": 138, "id": "mc:heure-decimale", "error": "unite", "feedback": "2 min 30 s = 2,5 min (30 s est une demi-minute), et non 2,30 min." } ] },
+        { "type": "numeric", "prompt": "Vitesse moyenne de la voiture (avec l'unité) :", "answer": 120, "unit": "km/h", "rel": 0.01,
+          "misconceptions": [ { "answer": 2, "id": "mc:min-non-converties", "error": "unite", "feedback": "5,0 / 2,5 = 2 km par MINUTE. En une heure (60 min), cela fait 120 km." } ] },
+        { "type": "text", "prompt": "Le conducteur est-il en infraction ? (oui ou non)", "accept": ["oui"],
+          "misconceptions": [ { "answer": "non", "id": "mc:comparaison", "error": "raisonnement", "feedback": "120 km/h > 110 km/h : sa vitesse moyenne dépasse la limite, il a forcément dépassé 110 km/h sur une partie du tronçon." } ] },
+        { "type": "numeric", "prompt": "Quelle durée minimale une voiture doit-elle mettre pour respecter la limite sur ce tronçon (avec l'unité) ?", "answer": "5/110*3600", "unit": "s", "rel": 0.01,
+          "misconceptions": [ { "answer": "5/110", "id": "mc:unite-duree", "error": "unite", "feedback": "5,0 / 110 ≈ 0,045 : c'est une durée en HEURES. Convertis : 0,045 h × 3 600 ≈ 164 s." } ] }
+      ],
+      "hints": ["2 min 30 s = 2 × 60 + 30 secondes.", "En km/h : 5,0 km en 150 s, c'est-à-dire en 150 / 3 600 h.", "t = d / v = 5,0 / 110 h."],
+      "solution": "Durée : 150 s = 2,5 min = 150 / 3 600 h. $v = 5,0 / (150 / 3 600) = 120$ km/h > 110 km/h : infraction. Durée minimale : $t = 5,0 / 110 ≈ 0,0455$ h ≈ 164 s, soit environ 2 min 44 s.",
+      "methods": ["Tout en km et en h : v = 5,0 / 0,041 67 = 120 km/h.", "Tout en m et en s : v = 5 000 / 150 ≈ 33,3 m/s, puis × 3,6 = 120 km/h.", "Proportionnalité : 5 km en 2,5 min, donc 2 km par minute, donc 120 km en 60 min."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "150 s" }, { "value": "120 km/h" }, { "value": "oui" }, { "value": "164 s" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2,30 min" }, { "value": "120 km/h" }, { "value": "oui" }, { "value": "164 s" } ] }, "expect": "mc:heure-decimale" },
+        { "response": { "parts": [ { "value": "150 s" }, { "value": "120 km/h" }, { "value": "oui" }, { "value": "0,0455 s" } ] }, "expect": "mc:unite-duree" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-mission", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:heure-decimale", "mc:v-inverse"], "expectedSeconds": 600,
+      "prompt": "La sortie fait 36 km (aller simple). D'après un entraînement, le groupe roule à 18 km/h de moyenne. On prévoit une pause de 30 min à mi-parcours. Départ : 9 h 00.",
+      "parts": [
+        { "type": "numeric", "prompt": "Durée de roulage, sans la pause (avec l'unité) :", "answer": 2, "unit": "h",
+          "misconceptions": [ { "answer": 0.5, "id": "mc:v-inverse", "error": "notion", "feedback": "t = d / v = 36 / 18 (et non 18 / 36)." } ] },
+        { "type": "numeric", "prompt": "Durée totale du trajet, pause comprise (avec l'unité) :", "answer": 150, "unit": "min",
+          "misconceptions": [ { "answer": 120, "id": "mc:oubli-pause", "error": "lecture", "feedback": "N'oublie pas les 30 min de pause." } ] },
+        { "type": "numeric", "prompt": "Pour arriver à 11 h 00 avec la même pause, quelle vitesse moyenne de roulage faudrait-il (avec l'unité) ?", "answer": 24, "unit": "km/h", "rel": 0.01,
+          "misconceptions": [
+            { "answer": 18, "id": "mc:pause-incluse", "error": "raisonnement", "feedback": "36 / 2 suppose que l'on roule pendant 2 h. Mais la pause prend 30 min : il reste 1 h 30 min = 1,5 h de roulage." },
+            { "answer": "36/1.3", "id": "mc:heure-decimale", "error": "unite", "feedback": "1 h 30 min = 1,5 h, et non 1,3 h." }
+          ] },
+        { "type": "open", "prompt": "Cette nouvelle vitesse te paraît-elle réaliste pour un groupe d'élèves ? Propose un autre ajustement du programme.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je compare 24 km/h à la vitesse habituelle du groupe (18 km/h)", "keywords": [["18", "24"]] },
+            { "id": "c2", "label": "Je propose un ajustement réaliste (partir plus tôt, raccourcir la pause, choisir un trajet plus court)", "keywords": [["plus tot", "pause", "plus court", "8 h", "raccourc"]] }
+          ] }
+      ],
+      "hints": ["t = d / v = 36 / 18.", "2 h de roulage + 30 min de pause.", "Entre 9 h 00 et 11 h 00, il y a 2 h, dont 30 min de pause."],
+      "solution": "Roulage : 36 / 18 = 2 h ; avec la pause : 2 h 30 min = 150 min, arrivée à 11 h 30. Pour arriver à 11 h 00 : 1,5 h de roulage, donc v = 36 / 1,5 = 24 km/h, nettement plus que l'allure habituelle. Plus réaliste : partir à 8 h 30, ou réduire la pause.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2 h" }, { "value": "150 min" }, { "value": "24 km/h" }, { "text": "24 km/h c'est beaucoup plus que 18 km/h, ce n'est pas réaliste. Il vaut mieux partir plus tôt, à 8 h 30.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2 h" }, { "value": "150 min" }, { "value": "18 km/h" }, { "text": "C'est réaliste, on garde la même vitesse." } ] }, "expect": "mc:pause-incluse" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-remed-36", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:kmh-ms", "unite"], "expectedSeconds": 150,
+      "params": { "v": { "choice": [5, 10, 15, 20, 25] } },
+      "prompt": "Rappel ciblé : d'où vient le nombre 3,6 ? Un objet qui va à 1 m/s parcourt 1 m chaque seconde.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle distance parcourt-il en 1 h = 3 600 s (avec l'unité) ?", "answer": 3600, "unit": "m",
+          "misconceptions": [ { "answer": 60, "id": "mc:oubli-temps", "error": "unite", "feedback": "1 h = 60 min = 60 × 60 s = 3 600 s : il parcourt 3 600 m." } ] },
+        { "type": "numeric", "prompt": "Combien de kilomètres par heure cela fait-il ? (écris seulement le nombre)", "answer": 3.6,
+          "misconceptions": [ { "answer": 3600, "id": "mc:kmh-ms", "error": "unite", "feedback": "3 600 m = 3,6 km : donc 1 m/s = 3,6 km/h." } ] },
+        { "type": "numeric", "prompt": "Conclusion : combien de km/h font {v} m/s ? (écris seulement le nombre)", "answer": "3.6*v", "rel": 0.01,
+          "misconceptions": [ { "answer": "v/3.6", "id": "mc:kmh-ms", "error": "unite", "feedback": "Chaque m/s vaut 3,6 km/h : {v} m/s = {v} × 3,6 km/h. Le nombre de km/h est le plus grand." } ] }
+      ],
+      "hints": ["En une heure il y a 3 600 secondes.", "3 600 m = 3,6 km.", "{v} m/s, c'est {v} fois 1 m/s."],
+      "solution": "1 m/s = 3 600 m par heure = 3,6 km/h. Donc {v} m/s = {v} × 3,6 = {3.6*v} km/h.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3600 m" }, { "value": "3,6" }, { "value": "{3.6*v}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3600 m" }, { "value": "3,6" }, { "value": "{v/3.6}" } ] }, "expect": "mc:kmh-ms" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-remed-heures", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:heure-decimale"], "expectedSeconds": 180,
+      "prompt": "Autre représentation : le cadran d'une horloge. Une heure, c'est un tour complet de la grande aiguille (60 min) ; une demi-heure, un demi-tour (30 min) ; un quart d'heure, un quart de tour (15 min). L'écriture décimale compte en dixièmes et centièmes d'HEURE, pas en minutes.",
+      "parts": [
+        { "type": "numeric", "prompt": "Un quart de tour de cadran (15 min), c'est quelle fraction d'heure en écriture décimale ?", "answer": 0.25,
+          "misconceptions": [ { "answer": 0.15, "id": "mc:heure-decimale", "error": "unite", "feedback": "0,15 h, c'est 15 centièmes d'heure, soit 9 min. Un quart d'heure = 1/4 h = 0,25 h." } ] },
+        { "type": "numeric", "prompt": "Écris 1 h 15 min en heures (écriture décimale).", "answer": 1.25,
+          "misconceptions": [ { "answer": 1.15, "id": "mc:heure-decimale", "error": "unite", "feedback": "15 min = 0,25 h, donc 1 h 15 min = 1,25 h." } ] },
+        { "type": "numeric", "prompt": "Écris 0,8 h en minutes (seulement le nombre).", "answer": 48,
+          "misconceptions": [ { "answer": 80, "id": "mc:heure-decimale", "error": "unite", "feedback": "0,8 h = 0,8 × 60 min = 48 min." } ] },
+        { "type": "numeric", "prompt": "Écris 2 h 45 min en heures (écriture décimale).", "answer": 2.75,
+          "misconceptions": [ { "answer": 2.45, "id": "mc:heure-decimale", "error": "unite", "feedback": "45 min = trois quarts d'heure = 0,75 h." } ] }
+      ],
+      "hints": ["Une demi-heure = 0,5 h ; un quart d'heure = 0,25 h.", "Pour passer des heures aux minutes, on multiplie par 60."],
+      "solution": "15 min = 0,25 h ; 1 h 15 min = 1,25 h ; 0,8 h = 48 min ; 2 h 45 min = 2,75 h.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "0,25" }, { "value": "1,25" }, { "value": "48" }, { "value": "2,75" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,15" }, { "value": "1,15" }, { "value": "80" }, { "value": "2,45" } ] }, "expect": "mc:heure-decimale" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-reaction", "type": "composite", "skill": "pc.mouvement.vitesse", "skills": ["m5.proportionnalite"], "track": "approfondissement", "role": "transfert", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:kmh-ms"], "expectedSeconds": 540,
+      "prompt": "Entre le moment où un conducteur voit un obstacle et celui où il commence à freiner, il s'écoule environ 1 s (temps de réaction) : pendant ce temps, la voiture garde sa vitesse. La distance parcourue s'appelle la distance de réaction.",
+      "parts": [
+        { "type": "numeric", "prompt": "Distance de réaction à 50 km/h (avec l'unité) :", "answer": "50/3.6", "unit": "m", "rel": 0.02,
+          "misconceptions": [
+            { "answer": 50, "id": "mc:kmh-ms", "error": "unite", "feedback": "50 km/h, ce n'est pas 50 m par seconde : 50 / 3,6 ≈ 13,9 m/s, donc environ 14 m en 1 s." },
+            { "answer": 180, "id": "mc:kmh-ms", "error": "unite", "feedback": "De km/h vers m/s, on divise par 3,6 : 50 / 3,6 ≈ 13,9 m/s." }
+          ] },
+        { "type": "numeric", "prompt": "Distance de réaction à 130 km/h (avec l'unité) :", "answer": "130/3.6", "unit": "m", "rel": 0.02,
+          "misconceptions": [ { "answer": 130, "id": "mc:kmh-ms", "error": "unite", "feedback": "130 km/h ≈ 36,1 m/s." } ] },
+        { "type": "numeric", "prompt": "À 90 km/h, un conducteur quitte la route des yeux pendant 3 s pour lire un message. Distance parcourue « à l'aveugle » (avec l'unité) :", "answer": 75, "unit": "m", "rel": 0.01,
+          "misconceptions": [ { "answer": 270, "id": "mc:kmh-ms", "error": "unite", "feedback": "90 km/h = 25 m/s : en 3 s, 25 × 3 = 75 m." } ] },
+        { "type": "text", "prompt": "À temps de réaction fixé, la distance de réaction est-elle proportionnelle à la vitesse ? (oui ou non)", "accept": ["oui"],
+          "misconceptions": [ { "answer": "non", "id": "mc:proportion", "error": "notion", "prerequisite": "m5.proportionnalite", "feedback": "d = v × t avec t = 1 s fixé : si la vitesse double, la distance de réaction double." } ] },
+        { "type": "open", "prompt": "Distance d'arrêt = distance de réaction + distance de freinage. On admet que la distance de freinage est multipliée par 4 quand la vitesse double. La distance d'arrêt est-elle proportionnelle à la vitesse ? Qu'en conclure pour la sécurité ?", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je conclus que la distance d'arrêt n'est pas proportionnelle à la vitesse (elle augmente plus vite)", "keywords": [["pas proportionn", "plus vite", "plus que double"]] },
+            { "id": "c2", "label": "J'explique avec la distance de freinage (× 4 quand la vitesse double)", "keywords": [["4", "quatre", "freinage"]] },
+            { "id": "c3", "label": "J'en tire une conséquence pour la sécurité (distances de sécurité, limitations de vitesse, ne pas regarder son téléphone)", "keywords": [["securite", "distance", "limit", "telephone"]] }
+          ] }
+      ],
+      "hints": ["Convertis d'abord la vitesse en m/s (÷ 3,6).", "Distance = vitesse (m/s) × durée (s).", "Si la vitesse double, que deviennent la distance de réaction et la distance de freinage ?"],
+      "solution": "50 km/h ≈ 13,9 m/s : 13,9 m en 1 s. 130 km/h ≈ 36,1 m/s : 36,1 m. 90 km/h = 25 m/s : 75 m en 3 s, environ les trois quarts d'un terrain de football… sans regarder la route ! La distance de réaction est proportionnelle à la vitesse, mais la distance de freinage est multipliée par 4 quand la vitesse double : la distance d'arrêt augmente plus vite que la vitesse.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "13,9 m" }, { "value": "36,1 m" }, { "value": "75 m" }, { "value": "oui" }, { "text": "La distance d'arrêt n'est pas proportionnelle à la vitesse car la distance de freinage est multipliée par 4 quand la vitesse double. Il faut donc garder une distance de sécurité plus grande.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "50 m" }, { "value": "36,1 m" }, { "value": "75 m" }, { "value": "oui" }, { "text": "La distance d'arrêt n'est pas proportionnelle car le freinage est multiplié par 4." } ] }, "expect": "mc:kmh-ms" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-aller-retour", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:moyenne-vitesses"], "expectedSeconds": 480,
+      "prompt": "Lina fait à vélo les 30 km qui la séparent de chez sa tante. À l'aller (en descente), elle roule à 30 km/h ; au retour (en montée), à 15 km/h.",
+      "parts": [
+        { "type": "numeric", "prompt": "Durée de l'aller (avec l'unité) :", "answer": 1, "unit": "h" },
+        { "type": "numeric", "prompt": "Durée du retour (avec l'unité) :", "answer": 2, "unit": "h",
+          "misconceptions": [ { "answer": 0.5, "id": "mc:v-inverse", "error": "notion", "feedback": "t = d / v = 30 / 15." } ] },
+        { "type": "numeric", "prompt": "Vitesse moyenne sur l'aller-retour (avec l'unité) :", "answer": 20, "unit": "km/h", "rel": 0.01,
+          "misconceptions": [ { "answer": 22.5, "id": "mc:moyenne-vitesses", "error": "raisonnement", "feedback": "22,5 km/h est la moyenne des deux vitesses. Mais Lina roule deux fois plus longtemps à 15 km/h qu'à 30 km/h : la vitesse lente « pèse » davantage. Vitesse moyenne = distance totale / durée totale = 60 / 3." } ] },
+        { "type": "text", "prompt": "Pourrait-elle obtenir une moyenne de 60 km/h sur l'aller-retour, en roulant assez vite au retour ? (oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:moyenne-vitesses", "error": "raisonnement", "feedback": "Pour 60 km/h de moyenne sur 60 km, il faudrait mettre 1 h en tout. Or l'aller a déjà pris 1 h : il faudrait faire le retour en 0 s, à une vitesse infinie ! Penser à 90 km/h au retour, parce que (30 + 90) / 2 = 60, c'est encore faire la moyenne des vitesses." } ] }
+      ],
+      "hints": ["t = d / v pour chaque trajet.", "Distance totale : 60 km. Durée totale : aller + retour.", "La vitesse moyenne n'est pas la moyenne des vitesses."],
+      "solution": "Aller : 30 / 30 = 1 h ; retour : 30 / 15 = 2 h. Vitesse moyenne = 60 / 3 = 20 km/h (et non 22,5). Une moyenne de 60 km/h exigerait 1 h au total : l'aller ayant déjà pris 1 h, le retour devrait durer 0 s. C'est impossible, quelle que soit la vitesse du retour.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1 h" }, { "value": "2 h" }, { "value": "20 km/h" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1 h" }, { "value": "2 h" }, { "value": "22,5 km/h" }, { "value": "non" } ] }, "expect": "mc:moyenne-vitesses" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-rattrapage", "type": "composite", "skill": "pc.mouvement.vitesse", "skills": ["m4.equations.modeliser"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:vitesse-relative"], "expectedSeconds": 720,
+      "prompt": "Un cycliste quitte le collège à 9 h 00 et roule à 18 km/h. Sa sœur part du même endroit à 9 h 30, sur la même route, en scooter à 45 km/h. On suppose les vitesses constantes.",
+      "parts": [
+        { "type": "numeric", "prompt": "Avance du cycliste à 9 h 30 (avec l'unité) :", "answer": 9, "unit": "km",
+          "misconceptions": [ { "answer": 18, "id": "mc:ecart-depart", "error": "lecture", "feedback": "Il a roulé 30 min = 0,5 h : 18 × 0,5 = 9 km." } ] },
+        { "type": "numeric", "prompt": "Ensuite, de combien de kilomètres l'écart diminue-t-il chaque heure (avec l'unité km/h) ?", "answer": 27, "unit": "km/h",
+          "misconceptions": [ { "answer": 63, "id": "mc:vitesse-relative", "error": "raisonnement", "feedback": "Ils roulent dans le MÊME sens : chaque heure, le scooter fait 45 km et le vélo 18 km, l'écart diminue de 45 − 18 = 27 km." } ] },
+        { "type": "numeric", "prompt": "Combien de temps après 9 h 30 le scooter rattrape-t-il le vélo (avec l'unité) ?", "answer": 20, "unit": "min", "rel": 0.01,
+          "misconceptions": [ { "answer": "9/63*60", "id": "mc:vitesse-relative", "error": "raisonnement", "feedback": "L'écart diminue de 45 − 18 = 27 km/h (même sens) : 9 / 27 h." } ] },
+        { "type": "numeric", "prompt": "À quelle distance du collège (avec l'unité) ?", "answer": 15, "unit": "km", "rel": 0.01 },
+        { "type": "graph", "prompt": "Sur le graphique position (km) en fonction du temps (min après 9 h 00), place le point de rencontre.", "xRange": [0, 90], "yRange": [0, 30], "xLabel": "t (min après 9 h 00)", "yLabel": "position (km)", "tolerance": 1,
+          "expectedPoints": [[50, 15]] }
+      ],
+      "hints": ["En 30 min, le cycliste parcourt 18 × 0,5 km.", "Le scooter « reprend » 45 − 18 = 27 km chaque heure.", "Avec t le temps en heures depuis 9 h 00 : 18 t = 45 (t − 0,5)."],
+      "solution": "À 9 h 30, le cycliste a 9 km d'avance. L'écart diminue de 27 km par heure : il s'annule après 9 / 27 = 1/3 h = 20 min, donc à 9 h 50. Distance : 45 × 1/3 = 15 km (vérification : 18 × 50/60 = 15 km). Sur le graphique, c'est le point d'intersection des deux droites : (50 min ; 15 km).",
+      "methods": ["Écart et vitesse relative : 9 km à combler à 27 km/h.", "Équation : 18 t = 45 (t − 0,5), donc 27 t = 22,5 et t = 0,833 h = 50 min après 9 h 00.", "Graphique : tracer les deux droites position-temps et lire leur intersection."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "9 km" }, { "value": "27 km/h" }, { "value": "20 min" }, { "value": "15 km" }, { "points": [[50, 15]] } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "9 km" }, { "value": "63 km/h" }, { "value": "8,57 min" }, { "value": "15 km" }, { "points": [[50, 15]] } ] }, "expect": "mc:vitesse-relative" }
+      ]
+    },
+    {
+      "id": "pc-vitesse-terre", "type": "composite", "skill": "pc.mouvement.vitesse", "skills": ["pc.mesure.incertitudes", "m4.puissances"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:rayon-diametre"], "expectedSeconds": 720,
+      "prompt": "Ordre de grandeur : la Terre fait le tour du Soleil en 365 jours environ, sur une trajectoire presque circulaire de rayon 150 millions de km. Rappel : le périmètre d'un cercle de rayon r vaut 2 × π × r. Tu peux écrire les grands nombres sous la forme 9,4 × 10^8.",
+      "parts": [
+        { "type": "numeric", "prompt": "Distance parcourue par la Terre en un an (avec l'unité) :", "answer": "2*pi*150*10^6", "unit": "km", "rel": 0.02,
+          "misconceptions": [
+            { "answer": "pi*150*10^6", "id": "mc:rayon-diametre", "error": "notion", "feedback": "150 millions de km est le RAYON de l'orbite : périmètre = 2 × π × r." },
+            { "answer": "pi*(150*10^6)^2", "id": "mc:aire-perimetre", "error": "notion", "feedback": "π × r² est l'AIRE du disque ; la distance parcourue est le périmètre 2 × π × r." }
+          ] },
+        { "type": "numeric", "prompt": "Durée d'une année en heures (avec l'unité) :", "answer": 8760, "unit": "h" },
+        { "type": "numeric", "prompt": "Vitesse moyenne de la Terre sur son orbite (avec l'unité) :", "answer": "2*pi*150*10^6/8760", "unit": "km/h", "rel": 0.03,
+          "misconceptions": [ { "answer": "pi*150*10^6/8760", "id": "mc:rayon-diametre", "error": "notion", "feedback": "Utilise le périmètre 2 × π × r." } ] },
+        { "type": "numeric", "prompt": "Ordre de grandeur : cette vitesse vaut environ $10^n$ km/h. Quelle est la valeur de l'entier n ?", "answer": 5,
+          "misconceptions": [ { "answer": 4, "id": "mc:ordre-grandeur", "error": "raisonnement", "prerequisite": "m4.puissances", "feedback": "Environ 108 000 km/h ≈ 1,1 × 10⁵ km/h : la puissance de 10 la plus proche est 10⁵." } ] },
+        { "type": "numeric", "prompt": "Combien de fois plus vite qu'un avion de ligne volant à 900 km/h ?", "answer": "2*pi*150*10^6/8760/900", "rel": 0.05 },
+        { "type": "open", "prompt": "Pourquoi ne ressent-on pas cette vitesse énorme ? Quelles hypothèses simplificatrices a-t-on faites dans le calcul ?", "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "Le mouvement est presque uniforme : on ne ressent pas une vitesse constante, seulement ses changements", "keywords": [["uniforme", "constante", "ne change pas", "acceler"]] },
+            { "id": "c2", "label": "Le sol, l'air et nous-mêmes avançons ensemble : la vitesse dépend de ce qu'on prend comme référence", "keywords": [["avec nous", "ensemble", "reference", "referentiel", "par rapport"]] },
+            { "id": "c3", "label": "Hypothèses : orbite circulaire, vitesse constante, année de 365 jours exactement", "keywords": [["circulaire", "cercle", "365", "constante"]] }
+          ] }
+      ],
+      "hints": ["Distance = 2 × π × 150 × 10⁶ km ≈ 9,4 × 10⁸ km.", "Une année : 365 × 24 h.", "v = d / t, puis compare avec 10⁴, 10⁵, 10⁶."],
+      "solution": "d = 2 × π × 1,5 × 10⁸ ≈ 9,4 × 10⁸ km ; t = 365 × 24 = 8 760 h ; v ≈ 9,4 × 10⁸ / 8 760 ≈ 1,1 × 10⁵ km/h (environ 108 000 km/h, soit près de 30 km/s), 120 fois plus vite qu'un avion de ligne. On ne la ressent pas car elle varie très peu (mouvement presque uniforme) et parce que tout ce qui nous entoure avance avec nous. Hypothèses : orbite circulaire, vitesse constante, 365 jours.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "9,4 × 10^8 km" }, { "value": "8760 h" }, { "value": "107 600 km/h" }, { "value": "5" }, { "value": "120" }, { "text": "Le mouvement est presque uniforme donc on ne sent rien, et l'air et le sol avancent avec nous. On a supposé une orbite circulaire, une vitesse constante et 365 jours.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4,7 × 10^8 km" }, { "value": "8760 h" }, { "value": "53 800 km/h" }, { "value": "5" }, { "value": "60" }, { "text": "Le mouvement est presque uniforme donc on ne sent rien." } ] }, "expect": "mc:rayon-diametre" }
+      ]
+    }
+  ]
+}

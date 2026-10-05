@@ -1,0 +1,914 @@
+{
+  "id": "code-variables",
+  "title": "Variables, conditions et blocs personnalisés",
+  "subject": "numerique",
+  "level": "4e",
+  "skills": ["code.variables", "code.procedures"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020", "techno-c4-2024"],
+  "duration": 60,
+  "summary": "Ranger une valeur dans une variable et la faire évoluer, prendre une décision avec « si », puis créer ses propres blocs avec paramètres pour dessiner des spirales, des escaliers et des familles de figures.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Une spirale avec une seule instruction « avance »",
+      "body": "Ce dessin n'est pas un carré : chaque segment est un peu plus long que le précédent. Pourtant, le programme ne contient qu'**une seule** instruction « avance ».\n\nComment est-ce possible ? Indice : la longueur du segment est rangée dans une boîte appelée cote, et le contenu de cette boîte change à chaque tour de boucle. Modifie le 5 de la première ligne, puis celui de la deuxième : qu'est-ce qui change ?",
+      "activity": {"widget": "turtle", "config": {"program": "mets cote à 5\nrépète 30 [ avance cote droite 90 ajoute 5 à cote ]"}}
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "Une **variable** est une boîte qui porte un nom et contient **une seule valeur à la fois**. Cette valeur peut changer pendant l'exécution du programme.\n\n- « mets cote à 10 » range 10 dans cote : l'ancienne valeur est **effacée**.\n- « ajoute 5 à cote » part de la valeur **actuelle** de cote et l'augmente de 5.\n- « mets cote à cote * 2 » n'est pas une équation : l'ordinateur calcule cote * 2 avec la valeur actuelle de cote, puis range le résultat dans cote (si cote valait 7, il vaut maintenant 14).\n\nChoisis des **noms parlants** (cote, taille, hauteur, numero…) : le programme se relit beaucoup mieux. Les calculs s'écrivent comme en mathématiques : « avance (cote + 5) * 2 », « droite 360 / n ».\n\n**Initialiser.** Une variable reçoit sa valeur de départ **avant** la boucle qui la fait évoluer. Si on écrit « mets cote à 10 » dans la boucle, cote est remise à 10 à chaque tour.\n\n**La condition « si ».** « si cote > 100 [ … ] sinon [ … ] » teste la condition **au moment où l'instruction est exécutée**, avec la valeur actuelle de cote, et exécute **un seul** des deux blocs. Placée dans une boucle, la condition est testée **à chaque tour**.\n\n**Les blocs personnalisés (procédures).** « pour carre taille [ répète 4 [ avance taille droite 90 ] ] » crée un nouveau bloc nommé carre, avec un **paramètre** taille. Cette définition ne dessine rien : elle apprend un mot nouveau à la tortue. Ensuite, « carre 30 » trace un carré de côté 30, « carre 80 » un carré de côté 80. C'est l'équivalent de « Créer un bloc » dans un langage à blocs.\n\n> Variable : une valeur qui change pendant le programme.\n> Paramètre : une valeur donnée au bloc au moment où on l'utilise.\n> Un bon bloc personnalisé évite de recopier plusieurs fois le même code et le rend plus facile à relire et à corriger."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Le laboratoire des carrés emboîtés",
+      "body": "Le programme définit un bloc « carre », puis l'utilise avec une variable cote qui grandit. Change la valeur de départ de cote, le pas (10), ou le nombre de répétitions. Essaie ensuite d'ajouter « droite 10 » dans la boucle, juste après « carre cote » : que se passe-t-il ?",
+      "activity": {
+        "widget": "turtle",
+        "config": {"program": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]\nmets cote à 10\nrépète 8 [ carre cote ajoute 10 à cote ]"}
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : suivre une variable",
+      "steps": [
+        {
+          "text": "Programme : « mets cote à 10 », puis « répète 3 [ avance cote droite 90 ajoute 10 à cote ] ». On suit la valeur de cote comme dans un tableau.",
+          "math": ""
+        },
+        {"text": "Ligne 1 : cote reçoit 10.", "math": "cote = 10"},
+        {"text": "Tour 1 : la tortue avance de 10, tourne, puis cote augmente de 10.", "math": "cote = 20"},
+        {"text": "Tour 2 : elle avance de 20, tourne, puis cote devient 30.", "math": "cote = 30"},
+        {"text": "Tour 3 : elle avance de 30, tourne, puis cote devient 40.", "math": "cote = 40"},
+        {
+          "text": "Bilan : trois segments de 10, 20 et 30. À la fin, cote vaut 40 et non 30 : l'augmentation a lieu après le dernier tracé.",
+          "math": ""
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Pour les questions « que vaut c à la fin ? », fais un **tableau de suivi** : une ligne par instruction exécutée, la valeur de c après chacune. Pour les dessins, l'éditeur affiche le modèle à côté du tien.",
+      "exercises": ["code-variables-valeur", "code-variables-spirale", "code-variables-si-valeur", "code-variables-barres"]
+    },
+    {"kind": "libre", "title": "Avec tes mots", "exercises": ["code-variables-expliquer"]},
+    {"kind": "reinvestissement", "title": "Un bug, puis tes propres blocs", "exercises": ["code-variables-debug-init", "code-variables-procedure"]},
+    {
+      "kind": "mission",
+      "title": "Mission : les escaliers du château",
+      "body": "L'architecte du château veut un plan d'escalier qu'on puisse réutiliser pour n'importe quel nombre de marches.",
+      "exercises": ["code-variables-escalier"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Initialiser dans la boucle.** « répète 10 [ mets cote à 15 … ajoute 15 à cote ] » remet cote à 15 à chaque tour : l'augmentation est perdue. L'initialisation se place avant la boucle.\n- **Lire « mets c à c * 2 » comme une équation.** Ce n'est pas une égalité à résoudre : on calcule avec l'ancienne valeur, puis on range le résultat.\n- **Confondre « mets » et « ajoute ».** « ajoute 5 à c » ne met pas 5 dans c : il augmente c de 5.\n- **Croire que « si » est testé une seule fois.** Dans une boucle, la condition est testée à chaque tour, avec la valeur du moment.\n- **Exécuter les deux blocs d'un « si … sinon ».** Un seul des deux est exécuté.\n- **Oublier d'utiliser le paramètre.** Un bloc « carre taille » qui contient « avance 30 » trace toujours le même carré, quelle que soit la valeur donnée.\n- **Définir un bloc sans l'utiliser.** « pour carre taille [ … ] » ne dessine rien tant qu'on n'écrit pas « carre 30 »."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Dans quelques jours, le moteur te proposera de nouveau un tableau de suivi ou un bloc à créer : c'est en le refaisant après une pause qu'on vérifie que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Des blocs à plusieurs paramètres, et des blocs qu'on alimente avec une variable qui évolue.",
+      "exercises": ["code-variables-rectangle", "code-variables-escalier-croissant"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà du programme : généraliser. Un seul bloc pour tous les polygones réguliers, puis pour toute une famille d'étoiles, avec une preuve que la figure se referme.",
+      "exercises": ["code-variables-polygones", "code-variables-etoiles"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "code-variables-valeur",
+      "type": "numeric",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:boucle-une-fois", "mc:affectation-equation", "mc:ajoute-comme-mets"],
+      "expectedSeconds": 120,
+      "params": {"a": {"int": [2, 9]}, "b": {"int": [2, 6]}, "n": {"int": [2, 4]}},
+      "constraints": ["a != (n-2)*b", "a != n*b", "a != b"],
+      "prompt": "Ce programme ne dessine rien : il calcule.\n1. mets c à {a}\n2. répète {n} [ ajoute {b} à c ]\n3. mets c à c * 2\n\nQue vaut c à la fin du programme ?",
+      "answer": "2*(a+n*b)",
+      "misconceptions": [
+        {
+          "answer": "2*(a+b)",
+          "id": "mc:boucle-une-fois",
+          "error": "notion",
+          "feedback": "La ligne 2 ajoute {b} à c **{n} fois**, une fois par tour de boucle, et pas une seule fois."
+        },
+        {
+          "answer": "a+n*b",
+          "id": "mc:affectation-equation",
+          "error": "notion",
+          "feedback": "« mets c à c * 2 » n'est pas une équation impossible : l'ordinateur calcule c * 2 avec la valeur actuelle de c ({a+n*b}), puis range le résultat dans c."
+        },
+        {
+          "answer": "2*b",
+          "id": "mc:ajoute-comme-mets",
+          "error": "notion",
+          "feedback": "« ajoute {b} à c » augmente c de {b} ; il ne remplace pas la valeur de c par {b}."
+        },
+        {
+          "answer": "2*a",
+          "id": "mc:variable-figee",
+          "error": "notion",
+          "feedback": "c ne garde pas sa valeur de départ : la ligne 2 la modifie à chaque tour de boucle."
+        }
+      ],
+      "hints": [
+        "Suis la valeur de c instruction par instruction, comme dans un tableau.",
+        "Après la ligne 2, la boucle a ajouté {b} à c, {n} fois : c vaut {a} + {n} × {b} = {a+n*b}.",
+        "La ligne 3 double la valeur actuelle de c."
+      ],
+      "solution": "Ligne 1 : c = {a}. Ligne 2 : {n} tours, c augmente de {b} à chaque tour, donc c = {a} + {n} × {b} = {a+n*b}. Ligne 3 : c = {a+n*b} × 2 = {2*(a+n*b)}.",
+      "methods": ["Tableau de suivi : on note la valeur de c après chaque instruction exécutée.", "Calcul direct : c = ({a} + {n} × {b}) × 2."],
+      "selfTest": [
+        {"response": {"value": "{2*(a+n*b)}"}, "expect": "correct"},
+        {"response": {"value": "{2*(a+b)}"}, "expect": "mc:boucle-une-fois"},
+        {"response": {"value": "{a+n*b}"}, "expect": "mc:affectation-equation"}
+      ]
+    },
+    {
+      "id": "code-variables-spirale",
+      "type": "code",
+      "skill": "code.variables",
+      "skills": ["code.boucles"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:variable-figee", "mc:init-dans-boucle", "mc:boucle-une-fois"],
+      "expectedSeconds": 240,
+      "params": {"p": {"choice": [5, 8, 10]}, "n": {"choice": [10, 12]}},
+      "prompt": "Trace la spirale carrée du modèle : {n} segments ; le premier mesure {p}, et chaque segment mesure {p} de plus que le précédent ({p}, {2*p}, {3*p}…), avec un virage de 90° entre deux segments.\n\nDéfi : **au plus 5 instructions**, grâce à une variable (par exemple cote).",
+      "reference": "mets cote à {p}\nrépète {n} [ avance cote droite 90 ajoute {p} à cote ]",
+      "codeConstraints": {"maxInstructions": 5},
+      "misconceptions": [
+        {
+          "program": "mets cote à {p}\nrépète {n} [ avance cote droite 90 ]\najoute {p} à cote",
+          "id": "mc:variable-figee",
+          "error": "notion",
+          "feedback": "Tous tes segments mesurent {p} : la variable ne change pas d'un tour à l'autre. « ajoute {p} à cote » doit être DANS la boucle (et « mets cote à {p} » AVANT la boucle)."
+        },
+        {
+          "program": "mets cote à {p}\nrépète {n} [ ajoute {p} à cote avance cote droite 90 ]",
+          "id": "mc:ordre-instructions",
+          "error": "methode",
+          "feedback": "Ton premier segment mesure {2*p} au lieu de {p} : la variable est augmentée avant d'être utilisée. Place « ajoute » après « avance », ou pars de 0."
+        }
+      ],
+      "hints": [
+        "Une seule instruction « avance » suffit si sa longueur est une variable : « avance cote ».",
+        "Avant la boucle, donne sa valeur de départ à la variable : « mets cote à {p} ».",
+        "Dans la boucle : avancer de cote, tourner de 90, puis augmenter cote de {p}."
+      ],
+      "solution": "« mets cote à {p} » puis « répète {n} [ avance cote droite 90 ajoute {p} à cote ] ». Au tour 1, la tortue avance de {p} ; au tour 2, de {2*p}… au tour {n}, de {n*p}. Cela fait 5 instructions au lieu de {2*n}.",
+      "methods": [
+        "Variable longueur, augmentée à la fin de chaque tour.",
+        "Variante : « mets cote à 0 », puis « ajoute {p} à cote » en début de boucle, avant « avance cote » : même dessin."
+      ],
+      "selfTest": [
+        {"response": {"program": "mets cote à {p}\nrépète {n} [ avance cote droite 90 ajoute {p} à cote ]"}, "expect": "correct"},
+        {"response": {"program": "mets cote à 0\nrépète {n} [ ajoute {p} à cote avance cote gauche 90 ]"}, "expect": "correct"},
+        {"response": {"program": "mets cote à {p}\nrépète {n} [ avance cote droite 90 ]\najoute {p} à cote"}, "expect": "mc:variable-figee"},
+        {"response": {"program": "répète {n} [ mets cote à {p} avance cote droite 90 ajoute {p} à cote ]"}, "expect": "mc:variable-figee"},
+        {"response": {"program": "mets cote à {p}\nrépète {n} [ ajoute {p} à cote avance cote droite 90 ]"}, "expect": "mc:ordre-instructions"}
+      ]
+    },
+    {
+      "id": "code-variables-si-valeur",
+      "type": "numeric",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:si-teste-une-fois", "mc:si-deux-branches", "mc:si-comme-tant-que"],
+      "expectedSeconds": 180,
+      "prompt": "Que vaut c à la fin de ce programme ?\n1. mets c à 0\n2. répète 6 [\n3. si c < 10 [ ajoute 4 à c ] sinon [ ajoute 1 à c ]\n4. ]",
+      "answer": 15,
+      "misconceptions": [
+        {
+          "answer": 24,
+          "id": "mc:si-teste-une-fois",
+          "error": "notion",
+          "feedback": "La condition n'est pas testée une seule fois, au début : elle est testée à **chaque tour**, avec la valeur actuelle de c. Dès que c atteint 12, c'est le bloc « sinon » qui s'exécute."
+        },
+        {
+          "answer": 30,
+          "id": "mc:si-deux-branches",
+          "error": "notion",
+          "feedback": "« si … sinon … » exécute **un seul** des deux blocs à chaque tour, jamais les deux."
+        },
+        {
+          "answer": 12,
+          "id": "mc:si-comme-tant-que",
+          "error": "notion",
+          "feedback": "« si » ne fait pas sortir de la boucle : quand la condition devient fausse, les tours continuent et exécutent le bloc « sinon »."
+        }
+      ],
+      "hints": [
+        "Fais un tableau : tour, valeur de c au début du tour, « c < 10 » est-il vrai ?, valeur de c à la fin du tour.",
+        "Tours 1 à 3 : c vaut 0, puis 4, puis 8 ; la condition est vraie, on ajoute 4. À la fin du tour 3, c = 12.",
+        "À partir du tour 4, « c < 10 » est faux : on ajoute 1 à chaque tour restant."
+      ],
+      "solution": "Tour 1 : 0<10 vrai, c = 4. Tour 2 : 4<10 vrai, c = 8. Tour 3 : 8<10 vrai, c = 12. Tour 4 : 12<10 faux, c = 13. Tour 5 : c = 14. Tour 6 : c = 15. Réponse : 15.",
+      "methods": [
+        "Tableau de suivi, tour par tour.",
+        "Raisonner par phases : +4 tant que c est inférieur à 10 (3 fois, jusqu'à 12), puis +1 pour les 3 tours restants : 12 + 3 = 15."
+      ],
+      "selfTest": [
+        {"response": {"value": "15"}, "expect": "correct"},
+        {"response": {"value": "24"}, "expect": "mc:si-teste-une-fois"},
+        {"response": {"value": "30"}, "expect": "mc:si-deux-branches"}
+      ]
+    },
+    {
+      "id": "code-variables-barres",
+      "type": "code",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:si-teste-une-fois", "mc:condition-decalee"],
+      "expectedSeconds": 300,
+      "prompt": "Le modèle montre un diagramme de 6 barres posées sur une ligne : les 3 premières mesurent 20, les 3 suivantes 50. Le programme de départ trace 6 barres de 20 ; la variable numero numérote les barres (1, 2, 3…).\n\nModifie-le pour obtenir le modèle, **en utilisant « si »**.",
+      "start": "mets numero à 1\nrépète 6 [\n  mets hauteur à 20\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]",
+      "reference": "mets numero à 1\nrépète 6 [\n  si numero < 4 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]",
+      "codeConstraints": {"mustUse": ["si"]},
+      "misconceptions": [
+        {
+          "program": "mets numero à 1\nrépète 6 [\n  si numero < 3 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]",
+          "id": "mc:condition-decalee",
+          "error": "methode",
+          "feedback": "Tu as seulement 2 petites barres : ta condition est décalée d'un cran. La 3e barre a le numéro 3, elle doit encore être petite : teste « numero < 4 » (ou « numero <= 3 »)."
+        },
+        {
+          "program": "mets numero à 1\nrépète 6 [\n  si numero < 5 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]",
+          "id": "mc:condition-decalee",
+          "error": "methode",
+          "feedback": "Tu as 4 petites barres au lieu de 3 : ta condition est décalée d'un cran. La 4e barre (numero = 4) doit déjà être grande : teste « numero < 4 »."
+        },
+        {
+          "program": "mets numero à 1\nrépète 6 [\n  si numero < 4 [ mets hauteur à 50 ] sinon [ mets hauteur à 20 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]",
+          "id": "mc:branches-inversees",
+          "error": "methode",
+          "feedback": "Tes barres sont dans le mauvais ordre : quand la condition est vraie (les 3 premières barres), c'est le PREMIER bloc qui s'exécute. Échange les deux blocs."
+        }
+      ],
+      "hints": [
+        "Quelle information permet de savoir si la barre en cours de tracé est l'une des 3 premières ?",
+        "La variable numero vaut 1 pour la 1re barre, 2 pour la 2e… Les 3 premières sont celles pour lesquelles numero < 4.",
+        "Remplace « mets hauteur à 20 » par « si numero < 4 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ] »."
+      ],
+      "solution": "« si numero < 4 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ] » remplace « mets hauteur à 20 ». À chaque tour, la condition est testée avec la valeur actuelle de numero : vraie pour 1, 2, 3 (barres de 20), fausse pour 4, 5, 6 (barres de 50).",
+      "methods": [
+        "Condition sur le numéro de barre : « si numero < 4 [ … ] sinon [ … ] ».",
+        "Conditions équivalentes : « si numero <= 3 » ou, à l'envers, « si numero > 3 [ mets hauteur à 50 ] sinon [ mets hauteur à 20 ] ».",
+        "Sans condition, deux boucles de 3 barres donnent le bon dessin, mais l'exercice demande d'utiliser « si »."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "program": "mets numero à 1\nrépète 6 [\n  si numero < 4 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "mets numero à 1\nrépète 6 [\n  si numero > 3 [ mets hauteur à 50 ] sinon [ mets hauteur à 20 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "répète 3 [ gauche 90 avance 20 recule 20 droite 90 avance 15 ]\nrépète 3 [ gauche 90 avance 50 recule 50 droite 90 avance 15 ]"
+          },
+          "expect": "methode"
+        },
+        {
+          "response": {
+            "program": "mets numero à 1\nrépète 6 [\n  si numero < 3 [ mets hauteur à 20 ] sinon [ mets hauteur à 50 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]"
+          },
+          "expect": "mc:condition-decalee"
+        },
+        {
+          "response": {
+            "program": "mets numero à 1\nrépète 6 [\n  si numero < 4 [ mets hauteur à 50 ] sinon [ mets hauteur à 20 ]\n  gauche 90 avance hauteur recule hauteur droite 90\n  avance 15\n  ajoute 1 à numero\n]"
+          },
+          "expect": "mc:branches-inversees"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-debug-init",
+      "type": "code",
+      "skill": "code.variables",
+      "skills": ["code.debug"],
+      "track": "classe",
+      "role": "debug",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:init-dans-boucle"],
+      "expectedSeconds": 180,
+      "params": {"p": {"choice": [10, 15, 20]}, "a": {"choice": [90, 120]}},
+      "prompt": "Inès voulait tracer une spirale : 12 segments de {p}, {2*p}, {3*p}… avec un virage de {a}° après chacun. Mais son programme dessine toujours la même petite figure. Trouve le bug et corrige-le.",
+      "start": "répète 12 [ mets cote à {p} avance cote droite {a} ajoute {p} à cote ]",
+      "reference": "mets cote à {p}\nrépète 12 [ avance cote droite {a} ajoute {p} à cote ]",
+      "misconceptions": [
+        {
+          "program": "répète 12 [ mets cote à {p} avance cote droite {a} ajoute {p} à cote ]",
+          "id": "mc:init-dans-boucle",
+          "error": "notion",
+          "feedback": "Tous tes segments mesurent encore {p} : « mets cote à {p} » est exécuté à chaque tour et efface l'augmentation. Place-le avant la boucle (et vérifie que « ajoute » est bien dans la boucle)."
+        }
+      ],
+      "hints": [
+        "Que vaut cote au début de chaque tour de boucle ?",
+        "« mets cote à {p} » est exécuté à chaque tour : il efface l'augmentation faite au tour précédent.",
+        "Sors « mets cote à {p} » de la boucle, en le plaçant avant « répète »."
+      ],
+      "solution": "« mets cote à {p} » est dans la boucle : au début de chaque tour, cote est remise à {p}, donc la tortue avance toujours de {p} et repasse sans cesse sur la même petite figure. La valeur de départ doit être donnée une seule fois, avant la boucle : « mets cote à {p} » puis « répète 12 [ avance cote droite {a} ajoute {p} à cote ] ».",
+      "methods": [
+        "Exécuter à la main les deux premiers tours en notant cote : {p}, puis… {p} encore.",
+        "Se demander pour chaque instruction : doit-elle être faite une fois (avant la boucle) ou à chaque tour (dans la boucle) ?"
+      ],
+      "selfTest": [
+        {"response": {"program": "mets cote à {p}\nrépète 12 [ avance cote droite {a} ajoute {p} à cote ]"}, "expect": "correct"},
+        {"response": {"program": "répète 12 [ mets cote à {p} avance cote droite {a} ajoute {p} à cote ]"}, "expect": "mc:init-dans-boucle"},
+        {"response": {"program": "mets cote à {p}\nrépète 12 [ avance cote droite {a} ]\najoute {p} à cote"}, "expect": "mc:init-dans-boucle"}
+      ]
+    },
+    {
+      "id": "code-variables-procedure",
+      "type": "code",
+      "skill": "code.procedures",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:parametre-ignore", "mc:definition-sans-appel"],
+      "expectedSeconds": 240,
+      "params": {"a": {"choice": [20, 25, 30]}},
+      "prompt": "Crée un bloc personnalisé « carre » avec un paramètre taille (la longueur du côté), puis utilise-le pour tracer les trois carrés emboîtés du modèle, de côtés {a}, {2*a} et {3*a}, partant du même coin.\n\nRappel : « pour carre taille [ … ] » définit le bloc ; « carre {a} » l'utilise.",
+      "reference": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]\ncarre {a}\ncarre {2*a}\ncarre {3*a}",
+      "codeConstraints": {"mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour carre taille [ répète 4 [ avance {a} droite 90 ] ]\ncarre {a}\ncarre {2*a}\ncarre {3*a}",
+          "id": "mc:parametre-ignore",
+          "error": "notion",
+          "feedback": "Tes trois carrés sont identiques : dans la définition, tu as écrit un nombre fixe au lieu du paramètre. Écris « avance taille » : chaque appel donnera alors sa propre valeur à taille."
+        },
+        {
+          "program": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]",
+          "id": "mc:definition-sans-appel",
+          "error": "notion",
+          "feedback": "Ton programme définit le bloc mais ne l'utilise jamais : une définition ne dessine rien. Ajoute ensuite « carre {a} », « carre {2*a} », « carre {3*a} »."
+        }
+      ],
+      "hints": [
+        "Dans la définition, la longueur du côté n'est pas un nombre fixé : c'est le paramètre taille.",
+        "Définition : « pour carre taille [ répète 4 [ avance taille droite 90 ] ] ».",
+        "Puis trois utilisations du bloc : « carre {a} », « carre {2*a} », « carre {3*a} »."
+      ],
+      "solution": "« pour carre taille [ répète 4 [ avance taille droite 90 ] ] » puis « carre {a} », « carre {2*a} », « carre {3*a} ». Chaque carré revient au point de départ, tourné dans la direction de départ (4 × 90 = 360°) : le suivant part donc du même coin.",
+      "methods": [
+        "Un bloc avec paramètre, utilisé trois fois.",
+        "Avec une variable en plus : « mets cote à {a} » puis « répète 3 [ carre cote ajoute {a} à cote ] »."
+      ],
+      "selfTest": [
+        {
+          "response": {"program": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]\ncarre {a}\ncarre {2*a}\ncarre {3*a}"},
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]\nmets cote à {a}\nrépète 3 [ carre cote ajoute {a} à cote ]"},
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "pour carre taille [ répète 4 [ avance {a} droite 90 ] ]\ncarre {a}\ncarre {2*a}\ncarre {3*a}"},
+          "expect": "mc:parametre-ignore"
+        },
+        {"response": {"program": "pour carre taille [ répète 4 [ avance taille droite 90 ] ]"}, "expect": "mc:definition-sans-appel"},
+        {
+          "response": {"program": "répète 4 [ avance {a} droite 90 ]\nrépète 4 [ avance {2*a} droite 90 ]\nrépète 4 [ avance {3*a} droite 90 ]"},
+          "expect": "methode"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-escalier",
+      "type": "code",
+      "skill": "code.procedures",
+      "skills": ["code.boucles"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:parametre-ignore", "mc:definition-sans-appel"],
+      "expectedSeconds": 360,
+      "params": {"a": {"choice": [2, 3]}, "b": {"choice": [4, 5]}, "p": {"choice": [30, 40, 60]}},
+      "prompt": "L'escalier du château (voir le modèle) : une volée de {a} marches, un palier de {p}, puis une volée de {b} marches. Chaque marche mesure 20 de haut et 20 de profondeur.\n\nÉcris un bloc « escalier » avec un paramètre marches (le nombre de marches), puis utilise-le pour tracer l'escalier complet.",
+      "reference": "pour escalier marches [ répète marches [ gauche 90 avance 20 droite 90 avance 20 ] ]\nescalier {a}\navance {p}\nescalier {b}",
+      "codeConstraints": {"mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour escalier marches [ répète marches [ avance 20 gauche 90 avance 20 droite 90 ] ]\nescalier {a}\navance {p}\nescalier {b}",
+          "id": "mc:ordre-instructions",
+          "error": "methode",
+          "feedback": "Ton escalier commence par un pas en avant au lieu de monter : dans une marche, l'ordre des instructions compte. Monte d'abord (gauche 90, avance 20, droite 90), puis avance de 20."
+        },
+        {
+          "program": "pour escalier marches [ répète marches [ gauche 90 avance 20 droite 90 avance 20 ] ]",
+          "id": "mc:definition-sans-appel",
+          "error": "notion",
+          "feedback": "Ton programme définit le bloc mais ne l'utilise jamais : une définition ne dessine rien. Ajoute « escalier {a} », « avance {p} », « escalier {b} »."
+        }
+      ],
+      "hints": [
+        "Une marche : monter de 20, puis avancer de 20 : « gauche 90 avance 20 droite 90 avance 20 ».",
+        "Un escalier de « marches » marches répète ce motif : « pour escalier marches [ répète marches [ … ] ] ».",
+        "Après « escalier {a} », la tortue est en haut, tournée vers la droite : « avance {p} » trace le palier, puis « escalier {b} »."
+      ],
+      "solution": "« pour escalier marches [ répète marches [ gauche 90 avance 20 droite 90 avance 20 ] ] », puis « escalier {a} », « avance {p} », « escalier {b} ». Le même bloc sert pour les deux volées : seul le paramètre change.",
+      "methods": [
+        "Un bloc « escalier » à paramètre, utilisé deux fois.",
+        "Deux blocs : « marche » (sans paramètre) et « escalier » qui répète « marche ». Plus long à écrire, mais très lisible."
+      ],
+      "selfTest": [
+        {
+          "response": {"program": "pour escalier marches [ répète marches [ gauche 90 avance 20 droite 90 avance 20 ] ]\nescalier {a}\navance {p}\nescalier {b}"},
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "pour marche [ gauche 90 avance 20 droite 90 avance 20 ]\npour escalier marches [ répète marches [ marche ] ]\nescalier {a}\navance {p}\nescalier {b}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "pour escalier marches [ répète marches [ avance 20 gauche 90 avance 20 droite 90 ] ]\nescalier {a}\navance {p}\nescalier {b}"},
+          "expect": "mc:ordre-instructions"
+        },
+        {
+          "response": {"program": "répète {a} [ gauche 90 avance 20 droite 90 avance 20 ]\navance {p}\nrépète {b} [ gauche 90 avance 20 droite 90 avance 20 ]"},
+          "expect": "methode"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-expliquer",
+      "type": "open",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:init-dans-boucle", "mc:ajoute-comme-mets"],
+      "expectedSeconds": 300,
+      "minWords": 30,
+      "prompt": "Explique à un camarade la différence entre « mets cote à 15 » et « ajoute 15 à cote ». Puis explique pourquoi ce programme, « répète 12 [ mets cote à 15 avance cote droite 120 ajoute 15 à cote ] », trace toujours le même petit triangle, et comment le corriger.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que « mets » remplace la valeur de la variable (l'ancienne est effacée)",
+          "keywords": [["remplace", "efface", "range", "devient 15", "vaut 15", "met 15", "donne la valeur"]]
+        },
+        {
+          "id": "c2",
+          "label": "J'explique que « ajoute » part de la valeur actuelle et l'augmente",
+          "keywords": [["augmente", "plus 15", "+ 15", "+15", "valeur actuelle", "ancienne valeur", "ajoute 15 a ce"]]
+        },
+        {
+          "id": "c3",
+          "label": "J'explique que, dans la boucle, c est remis à 15 à chaque tour",
+          "keywords": [["chaque tour", "a chaque fois", "remis", "remet", "recommence"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je propose la correction : donner sa valeur de départ à c avant la boucle",
+          "keywords": [["avant la boucle", "avant repete", "avant le repete", "hors de la boucle", "en dehors", "sortir"]]
+        }
+      ],
+      "models": [
+        "« mets cote à 15 » range 15 dans cote : peu importe ce qu'il y avait avant, cote vaut maintenant 15. « ajoute 15 à cote » part de la valeur actuelle de cote et l'augmente de 15 : si cote valait 30, elle vaut 45. Dans ce programme, « mets cote à 15 » est dans la boucle : au début de chaque tour, cote est remise à 15, donc la tortue avance toujours de 15 et repasse sur le même triangle. L'augmentation de la fin du tour est effacée au tour suivant. Il faut écrire « mets cote à 15 » avant la boucle, une seule fois."
+      ],
+      "solution": "« mets » remplace la valeur, « ajoute » l'augmente à partir de la valeur actuelle. Ici, cote est remise à 15 au début de chaque tour : les segments mesurent tous 15 et les virages de 120° referment un triangle. Correction : « mets cote à 15 » avant la boucle.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "« mets cote à 15 » remplace la valeur de cote par 15, alors que « ajoute 15 à cote » augmente la valeur actuelle de 15. Dans ce programme, mets est dans la boucle donc cote est remise à 15 à chaque tour : la tortue avance toujours de 15. Il faut mettre « mets cote à 15 » avant la boucle.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "C'est pareil, les deux mettent 15 dans c. Il faut changer 120 en 90."}, "expect": "a-valider"}
+      ]
+    },
+    {
+      "id": "code-variables-remed-tableau",
+      "type": "table",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:boucle-une-fois", "mc:affectation-equation", "mc:ajoute-comme-mets", "mc:variable-figee"],
+      "expectedSeconds": 180,
+      "prompt": "Rappel ciblé : une variable est une boîte qui contient **une seule valeur à la fois**. Chaque instruction qui la modifie remplace l'ancienne valeur par la nouvelle, calculée à partir de la valeur actuelle.\n\nComplète le tableau de suivi de ce programme :\n1. mets c à 3\n2. répète 4 [ ajoute 5 à c ]\n3. mets c à c * 2",
+      "columns": ["Moment", "Valeur de c"],
+      "rows": [
+        ["Après la ligne 1", "?r0c1"],
+        ["Après le 1er tour de boucle", "?r1c1"],
+        ["Après le 2e tour", "?r2c1"],
+        ["Après le 3e tour", "?r3c1"],
+        ["Après le 4e tour", "?r4c1"],
+        ["Après la ligne 3", "?r5c1"]
+      ],
+      "cells": {
+        "r0c1": {"answer": 3},
+        "r1c1": {
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 5,
+              "id": "mc:ajoute-comme-mets",
+              "error": "notion",
+              "feedback": "« ajoute 5 à c » ne met pas 5 dans c : il augmente de 5 la valeur actuelle (3 + 5 = 8)."
+            }
+          ]
+        },
+        "r2c1": {"answer": 13},
+        "r3c1": {"answer": 18},
+        "r4c1": {"answer": 23},
+        "r5c1": {
+          "answer": 46,
+          "misconceptions": [
+            {
+              "answer": 23,
+              "id": "mc:affectation-equation",
+              "error": "notion",
+              "feedback": "« mets c à c * 2 » n'est pas une équation : on calcule c * 2 avec la valeur actuelle (23), puis on range le résultat dans c."
+            },
+            {
+              "answer": 6,
+              "id": "mc:variable-figee",
+              "error": "notion",
+              "feedback": "c ne vaut plus 3 à ce moment-là : la boucle l'a modifié 4 fois. On double la dernière valeur obtenue."
+            },
+            {
+              "answer": 16,
+              "id": "mc:boucle-une-fois",
+              "error": "notion",
+              "feedback": "La boucle ajoute 5 quatre fois, pas une seule : avant la ligne 3, c vaut 23."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Écris la valeur de c après chaque instruction, comme un compteur qu'on met à jour.",
+        "Chaque tour de boucle ajoute 5 : 3, puis 8, puis…",
+        "La ligne 3 double la dernière valeur obtenue."
+      ],
+      "solution": "3 → 8 → 13 → 18 → 23 → 46. La boucle ajoute 5 quatre fois (3 + 4 × 5 = 23), puis la ligne 3 double cette valeur (23 × 2 = 46).",
+      "selfTest": [
+        {"response": {"cells": {"r0c1": "3", "r1c1": "8", "r2c1": "13", "r3c1": "18", "r4c1": "23", "r5c1": "46"}}, "expect": "correct"},
+        {"response": {"cells": {"r0c1": "3", "r1c1": "5", "r2c1": "5", "r3c1": "5", "r4c1": "5", "r5c1": "10"}}, "expect": "mc:ajoute-comme-mets"},
+        {
+          "response": {"cells": {"r0c1": "3", "r1c1": "8", "r2c1": "13", "r3c1": "18", "r4c1": "23", "r5c1": "23"}},
+          "expect": "mc:affectation-equation"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-remed-si",
+      "type": "numeric",
+      "skill": "code.variables",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:si-teste-une-fois", "mc:si-deux-branches", "mc:si-comme-tant-que"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : à **chaque** passage, « si » teste la condition avec la valeur **actuelle** de la variable, puis exécute **un seul** des deux blocs.\n\nQue vaut c à la fin ?\n1. mets c à 3\n2. répète 4 [\n3. si c < 5 [ ajoute 2 à c ] sinon [ ajoute 10 à c ]\n4. ]",
+      "answer": 35,
+      "misconceptions": [
+        {
+          "answer": 11,
+          "id": "mc:si-teste-une-fois",
+          "error": "notion",
+          "feedback": "La condition est testée à chaque tour : au tour 2, c vaut 5, et 5<5 est faux ; c'est donc le bloc « sinon » (+10) qui s'exécute."
+        },
+        {
+          "answer": 51,
+          "id": "mc:si-deux-branches",
+          "error": "notion",
+          "feedback": "À chaque tour, un seul des deux blocs est exécuté : soit +2, soit +10, jamais les deux."
+        },
+        {
+          "answer": 5,
+          "id": "mc:si-comme-tant-que",
+          "error": "notion",
+          "feedback": "Quand la condition devient fausse, la boucle ne s'arrête pas : elle continue avec le bloc « sinon »."
+        },
+        {
+          "answer": 27,
+          "id": "mc:inegalite-stricte",
+          "error": "lecture",
+          "feedback": "5<5 est faux : 5 n'est pas strictement inférieur à 5. Dès le 2e tour, on ajoute 10."
+        }
+      ],
+      "hints": [
+        "Tour 1 : c vaut 3. Le test « c < 5 » est-il vrai ?",
+        "Tour 2 : c vaut 5. Attention : « 5 < 5 » est faux (« strictement inférieur »).",
+        "À partir du tour 2, c'est toujours le bloc « sinon » : +10 à chaque tour."
+      ],
+      "solution": "Tour 1 : 3<5 vrai, c = 5. Tour 2 : 5<5 faux, c = 15. Tour 3 : c = 25. Tour 4 : c = 35.",
+      "selfTest": [
+        {"response": {"value": "35"}, "expect": "correct"},
+        {"response": {"value": "11"}, "expect": "mc:si-teste-une-fois"},
+        {"response": {"value": "51"}, "expect": "mc:si-deux-branches"}
+      ]
+    },
+    {
+      "id": "code-variables-rectangle",
+      "type": "code",
+      "skill": "code.procedures",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:parametre-ignore", "mc:ordre-parametres"],
+      "expectedSeconds": 300,
+      "prompt": "Crée un bloc « rectangle » à **deux paramètres**, longueur et hauteur, puis trace les trois rectangles du modèle, qui partent du même coin : 100 × 20, 70 × 40 et 40 × 70.",
+      "reference": "pour rectangle longueur hauteur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70",
+      "codeConstraints": {"mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour rectangle hauteur longueur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70",
+          "id": "mc:ordre-parametres",
+          "error": "methode",
+          "feedback": "Tes rectangles sont tracés « à l'envers » : les valeurs données au bloc sont rangées dans les paramètres dans l'ordre de la définition. Avec « pour rectangle hauteur longueur », « rectangle 100 20 » donne hauteur = 100 et longueur = 20."
+        },
+        {
+          "program": "pour rectangle longueur hauteur [ répète 2 [ avance 100 droite 90 avance 20 droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70",
+          "id": "mc:parametre-ignore",
+          "error": "notion",
+          "feedback": "Tes trois rectangles sont identiques : la définition utilise des nombres fixes au lieu des paramètres longueur et hauteur."
+        }
+      ],
+      "hints": [
+        "Un rectangle : longueur, virage, hauteur, virage… et on recommence une fois.",
+        "Les paramètres se déclarent à la suite du nom du bloc : « pour rectangle longueur hauteur [ … ] ».",
+        "À l'utilisation, l'ordre compte : « rectangle 100 20 » donne longueur = 100 et hauteur = 20."
+      ],
+      "solution": "« pour rectangle longueur hauteur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ] », puis « rectangle 100 20 », « rectangle 70 40 », « rectangle 40 70 ». Les deux derniers rectangles ont les mêmes dimensions mais ne sont pas tracés dans le même sens : l'ordre des paramètres change le dessin.",
+      "methods": ["Un bloc à deux paramètres.", "Un bloc à un paramètre ne suffit pas : longueur et hauteur varient indépendamment l'une de l'autre."],
+      "selfTest": [
+        {
+          "response": {
+            "program": "pour rectangle longueur hauteur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "pour rectangle hauteur longueur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70"
+          },
+          "expect": "mc:ordre-parametres"
+        },
+        {
+          "response": {
+            "program": "pour rectangle longueur hauteur [ répète 2 [ avance 100 droite 90 avance 20 droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 40 70"
+          },
+          "expect": "mc:parametre-ignore"
+        },
+        {
+          "response": {
+            "program": "pour rectangle longueur hauteur [ répète 2 [ avance longueur droite 90 avance hauteur droite 90 ] ]\nrectangle 100 20\nrectangle 70 40\nrectangle 70 40"
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-escalier-croissant",
+      "type": "code",
+      "skill": "code.procedures",
+      "skills": ["code.variables"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "targets": ["mc:init-dans-boucle", "mc:ordre-instructions"],
+      "expectedSeconds": 420,
+      "params": {"d": {"choice": [10, 20]}, "s": {"choice": [5, 10]}},
+      "prompt": "Trace l'escalier du modèle : 5 marches de 20 de profondeur, dont les hauteurs augmentent : {d}, {d+s}, {d+2*s}, {d+3*s}, {d+4*s}.\n\nUtilise un bloc « marche » avec un paramètre (la hauteur) et une variable. Défi : **au plus 4 instructions** en dehors de la définition du bloc (la définition ne compte pas).",
+      "reference": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nmets hauteur à {d}\nrépète 5 [ marche hauteur ajoute {s} à hauteur ]",
+      "codeConstraints": {"maxInstructions": 4, "mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nmets hauteur à {d}\nrépète 5 [ ajoute {s} à hauteur marche hauteur ]",
+          "id": "mc:ordre-instructions",
+          "error": "methode",
+          "feedback": "Ta première marche mesure {d+s} au lieu de {d} : la hauteur est augmentée avant d'être utilisée. Dans la boucle, trace d'abord la marche, puis augmente la hauteur."
+        },
+        {
+          "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nrépète 5 [ mets hauteur à {d} marche hauteur ajoute {s} à hauteur ]",
+          "id": "mc:init-dans-boucle",
+          "error": "notion",
+          "feedback": "Toutes tes marches mesurent {d} : « mets hauteur à {d} » est dans la boucle et remet la hauteur à {d} à chaque tour. Place-le avant la boucle."
+        }
+      ],
+      "hints": [
+        "Définis d'abord le bloc : « pour marche haut [ gauche 90 avance haut droite 90 avance 20 ] ».",
+        "La hauteur change à chaque marche : range-la dans une variable hauteur, que tu donnes au bloc : « marche hauteur ».",
+        "« mets hauteur à {d} », puis « répète 5 [ marche hauteur ajoute {s} à hauteur ] »."
+      ],
+      "solution": "« pour marche haut [ gauche 90 avance haut droite 90 avance 20 ] », puis « mets hauteur à {d} » et « répète 5 [ marche hauteur ajoute {s} à hauteur ] ». À chaque tour, la valeur actuelle de la variable hauteur est donnée au bloc comme paramètre, puis elle augmente de {s}. Cela fait 4 instructions : mets, répète, marche, ajoute.",
+      "methods": [
+        "Variable qui évolue + bloc à paramètre.",
+        "Sans variable : « marche {d} », « marche {d+s} »… trace le bon dessin, mais compte 5 instructions."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nmets hauteur à {d}\nrépète 5 [ marche hauteur ajoute {s} à hauteur ]"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nmarche {d}\nmarche {d+s}\nmarche {d+2*s}\nmarche {d+3*s}\nmarche {d+4*s}"
+          },
+          "expect": "methode"
+        },
+        {
+          "response": {
+            "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nmets hauteur à {d}\nrépète 5 [ ajoute {s} à hauteur marche hauteur ]"
+          },
+          "expect": "mc:ordre-instructions"
+        },
+        {
+          "response": {
+            "program": "pour marche haut [ gauche 90 avance haut droite 90 avance 20 ]\nrépète 5 [ mets hauteur à {d} marche hauteur ajoute {s} à hauteur ]"
+          },
+          "expect": "mc:init-dans-boucle"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-polygones",
+      "type": "code",
+      "skill": "code.procedures",
+      "skills": ["code.variables", "code.boucles"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "targets": ["mc:angle-interieur", "mc:pas-generalise"],
+      "expectedSeconds": 480,
+      "prompt": "Crée un bloc « poly » à deux paramètres, cotes (nombre de côtés) et longueur, qui trace **n'importe quel** polygone régulier. Puis, avec une variable et une boucle, trace les 6 polygones du modèle, du triangle à l'octogone, tous de côté 40 et partant du même point.\n\nDéfi : **au plus 4 instructions** en dehors de la définition du bloc.",
+      "reference": "pour poly cotes longueur [ répète cotes [ avance longueur droite 360 / cotes ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]",
+      "codeConstraints": {"maxInstructions": 4, "mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 180 - 360 / cotes ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "Ton bloc fait tourner la tortue de l'angle intérieur (180 − 360 / cotes). Elle doit tourner de l'angle extérieur : 360 / cotes."
+        },
+        {
+          "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 60 ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]",
+          "id": "mc:pas-generalise",
+          "error": "notion",
+          "feedback": "L'angle de ton bloc est fixé (60°) : il ne convient qu'à l'hexagone. Pour que le bloc marche avec n'importe quel nombre de côtés, calcule l'angle à partir du paramètre : 360 / cotes."
+        }
+      ],
+      "hints": [
+        "Dans le bloc, l'angle se calcule à partir du nombre de côtés : « droite 360 / cotes ».",
+        "Le nombre de côtés passe de 3 à 8 : c'est une variable (nombre) qui augmente de 1 à chaque tour.",
+        "« mets nombre à 3 », puis « répète 6 [ poly nombre 40 ajoute 1 à nombre ] »."
+      ],
+      "solution": "« pour poly cotes longueur [ répète cotes [ avance longueur droite 360 / cotes ] ] », puis « mets nombre à 3 » et « répète 6 [ poly nombre 40 ajoute 1 à nombre ] ». Le bloc généralise la règle des 360° : quel que soit le nombre de côtés, la tortue fait un tour complet en virages égaux de 360 / cotes. Tous les polygones partagent leur premier côté.",
+      "methods": [
+        "Généraliser : un seul bloc pour tous les polygones réguliers, l'angle étant calculé dans le bloc.",
+        "Boucle sur le nombre de côtés avec une variable qui augmente."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 360 / cotes ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 180 - 360 / cotes ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]"
+          },
+          "expect": "mc:angle-interieur"
+        },
+        {
+          "response": {
+            "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 60 ] ]\nmets nombre à 3\nrépète 6 [ poly nombre 40 ajoute 1 à nombre ]"
+          },
+          "expect": "mc:pas-generalise"
+        },
+        {
+          "response": {
+            "program": "pour poly cotes longueur [ répète cotes [ avance longueur droite 360 / cotes ] ]\npoly 3 40\npoly 4 40\npoly 5 40\npoly 6 40\npoly 7 40\npoly 8 40"
+          },
+          "expect": "methode"
+        }
+      ]
+    },
+    {
+      "id": "code-variables-etoiles",
+      "type": "code",
+      "skill": "code.procedures",
+      "skills": ["code.variables", "code.boucles"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "expectedSeconds": 600,
+      "prompt": "L'étoile à 5 branches s'écrit « répète 5 [ avance 80 droite 144 ] ». Généralise-la : écris un bloc « etoile » avec un paramètre branches (un nombre **impair**) qui trace l'étoile la plus pointue à ce nombre de branches, sans lever le crayon.\n\nTrace ensuite « etoile 5 », un déplacement de 150 crayon levé, puis « etoile 9 » (voir le modèle). Explique enfin pourquoi la figure se referme toujours quand le nombre de branches est impair.",
+      "reference": "pour etoile branches [ répète branches [ avance 80 droite 180 - 180 / branches ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+      "codeConstraints": {"mustUse": ["pour"]},
+      "misconceptions": [
+        {
+          "program": "pour etoile branches [ répète branches [ avance 80 droite 144 ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+          "id": "mc:pas-generalise",
+          "error": "notion",
+          "feedback": "Ton angle est fixé à 144° : il ne convient qu'à l'étoile à 5 branches. L'angle doit dépendre du paramètre branches."
+        },
+        {
+          "program": "pour etoile branches [ répète branches [ avance 80 droite 360 / branches ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+          "id": "mc:toujours-un-tour",
+          "error": "notion",
+          "feedback": "Avec 360 / branches, la tortue fait un seul tour : tu obtiens des polygones, pas des étoiles. Pour une étoile, elle doit faire plusieurs tours."
+        }
+      ],
+      "justify": {
+        "required": true,
+        "minWords": 12,
+        "prompt": "Explique pourquoi la tortue revient à son point de départ, dans sa direction de départ, quand n est impair.",
+        "keywords": [["pair", "360", "tours", "n - 1", "n−1", "n-1"]]
+      },
+      "hints": [
+        "Pour 5 branches : 144 = 180 − 36, et 36 = 180 ÷ 5. La pointe de l'étoile mesure 180 ÷ (nombre de branches) degrés.",
+        "Essaie la même formule pour 7 et 9 branches dans le laboratoire : la tortue tourne de 180 − 180 / branches à chaque pointe.",
+        "Total des rotations : branches × (180 − 180 / branches) = 180 × (branches − 1). Si le nombre de branches est impair, branches − 1 est pair : est-ce un nombre entier de tours de 360° ?"
+      ],
+      "solution": "« pour etoile branches [ répète branches [ avance 80 droite 180 - 180 / branches ] ] ». Pour 5 branches : 144° ; pour 9 branches : 160°. En notant n le nombre de branches, le total des rotations vaut n × (180 − 180/n) = 180n − 180 = 180 × (n − 1). Si n est impair, n − 1 est pair, donc 180 × (n − 1) est un multiple de 360 : la tortue fait (n − 1) ÷ 2 tours complets et retrouve sa direction de départ ; ses n traits égaux, régulièrement orientés, la ramènent aussi à son point de départ. Pour n pair, 180 × (n − 1) n'est pas un multiple de 360 : la figure ne se referme pas.",
+      "methods": [
+        "Chercher la formule à partir de l'exemple à 5 branches (pointe de 180 ÷ 5 = 36°).",
+        "Compter les tours : on veut n virages égaux qui font (n − 1) ÷ 2 tours, donc un angle de 360 × (n − 1) ÷ 2 ÷ n = 180 − 180/n."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "program": "pour etoile branches [ répète branches [ avance 80 droite 180 - 180 / branches ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+            "justification": "La tortue tourne en tout de n × (180 − 180/n) = 180 × (n − 1). Si n est impair, n − 1 est pair, donc c'est un multiple de 360 : un nombre entier de tours."
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "pour etoile branches [ répète branches [ avance 80 droite 180 - 180 / branches ] ]\netoile 5\nlève avance 150 pose\netoile 9"},
+          "expect": "sans-justification"
+        },
+        {
+          "response": {
+            "program": "pour etoile branches [ répète branches [ avance 80 droite 144 ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+            "justification": "Car 144 est l'angle de l'étoile, il marche pour toutes les étoiles."
+          },
+          "expect": "mc:pas-generalise"
+        },
+        {
+          "response": {
+            "program": "pour etoile branches [ répète branches [ avance 80 droite 360 / branches ] ]\netoile 5\nlève avance 150 pose\netoile 9",
+            "justification": "On divise le tour complet par le nombre de branches, comme pour un polygone."
+          },
+          "expect": "mc:toujours-un-tour"
+        }
+      ],
+      "targets": ["mc:toujours-un-tour", "mc:pas-generalise"]
+    }
+  ]
+}

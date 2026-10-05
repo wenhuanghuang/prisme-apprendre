@@ -1,0 +1,824 @@
+{
+  "id": "code-tortue-boucles",
+  "title": "Programmer la tortue : séquences, boucles et débogage",
+  "subject": "numerique",
+  "level": "5e",
+  "skills": ["code.sequences", "code.boucles", "code.debug"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026", "techno-c4-2024"],
+  "duration": 55,
+  "summary": "Donner des instructions précises à une tortue qui dessine, répéter un motif avec une boucle, comprendre pourquoi elle tourne de 360 ÷ n degrés pour un polygone régulier, et traquer les bugs.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un carré en 7 lignes… ou en une seule ?",
+      "body": "La tortue part du centre, tournée vers la droite. Le programme ci-dessous lui fait tracer un carré : 4 fois « avance 100 » et 3 fois « droite 90 ».\n\nOn écrit presque la même chose quatre fois de suite. Un programmeur n'aime pas se répéter : comment écrire ce carré en **une seule ligne** ? Et pourquoi n'y a-t-il que 3 rotations alors que le carré a 4 coins ?",
+      "activity": {"widget": "turtle", "config": {"program": "avance 100\ndroite 90\navance 100\ndroite 90\navance 100\ndroite 90\navance 100"}}
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "Un **programme** est une suite d'**instructions** exécutées **dans l'ordre**, une par une. L'ordinateur ne devine rien : il fait exactement ce qui est écrit, ni plus ni moins.\n\nLa tortue a une **position** et une **direction**. Elle comprend :\n- « avance 50 », « recule 20 » : se déplacer en traçant un trait (si le crayon est posé) ;\n- « droite 90 », « gauche 45 » : tourner sur place de l'angle indiqué, en degrés ;\n- « lève » et « pose » : lever ou poser le crayon.\n\nDans l'éditeur, tu peux **assembler des blocs** ou **écrire le texte** : les deux produisent exactement le même programme. Commence par les blocs si tu veux, puis passe au texte : c'est plus rapide pour les longs programmes.\n\nLes calculs peuvent s'écrire directement dans le programme : « droite 360 / 5 » fait tourner la tortue de 72°.\n\n**La boucle « répète ».** « répète 4 [ avance 100 droite 90 ] » exécute 4 fois les instructions placées **entre les crochets**. Ce qui est en dehors des crochets n'est exécuté qu'une fois.\n\n> Polygone régulier à $n$ côtés : la tortue fait **un tour complet** (360°) en $n$ rotations égales.\n> Elle tourne donc de $360 ÷ n$ degrés à chaque sommet. Par exemple, pour 5 côtés de 80 : répète 5 [ avance 80 droite 360/5 ].\n\n**Attention à l'angle.** La tortue ne tourne pas de l'angle intérieur de la figure (l'angle entre deux côtés), mais de l'**angle extérieur** : l'écart entre la direction qu'elle avait et la nouvelle. Pour un triangle équilatéral, les angles intérieurs mesurent 60°, mais la tortue tourne de $180 − 60 = 120$°.\n\n**Déboguer**, c'est trouver et corriger une erreur (un « bug »). Méthode :\n- exécuter le programme « à la main », instruction par instruction ;\n- comparer avec le dessin attendu et repérer la **première** différence ;\n- ne modifier **qu'une chose à la fois**, puis tester à nouveau."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Le laboratoire des polygones",
+      "body": "Modifie le nombre de répétitions et l'angle. Essaie 3 et 120, puis 5 et 72, 6 et 60, 8 et 45. Calcule à chaque fois le produit « nombre de côtés × angle » : que remarques-tu ?\n\nEssaie ensuite 6 et 120 : pourquoi obtient-on un triangle et pas un hexagone ?",
+      "activity": {"widget": "turtle", "config": {"program": "répète 6 [ avance 60 droite 60 ]"}}
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : le pentagone régulier",
+      "steps": [
+        {"text": "On veut tracer un pentagone régulier (5 côtés égaux, 5 angles égaux) de côté 80.", "math": ""},
+        {
+          "text": "Quand la tortue a tracé les 5 côtés, elle est revenue à son point de départ, tournée dans sa direction de départ : elle a fait exactement un tour complet, en 5 rotations égales.",
+          "math": "5 rotations = 360°"
+        },
+        {"text": "Chaque rotation vaut donc :", "math": "360 ÷ 5 = 72"},
+        {
+          "text": "Le motif « avance 80 puis tourne de 72 » se répète 5 fois. Programme : « répète 5 [ avance 80 droite 72 ] », soit 3 instructions au lieu de 10.",
+          "math": ""
+        },
+        {
+          "text": "Piège : l'angle intérieur d'un pentagone régulier mesure 108°. Avec « droite 108 », la tortue tourne de 5 × 108 = 540° : un tour et demi. Elle ne revient pas à son point de départ et la figure ne se ferme pas.",
+          "math": "180 − 72 = 108"
+        },
+        {"text": "Vérification : 5 rotations de 72° font bien un tour complet.", "math": "5 × 72 = 360"}
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "L'éditeur affiche le **dessin modèle** à côté du tien. Le logiciel compare les deux dessins : un dessin symétrique (si tu tournes à gauche au lieu de tourner à droite) est accepté.",
+      "exercises": ["code-tortue-boucles-rectangle", "code-tortue-boucles-carre", "code-tortue-boucles-triangle-angle", "code-tortue-boucles-polygone"]
+    },
+    {"kind": "libre", "title": "Avec tes mots", "exercises": ["code-tortue-boucles-expliquer"]},
+    {
+      "kind": "reinvestissement",
+      "title": "Chasse au bug",
+      "body": "Un programme fourni ne fait pas ce qu'on attendait. Exécute-le, observe, puis corrige en modifiant le moins de choses possible.",
+      "exercises": ["code-tortue-boucles-crochet"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : réparer la frise du carrelage",
+      "body": "Noé a programmé une frise de carrés pour décorer le bas d'une page. Le premier carré est parfait, la suite beaucoup moins. À toi de comprendre pourquoi, puis de réparer.",
+      "exercises": ["code-tortue-boucles-frise"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Prendre l'angle intérieur au lieu de l'angle de rotation.** Pour un triangle équilatéral, la tortue tourne de 120°, pas de 60°. Règle : angle de rotation = 360° ÷ nombre de côtés = 180° − angle intérieur.\n- **Oublier la dernière rotation.** Un carré tracé avec 3 virages est bien fermé, mais la tortue ne regarde plus dans sa direction de départ : tout ce qu'on dessine ensuite part de travers.\n- **Boucle mal fermée.** Seules les instructions placées entre [ et ] sont répétées : « répète 4 [ avance 80 ] droite 90 » trace un trait de 320, puis tourne une seule fois.\n- **Crochet oublié.** Chaque « [ » doit avoir son « ] » ; l'éditeur indique la ligne en cause.\n- **Corriger au hasard.** En déboguant, on ne change qu'une chose à la fois, et on teste : sinon on ne sait plus ce qui a réparé (ou aggravé) le problème."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un polygone ou un bug à corriger : réussir après une pause montre que la règle des 360° est vraiment acquise."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Composer plusieurs figures : il faut savoir à chaque instant où se trouve la tortue et dans quelle direction elle regarde. On découvre les boucles placées dans d'autres boucles.",
+      "exercises": ["code-tortue-boucles-maison", "code-tortue-boucles-frise-triangles"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà du programme : des figures où la tortue fait plusieurs tours sur elle-même (étoiles), des boucles imbriquées, et prédire un dessin sans exécuter le programme.",
+      "exercises": ["code-tortue-boucles-etoile", "code-tortue-boucles-rosace", "code-tortue-boucles-predire"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "code-tortue-boucles-rectangle",
+      "type": "code",
+      "skill": "code.sequences",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "expectedSeconds": 180,
+      "prompt": "Écris une suite d'instructions qui trace le rectangle modèle : 120 de long et 60 de large. La tortue part d'un coin, tournée vers la droite.\n\nPas de boucle pour l'instant : une instruction après l'autre. Tu peux tourner à droite ou à gauche, les deux rectangles symétriques sont acceptés.",
+      "reference": "avance 120 droite 90 avance 60 droite 90 avance 120 droite 90 avance 60",
+      "misconceptions": [
+        {
+          "program": "avance 120 droite 90 avance 60 droite 90 avance 120",
+          "id": "mc:oubli-dernier-cote",
+          "error": "methode",
+          "feedback": "Il manque le quatrième côté : ton rectangle n'est pas fermé. Un rectangle a 4 côtés, il faut donc 4 instructions « avance »."
+        },
+        {
+          "program": "répète 4 [ avance 120 droite 90 ]",
+          "id": "mc:rectangle-carre",
+          "error": "lecture",
+          "feedback": "Tu as tracé un carré de côté 120. Dans un rectangle, deux côtés qui se suivent n'ont pas la même longueur : 120, puis 60, puis 120, puis 60."
+        }
+      ],
+      "hints": [
+        "Commence par un grand côté : « avance 120 ».",
+        "À chaque coin du rectangle, la tortue fait un quart de tour : « droite 90 ».",
+        "Les côtés alternent : 120, 60, 120, 60, avec un virage entre deux côtés."
+      ],
+      "solution": "avance 120, droite 90, avance 60, droite 90, avance 120, droite 90, avance 60. Les côtés opposés d'un rectangle ont la même longueur, d'où l'alternance 120, 60, 120, 60. Une quatrième rotation à la fin ne changerait pas le dessin, mais remettrait la tortue dans sa direction de départ.",
+      "methods": [
+        "Suivre le contour du rectangle et écrire une instruction par geste de la tortue.",
+        "Repérer le motif « avance 120 droite 90 avance 60 droite 90 », qui se répète 2 fois : « répète 2 [ avance 120 droite 90 avance 60 droite 90 ] »."
+      ],
+      "selfTest": [
+        {"response": {"program": "avance 120\ndroite 90\navance 60\ndroite 90\navance 120\ndroite 90\navance 60"}, "expect": "correct"},
+        {"response": {"program": "répète 2 [ avance 120 gauche 90 avance 60 gauche 90 ]"}, "expect": "correct"},
+        {"response": {"program": "avance 120\ndroite 90\navance 120\ndroite 90\navance 60\ndroite 90\navance 60"}, "expect": "incorrect"},
+        {"response": {"program": "avance 120 droite 90 avance 60 droite 90 avance 120"}, "expect": "mc:oubli-dernier-cote"},
+        {"response": {"program": "répète 4 [ avance 120 droite 90 ]"}, "expect": "mc:rectangle-carre"}
+      ],
+      "targets": ["mc:oubli-dernier-cote"]
+    },
+    {
+      "id": "code-tortue-boucles-carre",
+      "type": "code",
+      "skill": "code.boucles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "targets": ["mc:boucle-mal-fermee", "mc:repetitions-rotations"],
+      "expectedSeconds": 150,
+      "prompt": "Trace un carré de côté 80 en utilisant **au plus 3 instructions**.\n\nComment on compte : « répète 4 [ … ] » compte pour 1 instruction, plus chaque instruction écrite entre les crochets.",
+      "reference": "répète 4 [ avance 80 droite 90 ]",
+      "codeConstraints": {"maxInstructions": 3},
+      "misconceptions": [
+        {
+          "program": "répète 3 [ avance 80 droite 90 ]",
+          "id": "mc:repetitions-rotations",
+          "error": "notion",
+          "feedback": "Ton carré n'a que 3 côtés. Dans la version longue, il n'y a que 3 rotations (la dernière ne change pas le dessin), mais il y a bien 4 « avance » : le motif « avance, tourne » se répète 4 fois."
+        },
+        {
+          "program": "répète 4 [ avance 80 ]\ndroite 90",
+          "id": "mc:boucle-mal-fermee",
+          "error": "notion",
+          "feedback": "Seule « avance 80 » est entre les crochets : la tortue avance 4 fois tout droit, puis tourne une seule fois. Place « droite 90 » à l'intérieur des crochets."
+        }
+      ],
+      "hints": [
+        "Écris d'abord ce que fait la tortue pour UN côté et UN coin.",
+        "Pour un côté et un coin : « avance 80 » puis « droite 90 ». Combien de fois ce motif se répète-t-il ?",
+        "Place le motif entre les crochets d'une boucle : « répète 4 [ … ] »."
+      ],
+      "solution": "« répète 4 [ avance 80 droite 90 ] » : 3 instructions (la boucle, avance, droite). Ici la 4e rotation est exécutée aussi : la tortue finit tournée dans sa direction de départ, prête à continuer un dessin.",
+      "methods": [
+        "Partir de la version longue (7 instructions) et repérer le motif qui se répète.",
+        "Raisonner directement : un carré, c'est 4 fois « un côté puis un virage »."
+      ],
+      "selfTest": [
+        {"response": {"program": "répète 4 [ avance 80 droite 90 ]"}, "expect": "correct"},
+        {"response": {"program": "repete 4 [ avance 80 gauche 90 ]"}, "expect": "correct"},
+        {"response": {"program": "avance 80\ndroite 90\navance 80\ndroite 90\navance 80\ndroite 90\navance 80"}, "expect": "methode"},
+        {"response": {"program": "répète 3 [ avance 80 droite 90 ]"}, "expect": "mc:repetitions-rotations"},
+        {"response": {"program": "répète 4 [ avance 80 ] droite 90"}, "expect": "mc:boucle-mal-fermee"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-triangle-angle",
+      "type": "numeric",
+      "skill": "code.boucles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:angle-interieur", "mc:tour-complet"],
+      "expectedSeconds": 120,
+      "prompt": "Lucas veut tracer un triangle équilatéral. Il sait que chaque angle d'un triangle équilatéral mesure 60°, alors il écrit « répète 3 [ avance 100 droite 60 ] ». Le dessin obtenu est affiché : ce n'est pas un triangle !\n\nDe combien de degrés la tortue doit-elle tourner à chaque sommet pour tracer le triangle équilatéral ?",
+      "activity": {"widget": "turtle", "config": {"program": "répète 3 [ avance 100 droite 60 ]"}},
+      "answer": 120,
+      "misconceptions": [
+        {
+          "answer": 60,
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "60° est l'angle **intérieur** du triangle, mesuré entre deux côtés. La tortue, elle, tourne de l'écart entre sa direction et la nouvelle : l'angle extérieur, 180 − 60 = 120°. Avec 60°, on obtient exactement le dessin de Lucas, la moitié d'un hexagone."
+        },
+        {
+          "answer": 360,
+          "id": "mc:tour-complet",
+          "error": "notion",
+          "feedback": "360° est le total des rotations sur toute la figure. Ce tour complet est partagé entre les 3 sommets."
+        },
+        {
+          "answer": 180,
+          "id": "mc:demi-tour",
+          "error": "notion",
+          "feedback": "Avec 180°, la tortue ferait demi-tour et repasserait sur le trait qu'elle vient de tracer. Les 3 rotations doivent faire, ensemble, un tour complet."
+        }
+      ],
+      "hints": [
+        "Regarde le dessin de Lucas : après 3 rotations de 60°, la tortue n'a fait qu'un demi-tour (180°).",
+        "Pour revenir à son point de départ, dans sa direction de départ, la tortue doit faire un tour complet (360°) en 3 rotations égales.",
+        "Calcule 360 ÷ 3."
+      ],
+      "solution": "Sur l'ensemble du triangle, la tortue fait un tour complet : 360 ÷ 3 = 120°. Autre façon de voir : elle tourne de l'angle extérieur, 180 − 60 = 120°. Programme correct : « répète 3 [ avance 100 droite 120 ] ».",
+      "methods": [
+        "Tour complet partagé : 360 ÷ 3 = 120.",
+        "Angle extérieur : au sommet, la tortue regarde dans le prolongement du côté tracé ; l'angle entre ce prolongement et le côté suivant vaut 180 − 60 = 120.",
+        "Mimer : marcher sur un triangle tracé au sol et observer de combien on pivote à chaque coin."
+      ],
+      "selfTest": [
+        {"response": {"value": "120"}, "expect": "correct"},
+        {"response": {"value": "60"}, "expect": "mc:angle-interieur"},
+        {"response": {"value": "360"}, "expect": "mc:tour-complet"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-polygone",
+      "type": "code",
+      "skill": "code.boucles",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:angle-interieur", "mc:tour-complet"],
+      "expectedSeconds": 180,
+      "params": {"n": {"choice": [5, 6, 8, 9, 10, 12]}, "c": {"choice": [40, 50, 60]}},
+      "prompt": "Trace le polygone régulier du modèle : **{n} côtés** de longueur {c}, avec **au plus 3 instructions**.",
+      "reference": "répète {n} [ avance {c} droite {360/n} ]",
+      "codeConstraints": {"maxInstructions": 3},
+      "misconceptions": [
+        {
+          "program": "répète {n} [ avance {c} droite {180-360/n} ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "Tu as fait tourner la tortue de l'angle intérieur du polygone ({180-360/n}°). Elle doit tourner de l'angle extérieur : 180 − {180-360/n} = {360/n}°, c'est-à-dire 360 ÷ {n}."
+        },
+        {
+          "program": "répète {n} [ avance {c} droite 360 ]",
+          "id": "mc:tour-complet",
+          "error": "notion",
+          "feedback": "Ta tortue ne tourne pas (ou presque pas) : elle trace une ligne droite. 360° est le tour complet de toute la figure ; il se partage entre les {n} sommets : 360 ÷ {n} = {360/n}°, et non 360, ni {n} ÷ 360."
+        }
+      ],
+      "hints": [
+        "Combien de fois faut-il répéter le motif « avance, puis tourne » ?",
+        "Après les {n} côtés, la tortue a fait un tour complet (360°) en {n} rotations égales.",
+        "Chaque rotation vaut 360 ÷ {n} = {360/n}°. Tu peux aussi laisser l'ordinateur calculer : « droite 360 / {n} »."
+      ],
+      "solution": "« répète {n} [ avance {c} droite {360/n} ] ». Vérification : {n} × {360/n} = 360, la tortue fait exactement un tour. L'angle intérieur du polygone vaut 180 − {360/n} = {180-360/n}° : ce n'est pas lui qu'on utilise (la tortue tournerait alors de {n} × {180-360/n} = {n*(180-360/n)}°, et la figure obtenue serait différente).",
+      "methods": ["Calculer l'angle à la main : 360 ÷ {n} = {360/n}.", "Écrire le calcul dans le programme : « répète {n} [ avance {c} droite 360 / {n} ] »."],
+      "selfTest": [
+        {"response": {"program": "répète {n} [ avance {c} droite 360 / {n} ]"}, "expect": "correct"},
+        {"response": {"program": "répète {n} [ avance {c} gauche {360/n} ]"}, "expect": "correct"},
+        {"response": {"program": "répète {n} [ avance {c} droite {180/n} droite {180/n} ]"}, "expect": "methode"},
+        {"response": {"program": "répète {n} [ avance {c} droite {180-360/n} ]"}, "expect": "mc:angle-interieur"},
+        {"response": {"program": "répète {n} [ avance {c} droite {n} / 360 ]"}, "expect": "mc:tour-complet"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-crochet",
+      "type": "code",
+      "skill": "code.debug",
+      "skills": ["code.boucles"],
+      "track": "classe",
+      "role": "debug",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:boucle-mal-fermee"],
+      "expectedSeconds": 150,
+      "prompt": "Ce programme devait tracer un carré de côté 80, mais la tortue trace un long trait droit. Exécute-le, trouve le bug et corrige-le.",
+      "start": "répète 4 [ avance 80 ]\ndroite 90",
+      "reference": "répète 4 [ avance 80 droite 90 ]",
+      "misconceptions": [
+        {
+          "program": "répète 4 [ avance 80 ]\ndroite 90",
+          "id": "mc:boucle-mal-fermee",
+          "error": "notion",
+          "feedback": "Le dessin n'a pas changé : « droite 90 » est toujours en dehors des crochets, donc exécuté une seule fois, après les 4 « avance »."
+        },
+        {
+          "program": "droite 90\nrépète 4 [ avance 80 ]",
+          "id": "mc:boucle-mal-fermee",
+          "error": "notion",
+          "feedback": "Tu as déplacé « droite 90 » avant la boucle : la tortue tourne une fois, puis avance 4 fois tout droit. Il faut tourner à CHAQUE coin : « droite 90 » doit être entre les crochets."
+        }
+      ],
+      "hints": [
+        "Combien de fois la tortue tourne-t-elle avec ce programme ?",
+        "Seules les instructions placées ENTRE les crochets sont répétées. Où se trouve « droite 90 » ?",
+        "Déplace « droite 90 » à l'intérieur des crochets, juste après « avance 80 »."
+      ],
+      "solution": "Le crochet fermant est placé trop tôt : seule « avance 80 » est répétée, ce qui trace un trait de 4 × 80 = 320 ; la tortue tourne ensuite une seule fois, à la fin. Correction : « répète 4 [ avance 80 droite 90 ] ».",
+      "methods": [
+        "Exécuter à la main : tour 1 « avance 80 », tour 2 « avance 80 »… La tortue n'a encore jamais tourné : le virage est hors de la boucle.",
+        "Comparer avec le motif d'un carré : chaque côté doit être suivi d'un virage, donc les deux instructions vont ensemble dans la boucle."
+      ],
+      "selfTest": [
+        {"response": {"program": "répète 4 [ avance 80 droite 90 ]"}, "expect": "correct"},
+        {"response": {"program": "répète 4 [ avance 80 ]\ndroite 90"}, "expect": "mc:boucle-mal-fermee"},
+        {"response": {"program": "droite 90\nrépète 4 [ avance 80 ]"}, "expect": "mc:boucle-mal-fermee"},
+        {"response": {"program": "répète 4 [ avance 80 droite 90"}, "expect": "methode"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-frise",
+      "type": "composite",
+      "skill": "code.debug",
+      "skills": ["code.boucles"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:oubli-derniere-rotation", "mc:crayon-pose"],
+      "expectedSeconds": 420,
+      "prompt": "Noé veut une frise de 3 carrés de côté 40, espacés de 20. Il a écrit :\n1. répète 3 [\n2. répète 3 [ avance 40 gauche 90 ] avance 40\n3. lève avance 60 pose\n4. ]\n\nLe premier carré est parfait… mais les suivants partent de travers.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quand la tortue vient de finir le premier carré (ligne 2), de combien de degrés a-t-elle tourné en tout depuis le début de ce carré ?",
+          "answer": 270,
+          "misconceptions": [
+            {
+              "answer": 360,
+              "id": "mc:oubli-derniere-rotation",
+              "error": "notion",
+              "feedback": "Compte les virages : la boucle « répète 3 » n'en fait que 3, soit 3 × 90 = 270°. Le carré est bien fermé, mais la tortue ne regarde plus dans sa direction de départ : il manque la 4e rotation."
+            },
+            {
+              "answer": 90,
+              "id": "mc:une-rotation",
+              "error": "lecture",
+              "feedback": "« gauche 90 » est dans une boucle « répète 3 » : il est exécuté 3 fois."
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "prompt": "Corrige le programme de Noé pour obtenir la frise modèle.",
+          "start": "répète 3 [\n  répète 3 [ avance 40 gauche 90 ] avance 40\n  lève avance 60 pose\n]",
+          "reference": "répète 3 [ répète 4 [ avance 40 gauche 90 ] lève avance 60 pose ]",
+          "misconceptions": [
+            {
+              "program": "répète 3 [ répète 3 [ avance 40 gauche 90 ] avance 40 lève avance 60 pose ]",
+              "id": "mc:oubli-derniere-rotation",
+              "error": "notion",
+              "feedback": "Le premier carré est fermé, mais la tortue n'a tourné que de 270° : elle ne regarde plus vers la droite, et la suite part de travers. Il manque la 4e rotation."
+            },
+            {
+              "program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] avance 60 ]",
+              "id": "mc:crayon-pose",
+              "error": "methode",
+              "feedback": "Les carrés sont bien placés, mais la tortue trace un trait entre eux : lève le crayon avant de te déplacer (« lève »), puis repose-le (« pose »)."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le dessin du premier carré est juste : le problème, c'est la DIRECTION de la tortue quand elle a fini ce carré.",
+        "Après 3 virages de 90°, la tortue a tourné de 270° : elle ne regarde plus vers la droite, donc « avance 60 » l'emmène au mauvais endroit.",
+        "Remplace « répète 3 [ avance 40 gauche 90 ] avance 40 » par « répète 4 [ avance 40 gauche 90 ] »."
+      ],
+      "solution": "Avec 3 virages, la tortue a tourné de 270° : le carré est fermé mais elle regarde dans une autre direction que celle du départ, et le déplacement suivant part de travers. Avec la 4e rotation, elle a fait un tour complet (360°) : « répète 3 [ répète 4 [ avance 40 gauche 90 ] lève avance 60 pose ] ».",
+      "methods": [
+        "Remplacer le carré par « répète 4 [ avance 40 gauche 90 ] ».",
+        "Garder la ligne de Noé et ajouter « gauche 90 » juste après « avance 40 » : même effet."
+      ],
+      "selfTest": [
+        {
+          "response": {"parts": [{"value": "270"}, {"program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] lève avance 60 pose ]"}]},
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "270"}, {"program": "répète 3 [\n  répète 3 [ avance 40 gauche 90 ] avance 40 gauche 90\n  lève avance 60 pose\n]"}]},
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "360"}, {"program": "répète 3 [\n  répète 3 [ avance 40 gauche 90 ] avance 40\n  lève avance 60 pose\n]"}]},
+          "expect": "mc:oubli-derniere-rotation"
+        },
+        {
+          "response": {"parts": [{"value": "270"}, {"program": "répète 3 [ répète 3 [ avance 40 gauche 90 ] avance 40 lève avance 60 pose ]"}]},
+          "expect": "mc:oubli-derniere-rotation"
+        },
+        {
+          "response": {"parts": [{"value": "270"}, {"program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] avance 60 ]"}]},
+          "expect": "mc:crayon-pose"
+        }
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-expliquer",
+      "type": "open",
+      "skill": "code.boucles",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:angle-interieur"],
+      "expectedSeconds": 300,
+      "minWords": 30,
+      "prompt": "Ta voisine affirme : « Les angles d'un pentagone régulier mesurent 108°, donc j'écris répète 5 [ avance 80 droite 108 ]. » Son dessin ne se referme pas.\n\nExplique-lui, avec tes mots, pourquoi son programme ne trace pas un pentagone, et comment trouver le bon angle pour **n'importe quel** polygone régulier.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que la tortue fait un tour complet (360°) sur l'ensemble de la figure",
+          "keywords": [["360", "tour complet", "un tour"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je distingue l'angle intérieur de la figure et l'angle dont tourne la tortue",
+          "keywords": [["interieur", "exterieur", "180 - 108", "180 − 108", "180-108", "angle de la figure", "pas le meme angle"]]
+        },
+        {"id": "c3", "label": "Je donne le bon angle pour le pentagone (72°)", "keywords": [["72"]]},
+        {
+          "id": "c4",
+          "label": "Je généralise : 360 divisé par le nombre de côtés",
+          "keywords": [["360/n", "360 / n", "360 ÷ n", "divise", "nombre de cotes"]]
+        }
+      ],
+      "models": [
+        "108° est l'angle intérieur du pentagone, entre deux côtés. Mais la tortue ne tourne pas de cet angle : elle tourne de l'écart entre sa direction et la nouvelle, l'angle extérieur, qui vaut 180 − 108 = 72°. On peut le retrouver autrement : quand la tortue a fini la figure, elle a fait un tour complet, 360°, en 5 virages égaux, donc 360 ÷ 5 = 72°. Avec 108°, elle tourne de 5 × 108 = 540°, un tour et demi : elle ne revient pas au départ. Pour un polygone régulier à n côtés, l'angle est 360 ÷ n.",
+        "Je compte les tours : pour que la figure se referme, la tortue doit avoir fait un tour, 360°. Il y a 5 virages, donc chacun vaut 72. 108 c'est l'angle qu'on mesure dans la figure avec un rapporteur, ce n'est pas le même angle que le virage. Pour n côtés, on divise 360 par n."
+      ],
+      "solution": "Avec 108°, la tortue tourne de 5 × 108 = 540° : elle ne revient pas dans sa direction de départ et la figure ne se ferme pas. 108° est l'angle intérieur ; la tortue tourne de l'angle extérieur, 180 − 108 = 72°. En général, pour un polygone régulier à n côtés : 360 ÷ n degrés (ici 360 ÷ 5 = 72).",
+      "selfTest": [
+        {
+          "response": {
+            "text": "108 est l'angle intérieur de la figure, mais la tortue tourne de l'angle extérieur : 180 − 108 = 72. Sur toute la figure elle fait un tour complet de 360°, donc pour n côtés on divise 360 par le nombre de côtés.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "Il faut mettre un plus petit angle, par exemple 90, parce que 108 c'est trop grand."}, "expect": "a-valider"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-remed-angle",
+      "type": "numeric",
+      "skill": "code.boucles",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:angle-interieur", "mc:tour-complet"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : l'angle **intérieur** d'une figure se mesure entre deux côtés. La tortue, arrivée à un sommet, regarde dans le **prolongement** du côté qu'elle vient de tracer ; elle tourne seulement de l'écart entre ce prolongement et le côté suivant. Cet écart et l'angle intérieur forment ensemble un angle plat (180°).\n\nL'angle intérieur d'un hexagone régulier mesure 120°. Le dessin affiché montre ce que donne « répète 6 [ avance 60 droite 120 ] » : un triangle parcouru deux fois !\n\nDe combien de degrés la tortue doit-elle tourner à chaque sommet de l'hexagone ?",
+      "activity": {"widget": "turtle", "config": {"program": "répète 6 [ avance 60 droite 120 ]"}},
+      "answer": 60,
+      "misconceptions": [
+        {
+          "answer": 120,
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "120° est l'angle intérieur, et le dessin montre qu'il ne convient pas. L'angle de rotation est ce qui complète l'angle intérieur jusqu'à 180° : 180 − 120 = 60°."
+        },
+        {"answer": 360, "id": "mc:tour-complet", "error": "notion", "feedback": "360° est le total des 6 rotations, pas une seule rotation."}
+      ],
+      "hints": ["Angle intérieur + angle de rotation = 180°.", "Calcule 180 − 120.", "Vérifie avec l'autre méthode : 6 rotations doivent faire 360°."],
+      "solution": "180 − 120 = 60°. Vérification : 6 × 60 = 360°, un tour complet. Programme : « répète 6 [ avance 60 droite 60 ] ».",
+      "methods": ["Angle plat : 180 − 120 = 60.", "Tour complet : 360 ÷ 6 = 60."],
+      "selfTest": [{"response": {"value": "60"}, "expect": "correct"}, {"response": {"value": "120"}, "expect": "mc:angle-interieur"}]
+    },
+    {
+      "id": "code-tortue-boucles-remed-rotation",
+      "type": "code",
+      "skill": "code.debug",
+      "skills": ["code.sequences"],
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "targets": ["mc:oubli-derniere-rotation"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : un carré tracé avec seulement 3 rotations est bien fermé… mais la tortue ne regarde plus dans sa direction de départ. Pour qu'elle ait fait un tour complet, il faut **4 rotations de 90°** (4 × 90 = 360).\n\nCe programme devait tracer deux carrés côte à côte (voir le modèle). Le second part de travers : ajoute ce qui manque.",
+      "start": "avance 50 droite 90 avance 50 droite 90 avance 50 droite 90 avance 50\navance 50\nrépète 4 [ avance 50 droite 90 ]",
+      "reference": "répète 4 [ avance 50 droite 90 ]\navance 50\nrépète 4 [ avance 50 droite 90 ]",
+      "misconceptions": [
+        {
+          "program": "avance 50 droite 90 avance 50 droite 90 avance 50 droite 90 avance 50\navance 50\nrépète 4 [ avance 50 droite 90 ]",
+          "id": "mc:oubli-derniere-rotation",
+          "error": "notion",
+          "feedback": "Le second carré part toujours de travers : compte les « droite 90 » de la première ligne. Avec 3 rotations, la tortue n'a tourné que de 270°."
+        }
+      ],
+      "hints": [
+        "Compte les « droite 90 » de la première ligne.",
+        "Il n'y en a que 3 : la tortue a tourné de 270° et ne regarde plus vers la droite quand elle a fini le premier carré.",
+        "Ajoute « droite 90 » à la fin de la première ligne, ou remplace cette ligne par « répète 4 [ avance 50 droite 90 ] »."
+      ],
+      "solution": "Après 3 rotations, la tortue regarde dans une autre direction : « avance 50 » l'emmène au mauvais endroit et le second carré est mal placé. Avec la 4e rotation, elle a fait un tour complet et repart vers la droite : « répète 4 [ avance 50 droite 90 ] avance 50 répète 4 [ avance 50 droite 90 ] ».",
+      "selfTest": [
+        {
+          "response": {"program": "avance 50 droite 90 avance 50 droite 90 avance 50 droite 90 avance 50 droite 90\navance 50\nrépète 4 [ avance 50 droite 90 ]"},
+          "expect": "correct"
+        },
+        {"response": {"program": "répète 4 [ avance 50 droite 90 ]\navance 50\nrépète 4 [ avance 50 droite 90 ]"}, "expect": "correct"},
+        {
+          "response": {"program": "avance 50 droite 90 avance 50 droite 90 avance 50 droite 90 avance 50\navance 50\nrépète 4 [ avance 50 droite 90 ]"},
+          "expect": "mc:oubli-derniere-rotation"
+        }
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-maison",
+      "type": "code",
+      "skill": "code.sequences",
+      "skills": ["code.boucles"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "expectedSeconds": 420,
+      "prompt": "Trace la maison du modèle : un carré de côté 80 surmonté d'un toit en triangle équilatéral de côté 80. Défi : **au plus 9 instructions**.",
+      "reference": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 30\nrépète 2 [ avance 80 droite 120 ]",
+      "codeConstraints": {"maxInstructions": 9},
+      "misconceptions": [
+        {
+          "program": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 60\nrépète 2 [ avance 80 droite 120 ]",
+          "id": "mc:reference-direction",
+          "error": "notion",
+          "feedback": "Ton toit penche. En haut du carré, la tortue regarde vers le haut (à la verticale), pas vers la droite : l'angle de 60° du triangle se mesure depuis l'horizontale, donc depuis la verticale elle ne tourne que de 90 − 60 = 30°."
+        },
+        {
+          "program": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 30\nrépète 2 [ avance 80 droite 60 ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "Au sommet du toit, tu as fait tourner la tortue de l'angle intérieur du triangle (60°). Elle doit tourner de l'angle extérieur : 180 − 60 = 120°."
+        }
+      ],
+      "hints": [
+        "Trace d'abord le carré avec une boucle. Où est la tortue ensuite, et dans quelle direction regarde-t-elle ?",
+        "Monte au coin supérieur du carré, du côté où commence le toit (repasser sur un côté déjà tracé ne change pas le dessin), puis oriente la tortue vers le sommet du toit.",
+        "Arrivée en haut du carré, la tortue regarde vers le haut (verticale). Le premier côté du toit fait 60° avec l'horizontale, donc 30° avec la verticale : elle tourne de 30°, puis de 120° à chaque sommet du toit."
+      ],
+      "solution": "« répète 4 [ avance 80 gauche 90 ] » trace le carré et ramène la tortue au départ, tournée vers la droite. « gauche 90 avance 80 » la fait remonter le côté gauche : elle est au coin supérieur, tournée vers le haut. « droite 30 » l'oriente le long du premier côté du toit (60° avec l'horizontale). « répète 2 [ avance 80 droite 120 ] » trace les deux côtés du toit (le troisième côté du triangle est déjà tracé : c'est le haut du carré). Total : 9 instructions.",
+      "methods": [
+        "Carré, puis remontée par un côté, puis toit avec « répète 2 [ avance 80 droite 120 ] ».",
+        "Lever le crayon pour se placer au coin du toit (lève, gauche 90, avance 80, pose) : plus lisible, mais 2 instructions de plus.",
+        "Tracer le toit comme un triangle complet, « répète 3 [ avance 80 droite 120 ] » : le côté commun avec le carré est repassé, le dessin reste juste et le nombre d'instructions ne change pas."
+      ],
+      "selfTest": [
+        {
+          "response": {"program": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 30\nrépète 2 [ avance 80 droite 120 ]"},
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "répète 4 [ avance 80 droite 90 ]\ndroite 90 avance 80 gauche 30\nrépète 2 [ avance 80 gauche 120 ]"},
+          "expect": "correct"
+        },
+        {
+          "response": {"program": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 60\nrépète 2 [ avance 80 droite 120 ]"},
+          "expect": "mc:reference-direction"
+        },
+        {
+          "response": {"program": "répète 4 [ avance 80 gauche 90 ]\ngauche 90 avance 80 droite 30\nrépète 2 [ avance 80 droite 60 ]"},
+          "expect": "mc:angle-interieur"
+        }
+      ],
+      "targets": ["mc:angle-interieur", "mc:reference-direction"]
+    },
+    {
+      "id": "code-tortue-boucles-frise-triangles",
+      "type": "code",
+      "skill": "code.boucles",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:oubli-derniere-rotation", "mc:angle-interieur", "mc:oubli-deplacement"],
+      "expectedSeconds": 360,
+      "prompt": "Trace la frise du modèle : 4 triangles équilatéraux de côté 40, posés côte à côte sur une même ligne. Défi : **au plus 5 instructions**. Il faudra une boucle… à l'intérieur d'une boucle.",
+      "reference": "répète 4 [ répète 3 [ avance 40 gauche 120 ] avance 40 ]",
+      "codeConstraints": {"maxInstructions": 5},
+      "misconceptions": [
+        {
+          "program": "répète 4 [ répète 3 [ avance 40 gauche 120 ] ]",
+          "id": "mc:oubli-deplacement",
+          "error": "methode",
+          "feedback": "Tes 4 triangles sont tracés exactement au même endroit : entre deux triangles, la tortue doit avancer de 40 pour se placer au début du suivant."
+        },
+        {
+          "program": "répète 4 [ répète 3 [ avance 40 gauche 60 ] avance 40 ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "Avec 60°, l'angle intérieur du triangle équilatéral, la tortue ne trace pas un triangle. Elle doit tourner de l'angle extérieur : 180 − 60 = 120°."
+        }
+      ],
+      "hints": [
+        "Écris d'abord UN triangle : « répète 3 [ avance 40 gauche 120 ] ». Où se trouve la tortue à la fin, et dans quelle direction regarde-t-elle ?",
+        "Elle est revenue à son point de départ, tournée vers la droite (3 × 120 = 360°). Pour commencer le triangle suivant, il suffit d'avancer de 40.",
+        "Le motif « un triangle, puis avance 40 » se répète 4 fois : place-le dans une boucle « répète 4 [ … ] »."
+      ],
+      "solution": "« répète 4 [ répète 3 [ avance 40 gauche 120 ] avance 40 ] ». La boucle intérieure trace un triangle et ramène la tortue à son point de départ dans sa direction de départ ; « avance 40 » la place au début du triangle suivant ; la boucle extérieure répète le tout 4 fois. Total : 5 instructions.",
+      "methods": [
+        "Boucles imbriquées : la boucle intérieure dessine la figure, la boucle extérieure répète « figure + déplacement ».",
+        "Version longue : 4 fois la même ligne. Le dessin est juste, mais il faut 16 instructions."
+      ],
+      "selfTest": [
+        {"response": {"program": "répète 4 [ répète 3 [ avance 40 gauche 120 ] avance 40 ]"}, "expect": "correct"},
+        {"response": {"program": "répète 4 [ répète 3 [ avance 40 gauche 120 ] ]"}, "expect": "mc:oubli-deplacement"},
+        {"response": {"program": "répète 4 [ répète 3 [ avance 40 gauche 60 ] avance 40 ]"}, "expect": "mc:angle-interieur"},
+        {
+          "response": {
+            "program": "répète 3 [ avance 40 gauche 120 ] avance 40\nrépète 3 [ avance 40 gauche 120 ] avance 40\nrépète 3 [ avance 40 gauche 120 ] avance 40\nrépète 3 [ avance 40 gauche 120 ] avance 40"
+          },
+          "expect": "methode"
+        }
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-etoile",
+      "type": "code",
+      "skill": "code.boucles",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "targets": ["mc:angle-interieur", "mc:toujours-un-tour"],
+      "expectedSeconds": 420,
+      "prompt": "Trace l'étoile à 5 branches du modèle (côté 120) avec **au plus 3 instructions**, sans lever le crayon. Attention : cette fois, la tortue ne fait pas qu'un seul tour sur elle-même…",
+      "reference": "répète 5 [ avance 120 droite 144 ]",
+      "codeConstraints": {"maxInstructions": 3},
+      "misconceptions": [
+        {
+          "program": "répète 5 [ avance 120 droite 72 ]",
+          "id": "mc:toujours-un-tour",
+          "error": "notion",
+          "feedback": "Avec 72°, la tortue fait un seul tour : c'est le pentagone. En traçant l'étoile, elle fait DEUX tours : 2 × 360 ÷ 5 = 144°."
+        },
+        {
+          "program": "répète 5 [ avance 120 droite 36 ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "36° est l'angle d'une pointe de l'étoile, mesuré entre deux traits. La tortue tourne de l'angle extérieur : 180 − 36 = 144°."
+        },
+        {
+          "program": "répète 5 [ avance 120 droite 108 ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "108° est l'angle intérieur du pentagone régulier. Pour l'étoile, la tortue tourne de 144° à chaque pointe (5 × 144 = 720, deux tours)."
+        }
+      ],
+      "hints": [
+        "L'étoile se trace en 5 traits égaux, comme un polygone : la tortue tourne du même angle à chaque pointe.",
+        "Suis la tortue du doigt sur le modèle : en traçant l'étoile, elle fait DEUX tours complets sur elle-même, soit 2 × 360 = 720°.",
+        "720 ÷ 5 = 144."
+      ],
+      "solution": "« répète 5 [ avance 120 droite 144 ] ». En traçant l'étoile, la tortue fait 2 tours complets : 5 × 144 = 720 = 2 × 360. L'angle de chaque pointe de l'étoile vaut 180 − 144 = 36°.",
+      "methods": [
+        "Compter les tours : 2 tours en 5 rotations, donc 720 ÷ 5 = 144.",
+        "Partir de l'angle d'une pointe (36°) et calculer l'angle de rotation : 180 − 36 = 144.",
+        "Expérimenter : 72 donne un pentagone ; on cherche l'angle qui referme la figure après 2 tours."
+      ],
+      "selfTest": [
+        {"response": {"program": "répète 5 [ avance 120 droite 144 ]"}, "expect": "correct"},
+        {"response": {"program": "répète 5 [ avance 120 droite 2 * 360 / 5 ]"}, "expect": "correct"},
+        {"response": {"program": "répète 5 [ avance 120 droite 72 ]"}, "expect": "mc:toujours-un-tour"},
+        {"response": {"program": "répète 5 [ avance 120 droite 36 ]"}, "expect": "mc:angle-interieur"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-rosace",
+      "type": "code",
+      "skill": "code.boucles",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "manipulation",
+      "targets": ["mc:tour-complet", "mc:boucle-mal-fermee", "mc:oubli-rotation-motif"],
+      "expectedSeconds": 480,
+      "params": {"n": {"choice": [6, 8, 9, 10, 12]}},
+      "prompt": "Trace la rosace du modèle : **{n} carrés** de côté 60, qui partent tous du même point. Chaque carré est tourné du même angle par rapport au précédent, et les {n} carrés se répartissent sur un tour complet. Défi : **au plus 5 instructions**.",
+      "reference": "répète {n} [ répète 4 [ avance 60 droite 90 ] droite {360/n} ]",
+      "codeConstraints": {"maxInstructions": 5},
+      "misconceptions": [
+        {
+          "program": "répète {n} [ répète 4 [ avance 60 droite 90 ] ]",
+          "id": "mc:oubli-rotation-motif",
+          "error": "methode",
+          "feedback": "Tes {n} carrés sont tous superposés : entre deux carrés, la tortue doit tourner de 360 ÷ {n} = {360/n}°."
+        },
+        {
+          "program": "répète {n} [ répète 4 [ avance 60 droite 90 droite {360/n} ] ]",
+          "id": "mc:boucle-mal-fermee",
+          "error": "notion",
+          "feedback": "La rotation de {360/n}° est dans la boucle du carré : elle déforme chaque carré. Elle doit être dans la grande boucle, après le carré : « répète 4 [ … ] droite {360/n} »."
+        },
+        {
+          "program": "répète {n} [ répète 4 [ avance 60 droite 90 ] droite {n} ]",
+          "id": "mc:nombre-pour-angle",
+          "error": "notion",
+          "feedback": "Tu as tourné de {n}°, le nombre de carrés. L'angle entre deux carrés est le tour complet partagé en {n} : 360 ÷ {n} = {360/n}°."
+        }
+      ],
+      "hints": [
+        "Commence par un seul carré : « répète 4 [ avance 60 droite 90 ] ». Après ce carré, la tortue est revenue au centre, dans sa direction de départ.",
+        "Entre deux carrés, la tortue tourne un peu. Les {n} carrés se répartissent sur 360° : de combien tourne-t-elle à chaque fois ?",
+        "360 ÷ {n} = {360/n} : « répète {n} [ répète 4 [ avance 60 droite 90 ] droite {360/n} ] »."
+      ],
+      "solution": "« répète {n} [ répète 4 [ avance 60 droite 90 ] droite {360/n} ] ». La boucle intérieure trace un carré et ramène la tortue au centre (4 × 90 = 360°). La rotation de {360/n}° entre deux carrés est faite {n} fois : {n} × {360/n} = 360°, la rosace fait le tour complet sans que deux carrés se superposent.",
+      "methods": [
+        "Boucles imbriquées : un carré dans la boucle intérieure, une rotation de 360 ÷ {n} dans la boucle extérieure.",
+        "Laisser l'ordinateur calculer l'angle : « droite 360 / {n} »."
+      ],
+      "selfTest": [
+        {"response": {"program": "répète {n} [ répète 4 [ avance 60 droite 90 ] droite 360 / {n} ]"}, "expect": "correct"},
+        {"response": {"program": "répète {n} [ répète 4 [ avance 60 droite 90 ] ]"}, "expect": "mc:oubli-rotation-motif"},
+        {"response": {"program": "répète {n} [ répète 4 [ avance 60 droite 90 droite {360/n} ] ]"}, "expect": "mc:boucle-mal-fermee"},
+        {"response": {"program": "répète {n} [ répète 4 [ avance 60 droite 90 ] droite {n} ]"}, "expect": "mc:nombre-pour-angle"}
+      ]
+    },
+    {
+      "id": "code-tortue-boucles-predire",
+      "type": "composite",
+      "skill": "code.boucles",
+      "skills": ["code.sequences"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:toujours-un-tour"],
+      "expectedSeconds": 480,
+      "prompt": "**Sans exécuter le programme**, prédis ce que trace :\n\nrépète 8 [ avance 100 droite 135 ]\n\nRéponds aux questions, puis vérifie ta prédiction dans le laboratoire des polygones.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien de degrés la tortue a-t-elle tourné en tout à la fin du programme ?",
+          "answer": 1080,
+          "misconceptions": [
+            {"answer": 135, "id": "mc:une-rotation", "error": "lecture", "feedback": "135° est une seule rotation ; la boucle en fait 8."},
+            {
+              "answer": 360,
+              "id": "mc:toujours-un-tour",
+              "error": "notion",
+              "feedback": "Une figure fermée ne correspond pas toujours à un seul tour : ici la tortue tourne de 8 × 135 = 1080°."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de tours complets la tortue a-t-elle faits sur elle-même ?",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:toujours-un-tour",
+              "error": "notion",
+              "feedback": "1080 ÷ 360 = 3 : la tortue tourne trois fois sur elle-même avant de retrouver sa direction de départ."
+            },
+            {
+              "answer": 8,
+              "id": "mc:tours-cotes",
+              "error": "notion",
+              "feedback": "8 est le nombre de traits. Le nombre de tours se calcule avec le total des rotations : 1080 ÷ 360."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Décris le dessin obtenu (forme, nombre de pointes, fermé ou non) et explique comment tu l'as prédit.",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je dis que la figure se referme (la tortue revient à son point de départ)",
+              "keywords": [["referme", "ferme", "revient", "depart"]]
+            },
+            {"id": "c2", "label": "Je dis que c'est une étoile à 8 branches", "keywords": [["etoile"]]},
+            {"id": "c3", "label": "Je relie le nombre de tours (3) à la forme obtenue", "keywords": [["3 tours", "trois tours", "1080"]]}
+          ]
+        }
+      ],
+      "hints": [
+        "Total des rotations : 8 × 135.",
+        "1080 = 3 × 360 : la tortue a fait 3 tours complets et regarde à nouveau dans sa direction de départ.",
+        "8 traits de même longueur, le même virage à chaque fois, une figure qui se referme après plusieurs tours : c'est une étoile, comme celle à 5 branches."
+      ],
+      "solution": "8 × 135 = 1080° = 3 × 360° : la tortue fait 3 tours complets, retrouve sa direction de départ et revient à son point de départ. Les 8 traits égaux, avec un virage de 135° (une pointe de 180 − 135 = 45° à chaque sommet), forment une étoile régulière à 8 branches. À comparer : avec 45° (= 360 ÷ 8), on obtiendrait un octogone, en un seul tour.",
+      "methods": [
+        "Calculer le total des rotations, puis le nombre de tours.",
+        "Simuler à la main les 3 premiers traits sur une feuille, avec un rapporteur, et reconnaître la forme qui se dessine."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "1080"},
+              {"value": "3"},
+              {
+                "text": "C'est une étoile à 8 branches. La tortue tourne de 8 × 135 = 1080 degrés, donc 3 tours complets, et elle revient à son point de départ : la figure se referme.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "360"}, {"value": "1"}, {"text": "C'est un octogone, un polygone à 8 côtés, car il y a répète 8."}]},
+          "expect": "mc:toujours-un-tour"
+        }
+      ]
+    }
+  ]
+}

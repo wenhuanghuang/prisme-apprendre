@@ -1,0 +1,915 @@
+{
+  "id": "ia-apprendre-exemples",
+  "title": "Une IA qui apprend à partir d'exemples : erreurs et biais",
+  "subject": "numerique",
+  "level": "5e",
+  "skills": ["ia.apprentissage", "ia.biais"],
+  "status": "programme",
+  "programmes": ["ia-numerique-cadre-2026", "techno-c4-2024"],
+  "duration": 60,
+  "summary": "Comparer un programme à règles et une IA qui apprend à partir d'exemples, entraîner puis tester un classifieur de pommes et de poires, compter ses erreurs, et comprendre comment des données déséquilibrées produisent des décisions biaisées.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Pomme ou poire ? Essaie d'écrire la règle",
+      "body": "Imagine que tu dois programmer une machine qui trie des pommes et des poires. Première idée : écrire des **règles** (« si le fruit est rouge, c'est une pomme »). Mais une pomme peut être verte, une poire peut rougir au soleil, certaines pommes sont un peu allongées… Les règles s'empilent et il y a toujours une exception.\n\nDeuxième idée : montrer à la machine **beaucoup de fruits déjà étiquetés**, et la laisser décider en comparant chaque nouveau fruit à ceux qu'elle connaît. C'est le principe de l'**apprentissage automatique**.\n\nDans le laboratoire, chaque fruit d'entraînement est un point placé selon deux mesures : son **allongement** (hauteur ÷ largeur, à l'horizontale) et sa **couleur**, du vert au rouge (à la verticale). Les pommes sont des ronds ●, les poires des triangles ▲. Clique pour tester un fruit inconnu : que décide l'IA ? Passe en mode « Ajouter un exemple » et place une poire juste à côté : la décision change-t-elle ?",
+      "activity": {"widget": "knn-lab", "config": {"preset": "fruits", "k": 1}}
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour aller plus loin sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "**Deux façons de faire décider une machine.**\n- **Programme à règles** : un humain écrit les règles (« si la température descend sous 19 °C, allumer le chauffage »). La machine les applique sans jamais les changer.\n- **Apprentissage automatique** (une forme d'intelligence artificielle) : on fournit à la machine des **exemples étiquetés**, par exemple des photos de chats marquées « chat » et de chiens marquées « chien ». Un algorithme construit, à partir de ces exemples, sa propre façon de décider.\n\n**La méthode des k plus proches voisins.** Pour classer un nouvel objet, l'IA cherche les **k exemples les plus ressemblants** (les plus proches) et fait **voter** leurs étiquettes : la majorité l'emporte. Avec k = 1, seul le plus proche décide. Le choix de k peut changer la décision.\n\n**Entraîner, puis tester.** On sépare les exemples en deux groupes :\n- les **données d'entraînement**, à partir desquelles l'IA apprend ;\n- les **données de test**, mises de côté, que l'IA n'a **jamais vues**. On juge une IA seulement sur ces données-là, comme un contrôle avec des exercices nouveaux et non ceux corrigés en classe.\n\n**Compter les erreurs.** La **matrice d'erreurs** (ou matrice de confusion) croise la vraie catégorie (en ligne) et la réponse de l'IA (en colonne). Les cases de la **diagonale** contiennent les bonnes réponses ; les autres cases, les erreurs.\n\n> Taux de réussite (en %) = nombre de bonnes réponses ÷ nombre total de tests × 100.\n> Une IA qui apprend à partir d'exemples **peut se tromper** : elle ne sait pas ce qu'est un fruit, elle compare des mesures.\n\n**Biais.** Si les exemples sont **déséquilibrés** (beaucoup plus d'exemples d'un groupe que d'un autre) ou **peu représentatifs**, l'IA se trompe davantage pour les cas mal représentés. Une IA n'est pas neutre parce qu'elle calcule : elle reproduit ce qu'il y a dans ses données, y compris leurs défauts. Quand ses décisions concernent des personnes, un biais peut devenir une injustice. Un taux de réussite global élevé peut cacher un groupe pour lequel l'IA échoue : il faut mesurer la réussite **groupe par groupe**."
+    },
+    {
+      "kind": "manipulation",
+      "title": "Entraîner, tester, compter les erreurs",
+      "body": "L'IA dispose de 12 pommes ● et 12 poires ▲ d'entraînement. Choisis k (le curseur propose 1, 3, 5, 7 ou 9), teste quelques fruits, puis clique sur « Évaluer sur des fruits jamais vus » : l'IA classe 40 fruits de test (20 pommes, 20 poires) et affiche sa matrice d'erreurs.\n\nQuelles confusions reviennent ? Change k et compare le taux de réussite. Coche « Montrer les zones de décision » : où passe la frontière entre pommes et poires ?",
+      "activity": {"widget": "knn-lab", "config": {"preset": "fruits", "k": 3}}
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : voter, puis évaluer",
+      "steps": [
+        {
+          "text": "Une IA doit classer une photo. Ses 5 exemples d'entraînement les plus proches, du plus proche au plus éloigné, sont : chien, chat, chien, chat, chat.",
+          "math": ""
+        },
+        {"text": "Avec k = 1, seul le plus proche vote :", "math": "chien"},
+        {"text": "Avec k = 3, on garde les 3 premiers (chien, chat, chien) :", "math": "chien : 2 voix ; chat : 1 voix → chien"},
+        {"text": "Avec k = 5, on garde les 5 (chien, chat, chien, chat, chat) :", "math": "chat : 3 voix ; chien : 2 voix → chat"},
+        {
+          "text": "On teste ensuite l'IA sur 50 photos qu'elle n'a jamais vues (25 chats, 25 chiens). Matrice d'erreurs : vrais chats → 22 « chat » et 3 « chien » ; vrais chiens → 4 « chat » et 21 « chien ».",
+          "math": ""
+        },
+        {"text": "Bonnes réponses (diagonale) : 22 + 21. Erreurs (hors diagonale) : 3 + 4.", "math": "43 bonnes réponses, 7 erreurs, 43 + 7 = 50"},
+        {"text": "Taux de réussite :", "math": "43 ÷ 50 × 100 = 86 %"}
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Pour les pourcentages, tu peux écrire « 85 » ou « 85 % ».",
+      "exercises": [
+        "ia-apprendre-exemples-vote",
+        "ia-apprendre-exemples-matrice",
+        "ia-apprendre-exemples-taux",
+        "ia-apprendre-exemples-etapes",
+        "ia-apprendre-exemples-verif"
+      ]
+    },
+    {
+      "kind": "manipulation",
+      "title": "Quand les données sont déséquilibrées",
+      "body": "Ce jeu d'entraînement contient **26 pommes et seulement 3 poires**, toutes vertes. Clique sur « Évaluer sur des fruits jamais vus » et compare la colonne « Réussite » des pommes et des poires : le taux est-il le même ?\n\nAjoute ensuite des exemples de poires (vertes, jaunes, rougeâtres), puis évalue de nouveau. Qu'est-ce qui a changé, et pourquoi ?",
+      "activity": {"widget": "knn-lab", "config": {"preset": "biais", "k": 3}}
+    },
+    {"kind": "libre", "title": "Avec tes mots", "exercises": ["ia-apprendre-exemples-biais"]},
+    {"kind": "reinvestissement", "title": "Le piège du pourcentage global", "exercises": ["ia-apprendre-exemples-contre-exemple"]},
+    {
+      "kind": "mission",
+      "title": "Mission : auditer une application",
+      "body": "Un club nature hésite à adopter une application de reconnaissance des oiseaux. Il te demande un avis argumenté, chiffres à l'appui.",
+      "exercises": ["ia-apprendre-exemples-audit"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Ne regarder que le plus proche voisin.** Avec k = 3 ou k = 5, tous les voisins retenus votent avec le même poids.\n- **Compter la diagonale comme des erreurs.** Dans la matrice d'erreurs, la diagonale contient les bonnes réponses.\n- **Confondre taux de réussite et taux d'erreur**, ou donner un nombre de bonnes réponses à la place d'un pourcentage.\n- **Tester l'IA sur ses données d'entraînement.** Elle les connaît déjà : le score obtenu ne dit rien de ce qu'elle fera sur des cas nouveaux.\n- **Croire qu'une IA est neutre parce qu'elle calcule.** Elle reproduit les déséquilibres de ses données.\n- **Se fier à un taux global.** 95 % de réussite peut cacher 0 % pour un petit groupe : on mesure la réussite groupe par groupe."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera une matrice d'erreurs ou un vote de voisins dans quelques jours : réussir après une pause montre que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le paramètre k : comment il change les décisions de l'IA, pourquoi certaines valeurs évitent les égalités, et comment le choisir.",
+      "exercises": ["ia-apprendre-exemples-influence-k", "ia-apprendre-exemples-k-impair"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà du programme : le sur-apprentissage (apprendre par cœur au lieu de généraliser) et l'analyse critique de cas réels où une IA décide pour des personnes.",
+      "exercises": ["ia-apprendre-exemples-surapprentissage", "ia-apprendre-exemples-cas-reel"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "ia-apprendre-exemples-vote",
+      "type": "text",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:k-plus-proche-seul"],
+      "expectedSeconds": 90,
+      "prompt": "L'IA du laboratoire doit classer un nouveau fruit. Voici ses 5 exemples d'entraînement les plus proches, du plus proche au plus éloigné :\n1. poire\n2. pomme\n3. pomme\n4. poire\n5. poire\n\nAvec **k = 3**, quelle étiquette l'IA donne-t-elle au nouveau fruit ?",
+      "inputLabel": "Étiquette donnée par l'IA",
+      "accept": ["pomme", "une pomme", "la pomme", "pommes"],
+      "misconceptions": [
+        {
+          "answer": "poire",
+          "id": "mc:k-plus-proche-seul",
+          "error": "notion",
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. Ce n'est ni le plus proche seul (k = 1), ni les 5 (k = 5) qui décident : la majorité des 3 est « pomme »."
+        },
+        {
+          "answer": "une poire",
+          "id": "mc:k-plus-proche-seul",
+          "error": "notion",
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. La majorité des 3 est « pomme »."
+        },
+        {
+          "answer": "poires",
+          "id": "mc:k-plus-proche-seul",
+          "error": "notion",
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. La majorité des 3 est « pomme »."
+        }
+      ],
+      "hints": [
+        "Avec k = 3, on ne garde que les 3 premiers de la liste.",
+        "Compte les voix parmi ces 3 : combien de poires ? combien de pommes ?",
+        "La majorité l'emporte, et le plus proche n'a pas une voix plus forte que les autres."
+      ],
+      "solution": "Les 3 plus proches : poire, pomme, pomme. Pomme : 2 voix, poire : 1 voix. L'IA répond « pomme ». Avec k = 1, elle aurait répondu « poire » ; avec k = 5 aussi (3 poires contre 2 pommes). Le choix de k change la décision : vérifie-le dans le laboratoire avec le curseur k.",
+      "methods": ["Entourer les k premiers de la liste, puis compter les voix.", "Faire un petit tableau : étiquette, nombre de voix parmi les 3 plus proches."],
+      "selfTest": [
+        {"response": {"value": "pomme"}, "expect": "correct"},
+        {"response": {"value": "Une pomme"}, "expect": "correct"},
+        {"response": {"value": "poire"}, "expect": "mc:k-plus-proche-seul"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-matrice",
+      "type": "table",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:diagonale"],
+      "expectedSeconds": 180,
+      "params": {"b": {"int": [1, 6]}, "d": {"int": [2, 8]}},
+      "constraints": ["b != d"],
+      "prompt": "Une IA reconnaît des chats et des chiens. On la teste sur 40 photos qu'elle n'a jamais vues : 20 chats et 20 chiens. Voici sa **matrice d'erreurs** (en ligne : le vrai animal ; en colonne : la réponse de l'IA) :\n- vrais chats : {20-b} réponses « chat », {b} réponses « chien » ;\n- vrais chiens : {d} réponses « chat », {20-d} réponses « chien ».\n\nComplète le tableau.",
+      "columns": ["Ce qu'on compte", "Nombre"],
+      "rows": [
+        ["Chats pris pour des chiens", "?r0c1"],
+        ["Chiens pris pour des chats", "?r1c1"],
+        ["Nombre total d'erreurs", "?r2c1"],
+        ["Nombre total de bonnes réponses", "?r3c1"]
+      ],
+      "cells": {
+        "r0c1": {
+          "answer": "b",
+          "misconceptions": [
+            {
+              "answer": "20-b",
+              "id": "mc:diagonale",
+              "error": "lecture",
+              "feedback": "Ce nombre est celui des chats bien reconnus (la diagonale). Les chats pris pour des chiens sont dans la colonne « chien »."
+            }
+          ]
+        },
+        "r1c1": {
+          "answer": "d",
+          "misconceptions": [
+            {
+              "answer": "20-d",
+              "id": "mc:diagonale",
+              "error": "lecture",
+              "feedback": "Ce nombre est celui des chiens bien reconnus (la diagonale). Les chiens pris pour des chats sont dans la colonne « chat »."
+            }
+          ]
+        },
+        "r2c1": {
+          "answer": "b+d",
+          "misconceptions": [
+            {
+              "answer": "40-b-d",
+              "id": "mc:diagonale",
+              "error": "lecture",
+              "feedback": "Tu as additionné les cases de la diagonale : ce sont les bonnes réponses. Les erreurs sont les deux autres cases."
+            }
+          ]
+        },
+        "r3c1": {
+          "answer": "40-b-d",
+          "misconceptions": [
+            {
+              "answer": "b+d",
+              "id": "mc:diagonale",
+              "error": "lecture",
+              "feedback": "Tu as additionné les erreurs. Les bonnes réponses sont sur la diagonale : chat reconnu « chat », chien reconnu « chien »."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Les bonnes réponses sont sur la diagonale : vrai chat → « chat », vrai chien → « chien ».",
+        "Les erreurs sont les deux autres cases : un vrai chat classé « chien », un vrai chien classé « chat ».",
+        "Vérifie : erreurs + bonnes réponses = 40."
+      ],
+      "solution": "Chats pris pour des chiens : {b}. Chiens pris pour des chats : {d}. Erreurs : {b} + {d} = {b+d}. Bonnes réponses : {20-b} + {20-d} = {40-b-d}. Vérification : {b+d} + {40-b-d} = 40.",
+      "methods": ["Repérer la diagonale, puis tout le reste.", "Calculer d'abord les erreurs, puis les bonnes réponses par différence : 40 − {b+d}."],
+      "selfTest": [
+        {"response": {"cells": {"r0c1": "{b}", "r1c1": "{d}", "r2c1": "{b+d}", "r3c1": "{40-b-d}"}}, "expect": "correct"},
+        {"response": {"cells": {"r0c1": "{20-b}", "r1c1": "{20-d}", "r2c1": "{40-b-d}", "r3c1": "{b+d}"}}, "expect": "mc:diagonale"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-taux",
+      "type": "numeric",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:taux-erreur", "mc:nombre-pas-pourcentage", "mc:tester-sur-entrainement"],
+      "expectedSeconds": 120,
+      "params": {"n": {"choice": [20, 25, 40, 50]}, "k": {"int": [11, 49]}},
+      "constraints": ["k < n", "k > n/2", "estentier(100*k/n)"],
+      "prompt": "Sur ses propres exemples d'entraînement, une IA obtient 100 % de bonnes réponses. On la teste ensuite sur {n} photos qu'elle n'a **jamais vues** : elle donne {k} bonnes réponses.\n\nQuel est son taux de réussite sur ces données de test, en % ?",
+      "answer": "100*k/n",
+      "misconceptions": [
+        {
+          "answer": "100*(n-k)/n",
+          "id": "mc:taux-erreur",
+          "error": "lecture",
+          "feedback": "Ça, c'est le taux d'erreur, la part des réponses fausses. Le taux de réussite compte les bonnes réponses."
+        },
+        {
+          "answer": "k",
+          "id": "mc:nombre-pas-pourcentage",
+          "error": "notion",
+          "feedback": "{k} est un nombre de bonnes réponses, pas un pourcentage : il faut le comparer au nombre total de tests ({n})."
+        },
+        {
+          "answer": "k/n",
+          "id": "mc:oubli-100",
+          "error": "calcul",
+          "feedback": "{k} ÷ {n} est la proportion de bonnes réponses ; pour l'exprimer en pourcentage, on la multiplie par 100."
+        }
+      ],
+      "hints": ["Taux de réussite = bonnes réponses ÷ nombre total de tests × 100.", "Calcule d'abord {k} ÷ {n}.", "Multiplie le résultat par 100."],
+      "solution": "{k} ÷ {n} × 100 = {100*k/n} %. Le score de 100 % sur les données d'entraînement ne prouve rien : l'IA connaissait déjà ces exemples. Seul le test sur des données nouvelles mesure ce qu'elle sait vraiment faire.",
+      "methods": [
+        "Diviser, puis multiplier par 100.",
+        "Proportionnalité : {n} tests correspondent à 100 % ; {k} bonnes réponses correspondent à combien de % ?",
+        "Passer par les erreurs : {n-k} erreurs sur {n}, soit {100*(n-k)/n} % d'erreurs, donc 100 − {100*(n-k)/n} = {100*k/n} % de réussite."
+      ],
+      "selfTest": [
+        {"response": {"value": "{100*k/n}"}, "expect": "correct"},
+        {"response": {"value": "{100*k/n} %"}, "expect": "correct"},
+        {"response": {"value": "{100*(n-k)/n}"}, "expect": "mc:taux-erreur"},
+        {"response": {"value": "{100*(n-k)/n} %"}, "expect": "mc:taux-erreur"},
+        {"response": {"value": "{k}"}, "expect": "mc:nombre-pas-pourcentage"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-etapes",
+      "type": "order",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:tester-sur-entrainement"],
+      "expectedSeconds": 150,
+      "prompt": "Une équipe veut créer une IA qui reconnaît les arbres à partir de photos de leurs feuilles. Range les étapes de son travail dans l'ordre.",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        {"id": "e1", "label": "Rassembler beaucoup de photos de feuilles, variées (espèces, saisons, éclairages)"},
+        {"id": "e2", "label": "Étiqueter chaque photo avec le nom de l'arbre"},
+        {"id": "e3", "label": "Mettre de côté une partie des photos : ce seront les données de test"},
+        {"id": "e4", "label": "Entraîner l'IA avec les autres photos (les données d'entraînement)"},
+        {"id": "e5", "label": "Tester l'IA sur les photos mises de côté, qu'elle n'a jamais vues"},
+        {"id": "e6", "label": "Calculer le taux de réussite et étudier les erreurs, espèce par espèce"},
+        {"id": "e7", "label": "Ajouter des exemples là où l'IA se trompe le plus, puis recommencer"}
+      ],
+      "hints": [
+        "On ne peut pas entraîner l'IA avant d'avoir des exemples étiquetés.",
+        "Les données de test doivent être mises de côté AVANT l'entraînement : sinon l'IA les aurait déjà vues.",
+        "On analyse les erreurs après le test, puis on améliore les données : c'est un cycle."
+      ],
+      "solution": "Rassembler des photos variées → les étiqueter → mettre de côté les données de test → entraîner sur les autres → tester sur les photos mises de côté → mesurer le taux de réussite et analyser les erreurs par espèce → compléter les données là où l'IA échoue, et recommencer.",
+      "selfTest": [
+        {"response": {"order": ["e1", "e2", "e3", "e4", "e5", "e6", "e7"]}, "expect": "correct"},
+        {"response": {"order": ["e1", "e2", "e4", "e5", "e3", "e6", "e7"]}, "expect": "partiel"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-verif",
+      "type": "qcm",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:regle-vs-apprentissage"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide : lequel de ces systèmes est un **programme à règles** écrites par un humain, et non une IA qui apprend à partir d'exemples ?",
+      "choices": [
+        {
+          "text": "Un thermostat qui allume le chauffage dès que la température descend sous 19 °C",
+          "correct": true,
+          "feedback": "Oui : la règle « si la température est inférieure à 19 °C » a été écrite par un humain ; la machine ne l'a pas apprise."
+        },
+        {
+          "text": "Une application qui reconnaît une plante sur une photo, après avoir étudié des milliers de photos étiquetées",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:regle-vs-apprentissage",
+          "feedback": "Personne n'a écrit de règle du type « si la feuille a telle forme… » : le système a construit sa façon de décider à partir d'exemples. C'est de l'apprentissage automatique."
+        },
+        {
+          "text": "Un filtre anti-spam entraîné avec des millions de messages marqués « spam » ou « normal »",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:regle-vs-apprentissage",
+          "feedback": "Ce filtre a appris à partir d'exemples étiquetés : c'est de l'apprentissage automatique."
+        },
+        {
+          "text": "Un clavier de téléphone qui propose le mot suivant après avoir analysé d'énormes quantités de textes",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:regle-vs-apprentissage",
+          "feedback": "Ses propositions viennent de statistiques tirées de textes, pas de règles écrites à la main : c'est de l'apprentissage automatique."
+        }
+      ],
+      "solution": "Le thermostat applique une règle fixée par un humain. Les trois autres systèmes ont construit leur façon de décider à partir d'exemples : ce sont des systèmes d'apprentissage automatique.",
+      "selfTest": [{"response": {"selected": [0]}, "expect": "correct"}, {"response": {"selected": [1]}, "expect": "mc:regle-vs-apprentissage"}]
+    },
+    {
+      "id": "ia-apprendre-exemples-biais",
+      "type": "open",
+      "skill": "ia.biais",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:ia-neutre"],
+      "expectedSeconds": 420,
+      "minWords": 40,
+      "prompt": "Une application de dictée vocale a été entraînée avec 10 000 enregistrements : 9 500 voix d'adultes et 500 voix d'enfants. Testée au collège, elle comprend très bien les professeurs mais fait beaucoup d'erreurs avec les élèves.\n\nExplique d'où vient ce problème, quelles conséquences il peut avoir, et propose au moins deux façons de le corriger. Tu peux t'appuyer sur ce que tu as observé dans le laboratoire « données déséquilibrées » (26 pommes, 3 poires).",
+      "activity": {"widget": "knn-lab", "config": {"preset": "biais", "k": 3}},
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que les données d'entraînement sont déséquilibrées (très peu de voix d'enfants)",
+          "keywords": [["desequilibr", "peu d'exemples", "peu de voix", "500", "pas assez", "minorit", "moins d'exemples"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je relie ce déséquilibre aux erreurs : l'IA reconnaît mal ce qu'elle a peu entendu",
+          "keywords": [["peu entendu", "pas appris", "mal reconnu", "ne connait pas", "habitue", "moins entraine", "se trompe"]]
+        },
+        {
+          "id": "c3",
+          "label": "Je décris une conséquence concrète pour les personnes concernées",
+          "keywords": [["consequence", "injuste", "desavantag", "exclu", "penalis", "ne peuvent pas", "moins bien"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je propose au moins deux corrections réalistes",
+          "keywords": [["ajouter", "plus de voix d'enfants", "equilibr", "separement", "par groupe", "reentrainer", "collecter"]]
+        }
+      ],
+      "models": [
+        "Le problème vient des données d'entraînement : il y a 19 fois plus de voix d'adultes que de voix d'enfants. L'IA a surtout appris à reconnaître des voix d'adultes ; les voix d'enfants, qu'elle a peu entendues, ne ressemblent pas à ses exemples, donc elle se trompe. Conséquence : les élèves ne peuvent pas utiliser l'outil correctement, et un élève qui en aurait vraiment besoin, par exemple à cause d'un handicap, serait désavantagé. Corrections : collecter beaucoup plus de voix d'enfants pour équilibrer les données, puis réentraîner ; tester l'IA séparément sur les adultes et sur les enfants, et ne l'utiliser que si les deux taux sont bons ; prévenir les utilisateurs des limites de l'outil."
+      ],
+      "solution": "C'est un biais de données : l'IA reproduit le déséquilibre de ses exemples. Corrections possibles : compléter les données (beaucoup plus de voix d'enfants, variées), mesurer le taux de réussite pour chaque groupe et pas seulement en moyenne, informer des limites, prévoir une solution de remplacement pour ceux que l'outil comprend mal.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Les données sont déséquilibrées : 9 500 voix d'adultes et seulement 500 voix d'enfants. L'IA a peu entendu de voix d'enfants donc elle se trompe avec les élèves. Conséquence : les élèves sont désavantagés et ne peuvent pas utiliser l'outil. Il faut ajouter beaucoup plus de voix d'enfants et tester séparément les adultes et les enfants.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "L'IA est nulle, il faut l'interdire au collège."}, "expect": "a-valider"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-contre-exemple",
+      "type": "counterexample",
+      "skill": "ia.biais",
+      "skills": ["ia.apprentissage"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:taux-global-suffit"],
+      "expectedSeconds": 300,
+      "claim": "Avec 95 % de réussite au total, l'IA réussit forcément au moins la moitié des tests de chaque groupe.",
+      "prompt": "Une IA de reconnaissance de visages est testée sur 100 photos : 95 photos de personnes du groupe A et 5 photos de personnes du groupe B. Elle obtient **95 % de réussite** au total, c'est-à-dire 95 bonnes réponses.\n\nUn journaliste écrit : « Avec 95 % de réussite au total, cette IA réussit forcément au moins la moitié des tests de chaque groupe. » Montre qu'il a tort : propose un nombre a de bonnes réponses dans le groupe A et un nombre b de bonnes réponses dans le groupe B, compatibles avec ces résultats, pour lesquels l'IA réussit **moins de la moitié** des tests du groupe B.",
+      "vars": ["a", "b"],
+      "domain": "estentier(a) and estentier(b) and a >= 0 and a <= 95 and b >= 0 and b <= 5 and a + b = 95",
+      "domainLabel": "a entre 0 et 95, b entre 0 et 5, et a + b = 95 bonnes réponses en tout",
+      "refutes": "b < 2.5",
+      "show": "100*b/5",
+      "showLabel": "taux de réussite dans le groupe B, en %",
+      "refuteHint": "Avec ces valeurs, l'IA réussit au moins la moitié des tests du groupe B. Essaie de placer presque toutes les bonnes réponses dans le groupe A.",
+      "hints": [
+        "Le groupe A ne compte que 95 photos : a ne peut pas dépasser 95.",
+        "Si l'IA réussit les 95 photos du groupe A, combien reste-t-il de bonnes réponses pour le groupe B ?",
+        "Essaie a = 95 et b = 0 : combien de bonnes réponses au total ? Quel taux dans le groupe B ?"
+      ],
+      "solution": "Avec a = 95 et b = 0 : 95 bonnes réponses sur 100, soit 95 % au total… et 0 sur 5 dans le groupe B, soit 0 %. Les valeurs a = 94, b = 1 et a = 93, b = 2 conviennent aussi. Le taux global cache complètement l'échec sur le petit groupe : c'est pour cela qu'il faut mesurer la réussite groupe par groupe. Ce n'est pas un cas d'école : des études ont montré que certains systèmes de reconnaissance faciale se trompaient beaucoup plus souvent sur les visages de femmes à la peau foncée, peu présents dans leurs données d'entraînement et de test.",
+      "methods": [
+        "Pousser le raisonnement à l'extrême : tout réussir dans le grand groupe.",
+        "Raisonner sur b : b = 95 − a, et a ≤ 95, donc b peut valoir 0, 1 ou 2, ce qui fait moins de la moitié de 5."
+      ],
+      "selfTest": [
+        {"response": {"values": {"a": "95", "b": "0"}}, "expect": "correct"},
+        {"response": {"values": {"a": "92", "b": "3"}}, "expect": "raisonnement"},
+        {"response": {"values": {"a": "90", "b": "10"}}, "expect": "lecture"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-audit",
+      "type": "composite",
+      "skill": "ia.biais",
+      "skills": ["ia.apprentissage"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:taux-global-suffit", "mc:taux-erreur"],
+      "expectedSeconds": 600,
+      "prompt": "Mission : un club nature veut utiliser une application qui reconnaît les oiseaux. Elle a été entraînée avec 9 000 photos prises en plein jour et seulement 1 000 photos prises au crépuscule. Le club la teste sur 100 nouvelles photos :\n- 80 photos de jour : 76 bonnes réponses ;\n- 20 photos au crépuscule : 9 bonnes réponses.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Taux de réussite global, en % ?",
+          "answer": 85,
+          "misconceptions": [
+            {
+              "answer": 15,
+              "id": "mc:taux-erreur",
+              "error": "lecture",
+              "feedback": "15 % est le taux d'erreur. Le taux de réussite compte les bonnes réponses : 76 + 9 = 85 sur 100."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Taux de réussite sur les photos de jour, en % ?",
+          "answer": 95,
+          "misconceptions": [
+            {
+              "answer": 76,
+              "id": "mc:nombre-pas-pourcentage",
+              "error": "notion",
+              "feedback": "76 est un nombre de bonnes réponses ; il faut le rapporter aux 80 photos de jour : 76 ÷ 80 × 100."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Taux de réussite sur les photos au crépuscule, en % ?",
+          "answer": 45,
+          "misconceptions": [
+            {
+              "answer": 9,
+              "id": "mc:nombre-pas-pourcentage",
+              "error": "notion",
+              "feedback": "9 est un nombre de bonnes réponses ; il faut le rapporter aux 20 photos du crépuscule : 9 ÷ 20 × 100."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "L'application annonce « 85 % de réussite ». Rédige un court avis pour le club : ce chiffre est-il trompeur ? D'où vient l'écart entre le jour et le crépuscule ? Que proposes-tu ?",
+          "minWords": 30,
+          "criteria": [
+            {"id": "c1", "label": "Je compare les deux taux (95 % le jour, 45 % au crépuscule)", "keywords": [["45", "95"]]},
+            {
+              "id": "c2",
+              "label": "Je relie l'écart au déséquilibre des photos d'entraînement",
+              "keywords": [["1 000", "1000", "peu de photos", "desequilibr", "entrainement", "moins de photos"]]
+            },
+            {
+              "id": "c3",
+              "label": "Je propose une amélioration (photos du crépuscule, taux affiché par condition…)",
+              "keywords": [["ajouter", "plus de photos", "separement", "par condition", "prevenir", "avertir"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Taux = bonnes réponses ÷ nombre de tests × 100, calculé séparément pour chaque groupe.",
+        "Global : (76 + 9) bonnes réponses sur 100 photos.",
+        "Le crépuscule ne représente que 1 000 photos d'entraînement sur 10 000, soit 10 %."
+      ],
+      "solution": "Global : 85 ÷ 100 × 100 = 85 %. Jour : 76 ÷ 80 × 100 = 95 %. Crépuscule : 9 ÷ 20 × 100 = 45 %, moins d'une fois sur deux. Le « 85 % » est exact mais trompeur : il cache que l'application est peu fiable au crépuscule, un moment où l'on observe pourtant beaucoup d'oiseaux. Cause probable : seulement 10 % des photos d'entraînement ont été prises au crépuscule. Propositions : ajouter des photos du crépuscule et réentraîner, publier un taux de réussite par condition de lumière, avertir les utilisateurs.",
+      "methods": [
+        "Calculer les trois taux, puis les comparer.",
+        "Raisonner sur les erreurs : 4 erreurs sur 80 le jour (5 %), 11 erreurs sur 20 au crépuscule (55 %)."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "85"},
+              {"value": "95"},
+              {"value": "45"},
+              {
+                "text": "Le chiffre de 85 % est trompeur : l'application réussit 95 % le jour mais seulement 45 % au crépuscule. C'est parce qu'elle a été entraînée avec seulement 1 000 photos du crépuscule. Il faut ajouter plus de photos du crépuscule et afficher le taux séparément.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {"value": "85 %"},
+              {"value": "95 %"},
+              {"value": "45 %"},
+              {
+                "text": "85 % est trompeur : 95 % le jour mais 45 % au crépuscule, car il n'y avait que 1 000 photos du crépuscule à l'entraînement. Il faut ajouter des photos du crépuscule et afficher le taux séparément.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {"parts": [{"value": "15"}, {"value": "76"}, {"value": "9"}, {"text": "L'application marche bien puisqu'elle a 85 %, on peut l'utiliser."}]},
+          "expect": "mc:taux-erreur"
+        }
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-remed-diagonale",
+      "type": "numeric",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:diagonale"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : dans une matrice d'erreurs, la **diagonale** (vrai chat → « chat », vrai chien → « chien ») contient les **bonnes** réponses. Les erreurs sont dans les deux autres cases.\n\nMatrice d'une IA testée sur 20 photos :\n- vrais chats : 8 réponses « chat », 2 réponses « chien » ;\n- vrais chiens : 1 réponse « chat », 9 réponses « chien ».\n\nCombien d'erreurs l'IA a-t-elle faites ?",
+      "answer": 3,
+      "misconceptions": [
+        {
+          "answer": 17,
+          "id": "mc:diagonale",
+          "error": "lecture",
+          "feedback": "8 + 9 = 17, ce sont les bonnes réponses (la diagonale). Les erreurs : 2 chats pris pour des chiens et 1 chien pris pour un chat."
+        },
+        {
+          "answer": 2,
+          "id": "mc:erreurs-une-ligne",
+          "error": "lecture",
+          "feedback": "Il y a aussi des erreurs sur les chiens : 1 chien a été pris pour un chat."
+        }
+      ],
+      "hints": [
+        "Repère les deux cases où la réponse de l'IA ne correspond pas au vrai animal.",
+        "Un vrai chat classé « chien » : 2. Un vrai chien classé « chat » : 1."
+      ],
+      "solution": "Erreurs : 2 + 1 = 3. Bonnes réponses : 8 + 9 = 17. Vérification : 3 + 17 = 20.",
+      "selfTest": [{"response": {"value": "3"}, "expect": "correct"}, {"response": {"value": "17"}, "expect": "mc:diagonale"}]
+    },
+    {
+      "id": "ia-apprendre-exemples-remed-vote",
+      "type": "text",
+      "skill": "ia.apprentissage",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:k-plus-proche-seul"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : avec k voisins, **chacun des k plus proches vote**, et le plus proche n'a pas plus de poids que les autres.\n\nUne IA classe une photo. Ses 5 exemples les plus proches, du plus proche au plus éloigné : chien, chat, chat, chien, chat.\n\nAvec **k = 5**, quelle étiquette donne-t-elle ?",
+      "inputLabel": "Étiquette donnée par l'IA",
+      "accept": ["chat", "un chat", "chats"],
+      "misconceptions": [
+        {
+          "answer": "chien",
+          "id": "mc:k-plus-proche-seul",
+          "error": "notion",
+          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent : 3 chats contre 2 chiens."
+        },
+        {
+          "answer": "un chien",
+          "id": "mc:k-plus-proche-seul",
+          "error": "notion",
+          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent : 3 chats contre 2 chiens."
+        }
+      ],
+      "hints": ["Compte les « chat » et les « chien » parmi les 5.", "Chat : 3 voix ; chien : 2 voix."],
+      "solution": "Avec k = 5, les 5 voisins votent : chat (3 voix) contre chien (2 voix). L'IA répond « chat ».",
+      "selfTest": [{"response": {"value": "chat"}, "expect": "correct"}, {"response": {"value": "chien"}, "expect": "mc:k-plus-proche-seul"}]
+    },
+    {
+      "id": "ia-apprendre-exemples-influence-k",
+      "type": "composite",
+      "skill": "ia.apprentissage",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:k-plus-proche-seul"],
+      "expectedSeconds": 480,
+      "prompt": "Une IA doit classer une nouvelle photo. Ses 7 exemples d'entraînement les plus proches, du plus proche au plus éloigné :\n1. chat\n2. chien\n3. chien\n4. chat\n5. chat\n6. chat\n7. chien\n\nOn fait varier k.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Avec k = 1, quelle étiquette ?",
+          "accept": ["chat", "un chat"],
+          "misconceptions": [{"answer": "chien", "id": "mc:vote-mal-compte", "error": "lecture", "feedback": "Avec k = 1, seul le plus proche décide : c'est un chat."}]
+        },
+        {
+          "type": "text",
+          "prompt": "Avec k = 3 ?",
+          "accept": ["chien", "un chien"],
+          "misconceptions": [
+            {
+              "answer": "chat",
+              "id": "mc:k-plus-proche-seul",
+              "error": "notion",
+              "feedback": "Le plus proche est un chat, mais avec k = 3, les 3 plus proches votent : chat, chien, chien. Le chien l'emporte."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Avec k = 5 ?",
+          "accept": ["chat", "un chat"],
+          "misconceptions": [
+            {
+              "answer": "chien",
+              "id": "mc:vote-mal-compte",
+              "error": "calcul",
+              "feedback": "Parmi les 5 plus proches : chat, chien, chien, chat, chat, soit 3 chats contre 2 chiens."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour combien de valeurs de k, de 1 à 7, le vote aboutit-il à une égalité ?",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:pair-toujours-egalite",
+              "error": "raisonnement",
+              "feedback": "Avec k = 6, il n'y a pas égalité : parmi les 6 plus proches, 4 chats et 2 chiens. Un k pair RISQUE une égalité, il ne la provoque pas forcément."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "D'après cet exemple, quel est le risque d'un k très petit ? d'un k très grand ? Comment choisirais-tu k ?",
+          "minWords": 25,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Avec k très petit, un seul exemple (peut-être mal étiqueté ou inhabituel) suffit à décider",
+              "keywords": [["un seul", "mal etiquete", "erreur", "bizarre", "inhabituel", "fragile"]]
+            },
+            {
+              "id": "c2",
+              "label": "Avec k très grand, on fait voter des exemples éloignés, peu ressemblants",
+              "keywords": [["eloigne", "loin", "ressembl", "majorit", "plus nombreu"]]
+            },
+            {
+              "id": "c3",
+              "label": "Je propose de comparer plusieurs valeurs de k sur les données de test (et un k impair)",
+              "keywords": [["tester", "essayer", "comparer", "impair", "donnees de test"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pour chaque k, garde les k premiers de la liste et compte les voix.",
+        "k = 2 : chat, chien. k = 4 : chat, chien, chien, chat.",
+        "k = 6 : 4 chats et 2 chiens, pas d'égalité même si 6 est pair."
+      ],
+      "solution": "k = 1 : chat. k = 3 : chien (2 contre 1). k = 5 : chat (3 contre 2). k = 7 : chat (4 contre 3). Égalités pour k = 2 et k = 4 : 2 valeurs. La décision dépend de k. Avec k petit, l'IA est sensible au moindre exemple mal étiqueté ou inhabituel ; avec k grand, elle fait voter des exemples lointains et finit par donner raison à la catégorie la plus nombreuse dans les données. En pratique, on essaie plusieurs valeurs de k sur des données de test, et on garde celle qui fait le moins d'erreurs (un k impair évite les égalités entre deux catégories).",
+      "methods": [
+        "Tableau : k, voix « chat », voix « chien », décision.",
+        "Raisonnement de proche en proche : passer de k à k + 1 ajoute une seule voix au décompte précédent."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "chat"},
+              {"value": "chien"},
+              {"value": "chat"},
+              {"value": "2"},
+              {
+                "text": "Avec un k très petit, un seul exemple mal étiqueté peut tout décider. Avec un k très grand, on fait voter des exemples éloignés qui ne ressemblent plus à la photo. Je testerais plusieurs valeurs impaires de k sur les données de test.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [{"value": "chat"}, {"value": "chat"}, {"value": "chat"}, {"value": "3"}, {"text": "Il faut prendre k = 1, c'est le plus précis."}]
+          },
+          "expect": "mc:k-plus-proche-seul"
+        }
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-k-impair",
+      "type": "multi",
+      "skill": "ia.apprentissage",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:pair-toujours-egalite"],
+      "expectedSeconds": 240,
+      "prompt": "Dans le laboratoire, le curseur k ne propose que 1, 3, 5, 7 et 9. Ce n'est pas un hasard.\n\nL'IA doit choisir entre **deux** catégories seulement (pomme ou poire). Donne trois valeurs de k, entre 1 et 15, pour lesquelles un vote à égalité est **impossible**, quels que soient les voisins.",
+      "count": 3,
+      "predicate": "estentier(v) and mod(v;2) = 1 and v >= 1 and v <= 15",
+      "distinct": true,
+      "justify": {
+        "required": true,
+        "minWords": 8,
+        "prompt": "Explique pourquoi l'égalité est impossible pour ces valeurs.",
+        "keywords": [["impair", "pair", "moitie", "deux parts"]]
+      },
+      "hints": [
+        "Une égalité, c'est autant de voix « chat » que de voix « chien ».",
+        "S'il y a égalité, le nombre total de voix k est le double d'un nombre entier : k est donc pair.",
+        "Avec k impair, impossible de partager les voix en deux parts égales."
+      ],
+      "solution": "Toute valeur impaire convient : 1, 3, 5, 7, 9, 11, 13 ou 15. Avec deux catégories, une égalité signifie autant de voix pour chacune, donc k = 2 × (nombre de voix d'une catégorie) : k est pair. Si k est impair, l'égalité est impossible. C'est pour cela que le curseur du laboratoire ne propose que des valeurs impaires. Attention : avec trois catégories, ce n'est plus vrai (k = 3 peut donner une voix à chacune).",
+      "methods": [
+        "Essayer de partager k voix en deux parts égales, pour plusieurs valeurs de k.",
+        "Raisonner sur la parité : une somme de deux nombres égaux est toujours paire."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "values": ["3", "5", "7"],
+            "justification": "Avec deux catégories, une égalité demande deux parts égales, donc k pair. Avec k impair c'est impossible."
+          },
+          "expect": "correct"
+        },
+        {"response": {"values": ["2", "4", "6"], "justification": "Avec un nombre pair, on peut partager en deux."}, "expect": "incorrect"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-surapprentissage",
+      "type": "composite",
+      "skill": "ia.apprentissage",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:tester-sur-entrainement"],
+      "expectedSeconds": 600,
+      "prompt": "On entraîne une IA des plus proches voisins avec **k = 1** sur 200 photos étiquetées.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Si on la teste sur ces mêmes 200 photos, quel taux de réussite obtient-elle, en % ? (Indice : chaque photo est à une distance 0 d'elle-même.)",
+          "answer": 100,
+          "misconceptions": [
+            {
+              "answer": 50,
+              "id": "mc:hasard",
+              "error": "raisonnement",
+              "feedback": "Chaque photo d'entraînement a pour plus proche voisin… elle-même, à distance 0, avec la bonne étiquette. L'IA la « reconnaît » donc toujours."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Sur 50 photos nouvelles, elle ne donne que 34 bonnes réponses. Taux de réussite sur ces données de test, en % ?",
+          "answer": 68,
+          "misconceptions": [
+            {
+              "answer": 34,
+              "id": "mc:nombre-pas-pourcentage",
+              "error": "notion",
+              "feedback": "34 est un nombre de bonnes réponses sur 50 : 34 ÷ 50 × 100."
+            },
+            {"answer": 32, "id": "mc:taux-erreur", "error": "lecture", "feedback": "32 % est le taux d'erreur (16 erreurs sur 50)."}
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique ce qu'est le **sur-apprentissage** à partir de cet exemple. Compare avec un élève qui apprend les corrigés par cœur, et explique pourquoi on garde toujours des données de test.",
+          "minWords": 40,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J'explique que 100 % sur les données d'entraînement ne prouve rien (l'IA les connaît « par cœur »)",
+              "keywords": [["par coeur", "deja vu", "connait deja", "100"]]
+            },
+            {
+              "id": "c2",
+              "label": "J'explique que l'IA généralise mal à des exemples nouveaux (68 %)",
+              "keywords": [["nouveau", "jamais vu", "generalis", "68"]]
+            },
+            {
+              "id": "c3",
+              "label": "Je fais la comparaison avec un élève qui récite sans comprendre",
+              "keywords": [["eleve", "corrige", "reciter", "recite", "controle"]]
+            },
+            {
+              "id": "c4",
+              "label": "J'explique le rôle des données de test (jamais vues pendant l'entraînement)",
+              "keywords": [["donnees de test", "test", "mettre de cote"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Avec k = 1, une photo d'entraînement a pour plus proche voisin elle-même.",
+        "34 ÷ 50 × 100.",
+        "Sur-apprendre, c'est coller tellement aux exemples qu'on retient aussi leurs détails inutiles (le fond de la photo, la lumière, une erreur d'étiquette) au lieu de ce qui distingue vraiment les catégories."
+      ],
+      "solution": "Sur ses propres photos : 100 %, chaque photo se reconnaît elle-même. Sur des photos nouvelles : 34 ÷ 50 × 100 = 68 %. C'est le sur-apprentissage : l'IA colle à ses exemples, y compris à leurs détails sans importance et à leurs erreurs d'étiquetage, au lieu de dégager ce qui distingue vraiment les catégories. Comme un élève qui récite les corrigés par cœur : parfait sur les exercices déjà faits, perdu devant un exercice nouveau. D'où la règle : on évalue toujours une IA sur des données de test qu'elle n'a jamais vues. Avec un k plus grand, l'IA dépend moins d'un exemple isolé et généralise souvent mieux.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {"value": "100"},
+              {"value": "68"},
+              {
+                "text": "L'IA a 100 % sur ses exemples parce qu'elle les connaît par cœur, mais seulement 68 % sur des photos nouvelles : elle généralise mal. C'est comme un élève qui récite les corrigés sans comprendre et rate le contrôle. Il faut des données de test jamais vues pour savoir ce qu'elle vaut vraiment.",
+                "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true}
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {"response": {"parts": [{"value": "50"}, {"value": "68"}, {"text": "Elle a appris trop de choses."}]}, "expect": "mc:hasard"}
+      ]
+    },
+    {
+      "id": "ia-apprendre-exemples-cas-reel",
+      "type": "open",
+      "skill": "ia.biais",
+      "track": "expert",
+      "role": "transfert",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:ia-neutre"],
+      "expectedSeconds": 900,
+      "minWords": 60,
+      "prompt": "Une entreprise veut trier automatiquement les CV qu'elle reçoit. Elle entraîne une IA avec les CV des candidats des dix dernières années, étiquetés « embauché » ou « refusé ».\n\nAnalyse ce projet avec esprit critique :\n- quel biais peut apparaître, et pourquoi ?\n- quelles conséquences pour les candidats ?\n- quels avantages l'entreprise peut-elle y trouver ?\n- quelles précautions proposes-tu ?\n\nTu peux aussi choisir un autre cas réel, la reconnaissance faciale par exemple, et répondre aux mêmes questions.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que l'IA reproduit les choix passés, y compris leurs injustices",
+          "keywords": [["passe", "anciens", "reprodui", "historique", "memes choix", "imite"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je donne un exemple précis de discrimination possible",
+          "keywords": [["femme", "homme", "origine", "age", "prenom", "quartier", "handicap", "discrimin"]]
+        },
+        {
+          "id": "c3",
+          "label": "Je cite une conséquence pour les candidats",
+          "keywords": [["injuste", "ecarte", "refuse", "chance", "sans le savoir", "recours", "contester"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je reconnais un intérêt réel (gain de temps…) sans m'en contenter",
+          "keywords": [["temps", "rapid", "avantage", "milliers", "efficace"]]
+        },
+        {
+          "id": "c5",
+          "label": "Je propose des précautions concrètes",
+          "keywords": [["verifier", "tester", "par groupe", "humain", "transparen", "expliquer", "controle", "recours"]]
+        }
+      ],
+      "models": [
+        "Si l'entreprise a surtout embauché des hommes ces dix dernières années, l'IA apprend que « ressembler aux anciens embauchés », c'est ressembler à un homme : elle risque de moins bien noter les CV de femmes, même compétentes. Elle reproduit les choix passés, y compris leurs injustices, et les applique à grande échelle. Selon une enquête de presse publiée en 2018, une grande entreprise du numérique a ainsi renoncé à un outil expérimental de tri de CV qui défavorisait les candidatures féminines. Pour les candidats, c'est grave : ils sont écartés sans le savoir et sans pouvoir contester. L'entreprise y gagne du temps quand elle reçoit des milliers de CV, mais ce gain ne justifie pas une injustice. Précautions : tester l'IA avec des CV identiques qui ne diffèrent que par le prénom ou le genre ; comparer les taux de sélection selon les groupes ; laisser la décision finale à une personne ; informer les candidats et leur permettre un recours."
+      ],
+      "solution": "Biais historique : l'IA apprend à imiter les décisions passées ; si celles-ci défavorisaient un groupe (femmes, personnes d'une certaine origine, d'un certain âge…), elle reproduit et automatise cette discrimination, même si on lui cache le genre ou l'origine, car d'autres indices peuvent les trahir (prénom, sport pratiqué, adresse). Conséquences : des candidats écartés injustement, sans explication ni recours. Avantage réel : gagner du temps face à un très grand nombre de CV. Précautions : auditer les résultats groupe par groupe, tester avec des CV fictifs, garder une décision humaine, être transparent et permettre de contester. En Europe, le règlement sur l'intelligence artificielle adopté en 2024 classe d'ailleurs les IA de recrutement parmi les systèmes « à haut risque », soumis à des obligations de contrôle.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "L'IA va reproduire les choix passés de l'entreprise : si elle a surtout embauché des hommes, l'IA va écarter des femmes compétentes. C'est injuste pour les candidates, qui sont refusées sans le savoir et ne peuvent pas contester. L'entreprise gagne du temps car elle reçoit des milliers de CV, mais il faut des précautions : tester l'IA avec des CV identiques qui changent seulement le prénom, comparer les résultats par groupe et garder une personne humaine pour la décision finale.",
+            "selfCheck": {"c1": true, "c2": true, "c3": true, "c4": true, "c5": true}
+          },
+          "expect": "a-valider"
+        },
+        {"response": {"text": "L'IA est objective car c'est un ordinateur, donc elle sera plus juste qu'un humain."}, "expect": "a-valider"}
+      ]
+    }
+  ]
+}
