@@ -71,6 +71,11 @@ réponse type acceptée, chaque idée fausse diagnostiquée par son identifiant,
   (notions peu maîtrisées, révisions dues et erreurs récentes en priorité). La série mêle exercices des
   leçons (sans doublon) et exercices générés, du plus guidé au plus exigeant ; bilan final avec les types
   d'erreurs et la maîtrise mise à jour ; « reprendre les exercices manqués ».
+  Si le parcours choisi n'a pas assez d'exercices pour les notions cochées (par exemple « Expert » seul),
+  les exercices à valeurs variables reviennent avec d'autres nombres (3 fois au plus), puis la case
+  « Compléter avec des exercices générés » (cochée par défaut) ajoute des exercices générés **sur les mêmes
+  notions**, du niveau de la classe. La composition de la série est annoncée avant de commencer
+  (« 4 exercices experts tirés des leçons + 6 générés du niveau de la classe pour compléter »).
 - **Générateurs illimités** : chaque exercice est nouveau ; compteur de réussites, série sans faute, record.
 - **Fiche imprimable** : énoncés avec une zone de réponse adaptée au papier (cases à cocher, tableau,
   lettres à associer, lignes), puis le **corrigé** sur une nouvelle page. Aucun nom d'élève n'est imprimé.

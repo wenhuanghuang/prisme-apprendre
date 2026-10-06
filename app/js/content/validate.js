@@ -134,6 +134,8 @@ export function exerciseMeta(ex, lesson) {
     skill: ex.skill, skills: ex.skills || [], track: ex.track || 'classe', role: ex.role || 'libre',
     difficulty: ex.difficulty || 2, representation: ex.representation || 'symbolique',
     targets: ex.targets || [], justify: Boolean(ex.justify && ex.justify.required), expectedSeconds: ex.expectedSeconds || 120,
+    // valeurs tirées au hasard : l'exercice peut revenir dans une série avec d'autres nombres
+    variable: Boolean(ex.params && Object.keys(ex.params).length),
   };
 }
 

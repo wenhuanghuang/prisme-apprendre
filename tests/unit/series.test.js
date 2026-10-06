@@ -30,3 +30,21 @@ test('série adaptée : les notions fragiles sont nettement plus fréquentes', (
   }
   assert.ok(fragile / total > 0.7, `${fragile}/${total}`);
 });
+
+test('série trop courte : reprise des exercices à valeurs variables, puis complément généré sur les mêmes notions', async () => {
+  const { describeSeries } = await import('../../app/js/ui/views/exercices.js');
+  store.states = { skills: {} }; store.attempts = []; store.now = () => 0;
+  const expert = [{ id: 'x1', skill: 'a', track: 'expert', difficulty: 4 }, { id: 'x2', skill: 'b', track: 'expert', difficulty: 4, variable: true }];
+  const fill = [{ id: 'g', skill: 'a', track: 'classe' }];
+  // sans complément : la reprise d'un exercice variable est limitée (3 fois au plus)
+  const alone = buildSeries({ lessonPool: expert, genPool: [], count: 10, adapted: false, rand: rng(3) });
+  assert.equal(alone.filter((x) => x.id === 'x2').length, 3);
+  assert.equal(alone.length, 4);
+  assert.ok(alone.filter((x) => x.repeat).every((x) => x.seed), 'une reprise a ses propres nombres');
+  // avec complément : le nombre demandé est atteint, uniquement sur les notions choisies
+  const full = buildSeries({ lessonPool: expert, genPool: [], fillPool: fill, count: 10, adapted: false, rand: rng(3) });
+  assert.equal(full.length, 10);
+  assert.ok(full.every((x) => ['a', 'b'].includes(x.skill)));
+  assert.equal(full.filter((x) => x.filler).length, 6);
+  assert.match(describeSeries(full), /2 exercices experts tirés des leçons \+ 2 repris avec d’autres nombres \+ 6 générés du niveau de la classe pour compléter/);
+});

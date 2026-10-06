@@ -10,6 +10,7 @@ import { ERROR_TYPES } from '../../core/errors.js';
 import { LEVELS as MASTERY, masteryLevel, DAY } from '../../engine/mastery.js';
 import { mountExercise, TRACK_LABELS, TRACK_ICONS } from '../exercise.js';
 import { allGenerators, produce, newSeed } from '../../generators/registry.js';
+import { rng } from '../../core/template.js';
 import { printSheet, printable } from '../print-sheet.js';
 
 const TRACKS = ['classe', 'approfondissement', 'expert'];
@@ -52,10 +53,20 @@ function weightedPick(rand, items, weight) {
   return items[items.length - 1];
 }
 
-/** Compose une série : exercices des leçons sans doublon, complétés par des exercices générés. */
-export function buildSeries({ lessonPool, genPool, count, adapted, recent = [], rand = Math.random, level = null }) {
+const MAX_REPEAT = 3; // un exercice à valeurs variables revient au plus 3 fois (avec d'autres nombres)
+
+/**
+ * Compose une série sur les notions choisies, jusqu'au nombre demandé :
+ *  1. exercices des leçons du parcours choisi, sans doublon, mêlés aux exercices générés de ce parcours ;
+ *  2. s'il en manque, les exercices à valeurs variables reviennent avec d'autres nombres ;
+ *  3. s'il en manque encore, des exercices générés sur les mêmes notions (fillPool : autre parcours,
+ *     en général le niveau de la classe) complètent la série. Chaque exercice garde son vrai parcours.
+ */
+export function buildSeries({ lessonPool, genPool, fillPool = [], count, adapted, recent = [], rand = Math.random, level = null }) {
   const recentSet = new Set(recent);
   const weight = (skill, id) => (adapted ? need(skill) : 1) * (recentSet.has(id) ? 0.3 : 1);
+  const seed = () => 1 + Math.floor(rand() * 2 ** 31);
+  const genItem = (g, filler) => ({ kind: 'gen', meta: g, seed: seed(), opts: level ? { niveau: level } : {}, skill: g.skill, track: g.track || 'classe', difficulty: 2, ...(filler ? { filler: true } : {}) });
   const series = [];
   const lessons = lessonPool.slice();
   const maxGen = lessons.length ? Math.ceil(count / 2) : count;
@@ -63,8 +74,7 @@ export function buildSeries({ lessonPool, genPool, count, adapted, recent = [], 
   while (series.length < count && (lessons.length || genPool.length)) {
     const useGen = genPool.length && (!lessons.length || (gens < maxGen && rand() < genPool.length / (genPool.length + lessons.length) + 0.15));
     if (useGen) {
-      const g = weightedPick(rand, genPool, (x) => weight(x.skill, null));
-      series.push({ kind: 'gen', meta: g, seed: 1 + Math.floor(rand() * 2 ** 31), opts: level ? { niveau: level } : {}, skill: g.skill, track: g.track || 'classe', difficulty: 2 });
+      series.push(genItem(weightedPick(rand, genPool, (x) => weight(x.skill, null)), false));
       gens++;
     } else {
       const e = weightedPick(rand, lessons, (x) => weight(x.skill, x.id));
@@ -72,7 +82,33 @@ export function buildSeries({ lessonPool, genPool, count, adapted, recent = [], 
       series.push({ kind: 'lesson', id: e.id, skill: e.skill, track: e.track, difficulty: e.difficulty });
     }
   }
+  const uses = new Map(series.map((x) => [x.id, 1]));
+  let variables = lessonPool.filter((e) => e.variable);
+  while (series.length < count && variables.length) {
+    const e = weightedPick(rand, variables, (x) => weight(x.skill, null));
+    uses.set(e.id, (uses.get(e.id) || 0) + 1);
+    if (uses.get(e.id) >= MAX_REPEAT) variables = variables.filter((x) => x !== e);
+    series.push({ kind: 'lesson', id: e.id, seed: seed(), skill: e.skill, track: e.track, difficulty: e.difficulty, repeat: true });
+  }
+  while (series.length < count && fillPool.length) series.push(genItem(weightedPick(rand, fillPool, (x) => weight(x.skill, null)), true));
   return series.sort((a, b) => TRACKS.indexOf(a.track) - TRACKS.indexOf(b.track) || a.difficulty - b.difficulty);
+}
+
+/** Composition lisible d'une série (affichée avant de commencer et en titre). */
+export function describeSeries(items) {
+  const n = (f) => items.filter(f).length;
+  const parts = [];
+  for (const t of TRACKS) {
+    const k = n((x) => x.track === t && !x.filler && !x.repeat && x.kind === 'lesson');
+    if (k) parts.push(`${k} exercice${k > 1 ? 's' : ''} ${t === 'classe' ? 'du niveau de la classe' : t === 'approfondissement' ? 'd’approfondissement' : 'experts'} tirés des leçons`);
+  }
+  const rep = n((x) => x.repeat);
+  if (rep) parts.push(`${rep} repris avec d’autres nombres`);
+  const gen = n((x) => x.kind === 'gen' && !x.filler);
+  if (gen) parts.push(`${gen} généré${gen > 1 ? 's' : ''}`);
+  const fill = n((x) => x.filler);
+  if (fill) parts.push(`${fill} généré${fill > 1 ? 's' : ''} du niveau de la classe pour compléter`);
+  return parts.join(' + ');
 }
 
 async function materialize(item) {
@@ -104,7 +140,7 @@ function lastAttemptFor(defId) {
   return null;
 }
 
-function runSeries(stage, items, { title, onRestart, cleanup }) {
+function runSeries(stage, items, { title, subtitle, onRestart, cleanup }) {
   const results = [];
   let current = null; let index = 0; let stopped = false; let retry = null;
   if (cleanup.fn) cleanup.fn();
@@ -112,7 +148,7 @@ function runSeries(stage, items, { title, onRestart, cleanup }) {
   const progress = h('p', { class: 'eyebrow', 'aria-live': 'polite' });
   const bar = h('div', { class: 'series-bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(items.length) }, h('span'));
   const slot = h('div', {});
-  stage.replaceChildren(h('div', { class: 'series-head' }, h('h2', {}, title), h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => summary() }, 'Arrêter et voir le bilan')), progress, bar, slot);
+  stage.replaceChildren(h('div', { class: 'series-head' }, h('div', {}, h('h2', {}, title), subtitle ? h('p', { class: 'small muted' }, subtitle) : null), h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => summary() }, 'Arrêter et voir le bilan')), progress, bar, slot);
 
   const show = async () => {
     if (stopped) return;
@@ -174,7 +210,7 @@ async function seriesPanel(panel, stageCleanup, params) {
     level: levels.includes(asked) ? asked : levels.includes(mine) ? mine : levels[0],
     subject: params.get('matiere') || null,
     skills: new Set((params.get('notions') || '').split(',').filter((s) => store.index.skills.has(s))),
-    tracks: new Set(['classe']), count: 10, noQcm: true, adapted: true,
+    tracks: new Set(['classe']), count: 10, noQcm: true, adapted: true, fill: true,
   };
   const form = h('form', { class: 'card series-form', onsubmit: (e) => { e.preventDefault(); start(); } });
   const stage = h('div', { class: 'series-stage' });
@@ -183,28 +219,32 @@ async function seriesPanel(panel, stageCleanup, params) {
   const pools = () => {
     const lessonPool = store.index.exercises.filter((e) => levelId(e.level) === state.level && e.subject === state.subject && state.tracks.has(e.track)
       && (!state.noQcm || e.type !== 'qcm') && e.role !== 'labo' && (!state.skills.size || state.skills.has(e.skill)));
-    const genPool = allGenerators(store.index).filter((g) => g.subject === state.subject && g.levels.map(levelId).includes(state.level)
-      && state.tracks.has(g.track || 'classe') && (!state.skills.size || state.skills.has(g.skill)));
-    return { lessonPool, genPool };
+    const gens = allGenerators(store.index).filter((g) => g.subject === state.subject && g.levels.map(levelId).includes(state.level)
+      && (!state.skills.size || state.skills.has(g.skill)));
+    const genPool = gens.filter((g) => state.tracks.has(g.track || 'classe'));
+    // générateurs des mêmes notions mais d'un autre parcours : ils complètent une série trop courte
+    const fillPool = gens.filter((g) => !state.tracks.has(g.track || 'classe'));
+    return { lessonPool, genPool, fillPool };
+  };
+  const plan = (rand, recent = []) => {
+    const { lessonPool, genPool, fillPool } = pools();
+    return buildSeries({ lessonPool, genPool, fillPool: state.fill ? fillPool : [], count: state.count, adapted: state.adapted, recent, rand, level: state.level });
   };
 
   const status = h('p', { class: 'small muted', 'aria-live': 'polite' });
 
   const start = () => {
-    const { lessonPool, genPool } = pools();
-    const items = buildSeries({ lessonPool, genPool, count: state.count, adapted: state.adapted, recent: recentExerciseIds(30), level: state.level });
+    const items = plan(Math.random, recentExerciseIds(30));
     if (!items.length) return;
     form.hidden = true;
     runSeries(stage, items, {
-      title: `${subjLabel(state.subject)} · ${items.length} exercices`, cleanup: stageCleanup,
+      title: `${subjLabel(state.subject)} · ${items.length} exercices`, subtitle: describeSeries(items), cleanup: stageCleanup,
       onRestart: () => { if (stageCleanup.fn) stageCleanup.fn(); stageCleanup.fn = null; stage.replaceChildren(); form.hidden = false; render(); },
     });
   };
 
   const print = async () => {
-    const { lessonPool, genPool } = pools();
-    const items = buildSeries({ lessonPool: lessonPool.filter((e) => e.type !== 'code'), genPool, count: state.count, adapted: state.adapted, level: state.level })
-      .map((it) => ({ ...it, seed: it.seed || newSeed() }));
+    const items = plan(Math.random).map((it) => ({ ...it, seed: it.seed || newSeed() }));
     status.textContent = await printItems(`${subjLabel(state.subject)} · fiche d'exercices`, `Classe de ${state.level} · ${items.length} exercices`, items);
   };
 
@@ -231,15 +271,18 @@ async function seriesPanel(panel, stageCleanup, params) {
       h('select', { class: 'field-input', dataset: { key }, onchange: (e) => onchange(e.target.value) }, options.map(([v, l]) => h('option', { value: v, selected: String(v) === String(value) }, l))));
     const check = (key, label, checked, onchange, extra = {}) => h('label', { class: 'check-inline', ...extra }, h('input', { type: 'checkbox', checked, dataset: { key }, onchange: (e) => onchange(e.target.checked) }), ' ', label);
 
-    const { lessonPool, genPool } = pools();
+    const { lessonPool, genPool, fillPool } = pools();
     const n = lessonPool.length;
+    // aperçu de la série (tirage fixe) : l'élève voit d'avance combien d'exercices il aura et d'où ils viennent
+    const preview = plan(rng(1));
+    const short = preview.length < state.count;
     // le formulaire est reconstruit : on rend le focus clavier à l'élément qui l'avait
     const focusKey = form.contains(document.activeElement) && document.activeElement.dataset ? document.activeElement.dataset.key : null;
     form.replaceChildren(
       h('div', { class: 'series-grid' },
         sel('classe', 'Classe', state.level, levels.map((l) => [l, (store.catalog.levels.find((x) => x.id === l) || { label: l }).label]), (v) => { state.level = v; render(); }),
         sel('matiere', 'Matière', state.subject, subjects.map((s) => [s, subjLabel(s)]), (v) => { state.subject = v; state.skills = new Set(); render(); }),
-        sel('nombre', 'Nombre d’exercices', state.count, [5, 10, 15, 20].map((x) => [x, String(x)]), (v) => { state.count = Number(v); })),
+        sel('nombre', 'Nombre d’exercices', state.count, [5, 10, 15, 20].map((x) => [x, String(x)]), (v) => { state.count = Number(v); render(); })),
       h('fieldset', { class: 'series-fs' }, h('legend', {}, 'Chapitres et notions ', h('span', { class: 'muted small' }, state.skills.size ? `(${state.skills.size} choisie${state.skills.size > 1 ? 's' : ''})` : '(toutes)')),
         groups.map((g) => h('div', { class: 'series-group' }, h('p', { class: 'series-group-title' }, g.title),
           h('div', { class: 'series-skills' }, g.skills.map((s) => {
@@ -251,7 +294,11 @@ async function seriesPanel(panel, stageCleanup, params) {
       h('div', { class: 'series-skills' },
         check('adaptee', 'Adaptée à mes besoins (notions peu maîtrisées, révisions dues, erreurs récentes en priorité)', state.adapted, (on) => { state.adapted = on; }),
         check('sans-qcm', 'Sans vérification rapide (QCM)', state.noQcm, (on) => { state.noQcm = on; render(); })),
-      h('p', { class: 'small muted' }, `Réservoir : ${n} exercice${n > 1 ? 's' : ''} de leçons${genPool.length ? ` + ${genPool.length} générateur${genPool.length > 1 ? 's' : ''} (exercices nouveaux à chaque tirage)` : ''}.`),
+      fillPool.length ? check('completer', `Compléter avec des exercices générés sur ces notions (niveau de la classe) s’il n’y a pas assez d’exercices dans le parcours choisi`, state.fill, (on) => { state.fill = on; render(); }) : null,
+      h('div', { class: `series-preview ${short ? 'is-short' : ''}`, 'aria-live': 'polite' },
+        h('p', {}, h('strong', {}, preview.length ? `Série prévue : ${preview.length} exercice${preview.length > 1 ? 's' : ''}` : 'Aucun exercice pour ce choix'), preview.length ? ` — ${describeSeries(preview)}.` : '.'),
+        short && preview.length ? h('p', { class: 'small' }, `Il n’y a pas ${state.count} exercices différents pour ces notions dans ce parcours. Pour en avoir plus : cocher d’autres notions ou le parcours « Niveau de la classe »${fillPool.length && !state.fill ? ', ou cocher « Compléter avec des exercices générés »' : ''}.`) : null,
+        h('p', { class: 'small muted' }, `Réservoir : ${n} exercice${n > 1 ? 's' : ''} de leçons${genPool.length ? ` + ${genPool.length} générateur${genPool.length > 1 ? 's' : ''} (exercices nouveaux à chaque tirage)` : ''}.`)),
       h('div', { class: 'btn-row' },
         h('button', { type: 'submit', class: 'btn btn--primary', disabled: !n && !genPool.length }, 'Commencer la série'),
         h('button', { type: 'button', class: 'btn btn--ghost', disabled: !n && !genPool.length, onclick: () => print() }, h('span', { 'aria-hidden': 'true' }, '🖨 '), 'Imprimer une fiche avec corrigé')),
