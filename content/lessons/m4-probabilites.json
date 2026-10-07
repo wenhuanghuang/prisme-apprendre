@@ -1,0 +1,478 @@
+{
+  "id": "m4-probabilites",
+  "chapter": "m4-ch-probas",
+  "title": "Probabilités : évènement contraire et équiprobabilité",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.probas.vocabulaire", "m4.probas.contraire", "m4.probas.equiprobabilite"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Parler le langage du hasard (issue, évènement, certain, impossible), calculer des probabilités quand les issues sont équiprobables (urnes, dés, cibles) et utiliser l'évènement contraire : P(non A) = 1 − P(A).",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le dé ou la roue ?",
+      "body": "Malo te propose deux jeux. **Jeu 1** : tu lances un dé équilibré et tu gagnes si tu n'obtiens PAS 6. **Jeu 2** : tu fais tourner la roue ci-dessous et tu gagnes si l'aiguille s'arrête dans le secteur orange, qui mesure 300°.\n\nQuel jeu choisis-tu pour avoir le plus de chances de gagner ? Et si le secteur orange mesurait 310° ? Dans le labo, lance le dé de nombreuses fois et observe la fréquence du 6.",
+      "figure": {
+        "alt": "Roue de loterie partagée en deux secteurs : un secteur orange de 300° et un secteur bleu de 60°",
+        "w": 400, "h": 200,
+        "items": [ { "type": "pie", "data": [
+          { "label": "Orange : gagné (300°)", "value": 300, "color": "orange" },
+          { "label": "Bleu : perdu (60°)", "value": 60, "color": "bleu" } ] } ]
+      },
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 1, "event": "obtenir 6 (on perd au jeu 1)" } }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🎲", "title": "Le vocabulaire du hasard",
+          "body": "Une **expérience aléatoire** a plusieurs résultats possibles, les **issues**, sans qu'on puisse prévoir lequel sortira. Un **évènement** est formé d'issues : avec un dé, « obtenir un nombre pair » est réalisé par 2, 4 et 6. Un évènement **certain** a une probabilité de 1, un évènement **impossible** une probabilité de 0. Toute probabilité est comprise entre 0 et 1.",
+          "example": "Avec un dé à six faces : « obtenir 7 » est impossible, « obtenir moins de 7 » est certain."
+        },
+        {
+          "emoji": "⚖️", "title": "L'équiprobabilité",
+          "body": "Quand toutes les issues ont la même chance de sortir (dé équilibré, billes indiscernables au toucher), elles sont **équiprobables**. Alors : probabilité d'un évènement = nombre d'issues favorables ÷ nombre d'issues possibles. On l'écrit en fraction, en décimal ou en pourcentage.",
+          "example": "3 billes rouges sur 8 billes : P(rouge) = 3/8 = 0,375 = 37,5 %.",
+          "reveal": {
+            "question": "Devine : un sac contient 1 bille rouge et 2 billes bleues. Deux couleurs, donc une chance sur deux de tirer la rouge ?",
+            "answer": "Non ! Ce sont les 3 billes qui sont équiprobables, pas les 2 couleurs. La probabilité de tirer la rouge est 1/3."
+          }
+        },
+        {
+          "emoji": "🔄", "title": "L'évènement contraire",
+          "body": "Le **contraire** d'un évènement A, noté « non A », est réalisé exactement quand A ne l'est pas. Comme l'un des deux se produit forcément, P(A) + P(non A) = 1, donc **P(non A) = 1 − P(A)**. C'est très pratique quand le contraire est plus simple à compter.",
+          "example": "P(obtenir 6) = 1/6, donc P(ne pas obtenir 6) = 1 − 1/6 = 5/6.",
+          "reveal": {
+            "question": "Devine : avec un dé, le contraire de « obtenir au moins 5 », est-ce « obtenir au plus 5 » ?",
+            "answer": "Non ! « Au moins 5 », c'est 5 ou 6. Son contraire est donc 1, 2, 3 ou 4 : « obtenir au plus 4 », ou « obtenir moins de 5 ». Le 5 ne peut pas appartenir aux deux évènements."
+          }
+        },
+        {
+          "emoji": "🎯", "title": "Cibles et roues",
+          "body": "Quand on lance une fléchette au hasard sur une cible (et qu'elle l'atteint), la probabilité d'atteindre une zone vaut **aire de la zone ÷ aire totale**. Pour une roue, c'est **angle du secteur ÷ 360°** : avec un secteur de 300°, P(gagner) = 300/360 = 5/6.",
+          "example": "Zone de 4 cm sur 4 cm dans une cible de 10 cm sur 10 cm : P = 16/100 = 0,16.",
+          "figure": {
+            "alt": "Cible carrée de 10 cm de côté avec une zone carrée de 4 cm de côté en son centre",
+            "w": 260, "h": 260,
+            "frame": { "x": [-1, 11], "y": [-1.5, 10.5] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 10, "h": 10 },
+              { "type": "rect", "x": 3, "y": 3, "w": 4, "h": 4, "fill": "orange", "label": "4 cm" },
+              { "type": "text", "x": 5, "y": -0.8, "text": "10 cm" }
+            ]
+          }
+        },
+        {
+          "emoji": "🦴", "title": "Sans équiprobabilité",
+          "body": "Une punaise, un osselet, une pièce truquée : les issues ne sont pas équiprobables, on ne peut pas compter. On **estime** alors la probabilité par la **fréquence** observée sur un très grand nombre d'essais. Plus il y a d'essais, plus l'estimation est fiable.",
+          "example": "Une punaise lancée 1 000 fois retombe 620 fois pointe en l'air : on estime P(pointe en l'air) ≈ 0,62, donc la probabilité du contraire ≈ 0,38."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le sac de billes de Malo",
+      "steps": [
+        { "text": "Un sac contient 5 billes rouges, 3 vertes et 4 bleues, indiscernables au toucher. On tire une bille au hasard : les 12 billes sont équiprobables.", "math": "5 + 3 + 4 = 12" },
+        { "text": "Évènement R : « tirer une bille rouge ». Il y a 5 issues favorables sur 12 : P(R) = 5/12, environ 0,42.", "math": "5/12" },
+        { "text": "Évènement contraire, non R : « tirer une bille qui n'est pas rouge ». On utilise P(non R) = 1 − P(R).", "math": "1 − 5/12 = 7/12" },
+        { "text": "Vérification en comptant : les billes qui ne sont pas rouges sont les 3 vertes et les 4 bleues, soit 7 billes sur 12. On retrouve bien 7/12.", "math": "3 + 4 = 7" },
+        { "text": "Deux cas extrêmes : « tirer une bille jaune » est impossible (probabilité 0) ; « tirer une bille rouge, verte ou bleue » est certain (probabilité 1)." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m4-probabilites-vocabulaire", "m4-probabilites-contraires", "m4-probabilites-formes", "m4-probabilites-sac", "m4-probabilites-tapis", "m4-probabilites-verif"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Raisonner et expliquer",
+      "body": "Un sac qui change de composition, puis une erreur à expliquer à Léna.",
+      "exercises": ["m4-probabilites-ajout", "m4-probabilites-erreur-lena"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la pêche aux canards",
+      "body": "Tu tiens un stand de la fête du collège : calcule les chances des joueurs et règle le jeu selon les consignes du responsable.",
+      "exercises": ["m4-probabilites-canards"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Toute probabilité est comprise entre 0 (impossible) et 1 (certain). En cas d'équiprobabilité : P(A) = issues favorables ÷ issues possibles. Évènement contraire : P(non A) = 1 − P(A).\n\n- **Croire que P(non A) = P(A).** Avec un dé, P(6) = 1/6 mais P(pas 6) = 5/6.\n- **Croire les couleurs équiprobables.** 1 bille rouge et 3 bleues : P(rouge) = 1/4, pas 1/2. Ce sont les billes qui sont équiprobables.\n- **Mal former le contraire.** Le contraire de « au moins 5 » est « au plus 4 », pas « au plus 5 ».\n- **Comparer des longueurs au lieu d'aires** pour une cible : on divise l'aire de la zone par l'aire totale."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des probabilités et des évènements contraires dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Deux dés à la fois (dans un cas très simple, avec un tableau) et une cible ronde : l'évènement contraire et les aires à la rescousse.",
+      "exercises": ["m4-probabilites-deux-des", "m4-probabilites-cible-ronde"]
+    },
+    "expert": {
+      "intro": "Retrouver la composition d'un sac mystère, et classer cinq jeux qui se ressemblent beaucoup.",
+      "exercises": ["m4-probabilites-sac-mystere", "m4-probabilites-classement"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-probabilites-vocabulaire", "type": "categorize", "skill": "m4.probas.vocabulaire", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:borne-oubliee", "mc:certain-possible"], "expectedSeconds": 150,
+      "prompt": "Un sac contient 10 boules numérotées de 1 à 10. On tire une boule au hasard. Classe chaque évènement.",
+      "categories": [
+        { "id": "impossible", "label": "Impossible" },
+        { "id": "possible", "label": "Possible, mais pas certain" },
+        { "id": "certain", "label": "Certain" }
+      ],
+      "items": [
+        { "id": "i1", "label": "Tirer un nombre inférieur à 11", "category": "certain" },
+        { "id": "i2", "label": "Tirer le numéro 0", "category": "impossible" },
+        { "id": "i3", "label": "Tirer un nombre pair", "category": "possible" },
+        { "id": "i4", "label": "Tirer un multiple de 11", "category": "impossible" },
+        { "id": "i5", "label": "Tirer un nombre entier", "category": "certain" },
+        { "id": "i6", "label": "Tirer un nombre plus grand que 9", "category": "possible" },
+        { "id": "i7", "label": "Tirer un nombre à la fois pair et impair", "category": "impossible" }
+      ],
+      "misconceptions": [
+        { "item": "i6", "category": "impossible", "id": "mc:borne-oubliee", "error": "lecture", "feedback": "Le sac contient la boule numéro 10, et 10 est plus grand que 9 : cet évènement peut se produire." },
+        { "item": "i1", "category": "possible", "id": "mc:certain-possible", "error": "notion", "feedback": "Toutes les boules portent un nombre inférieur à 11 : l'évènement se produit à coup sûr, il est certain." }
+      ],
+      "hints": ["Pour chaque évènement, cherche les boules qui le réalisent.", "Aucune boule ne le réalise : impossible. Toutes le réalisent : certain.", "N'oublie pas la boule numéro 10."],
+      "solution": "Certains : « inférieur à 11 » et « nombre entier » (toutes les boules conviennent). Impossibles : « 0 », « multiple de 11 » et « à la fois pair et impair » (aucune boule ne convient). Possibles mais pas certains : « nombre pair » (2, 4, 6, 8, 10) et « plus grand que 9 » (seulement 10).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "certain", "i2": "impossible", "i3": "possible", "i4": "impossible", "i5": "certain", "i6": "possible", "i7": "impossible" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "certain", "i2": "impossible", "i3": "possible", "i4": "impossible", "i5": "certain", "i6": "impossible", "i7": "impossible" } }, "expect": "mc:borne-oubliee" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-contraires", "type": "match", "skill": "m4.probas.contraire", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:contraire-oppose", "mc:contraire-borne"], "expectedSeconds": 150,
+      "prompt": "On lance un dé équilibré à six faces. Associe chaque évènement à son évènement contraire. Attention : deux propositions de droite sont des pièges.",
+      "leftTitle": "Évènement", "rightTitle": "Évènement contraire",
+      "left": [
+        { "id": "l1", "label": "Obtenir 1" },
+        { "id": "l2", "label": "Obtenir un nombre pair" },
+        { "id": "l3", "label": "Obtenir au moins 5" },
+        { "id": "l4", "label": "Obtenir moins de 3" }
+      ],
+      "right": [
+        { "id": "r1", "label": "Obtenir 2, 3, 4, 5 ou 6" },
+        { "id": "r2", "label": "Obtenir un nombre impair" },
+        { "id": "r3", "label": "Obtenir au plus 4" },
+        { "id": "r4", "label": "Obtenir 3 ou plus" },
+        { "id": "r5", "label": "Obtenir 6" },
+        { "id": "r6", "label": "Obtenir au plus 5" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l1", "r5"], "id": "mc:contraire-oppose", "error": "notion", "feedback": "Sur un dé, le 6 est sur la face opposée au 1, mais ce n'est pas le contraire au sens des probabilités : le contraire de « obtenir 1 » est « ne pas obtenir 1 », c'est-à-dire toutes les autres faces." },
+        { "pair": ["l3", "r6"], "id": "mc:contraire-borne", "error": "notion", "feedback": "« Au moins 5 », c'est 5 ou 6. « Au plus 5 » contient aussi le 5 : les deux évènements peuvent se produire en même temps, ils ne sont donc pas contraires." }
+      ],
+      "hints": ["Écris la liste des issues de chaque évènement.", "Le contraire contient exactement les issues qui manquent : aucune en commun, et à eux deux toutes les faces.", "« Au moins 5 » : 5 ou 6. Qu'est-ce qui reste ?"],
+      "solution": "« Obtenir 1 » ↔ « 2, 3, 4, 5 ou 6 » ; « pair » ↔ « impair » ; « au moins 5 » (5 ou 6) ↔ « au plus 4 » (1, 2, 3, 4) ; « moins de 3 » (1 ou 2) ↔ « 3 ou plus ». Un évènement et son contraire n'ont aucune issue en commun, et à eux deux ils contiennent toutes les issues.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r5", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "mc:contraire-oppose" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r6", "l4": "r4" } }, "expect": "mc:contraire-borne" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-formes", "type": "table", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:contraire-egal", "mc:contraire-inverse", "mc:un-seul-as"], "expectedSeconds": 240,
+      "prompt": "Complète le tableau : pour chaque évènement A, écris la probabilité de A quand elle manque, et celle de son contraire. Tu peux répondre en fraction, en décimal ou en pourcentage (avec le signe %).",
+      "columns": ["Évènement A", "P(A)", "P(non A)"],
+      "rows": [
+        ["Obtenir 6 avec un dé équilibré", "1/6", "?r0c2"],
+        ["Tirer un as dans un jeu de 32 cartes", "?r1c1", "?r1c2"],
+        ["Pluie annoncée demain par la météo", "30 %", "?r2c2"],
+        ["Gagner à la loterie de la kermesse", "0,08", "?r3c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "5/6", "misconceptions": [
+          { "answer": "1/6", "id": "mc:contraire-egal", "error": "notion", "feedback": "Un évènement et son contraire n'ont pas la même probabilité (sauf quand elle vaut 1/2) : leurs probabilités ont pour somme 1." },
+          { "answer": "6", "id": "mc:contraire-inverse", "error": "notion", "feedback": "Une probabilité est toujours comprise entre 0 et 1. Le contraire ne s'obtient pas en « retournant » la fraction : P(non A) = 1 − P(A)." }
+        ] },
+        "r1c1": { "answer": "4/32", "misconceptions": [ { "answer": "1/32", "id": "mc:un-seul-as", "error": "lecture", "feedback": "Un jeu de 32 cartes contient 4 as, un par couleur (pique, cœur, carreau, trèfle) : il y a 4 issues favorables." } ] },
+        "r1c2": { "answer": "28/32" },
+        "r2c2": { "answer": "0.7", "misconceptions": [ { "answer": "70", "id": "mc:pourcentage-sans-signe", "error": "forme", "feedback": "Une probabilité ne peut pas valoir 70. Écris 70 % (avec le signe %) ou 0,7." } ] },
+        "r3c2": { "answer": "0.92" }
+      },
+      "hints": ["P(non A) = 1 − P(A).", "Un jeu de 32 cartes contient 4 as.", "30 % de chances de pluie : 100 % − 30 % de chances qu'il ne pleuve pas."],
+      "solution": "Dé : $ 1 − 1/6 = 5/6 $. As : $ 4/32 = 1/8 $, donc le contraire vaut $ 1 − 1/8 = 7/8 $ (28 cartes sur 32). Pluie : $ 100 − 30 = 70 $, soit 70 % (ou 0,7) de chances qu'il ne pleuve pas. Loterie : $ 1 − 0,08 = 0,92 $, soit 92 %.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "5/6", "r1c1": "1/8", "r1c2": "7/8", "r2c2": "70 %", "r3c2": "0,92" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "1/6", "r1c1": "1/8", "r1c2": "7/8", "r2c2": "70 %", "r3c2": "0,92" } }, "expect": "mc:contraire-egal" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-sac", "type": "numeric", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:contraire-egal", "mc:favorables-defavorables", "mc:couleurs-equiprobables"], "expectedSeconds": 120,
+      "params": { "r": { "int": [2, 9] }, "v": { "int": [2, 8] }, "b": { "int": [2, 9] } },
+      "constraints": ["r + b != v", "r + b != 2*v"],
+      "prompt": "Un sac contient {r} billes rouges, {v} billes vertes et {b} billes bleues, indiscernables au toucher. On tire une bille au hasard. Quelle est la probabilité de ne PAS tirer une bille verte ? (fraction ou nombre décimal)",
+      "answer": "(r+b)/(r+v+b)",
+      "misconceptions": [
+        { "answer": "v/(r+v+b)", "id": "mc:contraire-egal", "error": "notion", "feedback": "Tu as calculé la probabilité de tirer une bille verte. On demande celle de l'évènement contraire : P(non A) = 1 − P(A)." },
+        { "answer": "(r+b)/v", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "Tu as divisé par le nombre de billes vertes. Une probabilité divise le nombre d'issues favorables par le nombre TOTAL d'issues : toutes les billes du sac." },
+        { "answer": "2/3", "id": "mc:couleurs-equiprobables", "error": "notion", "feedback": "Deux couleurs sur trois ne donnent pas forcément 2/3 : ce sont les billes qui sont équiprobables, pas les couleurs." }
+      ],
+      "hints": ["Compte toutes les billes : ce sont les issues possibles, équiprobables.", "Ne pas tirer une verte, c'est tirer une rouge ou une bleue.", "Autre méthode : calcule la probabilité de tirer une verte, puis enlève-la de 1."],
+      "solution": "Il y a $ {r} + {v} + {b} = {r+v+b} $ billes. La probabilité de tirer une verte vaut $ {v}/{r+v+b} $, donc celle de ne pas tirer une verte vaut $ 1 − {v}/{r+v+b} = {r+b}/{r+v+b} $. Vérification en comptant : {r} rouges et {b} bleues, soit {r+b} billes qui ne sont pas vertes.",
+      "selfTest": [
+        { "response": { "value": "{r+b}/{r+v+b}" }, "expect": "correct" },
+        { "response": { "value": "{v}/{r+v+b}" }, "expect": "mc:contraire-egal" },
+        { "response": { "value": "2/3" }, "expect": "mc:couleurs-equiprobables" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-tapis", "type": "numeric", "skill": "m4.probas.equiprobabilite", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:longueurs-au-lieu-aires"], "expectedSeconds": 180,
+      "params": { "a": { "choice": [12, 15, 18, 24, 30, 36] } },
+      "prompt": "Au stand de la kermesse, on lance un palet au hasard sur un tapis carré de 60 cm de côté (le palet tombe toujours sur le tapis). Au centre, une zone carrée de {a} cm de côté fait gagner. Quelle est la probabilité de gagner ? (fraction ou nombre décimal)",
+      "figure": {
+        "alt": "Tapis carré de 60 cm de côté, avec une zone carrée gagnante en son centre",
+        "w": 280, "h": 280,
+        "frame": { "x": [-5, 65], "y": [-8, 62] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 60, "h": 60 },
+          { "type": "rect", "x": "{30-a/2}", "y": "{30-a/2}", "w": "{a}", "h": "{a}", "fill": "orange", "label": "{a} cm" },
+          { "type": "text", "x": 30, "y": -4, "text": "60 cm" }
+        ]
+      },
+      "answer": "a^2/3600",
+      "misconceptions": [
+        { "answer": "a/60", "id": "mc:longueurs-au-lieu-aires", "error": "notion", "feedback": "Tu as comparé les côtés des deux carrés. Le palet tombe au hasard sur toute la SURFACE du tapis : la probabilité compare les aires." }
+      ],
+      "hints": ["Aire du tapis : $ 60 × 60 = 3 600 $ cm².", "Aire de la zone gagnante : $ {a} × {a} = {a*a} $ cm².", "Probabilité = aire de la zone gagnante ÷ aire du tapis."],
+      "solution": "Le palet a autant de chances de tomber sur deux parties du tapis de même aire. Aire gagnante : $ {a} × {a} = {a*a} $ cm² ; aire du tapis : 3 600 cm². Probabilité de gagner : $ {a*a} ÷ 3 600 = {a*a/3600} $.",
+      "selfTest": [
+        { "response": { "value": "{a*a}/3600" }, "expect": "correct" },
+        { "response": { "value": "{a}/60" }, "expect": "mc:longueurs-au-lieu-aires" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-verif", "type": "qcm", "skill": "m4.probas.vocabulaire", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:zero-pas-proba", "mc:pourcentage-pas-proba"], "expectedSeconds": 45,
+      "prompt": "Vérification rapide. Lequel de ces nombres ne peut PAS être une probabilité ?",
+      "choices": [
+        { "text": "0,95", "correct": false, "error": "notion", "feedback": "0,95 est compris entre 0 et 1 : c'est la probabilité d'un évènement très probable." },
+        { "text": "4/3", "correct": true, "feedback": "Exact : 4/3 est plus grand que 1. Une probabilité est toujours comprise entre 0 et 1." },
+        { "text": "0", "correct": false, "error": "notion", "misconception": "mc:zero-pas-proba", "feedback": "0 est la probabilité d'un évènement impossible : c'est bien une probabilité." },
+        { "text": "37 %", "correct": false, "error": "forme", "misconception": "mc:pourcentage-pas-proba", "feedback": "37 % = 0,37 : une probabilité peut s'écrire en pourcentage." }
+      ],
+      "hints": ["Une probabilité est comprise entre 0 et 1.", "Compare chaque nombre à 1 : 4/3, c'est 4 tiers."],
+      "solution": "4/3 ≈ 1,33 dépasse 1 : ce ne peut pas être une probabilité. Les autres sont entre 0 et 1 (37 % = 0,37).",
+      "selfTest": [
+        { "response": { "selected": [1] }, "expect": "correct" },
+        { "response": { "selected": [2] }, "expect": "mc:zero-pas-proba" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-ajout", "type": "composite", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:composition-change", "mc:total-vs-ajout", "mc:pourcentage-effectif"], "expectedSeconds": 420,
+      "params": { "r": { "int": [3, 9] }, "k": { "int": [2, 6] } },
+      "prompt": "Le sac de Malo contient 20 billes, rouges ou bleues. La probabilité de tirer une bille rouge vaut {r/20}.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de billes rouges y a-t-il dans le sac ?", "answer": "r",
+          "misconceptions": [ { "answer": "r*5", "id": "mc:pourcentage-effectif", "error": "notion", "feedback": "{r/20}, c'est {r*5} % des billes. Mais le sac ne contient que 20 billes : calcule {r*5} % de 20." } ] },
+        { "type": "numeric", "prompt": "Malo ajoute {k} billes bleues dans le sac. Quelle est maintenant la probabilité de ne PAS tirer une bille rouge ? (fraction ou décimal)", "answer": "(20-r+k)/(20+k)",
+          "misconceptions": [
+            { "answer": "1 - r/20", "id": "mc:composition-change", "error": "raisonnement", "feedback": "C'est la probabilité AVANT l'ajout. Le sac contient maintenant {20+k} billes, dont toujours {r} rouges." },
+            { "answer": "r/(20+k)", "id": "mc:contraire-egal", "error": "notion", "feedback": "C'est la probabilité de tirer une rouge. On demande celle de l'évènement contraire." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de billes bleues aurait-il fallu ajouter aux 20 billes de départ (au lieu de {k}) pour que cette probabilité soit égale à 0,9 ?", "answer": "10*r - 20",
+          "misconceptions": [ { "answer": "10*r", "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "{10*r}, c'est le nombre total de billes qu'il faut dans le sac. Il y en a déjà 20 : combien faut-il en AJOUTER ?" } ] }
+      ],
+      "hints": ["Multiplie la probabilité par le nombre total de billes : $ {r/20} × 20 $.", "Après l'ajout, il y a {20+k} billes, dont {r} rouges.", "Pour 0,9 de chances de ne pas tirer de rouge, les {r} rouges doivent représenter un dixième du sac."],
+      "solution": "Rouges : $ {r/20} × 20 = {r} $ billes. Après l'ajout de {k} bleues : {20+k} billes dont {r} rouges, donc la probabilité de ne pas tirer de rouge vaut $ 1 − {r}/{20+k} = {20-r+k}/{20+k} $. Pour une probabilité de 0,9, les {r} rouges doivent former un dixième du sac : il faut $ 10 × {r} = {10*r} $ billes en tout, donc ajouter $ {10*r} − 20 = {10*r-20} $ billes bleues.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{r}" }, { "value": "{20-r+k}/{20+k}" }, { "value": "{10*r-20}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{r}" }, { "value": "{20-r}/20" }, { "value": "{10*r-20}" } ] }, "expect": "mc:composition-change" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-erreur-lena", "type": "open", "skill": "m4.probas.equiprobabilite", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:couleurs-equiprobables"], "expectedSeconds": 360,
+      "prompt": "Léna affirme : « Dans ce sac, il y a des billes rouges et des billes bleues. Il y a deux couleurs, donc la probabilité de tirer une bille rouge est 1/2. » Explique-lui son erreur avec un exemple chiffré, puis dis dans quel cas elle aurait raison.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "J'explique que ce sont les billes (et non les couleurs) qui sont équiprobables", "keywords": [["bille", "equiprob", "meme chance"]] },
+        { "id": "c2", "label": "Je donne un exemple chiffré où la probabilité n'est pas 1/2 (par exemple 1 rouge et 3 bleues : 1/4)", "keywords": [["1/4", "1/3", "2/5", "3/4", "exemple"]] },
+        { "id": "c3", "label": "Elle aurait raison s'il y avait autant de billes rouges que de billes bleues", "keywords": [["autant", "meme nombre"]] }
+      ],
+      "models": [
+        "Ce ne sont pas les couleurs qui ont la même chance d'être tirées, ce sont les billes. Par exemple, avec 1 bille rouge et 3 bleues, il y a 4 billes équiprobables et une seule est rouge : la probabilité vaut 1/4, pas 1/2. Léna aurait raison seulement s'il y avait autant de billes rouges que de bleues.",
+        "Léna confond les couleurs et les billes. Si le sac contient 2 rouges et 8 bleues, la probabilité de tirer une rouge est 2/10 = 0,2. On obtient 1/2 uniquement quand il y a le même nombre de billes de chaque couleur, par exemple 5 rouges et 5 bleues."
+      ],
+      "hints": ["Imagine un sac avec 1 bille rouge et 9 bleues : as-tu vraiment une chance sur deux ?", "Qu'est-ce qui est équiprobable : les billes, ou les couleurs ?"],
+      "solution": "Ce sont les billes qui sont équiprobables, pas les couleurs. Avec 1 rouge et 3 bleues, la probabilité de tirer la rouge vaut 1/4. Léna n'aurait raison que si le sac contenait autant de billes rouges que de billes bleues.",
+      "selfTest": [
+        { "response": { "text": "Ce sont les billes qui sont équiprobables, pas les couleurs. Par exemple avec 1 rouge et 3 bleues la probabilité est 1/4. Elle aurait raison s'il y avait autant de rouges que de bleues.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "Elle a raison." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-canards", "type": "composite", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:nombre-cas", "mc:contraire-egal", "mc:total-vs-ajout", "mc:oubli-gros-lot"], "expectedSeconds": 600,
+      "prompt": "Mission : tu tiens le stand « pêche aux canards » de la fête du collège. Dans le bassin flottent 40 canards : 4 portent un point rouge (gros lot), 10 un point jaune (petit lot), et les autres n'ont pas de point (perdu). Chaque joueur pêche un canard au hasard.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité de gagner le gros lot, en pourcentage ? (le nombre seul)", "answer": 10,
+          "misconceptions": [ { "answer": 4, "id": "mc:nombre-cas", "error": "lecture", "feedback": "4 est le nombre de canards à point rouge. La probabilité compare ce nombre aux 40 canards du bassin." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de ne rien gagner ? (fraction, décimal, ou pourcentage avec le signe %)", "answer": "26/40",
+          "misconceptions": [ { "answer": "14/40", "id": "mc:contraire-egal", "error": "notion", "feedback": "Tu as calculé la probabilité de gagner un lot (gros ou petit). Ne rien gagner est l'évènement contraire." } ] },
+        { "type": "numeric", "prompt": "Le responsable veut que la probabilité de ne rien gagner soit de 75 %. Combien de canards à point jaune faut-il transformer en canards sans point ?", "answer": 4,
+          "misconceptions": [ { "answer": 30, "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "30, c'est le nombre total de canards sans point nécessaires. Il y en a déjà 26 : combien faut-il en transformer ?" } ] },
+        { "type": "numeric", "prompt": "Après ce changement, quelle est la probabilité de gagner un petit lot, en pourcentage ? (le nombre seul)", "answer": 15,
+          "misconceptions": [ { "answer": 25, "id": "mc:oubli-gros-lot", "error": "raisonnement", "feedback": "25 %, c'est la probabilité de gagner un lot quelconque, gros ou petit. Retire la part du gros lot." } ] }
+      ],
+      "hints": ["Gros lot : 4 canards sur 40.", "Ne rien gagner est le contraire de « gagner un lot » : 14 canards font gagner.", "75 % de 40 canards : 30 canards sans point.", "Il reste alors 10 − 4 = 6 canards à point jaune."],
+      "solution": "Gros lot : $ 4/40 = 0,1 $, soit 10 %. Ne rien gagner : $ 1 − 14/40 = 26/40 = 0,65 $, soit 65 %. Pour 75 % de canards perdants, il en faut $ 0,75 × 40 = 30 $ : on transforme $ 30 − 26 = 4 $ canards jaunes. Il reste 6 canards jaunes : $ 6/40 = 0,15 $, soit 15 %. Contrôle : 10 % + 15 % + 75 % = 100 %.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "10" }, { "value": "65 %" }, { "value": "4" }, { "value": "15" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "10" }, { "value": "0,35" }, { "value": "4" }, { "value": "15" } ] }, "expect": "mc:contraire-egal" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-remed-jetons", "type": "composite", "skill": "m4.probas.contraire", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:contraire-egal"], "expectedSeconds": 90,
+      "params": { "g": { "int": [2, 8] } },
+      "constraints": ["g != 5"],
+      "prompt": "Rappel avec des jetons : une boîte contient 10 jetons identiques au toucher, dont {g} gagnants. Les autres sont perdants. On tire un jeton au hasard.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de jetons sont perdants ?", "answer": "10-g" },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de tirer un jeton perdant ?", "answer": "(10-g)/10",
+          "misconceptions": [ { "answer": "g/10", "id": "mc:contraire-egal", "error": "notion", "feedback": "{g}/10 est la probabilité de tirer un jeton GAGNANT. Tirer un perdant est l'évènement contraire : utilise les jetons perdants." } ] }
+      ],
+      "hints": ["10 jetons en tout, {g} gagnants.", "Probabilité = jetons perdants ÷ jetons en tout."],
+      "solution": "Il y a $ 10 − {g} = {10-g} $ jetons perdants, donc la probabilité de tirer un perdant vaut $ {10-g}/10 $. C'est aussi $ 1 − {g}/10 $ : un évènement et son contraire ont des probabilités de somme 1.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{10-g}" }, { "value": "{10-g}/10" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{10-g}" }, { "value": "{g}/10" } ] }, "expect": "mc:contraire-egal" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-remed-couleurs", "type": "numeric", "skill": "m4.probas.equiprobabilite", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:couleurs-equiprobables", "mc:favorables-defavorables"], "expectedSeconds": 60,
+      "params": { "b": { "int": [2, 6] } },
+      "prompt": "Un sac contient 1 bille rouge et {b} billes bleues, toutes identiques au toucher. Imagine que tu numérotes chaque bille : elles ont toutes la même chance d'être tirées. Quelle est la probabilité de tirer la bille rouge ?",
+      "answer": "1/(b+1)",
+      "misconceptions": [
+        { "answer": "1/2", "id": "mc:couleurs-equiprobables", "error": "notion", "feedback": "Il y a deux couleurs, mais {b+1} billes. Ce sont les billes qui ont toutes la même chance d'être tirées, et une seule est rouge." },
+        { "answer": "1/b", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "Tu as divisé par le nombre de billes bleues. Il faut diviser par le nombre total de billes, la rouge comprise." }
+      ],
+      "hints": ["Combien y a-t-il de billes en tout ?", "Une seule de ces billes est rouge."],
+      "solution": "Il y a $ 1 + {b} = {b+1} $ billes équiprobables, dont une seule rouge : la probabilité vaut $ 1/{b+1} $.",
+      "selfTest": [
+        { "response": { "value": "1/{b+1}" }, "expect": "correct" },
+        { "response": { "value": "1/2" }, "expect": "mc:couleurs-equiprobables" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-deux-des", "type": "composite", "skill": "m4.probas.contraire", "skills": ["mx.denombrement"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:additionner-issues", "mc:un-seul-de", "mc:additionner-probas"], "expectedSeconds": 480,
+      "prompt": "On lance deux dés équilibrés à 4 faces (numérotées de 1 à 4) : un rouge et un bleu. On s'intéresse à l'évènement A : « obtenir au moins un 4 ». Le tableau à double entrée donne tous les résultats possibles (dé rouge ; dé bleu).",
+      "figure": {
+        "alt": "Tableau à double entrée des résultats possibles : en ligne le dé rouge, en colonne le dé bleu",
+        "w": 460, "h": 200,
+        "items": [ { "type": "table", "head": ["Rouge / Bleu", "1", "2", "3", "4"], "rows": [
+          ["1", "(1 ; 1)", "(1 ; 2)", "(1 ; 3)", "(1 ; 4)"],
+          ["2", "(2 ; 1)", "(2 ; 2)", "(2 ; 3)", "(2 ; 4)"],
+          ["3", "(3 ; 1)", "(3 ; 2)", "(3 ; 3)", "(3 ; 4)"],
+          ["4", "(4 ; 1)", "(4 ; 2)", "(4 ; 3)", "(4 ; 4)"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien y a-t-il de résultats possibles (rouge ; bleu), tous équiprobables ?", "answer": 16,
+          "misconceptions": [ { "answer": 8, "id": "mc:additionner-issues", "error": "raisonnement", "feedback": "Chaque face du dé rouge peut aller avec chacune des 4 faces du dé bleu : on multiplie, on n'additionne pas." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de l'évènement contraire de A, « n'obtenir aucun 4 » ?", "answer": "9/16",
+          "misconceptions": [ { "answer": "3/4", "id": "mc:un-seul-de", "error": "raisonnement", "feedback": "3/4 serait la probabilité qu'UN dé ne donne pas 4. Ici, les deux dés doivent éviter le 4 : compte les cases du tableau sans aucun 4." } ] },
+        { "type": "numeric", "prompt": "Déduis-en la probabilité de A.", "answer": "7/16",
+          "misconceptions": [ { "answer": "1/2", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "1/4 + 1/4 = 1/2 compte deux fois le résultat (4 ; 4). Passe plutôt par l'évènement contraire." } ] }
+      ],
+      "hints": ["Le tableau compte 4 lignes et 4 colonnes.", "Aucun 4 : le dé rouge donne 1, 2 ou 3, ET le dé bleu aussi.", "P(A) = 1 − P(non A)."],
+      "solution": "Il y a $ 4 × 4 = 16 $ résultats équiprobables. Aucun 4 : $ 3 × 3 = 9 $ résultats, donc la probabilité de « aucun 4 » vaut $ 9/16 $, et P(A) = $ 1 − 9/16 = 7/16 ≈ 0,44 $. Vérification en comptant : 4 résultats ont un 4 rouge, 4 ont un 4 bleu, mais (4 ; 4) est compté deux fois : 4 + 4 − 1 = 7. Additionner 1/4 et 1/4 donnerait 1/2 : c'est faux, à cause de ce résultat compté deux fois.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "16" }, { "value": "9/16" }, { "value": "7/16" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "16" }, { "value": "9/16" }, { "value": "1/2" } ] }, "expect": "mc:additionner-probas" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-cible-ronde", "type": "numeric", "skill": "m4.probas.equiprobabilite", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:longueurs-au-lieu-aires", "mc:rayon-diametre"], "expectedSeconds": 240,
+      "params": { "r": { "choice": [5, 10, 15] } },
+      "prompt": "Une cible carrée de 40 cm de côté porte en son centre un disque de rayon {r} cm. Une fléchette lancée au hasard atteint toujours la cible. Quelle est la probabilité qu'elle atteigne le disque ? Donne une valeur arrondie au centième.",
+      "figure": {
+        "alt": "Cible carrée de 40 cm de côté avec un disque en son centre",
+        "w": 280, "h": 280,
+        "frame": { "x": [-23, 23], "y": [-25, 21] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "hidden": true },
+          { "type": "rect", "x": -20, "y": -20, "w": 40, "h": 40 },
+          { "type": "circle", "center": "O", "r": "{r}", "fill": "orange" },
+          { "type": "segment", "from": "O", "to": ["{r}", 0], "label": "{r} cm" },
+          { "type": "text", "x": 0, "y": -23, "text": "40 cm" }
+        ]
+      },
+      "answer": "pi*r^2/1600", "tolerance": 0.006, "round": 2,
+      "misconceptions": [
+        { "answer": "2*r/40", "id": "mc:longueurs-au-lieu-aires", "error": "notion", "feedback": "Tu as comparé des longueurs (le diamètre et le côté). La fléchette tombe au hasard sur la SURFACE de la cible : compare les aires." },
+        { "answer": "pi*(2*r)^2/1600", "id": "mc:rayon-diametre", "error": "notion", "feedback": "Dans l'aire du disque, π × r × r, r est le rayon ({r} cm), pas le diamètre." }
+      ],
+      "hints": ["Aire de la cible : $ 40 × 40 = 1 600 $ cm².", "Aire du disque : π × {r} × {r}.", "Probabilité = aire du disque ÷ aire de la cible."],
+      "solution": "Aire du disque : $ π × {r}^2 ≈ {pi*r^2|d2} $ cm². Aire de la cible : 1 600 cm². Probabilité d'atteindre le disque : $ {pi*r^2|d2} ÷ 1 600 ≈ {pi*r^2/1600|d2} $.",
+      "selfTest": [
+        { "response": { "value": "{pi*r^2/1600|d2}" }, "expect": "correct" },
+        { "response": { "value": "{2*r/40}" }, "expect": "mc:longueurs-au-lieu-aires" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-sac-mystere", "type": "composite", "skill": "m4.probas.equiprobabilite", "skills": ["m4.equations.modeliser"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:fraction-effectif"], "expectedSeconds": 600,
+      "prompt": "Un sac contient des billes rouges et des billes bleues. La probabilité de tirer une bille rouge vaut 3/8. On ajoute 4 billes rouges : la probabilité de tirer une bille rouge devient 1/2.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de billes le sac contenait-il au départ ?", "answer": 16,
+          "misconceptions": [ { "answer": 8, "id": "mc:fraction-effectif", "error": "raisonnement", "feedback": "3/8 ne veut pas forcément dire 3 billes rouges sur 8 : avec 3 rouges sur 8, après l'ajout, on aurait 7 rouges sur 12, pas une sur deux. Le sac pourrait aussi contenir 6 rouges sur 16, 9 sur 24… Teste, ou écris une équation." } ] },
+        { "type": "numeric", "prompt": "Combien de billes rouges contenait-il au départ ?", "answer": 6 },
+        { "type": "open", "prompt": "Explique ta démarche : essais organisés ou équation.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je teste plusieurs tailles de sac, ou je note n le nombre de billes au départ (dont 3n/8 rouges)", "keywords": [["essai", "teste", "n ", "3n"]] },
+            { "id": "c2", "label": "Je traduis la nouvelle probabilité (rouges + 4) ÷ (billes + 4) = 1/2", "keywords": [["+ 4", "+4", "1/2", "moitie"]] },
+            { "id": "c3", "label": "Je vérifie : 10 rouges sur 20 billes", "keywords": [["10", "20", "verifi"]] }
+          ] }
+      ],
+      "hints": ["Le nombre de billes au départ est un multiple de 8 : 8, 16, 24…", "Essaie 16 billes : 6 rouges. Que se passe-t-il après l'ajout ?", "Avec une équation : $ 2 × (3n/8 + 4) = n + 4 $."],
+      "solution": "Essais : 8 billes (3 rouges) donnent, après l'ajout, 7 rouges sur 12 : ce n'est pas 1/2. 16 billes (6 rouges) donnent 10 rouges sur 20 = 1/2. Avec une équation : n billes dont $ 3n/8 $ rouges ; $ 2 × (3n/8 + 4) = n + 4 $ donne $ 3n/4 + 8 = n + 4 $, soit $ n/4 = 4 $, donc $ n = 16 $. Le sac contenait 16 billes, dont 6 rouges.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "16" }, { "value": "6" }, { "text": "J'ai testé 8 billes puis 16 billes : avec 6 rouges + 4 = 10 rouges sur 20, c'est bien 1/2. Je vérifie : 6/16 = 3/8.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "8" }, { "value": "3" }, { "text": "3 sur 8." } ] }, "expect": "mc:fraction-effectif" }
+      ]
+    },
+    {
+      "id": "m4-probabilites-classement", "type": "order", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "verbale", "targets": ["raisonnement"], "expectedSeconds": 600,
+      "prompt": "Cinq jeux, une seule question : lequel offre les meilleures chances de gagner ? Range-les du MOINS favorable au PLUS favorable. Pense à l'évènement contraire !",
+      "orderLabel": "Du moins favorable au plus favorable",
+      "errorType": "raisonnement",
+      "items": [
+        { "id": "D", "label": "Jeu D : un sac de 12 billes dont 5 noires ; on gagne si on ne tire pas une noire" },
+        { "id": "A", "label": "Jeu A : un dé à 6 faces ; on gagne si on n'obtient ni 1 ni 2" },
+        { "id": "C", "label": "Jeu C : une roue ; on gagne si l'aiguille s'arrête dans le secteur gagnant de 250°" },
+        { "id": "B", "label": "Jeu B : on lance deux pièces ; on gagne si on n'obtient pas deux fois Pile" },
+        { "id": "E", "label": "Jeu E : un dé à 20 faces ; on gagne si on n'obtient pas un multiple de 5" }
+      ],
+      "hints": ["Calcule la probabilité de gagner à chaque jeu, en passant par le contraire quand c'est plus simple.", "Deux pièces : 4 résultats équiprobables (PP, PF, FP, FF), et un seul fait perdre.", "Dé à 20 faces : les multiples de 5 sont 5, 10, 15 et 20."],
+      "solution": "D : $ 1 − 5/12 = 7/12 ≈ 0,58 $ ; A : $ 1 − 2/6 = 4/6 ≈ 0,67 $ ; C : $ 250/360 ≈ 0,69 $ ; B : $ 1 − 1/4 = 3/4 = 0,75 $ ; E : $ 1 − 4/20 = 16/20 = 0,8 $. Ordre : D, A, C, B, E. Piège du jeu B : « deux fois Pile » n'a pas une chance sur trois (comme si PP, « un Pile et un Face » et FF étaient équiprobables), mais une sur quatre, car PF et FP sont deux résultats différents.",
+      "selfTest": [
+        { "response": { "order": ["D", "A", "C", "B", "E"] }, "expect": "correct" },
+        { "response": { "order": ["A", "D", "C", "B", "E"] }, "expect": "partiel" },
+        { "response": { "order": ["E", "B", "C", "A", "D"] }, "expect": "raisonnement" }
+      ]
+    }
+  ]
+}

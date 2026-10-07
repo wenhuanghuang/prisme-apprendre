@@ -1,0 +1,3719 @@
+{
+  "id": "svt5-activite-physique",
+  "chapter": "svt5-ch-activite",
+  "title": "Activité physique, respiration et santé",
+  "subject": "svt",
+  "level": "5e",
+  "skills": [
+    "svt5.corps.rythmes-effort",
+    "svt5.corps.systemes-effort",
+    "svt5.corps.activite-sante",
+    "svt.corps.besoins-organes",
+    "svt.demarche.exploiter-donnees",
+    "svt.demarche.hypothese-temoin"
+  ],
+  "status": "programme",
+  "programmes": [
+    "svt-c4-2020"
+  ],
+  "duration": 55,
+  "summary": "Mesurer et interpréter les fréquences cardiaque et respiratoire au repos, à l'effort et en récupération, expliquer comment les systèmes nerveux, respiratoire et cardiovasculaire interviennent lors d'un effort musculaire, et relier activité physique, capacités, limites et santé. Le programme de SVT est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le cœur qui s'emballe",
+      "body": "Pose deux doigts sur ton poignet, du côté du pouce, et compte les pulsations pendant 15 secondes. Fais ensuite 30 sauts sur place et recommence.\n\nTon cœur bat plus vite et tu respires plus fort, sans l'avoir décidé. Qui donne l'ordre d'accélérer ? Et jusqu'où ton corps peut-il aller ?"
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : repos, effort, récupération",
+      "demo": {
+        "items": [
+          {
+            "type": "texte",
+            "id": "nom",
+            "x": 120,
+            "y": 70,
+            "text": "Léa, 13 ans",
+            "size": 16,
+            "bold": true
+          },
+          {
+            "type": "forme",
+            "id": "banc",
+            "shape": "rect",
+            "x": 72,
+            "y": 238,
+            "w": 96,
+            "h": 20,
+            "fill": "bois",
+            "rx": 4,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "lea",
+            "x": 120,
+            "y": 178,
+            "char": "🧘‍♀️",
+            "size": 96
+          },
+          {
+            "type": "emoji",
+            "id": "coeur",
+            "x": 300,
+            "y": 82,
+            "char": "❤️",
+            "size": 44,
+            "label": "cœur"
+          },
+          {
+            "type": "emoji",
+            "id": "poumons",
+            "x": 300,
+            "y": 186,
+            "char": "🫁",
+            "size": 44,
+            "label": "poumons"
+          },
+          {
+            "type": "etiquette",
+            "id": "fc",
+            "x": 378,
+            "y": 82,
+            "text": "76 /min",
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "fr",
+            "x": 378,
+            "y": 186,
+            "text": "16 /min",
+            "hidden": true
+          },
+          {
+            "type": "chrono",
+            "id": "chr",
+            "x": 120,
+            "y": 330,
+            "value": 0,
+            "label": "chronomètre"
+          },
+          {
+            "type": "texte",
+            "id": "calc1",
+            "x": 300,
+            "y": 314,
+            "text": "pouls : 15 s de comptage, × 4",
+            "size": 14
+          },
+          {
+            "type": "texte",
+            "id": "calc2",
+            "x": 300,
+            "y": 342,
+            "text": "respiration : 15 s, × 4",
+            "size": 14
+          },
+          {
+            "type": "courbe",
+            "id": "g",
+            "x": 430,
+            "y": 10,
+            "w": 360,
+            "h": 205,
+            "title": "Fréquences de Léa (par minute)",
+            "xRange": [
+              0,
+              8
+            ],
+            "yRange": [
+              0,
+              180
+            ],
+            "xLabel": "t (min)",
+            "yLabel": "/min",
+            "points": [
+              [
+                0,
+                76
+              ],
+              [
+                2,
+                168
+              ],
+              [
+                3,
+                126
+              ],
+              [
+                5,
+                92
+              ],
+              [
+                7,
+                80
+              ]
+            ],
+            "progress": 0,
+            "color": "#e11d48"
+          },
+          {
+            "type": "texte",
+            "id": "legC",
+            "x": 774,
+            "y": 84,
+            "text": "— cœur",
+            "size": 12,
+            "anchor": "end",
+            "color": "#e11d48",
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tab",
+            "x": 430,
+            "y": 225,
+            "w": 360,
+            "title": "Mesures (par minute)",
+            "head": [
+              "moment",
+              "cœur",
+              "respiration"
+            ],
+            "rows": [
+              [
+                "repos",
+                "76",
+                "16"
+              ],
+              [
+                "fin de l'effort",
+                "168",
+                "40"
+              ],
+              [
+                "récup. 1 min",
+                "126",
+                "28"
+              ],
+              [
+                "récup. 3 min",
+                "92",
+                "20"
+              ],
+              [
+                "récup. 5 min",
+                "80",
+                "18"
+              ]
+            ],
+            "shown": 0
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le protocole",
+            "text": "Léa, 13 ans, va mesurer deux grandeurs : sa fréquence cardiaque (pouls compté sur 15 secondes, multiplié par 4) et sa fréquence respiratoire (mouvements de la poitrine comptés sur 15 secondes, multipliés par 4). Elle les mesurera au repos, juste après l'effort, puis pendant la récupération.",
+            "focus": [
+              "coeur",
+              "poumons",
+              "chr"
+            ]
+          },
+          {
+            "title": "Au repos",
+            "text": "Assise depuis cinq minutes, Léa compte 19 pulsations en 15 secondes : 19 × 4 = 76 battements par minute. Un camarade compte ses mouvements respiratoires : 4 en 15 secondes, donc 16 mouvements par minute.",
+            "duration": 5,
+            "do": [
+              {
+                "id": "chr",
+                "to": {
+                  "value": 15
+                },
+                "at": 0,
+                "dur": 4,
+                "ease": "lineaire"
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 52
+                },
+                "at": 0,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.28,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 52
+                },
+                "at": 0.8,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.08,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 52
+                },
+                "at": 1.6,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.88,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 52
+                },
+                "at": 2.4,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.68,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 52
+                },
+                "at": 3.2,
+                "dur": 0.28
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 3.48,
+                "dur": 0.28
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 50
+                },
+                "at": 0,
+                "dur": 0.45
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.45,
+                "dur": 0.45
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "hidden": false,
+                  "text": "76 /min"
+                },
+                "at": 4.2
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "hidden": false,
+                  "text": "16 /min"
+                },
+                "at": 4.2
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "19 pulsations × 4 = 76 /min"
+                },
+                "at": 4.2
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "4 mouvements × 4 = 16 /min"
+                },
+                "at": 4.2
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 1
+                },
+                "at": 4.4
+              },
+              {
+                "id": "g",
+                "set": {
+                  "progress": 0.003
+                },
+                "at": 4.4
+              },
+              {
+                "id": "legC",
+                "set": {
+                  "hidden": false
+                },
+                "at": 4.4
+              }
+            ],
+            "focus": [
+              "chr"
+            ]
+          },
+          {
+            "title": "L'effort",
+            "text": "Léa monte et descend d'un banc, au rythme d'un métronome, pendant deux minutes. Ses muscles des jambes travaillent beaucoup. Juste à la fin, on recommence aussitôt les deux mesures.",
+            "ask": {
+              "question": "Que vont devenir les deux fréquences juste après l'effort ?",
+              "choices": [
+                "Elles augmentent toutes les deux.",
+                "La cardiaque augmente, la respiratoire diminue.",
+                "Elles ne changent pas."
+              ],
+              "answer": 0,
+              "explain": "Les muscles ont besoin de plus de dioxygène et de nutriments : le cœur et la respiration s'accélèrent tous les deux."
+            },
+            "duration": 4,
+            "do": [
+              {
+                "id": "lea",
+                "set": {
+                  "char": "🏃‍♀️"
+                }
+              },
+              {
+                "id": "banc",
+                "set": {
+                  "hidden": false
+                }
+              },
+              {
+                "id": "chr",
+                "set": {
+                  "value": 0
+                }
+              },
+              {
+                "id": "chr",
+                "to": {
+                  "value": 120
+                },
+                "at": 0,
+                "dur": 4,
+                "ease": "lineaire"
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "text": "? /min"
+                },
+                "at": 0
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "text": "? /min"
+                },
+                "at": 0
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "montées et descentes : 2 min"
+                },
+                "at": 0
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "au rythme du métronome"
+                },
+                "at": 0
+              }
+            ],
+            "focus": [
+              "lea"
+            ]
+          },
+          {
+            "title": "Les résultats",
+            "text": "Juste après l'effort : 42 pulsations en 15 secondes, soit 168 battements par minute ; 10 mouvements respiratoires en 15 secondes, soit 40 par minute. La fréquence cardiaque a été multipliée par 2,2 environ, la fréquence respiratoire par 2,5.",
+            "duration": 5,
+            "do": [
+              {
+                "id": "lea",
+                "set": {
+                  "char": "🧍‍♀️"
+                }
+              },
+              {
+                "id": "banc",
+                "set": {
+                  "hidden": true
+                }
+              },
+              {
+                "id": "chr",
+                "set": {
+                  "value": 0
+                }
+              },
+              {
+                "id": "chr",
+                "to": {
+                  "value": 15
+                },
+                "at": 0,
+                "dur": 3,
+                "ease": "lineaire"
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "on compte aussitôt, pendant 15 s"
+                },
+                "at": 0
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "…"
+                },
+                "at": 0
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 0,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.13,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 0.38,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.51,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 0.75,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.88,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 1.13,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.26,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 1.5,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.63,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 1.88,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.01,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 2.25,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.38,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 56
+                },
+                "at": 2.63,
+                "dur": 0.13
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.76,
+                "dur": 0.13
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 54
+                },
+                "at": 0,
+                "dur": 0.45
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.45,
+                "dur": 0.45
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 54
+                },
+                "at": 1.5,
+                "dur": 0.45
+              },
+              {
+                "id": "poumons",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.95,
+                "dur": 0.45
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "text": "168 /min"
+                },
+                "at": 3.2
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "text": "40 /min"
+                },
+                "at": 3.2
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "42 pulsations × 4 = 168 /min"
+                },
+                "at": 3.2
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "10 mouvements × 4 = 40 /min"
+                },
+                "at": 3.2
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 2
+                },
+                "at": 3.2
+              },
+              {
+                "id": "g",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        16
+                      ],
+                      [
+                        2,
+                        40
+                      ]
+                    ],
+                    "label": "respiration"
+                  },
+                  "zones": [
+                    {
+                      "from": 0,
+                      "to": 2,
+                      "label": "effort"
+                    }
+                  ]
+                },
+                "at": 3.2
+              },
+              {
+                "id": "g",
+                "to": {
+                  "progress": 0.25
+                },
+                "at": 3.2,
+                "dur": 1.3,
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "fc",
+              "fr"
+            ]
+          },
+          {
+            "title": "La récupération",
+            "text": "Léa s'assoit. On mesure sa fréquence cardiaque après 1 minute : 126 battements par minute ; après 3 minutes : 92 ; après 5 minutes : 80. Sa fréquence respiratoire redescend aussi : 28, puis 20, puis 18 mouvements par minute. Les fréquences redescendent, mais pas instantanément : le retour au calme demande du temps.",
+            "ask": {
+              "question": "Pourquoi la fréquence ne revient-elle pas à 76 immédiatement ?",
+              "choices": [
+                "L'organisme doit encore évacuer le CO₂ et la chaleur et se réapprovisionner : les besoins diminuent progressivement.",
+                "Le cœur est abîmé par l'effort.",
+                "Parce que le chronomètre est faux."
+              ],
+              "answer": 0,
+              "explain": "Après l'effort, les muscles sont encore chauds et ont encore besoin d'un peu plus de dioxygène : les besoins diminuent peu à peu, donc les fréquences aussi."
+            },
+            "duration": 6.5,
+            "do": [
+              {
+                "id": "lea",
+                "set": {
+                  "char": "🧘‍♀️"
+                }
+              },
+              {
+                "id": "chr",
+                "set": {
+                  "value": 0
+                }
+              },
+              {
+                "id": "chr",
+                "to": {
+                  "value": 300
+                },
+                "at": 0,
+                "dur": 6,
+                "ease": "lineaire"
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "mesures à 1, 3 puis 5 min"
+                },
+                "at": 0
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "(le temps est accéléré)"
+                },
+                "at": 0
+              },
+              {
+                "id": "g",
+                "to": {
+                  "progress": 0.875
+                },
+                "at": 0,
+                "dur": 6,
+                "ease": "lineaire"
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 0,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.3,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 0.86,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.16,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 1.71,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.01,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 2.57,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.87,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 3.43,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 3.73,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 4.29,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 4.59,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 5.14,
+                "dur": 0.3
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 5.44,
+                "dur": 0.3
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "text": "126 /min"
+                },
+                "at": 1.2
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "text": "28 /min"
+                },
+                "at": 1.2
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 3
+                },
+                "at": 1.2
+              },
+              {
+                "id": "g",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        16
+                      ],
+                      [
+                        2,
+                        40
+                      ],
+                      [
+                        3,
+                        28
+                      ]
+                    ],
+                    "label": "respiration"
+                  }
+                },
+                "at": 1.2
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "text": "92 /min"
+                },
+                "at": 3.6
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "text": "20 /min"
+                },
+                "at": 3.6
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 4
+                },
+                "at": 3.6
+              },
+              {
+                "id": "g",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        16
+                      ],
+                      [
+                        2,
+                        40
+                      ],
+                      [
+                        3,
+                        28
+                      ],
+                      [
+                        5,
+                        20
+                      ]
+                    ],
+                    "label": "respiration"
+                  }
+                },
+                "at": 3.6
+              },
+              {
+                "id": "fc",
+                "set": {
+                  "text": "80 /min"
+                },
+                "at": 6
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "text": "18 /min"
+                },
+                "at": 6
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 5
+                },
+                "at": 6
+              },
+              {
+                "id": "g",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        16
+                      ],
+                      [
+                        2,
+                        40
+                      ],
+                      [
+                        3,
+                        28
+                      ],
+                      [
+                        5,
+                        20
+                      ],
+                      [
+                        7,
+                        18
+                      ]
+                    ],
+                    "label": "respiration"
+                  }
+                },
+                "at": 6
+              }
+            ],
+            "focus": [
+              "g"
+            ]
+          },
+          {
+            "title": "Comparer",
+            "text": "Quelques semaines plus tard, après un entraînement régulier, Léa refait le test : au repos, elle compte 72 battements par minute. Une personne qui s'entraîne régulièrement a souvent un cœur qui bat moins vite au repos : il éjecte plus de sang à chaque battement.",
+            "duration": 4,
+            "do": [
+              {
+                "id": "fc",
+                "set": {
+                  "text": "72 /min"
+                },
+                "at": 0
+              },
+              {
+                "id": "fr",
+                "set": {
+                  "hidden": true
+                }
+              },
+              {
+                "id": "calc1",
+                "set": {
+                  "text": "Entraînée : 72 /min au repos"
+                },
+                "at": 0
+              },
+              {
+                "id": "calc2",
+                "set": {
+                  "text": "(76 /min avant l'entraînement)"
+                },
+                "at": 0
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 0,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 0.35,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 1,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 1.35,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 2,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 2.35,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 50
+                },
+                "at": 3,
+                "dur": 0.35
+              },
+              {
+                "id": "coeur",
+                "to": {
+                  "size": 44
+                },
+                "at": 3.35,
+                "dur": 0.35
+              }
+            ],
+            "focus": [
+              "coeur",
+              "fc"
+            ]
+          }
+        ],
+        "conclusion": "À l'effort, la fréquence cardiaque et la fréquence respiratoire augmentent, puis elles redescendent progressivement pendant la récupération. Ces changements répondent aux besoins des muscles."
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "💓",
+          "title": "Mesurer le cœur",
+          "body": "La **fréquence cardiaque** est le nombre de battements du cœur par minute (bpm). On la mesure en comptant les pulsations au poignet ou au cou pendant 15 secondes, puis en multipliant par 4. Au repos, elle est en général comprise entre 60 et 100 bpm chez un adolescent."
+        },
+        {
+          "emoji": "🌬️",
+          "title": "Mesurer la respiration",
+          "body": "La **fréquence respiratoire** est le nombre de mouvements respiratoires (une inspiration et une expiration) par minute : environ 12 à 20 au repos. Le **débit ventilatoire** est le volume d'air brassé en une minute : fréquence × volume d'air de chaque mouvement.",
+          "reveal": {
+            "question": "Tu respires 16 fois par minute avec 0,5 L à chaque fois. Quel est ton débit ventilatoire ?",
+            "answer": "16 × 0,5 = 8 litres d'air par minute."
+          }
+        },
+        {
+          "emoji": "🏃",
+          "title": "Pourquoi tout s'accélère",
+          "body": "Les muscles qui travaillent consomment beaucoup plus de dioxygène et de glucose, et produisent plus de CO₂ et de chaleur. Pour les approvisionner, le cœur bat plus vite (plus de sang circule) et la respiration s'accélère (plus de dioxygène entre dans le sang)."
+        },
+        {
+          "emoji": "🧠",
+          "title": "Le système nerveux aux commandes",
+          "body": "Des capteurs (dans les muscles, les vaisseaux, les poumons) envoient des **messages nerveux** à des centres nerveux. Ceux-ci commandent au cœur et aux muscles de la respiration d'accélérer, et aux muscles de se contracter. Cette régulation est automatique : on ne la décide pas."
+        },
+        {
+          "emoji": "📈",
+          "title": "Capacités et limites",
+          "body": "L'organisme s'adapte jusqu'à une limite : fréquence cardiaque maximale (environ 220 − âge, une estimation) et quantité maximale de dioxygène livrable aux muscles. Au-delà, la fatigue oblige à ralentir. Après l'effort, les fréquences redescendent progressivement : c'est la récupération."
+        },
+        {
+          "emoji": "❤️",
+          "title": "Bouger pour sa santé",
+          "body": "L'activité régulière entraîne le cœur, qui éjecte plus de sang à chaque battement : au repos, sa fréquence est plus basse. Elle protège aussi les os et le moral. L'OMS conseille aux 5-17 ans au moins 60 minutes par jour en moyenne ; rester longtemps assis est un facteur de risque."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "Léa, 13 ans, compte 19 pulsations en 15 secondes au repos. Quelle est sa fréquence cardiaque ?",
+          "math": "19 × 4 = 76 battements par minute"
+        },
+        {
+          "text": "Juste après un effort, elle compte 42 pulsations en 15 secondes.",
+          "math": "42 × 4 = 168 battements par minute"
+        },
+        {
+          "text": "Au repos, elle respire 16 fois par minute en brassant 0,5 L d'air à chaque fois. Son débit ventilatoire est :",
+          "math": "16 × 0,5 = 8 L par minute"
+        },
+        {
+          "text": "À l'effort, elle respire 40 fois par minute, avec 1,5 L à chaque mouvement :",
+          "math": "40 × 1,5 = 60 L par minute"
+        },
+        {
+          "text": "Conclusion : à l'effort, le débit ventilatoire est multiplié par 60 ÷ 8 = 7,5 et la fréquence cardiaque par 168 ÷ 76 ≈ 2,2. La respiration s'adapte davantage, car chaque mouvement brasse aussi plus d'air.",
+          "math": ""
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "svt5-activite-physique-mesures",
+        "svt5-activite-physique-courbe",
+        "svt5-activite-physique-tracer",
+        "svt5-activite-physique-roles",
+        "svt5-activite-physique-chaine",
+        "svt5-activite-physique-situations"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": [
+        "svt5-activite-physique-expliquer"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Le bilan d'activité de Karim",
+      "body": "Karim a 13 ans et veut savoir où il en est : analyse ses mesures et son activité de la semaine.",
+      "exercises": [
+        "svt5-activite-physique-bilan"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** À l'effort, les muscles consomment plus de dioxygène et de glucose. Le **système nerveux** commande l'accélération du **cœur** et de la **respiration**. Les capacités sont limitées ; l'activité régulière est bonne pour la santé.\n\n- **« Le cœur bat vite parce que les poumons manquent d'air. »** Non : ce sont les muscles qui ont besoin de plus de dioxygène.\n- **« La fréquence redescend tout de suite. »** Non : la récupération prend plusieurs minutes.\n- **« Le pouls compté en 15 s, c'est la fréquence. »** Non : multiplie par 4."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un calcul de fréquence ou une question sur l'effort : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Comparer le cœur d'une personne sédentaire et d'une personne entraînée, et concevoir une expérience avec un groupe témoin.",
+      "exercises": [
+        "svt5-activite-physique-entrainement",
+        "svt5-activite-physique-temoin"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : discuter la formule « 220 − âge » et interpréter la consommation maximale de dioxygène.",
+      "exercises": [
+        "svt5-activite-physique-fcmax",
+        "svt5-activite-physique-limite"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "svt5-activite-physique-mesures",
+      "type": "composite",
+      "skill": "svt5.corps.rythmes-effort",
+      "skills": [
+        "svt.corps.besoins-organes"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:comptage-non-converti",
+        "mc:duree-comptage",
+        "mc:addition-multiplication",
+        "mc:volume-ignore"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "p": {
+          "int": [
+            16,
+            24
+          ]
+        },
+        "fr": {
+          "int": [
+            12,
+            20
+          ]
+        },
+        "vol": {
+          "choice": [
+            0.4,
+            0.5,
+            0.6
+          ]
+        }
+      },
+      "prompt": "Pendant un test au repos, tu mesures ton cœur et ta respiration.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Tu comptes {p} pulsations au poignet pendant 15 secondes. Quelle est ta fréquence cardiaque, en battements par minute ?",
+          "answer": "p*4",
+          "misconceptions": [
+            {
+              "answer": "p",
+              "id": "mc:comptage-non-converti",
+              "error": "methode",
+              "feedback": "{p} est le nombre de pulsations en 15 secondes seulement. Une minute contient 4 fois 15 secondes : il faut multiplier par 4."
+            },
+            {
+              "answer": "p*15",
+              "id": "mc:duree-comptage",
+              "error": "methode",
+              "feedback": "Tu as multiplié par 15, la durée du comptage. Pour passer de 15 secondes à 60 secondes, on multiplie par 4 (60 ÷ 15)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Tu respires {fr} fois par minute et tu brasses {vol} L d'air à chaque mouvement respiratoire. Quel est ton débit ventilatoire, en litres par minute ?",
+          "answer": "fr*vol",
+          "tolerance": 0.001,
+          "misconceptions": [
+            {
+              "answer": "fr+vol",
+              "id": "mc:addition-multiplication",
+              "error": "methode",
+              "feedback": "Le débit ventilatoire est le volume d'air échangé en une minute : on multiplie la fréquence (mouvements par minute) par le volume de chaque mouvement."
+            },
+            {
+              "answer": "fr",
+              "id": "mc:volume-ignore",
+              "error": "lecture",
+              "feedback": "{fr} est le nombre de mouvements par minute. Il faut tenir compte du volume d'air de chacun : {vol} L."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pouls compté sur 15 s : combien de fois 15 s dans une minute ?",
+        "Débit ventilatoire = fréquence respiratoire × volume d'air par mouvement."
+      ],
+      "solution": "Fréquence cardiaque : {p} × 4 = {p*4} battements par minute. Débit ventilatoire : {fr} × {vol} = {(fr*vol)|d1} L par minute.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p*4}"
+              },
+              {
+                "value": "{fr*vol}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p}"
+              },
+              {
+                "value": "{fr*vol}"
+              }
+            ]
+          },
+          "expect": "mc:comptage-non-converti"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p*15}"
+              },
+              {
+                "value": "{fr*vol}"
+              }
+            ]
+          },
+          "expect": "mc:duree-comptage"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p*4}"
+              },
+              {
+                "value": "{fr+vol}"
+              }
+            ]
+          },
+          "expect": "mc:addition-multiplication"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p*4}"
+              },
+              {
+                "value": "{fr}"
+              }
+            ]
+          },
+          "expect": "mc:volume-ignore"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-courbe",
+      "type": "composite",
+      "skill": "svt5.corps.rythmes-effort",
+      "skills": [
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:lecture-axe",
+        "mc:valeur-finale",
+        "mc:retour-immediat"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Courbe de la fréquence cardiaque d'une élève avant, pendant et après un effort",
+        "w": 540,
+        "h": 280,
+        "items": [
+          {
+            "type": "linechart",
+            "series": [
+              {
+                "label": "Fréquence cardiaque (bpm)",
+                "points": [
+                  [
+                    0,
+                    76
+                  ],
+                  [
+                    3,
+                    76
+                  ],
+                  [
+                    4,
+                    118
+                  ],
+                  [
+                    5,
+                    148
+                  ],
+                  [
+                    6,
+                    162
+                  ],
+                  [
+                    7,
+                    168
+                  ],
+                  [
+                    8,
+                    170
+                  ],
+                  [
+                    9,
+                    135
+                  ],
+                  [
+                    10,
+                    112
+                  ],
+                  [
+                    11,
+                    98
+                  ],
+                  [
+                    12,
+                    90
+                  ],
+                  [
+                    14,
+                    80
+                  ]
+                ],
+                "color": "svt"
+              }
+            ],
+            "xLabel": "temps (min)",
+            "yLabel": "bpm",
+            "xRange": [
+              0,
+              14
+            ],
+            "yRange": [
+              60,
+              180
+            ]
+          }
+        ]
+      },
+      "prompt": "Léa porte un cardiofréquencemètre. Elle reste assise pendant 3 minutes, court de la 3e à la 8e minute, puis se repose. Voici quelques mesures de sa fréquence cardiaque (minute : bpm) : 0 : 76 ; 3 : 76 ; 4 : 118 ; 5 : 148 ; 6 : 162 ; 7 : 168 ; 8 : 170 ; 9 : 135 ; 10 : 112 ; 11 : 98 ; 12 : 90 ; 14 : 80.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la fréquence cardiaque maximale atteinte, en bpm ?",
+          "answer": 170,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:lecture-axe",
+              "error": "lecture",
+              "feedback": "8 est une valeur de l'axe horizontal (le temps, en minutes). La fréquence cardiaque se lit sur l'axe vertical : 170 bpm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de bpm la fréquence cardiaque a-t-elle augmenté entre le repos et son maximum ?",
+          "answer": 94,
+          "misconceptions": [
+            {
+              "answer": 170,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "170 bpm est la valeur maximale. L'augmentation est la différence avec la valeur de repos (76 bpm)."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "D'après la courbe, chaque phrase est-elle vraie ou fausse ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "La fréquence cardiaque augmente dès le début de l'effort.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "À l'arrêt de l'effort, la fréquence cardiaque revient tout de suite à sa valeur de repos.",
+              "category": "faux"
+            },
+            {
+              "id": "i3",
+              "label": "Six minutes après l'arrêt, la fréquence cardiaque n'est pas encore tout à fait revenue à sa valeur de repos.",
+              "category": "vrai"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "vrai",
+              "id": "mc:retour-immediat",
+              "error": "lecture",
+              "feedback": "Regarde la courbe après la 8e minute : elle redescend progressivement (135, 112, 98…). La récupération prend plusieurs minutes."
+            },
+            {
+              "item": "i3",
+              "category": "faux",
+              "id": "mc:retour-immediat",
+              "error": "lecture",
+              "feedback": "À la 14e minute, la fréquence est de 80 bpm, alors que la valeur de repos est de 76 bpm : elle n'est pas encore tout à fait revenue."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "La fréquence cardiaque se lit sur l'axe vertical, le temps sur l'axe horizontal.",
+        "Augmentation = valeur maximale − valeur de repos.",
+        "Regarde la courbe après la 8e minute."
+      ],
+      "solution": "Maximum : 170 bpm. Augmentation : 170 − 76 = 94 bpm. La fréquence augmente dès que l'effort commence et redescend progressivement après l'arrêt : à la 14e minute, 80 bpm, presque la valeur de repos (76 bpm).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "170"
+              },
+              {
+                "value": "94"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "8"
+              },
+              {
+                "value": "94"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:lecture-axe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "170"
+              },
+              {
+                "value": "170"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "170"
+              },
+              {
+                "value": "94"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:retour-immediat"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "170"
+              },
+              {
+                "value": "94"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:retour-immediat"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-roles",
+      "type": "match",
+      "skill": "svt5.corps.systemes-effort",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:poumons-fabriquent-o2",
+        "mc:poumons-pompent"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Associe chaque organe ou système à son rôle lors d'un effort. Attention : un des rôles proposés est faux.",
+      "leftTitle": "Organe ou système",
+      "rightTitle": "Rôle à l'effort",
+      "left": [
+        {
+          "id": "l1",
+          "label": "Les muscles"
+        },
+        {
+          "id": "l2",
+          "label": "Le système nerveux"
+        },
+        {
+          "id": "l3",
+          "label": "Le cœur et les vaisseaux"
+        },
+        {
+          "id": "l4",
+          "label": "Les poumons"
+        },
+        {
+          "id": "l5",
+          "label": "La peau"
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "label": "Consomment davantage de dioxygène et de glucose ; produisent plus de dioxyde de carbone et de chaleur"
+        },
+        {
+          "id": "r2",
+          "label": "Reçoit des informations et commande l'accélération du cœur et de la respiration"
+        },
+        {
+          "id": "r3",
+          "label": "Envoient plus de sang vers les muscles : apport de dioxygène et de nutriments, évacuation du CO₂"
+        },
+        {
+          "id": "r4",
+          "label": "Font entrer plus de dioxygène dans le sang et évacuent le dioxyde de carbone"
+        },
+        {
+          "id": "r5",
+          "label": "Évacue la chaleur en excès grâce à la sueur qui s'évapore"
+        },
+        {
+          "id": "r6",
+          "label": "Fabriquent le dioxygène dont les muscles ont besoin"
+        }
+      ],
+      "pairs": {
+        "l1": "r1",
+        "l2": "r2",
+        "l3": "r3",
+        "l4": "r4",
+        "l5": "r5"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "l4",
+            "r6"
+          ],
+          "id": "mc:poumons-fabriquent-o2",
+          "error": "notion",
+          "feedback": "Les poumons ne fabriquent pas de dioxygène : ils le prélèvent dans l'air inspiré et le font passer dans le sang. Le dioxygène de l'air vient en grande partie de la photosynthèse des végétaux."
+        },
+        {
+          "pair": [
+            "l4",
+            "r3"
+          ],
+          "id": "mc:poumons-pompent",
+          "error": "notion",
+          "feedback": "Ce sont le cœur et les vaisseaux qui font circuler le sang. Les poumons sont le lieu où le sang se charge en dioxygène et se débarrasse du dioxyde de carbone."
+        }
+      ],
+      "hints": [
+        "Pense au rôle de chacun : consommer, commander, transporter, échanger les gaz, refroidir.",
+        "Une proposition est fausse : les poumons ne fabriquent pas le dioxygène."
+      ],
+      "solution": "Muscles : consomment plus de dioxygène et de glucose. Système nerveux : commande. Cœur et vaisseaux : transportent le sang. Poumons : échanges de gaz avec l'air. Peau : sueur qui évacue la chaleur. Les poumons ne fabriquent pas de dioxygène.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r4",
+              "l5": "r5"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r6",
+              "l5": "r5"
+            }
+          },
+          "expect": "mc:poumons-fabriquent-o2"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r3",
+              "l5": "r5"
+            }
+          },
+          "expect": "mc:poumons-pompent"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-chaine",
+      "type": "order",
+      "skill": "svt5.corps.systemes-effort",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 150,
+      "prompt": "Remets dans l'ordre les événements qui permettent à l'organisme de s'adapter à un effort.",
+      "orderLabel": "dans l'ordre des événements",
+      "items": [
+        {
+          "id": "o1",
+          "label": "Les muscles se contractent : ils consomment davantage de dioxygène et de glucose."
+        },
+        {
+          "id": "o2",
+          "label": "Des capteurs envoient des messages nerveux aux centres nerveux : les besoins ont augmenté."
+        },
+        {
+          "id": "o3",
+          "label": "Les centres nerveux commandent au cœur et aux muscles de la respiration d'accélérer."
+        },
+        {
+          "id": "o4",
+          "label": "Plus de sang circule et plus de dioxygène arrive aux muscles qui travaillent."
+        },
+        {
+          "id": "o5",
+          "label": "Après l'effort, les besoins diminuent et les fréquences redescendent progressivement."
+        }
+      ],
+      "hints": [
+        "Tout commence dans les muscles : leurs besoins augmentent.",
+        "Le système nerveux fait le lien entre les besoins et la réponse."
+      ],
+      "solution": "Les muscles consomment plus ; des capteurs en informent les centres nerveux ; ceux-ci commandent au cœur et à la respiration d'accélérer ; plus de sang et de dioxygène arrivent aux muscles ; après l'effort, tout redescend.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "o5",
+              "o4",
+              "o3",
+              "o2",
+              "o1"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-expliquer",
+      "type": "open",
+      "skill": "svt5.corps.systemes-effort",
+      "skills": [
+        "svt5.corps.rythmes-effort"
+      ],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 480,
+      "minWords": 40,
+      "prompt": "Pendant un sprint, ton cœur bat très vite et ta respiration s'accélère. Explique pourquoi, en citant les muscles, le système nerveux, le cœur et les poumons. Pourquoi finit-on par devoir ralentir ?",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que les muscles qui travaillent consomment plus de dioxygène et de glucose",
+          "keywords": [
+            [
+              "muscle"
+            ],
+            [
+              "dioxygene",
+              "oxygene",
+              "glucose",
+              "nutriment",
+              "energie"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je dis que le système nerveux reçoit l'information et commande le cœur et la respiration",
+          "keywords": [
+            [
+              "nerv",
+              "cerveau",
+              "message",
+              "commande"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "J'explique que le cœur envoie plus de sang et que les poumons font entrer plus de dioxygène",
+          "keywords": [
+            [
+              "sang",
+              "coeur"
+            ],
+            [
+              "poumon",
+              "respir"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Je donne une limite : les capacités de l'organisme sont limitées, d'où la fatigue",
+          "keywords": [
+            [
+              "limite",
+              "fatigue",
+              "maximum",
+              "maximal",
+              "epuis",
+              "ne peut plus"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Pendant un sprint, les muscles consomment beaucoup plus de dioxygène et de glucose pour fabriquer de l'énergie. Des capteurs en informent le système nerveux, qui commande au cœur et aux muscles de la respiration d'accélérer. Le cœur envoie plus de sang vers les muscles et les poumons font entrer plus de dioxygène dans le sang. Mais ces capacités ont une limite : la fatigue arrive et on doit ralentir.",
+        "Quand je cours vite, mes muscles ont besoin de plus de dioxygène et de nutriments. Mon système nerveux commande à mon cœur de battre plus vite et à ma respiration de s'accélérer, pour envoyer plus de sang aux muscles. Le cœur et les poumons ne peuvent pas accélérer indéfiniment : leur maximum est limité, et la fatigue m'oblige à ralentir."
+      ],
+      "hints": [
+        "Commence par ce qui change dans les muscles pendant l'effort.",
+        "Dis qui donne l'ordre d'accélérer, puis qui l'exécute.",
+        "Termine par les limites de l'organisme."
+      ],
+      "solution": "À l'effort, les muscles consomment plus de dioxygène et de glucose. Le système nerveux commande au cœur et à la respiration d'accélérer : plus de sang circule, plus de dioxygène entre. Ces capacités ont un maximum : au-delà, la fatigue impose de ralentir.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Pendant un sprint, les muscles consomment beaucoup plus de dioxygène et de glucose pour fabriquer de l'énergie. Des capteurs en informent le système nerveux, qui commande au cœur et aux muscles de la respiration d'accélérer. Le cœur envoie plus de sang vers les muscles et les poumons font entrer plus de dioxygène dans le sang. Mais ces capacités ont une limite : la fatigue arrive et on doit ralentir.",
+            "selfCheck": {
+              "c1": true,
+              "c2": true,
+              "c3": true,
+              "c4": true
+            }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-bilan",
+      "type": "composite",
+      "skill": "svt5.corps.activite-sante",
+      "skills": [
+        "svt5.corps.rythmes-effort"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:operation-inversee",
+        "mc:rapport-inverse",
+        "mc:valeur-recommandee",
+        "mc:essoufflement-danger",
+        "mc:une-fois-semaine"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Karim a 13 ans. Au repos, sa fréquence cardiaque est de 72 bpm ; après dix minutes de footing, elle est de 150 bpm. Pendant une semaine, il a pratiqué 30 minutes d'activité le lundi, 45 minutes le mercredi et 90 minutes le samedi. On estime sa fréquence cardiaque maximale par la formule 220 − âge (une estimation, pas une mesure). L'OMS recommande aux enfants et adolescents au moins 60 minutes d'activité par jour en moyenne sur la semaine.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la fréquence cardiaque maximale estimée de Karim, en bpm ?",
+          "answer": 207,
+          "misconceptions": [
+            {
+              "answer": 233,
+              "id": "mc:operation-inversee",
+              "error": "calcul",
+              "feedback": "La formule est 220 − âge : on soustrait l'âge (13), on ne l'ajoute pas."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pendant le footing, à quel pourcentage de sa fréquence maximale estimée Karim est-il ? (arrondi à l'unité, en %)",
+          "answer": 72,
+          "tolerance": 0.6,
+          "misconceptions": [
+            {
+              "answer": 138,
+              "id": "mc:rapport-inverse",
+              "error": "methode",
+              "feedback": "Tu as divisé la fréquence maximale par la fréquence du footing. Un pourcentage de la fréquence maximale se calcule en divisant 150 par 207."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de minutes d'activité manque-t-il à Karim pour atteindre, sur la semaine, la recommandation de 60 minutes par jour ?",
+          "answer": 255,
+          "misconceptions": [
+            {
+              "answer": 420,
+              "id": "mc:valeur-recommandee",
+              "error": "lecture",
+              "feedback": "420 minutes (7 × 60) est la recommandation pour la semaine. Ce qui manque est la différence avec ce que Karim a fait : 420 − 165."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quels conseils sont de bons conseils pour la santé de Karim ?",
+          "categories": [
+            {
+              "id": "bon",
+              "label": "Bon conseil"
+            },
+            {
+              "id": "mauvais",
+              "label": "Mauvais conseil"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Marcher ou rouler à vélo pour aller au collège quand c'est possible.",
+              "category": "bon"
+            },
+            {
+              "id": "i2",
+              "label": "Faire des pauses actives quand on reste longtemps assis devant un écran.",
+              "category": "bon"
+            },
+            {
+              "id": "i3",
+              "label": "Arrêter tout effort dès qu'on est essoufflé, car c'est toujours dangereux.",
+              "category": "mauvais"
+            },
+            {
+              "id": "i4",
+              "label": "Faire 30 minutes de sport une fois par semaine suffit largement.",
+              "category": "mauvais"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "bon",
+              "id": "mc:essoufflement-danger",
+              "error": "notion",
+              "feedback": "Être essoufflé à l'effort est normal : c'est le signe que la respiration s'adapte. On s'arrête en cas de douleur, de malaise ou de vertige, pas simplement parce qu'on respire plus vite."
+            },
+            {
+              "item": "i4",
+              "category": "bon",
+              "id": "mc:une-fois-semaine",
+              "error": "raisonnement",
+              "feedback": "La recommandation est d'au moins 60 minutes par jour en moyenne : une seule séance par semaine est très insuffisante."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Fréquence maximale estimée = 220 − 13.",
+        "Pourcentage = 150 ÷ 207 × 100.",
+        "Calcule le total de la semaine (30 + 45 + 90) puis compare à 7 × 60."
+      ],
+      "solution": "Fréquence maximale estimée : 220 − 13 = 207 bpm. Pendant le footing : 150 ÷ 207 ≈ 72 % de ce maximum. Activité de la semaine : 30 + 45 + 90 = 165 min ; recommandation : 7 × 60 = 420 min ; il manque 255 minutes. L'essoufflement est normal à l'effort ; bouger souvent et limiter la sédentarité protège la santé.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "207"
+              },
+              {
+                "value": "72"
+              },
+              {
+                "value": "255"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "mauvais",
+                  "i4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "233"
+              },
+              {
+                "value": "72"
+              },
+              {
+                "value": "255"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "mauvais",
+                  "i4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:operation-inversee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "207"
+              },
+              {
+                "value": "138"
+              },
+              {
+                "value": "255"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "mauvais",
+                  "i4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:rapport-inverse"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "207"
+              },
+              {
+                "value": "72"
+              },
+              {
+                "value": "420"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "mauvais",
+                  "i4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-recommandee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "207"
+              },
+              {
+                "value": "72"
+              },
+              {
+                "value": "255"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "bon",
+                  "i4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:essoufflement-danger"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "207"
+              },
+              {
+                "value": "72"
+              },
+              {
+                "value": "255"
+              },
+              {
+                "assign": {
+                  "i1": "bon",
+                  "i2": "bon",
+                  "i3": "mauvais",
+                  "i4": "bon"
+                }
+              }
+            ]
+          },
+          "expect": "mc:une-fois-semaine"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-rem-pouls",
+      "type": "numeric",
+      "skill": "svt5.corps.rythmes-effort",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:duree-comptage",
+        "mc:comptage-non-converti"
+      ],
+      "expectedSeconds": 120,
+      "params": {
+        "n": {
+          "int": [
+            10,
+            20
+          ]
+        }
+      },
+      "prompt": "Rappel ciblé : pour obtenir une fréquence en battements par minute, on convertit la durée du comptage en une minute (60 secondes). Tu comptes {n} pulsations pendant 10 secondes. Quelle est ta fréquence cardiaque, en battements par minute ?",
+      "answer": "n*6",
+      "misconceptions": [
+        {
+          "answer": "n*4",
+          "id": "mc:duree-comptage",
+          "error": "methode",
+          "feedback": "Tu as multiplié par 4, valable pour un comptage de 15 secondes. Ici le comptage dure 10 secondes : il y a 6 fois 10 secondes dans une minute."
+        },
+        {
+          "answer": "n",
+          "id": "mc:comptage-non-converti",
+          "error": "methode",
+          "feedback": "{n} est le nombre de pulsations en 10 secondes seulement. Il faut le ramener à une minute."
+        }
+      ],
+      "hints": [
+        "Combien de fois 10 secondes dans 60 secondes ?",
+        "Multiplie le nombre de pulsations par ce nombre."
+      ],
+      "solution": "60 ÷ 10 = 6 : {n} × 6 = {n*6} battements par minute.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{n*6}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{n*4}"
+          },
+          "expect": "mc:duree-comptage"
+        },
+        {
+          "response": {
+            "value": "{n}"
+          },
+          "expect": "mc:comptage-non-converti"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-rem-cause",
+      "type": "categorize",
+      "skill": "svt5.corps.systemes-effort",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:poumons-besoin-air",
+        "mc:coeur-cause"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : à l'effort, ce sont les besoins des muscles qui déclenchent l'accélération du cœur et de la respiration, pas l'inverse. Classe chaque phrase : est-ce le besoin qui déclenche, ou la réponse de l'organisme ?",
+      "categories": [
+        {
+          "id": "besoin",
+          "label": "Le besoin (ce qui déclenche)"
+        },
+        {
+          "id": "reponse",
+          "label": "La réponse de l'organisme"
+        }
+      ],
+      "items": [
+        {
+          "id": "r1",
+          "label": "Les muscles ont besoin de plus d'énergie.",
+          "category": "besoin"
+        },
+        {
+          "id": "r2",
+          "label": "Les muscles consomment plus de dioxygène et de glucose.",
+          "category": "besoin"
+        },
+        {
+          "id": "r3",
+          "label": "La fréquence cardiaque augmente.",
+          "category": "reponse"
+        },
+        {
+          "id": "r4",
+          "label": "La fréquence respiratoire augmente.",
+          "category": "reponse"
+        },
+        {
+          "id": "r5",
+          "label": "Plus de sang est envoyé aux muscles.",
+          "category": "reponse"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "r4",
+          "category": "besoin",
+          "id": "mc:poumons-besoin-air",
+          "error": "raisonnement",
+          "feedback": "Ce ne sont pas les poumons qui ont d'abord besoin d'air : ce sont les muscles qui ont besoin de plus de dioxygène. La respiration s'accélère pour répondre à ce besoin."
+        },
+        {
+          "item": "r3",
+          "category": "besoin",
+          "id": "mc:coeur-cause",
+          "error": "raisonnement",
+          "feedback": "L'accélération du cœur est la réponse de l'organisme, pas la cause : c'est le besoin des muscles qui la déclenche."
+        }
+      ],
+      "hints": [
+        "Qui a des besoins nouveaux à l'effort ? Qui répond à ces besoins ?",
+        "Le cœur et la respiration s'adaptent aux muscles."
+      ],
+      "solution": "Les besoins des muscles (énergie, dioxygène, glucose) déclenchent la réponse : le cœur et la respiration accélèrent et plus de sang est envoyé aux muscles.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "r1": "besoin",
+              "r2": "besoin",
+              "r3": "reponse",
+              "r4": "reponse",
+              "r5": "reponse"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "besoin",
+              "r2": "besoin",
+              "r3": "reponse",
+              "r4": "besoin",
+              "r5": "reponse"
+            }
+          },
+          "expect": "mc:poumons-besoin-air"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "besoin",
+              "r2": "besoin",
+              "r3": "besoin",
+              "r4": "reponse",
+              "r5": "reponse"
+            }
+          },
+          "expect": "mc:coeur-cause"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-tracer",
+      "type": "graph",
+      "skill": "svt5.corps.rythmes-effort",
+      "skills": [
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "lecture"
+      ],
+      "expectedSeconds": 200,
+      "prompt": "Pendant le test de Léa, on a aussi compté sa **fréquence respiratoire** (mouvements par minute) : au repos, à la minute 0 : 16 ; à la fin de l'effort, à la minute 2 : 40 ; pendant la récupération, à la minute 3 : 28, à la minute 5 : 20 et à la minute 7 : 18. Place ces cinq points dans le repère (abscisse : temps en minutes ; ordonnée : fréquence respiratoire).",
+      "xRange": [
+        0,
+        8
+      ],
+      "yRange": [
+        0,
+        50
+      ],
+      "xStep": 1,
+      "yStep": 5,
+      "xLabel": "temps (min)",
+      "yLabel": "mouvements par minute",
+      "maxPoints": 6,
+      "expectedPoints": [
+        [
+          0,
+          16
+        ],
+        [
+          2,
+          40
+        ],
+        [
+          3,
+          28
+        ],
+        [
+          5,
+          20
+        ],
+        [
+          7,
+          18
+        ]
+      ],
+      "hints": [
+        "L'abscisse (axe horizontal) est le temps ; l'ordonnée (axe vertical) est la fréquence respiratoire.",
+        "Le point du repos est sur l'axe vertical : (0 ; 16).",
+        "Après l'effort, tes points doivent redescendre peu à peu, sans revenir tout de suite à 16."
+      ],
+      "solution": "On place (0 ; 16), (2 ; 40), (3 ; 28), (5 ; 20) et (7 ; 18). En reliant les points, on voit la fréquence respiratoire monter pendant l'effort (de 16 à 40 mouvements par minute), puis redescendre progressivement pendant la récupération : 5 minutes après la fin de l'effort, elle n'est pas encore tout à fait revenue à sa valeur de repos.",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                0,
+                16
+              ],
+              [
+                2,
+                40
+              ],
+              [
+                3,
+                28
+              ],
+              [
+                5,
+                20
+              ],
+              [
+                7,
+                18
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                16,
+                0
+              ],
+              [
+                40,
+                2
+              ],
+              [
+                28,
+                3
+              ],
+              [
+                20,
+                5
+              ],
+              [
+                18,
+                7
+              ]
+            ]
+          },
+          "expect": "lecture"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-situations",
+      "type": "categorize",
+      "skill": "svt5.corps.rythmes-effort",
+      "skills": [
+        "svt5.corps.systemes-effort",
+        "svt5.corps.activite-sante"
+      ],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:entrainement-coeur-rapide",
+        "mc:co2-effort",
+        "mc:recuperation-absente"
+      ],
+      "expectedSeconds": 200,
+      "prompt": "Dans chaque situation, la grandeur indiquée **augmente**, **diminue** ou reste **à peu près stable** ? Raisonne comme pour Léa : de quoi les muscles ont-ils besoin ?",
+      "categories": [
+        {
+          "id": "augmente",
+          "label": "Augmente"
+        },
+        {
+          "id": "diminue",
+          "label": "Diminue"
+        },
+        {
+          "id": "stable",
+          "label": "Reste stable"
+        }
+      ],
+      "items": [
+        {
+          "id": "s1",
+          "label": "Tom passe de la marche au sprint pour attraper son bus : sa fréquence cardiaque.",
+          "category": "augmente"
+        },
+        {
+          "id": "s2",
+          "label": "Inès a fini un 800 m : sa fréquence respiratoire 5 minutes après l'arrivée, comparée à celle mesurée juste à l'arrivée.",
+          "category": "diminue"
+        },
+        {
+          "id": "s3",
+          "label": "Hugo nage trois fois par semaine depuis six mois : sa fréquence cardiaque au repos, comparée à celle d'avant l'entraînement.",
+          "category": "diminue"
+        },
+        {
+          "id": "s4",
+          "label": "Un cycliste attaque une côte : le dioxygène consommé par les muscles de ses jambes.",
+          "category": "augmente"
+        },
+        {
+          "id": "s5",
+          "label": "Pendant un match de handball : le dioxyde de carbone rejeté par les poumons, comparé au repos.",
+          "category": "augmente"
+        },
+        {
+          "id": "s6",
+          "label": "Nina lit, assise, depuis vingt minutes : sa fréquence cardiaque d'une minute à l'autre.",
+          "category": "stable"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "s3",
+          "category": "augmente",
+          "id": "mc:entrainement-coeur-rapide",
+          "error": "notion",
+          "feedback": "Un cœur entraîné éjecte plus de sang à chaque battement : au repos, il lui suffit de battre moins souvent. La fréquence de repos diminue avec l'entraînement."
+        },
+        {
+          "item": "s5",
+          "category": "diminue",
+          "id": "mc:co2-effort",
+          "error": "notion",
+          "feedback": "Les muscles qui travaillent produisent plus de dioxyde de carbone. Le sang l'apporte aux poumons, qui en rejettent davantage."
+        },
+        {
+          "item": "s2",
+          "category": "stable",
+          "id": "mc:recuperation-absente",
+          "error": "notion",
+          "feedback": "Pendant la récupération, les besoins des muscles baissent peu à peu : la fréquence respiratoire redescend progressivement, sans revenir instantanément à sa valeur de repos."
+        }
+      ],
+      "hints": [
+        "Demande-toi d'abord : les muscles travaillent-ils plus, moins, ou autant ?",
+        "Plus de travail musculaire = plus de dioxygène consommé et plus de dioxyde de carbone produit.",
+        "Pense à la récupération, et à l'effet de l'entraînement sur le cœur au repos."
+      ],
+      "solution": "Augmente : la fréquence cardiaque de Tom (effort), le dioxygène consommé par les jambes du cycliste, le dioxyde de carbone rejeté pendant le match (les muscles en produisent plus). Diminue : la fréquence respiratoire d'Inès pendant la récupération, et la fréquence cardiaque de repos de Hugo (un cœur entraîné éjecte plus de sang à chaque battement). Reste stable : la fréquence cardiaque de Nina, au repos depuis longtemps.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "s1": "augmente",
+              "s2": "diminue",
+              "s3": "diminue",
+              "s4": "augmente",
+              "s5": "augmente",
+              "s6": "stable"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "s1": "augmente",
+              "s2": "diminue",
+              "s3": "augmente",
+              "s4": "augmente",
+              "s5": "augmente",
+              "s6": "stable"
+            }
+          },
+          "expect": "mc:entrainement-coeur-rapide"
+        },
+        {
+          "response": {
+            "assign": {
+              "s1": "augmente",
+              "s2": "diminue",
+              "s3": "diminue",
+              "s4": "augmente",
+              "s5": "diminue",
+              "s6": "stable"
+            }
+          },
+          "expect": "mc:co2-effort"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-entrainement",
+      "type": "composite",
+      "skill": "svt5.corps.activite-sante",
+      "skills": [
+        "svt5.corps.rythmes-effort",
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:unite-ml-l",
+        "mc:frequence-basse-faible"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "On compare le cœur de deux jeunes adultes, l'un sédentaire, l'autre entraîné (valeurs fictives). Au repos : fréquence 78 bpm et 65 mL éjectés par battement pour le sédentaire ; 56 bpm et 90 mL pour l'entraîné. À l'effort maximal, la fréquence est de 195 bpm pour les deux ; le volume éjecté est de 100 mL pour le sédentaire et de 150 mL pour l'entraîné. Débit cardiaque = fréquence × volume éjecté.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le débit cardiaque au repos du sédentaire, en L par minute ?",
+          "answer": 5.07,
+          "tolerance": 0.005,
+          "misconceptions": [
+            {
+              "answer": 5070,
+              "id": "mc:unite-ml-l",
+              "error": "unite",
+              "feedback": "5 070 est le débit en mL par minute. La question demande des litres : 1 L = 1 000 mL."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le débit cardiaque au repos de l'entraîné, en L par minute ?",
+          "answer": 5.04,
+          "tolerance": 0.005,
+          "misconceptions": [
+            {
+              "answer": 5040,
+              "id": "mc:unite-ml-l",
+              "error": "unite",
+              "feedback": "5 040 est le débit en mL par minute. La question demande des litres : 1 L = 1 000 mL."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le débit cardiaque maximal de l'entraîné, en L par minute ?",
+          "answer": 29.25,
+          "tolerance": 0.005,
+          "misconceptions": [
+            {
+              "answer": 29250,
+              "id": "mc:unite-ml-l",
+              "error": "unite",
+              "feedback": "29 250 est le débit en mL par minute. La question demande des litres : 1 L = 1 000 mL."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que peut-on conclure de ces données ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Au repos, les deux ont à peu près le même débit cardiaque.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "Le cœur de l'entraîné éjecte plus de sang à chaque battement : il a besoin de battre moins vite au repos.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "L'entraîné a une fréquence de repos plus basse parce que son cœur est moins efficace.",
+              "category": "faux"
+            },
+            {
+              "id": "i4",
+              "label": "À l'effort maximal, l'entraîné peut envoyer plus de sang aux muscles que le sédentaire.",
+              "category": "vrai"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "vrai",
+              "id": "mc:frequence-basse-faible",
+              "error": "raisonnement",
+              "feedback": "C'est l'inverse : un cœur entraîné est plus efficace. Il éjecte plus de sang à chaque battement, donc il peut battre moins souvent pour le même débit."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Débit = fréquence × volume éjecté (en mL par minute), puis convertis en litres.",
+        "78 × 65 et 56 × 90 : compare les deux résultats.",
+        "À l'effort maximal, la fréquence est la même : que change le volume éjecté ?"
+      ],
+      "solution": "Sédentaire au repos : 78 × 65 = 5 070 mL, soit 5,07 L par minute. Entraîné au repos : 56 × 90 = 5 040 mL, soit 5,04 L par minute. Entraîné à l'effort maximal : 195 × 150 = 29 250 mL, soit 29,25 L par minute (le sédentaire : 195 × 100 = 19,5 L). Le cœur entraîné est plus efficace : même débit au repos avec moins de battements, et débit maximal supérieur.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,07"
+              },
+              {
+                "value": "5,04"
+              },
+              {
+                "value": "29,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5070"
+              },
+              {
+                "value": "5,04"
+              },
+              {
+                "value": "29,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-ml-l"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,07"
+              },
+              {
+                "value": "5040"
+              },
+              {
+                "value": "29,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-ml-l"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,07"
+              },
+              {
+                "value": "5,04"
+              },
+              {
+                "value": "29250"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-ml-l"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,07"
+              },
+              {
+                "value": "5,04"
+              },
+              {
+                "value": "29,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:frequence-basse-faible"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-temoin",
+      "type": "composite",
+      "skill": "svt.demarche.hypothese-temoin",
+      "skills": [
+        "svt.demarche.exploiter-donnees",
+        "svt5.corps.activite-sante"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:moyenne-somme",
+        "mc:ecart-signe",
+        "mc:temoin-ignore",
+        "mc:moyenne-individu"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Pour savoir si l'entraînement abaisse la fréquence cardiaque de repos, on suit douze élèves pendant huit semaines. Six élèves s'entraînent trois fois par semaine (groupe entraîné), six gardent leurs habitudes (groupe témoin). Fréquences de repos (bpm). Groupe entraîné : avant 78, 82, 76, 80, 74, 78 ; après 72, 76, 70, 74, 68, 72. Groupe témoin : avant 80, 76, 82, 74, 78, 78 ; après 80, 76, 81, 75, 78, 78.",
+      "parts": [
+        {
+          "type": "table",
+          "prompt": "Calcule les moyennes (nombres seuls, en bpm).",
+          "columns": [
+            "Groupe",
+            "Moyenne avant",
+            "Moyenne après"
+          ],
+          "rows": [
+            [
+              "Entraîné",
+              "?r0c1",
+              "?r0c2"
+            ],
+            [
+              "Témoin",
+              "?r1c1",
+              "?r1c2"
+            ]
+          ],
+          "cells": {
+            "r0c1": {
+              "answer": 78,
+              "misconceptions": [
+                {
+                  "answer": 468,
+                  "id": "mc:moyenne-somme",
+                  "error": "methode",
+                  "feedback": "468 est la somme des six valeurs : divise-la par 6 pour obtenir la moyenne."
+                }
+              ]
+            },
+            "r0c2": {
+              "answer": 72
+            },
+            "r1c1": {
+              "answer": 78
+            },
+            "r1c2": {
+              "answer": 78
+            }
+          }
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la variation de la fréquence de repos moyenne du groupe entraîné entre « avant » et « après » (en bpm, avec son signe) ?",
+          "answer": -6,
+          "misconceptions": [
+            {
+              "answer": 6,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "La fréquence a diminué (78 → 72) : la variation est négative, −6 bpm."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quels raisonnements sont valides ?",
+          "categories": [
+            {
+              "id": "valide",
+              "label": "Valide"
+            },
+            {
+              "id": "abusif",
+              "label": "Abusif"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Le groupe témoin montre que la simple répétition de la mesure ou le temps qui passe ne baissent pas la fréquence de repos.",
+              "category": "valide"
+            },
+            {
+              "id": "i2",
+              "label": "Sans groupe témoin, la baisse du groupe entraîné suffirait à prouver l'effet de l'entraînement.",
+              "category": "abusif"
+            },
+            {
+              "id": "i3",
+              "label": "Comme la baisse est la même pour tous les élèves, l'entraînement a ralenti chaque cœur de 6 bpm exactement.",
+              "category": "abusif"
+            },
+            {
+              "id": "i4",
+              "label": "Pour ces douze élèves, l'entraînement est associé à une baisse moyenne de 6 bpm de la fréquence de repos.",
+              "category": "valide"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "valide",
+              "id": "mc:temoin-ignore",
+              "error": "raisonnement",
+              "feedback": "Sans témoin, on ne sait pas si la baisse vient de l'entraînement ou d'autre chose (saison, habitude de la mesure…). Le groupe témoin, resté stable, permet de conclure."
+            },
+            {
+              "item": "i3",
+              "category": "valide",
+              "id": "mc:moyenne-individu",
+              "error": "raisonnement",
+              "feedback": "Une moyenne décrit le groupe, pas chaque élève : la baisse individuelle varie (de 4 à 6 bpm ici)."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Moyenne = somme des six valeurs ÷ 6.",
+        "Variation = valeur après − valeur avant.",
+        "À quoi sert le groupe témoin ?"
+      ],
+      "solution": "Moyennes : entraîné 78 puis 72 bpm ; témoin 78 puis 78 bpm. Variation du groupe entraîné : 72 − 78 = −6 bpm. Le groupe témoin n'a pas changé : la baisse est donc associée à l'entraînement. Une moyenne ne dit pas ce qui se passe pour chaque élève.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "78",
+                  "r0c2": "72",
+                  "r1c1": "78",
+                  "r1c2": "78"
+                }
+              },
+              {
+                "value": "-6"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "abusif",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "468",
+                  "r0c2": "72",
+                  "r1c1": "78",
+                  "r1c2": "78"
+                }
+              },
+              {
+                "value": "-6"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "abusif",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "78",
+                  "r0c2": "72",
+                  "r1c1": "78",
+                  "r1c2": "78"
+                }
+              },
+              {
+                "value": "6"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "abusif",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-signe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "78",
+                  "r0c2": "72",
+                  "r1c1": "78",
+                  "r1c2": "78"
+                }
+              },
+              {
+                "value": "-6"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:temoin-ignore"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "78",
+                  "r0c2": "72",
+                  "r1c1": "78",
+                  "r1c2": "78"
+                }
+              },
+              {
+                "value": "-6"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-individu"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-fcmax",
+      "type": "composite",
+      "skill": "svt5.corps.rythmes-effort",
+      "skills": [
+        "svt.demarche.exploiter-donnees",
+        "svt5.corps.activite-sante"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:operation-inversee",
+        "mc:ecart-oublie",
+        "mc:formule-exacte",
+        "mc:ecart-maladie"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "La formule « 220 − âge » estime la fréquence cardiaque maximale. On compare cette estimation à des mesures faites en laboratoire sur cinq élèves (valeurs fictives) : 13 ans, 205 bpm ; 13 ans, 198 bpm ; 14 ans, 201 bpm ; 14 ans, 209 bpm ; 13 ans, 192 bpm.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle fréquence maximale la formule prévoit-elle pour un élève de 14 ans, en bpm ?",
+          "answer": 206,
+          "misconceptions": [
+            {
+              "answer": 234,
+              "id": "mc:operation-inversee",
+              "error": "calcul",
+              "feedback": "La formule est 220 − âge : on soustrait l'âge (14), on ne l'ajoute pas."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus grand écart (sans signe) entre une mesure et la valeur donnée par la formule pour le même âge, en bpm ?",
+          "answer": 15,
+          "misconceptions": [
+            {
+              "answer": 9,
+              "id": "mc:ecart-oublie",
+              "error": "lecture",
+              "feedback": "9 bpm est l'écart du deuxième élève de 13 ans. Le plus grand écart concerne l'élève de 13 ans à 192 bpm : 207 − 192 = 15 bpm."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que peut-on affirmer à partir de ces mesures ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "La formule donne une estimation grossière, qui peut s'écarter d'une dizaine de bpm de la mesure.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "La formule donne la valeur exacte pour chaque élève.",
+              "category": "faux"
+            },
+            {
+              "id": "i3",
+              "label": "Deux élèves du même âge peuvent avoir des fréquences maximales différentes.",
+              "category": "vrai"
+            },
+            {
+              "id": "i4",
+              "label": "Un élève dont la fréquence maximale mesurée est plus basse que la formule est en mauvaise santé.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "vrai",
+              "id": "mc:formule-exacte",
+              "error": "raisonnement",
+              "feedback": "Les écarts entre mesures et formule vont de −15 à +3 bpm : c'est un ordre de grandeur, pas une valeur exacte."
+            },
+            {
+              "item": "i4",
+              "category": "vrai",
+              "id": "mc:ecart-maladie",
+              "error": "raisonnement",
+              "feedback": "La fréquence maximale varie d'un individu à l'autre sans que cela traduise un problème de santé : un écart avec la formule n'est pas un symptôme."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Formule : 220 − âge.",
+        "Pour chaque élève, calcule mesure − formule, puis compare les écarts sans tenir compte du signe.",
+        "Une estimation n'est pas une mesure."
+      ],
+      "solution": "À 14 ans : 220 − 14 = 206 bpm. Écarts mesure − formule : −2, −9, −5, +3 et −15 bpm ; le plus grand (sans signe) est 15 bpm. La formule donne un ordre de grandeur, pas une valeur exacte, et l'écart n'est pas un signe de mauvaise santé.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "206"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "234"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:operation-inversee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "206"
+              },
+              {
+                "value": "9"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-oublie"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "206"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:formule-exacte"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "206"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-maladie"
+        }
+      ]
+    },
+    {
+      "id": "svt5-activite-physique-limite",
+      "type": "composite",
+      "skill": "svt5.corps.systemes-effort",
+      "skills": [
+        "svt.demarche.exploiter-donnees",
+        "svt5.corps.rythmes-effort"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:lecture-axe",
+        "mc:plateau-oublie",
+        "mc:masse-oubliee",
+        "mc:croissance-sans-limite"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Consommation de dioxygène d'un élève en fonction de sa vitesse de course",
+        "w": 540,
+        "h": 270,
+        "items": [
+          {
+            "type": "linechart",
+            "series": [
+              {
+                "label": "Consommation de dioxygène (mL/min/kg)",
+                "points": [
+                  [
+                    6,
+                    20
+                  ],
+                  [
+                    8,
+                    27
+                  ],
+                  [
+                    10,
+                    34
+                  ],
+                  [
+                    12,
+                    41
+                  ],
+                  [
+                    14,
+                    48
+                  ],
+                  [
+                    16,
+                    52
+                  ],
+                  [
+                    18,
+                    52
+                  ]
+                ],
+                "color": "svt"
+              }
+            ],
+            "xLabel": "vitesse (km/h)",
+            "yLabel": "mL/min/kg",
+            "xRange": [
+              6,
+              18
+            ],
+            "yRange": [
+              10,
+              60
+            ]
+          }
+        ]
+      },
+      "prompt": "Un élève court sur un tapis à des vitesses croissantes ; on mesure le dioxygène consommé, en mL par minute et par kg de masse (valeurs fictives). Vitesse (km/h) : consommation : 6 : 20 ; 8 : 27 ; 10 : 34 ; 12 : 41 ; 14 : 48 ; 16 : 52 ; 18 : 52.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien la consommation augmente-t-elle chaque fois que la vitesse augmente de 2 km/h, tant qu'elle n'a pas atteint son maximum ?",
+          "answer": 7,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:lecture-axe",
+              "error": "lecture",
+              "feedback": "2 km/h est l'augmentation de la vitesse. On demande l'augmentation de la consommation de dioxygène : 27 − 20."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la consommation maximale de dioxygène, en mL par minute et par kg ?",
+          "answer": 52,
+          "misconceptions": [
+            {
+              "answer": 48,
+              "id": "mc:plateau-oublie",
+              "error": "lecture",
+              "feedback": "À 14 km/h, la consommation continue encore d'augmenter (jusqu'à 52 à 16 km/h). Le maximum est la valeur du plateau : 52."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour un élève de 50 kg, quelle est la consommation maximale de dioxygène, en mL par minute ?",
+          "answer": 2600,
+          "misconceptions": [
+            {
+              "answer": 52,
+              "id": "mc:masse-oubliee",
+              "error": "methode",
+              "feedback": "52 est la consommation par kg. Pour un élève de 50 kg, on multiplie par la masse : 52 × 50."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que montre la courbe ? Classe chaque phrase.",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Plus l'effort est intense, plus la consommation de dioxygène augmente, jusqu'à un maximum.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "Au-delà de 16 km/h, l'organisme ne peut plus fournir davantage de dioxygène aux muscles : il atteint une limite.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "En courant plus vite que 16 km/h, la consommation de dioxygène continuerait d'augmenter sans limite.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "vrai",
+              "id": "mc:croissance-sans-limite",
+              "error": "lecture",
+              "feedback": "La courbe est horizontale entre 16 et 18 km/h : la consommation reste à 52. L'organisme a atteint la quantité maximale de dioxygène qu'il peut fournir aux muscles."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Compare la consommation entre deux vitesses consécutives dans la partie qui monte.",
+        "Le maximum est la valeur du palier.",
+        "Consommation en mL/min = consommation par kg × masse."
+      ],
+      "solution": "Dans la partie qui monte, la consommation augmente de 7 mL/min/kg tous les 2 km/h. Le maximum est de 52 mL/min/kg ; pour un élève de 50 kg, 52 × 50 = 2 600 mL par minute. Au-delà de 16 km/h, l'organisme ne peut plus fournir davantage de dioxygène : c'est une limite de ses capacités, à partir de laquelle l'effort ne peut plus être soutenu longtemps.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7"
+              },
+              {
+                "value": "52"
+              },
+              {
+                "value": "2600"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "2"
+              },
+              {
+                "value": "52"
+              },
+              {
+                "value": "2600"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:lecture-axe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7"
+              },
+              {
+                "value": "48"
+              },
+              {
+                "value": "2600"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:plateau-oublie"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7"
+              },
+              {
+                "value": "52"
+              },
+              {
+                "value": "52"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:masse-oubliee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7"
+              },
+              {
+                "value": "52"
+              },
+              {
+                "value": "2600"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:croissance-sans-limite"
+        }
+      ]
+    }
+  ]
+}

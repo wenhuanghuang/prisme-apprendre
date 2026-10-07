@@ -1,0 +1,439 @@
+{
+  "id": "m5-puissances",
+  "chapter": "m5-ch-puissances",
+  "title": "Carrés et cubes : la notation puissance",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.puissances.notation", "m5.puissances.calcul", "m5.calcul.priorites"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 50,
+  "summary": "Écrire a × a sous la forme a² et a × a × a sous la forme a³, connaître les carrés de 0 à 12 et le cube de 10, écrire un nombre comme un carré ou un cube, et calculer des expressions avec des puissances en respectant les priorités.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le cube de sucres",
+      "body": "Tom construit un gros cube avec des morceaux de sucre : 4 sucres sur la longueur, 4 sur la largeur, 4 sur la hauteur.\n\n« Il m'en faut $4 × 3 = 12$ », dit-il. Sa sœur répond : « Pas du tout, il en faut 64 ! »\n\nQui a raison ? Et combien de sucres faut-il pour la seule couche du fond, vue ci-dessous ?",
+      "figure": {
+        "alt": "Une couche de sucres vue de dessus : un carré de 4 sucres sur 4.",
+        "w": 200, "h": 200, "frame": { "x": [0, 4], "y": [0, 4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 1, "y": 0, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 3, "y": 0, "w": 1, "h": 1, "fill": "maths" },
+          { "type": "rect", "x": 0, "y": 1, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 1, "y": 1, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 3, "y": 1, "w": 1, "h": 1, "fill": "maths" },
+          { "type": "rect", "x": 0, "y": 2, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 1, "y": 2, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 2, "y": 2, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 3, "y": 2, "w": 1, "h": 1, "fill": "maths" },
+          { "type": "rect", "x": 0, "y": 3, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 1, "y": 3, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 2, "y": 3, "w": 1, "h": 1, "fill": "maths" }, { "type": "rect", "x": 3, "y": 3, "w": 1, "h": 1, "fill": "maths" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🟦",
+          "title": "Le carré d'un nombre",
+          "body": "$a² = a × a$ se lit « $a$ au carré ». C'est l'aire d'un carré de côté $a$ : un carré de 5 cm de côté a une aire de $5² = 5 × 5 = 25$ cm². Le petit 2 placé en haut s'appelle l'**exposant**.",
+          "reveal": {
+            "question": "Devine : $3²$ vaut-il 6 ou 9 ?",
+            "answer": "$3² = 3 × 3 = 9$. L'exposant 2 dit combien de fois on écrit 3 dans le produit, pas par combien on multiplie : $3 × 2 = 6$ est le double de 3, pas son carré."
+          }
+        },
+        {
+          "emoji": "🧊",
+          "title": "Le cube d'un nombre",
+          "body": "$a³ = a × a × a$ se lit « $a$ au cube ». C'est le volume d'un cube d'arête $a$ : trois facteurs égaux à $a$. À connaître par cœur : $10³ = 10 × 10 × 10 = 1 000$. Ainsi, un cube de 10 cm d'arête contient 1 000 cm³, c'est-à-dire 1 litre.",
+          "example": "$4³ = 4 × 4 × 4 = 64$ : il faut bien 64 sucres pour le gros cube de Tom."
+        },
+        {
+          "emoji": "📜",
+          "title": "Les carrés à connaître",
+          "body": "Les carrés des entiers de 0 à 12 sont à savoir par cœur, comme les tables : $0² = 0$, $1² = 1$, $2² = 4$, $3² = 9$, $4² = 16$, $5² = 25$, $6² = 36$, $7² = 49$, $8² = 64$, $9² = 81$, $10² = 100$, $11² = 121$, $12² = 144$."
+        },
+        {
+          "emoji": "✍️",
+          "title": "Écrire un nombre sous forme de puissance",
+          "body": "Dans un sens, on compte les facteurs égaux : $7 × 7 = 7²$ et $5 × 5 × 5 = 5³$. Dans l'autre sens, on cherche le nombre qui, multiplié par lui-même deux ou trois fois, redonne le nombre de départ : $81 = 9²$, $8 = 2³$, $1 000 = 10³$.",
+          "reveal": {
+            "question": "Devine : 64 est-il un carré, un cube… ou les deux ?",
+            "answer": "Les deux ! $64 = 8 × 8 = 8²$ et $64 = 4 × 4 × 4 = 4³$."
+          }
+        },
+        {
+          "emoji": "🚦",
+          "title": "Priorités : les puissances d'abord",
+          "body": "Dans un calcul, on effectue les parenthèses, puis les **puissances**, puis les multiplications et divisions, enfin les additions et soustractions. L'exposant ne porte que sur le nombre (ou la parenthèse) écrit juste avant lui.",
+          "example": "$2 × 3² = 2 × 9 = 18$, mais $(2 × 3)² = 6² = 36$ ; et $3 + 4² = 3 + 16 = 19$."
+        },
+        {
+          "emoji": "🔤",
+          "title": "Avec des lettres",
+          "body": "Les puissances apparaissent dans les formules : l'aire d'un carré de côté $c$ est $c²$, le volume d'un cube d'arête $a$ est $a³$. Pour calculer, on remplace la lettre par sa valeur, puis on respecte les priorités.",
+          "example": "Pour $x = 5$ : $2x² = 2 × 5² = 2 × 25 = 50$."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : deux calculs presque jumeaux",
+      "steps": [
+        { "text": "On veut calculer $A = 5 + 2 × 3²$ et $B = (5 + 2 × 3)²$. Dans A, il n'y a pas de parenthèses : on calcule d'abord la puissance.", "math": "A = 5 + 2 × 9" },
+        { "text": "Puis la multiplication, et enfin l'addition.", "math": "A = 5 + 18 = 23" },
+        { "text": "Dans B, on commence par la parenthèse, en respectant les priorités à l'intérieur.", "math": "B = (5 + 6)²" },
+        { "text": "Puis on élève le résultat au carré.", "math": "B = 11² = 121" },
+        { "text": "Mêmes nombres, mêmes opérations… mais pas le même résultat : les parenthèses changent tout." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m5-puissances-associer", "m5-puissances-calculer", "m5-puissances-ecrire", "m5-puissances-priorites", "m5-puissances-tableau", "m5-puissances-contre-exemple"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m5-puissances-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : les terrasses carrées",
+      "exercises": ["m5-puissances-terrasse"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : choisir un aquarium",
+      "body": "Au magasin, deux aquariums en forme de cube attendent un acheteur. Le vendeur affirme que le grand contient « juste le double » du petit. Vérifie avant d'acheter !",
+      "exercises": ["m5-puissances-aquarium"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** $a² = a × a$ (« $a$ au carré ») et $a³ = a × a × a$ (« $a$ au cube ») : l'exposant compte les facteurs égaux. Carrés de 0 à 12 : 0, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144. Et $10³ = 1 000$. Dans un calcul, les puissances passent juste après les parenthèses.\n\n- **$3² = 6$ ?** Non : $3² = 3 × 3 = 9$. Le carré n'est pas le double.\n- **$2³ = 6$ ?** Non : $2³ = 2 × 2 × 2 = 8$. Le cube n'est pas le triple.\n- **$2 × 3² = 36$ ?** Non : le carré ne porte que sur 3, donc $2 × 9 = 18$.\n- **Arête doublée, volume doublé ?** Non : le volume est multiplié par $2³ = 8$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera les carrés et les cubes à connaître dans quelques jours, comme on révise les tables."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un piège célèbre sur le carré d'une somme, et une propriété étonnante des nombres impairs.",
+      "exercises": ["m5-puissances-somme-carres", "m5-puissances-impairs"]
+    },
+    "expert": {
+      "intro": "Facultatif : des nombres à la fois carrés et cubes, et un grand cube peint en rouge puis démonté.",
+      "exercises": ["m5-puissances-carre-et-cube", "m5-puissances-cube-peint"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-puissances-associer", "type": "match", "skill": "m5.puissances.notation", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:cube-triple"], "expectedSeconds": 120,
+      "prompt": "Associe chaque puissance à sa valeur. Attention, il y a des intrus à droite !",
+      "leftTitle": "Puissance", "rightTitle": "Valeur",
+      "left": [
+        { "id": "l1", "label": "$7²$" }, { "id": "l2", "label": "$3³$" }, { "id": "l3", "label": "$6²$" },
+        { "id": "l4", "label": "$2³$" }, { "id": "l5", "label": "$10³$" }, { "id": "l6", "label": "$12²$" }
+      ],
+      "right": [
+        { "id": "v49", "label": "49" }, { "id": "v27", "label": "27" }, { "id": "v36", "label": "36" }, { "id": "v8", "label": "8" },
+        { "id": "v1000", "label": "1 000" }, { "id": "v144", "label": "144" }, { "id": "v14", "label": "14" }, { "id": "v9", "label": "9" }, { "id": "v6", "label": "6" }
+      ],
+      "pairs": { "l1": "v49", "l2": "v27", "l3": "v36", "l4": "v8", "l5": "v1000", "l6": "v144" },
+      "misconceptions": [
+        { "pair": ["l1", "v14"], "id": "mc:carre-double", "error": "notion", "feedback": "$7²$ ne veut pas dire $7 × 2$ : c'est $7 × 7$. Le carré n'est pas le double." },
+        { "pair": ["l4", "v6"], "id": "mc:cube-triple", "error": "notion", "feedback": "$2³$ ne veut pas dire $2 × 3$ : c'est $2 × 2 × 2$. Le cube n'est pas le triple." },
+        { "pair": ["l2", "v9"], "id": "mc:facteur-oublie", "error": "calcul", "feedback": "$3 × 3 = 9$, c'est $3²$. Pour $3³$, il faut TROIS facteurs : $3 × 3 × 3$." }
+      ],
+      "hints": ["L'exposant dit combien de fois le nombre est écrit dans le produit : $7² = 7 × 7$, $3³ = 3 × 3 × 3$.", "Les intrus sont les résultats d'une erreur classique : multiplier le nombre par l'exposant."],
+      "solution": "$7² = 49$ ; $3³ = 27$ ; $6² = 36$ ; $2³ = 8$ ; $10³ = 1 000$ ; $12² = 144$. Les intrus 14, 6 et 9 viennent des erreurs « $7 × 2$ », « $2 × 3$ » et « $3 × 3$ au lieu de $3 × 3 × 3$ ».",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "v49", "l2": "v27", "l3": "v36", "l4": "v8", "l5": "v1000", "l6": "v144" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "v14", "l2": "v27", "l3": "v36", "l4": "v8", "l5": "v1000", "l6": "v144" } }, "expect": "mc:carre-double" }
+      ]
+    },
+    {
+      "id": "m5-puissances-calculer", "type": "composite", "skill": "m5.puissances.notation", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:cube-triple"], "expectedSeconds": 90,
+      "params": { "a": { "int": [3, 12] }, "b": { "int": [2, 5] } },
+      "prompt": "Calcule de tête (écris le résultat).",
+      "parts": [
+        { "type": "numeric", "prompt": "$ {a}² $ = ?", "answer": "a^2",
+          "misconceptions": [ { "answer": "2*a", "id": "mc:carre-double", "error": "notion", "feedback": "Tu as calculé le double. Le carré d'un nombre, c'est ce nombre multiplié par LUI-MÊME." } ] },
+        { "type": "numeric", "prompt": "$ {b}³ $ = ?", "answer": "b^3",
+          "misconceptions": [
+            { "answer": "3*b", "id": "mc:cube-triple", "error": "notion", "feedback": "Tu as calculé le triple. Le cube, c'est le produit de TROIS facteurs égaux au nombre." },
+            { "answer": "b^2", "id": "mc:facteur-oublie", "error": "calcul", "feedback": "Tu n'as écrit que deux facteurs : c'est le carré. Le cube en demande trois." }
+          ] },
+        { "type": "numeric", "prompt": "$ 10³ $ = ?", "answer": 1000,
+          "misconceptions": [ { "answer": 30, "id": "mc:cube-triple", "error": "notion", "feedback": "$10³ = 10 × 10 × 10$ : trois facteurs 10, donc un 1 suivi de trois zéros." } ] }
+      ],
+      "hints": ["$ {a}² = {a} × {a} $.", "$ {b}³ = {b} × {b} × {b} $ : calcule d'abord $ {b} × {b} $, puis multiplie encore par {b}.", "$10³$ : un 1 suivi d'autant de zéros que l'exposant."],
+      "solution": "$ {a}² = {a} × {a} = {a*a} $ ; $ {b}³ = {b} × {b} × {b} = {b*b*b} $ ; $ 10³ = 10 × 10 × 10 = 1 000 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a*a}" }, { "value": "{b*b*b}" }, { "value": "1000" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{2*a}" }, { "value": "{b*b*b}" }, { "value": "1000" } ] }, "expect": "mc:carre-double" },
+        { "response": { "parts": [ { "value": "{a*a}" }, { "value": "{b*b*b}" }, { "value": "30" } ] }, "expect": "mc:cube-triple" }
+      ]
+    },
+    {
+      "id": "m5-puissances-ecrire", "type": "composite", "skill": "m5.puissances.notation", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:moitie", "mc:produit-par-exposant"], "expectedSeconds": 150,
+      "params": { "a": { "int": [3, 12] }, "b": { "int": [2, 5] } },
+      "prompt": "Dans l'autre sens : retrouve le nombre caché derrière un carré ou un cube, puis écris un produit sous forme de puissance.",
+      "parts": [
+        { "type": "numeric", "prompt": "$ {a*a} $ est le carré de quel nombre entier ?", "answer": "a",
+          "misconceptions": [ { "answer": "a*a/2", "id": "mc:moitie", "error": "notion", "feedback": "Le carré n'est pas le double : cherche le nombre qui, multiplié PAR LUI-MÊME, donne ce résultat." } ] },
+        { "type": "numeric", "prompt": "$ {b*b*b} $ est le cube de quel nombre entier ?", "answer": "b",
+          "misconceptions": [ { "answer": "b*b*b/3", "id": "mc:tiers", "error": "notion", "feedback": "Le cube n'est pas le triple : cherche le nombre qui, écrit trois fois dans un produit, donne ce résultat." } ] },
+        { "type": "text", "prompt": "Écris $ 5 × 5 × 5 $ sous la forme d'une puissance (pour l'exposant, tape ³ ou ^3).", "accept": ["5³", "5^3", "5 ^ 3", "5 puissance 3", "5 au cube"],
+          "misconceptions": [
+            { "answer": "5 × 3", "id": "mc:produit-par-exposant", "error": "notion", "feedback": "$5 × 3$ vaut 15 : ce n'est pas le même nombre. On compte les facteurs égaux à 5 : il y en a trois, donc l'exposant est 3." },
+            { "answer": "125", "id": "mc:valeur-au-lieu-ecriture", "error": "forme", "feedback": "C'est bien la valeur du produit, mais on demande l'écriture avec un exposant." },
+            { "answer": "3⁵", "id": "mc:base-exposant", "error": "notion", "feedback": "Tu as inversé : le nombre multiplié (5) s'écrit en grand, l'exposant (le nombre de facteurs, 3) en petit en haut." }
+          ] }
+      ],
+      "hints": ["Récite les carrés : quel carré donne {a*a} ?", "Essaie $ 2 × 2 × 2 $, $ 3 × 3 × 3 $, $ 4 × 4 × 4 $… jusqu'à trouver {b*b*b}.", "Combien de fois le nombre 5 est-il écrit dans $ 5 × 5 × 5 $ ?"],
+      "solution": "$ {a*a} = {a} × {a} = {a}² $ ; $ {b*b*b} = {b} × {b} × {b} = {b}³ $ ; $ 5 × 5 × 5 = 5³ $ (qui vaut 125).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "5³" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a*a/2}" }, { "value": "{b}" }, { "value": "5³" } ] }, "expect": "mc:moitie" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "125" } ] }, "expect": "mc:valeur-au-lieu-ecriture" }
+      ]
+    },
+    {
+      "id": "m5-puissances-priorites", "type": "steps", "mode": "calcul", "skill": "m5.puissances.calcul", "skills": ["m5.calcul.priorites"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:puissance-produit", "mc:gauche-droite", "mc:carre-double"], "expectedSeconds": 120,
+      "params": { "a": { "int": [2, 20] }, "b": { "int": [2, 6] }, "c": { "int": [3, 9] } },
+      "start": "a + b*c^2",
+      "minSteps": 2,
+      "prompt": "Calcule $ B = {a} + {b} × {c}² $. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "a + (b*c)^2", "id": "mc:puissance-produit", "error": "notion", "feedback": "L'exposant ne porte que sur le nombre écrit juste avant lui : seul ce nombre est au carré, pas le produit." },
+        { "answer": "(a + b)*c^2", "id": "mc:gauche-droite", "error": "notion", "feedback": "Tu as additionné en premier. Ordre : puissances, puis multiplications, puis additions." },
+        { "answer": "a + b*c*2", "id": "mc:carre-double", "error": "notion", "feedback": "Le carré d'un nombre, c'est ce nombre multiplié par lui-même, pas par 2." }
+      ],
+      "hints": ["Ordre : puissance, puis multiplication, puis addition.", "$ {c}² = {c*c} $, donc $ B = {a} + {b} × {c*c} $.", "$ {b} × {c*c} = {b*c*c} $."],
+      "solution": "$ B = {a} + {b} × {c}² = {a} + {b} × {c*c} = {a} + {b*c*c} = {a+b*c*c} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a} + {b} × {c*c}", "{a} + {b*c*c}", "{a+b*c*c}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a} + {b*c*b*c}", "{a+b*c*b*c}"] }, "expect": "mc:puissance-produit" },
+        { "response": { "lines": ["{a} + {b} × {2*c}", "{a+2*b*c}"] }, "expect": "mc:carre-double" }
+      ]
+    },
+    {
+      "id": "m5-puissances-tableau", "type": "table", "skill": "m5.puissances.notation", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:cube-triple"], "expectedSeconds": 150,
+      "params": { "a": { "int": [3, 6] }, "b": { "int": [7, 12] } },
+      "prompt": "Complète le tableau des carrés et des cubes.",
+      "columns": ["Nombre", "Son carré", "Son cube"],
+      "rows": [["{a}", "?r0c1", "?r0c2"], ["{b}", "?r1c1", "{b*b*b}"], ["10", "?r2c1", "?r2c2"]],
+      "cells": {
+        "r0c1": { "answer": "a^2", "misconceptions": [ { "answer": "2*a", "id": "mc:carre-double", "error": "notion", "feedback": "Le carré n'est pas le double : c'est le nombre multiplié par lui-même." } ] },
+        "r0c2": { "answer": "a^3", "misconceptions": [ { "answer": "3*a", "id": "mc:cube-triple", "error": "notion", "feedback": "Le cube n'est pas le triple : c'est le produit de trois facteurs égaux au nombre." } ] },
+        "r1c1": { "answer": "b^2", "misconceptions": [ { "answer": "2*b", "id": "mc:carre-double", "error": "notion", "feedback": "Le carré n'est pas le double : c'est le nombre multiplié par lui-même." } ] },
+        "r2c1": { "answer": 100, "misconceptions": [ { "answer": 20, "id": "mc:carre-double", "error": "notion", "feedback": "$10² = 10 × 10$, et non $10 × 2$." } ] },
+        "r2c2": { "answer": 1000, "misconceptions": [ { "answer": 30, "id": "mc:cube-triple", "error": "notion", "feedback": "$10³ = 10 × 10 × 10$, et non $10 × 3$." } ] }
+      },
+      "hints": ["Carré : le nombre multiplié par lui-même. Cube : trois facteurs égaux au nombre.", "Pour le cube, calcule d'abord le carré, puis multiplie-le encore une fois par le nombre.", "Avec 10, compte les zéros : $10² = 100$."],
+      "solution": "$ {a}² = {a*a} $ et $ {a}³ = {a*a*a} $ ; $ {b}² = {b*b} $ (et $ {b}³ = {b*b*b} $) ; $ 10² = 100 $ et $ 10³ = 1 000 $.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{a*a}", "r0c2": "{a*a*a}", "r1c1": "{b*b}", "r2c1": "100", "r2c2": "1000" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{2*a}", "r0c2": "{a*a*a}", "r1c1": "{b*b}", "r2c1": "100", "r2c2": "1000" } }, "expect": "mc:carre-double" }
+      ]
+    },
+    {
+      "id": "m5-puissances-contre-exemple", "type": "counterexample", "skill": "m5.puissances.notation", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "transfert", "difficulty": 3,
+      "representation": "symbolique", "expectedSeconds": 180,
+      "claim": "Le carré d'un nombre est toujours plus grand que ce nombre.",
+      "prompt": "Zoé affirme : « Le carré d'un nombre est toujours plus grand que ce nombre : $3² = 9$, $5² = 25$, $10² = 100$… » Prouve-lui qu'elle a tort : donne un nombre $n$ dont le carré n'est PAS plus grand que lui.",
+      "vars": ["n"],
+      "refutes": "n^2 <= n",
+      "refuteHint": "Les grands nombres vérifient l'affirmation. Essaie des nombres très simples, comme 0 ou 1, ou des nombres plus petits que 1.",
+      "hints": ["Un seul contre-exemple suffit à prouver qu'une affirmation « toujours vraie » est fausse.", "Calcule $1²$ : est-ce plus grand que 1 ?", "Et pour $0,5$ : $0,5 × 0,5 = 0,25$."],
+      "solution": "Avec $n = 1$ : $1² = 1$, qui n'est pas plus grand que 1. Avec $n = 0,5$ : $0,5² = 0,25$, plus petit que 0,5 ! L'affirmation est donc fausse. Elle est vraie pour les nombres plus grands que 1, mais pas pour 0, 1 et les nombres compris entre 0 et 1.",
+      "selfTest": [
+        { "response": { "values": { "n": "1" } }, "expect": "correct" },
+        { "response": { "values": { "n": "0,5" } }, "expect": "correct" },
+        { "response": { "values": { "n": "3" } }, "expect": "raisonnement" },
+        { "response": { "claimTrue": true }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m5-puissances-expliquer", "type": "open", "skill": "m5.puissances.notation", "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "verbale", "expectedSeconds": 240, "minWords": 25,
+      "prompt": "Léna affirme : « $2³$ et $3²$, c'est pareil : on utilise les mêmes nombres ! » Malo ajoute : « Et $4²$, ça fait 8. »\n\nExplique-leur leurs erreurs en revenant à la définition du carré et du cube.",
+      "criteria": [
+        { "id": "c1", "label": "Je calcule $2³ = 2 × 2 × 2 = 8$ et $3² = 3 × 3 = 9$ : ce n'est pas pareil", "keywords": [["2 × 2 × 2", "2x2x2", "2 x 2 x 2", "8 et 9", "9 et 8"]] },
+        { "id": "c2", "label": "Je corrige Malo : $4² = 4 × 4 = 16$, on ne multiplie pas par l'exposant", "keywords": [["4 × 4", "4x4", "4 x 4", "16"]] },
+        { "id": "c3", "label": "J'explique que l'exposant compte les facteurs égaux", "keywords": [["facteur", "exposant", "fois lui-meme", "par lui-meme", "combien de fois"]] }
+      ],
+      "models": [
+        "$2³ = 2 × 2 × 2 = 8$ alors que $3² = 3 × 3 = 9$ : ce n'est pas pareil, car l'exposant n'a pas le même rôle que le nombre. L'exposant dit combien de fois on écrit le nombre dans le produit. Malo se trompe aussi : $4² = 4 × 4 = 16$, et non $4 × 2 = 8$.",
+        "Le petit nombre en haut compte les facteurs. 2 au cube, c'est trois facteurs 2, donc 8. 3 au carré, c'est deux facteurs 3, donc 9. Pour Malo, 4 au carré c'est 4 multiplié par lui-même, 16 ; 8 est le double de 4."
+      ],
+      "hints": ["Écris $2³$ et $3²$ sous forme de produits, puis calcule-les.", "Que veut dire le petit 2 dans $4²$ : « multiplier par 2 » ou « écrire 4 deux fois dans un produit » ?"],
+      "solution": "$2³ = 2 × 2 × 2 = 8$ et $3² = 3 × 3 = 9$ : les deux nombres sont différents, car le nombre (la base) et l'exposant n'ont pas le même rôle. L'exposant indique combien de facteurs égaux on multiplie. Pour Malo : $4² = 4 × 4 = 16$ ; $8 = 4 × 2$ est le double de 4, pas son carré.",
+      "selfTest": [ { "response": { "text": "2³ = 2 × 2 × 2 = 8 et 3² = 3 × 3 = 9, ce n'est pas pareil. L'exposant compte les facteurs. Et 4² = 4 × 4 = 16, pas 8." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-puissances-terrasse", "type": "composite", "skill": "m5.puissances.notation", "skills": ["m5.puissances.calcul"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:perimetre-aire", "mc:moitie"], "expectedSeconds": 300,
+      "params": { "n": { "int": [6, 12] }, "m": { "int": [5, 12] } },
+      "constraints": ["m != n"],
+      "prompt": "Des terrasses carrées sont couvertes de dalles carrées identiques, sans découpe.",
+      "parts": [
+        { "type": "numeric", "prompt": "Ta terrasse mesure {n} dalles de côté. Combien de dalles faut-il en tout ?", "answer": "n^2",
+          "misconceptions": [ { "answer": "4*n", "id": "mc:perimetre-aire", "error": "notion", "feedback": "Tu as compté les dalles des quatre côtés seulement (le tour). Il faut couvrir TOUTE la surface : des rangées de dalles, autant de rangées que de dalles par rangée." } ] },
+        { "type": "numeric", "prompt": "Ta voisine a utilisé {m*m} dalles pour sa terrasse carrée. Combien de dalles mesure-t-elle de côté ?", "answer": "m",
+          "misconceptions": [
+            { "answer": "m*m/2", "id": "mc:moitie", "error": "notion", "feedback": "Le nombre de dalles est un CARRÉ : cherche le nombre qui, multiplié par lui-même, donne ce total." },
+            { "answer": "m*m/4", "id": "mc:perimetre-aire", "error": "notion", "feedback": "Diviser par 4 donnerait un côté si le total était le tour de la terrasse. Ici, c'est la surface : cherche le nombre qui, multiplié par lui-même, donne ce total." }
+          ] },
+        { "type": "numeric", "prompt": "Une dalle mesure 50 cm de côté. Quelle est son aire, en cm² ?", "answer": 2500,
+          "misconceptions": [ { "answer": 100, "id": "mc:carre-double", "error": "notion", "feedback": "L'aire d'un carré de côté 50 cm vaut $50² = 50 × 50$, et non $50 × 2$." } ] }
+      ],
+      "hints": ["Une terrasse de {n} dalles de côté : {n} rangées de {n} dalles.", "Pour la voisine, cherche dans la liste des carrés : quel nombre au carré donne {m*m} ?", "$50 × 50 = 5 × 5 × 100$."],
+      "solution": "Ta terrasse : $ {n}² = {n*n} $ dalles. La voisine : $ {m*m} = {m}² $, sa terrasse mesure {m} dalles de côté. Une dalle : $ 50² = 2 500 $ cm².",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{n*n}" }, { "value": "{m}" }, { "value": "2500" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{4*n}" }, { "value": "{m}" }, { "value": "2500" } ] }, "expect": "mc:perimetre-aire" }
+      ]
+    },
+    {
+      "id": "m5-puissances-aquarium", "type": "composite", "skill": "m5.puissances.calcul", "skills": ["m5.puissances.notation", "m5.grandeurs.conversions"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:cube-triple", "mc:proportionnel-arete"], "expectedSeconds": 480,
+      "params": { "p": { "choice": [10, 15, 20, 25] } },
+      "prompt": "Le petit aquarium est un cube de {p} cm d'arête. Le grand est aussi un cube, mais son arête est deux fois plus longue : {2*p} cm. Tu peux utiliser la calculatrice.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le volume du petit aquarium, en cm³ ?", "answer": "p^3",
+          "misconceptions": [
+            { "answer": "3*p", "id": "mc:cube-triple", "error": "notion", "feedback": "Le volume d'un cube, c'est arête × arête × arête : le cube de l'arête, pas son triple." },
+            { "answer": "p^2", "id": "mc:aire-volume", "error": "notion", "feedback": "Tu as calculé l'aire d'une face. Le volume demande trois dimensions : longueur, largeur et hauteur." }
+          ] },
+        { "type": "numeric", "prompt": "Quel est le volume du grand aquarium, en cm³ ?", "answer": "(2*p)^3",
+          "misconceptions": [ { "answer": "2*p^3", "id": "mc:proportionnel-arete", "error": "raisonnement", "feedback": "Tu as doublé le volume du petit aquarium. Calcule plutôt le cube de la nouvelle arête : les trois dimensions ont doublé." } ] },
+        { "type": "numeric", "prompt": "Combien de fois plus d'eau le grand aquarium contient-il ?", "answer": 8,
+          "misconceptions": [ { "answer": 2, "id": "mc:proportionnel-arete", "error": "raisonnement", "feedback": "Le vendeur se trompe aussi ! Longueur, largeur ET hauteur doublent : le volume est multiplié par $2 × 2 × 2$." } ] },
+        { "type": "numeric", "prompt": "Sachant que $1 L = 1 000 cm³ = 10³ cm³$, combien de litres d'eau contient le grand aquarium rempli ?", "answer": "(2*p)^3/1000",
+          "misconceptions": [ { "answer": "(2*p)^3", "id": "mc:oubli-conversion", "error": "unite", "feedback": "C'est le volume en cm³. Pour l'avoir en litres, divise par 1 000, car il y a 1 000 cm³ dans un litre." } ] }
+      ],
+      "hints": ["Volume d'un cube d'arête $a$ : $ a³ = a × a × a $.", "Le grand aquarium : $ {2*p}³ = {2*p} × {2*p} × {2*p} $.", "Compare : $ {2*p}³ ÷ {p}³ $. Et pour les litres, divise par 1 000."],
+      "solution": "Petit : $ {p}³ = {p*p*p} $ cm³. Grand : $ {2*p}³ = {8*p*p*p} $ cm³. Rapport : $ {8*p*p*p} ÷ {p*p*p} = 8 = 2³ $ : le grand contient 8 fois plus d'eau, pas 2 fois plus ! En litres : $ {8*p*p*p} ÷ 1 000 = {8*p*p*p/1000} $ L.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p*p*p}" }, { "value": "{8*p*p*p}" }, { "value": "8" }, { "value": "{8*p*p*p/1000}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{p*p*p}" }, { "value": "{2*p*p*p}" }, { "value": "2" }, { "value": "{2*p*p*p/1000}" } ] }, "expect": "mc:proportionnel-arete" }
+      ]
+    },
+    {
+      "id": "m5-puissances-remed-carre", "type": "steps", "mode": "calcul", "skill": "m5.puissances.notation", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:carre-double"], "expectedSeconds": 60,
+      "params": { "a": { "int": [3, 12] } },
+      "start": "a^2",
+      "minSteps": 2,
+      "prompt": "Rappel ciblé : $ {a}² $ se lit « {a} au carré ». C'est le nombre de carreaux d'un carré de {a} carreaux de côté : {a} rangées de {a} carreaux, donc $ {a} × {a} $. Écris d'abord ce produit, puis calcule-le.",
+      "misconceptions": [ { "answer": "a*2", "id": "mc:carre-double", "error": "notion", "feedback": "Le petit 2 ne veut pas dire « multiplier par 2 » : il dit qu'on écrit le nombre DEUX FOIS dans le produit." } ],
+      "hints": ["$ {a}² = {a} × {a} $.", "Récite la table de {a}."],
+      "solution": "$ {a}² = {a} × {a} = {a*a} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a} × {a}", "{a*a}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a} × 2", "{2*a}"] }, "expect": "mc:carre-double" }
+      ]
+    },
+    {
+      "id": "m5-puissances-remed-cube", "type": "numeric", "skill": "m5.puissances.notation", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:cube-triple", "mc:facteur-oublie"], "expectedSeconds": 60,
+      "params": { "b": { "int": [2, 6] } },
+      "prompt": "Rappel ciblé : $ {b}³ $ veut dire $ {b} × {b} × {b} $, trois facteurs égaux à {b}. C'est le nombre de petits cubes dans un grand cube de {b} petits cubes d'arête : {b} couches de $ {b} × {b} $ petits cubes. Calcule $ {b}³ $.",
+      "answer": "b^3",
+      "misconceptions": [
+        { "answer": "3*b", "id": "mc:cube-triple", "error": "notion", "feedback": "Le petit 3 ne veut pas dire « multiplier par 3 » : il dit qu'on écrit le nombre TROIS FOIS dans le produit." },
+        { "answer": "b^2", "id": "mc:facteur-oublie", "error": "calcul", "feedback": "Tu as compté une seule couche du grand cube. Il y a autant de couches que de petits cubes sur l'arête." }
+      ],
+      "hints": ["Une couche contient $ {b} × {b} = {b*b} $ petits cubes.", "Il y a {b} couches : $ {b*b} × {b} $."],
+      "solution": "$ {b}³ = {b} × {b} × {b} = {b*b} × {b} = {b*b*b} $.",
+      "selfTest": [ { "response": { "value": "{b*b*b}" }, "expect": "correct" }, { "response": { "value": "{3*b}" }, "expect": "mc:cube-triple" } ]
+    },
+    {
+      "id": "m5-puissances-somme-carres", "type": "counterexample", "skill": "m5.puissances.calcul", "skills": ["m4.raisonner.preuve"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "expectedSeconds": 180,
+      "claim": "Pour tous nombres a et b, (a + b)² = a² + b².",
+      "prompt": "Arthur pense que $(a + b)² = a² + b²$ pour tous les nombres $a$ et $b$, « comme pour la multiplication, où l'on distribue ». Trouve des valeurs de $a$ et de $b$ qui prouvent qu'il a tort.",
+      "vars": ["a", "b"],
+      "refutes": "(a + b)^2 != a^2 + b^2",
+      "refuteHint": "Si $a$ ou $b$ vaut 0, l'égalité est vraie. Choisis deux nombres qui ne sont pas nuls, par exemple 2 et 3.",
+      "hints": ["Choisis deux petits nombres, calcule séparément $(a + b)²$ et $a² + b²$, puis compare.", "Avec $a = 2$ et $b = 3$ : $(2 + 3)² = 5²$ et $2² + 3² = 4 + 9$."],
+      "solution": "Avec $a = 2$ et $b = 3$ : $(2 + 3)² = 5² = 25$, mais $2² + 3² = 4 + 9 = 13$. L'égalité est fausse. Sur une figure, le carré de côté $a + b$ contient le carré $a²$, le carré $b²$… et deux rectangles d'aire $a × b$ qu'Arthur oublie. Tu verras plus tard que $(a + b)² = a² + 2ab + b²$.",
+      "selfTest": [
+        { "response": { "values": { "a": "2", "b": "3" } }, "expect": "correct" },
+        { "response": { "values": { "a": "0", "b": "5" } }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m5-puissances-impairs", "type": "composite", "skill": "m5.puissances.notation", "skills": ["m5.calcul.enchainer"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:dernier-terme"], "expectedSeconds": 300,
+      "params": { "n": { "int": [6, 12] } },
+      "prompt": "Observe : $1 = 1²$ ; $1 + 3 = 4 = 2²$ ; $1 + 3 + 5 = 9 = 3²$ ; $1 + 3 + 5 + 7 = 16 = 4²$. La figure montre pourquoi : chaque nombre impair ajoute une couche en équerre autour du carré précédent.",
+      "figure": {
+        "alt": "Carré de 4 carreaux sur 4 formé de couches en équerre de 1, 3, 5 et 7 carreaux, chacune d'une couleur.",
+        "w": 200, "h": 200, "frame": { "x": [0, 4], "y": [0, 4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1, "fill": "maths" },
+          { "type": "rect", "x": 1, "y": 0, "w": 1, "h": 1, "fill": "orange" }, { "type": "rect", "x": 0, "y": 1, "w": 1, "h": 1, "fill": "orange" }, { "type": "rect", "x": 1, "y": 1, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "vert" }, { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "vert" }, { "type": "rect", "x": 0, "y": 2, "w": 1, "h": 1, "fill": "vert" }, { "type": "rect", "x": 1, "y": 2, "w": 1, "h": 1, "fill": "vert" }, { "type": "rect", "x": 2, "y": 2, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 3, "y": 0, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 3, "y": 1, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 3, "y": 2, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 0, "y": 3, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 1, "y": 3, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 2, "y": 3, "w": 1, "h": 1, "fill": "violet" }, { "type": "rect", "x": 3, "y": 3, "w": 1, "h": 1, "fill": "violet" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule $ 1 + 3 + 5 + … + {2*n-1} $, la somme des {n} premiers nombres impairs, sans tout additionner.", "answer": "n^2",
+          "misconceptions": [ { "answer": "(2*n - 1)^2", "id": "mc:dernier-terme", "error": "raisonnement", "feedback": "Ce n'est pas le carré du dernier nombre impair, mais le carré du NOMBRE de nombres impairs additionnés (le nombre de couches)." } ] },
+        { "type": "numeric", "prompt": "Combien de nombres impairs faut-il additionner, à partir de 1, pour obtenir 144 ?", "answer": 12,
+          "misconceptions": [ { "answer": 72, "id": "mc:moitie", "error": "notion", "feedback": "144 est un carré : de quel nombre ? C'est ce nombre qui compte les couches." } ] }
+      ],
+      "hints": ["Compte les nombres impairs de 1 à {2*n-1} : il y en a {n}.", "La somme des $k$ premiers impairs est $k²$.", "$144 = 12 × 12$."],
+      "solution": "$ 1 + 3 + … + {2*n-1} $ : il y a {n} nombres impairs, donc la somme vaut $ {n}² = {n*n} $. Et $144 = 12²$ : il faut additionner les 12 premiers nombres impairs (de 1 à 23).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{n*n}" }, { "value": "12" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{(2*n-1)*(2*n-1)}" }, { "value": "12" } ] }, "expect": "mc:dernier-terme" }
+      ]
+    },
+    {
+      "id": "m5-puissances-carre-et-cube", "type": "multi", "skill": "m5.puissances.notation", "skills": ["m4.puissances"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "expectedSeconds": 480,
+      "prompt": "Le nombre 64 est à la fois un carré ($8²$) et un cube ($4³$). Trouve deux AUTRES nombres entiers, plus grands que 1 et plus petits que 5 000, qui sont eux aussi à la fois un carré et un cube.",
+      "count": 2,
+      "predicate": "estentier(v) and v > 1 and v < 5000 and v != 64 and estentier(racine(v)) and estentier(v^(1/3))",
+      "hints": ["Liste les cubes : 8, 27, 64, 125, 216, 343, 512, 729, 1 000… Lesquels sont aussi des carrés ?", "$64 = 2 × 2 × 2 × 2 × 2 × 2$ : six facteurs 2. On peut les grouper par deux (un carré) ou par trois (un cube).", "Essaie avec six facteurs 3, puis six facteurs 4."],
+      "solution": "$729 = 3 × 3 × 3 × 3 × 3 × 3 = 27² = 9³$ et $4 096 = 4 × 4 × 4 × 4 × 4 × 4 = 64² = 16³$. Avec six facteurs égaux, on peut les grouper par deux (un carré) ou par trois (un cube). Tu apprendras en 4e à écrire ces nombres $3⁶$ et $4⁶$.",
+      "selfTest": [
+        { "response": { "values": ["729", "4096"] }, "expect": "correct" },
+        { "response": { "values": ["16", "27"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-puissances-cube-peint", "type": "composite", "skill": "m5.puissances.calcul", "skills": ["m5.puissances.notation"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:faces-sommets", "mc:une-couche"], "expectedSeconds": 600,
+      "params": { "n": { "int": [3, 7] } },
+      "prompt": "On assemble des petits cubes pour former un grand cube de {n} petits cubes d'arête. On peint en rouge toute la surface extérieure du grand cube, puis on le démonte.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien y a-t-il de petits cubes en tout ?", "answer": "n^3",
+          "misconceptions": [ { "answer": "3*n", "id": "mc:cube-triple", "error": "notion", "feedback": "Le nombre de petits cubes est le cube de l'arête : autant de couches que de rangées par couche, et autant de cubes par rangée." } ] },
+        { "type": "numeric", "prompt": "Combien de petits cubes ont exactement 3 faces peintes ?", "answer": 8,
+          "misconceptions": [ { "answer": 6, "id": "mc:faces-sommets", "error": "raisonnement", "feedback": "Un cube a 6 faces, mais les petits cubes peints sur 3 faces sont aux COINS du grand cube. Combien un cube a-t-il de coins (sommets) ?" } ] },
+        { "type": "numeric", "prompt": "Combien de petits cubes n'ont AUCUNE face peinte ?", "answer": "(n-2)^3",
+          "misconceptions": [ { "answer": "(n-1)^3", "id": "mc:une-couche", "error": "raisonnement", "feedback": "On enlève une couche peinte de CHAQUE côté : à gauche et à droite, devant et derrière, en haut et en bas. L'arête du cube caché diminue donc de 2." } ] },
+        { "type": "open", "prompt": "Explique ton raisonnement pour la question précédente.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Les cubes non peints forment un cube caché à l'intérieur", "keywords": [["interieur", "dedans", "au centre", "cache", "milieu"]] },
+            { "id": "c2", "label": "L'arête de ce cube caché vaut 2 de moins : une couche enlevée de chaque côté", "keywords": [["- 2", "−2", "− 2", "moins 2", "n-2", "chaque cote"]] }
+          ] }
+      ],
+      "hints": ["Dessine ou imagine le grand cube pour $n = 3$ : un seul petit cube est complètement caché, au centre.", "Les cubes à 3 faces peintes sont aux coins.", "Les cubes jamais peints forment un cube intérieur : quelle est son arête ?"],
+      "solution": "Il y a $ {n}³ = {n*n*n} $ petits cubes. Les 8 cubes des coins ont 3 faces peintes (un cube a 8 sommets). Les cubes non peints forment un cube intérieur d'arête $ {n} − 2 = {n-2} $ (on retire une couche de chaque côté), soit $ {n-2}³ = {(n-2)*(n-2)*(n-2)} $ cubes.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{n*n*n}" }, { "value": "8" }, { "value": "{(n-2)*(n-2)*(n-2)}" }, { "text": "Les cubes non peints forment un cube caché à l'intérieur, son arête vaut n − 2 car on enlève une couche de chaque côté.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{n*n*n}" }, { "value": "6" }, { "value": "{(n-2)*(n-2)*(n-2)}" }, { "text": "Je ne sais pas." } ] }, "expect": "mc:faces-sommets" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "id": "m4-fractions",
+  "chapter": "m4-ch-fractions",
+  "title": "Nombres rationnels : les quatre opérations et l'inverse",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.fractions.produit", "m4.fractions.inverse", "m4.fractions.calcul", "m4.fractions.problemes", "m4.rationnels.comparer"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Multiplier et diviser des fractions, utiliser l'inverse d'un nombre, enchaîner les quatre opérations avec des nombres positifs ou négatifs, et contrôler ses résultats par un ordre de grandeur.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L'énigme des 17 chameaux",
+      "body": "Un marchand laisse 17 chameaux à ses trois enfants : **la moitié** pour l'aînée, **le tiers** pour le cadet, **le neuvième** pour le benjamin. Impossible de partager sans couper de chameau !\n\nUne voyageuse prête alors le sien : avec 18 chameaux, l'aînée en reçoit 9, le cadet 6, le benjamin 2. Total : 17. La voyageuse reprend son chameau et tout le monde est content.\n\nComment ce partage peut-il tomber juste ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🍫", "title": "Multiplier deux fractions",
+          "body": "On multiplie les numérateurs entre eux et les dénominateurs entre eux : $(a/b) × (c/d) = (a × c)/(b × d)$. Prendre les $2/3$ des $3/4$ d'une tablette, c'est en prendre $(2/3) × (3/4) = 6/12 = 1/2$. Astuce : simplifie **avant** de multiplier, les nombres restent petits.",
+          "example": "$(5/6) × (9/10) = 45/60 = 3/4$",
+          "figure": {
+            "alt": "Tablette de chocolat de 3 rangées de 4 carrés : 3 colonnes sur 4 sont colorées en bleu ; dans cette partie bleue, 2 rangées sur 3 sont colorées une seconde fois en orange.",
+            "w": 360, "h": 240,
+            "frame": { "x": [-0.5, 7], "y": [-0.6, 4] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 3, "fill": "bleu" },
+              { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 2, "fill": "orange" },
+              { "type": "rect", "x": 0, "y": 0, "w": 4, "h": 3 },
+              { "type": "segment", "from": [1, 0], "to": [1, 3] },
+              { "type": "segment", "from": [2, 0], "to": [2, 3] },
+              { "type": "segment", "from": [3, 0], "to": [3, 3] },
+              { "type": "segment", "from": [0, 1], "to": [4, 1] },
+              { "type": "segment", "from": [0, 2], "to": [4, 2] },
+              { "type": "text", "x": 1.5, "y": 3.5, "text": "3/4 de la tablette", "anchor": "middle" },
+              { "type": "text", "x": 4.3, "y": 1, "text": "2/3 de ces 3/4 :", "anchor": "start", "size": "s" },
+              { "type": "text", "x": 4.3, "y": 0.4, "text": "6 carrés sur 12", "anchor": "start", "size": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔄", "title": "L'inverse d'un nombre",
+          "body": "Deux nombres sont **inverses** l'un de l'autre quand leur **produit vaut 1**. L'inverse de $a/b$ est $b/a$ : on « retourne » la fraction. L'inverse de 5 est $1/5$, celui de $−2/3$ est $−3/2$ (même signe !). **0 n'a pas d'inverse** : 0 multiplié par n'importe quel nombre donne 0, jamais 1.",
+          "reveal": { "question": "Devine : quels nombres sont égaux à leur propre inverse ?", "answer": "1 et −1, car 1 × 1 = 1 et (−1) × (−1) = 1. Ce sont les seuls." }
+        },
+        {
+          "emoji": "➗", "title": "Diviser, c'est multiplier par l'inverse",
+          "body": "Pour diviser par un nombre non nul, on multiplie par son inverse : $a/b ÷ (c/d) = (a/b) × (d/c)$. Combien de quarts d'heure dans $3/2$ heure ? $3/2 ÷ (1/4) = (3/2) × 4 = 6$. Diviser par un nombre plus petit que 1 donne un résultat **plus grand** !",
+          "example": "$2/3 ÷ (4/5) = (2/3) × (5/4) = 10/12 = 5/6$"
+        },
+        {
+          "emoji": "➕", "title": "Additionner : d'abord un dénominateur commun",
+          "body": "Pour additionner ou soustraire, on écrit les fractions avec un **dénominateur commun**, puis on additionne (ou on soustrait) les numérateurs : $1/2 + 1/3 = 3/6 + 2/6 = 5/6$. Surtout pas $(1 + 1)/(2 + 3)$ ! Pour multiplier ou diviser, au contraire, pas besoin de dénominateur commun."
+        },
+        {
+          "emoji": "➖", "title": "Signes, priorités, comparaison",
+          "body": "Les règles des nombres relatifs s'appliquent : $(−2/3) × (3/5) = −6/15 = −2/5$. Les multiplications et les divisions passent **avant** les additions et les soustractions. Pour comparer, pense à la droite graduée : $−3/4 < −1/2$, car $−3/4$ est plus à gauche.",
+          "reveal": { "question": "Devine : $1/2 + 1/2 × (1/2)$ vaut-il $1/2$ ou $3/4$ ?", "answer": "$3/4$ : la multiplication d'abord, $(1/2) × (1/2) = 1/4$, puis $1/2 + 1/4 = 3/4$." }
+        },
+        {
+          "emoji": "🎯", "title": "Contrôler avec un ordre de grandeur",
+          "body": "Avant de calculer, estime ! Multiplier un nombre positif par un nombre compris entre 0 et 1 le rend plus petit : $(7/8) × 40$ est un peu moins que 40 (c'est 35). Diviser par un nombre compris entre 0 et 1 rend plus grand : $5 ÷ (1/3) = 15$. Si ton résultat contredit ton estimation, cherche l'erreur."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un calcul complet, pas à pas",
+      "steps": [
+        { "text": "On veut calculer $A = 1/6 − 5/6 ÷ (10/3)$. La division est prioritaire. Diviser par $10/3$, c'est multiplier par son inverse $3/10$ :", "math": "A = 1/6 − 5/6 × (3/10)" },
+        { "text": "On multiplie : $(5/6) × (3/10) = 15/60$, que l'on simplifie par 15 en $1/4$ :", "math": "A = 1/6 − 1/4" },
+        { "text": "Pour soustraire, il faut un dénominateur commun : 12 est un multiple de 6 et de 4.", "math": "A = 2/12 − 3/12" },
+        { "text": "On soustrait les numérateurs. Le résultat est négatif, car $1/6$ est plus petit que $1/4$ :", "math": "A = −1/12" },
+        { "text": "Contrôle : $1/6 ≈ 0,17$ et $1/4 = 0,25$, donc $A ≈ 0,17 − 0,25 = −0,08$. Et $−1/12 ≈ −0,083$ : le résultat est cohérent.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Avant chaque calcul, demande-toi : le résultat sera-t-il positif ou négatif ? Plus grand ou plus petit que le nombre de départ ?",
+      "exercises": ["m4-fractions-droite", "m4-fractions-produit", "m4-fractions-inverse", "m4-fractions-diviser", "m4-fractions-priorites", "m4-fractions-estimer"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m4-fractions-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m4-fractions-plus-grand", "m4-fractions-gourde"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le secret des 17 chameaux",
+      "body": "Retour à l'héritage du marchand. Les fractions vont révéler pourquoi le prêt d'un seul chameau a tout arrangé.",
+      "exercises": ["m4-fractions-heritage"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Multiplier : numérateurs entre eux, dénominateurs entre eux. Diviser par un nombre non nul : multiplier par son inverse. Additionner ou soustraire : d'abord un dénominateur commun.\n\n- **$1/2 + 1/3 = 2/5$ ?** Non : on n'additionne pas les dénominateurs. $1/2 + 1/3 = 3/6 + 2/6 = 5/6$.\n- **Diviser comme on multiplie.** $3/4 ÷ (1/2)$ ne vaut pas $3/8$ : on multiplie par l'inverse, $(3/4) × 2 = 3/2$.\n- **Inverse ou opposé ?** L'inverse de $−2/3$ est $−3/2$ (produit égal à 1) ; son opposé est $2/3$ (somme égale à 0).\n- **« Diviser rend plus petit. »** Faux dès qu'on divise par un nombre compris entre 0 et 1 : $5 ÷ (1/3) = 15$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des calculs de fractions dans quelques jours, avec d'autres nombres. Garde le réflexe d'estimer le résultat avant de calculer."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Deux défis où les fractions se simplifient en cascade, et les fractions des anciens Égyptiens.",
+      "exercises": ["m4-fractions-telescope", "m4-fractions-egyptiennes"]
+    },
+    "expert": {
+      "intro": "Facultatif : une fraction à étages et une énigme grecque vieille de plus de mille ans.",
+      "exercises": ["m4-fractions-etagee", "m4-fractions-diophante"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-fractions-droite", "type": "numberline", "skill": "m4.rationnels.comparer", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "visuelle", "targets": ["signe"], "expectedSeconds": 120,
+      "params": { "a": { "choice": [1, 3, 5, 7, 9] }, "b": { "choice": [1, 3, 5] }, "c": { "choice": [1, 2, 4, 5] } },
+      "prompt": "Place les points $A$, $B$ et $C$ sur la droite graduée (une graduation vaut un quart) :\n- $ A = −{a}/4 $ ;\n- $ B = {b}/2 $ ;\n- $ C = −{c}/3 $.\n\nUne fois placés, le plus petit des trois nombres est celui qui est le plus à gauche.",
+      "min": -3, "max": 3, "step": 0.25,
+      "points": [ { "label": "A", "value": "-a/4" }, { "label": "B", "value": "b/2" }, { "label": "C", "value": "-c/3" } ],
+      "hints": ["Un nombre négatif se place à gauche de 0. $ −{a}/4 $, ce sont {a} quarts à gauche de 0.", "$ {b}/2 = {2*b}/4 $ : compte {2*b} graduations à droite de 0.", "$ −{c}/3 $ est environ égal à −{c/3|d2} : place $C$ au plus près de cette valeur."],
+      "solution": "$ A = −{a}/4 = −{a/4} $ ; $ B = {b}/2 = {b/2} $ ; $ C = −{c}/3 $, environ −{c/3|d2}. Sur une droite graduée, plus un nombre est à gauche, plus il est petit.",
+      "selfTest": [
+        { "response": { "positions": { "A": "{-a/4}", "B": "{b/2}", "C": "{-c/3}" } }, "expect": "correct" },
+        { "response": { "positions": { "A": "{a/4}", "B": "{b/2}", "C": "{-c/3}" } }, "expect": "signe" }
+      ]
+    },
+    {
+      "id": "m4-fractions-produit", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m4.fractions.produit", "skills": ["m4.relatifs.produit"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:produit-denominateur-commun", "signe", "forme"], "expectedSeconds": 150,
+      "params": { "s": { "choice": [1, -1] }, "a": { "int": [1, 9] }, "b": { "int": [2, 9] }, "c": { "int": [1, 9] }, "d": { "int": [2, 9] } },
+      "constraints": ["pgcd(a;b) = 1", "pgcd(c;d) = 1", "a != b", "c != d", "pgcd(a*c;b*d) > 1", "mod(a*c;b*d) != 0"],
+      "start": "(s*a/b)*(c/d)", "minSteps": 2,
+      "prompt": "Calcule $ {s*a}/{b} × ({c}/{d}) $ et donne le résultat sous forme irréductible. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "s*a*c", "id": "mc:produit-denominateur-commun", "error": "notion", "feedback": "pour multiplier, on ne cherche pas de dénominateur commun : on multiplie les numérateurs entre eux ET les dénominateurs entre eux." }
+      ],
+      "hints": ["Numérateur : $ {s*a} × {c} $. Dénominateur : $ {b} × {d} $.", "Cherche un nombre qui divise à la fois un numérateur et un dénominateur : tu pourras simplifier.", "Le signe : un seul facteur négatif donne un produit négatif."],
+      "solution": "$ {s*a}/{b} × ({c}/{d}) = ({s*a} × {c})/({b} × {d}) = {s*a*c}/{b*d} $. On simplifie par {pgcd(a*c;b*d)} : $ {s*a*c/pgcd(a*c;b*d)}/{b*d/pgcd(a*c;b*d)} $.",
+      "methods": ["Multiplier d'abord, puis simplifier le résultat.", "Simplifier avant de multiplier (un numérateur avec un dénominateur) : les nombres restent petits."],
+      "selfTest": [
+        { "response": { "lines": ["{s*a*c}/{b*d}", "{s*a*c/pgcd(a*c;b*d)}/{b*d/pgcd(a*c;b*d)}"] }, "expect": "correct" },
+        { "response": { "lines": ["{s*a*c}/{b*d}"] }, "expect": "forme" },
+        { "response": { "lines": ["{-s*a*c}/{b*d}", "{-s*a*c/pgcd(a*c;b*d)}/{b*d/pgcd(a*c;b*d)}"] }, "expect": "signe" }
+      ]
+    },
+    {
+      "id": "m4-fractions-inverse", "type": "table", "skill": "m4.fractions.inverse", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:inverse-oppose", "mc:inverse-signe"], "expectedSeconds": 150,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "c": { "int": [2, 9] }, "d": { "int": [1, 9] }, "e": { "int": [2, 9] } },
+      "constraints": ["a != b", "pgcd(a;b) = 1", "d != e", "pgcd(d;e) = 1"],
+      "prompt": "Deux nombres sont inverses quand leur **produit** vaut 1. Complète le tableau (écris chaque inverse sous forme de fraction ou de nombre entier).",
+      "columns": ["Nombre", "Son inverse"],
+      "rows": [ ["$ {a}/{b} $", "?r0c1"], ["$ −{c} $", "?r1c1"], ["$ 0,25 $", "?r2c1"], ["$ −{d}/{e} $", "?r3c1"], ["$ 1 $", "?r4c1"] ],
+      "cells": {
+        "r0c1": { "answer": "b/a", "misconceptions": [ { "answer": "-a/b", "id": "mc:inverse-oppose", "error": "notion", "feedback": "$ −{a}/{b} $ est l'**opposé** de $ {a}/{b} $ (leur somme vaut 0). L'inverse est le nombre dont le **produit** avec $ {a}/{b} $ vaut 1 : on échange le numérateur et le dénominateur." } ] },
+        "r1c1": { "answer": "-1/c", "misconceptions": [
+          { "answer": "c", "id": "mc:inverse-oppose", "error": "notion", "feedback": "{c} est l'opposé de −{c}. L'inverse de −{c} est $ −1/{c} $, car $ (−{c}) × (−1/{c}) = 1 $." },
+          { "answer": "1/c", "id": "mc:inverse-signe", "error": "signe", "feedback": "Un nombre et son inverse ont toujours le même signe, puisque leur produit vaut 1 (un nombre positif) : l'inverse de −{c} est $ −1/{c} $." } ] },
+        "r2c1": { "answer": 4, "misconceptions": [ { "answer": -0.25, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−0,25 est l'opposé de 0,25. Or $ 0,25 = 1/4 $ : son inverse est 4, car $ 0,25 × 4 = 1 $." } ] },
+        "r3c1": { "answer": "-e/d", "misconceptions": [
+          { "answer": "e/d", "id": "mc:inverse-signe", "error": "signe", "feedback": "Le signe ne change pas quand on prend l'inverse : l'inverse de $ −{d}/{e} $ est $ −{e}/{d} $." },
+          { "answer": "d/e", "id": "mc:inverse-oppose", "error": "notion", "feedback": "$ {d}/{e} $ est l'opposé de $ −{d}/{e} $. Pour l'inverse, on « retourne » la fraction et on garde le signe." } ] },
+        "r4c1": { "answer": 1, "misconceptions": [ { "answer": -1, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−1 est l'opposé de 1. L'inverse de 1 est 1 lui-même, car $ 1 × 1 = 1 $." } ] }
+      },
+      "hints": ["L'inverse de $ a/b $ est $ b/a $ : on « retourne » la fraction.", "Un nombre et son inverse ont le même signe.", "$ 0,25 = 1/4 $."],
+      "solution": "Inverse de $ {a}/{b} $ : $ {b}/{a} $. Inverse de −{c} : $ −1/{c} $. Inverse de $ 0,25 = 1/4 $ : 4. Inverse de $ −{d}/{e} $ : $ −{e}/{d} $. Inverse de 1 : 1. Chaque produit vaut 1. L'inverse n'est pas l'opposé : l'opposé de $ {a}/{b} $ est $ −{a}/{b} $ (leur somme vaut 0).",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{b}/{a}", "r1c1": "-1/{c}", "r2c1": "4", "r3c1": "-{e}/{d}", "r4c1": "1" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "-{a}/{b}", "r1c1": "{c}", "r2c1": "-0,25", "r3c1": "{d}/{e}", "r4c1": "-1" } }, "expect": "mc:inverse-oppose" }
+      ]
+    },
+    {
+      "id": "m4-fractions-diviser", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m4.fractions.produit", "skills": ["m4.fractions.inverse"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:diviser-sans-inverse", "mc:inverse-mauvaise-fraction"], "expectedSeconds": 150,
+      "params": { "a": { "int": [1, 9] }, "b": { "int": [2, 9] }, "c": { "int": [1, 9] }, "d": { "int": [2, 9] } },
+      "constraints": ["pgcd(a;b) = 1", "pgcd(c;d) = 1", "a != b", "c != d", "a*d != b*c", "mod(a*d;b*c) != 0"],
+      "start": "(a/b)/(c/d)", "minSteps": 2,
+      "prompt": "Calcule $ {a}/{b} ÷ ({c}/{d}) $ et donne le résultat sous forme irréductible. Commence par transformer la division en multiplication.",
+      "misconceptions": [
+        { "answer": "(a*c)/(b*d)", "id": "mc:diviser-sans-inverse", "error": "notion", "prerequisite": "m4.fractions.inverse", "feedback": "tu as multiplié par $ {c}/{d} $. Diviser par $ {c}/{d} $, c'est multiplier par son **inverse** $ {d}/{c} $." },
+        { "answer": "(b*c)/(a*d)", "id": "mc:inverse-mauvaise-fraction", "error": "methode", "feedback": "on garde la première fraction telle quelle. C'est la fraction par laquelle on divise, $ {c}/{d} $, qu'on remplace par son inverse $ {d}/{c} $." }
+      ],
+      "hints": ["Diviser par un nombre non nul, c'est multiplier par son inverse.", "L'inverse de $ {c}/{d} $ est $ {d}/{c} $ : écris $ ({a}/{b}) × ({d}/{c}) $.", "Multiplie les numérateurs entre eux et les dénominateurs entre eux, puis simplifie si c'est possible."],
+      "solution": "$ {a}/{b} ÷ ({c}/{d}) = ({a}/{b}) × ({d}/{c}) = {a*d}/{b*c} $, soit $ {a*d/pgcd(a*d;b*c)}/{b*c/pgcd(a*d;b*c)} $ sous forme irréductible.",
+      "selfTest": [
+        { "response": { "lines": ["({a}/{b}) × ({d}/{c})", "{a*d}/{b*c}", "{a*d/pgcd(a*d;b*c)}/{b*c/pgcd(a*d;b*c)}"] }, "expect": "correct" },
+        { "response": { "lines": ["({a}/{b}) × ({c}/{d})", "{a*c}/{b*d}"] }, "expect": "mc:diviser-sans-inverse" },
+        { "response": { "lines": ["({b}/{a}) × ({c}/{d})", "{b*c}/{a*d}"] }, "expect": "mc:inverse-mauvaise-fraction" }
+      ]
+    },
+    {
+      "id": "m4-fractions-priorites", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m4.fractions.calcul", "skills": ["m5.calcul.priorites", "m5.fractions.addition"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:priorites", "mc:somme-num-den"], "expectedSeconds": 240,
+      "params": { "a": { "int": [1, 5] }, "b": { "choice": [2, 3, 4, 6] }, "c": { "int": [1, 5] }, "d": { "choice": [2, 3, 5] }, "k": { "int": [1, 3] }, "e": { "expr": "d*k" }, "f": { "choice": [2, 3, 4, 6] }, "u": { "expr": "c*k/pgcd(c*k;f)" }, "w": { "expr": "f/pgcd(c*k;f)" }, "m": { "expr": "ppcm(b;w)" }, "p": { "expr": "a*m/b - u*m/w" }, "g": { "expr": "pgcd(p;m)" } },
+      "constraints": ["pgcd(a;b) = 1", "pgcd(c;d) = 1", "pgcd(e;f) = 1", "w != 1", "p != 0", "not estentier(p/m)", "(a/b - c/d)*(e/f) != a/b - c*k/f"],
+      "start": "a/b - (c/d)*(e/f)", "minSteps": 2,
+      "prompt": "Calcule $ A = {a}/{b} − {c}/{d} × ({e}/{f}) $. Attention aux priorités ! Donne le résultat sous forme irréductible : il peut être négatif.",
+      "misconceptions": [
+        { "answer": "(a/b - c/d)*(e/f)", "id": "mc:priorites", "error": "methode", "prerequisite": "m5.calcul.priorites", "feedback": "la multiplication est prioritaire sur la soustraction : on calcule d'abord $ {c}/{d} × ({e}/{f}) $, puis on soustrait ce résultat à $ {a}/{b} $." }
+      ],
+      "hints": ["Quelle opération faut-il effectuer en premier ?", "$ {c}/{d} × ({e}/{f}) = {c*e}/{d*f} $, qui se simplifie en $ {u}/{w} $.", "Il reste $ {a}/{b} − {u}/{w} $ : écris les deux fractions avec le dénominateur commun {m}."],
+      "solution": "La multiplication d'abord : $ {c}/{d} × ({e}/{f}) = {c*e}/{d*f} = {u}/{w} $. Puis $ A = {a}/{b} − {u}/{w} = {a*m/b}/{m} − {u*m/w}/{m} = {p}/{m} $. Forme irréductible : $ {p/g}/{m/g} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a}/{b} − {u}/{w}", "{p}/{m}", "{p/g}/{m/g}"] }, "expect": "correct" },
+        { "response": { "lines": ["({a}/{b} − {c}/{d}) × ({e}/{f})"] }, "expect": "mc:priorites" }
+      ]
+    },
+    {
+      "id": "m4-fractions-estimer", "type": "qcm", "skill": "m4.fractions.problemes", "skills": ["m4.fractions.inverse"], "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:diviser-rend-petit"], "expectedSeconds": 45,
+      "params": { "n": { "int": [3, 12] }, "a": { "int": [2, 5] }, "b": { "int": [3, 9] } },
+      "constraints": ["a < b", "pgcd(a;b) = 1"],
+      "prompt": "Vérification rapide, **sans calculer** : le résultat de $ {n} ÷ ({a}/{b}) $ est…",
+      "choices": [
+        { "text": "plus grand que {n}", "correct": true, "feedback": "Oui : diviser par $ {a}/{b} $, c'est multiplier par son inverse $ {b}/{a} $, qui est plus grand que 1." },
+        { "text": "plus petit que {n}", "correct": false, "error": "notion", "misconception": "mc:diviser-rend-petit", "feedback": "Diviser ne rend pas toujours plus petit ! Diviser par $ {a}/{b} $, un nombre plus petit que 1, c'est multiplier par $ {b}/{a} $, qui est plus grand que 1 : le résultat dépasse {n}." },
+        { "text": "égal à {n}", "correct": false, "error": "raisonnement", "feedback": "Le résultat serait égal à {n} seulement si on divisait par 1. Ici, on multiplie {n} par $ {b}/{a} $." }
+      ],
+      "solution": "$ {n} ÷ ({a}/{b}) = {n} × ({b}/{a}) $ : on multiplie {n} par un nombre plus grand que 1, donc le résultat est plus grand que {n}. Autre façon de voir : $ {a}/{b} $ est plus petit que 1, il « tient » plus de {n} fois dans {n}.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:diviser-rend-petit" } ]
+    },
+    {
+      "id": "m4-fractions-expliquer", "type": "open", "skill": "m4.fractions.produit", "skills": ["m4.fractions.inverse", "m4.fractions.problemes"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:diviser-sans-inverse"], "expectedSeconds": 360, "minWords": 25,
+      "prompt": "Tom a écrit : $ 3/5 ÷ (2/7) = 6/35 $.\n\n1. Sans refaire le calcul, montre-lui que son résultat est impossible : compare $6/35$ et $3/5$, et pense à l'effet d'une division par un nombre plus petit que 1.\n2. Explique-lui son erreur et donne le bon résultat.",
+      "criteria": [
+        { "id": "c1", "label": "Je montre que diviser par 2/7 (plus petit que 1) doit donner plus que 3/5, alors que 6/35 est plus petit que 3/5", "keywords": [["plus grand", "superieur", "plus que", "agrandit", "augmente", "21/35"]] },
+        { "id": "c2", "label": "J'explique que Tom a multiplié par 2/7 au lieu de multiplier par l'inverse 7/2", "keywords": [["inverse", "7/2"]] },
+        { "id": "c3", "label": "Je donne le bon résultat : 21/10", "keywords": [["21/10", "2,1", "2.1"]] }
+      ],
+      "models": [
+        "3/5 = 21/35, donc 6/35 est plus petit que 3/5. Or diviser par 2/7, un nombre plus petit que 1, donne un résultat plus grand que 3/5 : le résultat de Tom est impossible. Il a multiplié par 2/7 au lieu de multiplier par son inverse 7/2. Le bon calcul : 3/5 × 7/2 = 21/10.",
+        "On cherche combien de fois 2/7 tient dans 3/5. Comme 2/7 est plus petit que 1, le résultat doit dépasser 3/5, et 6/35 est beaucoup trop petit. Tom a gardé 2/7 au lieu de le retourner. Diviser, c'est multiplier par l'inverse : 3/5 × 7/2 = 21/10, soit 2,1."
+      ],
+      "hints": ["Écris $3/5$ avec le dénominateur 35 pour le comparer à $6/35$.", "Diviser par un nombre plus petit que 1 rend le résultat plus grand.", "Quel est l'inverse de $2/7$ ?"],
+      "solution": "$ 3/5 = 21/35 $ et $ 21/35 > 6/35 $ : le résultat de Tom est plus petit que $3/5$, alors qu'une division par $2/7$ (plus petit que 1) doit donner un résultat plus grand. Tom a multiplié par $2/7$ au lieu de multiplier par son inverse : $ 3/5 ÷ (2/7) = (3/5) × (7/2) = 21/10 $.",
+      "selfTest": [ { "response": { "text": "3/5 = 21/35 donc 6/35 est plus petit que 3/5. Mais diviser par 2/7 qui est plus petit que 1 donne un résultat plus grand. Tom a multiplié par 2/7 au lieu de l'inverse 7/2 : 3/5 × 7/2 = 21/10.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m4-fractions-plus-grand", "type": "counterexample", "skill": "m4.fractions.produit", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:multiplier-agrandit"], "expectedSeconds": 180,
+      "claim": "Si $a$ et $b$ sont deux nombres positifs, alors $ a × b $ est plus grand que $a$.",
+      "prompt": "Lucas affirme : « Multiplier, ça agrandit toujours ! Si $a$ et $b$ sont deux nombres positifs, alors $ a × b $ est plus grand que $a$. » Trouve des valeurs de $a$ et de $b$, strictement positives, qui prouvent qu'il a tort.",
+      "vars": ["a", "b"], "domain": "a > 0 and b > 0", "domainLabel": "a et b strictement positifs",
+      "refutes": "a*b <= a", "show": "a*b", "showLabel": "a × b",
+      "refuteHint": "Essaie avec un nombre $b$ plus petit que 1, par exemple une fraction.",
+      "hints": ["Prendre la moitié d'un nombre, c'est le multiplier par… ?", "Essaie $b = 1/2$."],
+      "solution": "Par exemple $a = 6$ et $b = 1/2$ : $ 6 × (1/2) = 3 $, qui est plus petit que 6. Multiplier un nombre positif par un nombre compris entre 0 et 1 le rend plus petit ; le multiplier par 1 ne le change pas.",
+      "selfTest": [ { "response": { "values": { "a": "6", "b": "1/2" } }, "expect": "correct" }, { "response": { "values": { "a": "3", "b": "4" } }, "expect": "raisonnement" } ]
+    },
+    {
+      "id": "m4-fractions-gourde", "type": "composite", "skill": "m4.fractions.problemes", "skills": ["m4.fractions.produit", "m4.fractions.calcul"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diviser-sans-inverse", "mc:fraction-de-quantite"], "expectedSeconds": 420,
+      "prompt": "Une gourde pleine contient $3/4$ de litre de jus. Un gobelet a une contenance de $3/16$ de litre.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de gobelets peut-on remplir avec la gourde pleine ?", "answer": 4,
+          "misconceptions": [
+            { "answer": "9/64", "id": "mc:diviser-sans-inverse", "error": "methode", "feedback": "Tu as multiplié $3/4$ par $3/16$. On cherche combien de fois $3/16$ tient dans $3/4$ : c'est une **division**, $ 3/4 ÷ (3/16) = (3/4) × (16/3) $." },
+            { "answer": "1/4", "id": "mc:division-sens", "error": "methode", "feedback": "Tu as divisé $3/16$ par $3/4$. On cherche combien de gobelets tiennent dans la gourde : $ 3/4 ÷ (3/16) $." }
+          ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Léo boit les $2/5$ du jus de la gourde pleine. Quelle quantité de jus a-t-il bue, en litre ?", "answer": "3/10",
+          "misconceptions": [ { "answer": "2/5", "id": "mc:fraction-de-quantite", "error": "lecture", "feedback": "$2/5$, c'est la fraction **de la gourde** qu'il a bue. En litre, il faut prendre les $2/5$ de $3/4$ L : $ (2/5) × (3/4) $." } ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle quantité de jus reste-t-il dans la gourde, en litre ?", "answer": "9/20",
+          "misconceptions": [ { "answer": "3/5", "id": "mc:fraction-de-quantite", "error": "lecture", "feedback": "Il reste les $3/5$ **de la gourde**, mais la question demande des litres : $ (3/5) × (3/4) $, ou bien $ 3/4 − 3/10 $." } ] },
+        { "type": "numeric", "prompt": "Contrôle : combien de centilitres de jus reste-t-il ? (1 L = 100 cL)", "answer": 45 }
+      ],
+      "hints": ["Nombre de gobelets : combien de fois $3/16$ tient-il dans $3/4$ ?", "« Les $2/5$ de $3/4$ L », c'est $ (2/5) × (3/4) $.", "Reste : $ 3/4 − 3/10 $ ; écris les deux fractions avec le dénominateur 20."],
+      "solution": "$ 3/4 ÷ (3/16) = (3/4) × (16/3) = 48/12 = 4 $ gobelets. Léo boit $ (2/5) × (3/4) = 6/20 = 3/10 $ L. Il reste $ 3/4 − 3/10 = 15/20 − 6/20 = 9/20 $ L, soit 0,45 L ou 45 cL. Contrôle : la gourde contient 75 cL, Léo en boit 30 cL (un peu moins de la moitié) et 75 − 30 = 45.",
+      "methods": ["Calculer avec les fractions.", "Tout convertir en centilitres : la gourde contient 75 cL ; les 2/5 de 75 cL font 30 cL."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4" }, { "value": "3/10" }, { "value": "9/20" }, { "value": "45" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "9/64" }, { "value": "3/10" }, { "value": "9/20" }, { "value": "45" } ] }, "expect": "mc:diviser-sans-inverse" }
+      ]
+    },
+    {
+      "id": "m4-fractions-heritage", "type": "composite", "skill": "m4.fractions.problemes", "skills": ["m4.fractions.calcul", "m5.fractions.addition"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:somme-num-den", "mc:oubli-numerateur"], "expectedSeconds": 480,
+      "prompt": "Le testament du marchand : **la moitié** des chameaux pour l'aînée, **le tiers** pour le cadet, **le neuvième** pour le benjamin. Le troupeau compte 17 chameaux.",
+      "parts": [
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle fraction du troupeau le testament distribue-t-il en tout ? Calcule $ 1/2 + 1/3 + 1/9 $.", "answer": "17/18",
+          "misconceptions": [
+            { "answer": "3/14", "id": "mc:somme-num-den", "error": "notion", "feedback": "On n'additionne pas les dénominateurs : une moitié, un tiers et un neuvième sont des parts de tailles différentes. Écris-les toutes en dix-huitièmes." },
+            { "answer": "3/18", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Avec le dénominateur 18, il faut aussi changer les numérateurs : $ 1/2 = 9/18 $, $ 1/3 = 6/18 $ et $ 1/9 = 2/18 $." }
+          ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle fraction du troupeau n'est attribuée à personne ?", "answer": "1/18" },
+        { "type": "numeric", "prompt": "Avec 18 chameaux (les 17 du marchand et celui de la voyageuse), combien de chameaux distribue-t-on en tout ?", "answer": 17,
+          "misconceptions": [ { "answer": 18, "id": "mc:fraction-total", "error": "lecture", "feedback": "Le testament ne distribue que les $17/18$ du troupeau : $9 + 6 + 2 = 17$ chameaux. Le dix-huitième reste libre." } ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Le cadet reçoit 6 chameaux au lieu du tiers de 17. Combien reçoit-il en plus de sa part exacte ? Calcule $ 6 − 17/3 $.", "answer": "1/3",
+          "misconceptions": [ { "answer": "-1/3", "id": "mc:ordre-soustraction", "error": "signe", "feedback": "Le cadet reçoit 6 chameaux, et 6 est plus grand que $17/3$ (qui vaut environ 5,67) : la différence $ 6 − 17/3 $ est positive." } ] }
+      ],
+      "hints": ["Un dénominateur commun à 2, 3 et 9 : 18.", "$ 1/2 + 1/3 + 1/9 = 9/18 + 6/18 + 2/18 $.", "$ 6 = 18/3 $."],
+      "solution": "$ 1/2 + 1/3 + 1/9 = 9/18 + 6/18 + 2/18 = 17/18 $ : le testament ne partage que les $17/18$ du troupeau, il reste $1/18$ pour personne ! Avec 18 chameaux, on distribue 9 + 6 + 2 = 17 chameaux et celui de la voyageuse reste libre. Chacun reçoit même un peu plus que sa part exacte : 9 au lieu de 8,5 ; 6 au lieu de $17/3$ (le cadet gagne $ 6 − 17/3 = 1/3 $ de chameau) ; 2 au lieu de $17/9$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "17/18" }, { "value": "1/18" }, { "value": "17" }, { "value": "1/3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3/14" }, { "value": "1/18" }, { "value": "17" }, { "value": "1/3" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m4-fractions-remed-pizzas", "type": "numeric", "skill": "m4.fractions.inverse", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:diviser-sans-inverse", "mc:diviser-rend-petit"], "expectedSeconds": 90,
+      "params": { "n": { "int": [2, 6] }, "k": { "int": [2, 8] } },
+      "prompt": "Autre représentation : {n} pizzas sont découpées en parts qui valent chacune $1/{k}$ de pizza. Combien de parts obtient-on ? C'est le résultat de $ {n} ÷ (1/{k}) $.",
+      "answer": "n*k",
+      "misconceptions": [ { "answer": "n/k", "id": "mc:diviser-sans-inverse", "error": "notion", "feedback": "Tu as calculé $ {n} × (1/{k}) $. Chaque pizza donne {k} parts, donc {n} pizzas en donnent $ {n} × {k} $. Diviser par $1/{k}$, c'est multiplier par {k}." } ],
+      "hints": ["Une seule pizza : combien de parts de $1/{k}$ ?", "Il y a {n} pizzas, chacune coupée en {k} parts."],
+      "solution": "Chaque pizza donne {k} parts, donc $ {n} ÷ (1/{k}) = {n} × {k} = {n*k} $ parts. Diviser par $1/{k}$, c'est multiplier par son inverse {k}.",
+      "selfTest": [ { "response": { "value": "{n*k}" }, "expect": "correct" }, { "response": { "value": "{n}/{k}" }, "expect": "mc:diviser-sans-inverse" } ]
+    },
+    {
+      "id": "m4-fractions-remed-produit", "type": "expression", "form": "irreductible", "skill": "m4.fractions.produit", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:produit-denominateur-commun"], "expectedSeconds": 90,
+      "params": { "c": { "int": [2, 9] }, "a": { "int": [1, 8] }, "b": { "int": [1, 8] } },
+      "constraints": ["pgcd(a;c) = 1", "pgcd(b;c) = 1"],
+      "prompt": "Rappel ciblé : pour **multiplier** deux fractions, pas besoin de dénominateur commun. On multiplie les numérateurs entre eux **et** les dénominateurs entre eux. Calcule $ {a}/{c} × ({b}/{c}) $ et donne le résultat sous forme irréductible.",
+      "answer": "(a*b)/(c*c)",
+      "misconceptions": [
+        { "answer": "(a*b)/c", "id": "mc:produit-denominateur-commun", "error": "notion", "feedback": "Garder le dénominateur {c}, c'est la règle de l'**addition**. Pour la multiplication, on multiplie aussi les dénominateurs : $ {c} × {c} = {c*c} $." }
+      ],
+      "hints": ["Numérateur : $ {a} × {b} $.", "Dénominateur : $ {c} × {c} $."],
+      "solution": "$ {a}/{c} × ({b}/{c}) = ({a} × {b})/({c} × {c}) = {a*b}/{c*c} $.",
+      "selfTest": [ { "response": { "value": "{a*b}/{c*c}" }, "expect": "correct" }, { "response": { "value": "{a*b}/{c}" }, "expect": "mc:produit-denominateur-commun" } ]
+    },
+    {
+      "id": "m4-fractions-telescope", "type": "composite", "skill": "m4.fractions.calcul", "skills": ["m4.fractions.produit"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:dernier-facteur"], "expectedSeconds": 420,
+      "prompt": "Voici un produit de facteurs qui se ressemblent tous : $ (1 − 1/2) × (1 − 1/3) × (1 − 1/4) $, et ainsi de suite. Chaque facteur est de la forme $ 1 − 1/n $. Calcule sans calculatrice.",
+      "parts": [
+        { "type": "expression", "form": "irreductible", "prompt": "$ (1 − 1/2) × (1 − 1/3) $", "answer": "1/3" },
+        { "type": "expression", "form": "irreductible", "prompt": "$ (1 − 1/2) × (1 − 1/3) × (1 − 1/4) × (1 − 1/5) $", "answer": "1/5",
+          "misconceptions": [ { "answer": "4/5", "id": "mc:dernier-facteur", "error": "raisonnement", "feedback": "$4/5$ est seulement le dernier facteur. Écris tous les facteurs : $ (1/2) × (2/3) × (3/4) × (4/5) $ ; que se passe-t-il entre les numérateurs et les dénominateurs ?" } ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Le même produit, mais en allant jusqu'au facteur $ 1 − 1/100 $.", "answer": "1/100",
+          "misconceptions": [ { "answer": "99/100", "id": "mc:dernier-facteur", "error": "raisonnement", "feedback": "$99/100$ est le dernier facteur seulement. Tous les nombres de 2 à 99 apparaissent une fois en haut et une fois en bas : ils se simplifient." } ] },
+        { "type": "numeric", "prompt": "Jusqu'à quel facteur $ 1 − 1/n $ faut-il aller pour que le produit soit égal à $1/2026$ ? Donne $n$.", "answer": 2026 }
+      ],
+      "hints": ["Calcule chaque facteur : $ 1 − 1/2 = 1/2 $, $ 1 − 1/3 = 2/3 $, $ 1 − 1/4 = 3/4 $…", "Dans $ (1/2) × (2/3) × (3/4) $, le 2 du premier dénominateur et le 2 du deuxième numérateur se simplifient, et ainsi de suite.", "Il ne reste que le 1 du premier numérateur et le dernier dénominateur."],
+      "solution": "$ (1/2) × (2/3) = 2/6 = 1/3 $. Puis $ (1/2) × (2/3) × (3/4) × (4/5) = 1/5 $ : chaque numérateur se simplifie avec le dénominateur précédent. En allant jusqu'à $ 1 − 1/100 = 99/100 $, il reste $1/100$. Le produit qui s'arrête au facteur $ 1 − 1/n $ vaut $1/n$ : pour obtenir $1/2026$, on va jusqu'à $n = 2026$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1/3" }, { "value": "1/5" }, { "value": "1/100" }, { "value": "2026" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1/3" }, { "value": "4/5" }, { "value": "1/100" }, { "value": "2026" } ] }, "expect": "mc:dernier-facteur" }
+      ]
+    },
+    {
+      "id": "m4-fractions-egyptiennes", "type": "composite", "skill": "m4.fractions.calcul", "skills": ["m5.fractions.addition"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:somme-num-den"], "expectedSeconds": 480,
+      "prompt": "Dans l'Égypte ancienne, les scribes écrivaient presque toutes les fractions comme des **sommes de fractions de numérateur 1, toutes différentes**. Par exemple : $ 3/4 = 1/2 + 1/4 $.",
+      "parts": [
+        { "type": "expression", "form": "irreductible", "prompt": "Calcule $ 1/2 + 1/3 $.", "answer": "5/6",
+          "misconceptions": [ { "answer": "2/5", "id": "mc:somme-num-den", "error": "notion", "feedback": "On n'additionne pas les dénominateurs ! $ 1/2 = 3/6 $ et $ 1/3 = 2/6 $." } ] },
+        { "type": "numeric", "prompt": "Trouve le nombre entier $n$ tel que $ 7/12 = 1/3 + 1/n $.", "answer": 4,
+          "misconceptions": [ { "answer": 9, "id": "mc:somme-num-den", "error": "notion", "feedback": "On ne soustrait pas les dénominateurs : $ 7/12 − 1/3 = 7/12 − 4/12 $." } ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Calcule $ 1/4 − 1/5 $.", "answer": "1/20" },
+        { "type": "numeric", "prompt": "On en déduit $ 1/4 = 1/5 + 1/20 $. Sur le même modèle, écris $ 1/6 = 1/7 + 1/n $. Que vaut $n$ ?", "answer": 42 }
+      ],
+      "hints": ["Pour $n$ : calcule $ 7/12 − 1/3 $ et simplifie.", "$ 1/4 − 1/5 = 5/20 − 4/20 $.", "Calcule $ 1/6 − 1/7 $ avec le dénominateur $ 6 × 7 $."],
+      "solution": "$ 1/2 + 1/3 = 3/6 + 2/6 = 5/6 $. $ 7/12 − 1/3 = 7/12 − 4/12 = 3/12 = 1/4 $, donc $n = 4$. $ 1/4 − 1/5 = 5/20 − 4/20 = 1/20 $. De même $ 1/6 − 1/7 = 7/42 − 6/42 = 1/42 $, donc $ 1/6 = 1/7 + 1/42 $ : $n = 42$. Cette astuce permet d'écrire toute fraction de numérateur 1 comme une somme de deux fractions de numérateur 1 différentes.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5/6" }, { "value": "4" }, { "value": "1/20" }, { "value": "42" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2/5" }, { "value": "4" }, { "value": "1/20" }, { "value": "42" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m4-fractions-etagee", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m4.fractions.calcul", "skills": ["m4.fractions.inverse"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:inverse-oublie"], "expectedSeconds": 420,
+      "start": "1 + 1/(1 + 1/(1 + 1/2))", "minSteps": 3,
+      "prompt": "Une fraction « à étages » ! Calcule $ 1 + 1/(1 + 1/(1 + 1/2)) $ en partant de l'étage du bas, et donne le résultat sous forme irréductible. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "7/5", "id": "mc:inverse-oublie", "error": "notion", "prerequisite": "m4.fractions.inverse", "feedback": "tu as sans doute remplacé $ 1/(3/2) $ par $3/2$. Or $ 1/(3/2) = 1 ÷ (3/2) = 2/3 $ : c'est l'inverse de $3/2$." }
+      ],
+      "hints": ["L'étage du bas : $ 1 + 1/2 = 3/2 $.", "$ 1/(3/2) $ est l'inverse de $3/2$, c'est-à-dire $2/3$. L'expression devient $ 1 + 1/(1 + 2/3) $.", "Continue : $ 1 + 2/3 = 5/3 $, puis $ 1/(5/3) = 3/5 $."],
+      "solution": "$ 1 + 1/2 = 3/2 $, dont l'inverse est $2/3$ ; puis $ 1 + 2/3 = 5/3 $, dont l'inverse est $3/5$ ; enfin $ 1 + 3/5 = 8/5 $. Curiosité : en ajoutant des étages, on obtient $ 2, 3/2, 5/3, 8/5, 13/8 $… Les numérateurs et dénominateurs sont les nombres de Fibonacci (chacun est la somme des deux précédents), et ces fractions se rapprochent du nombre d'or, environ 1,618.",
+      "methods": ["Remonter étage par étage en utilisant l'inverse.", "Multiplier en haut et en bas par le même nombre pour supprimer la petite fraction : $ 1/(1 + 1/2) = 2/(2 + 1) = 2/3 $."],
+      "selfTest": [
+        { "response": { "lines": ["1 + 1/(1 + 2/3)", "1 + 1/(5/3)", "1 + 3/5", "8/5"] }, "expect": "correct" },
+        { "response": { "lines": ["1 + 1/(1 + 3/2)", "1 + 1/(5/2)", "1 + 2/5", "7/5"] }, "expect": "mc:inverse-oublie" }
+      ]
+    },
+    {
+      "id": "m4-fractions-diophante", "type": "composite", "skill": "m4.fractions.problemes", "skills": ["m4.fractions.calcul", "m4.equations.modeliser"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "concrete", "targets": ["mc:somme-num-den"], "expectedSeconds": 600,
+      "prompt": "Une énigme grecque très ancienne raconte la vie du mathématicien Diophante. Son enfance dura $1/6$ de sa vie, sa jeunesse $1/12$ de sa vie, puis il resta célibataire pendant $1/7$ de sa vie. Cinq ans après son mariage naquit son fils, qui vécut la moitié de l'âge final de son père. Diophante mourut quatre ans après son fils.",
+      "parts": [
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle fraction de la vie de Diophante représentent ensemble l'enfance, la jeunesse, le célibat et la vie du fils ? Calcule $ 1/6 + 1/12 + 1/7 + 1/2 $.", "answer": "25/28",
+          "misconceptions": [ { "answer": "4/27", "id": "mc:somme-num-den", "error": "notion", "feedback": "On n'additionne pas les dénominateurs : il faut un dénominateur commun à 6, 12, 7 et 2, par exemple 84." } ] },
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle fraction de sa vie reste-t-il pour les autres années (les 5 ans avant la naissance du fils et les 4 ans après sa mort) ?", "answer": "3/28" },
+        { "type": "numeric", "prompt": "À quel âge Diophante est-il mort ?", "answer": 84,
+          "misconceptions": [ { "answer": 9, "id": "mc:partie-tout", "error": "lecture", "feedback": "9 ans, c'est la durée qui correspond aux $3/28$ de sa vie. On cherche la vie entière : si $3/28$ de la vie valent 9 ans, $1/28$ vaut 3 ans." } ] }
+      ],
+      "hints": ["Un dénominateur commun à 6, 12, 7 et 2 : 84.", "Les années restantes : $ 5 + 4 = 9 $ ans. Elles représentent $ 1 − 25/28 $ de la vie.", "Si $3/28$ de la vie font 9 ans, alors $1/28$ fait 3 ans."],
+      "solution": "$ 1/6 + 1/12 + 1/7 + 1/2 = 14/84 + 7/84 + 12/84 + 42/84 = 75/84 = 25/28 $. Il reste $ 1 − 25/28 = 3/28 $ de sa vie, qui correspondent à $ 5 + 4 = 9 $ ans. Donc $1/28$ de sa vie fait 3 ans, et sa vie entière $ 28 × 3 = 84 $ ans. Vérification : 14 + 7 + 12 + 5 + 42 + 4 = 84.",
+      "methods": ["Raisonner sur les fractions de la vie, comme ci-dessus.", "Mettre en équation : $ x/6 + x/12 + x/7 + 5 + x/2 + 4 = x $, puis la résoudre."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "25/28" }, { "value": "3/28" }, { "value": "84" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4/27" }, { "value": "3/28" }, { "value": "84" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    }
+  ]
+}

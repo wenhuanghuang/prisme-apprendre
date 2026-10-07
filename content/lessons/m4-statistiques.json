@@ -1,0 +1,477 @@
+{
+  "id": "m4-statistiques",
+  "chapter": "m4-ch-stats",
+  "title": "Statistiques : diagrammes circulaires et médiane",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.stats.diagramme-circulaire", "m4.stats.mediane"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 50,
+  "summary": "Lire et construire un diagramme circulaire (angles proportionnels aux effectifs), calculer une médiane et comprendre pourquoi elle résiste mieux que la moyenne aux valeurs extrêmes.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L'argent de poche d'Hugo",
+      "body": "Neuf amis comparent leur argent de poche mensuel : 10 €, 10 €, 12 €, 15 €, 15 €, 15 €, 18 €, 20 €… et 200 € pour Hugo, dont la grand-mère est très généreuse. En moyenne, ils reçoivent 35 € par mois. Pourtant, huit d'entre eux sur neuf touchent 20 € ou moins !\n\nLa moyenne décrit-elle bien le groupe ? Quel nombre représenterait mieux l'argent de poche « typique » ?",
+      "figure": {
+        "alt": "Diagramme en barres de l'argent de poche mensuel de neuf amis, en euros",
+        "w": 520, "h": 280,
+        "items": [
+          { "type": "bars", "unit": "€", "data": [
+            { "label": "Ana", "value": 15 }, { "label": "Bilal", "value": 10 }, { "label": "Chloé", "value": 20 },
+            { "label": "Dan", "value": 12 }, { "label": "Emma", "value": 15 }, { "label": "Hugo", "value": 200 },
+            { "label": "Inès", "value": 10 }, { "label": "Jade", "value": 18 }, { "label": "Karim", "value": 15 }
+          ] }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🥧", "title": "Le diagramme circulaire",
+          "body": "Dans un **diagramme circulaire**, le disque entier (360°) représente l'effectif total. Chaque catégorie occupe un secteur dont l'**angle est proportionnel à son effectif** : deux fois plus d'élèves, deux fois plus d'angle. On l'utilise pour montrer la part de chaque catégorie dans un tout.",
+          "figure": {
+            "alt": "Diagramme circulaire du petit-déjeuner de 24 élèves : céréales, tartines, viennoiserie, rien",
+            "w": 420, "h": 220,
+            "items": [ { "type": "pie", "percent": true, "data": [
+              { "label": "Céréales", "value": 8 }, { "label": "Tartines", "value": 6 },
+              { "label": "Viennoiserie", "value": 6 }, { "label": "Rien", "value": 4 } ] } ]
+          }
+        },
+        {
+          "emoji": "📐", "title": "Calculer l'angle d'un secteur",
+          "body": "On utilise la proportionnalité entre effectifs et angles : **angle = effectif ÷ effectif total × 360°**. On peut aussi passer par la fréquence : angle = fréquence × 360°. Contrôle final : la somme des angles doit faire 360°.",
+          "example": "24 élèves, dont 8 prennent des céréales : 8 ÷ 24 × 360 = 120°.",
+          "reveal": {
+            "question": "Devine : dans une classe de 24 élèves, 6 viennent en bus. Le secteur « bus » mesure-t-il 6° ?",
+            "answer": "Non ! 6 élèves sur 24, c'est un quart de la classe, donc un quart du disque : 360 ÷ 4 = 90°. L'angle n'est pas égal à l'effectif : il lui est proportionnel."
+          }
+        },
+        {
+          "emoji": "📏", "title": "La médiane",
+          "body": "La **médiane** d'une série partage les valeurs, **rangées dans l'ordre croissant**, en deux groupes de même effectif : au moins la moitié des valeurs lui sont inférieures ou égales, et au moins la moitié lui sont supérieures ou égales. Première étape, toujours : **ranger** les valeurs.",
+          "example": "Série 7 ; 2 ; 9 ; 4 ; 5. Rangée : 2 ; 4 ; 5 ; 7 ; 9. La médiane est 5."
+        },
+        {
+          "emoji": "🔢", "title": "Effectif pair ou impair",
+          "body": "Avec N valeurs rangées : si N est **impair**, la médiane est la valeur de rang (N + 1) ÷ 2. Si N est **pair**, c'est la moyenne des deux valeurs du milieu, de rangs N ÷ 2 et N ÷ 2 + 1. Avec un tableau ou un diagramme en bâtons, on repère les rangs grâce aux **effectifs cumulés**.",
+          "example": "Notes 8 ; 11 ; 12 ; 14 ; 15 ; 17 (6 notes) : médiane = (12 + 14) ÷ 2 = 13."
+        },
+        {
+          "emoji": "⚖️", "title": "Médiane ou moyenne ?",
+          "body": "La **moyenne** partage le total équitablement entre tous : une seule valeur extrême peut la faire beaucoup bouger. La **médiane** ne regarde que le milieu de la série rangée : elle résiste aux valeurs extrêmes. Pour décrire une valeur « typique », la médiane est souvent plus fidèle.",
+          "reveal": {
+            "question": "Devine : si on enlève les 200 € de Hugo, que deviennent la moyenne et la médiane de l'argent de poche ?",
+            "answer": "La moyenne s'effondre : 115 ÷ 8 ≈ 14,38 € au lieu de 35 €. La médiane ne bouge pas : elle vaut 15 € avant comme après."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : les pointures de l'équipe",
+      "steps": [
+        { "text": "Voici les pointures des 20 joueuses du club de handball. On cherche la médiane.",
+          "figure": { "alt": "Diagramme en bâtons des pointures de 20 joueuses, de 36 à 41", "w": 420, "h": 240,
+            "items": [ { "type": "bars", "unit": "joueuses", "data": [
+              { "label": "36", "value": 1 }, { "label": "37", "value": 2 }, { "label": "38", "value": 4 },
+              { "label": "39", "value": 3 }, { "label": "40", "value": 6 }, { "label": "41", "value": 4 } ] } ] } },
+        { "text": "L'effectif total N = 20 est pair : la médiane est la moyenne des valeurs de rangs 10 et 11, dans la série rangée.", "math": "20 ÷ 2 = 10" },
+        { "text": "On calcule les effectifs cumulés : ils indiquent combien de joueuses chaussent cette pointure ou moins.",
+          "figure": { "alt": "Tableau des effectifs et des effectifs cumulés des pointures", "w": 480, "h": 120,
+            "items": [ { "type": "table", "head": ["Pointure", "36", "37", "38", "39", "40", "41"],
+              "rows": [["Effectif", "1", "2", "4", "3", "6", "4"], ["Effectif cumulé", "1", "3", "7", "10", "16", "20"]] } ] } },
+        { "text": "La joueuse de rang 10 chausse du 39 (c'est la dernière des pointures 39) ; celle de rang 11 chausse du 40.", "math": "(39 + 40) ÷ 2 = 39,5" },
+        { "text": "Conclusion : la médiane vaut 39,5. Dix joueuses chaussent du 39 ou moins, dix du 40 ou plus : la médiane partage bien l'équipe en deux. Une médiane n'est pas toujours une valeur de la série !" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m4-statistiques-mediane-impaire", "m4-statistiques-batons", "m4-statistiques-angle", "m4-statistiques-construire", "m4-statistiques-lire-camembert", "m4-statistiques-interpreter"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Comparer et expliquer",
+      "body": "Deux clubs de lecture à départager, puis le retour de l'argent de poche d'Hugo.",
+      "exercises": ["m4-statistiques-defi-lecture", "m4-statistiques-argent-poche"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : l'affiche du CVC sur le sommeil",
+      "body": "Le conseil de vie collégienne prépare une affiche sur le sommeil des élèves de 4e. À toi les graphiques et les calculs.",
+      "exercises": ["m4-statistiques-sommeil"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Médiane : on RANGE les valeurs, puis on prend la valeur du milieu (effectif impair) ou la moyenne des deux valeurs du milieu (effectif pair). Diagramme circulaire : angle = effectif ÷ effectif total × 360°.\n\n- **Oublier de ranger.** La médiane n'est pas la valeur placée au milieu de la liste de départ.\n- **Confondre rang et valeur.** Avec 25 valeurs, la médiane est la 13e valeur, pas le nombre 13.\n- **Prendre l'effectif pour l'angle.** 6 élèves sur 24 donnent un secteur de 90°, pas de 6°.\n- **Confondre médiane et moyenne.** Une valeur extrême fait bouger la moyenne, presque jamais la médiane."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des médianes et des diagrammes circulaires dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une note effacée à retrouver, et deux diagrammes circulaires qui piègent les lecteurs pressés.",
+      "exercises": ["m4-statistiques-note-cachee", "m4-statistiques-deux-classes"]
+    },
+    "expert": {
+      "intro": "Raisonner sur des séries qu'on ne connaît pas entièrement : contraintes sur la médiane et la moyenne, fusion de deux classes.",
+      "exercises": ["m4-statistiques-cible", "m4-statistiques-fusion"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-statistiques-mediane-impaire", "type": "numeric", "skill": "m4.stats.mediane", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:mediane-sans-trier", "mc:rang-valeur"], "expectedSeconds": 120,
+      "params": {
+        "a": { "int": [5, 9] }, "i": { "int": [1, 3] }, "j": { "int": [1, 4] }, "k": { "int": [1, 3] }, "l": { "int": [2, 5] }, "m": { "int": [1, 3] }, "o": { "int": [2, 6] },
+        "b": { "expr": "a+i" }, "c": { "expr": "b+j" }, "d": { "expr": "c+k" }, "e": { "expr": "d+l" }, "f": { "expr": "e+m" }, "g": { "expr": "f+o" }
+      },
+      "prompt": "Voici le temps de trajet, en minutes, de 7 élèves pour venir au collège : {d} ; {a} ; {f} ; {b} ; {g} ; {c} ; {e}. Quelle est la médiane de cette série ?",
+      "answer": "d",
+      "misconceptions": [
+        { "answer": "b", "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "{b} est la valeur placée au milieu de la liste de départ. Mais la médiane se cherche dans la série RANGÉE dans l'ordre croissant : range d'abord les 7 valeurs." },
+        { "answer": "4", "id": "mc:rang-valeur", "error": "lecture", "feedback": "4 est le RANG de la médiane (la 4e valeur sur 7), pas sa valeur. Quelle est la 4e valeur de la série rangée ?" }
+      ],
+      "hints": ["Commence par ranger les 7 valeurs dans l'ordre croissant.", "Avec 7 valeurs, la médiane est la valeur de rang (7 + 1) ÷ 2 = 4.", "Prends la 4e valeur de la série RANGÉE, pas la 4e de la liste de départ."],
+      "solution": "Série rangée : {a} ; {b} ; {c} ; {d} ; {e} ; {f} ; {g}. Il y a 7 valeurs (nombre impair) : la médiane est la 4e, soit {d} min. Au moins la moitié des élèves mettent {d} min ou moins pour venir, et au moins la moitié {d} min ou plus.",
+      "selfTest": [
+        { "response": { "value": "{d}" }, "expect": "correct" },
+        { "response": { "value": "{b}" }, "expect": "mc:mediane-sans-trier" },
+        { "response": { "value": "4" }, "expect": "mc:rang-valeur" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-batons", "type": "composite", "skill": "m4.stats.mediane", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:cumul-effectif", "mc:milieu-des-valeurs", "mc:rang-valeur", "mc:mode"], "expectedSeconds": 300,
+      "prompt": "On a demandé aux 24 élèves d'une classe combien ils ont de frères et sœurs. Le diagramme en bâtons donne les résultats.",
+      "figure": {
+        "alt": "Diagramme en bâtons du nombre de frères et sœurs des 24 élèves d'une classe, de 0 à 5",
+        "w": 420, "h": 240,
+        "items": [ { "type": "bars", "unit": "élèves", "data": [
+          { "label": "0", "value": 2 }, { "label": "1", "value": 8 }, { "label": "2", "value": 5 },
+          { "label": "3", "value": 4 }, { "label": "4", "value": 3 }, { "label": "5", "value": 2 } ] } ]
+      },
+      "parts": [
+        { "type": "table", "prompt": "Complète la ligne des effectifs cumulés.",
+          "columns": ["Frères et sœurs", "0", "1", "2", "3", "4", "5"],
+          "rows": [["Effectif", "2", "8", "5", "4", "3", "2"], ["Effectif cumulé", "?r1c1", "?r1c2", "?r1c3", "?r1c4", "?r1c5", "?r1c6"]],
+          "cells": {
+            "r1c1": { "answer": "2" },
+            "r1c2": { "answer": "10", "misconceptions": [ { "answer": "8", "id": "mc:cumul-effectif", "error": "lecture", "feedback": "8 est l'effectif de la valeur 1. L'effectif cumulé compte toutes les valeurs jusqu'à 1 incluse : les élèves sans frère ni sœur ET ceux qui en ont un." } ] },
+            "r1c3": { "answer": "15" }, "r1c4": { "answer": "19" }, "r1c5": { "answer": "22" }, "r1c6": { "answer": "24" }
+          } },
+        { "type": "numeric", "prompt": "Quelle est la médiane du nombre de frères et sœurs ?", "answer": 2,
+          "misconceptions": [
+            { "answer": 2.5, "id": "mc:milieu-des-valeurs", "error": "notion", "feedback": "2,5 est le milieu des valeurs possibles (de 0 à 5). La médiane est la valeur du milieu de la série des 24 élèves rangés : regarde les élèves de rangs 12 et 13." },
+            { "answer": 12, "id": "mc:rang-valeur", "error": "lecture", "feedback": "12 est un rang (la position d'un élève dans la série rangée), pas une valeur. Combien de frères et sœurs a l'élève de rang 12 ?" },
+            { "answer": 1, "id": "mc:mode", "error": "notion", "feedback": "1 est la valeur la plus fréquente (8 élèves), pas forcément celle du milieu. Utilise les effectifs cumulés pour repérer les rangs 12 et 13." }
+          ] }
+      ],
+      "hints": ["Effectif cumulé : on additionne les effectifs de gauche à droite.", "N = 24 est pair : la médiane est la moyenne des valeurs de rangs 12 et 13.", "D'après les effectifs cumulés, les élèves de rangs 11 à 15 ont tous le même nombre de frères et sœurs."],
+      "solution": "Effectifs cumulés : 2 ; 10 ; 15 ; 19 ; 22 ; 24. L'effectif total, 24, est pair : la médiane est la moyenne des valeurs de rangs 12 et 13. Les élèves de rangs 11 à 15 ont 2 frères et sœurs, donc la médiane vaut $ (2 + 2) ÷ 2 = 2 $. Au moins la moitié des élèves ont 2 frères et sœurs ou moins.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r1c1": "2", "r1c2": "10", "r1c3": "15", "r1c4": "19", "r1c5": "22", "r1c6": "24" } }, { "value": "2" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r1c1": "2", "r1c2": "10", "r1c3": "15", "r1c4": "19", "r1c5": "22", "r1c6": "24" } }, { "value": "2,5" } ] }, "expect": "mc:milieu-des-valeurs" },
+        { "response": { "parts": [ { "cells": { "r1c1": "2", "r1c2": "8", "r1c3": "15", "r1c4": "19", "r1c5": "22", "r1c6": "24" } }, { "value": "2" } ] }, "expect": "mc:cumul-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-angle", "type": "numeric", "skill": "m4.stats.diagramme-circulaire", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:angle-effectif", "mc:angle-pourcentage"], "expectedSeconds": 120,
+      "params": { "n": { "choice": [20, 24, 30, 36, 40, 45, 60] }, "k": { "int": [2, 18] } },
+      "constraints": ["k < n", "estentier(k*360/n)"],
+      "prompt": "Le conseil de vie collégienne a demandé à {n} élèves leur sport préféré : {k} ont répondu « basket ». Dans le diagramme circulaire des réponses, quel est l'angle du secteur « basket », en degrés ? (le nombre seul)",
+      "answer": "k*360/n",
+      "misconceptions": [
+        { "answer": "k", "id": "mc:angle-effectif", "error": "notion", "feedback": "{k} est l'effectif, pas l'angle. Le disque entier (360°) représente les {n} élèves : l'angle est proportionnel à l'effectif." },
+        { "answer": "k*100/n", "id": "mc:angle-pourcentage", "error": "notion", "feedback": "Tu as calculé un pourcentage. Un disque ne mesure pas 100° mais 360° : multiplie la fréquence par 360." }
+      ],
+      "hints": ["Les {n} élèves correspondent au disque entier, soit 360°.", "Un élève correspond à $ 360 ÷ {n} = {360/n} $°.", "Multiplie par le nombre d'élèves qui ont choisi le basket."],
+      "solution": "Un élève correspond à $ 360 ÷ {n} = {360/n} $°, donc {k} élèves correspondent à $ {k} × {360/n} = {k*360/n} $°. Autre calcul : $ {k} ÷ {n} × 360 = {k*360/n} $°.",
+      "selfTest": [
+        { "response": { "value": "{k*360/n}" }, "expect": "correct" },
+        { "response": { "value": "{k}" }, "expect": "mc:angle-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-construire", "type": "table", "skill": "m4.stats.diagramme-circulaire", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:angle-effectif", "mc:angle-pourcentage"], "expectedSeconds": 240,
+      "params": { "a": { "int": [6, 14] }, "b": { "int": [2, 8] }, "c": { "int": [6, 14] }, "d": { "int": [3, 10] }, "n": { "expr": "a+b+c+d" } },
+      "constraints": ["estentier(360/n)"],
+      "prompt": "Les {n} élèves d'une classe de 4e ont répondu à la question « Comment viens-tu au collège ? ». Complète la colonne des angles pour pouvoir construire le diagramme circulaire au rapporteur.",
+      "columns": ["Moyen de transport", "Effectif", "Angle (°)"],
+      "rows": [["À pied", "{a}", "?r0c2"], ["Vélo", "{b}", "?r1c2"], ["Bus", "{c}", "?r2c2"], ["Voiture", "{d}", "?r3c2"], ["Total", "{n}", "?r4c2"]],
+      "cells": {
+        "r0c2": { "answer": "a*360/n" },
+        "r1c2": { "answer": "b*360/n" },
+        "r2c2": { "answer": "c*360/n", "misconceptions": [
+          { "answer": "c", "id": "mc:angle-effectif", "error": "notion", "feedback": "{c} est l'effectif du bus, pas l'angle. Le disque entier (360°) représente les {n} élèves : combien de degrés pour un élève ?" },
+          { "answer": "c*100/n", "id": "mc:angle-pourcentage", "error": "notion", "feedback": "Tu as calculé un pourcentage. Un disque mesure 360°, pas 100 : multiplie la fréquence par 360." }
+        ] },
+        "r3c2": { "answer": "d*360/n" },
+        "r4c2": { "answer": "360", "misconceptions": [ { "answer": "100", "id": "mc:angle-pourcentage", "error": "notion", "feedback": "Le disque entier mesure 360° : c'est lui qui représente les {n} élèves." } ] }
+      },
+      "hints": ["Le disque entier, 360°, représente les {n} élèves.", "Un élève correspond à $ 360 ÷ {n} = {360/n} $°.", "Contrôle : la somme des angles doit faire 360°."],
+      "solution": "Un élève correspond à $ 360 ÷ {n} = {360/n} $°. À pied : $ {a} × {360/n} = {a*360/n} $° ; vélo : $ {b} × {360/n} = {b*360/n} $° ; bus : $ {c} × {360/n} = {c*360/n} $° ; voiture : $ {d} × {360/n} = {d*360/n} $°. Total : 360°. Il ne reste plus qu'à tracer les secteurs au rapporteur, les uns à la suite des autres.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{a*360/n}", "r1c2": "{b*360/n}", "r2c2": "{c*360/n}", "r3c2": "{d*360/n}", "r4c2": "360" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{a*360/n}", "r1c2": "{b*360/n}", "r2c2": "{c}", "r3c2": "{d*360/n}", "r4c2": "360" } }, "expect": "mc:angle-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-lire-camembert", "type": "composite", "skill": "m4.stats.diagramme-circulaire", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:angle-effectif", "mc:angle-pourcentage", "mc:melange-angle-effectif"], "expectedSeconds": 300,
+      "prompt": "Sondage du collège : le sport préféré de 120 élèves de 4e. Chaque secteur du diagramme est indiqué avec son angle.",
+      "figure": {
+        "alt": "Diagramme circulaire du sport préféré de 120 élèves, avec l'angle de chaque secteur",
+        "w": 460, "h": 240,
+        "items": [ { "type": "pie", "data": [
+          { "label": "Football (108°)", "value": 108 }, { "label": "Danse (72°)", "value": 72 },
+          { "label": "Basket (54°)", "value": 54 }, { "label": "Handball (45°)", "value": 45 },
+          { "label": "Autre (45°)", "value": 45 }, { "label": "Natation (36°)", "value": 36 } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'élèves ont choisi le football ?", "answer": 36,
+          "misconceptions": [ { "answer": 108, "id": "mc:angle-effectif", "error": "notion", "feedback": "108° est l'angle du secteur, pas un nombre d'élèves. 360° représentent 120 élèves : combien de degrés pour un élève ?" } ] },
+        { "type": "numeric", "prompt": "Quel pourcentage des élèves a choisi la danse ? (le nombre seul)", "answer": 20,
+          "misconceptions": [ { "answer": 72, "id": "mc:angle-pourcentage", "error": "notion", "feedback": "72 est l'angle en degrés, pas un pourcentage : le disque mesure 360°, pas 100. Quelle fraction du disque représente ce secteur ?" } ] },
+        { "type": "numeric", "prompt": "Quelle fraction des élèves a choisi le basket ? (fraction ou écriture décimale)", "answer": "54/360",
+          "misconceptions": [ { "answer": "54/120", "id": "mc:melange-angle-effectif", "error": "methode", "feedback": "Tu as divisé un angle par un nombre d'élèves. Compare des grandeurs de même nature : des degrés avec des degrés (sur 360°), ou des élèves avec des élèves (sur 120)." } ] }
+      ],
+      "hints": ["360° représentent 120 élèves : un élève correspond à 3°.", "Football : $ 108 ÷ 3 $ élèves.", "La part d'un secteur dans le disque : son angle divisé par 360."],
+      "solution": "Un élève correspond à $ 360 ÷ 120 = 3 $°. Football : $ 108 ÷ 3 = 36 $ élèves. Danse : $ 72 ÷ 360 = 0,2 $, soit 20 % des élèves (24 élèves). Basket : $ 54/360 = 3/20 = 0,15 $, soit 18 élèves sur 120.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "36" }, { "value": "20" }, { "value": "3/20" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "108" }, { "value": "20" }, { "value": "3/20" } ] }, "expect": "mc:angle-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-interpreter", "type": "categorize", "skill": "m4.stats.mediane", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:mediane-valeur-serie", "mc:confond-moyenne-mediane", "mc:moyenne-insensible"], "expectedSeconds": 240,
+      "prompt": "Les 6 notes d'Inès ce trimestre ont une médiane de 12 et une moyenne de 11. Pour chaque phrase : peut-on l'affirmer à coup sûr ?",
+      "categories": [
+        { "id": "sur", "label": "On peut l'affirmer" },
+        { "id": "pas-sur", "label": "On ne peut pas l'affirmer" }
+      ],
+      "items": [
+        { "id": "i1", "label": "Au moins 3 notes d'Inès sont inférieures ou égales à 12.", "category": "sur" },
+        { "id": "i2", "label": "Au moins 3 notes d'Inès sont supérieures ou égales à 12.", "category": "sur" },
+        { "id": "i3", "label": "Inès a obtenu exactement 12 à l'un de ses devoirs.", "category": "pas-sur" },
+        { "id": "i4", "label": "La somme de ses 6 notes vaut 66.", "category": "sur" },
+        { "id": "i5", "label": "La moitié de ses notes sont inférieures à 11.", "category": "pas-sur" },
+        { "id": "i6", "label": "Si sa meilleure note avait été encore plus haute, sa médiane serait restée 12.", "category": "sur" },
+        { "id": "i7", "label": "Si sa meilleure note avait été encore plus haute, sa moyenne serait restée 11.", "category": "pas-sur" }
+      ],
+      "misconceptions": [
+        { "item": "i3", "category": "sur", "id": "mc:mediane-valeur-serie", "error": "notion", "feedback": "Avec 6 notes, la médiane est la moyenne des 3e et 4e notes rangées : par exemple 11 et 13 donnent 12, sans qu'aucune note ne vaille 12." },
+        { "item": "i5", "category": "sur", "id": "mc:confond-moyenne-mediane", "error": "notion", "feedback": "C'est la médiane (12), et non la moyenne (11), qui partage les notes en deux groupes de même effectif." },
+        { "item": "i7", "category": "sur", "id": "mc:moyenne-insensible", "error": "notion", "feedback": "La moyenne utilise toutes les notes : si la meilleure augmente, le total augmente, donc la moyenne aussi. C'est la médiane qui ne bouge pas." }
+      ],
+      "hints": ["Avec 6 notes rangées, la médiane est la moyenne de la 3e et de la 4e note.", "Moyenne de 11 sur 6 notes : quel est le total des points ?", "Si la meilleure note augmente, les 3e et 4e notes changent-elles ? Et le total ?"],
+      "solution": "On peut l'affirmer : au moins 3 notes ≤ 12 et au moins 3 notes ≥ 12 (définition de la médiane) ; le total vaut $ 6 × 11 = 66 $ ; augmenter la meilleure note ne change ni la 3e ni la 4e note, donc pas la médiane. On ne peut pas l'affirmer : une note égale à 12 (la médiane peut tomber entre deux notes, comme 11 et 13) ; « la moitié des notes sous 11 » (c'est le rôle de la médiane, pas de la moyenne) ; la moyenne inchangée (elle augmenterait).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "sur", "i2": "sur", "i3": "pas-sur", "i4": "sur", "i5": "pas-sur", "i6": "sur", "i7": "pas-sur" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "sur", "i2": "sur", "i3": "sur", "i4": "sur", "i5": "pas-sur", "i6": "sur", "i7": "pas-sur" } }, "expect": "mc:mediane-valeur-serie" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-defi-lecture", "type": "composite", "skill": "m4.stats.mediane", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:mediane-sans-trier", "mc:pair-une-valeur"], "expectedSeconds": 540,
+      "prompt": "Défi lecture : les élèves de deux clubs ont noté le nombre de livres qu'ils ont lus cette année.\n- Club A (11 élèves) : 5 ; 9 ; 2 ; 25 ; 3 ; 7 ; 4 ; 8 ; 3 ; 6 ; 5\n- Club B (12 élèves) : 7 ; 10 ; 6 ; 4 ; 8 ; 6 ; 5 ; 9 ; 6 ; 8 ; 5 ; 7",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la médiane du club A ?", "answer": 5,
+          "misconceptions": [ { "answer": 7, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "7 est la valeur placée au milieu de la liste telle qu'elle est écrite. Range d'abord les 11 valeurs dans l'ordre croissant." } ] },
+        { "type": "numeric", "prompt": "Quelle est la médiane du club B ?", "answer": 6.5,
+          "misconceptions": [
+            { "answer": 5.5, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "Tu as pris les deux valeurs du milieu de la liste telle qu'elle est écrite. Range d'abord les 12 valeurs dans l'ordre croissant." },
+            { "answer": 6, "id": "mc:pair-une-valeur", "error": "methode", "feedback": "Avec 12 valeurs (effectif pair), il y a DEUX valeurs au milieu, les 6e et 7e : la médiane est leur moyenne." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est la moyenne du club A ?", "answer": 7 },
+        { "type": "open", "prompt": "Le club A affirme avoir gagné grâce à sa moyenne ; le club B, grâce à sa médiane. Qui a raison selon toi ? Explique.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je compare les moyennes (7 contre 6,75) et les médianes (5 contre 6,5)", "keywords": [["6,75", "6,5", "moyenne"]] },
+            { "id": "c2", "label": "J'explique que la moyenne du club A est tirée vers le haut par un seul élève (25 livres)", "keywords": [["25", "un seul", "extreme"]] },
+            { "id": "c3", "label": "Je conclus que la médiane décrit mieux le lecteur « typique » de chaque club", "keywords": [["mediane", "typique", "la moitie"]] }
+          ] }
+      ],
+      "hints": ["Range chaque série dans l'ordre croissant avant de chercher la médiane.", "Club A : 11 valeurs, la médiane est la 6e. Club B : 12 valeurs, c'est la moyenne des 6e et 7e.", "Moyenne : total des livres ÷ nombre d'élèves."],
+      "solution": "Club A rangé : 2 ; 3 ; 3 ; 4 ; 5 ; 5 ; 6 ; 7 ; 8 ; 9 ; 25. Médiane : la 6e valeur, 5. Moyenne : $ 77 ÷ 11 = 7 $. Club B rangé : 4 ; 5 ; 5 ; 6 ; 6 ; 6 ; 7 ; 7 ; 8 ; 8 ; 9 ; 10. Médiane : $ (6 + 7) ÷ 2 = 6,5 $. Moyenne : $ 81 ÷ 12 = 6,75 $. Le club A a la meilleure moyenne grâce à un seul lecteur passionné (25 livres) : sans lui, sa moyenne tomberait à 5,2. Au club A, plus de la moitié des élèves ont lu 5 livres ou moins ; au club B, la moitié des élèves ont lu 7 livres ou plus. Le lecteur « typique » lit davantage au club B.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5" }, { "value": "6,5" }, { "value": "7" }, { "text": "La moyenne du club A est 7 contre 6,75 mais elle est tirée par un seul élève qui a lu 25 livres. La médiane du club B est 6,5 contre 5 : le lecteur typique du club B lit plus.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "7" }, { "value": "5,5" }, { "value": "7" }, { "text": "Le club A." } ] }, "expect": "mc:mediane-sans-trier" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-argent-poche", "type": "open", "skill": "m4.stats.mediane", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:confond-moyenne-mediane"], "expectedSeconds": 360,
+      "prompt": "Retour à l'argent de poche des neuf amis : 10 € ; 10 € ; 12 € ; 15 € ; 15 € ; 15 € ; 18 € ; 20 € ; 200 €. Leur moyenne vaut 35 €. Calcule la médiane, puis explique quel indicateur décrit le mieux l'argent de poche « typique » du groupe, et pourquoi.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "Je trouve la médiane : 15 € (la 5e valeur sur 9, la série étant déjà rangée)", "keywords": [["15"]] },
+        { "id": "c2", "label": "J'explique que la valeur extrême de 200 € fait monter la moyenne", "keywords": [["200", "hugo", "extreme", "tres grand"]] },
+        { "id": "c3", "label": "Je conclus que la médiane est plus représentative : 8 amis sur 9 reçoivent 20 € ou moins", "keywords": [["mediane"]] }
+      ],
+      "models": [
+        "La série est rangée et compte 9 valeurs : la médiane est la 5e, soit 15 €. La moyenne de 35 € est gonflée par les 200 € d'Hugo : à elle seule, cette valeur extrême ajoute plus de 20 € à la moyenne. Comme 8 amis sur 9 reçoivent 20 € ou moins, la médiane (15 €) décrit bien mieux l'argent de poche typique.",
+        "Médiane : 15 €, car 4 amis reçoivent moins (ou autant) et 4 reçoivent plus (ou autant). La moyenne (35 €) est plus grande que l'argent de poche de 8 amis sur 9 ! C'est à cause d'Hugo et de ses 200 €. La médiane ne dépend pas de cette valeur extrême : c'est le meilleur indicateur ici."
+      ],
+      "hints": ["La série est déjà rangée : quelle est la 5e valeur sur 9 ?", "Combien d'amis reçoivent plus que la moyenne de 35 € ?"],
+      "solution": "Médiane : 15 € (5e valeur sur 9). Un seul ami reçoit plus que la moyenne de 35 € : celle-ci est tirée vers le haut par la valeur extrême de 200 €. La médiane, qui ne regarde que le milieu de la série, décrit mieux l'argent de poche typique : 8 amis sur 9 reçoivent 20 € ou moins.",
+      "selfTest": [
+        { "response": { "text": "La médiane est 15 €. La moyenne est gonflée par les 200 € d'Hugo, une valeur extrême. La médiane représente mieux le groupe car 8 amis sur 9 ont 20 € ou moins.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "La moyenne." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-sommeil", "type": "composite", "skill": "m4.stats.mediane", "skills": ["m4.stats.diagramme-circulaire"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:angle-effectif", "mc:mediane-sans-trier"], "expectedSeconds": 600,
+      "prompt": "Mission : le CVC prépare une affiche sur le sommeil des élèves de 4e. Tu es chargé(e) des graphiques et des calculs.",
+      "parts": [
+        { "type": "table", "prompt": "36 élèves ont indiqué l'heure à laquelle ils se couchent en semaine. Complète les angles du diagramme circulaire.",
+          "columns": ["Heure du coucher", "Effectif", "Angle (°)"],
+          "rows": [["Avant 21 h 30", "6", "?r0c2"], ["De 21 h 30 à 22 h", "10", "?r1c2"], ["De 22 h à 22 h 30", "12", "?r2c2"], ["Après 22 h 30", "8", "?r3c2"]],
+          "cells": {
+            "r0c2": { "answer": "60" }, "r1c2": { "answer": "100" },
+            "r2c2": { "answer": "120", "misconceptions": [ { "answer": "12", "id": "mc:angle-effectif", "error": "notion", "feedback": "12 est l'effectif, pas l'angle : 360° représentent les 36 élèves." } ] },
+            "r3c2": { "answer": "80" }
+          } },
+        { "type": "numeric", "prompt": "Durées de sommeil (en heures) d'un groupe de 15 élèves : 7,5 ; 9 ; 8 ; 6,5 ; 8,5 ; 9 ; 7 ; 10 ; 8 ; 7,5 ; 8 ; 6 ; 9,5 ; 8 ; 7. Quelle est la médiane de ces durées ?", "answer": 8,
+          "misconceptions": [ { "answer": 10, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "10 est la 8e valeur de la liste telle qu'elle est écrite. Range d'abord les 15 durées dans l'ordre croissant." } ] },
+        { "type": "open", "prompt": "L'infirmière conseille aux élèves de 4e de dormir au moins 9 heures par nuit. Que peux-tu affirmer grâce à la médiane ? Rédige une phrase pour l'affiche.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "J'utilise la médiane : au moins la moitié des élèves du groupe dorment 8 h ou moins", "keywords": [["moitie", "mediane", "8 h", "8 heures"]] },
+            { "id": "c2", "label": "J'en déduis qu'au moins la moitié des élèves dorment moins que les 9 h conseillées", "keywords": [["moins de 9", "9 h", "9 heures", "pas assez"]] }
+          ] }
+      ],
+      "hints": ["Diagramme circulaire : 360° pour 36 élèves, donc 10° par élève.", "Range les 15 durées : la médiane est la 8e valeur.", "Médiane de 8 h : que peux-tu dire d'au moins la moitié des élèves, par rapport aux 9 h conseillées ?"],
+      "solution": "Angles : $ 6 × 10 = 60 $° ; $ 10 × 10 = 100 $° ; $ 12 × 10 = 120 $° ; $ 8 × 10 = 80 $° (total 360°). Durées rangées : 6 ; 6,5 ; 7 ; 7 ; 7,5 ; 7,5 ; 8 ; 8 ; 8 ; 8 ; 8,5 ; 9 ; 9 ; 9,5 ; 10. La médiane est la 8e valeur : 8 h. Pour l'affiche : « Au moins la moitié des élèves interrogés dorment 8 h ou moins, donc moins que les 9 h conseillées. » (En fait, 11 élèves sur 15.)",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c2": "60", "r1c2": "100", "r2c2": "120", "r3c2": "80" } }, { "value": "8" }, { "text": "Au moins la moitié des élèves dorment 8 heures ou moins, donc moins de 9 h.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c2": "60", "r1c2": "100", "r2c2": "12", "r3c2": "80" } }, { "value": "8" }, { "text": "Ils dorment bien." } ] }, "expect": "mc:angle-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-remed-trier", "type": "composite", "skill": "m4.stats.mediane", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:mediane-sans-trier"], "expectedSeconds": 120,
+      "prompt": "Rappel : pour trouver une médiane, on commence TOUJOURS par ranger les valeurs. Voici les scores de 5 parties d'un jeu vidéo : 1 200 ; 850 ; 2 300 ; 400 ; 1 500.",
+      "parts": [
+        { "type": "order", "prompt": "Range ces scores du plus petit au plus grand.", "orderLabel": "Du plus petit au plus grand", "errorType": "methode",
+          "items": [ { "id": "s400", "label": "400" }, { "id": "s850", "label": "850" }, { "id": "s1200", "label": "1 200" }, { "id": "s1500", "label": "1 500" }, { "id": "s2300", "label": "2 300" } ] },
+        { "type": "numeric", "prompt": "Quelle est la médiane de ces 5 scores ?", "answer": 1200,
+          "misconceptions": [ { "answer": 2300, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "2 300 est au milieu de la liste de départ, mais pas de la série rangée. Utilise l'ordre que tu viens de construire." } ] }
+      ],
+      "hints": ["Le plus petit score est 400.", "Avec 5 valeurs rangées, la médiane est la 3e."],
+      "solution": "Série rangée : 400 ; 850 ; 1 200 ; 1 500 ; 2 300. Avec 5 valeurs, la médiane est la 3e : 1 200 points. Deux parties ont un score inférieur, deux un score supérieur.",
+      "selfTest": [
+        { "response": { "parts": [ { "order": ["s400", "s850", "s1200", "s1500", "s2300"] }, { "value": "1200" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "order": ["s400", "s850", "s1200", "s1500", "s2300"] }, { "value": "2300" } ] }, "expect": "mc:mediane-sans-trier" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-remed-disque", "type": "table", "skill": "m4.stats.diagramme-circulaire", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:angle-effectif", "mc:angle-pourcentage"], "expectedSeconds": 150,
+      "prompt": "Rappel : le disque entier mesure 360°. Complète l'angle du secteur qui représente chaque part de l'effectif total.",
+      "columns": ["Part de l'effectif total", "Angle du secteur (°)"],
+      "rows": [["La moitié", "?r0c1"], ["Le quart", "?r1c1"], ["Le tiers", "?r2c1"], ["Un dixième", "?r3c1"], ["5 élèves sur 20", "?r4c1"], ["25 %", "?r5c1"]],
+      "cells": {
+        "r0c1": { "answer": "180" }, "r1c1": { "answer": "90" }, "r2c1": { "answer": "120" }, "r3c1": { "answer": "36" },
+        "r4c1": { "answer": "90", "misconceptions": [ { "answer": "5", "id": "mc:angle-effectif", "error": "notion", "feedback": "5 est un nombre d'élèves. 5 élèves sur 20, c'est un quart de l'effectif : il faut un quart du disque." } ] },
+        "r5c1": { "answer": "90", "misconceptions": [ { "answer": "25", "id": "mc:angle-pourcentage", "error": "notion", "feedback": "25 % de l'effectif, c'est 25 % du disque, donc 25 % de 360° : le disque ne mesure pas 100°." } ] }
+      },
+      "hints": ["La moitié du disque : 360 ÷ 2.", "5 élèves sur 20, c'est quelle fraction de l'effectif ?"],
+      "solution": "La moitié : 180° ; le quart : 90° ; le tiers : 120° ; un dixième : 36° ; 5 élèves sur 20 = un quart : 90° ; 25 % = un quart : 90°.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "180", "r1c1": "90", "r2c1": "120", "r3c1": "36", "r4c1": "90", "r5c1": "90" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "180", "r1c1": "90", "r2c1": "120", "r3c1": "36", "r4c1": "5", "r5c1": "90" } }, "expect": "mc:angle-effectif" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-note-cachee", "type": "composite", "skill": "m4.stats.mediane", "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:valeur-egale-moyenne"], "expectedSeconds": 480,
+      "prompt": "Les 6 notes de Malik sont 8 ; 11 ; 13 ; 15 ; 17 et une sixième note x, effacée par une tache d'encre. Les notes sont sur 20. On sait que la médiane de ses 6 notes vaut 12.",
+      "parts": [
+        { "type": "multi", "prompt": "Donne trois valeurs possibles, différentes, pour la note x.", "count": 3, "predicate": "v >= 0 and v <= 11", "distinct": true },
+        { "type": "numeric", "prompt": "On apprend en plus que la moyenne des 6 notes vaut 12. Quelle est la note x ?", "answer": 8,
+          "misconceptions": [ { "answer": 12, "id": "mc:valeur-egale-moyenne", "error": "raisonnement", "feedback": "Si x valait 12, la moyenne vaudrait $ (64 + 12) ÷ 6 ≈ 12,7 $. Utilise le total : 6 notes de moyenne 12, cela fait 72 points." } ] }
+      ],
+      "hints": ["Avec 6 notes, la médiane est la moyenne de la 3e et de la 4e note rangées.", "Essaie x = 5 : la série rangée est 5 ; 8 ; 11 ; 13 ; 15 ; 17. Que vaut la médiane ?", "Et si x dépasse 11, que deviennent la 3e et la 4e note ?"],
+      "solution": "Si x ≤ 11, la série rangée commence par x et 8 (dans un ordre ou dans l'autre), puis 11 ; 13 ; 15 ; 17 : les 3e et 4e notes sont 11 et 13, et la médiane vaut $ (11 + 13) ÷ 2 = 12 $. Si x est entre 11 et 13, la médiane vaut $ (x + 13) ÷ 2 $, plus que 12. Si x ≥ 13, la 3e note est 13 et la médiane dépasse encore 12. Donc x est n'importe quelle note de 0 à 11. Avec la moyenne : le total vaut $ 6 × 12 = 72 $ et les 5 notes connues font 64 points, donc $ x = 72 − 64 = 8 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "values": ["5", "10", "11"] }, { "value": "8" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "values": ["5", "10", "11"] }, { "value": "12" } ] }, "expect": "mc:valeur-egale-moyenne" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-deux-classes", "type": "composite", "skill": "m4.stats.diagramme-circulaire", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:moyenne-des-angles"], "expectedSeconds": 420,
+      "prompt": "En 4e A (30 élèves), le secteur « football » du diagramme circulaire des sports préférés mesure 120°. En 4e B (20 élèves), il mesure 162°. Kenza en conclut : « Il y a plus d'amateurs de football en 4e B. »",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'élèves de 4e A préfèrent le football ?", "answer": 10 },
+        { "type": "numeric", "prompt": "Et combien en 4e B ?", "answer": 9 },
+        { "type": "numeric", "prompt": "On réunit les deux classes (50 élèves) dans un seul diagramme. Quel est l'angle du secteur « football », en degrés ?", "answer": 136.8,
+          "misconceptions": [ { "answer": 141, "id": "mc:moyenne-des-angles", "error": "raisonnement", "feedback": "On ne peut pas faire la moyenne des deux angles : les deux classes n'ont pas le même effectif. Compte les amateurs de football parmi les 50 élèves." } ] }
+      ],
+      "hints": ["4e A : 120° sur 360°, c'est un tiers de la classe.", "4e B : $ 162/360 × 20 $.", "Réunies : combien d'amateurs de football sur 50 élèves ?"],
+      "solution": "4e A : $ 120/360 × 30 = 10 $ élèves. 4e B : $ 162/360 × 20 = 9 $ élèves. Kenza a tort : le secteur de la 4e B est plus grand parce qu'il représente une plus grande PART d'une classe plus petite. Les deux classes réunies : 19 élèves sur 50, soit $ 19/50 × 360 = 136,8 $°, et non la moyenne des deux angles (141°).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "10" }, { "value": "9" }, { "value": "136,8" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "10" }, { "value": "9" }, { "value": "141" } ] }, "expect": "mc:moyenne-des-angles" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-cible", "type": "composite", "skill": "m4.stats.mediane", "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:oubli-ordre"], "expectedSeconds": 600,
+      "prompt": "Une série de 5 notes entières, comprises entre 0 et 20, a une médiane de 14 et une moyenne de 10.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la plus grande valeur possible de la plus petite note ?", "answer": 4,
+          "misconceptions": [ { "answer": 8, "id": "mc:oubli-ordre", "error": "raisonnement", "feedback": "Si la plus petite note valait 8, la deuxième vaudrait au moins 8 elle aussi : les deux plus petites notes totaliseraient au moins 16 points. Est-ce compatible avec le total ?" } ] },
+        { "type": "open", "prompt": "Propose une série de 5 notes qui convient, et vérifie sa médiane et sa moyenne.", "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "Ma série, une fois rangée, a pour 3e note 14", "keywords": [["14"]] },
+            { "id": "c2", "label": "Le total de mes 5 notes vaut 50, donc la moyenne vaut 10", "keywords": [["50", "moyenne"]] }
+          ] },
+        { "type": "numeric", "prompt": "Combien de ces 5 notes, au minimum, valent 14 ou plus ?", "answer": 3,
+          "misconceptions": [ { "answer": 2, "id": "mc:moitie-arrondie", "error": "raisonnement", "feedback": "La médiane elle-même vaut 14 : avec les deux notes rangées après elle, cela fait combien de notes supérieures ou égales à 14 ?" } ] }
+      ],
+      "hints": ["Range les notes : a ≤ b ≤ 14 ≤ d ≤ e. Le total vaut $ 5 × 10 = 50 $.", "d et e valent au moins 14 : que peux-tu dire de a + b ?", "a + b ≤ 50 − 14 − 14 − 14 = 8, et a ≤ b."],
+      "solution": "Rangeons les notes : a ≤ b ≤ 14 ≤ d ≤ e. Le total vaut $ 5 × 10 = 50 $. Comme d ≥ 14 et e ≥ 14, on a $ a + b ≤ 50 − 14 − 14 − 14 = 8 $. Et comme a ≤ b, la plus petite note vaut au plus 4. C'est possible : 4 ; 4 ; 14 ; 14 ; 14 (total 50, médiane 14). Autre série qui convient : 0 ; 0 ; 14 ; 16 ; 20. Dans tous les cas, au moins 3 notes (la médiane et les deux suivantes) valent 14 ou plus.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4" }, { "text": "4 ; 4 ; 14 ; 14 ; 14 : la 3e note est 14 et le total fait 50 donc la moyenne vaut 10.", "selfCheck": { "c1": true, "c2": true } }, { "value": "3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "8" }, { "text": "8 ; 8 ; 14 ; 14 ; 14" }, { "value": "3" } ] }, "expect": "mc:oubli-ordre" }
+      ]
+    },
+    {
+      "id": "m4-statistiques-fusion", "type": "composite", "skill": "m4.stats.mediane", "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "verbale", "targets": ["mc:moyenne-des-medianes", "mc:moitie-arrondie"], "expectedSeconds": 900,
+      "prompt": "Au dernier contrôle, la 4e A (15 élèves) a obtenu une médiane de 12 et la 4e B (15 élèves) une médiane de 14. Léo affirme : « La médiane des 30 élèves réunis vaut forcément 13. »",
+      "parts": [
+        { "type": "numeric", "prompt": "Au moins combien d'élèves de 4e A ont une note inférieure ou égale à 12 ?", "answer": 8,
+          "misconceptions": [ { "answer": 7, "id": "mc:moitie-arrondie", "error": "raisonnement", "feedback": "Avec 15 notes, la médiane est la 8e note rangée : les 8 premières notes rangées, médiane comprise, sont inférieures ou égales à 12." } ] },
+        { "type": "numeric", "prompt": "Quelle est la plus petite valeur possible de la médiane des 30 élèves ?", "answer": 12,
+          "misconceptions": [ { "answer": 13, "id": "mc:moyenne-des-medianes", "error": "raisonnement", "feedback": "La médiane de la réunion n'est pas, en général, la moyenne des deux médianes. Cherche un exemple de notes où elle descend plus bas." } ] },
+        { "type": "numeric", "prompt": "Et la plus grande valeur possible ?", "answer": 14,
+          "misconceptions": [ { "answer": 13, "id": "mc:moyenne-des-medianes", "error": "raisonnement", "feedback": "La médiane de la réunion n'est pas, en général, la moyenne des deux médianes. Cherche un exemple de notes où elle monte plus haut." } ] },
+        { "type": "open", "prompt": "Léo a-t-il raison ? Explique ton raisonnement.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Non : on ne peut pas calculer la médiane des 30 élèves à partir des deux médianes seules", "keywords": [["non", "pas forcement", "on ne peut pas"]] },
+            { "id": "c2", "label": "Elle est comprise entre 12 et 14 : au moins 16 notes valent 14 ou moins, et au moins 16 valent 12 ou plus", "keywords": [["16", "entre 12 et 14"]] },
+            { "id": "c3", "label": "Je donne un exemple où la médiane des 30 élèves n'est pas 13", "keywords": [["exemple", "par exemple"]] }
+          ] }
+      ],
+      "hints": ["En 4e A, au moins 8 notes valent 12 ou moins, et au moins 8 valent 12 ou plus. Même chose en 4e B avec 14.", "Parmi les 30 notes, combien, au minimum, valent 14 ou moins ? La 16e note rangée peut-elle alors dépasser 14 ?", "Construis un exemple extrême : en 4e A, sept notes de 0 et huit notes de 12…"],
+      "solution": "Parmi les 30 notes, au moins 8 + 8 = 16 valent 14 ou moins (8 en 4e A, qui valent même 12 ou moins, et 8 en 4e B) : la 16e note rangée vaut donc au plus 14. De même, au moins 16 notes valent 12 ou plus : la 15e note rangée vaut au moins 12. La médiane des 30 élèves, moyenne des 15e et 16e notes, est donc comprise entre 12 et 14, et ces deux valeurs peuvent être atteintes. Exemple où elle vaut 12 : 4e A = sept notes de 0 et huit notes de 12 ; 4e B = sept notes de 0, un 14 et sept notes de 20. Rangées, les 30 notes donnent quatorze 0, huit 12, un 14 et sept 20 : les 15e et 16e notes valent 12. Léo a tort : sans les notes, on peut seulement encadrer la médiane.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "8" }, { "value": "12" }, { "value": "14" }, { "text": "Non, on ne peut pas savoir : au moins 16 notes valent 14 ou moins et 16 valent 12 ou plus, donc la médiane est entre 12 et 14. Par exemple avec des 0 et des 12 en 4e A elle peut valoir 12.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "8" }, { "value": "13" }, { "value": "13" }, { "text": "Oui." } ] }, "expect": "mc:moyenne-des-medianes" }
+      ]
+    }
+  ]
+}

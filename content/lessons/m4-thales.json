@@ -1,0 +1,1355 @@
+{
+  "id": "m4-thales",
+  "chapter": "m4-ch-thales",
+  "title": "Le théorème de Thalès (triangles emboîtés)",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.thales.calcul", "m4.thales.reciproque"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Quand une parallèle à un côté coupe un triangle, elle découpe un petit triangle qui est une réduction du grand : les longueurs sont proportionnelles. De quoi mesurer un arbre grâce à son ombre… et prouver que deux droites sont parallèles.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L’arbre et le bâton",
+      "body": "Il y a 2 600 ans, Thalès de Milet aurait mesuré la hauteur d’une pyramide d’Égypte sans y grimper, grâce aux ombres. À ton tour ! Inès plante un bâton vertical de 2 m, de sorte que le bout de son ombre tombe pile au bout de l’ombre d’un arbre. L’ombre du bâton mesure 3 m ; celle de l’arbre, 12 m.\n\nSans escalader, peux-tu trouver la hauteur de l’arbre ?",
+      "figure": {
+        "alt": "Au sol, l'ombre d'un arbre (12 m) et celle d'un bâton vertical de 2 m (3 m) se terminent au même point ; un rayon de soleil passe par le haut du bâton et le haut de l'arbre.",
+        "w": 400,
+        "h": 297,
+        "frame": { "x": [-0.8, 13], "y": [-1, 8.8] },
+        "caption": "Le rayon de soleil (en pointillés) frôle le haut du bâton et le haut de l’arbre.",
+        "items": [
+          { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": 3, "y": 0, "pos": "s" },
+          { "type": "point", "id": "Q", "x": 3, "y": 2, "pos": "n" },
+          { "type": "point", "id": "T", "x": 12, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 12, "y": 8, "pos": "ne" },
+          { "type": "segment", "from": "S", "to": "T", "label": "12 m" },
+          { "type": "segment", "from": "S", "to": "P", "label": "3 m" },
+          { "type": "segment", "from": "P", "to": "Q", "label": "2 m", "color": "maths" },
+          { "type": "segment", "from": "T", "to": "H", "label": "?", "color": "vert" },
+          { "type": "segment", "from": "S", "to": "H", "dashed": true, "color": "orange" },
+          { "type": "angle", "vertex": "P", "from": "T", "to": "Q", "right": true },
+          { "type": "angle", "vertex": "T", "from": "H", "to": "S", "right": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🔺",
+          "title": "Deux triangles emboîtés",
+          "body": "Dans le triangle $ABC$, on place $M$ sur le côté $[AB]$ et $N$ sur le côté $[AC]$, de sorte que les droites $(MN)$ et $(BC)$ soient **parallèles**. Le petit triangle $AMN$ est alors une **réduction** du grand triangle $ABC$ : même forme, mêmes angles, côtés plus courts.",
+          "figure": {
+            "alt": "Triangle ABC ; M sur le côté [AB], N sur le côté [AC] ; les droites (MN) et (BC), en rouge, sont parallèles.",
+            "w": 341,
+            "h": 300,
+            "frame": { "x": [-0.6, 6.6], "y": [-0.6, 5.6] },
+            "caption": "(MN) et (BC), en rouge, sont parallèles : le petit triangle AMN est une réduction de ABC.",
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+              { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+              { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 2, "y": 5, "pos": "n" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1.2, "y": 3, "pos": "w" },
+              { "type": "point", "id": "N", "x": 3.6, "y": 3, "pos": "e" }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Le théorème de Thalès",
+          "body": "**Si** $M$ est sur $[AB]$, $N$ sur $[AC]$ et $(MN) // (BC)$, **alors** les longueurs des deux triangles sont proportionnelles :\n\n$AM/AB$ = $AN/AC$ = $MN/BC$\n\nEn haut, les côtés du petit triangle ; en bas, les côtés correspondants du grand triangle.",
+          "reveal": {
+            "question": "Devine : si $AM$ est le tiers de $AB$, que vaut $MN$ par rapport à $BC$ ?",
+            "answer": "Le tiers aussi ! Les trois rapports sont égaux : $MN$ est le tiers de $BC$, et $AN$ le tiers de $AC$."
+          }
+        },
+        {
+          "emoji": "🧮",
+          "title": "Calculer une longueur",
+          "body": "On écrit l’égalité des rapports, on remplace par les longueurs connues, puis on fait un **produit en croix**. Ici $AB = 3 + 2 = 5$ cm, donc $3/5$ = $MN/8$, d’où $MN = (3 × 8)/5$ = 4,8 cm.",
+          "example": "Attention : on prend le côté entier $AB = 5$ cm, pas le morceau $MB = 2$ cm.",
+          "figure": {
+            "alt": "Triangle ABC avec M sur [AB] et N sur [AC], (MN) parallèle à (BC) ; AM = 3 cm, MB = 2 cm, BC = 8 cm, MN inconnu.",
+            "w": 400,
+            "h": 264,
+            "frame": { "x": [-0.7, 8.7], "y": [-0.8, 5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "M", "label": "3 cm" },
+              { "type": "segment", "from": "M", "to": "B", "label": "2 cm" },
+              { "type": "segment", "from": "B", "to": "C", "label": "8 cm", "color": "rouge" },
+              { "type": "segment", "from": "M", "to": "N", "label": "?", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 2.5, "y": 4.33, "pos": "n" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 8, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1, "y": 1.732, "pos": "w" },
+              { "type": "point", "id": "N", "x": 5.8, "y": 1.732, "pos": "e" }
+            ]
+          }
+        },
+        {
+          "emoji": "↩️",
+          "title": "La réciproque : prouver un parallélisme",
+          "body": "**Si** $A$, $M$, $B$ sont alignés dans cet ordre, ainsi que $A$, $N$, $C$, **et si** $AM/AB$ = $AN/AC$, **alors** les droites $(MN)$ et $(BC)$ sont parallèles. On calcule les deux rapports **séparément**, puis on compare.",
+          "example": "$AM = 2$, $AB = 5$, $AN = 2,4$, $AC = 6$ : $2/5$ = 0,4 et $2,4/6$ = 0,4. Les droites sont parallèles.",
+          "figure": {
+            "alt": "Points A, M, B alignés dans cet ordre et points A, N, C alignés dans cet ordre ; on se demande si (MN) et (BC) sont parallèles.",
+            "w": 318,
+            "h": 300,
+            "frame": { "x": [-0.6, 5.6], "y": [-0.7, 5.1] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+              { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "w" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 3.857, "y": 4.596, "pos": "n" },
+              { "type": "point", "id": "M", "x": 2, "y": 0, "pos": "s" },
+              { "type": "point", "id": "N", "x": 1.543, "y": 1.839, "pos": "nw" }
+            ]
+          }
+        },
+        {
+          "emoji": "🚫",
+          "title": "Et si les rapports sont différents ?",
+          "body": "Si $AM/AB ≠ AN/AC$, alors les droites $(MN)$ et $(BC)$ **ne sont pas** parallèles (c’est la contraposée du théorème). Pas de « presque parallèles » : il faut une égalité exacte.",
+          "reveal": {
+            "question": "Piège : $AM/AB$ = 0,6 et $AN/AC$ = 0,59. Les droites sont-elles parallèles ?",
+            "answer": "Non ! Deux nombres très proches restent différents. Compare des valeurs exactes (fractions, produits en croix), jamais des valeurs arrondies."
+          },
+          "figure": {
+            "alt": "Triangle ABC avec M sur [AB] et N sur [AC], placés de façon que (MN) ne soit pas parallèle à (BC).",
+            "w": 341,
+            "h": 300,
+            "frame": { "x": [-0.6, 6.6], "y": [-0.6, 5.6] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+              { "type": "segment", "from": "B", "to": "C", "color": "gris" },
+              { "type": "point", "id": "A", "x": 2, "y": 5, "pos": "n" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1.2, "y": 3, "pos": "w" },
+              { "type": "point", "id": "N", "x": 4, "y": 2.5, "pos": "e" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "**La situation.** Dans le triangle $RST$, $U$ est sur $[RS]$ et $V$ sur $[RT]$, avec $(UV) // (ST)$. On sait que $RU = 4$ cm, $RS = 10$ cm, $RT = 12$ cm et $ST = 9$ cm. On cherche $RV$ et $UV$.",
+          "figure": {
+            "alt": "Triangle RST avec U sur [RS] et V sur [RT], (UV) parallèle à (ST) ; RU = 4 cm, US = 6 cm, RT = 12 cm, ST = 9 cm.",
+            "w": 317,
+            "h": 330,
+            "frame": { "x": [-0.9, 10], "y": [-0.8, 10.6] },
+            "items": [
+              { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+              { "type": "segment", "from": "R", "to": "U", "label": "4 cm" },
+              { "type": "segment", "from": "U", "to": "S", "label": "6 cm" },
+              { "type": "segment", "from": "R", "to": "T", "label": "12 cm" },
+              { "type": "segment", "from": "S", "to": "T", "label": "9 cm", "color": "rouge" },
+              { "type": "segment", "from": "U", "to": "V", "color": "rouge", "label": "?" },
+              { "type": "point", "id": "R", "x": 2.056, "y": 9.786, "pos": "n" },
+              { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "T", "x": 9, "y": 0, "pos": "se" },
+              { "type": "point", "id": "U", "x": 1.233, "y": 5.872, "pos": "w" },
+              { "type": "point", "id": "V", "x": 4.833, "y": 5.872, "pos": "ne" }
+            ]
+          }
+        },
+        { "text": "Les points $U$ et $V$ sont sur les côtés et $(UV) // (ST)$ : d’après le théorème de Thalès,", "math": "RU/RS = RV/RT" },
+        { "text": "… et ces rapports sont aussi égaux à $UV/ST$. On remplace par les longueurs connues :", "math": "4/10 = RV/12" },
+        { "text": "Produit en croix : $RV = (4 × 12)/10$ = **4,8 cm**. De même, $4/10$ = $UV/9$, donc :", "math": "UV = (4 × 9)/10" },
+        {
+          "text": "Soit $UV$ = **3,6 cm**. Vérification : le petit triangle est une réduction de coefficient 0,4 ; $4,8 < 12$ et $3,6 < 9$, c’est cohérent."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Avant chaque calcul, repère le petit triangle et le grand triangle, et vérifie que les droites sont parallèles. Écris l’égalité des rapports avec les noms des côtés **avant** de remplacer par des nombres.",
+      "exercises": ["m4-thales-associer", "m4-thales-calcul", "m4-thales-grand-cote", "m4-thales-tableau", "m4-thales-verif", "m4-thales-paralleles"]
+    },
+    { "kind": "libre", "title": "Rédiger une démonstration", "exercises": ["m4-thales-demo"] },
+    { "kind": "reinvestissement", "title": "Thalès dans la vraie vie", "exercises": ["m4-thales-ombre", "m4-thales-escabeau"] },
+    {
+      "kind": "mission",
+      "title": "Mission : la charpente",
+      "body": "Les charpentiers utilisent la proportionnalité des triangles emboîtés pour tailler leurs poutres au bon endroit et à la bonne longueur.",
+      "exercises": ["m4-thales-charpente"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Si $M ∈ [AB]$, $N ∈ [AC]$ et $(MN) // (BC)$, alors $AM/AB$ = $AN/AC$ = $MN/BC$ (petit triangle / grand triangle). Réciproque : si $A, M, B$ et $A, N, C$ sont alignés dans le même ordre et si $AM/AB$ = $AN/AC$, alors $(MN) // (BC)$.\n\n- **Rapports inversés.** Tous les rapports s’écrivent dans le même sens : côté du petit triangle / côté du grand.\n- **Les morceaux.** $MB$ et $NC$ ne sont pas des côtés du grand triangle : on utilise $AB = AM + MB$.\n- **Les différences.** Thalès parle de quotients : ajouter ou retrancher le même nombre ne marche pas.\n- **Presque égal.** 0,6 et 0,59 sont différents : les droites ne sont pas parallèles."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des calculs de longueurs et des preuves de parallélisme avec Thalès dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Thalès plus loin : ce que devient l’aire quand on réduit un triangle, et une longueur inconnue à trouver avec une équation.",
+      "exercises": ["m4-thales-aires", "m4-thales-inconnue"]
+    },
+    "expert": {
+      "intro": "Au-delà du programme de 4e : la configuration « papillon » (programme de 3e) et le partage d’un segment en parts égales sans règle graduée.",
+      "exercises": ["m4-thales-papillon", "m4-thales-partage"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-thales-associer",
+      "type": "match",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:thales-morceaux"],
+      "expectedSeconds": 90,
+      "prompt": "Sur la figure, $K$ est sur le côté $[EF]$, $L$ sur le côté $[EG]$, et les droites $(KL)$ et $(FG)$ sont parallèles. Le petit triangle $EKL$ est une réduction du grand triangle $EFG$. Associe chaque côté du petit triangle au côté **correspondant** du grand triangle.",
+      "figure": {
+        "alt": "Triangle EFG ; K est sur le côté [EF] et L sur le côté [EG] ; les droites (KL) et (FG), en rouge, sont parallèles.",
+        "w": 380,
+        "h": 300,
+        "frame": { "x": [-0.7, 7.7], "y": [-0.7, 5.7] },
+        "items": [
+          { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+          { "type": "polygon", "points": ["E", "K", "L"], "fill": "orange" },
+          { "type": "segment", "from": "K", "to": "L", "color": "rouge" },
+          { "type": "segment", "from": "F", "to": "G", "color": "rouge" },
+          { "type": "point", "id": "E", "x": 1, "y": 5, "pos": "n" },
+          { "type": "point", "id": "F", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "G", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "K", "x": 0.6, "y": 3, "pos": "w" },
+          { "type": "point", "id": "L", "x": 3.4, "y": 3.4, "pos": "ne" }
+        ]
+      },
+      "leftTitle": "Petit triangle EKL",
+      "rightTitle": "Grand triangle EFG",
+      "left": [{ "id": "ek", "label": "[EK]" }, { "id": "el", "label": "[EL]" }, { "id": "kl", "label": "[KL]" }],
+      "right": [
+        { "id": "ef", "label": "[EF]" },
+        { "id": "eg", "label": "[EG]" },
+        { "id": "fg", "label": "[FG]" },
+        { "id": "kf", "label": "[KF]" },
+        { "id": "lg", "label": "[LG]" }
+      ],
+      "pairs": { "ek": "ef", "el": "eg", "kl": "fg" },
+      "misconceptions": [
+        {
+          "pair": ["ek", "kf"],
+          "id": "mc:thales-morceaux",
+          "error": "notion",
+          "feedback": "[KF] n'est qu'un morceau du côté [EF]. Le côté du grand triangle qui correspond à [EK], c'est le côté entier [EF] : tous deux partent du sommet commun E."
+        },
+        {
+          "pair": ["el", "lg"],
+          "id": "mc:thales-morceaux",
+          "error": "notion",
+          "feedback": "[LG] n'est qu'un morceau du côté [EG]. Le côté qui correspond à [EL] est le côté entier [EG], qui part lui aussi de E."
+        },
+        {
+          "pair": ["ek", "eg"],
+          "id": "mc:thales-melange",
+          "error": "lecture",
+          "feedback": "[EK] est porté par la droite (EF) : son correspondant est le côté du grand triangle porté par la même droite, [EF]."
+        }
+      ],
+      "hints": [
+        "Les deux triangles ont un sommet commun : $E$.",
+        "Un côté du petit triangle et son correspondant sont sur la même droite… ou bien parallèles.",
+        "$[KL]$ est parallèle à $[FG]$."
+      ],
+      "solution": "[EK] ↔ [EF] et [EL] ↔ [EG] (même droite, même sommet E) ; [KL] ↔ [FG] (les côtés parallèles). D'où l'égalité de Thalès : $EK/EF$ = $EL/EG$ = $KL/FG$.",
+      "selfTest": [
+        { "response": { "pairs": { "ek": "ef", "el": "eg", "kl": "fg" } }, "expect": "correct" },
+        { "response": { "pairs": { "ek": "kf", "el": "eg", "kl": "fg" } }, "expect": "mc:thales-morceaux" }
+      ]
+    },
+    {
+      "id": "m4-thales-calcul",
+      "type": "numeric",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:thales-inverse", "mc:thales-morceaux", "mc:thales-difference"],
+      "expectedSeconds": 150,
+      "params": { "b": { "choice": [4, 5, 10] }, "a": { "int": [1, 9] }, "c": { "int": [3, 12] } },
+      "constraints": ["a < b", "c != b", "b*c/a != c - b + a", "a*c/(b-a) != c - b + a"],
+      "prompt": "Dans le triangle $ABC$, le point $M$ est sur le côté $[AB]$, le point $N$ sur le côté $[AC]$, et les droites $(MN)$ et $(BC)$ sont parallèles. On donne $AM = {a}$ cm, $AB = {b}$ cm et $BC = {c}$ cm. Calcule la longueur $MN$ (valeur exacte, en cm).",
+      "figure": {
+        "alt": "Triangle ABC avec M sur [AB] et N sur [AC], (MN) parallèle à (BC) ; la longueur AM et la longueur BC sont indiquées, MN est inconnue.",
+        "w": 400,
+        "h": 290,
+        "frame": { "x": [-1, "{max(c;b/2)+1}"], "y": [-1, "{b*0.866+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "M", "label": "{a} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{c} cm", "color": "rouge" },
+          { "type": "segment", "from": "M", "to": "N", "label": "?", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{b/2}", "y": "{b*0.866}", "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": "{c}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": "{b/2*(1-a/b)}", "y": "{b*0.866*(1-a/b)}", "pos": "w" },
+          { "type": "point", "id": "N", "x": "{b/2+a/b*(c-b/2)}", "y": "{b*0.866*(1-a/b)}", "pos": "e" }
+        ]
+      },
+      "answer": "a*c/b",
+      "unit": "cm",
+      "tolerance": 0.001,
+      "misconceptions": [
+        {
+          "answer": "b*c/a",
+          "id": "mc:thales-inverse",
+          "error": "notion",
+          "feedback": "Tu as inversé un rapport. On écrit toujours **petit triangle / grand triangle** : $AM/AB$ = $MN/BC$. Donc $MN = BC × AM ÷ AB$."
+        },
+        {
+          "answer": "a*c/(b-a)",
+          "id": "mc:thales-morceaux",
+          "error": "notion",
+          "feedback": "Tu as utilisé $MB = {b-a}$ cm au lieu de $AB = {b}$ cm. Dans le théorème, on compare les côtés **entiers** des deux triangles, qui partent tous du sommet $A$."
+        },
+        {
+          "answer": "c - b + a",
+          "id": "mc:thales-difference",
+          "error": "notion",
+          "feedback": "Tu as retranché à $BC$ le même écart qu’entre $AB$ et $AM$. Mais le petit triangle est une **réduction** : on **multiplie** les longueurs par le rapport $AM/AB$, on ne retranche pas."
+        }
+      ],
+      "hints": [
+        "Le petit triangle $AMN$ est une réduction du grand triangle $ABC$ : $AM/AB$ = $MN/BC$.",
+        "Remplace par les valeurs : ${a}/{b}$ = $MN/{c}$.",
+        "Produit en croix : $MN = ({a} × {c})/{b}$."
+      ],
+      "solution": "$M ∈ [AB]$, $N ∈ [AC]$ et les droites $(MN)$ et $(BC)$ sont parallèles. D’après le théorème de Thalès : $AM/AB$ = $AN/AC$ = $MN/BC$, donc ${a}/{b}$ = $MN/{c}$ et $MN = ({a} × {c})/{b}$ = {a*c/b} cm.",
+      "selfTest": [
+        { "response": { "value": "{a*c/b} cm" }, "expect": "correct" },
+        { "response": { "value": "{b*c/a} cm" }, "expect": "mc:thales-inverse" },
+        { "response": { "value": "{c-b+a} cm" }, "expect": "mc:thales-difference" }
+      ]
+    },
+    {
+      "id": "m4-thales-grand-cote",
+      "type": "numeric",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:thales-inverse", "mc:thales-morceaux"],
+      "expectedSeconds": 150,
+      "params": { "m": { "int": [2, 6] }, "q": { "choice": [2, 2.5] }, "n": { "int": [2, 7] } },
+      "constraints": ["n != m"],
+      "prompt": "Les points $A$, $M$, $B$ sont alignés dans cet ordre, ainsi que les points $A$, $N$, $C$, et les droites $(MN)$ et $(BC)$ sont parallèles. On donne $AM = {m}$ cm, $AB = {q*m}$ cm et $AN = {n}$ cm. Calcule la longueur $AC$, en cm.",
+      "figure": {
+        "alt": "Points A, M, B alignés sur une droite horizontale, points A, N, C alignés sur une droite oblique ; (MN) et (BC) sont parallèles ; AM et AN sont indiquées.",
+        "w": 400,
+        "h": 280,
+        "frame": { "x": [-0.8, "{max(q*m;q*n*0.766)+1}"], "y": [-0.9, "{q*n*0.643+0.8}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "M", "label": "{m} cm" },
+          { "type": "segment", "from": "A", "to": "N", "label": "{n} cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "w" },
+          { "type": "point", "id": "M", "x": "{m}", "y": 0, "pos": "s" },
+          { "type": "point", "id": "B", "x": "{q*m}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "N", "x": "{n*0.766}", "y": "{n*0.643}", "pos": "nw" },
+          { "type": "point", "id": "C", "x": "{q*n*0.766}", "y": "{q*n*0.643}", "pos": "ne" }
+        ]
+      },
+      "answer": "q*n",
+      "unit": "cm",
+      "misconceptions": [
+        {
+          "answer": "n/q",
+          "id": "mc:thales-inverse",
+          "error": "notion",
+          "feedback": "Ton résultat est plus petit que $AN$ : impossible, car $C$ est plus loin de $A$ que $N$ ! On écrit $AM/AB$ = $AN/AC$ (petit / grand), puis $AC = AB × AN ÷ AM$."
+        },
+        {
+          "answer": "n*(q-1)",
+          "id": "mc:thales-morceaux",
+          "error": "methode",
+          "feedback": "Tu as calculé $NC$, le morceau entre $N$ et $C$. La question demande le côté entier : $AC = AN + NC$."
+        },
+        {
+          "answer": "n + q*m - m",
+          "id": "mc:thales-difference",
+          "error": "notion",
+          "feedback": "Tu as ajouté à $AN$ le même écart qu’entre $AM$ et $AB$. Mais c’est un agrandissement : on **multiplie** par le même nombre, $AB ÷ AM$."
+        }
+      ],
+      "hints": [
+        "Écris l’égalité de Thalès : $AM/AB$ = $AN/AC$ = $MN/BC$.",
+        "Garde les deux premiers rapports : ${m}/{q*m}$ = ${n}/AC$.",
+        "Le grand triangle est un agrandissement de coefficient {q*m} ÷ {m} = {q} : $AC = {n} × {q}$."
+      ],
+      "solution": "Les droites $(MN)$ et $(BC)$ sont parallèles : d’après le théorème de Thalès, $AM/AB$ = $AN/AC$, soit ${m}/{q*m}$ = ${n}/AC$. Produit en croix : $AC = ({q*m} × {n})/{m}$ = {q*n} cm. Autre méthode : $AB$ est {q} fois plus long que $AM$, donc $AC$ est {q} fois plus long que $AN$.",
+      "methods": ["Produit en croix dans l’égalité des rapports.", "Coefficient d’agrandissement : $AB ÷ AM = {q}$, donc $AC = {q} × AN$."],
+      "selfTest": [
+        { "response": { "value": "{q*n} cm" }, "expect": "correct" },
+        { "response": { "value": "{n/q} cm" }, "expect": "mc:thales-inverse" },
+        { "response": { "value": "{n*(q-1)} cm" }, "expect": "mc:thales-morceaux" }
+      ]
+    },
+    {
+      "id": "m4-thales-tableau",
+      "type": "table",
+      "skill": "m4.thales.calcul",
+      "skills": ["m5.proportionnalite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:thales-difference", "mc:thales-inverse"],
+      "expectedSeconds": 180,
+      "params": {
+        "a": { "int": [2, 8] },
+        "c": { "int": [5, 15] },
+        "d": { "int": [5, 14] },
+        "xa": { "expr": "(100 - c^2 + d^2)/(2*d)" },
+        "ya": { "expr": "racine(100 - xa^2)" }
+      },
+      "constraints": ["d > abs(10 - c) + 1", "c != 10"],
+      "prompt": "Dans le triangle $ABC$, $M$ est sur $[AB]$, $N$ sur $[AC]$ et $(MN) // (BC)$. Le triangle $AMN$ est une réduction du triangle $ABC$ : leurs longueurs sont **proportionnelles**. Complète le tableau de proportionnalité (nombres seuls, en cm ; le rapport en nombre décimal ou en fraction).",
+      "figure": {
+        "alt": "Triangle ABC avec M sur [AB] et N sur [AC] ; (MN) est parallèle à (BC).",
+        "w": 400,
+        "h": 270,
+        "frame": { "x": [-1, "{max(d;xa)+1}"], "y": [-1, "{ya+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{xa}", "y": "{ya}", "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": "{d}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": "{xa*(1-a/10)}", "y": "{ya*(1-a/10)}", "pos": "w" },
+          { "type": "point", "id": "N", "x": "{xa+a/10*(d-xa)}", "y": "{ya*(1-a/10)}", "pos": "e" }
+        ]
+      },
+      "columns": ["", "Petit triangle $AMN$", "Grand triangle $ABC$"],
+      "rows": [
+        ["Côtés portés par (AB)", "$AM = {a}$", "$AB = 10$"],
+        ["Côtés portés par (AC)", "?r1c1", "$AC = {c}$"],
+        ["Côtés parallèles", "$MN = {a*d/10}$", "?r2c2"],
+        ["Rapport petit ÷ grand", "?r3c1", "—"]
+      ],
+      "cells": {
+        "r1c1": {
+          "answer": "a*c/10",
+          "misconceptions": [
+            {
+              "answer": "c - 10 + a",
+              "id": "mc:thales-difference",
+              "error": "notion",
+              "feedback": "Tu as retranché le même nombre ($AB − AM$) à $AC$. Dans un tableau de proportionnalité, on **multiplie** : $AN = AC × AM ÷ AB$."
+            }
+          ]
+        },
+        "r2c2": {
+          "answer": "d",
+          "misconceptions": [
+            {
+              "answer": "a^2*d/100",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "$BC$ est un côté du grand triangle : il doit être plus long que $MN$. On divise $MN$ par le rapport : $BC = MN × AB ÷ AM$."
+            }
+          ]
+        },
+        "r3c1": {
+          "answer": "a/10",
+          "allowExpression": true,
+          "misconceptions": [
+            {
+              "answer": "10/a",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le rapport demandé est petit ÷ grand : $AM/AB$ = ${a}/10$, un nombre plus petit que 1."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Le coefficient de réduction est $AM/AB$ = ${a}/10$ = {a/10}.",
+        "Une longueur du petit triangle = longueur correspondante du grand × {a/10}.",
+        "Pour remonter du petit au grand, on divise par {a/10}."
+      ],
+      "solution": "Coefficient : $AM/AB$ = ${a}/10$ = {a/10}. Donc $AN = {c} × {a/10} = {a*c/10}$ cm, et $BC = {a*d/10} ÷ {a/10} = {d}$ cm.",
+      "selfTest": [
+        { "response": { "cells": { "r1c1": "{a*c/10}", "r2c2": "{d}", "r3c1": "{a/10}" } }, "expect": "correct" },
+        { "response": { "cells": { "r1c1": "{c-10+a}", "r2c2": "{d}", "r3c1": "{a/10}" } }, "expect": "mc:thales-difference" }
+      ]
+    },
+    {
+      "id": "m4-thales-verif",
+      "type": "qcm",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : $M$ est sur $[AB]$, $N$ sur $[AC]$ et les droites $(MN)$ et $(BC)$ sont parallèles. Quelle égalité est vraie ?",
+      "figure": {
+        "alt": "Triangle ABC ; M sur le côté [AB], N sur le côté [AC] ; les droites (MN) et (BC), en rouge, sont parallèles.",
+        "w": 341,
+        "h": 300,
+        "frame": { "x": [-0.6, 6.6], "y": [-0.6, 5.6] },
+        "caption": "(MN) et (BC), en rouge, sont parallèles : le petit triangle AMN est une réduction de ABC.",
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 2, "y": 5, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 1.2, "y": 3, "pos": "w" },
+          { "type": "point", "id": "N", "x": 3.6, "y": 3, "pos": "e" }
+        ]
+      },
+      "choices": [
+        {
+          "text": "$AM/AB$ = $AN/AC$ = $MN/BC$",
+          "correct": true,
+          "feedback": "Oui : chaque rapport compare un côté du petit triangle $AMN$ au côté correspondant du grand triangle $ABC$."
+        },
+        {
+          "text": "$AM/MB$ = $AN/NC$ = $MN/BC$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:thales-morceaux",
+          "feedback": "$[MB]$ et $[NC]$ ne sont pas des côtés du grand triangle. Pour que les trois rapports soient égaux, on compare les côtés du petit triangle $AMN$ à ceux du grand triangle $ABC$."
+        },
+        {
+          "text": "$AB/AM$ = $AN/AC$ = $MN/BC$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:thales-inverse",
+          "feedback": "Le premier rapport est à l’envers : on garde le même ordre partout (petit / grand), sinon les rapports ne sont pas égaux."
+        },
+        {
+          "text": "$AM/AB$ = $AN/AC$ = $BC/MN$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:thales-inverse",
+          "feedback": "Le dernier rapport est à l’envers : il est plus grand que 1, alors que les deux autres sont plus petits que 1."
+        }
+      ],
+      "solution": "Dans la configuration de Thalès, $AM/AB$ = $AN/AC$ = $MN/BC$ : côtés du petit triangle au numérateur, côtés correspondants du grand triangle au dénominateur.",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:thales-morceaux" }]
+    },
+    {
+      "id": "m4-thales-paralleles",
+      "type": "categorize",
+      "skill": "m4.thales.reciproque",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:thales-difference", "mc:presque-egal", "mc:thales-morceaux"],
+      "expectedSeconds": 300,
+      "prompt": "Dans chaque cas, les points $A$, $M$, $B$ sont alignés dans cet ordre, ainsi que $A$, $N$, $C$ (longueurs en cm). Les droites $(MN)$ et $(BC)$ sont-elles parallèles ? Calcule les deux rapports **avant** de classer.",
+      "figure": {
+        "alt": "Triangle ABC ; M est sur [AB] et N sur [AC] ; le segment [MN] est en pointillés.",
+        "w": 341,
+        "h": 300,
+        "frame": { "x": [-0.6, 6.6], "y": [-0.6, 5.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "M", "to": "N", "dashed": true, "color": "rouge" },
+          { "type": "point", "id": "A", "x": 2, "y": 5, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 1.2, "y": 3, "pos": "w" },
+          { "type": "point", "id": "N", "x": 3.6, "y": 3, "pos": "e" }
+        ]
+      },
+      "categories": [{ "id": "par", "label": "Parallèles" }, { "id": "non", "label": "Pas parallèles" }],
+      "items": [
+        { "id": "i1", "label": "$AM = 3$ ; $AB = 9$ ; $AN = 4$ ; $AC = 12$", "category": "par" },
+        { "id": "i2", "label": "$AM = 2$ ; $AB = 5$ ; $AN = 3$ ; $AC = 7$", "category": "non" },
+        { "id": "i3", "label": "$AM = 4,5$ ; $AB = 6$ ; $AN = 6$ ; $AC = 8$", "category": "par" },
+        { "id": "i4", "label": "$AM = 3$ ; $AB = 5$ ; $AN = 4$ ; $AC = 6$", "category": "non" },
+        { "id": "i5", "label": "$AM = 6$ ; $MB = 4$ ; $AN = 9$ ; $NC = 6$", "category": "par" },
+        { "id": "i6", "label": "$AM = 6$ ; $AB = 10$ ; $AN = 5,9$ ; $AC = 10$", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i4",
+          "category": "par",
+          "id": "mc:thales-difference",
+          "error": "notion",
+          "feedback": "Ici $AB − AM = AC − AN = 2$ : les **écarts** sont égaux, mais Thalès compare des **quotients** : $3/5$ = 0,6 et $4/6$ ≈ 0,67. Ils sont différents : les droites ne sont pas parallèles."
+        },
+        {
+          "item": "i6",
+          "category": "par",
+          "id": "mc:presque-egal",
+          "error": "raisonnement",
+          "feedback": "0,6 et 0,59 sont proches mais **différents** : d’après la contraposée du théorème de Thalès, les droites ne sont pas parallèles. Pour la réciproque, il faut une égalité exacte."
+        },
+        {
+          "item": "i5",
+          "category": "non",
+          "id": "mc:thales-morceaux",
+          "error": "lecture",
+          "feedback": "On donne ici $MB$ et $NC$, pas $AB$ et $AC$ ! Calcule d’abord $AB = 6 + 4 = 10$ et $AC = 9 + 6 = 15$ : $6/10$ = $9/15$ = 0,6, donc les droites sont parallèles."
+        }
+      ],
+      "hints": [
+        "Pour chaque cas, calcule séparément $AM/AB$ et $AN/AC$.",
+        "Rapports égaux (et points alignés dans le même ordre) → réciproque → parallèles. Rapports différents → contraposée → pas parallèles.",
+        "Attention à la ligne qui donne $MB$ et $NC$ au lieu de $AB$ et $AC$."
+      ],
+      "solution": "1) $3/9$ = $4/12$ = $1/3$ : parallèles. 2) $2/5$ = 0,4 et $3/7$ ≈ 0,43 : pas parallèles. 3) $4,5/6$ = $6/8$ = 0,75 : parallèles. 4) $3/5$ = 0,6 et $4/6$ ≈ 0,67 : pas parallèles (les écarts égaux ne comptent pas). 5) $AB = 10$, $AC = 15$ : $6/10$ = $9/15$ = 0,6 : parallèles. 6) 0,6 et 0,59 : pas parallèles.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "par", "i2": "non", "i3": "par", "i4": "non", "i5": "par", "i6": "non" } }, "expect": "correct" },
+        {
+          "response": { "assign": { "i1": "par", "i2": "non", "i3": "par", "i4": "par", "i5": "par", "i6": "non" } },
+          "expect": "mc:thales-difference"
+        },
+        { "response": { "assign": { "i1": "par", "i2": "non", "i3": "par", "i4": "non", "i5": "par", "i6": "par" } }, "expect": "mc:presque-egal" }
+      ]
+    },
+    {
+      "id": "m4-thales-demo",
+      "type": "open",
+      "skill": "m4.thales.reciproque",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 420,
+      "minWords": 30,
+      "prompt": "Les points $A$, $M$, $B$ sont alignés dans cet ordre, ainsi que les points $A$, $N$, $C$. On a mesuré : $AM = 4,2$ cm, $AB = 7$ cm, $AN = 5,4$ cm et $AC = 9$ cm. Rédige une démonstration complète pour prouver que les droites $(MN)$ et $(BC)$ sont parallèles.",
+      "figure": {
+        "alt": "Points A, M, B alignés et points A, N, C alignés ; AM = 4,2 cm et AN = 5,4 cm sont indiquées.",
+        "w": 349,
+        "h": 300,
+        "frame": { "x": [-0.8, 8.6], "y": [-2.6, 5.3] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "M", "label": "4,2 cm" },
+          { "type": "segment", "from": "A", "to": "N", "label": "5,4 cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "w" },
+          { "type": "point", "id": "B", "x": 6.761, "y": -1.812, "pos": "se" },
+          { "type": "point", "id": "C", "x": 7.794, "y": 4.5, "pos": "ne" },
+          { "type": "point", "id": "M", "x": 4.057, "y": -1.087, "pos": "s" },
+          { "type": "point", "id": "N", "x": 4.677, "y": 2.7, "pos": "nw" }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "Je calcule $AM/AB$ = 0,6", "keywords": [["0,6", "0.6", "3/5"]] },
+        { "id": "c2", "label": "Je calcule séparément $AN/AC$ = 0,6", "keywords": [["5,4/9", "5,4 / 9", "5,4 ÷ 9", "an/ac", "an / ac"]] },
+        { "id": "c3", "label": "Je constate que les deux rapports sont égaux", "keywords": [["egal", "egaux", "meme"]] },
+        { "id": "c4", "label": "Je rappelle que les points sont alignés dans le même ordre", "keywords": [["ordre", "align"]] },
+        { "id": "c5", "label": "Je cite la réciproque du théorème de Thalès", "keywords": [["reciproque"], ["thales"]] },
+        { "id": "c6", "label": "Je conclus que $(MN)$ et $(BC)$ sont parallèles", "keywords": [["parallele", "//"]] }
+      ],
+      "models": [
+        "Les points A, M, B sont alignés dans cet ordre, ainsi que A, N, C. D'une part, AM/AB = 4,2/7 = 0,6. D'autre part, AN/AC = 5,4/9 = 0,6. Les deux rapports sont égaux. D'après la réciproque du théorème de Thalès, les droites (MN) et (BC) sont parallèles."
+      ],
+      "hints": [
+        "Calcule les deux rapports séparément, comme pour la réciproque de Pythagore.",
+        "$4,2 ÷ 7$ et $5,4 ÷ 9$ : que constates-tu ?",
+        "Termine par « D’après la réciproque du théorème de Thalès, … »."
+      ],
+      "solution": "Les points $A$, $M$, $B$ et $A$, $N$, $C$ sont alignés dans le même ordre. $AM/AB$ = $4,2/7$ = 0,6 et $AN/AC$ = $5,4/9$ = 0,6. Les rapports sont égaux : d’après la réciproque du théorème de Thalès, $(MN)$ et $(BC)$ sont parallèles.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Les points A, M, B sont alignés dans cet ordre, ainsi que A, N, C. D'une part AM/AB = 4,2/7 = 0,6. D'autre part AN/AC = 5,4/9 = 0,6. Les rapports sont égaux donc d'après la réciproque du théorème de Thalès les droites (MN) et (BC) sont parallèles.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true, "c5": true, "c6": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m4-thales-ombre",
+      "type": "composite",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse", "mc:thales-difference"],
+      "expectedSeconds": 360,
+      "params": { "h": { "choice": [1, 1.5, 2] }, "s": { "choice": [1.2, 1.5, 2, 2.5] }, "S": { "int": [8, 20] }, "L": { "int": [3, 8] } },
+      "constraints": ["h != s", "h*S/s >= 5", "h*S/s <= 16", "abs(h*S/s - (S - s + h)) > 0.2"],
+      "prompt": "Au même moment de la journée, les rayons du soleil sont parallèles entre eux. Inès plante un bâton vertical de {h} m de haut, de sorte que le bout de son ombre coïncide avec le bout de l’ombre d’un arbre vertical. L’ombre du bâton mesure {s} m et celle de l’arbre {S} m.",
+      "figure": {
+        "alt": "Au sol, les ombres d'un bâton vertical et d'un arbre vertical se terminent au même point O ; un rayon de soleil passe par le haut du bâton et le haut de l'arbre.",
+        "w": 400,
+        "h": 300,
+        "frame": { "x": [-1, "{S+1.5}"], "y": [-1, "{h*S/s+1}"] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": "{s}", "y": 0, "pos": "s" },
+          { "type": "point", "id": "Q", "x": "{s}", "y": "{h}", "pos": "n" },
+          { "type": "point", "id": "T", "x": "{S}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "K", "x": "{S}", "y": "{h*S/s}", "pos": "ne" },
+          { "type": "segment", "from": "O", "to": "T", "label": "{S} m" },
+          { "type": "segment", "from": "O", "to": "P", "label": "{s} m" },
+          { "type": "segment", "from": "P", "to": "Q", "label": "{h} m", "color": "maths" },
+          { "type": "segment", "from": "T", "to": "K", "label": "?", "color": "vert" },
+          { "type": "segment", "from": "O", "to": "K", "dashed": true, "color": "orange" },
+          { "type": "angle", "vertex": "P", "from": "T", "to": "Q", "right": true },
+          { "type": "angle", "vertex": "T", "from": "K", "to": "O", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de l’arbre ? (en m, arrondie au dixième)",
+          "answer": "arrondi(h*S/s;1)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(s*S/h;1)",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Tu as inversé un rapport. Écris les rapports dans le même sens : $OP/OT$ = $PQ/TK$ (bâton / arbre). L’arbre est autant de fois plus haut que le bâton que son ombre est plus longue."
+            },
+            {
+              "answer": "arrondi(S - s + h;1)",
+              "id": "mc:thales-difference",
+              "error": "notion",
+              "feedback": "L’arbre n’est pas « plus haut du même nombre de mètres » : les longueurs sont **proportionnelles**. On multiplie la hauteur du bâton par {S} ÷ {s}."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Au même moment, quelle est la longueur de l’ombre d’un lampadaire vertical de {L} m de haut ? (en m, arrondie au dixième)",
+          "answer": "arrondi(L*s/h;1)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(L*h/s;1)",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Avec ce soleil, une ombre mesure {s} ÷ {h} fois la hauteur de l’objet. Ombre du lampadaire = {L} × {s} ÷ {h}."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le bâton et l’arbre sont verticaux, donc parallèles ; les triangles $OPQ$ et $OTK$ sont emboîtés.",
+        "Thalès : $OP/OT$ = $PQ/TK$, c’est-à-dire (ombre du bâton) ÷ (ombre de l’arbre) = (hauteur du bâton) ÷ (hauteur de l’arbre).",
+        "Hauteur de l’arbre = {h} × {S} ÷ {s}."
+      ],
+      "solution": "Le bâton et l’arbre sont verticaux, donc parallèles ; $O$, $P$, $T$ sont alignés ainsi que $O$, $Q$, $K$. D’après le théorème de Thalès : $OP/OT$ = $PQ/TK$, soit ${s}/{S}$ = ${h}/TK$. Donc $TK = ({h} × {S})/{s}$ ≈ {arrondi(h*S/s;1)} m.\nPour le lampadaire : ombre = {L} × {s} ÷ {h} ≈ {arrondi(L*s/h;1)} m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{arrondi(h*S/s;1)}" }, { "value": "{arrondi(L*s/h;1)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{arrondi(s*S/h;1)}" }, { "value": "{arrondi(L*s/h;1)}" }] }, "expect": "mc:thales-inverse" }
+      ]
+    },
+    {
+      "id": "m4-thales-escabeau",
+      "type": "composite",
+      "skill": "m4.thales.reciproque",
+      "skills": ["m4.thales.calcul"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse", "mc:presque-egal"],
+      "expectedSeconds": 360,
+      "prompt": "Un escabeau est formé de deux montants $[AB]$ et $[AC]$ de 2 m, articulés en $A$. Une barre de sécurité $[MN]$ de 0,66 m relie les montants, avec $AM = AN = 1,2$ m : elle est parallèle au sol $(BC)$.",
+      "figure": {
+        "alt": "Escabeau vu de face : deux montants [AB] et [AC] articulés en A, une barre [MN] entre les montants, parallèle au sol (BC).",
+        "w": 260,
+        "h": 269,
+        "frame": { "x": [-1.2, 1.2], "y": [-0.3, 2.2] },
+        "items": [
+          { "type": "point", "id": "g1", "x": -1.1, "y": 0, "hidden": true },
+          { "type": "point", "id": "g2", "x": 1.1, "y": 0, "hidden": true },
+          { "type": "segment", "from": "g1", "to": "g2", "color": "gris" },
+          { "type": "segment", "from": "A", "to": "B", "width": 3 },
+          { "type": "segment", "from": "A", "to": "C", "width": 3 },
+          { "type": "segment", "from": "A", "to": "M", "label": "1,2 m" },
+          { "type": "segment", "from": "M", "to": "N", "label": "0,66 m", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "label": "?", "dashed": true, "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 1.923, "pos": "n" },
+          { "type": "point", "id": "B", "x": -0.55, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 0.55, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": -0.33, "y": 0.769, "pos": "w" },
+          { "type": "point", "id": "N", "x": 0.33, "y": 0.769, "pos": "e" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est l’écartement $BC$ des pieds de l’escabeau ? (en m)",
+          "answer": 1.1,
+          "unit": "m",
+          "misconceptions": [
+            {
+              "answer": 0.396,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "$BC$ est un côté du grand triangle $ABC$ : il doit être plus long que $MN$. $AM/AB$ = $MN/BC$, donc $BC = MN × AB ÷ AM$."
+            },
+            {
+              "answer": 1.46,
+              "id": "mc:thales-difference",
+              "error": "notion",
+              "feedback": "On n’ajoute pas $MB = 0,8$ m à $MN$ : les longueurs sont proportionnelles, on multiplie par $AB ÷ AM$."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Léo a mal fixé la barre d’un autre escabeau identique : $AM = 1,2$ m mais $AN = 1,25$ m. La barre est-elle encore parallèle au sol ? (oui ou non)",
+          "accept": [
+            "non",
+            "non, elle n’est pas parallèle",
+            "non, elle n'est pas parallèle",
+            "non elle n’est pas parallèle au sol",
+            "non elle n'est pas parallele",
+            "elle n’est pas parallèle",
+            "elle n'est pas parallèle",
+            "pas parallèle"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:presque-egal",
+              "error": "raisonnement",
+              "feedback": "$AM/AB$ = 1,2 ÷ 2 = 0,6 mais $AN/AC$ = 1,25 ÷ 2 = 0,625 : les rapports sont différents. D’après la contraposée du théorème de Thalès, la barre n’est pas parallèle au sol."
+            }
+          ],
+          "justify": { "required": true, "minWords": 5, "prompt": "Donne les deux rapports qui le prouvent.", "keywords": [["0,6", "0.6"], ["0,625", "0.625"]] }
+        },
+        {
+          "type": "numeric",
+          "prompt": "On fixe la barre plus bas, à $AM = AN = 1,5$ m, sans changer l’écartement $BC$. Quelle longueur doit avoir la barre ? (en m)",
+          "answer": 0.825,
+          "unit": "m"
+        }
+      ],
+      "hints": [
+        "Les triangles $AMN$ et $ABC$ sont emboîtés, avec $(MN) // (BC)$.",
+        "$AM/AB$ = $MN/BC$ : $1,2/2$ = $0,66/BC$.",
+        "Pour la barre mal fixée, compare $AM/AB$ et $AN/AC$."
+      ],
+      "solution": "1) $1,2/2$ = $0,66/BC$, donc $BC = 0,66 × 2 ÷ 1,2 = 1,1$ m.\n2) $AM/AB$ = 0,6 et $AN/AC$ = 0,625 : rapports différents, donc d’après la contraposée du théorème de Thalès, la barre n’est pas parallèle au sol.\n3) $MN = BC × AM ÷ AB = 1,1 × 1,5 ÷ 2 = 0,825$ m.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [{ "value": "1,1 m" }, { "value": "non", "justification": "AM/AB = 0,6 et AN/AC = 0,625 ce n’est pas égal" }, { "value": "0,825 m" }]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [{ "value": "0,396 m" }, { "value": "non", "justification": "AM/AB = 0,6 et AN/AC = 0,625 ce n’est pas égal" }, { "value": "0,825 m" }]
+          },
+          "expect": "mc:thales-inverse"
+        },
+        { "response": { "parts": [{ "value": "1,1 m" }, { "value": "oui" }, { "value": "0,825 m" }] }, "expect": "mc:presque-egal" }
+      ]
+    },
+    {
+      "id": "m4-thales-charpente",
+      "type": "composite",
+      "skill": "m4.thales.calcul",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse"],
+      "expectedSeconds": 600,
+      "prompt": "Une ferme de toit a la forme d’un triangle isocèle $ABC$ : la poutre du bas $[BC]$ mesure 8 m et le faîte $A$ est à 3 m au-dessus du milieu $H$ de $[BC]$. Pour rigidifier la ferme, le charpentier ajoute une poutre horizontale $[MN]$, parallèle à $[BC]$, avec $M$ sur $[AB]$ et $N$ sur $[AC]$. Toutes les longueurs sont en mètres.",
+      "figure": {
+        "alt": "Ferme de toit : triangle isocèle ABC de base [BC] = 8 m et de hauteur [AH] = 3 m ; une poutre [MN] parallèle à [BC] relie les côtés [AB] et [AC].",
+        "w": 400,
+        "h": 218,
+        "frame": { "x": [-0.8, 8.8], "y": [-0.9, 3.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "C", "label": "8 m" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "text", "x": 4.5, "y": 0.8, "text": "3 m", "size": "s" },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "width": 3 },
+          { "type": "point", "id": "A", "x": 4, "y": 3, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 4, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "M", "x": 2.4, "y": 1.8, "pos": "nw" },
+          { "type": "point", "id": "N", "x": 5.6, "y": 1.8, "pos": "ne" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule la longueur $AB$ d’un côté du toit.",
+          "answer": 5,
+          "misconceptions": [
+            {
+              "answer": 7,
+              "id": "mc:somme-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "Dans le triangle $ABH$ rectangle en $H$, on utilise le théorème de Pythagore : $AB² = 3² + 4²$, on n’additionne pas les longueurs."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La poutre est fixée à $AM = 2$ m du faîte. Quelle est sa longueur $MN$ ?",
+          "answer": 3.2,
+          "misconceptions": [
+            {
+              "answer": 20,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "La poutre est plus courte que $[BC]$ ! $AM/AB$ = $MN/BC$, soit $2/5$ = $MN/8$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le charpentier préfère une poutre $MN$ de 4,8 m. À quelle distance $AM$ du faîte doit-il la fixer ?",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 7.68,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "$AM$ ne peut pas dépasser $AB = 5$ m. $AM/AB$ = $MN/BC$, soit $AM/5$ = $4,8/8$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle hauteur au-dessus de $[BC]$ se trouve alors cette poutre ? (Thalès s’applique aussi dans le triangle $ABH$ : le milieu $I$ de $[MN]$ est sur $[AH]$.)",
+          "answer": 1.2,
+          "misconceptions": [
+            {
+              "answer": 1.8,
+              "id": "mc:hauteur-sommet",
+              "error": "lecture",
+              "feedback": "1,8 m, c’est la distance $AI$ entre le faîte et la poutre. La question demande la hauteur au-dessus de $[BC]$ : $IH = AH − AI$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans le triangle $ABH$, rectangle en $H$ : $BH = 4$ m et $AH = 3$ m.",
+        "Thalès dans le triangle $ABC$ : $AM/AB$ = $MN/BC$.",
+        "Pour la hauteur : dans $ABH$, $(MI) // (BH)$, donc $AI/AH$ = $AM/AB$."
+      ],
+      "solution": "1) $AB² = AH² + BH² = 9 + 16 = 25$, donc $AB = 5$ m.\n2) $(MN) // (BC)$ : $AM/AB$ = $MN/BC$, soit $2/5$ = $MN/8$, donc $MN = 3,2$ m.\n3) $AM/5$ = $4,8/8$ = 0,6, donc $AM = 3$ m.\n4) $AI/AH$ = $AM/AB$ = 0,6, donc $AI = 1,8$ m et la poutre est à $3 − 1,8 = 1,2$ m au-dessus de $[BC]$.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "5" }, { "value": "3,2" }, { "value": "3" }, { "value": "1,2" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "5" }, { "value": "3,2" }, { "value": "3" }, { "value": "1,8" }] }, "expect": "mc:hauteur-sommet" },
+        { "response": { "parts": [{ "value": "5" }, { "value": "20" }, { "value": "3" }, { "value": "1,2" }] }, "expect": "mc:thales-inverse" }
+      ]
+    },
+    {
+      "id": "m4-thales-remed-morceaux",
+      "type": "composite",
+      "skill": "m4.thales.calcul",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:thales-morceaux"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : dans le théorème de Thalès, on compare les côtés **entiers** du petit triangle $AMN$ et du grand triangle $ABC$, qui partent tous du sommet $A$. Sur la figure : $AM = 3$ cm, $MB = 2$ cm, $BC = 10$ cm et $(MN) // (BC)$.",
+      "figure": {
+        "alt": "Triangle ABC avec M sur [AB] et N sur [AC], (MN) parallèle à (BC) ; AM = 3 cm, MB = 2 cm et BC = 10 cm.",
+        "w": 400,
+        "h": 231,
+        "frame": { "x": [-0.8, 10.8], "y": [-0.9, 5.2] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "M", "label": "3 cm" },
+          { "type": "segment", "from": "M", "to": "B", "label": "2 cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "10 cm", "color": "rouge" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "label": "?" },
+          { "type": "point", "id": "A", "x": 2.5, "y": 4.33, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 1, "y": 1.732, "pos": "w" },
+          { "type": "point", "id": "N", "x": 7, "y": 1.732, "pos": "e" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure le côté entier $AB$ ? (en cm)",
+          "answer": 5,
+          "misconceptions": [{ "answer": 2, "id": "mc:thales-morceaux", "error": "lecture", "feedback": "2 cm, c’est $MB$, un morceau seulement. $AB = AM + MB$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le rapport $AM/AB$ (nombre décimal).",
+          "answer": 0.6,
+          "misconceptions": [
+            {
+              "answer": 1.5,
+              "id": "mc:thales-morceaux",
+              "error": "notion",
+              "feedback": "Tu as calculé $AM ÷ MB$. Le rapport de Thalès est $AM ÷ AB$ = 3 ÷ 5."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Déduis-en $MN$ (en cm).",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 15,
+              "id": "mc:thales-morceaux",
+              "error": "notion",
+              "feedback": "$MN$ est plus court que $BC$ : $MN = BC × AM ÷ AB = 10 × 0,6$."
+            }
+          ]
+        }
+      ],
+      "hints": ["$A$, $M$, $B$ sont alignés : $AB = AM + MB$.", "Rapport : $3/5$.", "$MN = 10 × 0,6$."],
+      "solution": "$AB = 3 + 2 = 5$ cm. $AM/AB$ = $3/5$ = 0,6. Comme $(MN) // (BC)$, $MN/BC$ = 0,6, donc $MN = 10 × 0,6 = 6$ cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "5" }, { "value": "0,6" }, { "value": "6" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2" }, { "value": "1,5" }, { "value": "15" }] }, "expect": "mc:thales-morceaux" }
+      ]
+    },
+    {
+      "id": "m4-thales-aires",
+      "type": "composite",
+      "skill": "m4.thales.calcul",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:aire-coef"],
+      "expectedSeconds": 480,
+      "prompt": "Le triangle $AMN$ est une réduction du triangle $ABC$ : $M$ est sur $[AB]$, $N$ sur $[AC]$ et $(MN) // (BC)$, avec $AM = 4$ cm et $AB = 10$ cm. Le triangle $ABC$ a pour base $BC = 12,5$ cm et pour hauteur $AH = 8$ cm : son aire est de 50 cm².",
+      "figure": {
+        "alt": "Triangle ABC de hauteur [AH] ; le petit triangle AMN, en orange, a ses sommets M et N sur [AB] et [AC], avec (MN) parallèle à (BC).",
+        "w": 400,
+        "h": 289,
+        "frame": { "x": [-0.8, 13.3], "y": [-0.9, 8.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true },
+          { "type": "point", "id": "A", "x": 6, "y": 8, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 12.5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 6, "y": 0, "pos": "s" },
+          { "type": "point", "id": "M", "x": 3.6, "y": 4.8, "pos": "w" },
+          { "type": "point", "id": "N", "x": 8.6, "y": 4.8, "pos": "e" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le coefficient de réduction $k = AM/AB$ ?", "answer": 0.4 },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $MN$ (en cm).",
+          "answer": 5,
+          "misconceptions": [{ "answer": 31.25, "id": "mc:thales-inverse", "error": "notion", "feedback": "$MN$ est un côté du petit triangle : $MN = BC × k$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La hauteur du triangle $AMN$ issue de $A$ est aussi multipliée par $k$. Combien mesure-t-elle (en cm) ?",
+          "answer": 3.2
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule l’aire du triangle $AMN$ (en cm²).",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 20,
+              "id": "mc:aire-coef",
+              "error": "notion",
+              "feedback": "Les longueurs sont multipliées par 0,4… mais l’aire est un produit de deux longueurs : elle est multipliée par 0,4 × 0,4. Calcule $5 × 3,2 ÷ 2$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Par quel nombre l’aire a-t-elle été multipliée ?",
+          "answer": 0.16,
+          "misconceptions": [
+            {
+              "answer": 0.4,
+              "id": "mc:aire-coef",
+              "error": "notion",
+              "feedback": "$8 ÷ 50 = 0,16 = 0,4²$ : quand les longueurs sont multipliées par $k$, les aires sont multipliées par $k²$."
+            }
+          ]
+        }
+      ],
+      "hints": ["$k = 4/10$.", "$MN = 12,5 × 0,4$ et la hauteur de $AMN$ vaut $8 × 0,4$.", "Aire d’un triangle = base × hauteur ÷ 2."],
+      "solution": "$k = 0,4$. $MN = 12,5 × 0,4 = 5$ cm et la hauteur de $AMN$ vaut $8 × 0,4 = 3,2$ cm. Aire de $AMN$ : $5 × 3,2 ÷ 2 = 8$ cm². Rapport des aires : $8 ÷ 50 = 0,16 = 0,4²$. Une réduction de rapport $k$ multiplie les longueurs par $k$ et les aires par $k²$.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "0,4" }, { "value": "5" }, { "value": "3,2" }, { "value": "8" }, { "value": "0,16" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "0,4" }, { "value": "5" }, { "value": "3,2" }, { "value": "20" }, { "value": "0,4" }] },
+          "expect": "mc:aire-coef"
+        }
+      ]
+    },
+    {
+      "id": "m4-thales-inconnue",
+      "type": "composite",
+      "skill": "m4.thales.reciproque",
+      "skills": ["m4.equations.resoudre"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:thales-morceaux"],
+      "expectedSeconds": 480,
+      "prompt": "Les points $A$, $M$, $B$ sont alignés dans cet ordre, ainsi que $A$, $N$, $C$. On donne $AN = 4$ cm, $NC = 2$ cm et $MB = 3$ cm. On cherche la longueur $AM = x$ pour que les droites $(MN)$ et $(BC)$ soient parallèles.",
+      "figure": {
+        "alt": "Points A, M, B alignés et A, N, C alignés ; AN = 4, NC = 2, MB = 3 et AM = x.",
+        "w": 400,
+        "h": 246,
+        "frame": { "x": [-0.7, 9.7], "y": [-0.9, 5] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "M", "label": "x" },
+          { "type": "segment", "from": "M", "to": "B", "label": "3" },
+          { "type": "segment", "from": "A", "to": "N", "label": "4" },
+          { "type": "segment", "from": "N", "to": "C", "label": "2" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "dashed": true },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "w" },
+          { "type": "point", "id": "B", "x": 9, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.243, "y": 4.243, "pos": "n" },
+          { "type": "point", "id": "M", "x": 6, "y": 0, "pos": "s" },
+          { "type": "point", "id": "N", "x": 2.828, "y": 2.828, "pos": "nw" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "expression",
+          "prompt": "Exprime $AB$ en fonction de $x$.",
+          "answer": "x + 3",
+          "misconceptions": [{ "answer": "3", "id": "mc:thales-morceaux", "error": "lecture", "feedback": "3 cm, c’est $MB$. Le côté entier est $AB = AM + MB$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Écris l’égalité $AM/AB$ = $AN/AC$, puis résous l’équation obtenue : quelle valeur de $x$ convient ?",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:thales-morceaux",
+              "error": "notion",
+              "feedback": "Tu as utilisé $MB$ au lieu de $AB$ : l’égalité est $x/(x + 3)$ = $4/6$, avec les côtés entiers."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien mesure alors $AB$ ?", "answer": 9 }
+      ],
+      "hints": ["$AC = AN + NC = 6$ cm et $AB = x + 3$.", "$x/(x + 3)$ = $4/6$ : les produits en croix sont égaux, $6x = 4(x + 3)$.", "$6x = 4x + 12$."],
+      "solution": "$AB = x + 3$ et $AC = 6$. Par la réciproque du théorème de Thalès, il suffit que $x/(x + 3)$ = $4/6$, c’est-à-dire $6x = 4(x + 3)$, soit $6x = 4x + 12$, $2x = 12$, $x = 6$. Alors $AB = 9$ cm et $6/9$ = $4/6$ : les droites sont bien parallèles.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "x + 3" }, { "value": "6" }, { "value": "9" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "x + 3" }, { "value": "2" }, { "value": "5" }] }, "expect": "mc:thales-morceaux" }
+      ]
+    },
+    {
+      "id": "m4-thales-papillon",
+      "type": "composite",
+      "skill": "mx.thales.papillon",
+      "skills": ["m4.thales.calcul"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:thales-inverse"],
+      "expectedSeconds": 600,
+      "prompt": "**Un pas vers la 3e : la configuration « papillon ».** Les droites $(BM)$ et $(CN)$ se coupent en $A$ ; $M$ et $N$ sont de l’autre côté de $A$ par rapport à $B$ et $C$, et $(MN) // (BC)$. On donne $AB = 6$, $AC = 4,5$, $BC = 7,5$ et $AM = 4$ (en cm). Le théorème de Thalès s’applique encore : $AM/AB$ = $AN/AC$ = $MN/BC$.",
+      "figure": {
+        "alt": "Configuration papillon : les droites (BM) et (CN) se coupent en A ; les triangles ABC et AMN sont de part et d’autre de A ; (MN) et (BC) sont parallèles.",
+        "w": 376,
+        "h": 300,
+        "frame": { "x": [-6.6, 4.8], "y": [-5.1, 3.7] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge", "label": "7,5" },
+          { "type": "segment", "from": "A", "to": "B", "label": "6" },
+          { "type": "segment", "from": "A", "to": "C", "label": "4,5" },
+          { "type": "segment", "from": "A", "to": "M", "label": "4" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "B", "x": -5.638, "y": -2.052, "pos": "w" },
+          { "type": "point", "id": "C", "x": 1.539, "y": -4.229, "pos": "s" },
+          { "type": "point", "id": "M", "x": 3.759, "y": 1.368, "pos": "e" },
+          { "type": "point", "id": "N", "x": -1.026, "y": 2.819, "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule $AN$ (en cm).",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 6.75,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le triangle $AMN$ est le plus petit : $AN/AC$ = $AM/AB$ = $4/6$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $MN$ (en cm).",
+          "answer": 5,
+          "misconceptions": [{ "answer": 11.25, "id": "mc:thales-inverse", "error": "notion", "feedback": "$MN/BC$ = $4/6$, donc $MN = 7,5 × 4 ÷ 6$." }]
+        },
+        {
+          "type": "open",
+          "prompt": "Pourquoi le théorème reste-t-il vrai ? Piste : place $M’$ le symétrique de $M$ par rapport à $A$, et $N’$ celui de $N$. Où sont $M’$ et $N’$ ? Que dire de $(M’N’)$ et de $(BC)$ ?",
+          "minWords": 25,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je dis que $M’$ est sur $[AB]$ et $N’$ sur $[AC]$, avec $AM’ = AM$ et $AN’ = AN$",
+              "keywords": [["symetri"], ["ab", "ac"]]
+            },
+            { "id": "c2", "label": "J’explique que $(M’N’)$ est parallèle à $(MN)$, donc à $(BC)$", "keywords": [["parallele", "//"]] },
+            { "id": "c3", "label": "J’applique Thalès dans la configuration emboîtée $AM’N’$ / $ABC$", "keywords": [["emboit", "thales"]] }
+          ]
+        }
+      ],
+      "hints": [
+        "Les côtés correspondants : $[AM]$ ↔ $[AB]$, $[AN]$ ↔ $[AC]$, $[MN]$ ↔ $[BC]$.",
+        "Rapport : $4/6$.",
+        "La symétrie centrale transforme une droite en une droite parallèle et conserve les longueurs."
+      ],
+      "solution": "$AN = 4,5 × 4 ÷ 6 = 3$ cm et $MN = 7,5 × 4 ÷ 6 = 5$ cm. Pourquoi : le symétrique $M’$ de $M$ par rapport à $A$ est sur $[AB]$ avec $AM’ = 4$, et $N’$ est sur $[AC]$ avec $AN’ = AN$. La symétrie centrale transforme $(MN)$ en une droite parallèle $(M’N’)$, donc $(M’N’) // (BC)$ : on est ramené aux triangles emboîtés, et $M’N’ = MN$.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "3" },
+              { "value": "5" },
+              {
+                "text": "M’ symétrique de M par rapport à A est sur [AB] et N’ sur [AC]. La symétrie centrale donne (M’N’) parallèle à (MN) donc à (BC), et on applique Thalès dans les triangles emboîtés.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [{ "value": "6,75" }, { "value": "11,25" }, { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false, "c3": false } }]
+          },
+          "expect": "mc:thales-inverse"
+        }
+      ]
+    },
+    {
+      "id": "m4-thales-partage",
+      "type": "order",
+      "skill": "m4.thales.reciproque",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "expectedSeconds": 240,
+      "prompt": "**Partager un segment $[AB]$ en trois parts égales, sans mesurer**, avec une règle non graduée, un compas et de quoi tracer des parallèles. Remets dans l’ordre les étapes de cette construction, qui repose sur le théorème de Thalès.",
+      "figure": {
+        "alt": "Segment [AB] ; demi-droite issue de A portant trois points U, V, W régulièrement espacés ; segment [WB] et ses parallèles passant par U et V, qui coupent [AB] en P et Q.",
+        "w": 400,
+        "h": 219,
+        "frame": { "x": [-0.6, 9.6], "y": [-0.8, 4.2] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B", "width": 3 },
+          { "type": "ray", "from": "A", "through": "W", "color": "gris" },
+          { "type": "segment", "from": "W", "to": "B", "color": "rouge" },
+          { "type": "segment", "from": "U", "to": "P", "color": "rouge", "dashed": true },
+          { "type": "segment", "from": "V", "to": "Q", "color": "rouge", "dashed": true },
+          { "type": "segment", "from": "A", "to": "U", "marks": 1 },
+          { "type": "segment", "from": "U", "to": "V", "marks": 1 },
+          { "type": "segment", "from": "V", "to": "W", "marks": 1 },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 9, "y": 0, "pos": "se" },
+          { "type": "point", "id": "U", "x": 1.638, "y": 1.147, "pos": "nw" },
+          { "type": "point", "id": "V", "x": 3.277, "y": 2.294, "pos": "nw" },
+          { "type": "point", "id": "W", "x": 4.915, "y": 3.441, "pos": "nw" },
+          { "type": "point", "id": "P", "x": 3, "y": 0, "pos": "s" },
+          { "type": "point", "id": "Q", "x": 6, "y": 0, "pos": "s" }
+        ]
+      },
+      "orderLabel": "de la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        { "id": "s1", "label": "Trace une demi-droite qui part de $A$, dans une autre direction que $[AB]$." },
+        { "id": "s2", "label": "Avec le compas, reporte trois fois le même écart sur cette demi-droite : points $U$, $V$, $W$, avec $AU = UV = VW$." },
+        { "id": "s3", "label": "Trace le segment $[WB]$." },
+        { "id": "s4", "label": "Trace les parallèles à $(WB)$ passant par $U$ et par $V$ : elles coupent $[AB]$ en $P$ et $Q$." },
+        {
+          "id": "s5",
+          "label": "Conclus : dans le triangle $AWB$, d’après le théorème de Thalès, $AP/AB$ = $AU/AW$ = $1/3$. Donc $P$ et $Q$ partagent $[AB]$ en trois parts égales."
+        }
+      ],
+      "hints": [
+        "On commence par ce qui ne dépend de rien : une demi-droite issue de $A$.",
+        "On ne peut tracer $[WB]$ qu’une fois $W$ placé.",
+        "Les parallèles viennent après $[WB]$."
+      ],
+      "solution": "Demi-droite issue de $A$ → trois écarts égaux $U$, $V$, $W$ → segment $[WB]$ → parallèles à $(WB)$ par $U$ et $V$ → conclusion avec Thalès : $AP = AB/3$ et $AQ = 2AB/3$. Cette méthode marche pour n’importe quel nombre de parts.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5"] }, "expect": "correct" },
+        { "response": { "order": ["s5", "s4", "s3", "s2", "s1"] }, "expect": "methode" }
+      ]
+    }
+  ]
+}

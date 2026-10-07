@@ -1,0 +1,759 @@
+{
+  "id": "m5-reperage",
+  "chapter": "m5-ch-reperage",
+  "title": "Se repérer, dessiner l'espace : repères, perspective et patrons",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.relatifs.reperage", "m5.geo.reperage-plan", "m5.geo.perspective-patrons"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 60,
+  "summary": "Lire et placer des points sur une droite graduée et dans un repère du plan, avec des nombres relatifs. Puis passer de l'espace au papier : dessiner un pavé, un prisme ou un cylindre en perspective cavalière, et relier chaque solide à son patron.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Deux nombres pour un point, une feuille pour une boîte",
+      "body": "Au cinéma, pour trouver ta place, il faut deux informations : la rangée et le numéro du siège. Sur une carte au trésor aussi !\n\nEt une boîte de céréales ? Découpe-la le long de certaines arêtes et aplatis-la : tu obtiens une drôle de figure plate. Comment repérer un point avec des nombres ? Et comment passer d'un objet en relief à un dessin à plat… puis revenir à l'objet ?",
+      "figure": {
+        "alt": "Un pavé droit dessiné en perspective, avec trois arêtes cachées en pointillés",
+        "w": 300, "h": 210,
+        "frame": { "x": [0, 6.5], "y": [0, 4.5] },
+        "items": [
+          { "type": "polygon", "points": [[0.5, 0.5], [4.5, 0.5], [4.5, 3], [0.5, 3]], "fill": "orange" },
+          { "type": "polygon", "points": [[4.5, 0.5], [6, 1.5], [6, 4], [4.5, 3]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.5, 3], [4.5, 3], [6, 4], [2, 4]], "fill": "orange" },
+          { "type": "segment", "from": [0.5, 0.5], "to": [2, 1.5], "dashed": true },
+          { "type": "segment", "from": [2, 1.5], "to": [6, 1.5], "dashed": true },
+          { "type": "segment", "from": [2, 1.5], "to": [2, 4], "dashed": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📍",
+          "title": "L'abscisse sur une droite graduée",
+          "body": "Une droite graduée a une **origine** (abscisse 0), un sens et une **unité** reportée régulièrement. Chaque point a une **abscisse** : un nombre relatif, positif à droite de l'origine, négatif à gauche. Avant de lire, cherche ce que vaut **une graduation**.",
+          "example": "Si l'unité est partagée en 5 intervalles, une graduation vaut 1 ÷ 5 = 0,2.",
+          "reveal": { "question": "Devine : le point d'abscisse −2,5 est-il à gauche ou à droite du point d'abscisse −2 ?", "answer": "À gauche : −2,5 est plus petit que −2 (il est plus loin de 0, du côté négatif)." },
+          "figure": {
+            "alt": "Une droite graduée de −3 à 3, avec des graduations tous les 0,5, et deux points A et B",
+            "w": 420, "h": 100,
+            "frame": { "x": [-3.5, 3.5], "y": [-0.8, 0.8] },
+            "items": [
+              { "type": "segment", "from": [-3.4, 0], "to": [3.4, 0], "arrows": "end" },
+              { "type": "segment", "from": [-3, -0.18], "to": [-3, 0.18] },
+              { "type": "segment", "from": [-2.5, -0.1], "to": [-2.5, 0.1] },
+              { "type": "segment", "from": [-2, -0.18], "to": [-2, 0.18] },
+              { "type": "segment", "from": [-1.5, -0.1], "to": [-1.5, 0.1] },
+              { "type": "segment", "from": [-1, -0.18], "to": [-1, 0.18] },
+              { "type": "segment", "from": [-0.5, -0.1], "to": [-0.5, 0.1] },
+              { "type": "segment", "from": [0, -0.25], "to": [0, 0.25] },
+              { "type": "segment", "from": [0.5, -0.1], "to": [0.5, 0.1] },
+              { "type": "segment", "from": [1, -0.18], "to": [1, 0.18] },
+              { "type": "segment", "from": [1.5, -0.1], "to": [1.5, 0.1] },
+              { "type": "segment", "from": [2, -0.18], "to": [2, 0.18] },
+              { "type": "segment", "from": [2.5, -0.1], "to": [2.5, 0.1] },
+              { "type": "segment", "from": [3, -0.18], "to": [3, 0.18] },
+              { "type": "text", "x": -3, "y": -0.6, "text": "−3", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": -2, "y": -0.6, "text": "−2", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": -1, "y": -0.6, "text": "−1", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 0, "y": -0.6, "text": "0", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 1, "y": -0.6, "text": "1", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 2, "y": -0.6, "text": "2", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 3, "y": -0.6, "text": "3", "size": "s", "anchor": "middle" },
+              { "type": "point", "id": "A", "x": 1.5, "y": 0, "pos": "n" },
+              { "type": "point", "id": "B", "x": -2, "y": 0, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "🗺️",
+          "title": "Le repère du plan",
+          "body": "Un **repère** est formé de deux droites graduées perpendiculaires qui se coupent à l'origine O : l'**axe des abscisses** (horizontal) et l'**axe des ordonnées** (vertical). Un point est repéré par ses **coordonnées** : (abscisse ; ordonnée).",
+          "example": "A(3 ; −2) : on avance de 3 vers la droite, puis on descend de 2.",
+          "figure": {
+            "alt": "Un repère gradué de −5 à 5 et de −4 à 4 avec les points A et B et des pointillés vers les axes",
+            "w": 400, "h": 320,
+            "frame": { "x": [-5, 5], "y": [-4, 4], "grid": true, "axes": true },
+            "items": [
+              { "type": "point", "id": "A", "x": 3, "y": -2, "style": "rond", "label": "A(3 ; −2)", "pos": "se" },
+              { "type": "segment", "from": "A", "to": [3, 0], "dashed": true, "color": "rouge" },
+              { "type": "segment", "from": "A", "to": [0, -2], "dashed": true, "color": "rouge" },
+              { "type": "point", "id": "B", "x": -4, "y": 1, "style": "rond", "label": "B(−4 ; 1)", "pos": "n" },
+              { "type": "segment", "from": "B", "to": [-4, 0], "dashed": true, "color": "bleu" },
+              { "type": "segment", "from": "B", "to": [0, 1], "dashed": true, "color": "bleu" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚠️",
+          "title": "L'ordre compte !",
+          "body": "On lit **toujours l'abscisse d'abord** (sur l'axe horizontal), puis l'ordonnée : (2 ; 5) et (5 ; 2) sont deux points différents. Un point de l'axe des abscisses a une ordonnée nulle, comme (4 ; 0).",
+          "example": "Pour retenir : on entre dans la maison (on avance) avant de prendre l'escalier (on monte).",
+          "reveal": { "question": "Devine : où se trouvent tous les points dont l'abscisse vaut 0 ?", "answer": "Sur l'axe des ordonnées, l'axe vertical." },
+          "figure": {
+            "alt": "Un repère gradué de 0 à 6 avec les points P(2 ; 5) et Q(5 ; 2)",
+            "w": 280, "h": 280,
+            "frame": { "x": [-0.5, 6.5], "y": [-0.5, 6.5], "grid": true, "axes": true },
+            "items": [
+              { "type": "point", "id": "P", "x": 2, "y": 5, "style": "rond", "label": "P(2 ; 5)", "pos": "ne" },
+              { "type": "point", "id": "Q", "x": 5, "y": 2, "style": "rond", "label": "Q(5 ; 2)", "pos": "ne" }
+            ]
+          }
+        },
+        {
+          "emoji": "📦",
+          "title": "La perspective cavalière",
+          "body": "Pour dessiner un solide : la face avant est en **vraie grandeur** ; les arêtes « fuyantes » (vers l'arrière) sont **parallèles** entre elles et **raccourcies** ; les arêtes **cachées** sont en **pointillés**. Des arêtes parallèles dans la réalité restent parallèles sur le dessin.",
+          "reveal": { "question": "Devine : combien d'arêtes cachées sur le dessin d'un pavé droit en perspective cavalière ?", "answer": "Trois : elles partent toutes du sommet caché (ici D)." },
+          "figure": {
+            "alt": "Un pavé droit ABCDEFGH en perspective cavalière : la face ABFE est devant, les arêtes partant de D sont en pointillés",
+            "w": 320, "h": 220,
+            "frame": { "x": [0, 6.5], "y": [0, 4.5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 0.5, "y": 0.5, "pos": "sw", "style": "rond" },
+              { "type": "point", "id": "B", "x": 4.5, "y": 0.5, "pos": "se", "style": "rond" },
+              { "type": "point", "id": "F", "x": 4.5, "y": 3, "pos": "nw", "style": "rond" },
+              { "type": "point", "id": "E", "x": 0.5, "y": 3, "pos": "w", "style": "rond" },
+              { "type": "point", "id": "D", "x": 2, "y": 1.5, "pos": "ne", "style": "rond" },
+              { "type": "point", "id": "C", "x": 6, "y": 1.5, "pos": "e", "style": "rond" },
+              { "type": "point", "id": "G", "x": 6, "y": 4, "pos": "ne", "style": "rond" },
+              { "type": "point", "id": "H", "x": 2, "y": 4, "pos": "n", "style": "rond" },
+              { "type": "polygon", "points": ["A", "B", "F", "E"], "fill": "bleu" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "F", "to": "G" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "✂️",
+          "title": "Les patrons",
+          "body": "Un **patron** est une figure plane qui, pliée, forme le solide sans que deux faces se superposent. Pavé droit : 6 rectangles, égaux deux à deux. Cube : 6 carrés (il existe 11 patrons différents !). Prisme droit : 2 bases (par exemple des triangles) et des rectangles.",
+          "figure": {
+            "alt": "Un patron de cube en forme de croix, formé de six carrés",
+            "w": 220, "h": 280,
+            "frame": { "x": [-0.2, 3.2], "y": [-0.2, 4.2] },
+            "items": [
+              { "type": "rect", "x": 1, "y": 0, "w": 1, "h": 1, "fill": "vert" },
+              { "type": "rect", "x": 1, "y": 1, "w": 1, "h": 1, "fill": "vert" },
+              { "type": "rect", "x": 1, "y": 2, "w": 1, "h": 1, "fill": "vert" },
+              { "type": "rect", "x": 1, "y": 3, "w": 1, "h": 1, "fill": "vert" },
+              { "type": "rect", "x": 0, "y": 2, "w": 1, "h": 1, "fill": "vert" },
+              { "type": "rect", "x": 2, "y": 2, "w": 1, "h": 1, "fill": "vert" }
+            ]
+          }
+        },
+        {
+          "emoji": "🥫",
+          "title": "Le cylindre et son patron",
+          "body": "Un cylindre de révolution a deux bases : des **disques** identiques et parallèles. Sa surface latérale, déroulée, est un **rectangle** : sa largeur est la hauteur du cylindre, sa longueur est le **périmètre** du disque, 2 × π × r.",
+          "example": "Pour r = 1 cm, la longueur du rectangle vaut 2 × π × 1 ≈ 6,28 cm.",
+          "figure": {
+            "alt": "Patron d'un cylindre : un rectangle et deux disques accrochés à ses grands côtés",
+            "w": 300, "h": 300,
+            "frame": { "x": [-0.5, 7], "y": [-0.3, 7.2] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 2, "w": 6.283, "h": 3, "fill": "orange" },
+              { "type": "circle", "center": [1.5, 6], "r": 1, "fill": "orange" },
+              { "type": "circle", "center": [1.5, 1], "r": 1, "fill": "orange" },
+              { "type": "segment", "from": [1.5, 6], "to": [2.5, 6], "label": "r" },
+              { "type": "segment", "from": [0, 2], "to": [6.283, 2], "label": "2 × π × r" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le patron d'un pavé",
+      "steps": [
+        { "text": "On veut dessiner le patron d'un pavé droit de 4 cm de long, 3 cm de large et 2 cm de haut." },
+        { "text": "Le pavé a 6 faces rectangulaires, égales deux à deux.", "math": "2 faces 4 × 3, 2 faces 4 × 2, 2 faces 3 × 2" },
+        { "text": "On dessine le fond (4 cm × 3 cm), puis les quatre faces latérales accrochées à ses côtés : deux de 4 cm × 2 cm, deux de 3 cm × 2 cm." },
+        {
+          "text": "On ajoute le dessus (4 cm × 3 cm), accroché à une face latérale. Vérification : deux arêtes qui vont se rejoindre au pliage ont la même longueur.",
+          "figure": {
+            "alt": "Patron d'un pavé droit : le fond au centre, quatre faces latérales autour, et le dessus accroché à la face arrière",
+            "w": 300, "h": 360,
+            "frame": { "x": [-0.5, 8.5], "y": [-0.8, 10.3] },
+            "items": [
+              { "type": "rect", "x": 2, "y": 2, "w": 4, "h": 3, "fill": "bleu", "label": "fond" },
+              { "type": "rect", "x": 2, "y": 0, "w": 4, "h": 2, "fill": "orange", "label": "avant" },
+              { "type": "rect", "x": 2, "y": 5, "w": 4, "h": 2, "fill": "orange", "label": "arrière" },
+              { "type": "rect", "x": 0, "y": 2, "w": 2, "h": 3, "fill": "vert", "label": "côté" },
+              { "type": "rect", "x": 6, "y": 2, "w": 2, "h": 3, "fill": "vert", "label": "côté" },
+              { "type": "rect", "x": 2, "y": 7, "w": 4, "h": 3, "fill": "bleu", "label": "dessus" },
+              { "type": "text", "x": 4, "y": -0.5, "text": "4 cm", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 8.3, "y": 3.5, "text": "3 cm", "size": "s", "anchor": "start" },
+              { "type": "text", "x": 1, "y": 5.4, "text": "2 cm", "size": "s", "anchor": "middle" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "D'abord se repérer avec des nombres relatifs, puis voir dans l'espace.",
+      "exercises": ["m5-reperage-droite", "m5-reperage-lire-abscisse", "m5-reperage-lire-coord", "m5-reperage-placer", "m5-reperage-patron-cube", "m5-reperage-pave-aretes"]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'expliquer",
+      "exercises": ["m5-reperage-cylindre-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : l'étiquette de la boîte de conserve",
+      "exercises": ["m5-reperage-cylindre-patron"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la carte au trésor",
+      "body": "Le pirate Barbe-Grise a caché son trésor sur une île… et a tout noté dans un repère !",
+      "exercises": ["m5-reperage-tresor"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Droite graduée** : l'abscisse d'un point est un nombre relatif ; repère d'abord la valeur d'une graduation. **Repère du plan** : coordonnées (abscisse ; ordonnée), l'abscisse d'abord. **Perspective cavalière** : face avant en vraie grandeur, fuyantes parallèles et raccourcies, arêtes cachées en pointillés. **Patron du cylindre** : un rectangle dont la longueur est le périmètre du disque.\n\n- **Inverser abscisse et ordonnée.** (2 ; 5) n'est pas (5 ; 2).\n- **Croire qu'une graduation vaut toujours 0,1.** Divise l'écart par le nombre d'intervalles.\n- **Mesurer une fuyante sur le dessin.** Elle est raccourcie : ce n'est pas sa vraie longueur.\n- **Croire que six carrés collés forment toujours un patron de cube.**"
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des points à placer et des patrons à reconnaître dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le patron d'un prisme et le milieu d'un segment dans un repère.",
+      "exercises": ["m5-reperage-prisme-patron", "m5-reperage-milieu"]
+    },
+    "expert": {
+      "intro": "Facultatif : un dé à reconstituer à partir d'un patron en escalier, et le plus court chemin d'une fourmi sur un cube.",
+      "exercises": ["m5-reperage-de", "m5-reperage-fourmi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-reperage-droite", "type": "numberline", "skill": "m5.relatifs.reperage", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "manipulation", "targets": ["signe"], "expectedSeconds": 90,
+      "params": { "a": { "int": [-9, 9] }, "b": { "int": [-4, -1] }, "c": { "int": [1, 4] } },
+      "constraints": ["mod(a; 2) != 0", "a != 2*c + 1"],
+      "prompt": "Place sur la droite graduée les points A({a/2}), B({b}) et C({c+0.5}).",
+      "min": -5, "max": 5, "step": 0.5,
+      "points": [ { "label": "A", "value": "a/2" }, { "label": "B", "value": "b" }, { "label": "C", "value": "c + 0.5" } ],
+      "hints": ["Une graduation vaut 0,5 : il faut deux graduations pour faire une unité.", "Un nombre négatif se place à gauche de 0.", "{a/2} est entre deux entiers : place-le au milieu."],
+      "solution": "A est à {a/2}, B à {b} (à gauche de 0) et C à {c+0.5} (à droite de 0, entre {c} et {c+1}).",
+      "selfTest": [
+        { "response": { "positions": { "A": "{a/2}", "B": "{b}", "C": "{c+0.5}" } }, "expect": "correct" },
+        { "response": { "positions": { "A": "{a/2}", "B": "{-b}", "C": "{c+0.5}" } }, "expect": "signe" }
+      ]
+    },
+    {
+      "id": "m5-reperage-lire-abscisse", "type": "numeric", "skill": "m5.relatifs.reperage", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:graduation-dixieme", "mc:origine-lecture"], "expectedSeconds": 90,
+      "params": { "k": { "int": [1, 9], "not": [5] } },
+      "prompt": "Lis l'abscisse du point M sur cette droite graduée.",
+      "figure": {
+        "alt": "Une droite graduée de −2 à 0 avec des petites graduations régulières et un point M",
+        "w": 420, "h": 140,
+        "frame": { "x": [-2.3, 0.3], "y": [-0.45, 0.4] },
+        "items": [
+          { "type": "segment", "from": [-2.25, 0], "to": [0.25, 0], "arrows": "end" },
+          { "type": "segment", "from": [-2, -0.1], "to": [-2, 0.1] },
+          { "type": "segment", "from": [-1.8, -0.05], "to": [-1.8, 0.05] },
+          { "type": "segment", "from": [-1.6, -0.05], "to": [-1.6, 0.05] },
+          { "type": "segment", "from": [-1.4, -0.05], "to": [-1.4, 0.05] },
+          { "type": "segment", "from": [-1.2, -0.05], "to": [-1.2, 0.05] },
+          { "type": "segment", "from": [-1, -0.1], "to": [-1, 0.1] },
+          { "type": "segment", "from": [-0.8, -0.05], "to": [-0.8, 0.05] },
+          { "type": "segment", "from": [-0.6, -0.05], "to": [-0.6, 0.05] },
+          { "type": "segment", "from": [-0.4, -0.05], "to": [-0.4, 0.05] },
+          { "type": "segment", "from": [-0.2, -0.05], "to": [-0.2, 0.05] },
+          { "type": "segment", "from": [0, -0.1], "to": [0, 0.1] },
+          { "type": "text", "x": -2, "y": -0.3, "text": "−2", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": -1, "y": -0.3, "text": "−1", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 0, "y": -0.3, "text": "0", "size": "s", "anchor": "middle" },
+          { "type": "point", "id": "M", "x": "{-2+0.2*k}", "y": 0, "pos": "n", "style": "rond" }
+        ]
+      },
+      "answer": "-2 + 0.2*k",
+      "misconceptions": [
+        { "answer": "-2 + 0.1*k", "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1 ! Entre −2 et −1, il y a 5 intervalles : une graduation vaut 1 ÷ 5 = 0,2. M est à {k} graduations de −2 : −2 + {k} × 0,2 = {-2+0.2*k}." },
+        { "answer": "-0.2*k", "id": "mc:origine-lecture", "error": "lecture", "feedback": "Tu as compté les graduations à partir de 0, mais M est à {k} graduations à DROITE de −2. Abscisse : −2 + {k} × 0,2 = {-2+0.2*k}." }
+      ],
+      "hints": ["Combien d'intervalles (petits espaces) y a-t-il entre −2 et −1 ?", "Une graduation vaut donc 1 ÷ 5 = 0,2.", "Pars de −2 et avance vers la droite d'autant de graduations qu'il faut pour atteindre M."],
+      "solution": "Entre −2 et −1, l'unité est partagée en 5 : une graduation vaut 0,2. M est à {k} graduations à droite de −2 : $ −2 + {k} × 0,2 = {-2+0.2*k} $.",
+      "selfTest": [
+        { "response": { "value": "{-2+0.2*k}" }, "expect": "correct" },
+        { "response": { "value": "{-2+0.1*k}" }, "expect": "mc:graduation-dixieme" }
+      ]
+    },
+    {
+      "id": "m5-reperage-lire-coord", "type": "composite", "skill": "m5.geo.reperage-plan", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:inversion-coord", "signe"], "expectedSeconds": 150,
+      "params": { "a": { "int": [-4, 4], "not": [0] }, "b": { "int": [-3, 3], "not": [0] }, "c": { "int": [-4, 4], "not": [0] }, "d": { "int": [-3, 3], "not": [0] } },
+      "constraints": ["a != b", "a != -b", "c != d", "c != -d", "a != c or b != d"],
+      "prompt": "Lis les coordonnées des points A et B dans ce repère.",
+      "figure": {
+        "alt": "Un repère gradué de −5 à 5 et de −4 à 4 avec deux points A et B",
+        "w": 400, "h": 320,
+        "frame": { "x": [-5, 5], "y": [-4, 4], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "style": "rond", "pos": "ne" },
+          { "type": "point", "id": "B", "x": "{c}", "y": "{d}", "style": "rond", "pos": "ne" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Abscisse de A :", "answer": "a",
+          "misconceptions": [ { "answer": "b", "id": "mc:inversion-coord", "error": "lecture", "feedback": "Tu as donné l'ordonnée. L'abscisse se lit d'abord, sur l'axe HORIZONTAL : descends ou monte depuis A jusqu'à cet axe." } ] },
+        { "type": "numeric", "prompt": "Ordonnée de A :", "answer": "b",
+          "misconceptions": [ { "answer": "a", "id": "mc:inversion-coord", "error": "lecture", "feedback": "Tu as donné l'abscisse. L'ordonnée se lit sur l'axe VERTICAL." } ] },
+        { "type": "numeric", "prompt": "Abscisse de B :", "answer": "c",
+          "misconceptions": [ { "answer": "d", "id": "mc:inversion-coord", "error": "lecture", "feedback": "L'abscisse se lit sur l'axe horizontal, l'ordonnée sur l'axe vertical." } ] },
+        { "type": "numeric", "prompt": "Ordonnée de B :", "answer": "d",
+          "misconceptions": [ { "answer": "c", "id": "mc:inversion-coord", "error": "lecture", "feedback": "L'ordonnée se lit sur l'axe vertical." } ] }
+      ],
+      "hints": ["Depuis le point, suis la ligne verticale du quadrillage jusqu'à l'axe horizontal : tu lis l'abscisse.", "Depuis le point, suis la ligne horizontale jusqu'à l'axe vertical : tu lis l'ordonnée.", "À gauche de l'axe vertical, l'abscisse est négative ; sous l'axe horizontal, l'ordonnée est négative."],
+      "solution": "A({a} ; {b}) et B({c} ; {d}).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{c}" }, { "value": "{d}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{b}" }, { "value": "{a}" }, { "value": "{c}" }, { "value": "{d}" } ] }, "expect": "mc:inversion-coord" }
+      ]
+    },
+    {
+      "id": "m5-reperage-placer", "type": "graph", "skill": "m5.geo.reperage-plan", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "manipulation", "targets": ["mc:inversion-coord", "lecture"], "expectedSeconds": 120,
+      "prompt": "Place dans le repère les points A(−3 ; 2), B(4 ; −1), C(0 ; −3) et D(−2 ; 0). Attention aux points situés sur les axes !",
+      "xRange": [-5, 5], "yRange": [-5, 5], "gridStep": 1,
+      "expectedPoints": [[-3, 2], [4, -1], [0, -3], [-2, 0]],
+      "hints": ["Abscisse d'abord : on avance à droite (positif) ou à gauche (négatif) ; puis ordonnée : on monte ou on descend.", "C(0 ; −3) : abscisse 0, on ne bouge pas horizontalement. Il est donc sur l'axe vertical.", "D(−2 ; 0) : ordonnée 0, il est sur l'axe horizontal."],
+      "solution": "A est en haut à gauche, B en bas à droite. C(0 ; −3) est sur l'axe des ordonnées, sous l'origine ; D(−2 ; 0) est sur l'axe des abscisses, à gauche de l'origine.",
+      "selfTest": [
+        { "response": { "points": [[-3, 2], [4, -1], [0, -3], [-2, 0]] }, "expect": "correct" },
+        { "response": { "points": [[-3, 2], [4, -1], [-3, 0], [0, -2]] }, "expect": "lecture" }
+      ]
+    },
+    {
+      "id": "m5-reperage-patron-cube", "type": "categorize", "skill": "m5.geo.perspective-patrons", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:faces-superposees", "mc:patron-forme"], "expectedSeconds": 240,
+      "prompt": "Voici cinq assemblages de six carrés. Lesquels sont des patrons de cube ? Imagine le pliage… ou recopie-les sur du papier quadrillé, découpe et plie !",
+      "figure": {
+        "alt": "Cinq assemblages de six carrés numérotés de 1 à 5 : une croix, une bande de quatre carrés avec deux carrés côte à côte au-dessus, un escalier, un bloc de deux rangées de trois, et une bande de quatre carrés avec un carré au-dessus à gauche et un en dessous à droite",
+        "w": 420, "h": 290,
+        "frame": { "x": [0, 14.5], "y": [-0.5, 9.5] },
+        "items": [
+          { "type": "rect", "x": 1.5, "y": 5, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 1.5, "y": 6, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 1.5, "y": 7, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 1.5, "y": 8, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 0.5, "y": 7, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "rect", "x": 2.5, "y": 7, "w": 1, "h": 1, "fill": "vert" },
+          { "type": "text", "x": 0.4, "y": 9.1, "text": "1", "size": "m", "bold": true },
+          { "type": "rect", "x": 5, "y": 6, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "rect", "x": 6, "y": 6, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "rect", "x": 7, "y": 6, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "rect", "x": 8, "y": 6, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "rect", "x": 6, "y": 7, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "rect", "x": 7, "y": 7, "w": 1, "h": 1, "fill": "bleu" },
+          { "type": "text", "x": 4.6, "y": 8.3, "text": "2", "size": "m", "bold": true },
+          { "type": "rect", "x": 10, "y": 7, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 11, "y": 7, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 11, "y": 6, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 12, "y": 6, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 12, "y": 5, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 13, "y": 5, "w": 1, "h": 1, "fill": "orange" },
+          { "type": "text", "x": 9.6, "y": 8.3, "text": "3", "size": "m", "bold": true },
+          { "type": "rect", "x": 1, "y": 0.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 2, "y": 0.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 3, "y": 0.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 1, "y": 1.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 2, "y": 1.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 3, "y": 1.5, "w": 1, "h": 1, "fill": "violet" },
+          { "type": "text", "x": 0.6, "y": 2.8, "text": "4", "size": "m", "bold": true },
+          { "type": "rect", "x": 6, "y": 1, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "rect", "x": 7, "y": 1, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "rect", "x": 8, "y": 1, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "rect", "x": 9, "y": 1, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "rect", "x": 6, "y": 2, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "rect", "x": 9, "y": 0, "w": 1, "h": 1, "fill": "rouge" },
+          { "type": "text", "x": 5.6, "y": 3.3, "text": "5", "size": "m", "bold": true }
+        ]
+      },
+      "categories": [
+        { "id": "oui", "label": "C'est un patron de cube" },
+        { "id": "non", "label": "Ce n'est pas un patron de cube" }
+      ],
+      "items": [
+        { "id": "n1", "label": "Assemblage 1", "category": "oui" },
+        { "id": "n2", "label": "Assemblage 2", "category": "non" },
+        { "id": "n3", "label": "Assemblage 3", "category": "oui" },
+        { "id": "n4", "label": "Assemblage 4", "category": "non" },
+        { "id": "n5", "label": "Assemblage 5", "category": "oui" }
+      ],
+      "misconceptions": [
+        { "item": "n2", "category": "oui", "id": "mc:faces-superposees", "error": "notion", "feedback": "Plie l'assemblage 2 dans ta tête : la bande de quatre carrés fait le tour du cube, mais les deux carrés du dessus viennent se poser au même endroit (le couvercle). Ils se superposent… et il manque le fond." },
+        { "item": "n3", "category": "non", "id": "mc:patron-forme", "error": "notion", "feedback": "L'escalier 3 est bien un patron : découpe-le et plie-le pour vérifier ! Un patron de cube n'a pas besoin d'avoir la forme d'une croix." },
+        { "item": "n4", "category": "oui", "id": "mc:faces-superposees", "error": "notion", "feedback": "Dans l'assemblage 4, quatre carrés forment un grand carré 2 × 2 : impossible de les plier, car au plus trois faces d'un cube se rejoignent en un même sommet." },
+        { "item": "n5", "category": "non", "id": "mc:patron-forme", "error": "notion", "feedback": "L'assemblage 5 fonctionne : la bande de quatre carrés fait le tour, un carré se replie dessus et l'autre dessous." }
+      ],
+      "hints": ["Une bande de quatre carrés peut faire le tour du cube : il faut alors UN carré pour le dessus et UN pour le dessous.", "Si deux carrés se rabattent au même endroit, ce n'est pas un patron.", "Quatre carrés en bloc 2 × 2 ne peuvent jamais se plier en cube."],
+      "solution": "Patrons de cube : 1 (la croix), 3 (l'escalier) et 5 (bande de quatre, un carré dessus, un dessous). Pas des patrons : 2 (deux carrés se superposent au-dessus, il manque le fond) et 4 (bloc 2 × 2 impossible à plier).",
+      "selfTest": [
+        { "response": { "assign": { "n1": "oui", "n2": "non", "n3": "oui", "n4": "non", "n5": "oui" } }, "expect": "correct" },
+        { "response": { "assign": { "n1": "oui", "n2": "oui", "n3": "oui", "n4": "non", "n5": "oui" } }, "expect": "mc:faces-superposees" }
+      ]
+    },
+    {
+      "id": "m5-reperage-pave-aretes", "type": "composite", "skill": "m5.geo.perspective-patrons", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:fuyante-mesuree", "mc:aretes-cachees"], "expectedSeconds": 180,
+      "params": { "L": { "int": [5, 9] }, "h": { "int": [2, 4] }, "p": { "int": [3, 4] } },
+      "prompt": "Voici un pavé droit ABCDEFGH dessiné en perspective cavalière. Dans la réalité : AB = {L} cm, AE = {h} cm et AD = {p} cm.",
+      "figure": {
+        "alt": "Un pavé droit ABCDEFGH en perspective cavalière, avec les longueurs réelles de AB, AE et AD indiquées",
+        "w": 360, "h": 250,
+        "frame": { "x": [0, 6.5], "y": [0, 4.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0.5, "y": 0.5, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "B", "x": 4.5, "y": 0.5, "pos": "se", "style": "rond" },
+          { "type": "point", "id": "F", "x": 4.5, "y": 3, "pos": "nw", "style": "rond" },
+          { "type": "point", "id": "E", "x": 0.5, "y": 3, "pos": "w", "style": "rond" },
+          { "type": "point", "id": "D", "x": 2, "y": 1.5, "pos": "n", "style": "rond" },
+          { "type": "point", "id": "C", "x": 6, "y": 1.5, "pos": "e", "style": "rond" },
+          { "type": "point", "id": "G", "x": 6, "y": 4, "pos": "ne", "style": "rond" },
+          { "type": "point", "id": "H", "x": 2, "y": 4, "pos": "n", "style": "rond" },
+          { "type": "polygon", "points": ["A", "B", "F", "E"], "fill": "bleu" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{L} cm" },
+          { "type": "segment", "from": "A", "to": "E", "label": "{h} cm" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "F", "to": "G" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true, "label": "{p} cm" },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'arêtes sont dessinées en pointillés ?", "answer": 3,
+          "misconceptions": [ { "answer": 12, "id": "mc:aretes-cachees", "error": "lecture", "feedback": "Le pavé a 12 arêtes en tout, mais seules celles qu'on ne voit pas sont en pointillés : les trois arêtes qui partent du sommet caché D." } ] },
+        { "type": "numeric", "prompt": "Vraie longueur de l'arête [HG] (en cm) :", "answer": "L",
+          "misconceptions": [ { "answer": "p", "id": "mc:arete-parallele", "error": "lecture", "feedback": "[HG] est parallèle à [EF] et à [AB] : dans un pavé, ces arêtes ont la même longueur, {L} cm." } ] },
+        { "type": "numeric", "prompt": "Vraie longueur de l'arête [CG] (en cm) :", "answer": "h" },
+        { "type": "numeric", "prompt": "Sur le dessin, l'arête [BC] mesure 1,8 cm. Quelle est sa vraie longueur (en cm) ?", "answer": "p",
+          "misconceptions": [ { "answer": 1.8, "id": "mc:fuyante-mesuree", "error": "notion", "feedback": "[BC] est une arête fuyante : en perspective cavalière, elle est dessinée raccourcie. Sa vraie longueur est celle de [AD], {p} cm." } ] }
+      ],
+      "hints": ["Les arêtes cachées partent toutes d'un même sommet, celui qu'on ne voit pas.", "Dans un pavé droit, des arêtes parallèles ont la même longueur.", "Les arêtes fuyantes sont raccourcies sur le dessin : on ne mesure pas leur vraie longueur avec la règle."],
+      "solution": "Trois arêtes cachées partent de D : [DA], [DC] et [DH]. [HG] est parallèle à [AB] : {L} cm. [CG] est parallèle à [AE] : {h} cm. [BC] est parallèle à [AD] : {p} cm dans la réalité, même si elle est dessinée plus courte.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3" }, { "value": "{L}" }, { "value": "{h}" }, { "value": "{p}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3" }, { "value": "{L}" }, { "value": "{h}" }, { "value": "1,8" } ] }, "expect": "mc:fuyante-mesuree" }
+      ]
+    },
+    {
+      "id": "m5-reperage-cylindre-expliquer", "type": "open", "skill": "m5.geo.perspective-patrons", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 360, "minWords": 25,
+      "prompt": "Explique pourquoi, dans le patron d'un cylindre, la longueur du rectangle est égale au périmètre du disque de base. Tu peux t'aider d'une feuille enroulée autour d'un verre ou d'une boîte de conserve.",
+      "figure": {
+        "alt": "Patron d'un cylindre : un rectangle et deux disques accrochés à ses grands côtés",
+        "w": 300, "h": 300,
+        "frame": { "x": [-0.5, 7], "y": [-0.3, 7.2] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 2, "w": 6.283, "h": 3, "fill": "orange" },
+          { "type": "circle", "center": [1.5, 6], "r": 1, "fill": "orange" },
+          { "type": "circle", "center": [1.5, 1], "r": 1, "fill": "orange" }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "J'explique que le rectangle s'enroule pour former la surface latérale", "keywords": [["enroul", "roul", "tour"]] },
+        { "id": "c2", "label": "J'explique que le grand côté du rectangle vient se coller sur tout le bord du disque", "keywords": [["bord", "contour", "cercle"]] },
+        { "id": "c3", "label": "J'en conclus que sa longueur est le périmètre du disque, 2 × π × r", "keywords": [["perimetre", "2 × π", "2 x π", "2πr", "π"]] }
+      ],
+      "models": [
+        "Quand on enroule le rectangle pour fabriquer le tube, son grand côté vient se coller tout le long du bord du disque, sans dépasser et sans manquer. Il fait exactement un tour du cercle. Sa longueur est donc égale au périmètre du disque, 2 × π × r.",
+        "J'ai enroulé une feuille autour d'une boîte de conserve : le bord de la feuille suit le contour du couvercle. Pour fermer le tube pile, la longueur de la feuille doit être le tour du cercle, c'est-à-dire son périmètre 2 × π × r. Si elle était plus courte, il resterait un trou ; plus longue, elle se chevaucherait."
+      ],
+      "hints": ["Imagine que tu enroules le rectangle : que devient son grand côté ?", "Ce grand côté se colle sur le bord de quel disque ?", "Comment s'appelle la longueur du tour d'un cercle ?"],
+      "solution": "En s'enroulant, le grand côté du rectangle épouse tout le bord du disque, exactement une fois. Sa longueur est donc le périmètre du cercle : 2 × π × r.",
+      "selfTest": [ { "response": { "text": "Quand on enroule le rectangle, son grand côté fait le tour du bord du disque. Sa longueur est donc le périmètre du cercle, 2 × π × r." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-reperage-cylindre-patron", "type": "composite", "skill": "m5.geo.perspective-patrons", "skills": ["m5.grandeurs.disque"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:demi-perimetre", "mc:diametre-perimetre", "mc:aire-perimetre"], "expectedSeconds": 300,
+      "params": { "r": { "int": [3, 6] }, "h": { "int": [8, 14] } },
+      "prompt": "Une boîte de conserve a la forme d'un cylindre de rayon {r} cm et de hauteur {h} cm. On veut découper son étiquette, qui recouvre exactement la surface latérale : c'est un rectangle.",
+      "figure": {
+        "alt": "Patron de la boîte : un rectangle dont une dimension est la hauteur et l'autre est inconnue, et deux disques de rayon r",
+        "w": 320, "h": 300,
+        "frame": { "x": [-0.5, 7], "y": [-0.3, 7.2] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 2, "w": 6.283, "h": 3, "fill": "orange" },
+          { "type": "circle", "center": [1.5, 6], "r": 1, "fill": "orange" },
+          { "type": "circle", "center": [1.5, 1], "r": 1, "fill": "orange" },
+          { "type": "segment", "from": [1.5, 6], "to": [2.5, 6], "label": "{r} cm" },
+          { "type": "segment", "from": [6.283, 2], "to": [6.283, 5], "label": "{h} cm" },
+          { "type": "segment", "from": [0, 5], "to": [6.283, 5], "label": "?" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Largeur de l'étiquette (en cm) :", "answer": "h" },
+        { "type": "numeric", "prompt": "Longueur de l'étiquette, arrondie au dixième (en cm) :", "answer": "2*pi*r", "tolerance": 0.1,
+          "misconceptions": [
+            { "answer": "pi*r", "id": "mc:demi-perimetre", "error": "methode", "feedback": "π × r, c'est seulement la moitié du tour. Le périmètre d'un cercle est 2 × π × r (ou π × diamètre)." },
+            { "answer": "2*r", "id": "mc:diametre-perimetre", "error": "notion", "feedback": "{2*r} cm, c'est le diamètre : il traverse le disque. L'étiquette doit faire le TOUR de la boîte : 2 × π × {r} ≈ {2*pi*r|d2} cm." },
+            { "answer": "pi*r*r", "id": "mc:aire-perimetre", "error": "notion", "feedback": "π × r × r est l'aire du disque (une surface). Ici on cherche une longueur, le tour du cercle : 2 × π × r." }
+          ] }
+      ],
+      "hints": ["La largeur de l'étiquette correspond à la hauteur de la boîte.", "La longueur de l'étiquette fait exactement le tour de la boîte.", "Périmètre d'un cercle : 2 × π × r, avec π ≈ 3,14."],
+      "solution": "Largeur : la hauteur de la boîte, {h} cm. Longueur : le périmètre du disque, $ 2 × π × {r} ≈ {2*pi*r|d2} $ cm, soit environ {arrondi(2*pi*r;1)} cm.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{h}" }, { "value": "{arrondi(2*pi*r;1)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{h}" }, { "value": "{2*r}" } ] }, "expect": "mc:diametre-perimetre" }
+      ]
+    },
+    {
+      "id": "m5-reperage-tresor", "type": "composite", "skill": "m5.geo.reperage-plan", "skills": ["m5.geo.demi-tour"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:symetrique-origine", "mc:inversion-coord"], "expectedSeconds": 420,
+      "prompt": "Barbe-Grise a noté sur sa carte : « Pars du palmier P(−4 ; 3). Fais 6 pas vers l'est (vers la droite), puis 5 pas vers le sud (vers le bas) : c'est là qu'est le trésor T. Le crabe gardien C se cache au symétrique du trésor par rapport à l'origine O. » Une unité du repère correspond à un pas.",
+      "figure": {
+        "alt": "Une île dessinée sur un repère gradué de −6 à 6 et de −5 à 5",
+        "w": 400, "h": 340,
+        "frame": { "x": [-6, 6], "y": [-5, 5], "grid": true, "axes": true },
+        "items": [
+          { "type": "polygon", "points": [[-5.5, -1], [-5, 3.5], [-2, 4.6], [2, 4], [5, 2], [5.5, -2], [3, -4.5], [-2, -4], [-5, -3]], "fill": "vert" }
+        ]
+      },
+      "parts": [
+        { "type": "graph", "prompt": "Place le palmier P et le trésor T.", "xRange": [-6, 6], "yRange": [-5, 5], "gridStep": 1, "expectedPoints": [[-4, 3], [2, -2]] },
+        { "type": "numeric", "prompt": "Abscisse du crabe C :", "answer": -2,
+          "misconceptions": [ { "answer": 2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées : T(2 ; −2) donne C(−2 ; 2)." } ] },
+        { "type": "numeric", "prompt": "Ordonnée du crabe C :", "answer": 2,
+          "misconceptions": [ { "answer": -2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées : l'ordonnée −2 de T devient 2." } ] },
+        { "type": "numeric", "prompt": "En marchant le long des lignes du quadrillage, combien de pas au minimum séparent le crabe du palmier ?", "answer": 3 }
+      ],
+      "hints": ["De P(−4 ; 3), 6 pas vers la droite : l'abscisse augmente de 6. Puis 5 pas vers le bas : l'ordonnée diminue de 5.", "O est le milieu de [TC] : les coordonnées de C sont les opposées de celles de T.", "Du crabe au palmier : compte les pas horizontaux, puis les pas verticaux."],
+      "solution": "T : abscisse −4 + 6 = 2, ordonnée 3 − 5 = −2, donc T(2 ; −2). Le crabe est au symétrique par rapport à O : C(−2 ; 2). De C(−2 ; 2) à P(−4 ; 3) : 2 pas vers la gauche et 1 vers le haut, soit 3 pas.",
+      "selfTest": [
+        { "response": { "parts": [ { "points": [[-4, 3], [2, -2]] }, { "value": "-2" }, { "value": "2" }, { "value": "3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "points": [[-4, 3], [2, -2]] }, { "value": "-2" }, { "value": "-2" }, { "value": "3" } ] }, "expect": "mc:symetrique-origine" }
+      ]
+    },
+    {
+      "id": "m5-reperage-remed-ordre", "type": "graph", "skill": "m5.geo.reperage-plan", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:inversion-coord", "lecture"], "expectedSeconds": 90,
+      "params": { "a": { "int": [1, 6] }, "b": { "int": [1, 6] }, "c": { "int": [1, 5] } },
+      "constraints": ["a != b"],
+      "prompt": "Rappel : dans (abscisse ; ordonnée), on avance d'abord horizontalement, puis on monte. Pour s'en souvenir : on entre dans la maison avant de prendre l'escalier ! Place E({a} ; {b}) et F(0 ; {c}).",
+      "xRange": [-1, 7], "yRange": [-1, 7], "gridStep": 1,
+      "expectedPoints": [["a", "b"], [0, "c"]],
+      "hints": ["Pour E : avance de {a} vers la droite, puis monte de {b}.", "Pour F : abscisse 0, tu n'avances pas du tout. Tu montes seulement de {c} : F est sur l'axe vertical."],
+      "solution": "E({a} ; {b}) : {a} vers la droite, puis {b} vers le haut. F(0 ; {c}) est sur l'axe des ordonnées, à la hauteur {c}.",
+      "selfTest": [
+        { "response": { "points": [["{a}", "{b}"], [0, "{c}"]] }, "expect": "correct" },
+        { "response": { "points": [["{b}", "{a}"], ["{c}", 0]] }, "expect": "lecture" }
+      ]
+    },
+    {
+      "id": "m5-reperage-remed-graduation", "type": "composite", "skill": "m5.relatifs.reperage", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:graduation-dixieme"], "expectedSeconds": 90,
+      "prompt": "Rappel : pour trouver la valeur d'une graduation, on divise l'écart entre deux nombres écrits par le nombre d'**intervalles** (les petits espaces), pas par le nombre de traits. Observe la droite graduée.",
+      "figure": {
+        "alt": "Une droite graduée de 0 à 1 dont l'unité est partagée en intervalles égaux, avec un point M",
+        "w": 400, "h": 130,
+        "frame": { "x": [-0.15, 1.15], "y": [-0.25, 0.2] },
+        "items": [
+          { "type": "segment", "from": [-0.1, 0], "to": [1.12, 0], "arrows": "end" },
+          { "type": "segment", "from": [0, -0.05], "to": [0, 0.05] },
+          { "type": "segment", "from": [0.25, -0.03], "to": [0.25, 0.03] },
+          { "type": "segment", "from": [0.5, -0.03], "to": [0.5, 0.03] },
+          { "type": "segment", "from": [0.75, -0.03], "to": [0.75, 0.03] },
+          { "type": "segment", "from": [1, -0.05], "to": [1, 0.05] },
+          { "type": "text", "x": 0, "y": -0.15, "text": "0", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 1, "y": -0.15, "text": "1", "size": "s", "anchor": "middle" },
+          { "type": "point", "id": "M", "x": 0.75, "y": 0, "pos": "n", "style": "rond" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Que vaut une graduation ?", "answer": 0.25,
+          "misconceptions": [
+            { "answer": 0.1, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1. Ici l'unité est partagée en 4 intervalles : 1 ÷ 4 = 0,25." },
+            { "answer": 0.2, "id": "mc:traits-intervalles", "error": "lecture", "feedback": "Tu as compté 5 traits, mais il n'y a que 4 intervalles entre 0 et 1 : 1 ÷ 4 = 0,25." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est l'abscisse du point M ?", "answer": 0.75,
+          "misconceptions": [ { "answer": 0.3, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "M est à 3 graduations de 0, et chaque graduation vaut 0,25 : 3 × 0,25 = 0,75." } ] }
+      ],
+      "hints": ["Compte les petits espaces entre 0 et 1, pas les traits.", "Une graduation vaut 1 ÷ (nombre d'intervalles)."],
+      "solution": "Il y a 4 intervalles entre 0 et 1 : une graduation vaut 0,25. M est à 3 graduations de 0 : 3 × 0,25 = 0,75 (c'est aussi 3/4).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "0,25" }, { "value": "0,75" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,1" }, { "value": "0,3" } ] }, "expect": "mc:graduation-dixieme" }
+      ]
+    },
+    {
+      "id": "m5-reperage-remed-quadrants", "type": "graph", "skill": "m5.geo.reperage-plan", "skills": ["m5.relatifs.reperage"], "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["signe"], "expectedSeconds": 90,
+      "prompt": "Rappel : abscisse négative → à gauche de l'axe vertical ; ordonnée positive → au-dessus de l'axe horizontal. Place trois points différents dont l'abscisse est négative et l'ordonnée positive.",
+      "xRange": [-5, 5], "yRange": [-5, 5], "gridStep": 1,
+      "predicate": "x < 0 and y > 0", "count": 3, "predicateLabel": "« abscisse négative et ordonnée positive »",
+      "hints": ["Abscisse négative : on part vers la gauche.", "Ordonnée positive : on monte.", "Tous tes points doivent être dans la même zone du repère : laquelle ?"],
+      "solution": "Tous les points de la zone en haut à gauche conviennent, par exemple (−2 ; 3), (−1 ; 1) et (−4 ; 2). Attention : un point sur un axe (abscisse ou ordonnée nulle) ne convient pas.",
+      "selfTest": [
+        { "response": { "points": [[-2, 3], [-1, 1], [-4, 2]] }, "expect": "correct" },
+        { "response": { "points": [[2, -3], [1, -1], [4, -2]] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-reperage-prisme-patron", "type": "composite", "skill": "m5.geo.perspective-patrons", "skills": ["m5.grandeurs.aires"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:aire-volume", "mc:faces-prisme"], "expectedSeconds": 360,
+      "params": { "h": { "int": [4, 9] } },
+      "prompt": "Voici le patron d'un prisme droit. Ses bases sont des triangles rectangles dont les côtés mesurent 3 cm, 4 cm et 5 cm, et sa hauteur est {h} cm.",
+      "figure": {
+        "alt": "Figure à main levée : patron d'un prisme droit formé d'une bande de trois rectangles côte à côte et de deux triangles rectangles accrochés au rectangle du milieu",
+        "w": 380, "h": 320,
+        "frame": { "x": [-0.5, 12.5], "y": [-3.5, 7.5] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 4, "fill": "orange" },
+          { "type": "rect", "x": 3, "y": 0, "w": 4, "h": 4, "fill": "orange" },
+          { "type": "rect", "x": 7, "y": 0, "w": 5, "h": 4, "fill": "orange" },
+          { "type": "polygon", "points": [[3, 4], [7, 4], [3, 7]], "fill": "bleu" },
+          { "type": "polygon", "points": [[3, 0], [7, 0], [3, -3]], "fill": "bleu" },
+          { "type": "segment", "from": [0, 4], "to": [3, 4], "label": "3 cm" },
+          { "type": "segment", "from": [7, 4], "to": [12, 4], "label": "5 cm" },
+          { "type": "segment", "from": [3, 0], "to": [7, 0], "label": "4 cm" },
+          { "type": "segment", "from": [0, 0], "to": [0, 4], "label": "{h} cm" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de faces a ce prisme ?", "answer": 5,
+          "misconceptions": [ { "answer": 6, "id": "mc:faces-prisme", "error": "notion", "feedback": "6 faces, c'est le pavé. Un prisme à base triangulaire a 2 bases et 3 faces latérales (une par côté du triangle) : 5 faces." } ] },
+        { "type": "numeric", "prompt": "Longueur totale de la bande des trois faces latérales (en cm) :", "answer": 12 },
+        { "type": "numeric", "prompt": "Aire de cette bande latérale (en cm²) :", "answer": "12*h",
+          "misconceptions": [ { "answer": "6*h", "id": "mc:aire-volume", "error": "notion", "feedback": "3 × 4 ÷ 2 × {h} = {6*h} : c'est le volume du prisme (en cm³). La bande latérale est un rectangle de 12 cm sur {h} cm." } ] }
+      ],
+      "hints": ["Un prisme a deux bases (ici des triangles) et autant de faces latérales que la base a de côtés.", "Chaque face latérale est un rectangle de hauteur {h} cm accroché à un côté du triangle.", "La bande latérale est un grand rectangle : longueur = périmètre du triangle."],
+      "solution": "5 faces : 2 triangles et 3 rectangles. La bande latérale mesure 3 + 4 + 5 = 12 cm de long et {h} cm de haut : son aire vaut 12 × {h} = {12*h} cm². Comme pour le cylindre, la longueur de la bande est le périmètre de la base.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5" }, { "value": "12" }, { "value": "{12*h}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "6" }, { "value": "12" }, { "value": "{12*h}" } ] }, "expect": "mc:faces-prisme" }
+      ]
+    },
+    {
+      "id": "m5-reperage-milieu", "type": "composite", "skill": "m5.geo.reperage-plan", "skills": ["m5.relatifs.addition"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:demi-ecart"], "expectedSeconds": 300,
+      "params": { "a": { "int": [-5, -1] }, "c": { "int": [1, 7] }, "b": { "int": [-3, 4], "not": [0] }, "d": { "int": [-3, 4] } },
+      "constraints": ["mod(a + c; 2) = 0", "mod(b + d; 2) = 0", "b != d"],
+      "prompt": "Dans un repère, A({a} ; {b}) et B({c} ; {d}). Calcule les coordonnées du milieu M du segment [AB].",
+      "figure": {
+        "alt": "Un repère gradué avec les points A et B",
+        "w": 420, "h": 270,
+        "frame": { "x": [-6, 8], "y": [-4, 5], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "style": "rond", "pos": "nw" },
+          { "type": "point", "id": "B", "x": "{c}", "y": "{d}", "style": "rond", "pos": "ne" },
+          { "type": "segment", "from": "A", "to": "B" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Abscisse de M :", "answer": "(a + c)/2",
+          "misconceptions": [ { "answer": "(c - a)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "{(c-a)/2}, c'est la moitié de l'écart horizontal entre A et B. Le milieu s'obtient en partant de A et en avançant de cette moitié : {a} + {(c-a)/2} = {(a+c)/2}. Plus simple : la moyenne ({a} + {c}) ÷ 2." } ] },
+        { "type": "numeric", "prompt": "Ordonnée de M :", "answer": "(b + d)/2",
+          "misconceptions": [ { "answer": "(d - b)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "C'est la moitié de l'écart vertical. Le milieu a pour ordonnée la moyenne : ({b} + {d}) ÷ 2 = {(b+d)/2}." } ] }
+      ],
+      "hints": ["Le milieu est « à mi-chemin » : son abscisse est entre celles de A et de B, exactement au milieu.", "Abscisse du milieu = moyenne des abscisses : (abscisse de A + abscisse de B) ÷ 2.", "Fais pareil pour les ordonnées. Attention aux nombres négatifs."],
+      "solution": "M a pour coordonnées les moyennes : $ ({a} + {c}) ÷ 2 = {(a+c)/2} $ et $ ({b} + {d}) ÷ 2 = {(b+d)/2} $. Donc M({(a+c)/2} ; {(b+d)/2}).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{(a+c)/2}" }, { "value": "{(b+d)/2}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{(c-a)/2}" }, { "value": "{(b+d)/2}" } ] }, "expect": "mc:demi-ecart" }
+      ]
+    },
+    {
+      "id": "m5-reperage-de", "type": "composite", "skill": "m5.geo.perspective-patrons", "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:une-sur-deux"], "expectedSeconds": 600,
+      "params": { "a": { "int": [1, 6] }, "b": { "int": [1, 6] }, "c": { "int": [1, 6] } },
+      "constraints": ["a != b", "a != c", "b != c", "a + b != 7", "a + c != 7", "b + c != 7"],
+      "prompt": "Sur un dé, les faces opposées ont toujours une somme de 7. Voici un patron de dé « en escalier » : trois faces portent déjà leur nombre de points. Quels nombres faut-il écrire sur les faces X, Y et Z ?",
+      "figure": {
+        "alt": "Un patron de cube en escalier de six carrés : trois carrés portent des nombres, les trois autres les lettres X, Y et Z",
+        "w": 320, "h": 230,
+        "frame": { "x": [0, 5], "y": [0, 3.5] },
+        "items": [
+          { "type": "rect", "x": 0.5, "y": 2.5, "w": 1, "h": 1, "fill": "bleu", "label": "{a}" },
+          { "type": "rect", "x": 1.5, "y": 2.5, "w": 1, "h": 1, "fill": "bleu", "label": "{b}" },
+          { "type": "rect", "x": 1.5, "y": 1.5, "w": 1, "h": 1, "fill": "bleu", "label": "{c}" },
+          { "type": "rect", "x": 2.5, "y": 1.5, "w": 1, "h": 1, "fill": "orange", "label": "X" },
+          { "type": "rect", "x": 2.5, "y": 0.5, "w": 1, "h": 1, "fill": "orange", "label": "Y" },
+          { "type": "rect", "x": 3.5, "y": 0.5, "w": 1, "h": 1, "fill": "orange", "label": "Z" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Nombre sur la face X :", "answer": "7 - a",
+          "misconceptions": [ { "answer": "7 - b", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "Dans un escalier, deux faces séparées par une seule autre ne sont pas forcément opposées : la face {b} touche la face X par une arête une fois le dé plié. Plie le patron dans ta tête (ou découpe-le) : X est en face de la face {a}." } ] },
+        { "type": "numeric", "prompt": "Nombre sur la face Y :", "answer": "7 - b",
+          "misconceptions": [ { "answer": "7 - c", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "La face {c} est voisine de Y une fois le dé plié. Y est en face de la face {b}." } ] },
+        { "type": "numeric", "prompt": "Nombre sur la face Z :", "answer": "7 - c" }
+      ],
+      "hints": ["Prends la face {c} comme fond du dé. Quelles faces se relèvent autour d'elle ?", "La face {b} et la face X se relèvent sur deux côtés voisins du fond ; la face {a}, accrochée à {b}, vient fermer un troisième côté.", "Dans ce patron en escalier, chaque face est opposée à celle qui est trois cases plus loin dans l'escalier."],
+      "solution": "Avec la face {c} comme fond : {b} et X se relèvent sur deux côtés voisins, {a} vient se placer en face de X, Y en face de {b}, et Z devient le couvercle, en face de {c}. Donc X = 7 − {a} = {7-a}, Y = 7 − {b} = {7-b}, Z = 7 − {c} = {7-c}.",
+      "methods": ["Plier le patron mentalement, face par face, en partant d'une face choisie comme fond.", "Recopier le patron sur du papier quadrillé, le découper et le plier."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{7-a}" }, { "value": "{7-b}" }, { "value": "{7-c}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{7-b}" }, { "value": "{7-c}" }, { "value": "{7-c}" } ] }, "expect": "mc:une-sur-deux" }
+      ]
+    },
+    {
+      "id": "m5-reperage-fourmi", "type": "composite", "skill": "m5.geo.perspective-patrons", "skills": ["mx.denombrement"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:chemins-trois"], "expectedSeconds": 600,
+      "prompt": "Une fourmi est au sommet A d'un cube de 1 dm d'arête. Elle veut atteindre le sommet G, le plus loin de A, en marchant à la surface du cube.",
+      "figure": {
+        "alt": "Un cube ABCDEFGH dessiné en perspective cavalière, avec les sommets A et G mis en évidence",
+        "w": 300, "h": 280,
+        "frame": { "x": [0, 5.2], "y": [0, 4.9] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0.5, "y": 0.5, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "B", "x": 3.5, "y": 0.5, "pos": "se" },
+          { "type": "point", "id": "F", "x": 3.5, "y": 3.5, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0.5, "y": 3.5, "pos": "w" },
+          { "type": "point", "id": "D", "x": 1.7, "y": 1.4, "pos": "n" },
+          { "type": "point", "id": "C", "x": 4.7, "y": 1.4, "pos": "e" },
+          { "type": "point", "id": "G", "x": 4.7, "y": 4.4, "pos": "ne", "style": "rond" },
+          { "type": "point", "id": "H", "x": 1.7, "y": 4.4, "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "F", "E"], "fill": "vert" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "F", "to": "G" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Si elle ne marche que sur les arêtes, quelle est la longueur du plus court trajet de A à G (en dm) ?", "answer": 3 },
+        { "type": "numeric", "prompt": "Combien de trajets différents, le long des arêtes, ont cette longueur minimale ?", "answer": 6,
+          "misconceptions": [ { "answer": 3, "id": "mc:chemins-trois", "error": "methode", "feedback": "Il y a 3 choix pour la première arête, mais ensuite encore 2 choix pour la deuxième, puis 1 seul : 3 × 2 × 1 = 6 trajets." } ] },
+        { "type": "text", "prompt": "Dépliée à plat, la face avant ABFE et la face du dessus EFGH forment un rectangle de 1 dm sur 2 dm. Si la fourmi traverse ces deux faces en ligne droite sur ce patron, son trajet est-il plus court que 3 dm ? (oui ou non)", "accept": ["oui"],
+          "misconceptions": [ { "answer": "non", "id": "mc:ligne-droite", "error": "raisonnement", "feedback": "Sur le patron, A et G sont deux coins opposés d'un rectangle de 1 dm sur 2 dm. La ligne droite (la diagonale) est plus courte que le chemin qui suit les bords (1 + 2 = 3 dm) : elle mesure environ 2,24 dm." } ] }
+      ],
+      "hints": ["Pour aller de A à G, il faut avancer dans les trois directions du cube : une arête dans chaque direction.", "Premier choix : 3 arêtes possibles depuis A. Deuxième choix : combien ? Troisième ?", "Dessine le rectangle de 1 dm sur 2 dm et compare la diagonale au chemin par les bords."],
+      "solution": "Par les arêtes, il faut au moins 3 arêtes (une dans chaque direction) : 3 dm. Nombre de trajets : 3 × 2 × 1 = 6. Sur le patron, la diagonale du rectangle de 1 dm sur 2 dm est plus courte que 3 dm (environ 2,24 dm, calcul que tu sauras faire en 4e avec le théorème de Pythagore) : traverser les faces en ligne droite est plus rapide !",
+      "methods": ["Lister tous les trajets avec les noms des sommets : A-B-C-G, A-B-F-G, A-D-C-G, A-D-H-G, A-E-F-G, A-E-H-G.", "Utiliser un arbre de choix : 3, puis 2, puis 1."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3" }, { "value": "6" }, { "value": "oui" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3" }, { "value": "3" }, { "value": "oui" } ] }, "expect": "mc:chemins-trois" }
+      ]
+    }
+  ]
+}

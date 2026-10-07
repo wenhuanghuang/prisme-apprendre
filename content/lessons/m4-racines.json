@@ -1,0 +1,483 @@
+{
+  "id": "m4-racines",
+  "chapter": "m4-ch-racines",
+  "title": "Carrés parfaits et racine carrée",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.racines.carres", "m4.racines.definition", "m4.racines.utiliser"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 50,
+  "summary": "Connaître les carrés parfaits de 1 à 144, comprendre ce qu'est la racine carrée d'un nombre positif, l'encadrer entre deux entiers, en donner une valeur approchée et l'utiliser pour passer d'une aire à une longueur.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le carrelage impossible",
+      "body": "Avec des carreaux carrés identiques, Lina veut former un **grand carré plein**. Avec 9 carreaux, c'est facile : 3 rangées de 3. Avec 49 aussi. Mais avec 50 carreaux, impossible : il en reste toujours un de trop !\n\nQuels nombres de carreaux permettent de former un carré ? Et un carré d'aire 50 cm² : son côté mesure-t-il un nombre entier de centimètres ?",
+      "figure": {
+        "alt": "À gauche, un carré formé de 3 rangées de 3 carreaux ; à droite, un carré formé de 7 rangées de 7 carreaux.",
+        "w": 420, "h": 250,
+        "frame": { "x": [-0.5, 12], "y": [-1.2, 7.5] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 3, "fill": "maths" },
+          { "type": "segment", "from": [1, 0], "to": [1, 3] },
+          { "type": "segment", "from": [2, 0], "to": [2, 3] },
+          { "type": "segment", "from": [0, 1], "to": [3, 1] },
+          { "type": "segment", "from": [0, 2], "to": [3, 2] },
+          { "type": "text", "x": 1.5, "y": -0.7, "text": "9 = 3 × 3", "anchor": "middle" },
+          { "type": "rect", "x": 4.5, "y": 0, "w": 7, "h": 7, "fill": "orange" },
+          { "type": "segment", "from": [5.5, 0], "to": [5.5, 7] },
+          { "type": "segment", "from": [6.5, 0], "to": [6.5, 7] },
+          { "type": "segment", "from": [7.5, 0], "to": [7.5, 7] },
+          { "type": "segment", "from": [8.5, 0], "to": [8.5, 7] },
+          { "type": "segment", "from": [9.5, 0], "to": [9.5, 7] },
+          { "type": "segment", "from": [10.5, 0], "to": [10.5, 7] },
+          { "type": "segment", "from": [4.5, 1], "to": [11.5, 1] },
+          { "type": "segment", "from": [4.5, 2], "to": [11.5, 2] },
+          { "type": "segment", "from": [4.5, 3], "to": [11.5, 3] },
+          { "type": "segment", "from": [4.5, 4], "to": [11.5, 4] },
+          { "type": "segment", "from": [4.5, 5], "to": [11.5, 5] },
+          { "type": "segment", "from": [4.5, 6], "to": [11.5, 6] },
+          { "type": "text", "x": 8, "y": -0.7, "text": "49 = 7 × 7", "anchor": "middle" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🟦", "title": "Les carrés parfaits",
+          "body": "Un **carré parfait** est le carré d'un nombre entier : $n² = n × n$. De 1 à 144 : 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144 (les carrés de 1 à 12). À connaître par cœur, comme les tables ! Attention : $n²$ n'est pas $2 × n$ : $7² = 49$, et non 14.",
+          "reveal": { "question": "Devine : un carré parfait peut-il se terminer par le chiffre 2, 3, 7 ou 8 ?", "answer": "Non ! Le dernier chiffre d'un carré parfait est toujours 0, 1, 4, 5, 6 ou 9. Donc 2 027 n'est sûrement pas un carré parfait." }
+        },
+        {
+          "emoji": "📐", "title": "La racine carrée",
+          "body": "Pour un nombre positif $a$, la **racine carrée** de $a$ est le nombre **positif** dont le carré vaut $a$. On la note $√a$. Ainsi $√49 = 7$, car $7² = 49$ et 7 est positif. Autrement dit : un carré d'aire $a$ a un côté de longueur $√a$.",
+          "example": "$√121 = 11$ ; $√1 = 1$ ; $√0 = 0$ ; $(√5)² = 5$",
+          "figure": {
+            "alt": "Carré d'aire 49 centimètres carrés ; son côté mesure la racine carrée de 49, soit 7 cm.",
+            "w": 260, "h": 230,
+            "frame": { "x": [-1.5, 8.5], "y": [-1.5, 7.5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 0, "y": 0, "hidden": true },
+              { "type": "point", "id": "B", "x": 7, "y": 0, "hidden": true },
+              { "type": "point", "id": "C", "x": 7, "y": 7, "hidden": true },
+              { "type": "point", "id": "D", "x": 0, "y": 7, "hidden": true },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+              { "type": "text", "x": 3.5, "y": 3.5, "text": "Aire : 49 cm²", "anchor": "middle" },
+              { "type": "segment", "from": "A", "to": "B", "label": "√49 = 7 cm" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚠️", "title": "Trois pièges à éviter",
+          "body": "$√16$ n'est pas la moitié de 16 : c'est 4, car $4 × 4 = 16$. $√(9 + 16)$ n'est pas égal à $√9 + √16$ : $√25 = 5$, alors que $3 + 4 = 7$. Enfin, un nombre négatif n'a pas de racine carrée : un carré n'est jamais négatif."
+        },
+        {
+          "emoji": "📏", "title": "Encadrer une racine carrée",
+          "body": "$√50$ n'est pas un nombre entier, mais on peut l'encadrer : 50 est compris entre les carrés parfaits 49 et 64, donc $√50$ est compris entre 7 et 8. Méthode : chercher les deux carrés parfaits consécutifs qui entourent le nombre, puis prendre leurs racines.",
+          "reveal": { "question": "Devine : √50 est-il plus proche de 7 ou de 8 ?", "answer": "De 7 : 50 est tout près de 49. La calculatrice donne √50 ≈ 7,07." }
+        },
+        {
+          "emoji": "🧮", "title": "Une valeur approchée",
+          "body": "La touche √ de la calculatrice donne une valeur approchée : $√2 ≈ 1,414$ au millième près. Les décimales de $√2$ ne s'arrêtent jamais : on ne peut pas l'écrire exactement avec une virgule. Vérification : $1,414 × 1,414 = 1,999396$, très proche de 2."
+        },
+        {
+          "emoji": "🏠", "title": "La racine carrée en géométrie",
+          "body": "Dès qu'on connaît l'aire $A$ d'un carré, son côté mesure $√A$. Et quand le théorème de Pythagore donne $BC² = 45$, on en déduit $BC = √45$, soit environ 6,7. La racine carrée permet de « revenir » d'un carré à une longueur."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Le côté d'un carré d'aire 30 cm²",
+      "steps": [
+        { "text": "On cherche le côté $c$ d'un carré d'aire 30 cm² : $c × c = 30$, donc $c$ est la racine carrée de 30.", "math": "c = √30" },
+        { "text": "On encadre 30 entre deux carrés parfaits consécutifs : 25 et 36. Donc $√30$ est compris entre $√25 = 5$ et $√36 = 6$.", "math": "" },
+        { "text": "On affine au dixième : 30 est un peu plus près de 25 que de 36, on essaie 5,4 et 5,5.", "math": "5,4² = 29,16 et 5,5² = 30,25" },
+        { "text": "30 est compris entre 29,16 et 30,25, donc $√30$ est compris entre 5,4 et 5,5. La calculatrice affiche 5,477… : au dixième près, le côté mesure environ 5,5 cm.", "math": "" },
+        { "text": "Contrôle : $5,5 × 5,5 = 30,25$, très proche de 30.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Garde la liste des carrés parfaits sous les yeux : 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144.",
+      "exercises": ["m4-racines-carres", "m4-racines-reconnaitre", "m4-racines-calcul", "m4-racines-droite", "m4-racines-encadrer", "m4-racines-verif"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m4-racines-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m4-racines-plus-petit", "m4-racines-aire"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le grand carrelage",
+      "body": "Lina carrelle sa terrasse carrée. Combien de carreaux, quelle longueur de côté, combien de dalles ? Les carrés parfaits et la racine carrée vont tout régler.",
+      "exercises": ["m4-racines-carrelage"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Pour $a$ positif, $√a$ est le nombre positif dont le carré vaut $a$. Les carrés parfaits de 1 à 144 permettent d'encadrer une racine carrée entre deux entiers consécutifs.\n\n- **$√16 = 8$ ?** Non : la racine carrée n'est pas la moitié. $√16 = 4$, car $4 × 4 = 16$.\n- **$√(9 + 16) = √9 + √16$ ?** Non : $√25 = 5$, alors que $3 + 4 = 7$. On calcule d'abord ce qu'il y a sous le radical.\n- **Encadrer avec les carrés.** 50 est entre 49 et 64, donc $√50$ est entre 7 et 8 (et non « entre 49 et 64 »).\n- **$√a$ toujours plus petit que $a$ ?** Faux entre 0 et 1 : $√0,25 = 0,5$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des carrés parfaits et des racines carrées dans quelques jours. Entraîne-toi aussi à réciter les carrés de 1 à 12 : c'est la clé de tout le chapitre."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Agrandir un carré sans se tromper, et calculer √2 à la main avec la méthode de Héron, vieille de près de 2 000 ans.",
+      "exercises": ["m4-racines-agrandir", "m4-racines-heron"]
+    },
+    "expert": {
+      "intro": "Facultatif et hors programme de 4e : démontrer que √2 n'est pas une fraction, et découvrir des règles de calcul sur les racines carrées.",
+      "exercises": ["m4-racines-irrationnel", "m4-racines-proprietes"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-racines-carres", "type": "table", "skill": "m4.racines.carres", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:racine-moitie"], "expectedSeconds": 120,
+      "params": { "a": { "int": [3, 9] }, "b": { "choice": [11, 12] }, "c": { "int": [4, 10] }, "d": { "int": [3, 12] } },
+      "constraints": ["c != a", "d != c", "d != a", "d != b"],
+      "prompt": "Complète le tableau des carrés : dans chaque ligne, le nombre de droite est le carré du nombre de gauche.",
+      "columns": ["Nombre $n$", "Son carré $n²$"],
+      "rows": [ ["{a}", "?r0c1"], ["{b}", "?r1c1"], ["?r2c0", "{c^2}"], ["?r3c0", "{d^2}"] ],
+      "cells": {
+        "r0c1": { "answer": "a^2", "misconceptions": [ { "answer": "2*a", "id": "mc:carre-double", "error": "notion", "feedback": "$ {a}² = {a} × {a} $, et non $ 2 × {a} $ : le 2 indique qu'on multiplie {a} par lui-même." } ] },
+        "r1c1": { "answer": "b^2", "misconceptions": [ { "answer": "2*b", "id": "mc:carre-double", "error": "notion", "feedback": "$ {b}² = {b} × {b} $, et non $ 2 × {b} $." } ] },
+        "r2c0": { "answer": "c", "misconceptions": [ { "answer": "c^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "Tu as pris la moitié de {c^2}. On cherche le nombre qui, multiplié par lui-même, donne {c^2}." } ] },
+        "r3c0": { "answer": "d", "misconceptions": [ { "answer": "d^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "Tu as pris la moitié de {d^2}. On cherche le nombre qui, multiplié par lui-même, donne {d^2}." } ] }
+      },
+      "hints": ["$n² = n × n$.", "Pour les deux dernières lignes, cherche le nombre qui, multiplié par lui-même, donne le carré indiqué.", "Récite les carrés : 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144."],
+      "solution": "$ {a}² = {a^2} $ ; $ {b}² = {b^2} $ ; $ {c}² = {c^2} $ ; $ {d}² = {d^2} $.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{a^2}", "r1c1": "{b^2}", "r2c0": "{c}", "r3c0": "{d}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{2*a}", "r1c1": "{b^2}", "r2c0": "{c}", "r3c0": "{d}" } }, "expect": "mc:carre-double" }
+      ]
+    },
+    {
+      "id": "m4-racines-reconnaitre", "type": "categorize", "skill": "m4.racines.carres", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:cube-carre", "mc:carre-zero", "mc:carre-double"], "expectedSeconds": 120,
+      "prompt": "Range chaque nombre : est-il un carré parfait (le carré d'un nombre entier) ou non ?",
+      "categories": [ { "id": "carre", "label": "Carré parfait" }, { "id": "non", "label": "Pas un carré parfait" } ],
+      "items": [
+        { "id": "n64", "label": "64", "category": "carre" },
+        { "id": "n27", "label": "27", "category": "non" },
+        { "id": "n81", "label": "81", "category": "carre" },
+        { "id": "n90", "label": "90", "category": "non" },
+        { "id": "n121", "label": "121", "category": "carre" },
+        { "id": "n32", "label": "32", "category": "non" },
+        { "id": "n1", "label": "1", "category": "carre" },
+        { "id": "n50", "label": "50", "category": "non" },
+        { "id": "n144", "label": "144", "category": "carre" },
+        { "id": "n12", "label": "12", "category": "non" }
+      ],
+      "misconceptions": [
+        { "item": "n27", "category": "carre", "id": "mc:cube-carre", "error": "notion", "feedback": "27 = 3 × 3 × 3 = 3³ : c'est un cube, pas un carré. Aucun entier multiplié par lui-même ne donne 27 (5² = 25 et 6² = 36)." },
+        { "item": "n90", "category": "carre", "id": "mc:carre-zero", "error": "notion", "feedback": "9 est un carré parfait, mais pas 90 : 9² = 81 et 10² = 100. Ajouter un zéro ne suffit pas (il en faut deux : 900 = 30²)." },
+        { "item": "n32", "category": "carre", "id": "mc:carre-double", "error": "notion", "feedback": "32 = 2 × 16, mais ce n'est le carré d'aucun entier : 5² = 25 et 6² = 36." },
+        { "item": "n12", "category": "carre", "id": "mc:carre-double", "error": "notion", "feedback": "12 = 2 × 6, mais 6² = 6 × 6 = 36. 12 est entre 3² = 9 et 4² = 16 : ce n'est pas un carré parfait." },
+        { "item": "n1", "category": "non", "id": "mc:un-carre", "error": "notion", "feedback": "1 = 1 × 1 = 1² : c'est bien un carré parfait, le tout premier." }
+      ],
+      "hints": ["Un carré parfait s'écrit $n × n$ avec $n$ entier.", "Pour un nombre comme 50, cherche les carrés qui l'entourent : 7² = 49 et 8² = 64.", "Liste des carrés jusqu'à 144 : 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144."],
+      "solution": "Carrés parfaits : 1 = 1², 64 = 8², 81 = 9², 121 = 11², 144 = 12². Pas des carrés parfaits : 12, 27 (c'est 3³, un cube), 32, 50 et 90.",
+      "selfTest": [
+        { "response": { "assign": { "n64": "carre", "n27": "non", "n81": "carre", "n90": "non", "n121": "carre", "n32": "non", "n1": "carre", "n50": "non", "n144": "carre", "n12": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "n64": "carre", "n27": "carre", "n81": "carre", "n90": "non", "n121": "carre", "n32": "non", "n1": "carre", "n50": "non", "n144": "carre", "n12": "non" } }, "expect": "mc:cube-carre" }
+      ]
+    },
+    {
+      "id": "m4-racines-calcul", "type": "composite", "skill": "m4.racines.definition", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:racine-moitie", "mc:racine-decimale"], "expectedSeconds": 180,
+      "params": { "a": { "int": [3, 12] }, "e": { "int": [2, 9] }, "d": { "choice": [2, 3, 5, 6, 7, 10] } },
+      "prompt": "Calcule sans calculatrice. Pour chaque racine carrée, cherche le nombre **positif** qui, multiplié par lui-même, donne le nombre sous le radical.",
+      "parts": [
+        { "type": "numeric", "prompt": "$ √{a^2} $", "answer": "a",
+          "misconceptions": [ { "answer": "a^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié ! On cherche le nombre qui, multiplié par lui-même, donne {a^2}." } ] },
+        { "type": "numeric", "prompt": "$ √{e^2/100} $", "answer": "e/10",
+          "misconceptions": [
+            { "answer": "e/100", "id": "mc:racine-decimale", "error": "calcul", "feedback": "Vérifie : $ {e/100} × {e/100} = {e^2/10000} $, pas {e^2/100}. Essaie plutôt $ {e/10} × {e/10} $." },
+            { "answer": "e^2/200", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié ! On cherche le nombre qui, multiplié par lui-même, donne {e^2/100}." }
+          ] },
+        { "type": "numeric", "prompt": "$ (√{d})² $", "answer": "d",
+          "misconceptions": [ { "answer": "d^2", "id": "mc:racine-carre-confusion", "error": "notion", "feedback": "$ √{d} $ est le nombre dont le carré vaut {d}. Donc son carré, $ (√{d})² $, vaut {d} : c'est la définition même." } ] }
+      ],
+      "hints": ["$ √{a^2} $ : quel nombre, multiplié par lui-même, donne {a^2} ?", "Pour $ √{e^2/100} $, pense à $ {e} × {e} = {e^2} $ et regarde où placer la virgule.", "Par définition, le carré de $ √{d} $ est {d}."],
+      "solution": "$ √{a^2} = {a} $, car $ {a} × {a} = {a^2} $. $ √{e^2/100} = {e/10} $, car $ {e/10} × {e/10} = {e^2/100} $. $ (√{d})² = {d} $ par définition de la racine carrée.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{e/10}" }, { "value": "{d}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a^2/2}" }, { "value": "{e/10}" }, { "value": "{d}" } ] }, "expect": "mc:racine-moitie" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{e/100}" }, { "value": "{d}" } ] }, "expect": "mc:racine-decimale" }
+      ]
+    },
+    {
+      "id": "m4-racines-droite", "type": "numberline", "skill": "m4.racines.definition", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:encadrer-carres"], "expectedSeconds": 150,
+      "params": { "n": { "int": [10, 140] }, "m": { "int": [2, 140] }, "p": { "expr": "floor(racine(n))" }, "q": { "expr": "floor(racine(m))" } },
+      "constraints": ["not estentier(racine(n))", "not estentier(racine(m))", "abs(racine(n) - racine(m)) > 2"],
+      "prompt": "Sans calculatrice, place sur la droite graduée les points $A$ et $B$ d'abscisses $ √{n} $ et $ √{m} $. Encadre d'abord chaque racine carrée entre deux entiers consécutifs, puis place le point entre ces deux entiers.",
+      "min": 0, "max": 12, "step": 0.5, "tolerance": 0.5,
+      "points": [ { "label": "A", "value": "racine(n)" }, { "label": "B", "value": "racine(m)" } ],
+      "hints": ["Liste les carrés parfaits : 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144.", "{n} est compris entre {p^2} et {(p+1)^2} ; {m} est compris entre {q^2} et {(q+1)^2}.", "Donc $ √{n} $ est entre {p} et {p+1}, et $ √{m} $ entre {q} et {q+1}."],
+      "solution": "{n} est compris entre $ {p}² = {p^2} $ et $ {p+1}² = {(p+1)^2} $, donc $ √{n} $ est entre {p} et {p+1} (environ {racine(n)|d2}). De même, $ √{m} $ est entre {q} et {q+1} (environ {racine(m)|d2}).",
+      "selfTest": [
+        { "response": { "positions": { "A": "{racine(n)}", "B": "{racine(m)}" } }, "expect": "correct" },
+        { "response": { "positions": { "A": "{n/2}", "B": "{racine(m)}" } }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m4-racines-encadrer", "type": "composite", "skill": "m4.racines.definition", "skills": ["m4.racines.utiliser"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:encadrer-carres", "mc:encadrer-depasse"], "expectedSeconds": 180,
+      "params": { "n": { "int": [20, 140] }, "p": { "expr": "floor(racine(n))" } },
+      "constraints": ["not estentier(racine(n))"],
+      "prompt": "On veut encadrer $ √{n} $ entre deux nombres entiers consécutifs, puis en donner une valeur approchée.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le plus grand carré parfait inférieur à {n} ?", "answer": "p^2",
+          "misconceptions": [ { "answer": "(p+1)^2", "id": "mc:encadrer-depasse", "error": "lecture", "feedback": "{(p+1)^2} est plus grand que {n}. On cherche le carré parfait juste **en dessous** de {n}." } ] },
+        { "type": "numeric", "prompt": "$ √{n} $ est compris entre un entier $a$ et l'entier suivant $a + 1$. Que vaut $a$ ?", "answer": "p",
+          "misconceptions": [
+            { "answer": "p^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{p^2} est le carré parfait qui encadre {n}. Mais on encadre $ √{n} $ : il faut prendre la racine, $ √{p^2} = {p} $." },
+            { "answer": "floor(n/2)", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié : $ {floor(n/2)} × {floor(n/2)} $ est bien plus grand que {n}." }
+          ] },
+        { "type": "numeric", "prompt": "Avec la calculatrice : donne la valeur de $ √{n} $ arrondie au dixième.", "answer": "arrondi(racine(n);1)", "tolerance": 0.0001, "round": 1 }
+      ],
+      "hints": ["Récite les carrés parfaits jusqu'à dépasser {n}.", "{p^2} < {n} < {(p+1)^2}.", "Donc $ √{p^2} < √{n} < √{(p+1)^2} $, c'est-à-dire $ √{n} $ est entre {p} et {p+1}."],
+      "solution": "{n} est compris entre $ {p}² = {p^2} $ et $ {p+1}² = {(p+1)^2} $, donc $ √{n} $ est compris entre {p} et {p+1}. La calculatrice donne environ {racine(n)|d3}, soit {arrondi(racine(n);1)} au dixième : on vérifie que cette valeur est bien entre {p} et {p+1}.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p^2}" }, { "value": "{p}" }, { "value": "{arrondi(racine(n);1)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{p^2}" }, { "value": "{p^2}" }, { "value": "{arrondi(racine(n);1)}" } ] }, "expect": "mc:encadrer-carres" }
+      ]
+    },
+    {
+      "id": "m4-racines-verif", "type": "qcm", "skill": "m4.racines.definition", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:racine-somme"], "expectedSeconds": 45,
+      "params": { "k": { "int": [1, 4] } },
+      "prompt": "Vérification rapide : $ √({9*k^2} + {16*k^2}) $ est égal à…",
+      "choices": [
+        { "text": "{5*k}", "correct": true, "feedback": "Oui : $ {9*k^2} + {16*k^2} = {25*k^2} $ et $ {5*k}² = {25*k^2} $." },
+        { "text": "{7*k}", "correct": false, "error": "notion", "misconception": "mc:racine-somme", "feedback": "$ √{9*k^2} + √{16*k^2} = {3*k} + {4*k} = {7*k} $, mais la racine d'une somme n'est pas la somme des racines. On calcule d'abord sous le radical : $ {9*k^2} + {16*k^2} = {25*k^2} $, puis $ √{25*k^2} = {5*k} $." },
+        { "text": "{25*k^2/2}", "correct": false, "error": "notion", "misconception": "mc:racine-moitie", "feedback": "La racine carrée n'est pas la moitié : on cherche le nombre positif qui, multiplié par lui-même, donne {25*k^2}." },
+        { "text": "{25*k^2}", "correct": false, "error": "notion", "misconception": "mc:oubli-racine", "feedback": "{25*k^2} est le nombre sous le radical : il reste à prendre sa racine carrée." }
+      ],
+      "solution": "$ √({9*k^2} + {16*k^2}) = √{25*k^2} = {5*k} $. Attention : $ √{9*k^2} + √{16*k^2} = {7*k} $, ce n'est pas la même chose.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:racine-somme" } ]
+    },
+    {
+      "id": "m4-racines-expliquer", "type": "open", "skill": "m4.racines.definition", "skills": ["m4.racines.utiliser"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:encadrer-carres"], "expectedSeconds": 360, "minWords": 25,
+      "prompt": "Ta calculatrice n'a plus de touche √ : il ne reste que la multiplication. Explique comment trouver la valeur de $√40$ arrondie au dixième. Écris ta démarche : l'encadrement entre deux entiers, les essais au dixième, puis ta conclusion.",
+      "criteria": [
+        { "id": "c1", "label": "J'encadre √40 entre 6 et 7, grâce aux carrés parfaits 36 et 49", "keywords": [["36", "49"]] },
+        { "id": "c2", "label": "Je teste des nombres au dixième (6,3 × 6,3 = 39,69 et 6,4 × 6,4 = 40,96)", "keywords": [["39,69", "40,96", "39.69", "40.96"]] },
+        { "id": "c3", "label": "Je conclus : √40 vaut environ 6,3 au dixième", "keywords": [["6,3", "6.3"]] }
+      ],
+      "models": [
+        "36 < 40 < 49, donc √40 est entre 6 et 7. J'essaie au dixième : 6,3 × 6,3 = 39,69 et 6,4 × 6,4 = 40,96. Donc √40 est entre 6,3 et 6,4. Pour arrondir, je teste 6,35 × 6,35 = 40,3225, qui dépasse 40 : √40 est plus petit que 6,35, donc √40 ≈ 6,3 au dixième.",
+        "Je cherche un nombre qui, multiplié par lui-même, donne 40. 6 × 6 = 36 c'est trop petit, 7 × 7 = 49 c'est trop grand. Je monte de 0,1 en 0,1 à partir de 6 : 6,2 × 6,2 = 38,44 ; 6,3 × 6,3 = 39,69 ; 6,4 × 6,4 = 40,96. 40 est entre 39,69 et 40,96, et beaucoup plus près de 39,69 : j'arrondis à 6,3."
+      ],
+      "hints": ["Entre quels carrés parfaits se trouve 40 ?", "Calcule $6,3 × 6,3$ et $6,4 × 6,4$.", "Pour savoir s'il faut arrondir à 6,3 ou 6,4, compare 40 avec $6,35 × 6,35$."],
+      "solution": "36 < 40 < 49, donc √40 est entre 6 et 7. Puis $6,3 × 6,3 = 39,69$ et $6,4 × 6,4 = 40,96$ : √40 est entre 6,3 et 6,4. Comme $6,35 × 6,35 = 40,3225$ dépasse 40, √40 est plus petit que 6,35 : arrondi au dixième, √40 ≈ 6,3 (la calculatrice affiche 6,324…).",
+      "selfTest": [ { "response": { "text": "36 < 40 < 49 donc √40 est entre 6 et 7. 6,3 × 6,3 = 39,69 et 6,4 × 6,4 = 40,96 donc √40 est entre 6,3 et 6,4, plus près de 6,3. √40 ≈ 6,3.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m4-racines-plus-petit", "type": "counterexample", "skill": "m4.racines.definition", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:racine-plus-petite"], "expectedSeconds": 180,
+      "claim": "La racine carrée d'un nombre positif est toujours plus petite que ce nombre.",
+      "prompt": "Sacha affirme : « Prendre la racine carrée, ça rend toujours plus petit : $√a$ est plus petit que $a$. » Ça marche avec 4, 9, 100… Trouve une valeur positive de $a$ qui prouve qu'il a tort.",
+      "vars": ["a"], "domain": "a >= 0", "domainLabel": "a positif",
+      "refutes": "racine(a) >= a", "show": "racine(a)", "showLabel": "√a",
+      "refuteHint": "Essaie avec un nombre compris entre 0 et 1, par exemple 0,25.",
+      "hints": ["Les nombres 4, 9 ou 100 sont plus grands que 1. Et si $a$ était plus petit que 1 ?", "Calcule $0,5 × 0,5$. Que vaut alors $√0,25$ ?"],
+      "solution": "Par exemple $a = 0,25$ : $√0,25 = 0,5$ car $0,5 × 0,5 = 0,25$, et 0,5 est plus grand que 0,25. Pour tout nombre compris entre 0 et 1, la racine carrée est plus grande que le nombre ; pour 0 et 1, elle lui est égale.",
+      "selfTest": [ { "response": { "values": { "a": "0,25" } }, "expect": "correct" }, { "response": { "values": { "a": "16" } }, "expect": "raisonnement" } ]
+    },
+    {
+      "id": "m4-racines-aire", "type": "numeric", "skill": "m4.racines.utiliser", "skills": ["m4.racines.definition"], "track": "classe", "role": "reinvestissement", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:aire-sur-4", "mc:racine-moitie"], "expectedSeconds": 90,
+      "params": { "c": { "int": [5, 15] } },
+      "prompt": "Ce carré a une aire de {c^2} cm². Quelle est la longueur de son côté ?",
+      "figure": {
+        "alt": "Carré dont l'aire est écrite au centre ; la longueur du côté est inconnue.",
+        "w": 260, "h": 230,
+        "frame": { "x": [-1, 6], "y": [-1, 5.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "hidden": true },
+          { "type": "point", "id": "B", "x": 4.5, "y": 0, "hidden": true },
+          { "type": "point", "id": "C", "x": 4.5, "y": 4.5, "hidden": true },
+          { "type": "point", "id": "D", "x": 0, "y": 4.5, "hidden": true },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "text", "x": 2.25, "y": 2.25, "text": "Aire : {c^2} cm²", "anchor": "middle" },
+          { "type": "segment", "from": "A", "to": "B", "label": "? cm" }
+        ]
+      },
+      "answer": "c", "unit": "cm", "unitOptional": true,
+      "misconceptions": [
+        { "answer": "c^2/4", "id": "mc:aire-sur-4", "error": "notion", "feedback": "Diviser par 4, c'est ce qu'on fait avec le **périmètre** (4 côtés égaux). Pour l'aire, on cherche le nombre qui, multiplié par lui-même, donne {c^2}." },
+        { "answer": "c^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié : on cherche le nombre qui, multiplié par lui-même, donne {c^2}." }
+      ],
+      "hints": ["L'aire d'un carré de côté $c$ vaut $c × c$.", "Cherche le nombre qui, multiplié par lui-même, donne {c^2}.", "C'est la racine carrée de {c^2}."],
+      "solution": "Le côté $c$ vérifie $ c × c = {c^2} $, donc $ c = √{c^2} = {c} $ cm. Vérification : $ {c} × {c} = {c^2} $.",
+      "selfTest": [
+        { "response": { "value": "{c}" }, "expect": "correct" },
+        { "response": { "value": "{c} cm" }, "expect": "correct" },
+        { "response": { "value": "{c^2/4}" }, "expect": "mc:aire-sur-4" }
+      ]
+    },
+    {
+      "id": "m4-racines-carrelage", "type": "composite", "skill": "m4.racines.utiliser", "skills": ["m4.racines.carres", "m4.racines.definition"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:encadrer-depasse", "mc:aire-sur-4", "mc:cote-aire"], "expectedSeconds": 480,
+      "params": { "N": { "int": [101, 168] }, "q": { "expr": "floor(racine(N))" } },
+      "constraints": ["not estentier(racine(N))"],
+      "prompt": "Lina veut former de grands carrés pleins avec des carreaux carrés, puis carreler sa terrasse.",
+      "parts": [
+        { "type": "numeric", "prompt": "Elle dispose de {N} carreaux. Combien de carreaux par côté compte le plus grand carré plein qu'elle peut former ?", "answer": "q",
+          "misconceptions": [
+            { "answer": "q+1", "id": "mc:encadrer-depasse", "error": "lecture", "feedback": "Un carré de {q+1} carreaux de côté demande $ {q+1}² = {(q+1)^2} $ carreaux : c'est plus que {N}." },
+            { "answer": "floor(N/2)", "id": "mc:racine-moitie", "error": "notion", "feedback": "Un carré de {floor(N/2)} carreaux de côté demanderait $ {floor(N/2)} × {floor(N/2)} $ carreaux, bien plus que {N} ! On cherche le plus grand carré parfait inférieur à {N}." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de carreaux lui restera-t-il ?", "answer": "N - q^2" },
+        { "type": "numeric", "prompt": "Sa terrasse carrée a une aire de 20,25 m². Quelle est la longueur de son côté, en mètres ?", "answer": 4.5,
+          "misconceptions": [
+            { "answer": 5.0625, "id": "mc:aire-sur-4", "error": "notion", "feedback": "Diviser l'aire par 4, c'est confondre avec le périmètre. On cherche le nombre qui, multiplié par lui-même, donne 20,25 : la racine carrée." },
+            { "answer": 10.125, "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié : on cherche le nombre qui, multiplié par lui-même, donne 20,25." }
+          ] },
+        { "type": "numeric", "prompt": "Elle la recouvre avec des dalles carrées de 50 cm de côté. Combien de dalles lui faut-il ?", "answer": 81,
+          "misconceptions": [
+            { "answer": 9, "id": "mc:cote-aire", "error": "lecture", "feedback": "9 dalles, c'est seulement le long d'un côté (4,5 m ÷ 0,5 m). La terrasse est un carré de 9 rangées de 9 dalles." },
+            { "answer": 40.5, "id": "mc:aire-longueur", "error": "unite", "feedback": "On ne divise pas une aire (20,25 m²) par une longueur (0,5 m). Compte plutôt les dalles le long d'un côté, puis le nombre de rangées." }
+          ] }
+      ],
+      "hints": ["Le plus grand carré plein utilise un nombre de carreaux qui est un carré parfait, le plus grand possible sans dépasser {N}.", "Pour la terrasse, cherche le nombre qui, multiplié par lui-même, donne 20,25 : essaie 4,5.", "50 cm = 0,5 m : combien de dalles le long d'un côté ? Combien de rangées ?"],
+      "solution": "$ {q}² = {q^2} $ et $ {q+1}² = {(q+1)^2} $ : avec {N} carreaux, le plus grand carré plein a {q} carreaux de côté, et il en reste $ {N} − {q^2} = {N-q^2} $. Terrasse : $ √20,25 = 4,5 $ m, car $ 4,5 × 4,5 = 20,25 $. Dalles : 4,5 m ÷ 0,5 m = 9 dalles par côté, donc $ 9 × 9 = 81 $ dalles.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{q}" }, { "value": "{N-q^2}" }, { "value": "4,5" }, { "value": "81" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{q+1}" }, { "value": "{N-q^2}" }, { "value": "4,5" }, { "value": "81" } ] }, "expect": "mc:encadrer-depasse" }
+      ]
+    },
+    {
+      "id": "m4-racines-remed-carre", "type": "numeric", "skill": "m4.racines.definition", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:racine-moitie"], "expectedSeconds": 60,
+      "params": { "a": { "int": [3, 12] } },
+      "prompt": "Rappel ciblé : $ √{a^2} $ est le nombre positif qui, **multiplié par lui-même**, donne {a^2}. Ce n'est pas la moitié de {a^2} : $ {a^2/2} × {a^2/2} $ serait beaucoup trop grand ! Que vaut $ √{a^2} $ ?",
+      "answer": "a",
+      "misconceptions": [ { "answer": "a^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "C'est la moitié de {a^2}. Or $ {a^2/2} × {a^2/2} $ ne fait pas {a^2}. Cherche le nombre qui, multiplié par lui-même, donne {a^2}." } ],
+      "hints": ["Essaie des nombres : $5 × 5 = 25$, $6 × 6 = 36$, $7 × 7 = 49$…", "Quel nombre, multiplié par lui-même, donne {a^2} ?"],
+      "solution": "$ √{a^2} = {a} $, car $ {a} × {a} = {a^2} $.",
+      "selfTest": [ { "response": { "value": "{a}" }, "expect": "correct" }, { "response": { "value": "{a^2/2}" }, "expect": "mc:racine-moitie" } ]
+    },
+    {
+      "id": "m4-racines-remed-encadrer", "type": "composite", "skill": "m4.racines.definition", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:encadrer-carres"], "expectedSeconds": 120,
+      "params": { "n": { "int": [10, 99] }, "p": { "expr": "floor(racine(n))" } },
+      "constraints": ["not estentier(racine(n))"],
+      "prompt": "Rappel ciblé : pour encadrer $ √{n} $, on encadre d'abord **{n}** entre deux carrés parfaits, puis on prend leurs racines carrées. Les carrés parfaits : 9, 16, 25, 36, 49, 64, 81, 100.",
+      "parts": [
+        { "type": "numeric", "prompt": "Le carré parfait juste en dessous de {n} :", "answer": "p^2" },
+        { "type": "numeric", "prompt": "Le carré parfait juste au-dessus de {n} :", "answer": "(p+1)^2" },
+        { "type": "numeric", "prompt": "$ √{n} $ est donc compris entre deux entiers consécutifs. Quel est le plus grand des deux ?", "answer": "p+1",
+          "misconceptions": [ { "answer": "(p+1)^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{(p+1)^2} encadre {n}, mais on encadre $ √{n} $ : il faut prendre la racine de {(p+1)^2}, c'est-à-dire {p+1}." } ] }
+      ],
+      "hints": ["Quel carré parfait est juste avant {n} dans la liste ?", "Quelle est la racine carrée de {(p+1)^2} ?"],
+      "solution": "$ {p^2} < {n} < {(p+1)^2} $, donc $ √{n} $ est compris entre $ √{p^2} = {p} $ et $ √{(p+1)^2} = {p+1} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p^2}" }, { "value": "{(p+1)^2}" }, { "value": "{p+1}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{p^2}" }, { "value": "{(p+1)^2}" }, { "value": "{(p+1)^2}" } ] }, "expect": "mc:encadrer-carres" }
+      ]
+    },
+    {
+      "id": "m4-racines-agrandir", "type": "composite", "skill": "m4.racines.utiliser", "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:aire-double-cote"], "expectedSeconds": 420,
+      "prompt": "Un carré a une aire de 50 cm². On veut construire un carré dont l'aire est **le double**.",
+      "parts": [
+        { "type": "numeric", "prompt": "Longueur du côté du premier carré, arrondie au dixième (en cm) :", "answer": 7.1, "tolerance": 0.0001, "round": 1 },
+        { "type": "numeric", "prompt": "Longueur exacte du côté du carré d'aire double (en cm) :", "answer": 10, "rel": 0.01,
+          "misconceptions": [ { "answer": "2*racine(50)", "id": "mc:aire-double-cote", "error": "notion", "feedback": "Doubler le côté multiplie l'aire par 4 : un carré de côté 14,1 cm a une aire d'environ 200 cm². L'aire double vaut 100 cm² : son côté est $√100$." } ] },
+        { "type": "numeric", "prompt": "Par quel nombre a-t-on multiplié la longueur du côté ? (arrondi au centième)", "answer": "racine(2)", "tolerance": 0.005,
+          "misconceptions": [ { "answer": 2, "id": "mc:aire-double-cote", "error": "notion", "feedback": "Si le côté était multiplié par 2, l'aire serait multipliée par $2 × 2 = 4$. Calcule $10 ÷ √50$." } ] },
+        { "type": "numeric", "prompt": "Pour obtenir un carré d'aire **9 fois** plus grande, par quel nombre faut-il multiplier le côté ?", "answer": 3,
+          "misconceptions": [ { "answer": 9, "id": "mc:aire-double-cote", "error": "notion", "feedback": "Multiplier le côté par 9 multiplierait l'aire par $9 × 9 = 81$. Quel nombre, multiplié par lui-même, donne 9 ?" } ] }
+      ],
+      "hints": ["Côté du premier carré : $√50$.", "L'aire double vaut 100 cm². Quel est le côté d'un carré d'aire 100 cm² ?", "Si on multiplie le côté par $k$, l'aire est multipliée par $k × k$."],
+      "solution": "$√50 ≈ 7,07$, soit 7,1 cm au dixième. Le carré d'aire 100 cm² a un côté de $√100 = 10$ cm. Le côté a été multiplié par $10 ÷ √50 ≈ 1,41$, c'est-à-dire par $√2$. Règle : multiplier le côté par $k$ multiplie l'aire par $k²$ ; pour multiplier l'aire par 9, on multiplie le côté par $√9 = 3$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "7,1" }, { "value": "10" }, { "value": "1,41" }, { "value": "3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "7,1" }, { "value": "14,1" }, { "value": "2" }, { "value": "9" } ] }, "expect": "mc:aire-double-cote" }
+      ]
+    },
+    {
+      "id": "m4-racines-heron", "type": "table", "skill": "m4.racines.utiliser", "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:moyenne-oubli", "mc:carre-double"], "expectedSeconds": 480,
+      "prompt": "Il y a près de 2 000 ans, Héron d'Alexandrie calculait des racines carrées à la main. Pour $√2$ : on part de $x = 1$ ; à chaque étape, on remplace $x$ par la **moyenne** de $x$ et de $2/x$, c'est-à-dire $(x + 2/x)/2$. Complète le tableau (arrondis au millième quand c'est nécessaire). Que remarques-tu dans la dernière colonne ?",
+      "columns": ["Étape", "Valeur de $x$", "$x × x$"],
+      "rows": [ ["Départ", "1", "1"], ["Étape 1", "?r1c1", "?r1c2"], ["Étape 2", "?r2c1", "?r2c2"], ["Étape 3", "?r3c1", "?r3c2"] ],
+      "cells": {
+        "r1c1": { "answer": 1.5, "misconceptions": [ { "answer": 3, "id": "mc:moyenne-oubli", "error": "methode", "feedback": "$1 + 2/1 = 3$, mais il faut ensuite prendre la moyenne : diviser par 2." } ] },
+        "r1c2": { "answer": 2.25, "misconceptions": [ { "answer": 3, "id": "mc:carre-double", "error": "notion", "feedback": "$1,5 × 1,5$ ne vaut pas $2 × 1,5$ : calcule $1,5 × 1,5 = 2,25$." } ] },
+        "r2c1": { "answer": 1.417, "tolerance": 0.0011 },
+        "r2c2": { "answer": 2.007, "tolerance": 0.0021 },
+        "r3c1": { "answer": 1.414, "tolerance": 0.0011 },
+        "r3c2": { "answer": 2, "tolerance": 0.0011 }
+      },
+      "hints": ["Étape 1 : $(1 + 2/1)/2 = 3/2 = 1,5$.", "Étape 2 : $2/1,5 ≈ 1,333$ ; la moyenne de 1,5 et 1,333 est environ 1,417.", "Étape 3 : $2/1,417 ≈ 1,411$ ; la moyenne de 1,417 et 1,411 est environ 1,414."],
+      "solution": "Étape 1 : $x = 1,5$ et $x × x = 2,25$. Étape 2 : $x ≈ 1,417$ et $x × x ≈ 2,007$. Étape 3 : $x ≈ 1,414$ et $x × x ≈ 2,000$. Le carré de $x$ se rapproche très vite de 2 : $x$ se rapproche de $√2 ≈ 1,41421$. Idée de la méthode : si $x$ est trop grand, $2/x$ est trop petit, et leur moyenne tombe entre les deux, plus près de $√2$.",
+      "selfTest": [
+        { "response": { "cells": { "r1c1": "1,5", "r1c2": "2,25", "r2c1": "1,417", "r2c2": "2,007", "r3c1": "1,414", "r3c2": "2" } }, "expect": "correct" },
+        { "response": { "cells": { "r1c1": "3", "r1c2": "9", "r2c1": "1,417", "r2c2": "2,007", "r3c1": "1,414", "r3c2": "2" } }, "expect": "mc:moyenne-oubli" }
+      ]
+    },
+    {
+      "id": "m4-racines-irrationnel", "type": "composite", "skill": "mx.racines.proprietes", "skills": ["m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "verbale", "targets": ["mc:parite-carre"], "expectedSeconds": 720,
+      "prompt": "Les Grecs anciens ont découvert un fait étonnant : $√2$ ne peut pas s'écrire comme une fraction. Démontrons-le **par l'absurde**. On suppose que $ √2 = p/q $, où $p/q$ est une fraction **irréductible** ($p$ et $q$ sont des entiers positifs sans diviseur commun autre que 1), et on cherche une contradiction.",
+      "parts": [
+        { "type": "numeric", "prompt": "En élevant au carré : $ 2 = p²/q² $, donc $ p² = k × q² $. Que vaut $k$ ?", "answer": 2 },
+        { "type": "text", "prompt": "Le carré d'un nombre impair est-il pair ou impair ? (essaie 3, 5, 7…)", "accept": ["impair", "il est impair"],
+          "misconceptions": [ { "answer": "pair", "id": "mc:parite-carre", "error": "raisonnement", "feedback": "$3² = 9$, $5² = 25$, $7² = 49$ : tous impairs. Un nombre impair multiplié par un nombre impair donne un nombre impair." } ] },
+        { "type": "text", "prompt": "Puisque $ p² = 2q² $ est pair, le nombre $p$ est-il pair ou impair ?", "accept": ["pair", "p est pair", "il est pair"],
+          "misconceptions": [ { "answer": "impair", "id": "mc:parite-carre", "error": "raisonnement", "feedback": "Si $p$ était impair, $p²$ serait impair (question précédente). Or $p² = 2q²$ est pair : $p$ ne peut pas être impair." } ] },
+        { "type": "open", "prompt": "On peut donc écrire $p = 2r$. Remplace $p$ par $2r$ dans $ p² = 2q² $, montre que $q$ est lui aussi pair, puis explique pourquoi c'est une contradiction.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "J'obtiens $4r² = 2q²$, donc $q² = 2r²$", "keywords": [["4r", "q² = 2", "q^2 = 2", "q²=2", "2r²", "2r^2"]] },
+            { "id": "c2", "label": "J'en déduis que $q$ est pair", "keywords": [["q est pair", "q pair", "q est aussi pair"]] },
+            { "id": "c3", "label": "J'explique la contradiction : $p$ et $q$ seraient divisibles par 2, alors que $p/q$ est irréductible", "keywords": [["irreductible", "contradiction", "divisibles par 2", "simplifier", "absurde"]] }
+          ] }
+      ],
+      "hints": ["Si $ p/q = √2 $, alors $ (p/q)² = 2 $.", "Impair × impair = impair. Donc si $p²$ est pair, $p$ ne peut pas être impair.", "Avec $p = 2r$ : $ (2r)² = 4r² = 2q² $, donc $ q² = 2r² $ : même raisonnement pour $q$."],
+      "solution": "$ p² = 2q² $ : $p²$ est pair, donc $p$ est pair (le carré d'un impair est impair). On écrit $p = 2r$ : $ 4r² = 2q² $, donc $ q² = 2r² $ est pair, et $q$ est pair. Alors $p$ et $q$ sont tous les deux divisibles par 2 : la fraction $p/q$ se simplifie par 2, ce qui contredit le fait qu'elle est irréductible. L'hypothèse de départ est donc fausse : $√2$ n'est pas une fraction. On dit que c'est un nombre **irrationnel**.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2" }, { "value": "impair" }, { "value": "pair" }, { "text": "p = 2r donc 4r² = 2q², donc q² = 2r² est pair et q est pair. Alors p et q sont divisibles par 2 : la fraction n'est pas irréductible, c'est une contradiction.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2" }, { "value": "pair" }, { "value": "pair" }, { "text": "p = 2r donc 4r² = 2q² et q est pair, contradiction car p/q est irréductible.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:parite-carre" }
+      ]
+    },
+    {
+      "id": "m4-racines-proprietes", "type": "composite", "skill": "mx.racines.proprietes", "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:oubli-racine", "mc:racine-somme"], "expectedSeconds": 420,
+      "prompt": "**Hors programme de 4e.** On peut découvrir des règles de calcul sur les racines carrées, à condition de les vérifier. Calcule sans calculatrice.",
+      "parts": [
+        { "type": "numeric", "prompt": "$ √4 × √9 $", "answer": 6 },
+        { "type": "numeric", "prompt": "$ √(4 × 9) $", "answer": 6 },
+        { "type": "numeric", "prompt": "$ √2 × √8 $ (inspire-toi des deux questions précédentes)", "answer": 4, "tolerance": 0.02 },
+        { "type": "numeric", "prompt": "On peut écrire $ √50 = k × √2 $ avec $k$ entier. Que vaut $k$ ? (pense à $ 50 = 25 × 2 $)", "answer": 5,
+          "misconceptions": [ { "answer": 25, "id": "mc:oubli-racine", "error": "notion", "feedback": "$ √50 = √25 × √2 $ : il faut prendre la racine de 25, qui vaut 5." } ] },
+        { "type": "numeric", "prompt": "Et avec une somme ? Calcule la différence $ (√9 + √16) − √(9 + 16) $.", "answer": 2,
+          "misconceptions": [ { "answer": 0, "id": "mc:racine-somme", "error": "notion", "feedback": "Si la différence valait 0, on aurait $ √9 + √16 = √(9 + 16) $. Or $ 3 + 4 = 7 $ et $ √25 = 5 $ : la règle du produit ne marche pas pour une somme !" } ] }
+      ],
+      "hints": ["$ √4 = 2 $ et $ √9 = 3 $.", "Il semble que $ √a × √b = √(a × b) $ pour des nombres positifs : donc $ √2 × √8 = √16 $.", "$ √50 = √(25 × 2) = √25 × √2 $."],
+      "solution": "$ √4 × √9 = 2 × 3 = 6 $ et $ √(4 × 9) = √36 = 6 $. Pour des nombres positifs, $ √a × √b = √(a × b) $ : donc $ √2 × √8 = √16 = 4 $ et $ √50 = √25 × √2 = 5√2 $. Mais attention : $ √9 + √16 = 7 $ alors que $ √(9 + 16) = 5 $ ; la différence vaut 2. Il n'existe pas de règle de ce genre pour la somme.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "6" }, { "value": "6" }, { "value": "4" }, { "value": "5" }, { "value": "2" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "6" }, { "value": "6" }, { "value": "4" }, { "value": "25" }, { "value": "2" } ] }, "expect": "mc:oubli-racine" }
+      ]
+    }
+  ]
+}

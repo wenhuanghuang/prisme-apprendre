@@ -1,0 +1,1262 @@
+{
+  "id": "m4-translation",
+  "chapter": "m4-ch-translation",
+  "title": "La translation",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.translation.construire", "m4.translation.proprietes"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 50,
+  "summary": "Faire glisser une figure sans la tourner ni la retourner : c’est une translation. Elle conserve les longueurs, les angles, les aires et le parallélisme, et on la retrouve partout dans les frises, les pavages… et les jeux vidéo.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Les motifs de l’Alhambra",
+      "body": "À Grenade, en Espagne, les murs du palais de l’Alhambra (XIIIe-XIVe siècles) sont couverts de carreaux de céramique. Un même motif s’y répète des centaines de fois : il glisse d’une place à l’autre, sans tourner et sans se retourner.\n\nSur ce dessin, comment décrirais-tu avec précision le déplacement qui envoie un motif sur son voisin ?",
+      "figure": {
+        "alt": "Un motif en forme de L répété six fois sur un quadrillage, sur deux rangées décalées, toujours dans la même orientation.",
+        "w": 400,
+        "h": 208,
+        "frame": { "x": [-0.5, 12.5], "y": [-0.5, 5.5], "grid": true },
+        "caption": "Motif inspiré des décors de l’Alhambra (simplifié).",
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [2, 0], [2, 1], [1, 1], [1, 2], [0, 2]], "fill": "maths", "color": "maths" },
+          { "type": "polygon", "points": [[4, 0], [6, 0], [6, 1], [5, 1], [5, 2], [4, 2]], "fill": "maths", "color": "maths" },
+          { "type": "polygon", "points": [[8, 0], [10, 0], [10, 1], [9, 1], [9, 2], [8, 2]], "fill": "maths", "color": "maths" },
+          { "type": "polygon", "points": [[2, 3], [4, 3], [4, 4], [3, 4], [3, 5], [2, 5]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[6, 3], [8, 3], [8, 4], [7, 4], [7, 5], [6, 5]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[10, 3], [12, 3], [12, 4], [11, 4], [11, 5], [10, 5]], "fill": "orange", "color": "orange" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "➡️",
+          "title": "Faire glisser une figure",
+          "body": "La **translation qui transforme $A$ en $B$** fait glisser toute figure : dans la **direction** de la droite $(AB)$, dans le **sens** de $A$ vers $B$, d’une **longueur** égale à $AB$. Tous les points glissent exactement de la même façon.",
+          "example": "On dit aussi « la translation de vecteur $AB$ ».",
+          "figure": {
+            "alt": "Quadrillage : la flèche rouge va de A à B (4 carreaux à droite, 1 en haut) ; le triangle MNP glisse de la même façon et devient M’N’P’.",
+            "w": 354,
+            "h": 300,
+            "frame": { "x": [0, 8], "y": [0, 6.6], "grid": true },
+            "items": [
+              { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+              { "type": "polygon", "points": ["Mp", "Np", "Pp"], "fill": "orange" },
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "arrow", "from": "M", "to": "Mp", "dashed": true, "color": "gris" },
+              { "type": "arrow", "from": "N", "to": "Np", "dashed": true, "color": "gris" },
+              { "type": "arrow", "from": "P", "to": "Pp", "dashed": true, "color": "gris" },
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 2, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1, "y": 3, "pos": "sw" },
+              { "type": "point", "id": "N", "x": 3, "y": 3, "pos": "s" },
+              { "type": "point", "id": "P", "x": 1, "y": 5, "pos": "nw" },
+              { "type": "point", "id": "Mp", "x": 5, "y": 4, "pos": "se", "label": "M’" },
+              { "type": "point", "id": "Np", "x": 7, "y": 4, "pos": "se", "label": "N’" },
+              { "type": "point", "id": "Pp", "x": 5, "y": 6, "pos": "ne", "label": "P’" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Construire l’image d’un point",
+          "body": "**Sur un quadrillage**, on compte les carreaux : ici, 4 vers la droite et 1 vers le haut. **Sans quadrillage**, l’image $M’$ de $M$ est le point tel que $ABM’M$ est un **parallélogramme** (attention à l’ordre des lettres) : on le construit au compas, en reportant $AM$ depuis $B$ et $AB$ depuis $M$.",
+          "figure": {
+            "alt": "Construction sans quadrillage : ABM’M est un parallélogramme ; arcs de compas de centre B et de centre M qui se coupent en M’.",
+            "w": 384,
+            "h": 300,
+            "frame": { "x": [-0.6, 5.9], "y": [-0.6, 4.3] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "Mp", "M"], "dashed": true, "color": "gris", "fill": "maths" },
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "arrow", "from": "M", "to": "Mp", "color": "rouge" },
+              { "type": "arc", "center": "B", "r": 2.693, "start": 55, "end": 82, "color": "gris" },
+              { "type": "arc", "center": "M", "r": 4.123, "start": 2, "end": 26, "color": "gris" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 1, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1, "y": 2.5, "pos": "nw" },
+              { "type": "point", "id": "Mp", "x": 5, "y": 3.5, "pos": "ne", "label": "M’" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔒",
+          "title": "Ce qui ne change pas",
+          "body": "Une translation **conserve** les longueurs, les angles, les aires et le parallélisme : l’image d’une figure lui est superposable, elle est seulement déplacée. L’image d’un segment est un segment de même longueur, **parallèle** au premier ; l’image d’une droite est une droite parallèle.",
+          "reveal": {
+            "question": "Devine : l’image d’un carré de 3 cm de côté par une translation, c’est… ?",
+            "answer": "Un carré de 3 cm de côté, orienté de la même façon : seule sa position change."
+          },
+          "figure": {
+            "alt": "Un triangle EFG et son image E’F’G’ par une translation : les côtés correspondants ont le même codage et les angles marqués sont égaux.",
+            "w": 400,
+            "h": 248,
+            "frame": { "x": [-0.6, 7.6], "y": [-0.6, 4.1] },
+            "items": [
+              { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+              { "type": "polygon", "points": ["Ep", "Fp", "Gp"], "fill": "orange" },
+              { "type": "arrow", "from": "E", "to": "Ep", "dashed": true, "color": "rouge" },
+              { "type": "segment", "from": "E", "to": "F", "marks": 1 },
+              { "type": "segment", "from": "F", "to": "G", "marks": 2 },
+              { "type": "segment", "from": "G", "to": "E", "marks": 3 },
+              { "type": "segment", "from": "Ep", "to": "Fp", "marks": 1 },
+              { "type": "segment", "from": "Fp", "to": "Gp", "marks": 2 },
+              { "type": "segment", "from": "Gp", "to": "Ep", "marks": 3 },
+              { "type": "angle", "vertex": "E", "from": "F", "to": "G", "marks": 1 },
+              { "type": "angle", "vertex": "Ep", "from": "Fp", "to": "Gp", "marks": 1 },
+              { "type": "point", "id": "E", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "F", "x": 3, "y": 0, "pos": "se" },
+              { "type": "point", "id": "G", "x": 1, "y": 2, "pos": "n" },
+              { "type": "point", "id": "Ep", "x": 4, "y": 1.5, "pos": "sw", "label": "E’" },
+              { "type": "point", "id": "Fp", "x": 7, "y": 1.5, "pos": "se", "label": "F’" },
+              { "type": "point", "id": "Gp", "x": 5, "y": 3.5, "pos": "n", "label": "G’" }
+            ]
+          }
+        },
+        {
+          "emoji": "🪞",
+          "title": "Translation ou symétrie ?",
+          "body": "Attention aux confusions ! La **symétrie axiale** retourne la figure, comme un miroir. La **symétrie centrale** lui fait faire un demi-tour. La **translation**, elle, ne tourne pas et ne retourne pas : la figure garde la même orientation.",
+          "reveal": {
+            "question": "Devine : un motif et son image sont « tête en bas ». Peut-il s’agir d’une translation ?",
+            "answer": "Non : une translation garde l’orientation. Un motif tête en bas a fait un demi-tour (symétrie centrale) ou a été retourné (symétrie axiale)."
+          },
+          "figure": {
+            "alt": "Un drapeau de départ et trois images : par une translation (même orientation), par une symétrie d’axe (d) (retourné) et par une symétrie de centre O (demi-tour).",
+            "w": 400,
+            "h": 263,
+            "frame": { "x": [0, 13], "y": [0, 8] },
+            "items": [
+              { "type": "polygon", "points": [[0.5, 4.5], [0.8, 4.5], [0.8, 6.5], [2, 7], [0.8, 7.5], [0.5, 7.5]], "fill": "maths" },
+              { "type": "polygon", "points": [[6.5, 4.5], [6.8, 4.5], [6.8, 6.5], [8, 7], [6.8, 7.5], [6.5, 7.5]], "fill": "vert", "color": "vert" },
+              {
+                "type": "polygon",
+                "points": [[0.5, 3.5], [0.8, 3.5], [0.8, 1.5], [2, 1], [0.8, 0.5], [0.5, 0.5]],
+                "fill": "orange",
+                "color": "orange"
+              },
+              { "type": "polygon", "points": [[8, 3.5], [7.7, 3.5], [7.7, 1.5], [6.5, 1], [7.7, 0.5], [8, 0.5]], "fill": "violet", "color": "violet" },
+              { "type": "point", "id": "a1", "x": -0.2, "y": 4, "hidden": true },
+              { "type": "point", "id": "a2", "x": 3.2, "y": 4, "hidden": true },
+              { "type": "segment", "from": "a1", "to": "a2", "dashed": true, "color": "gris" },
+              { "type": "text", "x": 3.4, "y": 4, "text": "(d)", "size": "s", "anchor": "start" },
+              { "type": "point", "id": "O", "x": 4.25, "y": 4, "pos": "n", "style": "rond" },
+              { "type": "text", "x": 2.3, "y": 6.2, "text": "départ", "size": "s", "anchor": "start" },
+              { "type": "text", "x": 8.3, "y": 6.2, "text": "translation", "size": "s", "anchor": "start", "color": "vert" },
+              { "type": "text", "x": 2.3, "y": 1.8, "text": "symétrie d’axe (d)", "size": "s", "anchor": "start", "color": "orange" },
+              { "type": "text", "x": 8.3, "y": 1.8, "text": "symétrie de centre O", "size": "s", "anchor": "start", "color": "violet" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧱",
+          "title": "Frises, pavages et parallélogrammes",
+          "body": "Dans une **frise**, un motif se répète par une translation le long d’une bande. Dans un **pavage**, deux translations de directions différentes remplissent tout le plan. Et si la translation qui transforme $A$ en $B$ transforme $C$ en $D$, alors $ABDC$ est un **parallélogramme** (éventuellement aplati).",
+          "figure": {
+            "alt": "La translation qui transforme A en B transforme C en D : le quadrilatère ABDC est un parallélogramme.",
+            "w": 332,
+            "h": 300,
+            "frame": { "x": [-0.6, 4.8], "y": [-0.6, 4.2] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "D", "C"], "fill": "maths", "dashed": true },
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "arrow", "from": "C", "to": "D", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 3, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 1, "y": 2.5, "pos": "nw" },
+              { "type": "point", "id": "D", "x": 4, "y": 3.5, "pos": "ne" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "La translation transforme $A$ en $B$. Sur le quadrillage, pour aller de $A$ à $B$, on avance de **4 carreaux vers la droite** et de **1 vers le haut**. On veut l’image du triangle $MNP$.",
+          "figure": {
+            "alt": "Repère quadrillé : flèche de A(1 ; 1) à B(5 ; 2) et triangle MNP avec M(1 ; 3), N(3 ; 3), P(1 ; 5).",
+            "w": 370,
+            "h": 300,
+            "frame": { "x": [0, 8.5], "y": [0, 6.6], "grid": true, "axes": true },
+            "items": [
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 2, "pos": "se" },
+              { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+              { "type": "point", "id": "M", "x": 1, "y": 3, "pos": "sw" },
+              { "type": "point", "id": "N", "x": 3, "y": 3, "pos": "se" },
+              { "type": "point", "id": "P", "x": 1, "y": 5, "pos": "nw" }
+            ]
+          }
+        },
+        { "text": "On applique ce déplacement à chaque sommet : M(1 ; 3) devient M’(1 + 4 ; 3 + 1) = M’(5 ; 4)." },
+        {
+          "text": "De même, N(3 ; 3) devient N’(7 ; 4) et P(1 ; 5) devient P’(5 ; 6).",
+          "figure": {
+            "alt": "Les images M’, N’, P’ des sommets M, N, P, obtenues en glissant de 4 carreaux vers la droite et 1 vers le haut.",
+            "w": 370,
+            "h": 300,
+            "frame": { "x": [0, 8.5], "y": [0, 6.6], "grid": true, "axes": true },
+            "items": [
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 2, "pos": "se" },
+              { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+              { "type": "point", "id": "M", "x": 1, "y": 3, "pos": "sw" },
+              { "type": "point", "id": "N", "x": 3, "y": 3, "pos": "se" },
+              { "type": "point", "id": "P", "x": 1, "y": 5, "pos": "nw" },
+              { "type": "arrow", "from": "M", "to": "Mp", "dashed": true, "color": "gris" },
+              { "type": "arrow", "from": "N", "to": "Np", "dashed": true, "color": "gris" },
+              { "type": "arrow", "from": "P", "to": "Pp", "dashed": true, "color": "gris" },
+              { "type": "point", "id": "Mp", "x": 5, "y": 4, "pos": "se", "label": "M’" },
+              { "type": "point", "id": "Np", "x": 7, "y": 4, "pos": "se", "label": "N’" },
+              { "type": "point", "id": "Pp", "x": 5, "y": 6, "pos": "nw", "label": "P’" }
+            ]
+          }
+        },
+        {
+          "text": "On trace le triangle $M’N’P’$ : c’est l’image du triangle $MNP$.",
+          "figure": {
+            "alt": "Le triangle MNP et son image M’N’P’ par la translation qui transforme A en B.",
+            "w": 370,
+            "h": 300,
+            "frame": { "x": [0, 8.5], "y": [0, 6.6], "grid": true, "axes": true },
+            "items": [
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 2, "pos": "se" },
+              { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+              { "type": "point", "id": "M", "x": 1, "y": 3, "pos": "sw" },
+              { "type": "point", "id": "N", "x": 3, "y": 3, "pos": "se" },
+              { "type": "point", "id": "P", "x": 1, "y": 5, "pos": "nw" },
+              { "type": "polygon", "points": ["Mp", "Np", "Pp"], "fill": "orange" },
+              { "type": "point", "id": "Mp", "x": 5, "y": 4, "pos": "se", "label": "M’" },
+              { "type": "point", "id": "Np", "x": 7, "y": 4, "pos": "se", "label": "N’" },
+              { "type": "point", "id": "Pp", "x": 5, "y": 6, "pos": "nw", "label": "P’" },
+              { "type": "polygon", "points": ["A", "B", "Mp", "M"], "dashed": true, "color": "gris" }
+            ]
+          }
+        },
+        {
+          "text": "Vérifications : $M’N’ = MN$ (longueurs conservées), $(M’N’) // (MN)$, et chaque sommet a parcouru la même distance $AB$. Le quadrilatère $ABM’M$ (en pointillés) est un parallélogramme."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Pour chaque translation, commence par décrire le glissement : combien de carreaux vers la droite (ou la gauche), combien vers le haut (ou le bas). Puis applique-le à **chaque** point.",
+      "exercises": [
+        "m4-translation-point",
+        "m4-translation-triangle",
+        "m4-translation-reconnaitre",
+        "m4-translation-conservation",
+        "m4-translation-parallelogramme",
+        "m4-translation-verif"
+      ]
+    },
+    { "kind": "libre", "title": "Expliquer avec ses mots", "exercises": ["m4-translation-miroir"] },
+    { "kind": "reinvestissement", "title": "Frises et pavages", "exercises": ["m4-translation-frise", "m4-translation-pavage"] },
+    {
+      "kind": "mission",
+      "title": "Mission : programmer un jeu vidéo",
+      "body": "Dans les jeux en 2D, les personnages se déplacent par translations : à chaque image, toutes les coordonnées du dessin glissent du même vecteur.",
+      "exercises": ["m4-translation-jeu"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** La translation qui transforme $A$ en $B$ fait glisser toute figure dans la direction de $(AB)$, dans le sens de $A$ vers $B$, d’une longueur $AB$. Elle conserve longueurs, angles, aires et parallélisme. Si elle transforme $C$ en $D$, alors $ABDC$ est un parallélogramme.\n\n- **Translation ou symétrie ?** Une figure retournée, ou tête en bas, n’est pas l’image par une translation.\n- **Le sens compte.** On glisse de $A$ vers $B$, pas de $B$ vers $A$.\n- **Compter juste.** Sur un quadrillage, on compte les carreaux horizontaux et verticaux séparément, pour chaque point.\n- **L’ordre des lettres.** Le parallélogramme s’écrit $ABDC$, pas $ABCD$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des constructions d’images par translation dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Des translations cachées : deux demi-tours qui font un glissement, et l’aire balayée par un segment qui glisse.",
+      "exercises": ["m4-translation-deux-symetries", "m4-translation-balayage"]
+    },
+    "expert": {
+      "intro": "Au-delà du programme de 4e : enchaîner des translations avec des vecteurs (notion de 3e) et une propriété surprenante des pavages.",
+      "exercises": ["m4-translation-vecteurs", "m4-translation-pavages"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-translation-point",
+      "type": "graph",
+      "skill": "m4.translation.construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "targets": ["mc:sens-inverse"],
+      "expectedSeconds": 90,
+      "params": {
+        "ax": { "int": [-4, -1] },
+        "ay": { "int": [-3, 0] },
+        "dx": { "int": [2, 4] },
+        "dy": { "int": [1, 3] },
+        "mx": { "int": [-4, 0] },
+        "my": { "int": [1, 3] }
+      },
+      "constraints": ["mx + dx >= 0", "abs(mx - ax - dx) + abs(my - ay - dy) > 0"],
+      "prompt": "Place le point $M’$, image du point $M$ par la translation qui transforme $A$ en $B$. Sur la figure : A({ax} ; {ay}), B({ax+dx} ; {ay+dy}) et M({mx} ; {my}).",
+      "figure": {
+        "alt": "Repère quadrillé avec les points A, B et M ; une flèche rouge va de A à B.",
+        "w": 340,
+        "h": 370,
+        "frame": { "x": [-5, 5], "y": [-4, 7], "grid": true, "axes": true },
+        "items": [
+          { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{ax}", "y": "{ay}", "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "B", "x": "{ax+dx}", "y": "{ay+dy}", "pos": "ne", "style": "rond" },
+          { "type": "point", "id": "M", "x": "{mx}", "y": "{my}", "pos": "nw", "style": "rond" }
+        ]
+      },
+      "xRange": [-5, 5],
+      "yRange": [-4, 7],
+      "maxPoints": 3,
+      "expectedPoints": [["mx+dx", "my+dy"]],
+      "hints": [
+        "Compte les carreaux pour aller de $A$ à $B$ : combien vers la droite ? combien vers le haut ?",
+        "De $A$ à $B$ : {dx} carreaux vers la droite et {dy} vers le haut.",
+        "Fais faire le même trajet à $M$, à partir de M({mx} ; {my})."
+      ],
+      "solution": "De $A$ à $B$, on avance de {dx} carreaux vers la droite et de {dy} vers le haut. Même déplacement pour $M$ : M’({mx+dx} ; {my+dy}). On peut vérifier que $ABM’M$ est un parallélogramme.",
+      "selfTest": [
+        { "response": { "points": [["{mx+dx}", "{my+dy}"]] }, "expect": "correct" },
+        { "response": { "points": [["{mx-dx}", "{my-dy}"]] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m4-translation-triangle",
+      "type": "graph",
+      "skill": "m4.translation.construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:dx-dy-inverses"],
+      "expectedSeconds": 150,
+      "prompt": "Place les trois sommets $E’$, $F’$ et $G’$ de l’image du triangle $EFG$ par la translation qui transforme $R$ en $S$. Sur la figure : R(−4 ; −2), S(−1 ; 0), E(−4 ; 1), F(−2 ; 1) et G(−4 ; 4).",
+      "figure": {
+        "alt": "Repère quadrillé : une flèche rouge de R(−4 ; −2) à S(−1 ; 0) et le triangle EFG avec E(−4 ; 1), F(−2 ; 1), G(−4 ; 4).",
+        "w": 340,
+        "h": 340,
+        "frame": { "x": [-5, 5], "y": [-3, 7], "grid": true, "axes": true },
+        "items": [
+          { "type": "arrow", "from": "R", "to": "S", "color": "rouge" },
+          { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+          { "type": "point", "id": "R", "x": -4, "y": -2, "pos": "sw" },
+          { "type": "point", "id": "S", "x": -1, "y": 0, "pos": "se" },
+          { "type": "point", "id": "E", "x": -4, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "F", "x": -2, "y": 1, "pos": "se" },
+          { "type": "point", "id": "G", "x": -4, "y": 4, "pos": "nw" }
+        ]
+      },
+      "xRange": [-5, 5],
+      "yRange": [-3, 7],
+      "maxPoints": 6,
+      "expectedPoints": [[-1, 3], [1, 3], [-1, 6]],
+      "hints": [
+        "De $R$ à $S$ : combien de carreaux vers la droite, combien vers le haut ?",
+        "Le glissement est de 3 carreaux vers la droite et 2 vers le haut.",
+        "E(−4 ; 1) devient E’(−4 + 3 ; 1 + 2)."
+      ],
+      "solution": "De $R$ à $S$ : 3 carreaux vers la droite et 2 vers le haut. E’(−1 ; 3), F’(1 ; 3) et G’(−1 ; 6). Le triangle $E’F’G’$ a la même forme, la même taille et la même orientation que $EFG$.",
+      "selfTest": [
+        { "response": { "points": [[-1, 3], [1, 3], [-1, 6]] }, "expect": "correct" },
+        { "response": { "points": [[-2, 4], [0, 4], [-2, 7]] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m4-translation-reconnaitre",
+      "type": "categorize",
+      "skill": "m4.translation.proprietes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:translation-symetrie", "mc:translation-demi-tour"],
+      "expectedSeconds": 150,
+      "prompt": "Observe la figure $F$ (en bleu) et les figures numérotées. Lesquelles sont des images de $F$ par une translation ?",
+      "figure": {
+        "alt": "Sur un quadrillage, une figure F en forme de Γ et cinq autres figures numérotées de 1 à 5, dans différentes positions et orientations.",
+        "w": 400,
+        "h": 247,
+        "frame": { "x": [0, 14], "y": [0, 8], "grid": true },
+        "items": [
+          { "type": "polygon", "points": [[1, 4.5], [2, 4.5], [2, 6.5], [3, 6.5], [3, 7.5], [1, 7.5]], "fill": "maths", "label": "F" },
+          { "type": "polygon", "points": [[6, 4.5], [7, 4.5], [7, 6.5], [8, 6.5], [8, 7.5], [6, 7.5]], "fill": "orange", "label": "1" },
+          { "type": "polygon", "points": [[11, 0.5], [12, 0.5], [12, 2.5], [13, 2.5], [13, 3.5], [11, 3.5]], "fill": "orange", "label": "2" },
+          { "type": "polygon", "points": [[13, 4.5], [12, 4.5], [12, 6.5], [11, 6.5], [11, 7.5], [13, 7.5]], "fill": "orange", "label": "3" },
+          { "type": "polygon", "points": [[3, 3.5], [2, 3.5], [2, 1.5], [1, 1.5], [1, 0.5], [3, 0.5]], "fill": "orange", "label": "4" },
+          { "type": "polygon", "points": [[6, 2.5], [6, 1.5], [8, 1.5], [8, 0.5], [9, 0.5], [9, 2.5]], "fill": "orange", "label": "5" }
+        ]
+      },
+      "categories": [{ "id": "oui", "label": "Image de F par une translation" }, { "id": "non", "label": "Pas une translation" }],
+      "items": [
+        { "id": "f1", "label": "Figure 1", "category": "oui" },
+        { "id": "f2", "label": "Figure 2", "category": "oui" },
+        { "id": "f3", "label": "Figure 3", "category": "non" },
+        { "id": "f4", "label": "Figure 4", "category": "non" },
+        { "id": "f5", "label": "Figure 5", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "f3",
+          "category": "oui",
+          "id": "mc:translation-symetrie",
+          "error": "notion",
+          "feedback": "La figure 3 est « retournée », comme dans un miroir : c’est l’image de $F$ par une symétrie axiale. Une translation ne retourne pas la figure."
+        },
+        {
+          "item": "f4",
+          "category": "oui",
+          "id": "mc:translation-demi-tour",
+          "error": "notion",
+          "feedback": "La figure 4 a fait un demi-tour : c’est l’image de $F$ par une symétrie centrale. Une translation ne fait pas tourner."
+        },
+        {
+          "item": "f5",
+          "category": "oui",
+          "id": "mc:translation-rotation",
+          "error": "notion",
+          "feedback": "La figure 5 a tourné d’un quart de tour. Avec une translation, chaque côté reste parallèle au côté de départ."
+        },
+        {
+          "item": "f2",
+          "category": "non",
+          "id": "mc:translation-loin",
+          "error": "notion",
+          "feedback": "La figure 2 est loin et décalée en biais, mais elle a exactement la même orientation : chaque point a glissé de 10 carreaux vers la droite et 4 vers le bas. C’est bien une translation."
+        }
+      ],
+      "hints": [
+        "Une translation fait glisser : la figure garde la même orientation (pas de retournement, pas de rotation).",
+        "Regarde où se trouve la « barre du haut » de chaque figure.",
+        "Une figure lointaine peut quand même être l’image par une translation."
+      ],
+      "solution": "Figures 1 et 2 : même orientation, ce sont des images de $F$ par des translations (5 carreaux vers la droite ; 10 vers la droite et 4 vers le bas). Figure 3 : retournée (symétrie axiale). Figure 4 : demi-tour (symétrie centrale). Figure 5 : quart de tour (rotation).",
+      "selfTest": [
+        { "response": { "assign": { "f1": "oui", "f2": "oui", "f3": "non", "f4": "non", "f5": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "f1": "oui", "f2": "oui", "f3": "oui", "f4": "non", "f5": "non" } }, "expect": "mc:translation-symetrie" },
+        { "response": { "assign": { "f1": "oui", "f2": "oui", "f3": "non", "f4": "oui", "f5": "non" } }, "expect": "mc:translation-demi-tour" }
+      ]
+    },
+    {
+      "id": "m4-translation-conservation",
+      "type": "table",
+      "skill": "m4.translation.proprietes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:bb-ab"],
+      "expectedSeconds": 120,
+      "params": { "a": { "int": [3, 9] }, "t": { "int": [35, 80] }, "s": { "int": [6, 30] }, "d": { "int": [4, 12] } },
+      "constraints": ["2*s/a >= 2", "2*s/a <= 6", "a != d"],
+      "prompt": "La translation qui transforme $A$ en $A’$ transforme le triangle $ABC$ en $A’B’C’$, avec $AA’ = {d}$ cm. On sait que $AB = {a}$ cm, que l’angle Â mesure {t}° et que l’aire de $ABC$ vaut {s} cm². Complète (nombres seuls).",
+      "figure": {
+        "alt": "Un triangle ABC et son image A’B’C’ par la translation qui transforme A en A’ ; la longueur AB, l’angle Â et la longueur AA’ sont indiqués.",
+        "w": 420,
+        "h": 280,
+        "frame": { "x": ["{-d*0.94-1}", "{max(a;2*s/(a*tan(t)))+1}"], "y": [-1, "{2*s/a+d*0.342+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+          { "type": "arrow", "from": "A", "to": "Ap", "color": "rouge", "label": "{d} cm" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a} cm" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "{t}°" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{2*s/(a*tan(t))}", "y": "{2*s/a}", "pos": "n" },
+          { "type": "point", "id": "Ap", "x": "{-d*0.94}", "y": "{d*0.342}", "pos": "sw", "label": "A’" },
+          { "type": "point", "id": "Bp", "x": "{a-d*0.94}", "y": "{d*0.342}", "pos": "se", "label": "B’" },
+          { "type": "point", "id": "Cp", "x": "{2*s/(a*tan(t))-d*0.94}", "y": "{2*s/a+d*0.342}", "pos": "n", "label": "C’" }
+        ]
+      },
+      "columns": ["Grandeur", "Valeur"],
+      "rows": [["$A’B’$ (en cm)", "?r0c1"], ["angle Â’ (en degrés)", "?r1c1"], ["aire de $A’B’C’$ (en cm²)", "?r2c1"], ["$BB’$ (en cm)", "?r3c1"]],
+      "cells": {
+        "r0c1": {
+          "answer": "a",
+          "misconceptions": [
+            {
+              "answer": "a + d",
+              "id": "mc:longueur-ajoutee",
+              "error": "notion",
+              "feedback": "Le triangle glisse sans s’agrandir : une translation conserve les longueurs, donc $A’B’ = AB$."
+            }
+          ]
+        },
+        "r1c1": { "answer": "t" },
+        "r2c1": { "answer": "s" },
+        "r3c1": {
+          "answer": "d",
+          "misconceptions": [
+            {
+              "answer": "a",
+              "id": "mc:bb-ab",
+              "error": "notion",
+              "feedback": "$BB’$ n’est pas $AB$ : c’est la distance parcourue par le point $B$. Avec une translation, tous les points glissent de la même longueur : $BB’ = AA’ = {d}$ cm."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Une translation fait glisser la figure sans la déformer.",
+        "Longueurs, angles et aires sont conservés.",
+        "Chaque point parcourt la même distance que $A$."
+      ],
+      "solution": "La translation conserve les longueurs ($A’B’ = {a}$ cm), les angles (Â’ = {t}°) et les aires ({s} cm²). Tous les points glissent de la même longueur : $BB’ = AA’ = {d}$ cm.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{a}", "r1c1": "{t}", "r2c1": "{s}", "r3c1": "{d}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{a}", "r1c1": "{t}", "r2c1": "{s}", "r3c1": "{a}" } }, "expect": "mc:bb-ab" }
+      ]
+    },
+    {
+      "id": "m4-translation-parallelogramme",
+      "type": "composite",
+      "skill": "m4.translation.proprietes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:ordre-sommets"],
+      "expectedSeconds": 150,
+      "prompt": "La translation qui transforme $A$ en $B$ transforme aussi $C$ en $D$ (voir la figure).",
+      "figure": {
+        "alt": "Quatre points A, B, C, D ; une flèche va de A à B et une autre de C à D.",
+        "w": 359,
+        "h": 300,
+        "frame": { "x": [-0.6, 5.8], "y": [-0.6, 4.6] },
+        "items": [
+          { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+          { "type": "arrow", "from": "C", "to": "D", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1, "y": 3, "pos": "nw" },
+          { "type": "point", "id": "D", "x": 5, "y": 4, "pos": "ne" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quelle est la nature du quadrilatère formé par ces quatre points ?",
+          "accept": ["parallélogramme", "un parallélogramme", "c’est un parallélogramme", "c'est un parallélogramme", "parallelogramme"],
+          "misconceptions": [
+            {
+              "answer": "rectangle",
+              "id": "mc:nature-rectangle",
+              "error": "notion",
+              "feedback": "Rien ne dit que les angles sont droits : on sait seulement que les côtés opposés sont parallèles et de même longueur."
+            },
+            {
+              "answer": "losange",
+              "id": "mc:nature-rectangle",
+              "error": "notion",
+              "feedback": "Rien ne dit que les quatre côtés sont égaux : on sait seulement que les côtés opposés sont parallèles et de même longueur."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Dans quel ordre faut-il nommer ses sommets ? Écris les 4 lettres en commençant par A puis B (par exemple ABCD).",
+          "accept": ["ABDC", "A B D C", "A, B, D, C", "A-B-D-C"],
+          "misconceptions": [
+            {
+              "answer": "ABCD",
+              "id": "mc:ordre-sommets",
+              "error": "lecture",
+              "feedback": "Dans l’ordre $A$, $B$, $C$, $D$, le quadrilatère serait « croisé ». On suit le contour : $A$ → $B$ → $D$ → $C$."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Si $AB = 5$ cm, combien mesure $CD$ (en cm) ?", "answer": 5 }
+      ],
+      "hints": [
+        "$C$ glisse de la même façon que $A$ : $[AB]$ et $[CD]$ sont parallèles et de même longueur.",
+        "Un quadrilatère non croisé qui a deux côtés opposés parallèles et de même longueur est un parallélogramme.",
+        "Suis le contour : de $A$ à $B$, puis de $B$ vers le sommet le plus proche."
+      ],
+      "solution": "$AB = CD$ et $(AB) // (CD)$, dans le même sens : $ABDC$ est un parallélogramme (on tourne $A → B → D → C$). Donc $CD = AB = 5$ cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "parallélogramme" }, { "value": "ABDC" }, { "value": "5" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "parallélogramme" }, { "value": "ABCD" }, { "value": "5" }] }, "expect": "mc:ordre-sommets" }
+      ]
+    },
+    {
+      "id": "m4-translation-verif",
+      "type": "qcm",
+      "skill": "m4.translation.construire",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : par la translation qui transforme $A$ en $B$, quelle est l’image du point $B$ ?",
+      "figure": {
+        "alt": "Deux points A et B, et la flèche de la translation qui transforme A en B.",
+        "w": 400,
+        "h": 203,
+        "frame": { "x": [-0.6, 7], "y": [-0.6, 2.8] },
+        "items": [
+          { "type": "arrow", "from": "A", "to": "B", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 3, "y": 1, "pos": "se" }
+        ]
+      },
+      "choices": [
+        {
+          "text": "Le point $C$ tel que $B$ est le milieu de $[AC]$",
+          "correct": true,
+          "feedback": "Oui : $B$ glisse encore une fois de $A$ vers $B$ ; il arrive en $C$, avec $BC = AB$ dans le même sens."
+        },
+        {
+          "text": "Le point $A$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:translation-symetrie",
+          "feedback": "Revenir en $A$, c’est glisser dans le sens **contraire** (ou faire un demi-tour autour du milieu de $[AB]$). La translation fait toujours glisser de $A$ vers $B$."
+        },
+        {
+          "text": "Le point $B$ lui-même",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:point-fixe",
+          "feedback": "Une translation (qui n’est pas « nulle ») déplace **tous** les points, $B$ compris."
+        },
+        {
+          "text": "Le milieu de $[AB]$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:demi-glissement",
+          "feedback": "Chaque point glisse de toute la longueur $AB$, pas de la moitié."
+        }
+      ],
+      "solution": "Tous les points glissent de la longueur $AB$, dans la direction de $(AB)$ et de $A$ vers $B$. Le point $B$ arrive en $C$ tel que $BC = AB$ : $B$ est le milieu de $[AC]$.",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:translation-symetrie" }]
+    },
+    {
+      "id": "m4-translation-miroir",
+      "type": "open",
+      "skill": "m4.translation.proprietes",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 30,
+      "prompt": "Zoé affirme : « L’image d’une figure par une translation, c’est comme son reflet dans un miroir. » A-t-elle raison ? Explique la différence en utilisant les mots **glisser**, **direction**, **sens**, **longueur** et **retourner**. Tu peux t’appuyer sur la figure.",
+      "figure": {
+        "alt": "Un drapeau, son image par une translation, et son reflet dans un miroir vertical (axe en pointillés).",
+        "w": 400,
+        "h": 166,
+        "frame": { "x": [0, 14], "y": [-0.8, 4] },
+        "items": [
+          { "type": "polygon", "points": [[0.5, 0.5], [0.8, 0.5], [0.8, 2.5], [2, 3], [0.8, 3.5], [0.5, 3.5]], "fill": "maths" },
+          { "type": "polygon", "points": [[4, 0.5], [4.3, 0.5], [4.3, 2.5], [5.5, 3], [4.3, 3.5], [4, 3.5]], "fill": "vert", "color": "vert" },
+          {
+            "type": "polygon",
+            "points": [[13.5, 0.5], [13.2, 0.5], [13.2, 2.5], [12, 3], [13.2, 3.5], [13.5, 3.5]],
+            "fill": "orange",
+            "color": "orange"
+          },
+          { "type": "point", "id": "m1", "x": 7, "y": -0.4, "hidden": true },
+          { "type": "point", "id": "m2", "x": 7, "y": 3.9, "hidden": true },
+          { "type": "segment", "from": "m1", "to": "m2", "dashed": true, "color": "gris" },
+          { "type": "text", "x": 1.2, "y": -0.4, "text": "figure", "size": "s" },
+          { "type": "text", "x": 4.7, "y": -0.4, "text": "translation", "size": "s", "color": "vert" },
+          { "type": "text", "x": 12.8, "y": -0.4, "text": "miroir", "size": "s", "color": "orange" }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "Je dis que Zoé a tort", "keywords": [["tort", "non", "faux", "pas raison"]] },
+        { "id": "c2", "label": "J’explique que la translation fait glisser la figure", "keywords": [["gliss"]] },
+        {
+          "id": "c3",
+          "label": "Je précise : même direction, même sens, même longueur pour tous les points",
+          "keywords": [["direction"], ["sens"], ["longueur"]]
+        },
+        { "id": "c4", "label": "J’explique que le miroir (symétrie axiale) retourne la figure, pas la translation", "keywords": [["retourn"]] }
+      ],
+      "models": [
+        "Zoé a tort. Une translation fait glisser la figure : tous ses points se déplacent dans la même direction, dans le même sens et de la même longueur. La figure n’est jamais retournée. Un miroir, c’est une symétrie axiale : elle retourne la figure, la gauche devient la droite."
+      ],
+      "hints": [
+        "Compare le drapeau vert et le drapeau orange : lequel est retourné ?",
+        "Dans une translation, tous les points font exactement le même trajet.",
+        "Le reflet dans un miroir correspond à une symétrie axiale."
+      ],
+      "solution": "Zoé a tort : la translation fait glisser la figure (même direction, même sens, même longueur pour tous les points) sans la retourner. Le reflet dans un miroir est l’image par une symétrie axiale : la figure est retournée.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Zoé a tort. La translation fait glisser la figure : chaque point se déplace dans la même direction, le même sens et de la même longueur. Elle ne retourne pas la figure, alors que le miroir la retourne.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m4-translation-frise",
+      "type": "composite",
+      "skill": "m4.translation.proprietes",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:piquets"],
+      "expectedSeconds": 360,
+      "prompt": "Une frise décore le bas d’un mur. Chaque motif s’obtient à partir du précédent par la même translation (voir la figure). Le motif n° 1 commence au carreau 0 ; chaque motif occupe 2 carreaux de large.",
+      "figure": {
+        "alt": "Une frise de quatre motifs identiques en forme de maison, numérotés de 1 à 4, régulièrement espacés sur un quadrillage ; une flèche indique le glissement d’un motif au suivant.",
+        "w": 400,
+        "h": 157,
+        "frame": { "x": [-0.5, 11.5], "y": [-0.5, 3.3], "grid": true },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [2, 0], [2, 1.5], [1, 2.3], [0, 1.5]], "fill": "maths", "label": "1" },
+          { "type": "polygon", "points": [[3, 0], [5, 0], [5, 1.5], [4, 2.3], [3, 1.5]], "fill": "orange", "label": "2" },
+          { "type": "polygon", "points": [[6, 0], [8, 0], [8, 1.5], [7, 2.3], [6, 1.5]], "fill": "maths", "label": "3" },
+          { "type": "polygon", "points": [[9, 0], [11, 0], [11, 1.5], [10, 2.3], [9, 1.5]], "fill": "orange", "label": "4" },
+          { "type": "arrow", "from": [0, 2.8], "to": [3, 2.8], "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien de carreaux chaque motif glisse-t-il vers la droite par rapport au précédent ?",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:largeur-glissement",
+              "error": "lecture",
+              "feedback": "2 carreaux, c’est la largeur d’un motif. Le glissement se mesure d’un point d’un motif au même point du motif suivant (par exemple d’un coin gauche au coin gauche suivant)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quel carreau commence le motif n° 10 ?",
+          "answer": 27,
+          "misconceptions": [
+            {
+              "answer": 30,
+              "id": "mc:piquets",
+              "error": "raisonnement",
+              "feedback": "Du motif n° 1 au motif n° 10, il n’y a que 9 glissements (comme les intervalles entre 10 piquets) : 9 × 3 = 27."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le mur mesure 44 carreaux de long. Combien de motifs **complets** peut-on placer ?",
+          "answer": 15,
+          "misconceptions": [
+            {
+              "answer": 14,
+              "id": "mc:dernier-motif",
+              "error": "raisonnement",
+              "feedback": "Le dernier motif n’a pas besoin de la place d’un glissement entier, seulement de sa largeur : le motif n° 15 commence au carreau 42 et se termine au carreau 44. Il tient !"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Mesure l’écart entre le coin gauche du motif 1 et le coin gauche du motif 2.",
+        "Motif n° $k$ : il commence au carreau $3 × (k − 1)$.",
+        "Le dernier motif doit finir avant le carreau 44 : $3 × (k − 1) + 2 ≤ 44$."
+      ],
+      "solution": "Chaque motif glisse de 3 carreaux. Le motif n° $k$ commence au carreau $3 × (k − 1)$ : le n° 10 commence au carreau 27. Il tient en entier si $3 × (k − 1) + 2 ≤ 44$, c’est-à-dire $k − 1 ≤ 14$ : on peut placer 15 motifs.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3" }, { "value": "27" }, { "value": "15" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "3" }, { "value": "30" }, { "value": "15" }] }, "expect": "mc:piquets" }
+      ]
+    },
+    {
+      "id": "m4-translation-pavage",
+      "type": "composite",
+      "skill": "m4.translation.proprietes",
+      "skills": ["m4.translation.construire"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "expectedSeconds": 300,
+      "prompt": "Dans ce pavage, inspiré des décors de l’Alhambra, deux translations permettent de passer d’un motif à ses voisins : t₁ fait glisser de 4 carreaux vers la droite ; t₂, de 2 carreaux vers la droite et 3 vers le haut.",
+      "figure": {
+        "alt": "Repère quadrillé couvert de parallélogrammes identiques ; le sommet S d’un motif est au point (1 ; 1).",
+        "w": 420,
+        "h": 260,
+        "frame": { "x": [0, 12.5], "y": [0, 7], "grid": true, "axes": true },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [4, 0], [6, 3], [2, 3]], "fill": "maths" },
+          { "type": "polygon", "points": [[4, 0], [8, 0], [10, 3], [6, 3]], "fill": "orange" },
+          { "type": "polygon", "points": [[2, 3], [6, 3], [8, 6], [4, 6]], "fill": "orange" },
+          { "type": "polygon", "points": [[6, 3], [10, 3], [12, 6], [8, 6]], "fill": "maths" },
+          { "type": "point", "id": "S", "x": 1, "y": 1, "pos": "n", "style": "rond" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Le point S(1 ; 1) est le sommet d’un motif. Place son image S₁ par t₁, puis l’image S₂ de S₁ par t₂.",
+          "xRange": [0, 12],
+          "yRange": [0, 7],
+          "maxPoints": 4,
+          "expectedPoints": [[5, 1], [7, 4]]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Enchaîner t₁ puis t₂ revient à une seule translation. De combien de carreaux fait-elle glisser vers la droite ?",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 4,
+              "id": "mc:une-seule-translation",
+              "error": "raisonnement",
+              "feedback": "On ajoute les glissements : 4 carreaux (t₁) puis encore 2 (t₂), soit 6 vers la droite."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "… et de combien de carreaux vers le haut ?", "answer": 3 }
+      ],
+      "hints": [
+        "S₁ : 4 carreaux à droite de S.",
+        "S₂ : depuis S₁, 2 à droite et 3 en haut.",
+        "Au total, de S à S₂ : 4 + 2 vers la droite, 0 + 3 vers le haut."
+      ],
+      "solution": "S₁(5 ; 1) puis S₂(7 ; 4). De S à S₂ : 6 carreaux vers la droite et 3 vers le haut. Enchaîner deux translations donne encore une translation : c’est ce qui permet au motif de remplir tout le mur.",
+      "selfTest": [
+        { "response": { "parts": [{ "points": [[5, 1], [7, 4]] }, { "value": "6" }, { "value": "3" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "points": [[5, 1], [7, 4]] }, { "value": "4" }, { "value": "3" }] }, "expect": "mc:une-seule-translation" },
+        { "response": { "parts": [{ "points": [[5, 1], [3, 4]] }, { "value": "6" }, { "value": "3" }] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m4-translation-jeu",
+      "type": "composite",
+      "skill": "m4.translation.construire",
+      "skills": ["m4.translation.proprietes"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:oubli-depart", "mc:taille-change"],
+      "expectedSeconds": 480,
+      "prompt": "Tu programmes un jeu de plateforme en 2D. Chaque appui sur la touche → fait glisser le personnage par la translation qui transforme O(0 ; 0) en V(2 ; 1). La tête du personnage est au point T(1 ; 3) et ses pieds au point P(1 ; 0).",
+      "figure": {
+        "alt": "Repère quadrillé : la flèche de O(0 ; 0) à V(2 ; 1) et le personnage, un segment vertical de ses pieds P(1 ; 0) à sa tête T(1 ; 3).",
+        "w": 360,
+        "h": 284,
+        "frame": { "x": [0, 8], "y": [0, 6], "grid": true, "axes": true },
+        "items": [
+          { "type": "arrow", "from": "O", "to": "V", "color": "rouge" },
+          { "type": "segment", "from": "P", "to": "T", "color": "violet" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "ne", "label": "" },
+          { "type": "point", "id": "V", "x": 2, "y": 1, "pos": "e" },
+          { "type": "point", "id": "P", "x": 1, "y": 0, "pos": "ne" },
+          { "type": "point", "id": "T", "x": 1, "y": 3, "pos": "ne", "style": "rond", "color": "violet" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place la position de la tête après **un** appui, puis après **deux** appuis.",
+          "xRange": [0, 10],
+          "yRange": [0, 8],
+          "maxPoints": 4,
+          "expectedPoints": [[3, 4], [5, 5]]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Après 6 appuis, quelle est l’abscisse de la tête ?",
+          "answer": 13,
+          "misconceptions": [
+            {
+              "answer": 12,
+              "id": "mc:oubli-depart",
+              "error": "methode",
+              "feedback": "Tu as oublié le point de départ : la tête part de l’abscisse 1, puis avance de 6 × 2 = 12."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "… et son ordonnée ?",
+          "answer": 9,
+          "misconceptions": [{ "answer": 6, "id": "mc:oubli-depart", "error": "methode", "feedback": "La tête part de l’ordonnée 3, puis monte de 6 × 1 = 6." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure le personnage (de $P$ à $T$, en carreaux) après 6 appuis ?",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 9,
+              "id": "mc:taille-change",
+              "error": "notion",
+              "feedback": "Une translation conserve les longueurs : le personnage ne grandit pas en se déplaçant !"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Un appui = 2 carreaux vers la droite et 1 vers le haut, pour chaque point du personnage.",
+        "Après 6 appuis : 12 carreaux vers la droite et 6 vers le haut au total.",
+        "Le personnage glisse sans se déformer."
+      ],
+      "solution": "Après un appui, la tête est en (3 ; 4), après deux appuis en (5 ; 5). Après 6 appuis : abscisse 1 + 6 × 2 = 13, ordonnée 3 + 6 × 1 = 9. Le personnage mesure toujours 3 carreaux : la translation conserve les longueurs.",
+      "selfTest": [
+        { "response": { "parts": [{ "points": [[3, 4], [5, 5]] }, { "value": "13" }, { "value": "9" }, { "value": "3" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "points": [[3, 4], [5, 5]] }, { "value": "12" }, { "value": "9" }, { "value": "3" }] },
+          "expect": "mc:oubli-depart"
+        },
+        {
+          "response": { "parts": [{ "points": [[3, 4], [5, 5]] }, { "value": "13" }, { "value": "9" }, { "value": "9" }] },
+          "expect": "mc:taille-change"
+        }
+      ]
+    },
+    {
+      "id": "m4-translation-remed-compter",
+      "type": "graph",
+      "skill": "m4.translation.construire",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "targets": ["mc:sens-inverse"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel : une translation fait glisser **tous les points de la même façon**. Ici, elle fait glisser de 3 carreaux vers la droite et 2 carreaux vers le bas (comme la flèche rouge). Place l’image $M’$ du point M(1 ; 4), puis l’image $N’$ du point N(2 ; 2).",
+      "figure": {
+        "alt": "Repère quadrillé avec les points M(1 ; 4) et N(2 ; 2) ; une flèche de référence montre un glissement de 3 carreaux vers la droite et 2 vers le bas.",
+        "w": 331,
+        "h": 300,
+        "frame": { "x": [-1, 8], "y": [-2, 6], "grid": true, "axes": true },
+        "items": [
+          { "type": "arrow", "from": [4, 5.5], "to": [7, 3.5], "color": "rouge" },
+          { "type": "point", "id": "M", "x": 1, "y": 4, "pos": "nw", "style": "rond" },
+          { "type": "point", "id": "N", "x": 2, "y": 2, "pos": "nw", "style": "rond" }
+        ]
+      },
+      "xRange": [-1, 8],
+      "yRange": [-2, 6],
+      "maxPoints": 4,
+      "expectedPoints": [[4, 2], [5, 0]],
+      "hints": ["Pour $M$ : pars de (1 ; 4), avance de 3 vers la droite.", "Puis descends de 2.", "Fais exactement la même chose pour $N$."],
+      "solution": "M(1 ; 4) → M’(1 + 3 ; 4 − 2) = M’(4 ; 2). N(2 ; 2) → N’(5 ; 0).",
+      "selfTest": [{ "response": { "points": [[4, 2], [5, 0]] }, "expect": "correct" }, { "response": { "points": [[-2, 6], [-1, 4]] }, "expect": "notion" }]
+    },
+    {
+      "id": "m4-translation-deux-symetries",
+      "type": "composite",
+      "skill": "m4.translation.proprietes",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "expectedSeconds": 540,
+      "prompt": "**Deux demi-tours font un glissement !** On considère les points O(1 ; 1), O’(4 ; 2) et M(0 ; 3). On applique à $M$ la symétrie de centre $O$, puis au point obtenu la symétrie de centre $O’$.",
+      "figure": {
+        "alt": "Repère quadrillé avec les points O(1 ; 1), O’(4 ; 2) et M(0 ; 3).",
+        "w": 327,
+        "h": 300,
+        "frame": { "x": [-1, 9], "y": [-3, 6], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "O", "x": 1, "y": 1, "pos": "se", "style": "rond" },
+          { "type": "point", "id": "Op", "x": 4, "y": 2, "pos": "se", "style": "rond", "label": "O’" },
+          { "type": "point", "id": "M", "x": 0, "y": 3, "pos": "ne", "style": "rond", "color": "maths" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place $M_1$, le symétrique de $M$ par rapport à $O$, puis $M_2$, le symétrique de $M_1$ par rapport à $O’$.",
+          "xRange": [-1, 9],
+          "yRange": [-3, 6],
+          "maxPoints": 4,
+          "expectedPoints": [[2, -1], [6, 5]]
+        },
+        { "type": "numeric", "prompt": "De combien de carreaux $M_2$ est-il à droite de $M$ ?", "answer": 6 },
+        { "type": "numeric", "prompt": "… et de combien de carreaux au-dessus de $M$ ?", "answer": 2 },
+        {
+          "type": "numeric",
+          "prompt": "Recommence avec le point N(3 ; 0) : quelle est l’abscisse de $N_2$ ?",
+          "answer": 9,
+          "misconceptions": [
+            {
+              "answer": -1,
+              "id": "mc:une-seule-symetrie",
+              "error": "methode",
+              "feedback": "−1 est l’abscisse de $N_1$ (après la première symétrie). Applique ensuite la symétrie de centre $O’$."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Conjecture : quelle transformation permet de passer directement de $M$ à $M_2$, ou de $N$ à $N_2$ ?",
+          "accept": ["translation", "une translation", "c’est une translation", "c'est une translation", "la translation", "un glissement"],
+          "openEnded": true,
+          "misconceptions": [
+            {
+              "answer": "une symétrie",
+              "id": "mc:translation-symetrie",
+              "error": "notion",
+              "feedback": "$M_2$ a la même orientation que $M$ et tous les points ont glissé de 6 vers la droite et 2 vers le haut : c’est une translation."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$O$ est le milieu de $[MM_1]$ : de $M$ à $O$, on fait +1 et −2 ; on refait le même trajet depuis $O$.",
+        "$M_1(2 ; −1)$. De $M_1$ à $O’$ : +2 et +3 ; on refait ce trajet depuis $O’$.",
+        "Compare les deux déplacements de $M$ à $M_2$ et de $N$ à $N_2$."
+      ],
+      "solution": "$M_1(2 ; −1)$ et $M_2(6 ; 5)$ : $M$ a glissé de 6 vers la droite et 2 vers le haut. Pour $N$ : $N_1(−1 ; 2)$ et $N_2(9 ; 2)$, même glissement. Enchaîner deux symétries centrales revient à une translation, de longueur double de $OO’$, dans la direction de $O$ vers $O’$.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "points": [[2, -1], [6, 5]] }, { "value": "6" }, { "value": "2" }, { "value": "9" }, { "value": "une translation" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "points": [[2, -1], [6, 5]] }, { "value": "6" }, { "value": "2" }, { "value": "-1" }, { "value": "une translation" }] },
+          "expect": "mc:une-seule-symetrie"
+        }
+      ]
+    },
+    {
+      "id": "m4-translation-balayage",
+      "type": "numeric",
+      "skill": "m4.translation.proprietes",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:mauvaise-hauteur"],
+      "expectedSeconds": 240,
+      "prompt": "Le segment horizontal $[CD]$ mesure 5 carreaux. On lui applique la translation qui fait glisser de 2 carreaux vers la droite et 3 vers le haut. Quelle est l’aire (en carreaux) de la surface « balayée » par le segment pendant le glissement ?",
+      "figure": {
+        "alt": "Le segment horizontal [CD] de 5 carreaux et son image [C’D’] après un glissement de 2 carreaux vers la droite et 3 vers le haut ; la surface balayée est grisée.",
+        "w": 400,
+        "h": 231,
+        "frame": { "x": [-0.5, 7.5], "y": [-0.6, 3.6], "grid": true },
+        "items": [
+          { "type": "polygon", "points": ["C", "D", "Dp", "Cp"], "fill": "gris", "dashed": true, "color": "gris" },
+          { "type": "segment", "from": "C", "to": "D", "color": "maths" },
+          { "type": "segment", "from": "Cp", "to": "Dp", "color": "orange" },
+          { "type": "arrow", "from": "C", "to": "Cp", "color": "rouge" },
+          { "type": "arrow", "from": "D", "to": "Dp", "color": "rouge" },
+          { "type": "point", "id": "C", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "D", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "Cp", "x": 2, "y": 3, "pos": "nw", "label": "C’" },
+          { "type": "point", "id": "Dp", "x": 7, "y": 3, "pos": "ne", "label": "D’" }
+        ]
+      },
+      "answer": 15,
+      "misconceptions": [
+        {
+          "answer": 10,
+          "id": "mc:mauvaise-hauteur",
+          "error": "notion",
+          "feedback": "La surface balayée est un parallélogramme de base 5. Sa hauteur est la distance **verticale** parcourue (3 carreaux), pas le décalage horizontal."
+        },
+        {
+          "answer": 21,
+          "id": "mc:rectangle-englobant",
+          "error": "notion",
+          "feedback": "Tu as pris le rectangle qui entoure la figure (7 × 3). Les deux triangles des coins ne sont pas balayés : l’aire est celle du parallélogramme, base × hauteur."
+        }
+      ],
+      "hints": [
+        "Les quatre points $C$, $D$, $D’$, $C’$ forment un parallélogramme.",
+        "Aire d’un parallélogramme = base × hauteur.",
+        "La base mesure 5 ; la hauteur est la distance entre les droites $(CD)$ et $(C’D’)$."
+      ],
+      "solution": "$CDD’C’$ est un parallélogramme (lien translation-parallélogramme). Sa base $[CD]$ mesure 5 et sa hauteur, la distance entre $(CD)$ et $(C’D’)$, vaut 3. Aire : $5 × 3 = 15$ carreaux.",
+      "selfTest": [{ "response": { "value": "15" }, "expect": "correct" }, { "response": { "value": "10" }, "expect": "mc:mauvaise-hauteur" }]
+    },
+    {
+      "id": "m4-translation-vecteurs",
+      "type": "composite",
+      "skill": "mx.vecteurs",
+      "skills": ["m4.translation.proprietes", "m5.relatifs.addition"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:soustraction-vecteurs"],
+      "expectedSeconds": 600,
+      "prompt": "**Vers la 3e : les vecteurs.** Une translation est entièrement décrite par son déplacement $(x ; y)$ : $x$ carreaux vers la droite (vers la gauche si $x$ est négatif) et $y$ vers le haut (vers le bas si $y$ est négatif). Ce couple de nombres est appelé **vecteur** de la translation.",
+      "figure": {
+        "alt": "Repère quadrillé avec les points A(1 ; 2), B(4 ; 1), C(0 ; 5) et D(3 ; 4).",
+        "w": 300,
+        "h": 300,
+        "frame": { "x": [-1, 6], "y": [-1, 6], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 2, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "B", "x": 4, "y": 1, "pos": "se", "style": "rond" },
+          { "type": "point", "id": "C", "x": 0, "y": 5, "pos": "ne", "style": "rond" },
+          { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "ne", "style": "rond" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "t₁ a pour vecteur (3 ; −1) et t₂ a pour vecteur (−5 ; 4). On applique t₁ puis t₂ : quelle est la première coordonnée du vecteur obtenu ?",
+          "answer": -2,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:soustraction-vecteurs",
+              "error": "signe",
+              "prerequisite": "m5.relatifs.addition",
+              "feedback": "On **additionne** les déplacements : 3 + (−5) = −2."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "… et la seconde ?", "answer": 3 },
+        {
+          "type": "numeric",
+          "prompt": "Quelle translation « annule » t₁ (ramène chaque point à sa place) ? Donne la première coordonnée de son vecteur.",
+          "answer": -3
+        },
+        {
+          "type": "text",
+          "prompt": "Sur la figure : la translation qui transforme $A$ en $B$ transforme-t-elle $C$ en $D$ ? (oui ou non)",
+          "accept": ["oui"],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:vecteurs-egaux",
+              "error": "raisonnement",
+              "feedback": "De $A$ à $B$ : (+3 ; −1). De $C$ à $D$ : (+3 ; −1). Même vecteur, donc même translation."
+            }
+          ],
+          "justify": { "required": true, "minWords": 6, "prompt": "Justifie avec les déplacements (vecteurs).", "keywords": [["3"]] }
+        }
+      ],
+      "hints": [
+        "Enchaîner deux translations : on ajoute les premières coordonnées entre elles, et les secondes entre elles.",
+        "Pour annuler (3 ; −1), il faut le déplacement opposé.",
+        "Calcule le déplacement de $A$ à $B$, puis celui de $C$ à $D$."
+      ],
+      "solution": "t₁ puis t₂ : (3 + (−5) ; −1 + 4) = (−2 ; 3). La translation qui annule t₁ a pour vecteur (−3 ; 1). De A(1 ; 2) à B(4 ; 1) : (3 ; −1) ; de C(0 ; 5) à D(3 ; 4) : (3 ; −1). Même vecteur : oui, la translation qui transforme $A$ en $B$ transforme $C$ en $D$ ($ABDC$ est un parallélogramme).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "-2" },
+              { "value": "3" },
+              { "value": "-3" },
+              { "value": "oui", "justification": "de A à B on fait (3 ; −1) et de C à D aussi (3 ; −1)" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "8" },
+              { "value": "3" },
+              { "value": "-3" },
+              { "value": "oui", "justification": "de A à B on fait (3 ; −1) et de C à D aussi (3 ; −1)" }
+            ]
+          },
+          "expect": "mc:soustraction-vecteurs"
+        }
+      ]
+    },
+    {
+      "id": "m4-translation-pavages",
+      "type": "categorize",
+      "skill": "m4.translation.proprietes",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:triangle-translation"],
+      "expectedSeconds": 360,
+      "prompt": "Peut-on paver tout le plan avec des copies d’une **seule** pièce, en utilisant **uniquement des translations** (sans jamais tourner ni retourner la pièce) ? Classe chaque pièce. La figure peut t’aider pour le triangle.",
+      "figure": {
+        "alt": "Une bande de triangles équilatéraux : les triangles bleus ont la pointe en haut, les triangles orange la pointe en bas.",
+        "w": 400,
+        "h": 152,
+        "frame": { "x": [-0.3, 7.3], "y": [-0.3, 2] },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [2, 0], [1, 1.7320508075688772]], "fill": "maths" },
+          { "type": "polygon", "points": [[2, 0], [4, 0], [3, 1.7320508075688772]], "fill": "maths" },
+          { "type": "polygon", "points": [[4, 0], [6, 0], [5, 1.7320508075688772]], "fill": "maths" },
+          { "type": "polygon", "points": [[1, 1.7320508075688772], [3, 1.7320508075688772], [2, 0]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[3, 1.7320508075688772], [5, 1.7320508075688772], [4, 0]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[5, 1.7320508075688772], [7, 1.7320508075688772], [6, 0]], "fill": "orange", "color": "orange" }
+        ]
+      },
+      "categories": [{ "id": "oui", "label": "Oui, avec des translations seules" }, { "id": "non", "label": "Non" }],
+      "items": [
+        { "id": "carre", "label": "Un carré", "category": "oui" },
+        { "id": "para", "label": "Un parallélogramme quelconque", "category": "oui" },
+        { "id": "hexa", "label": "Un hexagone régulier", "category": "oui" },
+        { "id": "tri", "label": "Un triangle équilatéral", "category": "non" },
+        { "id": "trap", "label": "Un trapèze qui n’est pas un parallélogramme", "category": "non" },
+        { "id": "penta", "label": "Un pentagone régulier", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "tri",
+          "category": "oui",
+          "id": "mc:triangle-translation",
+          "error": "raisonnement",
+          "feedback": "Dans un pavage de triangles, chaque triangle « pointe en haut » a pour voisins des triangles « pointe en bas » : ceux-là ont fait un demi-tour, ce ne sont pas des images par translation."
+        },
+        {
+          "item": "hexa",
+          "category": "non",
+          "id": "mc:hexagone",
+          "error": "raisonnement",
+          "feedback": "Pense aux alvéoles des abeilles : chaque hexagone régulier s’obtient à partir d’un voisin par une translation, sans jamais le tourner."
+        },
+        {
+          "item": "penta",
+          "category": "oui",
+          "id": "mc:pentagone",
+          "error": "raisonnement",
+          "feedback": "Les pentagones réguliers ne pavent pas du tout le plan : leurs angles mesurent 108°, et on ne peut pas faire 360° avec des angles de 108°."
+        }
+      ],
+      "hints": [
+        "Imagine des carreaux de salle de bains, puis des alvéoles d’abeilles.",
+        "Avec des triangles, regarde l’orientation des triangles orange de la figure.",
+        "Un pentagone régulier a des angles de 108° : peut-on en placer plusieurs autour d’un point ?"
+      ],
+      "solution": "Oui : le carré, le parallélogramme et l’hexagone régulier (ils ont des côtés opposés parallèles et de même longueur, deux à deux). Non : le triangle et le trapèze (il faut faire faire un demi-tour à une pièce sur deux) et le pentagone régulier (il ne pave pas le plan du tout). Les mathématiciens ont démontré que seules ces pièces « à côtés opposés parallèles et égaux » (4 ou 6 côtés) pavent par translations, parmi les polygones convexes.",
+      "selfTest": [
+        {
+          "response": { "assign": { "carre": "oui", "para": "oui", "hexa": "oui", "tri": "non", "trap": "non", "penta": "non" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "carre": "oui", "para": "oui", "hexa": "oui", "tri": "oui", "trap": "non", "penta": "non" } },
+          "expect": "mc:triangle-translation"
+        }
+      ]
+    }
+  ]
+}

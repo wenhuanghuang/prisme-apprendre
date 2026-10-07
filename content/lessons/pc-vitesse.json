@@ -12,8 +12,7 @@
     {
       "kind": "decouverte",
       "title": "Que dit une chronophotographie ?",
-      "body": "Une chronophotographie superpose les positions d'un objet photographié à **intervalles de temps égaux**. Voici celle d'un skateur, une image toutes les 0,5 s.\n\nSans calculer, que peux-tu dire de son mouvement en regardant les écarts entre les positions ? Mesure ensuite la distance parcourue en une seconde.",
-      "activity": { "widget": "motion-lab", "config": { "mode": "uniforme", "v": 2, "dt": 0.5, "n": 8 } }
+      "body": "Une chronophotographie superpose les positions d'un objet photographié à **intervalles de temps égaux**. Imagine celle d'un cycliste, avec une image toutes les 0,5 s.\n\nSans calculer, que pourrais-tu dire de son mouvement en regardant les écarts entre les positions ? Et comment trouver la distance qu'il parcourt en une seconde ? L'expérience va te le montrer."
     },
     {
       "kind": "ressource",
@@ -22,15 +21,228 @@
       "links": []
     },
     {
+      "kind": "experience",
+      "title": "L'expérience : la chronophotographie d'un cycliste",
+      "body": "Fais ta prédiction, puis regarde les positions du cycliste apparaître une à une.",
+      "demo": {
+        "items": [
+          { "type": "forme", "shape": "rect", "x": 40, "y": 322, "w": 720, "h": 8, "fill": "gris" },
+          { "type": "forme", "shape": "line", "x": 70, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 155, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 240, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 325, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 410, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 495, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 580, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 665, "y": 330, "w": 0, "h": 10, "stroke": "noir" },
+          { "type": "texte", "x": 665, "y": 358, "text": "0 m", "size": 13 },
+          { "type": "texte", "x": 580, "y": 358, "text": "2 m", "size": 13 },
+          { "type": "texte", "x": 495, "y": 358, "text": "4 m", "size": 13 },
+          { "type": "texte", "x": 410, "y": 358, "text": "6 m", "size": 13 },
+          { "type": "texte", "x": 325, "y": 358, "text": "8 m", "size": 13 },
+          { "type": "texte", "x": 240, "y": 358, "text": "10 m", "size": 13 },
+          { "type": "texte", "x": 155, "y": 358, "text": "12 m", "size": 13 },
+          { "type": "texte", "x": 70, "y": 358, "text": "14 m", "size": 13 },
+          { "type": "texte", "x": 400, "y": 400, "text": "piste graduée en mètres · une image toutes les 0,5 s", "size": 13 },
+          { "type": "emoji", "id": "g0", "x": 665, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g1", "x": 580, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g2", "x": 495, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g3", "x": 410, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g4", "x": 325, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g5", "x": 240, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g6", "x": 155, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "g7", "x": 70, "y": 298, "char": "🚴", "size": 44, "opacity": 0.35, "hidden": true },
+          { "type": "emoji", "id": "sk", "x": 665, "y": 298, "char": "🚴", "size": 44 },
+          { "type": "fleche", "id": "fl", "from": [325, 262], "to": [240, 262], "label": "2 m en 0,5 s", "color": "orange", "hidden": true },
+          { "type": "chrono", "id": "ch", "x": 70, "y": 92, "value": 0, "format": "s", "label": "temps" },
+          { "type": "courbe", "id": "g", "x": 140, "y": 12, "w": 300, "h": 210, "title": "Position x (m) en fonction du temps", "xRange": [0, 3.5], "yRange": [0, 16], "xLabel": "t (s)",
+            "points": [[0, 0], [3.5, 14]], "progress": 0, "color": "#2563eb" },
+          { "type": "releve", "id": "t", "x": 455, "y": 12, "w": 330, "head": ["t (s)", "x (m)", "écart (m)"],
+            "rows": [["0", "0", "—"], ["0,5", "2,0", "2,0"], ["1,0", "4,0", "2,0"], ["1,5", "6,0", "2,0"], ["2,0", "8,0", "2,0"], ["2,5", "10,0", "2,0"], ["3,0", "12,0", "2,0"], ["3,5", "14,0", "2,0"]], "shown": 0 }
+        ],
+        "steps": [
+          {
+            "title": "Le dispositif",
+            "text": "Un cycliste roule sur une piste graduée en mètres, de droite à gauche. Un appareil photo prend une image **toutes les 0,5 s**. En superposant toutes les images, on obtient une **chronophotographie** : elle montre où était le cycliste à chaque instant.",
+            "focus": ["sk", "ch"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Le cycliste roule à vitesse constante. Comment seront espacées ses positions successives ?",
+              "choices": ["De plus en plus écartées", "Régulièrement espacées : toujours le même écart", "De plus en plus serrées"],
+              "answer": 1,
+              "explain": "À vitesse constante, il parcourt la même distance pendant chaque intervalle de 0,5 s : les écarts sont égaux."
+            }
+          },
+          {
+            "title": "Le cycliste passe (au ralenti)",
+            "text": "Une nouvelle position apparaît toutes les 0,5 s. Le tableau note l'instant t et la position x, c'est-à-dire la distance parcourue depuis le départ. Le graphique de la position en fonction du temps se trace en même temps.",
+            "duration": 7,
+            "do": [
+              { "id": "sk", "to": { "x": 70 }, "dur": 7, "ease": "lineaire" },
+              { "id": "ch", "to": { "value": 3.5 }, "dur": 7, "ease": "lineaire" },
+              { "id": "g", "to": { "progress": 1 }, "dur": 7, "ease": "lineaire" },
+              { "id": "g0", "set": { "hidden": false } },
+              { "id": "t", "set": { "shown": 1 } },
+              { "id": "g1", "set": { "hidden": false }, "at": 1 },
+              { "id": "t", "set": { "shown": 2 }, "at": 1 },
+              { "id": "g2", "set": { "hidden": false }, "at": 2 },
+              { "id": "t", "set": { "shown": 3 }, "at": 2 },
+              { "id": "g3", "set": { "hidden": false }, "at": 3 },
+              { "id": "t", "set": { "shown": 4 }, "at": 3 },
+              { "id": "g4", "set": { "hidden": false }, "at": 4 },
+              { "id": "t", "set": { "shown": 5 }, "at": 4 },
+              { "id": "g5", "set": { "hidden": false }, "at": 5 },
+              { "id": "t", "set": { "shown": 6 }, "at": 5 },
+              { "id": "g6", "set": { "hidden": false }, "at": 6 },
+              { "id": "t", "set": { "shown": 7 }, "at": 6 },
+              { "id": "g7", "set": { "hidden": false }, "at": 6.95 },
+              { "id": "t", "set": { "shown": 8 }, "at": 6.95 }
+            ],
+            "focus": ["sk"]
+          },
+          {
+            "title": "Des écarts égaux",
+            "text": "Entre deux images, le cycliste avance toujours de **2 m**, en **0,5 s**. Les écarts sont égaux : le mouvement est **uniforme**, sa vitesse ne change pas. Le graphique de la position est une **droite** qui passe par l'origine.",
+            "show": ["fl"],
+            "focus": ["t", "fl"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Quelle est la vitesse du cycliste ?",
+              "choices": ["1 m/s", "2 m/s", "4 m/s"],
+              "answer": 2,
+              "explain": "Il parcourt 2 m en 0,5 s, donc 4 m en 1 s : v = d / t = 2 / 0,5 = 4 m/s."
+            }
+          },
+          {
+            "title": "Calculer la vitesse",
+            "text": "Sur un écart : v = d / t = 2 m ÷ 0,5 s = **4 m/s**. Sur tout le trajet : 14 m en 3,5 s, soit 14 ÷ 3,5 = **4 m/s** aussi. En km/h : 4 × 3,6 = **14,4 km/h**, une allure normale à vélo.",
+            "focus": ["g"]
+          }
+        ],
+        "conclusion": "Sur une chronophotographie (images prises à intervalles de temps égaux) :\n- des écarts **égaux** montrent un mouvement **uniforme** : la vitesse est constante ;\n- la vitesse se calcule avec **v = d / t** : ici 2 m en 0,5 s, soit 4 m/s.\n\n> Pour un mouvement uniforme, la position augmente régulièrement : son graphique en fonction du temps est une droite qui passe par l'origine."
+      }
+    },
+    {
       "kind": "cours",
       "title": "Le cours",
       "body": "Décrire un mouvement, c'est donner sa **trajectoire** (droite, courbe, cercle) et l'évolution de sa **vitesse**.\n\n> **Vitesse moyenne** : $v = d / t$, avec $d$ la distance parcourue et $t$ la durée du parcours.\n> Unités : m/s si $d$ est en m et $t$ en s ; km/h si $d$ est en km et $t$ en h.\n\n**Conversion.** 1 m/s, c'est 1 m chaque seconde, donc 3 600 m en une heure, soit 3,6 km/h :\n- de m/s vers km/h, on **multiplie** par 3,6 ;\n- de km/h vers m/s, on **divise** par 3,6.\n\n**Durées.** Une heure n'a pas 100 minutes : 1 h 30 min = 1,5 h ; 15 min = 0,25 h ; 0,1 h = 6 min. Avant de calculer, on convertit la durée dans l'unité voulue.\n\n**Nature du mouvement** sur une chronophotographie (images à intervalles égaux) :\n- écarts égaux : mouvement **uniforme** (vitesse constante) ;\n- écarts de plus en plus grands : mouvement **accéléré** ;\n- écarts de plus en plus petits : mouvement **ralenti**.\n\n**Moyenne ou instantanée ?** La vitesse moyenne résume tout un trajet. La vitesse **instantanée** est la vitesse à un instant donné (celle qu'affiche un compteur) ; on l'estime par une vitesse moyenne sur une durée très courte."
     },
     {
-      "kind": "manipulation",
-      "title": "Mouvement accéléré",
-      "body": "Cette fois, l'objet part de l'arrêt et accélère. Observe les écarts entre positions successives, puis le graphique position-temps : la courbe n'est plus une droite. Compare avec le mode uniforme de la découverte.",
-      "activity": { "widget": "motion-lab", "config": { "mode": "accelere", "v": 0, "a": 1, "dt": 0.5, "n": 8 } }
+      "kind": "experience",
+      "title": "L'expérience : une bille qui accélère",
+      "body": "Même méthode que pour le cycliste, mais cette fois la bille part de l'arrêt.",
+      "demo": {
+        "items": [
+          { "type": "forme", "shape": "polygon", "points": [[50, 287.3], [760, 383.4], [760, 440], [50, 440]], "fill": "bois", "x": 50, "y": 287 },
+          { "type": "forme", "shape": "line", "x": 50, "y": 287.3, "w": 710, "h": 96.1, "stroke": "marron", "width": 3 },
+          { "type": "forme", "shape": "line", "x": 70, "y": 290, "w": -1.3, "h": 9.9, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 198.8, "y": 307.4, "w": -1.3, "h": 9.9, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 327.6, "y": 324.9, "w": -1.3, "h": 9.9, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 456.4, "y": 342.3, "w": -1.3, "h": 9.9, "stroke": "noir" },
+          { "type": "forme", "shape": "line", "x": 585.2, "y": 359.7, "w": -1.3, "h": 9.9, "stroke": "noir" },
+          { "type": "texte", "x": 67, "y": 318, "text": "0 m", "size": 13 },
+          { "type": "texte", "x": 196, "y": 335, "text": "1 m", "size": 13 },
+          { "type": "texte", "x": 325, "y": 352, "text": "2 m", "size": 13 },
+          { "type": "texte", "x": 453, "y": 370, "text": "3 m", "size": 13 },
+          { "type": "texte", "x": 582, "y": 387, "text": "4 m", "size": 13 },
+          { "type": "objet", "id": "b0", "x": 70, "y": 290, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b1", "x": 82.9, "y": 291.7, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b2", "x": 121.5, "y": 297, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b3", "x": 185.9, "y": 305.7, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b4", "x": 276.1, "y": 317.9, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b5", "x": 392, "y": 333.6, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b6", "x": 533.7, "y": 352.7, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b7", "x": 701.1, "y": 375.4, "shape": "boule", "size": 22, "color": "rouge", "opacity": 0.35, "hidden": true },
+          { "type": "objet", "id": "b", "x": 70, "y": 290, "shape": "boule", "size": 22, "color": "rouge", "label": "bille" },
+          { "type": "fleche", "id": "fl", "from": [533.7, 316], "to": [701.1, 339], "label": "1,30 m en 0,5 s", "color": "orange", "hidden": true },
+          { "type": "chrono", "id": "ch", "x": 70, "y": 92, "value": 0, "format": "s", "label": "temps" },
+          { "type": "courbe", "id": "g", "x": 140, "y": 12, "w": 300, "h": 210, "title": "Position x (m) en fonction du temps", "xRange": [0, 3.5], "yRange": [0, 6], "xLabel": "t (s)",
+            "points": [[0, 0], [0.5, 0.1], [1, 0.4], [1.5, 0.9], [2, 1.6], [2.5, 2.5], [3, 3.6], [3.5, 4.9]], "progress": 0, "color": "#e11d48" },
+          { "type": "releve", "id": "t", "x": 455, "y": 12, "w": 330, "head": ["t (s)", "x (m)", "écart (m)"],
+            "rows": [["0", "0", "—"], ["0,5", "0,10", "0,10"], ["1,0", "0,40", "0,30"], ["1,5", "0,90", "0,50"], ["2,0", "1,60", "0,70"], ["2,5", "2,50", "0,90"], ["3,0", "3,60", "1,10"], ["3,5", "4,90", "1,30"]], "shown": 0 }
+        ],
+        "steps": [
+          {
+            "title": "Une bille sur une pente",
+            "text": "On lâche une bille, **sans la pousser**, en haut d'une pente douce graduée en mètres : elle part **de l'arrêt**. On la photographie encore **toutes les 0,5 s**.",
+            "focus": ["b"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "La bille part de l'arrêt et descend la pente. Comment seront espacées ses positions successives ?",
+              "choices": ["Régulièrement espacées", "De plus en plus écartées", "De plus en plus serrées"],
+              "answer": 1,
+              "explain": "En descendant, la bille va de plus en plus vite : pendant chaque intervalle de 0,5 s, elle parcourt une distance plus grande que pendant le précédent."
+            }
+          },
+          {
+            "title": "La bille descend (au ralenti)",
+            "text": "Les positions apparaissent toutes les 0,5 s. Au début, elles sont très serrées ; à la fin, très écartées. Le tableau et le graphique se remplissent.",
+            "duration": 7,
+            "do": [
+              { "id": "b", "set": { "label": "" } },
+              { "id": "b", "to": { "x": 82.9, "y": 291.7 }, "at": 0, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 121.5, "y": 297 }, "at": 1, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 185.9, "y": 305.7 }, "at": 2, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 276.1, "y": 317.9 }, "at": 3, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 392, "y": 333.6 }, "at": 4, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 533.7, "y": 352.7 }, "at": 5, "dur": 1, "ease": "lineaire" },
+              { "id": "b", "to": { "x": 701.1, "y": 375.4 }, "at": 6, "dur": 1, "ease": "lineaire" },
+              { "id": "ch", "to": { "value": 3.5 }, "dur": 7, "ease": "lineaire" },
+              { "id": "g", "to": { "progress": 1 }, "dur": 7, "ease": "lineaire" },
+              { "id": "b0", "set": { "hidden": false } },
+              { "id": "t", "set": { "shown": 1 } },
+              { "id": "b1", "set": { "hidden": false }, "at": 1 },
+              { "id": "t", "set": { "shown": 2 }, "at": 1 },
+              { "id": "b2", "set": { "hidden": false }, "at": 2 },
+              { "id": "t", "set": { "shown": 3 }, "at": 2 },
+              { "id": "b3", "set": { "hidden": false }, "at": 3 },
+              { "id": "t", "set": { "shown": 4 }, "at": 3 },
+              { "id": "b4", "set": { "hidden": false }, "at": 4 },
+              { "id": "t", "set": { "shown": 5 }, "at": 4 },
+              { "id": "b5", "set": { "hidden": false }, "at": 5 },
+              { "id": "t", "set": { "shown": 6 }, "at": 5 },
+              { "id": "b6", "set": { "hidden": false }, "at": 6 },
+              { "id": "t", "set": { "shown": 7 }, "at": 6 },
+              { "id": "b7", "set": { "hidden": false }, "at": 6.95 },
+              { "id": "t", "set": { "shown": 8 }, "at": 6.95 }
+            ],
+            "focus": ["b"]
+          },
+          {
+            "title": "Des écarts de plus en plus grands",
+            "text": "Les écarts entre deux images successives valent 0,10 m, puis 0,30 m, 0,50 m, 0,70 m… Ils augmentent : pendant chaque 0,5 s, la bille parcourt une distance plus grande. Elle va **de plus en plus vite** : le mouvement est **accéléré**.",
+            "focus": ["t"]
+          },
+          {
+            "title": "Le graphique n'est plus une droite",
+            "text": "La courbe de la position se **courbe vers le haut** : ce n'est pas une droite. En pointillés, un mouvement uniforme qui ferait le même trajet dans le même temps : sa position, elle, augmente régulièrement.",
+            "do": [ { "id": "g", "set": { "ref": { "points": [[0, 0], [3.5, 4.9]], "label": "uniforme" } } } ],
+            "focus": ["g"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Sur tout le trajet, la vitesse moyenne vaut 4,90 m ÷ 3,5 s = 1,4 m/s. Entre 3,0 s et 3,5 s, la bille va-t-elle plus vite ou moins vite que 1,4 m/s ?",
+              "choices": ["Moins vite que 1,4 m/s", "À peu près à 1,4 m/s", "Plus vite que 1,4 m/s"],
+              "answer": 2,
+              "explain": "Pendant les dernières 0,5 s, elle parcourt 1,30 m : 1,30 ÷ 0,5 = 2,6 m/s, presque deux fois la vitesse moyenne."
+            }
+          },
+          {
+            "title": "Moyenne ou instantanée ?",
+            "text": "Entre 3,0 s et 3,5 s, la bille parcourt **1,30 m** en 0,5 s : v = 1,30 ÷ 0,5 = **2,6 m/s**. La vitesse moyenne sur tout le trajet (1,4 m/s) mélange le début lent et la fin rapide. Pour connaître la vitesse **à un instant**, on calcule une moyenne sur une durée très courte.",
+            "show": ["fl"],
+            "focus": ["fl"]
+          }
+        ],
+        "conclusion": "- Des écarts **de plus en plus grands** sur une chronophotographie : le mouvement est **accéléré**. De plus en plus petits : il est **ralenti**.\n- La vitesse moyenne v = d / t résume tout un trajet ; elle ne dit pas la vitesse à chaque instant.\n\n> La vitesse **instantanée** s'estime par une vitesse moyenne sur une durée très courte : sur les dernières 0,5 s, la bille va déjà à 2,6 m/s environ, contre 1,4 m/s en moyenne sur tout le trajet."
+      }
     },
     {
       "kind": "exemple",
@@ -135,10 +347,52 @@
     },
     {
       "id": "pc-vitesse-labo", "type": "composite", "skill": "pc.mouvement.vitesse", "track": "classe", "role": "labo", "difficulty": 2,
-      "representation": "manipulation", "targets": ["mc:distance-vitesse", "mc:nature-mouvement"], "expectedSeconds": 300,
+      "representation": "visuelle", "targets": ["mc:distance-vitesse", "mc:nature-mouvement"], "expectedSeconds": 300,
       "params": { "v": { "choice": [2, 3, 4, 5] } },
-      "prompt": "La chronophotographie montre un skateur photographié toutes les 0,5 s. Utilise la règle pour mesurer les distances entre positions successives.",
-      "activity": { "widget": "motion-lab", "config": { "mode": "uniforme", "v": "{v}", "dt": 0.5, "n": 8 } },
+      "prompt": "Voici la chronophotographie d'un skateur : sa position a été repérée toutes les 0,5 s, au-dessus d'une règle graduée en mètres. Lis les positions sur la règle pour trouver les distances entre positions successives.",
+      "figure": {
+        "alt": "Chronophotographie : six positions successives du skateur, une toutes les 0,5 s, au-dessus d'une règle graduée en mètres",
+        "w": 640, "h": 160,
+        "frame": { "x": [-0.8, 13.6], "y": [-1.6, 1.2] },
+        "items": [
+          { "type": "segment", "from": [0, -0.2], "to": [13, -0.2], "color": "gris" },
+          { "type": "segment", "from": [0, -0.2], "to": [0, -0.5], "color": "gris" },
+          { "type": "segment", "from": [1, -0.2], "to": [1, -0.5], "color": "gris" },
+          { "type": "segment", "from": [2, -0.2], "to": [2, -0.5], "color": "gris" },
+          { "type": "segment", "from": [3, -0.2], "to": [3, -0.5], "color": "gris" },
+          { "type": "segment", "from": [4, -0.2], "to": [4, -0.5], "color": "gris" },
+          { "type": "segment", "from": [5, -0.2], "to": [5, -0.5], "color": "gris" },
+          { "type": "segment", "from": [6, -0.2], "to": [6, -0.5], "color": "gris" },
+          { "type": "segment", "from": [7, -0.2], "to": [7, -0.5], "color": "gris" },
+          { "type": "segment", "from": [8, -0.2], "to": [8, -0.5], "color": "gris" },
+          { "type": "segment", "from": [9, -0.2], "to": [9, -0.5], "color": "gris" },
+          { "type": "segment", "from": [10, -0.2], "to": [10, -0.5], "color": "gris" },
+          { "type": "segment", "from": [11, -0.2], "to": [11, -0.5], "color": "gris" },
+          { "type": "segment", "from": [12, -0.2], "to": [12, -0.5], "color": "gris" },
+          { "type": "segment", "from": [13, -0.2], "to": [13, -0.5], "color": "gris" },
+          { "type": "text", "x": 0, "y": -0.85, "text": "0", "size": "s" },
+          { "type": "text", "x": 1, "y": -0.85, "text": "1", "size": "s" },
+          { "type": "text", "x": 2, "y": -0.85, "text": "2", "size": "s" },
+          { "type": "text", "x": 3, "y": -0.85, "text": "3", "size": "s" },
+          { "type": "text", "x": 4, "y": -0.85, "text": "4", "size": "s" },
+          { "type": "text", "x": 5, "y": -0.85, "text": "5", "size": "s" },
+          { "type": "text", "x": 6, "y": -0.85, "text": "6", "size": "s" },
+          { "type": "text", "x": 7, "y": -0.85, "text": "7", "size": "s" },
+          { "type": "text", "x": 8, "y": -0.85, "text": "8", "size": "s" },
+          { "type": "text", "x": 9, "y": -0.85, "text": "9", "size": "s" },
+          { "type": "text", "x": 10, "y": -0.85, "text": "10", "size": "s" },
+          { "type": "text", "x": 11, "y": -0.85, "text": "11", "size": "s" },
+          { "type": "text", "x": 12, "y": -0.85, "text": "12", "size": "s" },
+          { "type": "text", "x": 13, "y": -0.85, "text": "13", "size": "s" },
+          { "type": "text", "x": 6.5, "y": -1.35, "text": "règle graduée en mètres", "size": "s" },
+          { "type": "point", "id": "P0", "x": 0, "y": 0.35, "label": "0 s", "pos": "n", "style": "rond" },
+          { "type": "point", "id": "P1", "x": "{v/2}", "y": 0.35, "label": "0,5 s", "pos": "n", "style": "rond" },
+          { "type": "point", "id": "P2", "x": "{v}", "y": 0.35, "label": "1 s", "pos": "n", "style": "rond" },
+          { "type": "point", "id": "P3", "x": "{1.5*v}", "y": 0.35, "label": "1,5 s", "pos": "n", "style": "rond" },
+          { "type": "point", "id": "P4", "x": "{2*v}", "y": 0.35, "label": "2 s", "pos": "n", "style": "rond" },
+          { "type": "point", "id": "P5", "x": "{2.5*v}", "y": 0.35, "label": "2,5 s", "pos": "n", "style": "rond" }
+        ]
+      },
       "parts": [
         { "type": "numeric", "prompt": "Distance entre deux positions successives (avec l'unité) :", "answer": "v/2", "unit": "m", "rel": 0.05 },
         { "type": "numeric", "prompt": "Vitesse du skateur (avec l'unité) :", "answer": "v", "unit": "m/s", "rel": 0.05,
@@ -146,7 +400,7 @@
         { "type": "text", "prompt": "Comment qualifies-tu ce mouvement : uniforme, accéléré ou ralenti ?", "accept": ["uniforme", "mouvement uniforme", "rectiligne uniforme", "mouvement rectiligne uniforme"],
           "misconceptions": [ { "answer": "accéléré", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Les positions sont également espacées : l'objet parcourt la même distance pendant chaque intervalle de temps, le mouvement est uniforme." }, { "answer": "ralenti", "id": "mc:nature-mouvement", "error": "lecture", "feedback": "Les positions sont également espacées : le mouvement est uniforme." } ] }
       ],
-      "hints": ["Mesure plusieurs écarts : sont-ils égaux ?", "Durée entre deux images : 0,5 s.", "v = (distance entre deux images) / 0,5 s."],
+      "hints": ["Lis sur la règle la position de chaque point, puis calcule plusieurs écarts : sont-ils égaux ?", "Durée entre deux images : 0,5 s.", "v = (distance entre deux images) / 0,5 s."],
       "solution": "Les positions sont espacées de {v/2} m, toutes égales : le mouvement est uniforme. $v = {v/2} / 0,5 = {v}$ m/s, soit {3.6*v} km/h.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{v/2} m" }, { "value": "{v} m/s" }, { "value": "uniforme" } ] }, "expect": "correct" },

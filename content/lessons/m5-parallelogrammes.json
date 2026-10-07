@@ -1,0 +1,764 @@
+{
+  "id": "m5-parallelogrammes",
+  "chapter": "m5-ch-parallelogrammes",
+  "title": "Parallélogrammes, rectangles, losanges et carrés",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.geo.parallelogramme", "m5.geo.parallelogrammes-particuliers"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 55,
+  "summary": "Un parallélogramme a ses côtés opposés parallèles ; ses côtés opposés ont la même longueur et ses diagonales se coupent en leur milieu. Avec un angle droit ou deux côtés consécutifs égaux, il devient rectangle, losange… ou carré. On apprend à construire ces figures et à les reconnaître par leurs propriétés.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un coup de ciseaux",
+      "body": "Plie une feuille en deux, puis encore en deux pour faire une croix de plis. Coupe le coin plié en biais, d'un seul coup de ciseaux, puis déplie : tu obtiens un quadrilatère.\n\nRecommence en changeant l'angle de la coupe. Obtiens-tu toujours la même famille de figures ? Pourquoi ? Et comment couper pour obtenir… un carré ?",
+      "figure": {
+        "alt": "Une feuille dépliée avec deux plis en croix en pointillés et le quadrilatère obtenu par le coup de ciseaux",
+        "w": 360, "h": 270,
+        "frame": { "x": [0, 8], "y": [0, 6] },
+        "items": [
+          { "type": "rect", "x": 0.3, "y": 0.3, "w": 7.4, "h": 5.4, "color": "gris" },
+          { "type": "line", "through": [[0, 3], [8, 3]], "dashed": true, "color": "gris" },
+          { "type": "line", "through": [[4, 0], [4, 6]], "dashed": true, "color": "gris" },
+          { "type": "polygon", "points": [[1, 3], [4, 5], [7, 3], [4, 1]], "fill": "orange" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "▱",
+          "title": "Définition",
+          "body": "Un **parallélogramme** est un quadrilatère dont les côtés opposés sont **parallèles** deux à deux. On le nomme en suivant le tour : dans ABCD, [AB] et [CD] sont des côtés opposés, [AC] et [BD] sont les **diagonales**.",
+          "reveal": { "question": "Devine : ABCD et ABDC désignent-ils le même quadrilatère ?", "answer": "Non ! Dans ABDC, on va de B à D puis de D à C : ce ne sont pas les mêmes côtés. L'ordre des lettres compte." },
+          "figure": {
+            "alt": "Un parallélogramme ABCD avec ses côtés opposés parallèles et ses deux diagonales en pointillés",
+            "w": 400, "h": 200,
+            "frame": { "x": [0, 10], "y": [0, 5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+              { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "color": "bleu" },
+              { "type": "segment", "from": "D", "to": "C", "color": "bleu" },
+              { "type": "segment", "from": "A", "to": "D", "color": "rouge" },
+              { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+              { "type": "segment", "from": "A", "to": "C", "dashed": true },
+              { "type": "segment", "from": "B", "to": "D", "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Côtés et angles",
+          "body": "Dans un parallélogramme, les côtés opposés ont la **même longueur** et les angles opposés sont **égaux**. Deux angles consécutifs (comme en A et en B) sont **supplémentaires** : leur somme vaut 180°.",
+          "figure": {
+            "alt": "Un parallélogramme ABCD avec les côtés opposés codés égaux et les angles opposés codés égaux",
+            "w": 400, "h": 200,
+            "frame": { "x": [0, 10], "y": [0, 5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+              { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+              { "type": "segment", "from": "D", "to": "C", "marks": 1 },
+              { "type": "segment", "from": "A", "to": "D", "marks": 2 },
+              { "type": "segment", "from": "B", "to": "C", "marks": 2 },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "D", "marks": 1 },
+              { "type": "angle", "vertex": "C", "from": "D", "to": "B", "marks": 1 },
+              { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+              { "type": "angle", "vertex": "D", "from": "A", "to": "C", "marks": 2 }
+            ]
+          }
+        },
+        {
+          "emoji": "✖️",
+          "title": "Les diagonales",
+          "body": "Les diagonales d'un parallélogramme se coupent en leur **milieu** O : OA = OC et OB = OD. O est le **centre de symétrie** du parallélogramme. Attention : les diagonales n'ont pas forcément la même longueur, et ne sont pas forcément perpendiculaires.",
+          "figure": {
+            "alt": "Un parallélogramme ABCD dont les diagonales se coupent en O, avec OA = OC et OB = OD codés",
+            "w": 400, "h": 200,
+            "frame": { "x": [0, 10], "y": [0, 5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+              { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+              { "type": "point", "id": "O", "x": 5, "y": 2.5, "style": "rond", "pos": "n" },
+              { "type": "segment", "from": "A", "to": "O", "marks": 1 },
+              { "type": "segment", "from": "O", "to": "C", "marks": 1 },
+              { "type": "segment", "from": "B", "to": "O", "marks": 2 },
+              { "type": "segment", "from": "O", "to": "D", "marks": 2 }
+            ]
+          }
+        },
+        {
+          "emoji": "🔍",
+          "title": "Le reconnaître",
+          "body": "Un quadrilatère non croisé est un parallélogramme si l'une de ces conditions est vérifiée : ses côtés opposés sont parallèles deux à deux ; ses côtés opposés ont la même longueur deux à deux ; ses diagonales se coupent en leur milieu ; deux côtés opposés sont parallèles **et** de même longueur.",
+          "example": "Pour construire un parallélogramme au compas, on reporte les longueurs des côtés opposés.",
+          "figure": {
+            "alt": "Deux segments [AC] et [BD] qui se coupent en leur milieu O, et le quadrilatère ABCD tracé en pointillés",
+            "w": 400, "h": 220,
+            "frame": { "x": [0, 9], "y": [-1.2, 4.3] },
+            "items": [
+              { "type": "point", "id": "A", "x": 0.5, "y": 1.5, "pos": "w" },
+              { "type": "point", "id": "C", "x": 8.5, "y": 1.5, "pos": "e" },
+              { "type": "point", "id": "B", "x": 3.25, "y": -0.665, "pos": "s" },
+              { "type": "point", "id": "D", "x": 5.75, "y": 3.665, "pos": "n" },
+              { "type": "point", "id": "O", "x": 4.5, "y": 1.5, "style": "rond", "pos": "n" },
+              { "type": "segment", "from": "A", "to": "O", "marks": 1 },
+              { "type": "segment", "from": "O", "to": "C", "marks": 1 },
+              { "type": "segment", "from": "B", "to": "O", "marks": 2 },
+              { "type": "segment", "from": "O", "to": "D", "marks": 2 },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "⬛",
+          "title": "Rectangle, losange, carré",
+          "body": "Un **rectangle** est un parallélogramme qui a un angle droit. Un **losange** est un parallélogramme qui a deux côtés consécutifs de même longueur. Un **carré** est à la fois un rectangle et un losange.",
+          "reveal": { "question": "Devine : un carré est-il un rectangle ? Est-il un losange ?", "answer": "Oui, les deux ! Il a quatre angles droits (c'est un rectangle) et quatre côtés égaux (c'est un losange)." },
+          "figure": {
+            "alt": "Trois figures côte à côte : un rectangle avec ses diagonales de même longueur, un losange avec ses diagonales perpendiculaires, un carré avec ses diagonales",
+            "w": 480, "h": 160,
+            "frame": { "x": [0, 15], "y": [0, 5] },
+            "items": [
+              { "type": "polygon", "points": [[0.5, 1], [4.5, 1], [4.5, 3.5], [0.5, 3.5]], "fill": "bleu" },
+              { "type": "segment", "from": [0.5, 1], "to": [4.5, 3.5], "dashed": true },
+              { "type": "segment", "from": [4.5, 1], "to": [0.5, 3.5], "dashed": true },
+              { "type": "angle", "vertex": [0.5, 1], "from": [4.5, 1], "to": [0.5, 3.5], "right": true },
+              { "type": "polygon", "points": [[7.5, 0.5], [9, 2.5], [7.5, 4.5], [6, 2.5]], "fill": "orange" },
+              { "type": "segment", "from": [7.5, 0.5], "to": [7.5, 4.5], "dashed": true },
+              { "type": "segment", "from": [6, 2.5], "to": [9, 2.5], "dashed": true },
+              { "type": "angle", "vertex": [7.5, 2.5], "from": [9, 2.5], "to": [7.5, 4.5], "right": true },
+              { "type": "polygon", "points": [[11, 1], [14, 1], [14, 4], [11, 4]], "fill": "vert" },
+              { "type": "segment", "from": [11, 1], "to": [14, 4], "dashed": true },
+              { "type": "segment", "from": [14, 1], "to": [11, 4], "dashed": true },
+              { "type": "text", "x": 2.5, "y": 0.3, "text": "rectangle", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": 9.6, "y": 0.6, "text": "losange", "size": "s", "anchor": "start" },
+              { "type": "text", "x": 12.5, "y": 0.3, "text": "carré", "size": "s", "anchor": "middle" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔑",
+          "title": "En résumé : les diagonales disent tout",
+          "body": "Pour un **parallélogramme** : diagonales de même longueur → **rectangle** ; diagonales perpendiculaires → **losange** ; les deux → **carré**. Attention : il faut d'abord un parallélogramme ! Un cerf-volant a des diagonales perpendiculaires… sans être un losange.",
+          "figure": {
+            "alt": "Un cerf-volant dont les diagonales sont perpendiculaires mais ne se coupent pas en leur milieu",
+            "w": 240, "h": 260,
+            "frame": { "x": [0, 6], "y": [0, 6.5] },
+            "caption": "Un cerf-volant : diagonales perpendiculaires, mais pas un losange.",
+            "items": [
+              { "type": "polygon", "points": [[3, 6], [1, 4.5], [3, 0.5], [5, 4.5]], "fill": "maths" },
+              { "type": "segment", "from": [3, 6], "to": [3, 0.5], "dashed": true },
+              { "type": "segment", "from": [1, 4.5], "to": [5, 4.5], "dashed": true },
+              { "type": "angle", "vertex": [3, 4.5], "from": [5, 4.5], "to": [3, 6], "right": true }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : construire au compas",
+      "steps": [
+        { "text": "On veut construire un parallélogramme ABCD avec AB = 5 cm, BC = 3 cm et un angle ABC de 120°." },
+        { "text": "On trace [AB] de 5 cm. Avec le rapporteur, on trace en B une demi-droite qui fait un angle de 120° avec [BA], et on y place C à 3 cm de B." },
+        { "text": "D doit vérifier CD = AB = 5 cm et AD = BC = 3 cm (côtés opposés de même longueur). On trace un arc de centre C et de rayon 5 cm, puis un arc de centre A et de rayon 3 cm.", "math": "CD = 5 cm et AD = 3 cm" },
+        {
+          "text": "D est le point d'intersection des deux arcs, du même côté que C. On trace [CD] et [DA]. ABCD a ses côtés opposés de même longueur deux à deux et n'est pas croisé : c'est bien un parallélogramme.",
+          "figure": {
+            "alt": "Le parallélogramme ABCD construit, avec l'angle de 120° en B et les deux arcs de cercle qui se coupent en D",
+            "w": 400, "h": 220,
+            "frame": { "x": [0, 9], "y": [0, 5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 7.5, "y": 3.598, "pos": "ne" },
+              { "type": "point", "id": "D", "x": 2.5, "y": 3.598, "pos": "nw" },
+              { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "label": "5 cm" },
+              { "type": "segment", "from": "B", "to": "C", "label": "3 cm" },
+              { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "120°" },
+              { "type": "arc", "center": "C", "r": 5, "start": 168, "end": 192, "color": "gris" },
+              { "type": "arc", "center": "A", "r": 3, "start": 48, "end": 72, "color": "gris" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Côtés, diagonales, angles : utilise les propriétés… et lis bien l'ordre des lettres.",
+      "exercises": ["m5-parallelogrammes-longueurs", "m5-parallelogrammes-proprietes", "m5-parallelogrammes-quatrieme-sommet", "m5-parallelogrammes-nature", "m5-parallelogrammes-construction", "m5-parallelogrammes-carre-rectangle"]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi de justifier",
+      "exercises": ["m5-parallelogrammes-justifier"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : les angles du parallélogramme",
+      "exercises": ["m5-parallelogrammes-angles"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : l'atelier du menuisier",
+      "body": "Comment un menuisier vérifie-t-il, sans équerre géante, qu'un cadre de fenêtre est bien rectangle ?",
+      "exercises": ["m5-parallelogrammes-menuisier"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Un **parallélogramme** a ses côtés opposés parallèles ; ses côtés opposés ont la même longueur et ses diagonales se coupent en leur milieu (centre de symétrie). **Rectangle** = parallélogramme + un angle droit (diagonales de même longueur). **Losange** = parallélogramme + deux côtés consécutifs égaux (diagonales perpendiculaires). **Carré** = rectangle et losange.\n\n- **Diagonales toujours égales ?** Non : seulement pour le rectangle (et le carré).\n- **Mal nommer.** Dans ABCD, les sommets se suivent : [AC] et [BD] sont les diagonales.\n- **Oublier qu'un carré est aussi un rectangle et un losange.**\n- **Conclure trop vite.** Des diagonales perpendiculaires ne suffisent pas pour un losange : il faut d'abord un parallélogramme."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des parallélogrammes à reconnaître et à construire dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un parallélogramme caché dans n'importe quel quadrilatère, et l'aire d'un losange.",
+      "exercises": ["m5-parallelogrammes-milieux", "m5-parallelogrammes-losange-aire"]
+    },
+    "expert": {
+      "intro": "Facultatif : compter tous les parallélogrammes d'une figure, et construire un carré « penché » sur un quadrillage.",
+      "exercises": ["m5-parallelogrammes-compter", "m5-parallelogrammes-carre-penche"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-parallelogrammes-longueurs", "type": "composite", "skill": "m5.geo.parallelogramme", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:cote-oppose", "mc:diagonale-entiere", "mc:diagonales-egales"], "expectedSeconds": 180,
+      "params": { "a": { "int": [4, 9] }, "b": { "int": [3, 7] }, "e": { "int": [3, 15] } },
+      "constraints": ["a != b", "e > a - b", "e > b - a", "e < a + b"],
+      "prompt": "ABCD est un parallélogramme de centre O. AB = {a} cm, BC = {b} cm et la diagonale [AC] mesure {e} cm.",
+      "figure": {
+        "alt": "Figure à main levée : un parallélogramme ABCD, ses diagonales qui se coupent en O, avec les longueurs AB, BC et AC indiquées",
+        "w": 400, "h": 200,
+        "frame": { "x": [0, 10], "y": [0, 5] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "point", "id": "O", "x": 5, "y": 2.5, "style": "rond", "pos": "n" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{b} cm" },
+          { "type": "segment", "from": "A", "to": "C", "dashed": true, "label": "{e} cm" },
+          { "type": "segment", "from": "B", "to": "D", "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Longueur CD (en cm) :", "answer": "a",
+          "misconceptions": [ { "answer": "b", "id": "mc:cote-oppose", "error": "lecture", "feedback": "Dans ABCD, on suit le tour : [CD] est le côté opposé à [AB]. Les côtés opposés ont la même longueur : CD = AB = {a} cm." } ] },
+        { "type": "numeric", "prompt": "Longueur AD (en cm) :", "answer": "b",
+          "misconceptions": [ { "answer": "a", "id": "mc:cote-oppose", "error": "lecture", "feedback": "[AD] est opposé à [BC] : AD = BC = {b} cm." } ] },
+        { "type": "numeric", "prompt": "Longueur OA (en cm) :", "answer": "e/2",
+          "misconceptions": [ { "answer": "e", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "{e} cm, c'est toute la diagonale [AC]. Les diagonales se coupent en leur milieu O : OA = {e} ÷ 2 = {e/2} cm." } ] },
+        { "type": "text", "prompt": "Peut-on connaître la longueur BD avec ces seules informations ? Réponds par oui ou par non.", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:diagonales-egales", "error": "notion", "feedback": "Dans un parallélogramme quelconque, les deux diagonales n'ont pas la même longueur : BD n'est pas forcément égale à {e} cm. Ce n'est vrai que pour un rectangle." } ] }
+      ],
+      "hints": ["Dans ABCD, les côtés opposés sont [AB] et [CD], [BC] et [DA].", "O est le milieu de chaque diagonale.", "Les diagonales d'un parallélogramme ont-elles toujours la même longueur ?"],
+      "solution": "Côtés opposés de même longueur : CD = AB = {a} cm et AD = BC = {b} cm. O est le milieu de [AC] : OA = {e/2} cm. En revanche, on ne connaît pas BD : les diagonales d'un parallélogramme n'ont pas forcément la même longueur.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{e/2}" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{e}" }, { "value": "non" } ] }, "expect": "mc:diagonale-entiere" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{e/2}" }, { "value": "oui" } ] }, "expect": "mc:diagonales-egales" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-proprietes", "type": "categorize", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.geo.parallelogramme"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:diagonales-egales", "mc:diagonales-perp"], "expectedSeconds": 240,
+      "prompt": "Range chaque propriété dans la famille la plus grande pour laquelle elle est toujours vraie. Observe le parallélogramme « penché » de la figure pour t'aider.",
+      "figure": {
+        "alt": "Un parallélogramme penché ABCD avec ses deux diagonales en pointillés",
+        "w": 400, "h": 200,
+        "frame": { "x": [0, 10], "y": [0, 5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "C", "dashed": true },
+          { "type": "segment", "from": "B", "to": "D", "dashed": true }
+        ]
+      },
+      "categories": [
+        { "id": "tous", "label": "Tous les parallélogrammes" },
+        { "id": "rect", "label": "Les rectangles (et donc les carrés)" },
+        { "id": "los", "label": "Les losanges (et donc les carrés)" },
+        { "id": "carre", "label": "Seulement les carrés" }
+      ],
+      "items": [
+        { "id": "p1", "label": "Les côtés opposés sont parallèles.", "category": "tous" },
+        { "id": "p2", "label": "Les côtés opposés ont la même longueur.", "category": "tous" },
+        { "id": "p3", "label": "Les diagonales se coupent en leur milieu.", "category": "tous" },
+        { "id": "p4", "label": "Les diagonales ont la même longueur.", "category": "rect" },
+        { "id": "p5", "label": "Les quatre angles sont droits.", "category": "rect" },
+        { "id": "p6", "label": "Les diagonales sont perpendiculaires.", "category": "los" },
+        { "id": "p7", "label": "Les quatre côtés ont la même longueur.", "category": "los" },
+        { "id": "p8", "label": "Les diagonales sont perpendiculaires et de même longueur.", "category": "carre" }
+      ],
+      "misconceptions": [
+        { "item": "p4", "category": "tous", "id": "mc:diagonales-egales", "error": "notion", "feedback": "Regarde le parallélogramme de la figure : une diagonale est longue, l'autre courte. Des diagonales de même longueur, c'est le cas du rectangle." },
+        { "item": "p6", "category": "tous", "id": "mc:diagonales-perp", "error": "notion", "feedback": "Sur la figure, les diagonales ne se coupent pas à angle droit. Des diagonales perpendiculaires, c'est le cas du losange." },
+        { "item": "p8", "category": "rect", "id": "mc:carre-seul", "error": "notion", "feedback": "Un rectangle qui n'est pas un carré n'a pas de diagonales perpendiculaires. Les deux propriétés ensemble, c'est le carré." }
+      ],
+      "hints": ["Pour chaque propriété, cherche un parallélogramme qui ne la vérifie pas : si tu en trouves un, elle n'est pas vraie pour tous.", "Rectangle : penser aux angles droits et aux diagonales égales.", "Losange : penser aux côtés égaux et aux diagonales perpendiculaires."],
+      "solution": "Tous les parallélogrammes : côtés opposés parallèles et de même longueur, diagonales de même milieu. Rectangles : quatre angles droits, diagonales de même longueur. Losanges : quatre côtés égaux, diagonales perpendiculaires. Carrés seulement : diagonales perpendiculaires ET de même longueur.",
+      "selfTest": [
+        { "response": { "assign": { "p1": "tous", "p2": "tous", "p3": "tous", "p4": "rect", "p5": "rect", "p6": "los", "p7": "los", "p8": "carre" } }, "expect": "correct" },
+        { "response": { "assign": { "p1": "tous", "p2": "tous", "p3": "tous", "p4": "tous", "p5": "rect", "p6": "los", "p7": "los", "p8": "carre" } }, "expect": "mc:diagonales-egales" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-quatrieme-sommet", "type": "graph", "skill": "m5.geo.parallelogramme", "skills": ["m5.geo.reperage-plan"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:nommer-ordre", "notion"], "expectedSeconds": 150,
+      "params": { "a": { "int": [1, 2] }, "b": { "int": [1, 3] }, "u": { "int": [3, 5] }, "v": { "int": [0, 2] }, "s": { "int": [1, 3] }, "t": { "int": [3, 4] } },
+      "prompt": "Dans le quadrillage, A({a} ; {b}), B({a+u} ; {b+v}) et C({a+u+s} ; {b+v+t}). Place le point D pour que ABCD soit un parallélogramme.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 11 et de 0 à 10 avec les points A, B et C reliés par les segments [AB] et [BC]",
+        "w": 374, "h": 340,
+        "frame": { "x": [0, 11], "y": [0, 10], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a+u}", "y": "{b+v}", "pos": "se" },
+          { "type": "point", "id": "C", "x": "{a+u+s}", "y": "{b+v+t}", "pos": "ne" },
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "C" }
+        ]
+      },
+      "xRange": [0, 11], "yRange": [0, 10], "gridStep": 1,
+      "expectedPoints": [["a + s", "b + t"]],
+      "hints": ["Dans ABCD, les sommets se suivent : [AD] est parallèle à [BC] et de même longueur.", "Pour aller de B à C, on se déplace de {s} vers la droite et de {t} vers le haut. Fais le même déplacement en partant de A.", "Vérifie : les diagonales [AC] et [BD] doivent avoir le même milieu."],
+      "solution": "De B à C : {s} vers la droite et {t} vers le haut. Même déplacement depuis A : D({a+s} ; {b+t}). Vérification : [AC] et [BD] ont le même milieu.",
+      "selfTest": [
+        { "response": { "points": [["{a+s}", "{b+t}"]] }, "expect": "correct" },
+        { "response": { "points": [["{a+2*u+s}", "{b+2*v+t}"]] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-nature", "type": "match", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.geo.parallelogramme"], "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:losange-carre", "mc:cerf-volant"], "expectedSeconds": 210,
+      "prompt": "On décrit cinq quadrilatères (non croisés). Associe chaque description à la conclusion la plus précise que l'on peut en tirer.",
+      "leftTitle": "Ce que l'on sait", "rightTitle": "Ce que l'on peut conclure",
+      "left": [
+        { "id": "n1", "label": "Ses côtés opposés sont parallèles deux à deux." },
+        { "id": "n2", "label": "C'est un parallélogramme qui a un angle droit." },
+        { "id": "n3", "label": "Ses quatre côtés ont la même longueur." },
+        { "id": "n4", "label": "Ses diagonales se coupent en leur milieu, ont la même longueur et sont perpendiculaires." },
+        { "id": "n5", "label": "Ses diagonales sont perpendiculaires (on ne sait rien d'autre)." }
+      ],
+      "right": [
+        { "id": "q1", "label": "c'est un parallélogramme" },
+        { "id": "q2", "label": "c'est un rectangle" },
+        { "id": "q3", "label": "c'est un losange" },
+        { "id": "q4", "label": "c'est un carré" },
+        { "id": "q5", "label": "on ne peut pas conclure" }
+      ],
+      "pairs": { "n1": "q1", "n2": "q2", "n3": "q3", "n4": "q4", "n5": "q5" },
+      "misconceptions": [
+        { "pair": ["n3", "q4"], "id": "mc:losange-carre", "error": "notion", "feedback": "Quatre côtés égaux : c'est un losange. Il peut être « aplati », sans angle droit. Pour un carré, il faut en plus un angle droit." },
+        { "pair": ["n5", "q3"], "id": "mc:cerf-volant", "error": "raisonnement", "feedback": "Un cerf-volant a lui aussi des diagonales perpendiculaires, sans être un losange ! Il faut d'abord savoir que les diagonales se coupent en leur milieu (parallélogramme)." },
+        { "pair": ["n2", "q4"], "id": "mc:rectangle-carre", "error": "notion", "feedback": "Un parallélogramme avec un angle droit est un rectangle ; ses côtés ne sont pas forcément tous égaux." }
+      ],
+      "hints": ["Commence par les cas les plus simples : la définition du parallélogramme, du rectangle, du losange.", "Pour un carré, il faut être à la fois rectangle et losange.", "Pense au cerf-volant : ses diagonales sont perpendiculaires, est-ce un losange ?"],
+      "solution": "Côtés opposés parallèles → parallélogramme. Parallélogramme + angle droit → rectangle. Quatre côtés égaux → losange. Diagonales de même milieu, même longueur et perpendiculaires → carré. Diagonales seulement perpendiculaires → on ne peut pas conclure (cerf-volant possible).",
+      "selfTest": [
+        { "response": { "pairs": { "n1": "q1", "n2": "q2", "n3": "q3", "n4": "q4", "n5": "q5" } }, "expect": "correct" },
+        { "response": { "pairs": { "n1": "q1", "n2": "q2", "n3": "q4", "n4": "q3", "n5": "q5" } }, "expect": "mc:losange-carre" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-construction", "type": "order", "skill": "m5.geo.parallelogramme", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "expectedSeconds": 150,
+      "prompt": "On construit un parallélogramme ABCD dont les diagonales mesurent AC = 8 cm et BD = 5 cm. La figure montre le résultat. Remets les étapes dans l'ordre.",
+      "figure": {
+        "alt": "Deux segments [AC] et [BD] qui se coupent en leur milieu O, et le quadrilatère ABCD",
+        "w": 400, "h": 245,
+        "frame": { "x": [0, 9], "y": [-1.2, 4.3] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0.5, "y": 1.5, "pos": "w" },
+          { "type": "point", "id": "C", "x": 8.5, "y": 1.5, "pos": "e" },
+          { "type": "point", "id": "B", "x": 3.25, "y": -0.665, "pos": "s" },
+          { "type": "point", "id": "D", "x": 5.75, "y": 3.665, "pos": "n" },
+          { "type": "point", "id": "O", "x": 4.5, "y": 1.5, "style": "rond", "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "O", "marks": 1 },
+          { "type": "segment", "from": "O", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "B", "to": "O", "marks": 2 },
+          { "type": "segment", "from": "O", "to": "D", "marks": 2 }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        { "id": "s1", "label": "Je trace le segment [AC] de 8 cm et je place son milieu O." },
+        { "id": "s2", "label": "Je trace une droite qui passe par O (autre que la droite (AC))." },
+        { "id": "s3", "label": "Sur cette droite, je place B et D de part et d'autre de O, avec OB = OD = 2,5 cm." },
+        { "id": "s4", "label": "Je trace les côtés [AB], [BC], [CD] et [DA]." },
+        { "id": "s5", "label": "Je justifie : les diagonales [AC] et [BD] se coupent en leur milieu, donc ABCD est un parallélogramme." }
+      ],
+      "hints": ["On part d'une diagonale et de son milieu.", "La deuxième diagonale doit avoir le même milieu O : 5 ÷ 2 = 2,5 cm de chaque côté.", "La justification vient à la fin, une fois la figure tracée."],
+      "solution": "1. [AC] de 8 cm et son milieu O. 2. Une droite passant par O. 3. B et D sur cette droite, à 2,5 cm de O de chaque côté. 4. On trace les côtés. 5. Les diagonales ont le même milieu : ABCD est un parallélogramme.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5"] }, "expect": "correct" },
+        { "response": { "order": ["s1", "s2", "s3", "s5", "s4"] }, "expect": "partiel" },
+        { "response": { "order": ["s5", "s4", "s3", "s2", "s1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-carre-rectangle", "type": "qcm", "skill": "m5.geo.parallelogrammes-particuliers", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:diagonales-perp", "mc:rectangle-losange"], "expectedSeconds": 45,
+      "prompt": "Vérification rapide : laquelle de ces affirmations est vraie ?",
+      "figure": {
+        "alt": "Un carré avec ses quatre angles droits et ses quatre côtés codés égaux",
+        "w": 200, "h": 200,
+        "frame": { "x": [0, 5], "y": [0, 5] },
+        "items": [
+          { "type": "polygon", "points": [[1, 1], [4, 1], [4, 4], [1, 4]], "fill": "vert" },
+          { "type": "segment", "from": [1, 1], "to": [4, 1], "marks": 1 },
+          { "type": "segment", "from": [4, 1], "to": [4, 4], "marks": 1 },
+          { "type": "segment", "from": [4, 4], "to": [1, 4], "marks": 1 },
+          { "type": "segment", "from": [1, 4], "to": [1, 1], "marks": 1 },
+          { "type": "angle", "vertex": [1, 1], "from": [4, 1], "to": [1, 4], "right": true },
+          { "type": "angle", "vertex": [4, 4], "from": [1, 4], "to": [4, 1], "right": true }
+        ]
+      },
+      "choices": [
+        { "text": "Un carré est un rectangle particulier.", "correct": true, "feedback": "Oui : un carré a quatre angles droits, c'est donc un rectangle (et c'est aussi un losange)." },
+        { "text": "Un rectangle est un losange particulier.", "correct": false, "error": "notion", "misconception": "mc:rectangle-losange", "feedback": "Non : un rectangle n'a pas forcément ses quatre côtés égaux." },
+        { "text": "Un losange a toujours un angle droit.", "correct": false, "error": "notion", "misconception": "mc:losange-carre", "feedback": "Non : un losange peut être très « aplati ». Avec un angle droit, ce serait un carré." },
+        { "text": "Les diagonales d'un parallélogramme sont toujours perpendiculaires.", "correct": false, "error": "notion", "misconception": "mc:diagonales-perp", "feedback": "Non : c'est vrai pour le losange (et le carré), pas pour tous les parallélogrammes." }
+      ],
+      "hints": ["Pense aux définitions : rectangle = un angle droit, losange = côtés égaux."],
+      "solution": "Un carré a quatre angles droits : c'est un rectangle. C'est aussi un losange, car ses quatre côtés sont égaux.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [3] }, "expect": "mc:diagonales-perp" } ]
+    },
+    {
+      "id": "m5-parallelogrammes-justifier", "type": "open", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.geo.parallelogramme", "m4.raisonner.preuve"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 420, "minWords": 25,
+      "prompt": "Les diagonales [EG] et [FH] du quadrilatère EFGH se coupent en leur milieu I, et elles mesurent toutes les deux 6 cm. Quelle est la nature de EFGH ? Justifie en deux étapes, avec des phrases du type « Comme …, alors … ».",
+      "figure": {
+        "alt": "Deux segments [EG] et [FH] de même longueur qui se coupent en leur milieu I, et le quadrilatère EFGH",
+        "w": 360, "h": 225,
+        "frame": { "x": [0, 8], "y": [0, 5] },
+        "items": [
+          { "type": "point", "id": "E", "x": 1.402, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "F", "x": 6.598, "y": 1, "pos": "se" },
+          { "type": "point", "id": "G", "x": 6.598, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 1.402, "y": 4, "pos": "nw" },
+          { "type": "point", "id": "I", "x": 4, "y": 2.5, "style": "rond", "pos": "n" },
+          { "type": "polygon", "points": ["E", "F", "G", "H"], "dashed": true },
+          { "type": "segment", "from": "E", "to": "I", "marks": 1 },
+          { "type": "segment", "from": "I", "to": "G", "marks": 1 },
+          { "type": "segment", "from": "F", "to": "I", "marks": 1 },
+          { "type": "segment", "from": "I", "to": "H", "marks": 1 }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "Étape 1 : les diagonales se coupent en leur milieu, donc EFGH est un parallélogramme", "keywords": [["parallelogramme"]] },
+        { "id": "c2", "label": "Étape 2 : ce parallélogramme a des diagonales de même longueur, donc c'est un rectangle", "keywords": [["rectangle"]] },
+        { "id": "c3", "label": "J'écris chaque étape sous la forme « Comme…, alors… » (ou « …, donc … »)", "keywords": [["comme", "donc", "alors"]] }
+      ],
+      "models": [
+        "Comme les diagonales [EG] et [FH] se coupent en leur milieu I, alors EFGH est un parallélogramme. Comme ce parallélogramme a des diagonales de même longueur (6 cm), alors c'est un rectangle.",
+        "Les diagonales de EFGH ont le même milieu I, donc EFGH est un parallélogramme. De plus EG = FH = 6 cm : un parallélogramme dont les diagonales ont la même longueur est un rectangle. Donc EFGH est un rectangle. On ne sait pas si elles sont perpendiculaires, donc on ne peut pas dire que c'est un carré."
+      ],
+      "hints": ["Première étape : que permet de dire « les diagonales se coupent en leur milieu » ?", "Deuxième étape : quel parallélogramme particulier a des diagonales de même longueur ?", "Peut-on dire que c'est un carré ? Que faudrait-il savoir en plus ?"],
+      "solution": "Les diagonales se coupent en leur milieu : EFGH est un parallélogramme. Ses diagonales ont la même longueur : c'est un rectangle. (Pour un carré, il faudrait aussi des diagonales perpendiculaires.)",
+      "selfTest": [ { "response": { "text": "Comme les diagonales se coupent en leur milieu, alors EFGH est un parallélogramme. Comme ses diagonales ont la même longueur, alors c'est un rectangle." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-parallelogrammes-angles", "type": "composite", "skill": "m5.geo.parallelogramme", "skills": ["m5.triangle.angles"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:angles-opposes", "mc:angles-consecutifs"], "expectedSeconds": 240,
+      "params": { "a": { "int": [50, 80] } },
+      "prompt": "ABCD est un parallélogramme et l'angle DAB mesure {a}°.",
+      "figure": {
+        "alt": "Un parallélogramme ABCD avec la mesure de l'angle en A indiquée",
+        "w": 420, "h": 200,
+        "frame": { "x": [0, 9.5], "y": [0, 4.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{7+3*cos(a)}", "y": "{1+3*sin(a)}", "pos": "ne" },
+          { "type": "point", "id": "D", "x": "{1+3*cos(a)}", "y": "{1+3*sin(a)}", "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "D", "label": "{a}°" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Mesure de l'angle BCD (en degrés) :", "answer": "a",
+          "misconceptions": [ { "answer": "180 - a", "id": "mc:angles-opposes", "error": "notion", "feedback": "Les angles en A et en C sont opposés : le centre de symétrie du parallélogramme envoie l'un sur l'autre. Ils sont égaux : {a}°." } ] },
+        { "type": "numeric", "prompt": "Mesure de l'angle ABC (en degrés) :", "answer": "180 - a",
+          "misconceptions": [
+            { "answer": "a", "id": "mc:angles-consecutifs", "error": "notion", "feedback": "Les angles en A et en B ne sont pas opposés mais consécutifs : ils sont supplémentaires. 180 − {a} = {180-a}°." },
+            { "answer": 90, "id": "mc:angle-droit", "error": "lecture", "feedback": "Un parallélogramme n'a un angle droit que s'il est rectangle. Ici, l'angle en B vaut 180 − {a} = {180-a}°." }
+          ] },
+        { "type": "numeric", "prompt": "Somme des quatre angles du parallélogramme (en degrés) :", "answer": 360,
+          "misconceptions": [ { "answer": 180, "id": "mc:somme-quadrilatere", "error": "notion", "feedback": "180°, c'est la somme des angles d'un triangle. Ici : {a} + {180-a} + {a} + {180-a} = 360°." } ] }
+      ],
+      "hints": ["Le demi-tour autour du centre du parallélogramme échange A et C.", "(AD) et (BC) sont parallèles et coupées par la sécante (AB) : avec les angles correspondants et un angle plat, on montre que les angles en A et en B font 180° ensemble.", "Additionne les quatre angles."],
+      "solution": "Angles opposés égaux : BCD = DAB = {a}°. Angles consécutifs supplémentaires : ABC = 180 − {a} = {180-a}°, et ADC aussi. Somme : {a} + {180-a} + {a} + {180-a} = 360°.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{180-a}" }, { "value": "360" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{a}" }, { "value": "360" } ] }, "expect": "mc:angles-consecutifs" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-menuisier", "type": "composite", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.geo.parallelogramme"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:cotes-rectangle", "mc:diagonales-rectangle"], "expectedSeconds": 420,
+      "prompt": "Arthur, menuisier, fabrique un cadre de fenêtre. Il coupe deux montants de 80 cm et deux traverses de 50 cm, et les assemble bout à bout : les côtés opposés du cadre ont la même longueur.",
+      "figure": {
+        "alt": "Un cadre en forme de quadrilatère légèrement penché, avec deux côtés de 80 cm, deux côtés de 50 cm et ses deux diagonales en pointillés",
+        "w": 400, "h": 240,
+        "frame": { "x": [0, 10], "y": [0, 6] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0.5, "y": 0.5, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 8.5, "y": 0.5, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9.5, "y": 5.5, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 1.5, "y": 5.5, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "orange" },
+          { "type": "segment", "from": "A", "to": "B", "label": "80 cm" },
+          { "type": "segment", "from": "D", "to": "C", "label": "80 cm" },
+          { "type": "segment", "from": "A", "to": "D", "label": "50 cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "50 cm" },
+          { "type": "segment", "from": "A", "to": "C", "dashed": true },
+          { "type": "segment", "from": "B", "to": "D", "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "text", "prompt": "Quel quadrilatère Arthur est-il sûr d'obtenir ?", "accept": ["parallélogramme", "un parallélogramme", "parallelogramme", "un parallelogramme"],
+          "misconceptions": [
+            { "answer": "rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux : c'est un parallélogramme, pas forcément un rectangle." },
+            { "answer": "un rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux : c'est un parallélogramme, pas forcément un rectangle." }
+          ] },
+        { "type": "text", "prompt": "Il mesure les deux diagonales : 92 cm et 97 cm. Le cadre est-il rectangle ? Réponds par oui ou par non.", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:diagonales-rectangle", "error": "notion", "feedback": "Un parallélogramme est un rectangle quand ses diagonales ont la même longueur. Ici 92 cm ≠ 97 cm : le cadre est penché." } ] },
+        { "type": "text", "prompt": "Il pousse un coin jusqu'à ce que les deux diagonales mesurent la même longueur. Quelle est maintenant la nature exacte du cadre ?", "accept": ["rectangle", "un rectangle"],
+          "misconceptions": [
+            { "answer": "carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. C'est un rectangle." },
+            { "answer": "un carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. C'est un rectangle." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle longueur de joint faut-il pour faire tout le tour du cadre (en cm) ?", "answer": 260,
+          "misconceptions": [ { "answer": 130, "id": "mc:moitie-perimetre", "error": "methode", "feedback": "80 + 50 = 130 cm, c'est la moitié du tour. Le cadre a quatre côtés : 2 × 80 + 2 × 50 = 260 cm." } ] }
+      ],
+      "hints": ["Côtés opposés de même longueur deux à deux : quelle famille de quadrilatères ?", "Quel parallélogramme particulier a des diagonales de même longueur ?", "Le tour du cadre, c'est son périmètre."],
+      "solution": "Côtés opposés égaux deux à deux : parallélogramme. Diagonales différentes (92 et 97 cm) : pas un rectangle. Diagonales égales : rectangle (pas un carré, car 80 ≠ 50). Joint : 2 × 80 + 2 × 50 = 260 cm. C'est la vraie méthode des menuisiers et des maçons : on vérifie l'équerrage en comparant les diagonales.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "parallélogramme" }, { "value": "non" }, { "value": "rectangle" }, { "value": "260" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "rectangle" }, { "value": "non" }, { "value": "rectangle" }, { "value": "260" } ] }, "expect": "mc:cotes-rectangle" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-remed-nommer", "type": "categorize", "skill": "m5.geo.parallelogramme", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:nommer-ordre", "mc:cote-oppose"], "expectedSeconds": 120,
+      "prompt": "Rappel : dans le nom ABCD, les sommets se suivent dans l'ordre du tour : A, puis B, puis C, puis D, et on revient à A. Range chaque paire de segments.",
+      "figure": {
+        "alt": "Un parallélogramme ABCD dont les sommets sont nommés en tournant",
+        "w": 400, "h": 200,
+        "frame": { "x": [0, 10], "y": [0, 5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" }
+        ]
+      },
+      "categories": [
+        { "id": "opp", "label": "Deux côtés opposés" },
+        { "id": "cons", "label": "Deux côtés consécutifs" },
+        { "id": "diag", "label": "Les deux diagonales" }
+      ],
+      "items": [
+        { "id": "k1", "label": "[AB] et [CD]", "category": "opp" },
+        { "id": "k2", "label": "[AB] et [BC]", "category": "cons" },
+        { "id": "k3", "label": "[AC] et [BD]", "category": "diag" },
+        { "id": "k4", "label": "[AD] et [BC]", "category": "opp" },
+        { "id": "k5", "label": "[CD] et [DA]", "category": "cons" }
+      ],
+      "misconceptions": [
+        { "item": "k3", "category": "opp", "id": "mc:nommer-ordre", "error": "lecture", "feedback": "[AC] relie A et C, qui ne se suivent pas dans le nom ABCD : c'est une diagonale. De même pour [BD]." },
+        { "item": "k1", "category": "cons", "id": "mc:cote-oppose", "error": "lecture", "feedback": "[AB] et [CD] n'ont aucun sommet commun : ils sont face à face, ce sont des côtés opposés." }
+      ],
+      "hints": ["Deux côtés consécutifs ont un sommet commun.", "Deux côtés opposés n'ont aucun sommet commun.", "Une diagonale relie deux sommets qui ne se suivent pas."],
+      "solution": "Opposés : [AB] et [CD], [AD] et [BC]. Consécutifs : [AB] et [BC], [CD] et [DA]. Diagonales : [AC] et [BD].",
+      "selfTest": [
+        { "response": { "assign": { "k1": "opp", "k2": "cons", "k3": "diag", "k4": "opp", "k5": "cons" } }, "expect": "correct" },
+        { "response": { "assign": { "k1": "opp", "k2": "cons", "k3": "opp", "k4": "opp", "k5": "cons" } }, "expect": "mc:nommer-ordre" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-remed-diagonales", "type": "numeric", "skill": "m5.geo.parallelogramme", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:diagonale-entiere"], "expectedSeconds": 60,
+      "params": { "a": { "dec": [1.5, 6.5], "step": 0.5 } },
+      "prompt": "Rappel : les diagonales d'un parallélogramme se coupent en leur **milieu**. ABCD est un parallélogramme de centre O, et OA = {a} cm. Combien mesure la diagonale [AC], en cm ?",
+      "figure": {
+        "alt": "Un parallélogramme ABCD et ses diagonales qui se coupent en O, avec OA et OC codés égaux",
+        "w": 400, "h": 200,
+        "frame": { "x": [0, 10], "y": [0, 5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 3, "y": 4, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "point", "id": "O", "x": 5, "y": 2.5, "style": "rond", "pos": "n" },
+          { "type": "segment", "from": "A", "to": "O", "marks": 1, "label": "{a} cm" },
+          { "type": "segment", "from": "O", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "B", "to": "D", "dashed": true }
+        ]
+      },
+      "answer": "2*a",
+      "misconceptions": [ { "answer": "a/2", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "OA n'est que la moitié de la diagonale : O est au milieu de [AC]. AC = OA + OC = 2 × {a} = {2*a} cm." } ],
+      "hints": ["O est le milieu de [AC] : que vaut OC ?", "AC = OA + OC."],
+      "solution": "OC = OA = {a} cm, donc AC = {a} + {a} = {2*a} cm.",
+      "selfTest": [ { "response": { "value": "{2*a}" }, "expect": "correct" }, { "response": { "value": "{a/2}" }, "expect": "mc:diagonale-entiere" } ]
+    },
+    {
+      "id": "m5-parallelogrammes-milieux", "type": "composite", "skill": "m5.geo.parallelogramme", "skills": ["m5.geo.reperage-plan"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "expectedSeconds": 480,
+      "prompt": "Voici un quadrilatère ABCD quelconque : A(0 ; 2), B(8 ; 0), C(12 ; 8) et D(2 ; 10). On place les milieux I de [AB], J de [BC], K de [CD] et L de [DA].",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 12 et de 0 à 10 avec un quadrilatère quelconque ABCD",
+        "w": 360, "h": 300,
+        "frame": { "x": [0, 12], "y": [0, 10], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 2, "pos": "ne" },
+          { "type": "point", "id": "B", "x": 8, "y": 0, "pos": "ne" },
+          { "type": "point", "id": "C", "x": 12, "y": 8, "pos": "nw" },
+          { "type": "point", "id": "D", "x": 2, "y": 10, "pos": "se" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" }
+        ]
+      },
+      "parts": [
+        { "type": "graph", "prompt": "Place les quatre milieux I, J, K et L.", "xRange": [0, 12], "yRange": [0, 10], "gridStep": 1, "expectedPoints": [[4, 1], [10, 4], [7, 9], [1, 6]] },
+        { "type": "numeric", "prompt": "Pour aller de I à J, de combien de carreaux se déplace-t-on vers la droite ?", "answer": 6 },
+        { "type": "numeric", "prompt": "Et pour aller de L à K ?", "answer": 6 },
+        { "type": "text", "prompt": "Quelle semble être la nature du quadrilatère IJKL ?", "accept": ["parallélogramme", "un parallélogramme", "parallelogramme", "un parallelogramme"] }
+      ],
+      "hints": ["Le milieu de [AB] a pour abscisse la moyenne des abscisses de A et de B, et pour ordonnée la moyenne des ordonnées.", "Compare les déplacements de I à J et de L à K : vers la droite, puis vers le haut.", "Deux côtés opposés parallèles et de même longueur : quelle figure ?"],
+      "solution": "I(4 ; 1), J(10 ; 4), K(7 ; 9), L(1 ; 6). De I à J : 6 à droite et 3 en haut ; de L à K : aussi 6 à droite et 3 en haut. [IJ] et [LK] sont parallèles et de même longueur : IJKL est un parallélogramme. Surprise : c'est vrai pour TOUS les quadrilatères (théorème de Varignon, que tu pourras démontrer en 4e).",
+      "selfTest": [
+        { "response": { "parts": [ { "points": [[4, 1], [10, 4], [7, 9], [1, 6]] }, { "value": "6" }, { "value": "6" }, { "value": "parallélogramme" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "points": [[4, 1], [10, 4], [7, 9], [1, 6]] }, { "value": "6" }, { "value": "6" }, { "value": "trapèze" } ] }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-losange-aire", "type": "composite", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.grandeurs.aires"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:losange-oubli-moitie"], "expectedSeconds": 300,
+      "params": { "k": { "int": [1, 3] } },
+      "prompt": "Un losange a des diagonales de {8*k} cm et {6*k} cm, et chacun de ses côtés mesure {5*k} cm. On l'a dessiné dans le rectangle formé à partir de ses diagonales.",
+      "figure": {
+        "alt": "Figure à main levée : un losange dont les diagonales sont tracées, dessiné à l'intérieur d'un rectangle en pointillés qui le touche en ses quatre sommets",
+        "w": 360, "h": 280,
+        "frame": { "x": [-0.5, 8.5], "y": [-0.5, 6.5] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 6, "dashed": true },
+          { "type": "polygon", "points": [[0, 3], [4, 6], [8, 3], [4, 0]], "fill": "orange" },
+          { "type": "segment", "from": [0, 3], "to": [8, 3], "dashed": true, "label": "{8*k} cm" },
+          { "type": "segment", "from": [4, 0], "to": [4, 6], "dashed": true, "label": "{6*k} cm" },
+          { "type": "segment", "from": [4, 6], "to": [8, 3], "label": "{5*k} cm" },
+          { "type": "angle", "vertex": [4, 3], "from": [8, 3], "to": [4, 6], "right": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Périmètre du losange (en cm) :", "answer": "20*k",
+          "misconceptions": [ { "answer": "28*k", "id": "mc:perimetre-diagonales", "error": "methode", "feedback": "Le périmètre est le tour du losange : ses 4 côtés de {5*k} cm, pas ses diagonales. 4 × {5*k} = {20*k} cm." } ] },
+        { "type": "numeric", "prompt": "Aire du losange (en cm²) :", "answer": "24*k*k",
+          "misconceptions": [ { "answer": "48*k*k", "id": "mc:losange-oubli-moitie", "error": "methode", "feedback": "{8*k} × {6*k} = {48*k*k} cm², c'est l'aire du rectangle en pointillés. Le losange en occupe exactement la moitié (les 4 triangles blancs ont la même aire que les 4 triangles orange) : {48*k*k} ÷ 2 = {24*k*k} cm²." } ] }
+      ],
+      "hints": ["Le périmètre ne fait intervenir que les côtés.", "Les diagonales découpent le rectangle en 4 petits rectangles : chacun est coupé en deux triangles égaux par un côté du losange.", "Aire du losange = (grande diagonale × petite diagonale) ÷ 2."],
+      "solution": "Périmètre : 4 × {5*k} = {20*k} cm. Les diagonales découpent le rectangle de {8*k} cm sur {6*k} cm en quatre petits rectangles ; chaque côté du losange coupe un petit rectangle en deux triangles égaux. Le losange occupe donc la moitié du grand rectangle : ({8*k} × {6*k}) ÷ 2 = {24*k*k} cm².",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{20*k}" }, { "value": "{24*k*k}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{20*k}" }, { "value": "{48*k*k}" } ] }, "expect": "mc:losange-oubli-moitie" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-compter", "type": "composite", "skill": "mx.denombrement", "skills": ["m5.geo.parallelogramme"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:seulement-petits"], "expectedSeconds": 720,
+      "prompt": "Sur la figure, 3 droites horizontales parallèles sont coupées par 4 droites obliques parallèles. Elles forment des parallélogrammes de différentes tailles.",
+      "figure": {
+        "alt": "Trois droites horizontales parallèles coupées par quatre droites obliques parallèles",
+        "w": 440, "h": 190,
+        "frame": { "x": [-0.5, 9.5], "y": [-0.5, 3.5] },
+        "items": [
+          { "type": "line", "through": [[0, 0], [1, 0]], "color": "bleu" },
+          { "type": "line", "through": [[0, 1.5], [1, 1.5]], "color": "bleu" },
+          { "type": "line", "through": [[0, 3], [1, 3]], "color": "bleu" },
+          { "type": "line", "through": [[0, 0], [1.5, 3]], "color": "rouge" },
+          { "type": "line", "through": [[2, 0], [3.5, 3]], "color": "rouge" },
+          { "type": "line", "through": [[4, 0], [5.5, 3]], "color": "rouge" },
+          { "type": "line", "through": [[6, 0], [7.5, 3]], "color": "rouge" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de parallélogrammes, de toutes tailles, y a-t-il sur la figure ?", "answer": 18,
+          "misconceptions": [ { "answer": 6, "id": "mc:seulement-petits", "error": "methode", "feedback": "6, ce sont seulement les petits parallélogrammes. Un grand parallélogramme peut être formé de plusieurs petits : choisis deux droites horizontales et deux droites obliques quelconques." } ] },
+        { "type": "numeric", "prompt": "Et si 5 droites horizontales parallèles coupaient 5 droites obliques parallèles ?", "answer": 100,
+          "misconceptions": [ { "answer": 16, "id": "mc:seulement-petits", "error": "methode", "feedback": "16, ce sont les petits parallélogrammes seulement. Compte les façons de choisir 2 droites horizontales parmi 5 (10 façons), puis 2 obliques parmi 5 (10 façons)." } ] },
+        { "type": "open", "prompt": "Explique ta méthode pour ne rien oublier et ne rien compter deux fois.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Un parallélogramme est délimité par 2 droites horizontales et 2 droites obliques", "keywords": [["deux droites", "2 droites", "paire"]] },
+            { "id": "c2", "label": "Je compte les paires possibles de chaque famille", "keywords": [["paire", "facons", "possibilites", "choix"]] },
+            { "id": "c3", "label": "Je multiplie les deux nombres de paires", "keywords": [["multipli", "×", "fois"]] }
+          ] }
+      ],
+      "hints": ["Chaque parallélogramme est délimité par 2 droites horizontales et 2 droites obliques.", "Avec 3 droites horizontales, combien de paires peut-on former ? Et avec 4 droites obliques ?", "Chaque paire horizontale peut être associée à chaque paire oblique : multiplie."],
+      "solution": "Un parallélogramme = 2 horizontales + 2 obliques. Paires d'horizontales parmi 3 : 3. Paires d'obliques parmi 4 : 6 (1-2, 1-3, 1-4, 2-3, 2-4, 3-4). Total : 3 × 6 = 18. Avec 5 et 5 : 10 × 10 = 100.",
+      "methods": ["Compter par taille : 6 petits, puis ceux de largeur 2, 3… et de hauteur 2.", "Compter les paires de droites et multiplier."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "18" }, { "value": "100" }, { "text": "Un parallélogramme est formé par 2 droites horizontales et 2 droites obliques. Je compte les paires : 3 paires et 6 paires, je multiplie 3 × 6.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "6" }, { "value": "16" }, { "text": "J'ai compté les cases." } ] }, "expect": "mc:seulement-petits" }
+      ]
+    },
+    {
+      "id": "m5-parallelogrammes-carre-penche", "type": "graph", "skill": "m5.geo.parallelogrammes-particuliers", "skills": ["m5.geo.reperage-plan"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "expectedSeconds": 420,
+      "params": { "a": { "int": [2, 3] }, "b": { "int": [1, 2] }, "u": { "int": [2, 4] }, "v": { "int": [1, 2] } },
+      "constraints": ["u != v"],
+      "prompt": "Dans le quadrillage, A({a} ; {b}) et B({a+u} ; {b+v}). Place les points C et D pour que ABCD soit un carré, situé au-dessus du côté [AB].",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 avec un segment [AB] légèrement incliné",
+        "w": 340, "h": 340,
+        "frame": { "x": [0, 10], "y": [0, 10], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a+u}", "y": "{b+v}", "pos": "se" },
+          { "type": "segment", "from": "A", "to": "B", "color": "rouge" }
+        ]
+      },
+      "xRange": [0, 10], "yRange": [0, 10], "gridStep": 1,
+      "expectedPoints": [["a + u - v", "b + v + u"], ["a - v", "b + u"]],
+      "hints": ["Pour aller de A à B : {u} vers la droite et {v} vers le haut. Le côté [BC] doit être perpendiculaire à [AB] et de même longueur.", "Fais tourner ce déplacement d'un quart de tour : « {u} à droite, {v} en haut » devient « {v} à gauche, {u} en haut ».", "Applique ce nouveau déplacement à partir de B pour obtenir C, et à partir de A pour obtenir D."],
+      "solution": "Le déplacement de A vers B est ({u} ; {v}). Tourné d'un quart de tour, il devient (−{v} ; {u}). Donc C({a+u-v} ; {b+v+u}) et D({a-v} ; {b+u}). Les quatre côtés ont la même longueur (même déplacement tourné) et les angles sont droits : ABCD est un carré.",
+      "selfTest": [
+        { "response": { "points": [["{a+u-v}", "{b+v+u}"], ["{a-v}", "{b+u}"]] }, "expect": "correct" },
+        { "response": { "points": [["{a+u}", "{b+v+u}"], ["{a}", "{b+u}"]] }, "expect": "incorrect" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1508 @@
+{
+  "id": "m4-cosinus",
+  "chapter": "m4-ch-cosinus",
+  "title": "Le cosinus d’un angle aigu",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.cosinus.longueur", "m4.cosinus.angle"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Dans un triangle rectangle, le quotient du côté adjacent à un angle aigu par l’hypoténuse ne dépend que de l’angle : c’est son cosinus. Avec la calculatrice, il permet de calculer une longueur… ou un angle.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L’échelle bien inclinée",
+      "body": "Une règle de sécurité très répandue : le pied d’une échelle doit être éloigné du mur d’environ **le quart** de sa longueur. Une échelle de 4 m a donc son pied à 1 m du mur ; une échelle de 8 m, à 2 m.\n\nLes deux échelles font-elles le même angle avec le sol ? Et cet angle, peut-on le calculer sans rapporteur ?",
+      "figure": {
+        "alt": "Deux échelles appuyées contre deux murs : une échelle de 4 m dont le pied est à 1 m du mur, et une échelle de 8 m dont le pied est à 2 m du mur ; l’angle avec le sol est marqué d’un point d’interrogation.",
+        "w": 238,
+        "h": 340,
+        "frame": { "x": [-0.5, 5.4], "y": [-0.7, 8.3] },
+        "items": [
+          { "type": "point", "id": "F1", "x": 0, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "M1", "x": 1, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "H1", "x": 1, "y": 3.873, "pos": "n", "label": "" },
+          { "type": "point", "id": "F2", "x": 2.6, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "M2", "x": 4.6, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "H2", "x": 4.6, "y": 7.746, "pos": "n", "label": "" },
+          { "type": "segment", "from": "M1", "to": "H1", "color": "gris" },
+          { "type": "segment", "from": "M2", "to": "H2", "color": "gris" },
+          { "type": "segment", "from": "F1", "to": "H1", "label": "4 m", "color": "orange" },
+          { "type": "segment", "from": "F2", "to": "H2", "label": "8 m", "color": "orange" },
+          { "type": "segment", "from": "F1", "to": "M1", "label": "1 m" },
+          { "type": "segment", "from": "F2", "to": "M2", "label": "2 m" },
+          { "type": "angle", "vertex": "F1", "from": "M1", "to": "H1", "label": "?" },
+          { "type": "angle", "vertex": "F2", "from": "M2", "to": "H2", "label": "?" },
+          { "type": "angle", "vertex": "M1", "from": "H1", "to": "F1", "right": true },
+          { "type": "angle", "vertex": "M2", "from": "H2", "to": "F2", "right": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🧭",
+          "title": "Hypoténuse, côté adjacent, côté opposé",
+          "body": "Dans un triangle rectangle, l’**hypoténuse** est le côté en face de l’angle droit. Pour un angle aigu, ici Â : le **côté adjacent** est l’autre côté de l’angle (celui qui n’est pas l’hypoténuse) ; le **côté opposé** est celui qui ne touche pas l’angle.",
+          "reveal": {
+            "question": "Devine : dans ce triangle, quel est le côté adjacent à l’angle Ĉ ?",
+            "answer": "C’est [BC] : il forme l’angle Ĉ avec l’hypoténuse [AC]. Adjacent et opposé **changent** quand on change d’angle ; l’hypoténuse, elle, reste la même."
+          },
+          "figure": {
+            "alt": "Triangle ABC rectangle en B ; l’angle Â est marqué ; [AB] est le côté adjacent à Â, [BC] le côté opposé à Â, [AC] l’hypoténuse.",
+            "w": 400,
+            "h": 255,
+            "frame": { "x": [-0.6, 7], "y": [-0.9, 3.6] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+              { "type": "segment", "from": "A", "to": "B", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "C", "color": "orange" },
+              { "type": "segment", "from": "A", "to": "C", "color": "rouge" },
+              { "type": "text", "x": 2, "y": -0.55, "text": "adjacent à Â", "color": "vert", "size": "s" },
+              { "type": "text", "x": 4.25, "y": 1.5, "text": "opposé à Â", "color": "orange", "size": "s", "anchor": "start" },
+              { "type": "text", "x": 1.55, "y": 1.9, "text": "hypoténuse", "color": "rouge", "size": "s", "anchor": "end" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Le cosinus d’un angle aigu",
+          "body": "Dans un triangle rectangle, le **cosinus** d’un angle aigu est le quotient :\n\ncos Â = côté adjacent à Â ÷ hypoténuse\n\nIci, cos Â = $AB/AC$ = $4/5$ = 0,8. Ce nombre ne dépend que de l’angle, pas de la taille du triangle.",
+          "example": "Moyen mnémotechnique : **CAH** — Cosinus = Adjacent ÷ Hypoténuse.",
+          "figure": {
+            "alt": "Triangle ABC rectangle en B avec AB = 4 cm, BC = 3 cm et AC = 5 cm ; l’angle Â est marqué.",
+            "w": 373,
+            "h": 300,
+            "frame": { "x": [-0.6, 4.8], "y": [-0.7, 3.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+              { "type": "segment", "from": "A", "to": "B", "label": "4 cm", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "C", "label": "3 cm" },
+              { "type": "segment", "from": "A", "to": "C", "label": "5 cm", "color": "rouge" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔢",
+          "title": "Toujours entre 0 et 1",
+          "body": "L’hypoténuse est le plus long côté, donc le cosinus d’un angle aigu est toujours **compris entre 0 et 1**. Plus l’angle est grand, plus son cosinus est petit. Sur la calculatrice, en mode **degrés**, la touche **cos** donne sa valeur.",
+          "reveal": {
+            "question": "Devine : un élève trouve cos Â = 1,25. Est-ce possible ?",
+            "answer": "Impossible : il faudrait un côté adjacent plus long que l’hypoténuse. Il a sûrement inversé le quotient (hypoténuse ÷ côté adjacent)."
+          },
+          "figure": {
+            "alt": "Tableau des cosinus de 10°, 30°, 45°, 60° et 80°, arrondis au millième.",
+            "w": 420,
+            "h": 110,
+            "items": [
+              {
+                "type": "table",
+                "head": ["Angle", "10°", "30°", "45°", "60°", "80°"],
+                "rows": [["cosinus", "0,985", "0,866", "0,707", "0,5", "0,174"]]
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Calculer une longueur",
+          "body": "On écrit le cosinus de l’angle connu, on remplace, puis on isole la longueur cherchée. Ici : cos 35° = $AB/10$, donc $AB = 10 × cos(35)$ ≈ 8,2 cm.",
+          "example": "Si c’est l’hypoténuse qu’on cherche, on divise : hypoténuse = côté adjacent ÷ cos Â.",
+          "figure": {
+            "alt": "Triangle ABC rectangle en B, avec AC = 10 cm et l’angle Â = 35° ; AB est inconnue.",
+            "w": 390,
+            "h": 300,
+            "frame": { "x": [-0.8, 9.2], "y": [-0.9, 6.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 8.192, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 8.192, "y": 5.736, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "35°" },
+              { "type": "segment", "from": "A", "to": "C", "label": "10 cm", "color": "rouge" },
+              { "type": "segment", "from": "A", "to": "B", "label": "?", "color": "vert" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔄",
+          "title": "Calculer un angle",
+          "body": "Si l’on connaît deux longueurs, on calcule d’abord le cosinus, puis l’angle avec la touche **Arccos** (ou **cos⁻¹**, souvent avec « 2nde » ou « Shift »). Ici : cos Â = $6/9$, donc Â = arccos(6 ÷ 9) ≈ 48,2°.",
+          "figure": {
+            "alt": "Triangle ABC rectangle en B, avec AB = 6 cm et AC = 9 cm ; l’angle Â est inconnu.",
+            "w": 285,
+            "h": 300,
+            "frame": { "x": [-0.8, 7], "y": [-0.9, 7.4] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 6, "y": 6.708, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "?" },
+              { "type": "segment", "from": "A", "to": "C", "label": "9 cm", "color": "rouge" },
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm", "color": "vert" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Deux exemples entièrement résolus",
+      "steps": [
+        {
+          "text": "**Calculer une longueur.** $EFG$ est rectangle en $F$, avec $EG = 7$ cm et Ê = 40°. On cherche $EF$. L’hypoténuse est $[EG]$ ; le côté adjacent à Ê est $[EF]$.",
+          "figure": {
+            "alt": "Triangle EFG rectangle en F, avec EG = 7 cm et l’angle Ê = 40° ; EF est inconnue.",
+            "w": 342,
+            "h": 300,
+            "frame": { "x": [-0.8, 6.3], "y": [-0.9, 5.2] },
+            "items": [
+              { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+              { "type": "point", "id": "E", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "F", "x": 5.362, "y": 0, "pos": "se" },
+              { "type": "point", "id": "G", "x": 5.362, "y": 4.5, "pos": "ne" },
+              { "type": "angle", "vertex": "F", "from": "E", "to": "G", "right": true },
+              { "type": "angle", "vertex": "E", "from": "F", "to": "G", "label": "40°" },
+              { "type": "segment", "from": "E", "to": "G", "label": "7 cm", "color": "rouge" },
+              { "type": "segment", "from": "E", "to": "F", "label": "?", "color": "vert" }
+            ]
+          }
+        },
+        { "text": "On écrit le cosinus de l’angle Ê : cos Ê = $EF/EG$, donc", "math": "cos(40) = EF/7" },
+        {
+          "text": "On multiplie par 7, puis on calcule à la calculatrice (mode degrés) : $EF$ ≈ 5,36, soit environ **5,4 cm**.",
+          "math": "EF = 7 × cos(40)"
+        },
+        {
+          "text": "**Calculer un angle.** $RST$ est rectangle en $S$, avec $RS = 5$ cm et $RT = 8$ cm. L’hypoténuse est $[RT]$ et le côté adjacent à R̂ est $[RS]$ : cos R̂ = $RS/RT$ = $5/8$ = 0,625.",
+          "figure": {
+            "alt": "Triangle RST rectangle en S, avec RS = 5 cm et RT = 8 cm ; l’angle R̂ est inconnu.",
+            "w": 267,
+            "h": 300,
+            "frame": { "x": [-0.8, 6], "y": [-0.9, 6.9] },
+            "items": [
+              { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+              { "type": "point", "id": "R", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "S", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "T", "x": 5, "y": 6.245, "pos": "ne" },
+              { "type": "angle", "vertex": "S", "from": "R", "to": "T", "right": true },
+              { "type": "angle", "vertex": "R", "from": "S", "to": "T", "label": "?" },
+              { "type": "segment", "from": "R", "to": "T", "label": "8 cm", "color": "rouge" },
+              { "type": "segment", "from": "R", "to": "S", "label": "5 cm", "color": "vert" }
+            ]
+          }
+        },
+        { "text": "Touche Arccos (ou cos⁻¹) : R̂ = arccos(0,625) ≈ **51,3°**." },
+        {
+          "text": "Vérification : les deux angles aigus d’un triangle rectangle ont pour somme 90°, donc T̂ ≈ 90 − 51,3 = 38,7°. Et 0 < 0,625 < 1 : le cosinus est bien entre 0 et 1."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Avant chaque calcul : repère l’angle droit, l’hypoténuse, puis le côté adjacent à l’angle utilisé. Vérifie que ta calculatrice est en mode **degrés**. Pour les angles, écris seulement le nombre (sans le symbole °).",
+      "exercises": ["m4-cosinus-cotes", "m4-cosinus-rapport", "m4-cosinus-calculatrice", "m4-cosinus-adjacent", "m4-cosinus-hypotenuse", "m4-cosinus-angle"]
+    },
+    { "kind": "libre", "title": "Expliquer une erreur", "exercises": ["m4-cosinus-explique"] },
+    { "kind": "reinvestissement", "title": "Le cosinus dans la vraie vie", "exercises": ["m4-cosinus-echelle", "m4-cosinus-toboggan"] },
+    {
+      "kind": "mission",
+      "title": "Mission : les tyroliennes du parc",
+      "body": "Tu es chargé·e de vérifier les câbles d’un parc d’aventure : longueurs, hauteurs… et angles de sécurité.",
+      "exercises": ["m4-cosinus-tyrolienne"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Dans un triangle rectangle, pour un angle aigu Â : cos Â = côté adjacent ÷ hypoténuse (CAH), un nombre entre 0 et 1. Longueur : adjacent = hypoténuse × cos Â, et hypoténuse = adjacent ÷ cos Â. Angle : Â = arccos(adjacent ÷ hypoténuse).\n\n- **Adjacent ou hypoténuse ?** Les deux touchent l’angle ; l’hypoténuse est en face de l’angle droit.\n- **Quotient à l’envers.** Un cosinus plus grand que 1 signale une division inversée.\n- **Multiplier ou diviser ?** Si l’inconnue est l’hypoténuse (au dénominateur), on divise par cos Â.\n- **Mode radians.** Un cosinus négatif, ou un angle de 0,9 : passe la calculatrice en degrés.\n- **Arrondir trop tôt.** On garde la valeur de la calculatrice jusqu’au bout."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des calculs de longueurs et d’angles avec le cosinus dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le cosinus quand le triangle n’est pas rectangle : on trace une hauteur pour faire apparaître des triangles rectangles.",
+      "exercises": ["m4-cosinus-isocele", "m4-cosinus-hauteur"]
+    },
+    "expert": {
+      "intro": "Au-delà du programme de 4e : le sinus et la tangente (programme de 3e), et la démonstration, avec Thalès, que le cosinus ne dépend que de l’angle.",
+      "exercises": ["m4-cosinus-sin-tan", "m4-cosinus-preuve"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-cosinus-cotes",
+      "type": "categorize",
+      "skill": "m4.cosinus.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:adjacent-hypotenuse"],
+      "expectedSeconds": 120,
+      "prompt": "Deux triangles rectangles, chacun avec un angle aigu marqué. Pour chaque côté, indique son rôle **par rapport à l’angle marqué de son triangle**.",
+      "figure": {
+        "alt": "Deux triangles rectangles : KLM rectangle en L avec l’angle K̂ marqué, et RST rectangle en T avec l’angle Ŝ marqué.",
+        "w": 400,
+        "h": 179,
+        "frame": { "x": [-0.7, 9.3], "y": [-0.7, 3.1] },
+        "items": [
+          { "type": "polygon", "points": ["K", "L", "M"], "fill": "maths" },
+          { "type": "point", "id": "K", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "L", "x": 3.2, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 3.2, "y": 2.4, "pos": "ne" },
+          { "type": "angle", "vertex": "L", "from": "K", "to": "M", "right": true },
+          { "type": "angle", "vertex": "K", "from": "L", "to": "M" },
+          { "type": "polygon", "points": ["R", "S", "T"], "fill": "orange" },
+          { "type": "point", "id": "T", "x": 5.4, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "S", "x": 8.6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "R", "x": 5.4, "y": 2.6, "pos": "nw" },
+          { "type": "angle", "vertex": "T", "from": "S", "to": "R", "right": true },
+          { "type": "angle", "vertex": "S", "from": "R", "to": "T", "color": "orange" }
+        ]
+      },
+      "categories": [{ "id": "hyp", "label": "Hypoténuse" }, { "id": "adj", "label": "Côté adjacent" }, { "id": "opp", "label": "Côté opposé" }],
+      "items": [
+        { "id": "k1", "label": "[KM], pour l’angle K̂", "category": "hyp" },
+        { "id": "k2", "label": "[KL], pour l’angle K̂", "category": "adj" },
+        { "id": "k3", "label": "[LM], pour l’angle K̂", "category": "opp" },
+        { "id": "s1", "label": "[RS], pour l’angle Ŝ", "category": "hyp" },
+        { "id": "s2", "label": "[ST], pour l’angle Ŝ", "category": "adj" },
+        { "id": "s3", "label": "[RT], pour l’angle Ŝ", "category": "opp" }
+      ],
+      "misconceptions": [
+        {
+          "item": "k1",
+          "category": "adj",
+          "id": "mc:adjacent-hypotenuse",
+          "error": "notion",
+          "feedback": "[KM] touche bien l’angle K̂, mais il est en face de l’angle droit : c’est l’hypoténuse. Le côté adjacent est l’**autre** côté de l’angle, [KL]."
+        },
+        {
+          "item": "s1",
+          "category": "adj",
+          "id": "mc:adjacent-hypotenuse",
+          "error": "notion",
+          "feedback": "[RS] touche l’angle Ŝ, mais il est en face de l’angle droit (en T) : c’est l’hypoténuse. Le côté adjacent à Ŝ est [ST]."
+        },
+        {
+          "item": "k2",
+          "category": "hyp",
+          "id": "mc:adjacent-hypotenuse",
+          "error": "notion",
+          "feedback": "L’hypoténuse est en face de l’angle droit : comme l’angle droit est en L, c’est [KM]. [KL] est le côté adjacent à K̂."
+        },
+        {
+          "item": "s3",
+          "category": "adj",
+          "id": "mc:adjacent-autre-angle",
+          "error": "lecture",
+          "feedback": "[RT] ne touche pas l’angle Ŝ : c’est le côté opposé à Ŝ."
+        }
+      ],
+      "hints": [
+        "L’hypoténuse est en face de l’angle droit : c’est le seul côté qui ne passe pas par le sommet de l’angle droit.",
+        "Les deux côtés de l’angle marqué sont l’hypoténuse et le côté adjacent.",
+        "Le côté opposé ne touche pas l’angle marqué."
+      ],
+      "solution": "Triangle $KLM$ (angle droit en $L$) : hypoténuse [KM], côté adjacent à K̂ [KL], côté opposé [LM]. Triangle $RST$ (angle droit en $T$) : hypoténuse [RS], côté adjacent à Ŝ [ST], côté opposé [RT].",
+      "selfTest": [
+        { "response": { "assign": { "k1": "hyp", "k2": "adj", "k3": "opp", "s1": "hyp", "s2": "adj", "s3": "opp" } }, "expect": "correct" },
+        {
+          "response": { "assign": { "k1": "adj", "k2": "hyp", "k3": "opp", "s1": "hyp", "s2": "adj", "s3": "opp" } },
+          "expect": "mc:adjacent-hypotenuse"
+        }
+      ]
+    },
+    {
+      "id": "m4-cosinus-rapport",
+      "type": "numeric",
+      "skill": "m4.cosinus.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:cos-oppose", "mc:cos-inverse"],
+      "expectedSeconds": 120,
+      "params": {
+        "t": { "int": [1, 6] },
+        "m": { "choice": [1, 2] },
+        "a": { "expr": "m*((t=1)*3 + (t=2)*4 + (t=3)*5 + (t=4)*12 + (t=5)*8 + (t=6)*15)" },
+        "o": { "expr": "m*((t=1)*4 + (t=2)*3 + (t=3)*12 + (t=4)*5 + (t=5)*15 + (t=6)*8)" },
+        "h": { "expr": "m*((t=1)*5 + (t=2)*5 + (t=3)*13 + (t=4)*13 + (t=5)*17 + (t=6)*17)" }
+      },
+      "prompt": "Le triangle $ABC$ est rectangle en $B$ : $AB = {a}$ cm, $BC = {o}$ cm et $AC = {h}$ cm. Calcule cos Â, arrondi au centième.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B ; les trois longueurs AB, BC et AC sont indiquées ; l’angle Â est marqué.",
+        "w": 400,
+        "h": 290,
+        "frame": { "x": [-1, "{a+2}"], "y": [-1, "{o+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{a}", "y": "{o}", "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{o} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{h} cm" }
+        ]
+      },
+      "answer": "arrondi(a/h;2)",
+      "tolerance": 0.005,
+      "round": 2,
+      "misconceptions": [
+        {
+          "answer": "arrondi(o/h;2)",
+          "id": "mc:cos-oppose",
+          "error": "notion",
+          "feedback": "Tu as utilisé le côté **opposé** $[BC]$. Pour le cosinus de Â, on prend le côté **adjacent** à Â, $[AB]$ (CAH : Cosinus = Adjacent ÷ Hypoténuse)."
+        },
+        {
+          "answer": "arrondi(h/a;2)",
+          "id": "mc:cos-inverse",
+          "error": "notion",
+          "feedback": "Ton résultat est plus grand que 1 : impossible pour un cosinus ! Le quotient s’écrit côté adjacent ÷ hypoténuse : ${a}/{h}$."
+        },
+        {
+          "answer": "arrondi(a/o;2)",
+          "id": "mc:cos-sans-hypotenuse",
+          "error": "notion",
+          "feedback": "Le cosinus se calcule toujours avec l’**hypoténuse** au dénominateur : $[AC]$, le plus long côté."
+        }
+      ],
+      "hints": [
+        "Repère l’hypoténuse : le côté en face de l’angle droit (en $B$).",
+        "Le côté adjacent à Â est le côté de l’angle Â qui n’est pas l’hypoténuse : $[AB]$.",
+        "cos Â = $AB/AC$ = ${a}/{h}$."
+      ],
+      "solution": "Le triangle est rectangle en $B$ : l’hypoténuse est $[AC]$ et le côté adjacent à Â est $[AB]$. Donc cos Â = $AB/AC$ = ${a}/{h}$ ≈ {arrondi(a/h;2)}.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(a/h;2)}" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(o/h;2)}" }, "expect": "mc:cos-oppose" },
+        { "response": { "value": "{arrondi(h/a;2)}" }, "expect": "mc:cos-inverse" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-calculatrice",
+      "type": "table",
+      "skill": "m4.cosinus.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "manipulation",
+      "targets": ["mc:mode-radians"],
+      "expectedSeconds": 150,
+      "prompt": "Mets ta calculatrice en mode **degrés** (souvent « D » ou « DEG » affiché à l’écran). Complète le tableau avec les cosinus arrondis au millième (nombres seuls). Que remarques-tu quand l’angle augmente ?",
+      "columns": ["Angle", "15°", "40°", "60°", "75°", "89°"],
+      "rows": [["cosinus", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"]],
+      "cells": {
+        "r0c1": {
+          "answer": "arrondi(cos(15);3)",
+          "tolerance": 0.0005,
+          "round": 3,
+          "misconceptions": [
+            {
+              "answer": "arrondi(cos(15*180/pi);3)",
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Ta calculatrice est en mode **radians** (un cosinus d’angle aigu ne peut pas être négatif ni « au hasard »). Passe-la en mode degrés, par le menu « mode » ou « angle »."
+            }
+          ]
+        },
+        "r0c2": {
+          "answer": "arrondi(cos(40);3)",
+          "tolerance": 0.0005,
+          "round": 3,
+          "misconceptions": [
+            {
+              "answer": "arrondi(cos(40*180/pi);3)",
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Ta calculatrice est en mode **radians** (un cosinus d’angle aigu ne peut pas être négatif ni « au hasard »). Passe-la en mode degrés, par le menu « mode » ou « angle »."
+            }
+          ]
+        },
+        "r0c3": {
+          "answer": "arrondi(cos(60);3)",
+          "tolerance": 0.0005,
+          "round": 3,
+          "misconceptions": [
+            {
+              "answer": "arrondi(cos(60*180/pi);3)",
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Ta calculatrice est en mode **radians** (un cosinus d’angle aigu ne peut pas être négatif ni « au hasard »). Passe-la en mode degrés, par le menu « mode » ou « angle »."
+            }
+          ]
+        },
+        "r0c4": {
+          "answer": "arrondi(cos(75);3)",
+          "tolerance": 0.0005,
+          "round": 3,
+          "misconceptions": [
+            {
+              "answer": "arrondi(cos(75*180/pi);3)",
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Ta calculatrice est en mode **radians** (un cosinus d’angle aigu ne peut pas être négatif ni « au hasard »). Passe-la en mode degrés, par le menu « mode » ou « angle »."
+            }
+          ]
+        },
+        "r0c5": {
+          "answer": "arrondi(cos(89);3)",
+          "tolerance": 0.0005,
+          "round": 3,
+          "misconceptions": [
+            {
+              "answer": "arrondi(cos(89*180/pi);3)",
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Ta calculatrice est en mode **radians** (un cosinus d’angle aigu ne peut pas être négatif ni « au hasard »). Passe-la en mode degrés, par le menu « mode » ou « angle »."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Tape cos 15 puis = : tu dois obtenir un nombre proche de 1.",
+        "Si tu obtiens un nombre négatif, ta calculatrice est en radians.",
+        "Arrondir au millième : garder 3 chiffres après la virgule."
+      ],
+      "solution": "cos 15° ≈ 0,966 ; cos 40° ≈ 0,766 ; cos 60° = 0,5 ; cos 75° ≈ 0,259 ; cos 89° ≈ 0,017. Le cosinus **diminue** quand l’angle augmente, et il reste entre 0 et 1.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "0,966", "r0c2": "0,766", "r0c3": "0,5", "r0c4": "0,259", "r0c5": "0,017" } }, "expect": "correct" },
+        {
+          "response": {
+            "cells": { "r0c1": "{arrondi(cos(15*180/pi);3)}", "r0c2": "{arrondi(cos(40*180/pi);3)}", "r0c3": "0,5", "r0c4": "0,259", "r0c5": "0,017" }
+          },
+          "expect": "mc:mode-radians"
+        }
+      ]
+    },
+    {
+      "id": "m4-cosinus-adjacent",
+      "type": "numeric",
+      "skill": "m4.cosinus.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:cos-division", "mc:mode-radians"],
+      "expectedSeconds": 150,
+      "params": { "h": { "int": [5, 12] }, "t": { "int": [25, 70] } },
+      "constraints": ["t != 45"],
+      "prompt": "Le triangle $DEF$ est rectangle en $E$, avec $DF = {h}$ cm et l’angle D̂ = {t}°. Calcule la longueur $DE$, arrondie au dixième de centimètre.",
+      "figure": {
+        "alt": "Triangle DEF rectangle en E ; l’hypoténuse DF et l’angle D̂ sont indiqués ; DE est inconnue.",
+        "w": 380,
+        "h": 300,
+        "frame": { "x": [-1, "{h*cos(t)+1.5}"], "y": [-1, "{h*sin(t)+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "maths" },
+          { "type": "point", "id": "D", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "E", "x": "{h*cos(t)}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "F", "x": "{h*cos(t)}", "y": "{h*sin(t)}", "pos": "ne" },
+          { "type": "angle", "vertex": "E", "from": "D", "to": "F", "right": true },
+          { "type": "angle", "vertex": "D", "from": "E", "to": "F", "label": "{t}°" },
+          { "type": "segment", "from": "D", "to": "F", "label": "{h} cm", "color": "rouge" },
+          { "type": "segment", "from": "D", "to": "E", "label": "?", "color": "vert" }
+        ]
+      },
+      "answer": "arrondi(h*cos(t);1)",
+      "unit": "cm",
+      "tolerance": 0.05,
+      "round": 1,
+      "misconceptions": [
+        {
+          "answer": "arrondi(h/cos(t);1)",
+          "id": "mc:cos-division",
+          "error": "methode",
+          "feedback": "Tu as divisé par le cosinus. Ici $DE$ est au numérateur : cos D̂ = $DE/DF$, donc $DE = DF × cos(D̂)$, on **multiplie**. D’ailleurs ton résultat dépasse l’hypoténuse, ce qui est impossible."
+        },
+        {
+          "answer": "arrondi(h*cos(t*180/pi);1)",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ta calculatrice est en mode radians : le résultat n’a pas de sens ici. Passe-la en mode **degrés**."
+        },
+        {
+          "answer": "arrondi(h*cos(90-t);1)",
+          "id": "mc:cos-oppose",
+          "error": "notion",
+          "feedback": "Tu as calculé le côté **opposé** à D̂, $[EF]$. Le côté adjacent à D̂ est $[DE]$ : $DE = DF × cos(D̂)$."
+        }
+      ],
+      "hints": [
+        "L’hypoténuse est $[DF]$ ; le côté adjacent à l’angle D̂ est $[DE]$.",
+        "cos D̂ = $DE/DF$, donc cos {t}° = $DE/{h}$.",
+        "$DE = {h} × cos({t})$ : calculatrice en mode degrés, puis arrondis au dixième."
+      ],
+      "solution": "Dans le triangle $DEF$ rectangle en $E$, l’hypoténuse est $[DF]$. cos D̂ = $DE/DF$, soit cos {t}° = $DE/{h}$. Donc $DE = {h} × cos({t})$ ≈ {arrondi(h*cos(t);1)} cm.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(h*cos(t);1)} cm" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(h/cos(t);1)} cm" }, "expect": "mc:cos-division" },
+        { "response": { "value": "{arrondi(h*cos(t);1)}" }, "expect": "unite" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-hypotenuse",
+      "type": "numeric",
+      "skill": "m4.cosinus.longueur",
+      "skills": ["m4.equations.resoudre"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:cos-produit"],
+      "expectedSeconds": 180,
+      "params": { "a": { "int": [3, 9] }, "t": { "int": [20, 65] } },
+      "prompt": "Le triangle $KLM$ est rectangle en $L$, avec $KL = {a}$ cm et l’angle K̂ = {t}°. Calcule la longueur de l’hypoténuse $KM$, arrondie au dixième.",
+      "figure": {
+        "alt": "Triangle KLM rectangle en L ; le côté KL et l’angle K̂ sont indiqués ; l’hypoténuse KM est inconnue.",
+        "w": 360,
+        "h": 320,
+        "frame": { "x": [-1, "{a+1.5}"], "y": [-1, "{a*sin(t)/cos(t)+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["K", "L", "M"], "fill": "maths" },
+          { "type": "point", "id": "K", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "L", "x": "{a}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": "{a}", "y": "{a*sin(t)/cos(t)}", "pos": "ne" },
+          { "type": "angle", "vertex": "L", "from": "K", "to": "M", "right": true },
+          { "type": "angle", "vertex": "K", "from": "L", "to": "M", "label": "{t}°" },
+          { "type": "segment", "from": "K", "to": "L", "label": "{a} cm", "color": "vert" },
+          { "type": "segment", "from": "K", "to": "M", "label": "?", "color": "rouge" }
+        ]
+      },
+      "answer": "arrondi(a/cos(t);1)",
+      "unit": "cm",
+      "tolerance": 0.05,
+      "round": 1,
+      "misconceptions": [
+        {
+          "answer": "arrondi(a*cos(t);1)",
+          "id": "mc:cos-produit",
+          "error": "methode",
+          "feedback": "Ton résultat est plus petit que $KL$ : impossible pour l’hypoténuse, le plus long côté ! cos K̂ = $KL/KM$ : l’inconnue est au **dénominateur**, donc $KM = KL ÷ cos(K̂)$."
+        },
+        {
+          "answer": "arrondi(a/cos(t*180/pi);1)",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ta calculatrice est en mode radians. Passe-la en mode **degrés** et recommence."
+        }
+      ],
+      "hints": ["$[KL]$ est le côté adjacent à K̂ et $[KM]$ l’hypoténuse.", "cos {t}° = ${a}/KM$.", "Produit en croix : $KM = {a}/cos({t})$."],
+      "solution": "cos K̂ = $KL/KM$, soit cos {t}° = ${a}/KM$. Donc $KM = {a}/cos({t})$ ≈ {arrondi(a/cos(t);1)} cm. Vérification : l’hypoténuse est bien plus longue que $KL = {a}$ cm.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(a/cos(t);1)} cm" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(a*cos(t);1)} cm" }, "expect": "mc:cos-produit" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-angle",
+      "type": "numeric",
+      "skill": "m4.cosinus.angle",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:cos-oppose", "mc:mode-radians"],
+      "expectedSeconds": 180,
+      "params": {
+        "t": { "int": [1, 7] },
+        "a": { "expr": "(t=1)*3 + (t=2)*5 + (t=3)*6 + (t=4)*7 + (t=5)*9 + (t=6)*4 + (t=7)*2" },
+        "h": { "expr": "(t=1)*5 + (t=2)*8 + (t=3)*9 + (t=4)*10 + (t=5)*11 + (t=6)*9 + (t=7)*7" },
+        "g": { "expr": "(t=1)*53 + (t=2)*51 + (t=3)*48 + (t=4)*46 + (t=5)*35 + (t=6)*64 + (t=7)*73" },
+        "c": { "expr": "(t=1)*37 + (t=2)*39 + (t=3)*42 + (t=4)*44 + (t=5)*55 + (t=6)*26 + (t=7)*17" },
+        "r": { "expr": "(t=1)*0.927 + (t=2)*0.896 + (t=3)*0.841 + (t=4)*0.795 + (t=5)*0.613 + (t=6)*1.11 + (t=7)*1.281" }
+      },
+      "prompt": "Le triangle $RST$ est rectangle en $S$, avec $RS = {a}$ cm et $RT = {h}$ cm. Calcule la mesure de l’angle R̂, arrondie au degré. (Écris seulement le nombre, sans le symbole °.)",
+      "figure": {
+        "alt": "Triangle RST rectangle en S ; les longueurs RS et RT sont indiquées ; l’angle R̂ est inconnu.",
+        "w": 360,
+        "h": 320,
+        "frame": { "x": [-1, "{a+1.5}"], "y": [-1, "{racine(h^2-a^2)+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+          { "type": "point", "id": "R", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "S", "x": "{a}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "T", "x": "{a}", "y": "{racine(h^2-a^2)}", "pos": "ne" },
+          { "type": "angle", "vertex": "S", "from": "R", "to": "T", "right": true },
+          { "type": "angle", "vertex": "R", "from": "S", "to": "T", "label": "?" },
+          { "type": "segment", "from": "R", "to": "S", "label": "{a} cm", "color": "vert" },
+          { "type": "segment", "from": "R", "to": "T", "label": "{h} cm", "color": "rouge" }
+        ]
+      },
+      "answer": "g",
+      "tolerance": 0.5,
+      "round": 0,
+      "misconceptions": [
+        {
+          "answer": "c",
+          "id": "mc:cos-oppose",
+          "error": "notion",
+          "feedback": "Tu as obtenu la mesure de l’**autre** angle aigu, T̂. Pour R̂, le côté adjacent est $[RS]$ : cos R̂ = $RS/RT$."
+        },
+        {
+          "answer": "r",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ce résultat est en radians, pas en degrés : passe ta calculatrice en mode **degrés** puis recommence."
+        }
+      ],
+      "hints": [
+        "Calcule d’abord cos R̂ : côté adjacent ÷ hypoténuse.",
+        "cos R̂ = ${a}/{h}$.",
+        "Touche Arccos (ou cos⁻¹, souvent « 2nde » ou « Shift » puis « cos ») : R̂ = arccos({a} ÷ {h}), en mode degrés."
+      ],
+      "solution": "L’hypoténuse est $[RT]$ et le côté adjacent à R̂ est $[RS]$ : cos R̂ = $RS/RT$ = ${a}/{h}$. À la calculatrice : R̂ = arccos({a} ÷ {h}) ≈ {g}°.",
+      "selfTest": [
+        { "response": { "value": "{g}" }, "expect": "correct" },
+        { "response": { "value": "{c}" }, "expect": "mc:cos-oppose" },
+        { "response": { "value": "{r}" }, "expect": "mc:mode-radians" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-explique",
+      "type": "open",
+      "skill": "m4.cosinus.longueur",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 25,
+      "prompt": "Léa a écrit : « Dans le triangle $ABC$ rectangle en $B$, avec $AB = 8$ cm et $AC = 10$ cm, j’ai trouvé cos Â = 1,25. » Explique-lui pourquoi c’est impossible, quelle erreur elle a sans doute faite, et donne la bonne valeur.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B, avec AB = 8 cm et AC = 10 cm ; l’angle Â est marqué.",
+        "w": 379,
+        "h": 300,
+        "frame": { "x": [-0.8, 9], "y": [-0.9, 6.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 8, "y": 6, "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+          { "type": "segment", "from": "A", "to": "B", "label": "8 cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "10 cm" }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J’explique qu’un cosinus d’angle aigu est toujours compris entre 0 et 1 (l’hypoténuse est le plus long côté)",
+          "keywords": [["entre 0 et 1", "inferieur a 1", "plus petit que 1", "moins de 1", "plus long", "plus grand cote"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je repère l’erreur : elle a calculé hypoténuse ÷ côté adjacent (10 ÷ 8)",
+          "keywords": [["10/8", "10 ÷ 8", "10 : 8", "inverse", "a l'envers", "a l envers"]]
+        },
+        { "id": "c3", "label": "Je donne la bonne valeur : cos Â = 8 ÷ 10 = 0,8", "keywords": [["0,8", "0.8", "8/10"]] }
+      ],
+      "models": [
+        "C’est impossible : l’hypoténuse [AC] est le plus long côté, donc côté adjacent ÷ hypoténuse est toujours plus petit que 1. Léa a calculé le quotient à l’envers : 10 ÷ 8 = 1,25. Le bon calcul est cos Â = AB/AC = 8 ÷ 10 = 0,8."
+      ],
+      "hints": ["Compare la longueur du côté adjacent et celle de l’hypoténuse.", "Calcule 10 ÷ 8 : que trouves-tu ?", "cos Â = côté adjacent ÷ hypoténuse."],
+      "solution": "Un cosinus d’angle aigu est toujours entre 0 et 1, car le côté adjacent est plus court que l’hypoténuse. Léa a inversé le quotient : 10 ÷ 8 = 1,25. En réalité cos Â = $AB/AC$ = $8/10$ = 0,8.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "C’est impossible car l’hypoténuse est le plus long côté donc le cosinus est entre 0 et 1. Léa a fait 10 ÷ 8 = 1,25, à l’envers. Le bon calcul est 8/10 = 0,8.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m4-cosinus-echelle",
+      "type": "composite",
+      "skill": "m4.cosinus.longueur",
+      "skills": ["m4.cosinus.angle", "m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:cos-division", "mc:cos-oppose"],
+      "expectedSeconds": 420,
+      "params": { "L": { "choice": [4, 5, 6, 7, 8] } },
+      "prompt": "Pour une échelle, on recommande souvent un angle d’environ 75° avec le sol. Mehdi pose une échelle de {L} m contre un mur vertical, sur un sol horizontal, en respectant cet angle.",
+      "figure": {
+        "alt": "Une échelle appuyée contre un mur vertical, posée sur un sol horizontal ; elle fait un angle de 75° avec le sol ; la distance entre son pied et le mur est inconnue.",
+        "w": 260,
+        "h": 340,
+        "frame": { "x": ["{-L*cos(75)-1}", 1.2], "y": [-0.7, "{L+0.5}"] },
+        "items": [
+          { "type": "point", "id": "g", "x": "{-L*cos(75)-0.8}", "y": 0, "hidden": true },
+          { "type": "point", "id": "d", "x": 0.9, "y": 0, "hidden": true },
+          { "type": "point", "id": "w", "x": 0, "y": "{L+0.3}", "hidden": true },
+          { "type": "segment", "from": "g", "to": "d", "color": "gris" },
+          { "type": "segment", "from": "O", "to": "w", "color": "gris" },
+          { "type": "point", "id": "P", "x": "{-L*cos(75)}", "y": 0, "pos": "s" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 0, "y": "{L*sin(75)}", "pos": "e" },
+          { "type": "segment", "from": "P", "to": "H", "label": "{L} m", "color": "orange" },
+          { "type": "segment", "from": "P", "to": "O", "label": "?" },
+          { "type": "angle", "vertex": "P", "from": "O", "to": "H", "label": "75°" },
+          { "type": "angle", "vertex": "O", "from": "H", "to": "P", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "À quelle distance du mur doit-il placer le pied de l’échelle ? (en m, arrondie au centimètre)",
+          "answer": "arrondi(L*cos(75);2)",
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": "arrondi(L/cos(75);2)",
+              "id": "mc:cos-division",
+              "error": "methode",
+              "feedback": "L’échelle est l’hypoténuse : la distance cherchée est au numérateur, cos 75° = $d/{L}$. Donc on **multiplie** : $d = {L} × cos(75)$."
+            },
+            {
+              "answer": "arrondi(L*cos(15);2)",
+              "id": "mc:cos-oppose",
+              "error": "notion",
+              "feedback": "Ce résultat est la hauteur atteinte sur le mur (le côté opposé à l’angle de 75°). La distance au mur est le côté **adjacent** à l’angle de 75°."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle hauteur l’échelle touche-t-elle le mur ? (en m, arrondie au centimètre)",
+          "answer": "arrondi(L*cos(15);2)",
+          "tolerance": 0.01,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": "arrondi(L - L*cos(75);2)",
+              "id": "mc:difference-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "On ne soustrait pas les longueurs : utilise le théorème de Pythagore, $h² = {L}² − d²$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Une autre règle dit : « le pied de l’échelle à un quart de sa longueur du mur ». Quel angle l’échelle fait-elle alors avec le sol ? (au degré près, nombre seul)",
+          "answer": 75.52,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 14.48,
+              "id": "mc:cos-oppose",
+              "error": "notion",
+              "feedback": "Tu as trouvé l’angle entre l’échelle et le **mur**. L’angle avec le sol a pour cosinus (distance au mur) ÷ (longueur de l’échelle) = 0,25."
+            },
+            {
+              "answer": 1.318,
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Résultat en radians : passe la calculatrice en mode **degrés**."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "L’échelle est l’hypoténuse du triangle formé avec le mur et le sol.",
+        "cos 75° = (distance au mur) ÷ {L}.",
+        "Pour la règle du quart : cos α = $({L} ÷ 4)/{L}$ = 0,25, puis touche Arccos."
+      ],
+      "solution": "Distance au mur : $d = {L} × cos(75)$ ≈ {arrondi(L*cos(75);2)} m. Hauteur : par Pythagore, $h² = {L}² − d²$, donc $h$ ≈ {arrondi(L*cos(15);2)} m. Règle du quart : cos α = 0,25, donc α = arccos(0,25) ≈ 76° : les deux règles donnent presque le même angle, quelle que soit la longueur de l’échelle.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "{arrondi(L*cos(75);2)}" }, { "value": "{arrondi(L*cos(15);2)}" }, { "value": "76" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{arrondi(L/cos(75);2)}" }, { "value": "{arrondi(L*cos(15);2)}" }, { "value": "76" }] },
+          "expect": "mc:cos-division"
+        }
+      ]
+    },
+    {
+      "id": "m4-cosinus-toboggan",
+      "type": "composite",
+      "skill": "m4.cosinus.longueur",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:cos-division"],
+      "expectedSeconds": 480,
+      "prompt": "Un toboggan aquatique rectiligne de 12 m de long fait un angle de 35° avec l’horizontale.",
+      "figure": {
+        "alt": "Un toboggan rectiligne de 12 m fait un angle de 35° avec le sol horizontal ; on cherche la distance horizontale parcourue et la hauteur de départ.",
+        "w": 395,
+        "h": 300,
+        "frame": { "x": [-1, 10.8], "y": [-0.9, 7.7] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "T", "x": 0, "y": 6.883, "pos": "nw" },
+          { "type": "point", "id": "B", "x": 9.83, "y": 0, "pos": "se" },
+          { "type": "segment", "from": "T", "to": "B", "label": "12 m", "color": "orange" },
+          { "type": "segment", "from": "O", "to": "B", "label": "?" },
+          { "type": "segment", "from": "O", "to": "T", "label": "?", "dashed": true },
+          { "type": "angle", "vertex": "O", "from": "B", "to": "T", "right": true },
+          { "type": "angle", "vertex": "B", "from": "O", "to": "T", "label": "35°" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle distance horizontale parcourt-on en le descendant ? (en m, arrondie au centimètre)",
+          "answer": 9.83,
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 14.65,
+              "id": "mc:cos-division",
+              "error": "methode",
+              "feedback": "Le toboggan est l’hypoténuse : la distance horizontale vaut $12 × cos(35)$. En divisant, tu obtiens une longueur plus grande que le toboggan lui-même !"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De quelle hauteur part-on ? (en m, arrondie au centimètre)",
+          "answer": 6.88,
+          "tolerance": 0.01,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 2.17,
+              "id": "mc:difference-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "Utilise le théorème de Pythagore : hauteur² = 12² − (distance horizontale)²."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le parc veut un toboggan moins raide : même hauteur de départ, mais un angle de 25° avec le sol. Quelle longueur doit-il avoir ? (en m, au centimètre ; indice : en haut, l’angle entre le toboggan et la verticale mesure 90° − 25° = 65°, et la hauteur est le côté adjacent à cet angle)",
+          "answer": 16.29,
+          "tolerance": 0.03,
+          "round": 2
+        }
+      ],
+      "hints": [
+        "Dans le triangle rectangle, le toboggan est l’hypoténuse et la distance horizontale est adjacente à l’angle de 35°.",
+        "Hauteur : $h² = 12² − d²$.",
+        "Nouveau toboggan : cos 65° = $h/L$, donc $L = h/cos(65)$."
+      ],
+      "solution": "$d = 12 × cos(35)$ ≈ 9,83 m. $h² = 12² − d²$, donc $h$ ≈ 6,88 m. Nouveau toboggan : l’angle au sommet mesure 65° et cos 65° = $h/L$, donc $L = h/cos(65)$ ≈ 16,29 m : plus long, donc moins raide.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "9,83" }, { "value": "6,88" }, { "value": "16,29" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "14,65" }, { "value": "6,88" }, { "value": "16,29" }] }, "expect": "mc:cos-division" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-tyrolienne",
+      "type": "composite",
+      "skill": "m4.cosinus.angle",
+      "skills": ["m4.cosinus.longueur", "m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:cos-division", "mc:cos-oppose"],
+      "expectedSeconds": 600,
+      "prompt": "Une tyrolienne est un câble tendu en ligne droite entre une plateforme en hauteur $P$ et un point d’arrivée $A$ au sol. Dans le parc, le premier câble mesure 50 m et fait un angle de 8° avec l’horizontale.",
+      "figure": {
+        "alt": "Un câble de tyrolienne de 50 m relie le haut d’une plateforme P à un point A du sol et fait un angle de 8° avec l’horizontale.",
+        "w": 480,
+        "h": 132,
+        "frame": { "x": [-2.5, 52], "y": [-2, 9] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": 0, "y": 6.959, "pos": "nw" },
+          { "type": "point", "id": "A", "x": 49.513, "y": 0, "pos": "se" },
+          { "type": "segment", "from": "P", "to": "A", "label": "50 m", "color": "orange" },
+          { "type": "segment", "from": "O", "to": "A", "label": "?" },
+          { "type": "segment", "from": "O", "to": "P", "label": "?", "color": "gris" },
+          { "type": "angle", "vertex": "O", "from": "A", "to": "P", "right": true },
+          { "type": "angle", "vertex": "A", "from": "O", "to": "P", "label": "8°", "r": 70 }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la distance horizontale entre le pied $O$ de la plateforme et le point d’arrivée ? (en m, au dixième)",
+          "answer": 49.51,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 50.49,
+              "id": "mc:cos-division",
+              "error": "methode",
+              "feedback": "Le câble est l’hypoténuse : la distance horizontale vaut $50 × cos(8)$, elle est forcément plus courte que le câble."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de la plateforme ? (en m, au dixième ; garde la valeur exacte de la calculatrice pour le calcul)",
+          "answer": 6.96,
+          "tolerance": 0.1,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 0.5,
+              "id": "mc:difference-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "Utilise le théorème de Pythagore : hauteur² = 50² − (distance horizontale)²."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un second câble de 40 m doit arriver à 38 m de la plateforme (distance horizontale). Quel angle fait-il avec l’horizontale ? (au degré près, nombre seul)",
+          "answer": 18.19,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 71.81,
+              "id": "mc:cos-oppose",
+              "error": "notion",
+              "feedback": "Tu as trouvé l’angle entre le câble et la verticale. L’angle avec l’horizontale a pour cosinus $38/40$."
+            },
+            {
+              "answer": 0.318,
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Résultat en radians : passe la calculatrice en mode **degrés**."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le parc impose un angle d’au plus 15° (au-delà, l’arrivée est trop rapide). Le second câble respecte-t-il cette règle ? (oui ou non)",
+          "accept": [
+            "non",
+            "non, il ne la respecte pas",
+            "non il ne respecte pas la règle",
+            "non, il est trop incliné",
+            "non il est trop incline",
+            "non car 18 > 15",
+            "non, 18° est plus grand que 15°"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:comparaison",
+              "error": "raisonnement",
+              "feedback": "L’angle trouvé, environ 18°, dépasse 15° : le second câble est trop incliné."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le câble, la plateforme et le sol forment un triangle rectangle en $O$ ; le câble est l’hypoténuse.",
+        "Distance horizontale = 50 × cos 8°.",
+        "Second câble : cos α = $38/40$ = 0,95."
+      ],
+      "solution": "Distance : $50 × cos(8)$ ≈ 49,5 m. Hauteur : $h² = 50² − d²$, donc $h$ ≈ 7 m. Second câble : cos α = $38/40$ = 0,95, donc α = arccos(0,95) ≈ 18°. C’est plus que 15° : le câble ne respecte pas la règle, il faut l’allonger ou abaisser la plateforme.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "49,5" }, { "value": "7" }, { "value": "18" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "50,5" }, { "value": "7" }, { "value": "18" }, { "value": "non" }] }, "expect": "mc:cos-division" },
+        { "response": { "parts": [{ "value": "49,5" }, { "value": "7" }, { "value": "72" }, { "value": "oui" }] }, "expect": "mc:cos-oppose" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-remed-cah",
+      "type": "composite",
+      "skill": "m4.cosinus.longueur",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:cos-oppose", "mc:adjacent-hypotenuse", "mc:cos-inverse"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : **CAH** — le **C**osinus d’un angle aigu, c’est le côté **A**djacent divisé par l’**H**ypoténuse. Le triangle $MNP$ est rectangle en $N$, avec $MN = 12$ cm, $NP = 5$ cm et $MP = 13$ cm.",
+      "figure": {
+        "alt": "Triangle MNP rectangle en N, avec MN = 12 cm, NP = 5 cm et MP = 13 cm ; l’angle M̂ est marqué.",
+        "w": 400,
+        "h": 219,
+        "frame": { "x": [-0.9, 13.3], "y": [-1, 6] },
+        "items": [
+          { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+          { "type": "point", "id": "M", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "N", "x": 12, "y": 0, "pos": "se" },
+          { "type": "point", "id": "P", "x": 12, "y": 5, "pos": "ne" },
+          { "type": "angle", "vertex": "N", "from": "M", "to": "P", "right": true },
+          { "type": "angle", "vertex": "M", "from": "N", "to": "P" },
+          { "type": "segment", "from": "M", "to": "N", "label": "12 cm" },
+          { "type": "segment", "from": "N", "to": "P", "label": "5 cm" },
+          { "type": "segment", "from": "M", "to": "P", "label": "13 cm" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quelle est l’hypoténuse (le côté en face de l’angle droit) ? Écris-la avec des crochets, par exemple [AB].",
+          "accept": ["[MP]", "[PM]", "MP", "PM"],
+          "misconceptions": [
+            {
+              "answer": "[MN]",
+              "id": "mc:adjacent-hypotenuse",
+              "error": "notion",
+              "feedback": "[MN] passe par $N$, le sommet de l’angle droit. L’hypoténuse est le seul côté qui ne passe pas par $N$."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel est le côté adjacent à l’angle M̂ ?",
+          "accept": ["[MN]", "[NM]", "MN", "NM"],
+          "misconceptions": [
+            { "answer": "[NP]", "id": "mc:cos-oppose", "error": "notion", "feedback": "[NP] ne touche pas l’angle M̂ : c’est le côté opposé." },
+            {
+              "answer": "[MP]",
+              "id": "mc:adjacent-hypotenuse",
+              "error": "notion",
+              "feedback": "[MP] touche M̂, mais c’est l’hypoténuse. Le côté adjacent est l’autre côté de l’angle M̂ : [MN]."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule cos M̂, arrondi au centième.",
+          "answer": "arrondi(12/13;2)",
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": "arrondi(5/13;2)",
+              "id": "mc:cos-oppose",
+              "error": "notion",
+              "feedback": "5 est la longueur du côté opposé. CAH : adjacent ($MN = 12$) ÷ hypoténuse ($MP = 13$)."
+            },
+            {
+              "answer": "arrondi(13/12;2)",
+              "id": "mc:cos-inverse",
+              "error": "notion",
+              "feedback": "Un cosinus est plus petit que 1 : c’est adjacent ÷ hypoténuse, pas l’inverse."
+            }
+          ]
+        }
+      ],
+      "hints": ["L’angle droit est en $N$.", "Les deux côtés de l’angle M̂ sont $[MN]$ et $[MP]$ ; l’un d’eux est l’hypoténuse.", "cos M̂ = $12/13$."],
+      "solution": "Hypoténuse : [MP]. Côté adjacent à M̂ : [MN]. cos M̂ = $MN/MP$ = $12/13$ ≈ 0,92.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "[MP]" }, { "value": "[MN]" }, { "value": "0,92" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "[MP]" }, { "value": "[NP]" }, { "value": "0,38" }] }, "expect": "mc:cos-oppose" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-isocele",
+      "type": "composite",
+      "skill": "m4.cosinus.angle",
+      "skills": ["m5.triangle.angles"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:base-entiere"],
+      "expectedSeconds": 480,
+      "prompt": "Le triangle $ABC$ est isocèle en $A$ : $AB = AC = 13$ cm et $BC = 10$ cm. Il n’est pas rectangle… mais la hauteur $[AH]$, qui tombe au milieu $H$ de $[BC]$, le coupe en deux triangles rectangles.",
+      "figure": {
+        "alt": "Triangle ABC isocèle en A avec AB = AC = 13 cm et BC = 10 cm ; H est le milieu de [BC] et (AH) est perpendiculaire à (BC).",
+        "w": 297,
+        "h": 340,
+        "frame": { "x": [-0.9, 10.9], "y": [-1, 12.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 5, "y": 12, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 5, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true },
+          { "type": "segment", "from": "A", "to": "B", "label": "13 cm", "marks": 1 },
+          { "type": "segment", "from": "A", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "B", "to": "H", "marks": 2 },
+          { "type": "segment", "from": "H", "to": "C", "marks": 2 },
+          { "type": "angle", "vertex": "B", "from": "H", "to": "A" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule cos B̂, arrondi au centième.",
+          "answer": "arrondi(5/13;2)",
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": "arrondi(10/13;2)",
+              "id": "mc:base-entiere",
+              "error": "lecture",
+              "feedback": "Dans le triangle rectangle $ABH$, le côté adjacent à B̂ est $[BH]$, la **moitié** de la base : 5 cm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Déduis-en la mesure de l’angle B̂, au degré près (nombre seul).",
+          "answer": 67.38,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 22.62,
+              "id": "mc:cos-oppose",
+              "error": "notion",
+              "feedback": "Tu as obtenu l’angle entre le côté $[AB]$ et la hauteur $[AH]$. L’angle B̂ a pour cosinus $BH/AB$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule la mesure de l’angle Â, au degré près (nombre seul).",
+          "answer": 45.24,
+          "tolerance": 0.8,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 112.62,
+              "id": "mc:somme-angles",
+              "error": "raisonnement",
+              "prerequisite": "m5.triangle.angles",
+              "feedback": "Le triangle est isocèle : les **deux** angles à la base sont égaux. Â = 180° − 2 × B̂."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans le triangle $ABH$, rectangle en $H$ : $BH = 5$ cm, $AB = 13$ cm.",
+        "B̂ = arccos($5/13$).",
+        "Somme des angles : Â + B̂ + Ĉ = 180°, avec Ĉ = B̂."
+      ],
+      "solution": "Dans $ABH$ rectangle en $H$ : cos B̂ = $BH/AB$ = $5/13$ ≈ 0,38, donc B̂ ≈ 67,4°, soit 67° au degré près. Ĉ = B̂ (triangle isocèle), donc Â = 180° − 2 × B̂ ≈ 45,2°, soit environ 45°.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "0,38" }, { "value": "67" }, { "value": "45" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,77" }, { "value": "67" }, { "value": "45" }] }, "expect": "mc:base-entiere" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-hauteur",
+      "type": "composite",
+      "skill": "m4.cosinus.longueur",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:cos-division"],
+      "expectedSeconds": 540,
+      "prompt": "Dans le triangle $ABC$, $AB = 8$ cm, $BC = 11$ cm et l’angle B̂ = 50°. Ce triangle n’est pas rectangle : on trace la hauteur $[AH]$ issue de $A$ ($H$ est sur $[BC]$) pour faire apparaître deux triangles rectangles.",
+      "figure": {
+        "alt": "Triangle ABC avec AB = 8 cm, BC = 11 cm et l’angle B̂ = 50° ; [AH] est la hauteur issue de A.",
+        "w": 400,
+        "h": 264,
+        "frame": { "x": [-0.9, 11.9], "y": [-0.9, 7] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 5.142, "y": 6.128, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 11, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 5.142, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true },
+          { "type": "segment", "from": "A", "to": "B", "label": "8 cm" },
+          { "type": "text", "x": 8.2, "y": -0.5, "text": "BC = 11 cm", "size": "s" },
+          { "type": "angle", "vertex": "B", "from": "H", "to": "A", "label": "50°" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule $BH$ (en cm, au centième).",
+          "answer": 5.142,
+          "tolerance": 0.006,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 12.446,
+              "id": "mc:cos-division",
+              "error": "methode",
+              "feedback": "Dans $ABH$ rectangle en $H$, l’hypoténuse est $[AB]$ : $BH = 8 × cos(50)$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $AH$ (en cm, au centième ; théorème de Pythagore dans $ABH$).",
+          "answer": 6.128,
+          "tolerance": 0.011,
+          "round": 2
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $AC$ (en cm, au dixième ; Pythagore dans $AHC$).",
+          "answer": 8.478,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 12.592,
+              "id": "mc:hc-oubli",
+              "error": "lecture",
+              "feedback": "Dans le triangle $AHC$, le côté de l’angle droit est $HC = BC − BH$, pas $BC$ tout entier."
+            }
+          ]
+        }
+      ],
+      "hints": ["Dans $ABH$ : cos 50° = $BH/8$.", "$AH² = 8² − BH²$.", "$HC = 11 − BH$, puis $AC² = AH² + HC²$."],
+      "solution": "$BH = 8 × cos(50)$ ≈ 5,14 cm. $AH² = 64 − BH²$, donc $AH$ ≈ 6,13 cm. $HC = 11 − BH$ ≈ 5,86 cm, et $AC² = AH² + HC²$, donc $AC$ ≈ 8,5 cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "5,14" }, { "value": "6,13" }, { "value": "8,5" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "12,45" }, { "value": "6,13" }, { "value": "8,5" }] }, "expect": "mc:cos-division" }
+      ]
+    },
+    {
+      "id": "m4-cosinus-sin-tan",
+      "type": "composite",
+      "skill": "mx.trigo.sin-tan",
+      "skills": ["m4.cosinus.longueur", "m4.pythagore.calcul"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:sin-cos"],
+      "expectedSeconds": 600,
+      "prompt": "**Un pas vers la 3e.** Le cosinus a deux « cousins » : le **sinus** (sin Â = côté opposé ÷ hypoténuse) et la **tangente** (tan Â = côté opposé ÷ côté adjacent). Le triangle $ABC$ est rectangle en $B$, avec $AB = 8$, $BC = 6$ et $AC = 10$.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B avec AB = 8, BC = 6 et AC = 10 ; l’angle Â est marqué.",
+        "w": 379,
+        "h": 300,
+        "frame": { "x": [-0.8, 9], "y": [-0.9, 6.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 8, "y": 6, "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+          { "type": "segment", "from": "A", "to": "B", "label": "8" },
+          { "type": "segment", "from": "B", "to": "C", "label": "6" },
+          { "type": "segment", "from": "A", "to": "C", "label": "10" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "cos Â = ?",
+          "answer": 0.8,
+          "misconceptions": [
+            {
+              "answer": 0.6,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "0,6 = $6/10$ utilise le côté opposé : c’est le sinus. Le cosinus utilise le côté adjacent, $AB = 8$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "sin Â = ?",
+          "answer": 0.6,
+          "misconceptions": [{ "answer": 0.8, "id": "mc:sin-cos", "error": "notion", "feedback": "Le sinus utilise le côté **opposé** à Â, $[BC]$ : sin Â = $6/10$." }]
+        },
+        { "type": "numeric", "prompt": "tan Â = ?", "answer": 0.75 },
+        { "type": "numeric", "prompt": "Calcule (cos Â)² + (sin Â)².", "answer": 1 },
+        {
+          "type": "open",
+          "prompt": "Explique pourquoi on trouve 1 pour **n’importe quel** triangle rectangle. Piste : écris (cos Â)² + (sin Â)² avec les longueurs, puis pense à Pythagore.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "J’écris (cos Â)² + (sin Â)² = (AB² + BC²) ÷ AC²", "keywords": [["ab²", "ab^2", "ab x ab", "ab × ab"]] },
+            { "id": "c2", "label": "J’utilise le théorème de Pythagore : AB² + BC² = AC²", "keywords": [["pythagore"]] },
+            {
+              "id": "c3",
+              "label": "Je conclus : AC² ÷ AC² = 1, quel que soit le triangle",
+              "keywords": [["1"], ["tout", "toujours", "n'importe", "quel que soit", "quelque soit"]]
+            }
+          ]
+        }
+      ],
+      "hints": ["cos Â = $8/10$, sin Â = $6/10$, tan Â = $6/8$.", "$0,8² + 0,6² = 0,64 + 0,36$.", "(cos Â)² + (sin Â)² = $(AB² + BC²)/AC²$."],
+      "solution": "cos Â = 0,8 ; sin Â = 0,6 ; tan Â = 0,75 ; $0,8² + 0,6² = 1$. En général : (cos Â)² + (sin Â)² = $(AB² + BC²)/AC²$, et d’après le théorème de Pythagore $AB² + BC² = AC²$, donc le quotient vaut toujours 1.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "0,8" },
+              { "value": "0,6" },
+              { "value": "0,75" },
+              { "value": "1" },
+              {
+                "text": "cos² + sin² = AB²/AC² + BC²/AC² = (AB² + BC²)/AC². D’après Pythagore AB² + BC² = AC², donc on trouve toujours 1.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "0,6" },
+              { "value": "0,8" },
+              { "value": "0,75" },
+              { "value": "1" },
+              { "text": "Je ne sais pas pourquoi.", "selfCheck": { "c1": false, "c2": false, "c3": false } }
+            ]
+          },
+          "expect": "mc:sin-cos"
+        }
+      ]
+    },
+    {
+      "id": "m4-cosinus-preuve",
+      "type": "composite",
+      "skill": "m4.raisonner.preuve",
+      "skills": ["m4.cosinus.longueur", "m4.thales.calcul"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:thales-inverse"],
+      "expectedSeconds": 720,
+      "prompt": "**Pourquoi le cosinus ne dépend-il que de l’angle ?** Deux triangles rectangles ont le même angle aigu Â : $ABC$ est rectangle en $B$ et $AB’C’$ est rectangle en $B’$, avec $B’$ sur la demi-droite $[AB)$ et $C’$ sur la demi-droite $[AC)$.",
+      "figure": {
+        "alt": "Deux triangles rectangles emboîtés qui ont le même angle Â : ABC rectangle en B, et AB’C’ rectangle en B’, avec B’ sur [AB) et C’ sur [AC).",
+        "w": 376,
+        "h": 300,
+        "frame": { "x": [-0.8, 11], "y": [-0.9, 8.2] },
+        "items": [
+          { "type": "polygon", "points": ["A", "Bp", "Cp"], "fill": "orange" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "s" },
+          { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "nw" },
+          { "type": "point", "id": "Bp", "x": 10, "y": 0, "pos": "se", "label": "B’" },
+          { "type": "point", "id": "Cp", "x": 10, "y": 7.5, "pos": "ne", "label": "C’" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "Bp", "from": "A", "to": "Cp", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Les droites $(BC)$ et $(B’C’)$ sont toutes deux perpendiculaires à la droite $(AB)$. Que peut-on en déduire pour $(BC)$ et $(B’C’)$ ?",
+          "accept": [
+            "elles sont parallèles",
+            "parallèles",
+            "elles sont paralleles",
+            "paralleles",
+            "(BC) et (B’C’) sont parallèles",
+            "(BC) et (B'C') sont parallèles",
+            "(bc) // (b’c’)",
+            "(bc)//(b'c')",
+            "elles sont parallèles entre elles"
+          ],
+          "misconceptions": [
+            {
+              "answer": "elles sont perpendiculaires",
+              "id": "mc:perp-perp",
+              "error": "notion",
+              "feedback": "Deux droites perpendiculaires à une **même** droite sont parallèles entre elles (propriété de 6e)."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Utilise le théorème de Thalès pour démontrer que $AB/AC$ = $AB’/AC’$, c’est-à-dire que cos Â est le même dans les deux triangles.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je cite le théorème de Thalès dans la configuration emboîtée", "keywords": [["thales"]] },
+            { "id": "c2", "label": "J’écris $AB/AB’$ = $AC/AC’$", "keywords": [["ab/ab", "ac/ac", "ab / ab", "ac / ac"]] },
+            { "id": "c3", "label": "J’en déduis $AB/AC$ = $AB’/AC’$ (même cosinus)", "keywords": [["cos", "meme"]] }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Application : si $AB = 4$, $AC = 5$ et $AC’ = 12,5$, combien mesure $AB’$ ?",
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 15.625,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "prerequisite": "m4.thales.calcul",
+              "feedback": "cos Â = $4/5$ = 0,8 dans les deux triangles : $AB’ = 12,5 × 0,8$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Deux droites perpendiculaires à une même troisième sont parallèles.",
+        "Thalès dans les triangles emboîtés $ABC$ et $AB’C’$ : $AB/AB’$ = $AC/AC’$ = $BC/B’C’$.",
+        "Si $AB/AB’$ = $AC/AC’$, alors les produits en croix donnent $AB × AC’ = AC × AB’$."
+      ],
+      "solution": "$(BC)$ et $(B’C’)$ sont perpendiculaires à $(AB)$, donc parallèles. D’après le théorème de Thalès : $AB/AB’$ = $AC/AC’$. Produits en croix : $AB × AC’ = AB’ × AC$, donc $AB/AC$ = $AB’/AC’$ : le cosinus de Â est le même dans les deux triangles. Il ne dépend que de l’angle. Application : $AB’ = 12,5 × 4 ÷ 5 = 10$.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "elles sont parallèles" },
+              {
+                "text": "D’après le théorème de Thalès, AB/AB’ = AC/AC’. Avec les produits en croix, AB/AC = AB’/AC’ donc le cosinus est le même.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              },
+              { "value": "10" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "parallèles" },
+              { "text": "Thalès donne AB/AB’ = AC/AC’ donc même cosinus.", "selfCheck": { "c1": true, "c2": true, "c3": true } },
+              { "value": "15,625" }
+            ]
+          },
+          "expect": "mc:thales-inverse"
+        }
+      ]
+    }
+  ]
+}

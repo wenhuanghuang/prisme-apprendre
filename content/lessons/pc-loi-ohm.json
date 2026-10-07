@@ -12,8 +12,7 @@
     {
       "kind": "decouverte",
       "title": "Que fait l'intensité quand on double la tension ?",
-      "body": "Le circuit contient un générateur réglable et une résistance. Règle la tension sur 2 V et relève l'intensité. Fais une **prédiction** : que deviendra l'intensité à 4 V ? à 8 V ? Vérifie, puis cherche une relation simple entre les deux grandeurs.",
-      "activity": { "widget": "ohm-lab", "config": { "R": 100, "uMax": 12, "noise": 0 } }
+      "body": "Un générateur réglable alimente une résistance. Réglé sur **2 V**, il fait passer dans le circuit un courant de **20 mA**.\n\nFais une **prédiction** : que deviendra l'intensité si l'on règle le générateur sur 4 V ? Et sur 8 V ? Va-t-elle rester la même, doubler, ou augmenter encore plus vite ? L'expérience va te montrer les mesures : cherche une relation simple entre la tension et l'intensité."
     },
     {
       "kind": "ressource",
@@ -22,15 +21,162 @@
       "links": []
     },
     {
+      "kind": "experience",
+      "title": "L'expérience : la tension et l'intensité",
+      "body": "Observe les mesures une à une. Avant chaque nouvelle mesure, essaie de deviner ce qu'indiquera l'ampèremètre.",
+      "demo": {
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "fil", "id": "f1", "points": [[140, 372], [228, 372]] },
+          { "type": "fil", "id": "f2", "points": [[292, 372], [420, 372], [420, 200], [348, 200], [348, 182]] },
+          { "type": "fil", "id": "f3", "points": [[312, 182], [312, 200], [218, 200]] },
+          { "type": "fil", "id": "f4", "points": [[142, 200], [36, 200], [36, 372], [60, 372]] },
+          { "type": "fil", "id": "fv1", "points": [[240, 200], [240, 152], [198, 152], [198, 132]], "color": "#e11d48" },
+          { "type": "fil", "id": "fv2", "points": [[120, 200], [120, 152], [162, 152], [162, 132]] },
+          { "type": "forme", "shape": "ellipse", "x": 240, "y": 200, "w": 9, "h": 9, "fill": "noir" },
+          { "type": "forme", "shape": "ellipse", "x": 120, "y": 200, "w": 9, "h": 9, "fill": "noir" },
+          { "type": "pile", "id": "G", "x": 100, "y": 372, "label": "0 V" },
+          { "type": "texte", "x": 100, "y": 420, "text": "générateur réglable", "size": 13 },
+          { "type": "interrupteur", "id": "K", "x": 260, "y": 372, "closed": false },
+          { "type": "resistance", "id": "R", "x": 180, "y": 200, "label": "R" },
+          { "type": "multimetre", "id": "A", "x": 330, "y": 140, "mode": "A", "unit": "mA", "value": 0, "decimals": 1, "label": "ampèremètre" },
+          { "type": "multimetre", "id": "V", "x": 180, "y": 90, "mode": "V", "unit": "V", "value": 0, "decimals": 2, "label": "voltmètre" },
+          { "type": "etiquette", "id": "eA", "x": 372, "y": 250, "text": "en série", "to": [330, 192], "hidden": true },
+          { "type": "etiquette", "id": "eV", "x": 320, "y": 30, "text": "en dérivation", "to": [222, 80], "hidden": true },
+          { "type": "courbe", "id": "g", "x": 455, "y": 10, "w": 330, "h": 180, "title": "Caractéristique : U (V) en fonction de I", "xRange": [0, 120], "yRange": [0, 12], "xLabel": "I (mA)",
+            "points": [[0, 0], [20, 2], [40, 4], [60, 6], [80, 8], [100, 10], [120, 12]], "progress": 0, "color": "#e11d48" },
+          { "type": "releve", "id": "t", "x": 455, "y": 200, "w": 330, "head": ["U (V)", "I (mA)"],
+            "rows": [["2,0", "20,0"], ["4,0", "40,0"], ["6,0", "60,0"], ["8,0", "80,0"], ["10,0", "100,0"], ["12,0", "120,0"]], "shown": 0 }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Un **générateur réglable** alimente une **résistance**. L'**ampèremètre** est branché **en série** : tout le courant le traverse, il mesure l'intensité I. Le **voltmètre** est branché **en dérivation**, aux bornes de la résistance : il mesure la tension U. L'interrupteur est encore ouvert.",
+            "show": ["eA", "eV"],
+            "focus": ["G", "R", "A", "V"]
+          },
+          {
+            "title": "On ferme le circuit sous 2 V",
+            "text": "On règle le générateur sur **2 V** et on ferme l'interrupteur : le courant circule. Le voltmètre indique **U = 2,00 V** et l'ampèremètre **I = 20,0 mA**. On note ce couple de mesures dans le tableau et on place le point sur le graphique.",
+            "duration": 5,
+            "do": [
+              { "id": "G", "set": { "label": "2 V" } },
+              { "id": "K", "set": { "closed": true } },
+              { "id": "f1", "set": { "current": 0.35 } },
+              { "id": "f2", "set": { "current": 0.35 } },
+              { "id": "f3", "set": { "current": 0.35 } },
+              { "id": "f4", "set": { "current": 0.35 } },
+              { "id": "V", "to": { "value": 2 }, "dur": 1.5 },
+              { "id": "A", "to": { "value": 20 }, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 1 }, "at": 2.5 },
+              { "id": "g", "to": { "progress": 0.1667 }, "at": 2.5, "dur": 1.5 }
+            ],
+            "focus": ["V", "A"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On règle maintenant le générateur sur 4 V : deux fois plus de tension. Que va indiquer l'ampèremètre ?",
+              "choices": ["20 mA : l'intensité ne change pas", "40 mA : l'intensité double", "80 mA : l'intensité est multipliée par 4"],
+              "answer": 1,
+              "explain": "Regarde la suite : avec la même résistance, quand la tension double, l'intensité double aussi."
+            }
+          },
+          {
+            "title": "4 V, puis 6 V",
+            "text": "Sous **4 V**, l'ampèremètre indique **40 mA** : la tension a doublé, l'intensité aussi. Sous **6 V** (trois fois 2 V), on lit **60 mA** : trois fois plus. Le courant est de plus en plus intense, et les nouveaux points se placent sur le graphique.",
+            "duration": 7,
+            "do": [
+              { "id": "G", "set": { "label": "4 V" } },
+              { "id": "V", "to": { "value": 4 }, "dur": 1.5 },
+              { "id": "A", "to": { "value": 40 }, "dur": 1.5 },
+              { "id": "f1", "to": { "current": 0.7 }, "dur": 1.5 },
+              { "id": "f2", "to": { "current": 0.7 }, "dur": 1.5 },
+              { "id": "f3", "to": { "current": 0.7 }, "dur": 1.5 },
+              { "id": "f4", "to": { "current": 0.7 }, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 2 }, "at": 2 },
+              { "id": "g", "to": { "progress": 0.3333 }, "at": 1.5, "dur": 1 },
+              { "id": "G", "set": { "label": "6 V" }, "at": 3.5 },
+              { "id": "V", "to": { "value": 6 }, "at": 3.5, "dur": 1.5 },
+              { "id": "A", "to": { "value": 60 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f1", "to": { "current": 1.05 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f2", "to": { "current": 1.05 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f3", "to": { "current": 1.05 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f4", "to": { "current": 1.05 }, "at": 3.5, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 3 }, "at": 5.5 },
+              { "id": "g", "to": { "progress": 0.5 }, "at": 5, "dur": 1 }
+            ],
+            "focus": ["A", "t"]
+          },
+          {
+            "title": "Jusqu'à 10 V",
+            "text": "On continue : sous **8 V**, I = **80 mA** ; sous **10 V**, I = **100 mA**. Chaque fois que la tension augmente de 2 V, l'intensité augmente de 20 mA. Sur le graphique, les points restent alignés.",
+            "duration": 7,
+            "do": [
+              { "id": "G", "set": { "label": "8 V" } },
+              { "id": "V", "to": { "value": 8 }, "dur": 1.5 },
+              { "id": "A", "to": { "value": 80 }, "dur": 1.5 },
+              { "id": "f1", "to": { "current": 1.4 }, "dur": 1.5 },
+              { "id": "f2", "to": { "current": 1.4 }, "dur": 1.5 },
+              { "id": "f3", "to": { "current": 1.4 }, "dur": 1.5 },
+              { "id": "f4", "to": { "current": 1.4 }, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 4 }, "at": 2 },
+              { "id": "g", "to": { "progress": 0.6667 }, "at": 1.5, "dur": 1 },
+              { "id": "G", "set": { "label": "10 V" }, "at": 3.5 },
+              { "id": "V", "to": { "value": 10 }, "at": 3.5, "dur": 1.5 },
+              { "id": "A", "to": { "value": 100 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f1", "to": { "current": 1.75 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f2", "to": { "current": 1.75 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f3", "to": { "current": 1.75 }, "at": 3.5, "dur": 1.5 },
+              { "id": "f4", "to": { "current": 1.75 }, "at": 3.5, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 5 }, "at": 5.5 },
+              { "id": "g", "to": { "progress": 0.8333 }, "at": 5, "dur": 1 }
+            ],
+            "focus": ["A", "g"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "D'après le tableau, que va indiquer l'ampèremètre si l'on règle le générateur sur 12 V ?",
+              "choices": ["110 mA", "120 mA", "144 mA"],
+              "answer": 1,
+              "explain": "12 V, c'est 6 fois 2 V : l'intensité est 6 fois 20 mA, soit 120 mA. Quand la tension est multipliée par un nombre, l'intensité est multipliée par le même nombre."
+            }
+          },
+          {
+            "title": "Dernière mesure : 12 V",
+            "text": "Sous **12 V**, l'ampèremètre indique bien **120 mA**. Le graphique est terminé : tous les points sont sur une **droite qui passe par l'origine** (sous 0 V, aucun courant ne circule).",
+            "duration": 4,
+            "do": [
+              { "id": "G", "set": { "label": "12 V" } },
+              { "id": "V", "to": { "value": 12 }, "dur": 1.5 },
+              { "id": "A", "to": { "value": 120 }, "dur": 1.5 },
+              { "id": "f1", "to": { "current": 2 }, "dur": 1.5 },
+              { "id": "f2", "to": { "current": 2 }, "dur": 1.5 },
+              { "id": "f3", "to": { "current": 2 }, "dur": 1.5 },
+              { "id": "f4", "to": { "current": 2 }, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 6 }, "at": 2 },
+              { "id": "g", "to": { "progress": 1 }, "at": 1.5, "dur": 1.5 }
+            ],
+            "focus": ["g"]
+          },
+          {
+            "title": "U / I est toujours le même",
+            "text": "Convertissons l'intensité en ampères : 20 mA = 0,020 A. Puis calculons U / I : 2,0 / 0,020 = **100 Ω** ; 4,0 / 0,040 = **100 Ω**… Le quotient est **toujours le même** : c'est la **résistance R** du dipôle. La tension est proportionnelle à l'intensité.",
+            "do": [
+              { "id": "t", "set": { "head": ["U (V)", "I (A)", "U / I (Ω)"],
+                "rows": [["2,0", "0,020", "100"], ["4,0", "0,040", "100"], ["6,0", "0,060", "100"], ["8,0", "0,080", "100"], ["10,0", "0,100", "100"], ["12,0", "0,120", "100"]] } }
+            ],
+            "focus": ["t"]
+          }
+        ],
+        "conclusion": "Pour une résistance (un **conducteur ohmique**), la tension U est **proportionnelle** à l'intensité I : quand U double, I double.\n\n- La caractéristique U = f(I) est une **droite qui passe par l'origine**.\n- Le quotient U / I, avec I en ampères, est constant : c'est la **résistance** R, ici 100 Ω.\n\n> **Loi d'Ohm** : U = R × I, avec U en volts, I en ampères et R en ohms."
+      }
+    },
+    {
       "kind": "cours",
       "title": "Le cours",
       "body": "**Mesurer.** La tension $U$ (en volts, V) se mesure avec un voltmètre branché **en dérivation** aux bornes du dipôle. L'intensité $I$ (en ampères, A) se mesure avec un ampèremètre branché **en série**. On rencontre souvent le milliampère : 1 A = 1 000 mA, donc 1 mA = 0,001 A.\n\n**Caractéristique.** On relève plusieurs couples $(I ; U)$ et on trace $U$ en fonction de $I$ : c'est la caractéristique du dipôle.\n\n> **Loi d'Ohm.** Pour un **conducteur ohmique** (une « résistance »), la caractéristique est une droite passant par l'origine : $U$ est proportionnelle à $I$,\n> $U = R × I$ avec $U$ en V, $I$ en **A** et $R$ en ohms (Ω).\n> $R$ est le coefficient directeur de la droite.\n\n**Les trois écritures** : $U = R × I$ ; $I = U / R$ ; $R = U / I$. Avant tout calcul, on convertit l'intensité en ampères.\n\n**Sens physique.** $R$ indique combien de volts il faut par ampère : avec $R = 100$ Ω, il faut 100 V pour 1 A, donc 1 V pour 10 mA. À tension fixée, plus $R$ est grande, plus l'intensité est petite.\n\n**Tous les dipôles ne sont pas ohmiques** : la caractéristique d'une lampe à incandescence ou d'une DEL n'est pas une droite passant par l'origine. Pour eux, $U / I$ n'est pas constant."
-    },
-    {
-      "kind": "manipulation",
-      "title": "Tracer une caractéristique",
-      "body": "Fais varier la tension de 0 à 12 V, en mesurant à chaque fois. Le tableau se remplit et les points se placent sur le graphique $U = f(I)$. Les points sont-ils alignés ? La droite passe-t-elle par l'origine ? Calcule $U / I$ pour deux ou trois mesures.",
-      "activity": { "widget": "ohm-lab", "config": { "R": 220, "uMax": 12, "noise": 0 } }
     },
     {
       "kind": "exemple",
@@ -90,10 +236,14 @@
   "exercises": [
     {
       "id": "pc-loi-ohm-labo", "type": "composite", "skill": "pc.electricite.ohm", "track": "classe", "role": "labo", "difficulty": 2,
-      "representation": "manipulation", "targets": ["mc:ma-non-converti", "mc:r-inverse"], "expectedSeconds": 300,
+      "representation": "visuelle", "targets": ["mc:ma-non-converti", "mc:r-inverse"], "expectedSeconds": 300,
       "params": { "R": { "choice": [47, 100, 220, 330] } },
-      "prompt": "La valeur de la résistance du circuit est cachée. Règle le générateur pour que le voltmètre indique 6,0 V, puis relève l'intensité.",
-      "activity": { "widget": "ohm-lab", "config": { "R": "{R}", "uMax": 12, "noise": 0 } },
+      "prompt": "La valeur de la résistance d'un circuit est cachée. On a réglé le générateur sur plusieurs tensions et relevé à chaque fois l'intensité indiquée par l'ampèremètre. Voici le tableau de mesures.",
+      "figure": {
+        "alt": "Tableau de mesures : tension U en volts et intensité I en milliampères, pour quatre réglages du générateur",
+        "w": 360, "h": 200,
+        "items": [ { "type": "table", "head": ["U (V)", "I (mA)"], "rows": [["2,0", "{2000/R|d1}"], ["4,0", "{4000/R|d1}"], ["6,0", "{6000/R|d1}"], ["8,0", "{8000/R|d1}"]] } ]
+      },
       "parts": [
         { "type": "numeric", "prompt": "Intensité mesurée pour U = 6,0 V (avec l'unité, en A ou en mA) :", "answer": "6/R", "unit": "A", "rel": 0.03 },
         { "type": "numeric", "prompt": "Déduis-en la valeur de R (avec l'unité).", "answer": "R", "unit": "Ω", "rel": 0.03,
@@ -103,8 +253,8 @@
             { "answer": "1000/R", "id": "mc:r-inverse", "error": "notion", "feedback": "Tu as calculé I / U (avec I en mA). La résistance est le nombre de volts par ampère : R = U / I, avec I en A." }
           ] }
       ],
-      "hints": ["L'ampèremètre peut afficher l'intensité en mA : note bien l'unité.", "Convertis l'intensité en ampères (÷ 1 000 si elle est en mA).", "R = U / I = 6,0 / (intensité en A)."],
-      "solution": "Sous 6,0 V, on mesure $I ≈ {6000/R|d1}$ mA, soit {6/R|d4} A. Donc $R = U / I = 6,0 / {6/R|d4} ≈ {R}$ Ω.",
+      "hints": ["Repère la ligne U = 6,0 V du tableau : l'intensité y est écrite en mA, note bien l'unité.", "Convertis l'intensité en ampères (÷ 1 000 si elle est en mA).", "R = U / I = 6,0 / (intensité en A)."],
+      "solution": "Sous 6,0 V, on lit $I ≈ {6000/R|d1}$ mA, soit {6/R|d4} A. Donc $R = U / I = 6,0 / {6/R|d4} ≈ {R}$ Ω. Les autres lignes du tableau donnent le même quotient : le dipôle est bien un conducteur ohmique.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{6000/R} mA" }, { "value": "{R} Ω" } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "{6/R} A" }, { "value": "{R/1000} Ω" } ] }, "expect": "mc:ma-non-converti" },
@@ -255,25 +405,29 @@
     },
     {
       "id": "pc-loi-ohm-mission", "type": "composite", "skill": "pc.electricite.ohm", "track": "classe", "role": "mission", "difficulty": 3,
-      "representation": "manipulation", "targets": ["mc:ma-non-converti"], "expectedSeconds": 600,
+      "representation": "visuelle", "targets": ["mc:ma-non-converti"], "expectedSeconds": 600,
       "params": { "R": { "choice": [47, 100, 220, 330] } },
-      "prompt": "Le fournisseur ne vend que quatre valeurs : 47 Ω, 100 Ω, 220 Ω et 330 Ω. Les mesures du laboratoire sont légèrement dispersées, comme avec de vrais appareils. Fais au moins quatre mesures à des tensions différentes.",
-      "activity": { "widget": "ohm-lab", "config": { "R": "{R}", "uMax": 12, "noise": 0.01 } },
+      "prompt": "Le fournisseur ne vend que quatre valeurs : 47 Ω, 100 Ω, 220 Ω et 330 Ω. Pour retrouver la valeur de la résistance, on a fait quatre mesures à des tensions différentes. Comme avec de vrais appareils, elles sont légèrement dispersées.",
+      "figure": {
+        "alt": "Tableau de quatre mesures : tension U en volts et intensité I en milliampères",
+        "w": 360, "h": 200,
+        "items": [ { "type": "table", "head": ["U (V)", "I (mA)"], "rows": [["2,0", "{2024/R|d1}"], ["4,0", "{3964/R|d1}"], ["6,0", "{6036/R|d1}"], ["8,0", "{7944/R|d1}"]] } ]
+      },
       "parts": [
-        { "type": "numeric", "prompt": "Valeur de R déduite de tes mesures (avec l'unité) :", "answer": "R", "unit": "Ω", "rel": 0.05,
+        { "type": "numeric", "prompt": "Valeur de R déduite de ces mesures (avec l'unité) :", "answer": "R", "unit": "Ω", "rel": 0.05,
           "misconceptions": [
             { "answer": "R/1000", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Convertis les intensités en ampères avant de calculer U / I." },
             { "answer": "1/R", "id": "mc:r-inverse", "error": "notion", "feedback": "R = U / I et non I / U." }
           ] },
         { "type": "numeric", "prompt": "Quelle valeur du fournisseur est-ce ?", "answer": "R", "unit": "Ω", "rel": 0.001 },
-        { "type": "open", "prompt": "Pourquoi as-tu fait plusieurs mesures plutôt qu'une seule ?", "minWords": 15,
+        { "type": "open", "prompt": "Pourquoi a-t-on fait plusieurs mesures plutôt qu'une seule ?", "minWords": 15,
           "criteria": [
             { "id": "c1", "label": "Chaque mesure a une petite erreur : plusieurs mesures permettent de la réduire (moyenne, droite)", "keywords": [["erreur", "moyenne", "droite", "precis"]] },
             { "id": "c2", "label": "On vérifie que U / I reste constant : le dipôle est bien ohmique", "keywords": [["constant", "ohmique", "proportionn"]] }
           ] }
       ],
       "hints": ["Calcule U / I (I en ampères) pour chaque mesure.", "Fais la moyenne des quotients, ou trace la droite au plus près des points.", "Choisis la valeur du fournisseur la plus proche de ton résultat."],
-      "solution": "Les quotients U / I sont tous voisins de {R} Ω (à 1 ou 2 % près) : la résistance vaut {R} Ω. Plusieurs mesures permettent de vérifier que U / I est constant et de réduire l'effet des petites erreurs.",
+      "solution": "Les quotients U / I (avec I en ampères) sont tous voisins de {R} Ω, à 1 ou 2 % près : la résistance vaut {R} Ω. Plusieurs mesures permettent de vérifier que U / I est constant et de réduire l'effet des petites erreurs.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{R} Ω" }, { "value": "{R} Ω" }, { "text": "Chaque mesure a une petite erreur, avec la moyenne on est plus précis, et on vérifie que U / I reste constant.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "{R/1000} Ω" }, { "value": "{R} Ω" }, { "text": "Chaque mesure a une petite erreur, avec la moyenne on est plus précis." } ] }, "expect": "mc:ma-non-converti" }
@@ -317,9 +471,14 @@
     },
     {
       "id": "pc-loi-ohm-lampe", "type": "composite", "skill": "pc.electricite.ohm", "skills": ["pc.mesure.donnees"], "track": "approfondissement", "role": "labo", "difficulty": 4,
-      "representation": "manipulation", "targets": ["mc:lampe-ohmique"], "expectedSeconds": 600,
-      "prompt": "Remplace la résistance par une petite lampe à incandescence (6 V ; 0,3 A). Fais varier la tension de 0 à 6 V et observe la caractéristique. Voici aussi les mesures d'un élève avec une lampe identique :\n- U = 0,5 V ; I = 0,10 A\n- U = 1,0 V ; I = 0,14 A\n- U = 2,0 V ; I = 0,19 A\n- U = 4,0 V ; I = 0,25 A\n- U = 6,0 V ; I = 0,30 A",
-      "activity": { "widget": "ohm-lab", "config": { "R": 20, "lamp": true, "uMax": 6, "noise": 0 } },
+      "representation": "visuelle", "targets": ["mc:lampe-ohmique"], "expectedSeconds": 600,
+      "prompt": "On remplace la résistance par une petite lampe à incandescence (6 V ; 0,3 A) et on fait varier la tension de 0 à 6 V. Voici les mesures d'un élève, puis la caractéristique U = f(I) tracée avec ces mesures :\n- U = 0,5 V ; I = 0,10 A\n- U = 1,0 V ; I = 0,14 A\n- U = 2,0 V ; I = 0,19 A\n- U = 4,0 V ; I = 0,25 A\n- U = 6,0 V ; I = 0,30 A",
+      "figure": {
+        "alt": "Caractéristique U = f(I) d'une petite lampe, tracée à partir des mesures de l'élève",
+        "w": 460, "h": 270,
+        "items": [ { "type": "linechart", "xLabel": "I (A)", "yLabel": "U (V)", "xRange": [0, 0.35], "yRange": [0, 7],
+          "series": [ { "label": "lampe", "points": [[0, 0], [0.10, 0.5], [0.14, 1.0], [0.19, 2.0], [0.25, 4.0], [0.30, 6.0]] } ] } ]
+      },
       "parts": [
         { "type": "text", "prompt": "Le quotient U / I est-il constant pour cette lampe ? (oui ou non)", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:lampe-ohmique", "error": "notion", "feedback": "Calcule U / I : environ 5 Ω sous 0,5 V, mais 20 Ω sous 6 V. La caractéristique n'est pas une droite passant par l'origine : la lampe n'est pas un conducteur ohmique." } ] },
@@ -370,12 +529,16 @@
     },
     {
       "id": "pc-loi-ohm-bruit", "type": "composite", "skill": "pc.mesure.incertitudes", "skills": ["pc.electricite.ohm", "pc.mesure.donnees"], "track": "expert", "role": "labo", "difficulty": 5,
-      "representation": "manipulation", "targets": ["mc:etendue", "mc:compatibilite"], "expectedSeconds": 900,
+      "representation": "visuelle", "targets": ["mc:etendue", "mc:compatibilite"], "expectedSeconds": 900,
       "params": { "R": { "choice": [100, 220, 330] } },
-      "prompt": "Le laboratoire simule maintenant des mesures nettement dispersées, comme avec des appareils bon marché. Fais au moins six mesures et observe le nuage de points.\n\nUn autre groupe, avec une résistance marquée « 220 Ω ± 5 % », a obtenu :\n- 2,0 V ; 9,3 mA\n- 4,0 V ; 17,9 mA\n- 6,0 V ; 27,6 mA\n- 8,0 V ; 35,8 mA\n- 10,0 V ; 46,1 mA",
-      "activity": { "widget": "ohm-lab", "config": { "R": "{R}", "uMax": 12, "noise": 0.04 } },
+      "prompt": "Un premier groupe a travaillé avec des appareils bon marché : ses six mesures, données dans le tableau, sont nettement dispersées.\n\nUn deuxième groupe, avec une résistance marquée « 220 Ω ± 5 % », a obtenu :\n- 2,0 V ; 9,3 mA\n- 4,0 V ; 17,9 mA\n- 6,0 V ; 27,6 mA\n- 8,0 V ; 35,8 mA\n- 10,0 V ; 46,1 mA",
+      "figure": {
+        "alt": "Tableau des six mesures du premier groupe : tension U en volts et intensité I en milliampères",
+        "w": 360, "h": 240,
+        "items": [ { "type": "table", "head": ["U (V)", "I (mA)"], "rows": [["2,0", "{2070/R|d1}"], ["4,0", "{3880/R|d1}"], ["6,0", "{6120/R|d1}"], ["8,0", "{7680/R|d1}"], ["10,0", "{10100/R|d1}"], ["12,0", "{11820/R|d1}"]] } ]
+      },
       "parts": [
-        { "type": "numeric", "prompt": "TA résistance : valeur de R d'après la droite passant par l'origine et au plus près de tes points (avec l'unité).", "answer": "R", "unit": "Ω", "rel": 0.06,
+        { "type": "numeric", "prompt": "Groupe 1 : valeur de R d'après la droite passant par l'origine et au plus près de ses points (avec l'unité).", "answer": "R", "unit": "Ω", "rel": 0.06,
           "misconceptions": [ { "answer": "R/1000", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Convertis les intensités en ampères." } ] },
         { "type": "numeric", "prompt": "Groupe 2 : plus petite valeur de U / I parmi ses cinq mesures (avec l'unité).", "answer": "2/0.0093", "unit": "Ω", "rel": 0.005 },
         { "type": "numeric", "prompt": "Groupe 2 : plus grande valeur de U / I (avec l'unité).", "answer": "4/0.0179", "unit": "Ω", "rel": 0.005 },
@@ -390,8 +553,8 @@
             { "id": "c3", "label": "La droite « moyenne » ces erreurs et donne une valeur plus fiable de R", "keywords": [["moyen", "fiable", "compens"]] }
           ] }
       ],
-      "hints": ["Pour le groupe 2, calcule les cinq quotients U / I avec I en ampères.", "Tu dois trouver des valeurs entre 215 et 224 Ω environ.", "220 Ω ± 5 % : 5 % de 220 = 11 Ω."],
-      "solution": "Groupe 2 : U / I vaut 215,1 ; 223,5 ; 217,4 ; 223,5 ; 216,9 Ω. Moyenne ≈ 219 Ω ; demi-étendue = (223,5 − 215,1) / 2 ≈ 4 Ω : R = 219 ± 4 Ω, soit entre 215 et 223 Ω. C'est compatible avec 220 Ω ± 5 % (209 à 231 Ω). Le modèle prévoit une droite par l'origine ; les points s'en écartent à cause des erreurs de mesure : relier les points ferait « suivre » ces erreurs.",
+      "hints": ["Groupe 1 : calcule U / I (I en ampères) pour chaque mesure, puis fais la moyenne, ou trace la droite passant par l'origine au plus près des points.", "Pour le groupe 2, calcule les cinq quotients U / I avec I en ampères : tu dois trouver des valeurs entre 215 et 224 Ω environ.", "220 Ω ± 5 % : 5 % de 220 = 11 Ω."],
+      "solution": "Groupe 1 : les quotients U / I sont dispersés de quelques pour cent autour de {R} Ω ; la droite passant par l'origine au plus près des points donne R ≈ {R} Ω. Groupe 2 : U / I vaut 215,1 ; 223,5 ; 217,4 ; 223,5 ; 216,9 Ω. Moyenne ≈ 219 Ω ; demi-étendue = (223,5 − 215,1) / 2 ≈ 4 Ω : R = 219 ± 4 Ω, soit entre 215 et 223 Ω. C'est compatible avec 220 Ω ± 5 % (209 à 231 Ω). Le modèle prévoit une droite par l'origine ; les points s'en écartent à cause des erreurs de mesure : relier les points ferait « suivre » ces erreurs.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{R} Ω" }, { "value": "215 Ω" }, { "value": "223,5 Ω" }, { "value": "4,2 Ω" }, { "value": "oui" }, { "text": "La loi d'Ohm prévoit une droite par l'origine. Les écarts viennent des erreurs de mesure, la droite moyenne ces erreurs et donne une valeur plus fiable.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "{R} Ω" }, { "value": "215 Ω" }, { "value": "223,5 Ω" }, { "value": "8,4 Ω" }, { "value": "oui" }, { "text": "La loi d'Ohm prévoit une droite par l'origine. Les écarts viennent des erreurs de mesure." } ] }, "expect": "mc:etendue" },
