@@ -49,7 +49,9 @@ export function esc(s) {
 export function mathHTML(src) {
   const t = String(src).trim();
   const parsed = tryParse(t);
-  if (parsed.ok && !/[A-Za-zÀ-ÿ]{3,}/.test(t.replace(/(pgcd|ppcm|racine|cos|sin|tan|sqrt)/g, ''))) {
+  // « P(A) », « f(x) » : notation de fonction, à garder telle quelle (sinon lue comme le produit P × A)
+  const functionNotation = /(^|[^A-Za-z])([A-Z]|[fgh])\(/.test(t);
+  if (parsed.ok && !functionNotation && !/[A-Za-zÀ-ÿ]{3,}/.test(t.replace(/(pgcd|ppcm|racine|cos|sin|tan|sqrt)/g, ''))) {
     return `<span class="math">${toHTML(parsed.node)}</span>`;
   }
   return `<span class="math">${esc(t).replace(/\^(\d+)/g, '<sup>$1</sup>')}</span>`;

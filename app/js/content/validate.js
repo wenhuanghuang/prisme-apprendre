@@ -8,12 +8,14 @@ import { interpolateDeep } from '../core/template.js';
 import { expectedValue } from '../core/checkers/numeric.js';
 import { parseWithParams } from '../core/template.js';
 import { equivalent, evaluate } from '../core/expr.js';
-import { generateFromData, canonicalResponse, DATA_KINDS } from '../generators/data-kinds.js';
+import { generateFromData, canonicalResponse, DATA_KINDS, DATA_TRACKS } from '../generators/data-kinds.js';
+import { checkFigure } from '../figures/check.js';
+import { checkDemo } from '../demos/check.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 export const ROLES = ['guide', 'libre', 'reinvestissement', 'transfert', 'remediation', 'defi', 'mission', 'verification', 'labo', 'debug'];
 export const REPRESENTATIONS = ['symbolique', 'visuelle', 'concrete', 'manipulation', 'verbale'];
-export const SECTION_KINDS = ['decouverte', 'ressource', 'cours', 'manipulation', 'exemple', 'exercices', 'libre', 'reinvestissement', 'mission', 'correction', 'revision'];
+export const SECTION_KINDS = ['decouverte', 'ressource', 'cours', 'manipulation', 'experience', 'exemple', 'exercices', 'libre', 'reinvestissement', 'mission', 'correction', 'revision'];
 const SEEDS = [1, 2, 3, 17, 42, 101, 2026];
 
 function leftoverBraces(text) {
@@ -77,6 +79,10 @@ export function validateExercise(def, skillIds, where = '') {
     if (bad) { errs.push(`${at} [tirage ${seed}] : accolades non interprétées dans « ${bad.slice(0, 80)} »`); break; }
     const collide = misconceptionCollides(def, inst.params);
     if (collide) { errs.push(`${at} [tirage ${seed}] : l'idée fausse ${collide} donne la même valeur que la bonne réponse`); break; }
+    if (def.figure) {
+      const figErrs = checkFigure(interpolateDeep(def.figure, inst.params), `${at} [tirage ${seed}] figure`);
+      if (figErrs.length) { errs.push(...figErrs); break; }
+    }
     for (const [k, t] of (def.selfTest || []).entries()) {
       const response = interpolateDeep(t.response, inst.params);
       const d = check(inst, response);
@@ -107,10 +113,23 @@ export function validateLesson(lesson, skillIds, opts = {}) {
     errs.push(...validateExercise(ex, skillIds, at));
   }
   const referenced = new Set();
+  if (lesson.chapter !== undefined && (typeof lesson.chapter !== 'string' || !lesson.chapter)) errs.push(`${at}« chapter » doit être l'identifiant d'un chapitre de parcours`);
   for (const sec of lesson.sections) {
+    const sat = `${at}section « ${sec.title || sec.kind} » : `;
     if (!SECTION_KINDS.includes(sec.kind)) errs.push(`${at}section de type inconnu « ${sec.kind} »`);
-    for (const id of sec.exercises || []) { referenced.add(id); if (!ids.has(id)) errs.push(`${at}section « ${sec.title} » : exercice inexistant « ${id} »`); }
+    for (const id of sec.exercises || []) { referenced.add(id); if (!ids.has(id)) errs.push(`${sat}exercice inexistant « ${id} »`); }
     for (const l of sec.links || []) if (!/^https:\/\//.test(l.url || '')) errs.push(`${at}lien non sécurisé ou vide : ${l.url}`);
+    if (sec.figure) errs.push(...checkFigure(sec.figure, `${sat}figure`));
+    if (sec.cards !== undefined) {
+      if (!Array.isArray(sec.cards) || !sec.cards.length) errs.push(`${sat}« cards » doit être une liste non vide`);
+      else sec.cards.forEach((c, i) => {
+        if (!c || (!c.title && !c.body)) errs.push(`${sat}carte ${i + 1} sans titre ni texte`);
+        if (c && c.reveal && (!c.reveal.question || !c.reveal.answer)) errs.push(`${sat}carte ${i + 1} : « reveal » = { question, answer }`);
+        if (c && c.figure) errs.push(...checkFigure(c.figure, `${sat}carte ${i + 1} figure`));
+      });
+    }
+    for (const [i, st] of (sec.steps || []).entries()) if (st && st.figure) errs.push(...checkFigure(st.figure, `${sat}étape ${i + 1} figure`));
+    if (sec.kind === 'experience') errs.push(...checkDemo(sec.demo, `${sat}expérience`));
   }
   for (const [track, t] of Object.entries(lesson.tracks || {})) {
     if (!TRACKS.includes(track)) errs.push(`${at}parcours inconnu « ${track} »`);
@@ -167,15 +186,23 @@ export function validateGenerator(gen, skillIds) {
   if (errs.length) return errs;
   const optionSets = [{}];
   for (const o of gen.options || []) for (const v of o.values || []) optionSets.push({ [o.id]: v.id });
-  for (const opts of optionSets) {
-    for (let seed = 1; seed <= 25; seed++) {
-      let def;
-      try { def = generateFromData(gen, seed, opts); } catch (e) { errs.push(`${at} [${JSON.stringify(opts)} tirage ${seed}] : ${e.message}`); break; }
-      const d1 = check(instantiate(def, seed), canonicalResponse(def));
-      if (d1.verdict !== 'correct') { errs.push(`${at} [tirage ${seed}] : la réponse attendue n'est pas acceptée (${d1.feedback})`); break; }
-      for (const mc of def.misconceptions || []) {
-        if ((def.accept || []).some((a) => String(a).trim().toLowerCase() === String(mc.answer).trim().toLowerCase())) { errs.push(`${at} [tirage ${seed}] : idée fausse identique à une réponse acceptée (${mc.answer})`); break; }
+  // chaque option, à chacun des trois niveaux (classe, ◆ approfondissement, ✦ expert)
+  for (const parcours of DATA_TRACKS) {
+    for (const base of optionSets) {
+      const opts = { ...base, parcours };
+      for (let seed = 1; seed <= 25; seed++) {
+        let def;
+        try { def = generateFromData(gen, seed, opts); } catch (e) { errs.push(`${at} [${JSON.stringify(opts)} tirage ${seed}] : ${e.message}`); break; }
+        const d1 = check(instantiate(def, seed), canonicalResponse(def));
+        if (d1.verdict !== 'correct') { errs.push(`${at} [${parcours} tirage ${seed}] : la réponse attendue n'est pas acceptée (${d1.feedback})`); break; }
+        for (const part of [def, ...(def.parts || [])]) {
+          for (const mc of part.misconceptions || []) {
+            if ((part.accept || []).some((a) => String(a).trim().toLowerCase() === String(mc.answer).trim().toLowerCase())) { errs.push(`${at} [${parcours} tirage ${seed}] : idée fausse identique à une réponse acceptée (${mc.answer})`); break; }
+          }
+        }
+        if (errs.length) break; // une erreur suffit : inutile de la répéter à chaque tirage
       }
+      if (errs.length) break;
     }
     if (errs.length) break;
   }
@@ -183,5 +210,5 @@ export function validateGenerator(gen, skillIds) {
 }
 
 export function generatorMeta(gen) {
-  return { id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, kind: gen.kind, description: gen.description || '', options: gen.options || [], track: gen.track || 'classe' };
+  return { id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, kind: gen.kind, description: gen.description || '', options: gen.options || [], track: 'classe', tracks: DATA_TRACKS };
 }

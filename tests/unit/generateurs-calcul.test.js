@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
-import { CODE_GENERATORS, generateFromCode } from '../../app/js/generators/maths-pc.js';
+import { CODE_GENERATORS, generateFromCode, generatorTracks } from '../../app/js/generators/maths-pc.js';
 import { canonicalResponse } from '../../app/js/generators/data-kinds.js';
 import { instantiate, check } from '../../app/js/core/checkers/index.js';
 import { validateExercise } from '../../app/js/content/validate.js';
@@ -12,28 +12,58 @@ const skillIds = new Set(readdirSync(new URL('../../app/content/skills/', import
 const optionSets = (gen) => [{}, ...(gen.options || []).flatMap((o) => o.values.map((v) => ({ [o.id]: v.id })))];
 const asText = (n) => String(n).replace('.', ',');
 
+/** Réponse d'un élève qui commet l'idée fausse `m` (nombre écrit à la française, avec l'unité si elle est exigée). */
+const wrongValue = (def, m) => (def.type === 'numeric' ? asText(m.answer) + (def.unit && !def.unitOptional ? ` ${def.unit}` : '') : m.answer);
+
 for (const gen of CODE_GENERATORS) {
-  test(`générateur ${gen.id} : 40 tirages par option, bonne réponse acceptée, idées fausses diagnostiquées`, () => {
-    assert.ok(skillIds.has(gen.skill), `compétence ${gen.skill}`);
-    for (const opts of optionSets(gen)) {
-      for (let seed = 1; seed <= 40; seed++) {
-        const def = generateFromCode(gen, seed, opts);
-        const where = `${gen.id} ${JSON.stringify(opts)} #${seed}`;
-        assert.ok(skillIds.has(def.skill), `${where} : compétence ${def.skill}`);
-        assert.ok(!/undefined|NaN|Infinity/.test(JSON.stringify(def)), `${where} : valeur manquante dans ${def.prompt}`);
-        const errs = validateExercise({ ...def, selfTest: [{ response: canonicalResponse(def), expect: 'correct' }] }, skillIds);
-        assert.deepEqual(errs, [], where);
-        const inst = instantiate(def, seed);
-        for (const mc of def.misconceptions || []) {
-          const value = def.type === 'numeric' ? asText(mc.answer) + (def.unit && !def.unitOptional ? ` ${def.unit}` : '') : mc.answer;
-          const d = check(inst, { value });
-          assert.notEqual(d.verdict, 'correct', `${where} : l'idée fausse ${mc.id} (${value}) est acceptée`);
-          assert.equal(d.misconception, mc.id, `${where} : ${value} devrait être diagnostiqué ${mc.id}, obtenu ${d.misconception} (${d.feedback})`);
+  for (const tier of generatorTracks(gen)) {
+    test(`générateur ${gen.id} (${tier}) : 40 tirages par option, bonne réponse acceptée, idées fausses diagnostiquées`, () => {
+      assert.ok(skillIds.has(gen.skill), `compétence ${gen.skill}`);
+      for (const s of gen.skills || []) assert.ok(skillIds.has(s), `${gen.id} : compétence secondaire ${s}`);
+      for (const opts of optionSets(gen)) {
+        for (let seed = 1; seed <= 40; seed++) {
+          const def = generateFromCode(gen, seed, { ...opts, parcours: tier });
+          const where = `${gen.id} [${tier}] ${JSON.stringify(opts)} #${seed}`;
+          assert.equal(def.track, tier, `${where} : parcours`);
+          assert.ok(skillIds.has(def.skill), `${where} : compétence ${def.skill}`);
+          assert.ok(!/undefined|NaN|Infinity/.test(JSON.stringify(def)), `${where} : valeur manquante dans ${def.prompt}`);
+          assert.ok(def.prompt && def.solution, `${where} : énoncé et correction obligatoires`);
+          const errs = validateExercise({ ...def, selfTest: [{ response: canonicalResponse(def), expect: 'correct' }] }, skillIds);
+          assert.deepEqual(errs, [], where);
+          const inst = instantiate(def, seed);
+          for (const m of def.misconceptions || []) {
+            const value = wrongValue(def, m);
+            const d = check(inst, { value });
+            assert.notEqual(d.verdict, 'correct', `${where} : l'idée fausse ${m.id} (${value}) est acceptée`);
+            assert.equal(d.misconception, m.id, `${where} : ${value} devrait être diagnostiqué ${m.id}, obtenu ${d.misconception} (${d.feedback})`);
+          }
+          // problème : une seule question fausse (idée fausse typique) suffit à ne pas tout valider
+          (def.parts || []).forEach((part, k) => {
+            for (const m of part.misconceptions || []) {
+              const response = { ...def.generatedAnswer, parts: def.generatedAnswer.parts.map((r, j) => (j === k ? { value: wrongValue(part, m) } : r)) };
+              const d = check(inst, response);
+              assert.notEqual(d.verdict, 'correct', `${where} : question ${k + 1}, l'idée fausse ${m.id} est acceptée`);
+            }
+          });
         }
       }
-    }
-  });
+    });
+  }
 }
+
+test('niveaux : ◆ et ✦ produisent d’autres exercices que le niveau de la classe', () => {
+  for (const gen of CODE_GENERATORS) {
+    const tracks = generatorTracks(gen);
+    for (const tier of tracks.filter((t) => t !== 'classe')) {
+      const prompts = new Set(Array.from({ length: 20 }, (_, i) => generateFromCode(gen, i + 1, { parcours: tier }).prompt));
+      assert.ok(prompts.size >= 10, `${gen.id} [${tier}] : seulement ${prompts.size} énoncés différents sur 20`);
+      if (tracks.includes('classe')) {
+        const same = Array.from({ length: 10 }, (_, i) => generateFromCode(gen, i + 1, { parcours: tier }).prompt === generateFromCode(gen, i + 1).prompt).filter(Boolean).length;
+        assert.ok(same < 3, `${gen.id} [${tier}] : ${same}/10 énoncés identiques au niveau de la classe`);
+      }
+    }
+  }
+});
 
 test('générateurs de calcul : tirages reproductibles et variés', () => {
   for (const gen of CODE_GENERATORS) {

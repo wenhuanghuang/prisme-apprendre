@@ -56,6 +56,17 @@ export function validateAll(all) {
     }
   }
   for (const { data } of all.lessons) for (const p of data.programmes || []) if (all.programmes && !programmeIds.has(p)) errors.push(`${data.id} : programme inconnu ${p}`);
+  // champ « chapter » : le chapitre doit exister, une seule fois, dans un parcours de la même classe
+  const chapterCourses = all.chapterCourses || all.courses;
+  if (chapterCourses.length) {
+    for (const { data } of all.lessons) {
+      if (!data.chapter) continue;
+      const level = String(data.level || '').toLowerCase();
+      const hits = chapterCourses.filter(({ data: c }) => String(c.level || '').toLowerCase() === level && (c.chapters || []).some((ch) => ch.id === data.chapter));
+      if (!hits.length) errors.push(`${data.id} : chapitre « ${data.chapter} » introuvable dans les parcours de ${data.level}`);
+      else if (hits.length > 1) errors.push(`${data.id} : chapitre « ${data.chapter} » présent dans plusieurs parcours de ${data.level} (${hits.map((h) => h.data.id).join(', ')})`);
+    }
+  }
   const genIds = new Set();
   for (const { file, data } of all.generators || []) {
     if (`${data.id}.json` !== file) errors.push(`${file} : le nom du fichier doit être <id>.json`);
@@ -75,6 +86,8 @@ export function buildIndex(all) {
     lessons: all.lessons.map(({ data }) => ({
       id: data.id, title: data.title, subject: data.subject, level: data.level, skills: data.skills, status: data.status,
       duration: data.duration, summary: data.summary, ...(lessonChapter[data.id] || {}),
+      // expériences animées de la leçon (galerie de la page Labo)
+      experiences: data.sections.filter((s) => s.kind === 'experience' && s.demo).map((s) => ({ title: s.title, steps: (s.demo.steps || []).length, animated: (s.demo.items || []).length > 0 })),
       counts: {
         classe: data.exercises.filter((e) => (e.track || 'classe') === 'classe').length,
         approfondissement: data.exercises.filter((e) => e.track === 'approfondissement').length,
@@ -93,6 +106,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     const only = new Set(onlyArg.slice(7).split(','));
     all.lessons = all.lessons.filter((l) => only.has(l.data.id));
     all.generators = (all.generators || []).filter((g) => only.has(g.data.id));
+    all.chapterCourses = all.courses; // on vérifie quand même le champ « chapter » des leçons choisies
     all.courses = [];
     process.argv.push('--check');
   }

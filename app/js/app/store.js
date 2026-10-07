@@ -47,6 +47,8 @@ export async function init() {
     lessons: index.lessons,
     exercises: index.exercises,
     byLesson: new Map(index.lessons.map((l) => [l.id, l])),
+    // générateurs de données (conjugaison, frises, vocabulaire…) : sans eux, l'Espace exercices n'affiche que les calculs
+    generators: index.generators || [],
   };
   store.catalog = catalog;
   store.programmes = programmes;

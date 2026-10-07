@@ -9,7 +9,7 @@ import { instantiate } from '../../core/checkers/index.js';
 import { ERROR_TYPES } from '../../core/errors.js';
 import { LEVELS as MASTERY, masteryLevel, DAY } from '../../engine/mastery.js';
 import { mountExercise, TRACK_LABELS, TRACK_ICONS } from '../exercise.js';
-import { allGenerators, produce, newSeed } from '../../generators/registry.js';
+import { allGenerators, produce, newSeed, coversSkills } from '../../generators/registry.js';
 import { rng } from '../../core/template.js';
 import { printSheet, printable } from '../print-sheet.js';
 
@@ -66,7 +66,8 @@ export function buildSeries({ lessonPool, genPool, fillPool = [], count, adapted
   const recentSet = new Set(recent);
   const weight = (skill, id) => (adapted ? need(skill) : 1) * (recentSet.has(id) ? 0.3 : 1);
   const seed = () => 1 + Math.floor(rand() * 2 ** 31);
-  const genItem = (g, filler) => ({ kind: 'gen', meta: g, seed: seed(), opts: level ? { niveau: level } : {}, skill: g.skill, track: g.track || 'classe', difficulty: 2, ...(filler ? { filler: true } : {}) });
+  // g.track : le niveau (classe, ◆, ✦) auquel ce générateur doit produire l'exercice
+  const genItem = (g, filler) => ({ kind: 'gen', meta: g, seed: seed(), opts: { ...(level ? { niveau: level } : {}), parcours: g.track || 'classe' }, skill: g.skill, track: g.track || 'classe', difficulty: { classe: 2, approfondissement: 3, expert: 4 }[g.track || 'classe'], ...(filler ? { filler: true } : {}) });
   const series = [];
   const lessons = lessonPool.slice();
   const maxGen = lessons.length ? Math.ceil(count / 2) : count;
@@ -104,8 +105,12 @@ export function describeSeries(items) {
   }
   const rep = n((x) => x.repeat);
   if (rep) parts.push(`${rep} repris avec d’autres nombres`);
-  const gen = n((x) => x.kind === 'gen' && !x.filler);
-  if (gen) parts.push(`${gen} généré${gen > 1 ? 's' : ''}`);
+  for (const t of TRACKS) {
+    const k = n((x) => x.kind === 'gen' && !x.filler && x.track === t);
+    const pb = n((x) => x.kind === 'gen' && !x.filler && x.track === t && x.meta.kind === 'probleme');
+    const label = t === 'classe' ? 'du niveau de la classe' : t === 'approfondissement' ? 'd’approfondissement' : 'experts';
+    if (k) parts.push(`${k} généré${k > 1 ? 's' : ''} ${label}${pb ? ` (dont ${pb} problème${pb > 1 ? 's' : ''})` : ''}`);
+  }
   const fill = n((x) => x.filler);
   if (fill) parts.push(`${fill} généré${fill > 1 ? 's' : ''} du niveau de la classe pour compléter`);
   return parts.join(' + ');
@@ -220,10 +225,11 @@ async function seriesPanel(panel, stageCleanup, params) {
     const lessonPool = store.index.exercises.filter((e) => levelId(e.level) === state.level && e.subject === state.subject && state.tracks.has(e.track)
       && (!state.noQcm || e.type !== 'qcm') && e.role !== 'labo' && (!state.skills.size || state.skills.has(e.skill)));
     const gens = allGenerators(store.index).filter((g) => g.subject === state.subject && g.levels.map(levelId).includes(state.level)
-      && (!state.skills.size || state.skills.has(g.skill)));
-    const genPool = gens.filter((g) => state.tracks.has(g.track || 'classe'));
-    // générateurs des mêmes notions mais d'un autre parcours : ils complètent une série trop courte
-    const fillPool = gens.filter((g) => !state.tracks.has(g.track || 'classe'));
+      && coversSkills(g, state.skills));
+    // un générateur par niveau choisi qu'il sait produire : « Expert » donne des exercices générés experts
+    const genPool = gens.flatMap((g) => (g.tracks || ['classe']).filter((t) => state.tracks.has(t)).map((t) => ({ ...g, track: t })));
+    // aucun générateur de ce niveau pour ces notions : en dernier recours, des exercices du niveau de la classe
+    const fillPool = genPool.length ? [] : gens.map((g) => ({ ...g, track: 'classe' }));
     return { lessonPool, genPool, fillPool };
   };
   const plan = (rand, recent = []) => {
@@ -255,7 +261,10 @@ async function seriesPanel(panel, stageCleanup, params) {
     const courseData = course ? await loadCourse(course.id) : null;
     const allLessonEx = store.index.exercises.filter((e) => levelId(e.level) === state.level && e.subject === state.subject);
     const gens = allGenerators(store.index).filter((g) => g.subject === state.subject && g.levels.map(levelId).includes(state.level));
-    const available = new Set([...allLessonEx.map((e) => e.skill), ...gens.map((g) => g.skill)]);
+    // compétences secondaires d'un problème : proposées seulement si elles sont de cette classe
+    // (une notion de 4e ne doit pas apparaître dans la liste de 5e)
+    const sameLevel = (s) => { const m = store.index.skills.get(s); return !m || !m.level || levelId(m.level) === state.level; };
+    const available = new Set([...allLessonEx.map((e) => e.skill), ...gens.flatMap((g) => [g.skill, ...(g.skills || []).filter(sameLevel)])]);
     // une notion choisie qui n'existe pas dans cette classe (changement de classe, lien de la carte) est retirée
     state.skills = new Set([...state.skills].filter((s) => available.has(s)));
     const groups = [];
@@ -294,7 +303,7 @@ async function seriesPanel(panel, stageCleanup, params) {
       h('div', { class: 'series-skills' },
         check('adaptee', 'Adaptée à mes besoins (notions peu maîtrisées, révisions dues, erreurs récentes en priorité)', state.adapted, (on) => { state.adapted = on; }),
         check('sans-qcm', 'Sans vérification rapide (QCM)', state.noQcm, (on) => { state.noQcm = on; render(); })),
-      fillPool.length ? check('completer', `Compléter avec des exercices générés sur ces notions (niveau de la classe) s’il n’y a pas assez d’exercices dans le parcours choisi`, state.fill, (on) => { state.fill = on; render(); }) : null,
+      fillPool.length ? check('completer', `Aucun générateur ne produit ce niveau pour ces notions : compléter avec des exercices générés du niveau de la classe`, state.fill, (on) => { state.fill = on; render(); }) : null,
       h('div', { class: `series-preview ${short ? 'is-short' : ''}`, 'aria-live': 'polite' },
         h('p', {}, h('strong', {}, preview.length ? `Série prévue : ${preview.length} exercice${preview.length > 1 ? 's' : ''}` : 'Aucun exercice pour ce choix'), preview.length ? ` — ${describeSeries(preview)}.` : '.'),
         short && preview.length ? h('p', { class: 'small' }, `Il n’y a pas ${state.count} exercices différents pour ces notions dans ce parcours. Pour en avoir plus : cocher d’autres notions ou le parcours « Niveau de la classe »${fillPool.length && !state.fill ? ', ou cocher « Compléter avec des exercices générés »' : ''}.`) : null,
@@ -349,7 +358,7 @@ function trainer(stage, meta, opts, onBack, cleanup) {
   };
   const printTen = async () => { status.textContent = await printItems(meta.label, 'Exercices générés', Array.from({ length: 10 }, () => ({ kind: 'gen', meta, opts, seed: newSeed() }))); };
   stage.replaceChildren(
-    h('div', { class: 'series-head' }, h('div', {}, h('p', { class: 'eyebrow' }, 'Entraînement illimité'), h('h2', {}, meta.label)),
+    h('div', { class: 'series-head' }, h('div', {}, h('p', { class: 'eyebrow' }, 'Entraînement illimité', opts.parcours && opts.parcours !== 'classe' ? ` · ${TRACK_ICONS[opts.parcours]} ${TRACK_LABELS[opts.parcours]}` : ''), h('h2', {}, meta.label)),
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: printTen }, h('span', { 'aria-hidden': 'true' }, '🖨 '), 'Fiche de 10'),
         h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { stop(); cleanup.fn = null; onBack(); } }, '← Autres générateurs'))),
@@ -360,32 +369,41 @@ function trainer(stage, meta, opts, onBack, cleanup) {
 
 function generatorsPanel(panel, stageCleanup) {
   const levels = levelsWithContent();
-  const state = { level: levels.includes(levelId(store.profile.level)) ? levelId(store.profile.level) : 'tous', subject: 'tous' };
+  const state = { level: levels.includes(levelId(store.profile.level)) ? levelId(store.profile.level) : 'tous', subject: 'tous', track: 'classe', type: 'tous' };
   const list = h('div', {});
   const stage = h('div', {});
   const status = h('p', { class: 'small muted', 'aria-live': 'polite' });
   panel.append(list, stage);
 
   const render = () => {
-    const gens = allGenerators(store.index).filter((g) => state.level === 'tous' || g.levels.map(levelId).includes(state.level));
+    const gens = allGenerators(store.index).filter((g) => (state.level === 'tous' || g.levels.map(levelId).includes(state.level))
+      && (g.tracks || ['classe']).includes(state.track)
+      && (state.type === 'tous' || (state.type === 'probleme') === (g.kind === 'probleme')));
     const subjects = [...new Set(gens.map((g) => g.subject))].sort((a, b) => (SUBJECT_ORDER.indexOf(a) + 100) % 100 - (SUBJECT_ORDER.indexOf(b) + 100) % 100);
     if (state.subject !== 'tous' && !subjects.includes(state.subject)) state.subject = 'tous';
-    const shown = gens.filter((g) => state.subject === 'tous' || g.subject === state.subject);
+    // les problèmes d'abord : ce sont eux qui font le plus réfléchir
+    const shown = gens.filter((g) => state.subject === 'tous' || g.subject === state.subject).sort((a, b) => (b.kind === 'probleme') - (a.kind === 'probleme'));
     const focusKey = list.contains(document.activeElement) && document.activeElement.dataset ? document.activeElement.dataset.key : null;
     const filters = h('div', { class: 'series-grid card' },
       h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Classe'),
         h('select', { class: 'field-input', dataset: { key: 'classe' }, onchange: (e) => { state.level = e.target.value; render(); } }, h('option', { value: 'tous' }, 'Toutes'), levels.map((l) => h('option', { value: l, selected: l === state.level }, (store.catalog.levels.find((x) => x.id === l) || { label: l }).label)))),
       h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Matière'),
         h('select', { class: 'field-input', dataset: { key: 'matiere' }, onchange: (e) => { state.subject = e.target.value; render(); } }, h('option', { value: 'tous' }, 'Toutes'), subjects.map((s) => h('option', { value: s, selected: s === state.subject }, subjLabel(s))))),
-      h('p', { class: 'small muted', style: { alignSelf: 'end' } }, `${shown.length} générateur${shown.length > 1 ? 's' : ''} : chaque exercice est nouveau, corrigé et diagnostiqué.`));
+      h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Niveau de difficulté'),
+        h('select', { class: 'field-input', dataset: { key: 'niveau' }, onchange: (e) => { state.track = e.target.value; render(); } }, TRACKS.map((t) => h('option', { value: t, selected: t === state.track }, `${TRACK_ICONS[t]} ${TRACK_LABELS[t].replace(' · facultatif', '')}`)))),
+      h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Type'),
+        h('select', { class: 'field-input', dataset: { key: 'type' }, onchange: (e) => { state.type = e.target.value; render(); } },
+          [['tous', 'Calculs et problèmes'], ['probleme', 'Problèmes à étapes'], ['calcul', 'Exercices courts']].map(([v, l]) => h('option', { value: v, selected: v === state.type }, l)))),
+      h('p', { class: 'small muted', style: { alignSelf: 'end', gridColumn: '1 / -1' } }, `${shown.length} générateur${shown.length > 1 ? 's' : ''} : chaque exercice est nouveau, corrigé et diagnostiqué.${state.track === 'expert' ? ' Niveau expert : plusieurs étapes, cas pièges, raisonnement à justifier.' : ''}`));
     const cards = shown.map((g) => {
-      const chosen = {};
+      const chosen = { parcours: state.track };
       const meta = store.index.skills.get(g.skill);
       const lv = masteryLevel(store.states.skills[g.skill], store.now());
       const printTen = async () => { status.textContent = await printItems(g.label, 'Exercices générés', Array.from({ length: 10 }, () => ({ kind: 'gen', meta: g, opts: { ...chosen }, seed: newSeed() }))); };
-      return h('article', { class: `card card--accent gen-card subj-${g.subject}` },
-        h('p', { class: 'eyebrow' }, subjLabel(g.subject), ' · ', g.levels.join(', ')),
+      return h('article', { class: `card card--accent gen-card subj-${g.subject} ${g.kind === 'probleme' ? 'gen-card--probleme' : ''}` },
+        h('p', { class: 'eyebrow' }, subjLabel(g.subject), ' · ', g.levels.join(', '), g.kind === 'probleme' ? ' · problème' : ''),
         h('h3', {}, g.label),
+        state.track !== 'classe' ? h('p', {}, h('span', { class: `chip chip--track-${state.track}` }, `${TRACK_ICONS[state.track]} ${TRACK_LABELS[state.track]}`)) : null,
         g.description ? h('p', { class: 'small' }, g.description) : null,
         meta ? h('p', { class: 'small' }, h('span', { class: `skill-pill lvl-${lv}` }, `${meta.label} · ${MASTERY[lv].label.toLowerCase()}`)) : null,
         (g.options || []).map((o) => h('label', { class: 'field' }, h('span', { class: 'field-label' }, o.label),

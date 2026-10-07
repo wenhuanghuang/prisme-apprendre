@@ -48,3 +48,15 @@ test('série trop courte : reprise des exercices à valeurs variables, puis comp
   assert.equal(full.filter((x) => x.filler).length, 6);
   assert.match(describeSeries(full), /2 exercices experts tirés des leçons \+ 2 repris avec d’autres nombres \+ 6 générés du niveau de la classe pour compléter/);
 });
+
+test('série « Expert » : les exercices générés sont au niveau expert (plus de complément du niveau de la classe)', () => {
+  store.states = { skills: {} }; store.attempts = []; store.now = () => 0;
+  const expertLessons = [{ id: 'x1', skill: 'fragile', track: 'expert', difficulty: 4 }, { id: 'x2', skill: 'solide', track: 'expert', difficulty: 5 }];
+  const expertGens = [{ id: 'g', skill: 'fragile', track: 'expert' }, { id: 'p', skill: 'solide', track: 'expert', kind: 'probleme' }];
+  for (let k = 1; k <= 10; k++) {
+    const s = buildSeries({ lessonPool: expertLessons, genPool: expertGens, count: 10, adapted: false, rand: rng(k), level: '4e' });
+    assert.equal(s.length, 10);
+    assert.ok(s.every((x) => x.track === 'expert'), 'toute la série est experte');
+    assert.ok(s.filter((x) => x.kind === 'gen').every((x) => x.opts.parcours === 'expert' && x.difficulty === 4), 'le générateur reçoit le niveau expert');
+  }
+});

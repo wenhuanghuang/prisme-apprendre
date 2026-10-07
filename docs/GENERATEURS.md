@@ -60,9 +60,40 @@ que dans les leçons : « 6 + (−16) » proposé pour « 6 − (−16) » est r
 
 Un générateur de calcul est un objet `{ id, label, description, subject, levels, skill, options, make(rand, options) }` ;
 `make` renvoie un exercice ordinaire (`numeric`, `expression` ou `steps`) et sa réponse type `generatedAnswer`.
-Le test `tests/unit/generateurs-calcul.test.js` produit 40 exercices par option de chaque générateur et vérifie :
-réponse type acceptée, chaque idée fausse diagnostiquée par son identifiant, aucune valeur manquante,
+Les outils communs (tirages, nombres à la française, fractions, `numeric`, `expression`, `text`, `problem`, `mc`)
+sont dans `app/js/generators/gen-util.js`.
+Le test `tests/unit/generateurs-calcul.test.js` produit 40 exercices par option et par niveau de chaque générateur
+et vérifie : réponse type acceptée, chaque idée fausse diagnostiquée par son identifiant, aucune valeur manquante,
 énoncés variés et tirages reproductibles.
+
+## Trois niveaux : classe, ◆ approfondissement, ✦ expert (version 0.3)
+
+L'option `parcours` (`classe`, `approfondissement`, `expert`) choisit le niveau de l'exercice produit ; l'exercice
+porte ce parcours (`track`), un rôle (`libre`, `transfert`, `defi`) et une difficulté (2, 3, 4).
+
+- **Calculs** : le niveau « classe » est la fonction `make` du générateur. Les niveaux supérieurs sont dans
+  `app/js/generators/tiers-nombres.js` (relatifs, priorités), `tiers-fractions.js` (fractions, puissances), `tiers-litteral.js`
+  (équations, calcul littéral), `tiers-grandeurs.js` (proportionnalité, pourcentages), `tiers-mesures.js` (Pythagore, conversions)
+  et `tiers-physique.js` (vitesse, masse volumique, loi d'Ohm, poids), réunis par `tiers.js`, avec leurs outils dans
+  `tiers-nombres-outils.js` et `tiers-outils.js` : `{ '<id du générateur>': { approfondissement(rand, options), expert(rand, options) } }`.
+  Ce qu'on attend d'un niveau supérieur — **pas seulement de plus grands nombres** :
+  - ◆ approfondissement : plusieurs opérations enchaînées, nombres négatifs ou décimaux, conversions d'unités,
+    question posée « à l'envers » (retrouver une donnée de départ), forme exigée plus stricte ;
+  - ✦ expert : raisonnement en plusieurs étapes, valeur manquante, combinaison de deux notions, cas piège
+    (ex. moyenne des vitesses, pourcentages successifs), justification quand c'est pertinent.
+  Chaque niveau garde des idées fausses calculées avec les mêmes nombres et une correction rédigée.
+- **Problèmes** (`app/js/generators/problemes-maths.js`, `problemes-maths-2.js`, `problemes-pc.js`, `problemes-pc-2.js`, outils dans
+  `problemes-outils.js` et `problemes-pc-outils.js` ; valeurs limites arrondies du côté sûr avec `boundAnswer` de `gen-util.js`) :
+  22 problèmes (13 de mathématiques, 9 de physique-chimie), chacun aux trois niveaux ; une situation concrète et 2 à 4 questions
+  qui s'enchaînent, fabriquées avec `problem([numeric(…), text(…), …], { prompt, hints, solution, justify })`.
+  Chaque problème déclare `tracks` (les niveaux qu'il sait produire) et `make(rand, options, parcours)`.
+  Au niveau expert, `justify: { prompt, minWords, keywords, example }` demande d'expliquer la démarche
+  (`example` = justification type pour la vérification automatique).
+- **Générateurs de données** (conjugaison, vocabulaire, frises, classements, associations, textes à trous) :
+  ◆ = plus d'éléments à traiter à la fois ; ✦ = encore plus, et pour les frises des événements proches dans le temps.
+
+Dans les **séries sur mesure**, cocher « Expert » donne des exercices experts des leçons **et** des exercices
+générés au niveau expert (calculs et problèmes) ; les exercices du niveau de la classe ne servent plus à compléter.
 
 ## Espace exercices (`#/exercices`)
 
@@ -71,11 +102,11 @@ réponse type acceptée, chaque idée fausse diagnostiquée par son identifiant,
   (notions peu maîtrisées, révisions dues et erreurs récentes en priorité). La série mêle exercices des
   leçons (sans doublon) et exercices générés, du plus guidé au plus exigeant ; bilan final avec les types
   d'erreurs et la maîtrise mise à jour ; « reprendre les exercices manqués ».
-  Si le parcours choisi n'a pas assez d'exercices pour les notions cochées (par exemple « Expert » seul),
-  les exercices à valeurs variables reviennent avec d'autres nombres (3 fois au plus), puis la case
-  « Compléter avec des exercices générés » (cochée par défaut) ajoute des exercices générés **sur les mêmes
-  notions**, du niveau de la classe. La composition de la série est annoncée avant de commencer
-  (« 4 exercices experts tirés des leçons + 6 générés du niveau de la classe pour compléter »).
+  Les exercices des leçons du parcours choisi sont mêlés à des exercices **générés au même niveau** (calculs et
+  problèmes) ; les exercices à valeurs variables peuvent revenir avec d'autres nombres (3 fois au plus).
+  Le complément par des exercices du niveau de la classe n'est proposé qu'en dernier recours, si aucun
+  générateur ne produit le niveau choisi pour les notions cochées. La composition de la série est annoncée
+  avant de commencer (« 4 exercices experts tirés des leçons + 6 générés experts (dont 2 problèmes) »).
 - **Générateurs illimités** : chaque exercice est nouveau ; compteur de réussites, série sans faute, record.
 - **Fiche imprimable** : énoncés avec une zone de réponse adaptée au papier (cases à cocher, tableau,
   lettres à associer, lignes), puis le **corrigé** sur une nouvelle page. Aucun nom d'élève n'est imprimé.

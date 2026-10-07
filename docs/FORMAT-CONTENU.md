@@ -46,13 +46,19 @@ Identifiants de matière : `maths`, `francais`, `hg`, `emc`, `svt`, `pc`, `techn
 }
 ```
 
+### Rattachement au parcours
+`"chapter": "<id du chapitre>"` : la leçon est ajoutée automatiquement à ce chapitre du parcours (`tools/link-chapters.js`, lancé par `npm run build`). Inutile de modifier `courses/*.json`.
+
 ### Sections (format d'une vraie leçon, toutes facultatives)
+Depuis la version 0.3, l'élève joue la leçon **écran par écran** : une section = une étape du chemin, les exercices d'une section arrivent un par un, le cours se lit carte par carte, et `ressource` et `revision` sont regroupées sur l'écran final. Méthode de rédaction : [GUIDE-REDACTION.md](GUIDE-REDACTION.md).
+
 | `kind` | rôle |
 |---|---|
 | `decouverte` | situation de départ, énigme, question qui donne envie |
 | `ressource` | liens externes (`links: [{label, url, provider: "lumni"|"eduscol"|"bo"|"autre"}]`) — **jamais** de vidéo téléchargée ou republiée |
-| `cours` | cours court adapté à l'âge (texte) |
-| `manipulation` | activité interactive `activity: {widget, config}` |
+| `cours` | cours court en **cartes** : `cards: [{emoji, title, body, example?, reveal?: {question, answer}, figure?}]` (un ancien `body` long est découpé automatiquement) |
+| `experience` | expérience **montrée** étape par étape, avec pauses et prédictions : `demo: {items, steps, conclusion}` — voir [EXPERIENCES.md](EXPERIENCES.md) |
+| `manipulation` | activité interactive `activity: {widget, config}` (mathématiques, programmation ; en sciences, préférer `experience`) |
 | `exemple` | exemple entièrement résolu `steps: [{text, math}]` |
 | `exercices` | exercices guidés `exercises: [ids]` |
 | `libre` | réponses libres / rédigées |
@@ -60,6 +66,8 @@ Identifiants de matière : `maths`, `francais`, `hg`, `emc`, `svt`, `pc`, `techn
 | `mission` | projet / mission (souvent `composite`) |
 | `correction` | ce qu'il faut retenir, erreurs fréquentes expliquées |
 | `revision` | rappel : la révision est programmée automatiquement par le moteur |
+
+Toute section, carte, étape d'exemple ou exercice peut porter une **figure** (géométrie, repère, diagramme, frise, tableau) décrite en JSON : voir [FIGURES.md](FIGURES.md).
 
 Le texte (`body`) accepte un Markdown léger : paragraphes, `**gras**`, `*italique*`, listes `- `, citations `> ` (encadré « À retenir »), liens `[texte](https://…)` et formules entre `$…$` (ex. `$3x + 5 = 2x − 7$`).
 
@@ -78,6 +86,7 @@ Champs communs :
   "methods": ["Démarche 1 …", "Démarche 2 …"],
   "criteria": ["Critère de réussite visible 1", "…"],
   "justify": { "required": true, "prompt": "Explique…", "minWords": 6, "keywords": ["…"] },
+  "figure": { "alt": "…", "frame": { "x": [0, 8], "y": [0, 5] }, "items": [ … ] },
   "activity": { "widget": "ohm-lab", "config": { "R": "{R}" } },
   "selfTest": [ { "response": { … }, "expect": "correct" }, { "response": { … }, "expect": "signe" } ] }
 ```

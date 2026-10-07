@@ -1,6 +1,15 @@
-# État du projet — version 0.2 (5 octobre 2026)
+# État du projet — version 0.3 (6 octobre 2026)
 
 Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chiffres sont issus des contenus (voir [MATRICE-PROGRAMMES.md](MATRICE-PROGRAMMES.md)).
+
+## Nouveautés de la version 0.3
+- **Cours complets en 5e et 4e** dans les cinq matières principales : français (27 chapitres sur 27), mathématiques (34 sur 34), histoire-géographie (29 sur 29), physique-chimie (13 sur 13), SVT (14 sur 16 : reproduction et puberté en 4e restent à rédiger). **141 leçons, 2 046 exercices** au total (1 463 de classe, 290 d'approfondissement, 293 experts ; 2,6 % de QCM).
+- **Leçons jouées écran par écran** : chemin d'étapes, cours en cartes (dont des cartes devinettes à retourner), exemple résolu dévoilé pas à pas, exercices un par un avec des étoiles (3 = réussi du premier coup sans indice), Photon qui guide, écran final avec révision programmée et défis facultatifs. Les anciennes leçons à long cours sont découpées automatiquement en cartes.
+- **Expériences montrées étape par étape** (section `experience`, [EXPERIENCES.md](EXPERIENCES.md)) : l'élève ne manipule plus les laboratoires de physique, il regarde l'expérience animée, avec une explication à chaque étape, pause, retour, vitesse, lecture à voix haute et questions « Que va-t-il se passer ? ». 37 expériences animées en physique-chimie et SVT, galerie dans le Labo ; les simulations restent en accès libre et facultatives.
+- **Figures** dessinées par l'application ([FIGURES.md](FIGURES.md)) : géométrie à l'échelle, repères, diagrammes, frises chronologiques, tableaux — aussi sur les fiches imprimées.
+- **Rattachement automatique** des leçons aux chapitres (`"chapter"`, `tools/link-chapters.js`) : plusieurs rédacteurs travaillent en parallèle sans toucher aux parcours. Guide de rédaction : [GUIDE-REDACTION.md](GUIDE-REDACTION.md).
+- **Exercices générés à trois niveaux** (classe, ◆ approfondissement, ✦ expert) et **générateurs de problèmes** à étapes en mathématiques et physique-chimie (justification à rédiger au niveau expert) ; une série « Expert » ne se complète plus avec des exercices du niveau de la classe. Voir [GENERATEURS.md](GENERATEURS.md).
+- Corrections du moteur : messages d'idées fausses avec les nombres tirés (au lieu de `{k}`), angles « 37° » acceptés, coordonnées négatives ou décimales dans les repères, notation P(A) / f(x) dans les formules.
 
 ## Nouveautés de la version 0.2
 - **Toutes les matières du collège en 5e et en 4e** : français, histoire-géographie, EMC, SVT, technologie, anglais, espagnol, arts plastiques, éducation musicale, en plus des mathématiques, de la physique-chimie et de la programmation.
@@ -63,7 +72,8 @@ Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chi
 - **Paramètres du moteur** : valeurs par défaut raisonnables, non encore calibrées sur de vraies données d'élèves.
 
 ## Reste à développer
-1. Leçons des chapitres « à venir » en 5e et 4e (priorité), puis 3e et 6e.
+1. SVT 4e : chapitres « Reproduction, hérédité et diversité du vivant » et « Puberté, reproduction humaine » ; chapitres « à venir » des autres matières de 5e et 4e ; puis 3e et 6e.
+1 bis. Relecture par un enseignant des leçons de la version 0.3 : les rédacteurs ont signalé les citations à comparer à une édition de référence et les chiffres non vérifiés (listes dans les rapports de rédaction).
 2. Primaire (CP-CM2) : lecture, numération, calcul — nécessite d'autres activités (manipulation d'objets, audio guidé).
 3. Lycée : mathématiques (nouveau programme 2026 de seconde), physique-chimie, SNT/NSI avec Python.
 4. Correction des rédactions assistée par IA, **locale de préférence** ; une IA distante ne serait activée qu'avec l'accord explicite d'un parent (non implémenté).

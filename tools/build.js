@@ -15,8 +15,10 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const app = join(root, 'app');
 const run = (script, args = []) => execFileSync(process.execPath, [join(root, 'tools', script), ...args], { stdio: 'inherit' });
 
-if (existsSync(join(root, 'research', 'programmes-catalogue.json'))) {
-  run('authored-courses.js');
+const research = existsSync(join(root, 'research', 'programmes-catalogue.json'));
+if (research) run('authored-courses.js');
+run('link-chapters.js');
+if (research) {
   run('build-catalog.js');
   run('build-resources.js');
 }

@@ -121,7 +121,9 @@ export function instantiate(def, seed) {
  * un résultat juste sans justification est distingué (type « sans-justification »).
  */
 export function check(instance, response = {}) {
-  return checkDef(instance.def, instance.params, response);
+  const d = checkDef(instance.def, instance.params, response);
+  // les messages des idées fausses peuvent citer les paramètres tirés (« on divise par {k} »)
+  return d && typeof d.feedback === 'string' && d.feedback.includes('{') ? { ...d, feedback: interpolate(d.feedback, instance.params) } : d;
 }
 
 /** Correction d'une définition (utilisée aussi pour chaque question d'un problème composite). */

@@ -6,6 +6,7 @@ import { h, tabs, pct } from '../dom.js';
 import { store, loadCourse, skillLevel } from '../../app/store.js';
 import { LEVELS as MASTERY } from '../../engine/mastery.js';
 import { allGenerators } from '../../generators/registry.js';
+import { lessonStars } from '../lesson-play/progress.js';
 
 const SVGNS = 'http://www.w3.org/2000/svg';
 const SUBJECT_ICONS = { maths: '∑', pc: '⚗', numerique: '⌘', francais: '¶', hg: '⌖', svt: '❦', techno: '⚙', emc: '⚖', lv: '✎', eps: '⚑', musique: '♪', 'arts-plastiques': '◐' };
@@ -80,7 +81,14 @@ export async function render(root, { args, params }) {
           return meta ? h('span', { class: `skill-pill lvl-${lv}`, title: MASTERY[lv].label }, `${meta.label}${meta.status !== 'programme' ? ' ◆' : ''}`) : null;
         })) : null,
         lessons.length || trainable(skills) ? h('div', { class: 'btn-row', style: { marginTop: '10px' } },
-          lessons.map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, `${l.title} →`)),
+          lessons.map((l) => {
+            const { stars, done } = lessonStars(l.id);
+            return h('a', { class: `btn btn--small ${done ? 'is-done' : ''}`, href: `#/lecon/${l.id}`, title: done ? 'Leçon terminée' : undefined },
+              done ? h('span', { 'aria-hidden': 'true' }, '✓ ') : null, `${l.title}`,
+              (l.experiences || []).length ? h('span', { class: 'map-xp', 'aria-hidden': 'true', title: 'Contient une expérience à regarder' }, ' 🧪') : null,
+              stars ? h('span', { class: 'map-stars', 'aria-hidden': 'true' }, ` ★ ${stars}`) : null, ' →',
+              h('span', { class: 'sr-only' }, [done ? ' (terminée)' : '', (l.experiences || []).length ? ', avec une expérience' : '', stars ? `, ${stars} étoiles` : ''].join('')));
+          }),
           trainable(skills) ? h('a', { class: 'btn btn--small btn--ghost', href: `#/exercices?niveau=${level}&matiere=${subject}&notions=${skills.join(',')}` }, 'S’entraîner ↻') : null) : null,
         (ch.official && ch.official.length) || (ch.notions && ch.notions.length)
           ? h('details', { class: 'small', style: { marginTop: '8px' } }, h('summary', {}, 'Ce que dit le programme'),

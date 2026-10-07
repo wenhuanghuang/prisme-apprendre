@@ -14,6 +14,7 @@ import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
+import { CODE_GENERATORS, generatorTracks } from '../../app/js/generators/maths-pc.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const PORT = 10091;
@@ -62,22 +63,56 @@ test('création de profil', async () => {
   assert.match(await page.locator('h1').innerText(), /Testeur/);
 });
 
-test('chaque leçon et chaque parcours s’affichent sans erreur', async () => {
+async function assertClean(where) {
+  const problems = await pageTextProblems();
+  assert.deepEqual(problems, [], `${where} : ${problems.join(' | ')}`);
+}
+
+/** Fait défiler tous les exercices de la série affichée (bouton « Passer »), en vérifiant chacun. */
+async function walkRunner(where) {
+  for (let k = 0; k < 40 && await page.locator('.run-skip:visible').count(); k++) {
+    await page.waitForSelector('.run-ex .ex', { timeout: 8000 });
+    await assertClean(`${where}, exercice ${k + 1}`);
+    await page.locator('.run-skip').click();
+  }
+}
+
+test('chaque leçon : chaque étape, chaque exercice et chaque étape d’expérience s’affichent sans erreur', async () => {
   for (const l of index.lessons) {
-    for (const track of ['', '?parcours=approfondissement', '?parcours=expert']) {
-      if (track && !l.counts[track.split('=')[1]]) continue;
-      await page.goto(`${BASE}#/lecon/${l.id}${track}`);
-      await page.waitForSelector('.ex', { timeout: 8000 });
-      await page.waitForTimeout(150);
-      const problems = await pageTextProblems();
-      assert.deepEqual(problems, [], `${l.id}${track} : ${problems.join(' | ')}`);
+    await page.goto(`${BASE}#/lecon/${l.id}?etape=1`);
+    await page.waitForSelector('.step', { timeout: 8000 });
+    const n = await page.locator('.play-station').count();
+    assert.ok(n >= 3, `${l.id} : ${n} étapes`);
+    for (let i = 0; i < n; i++) {
+      await page.locator('.play-station').nth(i).click();
+      await page.waitForSelector(`.play-station.is-current >> nth=0`);
+      await page.waitForTimeout(60);
+      await assertClean(`${l.id} étape ${i + 1}`);
+      await walkRunner(`${l.id} étape ${i + 1}`);
+      if (await page.locator('.demo').count()) {
+        await page.evaluate(() => {
+          const d = document.querySelector('.demo');
+          const steps = d.querySelectorAll('.demo-seg').length;
+          for (let s = 0; s < steps; s++) { d.demoSeek(s, 0.5); d.demoSeek(s, 1); }
+        });
+        await assertClean(`${l.id} étape ${i + 1} (expérience)`);
+      }
+    }
+    for (const t of ['approfondissement', 'expert']) {
+      if (!l.counts[t]) continue;
+      await page.goto(`${BASE}#/lecon/${l.id}?parcours=${t}`);
+      await page.waitForSelector('.runner', { timeout: 8000 });
+      await walkRunner(`${l.id} ${t}`);
     }
   }
   assert.deepEqual(errors, [], errors.join('\n'));
 });
 
 test('équation : erreur de signe diagnostiquée ligne par ligne, puis réussite', async () => {
-  await page.goto(`${BASE}#/lecon/m4-equations`);
+  const lesson = JSON.parse(readFileSync(join(root, 'app', 'content', 'lessons', 'm4-equations.json'), 'utf8'));
+  // premier exercice « étapes » de la leçon, dans l'ordre des sections : a·x + b = c
+  const target = lesson.sections.flatMap((s) => s.exercises || []).map((id) => lesson.exercises.find((e) => e.id === id)).find((e) => e.type === 'steps');
+  await page.goto(`${BASE}#/lecon/m4-equations?exercice=${target.id}`);
   const ex = page.locator('.ex--steps').first();
   await ex.scrollIntoViewIfNeeded();
   const prompt = await ex.locator('.ex-prompt').innerText();
@@ -121,11 +156,35 @@ test('chaque laboratoire se charge', async () => {
   assert.deepEqual(errors, [], errors.join('\n'));
 });
 
+test('expériences : la galerie ouvre chaque expérience, qui se lance, se met en pause et avance', async () => {
+  await page.goto(`${BASE}#/labo`);
+  await page.waitForSelector('.xp-card', { timeout: 8000 });
+  const links = await page.locator('.xp-card').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+  assert.ok(links.length >= 2, `${links.length} expériences`);
+  for (const href of links) {
+    await page.goto(`${BASE}${href}`);
+    await page.waitForSelector('.demo .demo-start', { timeout: 8000 });
+    await page.locator('.demo .demo-start').click();
+    await page.waitForTimeout(300);
+    // en pause au milieu d'une étape, puis reprise à la barre d'espace
+    await page.evaluate(() => document.querySelector('.demo').demoSeek(1, 0.3));
+    assert.equal(await page.locator('.demo-paused').isVisible(), true, `${href} : pause`);
+    await page.locator('.demo').focus();
+    await page.keyboard.press('Space');
+    assert.equal(await page.locator('.demo-paused').isVisible(), false, `${href} : reprise`);
+    await page.locator('.demo-seg').last().click();
+    await page.waitForTimeout(100);
+    assert.match(await page.locator('.demo-step-n').innerText(), /Étape (\d+) sur \1/i, `${href} : dernière étape`);
+    await assertClean(href);
+  }
+  assert.deepEqual(errors, [], errors.join('\n'));
+});
+
 test('débogage : l’éditeur s’ouvre avec le programme à corriger (jamais vide)', async () => {
   const lesson = JSON.parse(readFileSync(join(root, 'app', 'content', 'lessons', 'code-variables.json'), 'utf8'));
   const withStart = lesson.exercises.filter((e) => e.type === 'code' && e.start && /\b(mets|ajoute|si|pour)\b/.test(e.start));
   assert.ok(withStart.length > 0, 'au moins un programme de départ en mode texte');
-  await page.goto(`${BASE}#/lecon/code-variables`);
+  await page.goto(`${BASE}#/lecon/code-variables?exercice=${withStart[0].id}`);
   await page.waitForSelector('.code-editor');
   const texts = await page.locator('.code-editor .code-text').evaluateAll((tas) => tas.filter((t) => !t.closest('[hidden]')).map((t) => t.value));
   assert.ok(texts.length > 0, 'des éditeurs en mode texte sont affichés');
@@ -157,27 +216,32 @@ test('Espace exercices : une série par matière (5e et 4e) démarre sans erreur
   assert.deepEqual(errors, [], errors.join('\n'));
 });
 
-test('Espace exercices : chaque générateur produit un exercice corrigeable', async () => {
-  await page.goto(`${BASE}#/exercices?onglet=generateurs`);
-  await page.waitForSelector('.gen-card');
-  await page.locator('.series-grid select').first().selectOption('tous');
-  await page.waitForTimeout(150);
-  const n = await page.locator('.gen-card').count();
-  assert.ok(n >= 17, `${n} générateurs`);
-  for (let i = 0; i < n; i++) {
-    await page.goto(`${BASE}#/exercices?onglet=generateurs&essai=${i}`);
-    await page.waitForSelector('.gen-card');
-    await page.locator('.series-grid select').first().selectOption('tous');
-    await page.waitForTimeout(100);
-    const card = page.locator('.gen-card').nth(i);
-    const title = await card.locator('h3').innerText();
-    await card.getByRole('button', { name: 'S’entraîner' }).click();
-    await page.waitForSelector('.ex', { timeout: 8000 });
-    const problems = await pageTextProblems();
-    assert.deepEqual(problems, [], `${title} : ${problems.join(' | ')}`);
-    await page.getByRole('button', { name: 'Voir la correction' }).click();
-    await page.getByRole('button', { name: /Voir la correction|voir quand même/ }).click();
-    await page.waitForSelector('.solution, .ex-extra section', { timeout: 4000 });
+test('Espace exercices : chaque générateur produit un exercice corrigeable, à chaque niveau', async () => {
+  for (const niveau of ['classe', 'approfondissement', 'expert']) {
+    const open = async (essai) => {
+      await page.goto(`${BASE}#/exercices?onglet=generateurs&essai=${niveau}-${essai}`);
+      await page.waitForSelector('.gen-card');
+      await page.locator('.series-grid select').first().selectOption('tous');
+      await page.locator('[data-key="niveau"]').selectOption(niveau);
+      await page.waitForTimeout(120);
+    };
+    await open('liste');
+    const n = await page.locator('.gen-card').count();
+    // calculs + problèmes + les générateurs de données (français, histoire-géo, langues…) de l'index
+    const expected = index.generators.length + CODE_GENERATORS.filter((g) => generatorTracks(g).includes(niveau)).length;
+    assert.equal(n, expected, `${niveau} : ${n} générateurs affichés, ${expected} attendus`);
+    for (let i = 0; i < n; i++) {
+      await open(i);
+      const card = page.locator('.gen-card').nth(i);
+      const title = await card.locator('h3').innerText();
+      await card.getByRole('button', { name: 'S’entraîner' }).click();
+      await page.waitForSelector('.ex', { timeout: 8000 });
+      const problems = await pageTextProblems();
+      assert.deepEqual(problems, [], `${niveau} · ${title} : ${problems.join(' | ')}`);
+      await page.getByRole('button', { name: 'Voir la correction' }).click();
+      await page.getByRole('button', { name: /Voir la correction|voir quand même/ }).click();
+      await page.waitForSelector('.solution, .ex-extra section', { timeout: 4000 });
+    }
   }
   assert.deepEqual(errors, [], errors.join('\n'));
 });
@@ -185,7 +249,7 @@ test('Espace exercices : chaque générateur produit un exercice corrigeable', a
 test('mots à repérer : utilisables au clavier (flèches + Espace)', async () => {
   const hl = index.exercises.find((e) => e.type === 'highlight' && e.track === 'classe');
   assert.ok(hl, 'au moins un exercice de repérage');
-  await page.goto(`${BASE}#/lecon/${hl.lesson}`);
+  await page.goto(`${BASE}#/lecon/${hl.lesson}?exercice=${hl.id}`);
   const word = page.locator('.hl-word').first();
   await word.waitFor({ timeout: 8000 });
   await word.focus();
@@ -200,7 +264,8 @@ test('fiche imprimable : énoncés puis corrigé', async () => {
   await page.evaluate(() => { window.print = () => { window.__printed = true; }; });
   await page.getByRole('button', { name: /Imprimer une fiche/ }).click();
   await page.waitForFunction(() => window.__printed === true, null, { timeout: 8000 });
-  const sheet = await page.locator('.print-sheet').evaluate((s) => ({ items: s.querySelectorAll(':scope > .ps-list > li').length, answers: s.querySelectorAll('.ps-answers li').length, text: s.textContent }));
+  // corrigé : une réponse par exercice (une correction peut contenir sa propre liste à puces)
+  const sheet = await page.locator('.print-sheet').evaluate((s) => ({ items: s.querySelectorAll(':scope > .ps-list > li').length, answers: s.querySelectorAll('.ps-answers > .ps-list > li').length, text: s.textContent }));
   assert.ok(sheet.items >= 5, `${sheet.items} exercices imprimés`);
   assert.equal(sheet.items, sheet.answers);
   assert.ok(!/undefined|NaN/.test(sheet.text), 'fiche sans valeur manquante');

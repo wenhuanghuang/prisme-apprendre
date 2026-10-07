@@ -1,6 +1,10 @@
-/** Laboratoire libre : toutes les activités interactives, à manipuler sans exercice. */
+/**
+ * Labo : la galerie des expériences animées des leçons (à regarder étape par étape),
+ * puis les simulations interactives en accès libre.
+ */
 import { h, tabs } from '../dom.js';
 import { ACTIVITY_INFO, mountActivity } from '../../activities/registry.js';
+import { store } from '../../app/store.js';
 
 const DEFAULTS = {
   balance: { a: 3, b: 4, c: 1, d: 12, x: 4, mode: 'explore' },
@@ -20,23 +24,49 @@ const DEFAULTS = {
 };
 
 const GROUPS = [
+  { id: 'experiences', label: 'Expériences à regarder', icon: '🧪' },
   { id: 'maths', label: 'Mathématiques', icon: '∑' },
-  { id: 'pc', label: 'Physique-chimie', icon: '⚗' },
+  { id: 'pc', label: 'Simulations de physique', icon: '⚗' },
   { id: 'numerique', label: 'Programmation et IA', icon: '⌘' },
 ];
+const SUBJECT_LABEL = { pc: 'Physique-chimie', svt: 'SVT', techno: 'Technologie', maths: 'Mathématiques' };
+const LEVEL_ORDER = ['cp', 'ce1', 'ce2', 'cm1', 'cm2', '6e', '5e', '4e', '3e', '2nde', '1re', 'tle'];
+
+function gallery(root) {
+  const lessons = (store.index.lessons || []).filter((l) => (l.experiences || []).length);
+  const level = String((store.profile && store.profile.level) || '').toLowerCase();
+  lessons.sort((a, b) => (String(a.level).toLowerCase() === level ? -1 : 0) - (String(b.level).toLowerCase() === level ? -1 : 0)
+    || LEVEL_ORDER.indexOf(String(a.level).toLowerCase()) - LEVEL_ORDER.indexOf(String(b.level).toLowerCase())
+    || String(a.subject).localeCompare(String(b.subject)));
+  if (!lessons.length) { root.append(h('p', { class: 'muted' }, 'Aucune expérience pour l’instant.')); return; }
+  const bySubject = new Map();
+  for (const l of lessons) {
+    if (!bySubject.has(l.subject)) bySubject.set(l.subject, []);
+    bySubject.get(l.subject).push(l);
+  }
+  for (const [subject, list] of bySubject) {
+    root.append(h('h2', { class: 'xp-group' }, SUBJECT_LABEL[subject] || subject));
+    root.append(h('div', { class: 'xp-grid' }, list.flatMap((l) => l.experiences.map((x, i) => h('a', {
+      class: `xp-card subj-${l.subject}`, href: `#/lecon/${l.id}?experience=${i}`,
+    }, h('span', { class: 'xp-icon', 'aria-hidden': 'true' }, x.animated ? '🧪' : '📜'),
+      h('span', { class: 'xp-body' }, h('strong', {}, x.title), h('span', { class: 'xp-meta' }, `${l.level} · ${l.title}`), h('span', { class: 'xp-steps' }, `${x.steps} étapes${x.animated ? '' : ' · récit'}`)))))));
+  }
+}
 
 export function render(root, { params }) {
-  const group = GROUPS.some((g) => g.id === params.get('g')) ? params.get('g') : 'maths';
+  const group = GROUPS.some((g) => g.id === params.get('g')) ? params.get('g') : 'experiences';
+  root.append(
+    h('div', { class: 'page-head' }, h('div', {}, h('p', { class: 'eyebrow' }, 'Laboratoire'), h('h1', {}, group === 'experiences' ? 'Les expériences, étape par étape' : 'Manipuler, mesurer, essayer'),
+      h('p', { class: 'lede' }, group === 'experiences'
+        ? 'Chaque expérience est montrée et expliquée étape par étape. Tu peux la mettre en pause, revenir en arrière et prévoir ce qui va se passer.'
+        : 'Les simulations, en accès libre et facultatives : pour essayer par toi-même si tu en as envie.'))),
+    tabs(GROUPS, group, (id) => { location.hash = `#/labo?g=${id}`; }, 'Domaines'));
+  if (group === 'experiences') { gallery(root); return undefined; }
   const names = Object.entries(ACTIVITY_INFO).filter(([, v]) => v.subject === group).map(([k]) => k);
   const pick = names.includes(params.get('a')) ? params.get('a') : names[0];
-  root.append(
-    h('div', { class: 'page-head' }, h('div', {}, h('p', { class: 'eyebrow' }, 'Laboratoire'), h('h1', {}, 'Manipuler, mesurer, essayer'),
-      h('p', { class: 'lede' }, 'Toutes les simulations, en accès libre. Dans les leçons, les mêmes outils servent à résoudre de vrais problèmes.'))),
-    tabs(GROUPS, group, (id) => { location.hash = `#/labo?g=${id}`; }, 'Domaines'),
-    h('div', { class: 'btn-row', style: { margin: '14px 0' } }, names.map((n) => h('a', { class: `btn btn--small ${n === pick ? 'btn--primary' : 'btn--ghost'}`, href: `#/labo?g=${group}&a=${n}`, 'aria-current': n === pick ? 'true' : null }, ACTIVITY_INFO[n].title))));
+  root.append(h('div', { class: 'btn-row', style: { margin: '14px 0' } }, names.map((n) => h('a', { class: `btn btn--small ${n === pick ? 'btn--primary' : 'btn--ghost'}`, href: `#/labo?g=${group}&a=${n}`, 'aria-current': n === pick ? 'true' : null }, ACTIVITY_INFO[n].title))));
   const info = ACTIVITY_INFO[pick];
   const slot = h('div', {});
   root.append(h('section', { class: 'card' }, h('h2', {}, info.title), h('p', { class: 'muted' }, info.blurb), slot));
-  const cleanup = mountActivity(slot, pick, DEFAULTS[pick] || {});
-  return cleanup;
+  return mountActivity(slot, pick, DEFAULTS[pick] || {});
 }
