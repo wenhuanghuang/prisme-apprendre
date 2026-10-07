@@ -1,0 +1,1240 @@
+{
+  "id": "m4-grandeurs",
+  "chapter": "m4-ch-grandeurs",
+  "title": "Volumes, grandeurs composées, agrandissement et réduction",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.grandeurs.volume-pyramide-cone", "m4.grandeurs.composees", "m4.grandeurs.agrandissement"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 60,
+  "summary": "Calculer le volume d'une pyramide et d'un cône, utiliser et convertir des grandeurs composées (vitesse, débit, concentration) et prévoir l'effet d'un agrandissement : longueurs × k, aires × k², volumes × k³.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le défi du cornet",
+      "body": "Au glacier, un pot cylindrique et un cornet en forme de cône ont exactement la même base et la même hauteur. Hugo affirme qu'il faut verser 2 cornets pleins pour remplir le pot. Inès parie sur 3.\n\nEt toi ? Combien de cornets faut-il pour remplir le pot ? Penses-tu que la réponse serait la même pour une pyramide et un pavé de même base et de même hauteur ?",
+      "figure": {
+        "alt": "Un pot cylindrique et un cornet en forme de cône, de même base et de même hauteur, dessinés en perspective",
+        "w": 440,
+        "h": 240,
+        "frame": { "x": [0, 12], "y": [-0.8, 6] },
+        "items": [
+          { "type": "segment", "from": [5, 1], "to": [4.932, 1.142], "dashed": true },
+          { "type": "segment", "from": [4.932, 1.142], "to": [4.732, 1.275], "dashed": true },
+          { "type": "segment", "from": [4.732, 1.275], "to": [4.414, 1.389], "dashed": true },
+          { "type": "segment", "from": [4.414, 1.389], "to": [4, 1.476], "dashed": true },
+          { "type": "segment", "from": [4, 1.476], "to": [3.518, 1.531], "dashed": true },
+          { "type": "segment", "from": [3.518, 1.531], "to": [3, 1.55], "dashed": true },
+          { "type": "segment", "from": [3, 1.55], "to": [2.482, 1.531], "dashed": true },
+          { "type": "segment", "from": [2.482, 1.531], "to": [2, 1.476], "dashed": true },
+          { "type": "segment", "from": [2, 1.476], "to": [1.586, 1.389], "dashed": true },
+          { "type": "segment", "from": [1.586, 1.389], "to": [1.268, 1.275], "dashed": true },
+          { "type": "segment", "from": [1.268, 1.275], "to": [1.068, 1.142], "dashed": true },
+          { "type": "segment", "from": [1.068, 1.142], "to": [1, 1], "dashed": true },
+          { "type": "segment", "from": [1, 1], "to": [1.068, 0.858] },
+          { "type": "segment", "from": [1.068, 0.858], "to": [1.268, 0.725] },
+          { "type": "segment", "from": [1.268, 0.725], "to": [1.586, 0.611] },
+          { "type": "segment", "from": [1.586, 0.611], "to": [2, 0.524] },
+          { "type": "segment", "from": [2, 0.524], "to": [2.482, 0.469] },
+          { "type": "segment", "from": [2.482, 0.469], "to": [3, 0.45] },
+          { "type": "segment", "from": [3, 0.45], "to": [3.518, 0.469] },
+          { "type": "segment", "from": [3.518, 0.469], "to": [4, 0.524] },
+          { "type": "segment", "from": [4, 0.524], "to": [4.414, 0.611] },
+          { "type": "segment", "from": [4.414, 0.611], "to": [4.732, 0.725] },
+          { "type": "segment", "from": [4.732, 0.725], "to": [4.932, 0.858] },
+          { "type": "segment", "from": [4.932, 0.858], "to": [5, 1] },
+          { "type": "segment", "from": [5, 5], "to": [4.932, 5.142] },
+          { "type": "segment", "from": [4.932, 5.142], "to": [4.732, 5.275] },
+          { "type": "segment", "from": [4.732, 5.275], "to": [4.414, 5.389] },
+          { "type": "segment", "from": [4.414, 5.389], "to": [4, 5.476] },
+          { "type": "segment", "from": [4, 5.476], "to": [3.518, 5.531] },
+          { "type": "segment", "from": [3.518, 5.531], "to": [3, 5.55] },
+          { "type": "segment", "from": [3, 5.55], "to": [2.482, 5.531] },
+          { "type": "segment", "from": [2.482, 5.531], "to": [2, 5.476] },
+          { "type": "segment", "from": [2, 5.476], "to": [1.586, 5.389] },
+          { "type": "segment", "from": [1.586, 5.389], "to": [1.268, 5.275] },
+          { "type": "segment", "from": [1.268, 5.275], "to": [1.068, 5.142] },
+          { "type": "segment", "from": [1.068, 5.142], "to": [1, 5] },
+          { "type": "segment", "from": [1, 5], "to": [1.068, 4.858] },
+          { "type": "segment", "from": [1.068, 4.858], "to": [1.268, 4.725] },
+          { "type": "segment", "from": [1.268, 4.725], "to": [1.586, 4.611] },
+          { "type": "segment", "from": [1.586, 4.611], "to": [2, 4.524] },
+          { "type": "segment", "from": [2, 4.524], "to": [2.482, 4.469] },
+          { "type": "segment", "from": [2.482, 4.469], "to": [3, 4.45] },
+          { "type": "segment", "from": [3, 4.45], "to": [3.518, 4.469] },
+          { "type": "segment", "from": [3.518, 4.469], "to": [4, 4.524] },
+          { "type": "segment", "from": [4, 4.524], "to": [4.414, 4.611] },
+          { "type": "segment", "from": [4.414, 4.611], "to": [4.732, 4.725] },
+          { "type": "segment", "from": [4.732, 4.725], "to": [4.932, 4.858] },
+          { "type": "segment", "from": [4.932, 4.858], "to": [5, 5] },
+          { "type": "segment", "from": [1, 1], "to": [1, 5] },
+          { "type": "segment", "from": [5, 1], "to": [5, 5] },
+          { "type": "text", "x": 3, "y": -0.2, "text": "pot" },
+          { "type": "segment", "from": [11, 1], "to": [10.932, 1.142], "dashed": true },
+          { "type": "segment", "from": [10.932, 1.142], "to": [10.732, 1.275], "dashed": true },
+          { "type": "segment", "from": [10.732, 1.275], "to": [10.414, 1.389], "dashed": true },
+          { "type": "segment", "from": [10.414, 1.389], "to": [10, 1.476], "dashed": true },
+          { "type": "segment", "from": [10, 1.476], "to": [9.518, 1.531], "dashed": true },
+          { "type": "segment", "from": [9.518, 1.531], "to": [9, 1.55], "dashed": true },
+          { "type": "segment", "from": [9, 1.55], "to": [8.482, 1.531], "dashed": true },
+          { "type": "segment", "from": [8.482, 1.531], "to": [8, 1.476], "dashed": true },
+          { "type": "segment", "from": [8, 1.476], "to": [7.586, 1.389], "dashed": true },
+          { "type": "segment", "from": [7.586, 1.389], "to": [7.268, 1.275], "dashed": true },
+          { "type": "segment", "from": [7.268, 1.275], "to": [7.068, 1.142], "dashed": true },
+          { "type": "segment", "from": [7.068, 1.142], "to": [7, 1], "dashed": true },
+          { "type": "segment", "from": [7, 1], "to": [7.068, 0.858] },
+          { "type": "segment", "from": [7.068, 0.858], "to": [7.268, 0.725] },
+          { "type": "segment", "from": [7.268, 0.725], "to": [7.586, 0.611] },
+          { "type": "segment", "from": [7.586, 0.611], "to": [8, 0.524] },
+          { "type": "segment", "from": [8, 0.524], "to": [8.482, 0.469] },
+          { "type": "segment", "from": [8.482, 0.469], "to": [9, 0.45] },
+          { "type": "segment", "from": [9, 0.45], "to": [9.518, 0.469] },
+          { "type": "segment", "from": [9.518, 0.469], "to": [10, 0.524] },
+          { "type": "segment", "from": [10, 0.524], "to": [10.414, 0.611] },
+          { "type": "segment", "from": [10.414, 0.611], "to": [10.732, 0.725] },
+          { "type": "segment", "from": [10.732, 0.725], "to": [10.932, 0.858] },
+          { "type": "segment", "from": [10.932, 0.858], "to": [11, 1] },
+          { "type": "segment", "from": [9, 5], "to": [7, 1] },
+          { "type": "segment", "from": [9, 5], "to": [11, 1] },
+          { "type": "text", "x": 9, "y": -0.2, "text": "cornet" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🔺",
+          "title": "Volume d'une pyramide",
+          "body": "Le volume d'une pyramide est le **tiers** de celui du prisme de même base et de même hauteur : **V = aire de la base × hauteur ÷ 3**. La hauteur est la distance entre le sommet et le plan de la base : elle est perpendiculaire à la base. Ce n'est pas la longueur d'une arête !",
+          "example": "Base carrée de 6 cm de côté, hauteur 5 cm : V = 6 × 6 × 5 ÷ 3 = 60 cm³.",
+          "figure": {
+            "alt": "Pyramide SABCD à base carrée dessinée en perspective, avec sa hauteur [SH] en pointillés",
+            "w": 300,
+            "h": 260,
+            "frame": { "x": [-0.8, 7.5], "y": [-0.8, 5.8] },
+            "items": [
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 6.5, "y": 1.5, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.5, "y": 1.5, "pos": "w" },
+              { "type": "point", "id": "S", "x": 3.25, "y": 5, "pos": "n" },
+              { "type": "point", "id": "H", "x": 3.25, "y": 0.75, "pos": "s" },
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "segment", "from": "B", "to": "C", "label": "6 cm" },
+              { "type": "segment", "from": "C", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "A", "dashed": true },
+              { "type": "segment", "from": "S", "to": "A" },
+              { "type": "segment", "from": "S", "to": "B" },
+              { "type": "segment", "from": "S", "to": "C" },
+              { "type": "segment", "from": "S", "to": "D", "dashed": true },
+              { "type": "segment", "from": "S", "to": "H", "dashed": true, "color": "orange", "label": "5 cm" }
+            ]
+          }
+        },
+        {
+          "emoji": "🍦",
+          "title": "Volume d'un cône",
+          "body": "Un **cône de révolution** a pour base un disque de rayon r. Son volume est le tiers de celui du cylindre de même base et de même hauteur : **V = π × r² × h ÷ 3**. On donne une valeur exacte (avec π) ou une valeur arrondie.",
+          "example": "r = 3 cm et h = 10 cm : V = π × 9 × 10 ÷ 3 = 30π ≈ 94,2 cm³.",
+          "figure": {
+            "alt": "Cône de révolution de sommet S, de base un disque de centre O, avec son rayon r et sa hauteur h",
+            "w": 260,
+            "h": 260,
+            "frame": { "x": [-0.2, 6.2], "y": [-0.2, 6.6] },
+            "items": [
+              { "type": "point", "id": "S", "x": 3, "y": 6, "pos": "n" },
+              { "type": "point", "id": "O", "x": 3, "y": 1, "pos": "sw" },
+              { "type": "segment", "from": [5.5, 1], "to": [5.415, 1.181], "dashed": true },
+              { "type": "segment", "from": [5.415, 1.181], "to": [5.165, 1.35], "dashed": true },
+              { "type": "segment", "from": [5.165, 1.35], "to": [4.768, 1.495], "dashed": true },
+              { "type": "segment", "from": [4.768, 1.495], "to": [4.25, 1.606], "dashed": true },
+              { "type": "segment", "from": [4.25, 1.606], "to": [3.647, 1.676], "dashed": true },
+              { "type": "segment", "from": [3.647, 1.676], "to": [3, 1.7], "dashed": true },
+              { "type": "segment", "from": [3, 1.7], "to": [2.353, 1.676], "dashed": true },
+              { "type": "segment", "from": [2.353, 1.676], "to": [1.75, 1.606], "dashed": true },
+              { "type": "segment", "from": [1.75, 1.606], "to": [1.232, 1.495], "dashed": true },
+              { "type": "segment", "from": [1.232, 1.495], "to": [0.835, 1.35], "dashed": true },
+              { "type": "segment", "from": [0.835, 1.35], "to": [0.585, 1.181], "dashed": true },
+              { "type": "segment", "from": [0.585, 1.181], "to": [0.5, 1], "dashed": true },
+              { "type": "segment", "from": [0.5, 1], "to": [0.585, 0.819] },
+              { "type": "segment", "from": [0.585, 0.819], "to": [0.835, 0.65] },
+              { "type": "segment", "from": [0.835, 0.65], "to": [1.232, 0.505] },
+              { "type": "segment", "from": [1.232, 0.505], "to": [1.75, 0.394] },
+              { "type": "segment", "from": [1.75, 0.394], "to": [2.353, 0.324] },
+              { "type": "segment", "from": [2.353, 0.324], "to": [3, 0.3] },
+              { "type": "segment", "from": [3, 0.3], "to": [3.647, 0.324] },
+              { "type": "segment", "from": [3.647, 0.324], "to": [4.25, 0.394] },
+              { "type": "segment", "from": [4.25, 0.394], "to": [4.768, 0.505] },
+              { "type": "segment", "from": [4.768, 0.505], "to": [5.165, 0.65] },
+              { "type": "segment", "from": [5.165, 0.65], "to": [5.415, 0.819] },
+              { "type": "segment", "from": [5.415, 0.819], "to": [5.5, 1] },
+              { "type": "segment", "from": "S", "to": [0.5, 1] },
+              { "type": "segment", "from": "S", "to": [5.5, 1] },
+              { "type": "segment", "from": "S", "to": "O", "dashed": true, "label": "h" },
+              { "type": "segment", "from": "O", "to": [5.5, 1], "dashed": true, "label": "r", "color": "orange" },
+              { "type": "angle", "vertex": "O", "from": "S", "to": [5.5, 1], "right": true }
+            ]
+          },
+          "reveal": {
+            "question": "Devine : combien de cornets pleins faut-il verser pour remplir le pot de la découverte ?",
+            "answer": "Trois ! Le volume d'un cône est le tiers de celui du cylindre de même base et de même hauteur. C'est pareil pour une pyramide et le prisme (ou le pavé) de même base et de même hauteur."
+          }
+        },
+        {
+          "emoji": "🚀",
+          "title": "Les grandeurs quotients",
+          "body": "Certaines grandeurs sont le **quotient** de deux autres : la **vitesse** (distance ÷ durée, en km/h ou m/s), le **débit** (volume ÷ durée, en L/min ou m³/s), la **masse volumique** (masse ÷ volume, en g/cm³ ou kg/m³), la **concentration** (masse dissoute ÷ volume de solution, en g/L).",
+          "example": "150 km parcourus en 2 h : vitesse moyenne = 150 ÷ 2 = 75 km/h."
+        },
+        {
+          "emoji": "🔁",
+          "title": "Convertir une grandeur composée",
+          "body": "On convertit **séparément** le numérateur et le dénominateur. 36 km/h, c'est 36 000 m en 3 600 s, soit 10 m/s. Pour passer des km/h aux m/s, on divise donc par 3,6 ; des m/s aux km/h, on multiplie par 3,6. De même, 1 m³/s, c'est 1 000 L par seconde, soit 60 000 L/min.",
+          "reveal": {
+            "question": "Devine : un guépard qui court à 30 m/s va-t-il plus vite qu'une voiture qui roule à 100 km/h ?",
+            "answer": "Oui ! 30 m/s = 30 × 3,6 = 108 km/h : le guépard dépasse la voiture."
+          }
+        },
+        {
+          "emoji": "🔍",
+          "title": "Agrandir, réduire",
+          "body": "Dans un agrandissement ou une réduction de rapport k, les **longueurs** sont multipliées par k, les **aires** par k², les **volumes** par k³. Les angles ne changent pas. Si k > 1, c'est un agrandissement ; si k est compris entre 0 et 1, c'est une réduction.",
+          "example": "Maquette au 1/100 (k = 1/100) : une pièce de 20 m² devient 20 ÷ 100² = 0,002 m², soit 20 cm²."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le tas de sable",
+      "steps": [
+        {
+          "text": "Sur un chantier, un tas de sable a la forme d'un cône de révolution de rayon 1,5 m et de hauteur 1,2 m. On cherche son volume, puis sa masse.",
+          "math": "V = π × r^2 × h ÷ 3"
+        },
+        { "text": "On remplace par les valeurs : le volume vaut 0,9π m³, soit environ 2,83 m³.", "math": "π × 1,5^2 × 1,2 ÷ 3 = 0,9π" },
+        {
+          "text": "Masse : pour du sable sec, on prend une masse volumique d'environ 1 600 kg/m³ (un ordre de grandeur). Masse = masse volumique × volume, soit environ 4 524 kg : plus de 4,5 tonnes !",
+          "math": "1600 × 0,9π ≈ 4524"
+        },
+        {
+          "text": "Un tas deux fois plus haut ET deux fois plus large est un agrandissement de rapport k = 2 : son volume est multiplié par 2³ = 8, et non par 2. Il contiendrait environ 22,6 m³ de sable.",
+          "math": "0,9π × 8 = 7,2π"
+        },
+        {
+          "text": "Contrôle des unités : le rayon et la hauteur en m donnent un volume en m³ ; avec une masse volumique en kg/m³, la masse est en kg."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": [
+        "m4-grandeurs-pyramide",
+        "m4-grandeurs-cone",
+        "m4-grandeurs-vitesses",
+        "m4-grandeurs-debit",
+        "m4-grandeurs-vitesse-moyenne",
+        "m4-grandeurs-effets"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes",
+      "body": "Un aller-retour à vélo qui piège les calculs trop rapides, puis la maquette du gymnase.",
+      "exercises": ["m4-grandeurs-aller-retour", "m4-grandeurs-maquette"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le stand de glaces",
+      "body": "Fête du collège : tu tiens le stand de glaces. Volume des cornets, nombre de glaces à servir et prix des mini-cornets, c'est toi qui calcules.",
+      "exercises": ["m4-grandeurs-glaces"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Pyramide : V = aire de la base × hauteur ÷ 3. Cône : V = π × r² × h ÷ 3. Agrandissement ou réduction de rapport k : longueurs × k, aires × k², volumes × k³.\n\n- **Oublier le « ÷ 3 ».** Une pyramide ou un cône ne remplit que le tiers du prisme ou du cylindre de même base et de même hauteur.\n- **Agrandissement × k, donc volume × k ?** Non : avec k = 2, le volume est multiplié par 8.\n- **Vitesse moyenne = moyenne des vitesses ?** Non : c'est la distance totale divisée par la durée totale.\n- **Se tromper de sens en convertissant.** Des km/h aux m/s, on divise par 3,6. Et 45 min = 0,75 h, pas 0,45 h."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des volumes, des conversions de vitesses et des agrandissements dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un verre rempli à mi-hauteur qui cache un piège, et le sucre d'une canette de soda.",
+      "exercises": ["m4-grandeurs-verre", "m4-grandeurs-soda"]
+    },
+    "expert": {
+      "intro": "Une vitesse moyenne impossible à atteindre, et la raison pour laquelle les géants ne peuvent pas exister.",
+      "exercises": ["m4-grandeurs-col", "m4-grandeurs-geant"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-grandeurs-pyramide",
+      "type": "numeric",
+      "skill": "m4.grandeurs.volume-pyramide-cone",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:oubli-tiers", "mc:demi", "unite"],
+      "expectedSeconds": 120,
+      "params": { "a": { "int": [3, 9] }, "b": { "int": [3, 8] }, "h": { "choice": [3, 6, 9, 12] } },
+      "prompt": "La pyramide SABCD a pour base le rectangle ABCD, de {a} cm sur {b} cm, et pour hauteur SH = {h} cm. Calcule son volume, avec l'unité.",
+      "figure": {
+        "alt": "Pyramide SABCD à base rectangulaire dessinée en perspective, avec sa hauteur [SH] en pointillés",
+        "w": 300,
+        "h": 260,
+        "frame": { "x": [-0.8, 7.5], "y": [-0.8, 5.8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 6.5, "y": 1.5, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.5, "y": 1.5, "pos": "w" },
+          { "type": "point", "id": "S", "x": 3.25, "y": 5, "pos": "n" },
+          { "type": "point", "id": "H", "x": 3.25, "y": 0.75, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{b} cm" },
+          { "type": "segment", "from": "C", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "A", "dashed": true },
+          { "type": "segment", "from": "S", "to": "A" },
+          { "type": "segment", "from": "S", "to": "B" },
+          { "type": "segment", "from": "S", "to": "C" },
+          { "type": "segment", "from": "S", "to": "D", "dashed": true },
+          { "type": "segment", "from": "S", "to": "H", "dashed": true, "color": "orange", "label": "{h} cm" }
+        ]
+      },
+      "answer": "a*b*h/3",
+      "unit": "cm³",
+      "misconceptions": [
+        {
+          "answer": "a*b*h",
+          "id": "mc:oubli-tiers",
+          "error": "notion",
+          "feedback": "Tu as calculé le volume du pavé de même base et de même hauteur. Une pyramide n'en remplit que le tiers : n'oublie pas de diviser par 3."
+        },
+        {
+          "answer": "a*b*h/2",
+          "id": "mc:demi",
+          "error": "notion",
+          "feedback": "On ne divise pas par 2 : c'est l'aire d'un triangle qui utilise « ÷ 2 ». Pour le volume d'une pyramide, on divise par 3."
+        }
+      ],
+      "hints": ["Aire de la base : $ {a} × {b} = {a*b} $ cm².", "Volume d'une pyramide = aire de la base × hauteur ÷ 3.", "Un volume s'exprime en cm³."],
+      "solution": "Aire de la base : $ {a} × {b} = {a*b} $ cm². Volume : $ {a*b} × {h} ÷ 3 = {a*b*h/3} $ cm³. C'est le tiers du volume du pavé de même base et de même hauteur ({a*b*h} cm³).",
+      "selfTest": [
+        { "response": { "value": "{a*b*h/3} cm³" }, "expect": "correct" },
+        { "response": { "value": "{a*b*h} cm³" }, "expect": "mc:oubli-tiers" },
+        { "response": { "value": "{a*b*h/3}" }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-cone",
+      "type": "numeric",
+      "skill": "m4.grandeurs.volume-pyramide-cone",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:oubli-tiers", "mc:rayon-diametre", "mc:aire-perimetre"],
+      "expectedSeconds": 150,
+      "params": { "r": { "int": [3, 8] }, "h": { "int": [5, 15] } },
+      "prompt": "Un cornet de glace a la forme d'un cône de révolution de {2*r} cm de diamètre et de {h} cm de hauteur. Calcule son volume, arrondi au dixième de cm³.",
+      "figure": {
+        "alt": "Cône de révolution de sommet S et de base un disque de centre O, avec son diamètre et sa hauteur",
+        "w": 260,
+        "h": 280,
+        "frame": { "x": [-0.2, 6.2], "y": [-0.9, 6.6] },
+        "items": [
+          { "type": "point", "id": "S", "x": 3, "y": 6, "pos": "n" },
+          { "type": "point", "id": "O", "x": 3, "y": 1, "pos": "sw" },
+          { "type": "segment", "from": [5.5, 1], "to": [5.415, 1.181], "dashed": true },
+          { "type": "segment", "from": [5.415, 1.181], "to": [5.165, 1.35], "dashed": true },
+          { "type": "segment", "from": [5.165, 1.35], "to": [4.768, 1.495], "dashed": true },
+          { "type": "segment", "from": [4.768, 1.495], "to": [4.25, 1.606], "dashed": true },
+          { "type": "segment", "from": [4.25, 1.606], "to": [3.647, 1.676], "dashed": true },
+          { "type": "segment", "from": [3.647, 1.676], "to": [3, 1.7], "dashed": true },
+          { "type": "segment", "from": [3, 1.7], "to": [2.353, 1.676], "dashed": true },
+          { "type": "segment", "from": [2.353, 1.676], "to": [1.75, 1.606], "dashed": true },
+          { "type": "segment", "from": [1.75, 1.606], "to": [1.232, 1.495], "dashed": true },
+          { "type": "segment", "from": [1.232, 1.495], "to": [0.835, 1.35], "dashed": true },
+          { "type": "segment", "from": [0.835, 1.35], "to": [0.585, 1.181], "dashed": true },
+          { "type": "segment", "from": [0.585, 1.181], "to": [0.5, 1], "dashed": true },
+          { "type": "segment", "from": [0.5, 1], "to": [0.585, 0.819] },
+          { "type": "segment", "from": [0.585, 0.819], "to": [0.835, 0.65] },
+          { "type": "segment", "from": [0.835, 0.65], "to": [1.232, 0.505] },
+          { "type": "segment", "from": [1.232, 0.505], "to": [1.75, 0.394] },
+          { "type": "segment", "from": [1.75, 0.394], "to": [2.353, 0.324] },
+          { "type": "segment", "from": [2.353, 0.324], "to": [3, 0.3] },
+          { "type": "segment", "from": [3, 0.3], "to": [3.647, 0.324] },
+          { "type": "segment", "from": [3.647, 0.324], "to": [4.25, 0.394] },
+          { "type": "segment", "from": [4.25, 0.394], "to": [4.768, 0.505] },
+          { "type": "segment", "from": [4.768, 0.505], "to": [5.165, 0.65] },
+          { "type": "segment", "from": [5.165, 0.65], "to": [5.415, 0.819] },
+          { "type": "segment", "from": [5.415, 0.819], "to": [5.5, 1] },
+          { "type": "segment", "from": "S", "to": [0.5, 1] },
+          { "type": "segment", "from": "S", "to": [5.5, 1] },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true, "label": "{h} cm" },
+          { "type": "segment", "from": [0.5, 1], "to": [5.5, 1], "dashed": true, "color": "orange" },
+          { "type": "segment", "from": [0.5, -0.15], "to": [5.5, -0.15], "arrows": "both", "label": "{2*r} cm", "color": "orange" },
+          { "type": "angle", "vertex": "O", "from": "S", "to": [5.5, 1], "right": true }
+        ]
+      },
+      "answer": "pi*r^2*h/3",
+      "unit": "cm³",
+      "tolerance": 0.06,
+      "round": 1,
+      "misconceptions": [
+        {
+          "answer": "pi*r^2*h",
+          "id": "mc:oubli-tiers",
+          "error": "notion",
+          "feedback": "Tu as calculé le volume du cylindre de même base et de même hauteur. Un cône n'en remplit que le tiers : divise par 3."
+        },
+        {
+          "answer": "pi*(2*r)^2*h/3",
+          "id": "mc:rayon-diametre",
+          "error": "lecture",
+          "feedback": "Tu as utilisé le diamètre ({2*r} cm) à la place du rayon. Le rayon est la moitié du diamètre."
+        },
+        {
+          "answer": "2*pi*r*h/3",
+          "id": "mc:aire-perimetre",
+          "error": "notion",
+          "feedback": "2 × π × r est le périmètre du cercle de base. Dans la formule du volume, il faut l'AIRE du disque de base : π × r × r."
+        }
+      ],
+      "hints": ["Le rayon est la moitié du diamètre : {r} cm.", "Aire du disque de base : π × {r} × {r}.", "V = π × r² × h ÷ 3."],
+      "solution": "Rayon : $ {2*r} ÷ 2 = {r} $ cm. Volume : $ π × {r}^2 × {h} ÷ 3 ≈ {pi*r^2*h/3|d1} $ cm³.",
+      "selfTest": [
+        { "response": { "value": "{pi*r^2*h/3|d1} cm³" }, "expect": "correct" },
+        { "response": { "value": "{pi*r^2*h|d1} cm³" }, "expect": "mc:oubli-tiers" },
+        { "response": { "value": "{pi*4*r^2*h/3|d1} cm³" }, "expect": "mc:rayon-diametre" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-vitesses",
+      "type": "table",
+      "skill": "m4.grandeurs.composees",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:sens-conversion"],
+      "expectedSeconds": 240,
+      "prompt": "Complète le tableau de conversion. Rappel : 1 km = 1 000 m et 1 h = 3 600 s. La dernière ligne donne la vitesse du son dans l'air, environ 340 m/s.",
+      "columns": ["Vitesse en km/h", "Vitesse en m/s"],
+      "rows": [["36", "?r0c1"], ["90", "?r1c1"], ["?r2c0", "15"], ["?r3c0", "340"]],
+      "cells": {
+        "r0c1": {
+          "answer": "10",
+          "misconceptions": [
+            {
+              "answer": "129.6",
+              "id": "mc:sens-conversion",
+              "error": "unite",
+              "feedback": "Tu as multiplié par 3,6 au lieu de diviser. 1 km/h, c'est 1 000 m en 3 600 s : moins d'un mètre par seconde. Le nombre de m/s est donc plus petit que le nombre de km/h."
+            }
+          ]
+        },
+        "r1c1": { "answer": "25" },
+        "r2c0": {
+          "answer": "54",
+          "misconceptions": [
+            {
+              "answer": "15/3.6",
+              "id": "mc:sens-conversion",
+              "error": "unite",
+              "feedback": "Tu as divisé par 3,6 au lieu de multiplier. En une heure, on parcourt bien plus de distance qu'en une seconde : le nombre de km/h est plus grand que le nombre de m/s."
+            }
+          ]
+        },
+        "r3c0": { "answer": "1224" }
+      },
+      "hints": ["Des km/h aux m/s : on divise par 3,6.", "Des m/s aux km/h : on multiplie par 3,6.", "Exemple : 36 km/h, c'est 36 000 m en 3 600 s."],
+      "solution": "36 km/h = 36 000 m en 3 600 s = 10 m/s. $ 90 ÷ 3,6 = 25 $ m/s. $ 15 × 3,6 = 54 $ km/h. $ 340 × 3,6 = 1 224 $ km/h : le son parcourt plus de 1 200 km en une heure.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "10", "r1c1": "25", "r2c0": "54", "r3c0": "1224" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "129,6", "r1c1": "25", "r2c0": "54", "r3c0": "1224" } }, "expect": "mc:sens-conversion" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-debit",
+      "type": "numeric",
+      "skill": "m4.grandeurs.composees",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:sens-minutes-heures", "mc:oubli-litres-m3", "unite"],
+      "expectedSeconds": 150,
+      "params": { "q": { "choice": [3, 6, 9, 12, 18, 24, 30, 36] } },
+      "prompt": "Une pompe d'arrosage a un débit de {q} m³/h. Exprime ce débit en litres par minute (L/min). Rappel : 1 m³ = 1 000 L.",
+      "answer": "q*1000/60",
+      "unit": "L/min",
+      "strictUnit": true,
+      "misconceptions": [
+        {
+          "answer": "q*1000*60",
+          "id": "mc:sens-minutes-heures",
+          "error": "unite",
+          "feedback": "Tu as multiplié par 60. En une minute, la pompe débite 60 fois MOINS qu'en une heure : il faut diviser par 60."
+        },
+        {
+          "answer": "q/60",
+          "id": "mc:oubli-litres-m3",
+          "error": "unite",
+          "feedback": "Tu as obtenu des m³ par minute. Il reste à convertir les m³ en litres : 1 m³ = 1 000 L."
+        }
+      ],
+      "hints": [
+        "{q} m³ = {q*1000} L.",
+        "En 1 h, soit 60 min, la pompe débite {q*1000} L : en 1 min, elle débite 60 fois moins.",
+        "Convertis séparément le volume (m³ → L) et la durée (h → min)."
+      ],
+      "solution": "{q} m³/h, c'est {q*1000} L en 60 min, donc $ {q*1000} ÷ 60 = {q*1000/60} $ L/min.",
+      "selfTest": [
+        { "response": { "value": "{q*1000/60} L/min" }, "expect": "correct" },
+        { "response": { "value": "{q*60000} L/min" }, "expect": "mc:sens-minutes-heures" },
+        { "response": { "value": "{q/60} m³/min" }, "expect": "unite" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-vitesse-moyenne",
+      "type": "numeric",
+      "skill": "m4.grandeurs.composees",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:oubli-conversion-duree", "mc:heure-100-minutes"],
+      "expectedSeconds": 120,
+      "params": { "d": { "int": [6, 20] }, "t": { "choice": [12, 15, 20, 24, 30, 36, 40, 45] } },
+      "constraints": ["estentier(d*60/t)", "d*60/t <= 45", "d*60/t >= 20"],
+      "prompt": "Sacha fait un trajet de {d} km en scooter en {t} minutes. Quelle est sa vitesse moyenne, en km/h ?",
+      "answer": "d*60/t",
+      "unit": "km/h",
+      "strictUnit": true,
+      "misconceptions": [
+        {
+          "answer": "d/t",
+          "id": "mc:oubli-conversion-duree",
+          "error": "unite",
+          "feedback": "Tu as calculé des kilomètres par MINUTE. Pour obtenir des km/h, souviens-toi qu'une heure contient 60 minutes."
+        },
+        {
+          "answer": "d/t*100",
+          "id": "mc:heure-100-minutes",
+          "error": "unite",
+          "feedback": "Une heure compte 60 minutes, pas 100 : {t} min ne valent pas {t/100} h."
+        }
+      ],
+      "hints": [
+        "Vitesse moyenne = distance ÷ durée.",
+        "Exprime la durée en heures : {t} min = {t}/60 h.",
+        "Ou bien : {d} km en {t} min ; combien de km en 60 min ?"
+      ],
+      "solution": "{t} min = $ {t}/60 $ h. Vitesse moyenne : $ {d} ÷ ({t}/60) = {d} × 60 ÷ {t} = {d*60/t} $ km/h. Autre raisonnement : en 60 min, au même rythme, Sacha parcourrait $ {d} × 60/{t} = {d*60/t} $ km.",
+      "selfTest": [
+        { "response": { "value": "{d*60/t} km/h" }, "expect": "correct" },
+        { "response": { "value": "{d}/{t}*100 km/h" }, "expect": "mc:heure-100-minutes" },
+        { "response": { "value": "{d}/{t} km/h" }, "expect": "mc:oubli-conversion-duree" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-effets",
+      "type": "categorize",
+      "skill": "m4.grandeurs.agrandissement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:volume-k", "mc:aire-k", "mc:angle-agrandi", "mc:volume-k2"],
+      "expectedSeconds": 180,
+      "prompt": "On agrandit une boîte en forme de pavé avec un rapport k = 3. Par combien chaque grandeur est-elle multipliée ?",
+      "categories": [
+        { "id": "k", "label": "Multipliée par 3" },
+        { "id": "k2", "label": "Multipliée par 9" },
+        { "id": "k3", "label": "Multipliée par 27" },
+        { "id": "same", "label": "Ne change pas" }
+      ],
+      "items": [
+        { "id": "i1", "label": "La longueur d'une arête", "category": "k" },
+        { "id": "i2", "label": "Le périmètre d'une face", "category": "k" },
+        { "id": "i3", "label": "L'aire d'une face", "category": "k2" },
+        { "id": "i4", "label": "La quantité de peinture pour peindre toute la boîte", "category": "k2" },
+        { "id": "i5", "label": "Le volume de la boîte", "category": "k3" },
+        { "id": "i6", "label": "La quantité d'eau que la boîte peut contenir", "category": "k3" },
+        { "id": "i7", "label": "La mesure d'un angle de la boîte", "category": "same" },
+        { "id": "i8", "label": "La masse de sable qui remplit la boîte", "category": "k3" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i5",
+          "category": "k",
+          "id": "mc:volume-k",
+          "error": "notion",
+          "feedback": "Le volume n'est pas multiplié par 3 : la longueur, la largeur ET la hauteur sont multipliées par 3, donc le volume par 3 × 3 × 3 = 27."
+        },
+        {
+          "item": "i5",
+          "category": "k2",
+          "id": "mc:volume-k2",
+          "error": "notion",
+          "feedback": "Un volume a trois dimensions, pas deux : il est multiplié par 3 × 3 × 3 = 27."
+        },
+        {
+          "item": "i3",
+          "category": "k",
+          "id": "mc:aire-k",
+          "error": "notion",
+          "feedback": "Une face a deux dimensions, toutes deux multipliées par 3 : son aire est multipliée par 3 × 3 = 9."
+        },
+        {
+          "item": "i7",
+          "category": "k",
+          "id": "mc:angle-agrandi",
+          "error": "notion",
+          "feedback": "Un agrandissement conserve la forme : un angle droit reste un angle droit. Les angles ne changent pas."
+        }
+      ],
+      "hints": [
+        "Une longueur est multipliée par k = 3.",
+        "Une aire (deux dimensions) est multipliée par k × k ; un volume (trois dimensions) par k × k × k.",
+        "La peinture dépend de l'aire à couvrir ; l'eau et le sable, du volume."
+      ],
+      "solution": "Longueurs (arête, périmètre) : × 3. Aires (face, surface à peindre) : × 3² = 9. Volumes (volume, contenance en eau, masse de sable) : × 3³ = 27. Les angles ne changent pas.",
+      "selfTest": [
+        {
+          "response": { "assign": { "i1": "k", "i2": "k", "i3": "k2", "i4": "k2", "i5": "k3", "i6": "k3", "i7": "same", "i8": "k3" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "i1": "k", "i2": "k", "i3": "k2", "i4": "k2", "i5": "k", "i6": "k3", "i7": "same", "i8": "k3" } },
+          "expect": "mc:volume-k"
+        },
+        {
+          "response": { "assign": { "i1": "k", "i2": "k", "i3": "k", "i4": "k2", "i5": "k3", "i6": "k3", "i7": "same", "i8": "k3" } },
+          "expect": "mc:aire-k"
+        }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-aller-retour",
+      "type": "composite",
+      "skill": "m4.grandeurs.composees",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:moyenne-des-vitesses", "mc:heure-100-minutes"],
+      "expectedSeconds": 480,
+      "params": { "d": { "choice": [9, 18, 27, 36] } },
+      "prompt": "Le père de Yanis monte un col à vélo : {d} km à 12 km/h de moyenne. Il redescend par la même route à 36 km/h de moyenne. Yanis annonce : « Sa vitesse moyenne sur l'aller-retour, c'est (12 + 36) ÷ 2 = 24 km/h. »",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de minutes dure la montée ?",
+          "answer": "5*d",
+          "misconceptions": [
+            {
+              "answer": "d/12*100",
+              "id": "mc:heure-100-minutes",
+              "error": "unite",
+              "feedback": "La montée dure {d/12} h. Mais une heure compte 60 minutes, pas 100 : multiplie par 60."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien de minutes dure la descente ?", "answer": "5*d/3" },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est sa vitesse moyenne sur l'aller-retour, en km/h ? (le nombre seul)",
+          "answer": 18,
+          "misconceptions": [
+            {
+              "answer": 24,
+              "id": "mc:moyenne-des-vitesses",
+              "error": "notion",
+              "feedback": "24 est la moyenne des deux vitesses. Mais il roule bien plus longtemps à 12 km/h qu'à 36 km/h ! La vitesse moyenne, c'est la distance totale divisée par la durée totale."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique à Yanis pourquoi son calcul est faux.",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "La vitesse moyenne se calcule avec la distance totale et la durée totale",
+              "keywords": [["distance totale", "duree totale", "temps total"]]
+            },
+            {
+              "id": "c2",
+              "label": "Le cycliste passe plus de temps à la vitesse lente (montée) qu'à la vitesse rapide (descente)",
+              "keywords": [["plus de temps", "plus longtemps", "3 fois"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Durée = distance ÷ vitesse : la montée dure $ {d} ÷ 12 $ h.",
+        "Distance totale : {2*d} km. Durée totale : montée + descente.",
+        "Vitesse moyenne = distance totale ÷ durée totale."
+      ],
+      "solution": "Montée : $ {d} ÷ 12 = {d/12} $ h, soit {5*d} min. Descente : $ {d} ÷ 36 = {d/36} $ h, soit {5*d/3} min. En tout : {2*d} km en {20*d/3} min, soit {d/9} h. Vitesse moyenne : $ {2*d} ÷ {d/9} = 18 $ km/h, et non 24 km/h. Le cycliste passe 3 fois plus de temps à 12 km/h qu'à 36 km/h : la vitesse lente « pèse » davantage dans la moyenne.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "{5*d}" },
+              { "value": "{5*d/3}" },
+              { "value": "18" },
+              {
+                "text": "Il faut diviser la distance totale par la durée totale. Il passe 3 fois plus de temps à monter lentement qu'à descendre vite.",
+                "selfCheck": { "c1": true, "c2": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{5*d}" }, { "value": "{5*d/3}" }, { "value": "24" }, { "text": "Yanis a raison." }] },
+          "expect": "mc:moyenne-des-vitesses"
+        }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-maquette",
+      "type": "composite",
+      "skill": "m4.grandeurs.agrandissement",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:conversion-m-cm", "mc:aire-k", "mc:volume-k", "mc:volume-k2"],
+      "expectedSeconds": 480,
+      "prompt": "Pour la journée portes ouvertes, la classe construit une maquette du gymnase à l'échelle 1/100. Le gymnase est assimilé à un pavé de 40 m de long, 20 m de large et 8 m de haut.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la longueur du gymnase sur la maquette, en cm ?",
+          "answer": 40,
+          "misconceptions": [
+            {
+              "answer": 0.4,
+              "id": "mc:conversion-m-cm",
+              "error": "unite",
+              "feedback": "0,4 est une longueur en mètres. La question demande des centimètres : 1 m = 100 cm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le sol du vrai gymnase a une aire de 40 × 20 = 800 m². Quelle est l'aire du sol de la maquette, en cm² ?",
+          "answer": 800,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Diviser l'aire par 100 ne suffit pas : les deux dimensions du sol sont divisées par 100, donc l'aire est divisée par 100 × 100. Tu peux aussi calculer directement avec les longueurs de la maquette."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le vrai gymnase a un volume de 40 × 20 × 8 = 6 400 m³. Quel est le volume de la maquette, en litres ? (1 L = 1 000 cm³)",
+          "answer": 6.4,
+          "misconceptions": [
+            {
+              "answer": 64,
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "Le volume n'est pas divisé par 100 : les trois dimensions sont divisées par 100, donc le volume par 100 × 100 × 100."
+            },
+            {
+              "answer": 0.64,
+              "id": "mc:volume-k2",
+              "error": "notion",
+              "feedback": "Un volume a trois dimensions : il est divisé par 100³ = 1 000 000, pas par 100² seulement."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Au 1/100, toutes les longueurs sont divisées par 100 : 40 m deviennent 0,4 m.",
+        "Sur la maquette, le sol mesure 40 cm sur 20 cm.",
+        "La maquette est un pavé de 40 cm × 20 cm × 8 cm."
+      ],
+      "solution": "Longueurs divisées par 100 : 40 m → 0,4 m = 40 cm ; 20 m → 20 cm ; 8 m → 8 cm. Aire du sol : $ 40 × 20 = 800 $ cm² (l'aire réelle, 800 m², est divisée par 100² = 10 000). Volume : $ 40 × 20 × 8 = 6 400 $ cm³, soit 6,4 L (le volume réel, 6 400 m³, est divisé par 100³ = 1 000 000).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "40" }, { "value": "800" }, { "value": "6,4" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "40" }, { "value": "800" }, { "value": "64" }] }, "expect": "mc:volume-k" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-glaces",
+      "type": "composite",
+      "skill": "m4.grandeurs.volume-pyramide-cone",
+      "skills": ["m4.grandeurs.agrandissement"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:oubli-tiers", "mc:rayon-diametre", "mc:arrondi-superieur", "mc:volume-k"],
+      "expectedSeconds": 720,
+      "prompt": "Mission : tu tiens le stand de glaces de la fête du collège. Les cornets ont la forme d'un cône de 5 cm de diamètre et de 12 cm de hauteur, et on les remplit à ras bord. Tu disposes d'un bac de 5 L de glace.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume d'un cornet, arrondi au dixième de cm³ ? (le nombre seul)",
+          "answer": "pi*2.5^2*12/3",
+          "tolerance": 0.06,
+          "misconceptions": [
+            {
+              "answer": "pi*2.5^2*12",
+              "id": "mc:oubli-tiers",
+              "error": "notion",
+              "feedback": "C'est le volume du cylindre de même base et de même hauteur : un cône n'en remplit que le tiers."
+            },
+            { "answer": "pi*5^2*12/3", "id": "mc:rayon-diametre", "error": "lecture", "feedback": "5 cm est le diamètre : le rayon vaut 2,5 cm." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de cornets pleins peux-tu servir avec le bac ? (1 L = 1 000 cm³)",
+          "answer": 63,
+          "misconceptions": [
+            {
+              "answer": 64,
+              "id": "mc:arrondi-superieur",
+              "error": "raisonnement",
+              "feedback": "Le 64e cornet ne serait pas plein : il ne reste pas assez de glace. On garde seulement le nombre de cornets entièrement remplis."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour les petits, un cornet « mini » est une réduction de rapport 1/2 du cornet normal. Quel est son volume, arrondi au dixième de cm³ ?",
+          "answer": "pi*2.5^2*12/3/8",
+          "tolerance": 0.06,
+          "misconceptions": [
+            {
+              "answer": "pi*2.5^2*12/3/2",
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "Le volume n'est pas divisé par 2 : les trois dimensions sont divisées par 2, donc le volume par 2 × 2 × 2 = 8."
+            },
+            {
+              "answer": "pi*2.5^2*12/3/4",
+              "id": "mc:volume-k2",
+              "error": "notion",
+              "feedback": "Un volume a trois dimensions : il est divisé par 2³ = 8, pas par 2² = 4."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un cornet mini coûte 1 € et un cornet normal 3 €. Pour la même somme, lequel donne le plus de glace ? (écris « mini » ou « normal »)",
+          "accept": ["normal", "le normal", "le cornet normal", "cornet normal"],
+          "misconceptions": [
+            {
+              "answer": "mini",
+              "id": "mc:volume-k",
+              "error": "raisonnement",
+              "feedback": "Le cornet normal coûte 3 fois plus cher, mais il contient 8 fois plus de glace (2³ = 8). Compare : pour 3 €, un cornet normal ou trois minis ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Rayon : 5 ÷ 2 = 2,5 cm. V = π × r² × h ÷ 3.",
+        "5 L = 5 000 cm³ : divise par le volume d'un cornet, et ne garde que les cornets pleins.",
+        "Réduction de rapport 1/2 : le volume est multiplié par (1/2)³ = 1/8."
+      ],
+      "solution": "Volume d'un cornet : $ π × 2,5^2 × 12 ÷ 3 = 25π ≈ 78,5 $ cm³. Avec 5 000 cm³ : $ 5 000 ÷ 78,54 ≈ 63,7 $, donc 63 cornets pleins. Cornet mini : $ 78,54 ÷ 8 ≈ 9,8 $ cm³. Pour 3 €, on a un cornet normal (78,5 cm³) ou trois minis (environ 29,5 cm³) : le cornet normal est bien plus avantageux.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "78,5" }, { "value": "63" }, { "value": "9,8" }, { "value": "normal" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "78,5" }, { "value": "63" }, { "value": "39,3" }, { "value": "normal" }] }, "expect": "mc:volume-k" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-remed-tiers",
+      "type": "numeric",
+      "skill": "m4.grandeurs.volume-pyramide-cone",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:oubli-tiers", "mc:demi"],
+      "expectedSeconds": 60,
+      "params": { "v": { "choice": [30, 45, 60, 90, 120, 150] } },
+      "prompt": "Rappel : une pyramide remplit exactement le tiers du pavé qui a la même base et la même hauteur (il faut 3 pyramides pleines pour remplir le pavé). Un pavé a un volume de {v} cm³. Quel est, en cm³, le volume de la pyramide de même base et de même hauteur ?",
+      "answer": "v/3",
+      "misconceptions": [
+        {
+          "answer": "v",
+          "id": "mc:oubli-tiers",
+          "error": "notion",
+          "feedback": "La pyramide est plus petite que le pavé : il faut 3 pyramides pleines pour remplir le pavé."
+        },
+        {
+          "answer": "v/2",
+          "id": "mc:demi",
+          "error": "notion",
+          "feedback": "Ce n'est pas la moitié mais le tiers : il faut 3 pyramides pleines, et non 2, pour remplir le pavé."
+        }
+      ],
+      "hints": ["3 pyramides pleines remplissent le pavé.", "Divise le volume du pavé par 3."],
+      "solution": "$ {v} ÷ 3 = {v/3} $ cm³. C'est pour cela que la formule du volume d'une pyramide contient « ÷ 3 ».",
+      "selfTest": [{ "response": { "value": "{v/3}" }, "expect": "correct" }, { "response": { "value": "{v}" }, "expect": "mc:oubli-tiers" }]
+    },
+    {
+      "id": "m4-grandeurs-remed-kmh",
+      "type": "match",
+      "skill": "m4.grandeurs.composees",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:sens-conversion"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel : 1 km/h, c'est 1 000 m en 3 600 s. Pour passer des km/h aux m/s, on divise par 3,6. Associe chaque vitesse à la même vitesse en m/s.",
+      "leftTitle": "En km/h",
+      "rightTitle": "En m/s",
+      "left": [
+        { "id": "l1", "label": "36 km/h" },
+        { "id": "l2", "label": "72 km/h" },
+        { "id": "l3", "label": "18 km/h" },
+        { "id": "l4", "label": "108 km/h" }
+      ],
+      "right": [
+        { "id": "r1", "label": "10 m/s" },
+        { "id": "r2", "label": "20 m/s" },
+        { "id": "r3", "label": "5 m/s" },
+        { "id": "r4", "label": "30 m/s" },
+        { "id": "r5", "label": "129,6 m/s" },
+        { "id": "r6", "label": "3,6 m/s" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        {
+          "pair": ["l1", "r5"],
+          "id": "mc:sens-conversion",
+          "error": "unite",
+          "feedback": "36 × 3,6 = 129,6 : tu as multiplié au lieu de diviser. En une seconde, on parcourt moins de distance qu'en une heure : le nombre de m/s est plus petit que le nombre de km/h."
+        },
+        { "pair": ["l1", "r6"], "id": "mc:diviser-par-10", "error": "calcul", "feedback": "36 ÷ 10 = 3,6 : on ne divise pas par 10, mais par 3,6." }
+      ],
+      "hints": ["36 ÷ 3,6 = 10.", "Le nombre de m/s est toujours plus petit que le nombre de km/h."],
+      "solution": "36 ÷ 3,6 = 10 m/s ; 72 ÷ 3,6 = 20 m/s ; 18 ÷ 3,6 = 5 m/s ; 108 ÷ 3,6 = 30 m/s.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r5", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "mc:sens-conversion" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-verre",
+      "type": "composite",
+      "skill": "m4.grandeurs.agrandissement",
+      "skills": ["m4.grandeurs.volume-pyramide-cone"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:volume-k"],
+      "expectedSeconds": 420,
+      "prompt": "Un verre à cocktail a la forme d'un cône (pointe en bas) de rayon 4 cm et de hauteur 10 cm. On le remplit jusqu'à mi-hauteur : le liquide forme un petit cône, réduction du grand cône de rapport 1/2.",
+      "figure": {
+        "alt": "Verre conique pointe en bas, de rayon 4 cm et de hauteur 10 cm, rempli de liquide jusqu'à mi-hauteur",
+        "w": 280,
+        "h": 260,
+        "frame": { "x": [-0.3, 7.6], "y": [-0.8, 7] },
+        "items": [
+          { "type": "point", "id": "S", "x": 3, "y": 0, "pos": "s" },
+          { "type": "point", "id": "O", "x": 3, "y": 6, "pos": "nw" },
+          { "type": "polygon", "points": [[3, 0], [1.75, 3], [4.25, 3]], "fill": "bleu" },
+          { "type": "segment", "from": [5.5, 6], "to": [5.415, 6.155] },
+          { "type": "segment", "from": [5.415, 6.155], "to": [5.165, 6.3] },
+          { "type": "segment", "from": [5.165, 6.3], "to": [4.768, 6.424] },
+          { "type": "segment", "from": [4.768, 6.424], "to": [4.25, 6.52] },
+          { "type": "segment", "from": [4.25, 6.52], "to": [3.647, 6.58] },
+          { "type": "segment", "from": [3.647, 6.58], "to": [3, 6.6] },
+          { "type": "segment", "from": [3, 6.6], "to": [2.353, 6.58] },
+          { "type": "segment", "from": [2.353, 6.58], "to": [1.75, 6.52] },
+          { "type": "segment", "from": [1.75, 6.52], "to": [1.232, 6.424] },
+          { "type": "segment", "from": [1.232, 6.424], "to": [0.835, 6.3] },
+          { "type": "segment", "from": [0.835, 6.3], "to": [0.585, 6.155] },
+          { "type": "segment", "from": [0.585, 6.155], "to": [0.5, 6] },
+          { "type": "segment", "from": [0.5, 6], "to": [0.585, 5.845] },
+          { "type": "segment", "from": [0.585, 5.845], "to": [0.835, 5.7] },
+          { "type": "segment", "from": [0.835, 5.7], "to": [1.232, 5.576] },
+          { "type": "segment", "from": [1.232, 5.576], "to": [1.75, 5.48] },
+          { "type": "segment", "from": [1.75, 5.48], "to": [2.353, 5.42] },
+          { "type": "segment", "from": [2.353, 5.42], "to": [3, 5.4] },
+          { "type": "segment", "from": [3, 5.4], "to": [3.647, 5.42] },
+          { "type": "segment", "from": [3.647, 5.42], "to": [4.25, 5.48] },
+          { "type": "segment", "from": [4.25, 5.48], "to": [4.768, 5.576] },
+          { "type": "segment", "from": [4.768, 5.576], "to": [5.165, 5.7] },
+          { "type": "segment", "from": [5.165, 5.7], "to": [5.415, 5.845] },
+          { "type": "segment", "from": [5.415, 5.845], "to": [5.5, 6] },
+          { "type": "segment", "from": [4.25, 3], "to": [4.207, 3.078], "color": "bleu" },
+          { "type": "segment", "from": [4.207, 3.078], "to": [4.083, 3.15], "color": "bleu" },
+          { "type": "segment", "from": [4.083, 3.15], "to": [3.884, 3.212], "color": "bleu" },
+          { "type": "segment", "from": [3.884, 3.212], "to": [3.625, 3.26], "color": "bleu" },
+          { "type": "segment", "from": [3.625, 3.26], "to": [3.324, 3.29], "color": "bleu" },
+          { "type": "segment", "from": [3.324, 3.29], "to": [3, 3.3], "color": "bleu" },
+          { "type": "segment", "from": [3, 3.3], "to": [2.676, 3.29], "color": "bleu" },
+          { "type": "segment", "from": [2.676, 3.29], "to": [2.375, 3.26], "color": "bleu" },
+          { "type": "segment", "from": [2.375, 3.26], "to": [2.116, 3.212], "color": "bleu" },
+          { "type": "segment", "from": [2.116, 3.212], "to": [1.917, 3.15], "color": "bleu" },
+          { "type": "segment", "from": [1.917, 3.15], "to": [1.793, 3.078], "color": "bleu" },
+          { "type": "segment", "from": [1.793, 3.078], "to": [1.75, 3], "color": "bleu" },
+          { "type": "segment", "from": [1.75, 3], "to": [1.793, 2.922], "color": "bleu" },
+          { "type": "segment", "from": [1.793, 2.922], "to": [1.917, 2.85], "color": "bleu" },
+          { "type": "segment", "from": [1.917, 2.85], "to": [2.116, 2.788], "color": "bleu" },
+          { "type": "segment", "from": [2.116, 2.788], "to": [2.375, 2.74], "color": "bleu" },
+          { "type": "segment", "from": [2.375, 2.74], "to": [2.676, 2.71], "color": "bleu" },
+          { "type": "segment", "from": [2.676, 2.71], "to": [3, 2.7], "color": "bleu" },
+          { "type": "segment", "from": [3, 2.7], "to": [3.324, 2.71], "color": "bleu" },
+          { "type": "segment", "from": [3.324, 2.71], "to": [3.625, 2.74], "color": "bleu" },
+          { "type": "segment", "from": [3.625, 2.74], "to": [3.884, 2.788], "color": "bleu" },
+          { "type": "segment", "from": [3.884, 2.788], "to": [4.083, 2.85], "color": "bleu" },
+          { "type": "segment", "from": [4.083, 2.85], "to": [4.207, 2.922], "color": "bleu" },
+          { "type": "segment", "from": [4.207, 2.922], "to": [4.25, 3], "color": "bleu" },
+          { "type": "segment", "from": "S", "to": [0.5, 6] },
+          { "type": "segment", "from": "S", "to": [5.5, 6] },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true },
+          { "type": "segment", "from": [6.2, 0], "to": [6.2, 6], "arrows": "both", "label": "10 cm" },
+          { "type": "segment", "from": "O", "to": [5.5, 6], "color": "orange", "label": "4 cm" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le volume du verre plein, arrondi au cm³ ?", "answer": "pi*16*10/3", "tolerance": 0.5 },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume du liquide, arrondi au cm³ ?",
+          "answer": "pi*16*10/3/8",
+          "tolerance": 0.5,
+          "misconceptions": [
+            {
+              "answer": "pi*16*10/3/2",
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "Mi-hauteur ne veut pas dire mi-volume : le petit cône est une réduction de rapport 1/2, donc son volume est multiplié par (1/2)³."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle fraction du verre est remplie ?",
+          "answer": "1/8",
+          "misconceptions": [
+            {
+              "answer": "1/2",
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "La hauteur est divisée par 2, mais le rayon aussi : le volume est multiplié par 1/2 × 1/2 × 1/2."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Volume du verre : π × 4² × 10 ÷ 3.",
+        "Réduction de rapport 1/2 : le volume est multiplié par (1/2)³.",
+        "Vérifie avec le petit cône : rayon 2 cm, hauteur 5 cm."
+      ],
+      "solution": "Verre plein : $ π × 4^2 × 10 ÷ 3 ≈ 167,6 $ cm³, soit environ 168 cm³. Le liquide forme une réduction de rapport 1/2 : son volume est multiplié par $ (1/2)^3 = 1/8 $, soit environ 20,9 cm³ (21 cm³ arrondi). Le verre rempli à mi-hauteur ne contient qu'un huitième de sa contenance ! Vérification avec le petit cône de rayon 2 cm et de hauteur 5 cm : $ π × 2^2 × 5 ÷ 3 ≈ 20,9 $ cm³.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "168" }, { "value": "21" }, { "value": "1/8" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "168" }, { "value": "84" }, { "value": "1/2" }] }, "expect": "mc:volume-k" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-soda",
+      "type": "composite",
+      "skill": "m4.grandeurs.composees",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:oubli-conversion-volume", "mc:conversion-cl"],
+      "expectedSeconds": 360,
+      "prompt": "Sur l'étiquette d'un soda, on lit : « sucres : 10,6 g pour 100 mL ». Une canette contient 33 cL.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la concentration en sucre de ce soda, en g/L ? (le nombre seul)",
+          "answer": 106,
+          "misconceptions": [
+            {
+              "answer": 10.6,
+              "id": "mc:oubli-conversion-volume",
+              "error": "unite",
+              "feedback": "10,6 g, c'est pour 100 mL seulement. Un litre contient 1 000 mL, soit 10 fois plus."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle masse de sucre contient une canette, arrondie au gramme ?",
+          "answer": "106*0.33",
+          "tolerance": 0.5,
+          "misconceptions": [{ "answer": "10.6*33", "id": "mc:conversion-cl", "error": "unite", "feedback": "33 cL = 330 mL, soit 3,3 fois 100 mL (et non 33 fois)." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un morceau de sucre pèse environ 5 g. À combien de morceaux de sucre correspond, à peu près, le sucre d'une canette ?",
+          "answer": 7,
+          "tolerance": 0.5
+        }
+      ],
+      "hints": ["1 L = 1 000 mL = 10 × 100 mL.", "33 cL = 0,33 L ; masse = concentration × volume.", "Divise la masse de sucre par 5 g."],
+      "solution": "Concentration : $ 10,6 × 10 = 106 $ g/L. Une canette (33 cL = 0,33 L) contient $ 106 × 0,33 ≈ 35 $ g de sucre, soit environ $ 35 ÷ 5 = 7 $ morceaux de sucre.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "106" }, { "value": "35" }, { "value": "7" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "10,6" }, { "value": "35" }, { "value": "7" }] }, "expect": "mc:oubli-conversion-volume" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-col",
+      "type": "composite",
+      "skill": "m4.grandeurs.composees",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:moyenne-des-vitesses", "mc:heures-minutes"],
+      "expectedSeconds": 600,
+      "prompt": "Un cycliste monte un col : 12 km à 12 km/h de moyenne. Il veut que sa vitesse moyenne sur l'aller-retour (montée puis descente par la même route) soit de 24 km/h. À quelle vitesse doit-il redescendre ?",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle distance totale parcourt-il, en km ?", "answer": 24 },
+        {
+          "type": "numeric",
+          "prompt": "Pour une vitesse moyenne de 24 km/h sur l'aller-retour, combien de minutes doit durer le trajet complet ?",
+          "answer": 60,
+          "misconceptions": [{ "answer": 1, "id": "mc:heures-minutes", "error": "unite", "feedback": "1, c'est une durée en heures. La question demande des minutes." }]
+        },
+        { "type": "numeric", "prompt": "Combien de minutes a duré la montée ?", "answer": 60 },
+        {
+          "type": "open",
+          "prompt": "Que peux-tu en conclure ? À quelle vitesse devrait-il descendre ?",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Toute la durée disponible (1 h) a déjà été utilisée pendant la montée",
+              "keywords": [["deja", "toute", "plus de temps", "0 minute", "zero"]]
+            },
+            {
+              "id": "c2",
+              "label": "Il devrait descendre en 0 minute, donc infiniment vite : c'est impossible",
+              "keywords": [["impossible", "infini"]]
+            },
+            {
+              "id": "c3",
+              "label": "La réponse « 36 km/h » est fausse : avec elle, la vitesse moyenne ne vaut que 18 km/h",
+              "keywords": [["36", "18"]]
+            }
+          ]
+        }
+      ],
+      "hints": ["Durée totale = distance totale ÷ vitesse moyenne.", "La montée : 12 km à 12 km/h.", "Combien de temps reste-t-il pour la descente ?"],
+      "solution": "Aller-retour : 24 km. À 24 km/h de moyenne, il faudrait 1 h en tout. Mais la montée a déjà pris $ 12 ÷ 12 = 1 $ h ! Il resterait 0 minute pour descendre : c'est impossible, quelle que soit la vitesse de descente. Le réflexe « 36 km/h, car (12 + 36) ÷ 2 = 24 » est faux : à 36 km/h, la descente dure 20 min, et la vitesse moyenne vaut 24 km en 80 min, soit 18 km/h.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "24" },
+              { "value": "60" },
+              { "value": "60" },
+              {
+                "text": "Il a déjà utilisé toute l'heure pour monter, il faudrait descendre en 0 minute : c'est impossible. Avec 36 km/h la moyenne ne fait que 18 km/h.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        { "response": { "parts": [{ "value": "24" }, { "value": "1" }, { "value": "60" }, { "text": "36 km/h." }] }, "expect": "mc:heures-minutes" }
+      ]
+    },
+    {
+      "id": "m4-grandeurs-geant",
+      "type": "composite",
+      "skill": "m4.grandeurs.agrandissement",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:volume-k", "mc:volume-k2", "mc:aire-k"],
+      "expectedSeconds": 600,
+      "prompt": "Dans « Les Voyages de Gulliver » (Jonathan Swift, 1726), Gulliver rencontre des géants. Imaginons un géant qui serait un agrandissement exact, de rapport 12, d'un homme de 1,75 m et de 70 kg. Dès 1638, le savant Galilée expliquait pourquoi un tel géant ne pourrait pas tenir debout.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle serait la taille du géant, en m ?", "answer": 21 },
+        {
+          "type": "numeric",
+          "prompt": "Quelle serait sa masse, en kg (même corps, même matière) ?",
+          "answer": 120960,
+          "misconceptions": [
+            {
+              "answer": 840,
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "La masse est proportionnelle au volume, et le volume n'est pas multiplié par 12 mais par 12 × 12 × 12."
+            },
+            {
+              "answer": 10080,
+              "id": "mc:volume-k2",
+              "error": "notion",
+              "feedback": "Le volume a trois dimensions : il est multiplié par 12³, pas par 12² seulement."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Par combien serait multipliée l'aire de la section de ses os (la surface d'une coupe de l'os) ?",
+          "answer": 144,
+          "misconceptions": [
+            {
+              "answer": 12,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Une section est une aire : ses deux dimensions sont multipliées par 12, donc l'aire par 12 × 12."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La masse que doit porter chaque cm² d'os est multipliée par combien ?",
+          "answer": 12,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:charge-constante",
+              "error": "raisonnement",
+              "feedback": "La masse et la section des os augmentent toutes les deux, mais pas au même rythme : la masse est multipliée par 1 728, la section seulement par 144."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Taille : 1,75 × 12.",
+        "La masse est proportionnelle au volume, multiplié par 12³ = 1 728.",
+        "La section d'un os est une aire, multipliée par 12² = 144.",
+        "Masse portée par cm² d'os : 1 728 ÷ 144."
+      ],
+      "solution": "Taille : $ 1,75 × 12 = 21 $ m. Masse : $ 70 × 12^3 = 70 × 1 728 = 120 960 $ kg, soit environ 121 tonnes ! La section des os, une aire, n'est multipliée que par $ 12^2 = 144 $. Chaque cm² d'os devrait donc porter $ 1 728 ÷ 144 = 12 $ fois plus de masse : les os du géant se briseraient. C'est pour cela que les très grands animaux, comme l'éléphant, ont des os proportionnellement bien plus épais que les nôtres.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "21" }, { "value": "120960" }, { "value": "144" }, { "value": "12" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "21" }, { "value": "840" }, { "value": "12" }, { "value": "1" }] }, "expect": "mc:volume-k" }
+      ]
+    }
+  ]
+}

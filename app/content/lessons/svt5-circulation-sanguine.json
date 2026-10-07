@@ -30,6 +30,390 @@
       "links": []
     },
     {
+      "kind": "experience",
+      "title": "L'expérience : le cœur et la respiration à l'effort",
+      "body": "Lucas, 12 ans, accepte qu'on mesure son cœur et sa respiration, au repos puis après un effort. Observe les mesures, puis la courbe enregistrée par sa montre cardio.",
+      "demo": {
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 392
+          },
+          {
+            "type": "chrono",
+            "id": "ch",
+            "x": 70,
+            "y": 80,
+            "value": 0,
+            "format": "s",
+            "label": "chronomètre"
+          },
+          {
+            "type": "emoji",
+            "id": "coeur",
+            "x": 70,
+            "y": 215,
+            "char": "❤️",
+            "size": 40,
+            "label": "pouls"
+          },
+          {
+            "type": "emoji",
+            "id": "poumons",
+            "x": 70,
+            "y": 300,
+            "char": "🫁",
+            "size": 40,
+            "label": "respiration"
+          },
+          {
+            "type": "emoji",
+            "id": "repos",
+            "x": 190,
+            "y": 275,
+            "char": "🧍",
+            "size": 120,
+            "label": "Lucas, 12 ans"
+          },
+          {
+            "type": "emoji",
+            "id": "course",
+            "x": 190,
+            "y": 275,
+            "char": "🏃",
+            "size": 120,
+            "label": "Lucas court sur place",
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "sueur",
+            "x": 250,
+            "y": 215,
+            "char": "💦",
+            "size": 28,
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "rel",
+            "x": 300,
+            "y": 14,
+            "w": 485,
+            "title": "Mesures de Lucas",
+            "head": [
+              "Moment",
+              "Cœur (batt./min)",
+              "Respiration (/min)"
+            ],
+            "rows": [
+              [
+                "Repos",
+                "80",
+                "18"
+              ],
+              [
+                "Juste après l'effort",
+                "148",
+                "40"
+              ],
+              [
+                "2 min après",
+                "104",
+                "26"
+              ],
+              [
+                "5 min après",
+                "84",
+                "20"
+              ]
+            ],
+            "shown": 0
+          },
+          {
+            "type": "courbe",
+            "id": "g",
+            "x": 300,
+            "y": 190,
+            "w": 485,
+            "h": 195,
+            "title": "Fréquence cardiaque en battements par minute",
+            "xRange": [
+              0,
+              12
+            ],
+            "yRange": [
+              40,
+              170
+            ],
+            "xLabel": "t (min)",
+            "yLabel": "",
+            "color": "#e11d48",
+            "progress": 0,
+            "points": [
+              [
+                0,
+                80
+              ],
+              [
+                2,
+                80
+              ],
+              [
+                2.3,
+                108
+              ],
+              [
+                3,
+                133
+              ],
+              [
+                4,
+                144
+              ],
+              [
+                5,
+                148
+              ],
+              [
+                5.5,
+                128
+              ],
+              [
+                6,
+                115
+              ],
+              [
+                7,
+                104
+              ],
+              [
+                8,
+                94
+              ],
+              [
+                9,
+                88
+              ],
+              [
+                10,
+                84
+              ],
+              [
+                11,
+                82
+              ],
+              [
+                12,
+                81
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le protocole",
+            "text": "Lucas est resté au calme pendant 5 minutes. Sa montre cardio enregistre les battements de son cœur. On compte aussi son **pouls** au poignet pendant 15 secondes, puis ses **mouvements respiratoires** (sa poitrine qui se soulève) pendant 30 secondes.",
+            "focus": [
+              "repos",
+              "ch"
+            ]
+          },
+          {
+            "title": "Au repos",
+            "text": "On compte 20 pulsations en 15 s : 20 × 4 = **80 battements par minute**. Puis 9 mouvements respiratoires en 30 s : 9 × 2 = **18 par minute**. Ces mesures au repos sont la **référence** : sans elles, impossible de dire si quelque chose change ensuite.",
+            "duration": 6,
+            "do": [
+              {
+                "id": "ch",
+                "to": {
+                  "value": 15
+                },
+                "ease": "lineaire",
+                "dur": 4
+              },
+              {
+                "id": "g",
+                "to": {
+                  "progress": 0.1667
+                },
+                "ease": "lineaire",
+                "dur": 4
+              },
+              {
+                "id": "rel",
+                "to": {
+                  "shown": 1
+                },
+                "at": 4.5,
+                "dur": 1
+              }
+            ],
+            "focus": [
+              "coeur",
+              "poumons",
+              "rel"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Lucas court sur place pendant 3 minutes. Que vont faire son cœur et sa respiration ?",
+              "choices": [
+                "Le cœur accélère, la respiration ne change pas",
+                "Les deux accélèrent",
+                "Les deux ralentissent pour économiser l'énergie"
+              ],
+              "answer": 1,
+              "explain": "Les muscles qui travaillent ont besoin de beaucoup plus de dioxygène et de nutriments : le cœur ET la respiration accélèrent."
+            }
+          },
+          {
+            "title": "L'effort",
+            "text": "Lucas court sur place pendant 3 minutes, à bonne allure. Sur la courbe de la montre, la fréquence cardiaque grimpe vite, puis se stabilise vers 150 battements par minute. Il respire plus vite et plus profondément.",
+            "duration": 6,
+            "show": [
+              "course"
+            ],
+            "hide": [
+              "repos"
+            ],
+            "do": [
+              {
+                "id": "g",
+                "to": {
+                  "progress": 0.4167
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "g",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 2,
+                      "to": 5,
+                      "label": "course"
+                    }
+                  ]
+                }
+              }
+            ],
+            "focus": [
+              "g"
+            ]
+          },
+          {
+            "title": "Juste après l'effort",
+            "text": "On compte aussitôt : 37 pulsations en 15 s, soit 37 × 4 = **148 battements par minute**, presque le double du repos. Et 20 mouvements respiratoires en 30 s, soit **40 par minute** : plus du double.",
+            "duration": 5,
+            "show": [
+              "repos",
+              "sueur"
+            ],
+            "hide": [
+              "course"
+            ],
+            "do": [
+              {
+                "id": "ch",
+                "set": {
+                  "value": 0
+                }
+              },
+              {
+                "id": "ch",
+                "to": {
+                  "value": 15
+                },
+                "ease": "lineaire",
+                "dur": 4
+              },
+              {
+                "id": "rel",
+                "to": {
+                  "shown": 2
+                },
+                "at": 4,
+                "dur": 1
+              }
+            ],
+            "focus": [
+              "rel"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Lucas se repose. Que va faire son cœur ?",
+              "choices": [
+                "Il reste rapide pendant des heures",
+                "Il ralentit en quelques minutes",
+                "Il retombe à 80 battements par minute dès qu'il s'arrête"
+              ],
+              "answer": 1,
+              "explain": "Quand l'effort s'arrête, les muscles ont moins besoin de dioxygène : le cœur ralentit vite au début, puis plus doucement."
+            }
+          },
+          {
+            "title": "La récupération",
+            "text": "Lucas se repose. Deux minutes plus tard, son cœur bat à 104 battements par minute, puis à 84 au bout de 5 minutes. Sa respiration se calme aussi. C'est la **récupération** : elle est plus rapide chez une personne entraînée.",
+            "duration": 7,
+            "hide": [
+              "sueur"
+            ],
+            "do": [
+              {
+                "id": "g",
+                "to": {
+                  "progress": 1
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "g",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 2,
+                      "to": 5,
+                      "label": "course"
+                    },
+                    {
+                      "from": 5,
+                      "to": 12,
+                      "label": "récupération"
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "rel",
+                "to": {
+                  "shown": 4
+                },
+                "at": 1,
+                "dur": 5
+              }
+            ],
+            "focus": [
+              "g",
+              "rel"
+            ]
+          },
+          {
+            "title": "Pourquoi ?",
+            "text": "Pendant l'effort, les muscles consomment beaucoup plus de **dioxygène** et de **nutriments**. Le cœur bat plus vite pour leur envoyer plus de sang ; la respiration s'accélère pour faire entrer plus de dioxygène dans le sang et rejeter le **dioxyde de carbone** produit.",
+            "focus": [
+              "coeur",
+              "poumons"
+            ]
+          }
+        ],
+        "conclusion": "- Au repos : **80** battements et **18** mouvements respiratoires par minute.\n- Juste après 3 minutes de course : **148** battements et **40** mouvements respiratoires par minute.\n- En quelques minutes de repos, les deux fréquences redescendent : c'est la récupération.\n\n> À l'effort, le cœur et la respiration s'accélèrent pour apporter plus de dioxygène et de nutriments aux muscles qui travaillent. Pour généraliser, il faudrait refaire les mesures avec d'autres élèves."
+      }
+    },
+    {
       "kind": "cours",
       "title": "Le cours",
       "body": "Chaque organe est fait de **cellules** vivantes. Pour fonctionner, elles ont besoin de **dioxygène** (O₂) et de **nutriments** (par exemple le glucose, issu de la digestion). Avec ces deux ingrédients, elles libèrent l'énergie dont l'organe a besoin, et rejettent du **dioxyde de carbone** (CO₂), de l'eau et d'autres déchets. Plus un organe travaille, plus ses besoins augmentent.\n\nLes organes ne sont en contact ni avec l'air ni avec les aliments : c'est le **sang** qui fait le lien. Il circule en **circuit fermé** dans les **vaisseaux sanguins**, mis en mouvement par le **cœur**.\n\n> - Le **cœur** est une pompe musculaire à quatre cavités (deux oreillettes, deux ventricules). Il se contracte puis se relâche : c'est le battement cardiaque, que l'on sent au poignet (le pouls).\n> - Les **artères** partent du cœur et conduisent le sang vers les organes ; les **veines** ramènent le sang des organes vers le cœur ; les **capillaires**, très fins, sont le lieu des **échanges** entre le sang et les cellules.\n> - Dans les **poumons**, le sang se charge en dioxygène et se débarrasse de dioxyde de carbone. Dans les **organes**, il cède dioxygène et nutriments, et reçoit dioxyde de carbone et déchets.\n\n**Deux circuits en série.** Le sang passe par le cœur droit, les poumons, le cœur gauche, puis tous les organes, avant de revenir au cœur droit. Le sang qui sort des poumons est rouge vif, riche en dioxygène ; après les organes, il est rouge plus sombre, pauvre en dioxygène. Attention : une artère ne contient pas toujours du sang riche en dioxygène (l'artère pulmonaire conduit du sang pauvre en dioxygène vers les poumons). On reconnaît artère et veine à leur **sens** par rapport au cœur.\n\n**À l'effort.** Les muscles consomment beaucoup plus de dioxygène et de nutriments. L'organisme s'adapte : la **fréquence cardiaque** augmente, chaque battement éjecte un peu plus de sang, donc le **débit cardiaque** (volume de sang éjecté en une minute) augmente :\n\n> débit cardiaque = fréquence cardiaque × volume éjecté à chaque battement\n\nLa respiration s'accélère aussi, pour faire entrer plus de dioxygène dans le sang et évacuer le dioxyde de carbone. Le sang est envoyé en priorité vers les muscles (et la peau, qui évacue la chaleur), un peu moins vers l'appareil digestif."

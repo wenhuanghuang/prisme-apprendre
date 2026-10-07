@@ -12,8 +12,7 @@
     {
       "kind": "decouverte",
       "title": "Un kilogramme sur la Lune",
-      "body": "Une astronaute emporte sur la Lune une masse marquée de 1 kg et un dynamomètre. Accroche la masse : que lis-tu ? Compare avec ce qu'indiquerait le dynamomètre sur Terre.\n\nLa masse marquée a-t-elle perdu de la matière pendant le voyage ? Alors, qu'est-ce qui a changé ?",
-      "activity": { "widget": "weight-lab", "config": { "planet": "Lune" } }
+      "body": "Une astronaute emporte sur la Lune une masse marquée de 1 kg et un dynamomètre. Sur Terre, ce dynamomètre indiquait 9,8 N avec cette masse. Que va-t-il indiquer sur la Lune ? Fais une prédiction.\n\nLa masse marquée a-t-elle perdu de la matière pendant le voyage ? Alors, qu'est-ce qui a changé ? L'expérience va te montrer la réponse."
     },
     {
       "kind": "ressource",
@@ -22,15 +21,142 @@
       "links": []
     },
     {
+      "kind": "experience",
+      "title": "L'expérience : peser sur la Terre… puis sur la Lune",
+      "body": "Le même dynamomètre et les mêmes masses marquées, d'abord sur Terre, puis sur la Lune.",
+      "demo": {
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "forme", "shape": "rect", "x": 36, "y": 40, "w": 10, "h": 352, "fill": "gris" },
+          { "type": "forme", "shape": "rect", "x": 20, "y": 384, "w": 60, "h": 8, "fill": "gris" },
+          { "type": "forme", "shape": "rect", "x": 36, "y": 44, "w": 124, "h": 6, "fill": "gris" },
+          { "type": "dynamometre", "id": "D", "x": 150, "y": 70, "h": 170, "value": 0, "max": 10, "decimals": 2, "label": "dynamomètre" },
+          { "type": "emoji", "id": "astre", "x": 340, "y": 105, "char": "🌍", "size": 54 },
+          { "type": "texte", "id": "tA", "x": 340, "y": 166, "text": "Sur la Terre", "size": 15, "bold": true },
+          { "type": "objet", "id": "m1", "x": 240, "y": 392, "shape": "cylindre", "size": 24, "color": "#b8923a", "label": "100 g" },
+          { "type": "objet", "id": "m2", "x": 300, "y": 392, "shape": "cylindre", "size": 30, "color": "#b8923a", "label": "200 g" },
+          { "type": "objet", "id": "m5", "x": 365, "y": 392, "shape": "cylindre", "size": 40, "color": "#b8923a", "label": "500 g" },
+          { "type": "objet", "id": "m10", "x": 435, "y": 392, "shape": "cylindre", "size": 50, "color": "#b8923a", "label": "1 kg" },
+          { "type": "etiquette", "id": "eL", "x": 290, "y": 235, "text": "toujours 1 kg", "to": [166, 290], "hidden": true },
+          { "type": "courbe", "id": "g", "x": 480, "y": 10, "w": 305, "h": 192, "title": "Sur Terre : P (N) en fonction de m", "xRange": [0, 1.2], "yRange": [0, 12], "xLabel": "m (kg)",
+            "points": [[0, 0], [0.1, 0.98], [0.2, 1.96], [0.5, 4.9], [1, 9.8]], "progress": 0, "color": "#e11d48" },
+          { "type": "releve", "id": "t", "x": 480, "y": 212, "w": 305, "title": "Mesures sur Terre", "head": ["m (g)", "m (kg)", "P (N)"],
+            "rows": [["100", "0,100", "0,98"], ["200", "0,200", "1,96"], ["500", "0,500", "4,90"], ["1 000", "1,000", "9,80"]], "shown": 0 }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Un **dynamomètre** mesure des forces, en **newtons (N)** : plus on tire sur son ressort, plus il s'allonge. On va y accrocher des **masses marquées** de 100 g, 200 g, 500 g et 1 kg. Pour l'instant, nous sommes sur Terre.",
+            "focus": ["D", "m1", "m2", "m5", "m10"]
+          },
+          {
+            "title": "100 g sur Terre",
+            "text": "On accroche la masse de **100 g**. Le ressort s'allonge : le dynamomètre indique **0,98 N**. C'est le **poids** de cette masse : la force avec laquelle la Terre l'attire. Dans le tableau, on écrit aussi la masse en kilogrammes : 0,100 kg.",
+            "duration": 3,
+            "do": [
+              { "id": "m1", "set": { "label": "" } },
+              { "id": "m1", "to": { "y": 250 }, "dur": 0.5 },
+              { "id": "m1", "to": { "x": 150, "y": 290 }, "at": 0.5, "dur": 0.8 },
+              { "id": "D", "to": { "value": 0.98 }, "at": 1.3, "dur": 0.8 },
+              { "id": "t", "set": { "shown": 1 }, "at": 2.1 },
+              { "id": "g", "to": { "progress": 0.0833 }, "at": 2.1, "dur": 0.6 }
+            ],
+            "focus": ["D"]
+          },
+          {
+            "title": "200 g, puis 500 g",
+            "text": "Avec **200 g**, le dynamomètre indique **1,96 N** : deux fois plus de masse, deux fois plus de poids. Avec **500 g**, il indique **4,90 N**. Les points se placent sur le graphique.",
+            "duration": 9,
+            "do": [
+              { "id": "m1", "to": { "x": 240, "y": 250 }, "dur": 0.7 },
+              { "id": "D", "to": { "value": 0 }, "dur": 0.6 },
+              { "id": "m1", "to": { "y": 392 }, "at": 0.7, "dur": 0.5 },
+              { "id": "m1", "set": { "label": "100 g" }, "at": 1.2 },
+              { "id": "m2", "set": { "label": "" }, "at": 1.3 },
+              { "id": "m2", "to": { "y": 250 }, "at": 1.3, "dur": 0.5 },
+              { "id": "m2", "to": { "x": 150, "y": 296 }, "at": 1.8, "dur": 0.7 },
+              { "id": "D", "to": { "value": 1.96 }, "at": 2.5, "dur": 0.8 },
+              { "id": "t", "set": { "shown": 2 }, "at": 3.3 },
+              { "id": "g", "to": { "progress": 0.1667 }, "at": 3.3, "dur": 0.7 },
+              { "id": "m2", "to": { "x": 300, "y": 250 }, "at": 4.4, "dur": 0.7 },
+              { "id": "D", "to": { "value": 0 }, "at": 4.4, "dur": 0.6 },
+              { "id": "m2", "to": { "y": 392 }, "at": 5.1, "dur": 0.5 },
+              { "id": "m2", "set": { "label": "200 g" }, "at": 5.6 },
+              { "id": "m5", "set": { "label": "" }, "at": 5.7 },
+              { "id": "m5", "to": { "y": 250 }, "at": 5.7, "dur": 0.5 },
+              { "id": "m5", "to": { "x": 150, "y": 306 }, "at": 6.2, "dur": 0.7 },
+              { "id": "D", "to": { "value": 4.9 }, "at": 6.9, "dur": 0.8 },
+              { "id": "t", "set": { "shown": 3 }, "at": 7.7 },
+              { "id": "g", "to": { "progress": 0.4167 }, "at": 7.7, "dur": 0.8 }
+            ],
+            "focus": ["D", "t"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On accroche maintenant la masse de 1 kg, c'est-à-dire deux fois 500 g. Que va indiquer le dynamomètre ?",
+              "choices": ["4,9 N, comme pour 500 g", "9,8 N, le double", "19,6 N, le quadruple"],
+              "answer": 1,
+              "explain": "Le poids est proportionnel à la masse : deux fois plus de masse, deux fois plus de poids. 2 × 4,9 = 9,8 N."
+            }
+          },
+          {
+            "title": "1 kg sur Terre",
+            "text": "Avec **1 kg**, le dynamomètre indique **9,80 N**. Sur le graphique, les points sont alignés sur une **droite qui passe par l'origine** : le poids est **proportionnel** à la masse.",
+            "duration": 4.5,
+            "do": [
+              { "id": "m5", "to": { "x": 365, "y": 250 }, "dur": 0.7 },
+              { "id": "D", "to": { "value": 0 }, "dur": 0.6 },
+              { "id": "m5", "to": { "y": 392 }, "at": 0.7, "dur": 0.5 },
+              { "id": "m5", "set": { "label": "500 g" }, "at": 1.2 },
+              { "id": "m10", "set": { "label": "" }, "at": 1.3 },
+              { "id": "m10", "to": { "y": 250 }, "at": 1.3, "dur": 0.5 },
+              { "id": "m10", "to": { "x": 150, "y": 316 }, "at": 1.8, "dur": 0.7 },
+              { "id": "D", "to": { "value": 9.8 }, "at": 2.5, "dur": 1 },
+              { "id": "t", "set": { "shown": 4 }, "at": 3.5 },
+              { "id": "g", "to": { "progress": 0.8333 }, "at": 3.5, "dur": 0.8 }
+            ],
+            "focus": ["D", "g"]
+          },
+          {
+            "title": "P / m est toujours le même",
+            "text": "Calculons P / m, avec m en kilogrammes : 0,98 / 0,100 = **9,8 N/kg** ; 1,96 / 0,200 = **9,8 N/kg**… Toujours le même nombre ! C'est l'**intensité de la pesanteur** sur Terre : **g = 9,8 N/kg**. Donc P = m × g.",
+            "do": [
+              { "id": "t", "set": { "head": ["m (kg)", "P (N)", "P / m (N/kg)"],
+                "rows": [["0,100", "0,98", "9,8"], ["0,200", "1,96", "9,8"], ["0,500", "4,90", "9,8"], ["1,000", "9,80", "9,8"]] } }
+            ],
+            "focus": ["t"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On emporte la masse de 1 kg et le dynamomètre sur la Lune. Que va indiquer le dynamomètre ?",
+              "choices": ["9,8 N, comme sur Terre", "Environ 1,6 N, six fois moins", "0 N : rien n'est attiré sur la Lune"],
+              "answer": 1,
+              "explain": "La Lune attire les objets, mais environ 6 fois moins fort que la Terre : le poids diminue, la masse ne change pas."
+            }
+          },
+          {
+            "title": "Sur la Lune",
+            "text": "Même masse marquée, même dynamomètre… mais sur la Lune, il n'indique plus que **1,6 N**. La masse marquée n'a pas perdu de matière : sa **masse** vaut toujours **1 kg**. C'est son **poids** qui a changé : la Lune l'attire environ 6 fois moins que la Terre. Ici, P / m = **1,6 N/kg**.",
+            "duration": 3,
+            "do": [
+              { "id": "astre", "set": { "char": "🌕" } },
+              { "id": "tA", "set": { "text": "Sur la Lune" } },
+              { "id": "D", "to": { "value": 1.6 }, "at": 0.5, "dur": 1.5 },
+              { "id": "g", "set": { "ref": { "points": [[0, 0], [1.2, 1.92]], "label": "Lune" } }, "at": 2 },
+              { "id": "eL", "set": { "hidden": false }, "at": 2 }
+            ],
+            "focus": ["D", "astre"]
+          }
+        ],
+        "conclusion": "- La **masse** (en kg) mesure la quantité de matière : elle est **la même partout**. La masse marquée vaut 1 kg sur Terre comme sur la Lune.\n- Le **poids** (en N) est la force d'attraction exercée par l'astre : il **dépend de l'astre**. Pour 1 kg : 9,8 N sur Terre, 1,6 N sur la Lune.\n\n> Pour un astre donné, le poids est proportionnel à la masse : **P = m × g**, avec g = 9,8 N/kg sur Terre et 1,6 N/kg sur la Lune."
+      }
+    },
+    {
       "kind": "cours",
       "title": "Le cours",
       "body": "**La masse** $m$ mesure la quantité de matière d'un objet. Elle s'exprime en kilogrammes (kg) et se mesure avec une balance. Elle est **la même partout** : sur Terre, sur la Lune ou dans l'espace.\n\n**Le poids** $P$ est la force d'attraction qu'exerce un astre (la Terre, la Lune…) sur l'objet. C'est une action à distance. Il s'exprime en **newtons (N)** et se mesure avec un dynamomètre. Il est vertical, dirigé vers le centre de l'astre, et **dépend de l'astre**.\n\n> **Relation** : $P = m × g$ avec $P$ en N, $m$ en **kg** et $g$ l'intensité de la pesanteur en N/kg.\n> Pour un astre donné, le poids est proportionnel à la masse : $P / m = g$.\n\n**Valeurs de g à la surface** (N/kg) : Terre 9,8 ; Lune 1,6 ; Mars 3,7 ; Jupiter 24,8 (Jupiter n'a pas de sol : valeur au niveau de ses nuages).\n\n**Graphique.** $P$ en fonction de $m$ donne une droite passant par l'origine ; son coefficient directeur est $g$.\n\n**Attention au langage courant** : « je pèse 50 kg » parle en réalité de la masse. En physique, le poids d'une personne de 50 kg vaut environ 490 N sur Terre."
-    },
-    {
-      "kind": "manipulation",
-      "title": "Peser sur différents astres",
-      "body": "Accroche plusieurs masses marquées au dynamomètre et remplis le tableau. Calcule P / m (avec m en kg) pour chaque ligne. Change ensuite d'astre : qu'est-ce qui change dans le tableau, et qu'est-ce qui ne change pas ?",
-      "activity": { "widget": "weight-lab", "config": { "planet": "Terre" } }
     },
     {
       "kind": "exemple",
@@ -78,7 +204,7 @@
   ],
   "tracks": {
     "approfondissement": {
-      "intro": "Déterminer g sur un astre inconnu à partir de ses propres mesures, et exploiter des mesures entachées d'une erreur systématique.",
+      "intro": "Déterminer g sur un astre inconnu à partir des mesures d'une sonde, et exploiter des mesures entachées d'une erreur systématique.",
       "exercises": ["pc-poids-masse-inconnue", "pc-poids-masse-decalage"]
     },
     "expert": {
@@ -89,10 +215,14 @@
   "exercises": [
     {
       "id": "pc-poids-masse-labo", "type": "composite", "skill": "pc.interactions.poids", "skills": ["m5.proportionnalite"], "track": "classe", "role": "labo", "difficulty": 2,
-      "representation": "manipulation", "targets": ["mc:g-non-converti", "mc:masse-poids"], "expectedSeconds": 300,
+      "representation": "visuelle", "targets": ["mc:g-non-converti", "mc:masse-poids"], "expectedSeconds": 300,
       "params": { "m": { "choice": [100, 200, 250, 500] } },
-      "prompt": "Sur Terre, accroche au dynamomètre la masse marquée de {m} g et lis le poids. Accroche ensuite d'autres masses.",
-      "activity": { "widget": "weight-lab", "config": { "planet": "Terre" } },
+      "prompt": "Sur Terre, on a accroché successivement plusieurs masses marquées au dynamomètre et relevé à chaque fois le poids indiqué. Voici les mesures. Intéresse-toi d'abord à la masse marquée de {m} g.",
+      "figure": {
+        "alt": "Tableau des poids lus sur le dynamomètre, sur Terre, pour six masses marquées",
+        "w": 360, "h": 240,
+        "items": [ { "type": "table", "head": ["Masse marquée", "Poids lu (N)"], "rows": [["50 g", "0,49"], ["100 g", "0,98"], ["200 g", "1,96"], ["250 g", "2,45"], ["500 g", "4,90"], ["1 kg", "9,80"]] } ]
+      },
       "parts": [
         { "type": "numeric", "prompt": "Poids de la masse de {m} g (avec l'unité) :", "answer": "m/1000*9.8", "unit": "N", "rel": 0.03,
           "misconceptions": [
@@ -104,10 +234,10 @@
             { "answer": "1/9.8", "id": "mc:quotient-inverse", "error": "notion", "feedback": "Tu as calculé m / P. On demande P / m (newtons par kilogramme)." },
             { "answer": 0.0098, "id": "mc:g-non-converti", "error": "unite", "feedback": "Tu as divisé par la masse en grammes. Avec m en kg, on trouve environ 9,8 N/kg." }
           ] },
-        { "type": "text", "prompt": "Ce quotient change-t-il si tu accroches une autre masse ? (oui ou non)", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:proportion", "error": "notion", "prerequisite": "m5.proportionnalite", "feedback": "Essaie avec deux masses : si la masse double, le poids double, et P / m reste le même. Le poids est proportionnel à la masse." } ] }
+        { "type": "text", "prompt": "Ce quotient change-t-il pour les autres masses du tableau ? (oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:proportion", "error": "notion", "prerequisite": "m5.proportionnalite", "feedback": "Compare deux lignes du tableau : si la masse double, le poids double, et P / m reste le même. Le poids est proportionnel à la masse." } ] }
       ],
-      "hints": ["Le dynamomètre indique le poids en newtons.", "{m} g = {m/1000} kg.", "P / m = (poids lu) ÷ {m/1000}."],
+      "hints": ["Le dynamomètre indique le poids en newtons : lis-le dans la ligne de {m} g.", "{m} g = {m/1000} kg.", "P / m = (poids lu) ÷ {m/1000}."],
       "solution": "Pour {m} g = {m/1000} kg, le dynamomètre indique environ {m*0.0098} N. P / m ≈ {m*0.0098} / {m/1000} = 9,8 N/kg, et ce quotient est le même pour toutes les masses : c'est g, l'intensité de la pesanteur terrestre.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{m*0.0098} N" }, { "value": "9,8 N/kg" }, { "value": "non" } ] }, "expect": "correct" },
@@ -249,9 +379,8 @@
     },
     {
       "id": "pc-poids-masse-mission", "type": "composite", "skill": "pc.interactions.poids", "track": "classe", "role": "mission", "difficulty": 3,
-      "representation": "manipulation", "targets": ["mc:mauvais-astre", "mc:poids-invariant"], "expectedSeconds": 600,
-      "prompt": "Ton dynamomètre est gradué jusqu'à 10 N. Essaie-le dans le laboratoire réglé sur la Lune, puis réponds. Données : g Terre = 9,8 N/kg ; g Lune = 1,6 N/kg.",
-      "activity": { "widget": "weight-lab", "config": { "planet": "Lune" } },
+      "representation": "concrete", "targets": ["mc:mauvais-astre", "mc:poids-invariant"], "expectedSeconds": 600,
+      "prompt": "Ton dynamomètre est gradué jusqu'à 10 N. Lors d'un essai sur la Lune, une masse marquée de 1 kg l'a tendu à 1,6 N. Données : g Terre = 9,8 N/kg ; g Lune = 1,6 N/kg.",
       "parts": [
         { "type": "numeric", "prompt": "Sur Terre, quelle est la plus grande masse qu'il peut peser (avec l'unité) ?", "answer": "10/9.8", "unit": "kg", "rel": 0.01,
           "misconceptions": [ { "answer": "10*9.8", "id": "mc:formule-poids", "error": "notion", "feedback": "m = P / g = 10 / 9,8." } ] },
@@ -306,12 +435,16 @@
     },
     {
       "id": "pc-poids-masse-inconnue", "type": "composite", "skill": "pc.interactions.poids", "skills": ["pc.mesure.donnees"], "track": "approfondissement", "role": "labo", "difficulty": 3,
-      "representation": "manipulation", "targets": ["mc:g-non-converti", "mc:quotient-inverse"], "expectedSeconds": 600,
+      "representation": "visuelle", "targets": ["mc:g-non-converti", "mc:quotient-inverse"], "expectedSeconds": 600,
       "params": { "g": { "choice": [4, 6, 12, 14] } },
-      "prompt": "Le laboratoire simule une exoplanète inconnue. Accroche au moins trois masses différentes (jusqu'à 1,5 kg) au dynamomètre et relève les poids.",
-      "activity": { "widget": "weight-lab", "config": { "planet": "inconnue", "g": "{g}" } },
+      "prompt": "Une sonde s'est posée sur une exoplanète inconnue. Elle a accroché quatre masses marquées à un dynamomètre et transmis les poids mesurés : les voici.",
+      "figure": {
+        "alt": "Tableau des mesures de la sonde : masse marquée en grammes et poids lu en newtons",
+        "w": 360, "h": 200,
+        "items": [ { "type": "table", "head": ["Masse marquée (g)", "Poids lu (N)"], "rows": [["250", "{0.25*g|d1}"], ["500", "{0.5*g|d1}"], ["1 000", "{g|d1}"], ["1 500", "{1.5*g|d1}"]] } ]
+      },
       "parts": [
-        { "type": "graph", "prompt": "Place tes mesures dans le repère : m en kg en abscisse, P en N en ordonnée (au moins trois points).", "xRange": [0, 2], "yRange": [0, 25], "xLabel": "m (kg)", "yLabel": "P (N)", "count": 3,
+        { "type": "graph", "prompt": "Place ces mesures dans le repère : m en kg en abscisse, P en N en ordonnée (au moins trois points).", "xRange": [0, 2], "yRange": [0, 25], "xLabel": "m (kg)", "yLabel": "P (N)", "count": 3,
           "predicate": "abs(y - g*x) <= 0.05*g*x + 0.05", "predicateLabel": "P = m × g pour cette planète" },
         { "type": "numeric", "prompt": "Valeur de g sur cette planète (avec l'unité) :", "answer": "g", "unit": "N/kg", "rel": 0.03,
           "misconceptions": [

@@ -1,0 +1,3696 @@
+{
+  "id": "pc5-lumiere",
+  "chapter": "pc5-lumiere",
+  "title": "La lumière : sources, propagation rectiligne, ombres",
+  "subject": "pc",
+  "level": "5e",
+  "skills": [
+    "pc5.signaux.lumiere"
+  ],
+  "status": "programme",
+  "programmes": [
+    "pc-c4-2020"
+  ],
+  "duration": 50,
+  "summary": "Distinguer source primaire et objet diffusant, comprendre comment on voit un objet, utiliser le modèle du rayon lumineux et la propagation rectiligne pour expliquer les ombres (propre, portée, cône d'ombre), connaître la vitesse de la lumière (environ 300 000 km/s) ; sécurité des yeux. Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 5e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La Lune, une lampe ?",
+      "body": "Par une nuit sans nuage, la pleine Lune éclaire assez pour voir un chemin. Pourtant, la Lune n'est ni une lampe ni un feu.\n\nEt la lumière du Soleil qui te réchauffe en ce moment est partie du Soleil il y a plus de 8 minutes ! D'où vient la lumière de la Lune ? Et pourquoi celle du Soleil met-elle du temps à nous parvenir ?"
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour revoir la notion sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "💡",
+          "title": "Sources et objets diffusants",
+          "body": "Une **source primaire** produit sa propre lumière : Soleil, étoiles, flamme, lampe allumée, écran allumé. Un **objet diffusant** renvoie dans toutes les directions une partie de la lumière qu'il reçoit : la Lune, les planètes, un livre, un mur, ton visage. Sans lumière reçue, il n'est pas visible.",
+          "reveal": {
+            "question": "Devine : la Lune est-elle une source de lumière ?",
+            "answer": "Non ! Elle diffuse la lumière du Soleil. C'est pourquoi on ne voit que sa partie éclairée : ce sont les phases de la Lune."
+          }
+        },
+        {
+          "emoji": "👁️",
+          "title": "Pour voir un objet",
+          "body": "Pour voir un objet, il faut que de la lumière venant de cet objet **entre dans l'œil**. L'œil est un **récepteur** : il n'envoie rien. Dans le noir complet, on ne voit rien, même un objet blanc.",
+          "example": "Tu vois cette page parce que la lumière de la pièce, diffusée par la page, arrive dans tes yeux."
+        },
+        {
+          "emoji": "📐",
+          "title": "La lumière va en ligne droite",
+          "body": "Dans un milieu transparent et homogène (l'air, l'eau, le verre), la lumière se propage **en ligne droite** : c'est la propagation rectiligne. On la représente par un **rayon lumineux**, une droite munie d'une flèche qui indique le sens de propagation. Un faisceau est un ensemble de rayons."
+        },
+        {
+          "emoji": "🌑",
+          "title": "Les ombres",
+          "body": "Un objet opaque éclairé a une **ombre propre** (sa partie non éclairée) et produit une **ombre portée** sur un écran ou sur le sol. Le volume, derrière l'objet, que la lumière n'atteint pas est le **cône d'ombre**. Les rayons qui frôlent les bords de l'objet dessinent le contour de l'ombre portée.",
+          "figure": {
+            "alt": "Une source ponctuelle S éclaire un objet opaque ; les deux rayons qui frôlent ses bords délimitent le cône d'ombre et l'ombre portée sur un écran.",
+            "w": 480,
+            "h": 290,
+            "frame": {
+              "x": [
+                0,
+                10
+              ],
+              "y": [
+                0,
+                6
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "S",
+                "x": 1,
+                "y": 3,
+                "style": "rond",
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 4,
+                "y": 4,
+                "hidden": true
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 4,
+                "y": 2,
+                "hidden": true
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 9,
+                "y": 5.667,
+                "hidden": true
+              },
+              {
+                "type": "point",
+                "id": "D",
+                "x": 9,
+                "y": 0.333,
+                "hidden": true
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "C",
+                  "D",
+                  "B"
+                ],
+                "fill": "gris"
+              },
+              {
+                "type": "segment",
+                "from": "S",
+                "to": "C",
+                "color": "orange",
+                "arrows": "end"
+              },
+              {
+                "type": "segment",
+                "from": "S",
+                "to": "D",
+                "color": "orange",
+                "arrows": "end"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "objet opaque"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  9,
+                  0.1
+                ],
+                "to": [
+                  9,
+                  5.9
+                ],
+                "label": "écran"
+              },
+              {
+                "type": "text",
+                "x": 6.4,
+                "y": 3,
+                "text": "cône d'ombre",
+                "anchor": "middle"
+              },
+              {
+                "type": "text",
+                "x": 9.3,
+                "y": 3,
+                "text": "ombre portée",
+                "anchor": "start",
+                "size": "s"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⚡",
+          "title": "La vitesse de la lumière",
+          "body": "Dans le vide, la lumière parcourt environ **300 000 km chaque seconde** ($3 × 10^8$ m/s). Dans l'air, c'est presque autant ; dans l'eau, environ 225 000 km/s. La lumière du Soleil, situé à environ 150 millions de km, met environ 8 min 20 s pour nous parvenir.",
+          "example": "Le son ne parcourt qu'environ 340 m par seconde dans l'air : on voit l'éclair avant d'entendre le tonnerre."
+        },
+        {
+          "emoji": "🕶️",
+          "title": "Protéger ses yeux",
+          "body": "Ne regarde jamais le Soleil directement, ni avec des lunettes de soleil, ni avec des jumelles : la rétine peut être brûlée sans douleur, définitivement. Pour observer une éclipse, on utilise des lunettes spéciales prévues pour cela. Ne dirige jamais un pointeur laser vers les yeux de quelqu'un."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "Expérience 1 : la lumière va-t-elle en ligne droite ?",
+      "body": "Regarde l'expérience étape par étape. Avant chaque résultat, essaie de prévoir ce que verra l'observateur.",
+      "demo": {
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 400
+          },
+          {
+            "type": "rayon",
+            "id": "f1",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              150,
+              140
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f2",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              30,
+              170
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f3",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              15,
+              284
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f4",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              25,
+              340
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f5",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              225,
+              180
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f6",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              225,
+              235
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f7",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              225,
+              335
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "f8",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              225,
+              390
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "r",
+            "from": [
+              90,
+              284
+            ],
+            "to": [
+              628,
+              284
+            ],
+            "progress": 0
+          },
+          {
+            "type": "forme",
+            "id": "halo",
+            "shape": "ellipse",
+            "x": 90,
+            "y": 282,
+            "w": 50,
+            "h": 64,
+            "fill": "jaune",
+            "opacity": 0.3
+          },
+          {
+            "type": "forme",
+            "id": "bougie",
+            "shape": "rect",
+            "x": 80,
+            "y": 300,
+            "w": 20,
+            "h": 100,
+            "fill": "blanc",
+            "stroke": "#94a3b8"
+          },
+          {
+            "type": "objet",
+            "id": "flam",
+            "shape": "goutte",
+            "x": 90,
+            "y": 300,
+            "size": 36,
+            "color": "orange"
+          },
+          {
+            "type": "forme",
+            "id": "ct0",
+            "shape": "rect",
+            "x": 225,
+            "y": 150,
+            "w": 12,
+            "h": 128,
+            "fill": "bois"
+          },
+          {
+            "type": "forme",
+            "id": "cb0",
+            "shape": "rect",
+            "x": 225,
+            "y": 290,
+            "w": 12,
+            "h": 110,
+            "fill": "bois"
+          },
+          {
+            "type": "forme",
+            "id": "ct1",
+            "shape": "rect",
+            "x": 355,
+            "y": 150,
+            "w": 12,
+            "h": 128,
+            "fill": "bois"
+          },
+          {
+            "type": "forme",
+            "id": "cb1",
+            "shape": "rect",
+            "x": 355,
+            "y": 290,
+            "w": 12,
+            "h": 110,
+            "fill": "bois"
+          },
+          {
+            "type": "forme",
+            "id": "ct2",
+            "shape": "rect",
+            "x": 485,
+            "y": 150,
+            "w": 12,
+            "h": 128,
+            "fill": "bois"
+          },
+          {
+            "type": "forme",
+            "id": "cb2",
+            "shape": "rect",
+            "x": 485,
+            "y": 290,
+            "w": 12,
+            "h": 110,
+            "fill": "bois"
+          },
+          {
+            "type": "emoji",
+            "id": "oeil",
+            "x": 650,
+            "y": 284,
+            "char": "👁️",
+            "size": 40,
+            "label": "observateur"
+          },
+          {
+            "type": "etiquette",
+            "id": "esrc",
+            "x": 100,
+            "y": 190,
+            "text": "source de lumière",
+            "to": [
+              90,
+              266
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "ecart",
+            "x": 426,
+            "y": 100,
+            "text": "trois cartons percés",
+            "to": [
+              361,
+              150
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "erayon",
+            "x": 426,
+            "y": 100,
+            "text": "rayon lumineux",
+            "to": [
+              426,
+              282
+            ],
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le montage",
+            "text": "Une bougie allumée, une **source de lumière**, est posée sur la table. Devant elle, trois cartons sont percés chacun d'un petit trou, à la hauteur de la flamme. Un observateur regarde à travers le dernier trou. Sécurité : cheveux attachés, rien d'inflammable autour.",
+            "show": [
+              "esrc",
+              "ecart"
+            ],
+            "focus": [
+              "flam",
+              "oeil"
+            ]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Dans quelles directions la flamme envoie-t-elle sa lumière ?",
+              "choices": [
+                "Seulement vers l'observateur",
+                "Dans toutes les directions",
+                "Seulement vers le haut"
+              ],
+              "answer": 1,
+              "explain": "Une source envoie sa lumière dans toutes les directions : c'est pour cela que tous les élèves autour de la table voient la flamme."
+            }
+          },
+          {
+            "title": "Dans toutes les directions",
+            "text": "La flamme envoie de la lumière **dans toutes les directions**, et chaque trajet est une **ligne droite**. Vers la droite, presque toute la lumière est arrêtée par le premier carton : il est **opaque**, la lumière ne le traverse pas.",
+            "duration": 3,
+            "hide": [
+              "esrc",
+              "ecart"
+            ],
+            "do": [
+              {
+                "id": "f1",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f2",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f3",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f4",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f5",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f6",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f7",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              },
+              {
+                "id": "f8",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5
+              }
+            ]
+          },
+          {
+            "title": "Des trous alignés",
+            "text": "Seule la lumière qui entre dans le premier trou continue. Comme les trois trous sont **alignés** avec la flamme (on l'a vérifié avec une ficelle bien tendue), elle traverse les trois cartons et entre dans l'œil : l'observateur **voit la flamme**.",
+            "duration": 3.5,
+            "do": [
+              {
+                "id": "f1",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f2",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f3",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f4",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f5",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f6",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f7",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "f8",
+                "to": {
+                  "opacity": 0.3
+                },
+                "dur": 0.8
+              },
+              {
+                "id": "r",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0.5,
+                "dur": 2.5
+              },
+              {
+                "id": "oeil",
+                "set": {
+                  "label": "il voit la flamme"
+                },
+                "at": 3
+              }
+            ],
+            "focus": [
+              "r"
+            ]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On soulève le carton du milieu de quelques centimètres. L'observateur voit-il encore la flamme ?",
+              "choices": [
+                "Oui : la lumière contourne le carton",
+                "Oui : la lumière traverse le carton",
+                "Non : la lumière est arrêtée par le carton"
+              ],
+              "answer": 2,
+              "explain": "La lumière ne contourne pas un obstacle et ne traverse pas un carton opaque : elle continue en ligne droite et s'arrête sur lui. Il faut que les trous et la flamme soient alignés."
+            }
+          },
+          {
+            "title": "Un carton décalé",
+            "text": "On soulève le carton du milieu. Son trou n'est plus aligné avec les deux autres : la lumière, qui va tout droit, **s'arrête sur le carton**. L'observateur ne voit plus la flamme : la lumière ne « tourne » pas pour retrouver le trou.",
+            "duration": 4,
+            "do": [
+              {
+                "id": "r",
+                "set": {
+                  "progress": 0
+                }
+              },
+              {
+                "id": "oeil",
+                "set": {
+                  "label": "observateur"
+                }
+              },
+              {
+                "id": "ct1",
+                "to": {
+                  "y": 120
+                },
+                "dur": 1.5
+              },
+              {
+                "id": "cb1",
+                "to": {
+                  "y": 260
+                },
+                "dur": 1.5
+              },
+              {
+                "id": "r",
+                "set": {
+                  "to": [
+                    355,
+                    284
+                  ]
+                },
+                "at": 1.7
+              },
+              {
+                "id": "r",
+                "to": {
+                  "progress": 1
+                },
+                "at": 1.7,
+                "dur": 1.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "oeil",
+                "set": {
+                  "label": "il ne voit plus rien"
+                },
+                "at": 3.3
+              }
+            ],
+            "focus": [
+              "ct1",
+              "cb1"
+            ]
+          },
+          {
+            "title": "Le rayon lumineux",
+            "text": "On remet le carton en place : la flamme réapparaît. On représente le trajet de la lumière par un **rayon lumineux** : une ligne droite avec une flèche qui indique le sens, de la source vers l'œil.",
+            "duration": 3.5,
+            "show": [
+              "erayon"
+            ],
+            "do": [
+              {
+                "id": "r",
+                "set": {
+                  "progress": 0
+                }
+              },
+              {
+                "id": "oeil",
+                "set": {
+                  "label": "observateur"
+                }
+              },
+              {
+                "id": "ct1",
+                "to": {
+                  "y": 150
+                },
+                "dur": 1.2
+              },
+              {
+                "id": "cb1",
+                "to": {
+                  "y": 290
+                },
+                "dur": 1.2
+              },
+              {
+                "id": "r",
+                "set": {
+                  "to": [
+                    628,
+                    284
+                  ]
+                },
+                "at": 1.3
+              },
+              {
+                "id": "r",
+                "to": {
+                  "progress": 1
+                },
+                "at": 1.3,
+                "dur": 1.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "oeil",
+                "set": {
+                  "label": "il voit la flamme"
+                },
+                "at": 2.9
+              }
+            ],
+            "focus": [
+              "erayon"
+            ]
+          }
+        ],
+        "conclusion": "Dans l'air, milieu transparent et homogène, la lumière se propage **en ligne droite** : sa propagation est **rectiligne**. Elle ne contourne pas un obstacle opaque. On représente son trajet par un **rayon lumineux**, une droite fléchée orientée de la source vers l'œil."
+      }
+    },
+    {
+      "kind": "experience",
+      "title": "Expérience 2 : ombre propre et ombre portée",
+      "body": "Dans une pièce sombre, on éclaire une balle avec une petite lampe. Observe d'où viennent les ombres.",
+      "demo": {
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 400
+          },
+          {
+            "type": "forme",
+            "id": "ecran",
+            "shape": "rect",
+            "x": 684,
+            "y": 30,
+            "w": 14,
+            "h": 370,
+            "fill": "blanc",
+            "stroke": "#94a3b8"
+          },
+          {
+            "type": "forme",
+            "id": "eclaire",
+            "shape": "rect",
+            "x": 678,
+            "y": 30,
+            "w": 6,
+            "h": 370,
+            "fill": "#fde68a",
+            "opacity": 0
+          },
+          {
+            "type": "forme",
+            "id": "om",
+            "shape": "rect",
+            "x": 678,
+            "y": 141.8,
+            "w": 6,
+            "h": 156.4,
+            "fill": "noir",
+            "opacity": 0
+          },
+          {
+            "type": "forme",
+            "id": "cone",
+            "shape": "polygon",
+            "x": 0,
+            "y": 0,
+            "points": [
+              [
+                325.9,
+                190.3
+              ],
+              [
+                678,
+                141.8
+              ],
+              [
+                678,
+                298.2
+              ],
+              [
+                325.9,
+                249.7
+              ]
+            ],
+            "fill": "gris",
+            "opacity": 0.35,
+            "hidden": true
+          },
+          {
+            "type": "rayon",
+            "id": "rA",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              40
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rB",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              95
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rC",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              303.3,
+              206.4
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rD",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              300,
+              220
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rE",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              303.3,
+              233.6
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rF",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              345
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rG",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              394
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rT",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              141.8
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "rayon",
+            "id": "rT2",
+            "from": [
+              110,
+              220
+            ],
+            "to": [
+              678,
+              298.2
+            ],
+            "progress": 0,
+            "width": 2
+          },
+          {
+            "type": "objet",
+            "id": "balle",
+            "shape": "boule",
+            "x": 330,
+            "y": 250,
+            "size": 60,
+            "color": "bleu",
+            "hang": 190
+          },
+          {
+            "type": "forme",
+            "id": "op",
+            "shape": "path",
+            "x": 0,
+            "y": 0,
+            "d": "M325.9,190.3 A30,30 0 1 1 325.9,249.7 Z",
+            "fill": "noir",
+            "opacity": 0.5,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "pied",
+            "shape": "rect",
+            "x": 107,
+            "y": 234,
+            "w": 6,
+            "h": 166,
+            "fill": "gris"
+          },
+          {
+            "type": "forme",
+            "id": "halo",
+            "shape": "ellipse",
+            "x": 110,
+            "y": 220,
+            "w": 64,
+            "h": 64,
+            "fill": "jaune",
+            "opacity": 0.35,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "src",
+            "shape": "ellipse",
+            "x": 110,
+            "y": 220,
+            "w": 28,
+            "h": 28,
+            "fill": "#f1f5f9",
+            "stroke": "#94a3b8"
+          },
+          {
+            "type": "etiquette",
+            "id": "eLampe",
+            "x": 110,
+            "y": 150,
+            "text": "petite lampe",
+            "to": [
+              110,
+              206
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eBalle",
+            "x": 400,
+            "y": 330,
+            "text": "balle opaque",
+            "to": [
+              345,
+              240
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eEcran",
+            "x": 590,
+            "y": 200,
+            "text": "écran blanc",
+            "to": [
+              684,
+              200
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eFrole",
+            "x": 470,
+            "y": 60,
+            "text": "rayons qui frôlent la balle",
+            "to": [
+              470,
+              170.4
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eop",
+            "x": 430,
+            "y": 110,
+            "text": "ombre propre",
+            "to": [
+              348,
+              212
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "econe",
+            "x": 505,
+            "y": 220,
+            "text": "cône d'ombre",
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eom",
+            "x": 575,
+            "y": 345,
+            "text": "ombre portée",
+            "to": [
+              680,
+              270
+            ],
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le montage",
+            "text": "La pièce est sombre. Une **petite lampe**, encore éteinte, fait face à un **écran blanc**. Entre les deux, une **balle opaque** est suspendue à un fil très fin.",
+            "show": [
+              "eLampe",
+              "eBalle",
+              "eEcran"
+            ],
+            "focus": [
+              "src",
+              "balle"
+            ]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On allume la lampe. Que va-t-on voir sur l'écran, derrière la balle ?",
+              "choices": [
+                "L'écran entièrement éclairé : la lumière contourne la balle",
+                "Une zone sombre, de la forme de la balle",
+                "Une zone sombre, de la forme de la lampe"
+              ],
+              "answer": 1,
+              "explain": "La lumière va en ligne droite : celle qui rencontre la balle est arrêtée. Derrière la balle, une partie de l'écran ne reçoit pas de lumière."
+            }
+          },
+          {
+            "title": "On allume la lampe",
+            "text": "La lampe envoie de la lumière dans toutes les directions, en ligne droite. Les rayons qui rencontrent la balle **s'arrêtent sur elle**. Les autres atteignent l'écran et l'éclairent… sauf une zone sombre, juste derrière la balle.",
+            "duration": 4,
+            "hide": [
+              "eLampe",
+              "eBalle",
+              "eEcran"
+            ],
+            "show": [
+              "halo"
+            ],
+            "do": [
+              {
+                "id": "src",
+                "set": {
+                  "fill": "jaune",
+                  "stroke": "#f59e0b"
+                }
+              },
+              {
+                "id": "rA",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rB",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rC",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rD",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rE",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rF",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rG",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "progress": 1
+                },
+                "dur": 2.5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "eclaire",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 2.3,
+                "dur": 0.8
+              },
+              {
+                "id": "om",
+                "to": {
+                  "opacity": 0.85
+                },
+                "at": 2.3,
+                "dur": 0.8
+              }
+            ],
+            "focus": [
+              "om"
+            ]
+          },
+          {
+            "title": "Le contour de l'ombre",
+            "text": "Deux rayons **frôlent** les bords de la balle. Entre eux, derrière la balle, aucune lumière n'arrive. Ce sont ces deux rayons qui dessinent le contour de la zone sombre sur l'écran.",
+            "duration": 2,
+            "show": [
+              "eFrole"
+            ],
+            "do": [
+              {
+                "id": "rA",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rB",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rC",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rD",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rE",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rF",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rG",
+                "to": {
+                  "opacity": 0.25
+                },
+                "dur": 1
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "width": 4
+                },
+                "dur": 1
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "width": 4
+                },
+                "dur": 1
+              }
+            ],
+            "focus": [
+              "eFrole"
+            ]
+          },
+          {
+            "title": "Trois mots à retenir",
+            "text": "Sur la balle, la face non éclairée est l'**ombre propre**. Derrière la balle, le volume que la lumière n'atteint pas est le **cône d'ombre**. Sur l'écran, la zone sombre est l'**ombre portée**.",
+            "duration": 1.5,
+            "hide": [
+              "rA",
+              "rB",
+              "rC",
+              "rD",
+              "rE",
+              "rF",
+              "rG",
+              "eFrole"
+            ],
+            "show": [
+              "op",
+              "cone",
+              "eop",
+              "econe",
+              "eom"
+            ],
+            "focus": [
+              "eop",
+              "econe",
+              "eom"
+            ]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On rapproche la balle de la lampe, sans bouger l'écran. L'ombre portée…",
+              "choices": [
+                "grandit",
+                "rétrécit",
+                "ne change pas"
+              ],
+              "answer": 0,
+              "explain": "Plus la balle est près de la lampe, plus les deux rayons qui la frôlent s'écartent avant d'atteindre l'écran : l'ombre portée est plus grande."
+            }
+          },
+          {
+            "title": "Balle près de la lampe",
+            "text": "La balle est maintenant deux fois plus près de la lampe. Les deux rayons qui la frôlent s'écartent beaucoup plus : l'**ombre portée est bien plus grande**.",
+            "duration": 4,
+            "hide": [
+              "op",
+              "cone",
+              "eop",
+              "econe",
+              "eom"
+            ],
+            "do": [
+              {
+                "id": "balle",
+                "to": {
+                  "x": 293.3
+                },
+                "at": 0.3,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    125.8
+                  ]
+                },
+                "at": 0.3,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    314.2
+                  ]
+                },
+                "at": 0.3,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 125.8,
+                  "h": 188.4
+                },
+                "at": 0.3,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 256.7
+                },
+                "at": 1.4,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    101.3
+                  ]
+                },
+                "at": 1.4,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    338.7
+                  ]
+                },
+                "at": 1.4,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 101.3,
+                  "h": 237.4
+                },
+                "at": 1.4,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 220
+                },
+                "at": 2.5,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    59
+                  ]
+                },
+                "at": 2.5,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    381
+                  ]
+                },
+                "at": 2.5,
+                "dur": 1.1,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 59,
+                  "h": 322
+                },
+                "at": 2.5,
+                "dur": 1.1,
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "om"
+            ]
+          },
+          {
+            "title": "Balle près de l'écran",
+            "text": "On éloigne la balle de la lampe pour la placer tout près de l'écran : l'ombre portée **rétrécit**. Elle n'est plus qu'un peu plus grande que la balle. C'est ce qu'on règle au théâtre d'ombres pour changer la taille des personnages.",
+            "duration": 5.5,
+            "do": [
+              {
+                "id": "balle",
+                "to": {
+                  "x": 276.7
+                },
+                "at": 0.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    116.1
+                  ]
+                },
+                "at": 0.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    323.9
+                  ]
+                },
+                "at": 0.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 116.1,
+                  "h": 207.8
+                },
+                "at": 0.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 333.3
+                },
+                "at": 1.1,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    143
+                  ]
+                },
+                "at": 1.1,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    297
+                  ]
+                },
+                "at": 1.1,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 143,
+                  "h": 154
+                },
+                "at": 1.1,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 390
+                },
+                "at": 1.9,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    158.8
+                  ]
+                },
+                "at": 1.9,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    281.2
+                  ]
+                },
+                "at": 1.9,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 158.8,
+                  "h": 122.4
+                },
+                "at": 1.9,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 446.7
+                },
+                "at": 2.7,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    169.2
+                  ]
+                },
+                "at": 2.7,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    270.8
+                  ]
+                },
+                "at": 2.7,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 169.2,
+                  "h": 101.6
+                },
+                "at": 2.7,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 503.3
+                },
+                "at": 3.5,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    176.5
+                  ]
+                },
+                "at": 3.5,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    263.5
+                  ]
+                },
+                "at": 3.5,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 176.5,
+                  "h": 87
+                },
+                "at": 3.5,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "balle",
+                "to": {
+                  "x": 560
+                },
+                "at": 4.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT",
+                "to": {
+                  "to": [
+                    678,
+                    182
+                  ]
+                },
+                "at": 4.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "rT2",
+                "to": {
+                  "to": [
+                    678,
+                    258
+                  ]
+                },
+                "at": 4.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              },
+              {
+                "id": "om",
+                "to": {
+                  "y": 182,
+                  "h": 76
+                },
+                "at": 4.3,
+                "dur": 0.8,
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "om"
+            ]
+          }
+        ],
+        "conclusion": "La lumière se propage **en ligne droite** et ne contourne pas un objet opaque. La face non éclairée de l'objet est son **ombre propre** ; derrière lui, le **cône d'ombre** ne reçoit aucune lumière ; sur l'écran, il donne l'**ombre portée**, dont le contour est dessiné par les rayons qui frôlent l'objet. Plus l'objet est proche de la lampe, plus son ombre portée est grande."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "La Terre est à environ 150 000 000 km du Soleil. La lumière parcourt environ 300 000 km chaque seconde. Durée du trajet :",
+          "math": "t = d / v = 150 000 000 / 300 000"
+        },
+        {
+          "text": "On calcule :",
+          "math": "t = 500 s"
+        },
+        {
+          "text": "On convertit : 500 s = 8 × 60 s + 20 s.",
+          "math": "t = 8 min 20 s"
+        },
+        {
+          "text": "Conclusion : on voit le Soleil tel qu'il était il y a environ 8 min 20 s. Pour la Lune (à environ 384 000 km), c'est un peu plus d'une seconde.",
+          "math": "384 000 / 300 000 ≈ 1,3 s"
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Écris les durées **avec leur unité** (2 s, 8 min) quand on te le demande.",
+      "exercises": [
+        "pc5-lumiere-sources",
+        "pc5-lumiere-voir",
+        "pc5-lumiere-ombres",
+        "pc5-lumiere-vitesse",
+        "pc5-lumiere-ombre-sol",
+        "pc5-lumiere-cartons",
+        "pc5-lumiere-theatre"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : mesurer un arbre sans y grimper",
+      "body": "Yanis veut connaître la hauteur du grand arbre de la cour. Il n'a qu'un bâton, un mètre ruban… et le Soleil.",
+      "exercises": [
+        "pc5-lumiere-mission"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> Une source primaire produit de la lumière ; un objet diffusant renvoie celle qu'il reçoit. Dans un milieu transparent et homogène, la lumière se propage en ligne droite, à environ 300 000 km/s.\n\n- **« L'œil envoie des rayons. »** C'est l'inverse : on voit un objet quand sa lumière entre dans l'œil.\n- **« La Lune brille toute seule. »** Elle diffuse la lumière du Soleil.\n- **Confondre ombre propre et ombre portée.** L'ombre propre est sur l'objet ; l'ombre portée, sur l'écran ou le sol.\n- **« La lumière arrive instantanément. »** Elle est très rapide, mais pas infiniment : environ 8 min 20 s depuis le Soleil.\n- **Sécurité** : ne jamais regarder le Soleil ni un faisceau laser."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours une question sur les sources de lumière et un calcul de durée de propagation."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Calculer la taille d'une ombre, et comprendre pourquoi la petite Lune peut cacher l'énorme Soleil.",
+      "exercises": [
+        "pc5-lumiere-ombre-taille",
+        "pc5-lumiere-eclipse"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà des attendus de 5e : refaire le calcul historique de Fizeau, et expliquer l'image renversée d'une chambre noire.",
+      "exercises": [
+        "pc5-lumiere-fizeau",
+        "pc5-lumiere-stenope"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc5-lumiere-sources",
+      "type": "categorize",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:lune-source",
+        "mc:planete-etoile"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Classe chaque objet : source primaire de lumière ou objet diffusant ?",
+      "categories": [
+        {
+          "id": "prim",
+          "label": "Source primaire"
+        },
+        {
+          "id": "diff",
+          "label": "Objet diffusant"
+        }
+      ],
+      "items": [
+        {
+          "id": "soleil",
+          "label": "Le Soleil",
+          "category": "prim"
+        },
+        {
+          "id": "lune",
+          "label": "La Lune",
+          "category": "diff"
+        },
+        {
+          "id": "bougie",
+          "label": "La flamme d'une bougie",
+          "category": "prim"
+        },
+        {
+          "id": "cahier",
+          "label": "Un cahier posé sur la table",
+          "category": "diff"
+        },
+        {
+          "id": "venus",
+          "label": "La planète Vénus, très brillante le soir",
+          "category": "diff"
+        },
+        {
+          "id": "ecran",
+          "label": "L'écran allumé d'un téléphone",
+          "category": "prim"
+        },
+        {
+          "id": "luciole",
+          "label": "Un ver luisant qui brille la nuit",
+          "category": "prim"
+        },
+        {
+          "id": "sirius",
+          "label": "L'étoile Sirius",
+          "category": "prim"
+        },
+        {
+          "id": "visage",
+          "label": "Le visage de ton voisin",
+          "category": "diff"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "lune",
+          "category": "prim",
+          "id": "mc:lune-source",
+          "error": "notion",
+          "feedback": "La Lune ne produit pas de lumière : elle diffuse celle du Soleil. C'est pour cela qu'elle a des phases."
+        },
+        {
+          "item": "venus",
+          "category": "prim",
+          "id": "mc:planete-etoile",
+          "error": "notion",
+          "feedback": "On l'appelle parfois « l'étoile du berger », mais Vénus est une planète : elle diffuse la lumière du Soleil, comme la Lune."
+        },
+        {
+          "item": "cahier",
+          "category": "prim",
+          "id": "mc:diffusant-source",
+          "error": "notion",
+          "feedback": "Le cahier n'est visible que s'il est éclairé : il diffuse la lumière de la pièce."
+        }
+      ],
+      "hints": [
+        "Pose-toi la question : cet objet brillerait-il encore dans le noir complet ?",
+        "Les planètes et la Lune n'émettent pas de lumière : elles sont éclairées par le Soleil.",
+        "Une étoile, comme le Soleil, produit sa propre lumière."
+      ],
+      "solution": "Sources primaires : Soleil, flamme, écran allumé, ver luisant, étoile Sirius. Objets diffusants : Lune, cahier, Vénus (une planète), visage.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "soleil": "prim",
+              "lune": "diff",
+              "bougie": "prim",
+              "cahier": "diff",
+              "venus": "diff",
+              "ecran": "prim",
+              "luciole": "prim",
+              "sirius": "prim",
+              "visage": "diff"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "soleil": "prim",
+              "lune": "prim",
+              "bougie": "prim",
+              "cahier": "diff",
+              "venus": "diff",
+              "ecran": "prim",
+              "luciole": "prim",
+              "sirius": "prim",
+              "visage": "diff"
+            }
+          },
+          "expect": "mc:lune-source"
+        },
+        {
+          "response": {
+            "assign": {
+              "soleil": "prim",
+              "lune": "diff",
+              "bougie": "prim",
+              "cahier": "diff",
+              "venus": "prim",
+              "ecran": "prim",
+              "luciole": "prim",
+              "sirius": "prim",
+              "visage": "diff"
+            }
+          },
+          "expect": "mc:planete-etoile"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-voir",
+      "type": "order",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:oeil-emetteur"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Dans sa chambre éclairée par une lampe, Lina voit son livre. Range les étapes dans l'ordre.",
+      "orderLabel": "de la lampe jusqu'à Lina",
+      "errorType": "notion",
+      "items": [
+        {
+          "id": "e1",
+          "label": "La lampe émet de la lumière"
+        },
+        {
+          "id": "e2",
+          "label": "La lumière se propage en ligne droite jusqu'au livre"
+        },
+        {
+          "id": "e3",
+          "label": "Le livre diffuse une partie de cette lumière dans toutes les directions"
+        },
+        {
+          "id": "e4",
+          "label": "Une partie de la lumière diffusée se propage jusqu'à l'œil de Lina et y entre"
+        },
+        {
+          "id": "e5",
+          "label": "L'œil transmet un message au cerveau : Lina voit le livre"
+        }
+      ],
+      "hints": [
+        "La lumière part toujours d'une source.",
+        "L'œil reçoit la lumière : il n'en envoie pas.",
+        "Le livre n'est pas une source : il renvoie la lumière qu'il reçoit."
+      ],
+      "solution": "Lampe (source) → lumière jusqu'au livre → le livre diffuse la lumière → une partie entre dans l'œil → message au cerveau. L'œil est un récepteur : il ne lance pas de rayons vers les objets.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "e1",
+              "e2",
+              "e3",
+              "e4",
+              "e5"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "e5",
+              "e4",
+              "e3",
+              "e2",
+              "e1"
+            ]
+          },
+          "expect": "notion"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-ombres",
+      "type": "match",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "mc:ombre-propre-portee"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Une balle est éclairée par une petite lampe ; derrière elle se trouve un mur blanc. Associe chaque description au bon mot.",
+      "leftTitle": "Description",
+      "rightTitle": "Vocabulaire",
+      "left": [
+        {
+          "id": "d1",
+          "label": "La partie de la balle qui n'est pas éclairée"
+        },
+        {
+          "id": "d2",
+          "label": "La zone sombre sur le mur"
+        },
+        {
+          "id": "d3",
+          "label": "Le volume, derrière la balle, où la lumière n'arrive pas"
+        },
+        {
+          "id": "d4",
+          "label": "La droite fléchée qui représente le trajet de la lumière"
+        },
+        {
+          "id": "d5",
+          "label": "La lampe"
+        }
+      ],
+      "right": [
+        {
+          "id": "propre",
+          "label": "l'ombre propre"
+        },
+        {
+          "id": "portee",
+          "label": "l'ombre portée"
+        },
+        {
+          "id": "cone",
+          "label": "le cône d'ombre"
+        },
+        {
+          "id": "rayon",
+          "label": "un rayon lumineux"
+        },
+        {
+          "id": "source",
+          "label": "la source primaire"
+        },
+        {
+          "id": "diffusant",
+          "label": "un objet diffusant"
+        }
+      ],
+      "pairs": {
+        "d1": "propre",
+        "d2": "portee",
+        "d3": "cone",
+        "d4": "rayon",
+        "d5": "source"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "d1",
+            "portee"
+          ],
+          "id": "mc:ombre-propre-portee",
+          "error": "notion",
+          "feedback": "L'ombre propre est SUR l'objet (sa face non éclairée) ; l'ombre portée est projetée sur le mur."
+        },
+        {
+          "pair": [
+            "d2",
+            "propre"
+          ],
+          "id": "mc:ombre-propre-portee",
+          "error": "notion",
+          "feedback": "La tache sur le mur est projetée par la balle : c'est l'ombre portée. L'ombre propre est sur la balle elle-même."
+        }
+      ],
+      "hints": [
+        "« Propre » : qui appartient à l'objet lui-même.",
+        "« Portée » : projetée sur un écran, un mur ou le sol."
+      ],
+      "solution": "Face non éclairée de la balle : ombre propre. Zone sombre sur le mur : ombre portée. Volume sans lumière derrière la balle : cône d'ombre. Droite fléchée : rayon lumineux. Lampe : source primaire.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "d1": "propre",
+              "d2": "portee",
+              "d3": "cone",
+              "d4": "rayon",
+              "d5": "source"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "d1": "portee",
+              "d2": "propre",
+              "d3": "cone",
+              "d4": "rayon",
+              "d5": "source"
+            }
+          },
+          "expect": "mc:ombre-propre-portee"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-vitesse",
+      "type": "numeric",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:v-produit",
+        "mc:t-inverse",
+        "mc:km-m"
+      ],
+      "expectedSeconds": 120,
+      "params": {
+        "d": {
+          "choice": [
+            600000,
+            1500000,
+            3000000,
+            9000000
+          ]
+        }
+      },
+      "prompt": "Une sonde spatiale se trouve à {d} km de la Terre. Elle envoie un message radio, qui se propage à la vitesse de la lumière : 300 000 km/s. Combien de temps ce message met-il pour arriver sur Terre (avec l'unité) ?",
+      "answer": "d/300000",
+      "unit": "s",
+      "rel": 0.01,
+      "misconceptions": [
+        {
+          "answer": "d*300000",
+          "id": "mc:v-produit",
+          "error": "notion",
+          "feedback": "Multiplier une distance par une vitesse ne donne pas une durée. Durée = distance ÷ vitesse."
+        },
+        {
+          "answer": "300000/d",
+          "id": "mc:t-inverse",
+          "error": "notion",
+          "feedback": "Tu as divisé la vitesse par la distance. Chaque seconde, le message parcourt 300 000 km : combien de secondes pour {d} km ? On divise la distance par la vitesse."
+        },
+        {
+          "answer": "d/300000000",
+          "id": "mc:km-m",
+          "error": "unite",
+          "feedback": "La distance est en km : utilise la vitesse en km/s (300 000 km/s), pas en m/s."
+        }
+      ],
+      "hints": [
+        "Chaque seconde, le message parcourt 300 000 km.",
+        "Durée = distance ÷ vitesse, avec la distance en km et la vitesse en km/s.",
+        "Calcule {d} ÷ 300 000."
+      ],
+      "solution": "$t = d / v = {d} / 300 000 = {d/300000}$ s. Même à la vitesse de la lumière, communiquer avec une sonde lointaine prend du temps.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{d/300000} s"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{300000/d} s"
+          },
+          "expect": "mc:t-inverse"
+        },
+        {
+          "response": {
+            "value": "{d/300000000} s"
+          },
+          "expect": "mc:km-m"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-ombre-sol",
+      "type": "graph",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:propagation-courbe"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "a": {
+          "int": [
+            1,
+            3
+          ]
+        },
+        "b": {
+          "choice": [
+            3,
+            4
+          ]
+        }
+      },
+      "prompt": "Une petite lampe, assimilée à un point, est placée en S(0 ; 6). Un piquet vertical est planté au point ({a} ; 0) du sol ; son sommet est P({a} ; {b}). Le sol est l'axe des abscisses. Place le point E du sol où se termine l'ombre portée du piquet. Aide : la lumière se propage en ligne droite, donc E est aligné avec S et P.",
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        7
+      ],
+      "xLabel": "x (m)",
+      "yLabel": "y (m)",
+      "tolerance": 0.3,
+      "expectedPoints": [
+        [
+          "a*6/(6-b)",
+          0
+        ]
+      ],
+      "hints": [
+        "Trace la droite qui part de S et passe par le sommet P du piquet.",
+        "L'ombre portée s'arrête là où cette droite touche le sol (y = 0).",
+        "Depuis S, la droite descend de 6 − {b} quand elle avance de {a} : combien doit-elle avancer pour descendre de 6 ?"
+      ],
+      "solution": "Le rayon qui frôle le sommet du piquet part de S(0 ; 6) et passe par P({a} ; {b}). Il descend de {6-b} pour {a} vers la droite, donc de 6 pour {a*6/(6-b)} vers la droite : il touche le sol en E({a*6/(6-b)} ; 0). L'ombre portée s'étend du pied du piquet jusqu'à E.",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                "{a*6/(6-b)}",
+                "0"
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{a}",
+                "0"
+              ]
+            ]
+          },
+          "expect": "notion"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-mission",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "skills": [
+        "m5.proportionnalite"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:proportion-inverse",
+        "mc:additif",
+        "mc:ombre-fixe"
+      ],
+      "expectedSeconds": 600,
+      "prompt": "Pour mesurer la hauteur d'un arbre sans y grimper, Yanis plante verticalement un bâton de 1,0 m. Au même moment, l'ombre du bâton sur le sol mesure 1,6 m et celle de l'arbre 12 m. Le Soleil est si loin que ses rayons arrivent pratiquement parallèles entre eux.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de l'arbre (avec l'unité) ?",
+          "answer": 7.5,
+          "unit": "m",
+          "rel": 0.02,
+          "misconceptions": [
+            {
+              "answer": 19.2,
+              "id": "mc:proportion-inverse",
+              "error": "raisonnement",
+              "prerequisite": "m5.proportionnalite",
+              "feedback": "Le bâton est plus petit que son ombre (1,0 m pour 1,6 m) : l'arbre aussi est plus petit que la sienne. On divise 12 par 1,6."
+            },
+            {
+              "answer": 11.4,
+              "id": "mc:additif",
+              "error": "raisonnement",
+              "prerequisite": "m5.proportionnalite",
+              "feedback": "Ce n'est pas une différence constante mais un rapport constant : hauteur ÷ longueur de l'ombre est le même pour le bâton et pour l'arbre."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quelle propriété de la lumière rend cette méthode possible ?",
+          "accept": [
+            "la propagation rectiligne",
+            "propagation rectiligne",
+            "elle se propage en ligne droite",
+            "la lumière se propage en ligne droite",
+            "en ligne droite",
+            "rectiligne",
+            "elle va en ligne droite"
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Une heure plus tard, l'ombre du bâton mesure 2,0 m. Quelle est alors la longueur de l'ombre de l'arbre (avec l'unité) ?",
+          "answer": 15,
+          "unit": "m",
+          "rel": 0.02,
+          "misconceptions": [
+            {
+              "answer": 12,
+              "id": "mc:ombre-fixe",
+              "error": "notion",
+              "feedback": "Le Soleil a bougé dans le ciel : toutes les ombres ont changé, celle de l'arbre aussi."
+            },
+            {
+              "answer": 12.4,
+              "id": "mc:additif",
+              "error": "raisonnement",
+              "prerequisite": "m5.proportionnalite",
+              "feedback": "L'ombre du bâton a été multipliée par 2,0 ÷ 1,0 par rapport à sa hauteur : celle de l'arbre est 2 fois sa hauteur, 2 × 7,5 m."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique à un camarade pourquoi cette méthode fonctionne. Ajoute une règle de sécurité.",
+          "minWords": 25,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Les rayons du Soleil sont parallèles et se propagent en ligne droite",
+              "keywords": [
+                [
+                  "parallele",
+                  "ligne droite",
+                  "rectiligne"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Au même moment, hauteur ÷ longueur de l'ombre est la même pour le bâton et l'arbre (proportionnalité)",
+              "keywords": [
+                [
+                  "proportion",
+                  "rapport",
+                  "meme",
+                  "fois"
+                ]
+              ]
+            },
+            {
+              "id": "c3",
+              "label": "Sécurité : on mesure les ombres au sol, sans jamais regarder le Soleil",
+              "keywords": [
+                [
+                  "regard",
+                  "yeux",
+                  "soleil"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "Les rayons du Soleil arrivent parallèles et vont en ligne droite. Au même moment, ils font le même angle avec le sol pour le bâton et pour l'arbre : la hauteur est proportionnelle à la longueur de l'ombre. Le bâton mesure 1,0 m pour 1,6 m d'ombre, donc l'arbre mesure 12 ÷ 1,6 = 7,5 m. On regarde les ombres au sol, jamais le Soleil.",
+            "Comme la lumière se propage en ligne droite et que les rayons sont parallèles, l'ombre de chaque objet est la même fois plus longue que lui. Ici l'ombre est 1,6 fois plus longue que l'objet. L'arbre est donc 1,6 fois plus petit que son ombre de 12 m. Attention : ne jamais lever les yeux vers le Soleil pendant la mesure."
+          ]
+        }
+      ],
+      "hints": [
+        "Hauteur ÷ ombre est le même nombre pour le bâton et pour l'arbre.",
+        "Pour le bâton : 1,0 ÷ 1,6 = 0,625.",
+        "Une heure plus tard, l'ombre du bâton est 2 fois sa hauteur : c'est vrai aussi pour l'arbre."
+      ],
+      "solution": "Les rayons du Soleil sont parallèles et rectilignes : au même instant, hauteur ÷ ombre = 1,0 ÷ 1,6 = 0,625 pour tous les objets verticaux. Arbre : 12 × 0,625 = 7,5 m. Une heure plus tard, l'ombre vaut 2,0 fois la hauteur : 2,0 × 7,5 = 15 m.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7,5 m"
+              },
+              {
+                "value": "la propagation rectiligne"
+              },
+              {
+                "value": "15 m"
+              },
+              {
+                "text": "Les rayons du Soleil sont parallèles et vont en ligne droite, donc la hauteur est proportionnelle à l'ombre, c'est le même rapport pour le bâton et l'arbre. Il ne faut jamais regarder le Soleil.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "19,2 m"
+              },
+              {
+                "value": "la propagation rectiligne"
+              },
+              {
+                "value": "15 m"
+              },
+              {
+                "text": "Les rayons sont parallèles, c'est proportionnel."
+              }
+            ]
+          },
+          "expect": "mc:proportion-inverse"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "7,5 m"
+              },
+              {
+                "value": "la propagation rectiligne"
+              },
+              {
+                "value": "12 m"
+              },
+              {
+                "text": "Les rayons sont parallèles, c'est proportionnel."
+              }
+            ]
+          },
+          "expect": "mc:ombre-fixe"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-remed-oeil",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:oeil-emetteur"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : l'œil ne lance pas de rayons ; il reçoit la lumière. Imagine une pièce sans fenêtre, toutes lumières éteintes, porte fermée : le noir complet.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Dans ce noir complet, peut-on voir un livre blanc posé sur la table ? (oui ou non)",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:oeil-emetteur",
+              "error": "notion",
+              "feedback": "Aucune lumière n'arrive sur le livre, il n'en renvoie donc aucune vers l'œil : on ne peut pas le voir, même s'il est blanc."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "On allume une lampe. Le livre renvoie-t-il maintenant de la lumière vers l'œil ? (oui ou non)",
+          "accept": [
+            "oui"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:diffusion",
+              "error": "notion",
+              "feedback": "Le livre est un objet diffusant : il renvoie dans toutes les directions une partie de la lumière de la lampe, et une partie atteint l'œil."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un chat voit-il dans le noir complet ? (oui ou non)",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:oeil-emetteur",
+              "error": "notion",
+              "feedback": "Un chat voit bien mieux que nous quand il y a TRÈS PEU de lumière, mais dans le noir complet, aucun œil ne voit : il faut de la lumière."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pour voir, de la lumière doit venir de l'objet jusqu'à l'œil.",
+        "D'où viendrait cette lumière dans le noir complet ?"
+      ],
+      "solution": "Dans le noir complet, rien n'éclaire le livre : aucune lumière ne va de lui vers l'œil, on ne le voit pas (un chat non plus). Avec la lampe, le livre diffuse la lumière reçue, dont une partie entre dans l'œil.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "non"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "oui"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "mc:oeil-emetteur"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-remed-lune",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:lune-source"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : un objet diffusant ne fait que renvoyer la lumière qu'il reçoit. La Lune ne produit aucune lumière elle-même.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "D'où vient la lumière que nous renvoie la Lune ?",
+          "accept": [
+            "du soleil",
+            "soleil",
+            "le soleil",
+            "la lumière du soleil",
+            "de la lumière du soleil"
+          ],
+          "misconceptions": [
+            {
+              "answer": "de la lune",
+              "id": "mc:lune-source",
+              "error": "notion",
+              "feedback": "La Lune n'a ni feu ni lampe : elle renvoie la lumière qu'elle reçoit du Soleil."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Pendant une éclipse de Lune, la Lune passe dans l'ombre de la Terre. Devient-elle plus sombre ou plus brillante ?",
+          "accept": [
+            "plus sombre",
+            "sombre",
+            "elle s'assombrit",
+            "s'assombrit",
+            "elle devient plus sombre",
+            "elle devient sombre"
+          ],
+          "misconceptions": [
+            {
+              "answer": "plus brillante",
+              "id": "mc:lune-source",
+              "error": "notion",
+              "feedback": "La Terre arrête la lumière du Soleil qui éclairait la Lune : privée de lumière, la Lune s'assombrit."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "La Lune est-elle une source primaire de lumière ? (oui ou non)",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:lune-source",
+              "error": "notion",
+              "feedback": "Une source primaire produit sa propre lumière. La Lune, elle, la diffuse : c'est un objet diffusant."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Si la Lune produisait sa lumière, elle brillerait même dans l'ombre de la Terre.",
+        "Qu'est-ce qui éclaire la Lune ?"
+      ],
+      "solution": "La Lune diffuse la lumière du Soleil. Quand elle passe dans l'ombre de la Terre (éclipse de Lune), elle s'assombrit fortement (elle prend souvent une teinte rouge sombre) : preuve qu'elle n'est pas une source primaire.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "du Soleil"
+              },
+              {
+                "value": "plus sombre"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "du Soleil"
+              },
+              {
+                "value": "plus brillante"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "mc:lune-source"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-cartons",
+      "type": "categorize",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [
+        "mc:lumiere-contourne",
+        "mc:transparent-opaque",
+        "mc:oeil-emetteur"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Reprends l'expérience des trois cartons percés placés devant une bougie allumée. Dans chaque cas, l'observateur voit-il la flamme à travers le dernier trou ?",
+      "figure": {
+        "alt": "Une bougie, trois cartons verticaux percés chacun d’un petit trou, et l’œil d’un observateur à droite.",
+        "w": 480,
+        "h": 170,
+        "items": [
+          {
+            "type": "rect",
+            "x": 30,
+            "y": 80,
+            "w": 14,
+            "h": 60,
+            "fill": "gris"
+          },
+          {
+            "type": "text",
+            "x": 37,
+            "y": 72,
+            "text": "🔥",
+            "size": "m",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              140,
+              20
+            ],
+            "to": [
+              140,
+              70
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              140,
+              80
+            ],
+            "to": [
+              140,
+              140
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              240,
+              20
+            ],
+            "to": [
+              240,
+              70
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              240,
+              80
+            ],
+            "to": [
+              240,
+              140
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              340,
+              20
+            ],
+            "to": [
+              340,
+              70
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              340,
+              80
+            ],
+            "to": [
+              340,
+              140
+            ]
+          },
+          {
+            "type": "text",
+            "x": 430,
+            "y": 80,
+            "text": "👁️",
+            "size": "l",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 430,
+            "y": 112,
+            "text": "observateur",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 37,
+            "y": 160,
+            "text": "bougie",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 240,
+            "y": 14,
+            "text": "cartons percés",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "voit",
+          "label": "Il voit la flamme"
+        },
+        {
+          "id": "nevoit",
+          "label": "Il ne voit pas la flamme"
+        }
+      ],
+      "items": [
+        {
+          "id": "aligne",
+          "label": "Les trois trous sont alignés avec la flamme",
+          "category": "voit"
+        },
+        {
+          "id": "souleve",
+          "label": "On soulève de 2 cm le carton du milieu",
+          "category": "nevoit"
+        },
+        {
+          "id": "vitre",
+          "label": "On remplace le carton du milieu par une vitre propre, sans trou",
+          "category": "voit"
+        },
+        {
+          "id": "bois",
+          "label": "On remplace le carton du milieu par une planche de bois, sans trou",
+          "category": "nevoit"
+        },
+        {
+          "id": "grand",
+          "label": "On agrandit le trou du carton du milieu, toujours aligné avec les autres",
+          "category": "voit"
+        },
+        {
+          "id": "cote",
+          "label": "Les trous sont alignés, mais l'observateur place son œil à côté du dernier trou",
+          "category": "nevoit"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "souleve",
+          "category": "voit",
+          "id": "mc:lumiere-contourne",
+          "error": "notion",
+          "feedback": "La lumière ne contourne pas le carton : elle va en ligne droite. Si le trou du milieu n'est plus aligné, elle s'arrête sur le carton, comme dans l'expérience."
+        },
+        {
+          "item": "vitre",
+          "category": "nevoit",
+          "id": "mc:transparent-opaque",
+          "error": "notion",
+          "feedback": "Une vitre propre est transparente : la lumière la traverse. Seuls les objets opaques (carton, bois…) arrêtent la lumière."
+        },
+        {
+          "item": "cote",
+          "category": "voit",
+          "id": "mc:oeil-emetteur",
+          "error": "notion",
+          "feedback": "Pour voir la flamme, il faut que sa lumière ENTRE dans l'œil. La lumière qui sort du dernier trou continue tout droit : elle passe à côté de l'œil."
+        }
+      ],
+      "hints": [
+        "La lumière va en ligne droite, de la flamme jusqu’à l’œil.",
+        "Un objet transparent laisse passer la lumière ; un objet opaque l’arrête.",
+        "Pour voir, il faut que la lumière de la flamme entre dans l'œil."
+      ],
+      "solution": "Il voit la flamme si un chemin en ligne droite, sans obstacle opaque, relie la flamme à son œil : trous alignés, vitre transparente, trou agrandi mais aligné. Il ne la voit pas si un obstacle opaque coupe la ligne droite (carton soulevé, planche de bois) ou si la lumière n'entre pas dans son œil (œil à côté du trou).",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "aligne": "voit",
+              "souleve": "nevoit",
+              "vitre": "voit",
+              "bois": "nevoit",
+              "grand": "voit",
+              "cote": "nevoit"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "aligne": "voit",
+              "souleve": "voit",
+              "vitre": "voit",
+              "bois": "nevoit",
+              "grand": "voit",
+              "cote": "nevoit"
+            }
+          },
+          "expect": "mc:lumiere-contourne"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-theatre",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:ombre-pres-ecran",
+        "mc:ombre-couleur",
+        "mc:transparent-opaque"
+      ],
+      "expectedSeconds": 300,
+      "prompt": "Au théâtre d'ombres, une petite lampe éclaire un écran blanc. Entre les deux, on déplace des marionnettes découpées dans du carton. Toutes les autres lumières de la salle sont éteintes.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Pour que l'ombre du dragon devienne plus grande, faut-il rapprocher la marionnette de la lampe ou de l'écran ?",
+          "accept": [
+            "de la lampe",
+            "la lampe",
+            "lampe",
+            "vers la lampe",
+            "plus près de la lampe",
+            "près de la lampe",
+            "rapprocher de la lampe",
+            "la rapprocher de la lampe",
+            "de la lampe !"
+          ],
+          "misconceptions": [
+            {
+              "answer": "de l'écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            },
+            {
+              "answer": "l'écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            },
+            {
+              "answer": "écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            },
+            {
+              "answer": "vers l'écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            },
+            {
+              "answer": "plus près de l'écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            },
+            {
+              "answer": "près de l'écran",
+              "id": "mc:ombre-pres-ecran",
+              "error": "notion",
+              "feedback": "Tout près de l'écran, l'ombre a presque la taille de la marionnette. C'est en la rapprochant de la lampe que les rayons qui la frôlent s'écartent le plus : l'ombre grandit."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "La marionnette est en carton rouge. Sur l'écran blanc, son ombre portée est-elle rouge ou sombre ?",
+          "accept": [
+            "sombre",
+            "noire",
+            "noir",
+            "elle est sombre",
+            "elle est noire",
+            "grise",
+            "gris",
+            "sombre (noire)",
+            "noire ou grise"
+          ],
+          "misconceptions": [
+            {
+              "answer": "rouge",
+              "id": "mc:ombre-couleur",
+              "error": "notion",
+              "feedback": "L'ombre portée est la zone de l'écran que la lumière n'atteint pas : elle est sombre, quelle que soit la couleur de l'objet opaque."
+            },
+            {
+              "answer": "elle est rouge",
+              "id": "mc:ombre-couleur",
+              "error": "notion",
+              "feedback": "L'ombre portée est la zone de l'écran que la lumière n'atteint pas : elle est sombre, quelle que soit la couleur de l'objet opaque."
+            },
+            {
+              "answer": "rouge foncé",
+              "id": "mc:ombre-couleur",
+              "error": "notion",
+              "feedback": "L'ombre portée est la zone de l'écran que la lumière n'atteint pas : elle est sombre, quelle que soit la couleur de l'objet opaque."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "On remplace une marionnette par une silhouette en plastique transparent et incolore. Que voit-on sur l'écran : une ombre sombre, ou presque rien ?",
+          "accept": [
+            "presque rien",
+            "rien",
+            "pas d'ombre",
+            "aucune ombre",
+            "presque pas d'ombre",
+            "une ombre très pâle",
+            "presque rien, une ombre très pâle"
+          ],
+          "misconceptions": [
+            {
+              "answer": "une ombre sombre",
+              "id": "mc:transparent-opaque",
+              "error": "notion",
+              "feedback": "Un objet transparent laisse passer la lumière : l'écran reste éclairé derrière lui. Seul un objet opaque donne une ombre bien sombre."
+            },
+            {
+              "answer": "ombre sombre",
+              "id": "mc:transparent-opaque",
+              "error": "notion",
+              "feedback": "Un objet transparent laisse passer la lumière : l'écran reste éclairé derrière lui. Seul un objet opaque donne une ombre bien sombre."
+            },
+            {
+              "answer": "une ombre",
+              "id": "mc:transparent-opaque",
+              "error": "notion",
+              "feedback": "Un objet transparent laisse passer la lumière : l'écran reste éclairé derrière lui. Seul un objet opaque donne une ombre bien sombre."
+            },
+            {
+              "answer": "sombre",
+              "id": "mc:transparent-opaque",
+              "error": "notion",
+              "feedback": "Un objet transparent laisse passer la lumière : l'écran reste éclairé derrière lui. Seul un objet opaque donne une ombre bien sombre."
+            },
+            {
+              "answer": "une ombre noire",
+              "id": "mc:transparent-opaque",
+              "error": "notion",
+              "feedback": "Un objet transparent laisse passer la lumière : l'écran reste éclairé derrière lui. Seul un objet opaque donne une ombre bien sombre."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Souviens-toi de l'expérience de la balle : où était-elle quand son ombre était la plus grande ?",
+        "Une ombre, c'est une zone que la lumière n'atteint pas.",
+        "Un objet transparent laisse passer la lumière."
+      ],
+      "solution": "1. Il faut rapprocher la marionnette de la lampe : les rayons qui la frôlent s'écartent davantage avant l'écran, l'ombre portée grandit. 2. L'ombre est sombre : c'est une zone non éclairée, sa couleur ne dépend pas de celle du carton. 3. Presque rien : un objet transparent laisse passer la lumière, seul un objet opaque arrête les rayons et donne une ombre.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "de la lampe"
+              },
+              {
+                "value": "sombre"
+              },
+              {
+                "value": "presque rien"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "de l'écran"
+              },
+              {
+                "value": "sombre"
+              },
+              {
+                "value": "presque rien"
+              }
+            ]
+          },
+          "expect": "mc:ombre-pres-ecran"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "de la lampe"
+              },
+              {
+                "value": "rouge"
+              },
+              {
+                "value": "presque rien"
+              }
+            ]
+          },
+          "expect": "mc:ombre-couleur"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-ombre-taille",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "skills": [
+        "m5.proportionnalite"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ombre-meme-taille",
+        "mc:proportion-inverse"
+      ],
+      "expectedSeconds": 360,
+      "params": {
+        "h": {
+          "choice": [
+            2,
+            3,
+            4
+          ]
+        },
+        "d": {
+          "choice": [
+            10,
+            20
+          ]
+        },
+        "D": {
+          "choice": [
+            40,
+            60,
+            80
+          ]
+        }
+      },
+      "prompt": "Une petite lampe, presque ponctuelle, éclaire un carton opaque de hauteur {h} cm placé à {d} cm d'elle, parallèlement à un écran situé à {D} cm de la lampe. Les rayons partent de la lampe en ligne droite, en s'écartant : la taille de l'ombre est proportionnelle à la distance à la lampe.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de l'ombre portée sur l'écran (avec l'unité) ?",
+          "answer": "h*D/d",
+          "unit": "cm",
+          "rel": 0.01,
+          "misconceptions": [
+            {
+              "answer": "h",
+              "id": "mc:ombre-meme-taille",
+              "error": "notion",
+              "feedback": "Les rayons s'écartent en partant de la lampe : l'ombre est plus grande que l'objet. L'écran est {D/d} fois plus loin de la lampe que le carton."
+            },
+            {
+              "answer": "h*d/D",
+              "id": "mc:proportion-inverse",
+              "error": "raisonnement",
+              "prerequisite": "m5.proportionnalite",
+              "feedback": "L'ombre ne peut pas être plus petite que le carton avec une source ponctuelle : multiplie par {D} ÷ {d}, pas par {d} ÷ {D}."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "On rapproche le carton de la lampe. L'ombre grandit-elle ou rétrécit-elle ?",
+          "accept": [
+            "elle grandit",
+            "grandit",
+            "plus grande",
+            "elle devient plus grande"
+          ],
+          "misconceptions": [
+            {
+              "answer": "elle rétrécit",
+              "id": "mc:ombre-meme-taille",
+              "error": "notion",
+              "feedback": "Plus le carton est près de la lampe, plus les rayons qui frôlent ses bords s'écartent avant d'atteindre l'écran : l'ombre grandit."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "À {d} cm de la lampe, l'ombre (le carton) mesure {h} cm.",
+        "L'écran est {D/d} fois plus loin de la lampe.",
+        "Hauteur de l'ombre = {h} × {D} ÷ {d}."
+      ],
+      "solution": "Les rayons partent de la lampe et s'écartent : la taille de l'ombre est proportionnelle à la distance à la lampe. L'écran est {D/d} fois plus loin que le carton, donc l'ombre mesure {h} × {D/d} = {h*D/d} cm. Si l'on rapproche le carton de la lampe, l'ombre grandit (c'est le principe du théâtre d'ombres).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{h*D/d} cm"
+              },
+              {
+                "value": "elle grandit"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{h} cm"
+              },
+              {
+                "value": "elle grandit"
+              }
+            ]
+          },
+          "expect": "mc:ombre-meme-taille"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{h*d/D} cm"
+              },
+              {
+                "value": "elle grandit"
+              }
+            ]
+          },
+          "expect": "mc:proportion-inverse"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-eclipse",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": [
+        "mc:eclipse-ordre"
+      ],
+      "expectedSeconds": 480,
+      "prompt": "Lors d'une éclipse totale de Soleil, la Lune cache exactement le Soleil. Données : diamètre du Soleil ≈ 1 392 000 km ; diamètre de la Lune ≈ 3 474 km ; distance Terre-Soleil ≈ 150 000 000 km ; distance Terre-Lune ≈ 384 000 km.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois le diamètre du Soleil est-il plus grand que celui de la Lune ? (arrondi à l'unité)",
+          "answer": "1392000/3474",
+          "tolerance": 2,
+          "misconceptions": [
+            {
+              "answer": "3474/1392000",
+              "id": "mc:rapport-inverse",
+              "error": "calcul",
+              "feedback": "Le Soleil est plus grand : le rapport « combien de fois plus grand » est supérieur à 1. Divise le grand diamètre par le petit."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois le Soleil est-il plus loin de la Terre que la Lune ? (arrondi à l'unité)",
+          "answer": "150000000/384000",
+          "tolerance": 2
+        },
+        {
+          "type": "text",
+          "prompt": "Pendant une éclipse de Soleil, quel astre se trouve au milieu, entre les deux autres ?",
+          "accept": [
+            "la lune",
+            "lune"
+          ],
+          "misconceptions": [
+            {
+              "answer": "la terre",
+              "id": "mc:eclipse-ordre",
+              "error": "notion",
+              "feedback": "Quand la Terre est au milieu, c'est la Lune qui passe dans l'ombre de la Terre : c'est une éclipse de LUNE. Pour cacher le Soleil, la Lune doit être entre lui et nous."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique pourquoi la Lune, beaucoup plus petite que le Soleil, peut le cacher entièrement.",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Le Soleil est environ 400 fois plus grand que la Lune, mais aussi environ 400 fois plus loin",
+              "keywords": [
+                [
+                  "400",
+                  "390",
+                  "autant de fois",
+                  "plus loin"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Vus de la Terre, ils ont donc presque la même taille apparente",
+              "keywords": [
+                [
+                  "meme taille",
+                  "taille apparente",
+                  "aussi gros",
+                  "aussi grand"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "Le Soleil est environ 400 fois plus grand que la Lune, mais il est aussi environ 400 fois plus loin de nous. Vus depuis la Terre, les deux disques paraissent donc presque de la même taille, et la Lune peut couvrir exactement le Soleil.",
+            "Un objet paraît plus petit quand il est plus loin. La Lune est 400 fois plus petite mais 390 fois plus proche : les deux effets se compensent presque. C'est une coïncidence : selon la distance de la Lune, qui varie un peu, l'éclipse est totale ou laisse voir un anneau de Soleil."
+          ]
+        }
+      ],
+      "hints": [
+        "Rapport des diamètres : 1 392 000 ÷ 3 474.",
+        "Rapport des distances : 150 000 000 ÷ 384 000.",
+        "Un objet 2 fois plus grand mais 2 fois plus loin paraît de la même taille."
+      ],
+      "solution": "Diamètres : 1 392 000 ÷ 3 474 ≈ 401. Distances : 150 000 000 ÷ 384 000 ≈ 391. Le Soleil est environ 400 fois plus grand mais environ 390 fois plus loin : les deux disques paraissent presque de la même taille. Pendant une éclipse de Soleil, la Lune est entre le Soleil et la Terre ; la Terre est dans le cône d'ombre de la Lune. Comme la distance Terre-Lune varie un peu, certaines éclipses sont seulement annulaires.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "401"
+              },
+              {
+                "value": "391"
+              },
+              {
+                "value": "la Lune"
+              },
+              {
+                "text": "Le Soleil est 400 fois plus grand que la Lune mais aussi environ 390 fois plus loin, donc ils ont presque la même taille apparente vus de la Terre.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "401"
+              },
+              {
+                "value": "391"
+              },
+              {
+                "value": "la Terre"
+              },
+              {
+                "text": "Ils ont la même taille apparente."
+              }
+            ]
+          },
+          "expect": "mc:eclipse-ordre"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-fizeau",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "skills": [
+        "pc.mesure.incertitudes"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": [
+        "mc:aller-retour"
+      ],
+      "expectedSeconds": 720,
+      "prompt": "En 1849, Hippolyte Fizeau mesure pour la première fois la vitesse de la lumière sur Terre. La lumière d'une lampe passe dans un creux d'une roue dentée (720 dents et 720 creux), parcourt 8 633 m jusqu'à un miroir, revient par le même chemin et arrive de nouveau sur la roue. Si la roue tourne juste assez vite, la lumière qui revient tombe sur la dent voisine : elle est bloquée. Fizeau observe ce blocage quand la roue fait 12,6 tours par seconde.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle distance totale la lumière parcourt-elle entre son passage dans le creux et son retour sur la roue (avec l'unité) ?",
+          "answer": 17266,
+          "unit": "m",
+          "rel": 0.001,
+          "misconceptions": [
+            {
+              "answer": 8633,
+              "id": "mc:aller-retour",
+              "error": "lecture",
+              "feedback": "La lumière fait l'aller ET le retour : 2 × 8 633 m."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pendant un tour, un creux est remplacé par la dent voisine 1 440 fois (720 dents + 720 creux). Durée pour qu'une dent prenne la place du creux voisin : t = 1 ÷ (1 440 × 12,6). Calcule t (avec l'unité ; tu peux écrire par exemple 5,5×10^-5 s).",
+          "answer": "1/(1440*12.6)",
+          "unit": "s",
+          "rel": 0.02
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pendant cette durée, la lumière a fait l'aller-retour. Quelle vitesse de la lumière Fizeau obtient-il, en km/s (avec l'unité) ?",
+          "answer": "17266*1440*12.6/1000",
+          "unit": "km/s",
+          "rel": 0.02,
+          "misconceptions": [
+            {
+              "answer": "8633*1440*12.6/1000",
+              "id": "mc:aller-retour",
+              "error": "lecture",
+              "feedback": "Pendant la durée t, la lumière parcourt l'aller-retour (17 266 m), pas seulement l'aller."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La valeur actuelle est 299 792 km/s. De combien de pourcents le résultat de Fizeau s'en écarte-t-il ? (arrondi à l'unité)",
+          "answer": "(17266*1440*12.6/1000-299792)/299792*100",
+          "tolerance": 0.6
+        }
+      ],
+      "hints": [
+        "Aller + retour = 2 × 8 633 m.",
+        "1 440 × 12,6 = 18 144 : la dent remplace le creux en 1/18 144 de seconde.",
+        "v = d / t = 17 266 m ÷ t, puis convertis en km/s."
+      ],
+      "solution": "Distance : 2 × 8 633 = 17 266 m. Durée : t = 1 ÷ 18 144 ≈ 5,51 × 10⁻⁵ s. Vitesse : 17 266 ÷ 5,51 × 10⁻⁵ ≈ 3,13 × 10⁸ m/s, soit environ 313 000 km/s (Fizeau annonça environ 315 000 km/s). L'écart avec la valeur actuelle est d'environ 4 à 5 % : remarquable pour une mesure faite en 1849 avec une roue et un miroir !",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17266 m"
+              },
+              {
+                "value": "5,51×10^-5 s"
+              },
+              {
+                "value": "313000 km/s"
+              },
+              {
+                "value": "4"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "8633 m"
+              },
+              {
+                "value": "5,51×10^-5 s"
+              },
+              {
+                "value": "156600 km/s"
+              },
+              {
+                "value": "4"
+              }
+            ]
+          },
+          "expect": "mc:aller-retour"
+        }
+      ]
+    },
+    {
+      "id": "pc5-lumiere-stenope",
+      "type": "composite",
+      "skill": "pc5.signaux.lumiere",
+      "skills": [
+        "m5.proportionnalite"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": [
+        "mc:image-endroit",
+        "mc:proportion-inverse"
+      ],
+      "expectedSeconds": 540,
+      "prompt": "Une chambre noire (ou sténopé) est une boîte fermée, percée d'un tout petit trou sur une face ; la face opposée est un écran de papier calque. On vise un arbre de 6,0 m de haut, situé à 20 m du trou. La boîte mesure 10 cm du trou à l'écran.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "L'image de l'arbre sur l'écran est-elle à l'endroit ou à l'envers ?",
+          "accept": [
+            "à l'envers",
+            "a l'envers",
+            "l'envers",
+            "renversée",
+            "inversée",
+            "elle est à l'envers",
+            "elle est renversée"
+          ],
+          "misconceptions": [
+            {
+              "answer": "à l'endroit",
+              "id": "mc:image-endroit",
+              "error": "notion",
+              "feedback": "La lumière venant du HAUT de l'arbre descend vers le trou, le traverse et continue en ligne droite vers le BAS de l'écran : l'image est renversée."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de l'image sur l'écran (avec l'unité) ?",
+          "answer": 3,
+          "unit": "cm",
+          "rel": 0.02,
+          "misconceptions": [
+            {
+              "answer": 120000,
+              "id": "mc:proportion-inverse",
+              "error": "raisonnement",
+              "feedback": "L'écran est 200 fois plus près du trou que l'arbre : l'image est 200 fois plus PETITE que l'arbre. 6,0 m ÷ 200."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Que devient l'image si l'on agrandit le trou ? Explique à l'aide des rayons lumineux.",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Plus de lumière passe : l'image est plus lumineuse",
+              "keywords": [
+                [
+                  "lumineu",
+                  "plus de lumiere",
+                  "eclair"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Chaque point de l'arbre donne une tache plus large : l'image devient floue",
+              "keywords": [
+                [
+                  "flou",
+                  "tache",
+                  "net"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "Avec un trou plus grand, plus de lumière entre : l'image est plus lumineuse. Mais les rayons venant d'un même point de l'arbre passent par toute la largeur du trou et forment une tache sur l'écran au lieu d'un point : les taches se chevauchent et l'image devient floue.",
+            "L'image devient plus claire mais moins nette. Chaque point de l'arbre éclaire sur l'écran une petite tache qui a presque la taille du trou ; si le trou grandit, les taches se mélangent et l'image devient floue."
+          ]
+        }
+      ],
+      "hints": [
+        "Suis un rayon partant du sommet de l'arbre : il passe par le trou et continue tout droit.",
+        "Rapport des distances : 20 m ÷ 10 cm = 2 000 cm ÷ 10 cm = 200.",
+        "Hauteur de l'image = 600 cm ÷ 200."
+      ],
+      "solution": "Les rayons se croisent au niveau du trou en continuant en ligne droite : l'image est renversée. L'écran est 200 fois plus près du trou que l'arbre (2 000 cm contre 10 cm), donc l'image est 200 fois plus petite : 600 cm ÷ 200 = 3 cm. Un trou plus grand donne une image plus lumineuse mais plus floue.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "à l'envers"
+              },
+              {
+                "value": "3 cm"
+              },
+              {
+                "text": "L'image est plus lumineuse car plus de lumière passe, mais chaque point de l'arbre donne une tache plus large donc l'image est floue.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "à l'endroit"
+              },
+              {
+                "value": "3 cm"
+              },
+              {
+                "text": "L'image est plus lumineuse mais floue."
+              }
+            ]
+          },
+          "expect": "mc:image-endroit"
+        }
+      ]
+    }
+  ]
+}

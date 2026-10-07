@@ -1,0 +1,4114 @@
+{
+  "id": "svt5-meteo-climat",
+  "chapter": "svt5-ch-meteo",
+  "title": "Météo et climat",
+  "subject": "svt",
+  "level": "5e",
+  "skills": [
+    "svt5.terre.meteo-climat",
+    "svt5.terre.releves-moyennes",
+    "svt5.terre.zones-climatiques",
+    "svt.demarche.exploiter-donnees",
+    "svt.demarche.correlation-causalite"
+  ],
+  "status": "programme",
+  "programmes": [
+    "svt-c4-2020"
+  ],
+  "duration": 55,
+  "summary": "Distinguer la météo (le temps qu'il fait à un moment donné) du climat (statistiques sur au moins 30 ans), exploiter des relevés (moyenne, amplitude, cumul, écart à la normale) et relier les grandes zones climatiques à la latitude et à la répartition des êtres vivants. Le programme de SVT est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Même mot, deux idées",
+      "body": "Lundi, ton appli météo annonce « averses et 14 °C ». Mais tu entends aussi : « À Valcour, il pleut toute l'année et les étés sont doux. »\n\nLes deux phrases parlent du temps qu'il fait, et pourtant elles ne disent pas la même chose : l'une peut être fausse demain, l'autre reste vraie pendant des dizaines d'années. Laquelle décrit la météo, laquelle décrit le climat ?"
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : du relevé du jour au climat",
+      "demo": {
+        "items": [
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 0,
+            "y": 392,
+            "w": 800,
+            "h": 48,
+            "fill": "#bfe3a5"
+          },
+          {
+            "type": "forme",
+            "id": "pied1",
+            "shape": "rect",
+            "x": 92,
+            "y": 300,
+            "w": 6,
+            "h": 92,
+            "fill": "#64748b"
+          },
+          {
+            "type": "forme",
+            "id": "pied2",
+            "shape": "rect",
+            "x": 172,
+            "y": 300,
+            "w": 6,
+            "h": 92,
+            "fill": "#64748b"
+          },
+          {
+            "type": "forme",
+            "id": "abri",
+            "shape": "rect",
+            "x": 80,
+            "y": 210,
+            "w": 110,
+            "h": 92,
+            "fill": "#ffffff",
+            "stroke": "#64748b",
+            "width": 2.5,
+            "rx": 3
+          },
+          {
+            "type": "forme",
+            "id": "toit",
+            "shape": "polygon",
+            "x": 72,
+            "y": 186,
+            "w": 126,
+            "h": 26,
+            "points": [
+              [
+                72,
+                212
+              ],
+              [
+                135,
+                186
+              ],
+              [
+                198,
+                212
+              ]
+            ],
+            "fill": "#ffffff",
+            "stroke": "#64748b",
+            "width": 2.5
+          },
+          {
+            "type": "forme",
+            "id": "volets",
+            "shape": "path",
+            "x": 88,
+            "y": 226,
+            "w": 94,
+            "h": 54,
+            "d": "M88,226 L112,226 M158,226 L182,226 M88,244 L112,244 M158,244 L182,244 M88,262 L112,262 M158,262 L182,262 M88,280 L112,280 M158,280 L182,280",
+            "fill": "none",
+            "stroke": "#cbd5e1",
+            "width": 2
+          },
+          {
+            "type": "thermometre",
+            "id": "th",
+            "x": 135,
+            "y": 292,
+            "h": 76,
+            "value": 15,
+            "min": -10,
+            "max": 40,
+            "dx": 70
+          },
+          {
+            "type": "etiquette",
+            "id": "eAbri",
+            "x": 135,
+            "y": 150,
+            "text": "abri météo",
+            "to": [
+              135,
+              188
+            ]
+          },
+          {
+            "type": "emoji",
+            "id": "ciel",
+            "x": 236,
+            "y": 70,
+            "char": "⛅",
+            "size": 52
+          },
+          {
+            "type": "courbe",
+            "id": "gj",
+            "x": 300,
+            "y": 16,
+            "w": 484,
+            "h": 250,
+            "title": "Juillet, jour après jour (température moyenne du jour)",
+            "xRange": [
+              1,
+              31
+            ],
+            "yRange": [
+              10,
+              32
+            ],
+            "xLabel": "jour",
+            "yLabel": "θ (°C)",
+            "points": [
+              [
+                1,
+                19.5
+              ],
+              [
+                2,
+                20.2
+              ],
+              [
+                3,
+                20.5
+              ],
+              [
+                4,
+                19.4
+              ],
+              [
+                5,
+                18.1
+              ],
+              [
+                6,
+                17
+              ],
+              [
+                7,
+                17.8
+              ],
+              [
+                8,
+                19
+              ],
+              [
+                9,
+                20.4
+              ],
+              [
+                10,
+                20.6
+              ],
+              [
+                11,
+                21.3
+              ],
+              [
+                12,
+                21.1
+              ],
+              [
+                13,
+                19.8
+              ],
+              [
+                14,
+                20
+              ],
+              [
+                15,
+                20.9
+              ],
+              [
+                16,
+                21.4
+              ],
+              [
+                17,
+                22.8
+              ],
+              [
+                18,
+                25.6
+              ],
+              [
+                19,
+                27.2
+              ],
+              [
+                20,
+                29
+              ],
+              [
+                21,
+                22
+              ],
+              [
+                22,
+                19.3
+              ],
+              [
+                23,
+                18.6
+              ],
+              [
+                24,
+                19.1
+              ],
+              [
+                25,
+                19.9
+              ],
+              [
+                26,
+                20.3
+              ],
+              [
+                27,
+                20.8
+              ],
+              [
+                28,
+                19.6
+              ],
+              [
+                29,
+                18.7
+              ],
+              [
+                30,
+                19.2
+              ],
+              [
+                31,
+                19.5
+              ]
+            ],
+            "progress": 0,
+            "color": "#e11d48",
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "ePluie",
+            "x": 482,
+            "y": 214,
+            "text": "pluie : 17 °C",
+            "to": [
+              415.33,
+              180
+            ],
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eOrage",
+            "x": 520,
+            "y": 84,
+            "text": "orage : 29 °C",
+            "to": [
+              615.07,
+              84
+            ],
+            "hidden": true
+          },
+          {
+            "type": "courbe",
+            "id": "ga",
+            "x": 300,
+            "y": 16,
+            "w": 484,
+            "h": 250,
+            "title": "Moyenne de juillet, année après année",
+            "xRange": [
+              0,
+              7
+            ],
+            "yRange": [
+              16,
+              24
+            ],
+            "xLabel": "année",
+            "yLabel": "θ (°C)",
+            "points": [
+              [
+                1,
+                19.8
+              ],
+              [
+                2,
+                21.4
+              ],
+              [
+                3,
+                20.6
+              ],
+              [
+                4,
+                18.2
+              ],
+              [
+                5,
+                20
+              ]
+            ],
+            "progress": 0,
+            "color": "#2563eb",
+            "hidden": true
+          },
+          {
+            "type": "fleche",
+            "id": "ecart",
+            "from": [
+              710.86,
+              137
+            ],
+            "to": [
+              710.86,
+              84.2
+            ],
+            "color": "#e11d48",
+            "progress": 0,
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eEcart",
+            "x": 575,
+            "y": 96,
+            "text": "écart : +2,4 °C",
+            "to": [
+              706.86,
+              110.6
+            ],
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tab",
+            "x": 20,
+            "y": 24,
+            "w": 270,
+            "title": "Moyennes de juillet",
+            "head": [
+              "",
+              "θ (°C)"
+            ],
+            "rows": [
+              [
+                "année 1",
+                "19,8"
+              ],
+              [
+                "année 2",
+                "21,4"
+              ],
+              [
+                "année 3",
+                "20,6"
+              ],
+              [
+                "année 4",
+                "18,2"
+              ],
+              [
+                "année 5",
+                "20,0"
+              ],
+              [
+                "moyenne des 5",
+                "20,0"
+              ],
+              [
+                "normale (30 ans)",
+                "20,5"
+              ],
+              [
+                "cette année",
+                "22,9"
+              ],
+              [
+                "écart à la normale",
+                "+2,4"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Un relevé du jour",
+            "text": "Une station météorologique de Valcour mesure chaque jour la température sous abri. Aujourd'hui, le thermomètre indique 24 °C : c'est un relevé précis, pris à un moment donné. Il décrit le temps qu'il fait, pas le climat.",
+            "duration": 3,
+            "do": [
+              {
+                "id": "th",
+                "to": {
+                  "value": 24
+                },
+                "at": 0,
+                "dur": 2.5
+              }
+            ],
+            "focus": [
+              "th",
+              "abri"
+            ]
+          },
+          {
+            "title": "Prédire",
+            "ask": {
+              "question": "Avec cette seule valeur, peut-on décrire le climat de Valcour ?",
+              "choices": [
+                "Oui, 24 °C suffit.",
+                "Non : il faut des relevés répétés pendant de nombreuses années.",
+                "Oui, si on ajoute la valeur de demain."
+              ],
+              "answer": 1,
+              "explain": "Une valeur isolée décrit le temps qu'il fait à un instant. Le climat se décrit avec des statistiques calculées sur de nombreuses années."
+            },
+            "focus": [
+              "th"
+            ]
+          },
+          {
+            "title": "Un mois entier",
+            "text": "On relève la température de chaque jour de juillet : 17 °C un jour de pluie, 29 °C un jour d'orage chaud. La moyenne du mois est de 20,6 °C. C'est un meilleur résumé qu'un seul jour, mais ce n'est encore qu'un juillet.",
+            "duration": 6.2,
+            "show": [
+              "gj"
+            ],
+            "do": [
+              {
+                "id": "gj",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0,
+                "dur": 5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "th",
+                "set": {
+                  "value": 19.5
+                },
+                "at": 0
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.2
+                },
+                "at": 0,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.5
+                },
+                "at": 0.17,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.4
+                },
+                "at": 0.33,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 18.1
+                },
+                "at": 0.5,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 17
+                },
+                "at": 0.67,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 17.8
+                },
+                "at": 0.83,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19
+                },
+                "at": 1,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.4
+                },
+                "at": 1.17,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.6
+                },
+                "at": 1.33,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 21.3
+                },
+                "at": 1.5,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 21.1
+                },
+                "at": 1.67,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.8
+                },
+                "at": 1.83,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20
+                },
+                "at": 2,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.9
+                },
+                "at": 2.17,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 21.4
+                },
+                "at": 2.33,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 22.8
+                },
+                "at": 2.5,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 25.6
+                },
+                "at": 2.67,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 27.2
+                },
+                "at": 2.83,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 29
+                },
+                "at": 3,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 22
+                },
+                "at": 3.17,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.3
+                },
+                "at": 3.33,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 18.6
+                },
+                "at": 3.5,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.1
+                },
+                "at": 3.67,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.9
+                },
+                "at": 3.83,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.3
+                },
+                "at": 4,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 20.8
+                },
+                "at": 4.17,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.6
+                },
+                "at": 4.33,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 18.7
+                },
+                "at": 4.5,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.2
+                },
+                "at": 4.67,
+                "dur": 0.17
+              },
+              {
+                "id": "th",
+                "to": {
+                  "value": 19.5
+                },
+                "at": 4.83,
+                "dur": 0.17
+              },
+              {
+                "id": "ePluie",
+                "set": {
+                  "hidden": false
+                },
+                "at": 0.9
+              },
+              {
+                "id": "eOrage",
+                "set": {
+                  "hidden": false
+                },
+                "at": 3.2
+              },
+              {
+                "id": "gj",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        1,
+                        20.6
+                      ],
+                      [
+                        31,
+                        20.6
+                      ]
+                    ],
+                    "label": "moyenne du mois : 20,6 °C"
+                  }
+                },
+                "at": 5.2
+              }
+            ],
+            "focus": [
+              "gj"
+            ]
+          },
+          {
+            "title": "Cinq années de juillet",
+            "text": "On recommence les années suivantes. Les moyennes de juillet sont 19,8 °C, 21,4 °C, 20,6 °C, 18,2 °C et 20,0 °C. D'une année à l'autre, elles changent : un juillet isolé peut être plus frais ou plus chaud que d'habitude.",
+            "duration": 5.6,
+            "hide": [
+              "pied1",
+              "pied2",
+              "abri",
+              "toit",
+              "volets",
+              "th",
+              "eAbri",
+              "ciel",
+              "gj",
+              "ePluie",
+              "eOrage"
+            ],
+            "show": [
+              "tab",
+              "ga"
+            ],
+            "do": [
+              {
+                "id": "ga",
+                "to": {
+                  "progress": 0.7142857142857143
+                },
+                "at": 0,
+                "dur": 5,
+                "ease": "lineaire"
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 1
+                },
+                "at": 1
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 2
+                },
+                "at": 2
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 3
+                },
+                "at": 3
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 4
+                },
+                "at": 4
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 5
+                },
+                "at": 5
+              }
+            ],
+            "focus": [
+              "ga"
+            ]
+          },
+          {
+            "title": "La moyenne et la normale",
+            "text": "La moyenne des cinq : (19,8 + 21,4 + 20,6 + 18,2 + 20,0) ÷ 5 = 20,0 °C. Les écarts se compensent. Les météorologues retiennent 30 années de relevés pour calculer la « normale » de chaque mois. À Valcour, la normale de juillet vaut 20,5 °C : notre moyenne sur cinq ans en est déjà proche.",
+            "duration": 3.5,
+            "do": [
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 6
+                },
+                "at": 0.5
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 7
+                },
+                "at": 2.2
+              },
+              {
+                "id": "ga",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        20.5
+                      ],
+                      [
+                        7,
+                        20.5
+                      ]
+                    ],
+                    "label": "normale (30 ans) : 20,5 °C"
+                  }
+                },
+                "at": 2.2
+              }
+            ],
+            "focus": [
+              "tab"
+            ]
+          },
+          {
+            "title": "Un écart à la normale",
+            "text": "Cette année, juillet est à 22,9 °C. L'écart à la normale est 22,9 − 20,5 = +2,4 °C : ce juillet est plus chaud que d'habitude. Est-ce que, pour autant, le climat de Valcour vient de changer ?",
+            "duration": 3.8,
+            "show": [
+              "ecart"
+            ],
+            "do": [
+              {
+                "id": "ga",
+                "set": {
+                  "points": [
+                    [
+                      1,
+                      19.8
+                    ],
+                    [
+                      2,
+                      21.4
+                    ],
+                    [
+                      3,
+                      20.6
+                    ],
+                    [
+                      4,
+                      18.2
+                    ],
+                    [
+                      5,
+                      20
+                    ],
+                    [
+                      6,
+                      22.9
+                    ]
+                  ]
+                }
+              },
+              {
+                "id": "ga",
+                "to": {
+                  "progress": 0.8571428571428571
+                },
+                "at": 0,
+                "dur": 1.4,
+                "ease": "lineaire"
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 8
+                },
+                "at": 1.4
+              },
+              {
+                "id": "ecart",
+                "to": {
+                  "progress": 1
+                },
+                "at": 1.6,
+                "dur": 1
+              },
+              {
+                "id": "eEcart",
+                "set": {
+                  "hidden": false
+                },
+                "at": 2.6
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 9
+                },
+                "at": 2.6
+              }
+            ],
+            "focus": [
+              "ga"
+            ]
+          },
+          {
+            "title": "Prédire",
+            "ask": {
+              "question": "Un seul juillet plus chaud que la normale change-t-il le climat ?",
+              "choices": [
+                "Oui, immédiatement.",
+                "Non : c'est un événement météo, le climat se juge sur de longues durées.",
+                "Oui, dès que la température dépasse 20 °C."
+              ],
+              "answer": 1,
+              "explain": "Un écart isolé est un événement météo. Si, pendant des décennies, de nombreux juillets dépassaient la normale, alors la moyenne sur 30 ans changerait : ce serait un changement de climat."
+            },
+            "focus": [
+              "ga"
+            ]
+          }
+        ],
+        "conclusion": "La météo, c'est la valeur du jour ; le climat, ce sont les moyennes et la fréquence de ces valeurs sur au moins **30 ans**. Pour décrire un climat, il faut beaucoup de mesures répétées longtemps."
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🌦️",
+          "title": "La météo : l'instant",
+          "body": "La **météo** décrit l'état de l'atmosphère en un lieu et à un moment donnés : température, pluie, vent, nuages, pression. Elle change d'une heure à l'autre. Le vent souffle des hautes pressions (anticyclone, souvent beau temps) vers les basses pressions (dépression, souvent temps perturbé).",
+          "example": "« Demain, averses et 14 °C à Valcour » : c'est de la météo."
+        },
+        {
+          "emoji": "📅",
+          "title": "Le climat : l'habitude",
+          "body": "Le **climat** d'un lieu regroupe ses conditions météorologiques habituelles. On le décrit avec des statistiques (moyennes, extrêmes, fréquences) calculées sur au moins **30 ans**. Une tempête ou un hiver froid sont des événements météo : ils ne changent pas le climat à eux seuls.",
+          "reveal": {
+            "question": "Il neige en avril : le climat a-t-il changé ?",
+            "answer": "Non : un événement isolé n'est pas le climat. Il faudrait comparer les mois d'avril de nombreuses années."
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Mesurer et calculer",
+          "body": "Une station mesure la température (en °C), les précipitations (1 mm = 1 litre par m²), le vent (km/h) et la pression (hPa). La température moyenne du jour s'estime par (Tmin + Tmax) ÷ 2. Les précipitations se **cumulent** : on additionne.",
+          "figure": {
+            "alt": "Tableau des instruments de mesure météorologiques",
+            "w": 520,
+            "h": 210,
+            "items": [
+              {
+                "type": "table",
+                "head": [
+                  "Instrument",
+                  "Grandeur mesurée",
+                  "Unité"
+                ],
+                "rows": [
+                  [
+                    "Thermomètre sous abri",
+                    "Température de l'air",
+                    "°C"
+                  ],
+                  [
+                    "Pluviomètre",
+                    "Précipitations",
+                    "mm"
+                  ],
+                  [
+                    "Anémomètre",
+                    "Vitesse du vent",
+                    "km/h"
+                  ],
+                  [
+                    "Baromètre",
+                    "Pression atmosphérique",
+                    "hPa"
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📊",
+          "title": "Normale, écart, amplitude",
+          "body": "L'**amplitude** est l'écart entre la valeur la plus haute et la plus basse. L'**écart à la normale** est : valeur observée − moyenne sur 30 ans. Positif : plus chaud que d'habitude ; négatif : plus frais. Un **diagramme climatique** montre mois par mois la température (courbe) et la pluie (barres)."
+        },
+        {
+          "emoji": "🌍",
+          "title": "Les zones climatiques",
+          "body": "À l'équateur, les rayons du Soleil arrivent presque à la verticale : l'énergie est concentrée. Près des pôles, ils sont obliques : la même énergie se répartit sur une plus grande surface. D'où une zone **chaude**, des zones **tempérées** et des zones **froides**. L'altitude (environ −0,6 °C par 100 m) et l'océan modifient ce schéma.",
+          "reveal": {
+            "question": "Pourquoi trouve-t-on de la neige sur de très hautes montagnes proches de l'équateur ?",
+            "answer": "L'air se refroidit avec l'altitude, d'environ 0,6 °C tous les 100 m : à très haute altitude, il fait froid même à l'équateur."
+          }
+        },
+        {
+          "emoji": "🦒",
+          "title": "Climat, faune et flore",
+          "body": "Les êtres vivants sont adaptés au climat : forêt dense toujours verte près de l'équateur, savane (herbes, girafes), forêts de feuillus qui perdent leurs feuilles en zone tempérée, toundra (mousses, lichens) et ours blanc près du pôle Nord. Quand le climat change, la répartition des espèces change aussi."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "À Valcour, un jour d'avril, Tmin = 6 °C et Tmax = 16 °C. Quelle est la température moyenne du jour ? Quelle est l'amplitude ?",
+          "math": ""
+        },
+        {
+          "text": "Moyenne du jour : on additionne la plus basse et la plus haute température, puis on divise par 2.",
+          "math": "(6 + 16) ÷ 2 = 11 °C"
+        },
+        {
+          "text": "Amplitude : écart entre la valeur la plus haute et la plus basse.",
+          "math": "16 − 6 = 10 °C"
+        },
+        {
+          "text": "Ce mois d'avril, la moyenne mensuelle est de 12,5 °C. La normale d'avril (moyenne sur 30 ans) est de 11,5 °C. Écart = valeur observée − normale.",
+          "math": "12,5 − 11,5 = +1,0 °C"
+        },
+        {
+          "text": "Conclusion : cet avril a été plus chaud que la normale de 1 °C. C'est un écart météo : un seul mois ne suffit pas pour dire que le climat a changé.",
+          "math": ""
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "svt5-meteo-climat-tri",
+        "svt5-meteo-climat-releves",
+        "svt5-meteo-climat-ecarts",
+        "svt5-meteo-climat-surligner",
+        "svt5-meteo-climat-zones",
+        "svt5-meteo-climat-ocean"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": [
+        "svt5-meteo-climat-expliquer"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Le climat de Valcour",
+      "body": "Présente le climat de Valcour à de nouveaux habitants à partir de ses normales mensuelles.",
+      "exercises": [
+        "svt5-meteo-climat-diagramme"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** La **météo** décrit le temps qu'il fait à un moment donné ; le **climat** décrit les conditions habituelles d'un lieu, calculées sur au moins **30 ans**.\n\n- **« Il neige en avril, le climat a changé. »** Non : c'est un événement météo isolé.\n- **« Moyenne = somme. »** Faux : on divise la somme par le nombre de valeurs. Pour un cumul, on additionne sans diviser.\n- **« Il fait chaud à l'équateur parce que la Terre est plus proche du Soleil. »** Non : les rayons y arrivent presque à la verticale."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours une question météo ou climat : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Calculer une moyenne et des écarts sur une série de dix années, puis tracer des points de la courbe de température.",
+      "exercises": [
+        "svt5-meteo-climat-normale",
+        "svt5-meteo-climat-courbe"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : l'effet de l'altitude sur la température, et pourquoi un hiver froid ne contredit pas une hausse de la moyenne sur 30 ans.",
+      "exercises": [
+        "svt5-meteo-climat-altitude",
+        "svt5-meteo-climat-hiver"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "svt5-meteo-climat-tri",
+      "type": "categorize",
+      "skill": "svt5.terre.meteo-climat",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:evenement-extreme-climat",
+        "mc:prevision-climat",
+        "mc:saison-meteo"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Chaque phrase décrit-elle la **météo** (le temps qu'il fait à un moment donné) ou le **climat** (les conditions habituelles d'un lieu) ?",
+      "categories": [
+        {
+          "id": "meteo",
+          "label": "Météo"
+        },
+        {
+          "id": "climat",
+          "label": "Climat"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Ce matin, il y a du brouillard et 3 °C.",
+          "category": "meteo"
+        },
+        {
+          "id": "i2",
+          "label": "À Valcour, il tombe en moyenne 680 mm de pluie par an (moyenne sur 30 ans).",
+          "category": "climat"
+        },
+        {
+          "id": "i3",
+          "label": "Une tempête a provoqué des rafales à 110 km/h cette nuit sur la côte.",
+          "category": "meteo"
+        },
+        {
+          "id": "i4",
+          "label": "En Sibérie, les hivers sont longs et très froids.",
+          "category": "climat"
+        },
+        {
+          "id": "i5",
+          "label": "Demain, il y aura des averses l'après-midi et 18 °C.",
+          "category": "meteo"
+        },
+        {
+          "id": "i6",
+          "label": "Dans la forêt équatoriale, il fait chaud et humide toute l'année.",
+          "category": "climat"
+        },
+        {
+          "id": "i7",
+          "label": "Le 14 juillet dernier, la température a atteint 36 °C.",
+          "category": "meteo"
+        },
+        {
+          "id": "i8",
+          "label": "Dans le sud de la France, les étés sont chauds et secs.",
+          "category": "climat"
+        },
+        {
+          "id": "i9",
+          "label": "Une vague de froid a touché la région la semaine dernière.",
+          "category": "meteo"
+        },
+        {
+          "id": "i10",
+          "label": "En moyenne sur 30 ans, janvier est le mois le plus froid de Valcour.",
+          "category": "climat"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "i3",
+          "category": "climat",
+          "id": "mc:evenement-extreme-climat",
+          "error": "notion",
+          "feedback": "Une tempête, même violente, est un événement qui se produit à un moment précis : c'est de la météo. Le climat décrit ce qui est habituel sur de nombreuses années."
+        },
+        {
+          "item": "i9",
+          "category": "climat",
+          "id": "mc:evenement-extreme-climat",
+          "error": "notion",
+          "feedback": "Une vague de froid dure quelques jours : c'est un événement météo. Le climat se calcule sur au moins 30 ans."
+        },
+        {
+          "item": "i5",
+          "category": "climat",
+          "id": "mc:prevision-climat",
+          "error": "notion",
+          "feedback": "Une prévision pour demain annonce le temps qu'il fera bientôt : c'est de la météo. Le climat ne se prévoit pas jour par jour : il décrit les habitudes d'un lieu."
+        },
+        {
+          "item": "i8",
+          "category": "meteo",
+          "id": "mc:saison-meteo",
+          "error": "notion",
+          "feedback": "« Les étés sont chauds et secs » est vrai année après année : c'est une habitude du lieu, donc le climat. La météo, elle, parle d'un jour ou d'une semaine précise."
+        }
+      ],
+      "hints": [
+        "Cherche des mots comme « ce matin », « demain », « la semaine dernière » : ils indiquent un moment précis.",
+        "Les mots « en moyenne », « les étés », « toute l'année » décrivent des habitudes sur de nombreuses années."
+      ],
+      "solution": "Météo (moment précis) : brouillard de ce matin, tempête de cette nuit, prévision de demain, 36 °C du 14 juillet, vague de froid de la semaine dernière. Climat (habitudes sur de longues durées) : 680 mm par an en moyenne, hivers sibériens, forêt équatoriale chaude et humide, étés du Sud, janvier le plus froid sur 30 ans.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "i1": "meteo",
+              "i2": "climat",
+              "i3": "meteo",
+              "i4": "climat",
+              "i5": "meteo",
+              "i6": "climat",
+              "i7": "meteo",
+              "i8": "climat",
+              "i9": "meteo",
+              "i10": "climat"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "meteo",
+              "i2": "climat",
+              "i3": "climat",
+              "i4": "climat",
+              "i5": "meteo",
+              "i6": "climat",
+              "i7": "meteo",
+              "i8": "climat",
+              "i9": "meteo",
+              "i10": "climat"
+            }
+          },
+          "expect": "mc:evenement-extreme-climat"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "meteo",
+              "i2": "climat",
+              "i3": "meteo",
+              "i4": "climat",
+              "i5": "meteo",
+              "i6": "climat",
+              "i7": "meteo",
+              "i8": "climat",
+              "i9": "climat",
+              "i10": "climat"
+            }
+          },
+          "expect": "mc:evenement-extreme-climat"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "meteo",
+              "i2": "climat",
+              "i3": "meteo",
+              "i4": "climat",
+              "i5": "climat",
+              "i6": "climat",
+              "i7": "meteo",
+              "i8": "climat",
+              "i9": "meteo",
+              "i10": "climat"
+            }
+          },
+          "expect": "mc:prevision-climat"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "meteo",
+              "i2": "climat",
+              "i3": "meteo",
+              "i4": "climat",
+              "i5": "meteo",
+              "i6": "climat",
+              "i7": "meteo",
+              "i8": "meteo",
+              "i9": "meteo",
+              "i10": "climat"
+            }
+          },
+          "expect": "mc:saison-meteo"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-releves",
+      "type": "composite",
+      "skill": "svt5.terre.releves-moyennes",
+      "skills": [
+        "svt5.terre.meteo-climat"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:amplitude-moyenne",
+        "mc:moyenne-somme",
+        "mc:ecart-signe"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "tn": {
+          "int": [
+            3,
+            9
+          ]
+        },
+        "tx": {
+          "int": [
+            14,
+            24
+          ]
+        }
+      },
+      "constraints": [
+        "tx != 3*tn"
+      ],
+      "prompt": "À Valcour, une station météorologique relève chaque jour la température la plus basse (Tmin) et la plus haute (Tmax). On veut passer du relevé du jour à la description du climat.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Un jour de printemps, le thermomètre indique {tn} °C au plus bas et {tx} °C au plus haut. Quelle est la température moyenne du jour, calculée par (Tmin + Tmax) ÷ 2 ? (en °C)",
+          "answer": "(tn+tx)/2",
+          "misconceptions": [
+            {
+              "answer": "tx-tn",
+              "id": "mc:amplitude-moyenne",
+              "error": "notion",
+              "feedback": "Tu as calculé l'amplitude thermique (l'écart entre la valeur la plus haute et la plus basse). La moyenne se calcule en additionnant Tmin et Tmax, puis en divisant par 2."
+            },
+            {
+              "answer": "tn+tx",
+              "id": "mc:moyenne-somme",
+              "error": "methode",
+              "feedback": "Tu as additionné Tmin et Tmax : il faut ensuite diviser par 2 pour obtenir la moyenne."
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "prompt": "Températures moyennes de juillet à Valcour sur cinq années consécutives : 19,8 °C ; 21,4 °C ; 20,6 °C ; 18,2 °C ; 20,0 °C. Complète le tableau (nombres seuls, en °C ; un écart peut être négatif).",
+          "columns": [
+            "Grandeur",
+            "Valeur (°C)"
+          ],
+          "rows": [
+            [
+              "Moyenne des cinq juillets",
+              "?r0c1"
+            ],
+            [
+              "Écart du 4e juillet (18,2 °C) à cette moyenne",
+              "?r1c1"
+            ],
+            [
+              "Écart entre le juillet le plus chaud et le plus frais",
+              "?r2c1"
+            ]
+          ],
+          "cells": {
+            "r0c1": {
+              "answer": 20,
+              "misconceptions": [
+                {
+                  "answer": 100,
+                  "id": "mc:moyenne-somme",
+                  "error": "methode",
+                  "feedback": "100 est la somme des cinq valeurs : il faut la diviser par 5 pour obtenir la moyenne."
+                }
+              ]
+            },
+            "r1c1": {
+              "answer": -1.8,
+              "misconceptions": [
+                {
+                  "answer": 1.8,
+                  "id": "mc:ecart-signe",
+                  "error": "signe",
+                  "feedback": "Écart = valeur observée − moyenne. Ici 18,2 est plus petit que 20,0 : l'écart est négatif (juillet plus frais que la moyenne)."
+                }
+              ]
+            },
+            "r2c1": {
+              "answer": 3.2
+            }
+          }
+        },
+        {
+          "type": "order",
+          "prompt": "Remets dans l'ordre la démarche qui permet de décrire le climat d'un lieu.",
+          "orderLabel": "dans l'ordre de la démarche",
+          "items": [
+            {
+              "id": "o1",
+              "label": "Relever chaque jour la température et les précipitations avec les instruments de la station."
+            },
+            {
+              "id": "o2",
+              "label": "Calculer, pour chaque année, les moyennes mensuelles."
+            },
+            {
+              "id": "o3",
+              "label": "Répéter les relevés pendant au moins 30 ans."
+            },
+            {
+              "id": "o4",
+              "label": "Calculer, pour chaque mois, la moyenne de ces 30 années (la « normale »)."
+            },
+            {
+              "id": "o5",
+              "label": "Tracer le diagramme climatique et décrire le climat (chaud ou froid, sec ou humide)."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Moyenne du jour : on additionne la plus basse et la plus haute température, puis on divise par 2.",
+        "Moyenne de cinq valeurs : on additionne les cinq, puis on divise par 5. Un écart = valeur observée − moyenne.",
+        "On ne décrit pas un climat avec un seul relevé : il faut d'abord mesurer, puis calculer, puis répéter longtemps."
+      ],
+      "solution": "Moyenne du jour : (Tmin + Tmax) ÷ 2. Moyenne des cinq juillets : (19,8 + 21,4 + 20,6 + 18,2 + 20,0) ÷ 5 = 100,0 ÷ 5 = 20,0 °C. Écart du 4e juillet : 18,2 − 20,0 = −1,8 °C. Écart extrême : 21,4 − 18,2 = 3,2 °C. Démarche : relever, calculer les moyennes mensuelles, répéter sur 30 ans, calculer la normale de chaque mois, tracer le diagramme.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(tn+tx)/2}"
+              },
+              {
+                "cells": {
+                  "r0c1": "20",
+                  "r1c1": "-1,8",
+                  "r2c1": "3,2"
+                }
+              },
+              {
+                "order": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5"
+                ]
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{tx-tn}"
+              },
+              {
+                "cells": {
+                  "r0c1": "20",
+                  "r1c1": "-1,8",
+                  "r2c1": "3,2"
+                }
+              },
+              {
+                "order": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5"
+                ]
+              }
+            ]
+          },
+          "expect": "mc:amplitude-moyenne"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{tn+tx}"
+              },
+              {
+                "cells": {
+                  "r0c1": "20",
+                  "r1c1": "-1,8",
+                  "r2c1": "3,2"
+                }
+              },
+              {
+                "order": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5"
+                ]
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(tn+tx)/2}"
+              },
+              {
+                "cells": {
+                  "r0c1": "100",
+                  "r1c1": "-1,8",
+                  "r2c1": "3,2"
+                }
+              },
+              {
+                "order": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5"
+                ]
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(tn+tx)/2}"
+              },
+              {
+                "cells": {
+                  "r0c1": "20",
+                  "r1c1": "1,8",
+                  "r2c1": "3,2"
+                }
+              },
+              {
+                "order": [
+                  "o1",
+                  "o2",
+                  "o3",
+                  "o4",
+                  "o5"
+                ]
+              }
+            ]
+          },
+          "expect": "mc:ecart-signe"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-surligner",
+      "type": "highlight",
+      "skill": "svt5.terre.meteo-climat",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:evenement-extreme-climat",
+        "mc:valeur-instant-climat"
+      ],
+      "expectedSeconds": 90,
+      "instruction": "Surligne les informations qui décrivent le CLIMAT de Valcour (et pas la météo du moment).",
+      "prompt": "Lis le texte et surligne les informations qui décrivent le **climat** de Valcour, pas la météo du moment.",
+      "text": "Hier soir, un orage violent a éclaté sur Valcour. Cette ville a un [climat tempéré] : les [hivers y sont doux et humides] et il y tombe [en moyenne 680 mm de pluie par an]. Ce matin, le thermomètre affichait 2 °C et le ciel était couvert.",
+      "misconceptions": [
+        {
+          "word": "orage",
+          "id": "mc:evenement-extreme-climat",
+          "error": "notion",
+          "feedback": "Un orage, même violent, se produit à un moment précis : c'est un phénomène météo. Le climat décrit ce qui est habituel d'une année sur l'autre."
+        },
+        {
+          "word": "thermomètre",
+          "id": "mc:valeur-instant-climat",
+          "error": "notion",
+          "feedback": "Une mesure faite ce matin (2 °C) est un relevé du moment : c'est de la météo. Le climat est une moyenne calculée sur de nombreuses années."
+        }
+      ],
+      "hints": [
+        "Le climat décrit les habitudes du lieu : des moyennes, des saisons, « en général ».",
+        "Les mots « hier soir » et « ce matin » donnent des moments précis : c'est de la météo."
+      ],
+      "solution": "Climat : « climat tempéré », « hivers doux et humides », « en moyenne 680 mm de pluie par an ». Météo : l'orage d'hier soir, les 2 °C et le ciel couvert de ce matin.",
+      "selfTest": [
+        {
+          "response": {
+            "selected": [
+              13,
+              15,
+              20
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "selected": [
+              13,
+              15,
+              20,
+              3
+            ]
+          },
+          "expect": "mc:evenement-extreme-climat"
+        },
+        {
+          "response": {
+            "selected": [
+              13,
+              15,
+              20,
+              24
+            ]
+          },
+          "expect": "mc:valeur-instant-climat"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-zones",
+      "type": "composite",
+      "skill": "svt5.terre.zones-climatiques",
+      "skills": [
+        "svt5.terre.meteo-climat"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:flore-adaptee-climat",
+        "mc:distance-soleil"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Les êtres vivants sont adaptés au climat du lieu où ils vivent, et le climat dépend d'abord de la latitude.",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Dans quelle grande zone climatique vit chaque ensemble d'êtres vivants ?",
+          "categories": [
+            {
+              "id": "chaude",
+              "label": "Zone chaude (équateur et tropiques)"
+            },
+            {
+              "id": "temperee",
+              "label": "Zone tempérée"
+            },
+            {
+              "id": "froide",
+              "label": "Zone froide (près des pôles)"
+            }
+          ],
+          "items": [
+            {
+              "id": "z1",
+              "label": "Forêt dense toujours verte, singes et toucans (Amazonie)",
+              "category": "chaude"
+            },
+            {
+              "id": "z2",
+              "label": "Savane : herbes hautes, acacias, girafes",
+              "category": "chaude"
+            },
+            {
+              "id": "z3",
+              "label": "Forêt de chênes et de hêtres qui perdent leurs feuilles à l'automne",
+              "category": "temperee"
+            },
+            {
+              "id": "z4",
+              "label": "Renard roux, sanglier et cerf des forêts d'Europe",
+              "category": "temperee"
+            },
+            {
+              "id": "z5",
+              "label": "Ours blanc sur la banquise",
+              "category": "froide"
+            },
+            {
+              "id": "z6",
+              "label": "Toundra : mousses, lichens et arbustes nains",
+              "category": "froide"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "z3",
+              "category": "chaude",
+              "id": "mc:flore-adaptee-climat",
+              "error": "notion",
+              "feedback": "Perdre ses feuilles à l'automne est une adaptation aux hivers froids : ces forêts de feuillus se trouvent en zone tempérée. Près de l'équateur, les arbres restent verts toute l'année."
+            },
+            {
+              "item": "z2",
+              "category": "temperee",
+              "id": "mc:flore-adaptee-climat",
+              "error": "notion",
+              "feedback": "La savane est un milieu chaud toute l'année, avec une saison sèche marquée : elle se trouve en zone chaude, de part et d'autre de l'équateur."
+            }
+          ]
+        },
+        {
+          "type": "match",
+          "prompt": "Associe chaque lieu à l'explication de son climat. Attention : une explication est fausse.",
+          "leftTitle": "Lieu",
+          "rightTitle": "Explication",
+          "left": [
+            {
+              "id": "l1",
+              "label": "À l'équateur"
+            },
+            {
+              "id": "l2",
+              "label": "Près des pôles"
+            },
+            {
+              "id": "l3",
+              "label": "En haute montagne"
+            },
+            {
+              "id": "l4",
+              "label": "Au bord de l'océan"
+            }
+          ],
+          "right": [
+            {
+              "id": "r1",
+              "label": "Les rayons du Soleil arrivent presque à la verticale : l'énergie est concentrée sur une petite surface"
+            },
+            {
+              "id": "r2",
+              "label": "Les rayons arrivent très obliques : la même énergie est répartie sur une grande surface"
+            },
+            {
+              "id": "r3",
+              "label": "L'air est plus froid : environ 0,6 °C de moins tous les 100 m d'altitude"
+            },
+            {
+              "id": "r4",
+              "label": "L'eau chauffe et refroidit lentement : les écarts de température sont plus faibles"
+            },
+            {
+              "id": "r5",
+              "label": "La Terre y est beaucoup plus proche du Soleil que partout ailleurs"
+            }
+          ],
+          "pairs": {
+            "l1": "r1",
+            "l2": "r2",
+            "l3": "r3",
+            "l4": "r4"
+          },
+          "misconceptions": [
+            {
+              "pair": [
+                "l1",
+                "r5"
+              ],
+              "id": "mc:distance-soleil",
+              "error": "notion",
+              "feedback": "La distance Terre-Soleil ne change pas les climats d'un lieu à l'autre : toute la Terre est à peu près à la même distance du Soleil. À l'équateur, il fait chaud parce que les rayons arrivent presque à la verticale."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pense aux feuilles qui tombent : de quel climat est-ce une adaptation ?",
+        "Plus les rayons du Soleil sont obliques, moins un même sol reçoit d'énergie.",
+        "Une explication est fausse : celle qui parle de distance entre la Terre et le Soleil."
+      ],
+      "solution": "Zone chaude : forêt équatoriale et savane. Zone tempérée : forêt de feuillus, animaux des forêts d'Europe. Zone froide : ours blanc, toundra. À l'équateur : rayons presque verticaux ; près des pôles : rayons obliques ; en montagne : air plus froid ; près de l'océan : écarts plus faibles. La distance Terre-Soleil n'explique pas les zones climatiques.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "z1": "chaude",
+                  "z2": "chaude",
+                  "z3": "temperee",
+                  "z4": "temperee",
+                  "z5": "froide",
+                  "z6": "froide"
+                }
+              },
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "z1": "chaude",
+                  "z2": "chaude",
+                  "z3": "chaude",
+                  "z4": "temperee",
+                  "z5": "froide",
+                  "z6": "froide"
+                }
+              },
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              }
+            ]
+          },
+          "expect": "mc:flore-adaptee-climat"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "z1": "chaude",
+                  "z2": "temperee",
+                  "z3": "temperee",
+                  "z4": "temperee",
+                  "z5": "froide",
+                  "z6": "froide"
+                }
+              },
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              }
+            ]
+          },
+          "expect": "mc:flore-adaptee-climat"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "z1": "chaude",
+                  "z2": "chaude",
+                  "z3": "temperee",
+                  "z4": "temperee",
+                  "z5": "froide",
+                  "z6": "froide"
+                }
+              },
+              {
+                "pairs": {
+                  "l1": "r5",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              }
+            ]
+          },
+          "expect": "mc:distance-soleil"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-expliquer",
+      "type": "open",
+      "skill": "svt5.terre.meteo-climat",
+      "skills": [
+        "svt5.terre.releves-moyennes"
+      ],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 480,
+      "minWords": 40,
+      "prompt": "Un camarade affirme : « Il a neigé en avril à Valcour, donc le climat de Valcour n'est plus tempéré ! » Rédige une réponse qui explique son erreur.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je distingue un événement météo (la neige d'avril) du climat",
+          "keywords": [
+            [
+              "meteo",
+              "evenement",
+              "ponctuel",
+              "isole",
+              "un jour"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je précise que le climat se calcule à partir de relevés sur de nombreuses années (au moins 30 ans)",
+          "keywords": [
+            [
+              "30 ans",
+              "trente",
+              "nombreuses annees",
+              "plusieurs annees",
+              "longue duree",
+              "moyenne"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Je dis ce qu'il faudrait regarder : par exemple la fréquence des chutes de neige en avril sur 30 ans, ou la normale d'avril",
+          "keywords": [
+            [
+              "frequence",
+              "normale",
+              "comparer",
+              "chaque annee",
+              "tous les avrils",
+              "releves"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Je conclus : un événement isolé ne suffit pas pour changer la description du climat",
+          "keywords": [
+            [
+              "ne suffit pas",
+              "ne change pas",
+              "pas assez",
+              "ne prouve pas",
+              "seul evenement",
+              "une seule"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Mon camarade confond météo et climat. La neige d'avril est un événement météo : elle est tombée un jour précis. Le climat de Valcour, lui, se calcule avec des relevés faits pendant au moins 30 ans : moyennes de température, pluie, fréquence des chutes de neige. Pour savoir si le climat a changé, il faudrait comparer la fréquence des neiges d'avril sur de nombreuses années. Un seul événement ne suffit pas.",
+        "Ce n'est pas parce qu'il a neigé un jour d'avril que le climat a changé : c'est un événement ponctuel, donc de la météo. Pour parler de climat, on utilise une moyenne sur au moins 30 ans. Il faudrait regarder si, d'année en année, il neige de plus en plus souvent en avril. Un seul avril froid ne prouve rien."
+      ],
+      "hints": [
+        "Demande-toi : la neige d'avril, c'est un moment précis ou une habitude sur de nombreuses années ?",
+        "Rappelle la durée de référence utilisée pour définir un climat.",
+        "Termine par ce qu'il faudrait mesurer pour savoir si le climat a vraiment changé."
+      ],
+      "solution": "La neige d'avril est un événement météo, ponctuel. Le climat se définit par des statistiques sur au moins 30 ans. Pour savoir s'il a changé, on compare la fréquence des neiges d'avril sur de nombreuses années ; un seul événement ne suffit pas.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Mon camarade confond météo et climat. La neige d'avril est un événement météo : elle est tombée un jour précis. Le climat de Valcour, lui, se calcule avec des relevés faits pendant au moins 30 ans : moyennes de température, pluie, fréquence des chutes de neige. Pour savoir si le climat a changé, il faudrait comparer la fréquence des neiges d'avril sur de nombreuses années. Un seul événement ne suffit pas.",
+            "selfCheck": {
+              "c1": true,
+              "c2": true,
+              "c3": true,
+              "c4": true
+            }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-diagramme",
+      "type": "composite",
+      "skill": "svt5.terre.releves-moyennes",
+      "skills": [
+        "svt5.terre.meteo-climat"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:cumul-moyenne",
+        "mc:amplitude-lecture",
+        "mc:moyenne-somme",
+        "mc:lecture-diagramme"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Courbe de la température moyenne mensuelle de Valcour, de janvier (1) à décembre (12)",
+        "w": 520,
+        "h": 280,
+        "items": [
+          {
+            "type": "linechart",
+            "series": [
+              {
+                "label": "Température moyenne mensuelle (°C)",
+                "points": [
+                  [
+                    1,
+                    4.5
+                  ],
+                  [
+                    2,
+                    5.5
+                  ],
+                  [
+                    3,
+                    8.5
+                  ],
+                  [
+                    4,
+                    11.5
+                  ],
+                  [
+                    5,
+                    15
+                  ],
+                  [
+                    6,
+                    18.5
+                  ],
+                  [
+                    7,
+                    20.5
+                  ],
+                  [
+                    8,
+                    20
+                  ],
+                  [
+                    9,
+                    16.5
+                  ],
+                  [
+                    10,
+                    12
+                  ],
+                  [
+                    11,
+                    7.5
+                  ],
+                  [
+                    12,
+                    5
+                  ]
+                ],
+                "color": "svt"
+              }
+            ],
+            "xLabel": "mois (1 = janvier)",
+            "yLabel": "°C",
+            "xRange": [
+              1,
+              12
+            ],
+            "yRange": [
+              0,
+              25
+            ]
+          }
+        ]
+      },
+      "prompt": "Tu es chargé(e) de présenter le climat de Valcour à de nouveaux habitants. Voici les normales mensuelles (moyennes sur 30 ans) :\n- janvier : 4,5 °C, 55 mm\n- février : 5,5 °C, 45 mm\n- mars : 8,5 °C, 50 mm\n- avril : 11,5 °C, 50 mm\n- mai : 15 °C, 65 mm\n- juin : 18,5 °C, 55 mm\n- juillet : 20,5 °C, 55 mm\n- août : 20 °C, 55 mm\n- septembre : 16,5 °C, 55 mm\n- octobre : 12 °C, 70 mm\n- novembre : 7,5 °C, 65 mm\n- décembre : 5 °C, 60 mm",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le cumul annuel des précipitations, en mm ?",
+          "answer": 680,
+          "tolerance": 0.5,
+          "misconceptions": [
+            {
+              "answer": 56.7,
+              "id": "mc:cumul-moyenne",
+              "error": "methode",
+              "feedback": "Tu as calculé une moyenne mensuelle. Un cumul se calcule en additionnant les 12 valeurs, sans diviser."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l'amplitude thermique annuelle (mois le plus chaud − mois le plus froid), en °C ?",
+          "answer": 16,
+          "misconceptions": [
+            {
+              "answer": 20.5,
+              "id": "mc:amplitude-lecture",
+              "error": "lecture",
+              "feedback": "20,5 °C est la valeur du mois le plus chaud. L'amplitude est un écart : on retire la valeur du mois le plus froid."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la température moyenne annuelle, arrondie au dixième de degré ?",
+          "answer": 12.1,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 145,
+              "id": "mc:moyenne-somme",
+              "error": "methode",
+              "feedback": "145 est la somme des 12 températures mensuelles : il faut la diviser par 12 pour obtenir la moyenne."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Pour chaque phrase, dis si elle est vraie ou fausse d'après les normales de Valcour.",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Il pleut toute l'année : aucun mois ne reçoit moins de 40 mm.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "Les hivers sont très froids : la température moyenne de janvier est négative.",
+              "category": "faux"
+            },
+            {
+              "id": "i3",
+              "label": "Juillet est le mois le plus chaud.",
+              "category": "vrai"
+            },
+            {
+              "id": "i4",
+              "label": "Octobre est le mois le plus sec.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "vrai",
+              "id": "mc:lecture-diagramme",
+              "error": "lecture",
+              "feedback": "La température moyenne de janvier est de 4,5 °C : positive. Les hivers de Valcour sont frais, pas très froids."
+            },
+            {
+              "item": "i4",
+              "category": "vrai",
+              "id": "mc:lecture-diagramme",
+              "error": "lecture",
+              "feedback": "Octobre reçoit 70 mm : c'est le mois le plus arrosé. Le mois le plus sec est février (45 mm)."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Un cumul se calcule en additionnant tous les mois.",
+        "Amplitude = valeur la plus haute − valeur la plus basse.",
+        "Moyenne annuelle : additionne les 12 températures, puis divise par 12."
+      ],
+      "solution": "Cumul : 55 + 45 + 50 + 50 + 65 + 55 + 55 + 55 + 55 + 70 + 65 + 60 = 680 mm. Amplitude : 20,5 − 4,5 = 16 °C. Moyenne annuelle : 145 ÷ 12 ≈ 12,1 °C. Climat tempéré : pluie toute l'année, hivers frais (4,5 °C en janvier), étés doux (jusqu'à 20,5 °C en juillet). Février est le mois le plus sec, octobre le plus arrosé.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "680"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "12,1"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "56,7"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "12,1"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:cumul-moyenne"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "680"
+              },
+              {
+                "value": "20,5"
+              },
+              {
+                "value": "12,1"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:amplitude-lecture"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "680"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "145"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "680"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "12,1"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:lecture-diagramme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "680"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "12,1"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "faux",
+                  "i3": "vrai",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:lecture-diagramme"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-rem-duree",
+      "type": "numeric",
+      "skill": "svt5.terre.meteo-climat",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:climat-un-an",
+        "mc:climat-dix-ans"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : une valeur isolée relève de la météo ; pour décrire un climat, on utilise des relevés sur une longue durée. Quelle est la durée de référence, en années, utilisée pour calculer une normale climatique ?",
+      "answer": 30,
+      "misconceptions": [
+        {
+          "answer": 1,
+          "id": "mc:climat-un-an",
+          "error": "notion",
+          "feedback": "Une seule année peut être exceptionnelle (très chaude, très pluvieuse). Pour décrire le climat, on lisse ces écarts avec beaucoup plus d'années."
+        },
+        {
+          "answer": 10,
+          "id": "mc:climat-dix-ans",
+          "error": "notion",
+          "feedback": "Dix ans, c'est mieux qu'un an, mais la durée de référence retenue internationalement est de 30 ans."
+        }
+      ],
+      "hints": [
+        "Il faut assez d'années pour que les années exceptionnelles se compensent.",
+        "La durée de référence est de trois décennies."
+      ],
+      "solution": "La durée de référence est de 30 ans : les moyennes calculées sur 30 années de relevés forment la « normale » du climat.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "30"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "1"
+          },
+          "expect": "mc:climat-un-an"
+        },
+        {
+          "response": {
+            "value": "10"
+          },
+          "expect": "mc:climat-dix-ans"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-rem-pluie",
+      "type": "numeric",
+      "skill": "svt5.terre.releves-moyennes",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:surface-oubliee",
+        "mc:unite-mm-l"
+      ],
+      "expectedSeconds": 120,
+      "params": {
+        "mm": {
+          "int": [
+            5,
+            40
+          ]
+        },
+        "surf": {
+          "int": [
+            10,
+            60
+          ]
+        }
+      },
+      "prompt": "Rappel ciblé : 1 mm de pluie correspond à 1 litre d'eau par m². Il est tombé {mm} mm de pluie sur une terrasse de {surf} m². Combien de litres d'eau sont tombés sur la terrasse ?",
+      "answer": "mm*surf",
+      "misconceptions": [
+        {
+          "answer": "mm",
+          "id": "mc:surface-oubliee",
+          "error": "methode",
+          "feedback": "{mm} est le nombre de litres par m². Il faut le multiplier par la surface de la terrasse en m²."
+        },
+        {
+          "answer": "mm*surf/1000",
+          "id": "mc:unite-mm-l",
+          "error": "unite",
+          "feedback": "Tu as divisé par 1 000 comme pour passer des litres aux m³. Ici, 1 mm = 1 litre par m² : il suffit de multiplier, la réponse est en litres."
+        }
+      ],
+      "hints": [
+        "{mm} mm = {mm} litres sur chaque m².",
+        "Multiplie par le nombre de m² de la terrasse."
+      ],
+      "solution": "{mm} litres par m² × {surf} m² = {mm*surf} litres.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{mm*surf}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{mm}"
+          },
+          "expect": "mc:surface-oubliee"
+        },
+        {
+          "response": {
+            "value": "{mm*surf/1000}"
+          },
+          "expect": "mc:unite-mm-l"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-ecarts",
+      "type": "table",
+      "skill": "svt5.terre.releves-moyennes",
+      "skills": [
+        "svt5.terre.meteo-climat"
+      ],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ecart-signe",
+        "mc:ecart-somme"
+      ],
+      "expectedSeconds": 200,
+      "prompt": "Bilan d'une année à Valcour. Pour chaque mois, calcule l'**écart à la normale** : écart = moyenne observée − normale (moyenne sur 30 ans). Écris le signe − quand l'écart est négatif (nombres seuls, en °C).",
+      "columns": [
+        "Mois",
+        "Moyenne observée cette année (°C)",
+        "Normale (°C)",
+        "Écart à la normale (°C)"
+      ],
+      "rows": [
+        [
+          "Janvier",
+          "2,0",
+          "4,5",
+          "?r0c3"
+        ],
+        [
+          "Avril",
+          "13,0",
+          "11,5",
+          "?r1c3"
+        ],
+        [
+          "Juillet",
+          "22,9",
+          "20,5",
+          "?r2c3"
+        ],
+        [
+          "Octobre",
+          "11,2",
+          "12",
+          "?r3c3"
+        ]
+      ],
+      "cells": {
+        "r0c3": {
+          "answer": -2.5,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 2.5,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Écart = observée − normale = 2,0 − 4,5. Janvier a été plus froid que d'habitude : l'écart est négatif, −2,5 °C."
+            },
+            {
+              "answer": 6.5,
+              "id": "mc:ecart-somme",
+              "error": "methode",
+              "feedback": "Un écart se calcule par une soustraction (2,0 − 4,5), pas par une addition."
+            }
+          ]
+        },
+        "r1c3": {
+          "answer": 1.5,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": -1.5,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Écart = observée − normale = 13,0 − 11,5. Avril a été plus doux que d'habitude : l'écart est positif."
+            }
+          ]
+        },
+        "r2c3": {
+          "answer": 2.4,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": -2.4,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Écart = observée − normale = 22,9 − 20,5 = +2,4 °C : un juillet plus chaud que la normale."
+            }
+          ]
+        },
+        "r3c3": {
+          "answer": -0.8,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 0.8,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Écart = observée − normale = 11,2 − 12. Octobre a été un peu plus frais que d'habitude : l'écart est négatif."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Écart = valeur observée − normale, toujours dans cet ordre.",
+        "Si la valeur observée est plus basse que la normale, le mois a été plus frais que d'habitude : l'écart est négatif.",
+        "Janvier : 2,0 − 4,5 = ?"
+      ],
+      "solution": "Janvier : 2,0 − 4,5 = −2,5 °C (plus froid que d'habitude). Avril : 13,0 − 11,5 = +1,5 °C. Juillet : 22,9 − 20,5 = +2,4 °C. Octobre : 11,2 − 12 = −0,8 °C. Ces écarts décrivent la météo d'une année : à eux seuls, ils ne disent pas que le climat a changé.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r0c3": "-2,5",
+              "r1c3": "1,5",
+              "r2c3": "2,4",
+              "r3c3": "-0,8"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r0c3": "2,5",
+              "r1c3": "1,5",
+              "r2c3": "2,4",
+              "r3c3": "-0,8"
+            }
+          },
+          "expect": "mc:ecart-signe"
+        },
+        {
+          "response": {
+            "cells": {
+              "r0c3": "6,5",
+              "r1c3": "1,5",
+              "r2c3": "2,4",
+              "r3c3": "-0,8"
+            }
+          },
+          "expect": "mc:ecart-somme"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-ocean",
+      "type": "composite",
+      "skill": "svt5.terre.zones-climatiques",
+      "skills": [
+        "svt5.terre.releves-moyennes",
+        "svt5.terre.meteo-climat"
+      ],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:amplitude-lecture",
+        "mc:ecart-somme",
+        "mc:latitude-seule",
+        "mc:evenement-extreme-climat"
+      ],
+      "expectedSeconds": 360,
+      "prompt": "Deux villes fictives sont à la même latitude et à la même altitude : **Port-Lanec**, au bord de l'océan, et **Valmont**, à 600 km à l'intérieur des terres. Le graphique donne leurs températures normales (moyennes sur 30 ans), mois par mois (1 = janvier, 12 = décembre).",
+      "figure": {
+        "alt": "Courbes des températures normales mensuelles de Port-Lanec et de Valmont, de janvier à décembre",
+        "w": 560,
+        "h": 280,
+        "items": [
+          {
+            "type": "linechart",
+            "xLabel": "mois",
+            "yLabel": "°C",
+            "yRange": [
+              0,
+              22
+            ],
+            "series": [
+              {
+                "label": "Port-Lanec (bord de mer)",
+                "points": [
+                  [
+                    1,
+                    7
+                  ],
+                  [
+                    2,
+                    7
+                  ],
+                  [
+                    3,
+                    8.5
+                  ],
+                  [
+                    4,
+                    10
+                  ],
+                  [
+                    5,
+                    12.5
+                  ],
+                  [
+                    6,
+                    15
+                  ],
+                  [
+                    7,
+                    17
+                  ],
+                  [
+                    8,
+                    17
+                  ],
+                  [
+                    9,
+                    15.5
+                  ],
+                  [
+                    10,
+                    13
+                  ],
+                  [
+                    11,
+                    9.5
+                  ],
+                  [
+                    12,
+                    7.5
+                  ]
+                ],
+                "color": "maths"
+              },
+              {
+                "label": "Valmont (intérieur des terres)",
+                "points": [
+                  [
+                    1,
+                    1.5
+                  ],
+                  [
+                    2,
+                    3
+                  ],
+                  [
+                    3,
+                    7
+                  ],
+                  [
+                    4,
+                    10.5
+                  ],
+                  [
+                    5,
+                    15
+                  ],
+                  [
+                    6,
+                    18.5
+                  ],
+                  [
+                    7,
+                    20.5
+                  ],
+                  [
+                    8,
+                    20
+                  ],
+                  [
+                    9,
+                    16
+                  ],
+                  [
+                    10,
+                    11
+                  ],
+                  [
+                    11,
+                    5.5
+                  ],
+                  [
+                    12,
+                    2.5
+                  ]
+                ],
+                "color": "rouge"
+              }
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l'amplitude thermique annuelle de Port-Lanec (mois le plus chaud − mois le plus froid), en °C ?",
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 17,
+              "id": "mc:amplitude-lecture",
+              "error": "lecture",
+              "feedback": "17 °C est la température des mois les plus chauds. L'amplitude est un écart : on retire la température du mois le plus froid (7 °C)."
+            },
+            {
+              "answer": 24,
+              "id": "mc:ecart-somme",
+              "error": "methode",
+              "feedback": "Un écart se calcule par une soustraction (17 − 7), pas par une addition."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l'amplitude thermique annuelle de Valmont, en °C ?",
+          "answer": 19,
+          "misconceptions": [
+            {
+              "answer": 20.5,
+              "id": "mc:amplitude-lecture",
+              "error": "lecture",
+              "feedback": "20,5 °C est la température du mois le plus chaud. L'amplitude est un écart : 20,5 − 1,5."
+            },
+            {
+              "answer": 22,
+              "id": "mc:ecart-somme",
+              "error": "methode",
+              "feedback": "Un écart se calcule par une soustraction (20,5 − 1,5), pas par une addition."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "D'après ces données, chaque phrase est-elle vraie ou fausse ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "p1",
+              "label": "Près de l'océan, les hivers sont plus doux et les étés plus frais.",
+              "category": "vrai"
+            },
+            {
+              "id": "p2",
+              "label": "Port-Lanec a des hivers plus doux parce qu'elle est plus près de l'équateur.",
+              "category": "faux"
+            },
+            {
+              "id": "p3",
+              "label": "À la même latitude, deux villes peuvent avoir des climats différents.",
+              "category": "vrai"
+            },
+            {
+              "id": "p4",
+              "label": "Un été très chaud à Port-Lanec suffirait à changer son climat.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "p2",
+              "category": "vrai",
+              "id": "mc:latitude-seule",
+              "error": "raisonnement",
+              "feedback": "Les deux villes sont à la même latitude : ce n'est pas la distance à l'équateur qui explique la différence, mais la proximité de l'océan."
+            },
+            {
+              "item": "p4",
+              "category": "vrai",
+              "id": "mc:evenement-extreme-climat",
+              "error": "notion",
+              "feedback": "Un été très chaud est un événement météo. Le climat se décrit avec des moyennes sur au moins 30 ans : un seul été ne le change pas."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Amplitude annuelle = température du mois le plus chaud − température du mois le plus froid.",
+        "Repère le point le plus haut et le point le plus bas de chaque courbe.",
+        "Les deux villes ont la même latitude et la même altitude : cherche ce qui les différencie vraiment."
+      ],
+      "solution": "Port-Lanec : 17 − 7 = 10 °C. Valmont : 20,5 − 1,5 = 19 °C. Près de l'océan, l'amplitude est presque deux fois plus faible : l'eau se réchauffe et se refroidit lentement, ce qui adoucit les hivers et rafraîchit les étés. Les deux villes ont la même latitude : c'est l'océan, pas la latitude, qui explique la différence. Un seul été chaud est un événement météo, pas un changement de climat.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "10"
+              },
+              {
+                "value": "19"
+              },
+              {
+                "assign": {
+                  "p1": "vrai",
+                  "p2": "faux",
+                  "p3": "vrai",
+                  "p4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17"
+              },
+              {
+                "value": "19"
+              },
+              {
+                "assign": {
+                  "p1": "vrai",
+                  "p2": "faux",
+                  "p3": "vrai",
+                  "p4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:amplitude-lecture"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "10"
+              },
+              {
+                "value": "19"
+              },
+              {
+                "assign": {
+                  "p1": "vrai",
+                  "p2": "vrai",
+                  "p3": "vrai",
+                  "p4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:latitude-seule"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-normale",
+      "type": "composite",
+      "skill": "svt.demarche.exploiter-donnees",
+      "skills": [
+        "svt5.terre.releves-moyennes"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:moyenne-somme",
+        "mc:valeur-finale",
+        "mc:egal-superieur",
+        "mc:climat-dix-ans",
+        "mc:climat-un-an"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Températures moyennes de juin à Valcour sur dix années consécutives",
+        "w": 520,
+        "h": 260,
+        "items": [
+          {
+            "type": "linechart",
+            "series": [
+              {
+                "label": "Température moyenne de juin (°C)",
+                "points": [
+                  [
+                    1,
+                    16.8
+                  ],
+                  [
+                    2,
+                    17.4
+                  ],
+                  [
+                    3,
+                    18.2
+                  ],
+                  [
+                    4,
+                    17
+                  ],
+                  [
+                    5,
+                    17.6
+                  ],
+                  [
+                    6,
+                    18.8
+                  ],
+                  [
+                    7,
+                    17.2
+                  ],
+                  [
+                    8,
+                    18.4
+                  ],
+                  [
+                    9,
+                    17.8
+                  ],
+                  [
+                    10,
+                    16.8
+                  ]
+                ],
+                "color": "svt"
+              }
+            ],
+            "xLabel": "année (1 à 10)",
+            "yLabel": "°C",
+            "xRange": [
+              1,
+              10
+            ],
+            "yRange": [
+              16,
+              19.5
+            ]
+          }
+        ]
+      },
+      "prompt": "Températures moyennes de juin à Valcour sur dix années consécutives (°C) : 16,8 ; 17,4 ; 18,2 ; 17 ; 17,6 ; 18,8 ; 17,2 ; 18,4 ; 17,8 ; 16,8.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la moyenne de ces dix mois de juin, en °C ?",
+          "answer": 17.6,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 176,
+              "id": "mc:moyenne-somme",
+              "error": "methode",
+              "feedback": "176 est la somme des dix valeurs : divise-la par 10 pour obtenir la moyenne."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de degrés le juin le plus chaud dépasse-t-il cette moyenne ?",
+          "answer": 1.2,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 18.8,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "18,8 °C est la température du juin le plus chaud. L'écart à la moyenne est la différence : 18,8 − 17,6."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de ces dix mois de juin sont strictement plus chauds que la moyenne ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 5,
+              "id": "mc:egal-superieur",
+              "error": "lecture",
+              "feedback": "Un juin à 17,6 °C est égal à la moyenne, pas plus chaud : il ne compte pas. Compte seulement les valeurs supérieures à 17,6."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que permettent d'affirmer ces données ?",
+          "categories": [
+            {
+              "id": "permis",
+              "label": "Permis par ces données"
+            },
+            {
+              "id": "abusif",
+              "label": "Abusif : trop peu de données"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Quatre des dix mois de juin ont été plus chauds que la moyenne de la série.",
+              "category": "permis"
+            },
+            {
+              "id": "i2",
+              "label": "Ces dix années suffisent pour définir le climat de juin à Valcour.",
+              "category": "abusif"
+            },
+            {
+              "id": "i3",
+              "label": "Le juin le plus chaud a dépassé la moyenne de la série de 1,2 °C.",
+              "category": "permis"
+            },
+            {
+              "id": "i4",
+              "label": "Un juin plus chaud que la moyenne prouve à lui seul que le climat a changé.",
+              "category": "abusif"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "permis",
+              "id": "mc:climat-dix-ans",
+              "error": "notion",
+              "feedback": "Dix années, ce n'est pas assez : la durée de référence pour définir un climat est de 30 ans."
+            },
+            {
+              "item": "i4",
+              "category": "permis",
+              "id": "mc:climat-un-an",
+              "error": "raisonnement",
+              "feedback": "Un seul mois plus chaud que la moyenne est un événement météo : dans cette série, d'autres mois sont plus frais. Seule une série longue peut montrer un changement."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Moyenne : somme des dix valeurs ÷ 10.",
+        "Un écart se calcule par une soustraction : valeur − moyenne.",
+        "Compare chaque valeur à 17,6 ; celles qui sont égales ne comptent pas."
+      ],
+      "solution": "Moyenne : 176,0 ÷ 10 = 17,6 °C. Écart du juin le plus chaud : 18,8 − 17,6 = 1,2 °C. Les mois plus chauds que la moyenne : 18,2 ; 18,8 ; 18,4 ; 17,8, soit 4. Dix ans ne suffisent pas à définir un climat (30 ans), et un seul mois chaud ne prouve rien.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,6"
+              },
+              {
+                "value": "1,2"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "abusif",
+                  "i3": "permis",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "176"
+              },
+              {
+                "value": "1,2"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "abusif",
+                  "i3": "permis",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,6"
+              },
+              {
+                "value": "18,8"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "abusif",
+                  "i3": "permis",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,6"
+              },
+              {
+                "value": "1,2"
+              },
+              {
+                "value": "5"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "abusif",
+                  "i3": "permis",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:egal-superieur"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,6"
+              },
+              {
+                "value": "1,2"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "permis",
+                  "i3": "permis",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:climat-dix-ans"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,6"
+              },
+              {
+                "value": "1,2"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "assign": {
+                  "i1": "permis",
+                  "i2": "abusif",
+                  "i3": "permis",
+                  "i4": "permis"
+                }
+              }
+            ]
+          },
+          "expect": "mc:climat-un-an"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-courbe",
+      "type": "graph",
+      "skill": "svt5.terre.releves-moyennes",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [],
+      "expectedSeconds": 240,
+      "prompt": "Pour tracer le diagramme climatique de Valcour, place dans le repère les points (numéro du mois ; température moyenne en °C) de **avril** (mois 4 : 11,5 °C), de **juillet** (mois 7 : 20,5 °C) et d'**octobre** (mois 10 : 12 °C).",
+      "xRange": [
+        0,
+        13
+      ],
+      "yRange": [
+        0,
+        25
+      ],
+      "xStep": 1,
+      "yStep": 5,
+      "xLabel": "mois",
+      "yLabel": "°C",
+      "tolerance": 0.3,
+      "expectedPoints": [
+        [
+          4,
+          11.5
+        ],
+        [
+          7,
+          20.5
+        ],
+        [
+          10,
+          12
+        ]
+      ],
+      "hints": [
+        "Le numéro du mois se lit sur l'axe horizontal (abscisse), la température sur l'axe vertical (ordonnée).",
+        "11,5 °C est situé entre 10 et 15 °C, un peu au-dessus de 10."
+      ],
+      "solution": "Avril : (4 ; 11,5). Juillet : (7 ; 20,5). Octobre : (10 ; 12). Reliés mois après mois, ces points forment la courbe de température du diagramme climatique : elle monte jusqu'en juillet puis redescend.",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                4,
+                11.5
+              ],
+              [
+                7,
+                20.5
+              ],
+              [
+                10,
+                12
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                11.5,
+                4
+              ],
+              [
+                20.5,
+                7
+              ],
+              [
+                12,
+                10
+              ]
+            ]
+          },
+          "expect": "lecture"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-altitude",
+      "type": "composite",
+      "skill": "svt5.terre.zones-climatiques",
+      "skills": [
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ecart-somme",
+        "mc:division-oubliee",
+        "mc:unite-100m",
+        "mc:altitude-absolue",
+        "mc:latitude-seule",
+        "mc:distance-soleil"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Tableau de trois villes situées à l'équateur : altitude et température moyenne annuelle",
+        "w": 520,
+        "h": 200,
+        "items": [
+          {
+            "type": "table",
+            "head": [
+              "Ville",
+              "Altitude (m)",
+              "Température moyenne annuelle (°C)"
+            ],
+            "rows": [
+              [
+                "A",
+                "100",
+                "27,0"
+              ],
+              [
+                "B",
+                "2 600",
+                "12,0"
+              ],
+              [
+                "C",
+                "1 100",
+                "?"
+              ]
+            ]
+          }
+        ]
+      },
+      "prompt": "Trois villes d'une même région équatoriale (villes fictives) ont presque la même latitude. La ville A est à 100 m d'altitude et sa température moyenne annuelle est de 27,0 °C ; la ville B est à 2 600 m et sa température moyenne annuelle est de 12,0 °C ; la ville C est à 1 100 m.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est l'écart de température moyenne entre A et B, en °C ?",
+          "answer": 15,
+          "misconceptions": [
+            {
+              "answer": 39,
+              "id": "mc:ecart-somme",
+              "error": "calcul",
+              "feedback": "Un écart se calcule par une soustraction (27,0 − 12,0), pas par une addition."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de degrés la température diminue-t-elle en moyenne quand on monte de 100 m ? (écart de température ÷ nombre de tranches de 100 m)",
+          "answer": 0.6,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 15,
+              "id": "mc:division-oubliee",
+              "error": "methode",
+              "feedback": "15 °C est l'écart total entre A et B, sur 2 500 m. Il faut le répartir sur les 25 tranches de 100 m."
+            },
+            {
+              "answer": 0.006,
+              "id": "mc:unite-100m",
+              "error": "unite",
+              "feedback": "Tu as calculé la baisse par mètre. La question demande la baisse pour 100 m."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec cette valeur, quelle température moyenne annuelle attend-on à la ville C, en °C ?",
+          "answer": 21,
+          "tolerance": 0.1,
+          "misconceptions": [
+            {
+              "answer": 20.4,
+              "id": "mc:altitude-absolue",
+              "error": "methode",
+              "feedback": "Tu as utilisé l'altitude totale de C (1 100 m). Il faut l'écart d'altitude avec la ville A : 1 100 − 100 = 1 000 m."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "La latitude suffit à prévoir le climat d'un lieu.",
+              "category": "faux"
+            },
+            {
+              "id": "i2",
+              "label": "Deux villes à la même latitude peuvent avoir des climats très différents.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "En moyenne, plus on monte en altitude, plus il fait froid.",
+              "category": "vrai"
+            },
+            {
+              "id": "i4",
+              "label": "La ville B est plus froide parce que la Terre y est plus loin du Soleil.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i1",
+              "category": "vrai",
+              "id": "mc:latitude-seule",
+              "error": "raisonnement",
+              "feedback": "La latitude compte beaucoup, mais l'altitude et la proximité de l'océan modifient le climat. Ici, A et B ont la même latitude et 15 °C d'écart."
+            },
+            {
+              "item": "i4",
+              "category": "vrai",
+              "id": "mc:distance-soleil",
+              "error": "notion",
+              "feedback": "Entre A et B, la distance au Soleil ne change que de 2,5 km sur 150 millions de km : c'est négligeable. C'est l'air, plus froid en altitude, qui explique l'écart."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Écart de température = 27,0 − 12,0. Écart d'altitude = 2 600 − 100 = 2 500 m, soit 25 tranches de 100 m.",
+        "Pour la ville C, compte les tranches de 100 m entre A et C.",
+        "Compare : même latitude, climats différents. Qu'est-ce qui a changé ?"
+      ],
+      "solution": "A et B : 27,0 − 12,0 = 15 °C d'écart sur 2 500 m, soit 15 ÷ 25 = 0,6 °C par 100 m. La ville C est 1 000 m plus haute que A : 10 × 0,6 = 6 °C de moins, donc 27,0 − 6 = 21,0 °C. La latitude ne suffit pas à prévoir le climat : l'altitude le modifie fortement.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "39"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "15"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:division-oubliee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "0,006"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-100m"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "value": "20,4"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:altitude-absolue"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:latitude-seule"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "15"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "value": "21"
+              },
+              {
+                "assign": {
+                  "i1": "faux",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:distance-soleil"
+        }
+      ]
+    },
+    {
+      "id": "svt5-meteo-climat-hiver",
+      "type": "composite",
+      "skill": "svt5.terre.meteo-climat",
+      "skills": [
+        "svt5.terre.releves-moyennes",
+        "svt.demarche.correlation-causalite"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": [
+        "mc:ecart-signe",
+        "mc:valeur-finale",
+        "mc:ecart-somme",
+        "mc:evenement-extreme-climat"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Valcour a connu un janvier très froid : −1,0 °C en moyenne, alors que la normale de janvier est de 4,5 °C. Un habitant en conclut : « Le monde ne se réchauffe pas ! » Par ailleurs, la température moyenne annuelle de Valcour est de 11,4 °C pour la période 1961-1990 et de 12,3 °C pour la période 1991-2020 (données fictives).",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est l'écart de ce janvier à la normale de janvier, en °C (avec son signe) ?",
+          "answer": -5.5,
+          "misconceptions": [
+            {
+              "answer": 5.5,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Écart = valeur observée − normale : −1,0 − 4,5 = −5,5. Le signe négatif dit que ce janvier est plus froid que la normale."
+            },
+            {
+              "answer": -1,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "−1,0 °C est la température observée, pas l'écart à la normale."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien la température moyenne annuelle a-t-elle augmenté entre les deux périodes de 30 ans, en °C ?",
+          "answer": 0.9,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 23.7,
+              "id": "mc:ecart-somme",
+              "error": "calcul",
+              "feedback": "Une augmentation se calcule par une soustraction : 12,3 − 11,4."
+            },
+            {
+              "answer": 12.3,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "12,3 °C est la valeur de la période récente. L'augmentation est l'écart avec 11,4 °C."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Pour chaque phrase, dis si le raisonnement est valide ou abusif.",
+          "categories": [
+            {
+              "id": "valide",
+              "label": "Valide"
+            },
+            {
+              "id": "abusif",
+              "label": "Abusif"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Ce janvier a été beaucoup plus froid que la normale de janvier.",
+              "category": "valide"
+            },
+            {
+              "id": "i2",
+              "label": "Un seul hiver froid prouve que la température moyenne ne monte pas.",
+              "category": "abusif"
+            },
+            {
+              "id": "i3",
+              "label": "Entre les deux périodes de 30 ans, la température moyenne annuelle a augmenté de 0,9 °C.",
+              "category": "valide"
+            },
+            {
+              "id": "i4",
+              "label": "Comme ce janvier est froid, le climat de Valcour est devenu polaire.",
+              "category": "abusif"
+            },
+            {
+              "id": "i5",
+              "label": "La météo varie beaucoup d'une année à l'autre : il faut des moyennes sur longue durée pour voir une tendance.",
+              "category": "valide"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "valide",
+              "id": "mc:evenement-extreme-climat",
+              "error": "raisonnement",
+              "feedback": "Un seul hiver est un événement météo. Il peut être froid dans un climat qui se réchauffe : seule une moyenne sur 30 ans montre la tendance."
+            },
+            {
+              "item": "i4",
+              "category": "valide",
+              "id": "mc:evenement-extreme-climat",
+              "error": "raisonnement",
+              "feedback": "Un mois très froid ne change pas le climat : la moyenne annuelle de Valcour reste tempérée."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "En quelques phrases : pourquoi ne peut-on pas juger un changement de climat sur un seul hiver ?",
+          "minWords": 30,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J'explique que la météo varie beaucoup d'une année à l'autre",
+              "keywords": [
+                [
+                  "varie",
+                  "variation",
+                  "variabilite",
+                  "differe",
+                  "change d une annee"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "J'explique qu'il faut comparer des moyennes sur de longues périodes (30 ans)",
+              "keywords": [
+                [
+                  "30 ans",
+                  "moyenne",
+                  "longue",
+                  "periode",
+                  "normale"
+                ]
+              ]
+            },
+            {
+              "id": "c3",
+              "label": "Je dis qu'une tendance (ici +0,9 °C) est petite à côté des écarts d'une année à l'autre",
+              "keywords": [
+                [
+                  "tendance",
+                  "petit",
+                  "faible",
+                  "0,9",
+                  "ecart"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+            "Un seul hiver est un événement météo. Les écarts d'une année à l'autre peuvent atteindre plusieurs degrés, alors que la tendance du climat est lente. Il faut donc des moyennes sur 30 ans pour repérer un vrai changement."
+          ]
+        }
+      ],
+      "hints": [
+        "Écart = observé − normale : un résultat négatif signifie « plus froid que la normale ».",
+        "Compare les deux moyennes sur 30 ans par une soustraction.",
+        "Une moyenne sur 30 ans lisse les années exceptionnelles ; un seul hiver non."
+      ],
+      "solution": "Écart de janvier : −1,0 − 4,5 = −5,5 °C. Hausse des moyennes de 30 ans : 12,3 − 11,4 = 0,9 °C. Un hiver froid est un événement météo : il ne contredit pas une hausse de la moyenne sur 30 ans. Il faut des séries longues pour juger d'un changement de climat.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-5,5"
+              },
+              {
+                "value": "0,9"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,5"
+              },
+              {
+                "value": "0,9"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-signe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-1"
+              },
+              {
+                "value": "0,9"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-5,5"
+              },
+              {
+                "value": "23,7"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-5,5"
+              },
+              {
+                "value": "12,3"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-5,5"
+              },
+              {
+                "value": "0,9"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "valide",
+                  "i4": "abusif",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:evenement-extreme-climat"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "-5,5"
+              },
+              {
+                "value": "0,9"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "abusif",
+                  "i3": "valide",
+                  "i4": "valide",
+                  "i5": "valide"
+                }
+              },
+              {
+                "text": "La météo varie beaucoup d'une année à l'autre : un hiver peut être très froid même si le climat se réchauffe. Pour voir un changement, il faut comparer des moyennes calculées sur de longues périodes, comme 30 ans. La hausse de la moyenne (0,9 °C) est petite à côté des écarts d'un hiver à l'autre : on ne la voit qu'avec beaucoup d'années.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:evenement-extreme-climat"
+        }
+      ]
+    }
+  ]
+}

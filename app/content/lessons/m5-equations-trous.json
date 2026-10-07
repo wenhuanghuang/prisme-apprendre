@@ -1,0 +1,443 @@
+{
+  "id": "m5-equations-trous",
+  "chapter": "m5-ch-equations-trous",
+  "title": "Problèmes à trous : trouver le nombre caché",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.equations.modeliser", "m5.equations.inverse", "m5.litteral.tester"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 50,
+  "summary": "La lettre devient une inconnue : on traduit un problème à trous par une équation x + b = c ou ax = c, on retrouve le nombre caché grâce à l'opération inverse, puis on vérifie.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le sac de billes et les boîtes de craies",
+      "body": "Léa a des billes dans un sac. Elle en gagne 17 à la récré : elle en a maintenant 45. Max range 78 craies dans 6 boîtes identiques, toutes pleines.\n\nCombien de billes Léa avait-elle au départ ? Combien de craies y a-t-il dans chaque boîte ?\n\nTu trouves sûrement de tête… Mais saurais-tu trouver le nombre caché dans $7 × ? = 59,5$ ? Existe-t-il une méthode qui marche à tous les coups ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🕳️",
+          "title": "Un trou, une lettre",
+          "body": "Dans « $? + 17 = 45$ », le point d'interrogation cache un nombre précis. En mathématiques, on remplace le trou par une lettre, souvent $x$ : $x + 17 = 45$. Cette égalité s'appelle une **équation**, et la lettre est l'**inconnue**. Résoudre l'équation, c'est trouver le nombre caché.",
+          "example": "« Je pense à un nombre, je le triple, je trouve 21 » s'écrit $3x = 21$."
+        },
+        {
+          "emoji": "↩️",
+          "title": "Défaire une addition : soustraire",
+          "body": "Pour retrouver $x$ dans $x + b = c$, on fait l'**opération inverse** de l'addition : la soustraction. On enlève $b$ des deux côtés de l'égalité, comme on retire les mêmes billes des deux plateaux d'une balance : $x = c − b$.",
+          "example": "$x + 17 = 45$, donc $x = 45 − 17 = 28$. Léa avait 28 billes."
+        },
+        {
+          "emoji": "➗",
+          "title": "Défaire une multiplication : diviser",
+          "body": "$ax = c$ veut dire $a × x = c$ : le nombre $a$ multiplie l'inconnue. L'opération inverse de la multiplication est la **division** : on partage les deux côtés de l'égalité en $a$ parts égales, et on obtient $x = c ÷ a$.",
+          "example": "$6x = 78$, donc $x = 78 ÷ 6 = 13$. Chaque boîte contient 13 craies.",
+          "reveal": {
+            "question": "Devine : dans $5x = 5$, que vaut $x$ ? Et dans $x + 5 = 5$ ?",
+            "answer": "Dans $5x = 5$, $x = 5 ÷ 5 = 1$. Dans $x + 5 = 5$, $x = 5 − 5 = 0$. Deux trous qui se ressemblent, deux réponses différentes : regarde toujours quelle opération agit sur $x$."
+          }
+        },
+        {
+          "emoji": "✅",
+          "title": "Toujours vérifier",
+          "body": "On remplace $x$ par la valeur trouvée dans l'équation de départ. Si l'égalité est vraie, c'est gagné. La vérification démasque l'erreur la plus fréquente : avoir soustrait au lieu de diviser.",
+          "example": "$4x = 36$ : avec $x = 32$, $4 × 32 = 128 ≠ 36$ ✗ ; avec $x = 9$, $4 × 9 = 36$ ✓."
+        },
+        {
+          "emoji": "🧩",
+          "title": "Mettre un problème en équation",
+          "body": "1. Choisis une lettre et dis ce qu'elle représente (« $x$ = prix d'une place »). 2. Traduis l'énoncé par une égalité. 3. Résous avec l'opération inverse. 4. Vérifie, puis réponds par une phrase avec l'unité.",
+          "reveal": {
+            "question": "Devine : « 7 places de cinéma coûtent 59,50 € en tout ». Quelle équation, et quel est le prix d'une place ?",
+            "answer": "$7x = 59,5$, où $x$ est le prix d'une place en euros. Donc $x = 59,5 ÷ 7 = 8,5$ : une place coûte 8,50 €."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "manipulation",
+      "title": "La balance des sacs",
+      "body": "Quatre sacs identiques équilibrent 20 billes : c'est l'équation $4x = 20$. Utilise le bouton « partager » pour ne garder qu'un sac d'un côté, sans déséquilibrer la balance. Combien de billes y a-t-il dans un sac ?\n\nEnsuite, dans ta tête : que ferais-tu sur la balance pour $x + 5 = 12$ ?",
+      "activity": { "widget": "balance", "config": { "a": 4, "b": 0, "c": 0, "d": 20, "x": 5, "mode": "solve" } }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le prix d'une place de cinéma",
+      "steps": [
+        { "text": "Énoncé : 7 amis paient 59,50 € en tout pour le cinéma, tous au même tarif. On choisit l'inconnue : $x$ est le prix d'une place, en euros." },
+        { "text": "On traduit l'énoncé : 7 places à $x$ euros coûtent 59,50 €.", "math": "7x = 59,5" },
+        { "text": "7 multiplie $x$ : on fait l'opération inverse, on divise par 7.", "math": "x = 59,5 ÷ 7" },
+        { "text": "On calcule.", "math": "x = 8,5" },
+        { "text": "On vérifie : $7 × 8,5 = 59,5$ ✓. On répond par une phrase : une place coûte 8,50 €." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour résoudre une équation, écris une étape par ligne, jusqu'à « $x = …$ ».",
+      "exercises": ["m5-equations-trous-traduire", "m5-equations-trous-addition", "m5-equations-trous-produit", "m5-equations-trous-solution", "m5-equations-trous-decimaux", "m5-equations-trous-ruban"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m5-equations-trous-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : les cahiers de Sam",
+      "exercises": ["m5-equations-trous-cahiers"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : financer la sortie de fin d'année",
+      "body": "Le délégué de la classe doit annoncer à chacun combien payer pour le car. Aide-le, sans te tromper : tout le monde comptera derrière toi !",
+      "exercises": ["m5-equations-trous-sortie"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Dans une équation, la lettre désigne un nombre **inconnu**. On défait l'opération qui agit sur elle :\n> - $x + b = c$ : on soustrait, $x = c − b$ ;\n> - $ax = c$ : on divise, $x = c ÷ a$.\n> Puis on **vérifie** en remplaçant $x$ par la valeur trouvée.\n\n- **Soustraire au lieu de diviser.** Dans $4x = 36$, 4 multiplie $x$ : $x = 36 ÷ 4 = 9$, et non $36 − 4 = 32$.\n- **Ajouter au lieu de soustraire.** Dans $x + 8 = 20$, $x = 20 − 8 = 12$, et non 28 : vérifie, $28 + 8 ≠ 20$.\n- **Diviser dans le mauvais sens.** $5x = 3,5$ donne $x = 3,5 ÷ 5 = 0,7$, et non $5 ÷ 3,5$.\n- **Oublier la phrase réponse.** « $x = 8,5$ » ne suffit pas : « une place coûte 8,50 € »."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera quelques problèmes à trous dans quelques jours, avec d'autres nombres."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Et si le trou cachait un nombre dont on a soustrait ou qu'on a divisé ? Et si le programme avait deux étapes ?",
+      "exercises": ["m5-equations-trous-autres-sens", "m5-equations-trous-remonter"]
+    },
+    "expert": {
+      "intro": "Facultatif : des trous impossibles à boucher, d'autres qui acceptent tous les nombres, et une pyramide où l'inconnue se cache deux fois.",
+      "exercises": ["m5-equations-trous-bizarres", "m5-equations-trous-pyramide"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-equations-trous-traduire", "type": "match", "skill": "m5.equations.modeliser", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:triple-ajout", "mc:ajout-produit"], "expectedSeconds": 120,
+      "prompt": "Associe chaque problème à trous à l'équation qui le traduit. La lettre $x$ désigne le nombre inconnu.",
+      "leftTitle": "Problème", "rightTitle": "Équation",
+      "left": [
+        { "id": "p1", "label": "Je pense à un nombre, je lui ajoute 8 et je trouve 20." },
+        { "id": "p2", "label": "Le triple d'un nombre vaut 21." },
+        { "id": "p3", "label": "8 paquets identiques pèsent 20 kg en tout." },
+        { "id": "p4", "label": "Des passagers sont dans le bus ; 3 personnes montent et il y en a maintenant 21." }
+      ],
+      "right": [
+        { "id": "e1", "label": "x + 8 = 20" },
+        { "id": "e2", "label": "3x = 21" },
+        { "id": "e3", "label": "8x = 20" },
+        { "id": "e4", "label": "x + 3 = 21" },
+        { "id": "e5", "label": "x + 20 = 8" }
+      ],
+      "pairs": { "p1": "e1", "p2": "e2", "p3": "e3", "p4": "e4" },
+      "misconceptions": [
+        { "pair": ["p2", "e4"], "id": "mc:triple-ajout", "error": "notion", "feedback": "Le triple d'un nombre, c'est ce nombre multiplié par 3 : $3 × x$, qu'on écrit $3x$. Ajouter 3, c'est une autre opération." },
+        { "pair": ["p3", "e1"], "id": "mc:ajout-produit", "error": "notion", "feedback": "8 paquets identiques de $x$ kg pèsent 8 fois $x$ kg : c'est $8x$, une multiplication, et non $x + 8$." },
+        { "pair": ["p1", "e5"], "id": "mc:ordre-egalite", "error": "lecture", "feedback": "On part du nombre inconnu, on ajoute 8 et on OBTIENT 20 : le résultat, 20, se place seul de l'autre côté du signe =." }
+      ],
+      "hints": ["Repère le mot qui dit l'opération : « ajoute », « montent » → addition ; « triple », « paquets identiques » → multiplication.", "Le résultat annoncé (« je trouve… », « en tout », « maintenant ») se place seul de l'autre côté du signe =."],
+      "solution": "« J'ajoute 8 et je trouve 20 » : $x + 8 = 20$. « Le triple vaut 21 » : $3x = 21$. « 8 paquets identiques pèsent 20 kg » : $8x = 20$. « 3 personnes montent, il y en a 21 » : $x + 3 = 21$. L'équation $x + 20 = 8$ ne traduit aucun de ces problèmes.",
+      "selfTest": [
+        { "response": { "pairs": { "p1": "e1", "p2": "e2", "p3": "e3", "p4": "e4" } }, "expect": "correct" },
+        { "response": { "pairs": { "p1": "e1", "p2": "e4", "p3": "e3", "p4": "e2" } }, "expect": "mc:triple-ajout" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-addition", "type": "steps", "mode": "equation", "skill": "m5.equations.inverse", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:addition-au-lieu-soustraction"], "expectedSeconds": 90,
+      "params": { "b": { "int": [2, 9] }, "s": { "int": [2, 9] }, "c": { "expr": "s + b" } },
+      "start": "x + b = c",
+      "minSteps": 2,
+      "prompt": "Résous l'équation $ x + {b} = {c} $. Écris une étape par ligne, jusqu'à « $x = …$ ». La balance peut t'aider : chaque sac contient $x$ billes.",
+      "activity": { "widget": "balance", "config": { "a": 1, "b": "{b}", "c": 0, "d": "{c}", "x": "{s}", "mode": "solve" } },
+      "misconceptions": [
+        { "answer": "x = c + b", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "Tu as ajouté au lieu de défaire l'addition. Pour retrouver $x$, on fait l'opération INVERSE de « + », c'est-à-dire « − » : on enlève le même nombre de billes des deux côtés de la balance." }
+      ],
+      "hints": ["Sur la balance : un sac et {b} billes d'un côté, {c} billes de l'autre. Que faut-il enlever des deux côtés pour laisser le sac seul ?", "L'opération inverse de « ajouter {b} » est « soustraire {b} » : $ x = {c} − {b} $.", "$ {c} − {b} = {s} $. Vérifie : $ {s} + {b} = {c} $."],
+      "solution": "$ x + {b} = {c} $ ⟶ $ x = {c} − {b} $ ⟶ $ x = {s} $. Vérification : $ {s} + {b} = {c} $ ✓.",
+      "selfTest": [
+        { "response": { "lines": ["x = {c} - {b}", "x = {s}"] }, "expect": "correct" },
+        { "response": { "lines": ["x = {c+b}"] }, "expect": "mc:addition-au-lieu-soustraction" },
+        { "response": { "lines": ["x = {s}"] }, "expect": "sans-justification" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-produit", "type": "steps", "mode": "equation", "skill": "m5.equations.inverse", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:soustraire-au-lieu-diviser", "mc:division-inversee"], "expectedSeconds": 90,
+      "params": { "a": { "int": [2, 9] }, "s": { "int": [3, 12] }, "c": { "expr": "a*s" } },
+      "start": "a*x = c",
+      "minSteps": 2,
+      "prompt": "Résous $ {a}x = {c} $. Rappel : $ {a}x $ veut dire $ {a} × x $. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "x = c - a", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Ici, le nombre devant $x$ le MULTIPLIE : il ne s'ajoute pas. L'opération inverse d'une multiplication est une division, pas une soustraction." },
+        { "answer": "x = c*a", "id": "mc:multiplier-encore", "error": "methode", "feedback": "Tu as multiplié une deuxième fois au lieu de défaire la multiplication. Pour retrouver $x$, on divise." },
+        { "answer": "x = a/c", "id": "mc:division-inversee", "error": "calcul", "feedback": "Attention au sens de la division : on divise le résultat par le nombre qui multiplie $x$, et non l'inverse." }
+      ],
+      "hints": ["$ {a}x = {c} $ signifie : « {a} fois quel nombre donne {c} ? »", "L'opération inverse de « multiplier par {a} » est « diviser par {a} » : $ x = {c} ÷ {a} $.", "Vérifie toujours : $ {a} × {s} = {c} $."],
+      "solution": "$ {a}x = {c} $ ⟶ $ x = {c} ÷ {a} $ ⟶ $ x = {s} $. Vérification : $ {a} × {s} = {c} $ ✓.",
+      "selfTest": [
+        { "response": { "lines": ["x = {c} ÷ {a}", "x = {s}"] }, "expect": "correct" },
+        { "response": { "lines": ["x = {c-a}"] }, "expect": "mc:soustraire-au-lieu-diviser" },
+        { "response": { "lines": ["x = {c*a}"] }, "expect": "mc:multiplier-encore" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-solution", "type": "categorize", "skill": "m5.litteral.tester", "skills": ["m5.equations.inverse"], "track": "classe", "role": "verification", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:soustraire-au-lieu-diviser", "mc:addition-au-lieu-soustraction"], "expectedSeconds": 150,
+      "prompt": "Un élève a résolu six équations. Pour chacune, le nombre proposé est-il vraiment la solution ? Remplace $x$ pour le savoir.",
+      "categories": [ { "id": "oui", "label": "C'est la solution" }, { "id": "non", "label": "Ce n'est pas la solution" } ],
+      "items": [
+        { "id": "i1", "label": "$x + 9 = 15$ ; proposé : $x = 6$", "category": "oui" },
+        { "id": "i2", "label": "$4x = 36$ ; proposé : $x = 32$", "category": "non" },
+        { "id": "i3", "label": "$5x = 3,5$ ; proposé : $x = 0,7$", "category": "oui" },
+        { "id": "i4", "label": "$x + 2,5 = 10$ ; proposé : $x = 12,5$", "category": "non" },
+        { "id": "i5", "label": "$7x = 7$ ; proposé : $x = 0$", "category": "non" },
+        { "id": "i6", "label": "$x + 7 = 7$ ; proposé : $x = 0$", "category": "oui" }
+      ],
+      "misconceptions": [
+        { "item": "i2", "category": "oui", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Teste en remplaçant : $4 × 32 = 128$, et non 36. L'élève a soustrait 4 au lieu de diviser par 4 : la solution est $36 ÷ 4 = 9$." },
+        { "item": "i4", "category": "oui", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "Teste : $12,5 + 2,5 = 15$, et non 10. Il fallait soustraire : $10 − 2,5 = 7,5$." },
+        { "item": "i5", "category": "oui", "id": "mc:zero-un", "error": "calcul", "feedback": "$7 × 0 = 0$, et non 7. Le nombre qui, multiplié par 7, donne 7, c'est 1." }
+      ],
+      "hints": ["Pour savoir si un nombre est solution, remplace $x$ par ce nombre et calcule le membre de gauche.", "Si tu retrouves exactement le membre de droite, c'est la solution ; sinon, ce n'en est pas une."],
+      "solution": "$6 + 9 = 15$ ✓. $4 × 32 = 128$ ✗ (solution : 9). $5 × 0,7 = 3,5$ ✓. $12,5 + 2,5 = 15$ ✗ (solution : 7,5). $7 × 0 = 0$ ✗ (solution : 1). $0 + 7 = 7$ ✓.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "oui", "i2": "non", "i3": "oui", "i4": "non", "i5": "non", "i6": "oui" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "oui", "i2": "oui", "i3": "oui", "i4": "non", "i5": "non", "i6": "oui" } }, "expect": "mc:soustraire-au-lieu-diviser" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-decimaux", "type": "composite", "skill": "m5.equations.inverse", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:addition-au-lieu-soustraction", "mc:soustraire-au-lieu-diviser"], "expectedSeconds": 180,
+      "params": { "b": { "dec": [1.2, 8.8], "step": 0.1 }, "s": { "dec": [2.1, 9.9], "step": 0.1 }, "c": { "expr": "s + b" }, "a": { "int": [2, 8] }, "t": { "dec": [2.5, 9.5], "step": 1 }, "d": { "expr": "a*t" } },
+      "prompt": "Avec des nombres décimaux, la méthode ne change pas : on fait l'opération inverse.",
+      "parts": [
+        { "type": "numeric", "prompt": "Résous $ x + {b} = {c} $. Quelle est la valeur de $x$ ?", "answer": "c - b",
+          "misconceptions": [ { "answer": "c + b", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "Tu as ajouté les deux nombres. Pour défaire « + », on soustrait. Vérifie en remplaçant $x$ par ta réponse : tu ne retombes pas sur le bon résultat." } ] },
+        { "type": "numeric", "prompt": "Résous $ {a}x = {d} $. Quelle est la valeur de $x$ ?", "answer": "t",
+          "misconceptions": [ { "answer": "d - a", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Le nombre devant $x$ le multiplie : pour le défaire, on divise, on ne soustrait pas." } ] }
+      ],
+      "hints": ["Repère l'opération qui agit sur $x$ : une addition dans la première équation, une multiplication dans la seconde.", "$ x = {c} − {b} $ et $ x = {d} ÷ {a} $.", "Pose les calculs si besoin, puis vérifie en remplaçant $x$."],
+      "solution": "$ x + {b} = {c} $ donc $ x = {c} − {b} = {c-b} $. $ {a}x = {d} $ donc $ x = {d} ÷ {a} = {t} $. Vérifications : $ {c-b} + {b} = {c} $ ✓ et $ {a} × {t} = {d} $ ✓.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{c-b}" }, { "value": "{t}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{c+b}" }, { "value": "{t}" } ] }, "expect": "mc:addition-au-lieu-soustraction" },
+        { "response": { "parts": [ { "value": "{c-b}" }, { "value": "{d-a}" } ] }, "expect": "mc:soustraire-au-lieu-diviser" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-ruban", "type": "composite", "skill": "m5.equations.modeliser", "skills": ["m5.equations.inverse"], "track": "classe", "role": "transfert", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:soustraire-au-lieu-diviser"], "expectedSeconds": 240,
+      "params": { "n": { "int": [3, 9] }, "s": { "dec": [0.4, 2.4], "step": 0.2 }, "L": { "expr": "n*s" } },
+      "constraints": ["abs(s*(n - 1) - n) > 0.01"],
+      "prompt": "Un rouleau de ruban de {L} m est découpé en {n} morceaux de même longueur, sans chute.",
+      "parts": [
+        { "type": "equation", "prompt": "On appelle $x$ la longueur d'un morceau, en mètres. Écris une équation qui traduit le problème.", "expectKind": "unique", "expectSolution": "s" },
+        { "type": "numeric", "prompt": "Résous-la : quelle est la longueur d'un morceau, en mètres ?", "answer": "s",
+          "misconceptions": [ { "answer": "L - n", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Découper en morceaux égaux, c'est partager : l'opération inverse de « × » est « ÷ », pas « − »." } ] }
+      ],
+      "hints": ["{n} morceaux de $x$ mètres mesurent $ {n} × x $ mètres en tout.", "L'équation est $ {n}x = {L} $.", "Pour défaire « × {n} », on divise par {n}."],
+      "solution": "$ {n}x = {L} $ donc $ x = {L} ÷ {n} = {s} $ : chaque morceau mesure {s} m. Vérification : $ {n} × {s} = {L} $ ✓.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{n}x = {L}" }, { "value": "{s}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{n}x = {L}" }, { "value": "{L-n}" } ] }, "expect": "mc:soustraire-au-lieu-diviser" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-expliquer", "type": "open", "skill": "m5.equations.inverse", "skills": ["m5.litteral.tester"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 300, "minWords": 25,
+      "prompt": "Nora résout $x + 4 = 12$ et trouve $x = 8$. Puis elle résout $4x = 12$ et trouve encore $x = 8$.\n\nExplique-lui son erreur, la bonne méthode pour chaque équation, et comment elle aurait pu s'en rendre compte toute seule.",
+      "criteria": [
+        { "id": "c1", "label": "Je dis que $4x$ signifie $4 × x$ : c'est une multiplication", "keywords": [["multipli", "4 fois", "4 × x", "fois x", "4 x x"]] },
+        { "id": "c2", "label": "J'explique qu'il faut diviser : $x = 12 ÷ 4 = 3$", "keywords": [["divis", "12 ÷ 4", "12 / 4", "= 3", "egal 3"]] },
+        { "id": "c3", "label": "Je conseille de vérifier en remplaçant $x$ par la valeur trouvée", "keywords": [["verif", "rempla", "4 × 8", "32"]] }
+      ],
+      "models": [
+        "Pour $x + 4 = 12$, Nora a raison : on soustrait 4, donc $x = 8$. Mais $4x$ veut dire $4 × x$ : c'est une multiplication, et l'opération inverse est la division. Donc $x = 12 ÷ 4 = 3$. Elle aurait pu vérifier en remplaçant : $4 × 8 = 32$, ce n'est pas 12, alors que $4 × 3 = 12$.",
+        "Les deux équations n'utilisent pas la même opération. Dans la première, on ajoute 4 à $x$ : pour revenir à $x$, on enlève 4. Dans la deuxième, on multiplie $x$ par 4 : pour revenir à $x$, on divise par 4 et on trouve 3. Une vérification aurait montré l'erreur : 4 fois 8 font 32."
+      ],
+      "hints": ["Dans $4x = 12$, quelle opération agit sur $x$ : une addition ou une multiplication ?", "Remplace $x$ par 8 dans $4x$ : trouves-tu 12 ?"],
+      "solution": "Dans $x + 4 = 12$, on défait l'addition : $x = 12 − 4 = 8$ ✓. Dans $4x = 12$, $4x$ signifie $4 × x$ : on défait la multiplication en divisant, $x = 12 ÷ 4 = 3$. Nora a soustrait au lieu de diviser. Une vérification l'aurait alertée : $4 × 8 = 32 ≠ 12$, alors que $4 × 3 = 12$ ✓.",
+      "selfTest": [ { "response": { "text": "4x veut dire 4 fois x, c'est une multiplication, donc il faut diviser : x = 12 ÷ 4 = 3. Pour vérifier, on remplace : 4 × 8 = 32, ce n'est pas 12." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-equations-trous-cahiers", "type": "composite", "skill": "m5.equations.modeliser", "skills": ["m5.equations.inverse"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:addition-au-lieu-soustraction", "mc:soustraire-au-lieu-diviser"], "expectedSeconds": 360,
+      "params": { "n": { "int": [3, 6] }, "p": { "dec": [1.2, 3.5], "step": 0.1 }, "t": { "dec": [2.5, 6.5], "step": 0.5 }, "m": { "expr": "n*p" }, "T": { "expr": "m + t" } },
+      "constraints": ["abs(p*(n - 1) - n) > 0.01"],
+      "prompt": "Sam achète {n} cahiers identiques et une trousse à {t} €. Il paie {T} € en tout. Combien coûte un cahier ? On résout deux problèmes à trous, l'un après l'autre.",
+      "parts": [
+        { "type": "numeric", "prompt": "On appelle $y$ le prix des {n} cahiers ensemble : $ y + {t} = {T} $. Combien coûtent les {n} cahiers, en euros ?", "answer": "T - t",
+          "misconceptions": [ { "answer": "T + t", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "Le prix de la trousse est déjà compris dans le total : pour trouver le prix des cahiers seuls, on l'enlève." } ] },
+        { "type": "numeric", "prompt": "On appelle $x$ le prix d'un cahier : $ {n}x = $ le prix trouvé. Combien coûte un cahier, en euros ?", "answer": "p",
+          "misconceptions": [
+            { "answer": "m - n", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Les cahiers sont identiques : on partage leur prix total en parts égales. On divise, on ne soustrait pas." },
+            { "answer": "T/n", "id": "mc:oubli-trousse", "error": "raisonnement", "feedback": "Tu as partagé le total, trousse comprise. Il faut d'abord enlever le prix de la trousse." }
+          ] }
+      ],
+      "hints": ["Commence par enlever le prix de la trousse : il reste le prix des cahiers.", "$ y + {t} = {T} $, donc $ y = {T} − {t} $.", "Ensuite, $ {n}x = {m} $ : on divise par {n}."],
+      "solution": "Prix des {n} cahiers : $ y = {T} − {t} = {m} $ €. Prix d'un cahier : $ {n}x = {m} $, donc $ x = {m} ÷ {n} = {p} $ €. Vérification : $ {n} × {p} + {t} = {T} $ ✓.",
+      "methods": ["Enlever la trousse, puis partager entre les cahiers (deux opérations inverses, dans l'ordre inverse des achats).", "Essayer un prix, calculer le total obtenu, puis ajuster : c'est plus long, mais la vérification est intégrée."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{m}" }, { "value": "{p}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{m}" }, { "value": "{m-n}" } ] }, "expect": "mc:soustraire-au-lieu-diviser" },
+        { "response": { "parts": [ { "value": "{T+t}" }, { "value": "{p}" } ] }, "expect": "mc:addition-au-lieu-soustraction" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-sortie", "type": "composite", "skill": "m5.equations.modeliser", "skills": ["m5.equations.inverse"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:addition-au-lieu-soustraction", "mc:oubli-cagnotte"], "expectedSeconds": 480,
+      "params": { "n": { "int": [20, 28] }, "q": { "dec": [2, 8], "step": 0.5 }, "R": { "expr": "n*q" }, "K": { "choice": [120, 150, 180, 200, 240] }, "C": { "expr": "K + R" } },
+      "prompt": "Le car pour aller au parc coûte {C} €. La cagnotte de la classe contient déjà {K} €. Ce qui manque sera partagé équitablement entre les {n} élèves.",
+      "parts": [
+        { "type": "equation", "prompt": "On appelle $x$ la somme qui manque, en euros. Écris une équation qui traduit la situation.", "expectKind": "unique", "expectSolution": "R" },
+        { "type": "numeric", "prompt": "Combien manque-t-il, en euros ?", "answer": "R",
+          "misconceptions": [ { "answer": "C + K", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "La cagnotte paie déjà une partie du car : il manque le prix du car MOINS ce qu'il y a dans la cagnotte." } ] },
+        { "type": "numeric", "prompt": "Chaque élève paie la même somme $y$, en euros. Combien chaque élève doit-il payer ?", "answer": "q",
+          "misconceptions": [
+            { "answer": "C/n", "id": "mc:oubli-cagnotte", "error": "raisonnement", "feedback": "Tu as partagé le prix total du car, comme si la cagnotte était vide. Seule la somme qui manque est partagée." },
+            { "answer": "R - n", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Partager équitablement entre les élèves, c'est diviser par le nombre d'élèves." }
+          ] },
+        { "type": "open", "prompt": "Rédige le message du délégué à la classe : combien chacun doit payer, avec une vérification par le calcul.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "J'annonce clairement la somme que chaque élève doit payer, avec l'unité", "keywords": [["chaque", "chacun"]] },
+            { "id": "c2", "label": "Je vérifie : les parts des élèves plus la cagnotte redonnent le prix du car", "keywords": [["verif", "×", "fois", "plus la cagnotte", "+"]] }
+          ] }
+      ],
+      "hints": ["Ce qui manque plus la cagnotte doit donner le prix du car : $ x + {K} = {C} $.", "On défait l'addition : $ x = {C} − {K} $. Ensuite, $ {n}y = $ ce qui manque.", "On défait la multiplication en divisant par {n}."],
+      "solution": "Il manque $x$ euros : $ x + {K} = {C} $, donc $ x = {C} − {K} = {R} $ €. Chaque élève paie $y$ euros : $ {n}y = {R} $, donc $ y = {R} ÷ {n} = {q} $ €. Vérification : $ {n} × {q} + {K} = {R} + {K} = {C} $ ✓. Message possible : « Chacun doit apporter {q} €. »",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "x + {K} = {C}" }, { "value": "{R}" }, { "value": "{q}" }, { "text": "Chaque élève doit payer {q} euros. Vérification : {n} × {q} = {R} et {R} + {K} = {C}, c'est bien le prix du car.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "x + {K} = {C}" }, { "value": "{C+K}" }, { "value": "{q}" }, { "text": "Chacun paie {q} euros." } ] }, "expect": "mc:addition-au-lieu-soustraction" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-remed-droite", "type": "numberline", "skill": "m5.equations.inverse", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:addition-au-lieu-soustraction"], "expectedSeconds": 60,
+      "params": { "b": { "int": [3, 8] }, "s": { "int": [2, 10] }, "c": { "expr": "s + b" } },
+      "prompt": "Autre représentation : un pion part d'un nombre caché $x$, avance de {b} graduations et arrive sur {c}. C'est l'équation $ x + {b} = {c} $. Place le point de départ $x$ sur la droite graduée.",
+      "min": 0, "max": 20, "step": 1,
+      "points": [ { "label": "x", "value": "{c-b}" } ],
+      "hints": ["Le pion avance (vers la droite) pour arriver sur {c} : il est donc parti d'un point situé plus à gauche.", "Pour revenir au départ, recule de {b} à partir de {c}."],
+      "solution": "On recule de {b} à partir de {c} : $ x = {c} − {b} = {s} $. Avancer puis reculer du même nombre ramène au point de départ : c'est l'idée de l'opération inverse.",
+      "selfTest": [
+        { "response": { "positions": { "x": "{s}" } }, "expect": "correct" },
+        { "response": { "positions": { "x": "{c+b}" } }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-remed-diviser", "type": "numeric", "skill": "m5.equations.inverse", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:soustraire-au-lieu-diviser"], "expectedSeconds": 60,
+      "params": { "a": { "int": [3, 9] }, "s": { "int": [3, 9] }, "c": { "expr": "a*s" } },
+      "prompt": "Rappel ciblé : {a} amis se partagent {c} cartes à jouer, et chacun en reçoit le même nombre $x$. C'est l'équation $ {a}x = {c} $. Combien de cartes reçoit chacun ?",
+      "answer": "s",
+      "misconceptions": [ { "answer": "c - a", "id": "mc:soustraire-au-lieu-diviser", "error": "methode", "feedback": "Retirer une carte par ami ne suffit pas : on PARTAGE les cartes en parts égales. Partager, c'est diviser." } ],
+      "hints": ["Partager équitablement entre {a} amis, c'est diviser par {a}.", "Calcule $ {c} ÷ {a} $, puis vérifie : {a} fois ta réponse doit redonner {c}."],
+      "solution": "$ x = {c} ÷ {a} = {s} $, car $ {a} × {s} = {c} $. Chacun reçoit {s} cartes.",
+      "selfTest": [
+        { "response": { "value": "{s}" }, "expect": "correct" },
+        { "response": { "value": "{c-a}" }, "expect": "mc:soustraire-au-lieu-diviser" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-autres-sens", "type": "composite", "skill": "m5.equations.inverse", "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:soustraire-encore", "mc:diviser-encore"], "expectedSeconds": 240,
+      "params": { "b": { "int": [3, 12] }, "s": { "int": [15, 40] }, "c": { "expr": "s - b" }, "a": { "int": [2, 9] }, "t": { "int": [2, 12] }, "e": { "expr": "a*t" } },
+      "prompt": "Le trou peut aussi cacher un nombre dont on a soustrait, ou qu'on a divisé. Chaque opération a son opération inverse !",
+      "parts": [
+        { "type": "steps", "mode": "equation", "prompt": "Résous $ x − {b} = {c} $.", "start": "x - b = c", "minSteps": 1,
+          "misconceptions": [ { "answer": "x = c - b", "id": "mc:soustraire-encore", "error": "methode", "feedback": "Tu as soustrait une deuxième fois. Pour défaire une soustraction, on ajoute." } ] },
+        { "type": "steps", "mode": "equation", "prompt": "Résous $ x ÷ {a} = {t} $.", "start": "x / a = t", "minSteps": 1,
+          "misconceptions": [ { "answer": "x = t / a", "id": "mc:diviser-encore", "error": "methode", "feedback": "Tu as divisé une deuxième fois. Pour défaire une division, on multiplie." } ] }
+      ],
+      "hints": ["L'opération inverse de « soustraire » est « ajouter » ; l'inverse de « diviser » est « multiplier ».", "$ x = {c} + {b} $ et $ x = {t} × {a} $.", "Vérifie : $ {s} − {b} = {c} $ et $ {e} ÷ {a} = {t} $."],
+      "solution": "$ x − {b} = {c} $ ⟶ $ x = {c} + {b} = {s} $. $ x ÷ {a} = {t} $ ⟶ $ x = {t} × {a} = {e} $. Les quatre opérations vont par paires : + et −, × et ÷.",
+      "selfTest": [
+        { "response": { "parts": [ { "lines": ["x = {c} + {b}", "x = {s}"] }, { "lines": ["x = {t} × {a}", "x = {e}"] } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "lines": ["x = {c-b}"] }, { "lines": ["x = {e}"] } ] }, "expect": "mc:soustraire-encore" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-remonter", "type": "numeric", "skill": "m5.equations.inverse", "skills": ["m4.equations.resoudre"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:ordre-inverse"], "expectedSeconds": 180,
+      "params": { "a": { "int": [2, 9] }, "s": { "int": [2, 12] }, "k": { "int": [1, 4] }, "b": { "expr": "a*k" }, "r": { "expr": "a*s + b" } },
+      "prompt": "Je pense à un nombre. Je le multiplie par {a}, puis j'ajoute {b}. Je trouve {r}. Quel était mon nombre ?",
+      "answer": "s",
+      "misconceptions": [
+        { "answer": "r/a - b", "id": "mc:ordre-inverse", "error": "methode", "feedback": "Tu as défait les étapes dans le mauvais ordre. Comme pour enlever ses chaussettes et ses chaussures, on défait d'abord ce qui a été fait EN DERNIER." },
+        { "answer": "(r + b)/a", "id": "mc:addition-au-lieu-soustraction", "error": "methode", "feedback": "Pour défaire « ajouter », il faut soustraire, pas ajouter encore." }
+      ],
+      "hints": ["Remonte le programme à l'envers : la dernière étape effectuée est la première à défaire.", "On a ajouté {b} en dernier : commence par soustraire {b}. Tu obtiens {a*s}.", "Il reste le problème à trous $ {a}x = {a*s} $ : on divise par {a}."],
+      "solution": "$ {r} − {b} = {a*s} $, puis $ {a*s} ÷ {a} = {s} $. Vérification : $ {s} × {a} + {b} = {r} $ ✓. Avec une lettre, c'est l'équation $ {a}x + {b} = {r} $ : deux problèmes à trous enchaînés (tu apprendras à la résoudre directement en 4e).",
+      "selfTest": [
+        { "response": { "value": "{s}" }, "expect": "correct" },
+        { "response": { "value": "{r/a-b}" }, "expect": "mc:ordre-inverse" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-bizarres", "type": "composite", "skill": "m5.equations.inverse", "skills": ["m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:division-par-zero"], "expectedSeconds": 420,
+      "prompt": "Les trous bizarres : trouve combien de nombres $x$ conviennent… s'il en existe ! Réponds par un nombre (0, 1, 2…) ou par « une infinité ».",
+      "parts": [
+        { "type": "text", "prompt": "Combien de nombres $x$ vérifient $0 × x = 7$ ?", "accept": ["0", "aucun", "aucune", "zéro", "zero", "aucun nombre", "pas de solution", "aucune solution", "il n'y en a pas"],
+          "misconceptions": [
+            { "answer": "1", "id": "mc:division-par-zero", "error": "notion", "feedback": "Essaie de trouver ce nombre : $0 × 7 = 0$, $0 × 100 = 0$… Tout nombre multiplié par 0 donne 0, jamais 7." },
+            { "answer": "une infinité", "id": "mc:zero-absorbant", "error": "raisonnement", "feedback": "Multiplié par 0, tout nombre donne 0. Peut-on obtenir 7 ?" }
+          ] },
+        { "type": "text", "prompt": "Combien de nombres $x$ vérifient $0 × x = 0$ ?", "accept": ["une infinité", "une infinite", "infinité", "infinite", "infini", "tous", "tous les nombres", "une infinité de nombres"],
+          "misconceptions": [ { "answer": "1", "id": "mc:solution-unique", "error": "raisonnement", "feedback": "Essaie $x = 5$, puis $x = 100$, puis $x = 2,7$ : l'égalité est-elle vraie à chaque fois ?" } ] },
+        { "type": "text", "prompt": "Combien de nombres $x$ vérifient $x + 3 = x + 5$ ?", "accept": ["0", "aucun", "aucune", "zéro", "zero", "aucun nombre", "pas de solution", "aucune solution", "il n'y en a pas"],
+          "misconceptions": [ { "answer": "1", "id": "mc:solution-unique", "error": "raisonnement", "feedback": "Ajouter 3 ou ajouter 5 au MÊME nombre donne deux résultats différents : l'égalité ne peut jamais être vraie." } ] },
+        { "type": "open", "prompt": "Explique pourquoi on ne peut pas trouver $x$ en calculant « $7 ÷ 0$ » dans $0 × x = 7$.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Tout nombre multiplié par 0 donne 0", "keywords": [["donne 0", "egal a 0", "fait 0", "= 0", "toujours 0", "vaut 0"]] },
+            { "id": "c2", "label": "Donc on n'obtient jamais 7 : aucun nombre ne convient, et diviser par 0 n'a pas de sens", "keywords": [["jamais", "aucun", "impossible", "pas de sens"]] }
+          ] }
+      ],
+      "hints": ["Teste quelques nombres dans chaque égalité.", "Que donne n'importe quel nombre multiplié par 0 ?", "Dans $x + 3 = x + 5$, compare les deux membres pour un même $x$ : lequel est le plus grand ?"],
+      "solution": "$0 × x = 7$ : aucun nombre, car $0 × x$ vaut toujours 0. $0 × x = 0$ : une infinité, tous les nombres conviennent. $x + 3 = x + 5$ : aucun, le membre de droite est toujours plus grand de 2. On ne divise jamais par 0 : « $7 ÷ 0$ » demanderait un nombre qui, multiplié par 0, donne 7, et il n'en existe pas.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "aucun" }, { "value": "une infinité" }, { "value": "aucune solution" }, { "text": "Tout nombre multiplié par 0 donne 0, donc on n'obtient jamais 7 : diviser par 0 n'a pas de sens.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1" }, { "value": "une infinité" }, { "value": "aucun" }, { "text": "Je ne sais pas." } ] }, "expect": "mc:division-par-zero" }
+      ]
+    },
+    {
+      "id": "m5-equations-trous-pyramide", "type": "composite", "skill": "m5.equations.inverse", "skills": ["m5.equations.modeliser", "m4.equations.resoudre"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:x-compte-une-fois"], "expectedSeconds": 480,
+      "params": { "a": { "int": [2, 15] }, "c": { "int": [2, 15] }, "s": { "int": [3, 20] }, "T": { "expr": "a + 2*s + c" } },
+      "prompt": "Pyramide de nombres : chaque brique est la somme des deux briques posées juste en dessous. En bas : {a}, $x$ et {c}. Au sommet : {T}.",
+      "figure": {
+        "alt": "Pyramide de trois étages : en bas les briques {a}, x et {c} ; au milieu deux briques vides ; au sommet la brique {T}.",
+        "w": 360, "h": 160, "frame": { "x": [0, 9], "y": [0, 3.2] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 1, "label": "{a}" },
+          { "type": "rect", "x": 3, "y": 0, "w": 3, "h": 1, "label": "x", "fill": "maths" },
+          { "type": "rect", "x": 6, "y": 0, "w": 3, "h": 1, "label": "{c}" },
+          { "type": "rect", "x": 1.5, "y": 1, "w": 3, "h": 1, "label": "?" },
+          { "type": "rect", "x": 4.5, "y": 1, "w": 3, "h": 1, "label": "?" },
+          { "type": "rect", "x": 3, "y": 2, "w": 3, "h": 1, "label": "{T}" }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris le nombre du sommet en fonction de $x$, sous forme réduite (écris seulement l'expression).", "answer": "2x + a + c",
+          "misconceptions": [ { "answer": "x + a + c", "id": "mc:x-compte-une-fois", "error": "raisonnement", "feedback": "La brique $x$ sert DEUX fois : elle compte dans les deux briques du milieu." } ] },
+        { "type": "numeric", "prompt": "Trouve la valeur de $x$.", "answer": "s",
+          "misconceptions": [ { "answer": "T - a - c", "id": "mc:x-compte-une-fois", "error": "raisonnement", "feedback": "Tu as trouvé la valeur de $2x$ : comme $x$ compte deux fois au sommet, il reste à partager en deux." } ] }
+      ],
+      "hints": ["Écris les deux briques du milieu : $ {a} + x $ et $ x + {c} $.", "Sommet : $ ({a} + x) + (x + {c}) = 2x + {a+c} $.", "$ 2x + {a+c} = {T} $ : enlève d'abord {a+c}, puis divise par 2."],
+      "solution": "Sommet : $ ({a} + x) + (x + {c}) = 2x + {a+c} $. On résout $ 2x + {a+c} = {T} $ en défaisant les opérations dans l'ordre inverse : $ 2x = {T} − {a+c} = {2*s} $, puis $ x = {2*s} ÷ 2 = {s} $. Vérification : au milieu $ {a+s} $ et $ {s+c} $, au sommet $ {a+s} + {s+c} = {T} $ ✓.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2x + {a+c}" }, { "value": "{s}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "x + {a+c}" }, { "value": "{2*s}" } ] }, "expect": "mc:x-compte-une-fois" }
+      ]
+    }
+  ]
+}

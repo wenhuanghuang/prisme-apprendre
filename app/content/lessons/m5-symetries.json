@@ -1,0 +1,756 @@
+{
+  "id": "m5-symetries",
+  "chapter": "m5-ch-symetries",
+  "title": "Symétrie axiale et demi-tour",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.geo.symetrie-axiale", "m5.geo.demi-tour"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 55,
+  "summary": "Plier ou faire tourner ? La symétrie axiale retourne une figure comme un miroir ; le demi-tour (symétrie centrale) la fait tourner de 180° autour d'un point. On construit des symétriques sur quadrillage et sur feuille blanche, et on découvre ce que ces transformations conservent.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le mot écrit à l'envers",
+      "body": "Sur le capot de certaines ambulances, le mot AMBULANCE est écrit à l'envers, comme dans un miroir. Erreur du peintre ? Non : le conducteur de devant le lit dans son rétroviseur… et le miroir le remet à l'endroit ! Un miroir **retourne** les figures.\n\nÉcris maintenant SOS sur une feuille et fais-la **tourner** d'un demi-tour. Que lis-tu ? Et avec NON ? Retourner ou faire tourner : est-ce la même chose ?",
+      "figure": {
+        "alt": "Une lettre F à gauche d'une droite verticale nommée miroir, et son reflet à droite de cette droite",
+        "w": 420, "h": 245,
+        "frame": { "x": [0, 12], "y": [0, 7] },
+        "caption": "Un F et son reflet dans un miroir vertical",
+        "items": [
+          { "type": "polygon", "points": [[1, 1], [2, 1], [2, 3], [3, 3], [3, 4], [2, 4], [2, 5], [4, 5], [4, 6], [1, 6]], "fill": "bleu" },
+          { "type": "line", "through": [[6, 0], [6, 7]], "label": "miroir", "color": "gris" },
+          { "type": "polygon", "points": [[11, 1], [10, 1], [10, 3], [9, 3], [9, 4], [10, 4], [10, 5], [8, 5], [8, 6], [11, 6]], "fill": "orange" },
+          { "type": "text", "x": 2.5, "y": 0.4, "text": "modèle", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 9.5, "y": 0.4, "text": "reflet", "size": "s", "anchor": "middle" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🪞",
+          "title": "Symétrie axiale : le pliage",
+          "body": "M et M' sont **symétriques par rapport à la droite (d)** quand (d) est la **médiatrice** de [MM'] : elle coupe [MM'] en son milieu, à angle droit. Si on plie la feuille le long de (d), M vient se poser sur M'.",
+          "reveal": { "question": "Devine : où est le symétrique d'un point situé SUR l'axe (d) ?", "answer": "Sur lui-même : un point de l'axe ne bouge pas." },
+          "figure": {
+            "alt": "Une droite verticale (d), un point M à gauche et un point M' à droite, le segment [MM'] coupé en son milieu à angle droit par (d)",
+            "w": 360, "h": 225,
+            "frame": { "x": [0, 8], "y": [0, 5] },
+            "items": [
+              { "type": "line", "through": [[4, 0], [4, 5]], "label": "(d)", "color": "rouge" },
+              { "type": "point", "id": "M", "x": 1.5, "y": 3, "pos": "w" },
+              { "type": "point", "id": "M'", "x": 6.5, "y": 3, "pos": "e" },
+              { "type": "point", "id": "I", "x": 4, "y": 3, "hidden": true },
+              { "type": "segment", "from": "M", "to": "I", "marks": 1 },
+              { "type": "segment", "from": "I", "to": "M'", "marks": 1 },
+              { "type": "angle", "vertex": "I", "from": "M'", "to": [4, 4.5], "right": true }
+            ]
+          }
+        },
+        {
+          "emoji": "🔲",
+          "title": "Sur un quadrillage",
+          "body": "On compte les carreaux **perpendiculairement** à l'axe : un point et son image sont à la même distance de l'axe, de part et d'autre. Avec un axe **diagonal**, on avance en suivant les diagonales des carreaux, jamais à l'horizontale !",
+          "example": "Axe vertical : A est à 2 carreaux à gauche de l'axe, donc A' est à 2 carreaux à droite.",
+          "figure": {
+            "alt": "Quadrillage avec un axe diagonal, un triangle ABC au-dessus de l'axe et son symétrique A'B'C' en dessous",
+            "w": 350, "h": 300,
+            "frame": { "x": [0, 7], "y": [0, 6], "grid": true },
+            "items": [
+              { "type": "line", "through": [[0, 0], [6, 6]], "label": "(d)", "color": "rouge" },
+              { "type": "point", "id": "A", "x": 1, "y": 3, "pos": "w" },
+              { "type": "point", "id": "B", "x": 1, "y": 5, "pos": "nw" },
+              { "type": "point", "id": "C", "x": 3, "y": 5, "pos": "n" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "bleu" },
+              { "type": "point", "id": "A'", "x": 3, "y": 1, "pos": "s" },
+              { "type": "point", "id": "B'", "x": 5, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C'", "x": 5, "y": 3, "pos": "e" },
+              { "type": "polygon", "points": ["A'", "B'", "C'"], "fill": "orange" },
+              { "type": "segment", "from": "A", "to": "A'", "dashed": true },
+              { "type": "angle", "vertex": [2, 2], "from": "A", "to": [3, 3], "right": true }
+            ]
+          }
+        },
+        {
+          "emoji": "🔄",
+          "title": "Le demi-tour (symétrie centrale)",
+          "body": "M et M' sont **symétriques par rapport au point O** quand O est le **milieu** de [MM']. Faire le symétrique d'une figure par rapport à O, c'est la faire **tourner d'un demi-tour** (180°) autour de O, sans la retourner : un F reste un F… la tête en bas.",
+          "figure": {
+            "alt": "Une lettre F à gauche, un point O au centre, et l'image du F après un demi-tour autour de O, à droite ; un sommet M et son image M' sont alignés avec O",
+            "w": 400, "h": 240,
+            "frame": { "x": [0, 10], "y": [0, 6] },
+            "items": [
+              { "type": "polygon", "points": [[0.5, 0.5], [1.5, 0.5], [1.5, 2.5], [2.5, 2.5], [2.5, 3.5], [1.5, 3.5], [1.5, 4.5], [3.5, 4.5], [3.5, 5.5], [0.5, 5.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[9.5, 5.5], [8.5, 5.5], [8.5, 3.5], [7.5, 3.5], [7.5, 2.5], [8.5, 2.5], [8.5, 1.5], [6.5, 1.5], [6.5, 0.5], [9.5, 0.5]], "fill": "orange" },
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "n" },
+              { "type": "point", "id": "M", "x": 3.5, "y": 5.5, "pos": "ne" },
+              { "type": "point", "id": "M'", "x": 6.5, "y": 0.5, "pos": "sw" },
+              { "type": "segment", "from": "M", "to": "O", "marks": 1, "dashed": true },
+              { "type": "segment", "from": "O", "to": "M'", "marks": 1, "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Ce que les symétries conservent",
+          "body": "La symétrie axiale et le demi-tour **conservent** les longueurs, les mesures d'angles, les aires et l'alignement : l'image d'une figure lui est **superposable**. En plus, le demi-tour transforme une droite en une droite **parallèle**.",
+          "example": "Si [AB] mesure 4 cm, son image [A'B'] par un demi-tour mesure aussi 4 cm, et (A'B') est parallèle à (AB).",
+          "figure": {
+            "alt": "Un segment [AB] de 4 cm, un point O, et l'image [A'B'] de 4 cm par le demi-tour de centre O, parallèle à [AB]",
+            "w": 400, "h": 240,
+            "frame": { "x": [0, 10], "y": [0, 6] },
+            "items": [
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "n" },
+              { "type": "point", "id": "A", "x": 1, "y": 2, "pos": "w" },
+              { "type": "point", "id": "B", "x": 3, "y": 5, "pos": "n" },
+              { "type": "point", "id": "A'", "x": 9, "y": 4, "pos": "e" },
+              { "type": "point", "id": "B'", "x": 7, "y": 1, "pos": "s" },
+              { "type": "segment", "from": "A", "to": "B", "label": "4 cm", "color": "bleu" },
+              { "type": "segment", "from": "A'", "to": "B'", "label": "4 cm", "color": "orange" },
+              { "type": "segment", "from": "A", "to": "A'", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "B", "to": "B'", "dashed": true, "color": "gris" }
+            ]
+          }
+        },
+        {
+          "emoji": "⭐",
+          "title": "Axe ou centre de symétrie d'une figure",
+          "body": "Une figure a un **axe de symétrie** si elle se superpose à elle-même par pliage le long de cet axe. Elle a un **centre de symétrie** si elle se superpose à elle-même après un demi-tour autour de ce point. En majuscules d'imprimerie : A et T ont un axe ; N, S et Z ont un centre ; H et X ont les deux.",
+          "reveal": { "question": "Devine : combien d'axes de symétrie a un carré ? A-t-il un centre de symétrie ?", "answer": "4 axes (les deux diagonales et les deux médiatrices des côtés) et un centre : le point où se coupent les diagonales." },
+          "figure": {
+            "alt": "Un parallélogramme et ses deux diagonales qui se coupent en un point O",
+            "w": 380, "h": 200,
+            "frame": { "x": [0, 9], "y": [0, 5] },
+            "caption": "Ce parallélogramme a un centre de symétrie O, mais aucun axe.",
+            "items": [
+              { "type": "point", "id": "P", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "Q", "x": 6, "y": 1, "pos": "se" },
+              { "type": "point", "id": "R", "x": 8, "y": 4, "pos": "ne" },
+              { "type": "point", "id": "S", "x": 3, "y": 4, "pos": "nw" },
+              { "type": "polygon", "points": ["P", "Q", "R", "S"], "fill": "maths" },
+              { "type": "segment", "from": "P", "to": "R", "dashed": true },
+              { "type": "segment", "from": "Q", "to": "S", "dashed": true },
+              { "type": "point", "id": "O", "x": 4.5, "y": 2.5, "style": "rond", "pos": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "En résumé : retourner ou tourner ?",
+          "body": "**Symétrie axiale** : comme un miroir ou un pliage, la figure est **retournée** ; tous les points de l'axe restent fixes. **Demi-tour** : la figure **tourne** de 180° autour du centre O, seul O reste fixe. Pour ne pas confondre : axe → pliage → médiatrice ; centre → demi-tour → milieu."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : un demi-tour sur feuille blanche",
+      "steps": [
+        {
+          "text": "On veut construire le triangle A'B'C', symétrique du triangle ABC par rapport au point O, avec une règle et un compas.",
+          "figure": {
+            "alt": "Un triangle ABC et un point O situé à sa droite",
+            "w": 400, "h": 240,
+            "frame": { "x": [0, 10], "y": [0, 6] },
+            "items": [
+              { "type": "point", "id": "A", "x": 2, "y": 2, "pos": "s" },
+              { "type": "point", "id": "B", "x": 4, "y": 5, "pos": "n" },
+              { "type": "point", "id": "C", "x": 1, "y": 4, "pos": "w" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "bleu" },
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "e" }
+            ]
+          }
+        },
+        {
+          "text": "Pour A : on trace la demi-droite [AO). On pointe le compas sur O, on l'ouvre jusqu'à A, et on reporte cette longueur de l'autre côté de O. On obtient A' : O est le milieu de [AA'].",
+          "math": "OA' = OA",
+          "figure": {
+            "alt": "Le triangle ABC, le point O et le point A' obtenu en reportant la longueur OA de l'autre côté de O",
+            "w": 400, "h": 240,
+            "frame": { "x": [0, 10], "y": [0, 6] },
+            "items": [
+              { "type": "point", "id": "A", "x": 2, "y": 2, "pos": "s" },
+              { "type": "point", "id": "B", "x": 4, "y": 5, "pos": "n" },
+              { "type": "point", "id": "C", "x": 1, "y": 4, "pos": "w" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "bleu" },
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "n" },
+              { "type": "point", "id": "A'", "x": 8, "y": 4, "pos": "n" },
+              { "type": "segment", "from": "A", "to": "O", "marks": 1 },
+              { "type": "segment", "from": "O", "to": "A'", "marks": 1 },
+              { "type": "arc", "center": "O", "r": 3.1623, "start": 8, "end": 29, "color": "gris" }
+            ]
+          }
+        },
+        { "text": "On fait de même pour B et pour C.", "math": "OB' = OB et OC' = OC" },
+        {
+          "text": "On relie A', B' et C'. Vérification : chaque côté a la même longueur que son image, et lui est parallèle. Le triangle a tourné d'un demi-tour, il n'est pas retourné.",
+          "math": "A'B' = AB et (A'B') // (AB)",
+          "figure": {
+            "alt": "Le triangle ABC et son image A'B'C' par le demi-tour de centre O, avec les segments [AA'], [BB'] et [CC'] qui passent par O",
+            "w": 400, "h": 240,
+            "frame": { "x": [0, 10], "y": [0, 6] },
+            "items": [
+              { "type": "point", "id": "A", "x": 2, "y": 2, "pos": "s" },
+              { "type": "point", "id": "B", "x": 4, "y": 5, "pos": "n" },
+              { "type": "point", "id": "C", "x": 1, "y": 4, "pos": "w" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "bleu" },
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "n" },
+              { "type": "point", "id": "A'", "x": 8, "y": 4, "pos": "n" },
+              { "type": "point", "id": "B'", "x": 6, "y": 1, "pos": "s" },
+              { "type": "point", "id": "C'", "x": 9, "y": 2, "pos": "e" },
+              { "type": "polygon", "points": ["A'", "B'", "C'"], "fill": "orange" },
+              { "type": "segment", "from": "A", "to": "A'", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "B", "to": "B'", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "C", "to": "C'", "dashed": true, "color": "gris" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Sur quadrillage d'abord, puis sur feuille blanche : plie ou fais tourner !",
+      "exercises": ["m5-symetries-axe-quadrillage", "m5-symetries-axe-diagonal", "m5-symetries-demi-tour-longueurs", "m5-symetries-proprietes", "m5-symetries-lettres", "m5-symetries-construction"]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'expliquer",
+      "exercises": ["m5-symetries-redaction"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : le cerf-volant",
+      "exercises": ["m5-symetries-cerf-volant"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le logo du club",
+      "body": "Le club d'échecs du collège veut un logo qui ait un centre de symétrie. À toi de le terminer.",
+      "exercises": ["m5-symetries-logo"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Symétrie axiale** d'axe (d) : (d) est la médiatrice de [MM'] (pliage, la figure est retournée). **Demi-tour** de centre O : O est le milieu de [MM'] (la figure tourne de 180°). Les deux conservent longueurs, angles et aires ; le demi-tour change une droite en une droite parallèle.\n\n- **Confondre les deux.** Axe → on plie ; centre → on tourne autour d'un point.\n- **Compter à l'horizontale avec un axe diagonal.** On se déplace perpendiculairement à l'axe, en suivant les diagonales des carreaux.\n- **Prendre O pour une extrémité.** O est le milieu : OM' = OM et MM' = 2 × OM.\n- **Croire que le demi-tour retourne la figure.** Un F reste un F, la tête en bas."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des constructions de symétriques dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Deux symétries à la suite, et un centre de symétrie à retrouver : de quoi raisonner avec des coordonnées.",
+      "exercises": ["m5-symetries-deux-axes", "m5-symetries-trouver-centre"]
+    },
+    "expert": {
+      "intro": "Facultatif : enchaîner deux demi-tours (un avant-goût de la translation de 4e) et lire l'heure dans un miroir.",
+      "exercises": ["m5-symetries-deux-centres", "m5-symetries-horloge"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-symetries-axe-quadrillage", "type": "graph", "skill": "m5.geo.symetrie-axiale", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "visuelle", "targets": ["notion"], "expectedSeconds": 120,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [1, 7] }, "c": { "int": [1, 4] }, "e": { "int": [1, 7] } },
+      "constraints": ["a != c or b != e"],
+      "prompt": "Dans le quadrillage, la droite (d) est verticale : elle passe par les points (5 ; 0) et (5 ; 8). Place A' et B', les symétriques de A({a} ; {b}) et de B({c} ; {e}) par rapport à (d).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8, une droite verticale (d) et deux points A et B à gauche de (d)",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8], "grid": true, "axes": true },
+        "items": [
+          { "type": "line", "through": [[5, 0], [5, 8]], "label": "(d)", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "pos": "nw" },
+          { "type": "point", "id": "B", "x": "{c}", "y": "{e}", "pos": "sw" }
+        ]
+      },
+      "xRange": [0, 10], "yRange": [0, 8], "gridStep": 1,
+      "expectedPoints": [["10-a", "b"], ["10-c", "e"]],
+      "hints": ["A' est sur la même ligne horizontale que A (la perpendiculaire à l'axe) : même ordonnée, {b}.", "A est à {5-a} carreau(x) à gauche de (d) : A' est à {5-a} carreau(x) à droite de (d).", "Abscisse de A' : 5 + {5-a} = {10-a}. Fais de même pour B."],
+      "solution": "A'({10-a} ; {b}) et B'({10-c} ; {e}). Chaque point et son image sont sur une même perpendiculaire à (d), à la même distance de (d), de part et d'autre.",
+      "selfTest": [
+        { "response": { "points": [["{10-a}", "{b}"], ["{10-c}", "{e}"]] }, "expect": "correct" },
+        { "response": { "points": [["{10-a}", "{b}"], ["{c}", "{e}"]] }, "expect": "partiel" },
+        { "response": { "points": [["{a}", "{b}"], ["{c}", "{e}"]] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-symetries-axe-diagonal", "type": "graph", "skill": "m5.geo.symetrie-axiale", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["notion"], "expectedSeconds": 180,
+      "params": { "a": { "int": [2, 4] }, "b": { "int": [5, 7] }, "c": { "int": [2, 7] } },
+      "constraints": ["mod(b - a; 2) = 1"],
+      "prompt": "La droite (d) passe par les points (1 ; 0) et (9 ; 8) : elle suit les diagonales des carreaux. Place A', le symétrique de A({a} ; {b}) par rapport à (d), puis C', le symétrique de C({c} ; {c-1}).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8, une droite diagonale (d), un point A au-dessus de (d) et un point C",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8], "grid": true, "axes": true },
+        "items": [
+          { "type": "line", "through": [[1, 0], [9, 8]], "label": "(d)", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "pos": "nw" },
+          { "type": "point", "id": "C", "x": "{c}", "y": "{c-1}", "pos": "se" }
+        ]
+      },
+      "xRange": [0, 10], "yRange": [0, 8], "gridStep": 1,
+      "expectedPoints": [["b+1", "a-1"], ["c", "c-1"]],
+      "hints": ["Avec un axe diagonal, on ne compte pas à l'horizontale : on se déplace perpendiculairement à (d), donc en suivant l'AUTRE diagonale des carreaux.", "Depuis A, avance pas à pas en diagonale (un carreau vers la droite et un vers le bas) jusqu'à (d), en comptant les pas ; puis refais le même nombre de pas de l'autre côté.", "Regarde bien où se trouve C : que devient un point de l'axe ?"],
+      "solution": "Depuis A, il faut {(b-a+1)/2} pas en diagonale pour atteindre (d), puis encore {(b-a+1)/2} pas : A'({b+1} ; {a-1}). Le point C est sur l'axe : il est son propre symétrique, C' = C({c} ; {c-1}).",
+      "selfTest": [
+        { "response": { "points": [["{b+1}", "{a-1}"], ["{c}", "{c-1}"]] }, "expect": "correct" },
+        { "response": { "points": [["{2*b+2-a}", "{b}"], ["{c}", "{c-1}"]] }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m5-symetries-demi-tour-longueurs", "type": "composite", "skill": "m5.geo.demi-tour", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:moitie", "mc:o-extremite", "mc:double-image"], "expectedSeconds": 150,
+      "params": { "a": { "dec": [1.5, 6.5], "step": 0.5 }, "L": { "int": [3, 9] } },
+      "prompt": "A' est le symétrique de A par rapport au point O, et OA = {a} cm. Le segment [BC] mesure {L} cm ; son symétrique par rapport à O est [B'C'].",
+      "figure": {
+        "alt": "Figure à main levée : les points A, O et A' alignés, et un segment [BC] avec son image [B'C'] de l'autre côté de O",
+        "w": 400, "h": 160,
+        "frame": { "x": [0, 10], "y": [0, 4] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 2, "pos": "w" },
+          { "type": "point", "id": "O", "x": 5, "y": 2, "style": "rond", "pos": "n" },
+          { "type": "point", "id": "A'", "x": 9, "y": 2, "pos": "e" },
+          { "type": "segment", "from": "A", "to": "O", "label": "{a} cm" },
+          { "type": "segment", "from": "O", "to": "A'" },
+          { "type": "point", "id": "B", "x": 1.5, "y": 0.4, "pos": "s" },
+          { "type": "point", "id": "C", "x": 3.5, "y": 0.9, "pos": "s" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{L} cm", "color": "bleu" },
+          { "type": "point", "id": "B'", "x": 8.5, "y": 3.6, "pos": "n" },
+          { "type": "point", "id": "C'", "x": 6.5, "y": 3.1, "pos": "n" },
+          { "type": "segment", "from": "B'", "to": "C'", "color": "orange" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien mesure OA' (en cm) ?", "answer": "a",
+          "misconceptions": [ { "answer": "2*a", "id": "mc:o-extremite", "error": "notion", "feedback": "O est le milieu de [AA'] : il est à égale distance de A et de A'. Donc OA' = OA = {a} cm. C'est AA' qui mesure le double." } ] },
+        { "type": "numeric", "prompt": "Combien mesure AA' (en cm) ?", "answer": "2*a",
+          "misconceptions": [
+            { "answer": "a", "id": "mc:moitie", "error": "notion", "feedback": "{a} cm, c'est seulement la moitié du chemin, de A jusqu'à O. A' est de l'autre côté de O, à la même distance : AA' = 2 × {a} = {2*a} cm." },
+            { "answer": "a/2", "id": "mc:o-extremite", "error": "notion", "feedback": "O n'est pas une extrémité de [AA'], c'est son milieu : AA' = OA + OA' = 2 × {a} = {2*a} cm." }
+          ] },
+        { "type": "numeric", "prompt": "Combien mesure B'C' (en cm) ?", "answer": "L",
+          "misconceptions": [ { "answer": "2*L", "id": "mc:double-image", "error": "notion", "feedback": "Le demi-tour fait tourner le segment sans l'étirer : il conserve les longueurs. B'C' = BC = {L} cm." } ] }
+      ],
+      "hints": ["O est le milieu de [AA'].", "Un milieu partage un segment en deux longueurs égales.", "Une symétrie conserve les longueurs : l'image d'un segment a la même longueur que lui."],
+      "solution": "O est le milieu de [AA'] : OA' = OA = {a} cm, et AA' = 2 × {a} = {2*a} cm. Le demi-tour conserve les longueurs : B'C' = BC = {L} cm.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{2*a}" }, { "value": "{L}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{a}" }, { "value": "{L}" } ] }, "expect": "mc:moitie" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{2*a}" }, { "value": "{2*L}" } ] }, "expect": "mc:double-image" }
+      ]
+    },
+    {
+      "id": "m5-symetries-proprietes", "type": "categorize", "skill": "m5.geo.demi-tour", "skills": ["m5.geo.symetrie-axiale"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:demi-tour-retourne", "mc:axiale-parallele"], "expectedSeconds": 180,
+      "prompt": "Observe la figure : un F, son image par la symétrie d'axe (d), et son image par le demi-tour de centre O. Range chaque phrase : est-elle vraie pour la symétrie axiale seulement, pour le demi-tour seulement, ou pour les deux ?",
+      "figure": {
+        "alt": "Un F de départ en haut à gauche, son image par la symétrie d'axe vertical (d) en haut au milieu, et son image par le demi-tour de centre O en bas à droite",
+        "w": 380, "h": 380,
+        "frame": { "x": [0, 12], "y": [-4, 8.8] },
+        "items": [
+          { "type": "polygon", "points": [[0.5, 3], [1.5, 3], [1.5, 5], [2.5, 5], [2.5, 6], [1.5, 6], [1.5, 7], [3.5, 7], [3.5, 8], [0.5, 8]], "fill": "bleu" },
+          { "type": "line", "through": [[4.5, -4], [4.5, 8.8]], "label": "(d)", "color": "rouge" },
+          { "type": "polygon", "points": [[8.5, 3], [7.5, 3], [7.5, 5], [6.5, 5], [6.5, 6], [7.5, 6], [7.5, 7], [5.5, 7], [5.5, 8], [8.5, 8]], "fill": "vert" },
+          { "type": "point", "id": "O", "x": 6, "y": 2.5, "style": "rond", "pos": "w" },
+          { "type": "polygon", "points": [[11.5, 2], [10.5, 2], [10.5, 0], [9.5, 0], [9.5, -1], [10.5, -1], [10.5, -2], [8.5, -2], [8.5, -3], [11.5, -3]], "fill": "orange" },
+          { "type": "text", "x": 2, "y": 2.4, "text": "départ", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 7, "y": 8.4, "text": "axe (d)", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 10, "y": -3.6, "text": "demi-tour", "size": "s", "anchor": "middle" }
+        ]
+      },
+      "categories": [
+        { "id": "axiale", "label": "Symétrie axiale seulement" },
+        { "id": "centrale", "label": "Demi-tour seulement" },
+        { "id": "deux", "label": "Les deux" }
+      ],
+      "items": [
+        { "id": "i1", "label": "Les longueurs sont conservées.", "category": "deux" },
+        { "id": "i2", "label": "La figure est retournée, comme dans un miroir.", "category": "axiale" },
+        { "id": "i3", "label": "Un seul point ne bouge pas.", "category": "centrale" },
+        { "id": "i4", "label": "Tous les points d'une droite restent à leur place.", "category": "axiale" },
+        { "id": "i5", "label": "L'image d'une droite est toujours une droite parallèle.", "category": "centrale" },
+        { "id": "i6", "label": "Les mesures d'angles sont conservées.", "category": "deux" },
+        { "id": "i7", "label": "Les aires sont conservées.", "category": "deux" }
+      ],
+      "misconceptions": [
+        { "item": "i2", "category": "deux", "id": "mc:demi-tour-retourne", "error": "notion", "feedback": "Regarde le F orange : il a tourné, la tête en bas, mais il n'est pas retourné (sa barre part toujours du même côté quand on le remet droit). C'est la symétrie axiale qui retourne, comme un miroir." },
+        { "item": "i3", "category": "deux", "id": "mc:axe-fixe", "error": "notion", "feedback": "Avec une symétrie axiale, ce n'est pas un seul point qui reste fixe : ce sont tous les points de l'axe." },
+        { "item": "i5", "category": "deux", "id": "mc:axiale-parallele", "error": "notion", "feedback": "Par une symétrie axiale, l'image d'une droite n'est parallèle à celle-ci que dans des cas particuliers (droite parallèle à l'axe). Avec le demi-tour, c'est toujours vrai." }
+      ],
+      "hints": ["Compare le F vert et le F orange avec le F de départ : lequel est retourné ?", "Dans une symétrie axiale, quels points ne bougent pas ? Et dans un demi-tour ?", "Les deux symétries donnent des figures superposables à la figure de départ."],
+      "solution": "Les deux symétries conservent les longueurs, les angles et les aires. Seule la symétrie axiale retourne la figure et laisse fixes tous les points de l'axe. Seul le demi-tour a un unique point fixe (le centre O) et transforme toujours une droite en une droite parallèle.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "deux", "i2": "axiale", "i3": "centrale", "i4": "axiale", "i5": "centrale", "i6": "deux", "i7": "deux" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "deux", "i2": "deux", "i3": "centrale", "i4": "axiale", "i5": "centrale", "i6": "deux", "i7": "deux" } }, "expect": "mc:demi-tour-retourne" }
+      ]
+    },
+    {
+      "id": "m5-symetries-lettres", "type": "categorize", "skill": "m5.geo.symetrie-axiale", "skills": ["m5.geo.demi-tour"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:centre-axe"], "expectedSeconds": 180,
+      "prompt": "Voici dix lettres en majuscules d'imprimerie simples. Range chaque lettre selon ses symétries. Tu peux les recopier sur une feuille, la plier ou la faire tourner.",
+      "figure": {
+        "alt": "Les lettres A, T, M, N, S, Z, H, X, F et L écrites en grand",
+        "w": 480, "h": 96,
+        "frame": { "x": [0, 10], "y": [0, 2] },
+        "items": [
+          { "type": "text", "x": 0.5, "y": 0.7, "text": "A", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 1.5, "y": 0.7, "text": "T", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 2.5, "y": 0.7, "text": "M", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 3.5, "y": 0.7, "text": "N", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 4.5, "y": 0.7, "text": "S", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 5.5, "y": 0.7, "text": "Z", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 6.5, "y": 0.7, "text": "H", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 7.5, "y": 0.7, "text": "X", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 8.5, "y": 0.7, "text": "F", "size": "l", "anchor": "middle", "bold": true },
+          { "type": "text", "x": 9.5, "y": 0.7, "text": "L", "size": "l", "anchor": "middle", "bold": true }
+        ]
+      },
+      "categories": [
+        { "id": "axe", "label": "Au moins un axe, pas de centre" },
+        { "id": "centre", "label": "Un centre, pas d'axe" },
+        { "id": "deux", "label": "Un axe et un centre" },
+        { "id": "aucun", "label": "Ni axe ni centre" }
+      ],
+      "items": [
+        { "id": "A", "label": "A", "category": "axe" },
+        { "id": "T", "label": "T", "category": "axe" },
+        { "id": "M", "label": "M", "category": "axe" },
+        { "id": "N", "label": "N", "category": "centre" },
+        { "id": "S", "label": "S", "category": "centre" },
+        { "id": "Z", "label": "Z", "category": "centre" },
+        { "id": "H", "label": "H", "category": "deux" },
+        { "id": "X", "label": "X", "category": "deux" },
+        { "id": "F", "label": "F", "category": "aucun" },
+        { "id": "L", "label": "L", "category": "aucun" }
+      ],
+      "misconceptions": [
+        { "item": "N", "category": "axe", "id": "mc:centre-axe", "error": "notion", "feedback": "Plie un N le long d'une droite verticale : les deux moitiés ne se superposent pas, car la barre oblique part dans l'autre sens. En revanche, après un demi-tour, le N revient identique : il a un centre de symétrie, pas d'axe." },
+        { "item": "S", "category": "axe", "id": "mc:centre-axe", "error": "notion", "feedback": "Le S n'a pas d'axe : son reflet dans un miroir est un S à l'envers. Mais fais-le tourner d'un demi-tour : il revient identique. Il a un centre de symétrie." },
+        { "item": "H", "category": "axe", "id": "mc:oubli-centre", "error": "notion", "feedback": "Le H a bien deux axes… mais fais-le aussi tourner d'un demi-tour : il revient identique. Il a donc aussi un centre de symétrie." }
+      ],
+      "hints": ["Pour un axe : peux-tu plier la lettre pour que les deux moitiés se superposent ?", "Pour un centre : si tu fais tourner la feuille d'un demi-tour, la lettre est-elle la même ?", "Une lettre peut avoir un centre sans avoir d'axe : essaie avec N."],
+      "solution": "Un axe seulement : A, T, M (axe vertical). Un centre seulement : N, S, Z. Les deux : H et X (deux axes et un centre). Ni l'un ni l'autre : F et L.",
+      "selfTest": [
+        { "response": { "assign": { "A": "axe", "T": "axe", "M": "axe", "N": "centre", "S": "centre", "Z": "centre", "H": "deux", "X": "deux", "F": "aucun", "L": "aucun" } }, "expect": "correct" },
+        { "response": { "assign": { "A": "axe", "T": "axe", "M": "axe", "N": "axe", "S": "centre", "Z": "centre", "H": "deux", "X": "deux", "F": "aucun", "L": "aucun" } }, "expect": "mc:centre-axe" }
+      ]
+    },
+    {
+      "id": "m5-symetries-construction", "type": "order", "skill": "m5.geo.demi-tour", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "expectedSeconds": 150,
+      "prompt": "Sur feuille blanche, on construit M', le symétrique du point M par rapport au point O, avec une règle et un compas. La figure montre le résultat. Remets les étapes du programme de construction dans l'ordre.",
+      "figure": {
+        "alt": "Une demi-droite issue de M passant par O, un arc de cercle de centre O, et le point M' de l'autre côté de O, avec les segments [OM] et [OM'] codés égaux",
+        "w": 400, "h": 245,
+        "frame": { "x": [0, 9], "y": [0, 5.5] },
+        "items": [
+          { "type": "point", "id": "M", "x": 1.5, "y": 1.5, "pos": "nw" },
+          { "type": "point", "id": "O", "x": 4.5, "y": 3, "style": "rond", "pos": "n" },
+          { "type": "point", "id": "M'", "x": 7.5, "y": 4.5, "pos": "nw" },
+          { "type": "ray", "from": "M", "through": "O", "color": "gris" },
+          { "type": "arc", "center": "O", "r": 3.3541, "start": 14, "end": 39, "color": "gris" },
+          { "type": "segment", "from": "M", "to": "O", "marks": 1 },
+          { "type": "segment", "from": "O", "to": "M'", "marks": 1 }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        { "id": "c1", "label": "Je trace d'abord la demi-droite [MO), qui part de M et passe par O." },
+        { "id": "c2", "label": "Je pointe le compas sur O et je l'ouvre jusqu'à M." },
+        { "id": "c3", "label": "Sans changer l'écartement, je trace un arc qui coupe la demi-droite de l'autre côté de O." },
+        { "id": "c4", "label": "Je nomme M' ce point d'intersection : O est le milieu de [MM']." },
+        { "id": "c5", "label": "Je code les deux segments égaux [OM] et [OM']." }
+      ],
+      "hints": ["M, O et M' sont alignés : quelle ligne faut-il tracer en premier ?", "Le compas sert à reporter la longueur OM.", "On nomme et on code le point une fois qu'il est construit."],
+      "solution": "1. Demi-droite [MO). 2. Compas pointé sur O, ouvert jusqu'à M. 3. Arc de l'autre côté de O. 4. M' est l'intersection : OM' = OM et M, O, M' sont alignés, donc O est le milieu de [MM']. 5. Codage des longueurs égales.",
+      "selfTest": [
+        { "response": { "order": ["c1", "c2", "c3", "c4", "c5"] }, "expect": "correct" },
+        { "response": { "order": ["c1", "c2", "c3", "c5", "c4"] }, "expect": "partiel" },
+        { "response": { "order": ["c5", "c4", "c3", "c2", "c1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-symetries-redaction", "type": "open", "skill": "m5.geo.demi-tour", "skills": ["m5.geo.symetrie-axiale"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 420, "minWords": 30,
+      "prompt": "Malo devait construire le symétrique d'un triangle par rapport à un point O. Il a plié sa feuille… et obtenu un triangle retourné. Explique-lui avec tes mots la différence entre la symétrie axiale et le demi-tour, puis comment construire le symétrique d'un point M par rapport à O.",
+      "criteria": [
+        { "id": "c1", "label": "Je dis que la symétrie axiale se fait par pliage le long d'une droite (l'axe)", "keywords": [["pli", "axe", "miroir"]] },
+        { "id": "c2", "label": "Je dis que le demi-tour fait tourner la figure de 180° autour de O", "keywords": [["tourn", "demi-tour", "180"]] },
+        { "id": "c3", "label": "J'utilise le mot « milieu » : O est le milieu de [MM']", "keywords": [["milieu"]] },
+        { "id": "c4", "label": "Je décris la construction (demi-droite [MO), compas, même longueur de l'autre côté)", "keywords": [["compas", "meme longueur", "report", "meme distance"]] }
+      ],
+      "models": [
+        "Malo a fait une symétrie axiale : on plie le long d'une droite, l'axe, et la figure est retournée comme dans un miroir. Pour une symétrie par rapport à un point O, on ne plie pas : on fait tourner la figure d'un demi-tour (180°) autour de O. Pour construire le symétrique de M, je trace la demi-droite [MO), puis avec le compas je reporte la longueur OM de l'autre côté de O. J'obtiens M' et O est le milieu de [MM'].",
+        "Symétrie axiale = pliage, il faut une droite. Demi-tour = on tourne autour d'un point, il faut un centre. Ici, il fallait le demi-tour de centre O : M' est sur la droite (MO), de l'autre côté de O, à la même distance (je le place au compas). Ainsi O est le milieu du segment [MM'], et le triangle tourne sans être retourné."
+      ],
+      "hints": ["Commence par dire ce que Malo a fait (plier : quelle symétrie est-ce ?).", "Dans un demi-tour de centre O, quel rôle joue O pour le segment [MM'] ?", "Quels instruments utilise-t-on, et dans quel ordre ?"],
+      "solution": "Plier, c'est faire une symétrie axiale (la figure est retournée). Pour le symétrique par rapport à un point O, il faut faire un demi-tour : on trace la demi-droite [MO) et on reporte au compas la longueur OM de l'autre côté de O ; le point obtenu est M', et O est le milieu de [MM'].",
+      "selfTest": [ { "response": { "text": "Malo a plié la feuille : c'est une symétrie axiale, la figure est retournée comme dans un miroir. Pour un point O il faut faire un demi-tour autour de O. Je trace la demi-droite [MO) et je reporte la longueur OM avec le compas de l'autre côté : O est le milieu de [MM']." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-symetries-cerf-volant", "type": "composite", "skill": "m5.geo.symetrie-axiale", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:angle-supplementaire", "mc:moitie-perimetre"], "expectedSeconds": 300,
+      "params": { "a": { "int": [3, 6] }, "b": { "int": [6, 10] }, "g": { "int": [95, 125] } },
+      "constraints": ["b > a"],
+      "prompt": "Léna fabrique un cerf-volant ABCD. La droite (AC) est un axe de symétrie du cerf-volant : B et D sont symétriques par rapport à (AC). Elle a mesuré AB = {a} dm, BC = {b} dm et l'angle ABC = {g}°.",
+      "figure": {
+        "alt": "Figure à main levée : un cerf-volant ABCD avec A en haut et C en bas, la droite (AC) en pointillés, et les mesures de AB, BC et de l'angle en B",
+        "w": 300, "h": 380,
+        "frame": { "x": [0, 8], "y": [-0.5, 7.8] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "point", "id": "A", "x": 4, "y": 7, "pos": "n" },
+          { "type": "point", "id": "B", "x": 1.5, "y": 5, "pos": "w" },
+          { "type": "point", "id": "C", "x": 4, "y": 0, "pos": "s" },
+          { "type": "point", "id": "D", "x": 6.5, "y": 5, "pos": "e" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "line", "through": ["A", "C"], "dashed": true, "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a} dm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{b} dm" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "{g}°" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Longueur AD (en dm) :", "answer": "a",
+          "misconceptions": [ { "answer": "b", "id": "mc:mauvais-cote", "error": "lecture", "feedback": "Par la symétrie d'axe (AC), A reste en A et B va en D : le symétrique de [AB] est [AD]. Donc AD = AB = {a} dm." } ] },
+        { "type": "numeric", "prompt": "Longueur CD (en dm) :", "answer": "b",
+          "misconceptions": [ { "answer": "a", "id": "mc:mauvais-cote", "error": "lecture", "feedback": "Le symétrique de [CB] par rapport à (AC) est [CD] : CD = CB = {b} dm." } ] },
+        { "type": "numeric", "prompt": "Mesure de l'angle ADC (en degrés) :", "answer": "g",
+          "misconceptions": [ { "answer": "180 - g", "id": "mc:angle-supplementaire", "error": "notion", "feedback": "L'angle ADC est le symétrique de l'angle ABC par rapport à (AC). Une symétrie conserve les angles : il mesure aussi {g}°." } ] },
+        { "type": "numeric", "prompt": "Longueur de baguette nécessaire pour faire tout le tour du cerf-volant (en dm) :", "answer": "2*(a + b)",
+          "misconceptions": [ { "answer": "a + b", "id": "mc:moitie-perimetre", "error": "methode", "feedback": "{a} + {b} = {a+b} dm, c'est seulement la moitié gauche du contour (AB + BC). Il faut ajouter la moitié droite, qui est symétrique : 2 × {a+b} = {2*(a+b)} dm." } ] }
+      ],
+      "hints": ["Quel est le symétrique de B par rapport à (AC) ? Et celui de A ? Et de C ?", "La symétrie axiale conserve les longueurs et les angles.", "Le contour du cerf-volant, c'est AB + BC + CD + DA."],
+      "solution": "A et C sont sur l'axe : ils ne bougent pas, et B a pour image D. Donc [AB] a pour image [AD] et [CB] a pour image [CD] : AD = {a} dm et CD = {b} dm. L'angle ADC est l'image de l'angle ABC : {g}°. Contour : $ 2 × ({a} + {b}) = {2*(a+b)} $ dm.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{g}" }, { "value": "{2*(a+b)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{180-g}" }, { "value": "{2*(a+b)}" } ] }, "expect": "mc:angle-supplementaire" }
+      ]
+    },
+    {
+      "id": "m5-symetries-logo", "type": "composite", "skill": "m5.geo.demi-tour", "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:aire-image", "mc:image-parallele"], "expectedSeconds": 480,
+      "prompt": "Le club d'échecs veut un logo qui a un **centre de symétrie** Ω(5 ; 4). Voici la première moitié du logo dans le quadrillage : le quadrilatère PQRS, avec P(1 ; 4), Q(3 ; 7), R(5 ; 6) et S(9 ; 4). Le logo complet est formé de PQRS et de son image par le demi-tour de centre Ω.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec le quadrilatère PQRS et le point Ω",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "P", "x": 1, "y": 4, "pos": "w" },
+          { "type": "point", "id": "Q", "x": 3, "y": 7, "pos": "n" },
+          { "type": "point", "id": "R", "x": 5, "y": 6, "pos": "n" },
+          { "type": "point", "id": "S", "x": 9, "y": 4, "pos": "e" },
+          { "type": "polygon", "points": ["P", "Q", "R", "S"], "fill": "maths" },
+          { "type": "point", "id": "Ω", "x": 5, "y": 4, "style": "rond", "pos": "s" }
+        ]
+      },
+      "parts": [
+        { "type": "graph", "prompt": "Place P', Q', R' et S', les images de P, Q, R et S par le demi-tour de centre Ω.", "xRange": [0, 10], "yRange": [0, 8], "gridStep": 1,
+          "expectedPoints": [[9, 4], [7, 1], [5, 2], [1, 4]] },
+        { "type": "numeric", "prompt": "La moitié PQRS a une aire de 12 carreaux. Quelle est l'aire du logo complet (en carreaux) ?", "answer": 24,
+          "misconceptions": [ { "answer": 12, "id": "mc:aire-image", "error": "methode", "feedback": "12 carreaux, c'est l'aire d'une seule moitié. Le demi-tour conserve les aires : l'image a aussi 12 carreaux. Le logo complet fait 12 + 12 = 24 carreaux." } ] },
+        { "type": "text", "prompt": "Les droites (PQ) et (P'Q') sont-elles parallèles ? Réponds par oui ou par non.", "accept": ["oui"],
+          "misconceptions": [ { "answer": "non", "id": "mc:image-parallele", "error": "notion", "feedback": "Le demi-tour transforme une droite en une droite parallèle : (P'Q') est parallèle à (PQ). Vérifie sur le quadrillage : de P à Q, on monte de 3 carreaux pour 2 vers la droite ; de Q' à P', aussi." } ] },
+        { "type": "text", "prompt": "Le logo complet a-t-il aussi un axe de symétrie ? Réponds par oui ou par non.", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:centre-axe", "error": "notion", "feedback": "Avoir un centre de symétrie ne donne pas forcément un axe : essaie de plier le logo, aucune droite ne superpose ses deux moitiés (comme pour la lettre N)." } ] }
+      ],
+      "hints": ["Ω est le milieu de [PP'] : P' est à la même distance de Ω que P, de l'autre côté.", "Regarde bien P et S : où arrive P après le demi-tour ?", "Le demi-tour conserve les aires et transforme une droite en une droite parallèle."],
+      "solution": "P'(9 ; 4) = S, Q'(7 ; 1), R'(5 ; 2) et S'(1 ; 4) = P : P et S s'échangent car Ω est le milieu de [PS]. Le logo est l'hexagone P Q R S Q' R' ; son aire vaut 12 + 12 = 24 carreaux. (P'Q') est parallèle à (PQ). Le logo n'a pas d'axe de symétrie.",
+      "selfTest": [
+        { "response": { "parts": [ { "points": [[9, 4], [7, 1], [5, 2], [1, 4]] }, { "value": "24" }, { "value": "oui" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "points": [[9, 4], [7, 1], [5, 2], [1, 4]] }, { "value": "12" }, { "value": "oui" }, { "value": "non" } ] }, "expect": "mc:aire-image" }
+      ]
+    },
+    {
+      "id": "m5-symetries-remed-pliage", "type": "numeric", "skill": "m5.geo.symetrie-axiale", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:moitie", "notion"], "expectedSeconds": 60,
+      "params": { "d": { "int": [2, 5] } },
+      "prompt": "Rappel : le symétrique de A par rapport à la droite (d), c'est l'endroit où A se pose quand on plie la feuille le long de (d). Le point A est à {d} carreaux à gauche de (d). Son symétrique A' est de l'autre côté, à {d} carreaux de (d). Combien de carreaux séparent A et A' ?",
+      "figure": {
+        "alt": "Quadrillage avec une droite verticale (d) et un point A à sa gauche",
+        "w": 420, "h": 140,
+        "frame": { "x": [0, 12], "y": [0, 4], "grid": true },
+        "items": [
+          { "type": "line", "through": [[6, 0], [6, 4]], "label": "(d)", "color": "rouge" },
+          { "type": "point", "id": "A", "x": "{6-d}", "y": 2, "pos": "n" }
+        ]
+      },
+      "answer": "2*d",
+      "misconceptions": [ { "answer": "d", "id": "mc:moitie", "error": "notion", "feedback": "{d} carreaux, c'est la distance de A à l'axe. A' est encore {d} carreaux plus loin, de l'autre côté : en tout {2*d} carreaux." } ],
+      "hints": ["Compte d'abord les carreaux de A jusqu'à (d).", "Puis ajoute les carreaux de (d) jusqu'à A'."],
+      "solution": "$ {d} + {d} = {2*d} $ carreaux : (d) est au milieu de [AA'].",
+      "selfTest": [ { "response": { "value": "{2*d}" }, "expect": "correct" }, { "response": { "value": "{d}" }, "expect": "mc:moitie" } ]
+    },
+    {
+      "id": "m5-symetries-remed-milieu", "type": "numberline", "skill": "m5.geo.demi-tour", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:moitie", "mc:o-extremite"], "expectedSeconds": 120,
+      "params": { "o": { "int": [-2, 3], "not": [0] }, "a": { "int": [-5, 5] } },
+      "constraints": ["a != o", "abs(2*o - a) <= 8"],
+      "prompt": "Rappel : M' est le symétrique de M par rapport au point O quand O est le **milieu** de [MM'] : M' est à la même distance de O que M, mais de l'autre côté. Sur la droite graduée, O a pour abscisse {o} et M a pour abscisse {a}. Place O, M, puis M'.",
+      "min": -8, "max": 8, "step": 1,
+      "points": [ { "label": "O", "value": "o" }, { "label": "M", "value": "a" }, { "label": "M'", "value": "2*o - a" } ],
+      "hints": ["Compte les graduations de M jusqu'à O.", "Continue du même nombre de graduations après O, dans le même sens."],
+      "solution": "De M à O, il y a {abs(o-a)} graduation(s). On continue d'autant après O : M' a pour abscisse {2*o-a}. On vérifie : O est bien au milieu de M et de M'.",
+      "selfTest": [
+        { "response": { "positions": { "O": "{o}", "M": "{a}", "M'": "{2*o-a}" } }, "expect": "correct" },
+        { "response": { "positions": { "O": "{o}", "M": "{a}", "M'": "{-a}" } }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m5-symetries-deux-axes", "type": "composite", "skill": "m5.geo.demi-tour", "skills": ["m5.geo.symetrie-axiale", "m5.geo.reperage-plan"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:axe-ordonnees"], "expectedSeconds": 360,
+      "params": { "a": { "int": [1, 5] }, "b": { "int": [1, 4] } },
+      "constraints": ["a != b"],
+      "prompt": "Dans un repère d'origine O, le point A a pour coordonnées ({a} ; {b}). B est le symétrique de A par rapport à l'axe des ordonnées (l'axe vertical), puis C est le symétrique de B par rapport à l'axe des abscisses (l'axe horizontal).",
+      "figure": {
+        "alt": "Repère gradué de −6 à 6 et de −5 à 5 avec le point A",
+        "w": 360, "h": 300,
+        "frame": { "x": [-6, 6], "y": [-5, 5], "grid": true, "axes": true },
+        "items": [ { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "style": "rond" } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Abscisse de B :", "answer": "-a",
+          "misconceptions": [ { "answer": "a", "id": "mc:axe-ordonnees", "error": "notion", "feedback": "Par rapport à l'axe vertical, le point passe de l'autre côté : son abscisse change de signe, son ordonnée reste {b}." } ] },
+        { "type": "numeric", "prompt": "Ordonnée de B :", "answer": "b",
+          "misconceptions": [ { "answer": "-b", "id": "mc:mauvais-axe", "error": "lecture", "feedback": "Tu as fait la symétrie par rapport à l'axe horizontal. Par rapport à l'axe des ordonnées (vertical), B reste à la même hauteur que A : ordonnée {b}." } ] },
+        { "type": "numeric", "prompt": "Abscisse de C :", "answer": "-a" },
+        { "type": "numeric", "prompt": "Ordonnée de C :", "answer": "-b" },
+        { "type": "text", "prompt": "Par quelle transformation unique passe-t-on directement de A à C ?", "openEnded": true,
+          "accept": ["demi-tour", "un demi-tour", "le demi-tour", "demi-tour de centre O", "un demi-tour de centre O", "le demi-tour de centre O", "symétrie centrale", "une symétrie centrale", "la symétrie centrale", "symétrie de centre O", "la symétrie de centre O", "une symétrie de centre O", "symétrie centrale de centre O", "la symétrie centrale de centre O", "une symétrie centrale de centre O", "symétrie par rapport à O", "la symétrie par rapport à O", "une symétrie par rapport à O"],
+          "misconceptions": [ { "answer": "symétrie axiale", "id": "mc:composee-axiale", "error": "notion", "feedback": "Regarde A({a} ; {b}) et C({-a} ; {-b}) : les deux coordonnées ont changé de signe, et O est le milieu de [AC]. C'est un demi-tour de centre O." } ] }
+      ],
+      "hints": ["Symétrie par rapport à l'axe vertical : l'abscisse change de signe, l'ordonnée ne change pas.", "Symétrie par rapport à l'axe horizontal : c'est l'ordonnée qui change de signe.", "Compare A et C : quel point est le milieu de [AC] ?"],
+      "solution": "B({-a} ; {b}), puis C({-a} ; {-b}). Les deux coordonnées de A ont changé de signe : O est le milieu de [AC]. Enchaîner deux symétries d'axes perpendiculaires revient à faire un demi-tour autour de leur point d'intersection.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{-a}" }, { "value": "{b}" }, { "value": "{-a}" }, { "value": "{-b}" }, { "value": "demi-tour de centre O" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{-a}" }, { "value": "{-b}" }, { "value": "demi-tour" } ] }, "expect": "mc:axe-ordonnees" }
+      ]
+    },
+    {
+      "id": "m5-symetries-trouver-centre", "type": "composite", "skill": "m5.geo.demi-tour", "skills": ["m5.geo.reperage-plan"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:demi-ecart"], "expectedSeconds": 360,
+      "params": { "p": { "int": [3, 6] }, "q": { "int": [3, 5] }, "a": { "int": [1, 2] }, "b": { "int": [1, 2] }, "e": { "int": [1, 4] }, "f": { "int": [4, 6] } },
+      "constraints": ["e != 2*p - a or f != 2*q - b"],
+      "prompt": "Les points A({a} ; {b}) et A'({2*p-a} ; {2*q-b}) sont symétriques par rapport à un point Ω qu'on a effacé. Retrouve Ω, puis construis le symétrique de B({e} ; {f}) par rapport à Ω.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 12 et de 0 à 10 avec les points A, A' et B",
+        "w": 384, "h": 320,
+        "frame": { "x": [0, 12], "y": [0, 10], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": "{b}", "pos": "ne" },
+          { "type": "point", "id": "A'", "x": "{2*p-a}", "y": "{2*q-b}", "pos": "ne" },
+          { "type": "point", "id": "B", "x": "{e}", "y": "{f}", "pos": "nw" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Abscisse de Ω :", "answer": "p",
+          "misconceptions": [ { "answer": "p - a", "id": "mc:demi-ecart", "error": "methode", "feedback": "{p-a}, c'est la moitié de l'écart horizontal entre A et A'. Ω est au milieu : il faut partir de A et avancer de cette moitié, {a} + {p-a} = {p}." } ] },
+        { "type": "numeric", "prompt": "Ordonnée de Ω :", "answer": "q",
+          "misconceptions": [ { "answer": "q - b", "id": "mc:demi-ecart", "error": "methode", "feedback": "{q-b}, c'est la moitié de l'écart vertical entre A et A'. Ω est au milieu : {b} + {q-b} = {q}." } ] },
+        { "type": "graph", "prompt": "Place B', le symétrique de B par rapport à Ω.", "xRange": [0, 12], "yRange": [0, 10], "gridStep": 1, "expectedPoints": [["2*p - e", "2*q - f"]] }
+      ],
+      "hints": ["Ω est le milieu de [AA'].", "Pour l'abscisse du milieu : écart horizontal entre A et A', divisé par 2, ajouté à l'abscisse de A.", "Pour B' : de B jusqu'à Ω, compte les carreaux à droite et en haut, puis refais le même trajet après Ω."],
+      "solution": "Ω est le milieu de [AA'] : Ω({p} ; {q}). De B à Ω, on se déplace de {p-e} vers la droite et de {q-f} verticalement ; on refait le même trajet après Ω : B'({2*p-e} ; {2*q-f}).",
+      "methods": ["Calculer le milieu : abscisse $ ({a} + {2*p-a}) ÷ 2 = {p} $, ordonnée $ ({b} + {2*q-b}) ÷ 2 = {q} $.", "Tracer le segment [AA'] sur le quadrillage et repérer son milieu."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p}" }, { "value": "{q}" }, { "points": [["{2*p-e}", "{2*q-f}"]] } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{p-a}" }, { "value": "{q}" }, { "points": [["{2*p-e}", "{2*q-f}"]] } ] }, "expect": "mc:demi-ecart" }
+      ]
+    },
+    {
+      "id": "m5-symetries-deux-centres", "type": "composite", "skill": "mx.geo.transformations", "skills": ["m5.geo.demi-tour"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:deplacement-simple"], "expectedSeconds": 600,
+      "params": { "u": { "int": [-3, 2], "not": [0] }, "v": { "int": [1, 5] }, "m": { "int": [-6, 6] } },
+      "constraints": ["v > u", "m != u", "m != v"],
+      "prompt": "Sur une droite graduée, O₁ a pour abscisse {u} et O₂ a pour abscisse {v}. Le point M (abscisse {m}) fait un demi-tour de centre O₁ : il arrive en M₁. Puis M₁ fait un demi-tour de centre O₂ : il arrive en M₂.",
+      "figure": {
+        "alt": "Droite graduée de −8 à 8 avec les points O₁, O₂ et M",
+        "w": 560, "h": 80,
+        "frame": { "x": [-8.5, 8.5], "y": [-1.2, 1.2] },
+        "items": [
+          { "type": "segment", "from": [-8.5, 0], "to": [8.5, 0], "arrows": "end" },
+          { "type": "segment", "from": [-8, -0.2], "to": [-8, 0.2] },
+          { "type": "segment", "from": [-4, -0.2], "to": [-4, 0.2] },
+          { "type": "segment", "from": [0, -0.3], "to": [0, 0.3] },
+          { "type": "segment", "from": [4, -0.2], "to": [4, 0.2] },
+          { "type": "segment", "from": [8, -0.2], "to": [8, 0.2] },
+          { "type": "text", "x": -8, "y": -0.8, "text": "−8", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": -4, "y": -0.8, "text": "−4", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 0, "y": -0.8, "text": "0", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 4, "y": -0.8, "text": "4", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 8, "y": -0.8, "text": "8", "size": "s", "anchor": "middle" },
+          { "type": "point", "id": "O₁", "x": "{u}", "y": 0, "style": "rond", "pos": "n" },
+          { "type": "point", "id": "O₂", "x": "{v}", "y": 0, "style": "rond", "pos": "n" },
+          { "type": "point", "id": "M", "x": "{m}", "y": 0, "pos": "n" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Abscisse de M₁ :", "answer": "2*u - m",
+          "misconceptions": [ { "answer": "-m", "id": "mc:centre-zero", "error": "notion", "feedback": "Tu as fait le demi-tour autour de 0. Le centre est O₁ ({u}) : O₁ doit être le milieu de [MM₁]." } ] },
+        { "type": "numeric", "prompt": "Abscisse de M₂ :", "answer": "2*v - 2*u + m" },
+        { "type": "numeric", "prompt": "De combien M s'est-il déplacé au total (abscisse de M₂ moins abscisse de M) ?", "answer": "2*(v - u)",
+          "misconceptions": [ { "answer": "v - u", "id": "mc:deplacement-simple", "error": "raisonnement", "feedback": "{v-u}, c'est la distance O₁O₂. Calcule {2*v-2*u+m} − ({m}) : le déplacement est le DOUBLE de O₁O₂." } ] },
+        { "type": "open", "prompt": "Recommence avec une autre position de départ pour M. Que remarques-tu ? Essaie d'expliquer pourquoi.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je remarque que le déplacement ne dépend pas de la position de M", "keywords": [["ne depend pas", "toujours", "meme deplacement", "pareil"]] },
+            { "id": "c2", "label": "Je relie le déplacement à la distance O₁O₂ (il vaut le double)", "keywords": [["double", "deux fois", "2 fois", "2 ×", "2 x"]] }
+          ] }
+      ],
+      "hints": ["O₁ est le milieu de [MM₁] : de M à O₁, puis autant après O₁.", "Fais le calcul pour deux positions différentes de M et compare les déplacements.", "Quel lien entre le déplacement total et la distance de O₁ à O₂ ?"],
+      "solution": "M₁ a pour abscisse $ 2 × {u} − ({m}) = {2*u-m} $, puis M₂ : $ 2 × {v} − ({2*u-m}) = {2*v-2*u+m} $. Le déplacement vaut $ {2*v-2*u+m} − ({m}) = {2*(v-u)} $, soit deux fois O₁O₂, quelle que soit la position de M. Deux demi-tours à la suite font « glisser » tous les points du même déplacement : c'est une translation, que tu étudieras en 4e.",
+      "methods": ["Calculer avec des nombres pour plusieurs positions de M, puis conjecturer.", "Écrire en général : M₁ = 2u − m, puis M₂ = 2v − (2u − m) = m + 2(v − u)."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{2*u-m}" }, { "value": "{2*v-2*u+m}" }, { "value": "{2*(v-u)}" }, { "text": "Le déplacement est toujours le même, il ne dépend pas de M : c'est le double de la distance O1O2.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{2*u-m}" }, { "value": "{2*v-2*u+m}" }, { "value": "{v-u}" }, { "text": "Je ne sais pas trop, M se déplace." } ] }, "expect": "mc:deplacement-simple" }
+      ]
+    },
+    {
+      "id": "m5-symetries-horloge", "type": "composite", "skill": "m5.geo.symetrie-axiale", "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:heure-ronde", "mc:miroir-oublie"], "expectedSeconds": 480,
+      "params": { "h": { "int": [1, 10] }, "m": { "choice": [10, 20, 25, 35, 40, 50] } },
+      "prompt": "Dans la salle de bains, Inès regarde l'horloge à aiguilles… dans le miroir ! Le cadran n'a pas de chiffres, seulement un repère en haut pour midi. Dans le miroir, les aiguilles semblent indiquer {h} h {m}. Quelle heure est-il vraiment ?",
+      "figure": {
+        "alt": "Le cadran d'une horloge vu dans un miroir, avec un repère en haut, une petite aiguille et une grande aiguille",
+        "w": 260, "h": 260,
+        "frame": { "x": [-3.5, 3.5], "y": [-3.5, 3.5] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 3 },
+          { "type": "segment", "from": [0, 2.4], "to": [0, 3] },
+          { "type": "segment", "from": [2.6, 0], "to": [3, 0] },
+          { "type": "segment", "from": [0, -2.6], "to": [0, -3] },
+          { "type": "segment", "from": [-2.6, 0], "to": [-3, 0] },
+          { "type": "segment", "from": [0, 0], "to": ["{2.6*sin(6*m)}", "{2.6*cos(6*m)}"], "color": "bleu" },
+          { "type": "segment", "from": [0, 0], "to": ["{1.6*sin(30*h + m/2)}", "{1.6*cos(30*h + m/2)}"], "color": "rouge" },
+          { "type": "circle", "center": [0, 0], "r": 0.12, "fill": "noir" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Heure réelle : combien d'heures ?", "answer": "11 - h",
+          "misconceptions": [
+            { "answer": "12 - h", "id": "mc:heure-ronde", "error": "raisonnement", "feedback": "À {h} h {m}, la petite aiguille a déjà dépassé le {h}. Dans le miroir, elle se retrouve juste AVANT le {12-h} (entre {11-h} et {12-h}) : il est donc {11-h} heures passées." },
+            { "answer": "h", "id": "mc:miroir-oublie", "error": "notion", "feedback": "Le miroir échange la gauche et la droite du cadran (axe vertical passant par midi) : l'heure lue n'est pas l'heure réelle." }
+          ] },
+        { "type": "numeric", "prompt": "… et combien de minutes ?", "answer": "60 - m",
+          "misconceptions": [ { "answer": "m", "id": "mc:miroir-oublie", "error": "notion", "feedback": "La grande aiguille est elle aussi reflétée : si elle semble à {m} minutes après midi d'un côté, elle est en réalité à {m} minutes AVANT midi de l'autre côté, c'est-à-dire sur les {60-m} minutes." } ] }
+      ],
+      "hints": ["Le miroir fait une symétrie d'axe vertical, l'axe passant par midi et 6 heures.", "Une aiguille placée « {m} minutes après midi » se retrouve, dans la réalité, « {m} minutes avant midi ».", "Astuce : l'heure du miroir et l'heure réelle, additionnées, font 12 heures."],
+      "solution": "Le miroir échange les deux côtés de l'axe midi-6 h. La grande aiguille, vue à {m} min, est en réalité à {60-m} min. La petite aiguille, vue juste après le {h}, est en réalité juste avant le {12-h}. Il est donc {11-h} h {60-m}. Vérification : {h} h {m} + {11-h} h {60-m} = 12 h.",
+      "methods": ["Raisonner aiguille par aiguille avec la symétrie d'axe vertical.", "Utiliser la règle : heure réelle = 12 h − heure vue dans le miroir."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{11-h}" }, { "value": "{60-m}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{12-h}" }, { "value": "{60-m}" } ] }, "expect": "mc:heure-ronde" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,795 @@
+{
+  "id": "m5-aires-volumes",
+  "chapter": "m5-ch-grandeurs",
+  "title": "Aires et volumes",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.grandeurs.aires", "m5.grandeurs.disque", "m5.grandeurs.volumes", "m5.grandeurs.conversions"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 60,
+  "summary": "Aire du triangle, du parallélogramme, du disque et de figures composées ; volume du cube, du pavé, du prisme droit et du cylindre ; conversions d'unités d'aire, de volume et de contenance. Et surtout : ne plus confondre aire et périmètre !",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Même clôture, même jardin ?",
+      "body": "Deux jardins ont exactement le même tour : 20 m de clôture chacun. L'un est un carré de 5 m de côté, l'autre un rectangle de 9 m sur 1 m. Lequel laisse le plus de place pour planter des tomates ?\n\nEt une piscine gonflable de 2 m sur 1 m, remplie sur 50 cm de haut : combien de bouteilles de 1 L faut-il pour la remplir ? Estime avant de calculer !",
+      "figure": {
+        "alt": "Sur un quadrillage, un jardin carré de 5 m de côté et un jardin rectangulaire de 9 m sur 1 m",
+        "w": 460, "h": 180,
+        "frame": { "x": [-0.5, 16.5], "y": [-1, 5.5], "grid": true },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 5, "h": 5, "fill": "vert" },
+          { "type": "rect", "x": 7, "y": 2, "w": 9, "h": 1, "fill": "vert" },
+          { "type": "text", "x": 2.5, "y": -0.6, "text": "5 m", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 11.5, "y": 1.4, "text": "9 m", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 6.8, "y": 2.5, "text": "1 m", "size": "s", "anchor": "end" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🟦",
+          "title": "Aire ou périmètre ?",
+          "body": "Le **périmètre** est la longueur du tour (en cm, en m…). L'**aire** mesure la surface (en cm², en m²…) : c'est le nombre de carrés-unités qu'on peut y placer. Pour les unités d'aire, chaque unité vaut **100 fois** la suivante.",
+          "example": "1 m² = 100 dm² = 10 000 cm².",
+          "reveal": { "question": "Devine : combien de carrés de 1 cm de côté faut-il pour remplir un carré de 1 m de côté ?", "answer": "100 rangées de 100 carrés : 10 000. Donc 1 m² = 10 000 cm², et pas 100 !" },
+          "figure": {
+            "alt": "Un carré de 1 dm de côté découpé en 100 petits carrés de 1 cm de côté, dont un est colorié",
+            "w": 260, "h": 280,
+            "frame": { "x": [-0.5, 10.5], "y": [-1.4, 10.5], "grid": true },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 10, "h": 10, "color": "bleu" },
+              { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1, "fill": "orange" },
+              { "type": "text", "x": 5, "y": -0.9, "text": "1 dm² = 100 cm²", "size": "s", "anchor": "middle" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔺",
+          "title": "Aire d'un triangle",
+          "body": "**Aire = base × hauteur ÷ 2**, avec la hauteur **relative à cette base** : elle part du sommet opposé et tombe à angle droit sur la base. Un triangle est la moitié d'un rectangle de même base et de même hauteur.",
+          "example": "Base 8 cm, hauteur 4 cm : 8 × 4 ÷ 2 = 16 cm².",
+          "figure": {
+            "alt": "Un triangle dessiné dans un rectangle en pointillés de même base et de même hauteur, avec sa hauteur codée par un angle droit",
+            "w": 360, "h": 210,
+            "frame": { "x": [-0.5, 8.5], "y": [-0.8, 4.4] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 4, "dashed": true },
+              { "type": "polygon", "points": [[0, 0], [8, 0], [3, 4]], "fill": "orange" },
+              { "type": "segment", "from": [3, 4], "to": [3, 0], "dashed": true, "label": "hauteur" },
+              { "type": "angle", "vertex": [3, 0], "from": [8, 0], "to": [3, 4], "right": true },
+              { "type": "text", "x": 4, "y": -0.5, "text": "base", "size": "s", "anchor": "middle" }
+            ]
+          }
+        },
+        {
+          "emoji": "▱",
+          "title": "Aire d'un parallélogramme",
+          "body": "**Aire = base × hauteur**. On découpe le triangle qui dépasse d'un côté et on le recolle de l'autre côté : on obtient un rectangle de même base et de même hauteur. Attention : la hauteur n'est pas le côté penché !",
+          "figure": {
+            "alt": "Un parallélogramme dont le triangle de gauche, découpé le long de la hauteur, est déplacé à droite pour former un rectangle",
+            "w": 360, "h": 170,
+            "frame": { "x": [-0.5, 8.5], "y": [-0.8, 3.5] },
+            "items": [
+              { "type": "polygon", "points": [[0, 0], [6, 0], [8, 3], [2, 3]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 0], [2, 0], [2, 3]], "fill": "orange" },
+              { "type": "polygon", "points": [[6, 0], [8, 0], [8, 3]], "fill": "orange", "dashed": true },
+              { "type": "segment", "from": [2, 3], "to": [2, 0], "dashed": true, "label": "hauteur" },
+              { "type": "angle", "vertex": [2, 0], "from": [6, 0], "to": [2, 3], "right": true },
+              { "type": "arrow", "from": [1.2, 1.2], "to": [6.8, 1.2], "color": "rouge" },
+              { "type": "text", "x": 3, "y": -0.5, "text": "base", "size": "s", "anchor": "middle" }
+            ]
+          }
+        },
+        {
+          "emoji": "⭕",
+          "title": "Aire d'un disque",
+          "body": "**Aire du disque = π × r × r**, avec π ≈ 3,14. Ne la confonds pas avec le **périmètre** du cercle, **2 × π × r**, qui est une longueur.",
+          "example": "Disque de rayon 10 cm : aire ≈ 3,14 × 10 × 10 = 314 cm² ; périmètre ≈ 2 × 3,14 × 10 = 62,8 cm.",
+          "reveal": { "question": "Devine : combien de carrés de côté r faut-il pour recouvrir exactement le disque de rayon r ?", "answer": "Un peu plus de 3 : exactement π (environ 3,14). D'où : aire = π × r × r." },
+          "figure": {
+            "alt": "Un disque de rayon r et un carré de côté r dessiné sur un quart du disque",
+            "w": 240, "h": 240,
+            "frame": { "x": [-2.5, 2.5], "y": [-2.5, 2.5] },
+            "items": [
+              { "type": "circle", "center": [0, 0], "r": 2, "fill": "bleu" },
+              { "type": "rect", "x": 0, "y": 0, "w": 2, "h": 2, "fill": "orange", "label": "r × r" },
+              { "type": "segment", "from": [0, 0], "to": [2, 0], "label": "r" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧊",
+          "title": "Volumes",
+          "body": "Le volume mesure la place occupée (en cm³, en m³…). **Pavé droit** : L × l × h. **Cube** : c × c × c. **Prisme droit** et **cylindre** : aire de la base × hauteur. Pour un cylindre : π × r × r × h.",
+          "example": "Pavé de 5 cm × 3 cm × 2 cm : 5 × 3 × 2 = 30 cm³ (30 petits cubes de 1 cm³).",
+          "figure": {
+            "alt": "Un pavé droit en perspective cavalière avec sa longueur L, sa largeur l et sa hauteur h",
+            "w": 300, "h": 210,
+            "frame": { "x": [0, 6.5], "y": [0, 4.5] },
+            "items": [
+              { "type": "polygon", "points": [[0.5, 0.5], [4.5, 0.5], [4.5, 3], [0.5, 3]], "fill": "bleu" },
+              { "type": "segment", "from": [0.5, 0.5], "to": [4.5, 0.5], "label": "L" },
+              { "type": "segment", "from": [0.5, 0.5], "to": [0.5, 3], "label": "h" },
+              { "type": "segment", "from": [4.5, 0.5], "to": [6, 1.5], "label": "l" },
+              { "type": "segment", "from": [6, 1.5], "to": [6, 4] },
+              { "type": "segment", "from": [4.5, 3], "to": [6, 4] },
+              { "type": "segment", "from": [0.5, 3], "to": [2, 4] },
+              { "type": "segment", "from": [2, 4], "to": [6, 4] },
+              { "type": "segment", "from": [0.5, 0.5], "to": [2, 1.5], "dashed": true },
+              { "type": "segment", "from": [2, 1.5], "to": [6, 1.5], "dashed": true },
+              { "type": "segment", "from": [2, 1.5], "to": [2, 4], "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "🥛",
+          "title": "Unités de volume et de contenance",
+          "body": "Pour les volumes, chaque unité vaut **1 000 fois** la suivante : 1 m³ = 1 000 dm³ et 1 dm³ = 1 000 cm³. Et surtout : **1 L = 1 dm³** et **1 mL = 1 cm³**.",
+          "example": "Une brique de 1 L de lait a un volume de 1 dm³, soit 1 000 cm³. 1 cL = 10 mL = 10 cm³.",
+          "figure": {
+            "alt": "Un cube de 1 dm d'arête en perspective, qui contient exactement 1 litre",
+            "w": 220, "h": 200,
+            "frame": { "x": [0, 4.2], "y": [-0.6, 3.6] },
+            "items": [
+              { "type": "polygon", "points": [[0.3, 0.3], [2.8, 0.3], [2.8, 2.8], [0.3, 2.8]], "fill": "bleu" },
+              { "type": "segment", "from": [2.8, 0.3], "to": [3.8, 0.9] },
+              { "type": "segment", "from": [3.8, 0.9], "to": [3.8, 3.4] },
+              { "type": "segment", "from": [2.8, 2.8], "to": [3.8, 3.4] },
+              { "type": "segment", "from": [0.3, 2.8], "to": [1.3, 3.4] },
+              { "type": "segment", "from": [1.3, 3.4], "to": [3.8, 3.4] },
+              { "type": "segment", "from": [0.3, 0.3], "to": [1.3, 0.9], "dashed": true },
+              { "type": "segment", "from": [1.3, 0.9], "to": [3.8, 0.9], "dashed": true },
+              { "type": "segment", "from": [1.3, 0.9], "to": [1.3, 3.4], "dashed": true },
+              { "type": "text", "x": 1.55, "y": 1.55, "text": "1 L", "size": "l", "anchor": "middle", "bold": true },
+              { "type": "text", "x": 1.55, "y": -0.3, "text": "1 dm", "size": "s", "anchor": "middle" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : la façade à repeindre",
+      "steps": [
+        {
+          "text": "La façade d'une maison est un rectangle de 8 m sur 5 m surmonté d'un toit triangulaire de 3 m de haut. Elle a une porte de 1 m sur 2 m, qu'on ne peint pas. Quelle surface faut-il peindre ?",
+          "figure": {
+            "alt": "Une façade de maison : un rectangle de 8 m sur 5 m surmonté d'un triangle de 3 m de haut, avec une porte en bas",
+            "w": 300, "h": 300,
+            "frame": { "x": [-0.8, 8.8], "y": [-0.8, 8.6] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 5, "fill": "orange" },
+              { "type": "polygon", "points": [[0, 5], [8, 5], [4, 8]], "fill": "rouge" },
+              { "type": "rect", "x": 3.5, "y": 0, "w": 1, "h": 2, "fill": "gris" },
+              { "type": "segment", "from": [4, 8], "to": [4, 5], "dashed": true, "label": "3 m" },
+              { "type": "text", "x": 4, "y": -0.5, "text": "8 m", "size": "s", "anchor": "middle" },
+              { "type": "text", "x": -0.2, "y": 2.5, "text": "5 m", "size": "s", "anchor": "end" }
+            ]
+          }
+        },
+        { "text": "On découpe la façade en figures simples : un rectangle et un triangle, puis on retire la porte." },
+        { "text": "Aire du rectangle :", "math": "8 × 5 = 40 m²" },
+        { "text": "Aire du triangle (base 8 m, hauteur 3 m) :", "math": "8 × 3 ÷ 2 = 12 m²" },
+        { "text": "Aire de la porte, puis surface à peindre :", "math": "1 × 2 = 2 m² ; 40 + 12 − 2 = 50 m²" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "N'oublie pas l'unité : cm² pour une aire, cm³ pour un volume !",
+      "exercises": ["m5-aires-triangle", "m5-aires-parallelogramme", "m5-aires-composee", "m5-aires-disque", "m5-aires-conversions", "m5-aires-pave-volume"]
+    },
+    {
+      "kind": "libre",
+      "title": "Défi : Léo a-t-il raison ?",
+      "exercises": ["m5-aires-perimetre-aire"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes : la tente et le verre",
+      "exercises": ["m5-aires-tente", "m5-aires-verre"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : rénover la salle de bains",
+      "body": "Carreaux, boîtes, plinthes : un vrai devis d'artisan, où il ne faut surtout pas confondre aire et périmètre.",
+      "exercises": ["m5-aires-carrelage"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Aires** : triangle = base × hauteur ÷ 2 ; parallélogramme = base × hauteur ; disque = π × r × r. **Volumes** : pavé = L × l × h ; prisme droit et cylindre = aire de la base × hauteur. **Unités** : ×100 d'une unité d'aire à la suivante, ×1 000 pour les volumes ; 1 L = 1 dm³ et 1 mL = 1 cm³.\n\n- **Confondre aire et périmètre.** Une aire s'écrit en cm², un périmètre en cm.\n- **Oublier le « ÷ 2 »** pour le triangle, ou prendre un côté penché comme hauteur.\n- **Convertir les aires avec ×10.** 1 m² = 100 dm² = 10 000 cm².\n- **Confondre 2 × π × r (périmètre) et π × r × r (aire).**"
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des calculs d'aires, de volumes et des conversions dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une canette sous la loupe, et ce qui arrive aux aires et aux volumes quand on agrandit une figure.",
+      "exercises": ["m5-aires-canette", "m5-aires-agrandir"]
+    },
+    "expert": {
+      "intro": "Facultatif : une figure avec des quarts de disque, et la boîte en carton de plus grand volume.",
+      "exercises": ["m5-aires-quarts", "m5-aires-boite"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-aires-triangle", "type": "numeric", "skill": "m5.grandeurs.aires", "skills": ["m5.geo.hauteurs"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:triangle-oubli-moitie", "mc:cote-hauteur", "unite"], "expectedSeconds": 120,
+      "params": { "b": { "int": [7, 12] }, "k": { "choice": [1, 1.5, 2] } },
+      "prompt": "Calcule l'aire du triangle ABC. Donne le résultat avec son unité.",
+      "figure": {
+        "alt": "Un triangle ABC avec la base [AB], le côté [AC] et la hauteur [CH] codée par un angle droit, chacun avec sa longueur",
+        "w": 400, "h": 300,
+        "frame": { "x": [-0.8, 12.5], "y": [-1, 8.8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{b}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{3*k}", "y": "{4*k}", "pos": "n" },
+          { "type": "point", "id": "H", "x": "{3*k}", "y": 0, "pos": "s" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "orange" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{b} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{5*k} cm" },
+          { "type": "segment", "from": "C", "to": "H", "dashed": true, "label": "{4*k} cm" },
+          { "type": "angle", "vertex": "H", "from": "B", "to": "C", "right": true }
+        ]
+      },
+      "answer": "b*4*k/2", "unit": "cm²",
+      "misconceptions": [
+        { "answer": "b*4*k", "id": "mc:triangle-oubli-moitie", "error": "methode", "feedback": "{b} × {4*k} donne l'aire du rectangle qui entoure le triangle. Le triangle en est la moitié : il faut encore diviser par 2." },
+        { "answer": "b*5*k/2", "id": "mc:cote-hauteur", "error": "notion", "feedback": "[AC] n'est pas une hauteur : il n'est pas perpendiculaire à [AB]. La hauteur relative à [AB] est [CH], codée par l'angle droit : {4*k} cm." }
+      ],
+      "hints": ["Aire d'un triangle = base × hauteur ÷ 2.", "Avec la base [AB], quelle est la hauteur ? Cherche l'angle droit.", "Une aire s'exprime en cm²."],
+      "solution": "Base [AB] = {b} cm, hauteur relative [CH] = {4*k} cm. Aire = $ {b} × {4*k} ÷ 2 = {2*b*k} $ cm². La longueur AC = {5*k} cm ne sert pas ici.",
+      "selfTest": [
+        { "response": { "value": "{2*b*k} cm²" }, "expect": "correct" },
+        { "response": { "value": "{4*b*k} cm²" }, "expect": "mc:triangle-oubli-moitie" },
+        { "response": { "value": "{2*b*k} cm" }, "expect": "unite" }
+      ]
+    },
+    {
+      "id": "m5-aires-parallelogramme", "type": "numeric", "skill": "m5.grandeurs.aires", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:cote-hauteur", "mc:parallelogramme-moitie", "mc:aire-perimetre"], "expectedSeconds": 120,
+      "params": { "b": { "int": [5, 9] }, "k": { "choice": [1, 1.5] } },
+      "constraints": ["4*b*k != 2*(b + 5*k)"],
+      "prompt": "Calcule l'aire du parallélogramme ABCD. Donne le résultat avec son unité.",
+      "figure": {
+        "alt": "Un parallélogramme ABCD avec la base [AB], le côté penché [AD] et la hauteur [DH] codée par un angle droit, chacun avec sa longueur",
+        "w": 420, "h": 232,
+        "frame": { "x": [-0.8, 14], "y": [-1, 7] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{b}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{b+3*k}", "y": "{4*k}", "pos": "ne" },
+          { "type": "point", "id": "D", "x": "{3*k}", "y": "{4*k}", "pos": "nw" },
+          { "type": "point", "id": "H", "x": "{3*k}", "y": 0, "pos": "s" },
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "bleu" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{b} cm" },
+          { "type": "segment", "from": "A", "to": "D", "label": "{5*k} cm" },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true, "label": "{4*k} cm" },
+          { "type": "angle", "vertex": "H", "from": "B", "to": "D", "right": true }
+        ]
+      },
+      "answer": "b*4*k", "unit": "cm²",
+      "misconceptions": [
+        { "answer": "b*5*k", "id": "mc:cote-hauteur", "error": "notion", "feedback": "Le côté penché [AD] n'est pas la hauteur. La hauteur est [DH], perpendiculaire à la base : {4*k} cm. Si on redresse le parallélogramme en rectangle, c'est elle qui devient la hauteur." },
+        { "answer": "b*4*k/2", "id": "mc:parallelogramme-moitie", "error": "notion", "feedback": "Le « ÷ 2 », c'est pour le triangle. Un parallélogramme a la même aire que le rectangle de même base et de même hauteur : base × hauteur." },
+        { "answer": "2*(b + 5*k)", "id": "mc:aire-perimetre", "error": "notion", "feedback": "Tu as calculé le périmètre (le tour). L'aire, c'est la surface : base × hauteur." }
+      ],
+      "hints": ["Aire d'un parallélogramme = base × hauteur.", "La hauteur est perpendiculaire à la base : cherche l'angle droit.", "Une aire s'exprime en cm²."],
+      "solution": "Base {b} cm, hauteur {4*k} cm : aire = $ {b} × {4*k} = {4*b*k} $ cm². Le côté penché ({5*k} cm) ne sert pas.",
+      "selfTest": [
+        { "response": { "value": "{4*b*k} cm²" }, "expect": "correct" },
+        { "response": { "value": "{5*b*k} cm²" }, "expect": "mc:cote-hauteur" }
+      ]
+    },
+    {
+      "id": "m5-aires-composee", "type": "numeric", "skill": "m5.grandeurs.aires", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:triangle-oubli-moitie"], "expectedSeconds": 180,
+      "params": { "L": { "int": [6, 10] }, "p": { "int": [3, 5] }, "t": { "int": [2, 4] } },
+      "prompt": "Le pignon d'une cabane de jardin est formé d'un rectangle de {L} m sur {p} m surmonté d'un triangle de {t} m de haut. Quelle est son aire, en m² ?",
+      "figure": {
+        "alt": "Le pignon d'une cabane : un rectangle surmonté d'un triangle, avec la hauteur du triangle en pointillés",
+        "w": 300, "h": 300,
+        "frame": { "x": [-1, 11], "y": [-1, 9.6] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": "{L}", "h": "{p}", "fill": "orange" },
+          { "type": "polygon", "points": [[0, "{p}"], ["{L}", "{p}"], ["{L/2}", "{p+t}"]], "fill": "rouge" },
+          { "type": "segment", "from": ["{L/2}", "{p+t}"], "to": ["{L/2}", "{p}"], "dashed": true, "label": "{t} m" },
+          { "type": "segment", "from": [0, 0], "to": ["{L}", 0], "label": "{L} m" },
+          { "type": "segment", "from": [0, 0], "to": [0, "{p}"], "label": "{p} m" }
+        ]
+      },
+      "answer": "L*p + L*t/2", "unit": "m²", "unitOptional": true,
+      "misconceptions": [
+        { "answer": "L*p + L*t", "id": "mc:triangle-oubli-moitie", "error": "methode", "feedback": "Le toit est un triangle : son aire est {L} × {t} ÷ 2 = {L*t/2} m², pas {L*t} m²." },
+        { "answer": "L*(p + t)/2", "id": "mc:figure-entiere", "error": "methode", "feedback": "Le pignon n'est pas un grand triangle : découpe-le en un rectangle ({L*p} m²) et un triangle ({L*t/2} m²), puis additionne." }
+      ],
+      "hints": ["Découpe la figure en deux figures simples.", "Rectangle : longueur × largeur. Triangle : base × hauteur ÷ 2, avec une base de {L} m.", "Additionne les deux aires."],
+      "solution": "Rectangle : $ {L} × {p} = {L*p} $ m². Triangle : $ {L} × {t} ÷ 2 = {L*t/2} $ m². Total : $ {L*p} + {L*t/2} = {L*p+L*t/2} $ m².",
+      "selfTest": [
+        { "response": { "value": "{L*p+L*t/2}" }, "expect": "correct" },
+        { "response": { "value": "{L*p+L*t}" }, "expect": "mc:triangle-oubli-moitie" }
+      ]
+    },
+    {
+      "id": "m5-aires-disque", "type": "composite", "skill": "m5.grandeurs.disque", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:aire-perimetre", "mc:diametre-rayon"], "expectedSeconds": 180,
+      "params": { "r": { "int": [3, 9] } },
+      "prompt": "Un disque a un rayon de {r} cm. Utilise π ≈ 3,14 ou la touche π de la calculatrice, et arrondis au dixième.",
+      "figure": {
+        "alt": "Un disque avec un rayon tracé et sa longueur indiquée",
+        "w": 220, "h": 220,
+        "frame": { "x": [-2.5, 2.5], "y": [-2.5, 2.5] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 2, "fill": "bleu" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "style": "rond", "pos": "sw" },
+          { "type": "segment", "from": [0, 0], "to": [2, 0], "label": "{r} cm" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du disque (avec l'unité) :", "answer": "pi*r*r", "unit": "cm²", "rel": 0.004,
+          "misconceptions": [
+            { "answer": "2*pi*r", "id": "mc:aire-perimetre", "error": "notion", "feedback": "2 × π × r est le périmètre du cercle, une longueur. L'aire du disque est π × r × r = π × {r} × {r}." },
+            { "answer": "pi*4*r*r", "id": "mc:diametre-rayon", "error": "notion", "feedback": "Tu as utilisé le diamètre ({2*r} cm) à la place du rayon. Aire = π × r × r avec r = {r} cm." }
+          ] },
+        { "type": "numeric", "prompt": "Périmètre du cercle (avec l'unité) :", "answer": "2*pi*r", "unit": "cm", "rel": 0.004,
+          "misconceptions": [ { "answer": "pi*r*r", "id": "mc:aire-perimetre", "error": "notion", "feedback": "π × r × r est l'aire du disque (une surface). Le périmètre est le tour du cercle : 2 × π × r." } ] }
+      ],
+      "hints": ["Aire du disque : π × r × r.", "Périmètre du cercle : 2 × π × r.", "Une aire en cm², une longueur en cm."],
+      "solution": "Aire : $ π × {r} × {r} ≈ {pi*r*r|d2} $ cm², soit environ {arrondi(pi*r*r;1)} cm². Périmètre : $ 2 × π × {r} ≈ {2*pi*r|d2} $ cm, soit environ {arrondi(2*pi*r;1)} cm.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{arrondi(pi*r*r;1)} cm²" }, { "value": "{arrondi(2*pi*r;1)} cm" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{arrondi(2*pi*r;1)} cm²" }, { "value": "{arrondi(2*pi*r;1)} cm" } ] }, "expect": "mc:aire-perimetre" }
+      ]
+    },
+    {
+      "id": "m5-aires-conversions", "type": "table", "skill": "m5.grandeurs.conversions", "skills": ["m5.grandeurs.aires", "m5.grandeurs.volumes"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:aire-facteur-10", "mc:volume-facteur-100", "mc:litre-dm3"], "expectedSeconds": 240,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "c": { "int": [120, 980] }, "d": { "int": [2, 9] }, "e": { "dec": [1.5, 4.5], "step": 0.5 }, "f": { "int": [50, 500] } },
+      "prompt": "Complète le tableau de conversions. Rappel : ×100 d'une unité d'aire à la suivante, ×1 000 pour les volumes, 1 L = 1 dm³ et 1 mL = 1 cm³.",
+      "columns": ["Mesure", "Unité demandée", "Résultat"],
+      "rows": [
+        ["{a} m²", "dm²", "?r0c2"],
+        ["{b} dm²", "cm²", "?r1c2"],
+        ["{c} cm²", "dm²", "?r2c2"],
+        ["{d} dm³", "L", "?r3c2"],
+        ["{e} L", "cm³", "?r4c2"],
+        ["{f} cm³", "mL", "?r5c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "a*100", "misconceptions": [ { "answer": "a*10", "id": "mc:aire-facteur-10", "error": "unite", "feedback": "Pour les aires, on multiplie par 100 d'une unité à la suivante : un carré de 1 m de côté contient 10 × 10 = 100 carrés de 1 dm de côté." } ] },
+        "r1c2": { "answer": "b*100", "misconceptions": [ { "answer": "b*10", "id": "mc:aire-facteur-10", "error": "unite", "feedback": "1 dm² = 100 cm² (10 rangées de 10 petits carrés), pas 10 cm²." } ] },
+        "r2c2": { "answer": "c/100", "misconceptions": [ { "answer": "c/10", "id": "mc:aire-facteur-10", "error": "unite", "feedback": "Pour passer des cm² aux dm², on divise par 100, pas par 10." } ] },
+        "r3c2": { "answer": "d", "misconceptions": [ { "answer": "d*1000", "id": "mc:litre-dm3", "error": "unite", "feedback": "1 L = 1 dm³ exactement : la valeur ne change pas !" } ] },
+        "r4c2": { "answer": "e*1000", "misconceptions": [ { "answer": "e*100", "id": "mc:volume-facteur-100", "error": "unite", "feedback": "1 L = 1 dm³ = 1 000 cm³ : pour les volumes, on multiplie par 1 000 d'une unité à la suivante." } ] },
+        "r5c2": { "answer": "f", "misconceptions": [ { "answer": "f/1000", "id": "mc:litre-dm3", "error": "unite", "feedback": "1 mL = 1 cm³ : la valeur ne change pas." } ] }
+      },
+      "hints": ["Aires : 1 m² = 100 dm² et 1 dm² = 100 cm².", "Volumes : 1 dm³ = 1 000 cm³.", "Contenances : 1 L = 1 dm³ et 1 mL = 1 cm³."],
+      "solution": "{a} m² = {a*100} dm² ; {b} dm² = {b*100} cm² ; {c} cm² = {c/100} dm² ; {d} dm³ = {d} L ; {e} L = {e*1000} cm³ ; {f} cm³ = {f} mL.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{a*100}", "r1c2": "{b*100}", "r2c2": "{c/100}", "r3c2": "{d}", "r4c2": "{e*1000}", "r5c2": "{f}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{a*10}", "r1c2": "{b*100}", "r2c2": "{c/100}", "r3c2": "{d}", "r4c2": "{e*1000}", "r5c2": "{f}" } }, "expect": "mc:aire-facteur-10" }
+      ]
+    },
+    {
+      "id": "m5-aires-pave-volume", "type": "composite", "skill": "m5.grandeurs.volumes", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:volume-aire", "mc:somme-dimensions", "mc:litre-dm3"], "expectedSeconds": 180,
+      "params": { "L": { "int": [4, 9] }, "l": { "int": [2, 5] }, "h": { "int": [2, 6] } },
+      "constraints": ["L*l*h != 2*(L*l + l*h + L*h)"],
+      "prompt": "Une boîte a la forme d'un pavé droit de {L} cm de long, {l} cm de large et {h} cm de haut.",
+      "figure": {
+        "alt": "Un pavé droit en perspective cavalière avec sa longueur, sa largeur et sa hauteur indiquées",
+        "w": 330, "h": 230,
+        "frame": { "x": [0, 6.5], "y": [0, 4.5] },
+        "items": [
+          { "type": "polygon", "points": [[0.5, 0.5], [4.5, 0.5], [4.5, 3], [0.5, 3]], "fill": "orange" },
+          { "type": "segment", "from": [0.5, 0.5], "to": [4.5, 0.5], "label": "{L} cm" },
+          { "type": "segment", "from": [0.5, 0.5], "to": [0.5, 3], "label": "{h} cm" },
+          { "type": "segment", "from": [4.5, 0.5], "to": [6, 1.5], "label": "{l} cm" },
+          { "type": "segment", "from": [6, 1.5], "to": [6, 4] },
+          { "type": "segment", "from": [4.5, 3], "to": [6, 4] },
+          { "type": "segment", "from": [0.5, 3], "to": [2, 4] },
+          { "type": "segment", "from": [2, 4], "to": [6, 4] },
+          { "type": "segment", "from": [0.5, 0.5], "to": [2, 1.5], "dashed": true },
+          { "type": "segment", "from": [2, 1.5], "to": [6, 1.5], "dashed": true },
+          { "type": "segment", "from": [2, 1.5], "to": [2, 4], "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Volume de la boîte (avec l'unité) :", "answer": "L*l*h", "unit": "cm³",
+          "misconceptions": [
+            { "answer": "2*(L*l + l*h + L*h)", "id": "mc:volume-aire", "error": "notion", "feedback": "Tu as calculé l'aire des six faces (la surface de carton). Le volume, c'est la place à l'intérieur : longueur × largeur × hauteur." },
+            { "answer": "L + l + h", "id": "mc:somme-dimensions", "error": "methode", "feedback": "Le volume ne s'obtient pas en additionnant : on MULTIPLIE les trois dimensions." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de millilitres d'eau peut-elle contenir (avec l'unité) ?", "answer": "L*l*h", "unit": "mL",
+          "misconceptions": [ { "answer": "L*l*h/1000", "id": "mc:litre-dm3", "error": "unite", "feedback": "1 cm³ = 1 mL : le nombre ne change pas. (Le résultat divisé par 1 000 serait en litres.)" } ] }
+      ],
+      "hints": ["Volume d'un pavé droit : L × l × h.", "Un volume s'exprime en cm³ quand les longueurs sont en cm.", "1 cm³ = 1 mL."],
+      "solution": "Volume : $ {L} × {l} × {h} = {L*l*h} $ cm³. Comme 1 cm³ = 1 mL, la boîte contient {L*l*h} mL.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{L*l*h} cm³" }, { "value": "{L*l*h} mL" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{2*(L*l+l*h+L*h)} cm³" }, { "value": "{L*l*h} mL" } ] }, "expect": "mc:volume-aire" }
+      ]
+    },
+    {
+      "id": "m5-aires-perimetre-aire", "type": "counterexample", "skill": "m5.grandeurs.aires", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "manipulation", "expectedSeconds": 300,
+      "claim": "Si un rectangle a un plus grand périmètre qu'un autre, alors il a aussi une plus grande aire.",
+      "prompt": "Léo affirme : « Si un rectangle a un plus grand périmètre qu'un autre, alors il a aussi une plus grande aire. » Trouve deux rectangles qui prouvent qu'il a tort : le premier mesure $a$ cm sur $b$ cm, le second $c$ cm sur $d$ cm.",
+      "vars": ["a", "b", "c", "d"],
+      "domain": "a > 0 and b > 0 and c > 0 and d > 0",
+      "domainLabel": "des longueurs strictement positives",
+      "refutes": "(a + b > c + d and a*b <= c*d) or (c + d > a + b and c*d <= a*b)",
+      "refuteHint": "Avec ces deux rectangles, Léo a raison. Essaie un rectangle très allongé (très long et très fin) et un carré.",
+      "hints": ["Pense aux deux jardins de la découverte.", "Un rectangle très long et très fin a un grand périmètre… mais quelle aire ?", "Compare par exemple un rectangle de 10 cm sur 1 cm et un carré de 5 cm de côté."],
+      "solution": "Par exemple : 10 cm × 1 cm (périmètre 22 cm, aire 10 cm²) et 5 cm × 5 cm (périmètre 20 cm, aire 25 cm²). Le premier a le plus grand périmètre mais la plus petite aire : Léo a tort. Un seul contre-exemple suffit.",
+      "selfTest": [
+        { "response": { "values": { "a": "10", "b": "1", "c": "5", "d": "5" } }, "expect": "correct" },
+        { "response": { "values": { "a": "6", "b": "4", "c": "3", "d": "2" } }, "expect": "raisonnement" },
+        { "response": { "values": { "a": "0", "b": "4", "c": "3", "d": "2" } }, "expect": "lecture" }
+      ]
+    },
+    {
+      "id": "m5-aires-tente", "type": "numeric", "skill": "m5.grandeurs.volumes", "skills": ["m5.grandeurs.aires"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:triangle-oubli-moitie"], "expectedSeconds": 240,
+      "params": { "b": { "choice": [1.6, 2, 2.4] }, "h": { "choice": [1.2, 1.5] }, "L": { "int": [2, 3] } },
+      "prompt": "Une tente canadienne a la forme d'un prisme droit. Son entrée est un triangle de {b} m de base et {h} m de hauteur, et la tente est longue de {L} m. Quel est le volume d'air à l'intérieur (avec l'unité) ?",
+      "figure": {
+        "alt": "Une tente en forme de prisme droit à base triangulaire, dessinée en perspective, avec la base et la hauteur de l'entrée et la longueur de la tente",
+        "w": 360, "h": 260,
+        "frame": { "x": [-0.6, 7.6], "y": [-0.8, 5] },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [4, 0], [2, 3]], "fill": "vert" },
+          { "type": "segment", "from": [0, 0], "to": [4, 0], "label": "{b} m" },
+          { "type": "segment", "from": [2, 3], "to": [2, 0], "dashed": true, "label": "{h} m" },
+          { "type": "segment", "from": [4, 0], "to": [7, 1.5], "label": "{L} m" },
+          { "type": "segment", "from": [2, 3], "to": [5, 4.5] },
+          { "type": "segment", "from": [7, 1.5], "to": [5, 4.5] },
+          { "type": "segment", "from": [0, 0], "to": [3, 1.5], "dashed": true },
+          { "type": "segment", "from": [3, 1.5], "to": [7, 1.5], "dashed": true },
+          { "type": "segment", "from": [3, 1.5], "to": [5, 4.5], "dashed": true }
+        ]
+      },
+      "answer": "b*h/2*L", "unit": "m³", "tolerance": 0.001,
+      "misconceptions": [ { "answer": "b*h*L", "id": "mc:triangle-oubli-moitie", "error": "methode", "feedback": "La base du prisme est un triangle : son aire est {b} × {h} ÷ 2, pas {b} × {h}. Volume = aire de la base × longueur." } ],
+      "hints": ["Volume d'un prisme droit = aire de la base × hauteur du prisme (ici, la longueur de la tente).", "La base est le triangle de l'entrée : aire = base × hauteur ÷ 2.", "Des longueurs en m donnent un volume en m³."],
+      "solution": "Aire de l'entrée : $ {b} × {h} ÷ 2 = {b*h/2} $ m². Volume : $ {b*h/2} × {L} = {b*h/2*L} $ m³.",
+      "selfTest": [
+        { "response": { "value": "{b*h/2*L} m³" }, "expect": "correct" },
+        { "response": { "value": "{b*h*L} m³" }, "expect": "mc:triangle-oubli-moitie" }
+      ]
+    },
+    {
+      "id": "m5-aires-verre", "type": "composite", "skill": "m5.grandeurs.volumes", "skills": ["m5.grandeurs.disque", "m5.grandeurs.conversions"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diametre-rayon", "mc:aire-volume", "mc:cl-conversion"], "expectedSeconds": 360,
+      "params": { "d": { "choice": [6, 7, 8] }, "h": { "int": [8, 12] } },
+      "prompt": "Un verre cylindrique a un diamètre intérieur de {d} cm et une hauteur intérieure de {h} cm.",
+      "figure": {
+        "alt": "Un cylindre dessiné en perspective, avec son diamètre et sa hauteur indiqués",
+        "w": 260, "h": 245,
+        "frame": { "x": [-2.8, 3.2], "y": [-0.2, 5.4] },
+        "items": [
+          {"type": "polygon", "points": [[2.0, 4.6], [1.8478, 4.7913], [1.4142, 4.9536], [0.7654, 5.0619], [0, 5.1], [-0.7654, 5.0619], [-1.4142, 4.9536], [-1.8478, 4.7913], [-2.0, 4.6], [-1.8478, 4.4087], [-1.4142, 4.2464], [-0.7654, 4.1381], [0, 4.1], [0.7654, 4.1381], [1.4142, 4.2464], [1.8478, 4.4087]], "fill": "orange"},
+          {"type": "segment", "from": [2.0, 0.6], "to": [1.8478, 0.7913], "dashed": true},
+          {"type": "segment", "from": [1.8478, 0.7913], "to": [1.4142, 0.9536], "dashed": true},
+          {"type": "segment", "from": [1.4142, 0.9536], "to": [0.7654, 1.0619], "dashed": true},
+          {"type": "segment", "from": [0.7654, 1.0619], "to": [0, 1.1], "dashed": true},
+          {"type": "segment", "from": [0, 1.1], "to": [-0.7654, 1.0619], "dashed": true},
+          {"type": "segment", "from": [-0.7654, 1.0619], "to": [-1.4142, 0.9536], "dashed": true},
+          {"type": "segment", "from": [-1.4142, 0.9536], "to": [-1.8478, 0.7913], "dashed": true},
+          {"type": "segment", "from": [-1.8478, 0.7913], "to": [-2.0, 0.6], "dashed": true},
+          {"type": "segment", "from": [-2.0, 0.6], "to": [-1.8478, 0.4087]},
+          {"type": "segment", "from": [-1.8478, 0.4087], "to": [-1.4142, 0.2464]},
+          {"type": "segment", "from": [-1.4142, 0.2464], "to": [-0.7654, 0.1381]},
+          {"type": "segment", "from": [-0.7654, 0.1381], "to": [0, 0.1]},
+          {"type": "segment", "from": [0, 0.1], "to": [0.7654, 0.1381]},
+          {"type": "segment", "from": [0.7654, 0.1381], "to": [1.4142, 0.2464]},
+          {"type": "segment", "from": [1.4142, 0.2464], "to": [1.8478, 0.4087]},
+          {"type": "segment", "from": [1.8478, 0.4087], "to": [2.0, 0.6]},
+          { "type": "segment", "from": [-2, 0.6], "to": [-2, 4.6] },
+          { "type": "segment", "from": [2, 0.6], "to": [2, 4.6], "label": "{h} cm" },
+          { "type": "segment", "from": [-2, 4.6], "to": [2, 4.6], "dashed": true, "label": "{d} cm" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Rayon de la base (en cm) :", "answer": "d/2",
+          "misconceptions": [ { "answer": "d", "id": "mc:diametre-rayon", "error": "lecture", "feedback": "{d} cm est le diamètre. Le rayon est la moitié : {d/2} cm." } ] },
+        { "type": "numeric", "prompt": "Volume du verre, arrondi à l'unité (avec l'unité) :", "answer": "pi*d*d/4*h", "unit": "cm³", "tolerance": 1,
+          "misconceptions": [
+            { "answer": "pi*d*d*h", "id": "mc:diametre-rayon", "error": "notion", "feedback": "Tu as utilisé le diamètre à la place du rayon : l'aire de la base est π × {d/2} × {d/2}." },
+            { "answer": "pi*d*h", "id": "mc:aire-volume", "error": "notion", "feedback": "2 × π × r × h est l'aire de la paroi (la surface du verre), pas le volume. Volume = aire du disque de base × hauteur." }
+          ] },
+        { "type": "numeric", "prompt": "Contenance du verre, arrondie au centilitre (avec l'unité) :", "answer": "pi*d*d/4*h/10", "unit": "cL", "tolerance": 0.6,
+          "misconceptions": [ { "answer": "pi*d*d/4*h/100", "id": "mc:cl-conversion", "error": "unite", "feedback": "1 cL = 10 mL = 10 cm³ : on divise par 10, pas par 100." } ] }
+      ],
+      "hints": ["Le rayon est la moitié du diamètre.", "Volume d'un cylindre = π × r × r × h.", "1 cm³ = 1 mL et 1 cL = 10 mL."],
+      "solution": "Rayon : {d/2} cm. Volume : $ π × {d/2} × {d/2} × {h} ≈ {pi*d*d/4*h|d2} $ cm³, soit environ {arrondi(pi*d*d/4*h;0)} cm³. Contenance : environ {arrondi(pi*d*d/4*h;0)} mL, soit environ {arrondi(pi*d*d/4*h/10;0)} cL.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{d/2}" }, { "value": "{arrondi(pi*d*d/4*h;0)} cm³" }, { "value": "{arrondi(pi*d*d/4*h/10;0)} cL" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{d}" }, { "value": "{arrondi(pi*d*d/4*h;0)} cm³" }, { "value": "{arrondi(pi*d*d/4*h/10;0)} cL" } ] }, "expect": "mc:diametre-rayon" }
+      ]
+    },
+    {
+      "id": "m5-aires-carrelage", "type": "composite", "skill": "m5.grandeurs.aires", "skills": ["m5.grandeurs.conversions"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:aire-perimetre", "mc:diviser-cote", "mc:oubli-porte", "mc:calcul-decimal"], "expectedSeconds": 600,
+      "prompt": "Le sol d'une salle de bains est un rectangle de 3,2 m sur 2,5 m. On le recouvre de carreaux carrés de 40 cm de côté, vendus par boîtes de 10. Une plinthe (une baguette de bois au bas des murs) doit faire le tour de la pièce, sauf devant la porte, large de 0,8 m.",
+      "figure": {
+        "alt": "Plan du sol de la salle de bains : un rectangle de 3,2 m sur 2,5 m sur un quadrillage de carreaux, avec la porte de 0,8 m sur un côté",
+        "w": 400, "h": 340,
+        "frame": { "x": [-0.4, 3.6], "y": [-0.6, 2.8], "grid": 0.4 },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3.2, "h": 2.5, "fill": "bleu" },
+          { "type": "segment", "from": [1.2, 0], "to": [2, 0], "color": "rouge", "label": "porte 0,8 m" },
+          { "type": "text", "x": 1.6, "y": 2.65, "text": "3,2 m", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 3.3, "y": 1.25, "text": "2,5 m", "size": "s", "anchor": "start" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du sol (avec l'unité) :", "answer": 8, "unit": "m²",
+          "misconceptions": [ { "answer": 11.4, "id": "mc:aire-perimetre", "error": "notion", "feedback": "11,4, c'est le périmètre de la pièce (son tour), en m. Pour le carrelage, il faut la surface : 3,2 × 2,5." } ] },
+        { "type": "numeric", "prompt": "Aire d'un carreau (avec l'unité) :", "answer": 0.16, "unit": "m²",
+          "misconceptions": [
+            { "answer": 1.6, "id": "mc:calcul-decimal", "error": "calcul", "feedback": "0,4 × 0,4 = 0,16 (et non 1,6) : 4 × 4 = 16, et il faut deux chiffres après la virgule." },
+            { "answer": 1600, "id": "mc:conversion-aire", "error": "unite", "feedback": "1 600, c'est l'aire d'un carreau en cm² (40 × 40). Écris l'unité, ou convertis : 1 600 cm² = 0,16 m²." }
+          ] },
+        { "type": "numeric", "prompt": "Nombre de carreaux nécessaires (sans compter les chutes) :", "answer": 50,
+          "misconceptions": [ { "answer": 20, "id": "mc:diviser-cote", "error": "methode", "feedback": "Tu as divisé l'aire du sol par le côté d'un carreau (0,4 m). Il faut diviser une aire par une aire : 8 ÷ 0,16 = 50." } ] },
+        { "type": "numeric", "prompt": "Nombre de boîtes à acheter :", "answer": 5 },
+        { "type": "numeric", "prompt": "Longueur de plinthe nécessaire (avec l'unité) :", "answer": 10.6, "unit": "m",
+          "misconceptions": [
+            { "answer": 11.4, "id": "mc:oubli-porte", "error": "lecture", "feedback": "Le tour complet fait 11,4 m, mais il n'y a pas de plinthe devant la porte : 11,4 − 0,8 = 10,6 m." },
+            { "answer": 8, "id": "mc:aire-perimetre", "error": "notion", "feedback": "La plinthe fait le tour : c'est une longueur (un périmètre), pas une aire." }
+          ] }
+      ],
+      "hints": ["Le carrelage recouvre une surface : calcule des aires. La plinthe suit le bord : calcule une longueur.", "Convertis le côté d'un carreau en m : 40 cm = 0,4 m.", "Nombre de carreaux = aire du sol ÷ aire d'un carreau."],
+      "solution": "Sol : 3,2 × 2,5 = 8 m². Carreau : 0,4 × 0,4 = 0,16 m². Carreaux : 8 ÷ 0,16 = 50 (8 colonnes de 6 carreaux entiers, plus une bande de 10 cm découpée dans 2 carreaux). Boîtes : 50 ÷ 10 = 5. Plinthe : 2 × (3,2 + 2,5) − 0,8 = 11,4 − 0,8 = 10,6 m.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "8 m²" }, { "value": "0,16 m²" }, { "value": "50" }, { "value": "5" }, { "value": "10,6 m" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "11,4 m²" }, { "value": "0,16 m²" }, { "value": "50" }, { "value": "5" }, { "value": "10,6 m" } ] }, "expect": "mc:aire-perimetre" }
+      ]
+    },
+    {
+      "id": "m5-aires-remed-carreaux", "type": "numeric", "skill": "m5.grandeurs.aires", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:aire-perimetre"], "expectedSeconds": 60,
+      "params": { "a": { "int": [3, 7] }, "b": { "int": [2, 5] } },
+      "constraints": ["a != b", "a*b != 2*(a + b)"],
+      "prompt": "Rappel : l'aire, c'est le nombre de carreaux qui recouvrent la surface ; le périmètre, c'est la longueur du tour. Quelle est l'aire de ce rectangle, en carreaux ?",
+      "figure": {
+        "alt": "Un rectangle colorié sur un quadrillage",
+        "w": 340, "h": 260,
+        "frame": { "x": [-0.5, 8], "y": [-0.5, 6], "grid": true },
+        "items": [ { "type": "rect", "x": 0, "y": 0, "w": "{a}", "h": "{b}", "fill": "orange" } ]
+      },
+      "answer": "a*b",
+      "misconceptions": [
+        { "answer": "2*(a + b)", "id": "mc:aire-perimetre", "error": "notion", "feedback": "Tu as compté les côtés de carreaux le long du bord : c'est le périmètre. L'aire, c'est le nombre de carreaux À L'INTÉRIEUR : {b} rangées de {a} carreaux." },
+        { "answer": "a + b", "id": "mc:somme-dimensions", "error": "methode", "feedback": "On ne fait pas {a} + {b} : il y a {b} rangées de {a} carreaux, donc {a} × {b}." }
+      ],
+      "hints": ["Compte les carreaux d'une rangée.", "Combien y a-t-il de rangées ?", "Rangées × carreaux par rangée."],
+      "solution": "{b} rangées de {a} carreaux : $ {b} × {a} = {a*b} $ carreaux. (Le périmètre, lui, vaut {2*(a+b)} côtés de carreau.)",
+      "selfTest": [ { "response": { "value": "{a*b}" }, "expect": "correct" }, { "response": { "value": "{2*(a+b)}" }, "expect": "mc:aire-perimetre" } ]
+    },
+    {
+      "id": "m5-aires-remed-unites", "type": "categorize", "skill": "m5.grandeurs.aires", "skills": ["m5.grandeurs.volumes"], "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:aire-perimetre", "mc:volume-aire"], "expectedSeconds": 150,
+      "prompt": "Rappel : une longueur se mesure le long d'une ligne (m), une aire sur une surface (m²), un volume dans un espace (m³ ou L). Que faut-il mesurer dans chaque situation ?",
+      "categories": [
+        { "id": "lon", "label": "Une longueur (m, cm…)" },
+        { "id": "aire", "label": "Une aire (m², cm²…)" },
+        { "id": "vol", "label": "Un volume ou une contenance (m³, L…)" }
+      ],
+      "items": [
+        { "id": "u1", "label": "La clôture qui fait le tour d'un jardin", "category": "lon" },
+        { "id": "u2", "label": "La surface d'un terrain de football", "category": "aire" },
+        { "id": "u3", "label": "L'eau d'une baignoire pleine", "category": "vol" },
+        { "id": "u4", "label": "La hauteur d'une porte", "category": "lon" },
+        { "id": "u5", "label": "La peinture pour un mur (on mesure la surface du mur)", "category": "aire" },
+        { "id": "u6", "label": "La place dans un carton de déménagement", "category": "vol" },
+        { "id": "u7", "label": "Le tissu d'une nappe", "category": "aire" },
+        { "id": "u8", "label": "Le ruban qui fait le tour d'un cadeau", "category": "lon" }
+      ],
+      "misconceptions": [
+        { "item": "u1", "category": "aire", "id": "mc:aire-perimetre", "error": "notion", "feedback": "La clôture suit le bord du jardin : c'est une longueur (le périmètre), en mètres. L'aire mesurerait la surface à l'intérieur." },
+        { "item": "u6", "category": "aire", "id": "mc:volume-aire", "error": "notion", "feedback": "La place dans un carton est un volume (on remplit un espace), en dm³ ou en L. Une aire ne mesure qu'une surface plate." }
+      ],
+      "hints": ["Suit-on une ligne ? Recouvre-t-on une surface ? Remplit-on un espace ?", "Le tour d'une figure est toujours une longueur."],
+      "solution": "Longueurs : la clôture, la hauteur de la porte, le ruban. Aires : le terrain, le mur, la nappe. Volumes : la baignoire, le carton.",
+      "selfTest": [
+        { "response": { "assign": { "u1": "lon", "u2": "aire", "u3": "vol", "u4": "lon", "u5": "aire", "u6": "vol", "u7": "aire", "u8": "lon" } }, "expect": "correct" },
+        { "response": { "assign": { "u1": "aire", "u2": "aire", "u3": "vol", "u4": "lon", "u5": "aire", "u6": "vol", "u7": "aire", "u8": "lon" } }, "expect": "mc:aire-perimetre" }
+      ]
+    },
+    {
+      "id": "m5-aires-canette", "type": "composite", "skill": "m5.grandeurs.volumes", "skills": ["m5.grandeurs.conversions"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diametre-rayon", "mc:cl-conversion"], "expectedSeconds": 420,
+      "prompt": "Une canette de soda a à peu près la forme d'un cylindre de 6,6 cm de diamètre et de 11,5 cm de hauteur. Sur l'étiquette, on lit « 33 cL ».",
+      "figure": {
+        "alt": "Une canette en forme de cylindre dessinée en perspective, avec son diamètre et sa hauteur",
+        "w": 260, "h": 245,
+        "frame": { "x": [-2.8, 3.4], "y": [-0.2, 5.4] },
+        "items": [
+          {"type": "polygon", "points": [[2.0, 4.6], [1.8478, 4.7913], [1.4142, 4.9536], [0.7654, 5.0619], [0, 5.1], [-0.7654, 5.0619], [-1.4142, 4.9536], [-1.8478, 4.7913], [-2.0, 4.6], [-1.8478, 4.4087], [-1.4142, 4.2464], [-0.7654, 4.1381], [0, 4.1], [0.7654, 4.1381], [1.4142, 4.2464], [1.8478, 4.4087]], "fill": "orange"},
+          {"type": "segment", "from": [2.0, 0.6], "to": [1.8478, 0.7913], "dashed": true},
+          {"type": "segment", "from": [1.8478, 0.7913], "to": [1.4142, 0.9536], "dashed": true},
+          {"type": "segment", "from": [1.4142, 0.9536], "to": [0.7654, 1.0619], "dashed": true},
+          {"type": "segment", "from": [0.7654, 1.0619], "to": [0, 1.1], "dashed": true},
+          {"type": "segment", "from": [0, 1.1], "to": [-0.7654, 1.0619], "dashed": true},
+          {"type": "segment", "from": [-0.7654, 1.0619], "to": [-1.4142, 0.9536], "dashed": true},
+          {"type": "segment", "from": [-1.4142, 0.9536], "to": [-1.8478, 0.7913], "dashed": true},
+          {"type": "segment", "from": [-1.8478, 0.7913], "to": [-2.0, 0.6], "dashed": true},
+          {"type": "segment", "from": [-2.0, 0.6], "to": [-1.8478, 0.4087]},
+          {"type": "segment", "from": [-1.8478, 0.4087], "to": [-1.4142, 0.2464]},
+          {"type": "segment", "from": [-1.4142, 0.2464], "to": [-0.7654, 0.1381]},
+          {"type": "segment", "from": [-0.7654, 0.1381], "to": [0, 0.1]},
+          {"type": "segment", "from": [0, 0.1], "to": [0.7654, 0.1381]},
+          {"type": "segment", "from": [0.7654, 0.1381], "to": [1.4142, 0.2464]},
+          {"type": "segment", "from": [1.4142, 0.2464], "to": [1.8478, 0.4087]},
+          {"type": "segment", "from": [1.8478, 0.4087], "to": [2.0, 0.6]},
+          { "type": "segment", "from": [-2, 0.6], "to": [-2, 4.6] },
+          { "type": "segment", "from": [2, 0.6], "to": [2, 4.6], "label": "11,5 cm" },
+          { "type": "segment", "from": [-2, 4.6], "to": [2, 4.6], "dashed": true, "label": "6,6 cm" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Volume du cylindre, arrondi à l'unité (avec l'unité) :", "answer": "pi*3.3*3.3*11.5", "unit": "cm³", "rel": 0.003,
+          "misconceptions": [
+            { "answer": "pi*6.6*6.6*11.5", "id": "mc:diametre-rayon", "error": "notion", "feedback": "Le rayon est la moitié du diamètre : 3,3 cm, pas 6,6 cm." },
+            { "answer": "2*pi*3.3*11.5", "id": "mc:aire-volume", "error": "notion", "feedback": "2 × π × r × h est l'aire de la paroi de la canette, pas son volume." }
+          ] },
+        { "type": "numeric", "prompt": "Ce volume en centilitres, arrondi au dixième (avec l'unité) :", "answer": "pi*3.3*3.3*11.5/10", "unit": "cL", "rel": 0.005,
+          "misconceptions": [ { "answer": "pi*3.3*3.3*11.5/100", "id": "mc:cl-conversion", "error": "unite", "feedback": "1 cL = 10 mL = 10 cm³ : on divise par 10, pas par 100." } ] },
+        { "type": "numeric", "prompt": "Combien de centilitres de la canette ne sont pas occupés par le soda (au dixième) ?", "answer": "pi*3.3*3.3*11.5/10 - 33", "tolerance": 0.2 }
+      ],
+      "hints": ["Rayon = 6,6 ÷ 2 = 3,3 cm.", "Volume = π × r × r × h, en cm³.", "1 cm³ = 1 mL, et 10 mL = 1 cL."],
+      "solution": "Volume ≈ π × 3,3 × 3,3 × 11,5 ≈ 393 cm³, soit 393 mL ou 39,3 cL. Il reste environ 39,3 − 33 = 6,3 cL : le haut de la canette est plus étroit qu'un vrai cylindre, et il faut de la place pour le gaz.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "393 cm³" }, { "value": "39,3 cL" }, { "value": "6,3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1573 cm³" }, { "value": "39,3 cL" }, { "value": "6,3" } ] }, "expect": "mc:diametre-rayon" }
+      ]
+    },
+    {
+      "id": "m5-aires-agrandir", "type": "composite", "skill": "m5.grandeurs.volumes", "skills": ["m5.grandeurs.aires"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:double-volume", "mc:cube-fois-trois"], "expectedSeconds": 300,
+      "params": { "c": { "int": [2, 5] } },
+      "prompt": "Un petit cube a des arêtes de {c} cm. On fabrique un grand cube dont les arêtes sont deux fois plus longues.",
+      "figure": {
+        "alt": "Un petit cube et un grand cube dont l'arête est le double, dessinés en perspective",
+        "w": 380, "h": 210,
+        "frame": { "x": [0, 6.5], "y": [0, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[0.5, 0.5], [1.5, 0.5], [1.5, 1.5], [0.5, 1.5]], "fill": "bleu" },
+          { "type": "segment", "from": [0.5, 0.5], "to": [1.5, 0.5], "label": "{c} cm" },
+          { "type": "segment", "from": [1.5, 0.5], "to": [2, 0.85] },
+          { "type": "segment", "from": [2, 0.85], "to": [2, 1.85] },
+          { "type": "segment", "from": [1.5, 1.5], "to": [2, 1.85] },
+          { "type": "segment", "from": [0.5, 1.5], "to": [1, 1.85] },
+          { "type": "segment", "from": [1, 1.85], "to": [2, 1.85] },
+          { "type": "segment", "from": [0.5, 0.5], "to": [1, 0.85], "dashed": true },
+          { "type": "segment", "from": [1, 0.85], "to": [2, 0.85], "dashed": true },
+          { "type": "segment", "from": [1, 0.85], "to": [1, 1.85], "dashed": true },
+          { "type": "polygon", "points": [[3, 0.5], [5, 0.5], [5, 2.5], [3, 2.5]], "fill": "orange" },
+          { "type": "segment", "from": [3, 0.5], "to": [5, 0.5], "label": "{2*c} cm" },
+          { "type": "segment", "from": [5, 0.5], "to": [6, 1.2] },
+          { "type": "segment", "from": [6, 1.2], "to": [6, 3.2] },
+          { "type": "segment", "from": [5, 2.5], "to": [6, 3.2] },
+          { "type": "segment", "from": [3, 2.5], "to": [4, 3.2] },
+          { "type": "segment", "from": [4, 3.2], "to": [6, 3.2] },
+          { "type": "segment", "from": [3, 0.5], "to": [4, 1.2], "dashed": true },
+          { "type": "segment", "from": [4, 1.2], "to": [6, 1.2], "dashed": true },
+          { "type": "segment", "from": [4, 1.2], "to": [4, 3.2], "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Volume du petit cube (en cm³) :", "answer": "c*c*c",
+          "misconceptions": [ { "answer": "3*c", "id": "mc:cube-fois-trois", "error": "notion", "feedback": "Le volume d'un cube est c × c × c (l'arête multipliée trois fois par elle-même), pas 3 × c." } ] },
+        { "type": "numeric", "prompt": "Volume du grand cube (en cm³) :", "answer": "8*c*c*c",
+          "misconceptions": [ { "answer": "2*c*c*c", "id": "mc:double-volume", "error": "notion", "feedback": "Le volume n'a pas simplement doublé : calcule {2*c} × {2*c} × {2*c}." } ] },
+        { "type": "numeric", "prompt": "Par combien le volume a-t-il été multiplié ?", "answer": 8,
+          "misconceptions": [ { "answer": 2, "id": "mc:double-volume", "error": "notion", "feedback": "Les trois dimensions sont doublées : le volume est multiplié par 2 × 2 × 2 = 8. On peut ranger 8 petits cubes dans le grand !" } ] },
+        { "type": "numeric", "prompt": "Par combien l'aire d'une face a-t-elle été multipliée ?", "answer": 4,
+          "misconceptions": [ { "answer": 2, "id": "mc:double-aire", "error": "notion", "feedback": "Une face est un carré dont les deux dimensions doublent : son aire est multipliée par 2 × 2 = 4." } ] }
+      ],
+      "hints": ["Volume d'un cube : arête × arête × arête.", "Calcule les deux volumes, puis divise le grand par le petit.", "Imagine combien de petits cubes on peut empiler dans le grand."],
+      "solution": "Petit cube : {c} × {c} × {c} = {c*c*c} cm³. Grand cube : {2*c} × {2*c} × {2*c} = {8*c*c*c} cm³, soit 8 fois plus. L'aire d'une face passe de {c*c} cm² à {4*c*c} cm² : 4 fois plus. Quand les longueurs sont multipliées par 2, les aires le sont par 4 et les volumes par 8 (tu le retrouveras en 4e avec les agrandissements).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{c*c*c}" }, { "value": "{8*c*c*c}" }, { "value": "8" }, { "value": "4" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{c*c*c}" }, { "value": "{2*c*c*c}" }, { "value": "2" }, { "value": "2" } ] }, "expect": "mc:double-volume" }
+      ]
+    },
+    {
+      "id": "m5-aires-quarts", "type": "composite", "skill": "m5.grandeurs.disque", "skills": ["m5.grandeurs.aires"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:quart-disque"], "expectedSeconds": 720,
+      "params": { "a": { "choice": [8, 10, 12, 20] } },
+      "prompt": "Dans un carré de {a} cm de côté, on a colorié quatre quarts de disque, centrés aux quatre coins, de rayon égal à la moitié du côté. On s'intéresse à la partie qui n'est pas coloriée.",
+      "figure": {
+        "alt": "Un carré dans lequel quatre quarts de disque, centrés aux coins, se touchent au milieu des côtés",
+        "w": 280, "h": 290,
+        "frame": { "x": [-0.5, 4.5], "y": [-0.8, 4.4] },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [4, 0], [4, 4], [0, 4]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [2, 0], [1.8478, 0.7654], [1.4142, 1.4142], [0.7654, 1.8478], [0, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[4, 0], [4, 2], [3.2346, 1.8478], [2.5858, 1.4142], [2.1522, 0.7654], [2, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[4, 4], [2, 4], [2.1522, 3.2346], [2.5858, 2.5858], [3.2346, 2.1522], [4, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, 4], [0, 2], [0.7654, 2.1522], [1.4142, 2.5858], [1.8478, 3.2346], [2, 4]], "fill": "orange" },
+          { "type": "arc", "center": [0, 0], "r": 2, "start": 0, "end": 90 },
+          { "type": "arc", "center": [4, 0], "r": 2, "start": 90, "end": 180 },
+          { "type": "arc", "center": [4, 4], "r": 2, "start": 180, "end": 270 },
+          { "type": "arc", "center": [0, 4], "r": 2, "start": 270, "end": 360 },
+          { "type": "text", "x": 2, "y": -0.5, "text": "{a} cm", "size": "s", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du carré (en cm²) :", "answer": "a*a" },
+        { "type": "numeric", "prompt": "Aire totale des quatre quarts de disque (en cm², au dixième) :", "answer": "pi*a*a/4", "rel": 0.003,
+          "misconceptions": [
+            { "answer": "pi*a*a", "id": "mc:quart-disque", "error": "raisonnement", "feedback": "Quatre QUARTS de disque forment un seul disque entier, de rayon {a/2} cm : π × {a/2} × {a/2}." },
+            { "answer": "pi*a*a*4", "id": "mc:quart-disque", "error": "raisonnement", "feedback": "Le rayon est {a/2} cm (la moitié du côté), et quatre quarts de disque ne font qu'un disque entier." }
+          ] },
+        { "type": "numeric", "prompt": "Aire de la partie non coloriée (en cm², au dixième) :", "answer": "a*a - pi*a*a/4", "rel": 0.01 },
+        { "type": "numeric", "prompt": "Quel pourcentage du carré n'est pas colorié (arrondi à l'unité) ?", "answer": "100*(1 - pi/4)", "tolerance": 0.6 },
+        { "type": "open", "prompt": "Ce pourcentage changerait-il avec un carré deux fois plus grand ? Explique pourquoi.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je réponds que le pourcentage ne change pas", "keywords": [["ne change pas", "meme pourcentage", "toujours", "pareil"]] },
+            { "id": "c2", "label": "J'explique que l'aire du carré et l'aire des disques sont multipliées par le même nombre (4)", "keywords": [["meme nombre", "par 4", "fois 4", "les deux", "proportion"]] }
+          ] }
+      ],
+      "hints": ["Mets bout à bout les quatre quarts de disque : quelle figure obtiens-tu ?", "Le rayon vaut la moitié du côté : {a/2} cm.", "Pourcentage = aire non coloriée ÷ aire du carré × 100."],
+      "solution": "Carré : {a*a} cm². Les quatre quarts forment un disque de rayon {a/2} cm : π × {a/2} × {a/2} ≈ {pi*a*a/4|d2} cm². Partie non coloriée : ≈ {a*a-pi*a*a/4|d2} cm², soit environ 21 % du carré. Ce pourcentage, 1 − π ÷ 4 ≈ 0,215, ne dépend pas de la taille : si on double le côté, les deux aires sont multipliées par 4.",
+      "methods": ["Calculer avec les valeurs, puis recommencer avec un autre côté pour comparer.", "Exprimer tout avec le côté a : a × a − π × a × a ÷ 4 = a × a × (1 − π ÷ 4)."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a*a}" }, { "value": "{arrondi(pi*a*a/4;1)}" }, { "value": "{arrondi(a*a-pi*a*a/4;1)}" }, { "value": "21" }, { "text": "Le pourcentage ne change pas : les deux aires sont multipliées par le même nombre, 4.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a*a}" }, { "value": "{arrondi(pi*a*a;1)}" }, { "value": "{arrondi(a*a-pi*a*a/4;1)}" }, { "value": "21" }, { "text": "Je ne sais pas." } ] }, "expect": "mc:quart-disque" }
+      ]
+    },
+    {
+      "id": "m5-aires-boite", "type": "composite", "skill": "m5.grandeurs.volumes", "skills": ["m5.geo.perspective-patrons"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "manipulation", "targets": ["mc:une-coupe"], "expectedSeconds": 900,
+      "prompt": "Dans une feuille de carton de 30 cm sur 20 cm, on découpe un carré de x cm de côté à chaque coin, puis on replie les bords pour fabriquer une boîte sans couvercle. Quelle valeur de x donne la boîte de plus grand volume ? (Un tableur peut t'aider.)",
+      "figure": {
+        "alt": "Une feuille rectangulaire de 30 cm sur 20 cm avec un carré découpé à chaque coin et des lignes de pliage en pointillés",
+        "w": 420, "h": 300,
+        "frame": { "x": [-2.5, 31.5], "y": [-3, 21.5] },
+        "items": [
+          { "type": "polygon", "points": [[4, 0], [26, 0], [26, 4], [30, 4], [30, 16], [26, 16], [26, 20], [4, 20], [4, 16], [0, 16], [0, 4], [4, 4]], "fill": "orange" },
+          { "type": "rect", "x": 0, "y": 0, "w": 4, "h": 4, "dashed": true },
+          { "type": "rect", "x": 26, "y": 0, "w": 4, "h": 4, "dashed": true },
+          { "type": "rect", "x": 0, "y": 16, "w": 4, "h": 4, "dashed": true },
+          { "type": "rect", "x": 26, "y": 16, "w": 4, "h": 4, "dashed": true },
+          { "type": "segment", "from": [4, 4], "to": [26, 4], "dashed": true },
+          { "type": "segment", "from": [4, 16], "to": [26, 16], "dashed": true },
+          { "type": "segment", "from": [4, 4], "to": [4, 16], "dashed": true },
+          { "type": "segment", "from": [26, 4], "to": [26, 16], "dashed": true },
+          { "type": "text", "x": 2, "y": 2, "text": "x", "size": "m", "anchor": "middle" },
+          { "type": "text", "x": 15, "y": -2, "text": "30 cm", "size": "s", "anchor": "middle" },
+          { "type": "text", "x": 31, "y": 10, "text": "20 cm", "size": "s", "anchor": "start" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Pour x = 2 cm, quelle est la longueur du fond de la boîte (en cm) ?", "answer": 26,
+          "misconceptions": [ { "answer": 28, "id": "mc:une-coupe", "error": "lecture", "feedback": "On découpe un carré à CHAQUE bout de la longueur : 30 − 2 × 2 = 26 cm." } ] },
+        { "type": "numeric", "prompt": "Pour x = 2 cm, quelle est la largeur du fond (en cm) ?", "answer": 16,
+          "misconceptions": [ { "answer": 18, "id": "mc:une-coupe", "error": "lecture", "feedback": "Il y a un carré découpé à chaque bout de la largeur aussi : 20 − 2 × 2 = 16 cm." } ] },
+        { "type": "numeric", "prompt": "Volume de la boîte pour x = 2 cm (en cm³) :", "answer": 832 },
+        { "type": "numeric", "prompt": "En essayant les valeurs entières de x, laquelle donne le plus grand volume ?", "answer": 4 },
+        { "type": "numeric", "prompt": "Quel est ce plus grand volume (en cm³) ?", "answer": 1056 }
+      ],
+      "hints": ["Le fond est un rectangle de (30 − 2x) cm sur (20 − 2x) cm, et la hauteur de la boîte vaut x cm.", "Volume = x × (30 − 2x) × (20 − 2x). Essaie x = 1, 2, 3, 4, 5…", "Range tes résultats dans un tableau (ou un tableur) et repère le plus grand."],
+      "solution": "Pour x = 2 : fond de 26 cm sur 16 cm, hauteur 2 cm, volume 2 × 26 × 16 = 832 cm³. En essayant : x = 1 → 504 ; x = 2 → 832 ; x = 3 → 1 008 ; x = 4 → 1 056 ; x = 5 → 1 000 ; x = 6 → 864. Le plus grand volume (en valeurs entières) est obtenu pour x = 4 cm : 1 056 cm³. Trop petit, la boîte est plate ; trop grand, le fond rétrécit.",
+      "methods": ["Construire un tableau de valeurs à la main pour x de 1 à 9.", "Utiliser un tableur : une colonne pour x, une colonne avec la formule =A2*(30-2*A2)*(20-2*A2)."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "26" }, { "value": "16" }, { "value": "832" }, { "value": "4" }, { "value": "1056" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "28" }, { "value": "18" }, { "value": "1008" }, { "value": "5" }, { "value": "1000" } ] }, "expect": "mc:une-coupe" }
+      ]
+    }
+  ]
+}

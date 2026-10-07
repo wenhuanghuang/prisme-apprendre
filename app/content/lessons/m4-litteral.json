@@ -1,0 +1,464 @@
+{
+  "id": "m4-litteral",
+  "chapter": "m4-ch-litteral",
+  "title": "Calcul littéral : distributivité et programmes de calcul équivalents",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.litteral.structure", "m4.litteral.reduire", "m4.litteral.programmes", "m5.litteral.distributivite"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Reconnaître si une expression est une somme ou un produit, développer, factoriser et réduire avec des nombres relatifs, puis démontrer que deux programmes de calcul sont équivalents, ou prouver qu'ils ne le sont pas.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Deux programmes jumeaux ?",
+      "body": "Deux programmes de calcul :\n- **Programme A** : choisis un nombre, ajoute 5, multiplie le résultat par 4.\n- **Programme B** : choisis un nombre, multiplie-le par 2, ajoute 10, multiplie le résultat par 2.\n\nAvec 1, les deux donnent 24. Avec 3, les deux donnent 32. Coïncidence ? Peux-tu être **sûr** qu'ils donnent toujours le même résultat, même avec 1 000 000 ou avec −7,5 ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧱", "title": "Somme ou produit ?",
+          "body": "La **structure** d'une expression est donnée par la **dernière opération** à effectuer. $3x + 5$ est une **somme** : on multiplie d'abord, on ajoute en dernier. $3(x + 5)$ est un **produit** : on calcule d'abord la parenthèse, puis on multiplie par 3.",
+          "reveal": { "question": "Devine : 7 − 2(x + 1) est-il une différence ou un produit ?", "answer": "Une différence : la dernière opération est la soustraction « 7 − … ». Le produit 2(x + 1) est calculé avant." }
+        },
+        {
+          "emoji": "🌈", "title": "Développer",
+          "body": "Développer, c'est transformer un produit en somme grâce à la **distributivité** : $k(a + b) = ka + kb$ et $k(a − b) = ka − kb$. Le facteur $k$ multiplie **chaque** terme de la parenthèse. Avec des nombres relatifs : $−3(2x − 5) = −6x + 15$.",
+          "figure": {
+            "alt": "Rectangle de largeur 3 formé de deux rectangles collés, de longueurs x et 5 : son aire vaut 3(x + 5), ou 3x + 15.",
+            "w": 380, "h": 190,
+            "frame": { "x": [-1.2, 11], "y": [-0.8, 4.4] },
+            "caption": "3(x + 5) = 3x + 15",
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 6, "h": 3, "fill": "bleu", "label": "3 × x" },
+              { "type": "rect", "x": 6, "y": 0, "w": 4, "h": 3, "fill": "orange", "label": "3 × 5" },
+              { "type": "text", "x": 3, "y": 3.6, "text": "x", "anchor": "middle" },
+              { "type": "text", "x": 8, "y": 3.6, "text": "5", "anchor": "middle" },
+              { "type": "text", "x": -0.6, "y": 1.5, "text": "3", "anchor": "middle" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧲", "title": "Factoriser",
+          "body": "C'est le chemin inverse : on repère un **facteur commun** à tous les termes et on le met en facteur. $6x + 15 = 3 × 2x + 3 × 5$, donc $6x + 15 = 3(2x + 5)$. Le facteur commun peut être une lettre : $x² + 7x = x(x + 7)$. Pour vérifier, on redéveloppe."
+        },
+        {
+          "emoji": "🧹", "title": "Réduire",
+          "body": "Réduire, c'est regrouper les termes de même nature : $5x + 3 − 2x + 4 = 3x + 7$. Avec des parenthèses, on développe d'abord : $2(x + 3) − 3(x − 1) = 2x + 6 − 3x + 3$, soit $−x + 9$. Attention : $2x + 3$ ne se réduit pas en $5x$ !"
+        },
+        {
+          "emoji": "🎩", "title": "Programmes de calcul équivalents",
+          "body": "Deux programmes sont **équivalents** s'ils donnent le même résultat pour **tous** les nombres de départ. Tester quelques nombres ne suffit pas : on traduit chaque programme par une expression avec une lettre, on développe et on réduit. Si on obtient la même expression, c'est **démontré** !",
+          "reveal": { "question": "Devine : combien de nombres faut-il tester pour prouver que deux programmes ne sont PAS équivalents ?", "answer": "Un seul ! Un nombre qui donne deux résultats différents est un contre-exemple : il suffit à le prouver." }
+        },
+        {
+          "emoji": "✅", "title": "Contrôler avec un nombre",
+          "body": "Pour contrôler un développement, remplace $x$ par un nombre, par exemple 2, des deux côtés : $3(x + 4)$ donne 18, mais $3x + 4$ donne 10. L'erreur saute aux yeux ! Attention : un test réussi ne prouve rien, mais un test raté prouve qu'il y a une erreur."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Démontrer que les programmes A et B sont équivalents",
+      "steps": [
+        { "text": "Programme A avec un nombre $x$ : on ajoute 5, puis on multiplie **le résultat** par 4. Il faut des parenthèses :", "math": "A = 4(x + 5)" },
+        { "text": "Programme B : on multiplie $x$ par 2, on ajoute 10, puis on multiplie le résultat par 2 :", "math": "B = 2(2x + 10)" },
+        { "text": "On développe A : 4 multiplie $x$ et 5.", "math": "A = 4x + 20" },
+        { "text": "On développe B : 2 multiplie $2x$ et 10.", "math": "B = 4x + 20" },
+        { "text": "Les deux expressions sont égales pour **tout** nombre $x$ : les programmes A et B sont équivalents. C'est une démonstration, pas une simple vérification sur quelques exemples.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Après chaque développement, contrôle avec $x = 2$ : les deux écritures doivent donner le même nombre.",
+      "exercises": ["m4-litteral-structure", "m4-litteral-developper", "m4-litteral-factoriser", "m4-litteral-reduire", "m4-litteral-verif", "m4-litteral-tester"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m4-litteral-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m4-litteral-plus-grand", "m4-litteral-jardin"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : démasquer le programme magique",
+      "body": "Malik prétend deviner ton résultat sans le connaître. Teste son tour, puis démontre pourquoi il marche à tous les coups.",
+      "exercises": ["m4-litteral-magique"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** $k(a + b) = ka + kb$ : le facteur multiplie **chaque** terme. Développer transforme un produit en somme, factoriser fait l'inverse. Deux programmes sont équivalents s'ils donnent la même expression réduite ; un seul contre-exemple prouve qu'ils ne le sont pas.\n\n- **$2(x + 3) = 2x + 3$ ?** Non : 2 multiplie aussi 3, donc $2(x + 3) = 2x + 6$.\n- **Le signe moins.** $−2(x − 4) = −2x + 8$, car $(−2) × (−4) = 8$.\n- **$2x + 3 = 5x$ ?** Non : on ne regroupe que des termes de même nature.\n- **Tester ne prouve pas.** Des exemples qui marchent ne suffisent pas : seule l'expression réduite le démontre pour tous les nombres."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des développements, des factorisations et des programmes de calcul dans quelques jours. Garde le réflexe de contrôler avec $x = 2$."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Démontrer des propriétés étonnantes avec une lettre : le carré de dates du calendrier et la somme de deux nombres impairs consécutifs.",
+      "exercises": ["m4-litteral-calendrier", "m4-litteral-impairs"]
+    },
+    "expert": {
+      "intro": "Facultatif : retrouver les nombres cachés de programmes équivalents, et percer le secret des nombres « abcabc ».",
+      "exercises": ["m4-litteral-parametres", "m4-litteral-abcabc"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-litteral-structure", "type": "categorize", "skill": "m4.litteral.structure", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:structure-parenthese", "mc:structure-premiere-operation"], "expectedSeconds": 150,
+      "prompt": "Pour chaque expression, cherche la **dernière opération** à effectuer : est-ce une somme (ou une différence), ou un produit ?",
+      "categories": [ { "id": "somme", "label": "Somme ou différence" }, { "id": "produit", "label": "Produit" } ],
+      "items": [
+        { "id": "e1", "label": "$3x + 5$", "category": "somme" },
+        { "id": "e2", "label": "$3(x + 5)$", "category": "produit" },
+        { "id": "e3", "label": "$(x + 1)(x − 2)$", "category": "produit" },
+        { "id": "e4", "label": "$2x × 7 + 1$", "category": "somme" },
+        { "id": "e5", "label": "$7 − 2(x + 1)$", "category": "somme" },
+        { "id": "e6", "label": "$−5(x − 3)$", "category": "produit" },
+        { "id": "e7", "label": "$x² + x$", "category": "somme" },
+        { "id": "e8", "label": "$(4 + x) × 3$", "category": "produit" }
+      ],
+      "misconceptions": [
+        { "item": "e5", "category": "produit", "id": "mc:structure-parenthese", "error": "notion", "feedback": "Il y a bien un produit, 2(x + 1), mais il est calculé AVANT la soustraction. La dernière opération est « 7 − … » : c'est une différence." },
+        { "item": "e4", "category": "produit", "id": "mc:structure-premiere-operation", "error": "notion", "feedback": "La dernière opération est l'addition de 1 : c'est une somme, même si elle commence par un produit." },
+        { "item": "e2", "category": "somme", "id": "mc:structure-parenthese", "error": "notion", "feedback": "On calcule d'abord la somme x + 5, puis on multiplie par 3 : la dernière opération est une multiplication, c'est un produit." },
+        { "item": "e3", "category": "somme", "id": "mc:structure-parenthese", "error": "notion", "feedback": "On calcule les deux parenthèses, puis on les multiplie : c'est un produit de deux facteurs." },
+        { "item": "e7", "category": "produit", "id": "mc:structure-premiere-operation", "error": "notion", "feedback": "x² = x × x est calculé d'abord, puis on ajoute x : la dernière opération est une addition." }
+      ],
+      "hints": ["Imagine que tu remplaces $x$ par 2 et que tu calcules : quelle opération fais-tu en dernier ?", "Les parenthèses se calculent en premier, puis les multiplications, puis les additions et soustractions.", "Dans $7 − 2(x + 1)$, on calcule $2(x + 1)$, puis on le retire à 7."],
+      "solution": "Sommes ou différences : $3x + 5$, $2x × 7 + 1$, $7 − 2(x + 1)$, $x² + x$. Produits : $3(x + 5)$, $(x + 1)(x − 2)$, $−5(x − 3)$, $(4 + x) × 3$.",
+      "selfTest": [
+        { "response": { "assign": { "e1": "somme", "e2": "produit", "e3": "produit", "e4": "somme", "e5": "somme", "e6": "produit", "e7": "somme", "e8": "produit" } }, "expect": "correct" },
+        { "response": { "assign": { "e1": "somme", "e2": "produit", "e3": "produit", "e4": "somme", "e5": "produit", "e6": "produit", "e7": "somme", "e8": "produit" } }, "expect": "mc:structure-parenthese" }
+      ]
+    },
+    {
+      "id": "m4-litteral-developper", "type": "steps", "mode": "expression", "final": "developpee-reduite", "skill": "m4.litteral.reduire", "skills": ["m5.litteral.distributivite", "m4.relatifs.produit"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:distrib-partielle", "mc:signe-distrib"], "expectedSeconds": 120,
+      "params": { "k": { "int": [-9, 9], "not": [0, 1, -1] }, "a": { "int": [2, 7] }, "b": { "int": [-9, 9], "not": [0] } },
+      "start": "k*(a*x + b)", "minSteps": 2,
+      "prompt": "Développe et réduis $ {k}({a}x {b|s}) $. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "k*a*x + b", "id": "mc:distrib-partielle", "error": "notion", "prerequisite": "m5.litteral.distributivite", "feedback": "{k} doit multiplier CHAQUE terme de la parenthèse, y compris {b} : $ {k} × {b|p} = {k*b} $." },
+        { "answer": "k*a*x - k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "attention au signe du second produit : $ {k|p} × {b|p} = {k*b} $ (règle des signes)." }
+      ],
+      "hints": ["{k} multiplie $ {a}x $ ET {b}.", "$ {k} × {a}x = {k*a}x $.", "$ {k|p} × {b|p} = {k*b} $ : attention à la règle des signes."],
+      "solution": "$ {k}({a}x {b|s}) = {k} × {a}x + {k|p} × {b|p} = {k*a}x {k*b|s} $.",
+      "selfTest": [
+        { "response": { "lines": ["{k} × {a}x + {k|p} × {b|p}", "{k*a}x {k*b|s}"] }, "expect": "correct" },
+        { "response": { "lines": ["{k*a}x {b|s}"] }, "expect": "mc:distrib-partielle" },
+        { "response": { "lines": ["{k*a}x {-k*b|s}"] }, "expect": "mc:signe-distrib" }
+      ]
+    },
+    {
+      "id": "m4-litteral-factoriser", "type": "composite", "skill": "m4.litteral.reduire", "skills": ["m5.litteral.distributivite"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:factor-partielle"], "expectedSeconds": 240,
+      "params": { "k": { "int": [2, 9] }, "a": { "int": [1, 9] }, "b": { "int": [1, 9] }, "c": { "int": [2, 9] } },
+      "constraints": ["pgcd(a;b) = 1"],
+      "prompt": "Factoriser, c'est transformer une somme en produit en repérant un **facteur commun** à tous les termes.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le plus grand nombre entier qui divise à la fois {k*a} et {k*b} ?", "answer": "k" },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ {k*a}x + {k*b} $.", "answer": "k*(a*x + b)",
+          "misconceptions": [ { "answer": "k*(a*x + k*b)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ {k}({a|c}x + {k*b}) = {k*a}x + {k*k*b} $, et non $ {k*a}x + {k*b} $. Le facteur {k} doit être « sorti » des deux termes : $ {k*b} = {k} × {b} $." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ x² + {c}x $.", "answer": "x*(x + c)",
+          "misconceptions": [ { "answer": "x*(x + c*x)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ x(x + {c}x) = x² + {c}x² $. Une fois le facteur $x$ « sorti », il reste $ x + {c} $." } ] }
+      ],
+      "hints": ["$ {k*a} = {k} × {a} $ et $ {k*b} = {k} × {b} $.", "$ {k*a}x + {k*b} = {k} × {a|c}x + {k} × {b} $.", "Dans $ x² + {c}x $, les deux termes contiennent $x$ : $ x² = x × x $ et $ {c}x = {c} × x $."],
+      "solution": "$ {k*a}x + {k*b} = {k} × {a|c}x + {k} × {b} = {k}({a|c}x + {b}) $. Et $ x² + {c}x = x × x + {c} × x = x(x + {c}) $. Vérification : en redéveloppant, on retrouve les expressions de départ.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{k}" }, { "value": "{k}({a}x + {b})" }, { "value": "x(x + {c})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{k}" }, { "value": "{k}({a}x + {k*b})" }, { "value": "x(x + {c})" } ] }, "expect": "mc:factor-partielle" }
+      ]
+    },
+    {
+      "id": "m4-litteral-reduire", "type": "steps", "mode": "expression", "final": "developpee-reduite", "skill": "m4.litteral.reduire", "skills": ["m4.relatifs.produit"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:moins-devant-parenthese", "mc:distrib-partielle"], "expectedSeconds": 240,
+      "params": { "a": { "int": [2, 5] }, "b": { "int": [1, 5] }, "c": { "int": [-6, 6], "not": [0] }, "d": { "int": [-5, -2] }, "e": { "int": [1, 4] }, "f": { "int": [1, 6] } },
+      "constraints": ["a*b + d*e != 0", "a*c + d*f != 0", "c + f != a*c + d*f", "a*c - d*f != c + f"],
+      "start": "a*(b*x + c) + d*(e*x + f)", "minSteps": 2,
+      "prompt": "Développe et réduis $ A = {a}({b|c}x {c|s}) {d|s}({e|c}x + {f}) $. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "a*b*x + a*c + d*e*x - d*f", "id": "mc:moins-devant-parenthese", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "le facteur {d} multiplie aussi {f} : $ {d|p} × {f} = {d*f} $. Le signe « − » devant la parenthèse change le signe de CHAQUE terme." },
+        { "answer": "a*b*x + c + d*e*x + f", "id": "mc:distrib-partielle", "error": "notion", "prerequisite": "m5.litteral.distributivite", "feedback": "dans chaque produit, le facteur devant la parenthèse multiplie TOUS les termes de la parenthèse." }
+      ],
+      "hints": ["Développe chaque produit séparément.", "$ {d}({e|c}x + {f}) = {d*e}x {d*f|s} $ : {d} multiplie les deux termes.", "Regroupe ensuite les termes en $x$ entre eux, et les nombres entre eux."],
+      "solution": "$ A = {a*b}x {a*c|s} {d*e|s}x {d*f|s} $. On regroupe les termes en $x$ et les nombres : $ A = {a*b+d*e|c}x {a*c+d*f|s} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a*b}x {a*c|s} {d*e|s}x {d*f|s}", "{a*b+d*e|c}x {a*c+d*f|s}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a*b}x {a*c|s} {d*e|s}x {-d*f|s}"] }, "expect": "mc:moins-devant-parenthese" }
+      ]
+    },
+    {
+      "id": "m4-litteral-verif", "type": "qcm", "skill": "m5.litteral.distributivite", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:distrib-partielle", "mc:regrouper-termes"], "expectedSeconds": 40,
+      "params": { "k": { "int": [2, 9] }, "b": { "int": [1, 9] } },
+      "prompt": "Vérification rapide : $ {k}(x + {b}) $ est égal à…",
+      "choices": [
+        { "text": "$ {k}x + {k*b} $", "correct": true, "feedback": "Oui : {k} multiplie $x$ et {b}." },
+        { "text": "$ {k}x + {b} $", "correct": false, "error": "notion", "misconception": "mc:distrib-partielle", "feedback": "{k} doit multiplier aussi {b} : $ {k}(x + {b}) = {k}x + {k*b} $. Contrôle avec $x = 2$ : $ {k}(2 + {b}) = {k*(2+b)} $, alors que $ {k} × 2 + {b} = {2*k+b} $." },
+        { "text": "$ {k*b}x $", "correct": false, "error": "notion", "misconception": "mc:regrouper-termes", "feedback": "$ {k}x $ et {k*b} ne se regroupent pas : l'un contient $x$, l'autre non. Le résultat reste une somme : $ {k}x + {k*b} $." }
+      ],
+      "solution": "$ {k}(x + {b}) = {k} × x + {k} × {b} = {k}x + {k*b} $.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:distrib-partielle" } ]
+    },
+    {
+      "id": "m4-litteral-tester", "type": "composite", "skill": "m4.litteral.programmes", "skills": ["m5.litteral.expression", "m4.raisonner.preuve"], "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:parentheses-programme", "mc:carre-negatif"], "expectedSeconds": 480,
+      "prompt": "Trois programmes de calcul :\n- **A** : ajoute 5 au nombre choisi, puis multiplie le résultat par 4 ;\n- **B** : multiplie le nombre choisi par 2, ajoute 10, puis multiplie le résultat par 2 ;\n- **C** : multiplie le nombre choisi par lui-même, ajoute le triple du nombre choisi, puis ajoute 20.",
+      "parts": [
+        { "type": "table", "prompt": "Complète le tableau des résultats.",
+          "columns": ["Nombre choisi", "Programme A", "Programme B", "Programme C"],
+          "rows": [ ["0", "?r0c1", "?r0c2", "?r0c3"], ["1", "?r1c1", "?r1c2", "?r1c3"], ["2", "?r2c1", "?r2c2", "?r2c3"], ["−3", "?r3c1", "?r3c2", "?r3c3"] ],
+          "cells": {
+            "r0c1": { "answer": 20 }, "r0c2": { "answer": 20 }, "r0c3": { "answer": 20 },
+            "r1c1": { "answer": 24, "misconceptions": [ { "answer": 21, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplie LE RÉSULTAT par 4 » : on calcule $(1 + 5) × 4 = 24$, et non $1 + 5 × 4$." } ] },
+            "r1c2": { "answer": 24 }, "r1c3": { "answer": 24 },
+            "r2c1": { "answer": 28 }, "r2c2": { "answer": 28 }, "r2c3": { "answer": 30 },
+            "r3c1": { "answer": 8 }, "r3c2": { "answer": 8 },
+            "r3c3": { "answer": 20, "misconceptions": [ { "answer": 2, "id": "mc:carre-negatif", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "$(−3) × (−3) = 9$ : le produit de deux nombres négatifs est positif. Puis $9 + (−9) + 20 = 20$." } ] }
+          } },
+        { "type": "text", "prompt": "D'après ton tableau, quel programme n'est certainement PAS équivalent au programme A ? (A, B ou C)", "accept": ["C", "le programme C", "programme C", "le C"],
+          "misconceptions": [ { "answer": "B", "id": "mc:contre-exemple-lecture", "error": "lecture", "feedback": "B donne les mêmes résultats que A pour tous les nombres du tableau. Cherche une ligne où deux programmes donnent des résultats différents." } ] },
+        { "type": "counterexample", "prompt": "Donne un nombre de départ pour lequel A et C donnent des résultats différents : c'est un contre-exemple.", "claim": "Les programmes A et C donnent toujours le même résultat.", "vars": ["x"], "refutes": "4*(x+5) != x^2+3*x+20", "show": "x^2+3*x+20", "showLabel": "le résultat de C", "refuteHint": "Regarde ton tableau : pour quelle ligne A et C sont-ils différents ?" },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris le programme B avec un nombre $x$, puis développe et réduis.", "answer": "4x + 20",
+          "misconceptions": [ { "answer": "4x + 10", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le dernier « multiplie par 2 » porte sur tout le résultat $2x + 10$ : $2(2x + 10) = 4x + 20$." } ] }
+      ],
+      "hints": ["Programme A avec 1 : $(1 + 5) × 4$. Programme C avec 1 : $1 × 1 + 3 × 1 + 20$.", "Avec −3 : $(−3) × (−3) = 9$ et $3 × (−3) = −9$.", "Programme B avec $x$ : $(2x + 10) × 2$."],
+      "solution": "A : 20, 24, 28, 8. B : 20, 24, 28, 8. C : 20, 24, 30, 20. A et C coïncident pour 0 et pour 1, mais pas pour 2 ni pour −3 : C n'est pas équivalent à A (un seul contre-exemple suffit). B semble équivalent à A, et on le démontre : $ B = 2(2x + 10) = 4x + 20 $ et $ A = 4(x + 5) = 4x + 20 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c1": "20", "r0c2": "20", "r0c3": "20", "r1c1": "24", "r1c2": "24", "r1c3": "24", "r2c1": "28", "r2c2": "28", "r2c3": "30", "r3c1": "8", "r3c2": "8", "r3c3": "20" } }, { "value": "C" }, { "values": { "x": "2" } }, { "value": "4x + 20" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c1": "20", "r0c2": "20", "r0c3": "20", "r1c1": "21", "r1c2": "24", "r1c3": "24", "r2c1": "28", "r2c2": "28", "r2c3": "30", "r3c1": "8", "r3c2": "8", "r3c3": "20" } }, { "value": "C" }, { "values": { "x": "2" } }, { "value": "4x + 20" } ] }, "expect": "mc:parentheses-programme" }
+      ]
+    },
+    {
+      "id": "m4-litteral-expliquer", "type": "open", "skill": "m4.litteral.programmes", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:exemples-preuve"], "expectedSeconds": 360, "minWords": 25,
+      "prompt": "Zoé a testé deux programmes avec 1, 2 et 10 :\n- programme P : « multiplie par 3, puis ajoute 12 » ;\n- programme Q : « ajoute 4, puis multiplie le résultat par 3 ».\n\nElle obtient les mêmes résultats et conclut : « Ils sont équivalents, je l'ai prouvé. »\n\n1. Ses essais sont-ils une preuve ? Explique.\n2. Démontre, avec une lettre, que P et Q sont bien équivalents.",
+      "criteria": [
+        { "id": "c1", "label": "J'explique que quelques essais ne prouvent rien pour TOUS les nombres", "keywords": [["tous les nombres", "pas une preuve", "ne suffi", "quelques", "infinite", "n importe quel", "tous"]] },
+        { "id": "c2", "label": "J'écris les deux programmes avec une lettre : $3x + 12$ et $3(x + 4)$", "keywords": [["3(x + 4)", "3(x+4)", "(x + 4) × 3", "(x+4)×3", "(x + 4) x 3"]] },
+        { "id": "c3", "label": "Je développe $3(x + 4) = 3x + 12$ et je conclus", "keywords": [["3x + 12", "3x+12", "developp"]] }
+      ],
+      "models": [
+        "Non, ce n'est pas une preuve : Zoé a testé trois nombres, mais il en existe une infinité, et rien ne dit que ça marche pour tous. Avec un nombre x, P donne 3x + 12 et Q donne (x + 4) × 3 = 3x + 12. Les deux expressions sont égales pour tout x : les programmes sont équivalents.",
+        "Des exemples peuvent seulement donner une idée. Pour prouver, il faut une lettre : Q = 3(x + 4) = 3 × x + 3 × 4 = 3x + 12, et P = 3x + 12. C'est la même expression, donc P et Q donnent toujours le même résultat, quel que soit le nombre choisi."
+      ],
+      "hints": ["Zoé a testé 3 nombres. Combien de nombres existe-t-il ?", "Avec un nombre $x$ : P donne $3x + 12$. Et Q ?", "Développe $3(x + 4)$."],
+      "solution": "Des essais ne prouvent pas qu'une égalité est vraie pour tous les nombres. Avec $x$ : $ P = 3x + 12 $ et $ Q = 3(x + 4) = 3x + 12 $. Les deux expressions sont égales : P et Q sont équivalents pour tout nombre $x$.",
+      "selfTest": [ { "response": { "text": "Ce n'est pas une preuve, elle a testé seulement 3 nombres et pas tous les nombres. Avec x : P = 3x + 12 et Q = 3(x + 4) = 3x + 12, donc ils sont équivalents.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m4-litteral-plus-grand", "type": "counterexample", "skill": "m4.litteral.programmes", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:double-plus-grand"], "expectedSeconds": 180,
+      "claim": "Le programme « ajoute 5, multiplie le résultat par 2, soustrais 10 » donne toujours un résultat plus grand que le nombre de départ.",
+      "prompt": "Malik a essayé ce programme avec 3 (il obtient 6) et avec 10 (il obtient 20). Il affirme : « Le programme *ajoute 5, multiplie le résultat par 2, soustrais 10* donne toujours un résultat plus grand que le nombre de départ. » Trouve un nombre de départ qui prouve qu'il a tort.",
+      "vars": ["x"],
+      "refutes": "(x+5)*2-10 <= x", "show": "(x+5)*2-10", "showLabel": "le résultat du programme",
+      "refuteHint": "Écris le programme avec une lettre et réduis : que fait-il vraiment au nombre de départ ? Essaie ensuite 0, ou un nombre négatif.",
+      "hints": ["Avec $x$ : $ (x + 5) × 2 − 10 $. Développe et réduis.", "Le programme revient à calculer $2x$. Le double d'un nombre est-il toujours plus grand que ce nombre ?"],
+      "solution": "$ (x + 5) × 2 − 10 = 2x + 10 − 10 = 2x $ : le programme double le nombre de départ. Pour $x = −3$, on obtient −6, qui est plus petit que −3. Pour $x = 0$, on obtient 0, qui n'est pas plus grand non plus. Le double d'un nombre négatif est plus petit que lui.",
+      "selfTest": [ { "response": { "values": { "x": "-3" } }, "expect": "correct" }, { "response": { "values": { "x": "4" } }, "expect": "raisonnement" } ]
+    },
+    {
+      "id": "m4-litteral-jardin", "type": "composite", "skill": "m4.litteral.reduire", "skills": ["m4.litteral.structure", "m4.equations.resoudre"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:distrib-partielle", "mc:oubli-constante"], "expectedSeconds": 420,
+      "prompt": "Le potager rectangulaire du collège mesure 4 m de large. Sa longueur est formée d'une partie de $2x$ mètres (légumes) et d'une partie de 3 m (fleurs).",
+      "figure": {
+        "alt": "Rectangle de 4 m de large formé de deux parties : « légumes », de longueur 2x m, et « fleurs », de longueur 3 m.",
+        "w": 400, "h": 200,
+        "frame": { "x": [-1.4, 12.5], "y": [-0.8, 5.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 4, "fill": "vert", "label": "légumes" },
+          { "type": "rect", "x": 8, "y": 0, "w": 3.5, "h": 4, "fill": "orange", "label": "fleurs" },
+          { "type": "text", "x": 4, "y": 4.6, "text": "2x m", "anchor": "middle" },
+          { "type": "text", "x": 9.75, "y": 4.6, "text": "3 m", "anchor": "middle" },
+          { "type": "text", "x": -0.7, "y": 2, "text": "4 m", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "form": "factorisee", "prompt": "Exprime l'aire totale du potager (en m²) sous la forme d'un **produit**.", "answer": "4*(2x + 3)",
+          "misconceptions": [ { "answer": "4*2*x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "La partie « fleurs » mesure elle aussi 4 m de large : son aire vaut $4 × 3$. L'aire totale est $4 × (2x + 3)$." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Exprime la même aire comme la **somme** des aires des deux parties, réduite.", "answer": "8x + 12",
+          "misconceptions": [ { "answer": "8x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "4 multiplie aussi 3 : l'aire des fleurs vaut $4 × 3 = 12$ m²." } ] },
+        { "type": "numeric", "prompt": "Calcule l'aire du potager pour $x = 2,5$ (en m²).", "answer": 32,
+          "misconceptions": [ { "answer": 23, "id": "mc:distrib-partielle", "error": "notion", "feedback": "L'aire des fleurs vaut $4 × 3 = 12$ m² : $8 × 2,5 + 12 = 32$." } ] },
+        { "type": "numeric", "prompt": "Pour quelle valeur de $x$ l'aire vaut-elle 60 m² ?", "answer": 6,
+          "misconceptions": [ { "answer": 7.5, "id": "mc:oubli-constante", "error": "methode", "feedback": "L'aire vaut $8x + 12$ : il faut d'abord retirer 12, puis diviser par 8. On résout $8x + 12 = 60$." } ] }
+      ],
+      "hints": ["Longueur totale : $2x + 3$. Largeur : 4.", "Aire des légumes : $4 × 2x$ ; aire des fleurs : $4 × 3$.", "Pour la dernière question, résous $8x + 12 = 60$."],
+      "solution": "Aire $ = 4(2x + 3) $ (un produit) $ = 8x + 12 $ (une somme : légumes $8x$, fleurs 12). Pour $x = 2,5$ : $ 8 × 2,5 + 12 = 32 $ m². Pour une aire de 60 m² : $ 8x + 12 = 60 $, donc $ 8x = 48 $ et $ x = 6 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4(2x + 3)" }, { "value": "8x + 12" }, { "value": "32" }, { "value": "6" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "8x + 3" }, { "value": "8x + 3" }, { "value": "23" }, { "value": "6" } ] }, "expect": "mc:distrib-partielle" }
+      ]
+    },
+    {
+      "id": "m4-litteral-magique", "type": "composite", "skill": "m4.litteral.programmes", "skills": ["m4.litteral.reduire", "m4.relatifs.produit"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:parentheses-programme", "mc:oubli-etape", "mc:division-partielle"], "expectedSeconds": 540,
+      "prompt": "Le programme magique de Malik :\n- choisis un nombre ;\n- multiplie-le par 6 ;\n- ajoute 9 ;\n- divise le résultat par 3 ;\n- soustrais le double du nombre de départ.\n\n« Je devine ton résultat sans le connaître ! »",
+      "parts": [
+        { "type": "numeric", "prompt": "Fais le tour avec le nombre 5. Quel résultat obtiens-tu ?", "answer": 3,
+          "misconceptions": [ { "answer": 23, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Divise LE RÉSULTAT par 3 » : c'est $30 + 9 = 39$ tout entier qu'on divise par 3, pas seulement 9." } ] },
+        { "type": "numeric", "prompt": "Et avec le nombre −2 ?", "answer": 3,
+          "misconceptions": [ { "answer": -5, "id": "mc:moins-negatif", "error": "signe", "prerequisite": "m5.relatifs.addition", "feedback": "Le double de −2 est −4. Soustraire −4, c'est ajouter 4 : $−1 + 4 = 3$." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Avec un nombre $x$, le résultat s'écrit $ (6x + 9)/3 − 2x $. Réduis cette expression.", "answer": "3",
+          "misconceptions": [
+            { "answer": "2x + 3", "id": "mc:oubli-etape", "error": "lecture", "feedback": "Tu as oublié la dernière étape : soustraire $2x$. $ 2x + 3 − 2x = 3 $." },
+            { "answer": "9", "id": "mc:division-partielle", "error": "notion", "feedback": "En divisant $6x + 9$ par 3, on divise CHAQUE terme : $ 6x ÷ 3 + 9 ÷ 3 = 2x + 3 $." }
+          ] },
+        { "type": "expression", "form": "factorisee", "prompt": "À toi : invente un programme qui commence par « ajoute 2 » et qui est équivalent au programme « multiplie par 4, puis ajoute 8 ». Écris ton programme avec une lettre $x$, sous la forme d'un produit.", "answer": "4*(x + 2)",
+          "misconceptions": [ { "answer": "x + 8", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Il faut multiplier tout le résultat $x + 2$ par 4 : on écrit $ (x + 2) × 4 $, avec des parenthèses." } ] }
+      ],
+      "hints": ["Avec 5 : $5 × 6 = 30$, $30 + 9 = 39$, $39 ÷ 3 = 13$, puis on soustrait $2 × 5$.", "$ (6x + 9)/3 = 6x/3 + 9/3 = 2x + 3 $.", "Le programme « multiplie par 4, ajoute 8 » donne $4x + 8$. Factorise par 4."],
+      "solution": "Avec 5 : $(30 + 9) ÷ 3 − 10 = 13 − 10 = 3$. Avec −2 : $(−12 + 9) ÷ 3 − (−4) = −1 + 4 = 3$. Avec $x$ : $ (6x + 9)/3 − 2x = 2x + 3 − 2x = 3 $ : le résultat vaut toujours 3, quel que soit le nombre choisi. C'est ce qui permet à Malik de « deviner ». Enfin, $ 4x + 8 = 4(x + 2) $ : le programme « ajoute 2, puis multiplie le résultat par 4 » est équivalent.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3" }, { "value": "3" }, { "value": "3" }, { "value": "4(x + 2)" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "23" }, { "value": "3" }, { "value": "3" }, { "value": "4(x + 2)" } ] }, "expect": "mc:parentheses-programme" },
+        { "response": { "parts": [ { "value": "3" }, { "value": "3" }, { "value": "2x + 3" }, { "value": "4(x + 2)" } ] }, "expect": "mc:oubli-etape" }
+      ]
+    },
+    {
+      "id": "m4-litteral-remed-aire", "type": "expression", "form": "developpee-reduite", "skill": "m5.litteral.distributivite", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:distrib-partielle"], "expectedSeconds": 120,
+      "params": { "k": { "int": [2, 6] }, "b": { "int": [2, 9] } },
+      "prompt": "Autre représentation : ce grand rectangle a une largeur de {k} et une longueur de $ x + {b} $. Son aire vaut donc $ {k}(x + {b}) $. Écris aussi cette aire comme la **somme** des aires des deux petits rectangles, sous forme réduite.",
+      "figure": {
+        "alt": "Rectangle de largeur {k} formé de deux rectangles collés, l'un de longueur x, l'autre de longueur {b}.",
+        "w": 380, "h": 180,
+        "frame": { "x": [-1.2, 11], "y": [-0.6, 4.2] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 6, "h": 3, "fill": "bleu", "label": "?" },
+          { "type": "rect", "x": 6, "y": 0, "w": 4, "h": 3, "fill": "orange", "label": "?" },
+          { "type": "text", "x": 3, "y": 3.5, "text": "x", "anchor": "middle" },
+          { "type": "text", "x": 8, "y": 3.5, "text": "{b}", "anchor": "middle" },
+          { "type": "text", "x": -0.6, "y": 1.5, "text": "{k}", "anchor": "middle" }
+        ]
+      },
+      "answer": "k*x + k*b",
+      "misconceptions": [ { "answer": "k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le rectangle de droite a lui aussi une largeur de {k} : son aire vaut $ {k} × {b} = {k*b} $, et non {b}." } ],
+      "hints": ["Aire du rectangle de gauche : $ {k} × x $.", "Aire du rectangle de droite : $ {k} × {b} $."],
+      "solution": "$ {k}(x + {b}) = {k} × x + {k} × {b} = {k}x + {k*b} $ : la largeur {k} multiplie les deux longueurs.",
+      "selfTest": [
+        { "response": { "value": "{k}x + {k*b}" }, "expect": "correct" },
+        { "response": { "value": "{k}x + {b}" }, "expect": "mc:distrib-partielle" },
+        { "response": { "value": "{k}(x + {b})" }, "expect": "forme" }
+      ]
+    },
+    {
+      "id": "m4-litteral-remed-signes", "type": "expression", "form": "developpee-reduite", "skill": "m4.litteral.reduire", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:signe-distrib", "mc:moins-devant-parenthese"], "expectedSeconds": 90,
+      "params": { "k": { "int": [2, 9] }, "b": { "int": [1, 9] } },
+      "prompt": "Rappel ciblé : $ −{k}(x + {b}) $, c'est $ (−{k}) × x + (−{k}) × {b} $. Le nombre $−{k}$ multiplie chaque terme, **avec son signe**. Développe et réduis $ −{k}(x + {b}) $.",
+      "answer": "-k*x - k*b",
+      "misconceptions": [
+        { "answer": "-k*x + k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "$ (−{k}) × {b} = −{k*b} $ : un nombre négatif multiplié par un nombre positif donne un nombre négatif." },
+        { "answer": "-k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "$−{k}$ multiplie aussi {b} : $ (−{k}) × {b} = −{k*b} $." }
+      ],
+      "hints": ["$ (−{k}) × x = −{k}x $.", "$ (−{k}) × {b} $ : quel est le signe du produit ?"],
+      "solution": "$ −{k}(x + {b}) = (−{k}) × x + (−{k}) × {b} = −{k}x − {k*b} $.",
+      "selfTest": [ { "response": { "value": "−{k}x − {k*b}" }, "expect": "correct" }, { "response": { "value": "−{k}x + {k*b}" }, "expect": "mc:signe-distrib" } ]
+    },
+    {
+      "id": "m4-litteral-calendrier", "type": "composite", "skill": "m4.litteral.reduire", "skills": ["mx.arith.preuve-entiers"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:mauvaise-inconnue"], "expectedSeconds": 480,
+      "prompt": "Sur une page de calendrier, on entoure un carré de 3 × 3 dates, comme ci-dessous. On note $n$ la date du centre.",
+      "figure": {
+        "alt": "Carré de 3 sur 3 dates d'un calendrier : 7, 8, 9 sur la première ligne ; 14, 15, 16 sur la deuxième ; 21, 22, 23 sur la troisième.",
+        "w": 300, "h": 170,
+        "items": [ { "type": "table", "head": ["lundi", "mardi", "mercredi"], "rows": [ ["7", "8", "9"], ["14", "15", "16"], ["21", "22", "23"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule la somme des 9 dates de l'exemple.", "answer": 135 },
+        { "type": "expression", "prompt": "La date juste au-dessus du centre s'écrit $n − 7$ (une semaine avant). Écris, en fonction de $n$, la date en haut à gauche.", "answer": "n - 8",
+          "misconceptions": [ { "answer": "n - 6", "id": "mc:calendrier-position", "error": "lecture", "feedback": "En haut à gauche : une semaine avant ($−7$), puis un jour avant ($−1$). Cela fait $n − 8$." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme des 9 dates en fonction de $n$, puis réduis-la.", "answer": "9n",
+          "misconceptions": [ { "answer": "9n + 44", "id": "mc:signe-constante", "error": "signe", "feedback": "Tu as additionné tous les nombres sans tenir compte de leur signe. Or $n − 8$ contient $−8$ : les nombres s'annulent deux à deux, $−8$ et $+8$, $−7$ et $+7$, $−6$ et $+6$, $−1$ et $+1$." } ] },
+        { "type": "numeric", "prompt": "Léa a entouré 9 dates dont la somme vaut 162. Quelle est la date en haut à gauche ?", "answer": 10,
+          "misconceptions": [ { "answer": 18, "id": "mc:mauvaise-inconnue", "error": "lecture", "feedback": "18 est la date du centre ($9n = 162$). La date en haut à gauche est $n − 8$." } ] }
+      ],
+      "hints": ["Les 9 dates : $n − 8$, $n − 7$, $n − 6$, $n − 1$, $n$, $n + 1$, $n + 6$, $n + 7$, $n + 8$.", "En les additionnant, les nombres s'annulent deux à deux.", "Si $9n = 162$, alors $n = 18$."],
+      "solution": "Exemple : $ 7 + 8 + 9 + 14 + 15 + 16 + 21 + 22 + 23 = 135 = 9 × 15 $. En général, les 9 dates sont $n − 8$, $n − 7$, $n − 6$, $n − 1$, $n$, $n + 1$, $n + 6$, $n + 7$, $n + 8$ ; leur somme se réduit à $9n$ car les nombres s'annulent deux à deux. La somme vaut toujours 9 fois la date du centre ! Pour 162 : $n = 18$, et la date en haut à gauche est $18 − 8 = 10$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "135" }, { "value": "n − 8" }, { "value": "9n" }, { "value": "10" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "135" }, { "value": "n − 8" }, { "value": "9n" }, { "value": "18" } ] }, "expect": "mc:mauvaise-inconnue" }
+      ]
+    },
+    {
+      "id": "m4-litteral-impairs", "type": "composite", "skill": "mx.arith.preuve-entiers", "skills": ["m4.litteral.reduire"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:factor-partielle", "mc:multiple-coefficient"], "expectedSeconds": 420,
+      "prompt": "Conjecture : « La somme de deux nombres impairs consécutifs est toujours un multiple de 4. » Par exemple $7 + 9 = 16$ et $11 + 13 = 24$. Démontrons-le. Un nombre impair s'écrit $2n + 1$, où $n$ est un entier ; l'impair suivant s'écrit $2n + 3$.",
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme $ (2n + 1) + (2n + 3) $ sous forme réduite.", "answer": "4n + 4",
+          "misconceptions": [ { "answer": "4n + 3", "id": "mc:reduire-constantes", "error": "calcul", "feedback": "Les nombres aussi s'additionnent : $1 + 3 = 4$." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise cette somme par 4.", "answer": "4(n + 1)",
+          "misconceptions": [ { "answer": "4(n + 4)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $4(n + 4) = 4n + 16$. Or $4 = 4 × 1$ : on obtient $4(n + 1)$." } ] },
+        { "type": "text", "prompt": "La somme de deux impairs consécutifs est-elle toujours un multiple de 4 ? (oui ou non)", "accept": ["oui"],
+          "misconceptions": [ { "answer": "non", "id": "mc:preuve-lecture", "error": "raisonnement", "feedback": "$4(n + 1)$ est 4 multiplié par un entier : c'est toujours un multiple de 4." } ] },
+        { "type": "numeric", "prompt": "Et la somme de trois impairs consécutifs, $ (2n + 1) + (2n + 3) + (2n + 5) $ ? Elle est toujours un multiple de quel nombre (plus grand que 1) ?", "answer": 3,
+          "misconceptions": [ { "answer": 6, "id": "mc:multiple-coefficient", "error": "raisonnement", "feedback": "La somme vaut $6n + 9$. 9 n'est pas un multiple de 6 : on ne peut pas factoriser par 6. Mais $6n + 9 = 3(2n + 3)$." } ] }
+      ],
+      "hints": ["Regroupe les termes en $n$, puis les nombres.", "$4n + 4 = 4 × n + 4 × 1$.", "Pour trois impairs : $6n + 9$. Quel facteur commun à 6 et 9 ?"],
+      "solution": "$ (2n + 1) + (2n + 3) = 4n + 4 = 4(n + 1) $ : c'est 4 fois un entier, donc toujours un multiple de 4. Pour trois impairs consécutifs : $ 6n + 9 = 3(2n + 3) $, toujours un multiple de 3 (et jamais de 6, car c'est un nombre impair).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4n + 4" }, { "value": "4(n + 1)" }, { "value": "oui" }, { "value": "3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4n + 4" }, { "value": "4(n + 4)" }, { "value": "oui" }, { "value": "3" } ] }, "expect": "mc:factor-partielle" }
+      ]
+    },
+    {
+      "id": "m4-litteral-parametres", "type": "composite", "skill": "m4.litteral.programmes", "skills": ["m4.litteral.reduire", "m4.equations.resoudre"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:distrib-partielle", "mc:equivalence-coefficient"], "expectedSeconds": 600,
+      "prompt": "Retrouve les nombres cachés pour que les programmes soient équivalents, c'est-à-dire qu'ils donnent le même résultat pour **tout** nombre de départ.\n- Programme P : ajoute $a$, multiplie le résultat par 5, puis soustrais 7.\n- Programme Q : multiplie par $k$, puis ajoute 8.",
+      "parts": [
+        { "type": "numeric", "prompt": "Que vaut $k$ ?", "answer": 5 },
+        { "type": "numeric", "prompt": "Que vaut $a$ ?", "answer": 3,
+          "misconceptions": [ { "answer": 15, "id": "mc:oubli-partage", "error": "methode", "feedback": "On doit avoir $5a − 7 = 8$, donc $5a = 15$ : il reste à diviser par 5." } ] },
+        { "type": "numeric", "prompt": "Programme R : « multiplie par 2, ajoute 3, puis multiplie le résultat par 4 ». Programme S : « multiplie par 8, puis ajoute $c$ ». Pour quelle valeur de $c$ sont-ils équivalents ?", "answer": 12,
+          "misconceptions": [ { "answer": 3, "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le 4 multiplie aussi 3 : $4(2x + 3) = 8x + 12$." } ] },
+        { "type": "text", "prompt": "Peut-on choisir un nombre $d$ pour que « ajoute $d$, puis multiplie le résultat par 3 » soit équivalent à « multiplie par 2, puis ajoute 1 » ? (oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:equivalence-coefficient", "error": "raisonnement", "feedback": "$3(x + d) = 3x + 3d$ : le coefficient de $x$ vaut 3, jamais 2. Quel que soit $d$, les deux programmes donnent des résultats différents pour certains nombres." } ] }
+      ],
+      "hints": ["Écris P avec une lettre : $ 5(x + a) − 7 = 5x + 5a − 7 $.", "Q s'écrit $kx + 8$. Compare les coefficients de $x$, puis les nombres.", "Pour la dernière question, compare les coefficients de $x$ : 3 et 2."],
+      "solution": "$ P = 5(x + a) − 7 = 5x + 5a − 7 $ et $ Q = kx + 8 $. Pour qu'ils soient égaux pour tout $x$ : $k = 5$ et $5a − 7 = 8$, donc $a = 3$. Ensuite $ R = 4(2x + 3) = 8x + 12 $, donc $c = 12$. Enfin $ 3(x + d) = 3x + 3d $ ne peut jamais être égal à $2x + 1$ pour tout $x$ : les coefficients de $x$ sont différents. Par exemple, avec $d = 0$, on obtient 0 et 1 pour $x = 0$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5" }, { "value": "3" }, { "value": "12" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5" }, { "value": "3" }, { "value": "3" }, { "value": "non" } ] }, "expect": "mc:distrib-partielle" }
+      ]
+    },
+    {
+      "id": "m4-litteral-abcabc", "type": "composite", "skill": "mx.arith.preuve-entiers", "skills": ["m4.litteral.reduire", "m4.premiers.decomposer"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:oubli-coefficient-un", "mc:facteur-non-premier"], "expectedSeconds": 600,
+      "prompt": "Prends un nombre de trois chiffres, par exemple 274, et écris-le deux fois de suite : 274 274. Divise ce nombre à six chiffres par 7, puis le résultat par 11, puis le nouveau résultat par 13… Surprise !",
+      "parts": [
+        { "type": "numeric", "prompt": "Que trouves-tu à la fin pour 274 274 ? (calculatrice autorisée)", "answer": 274 },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Si $N$ est le nombre de trois chiffres, le nombre à six chiffres vaut $ 1 000 × N + N $. Réduis cette expression.", "answer": "1001*N",
+          "misconceptions": [ { "answer": "1000*N", "id": "mc:oubli-coefficient-un", "error": "calcul", "feedback": "N'oublie pas le $N$ tout seul : $ 1 000N + N = 1 000N + 1N = 1 001N $." } ] },
+        { "type": "numeric", "prompt": "On sait que $ 1 001 = 7 × 11 × p $. Que vaut $p$ ?", "answer": 13,
+          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$ 1 001 = 7 × 143 $, mais on a déjà sorti 11 : $ 143 = 11 × 13 $." } ] },
+        { "type": "open", "prompt": "Explique pourquoi tout nombre de la forme « abcabc » (un nombre de trois chiffres écrit deux fois) est divisible par 7, par 11 et par 13.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "J'utilise l'écriture $1 001 × N$", "keywords": [["1001", "1 001"]] },
+            { "id": "c2", "label": "J'utilise la décomposition $1 001 = 7 × 11 × 13$", "keywords": [["7 × 11 × 13", "7x11x13", "7 x 11 x 13", "7*11*13"]] },
+            { "id": "c3", "label": "Je conclus pour tous les nombres de ce type", "keywords": [["tous", "toujours", "n importe", "quel que soit"]] }
+          ] }
+      ],
+      "hints": ["Écrire un nombre deux fois de suite, c'est le multiplier par 1 000, puis lui ajouter le nombre lui-même : $274 274 = 274 000 + 274$.", "$ 1 000N + N = 1 001N $.", "Décompose 1 001 : essaie de le diviser par 7."],
+      "solution": "$ 274 274 ÷ 7 ÷ 11 ÷ 13 = 274 $ : on retrouve le nombre de départ ! En effet, le nombre à six chiffres vaut $ 1 000N + N = 1 001N $, et $ 1 001 = 7 × 11 × 13 $. Donc « abcabc » $ = 7 × 11 × 13 × N $ : il est toujours divisible par 7, par 11 et par 13, quel que soit le nombre de trois chiffres $N$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "274" }, { "value": "1001N" }, { "value": "13" }, { "text": "Le nombre vaut 1001 × N et 1001 = 7 × 11 × 13, donc il est toujours divisible par 7, 11 et 13 pour tous les N.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "274" }, { "value": "1000N" }, { "value": "13" }, { "text": "Le nombre vaut 1001 × N et 1001 = 7 × 11 × 13 donc toujours divisible.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:oubli-coefficient-un" }
+      ]
+    }
+  ]
+}

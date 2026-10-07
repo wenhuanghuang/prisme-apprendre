@@ -1,0 +1,1637 @@
+{
+  "id": "m4-espace",
+  "chapter": "m4-ch-espace",
+  "title": "Se repérer dans l’espace, perspective et patrons",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.espace.reperage", "m4.espace.patrons"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Trois nombres suffisent pour repérer un point dans un pavé droit : son abscisse, son ordonnée et son altitude. Et pour fabriquer une pyramide ou un cône, il faut savoir passer du dessin en perspective au patron… et inversement.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le drone de la salle de sport",
+      "body": "Dans une salle de sport, un drone doit déposer un colis sur une étagère. Pour le guider depuis un coin du sol, on lui dit : « Avance de 4 m le long d’un mur, puis de 3 m le long de l’autre mur, puis monte de 2 m. »\n\nComment pourrait-on donner sa position au drone avec seulement trois nombres ? Et dans quel ordre ?",
+      "figure": {
+        "alt": "Une salle en forme de pavé droit dessinée en perspective ; un trajet en trois flèches part d’un coin O du sol : 4 m le long d’un mur, 3 m le long de l’autre mur, puis 2 m vers le haut, jusqu’au drone.",
+        "w": 380,
+        "h": 272,
+        "frame": { "x": [-0.8, 8.568], "y": [-0.8, 5.568] },
+        "items": [
+          { "type": "segment", "from": "O", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "O" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "O", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se", "label": "" },
+          { "type": "point", "id": "C", "x": 7.768, "y": 1.768, "pos": "e", "label": "" },
+          { "type": "point", "id": "D", "x": 1.768, "y": 1.768, "pos": "nw", "label": "" },
+          { "type": "point", "id": "E", "x": 0, "y": 3, "pos": "w", "label": "" },
+          { "type": "point", "id": "F", "x": 6, "y": 3, "pos": "e", "label": "" },
+          { "type": "point", "id": "G", "x": 7.768, "y": 4.768, "pos": "ne", "label": "" },
+          { "type": "point", "id": "H", "x": 1.768, "y": 4.768, "pos": "nw", "label": "" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P1", "x": 4, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "P2", "x": 5.061, "y": 1.061, "pos": "e", "label": "" },
+          { "type": "point", "id": "Kd", "x": 5.061, "y": 3.061, "pos": "ne", "label": "drone", "style": "rond", "color": "rouge" },
+          { "type": "arrow", "from": "O", "to": "P1", "color": "rouge", "label": "4 m" },
+          { "type": "arrow", "from": "P1", "to": "P2", "color": "rouge", "label": "3 m" },
+          { "type": "arrow", "from": "P2", "to": "Kd", "color": "rouge", "label": "2 m" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "📦",
+          "title": "Un repère dans un pavé droit",
+          "body": "On choisit un sommet comme **origine** (ici $A$) et les trois arêtes qui en partent comme axes : l’axe des **abscisses** le long de $[AB]$, l’axe des **ordonnées** le long de $[AD]$ et l’axe des **altitudes** le long de $[AE]$. Chaque point est repéré par trois nombres, toujours dans cet ordre : (abscisse ; ordonnée ; altitude).",
+          "figure": {
+            "alt": "Pavé droit ABCDEFGH en perspective cavalière ; origine A ; l’axe des abscisses suit [AB], celui des ordonnées suit [AD], celui des altitudes suit [AE].",
+            "w": 400,
+            "h": 285,
+            "frame": { "x": [-0.8, 6.6], "y": [-0.8, 4.2] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B" },
+              { "type": "segment", "from": "B", "to": "F" },
+              { "type": "segment", "from": "F", "to": "E" },
+              { "type": "segment", "from": "E", "to": "A" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "G", "to": "F" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 5.061, "y": 1.061, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+              { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+              { "type": "point", "id": "F", "x": 4, "y": 2, "pos": "e" },
+              { "type": "point", "id": "G", "x": 5.061, "y": 3.061, "pos": "ne" },
+              { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+              { "type": "arrow", "from": [4, 0], "to": [5.4, 0], "color": "rouge" },
+              {
+                "type": "arrow",
+                "from": [1.0606601717798214, 1.0606601717798214],
+                "to": [1.5556349186104048, 1.5556349186104048],
+                "color": "vert",
+                "dashed": true
+              },
+              { "type": "arrow", "from": [0, 2], "to": [0, 3.2], "color": "orange" },
+              { "type": "text", "x": 5.5, "y": -0.35, "text": "abscisses", "size": "s", "color": "rouge", "anchor": "start" },
+              { "type": "text", "x": 1.7, "y": 1.4, "text": "ordonnées", "size": "s", "color": "vert", "anchor": "start" },
+              { "type": "text", "x": 0.15, "y": 3.3, "text": "altitudes", "size": "s", "color": "orange", "anchor": "start" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "Lire les coordonnées d’un point",
+          "body": "Pour aller de $A$ au point $G$ : on avance de 4 le long de l’axe des abscisses, de 3 le long de l’axe des ordonnées, puis on monte de 2. Donc G(4 ; 3 ; 2). Les points du sol (face $ABCD$) ont une altitude égale à 0.",
+          "reveal": {
+            "question": "Devine : quels sommets de ce pavé ont pour altitude 2 ?",
+            "answer": "Les quatre sommets de la face du dessus : $E$, $F$, $G$ et $H$."
+          },
+          "figure": {
+            "alt": "Pavé droit ABCDEFGH (AB = 4, AD = 3, AE = 2) ; un trajet de A à G : 4 le long de [AB], 3 le long de [BC], puis 2 vers le haut le long de [CG].",
+            "w": 400,
+            "h": 293,
+            "frame": { "x": [-0.8, 5.861], "y": [-0.8, 3.861] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B" },
+              { "type": "segment", "from": "B", "to": "F" },
+              { "type": "segment", "from": "F", "to": "E" },
+              { "type": "segment", "from": "E", "to": "A" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "G", "to": "F" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 5.061, "y": 1.061, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+              { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+              { "type": "point", "id": "F", "x": 4, "y": 2, "pos": "e" },
+              { "type": "point", "id": "G", "x": 5.061, "y": 3.061, "pos": "ne" },
+              { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+              { "type": "arrow", "from": "A", "to": "B", "color": "rouge", "label": "4" },
+              { "type": "arrow", "from": "B", "to": "C", "color": "vert", "label": "3" },
+              { "type": "arrow", "from": "C", "to": "G", "color": "orange", "label": "2" }
+            ]
+          }
+        },
+        {
+          "emoji": "🎨",
+          "title": "La perspective cavalière",
+          "body": "Pour dessiner un solide : la face de devant est en **vraie grandeur** ; les arêtes « fuyantes » sont tracées en oblique (souvent à 45°) et **raccourcies** ; deux arêtes parallèles restent parallèles sur le dessin ; les arêtes **cachées** sont en pointillés.",
+          "figure": {
+            "alt": "Un cube dessiné en perspective cavalière : la face avant est un carré en vraie grandeur, les arêtes fuyantes sont obliques et raccourcies, les trois arêtes cachées sont en pointillés.",
+            "w": 300,
+            "h": 300,
+            "frame": { "x": [-0.8, 4.861], "y": [-0.8, 4.861] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B" },
+              { "type": "segment", "from": "B", "to": "F" },
+              { "type": "segment", "from": "F", "to": "E" },
+              { "type": "segment", "from": "E", "to": "A" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "G", "to": "F" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 3, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4.061, "y": 1.061, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+              { "type": "point", "id": "E", "x": 0, "y": 3, "pos": "w" },
+              { "type": "point", "id": "F", "x": 3, "y": 3, "pos": "e" },
+              { "type": "point", "id": "G", "x": 4.061, "y": 4.061, "pos": "ne" },
+              { "type": "point", "id": "H", "x": 1.061, "y": 4.061, "pos": "nw" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔺",
+          "title": "La pyramide et son patron",
+          "body": "Une **pyramide** a une base (un polygone) et des faces latérales triangulaires qui se rejoignent en un point, le **sommet**. Son patron est formé de la base et de ses faces triangulaires. Au pliage, les arêtes qui se recollent doivent avoir la **même longueur**.",
+          "figure": {
+            "alt": "À gauche, une pyramide à base carrée en perspective cavalière ; à droite, son patron : un carré entouré de quatre triangles isocèles identiques.",
+            "w": 400,
+            "h": 239,
+            "frame": { "x": [-0.4, 10], "y": [-1.3, 4.4] },
+            "items": [
+              { "type": "point", "id": "pA", "x": 0, "y": 0, "pos": "sw", "label": "" },
+              { "type": "point", "id": "pB", "x": 2, "y": 0, "pos": "se", "label": "" },
+              { "type": "point", "id": "pC", "x": 2.707, "y": 0.707, "pos": "e", "label": "" },
+              { "type": "point", "id": "pD", "x": 0.707, "y": 0.707, "pos": "w", "label": "" },
+              { "type": "point", "id": "pS", "x": 1.354, "y": 2.354, "pos": "n", "label": "S" },
+              { "type": "segment", "from": "pA", "to": "pB" },
+              { "type": "segment", "from": "pB", "to": "pC" },
+              { "type": "segment", "from": "pC", "to": "pD", "dashed": true },
+              { "type": "segment", "from": "pD", "to": "pA", "dashed": true },
+              { "type": "segment", "from": "pS", "to": "pA" },
+              { "type": "segment", "from": "pS", "to": "pB" },
+              { "type": "segment", "from": "pS", "to": "pC" },
+              { "type": "segment", "from": "pS", "to": "pD", "dashed": true },
+              { "type": "polygon", "points": [[6, 0.6], [8, 0.6], [8, 2.6], [6, 2.6]], "fill": "orange" },
+              { "type": "polygon", "points": [[6, 0.6], [8, 0.6], [7, -1]], "fill": "maths" },
+              { "type": "polygon", "points": [[6, 2.6], [8, 2.6], [7, 4.2]], "fill": "maths" },
+              { "type": "polygon", "points": [[6, 0.6], [6, 2.6], [4.4, 1.6]], "fill": "maths" },
+              { "type": "polygon", "points": [[8, 0.6], [8, 2.6], [9.6, 1.6]], "fill": "maths" }
+            ]
+          }
+        },
+        {
+          "emoji": "🍦",
+          "title": "Le cône de révolution et son patron",
+          "body": "Un **cône de révolution** a pour base un disque. Son patron est formé de ce disque et d’une **portion de disque** (un secteur) dont le rayon est la **génératrice**. L’arc du secteur a la même longueur que le périmètre de la base.",
+          "reveal": {
+            "question": "Devine : pour un cône de rayon 3 cm et de génératrice 5 cm, le secteur est-il plus grand ou plus petit qu’un demi-disque ?",
+            "answer": "Périmètre de la base : 2π × 3 ≈ 18,8 cm. Cercle complet de rayon 5 cm : 2π × 5 ≈ 31,4 cm. Le secteur représente $3/5$ du disque, soit 216° : un peu plus qu’un demi-disque."
+          },
+          "figure": {
+            "alt": "Patron d’un cône de révolution : une portion de disque de rayon 5 cm (le secteur) et, collé contre son arc, un disque de rayon 3 cm.",
+            "w": 260,
+            "h": 378,
+            "frame": { "x": [-5.5, 5.5], "y": [-11.4, 5.6] },
+            "items": [
+              { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "n" },
+              { "type": "point", "id": "E1", "x": -4.755, "y": 1.545, "pos": "w", "label": "" },
+              { "type": "point", "id": "E2", "x": 4.755, "y": 1.545, "pos": "e", "label": "" },
+              { "type": "arc", "center": "S", "r": 5, "start": 162, "end": 378, "color": "maths" },
+              { "type": "segment", "from": "S", "to": "E1", "label": "5 cm" },
+              { "type": "segment", "from": "S", "to": "E2" },
+              { "type": "circle", "center": [0, -8], "r": 3, "fill": "orange", "color": "orange" },
+              { "type": "point", "id": "Oc", "x": 0, "y": -8, "pos": "n", "label": "" },
+              { "type": "point", "id": "Rc", "x": 3, "y": -8, "pos": "e", "label": "" },
+              { "type": "segment", "from": "Oc", "to": "Rc", "label": "3 cm" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "Le pavé droit $ABCDEFGH$ a pour dimensions $AB = 5$, $AD = 3$ et $AE = 2$. On prend $A$ comme origine : abscisses le long de $[AB]$, ordonnées le long de $[AD]$, altitudes le long de $[AE]$.",
+          "figure": {
+            "alt": "Pavé droit ABCDEFGH en perspective : AB = 5, AD = 3, AE = 2.",
+            "w": 400,
+            "h": 261,
+            "frame": { "x": [-0.8, 6.861], "y": [-0.8, 3.861] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B" },
+              { "type": "segment", "from": "B", "to": "F" },
+              { "type": "segment", "from": "F", "to": "E" },
+              { "type": "segment", "from": "E", "to": "A" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "G", "to": "F" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 6.061, "y": 1.061, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+              { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+              { "type": "point", "id": "F", "x": 5, "y": 2, "pos": "e" },
+              { "type": "point", "id": "G", "x": 6.061, "y": 3.061, "pos": "ne" },
+              { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+              { "type": "segment", "from": "A", "to": "B", "label": "5" },
+              { "type": "segment", "from": "A", "to": "E", "label": "2" },
+              { "type": "segment", "from": "B", "to": "C", "label": "3" }
+            ]
+          }
+        },
+        { "text": "$B$ est sur l’axe des abscisses, à 5 de $A$ : B(5 ; 0 ; 0). De même, D(0 ; 3 ; 0) et E(0 ; 0 ; 2)." },
+        { "text": "$C$ est sur le sol : on avance de 5, puis de 3, sans monter : C(5 ; 3 ; 0)." },
+        { "text": "$G$ est juste au-dessus de $C$, à la hauteur 2 : G(5 ; 3 ; 2). De même, F(5 ; 0 ; 2) et H(0 ; 3 ; 2)." },
+        {
+          "text": "Le centre $K$ de la face du dessus est au milieu de $[EG]$ : à mi-chemin dans chaque direction du « toit », et à l’altitude 2. Donc K(2,5 ; 1,5 ; 2).",
+          "figure": {
+            "alt": "Le même pavé avec K, centre de la face du dessus EFGH, au milieu de [EG].",
+            "w": 400,
+            "h": 261,
+            "frame": { "x": [-0.8, 6.861], "y": [-0.8, 3.861] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B" },
+              { "type": "segment", "from": "B", "to": "F" },
+              { "type": "segment", "from": "F", "to": "E" },
+              { "type": "segment", "from": "E", "to": "A" },
+              { "type": "segment", "from": "E", "to": "H" },
+              { "type": "segment", "from": "H", "to": "G" },
+              { "type": "segment", "from": "G", "to": "F" },
+              { "type": "segment", "from": "B", "to": "C" },
+              { "type": "segment", "from": "C", "to": "G" },
+              { "type": "segment", "from": "A", "to": "D", "dashed": true },
+              { "type": "segment", "from": "D", "to": "C", "dashed": true },
+              { "type": "segment", "from": "D", "to": "H", "dashed": true },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 6.061, "y": 1.061, "pos": "e" },
+              { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+              { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+              { "type": "point", "id": "F", "x": 5, "y": 2, "pos": "e" },
+              { "type": "point", "id": "G", "x": 6.061, "y": 3.061, "pos": "ne" },
+              { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+              { "type": "segment", "from": "E", "to": "G", "dashed": true, "color": "rouge" },
+              { "type": "point", "id": "K", "x": 3.03, "y": 2.53, "pos": "n", "style": "rond", "color": "rouge" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Pour les coordonnées, suis toujours le même chemin : d’abord le long de l’axe des abscisses, puis le long de l’axe des ordonnées, puis vers le haut. Pour les patrons, imagine le pliage !",
+      "exercises": ["m4-espace-coordonnees", "m4-espace-associer", "m4-espace-centre", "m4-espace-patrons", "m4-espace-cone-angle", "m4-espace-verif"]
+    },
+    { "kind": "libre", "title": "Décrire un patron", "exercises": ["m4-espace-decrire-cone"] },
+    { "kind": "reinvestissement", "title": "L’espace dans la vraie vie", "exercises": ["m4-espace-drone", "m4-espace-louvre"] },
+    {
+      "kind": "mission",
+      "title": "Mission : les cornets de la fête",
+      "body": "Avant de découper le carton, il faut tout calculer : le secteur à tracer, le nombre de cornets par disque… et leur hauteur.",
+      "exercises": ["m4-espace-cornet"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Dans un pavé droit, avec une origine et trois axes, un point est repéré par (abscisse ; ordonnée ; altitude). Perspective cavalière : face avant en vraie grandeur, fuyantes raccourcies, parallèles conservées, arêtes cachées en pointillés. Patron d’une pyramide : la base et les faces triangulaires ; patron d’un cône : un disque et un secteur dont l’arc mesure le périmètre de la base.\n\n- **L’ordre des coordonnées** ne change jamais : abscisse, ordonnée, altitude.\n- **Altitude 0** : le point est sur le sol.\n- **Arêtes recollées** : elles doivent avoir la même longueur.\n- **Angle du secteur** : 360° × rayon ÷ génératrice, toujours moins de 360°."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des repérages dans un pavé et des patrons dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Patrons et repérage à l’envers : retrouver un cône à partir de son secteur, et construire le symétrique d’un point dans l’espace.",
+      "exercises": ["m4-espace-cone-inverse", "m4-espace-symetrique"]
+    },
+    "expert": {
+      "intro": "Au-delà des exercices habituels : trois pyramides qui remplissent un cube (une façon de comprendre le volume d’une pyramide) et le plus court chemin d’une fourmi sur une boîte.",
+      "exercises": ["m4-espace-trois-pyramides", "m4-espace-fourmi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-espace-coordonnees",
+      "type": "table",
+      "skill": "m4.espace.reperage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:ordre-coordonnees", "mc:altitude-oubliee"],
+      "expectedSeconds": 180,
+      "params": { "a": { "int": [3, 6] }, "b": { "int": [2, 5] }, "c": { "int": [2, 4] } },
+      "constraints": ["a != b", "b != c", "a != c"],
+      "prompt": "Le pavé droit $ABCDEFGH$ a pour dimensions $AB = {a}$, $AD = {b}$ et $AE = {c}$. On prend $A$ pour origine : abscisses le long de $[AB]$, ordonnées le long de $[AD]$, altitudes le long de $[AE]$. Complète les coordonnées des points (nombres seuls).",
+      "figure": {
+        "alt": "Pavé droit ABCDEFGH en perspective cavalière ; les longueurs AB, AD et AE sont indiquées.",
+        "w": 380,
+        "h": 280,
+        "frame": { "x": [-0.8, "{a+0.354*b+0.8}"], "y": [-0.8, "{c+0.354*b+0.8}"] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": "{0+0.354*0}", "y": "{0+0.354*0}", "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a+0.354*0}", "y": "{0+0.354*0}", "pos": "se" },
+          { "type": "point", "id": "C", "x": "{a+0.354*b}", "y": "{0+0.354*b}", "pos": "e" },
+          { "type": "point", "id": "D", "x": "{0+0.354*b}", "y": "{0+0.354*b}", "pos": "nw" },
+          { "type": "point", "id": "E", "x": "{0+0.354*0}", "y": "{c+0.354*0}", "pos": "w" },
+          { "type": "point", "id": "F", "x": "{a+0.354*0}", "y": "{c+0.354*0}", "pos": "e" },
+          { "type": "point", "id": "G", "x": "{a+0.354*b}", "y": "{c+0.354*b}", "pos": "ne" },
+          { "type": "point", "id": "H", "x": "{0+0.354*b}", "y": "{c+0.354*b}", "pos": "nw" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a}" },
+          { "type": "segment", "from": "A", "to": "E", "label": "{c}" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{b}" }
+        ]
+      },
+      "columns": ["Point", "abscisse", "ordonnée", "altitude"],
+      "rows": [["$C$", "?r0c1", "?r0c2", "?r0c3"], ["$F$", "?r1c1", "?r1c2", "?r1c3"], ["$H$", "?r2c1", "?r2c2", "?r2c3"]],
+      "cells": {
+        "r0c1": {
+          "answer": "a",
+          "misconceptions": [
+            {
+              "answer": "b",
+              "id": "mc:ordre-coordonnees",
+              "error": "lecture",
+              "feedback": "L’abscisse se lit le long de $[AB]$ : pour $C$, c’est {a}. On écrit toujours (abscisse ; ordonnée ; altitude)."
+            }
+          ]
+        },
+        "r0c2": { "answer": "b" },
+        "r0c3": { "answer": 0 },
+        "r1c1": { "answer": "a" },
+        "r1c2": { "answer": 0 },
+        "r1c3": {
+          "answer": "c",
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:altitude-oubliee",
+              "error": "lecture",
+              "feedback": "$F$ est sur la face du dessus : son altitude est {c}, pas 0."
+            }
+          ]
+        },
+        "r2c1": { "answer": 0 },
+        "r2c2": { "answer": "b" },
+        "r2c3": { "answer": "c" }
+      },
+      "hints": [
+        "Pour chaque point : de combien avance-t-on le long de $[AB]$, puis le long de $[AD]$, puis de combien monte-t-on ?",
+        "$C$ est sur le sol, au coin opposé à $A$ : il a avancé dans les deux directions du sol, sans monter.",
+        "$F$ est au-dessus de $B$, $H$ au-dessus de $D$."
+      ],
+      "solution": "C({a} ; {b} ; 0) : sur le sol, au coin opposé à $A$. F({a} ; 0 ; {c}) : au-dessus de $B$. H(0 ; {b} ; {c}) : au-dessus de $D$.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": { "r0c1": "{a}", "r0c2": "{b}", "r0c3": "0", "r1c1": "{a}", "r1c2": "0", "r1c3": "{c}", "r2c1": "0", "r2c2": "{b}", "r2c3": "{c}" }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": { "r0c1": "{b}", "r0c2": "{a}", "r0c3": "0", "r1c1": "{a}", "r1c2": "0", "r1c3": "{c}", "r2c1": "0", "r2c2": "{b}", "r2c3": "{c}" }
+          },
+          "expect": "mc:ordre-coordonnees"
+        }
+      ]
+    },
+    {
+      "id": "m4-espace-associer",
+      "type": "match",
+      "skill": "m4.espace.reperage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:ordre-coordonnees"],
+      "expectedSeconds": 150,
+      "prompt": "Le pavé droit $ABCDEFGH$ a pour dimensions $AB = 4$, $AD = 3$ et $AE = 2$ (origine $A$ ; abscisses sur $[AB]$, ordonnées sur $[AD]$, altitudes sur $[AE]$). $I$ est le milieu de l’arête $[BF]$ et $K$ le centre de la face du dessous $ABCD$. Associe chaque point à ses coordonnées.",
+      "figure": {
+        "alt": "Pavé droit ABCDEFGH avec AB = 4, AD = 3, AE = 2 ; I est le milieu de l’arête [BF] et K le centre de la face du dessous ABCD.",
+        "w": 400,
+        "h": 293,
+        "frame": { "x": [-0.8, 5.861], "y": [-0.8, 3.861] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 5.061, "y": 1.061, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+          { "type": "point", "id": "F", "x": 4, "y": 2, "pos": "e" },
+          { "type": "point", "id": "G", "x": 5.061, "y": 3.061, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+          { "type": "segment", "from": "A", "to": "B", "label": "4" },
+          { "type": "segment", "from": "B", "to": "C", "label": "3" },
+          { "type": "segment", "from": "A", "to": "E", "label": "2" },
+          { "type": "point", "id": "I", "x": 4, "y": 1, "pos": "e", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "K", "x": 2.53, "y": 0.53, "pos": "n", "style": "rond", "color": "rouge" }
+        ]
+      },
+      "leftTitle": "Point",
+      "rightTitle": "Coordonnées (abscisse ; ordonnée ; altitude)",
+      "left": [
+        { "id": "e", "label": "E" },
+        { "id": "g", "label": "G" },
+        { "id": "d", "label": "D" },
+        { "id": "i", "label": "I" },
+        { "id": "k", "label": "K" }
+      ],
+      "right": [
+        { "id": "r1", "label": "(0 ; 0 ; 2)" },
+        { "id": "r2", "label": "(4 ; 3 ; 2)" },
+        { "id": "r3", "label": "(0 ; 3 ; 0)" },
+        { "id": "r4", "label": "(4 ; 0 ; 1)" },
+        { "id": "r5", "label": "(2 ; 1,5 ; 0)" },
+        { "id": "r6", "label": "(3 ; 4 ; 2)" },
+        { "id": "r7", "label": "(0 ; 2 ; 0)" }
+      ],
+      "pairs": { "e": "r1", "g": "r2", "d": "r3", "i": "r4", "k": "r5" },
+      "misconceptions": [
+        {
+          "pair": ["e", "r7"],
+          "id": "mc:ordre-coordonnees",
+          "error": "lecture",
+          "feedback": "$E$ est juste au-dessus de $A$ : seule son **altitude**, la 3e coordonnée, vaut 2. E(0 ; 0 ; 2)."
+        },
+        {
+          "pair": ["g", "r6"],
+          "id": "mc:ordre-coordonnees",
+          "error": "lecture",
+          "feedback": "(3 ; 4 ; 2) inverse l’abscisse et l’ordonnée. $G$ est à 4 le long de $[AB]$ et à 3 le long de $[AD]$ : G(4 ; 3 ; 2)."
+        },
+        {
+          "pair": ["i", "r2"],
+          "id": "mc:milieu",
+          "error": "lecture",
+          "feedback": "$I$ est au milieu de l’arête verticale $[BF]$ : il est au-dessus de $B$, à mi-hauteur, I(4 ; 0 ; 1)."
+        }
+      ],
+      "hints": [
+        "Un point de la face du dessus a pour altitude 2 ; un point du sol, 0.",
+        "$D$ est sur l’axe des ordonnées : ses deux autres coordonnées sont nulles.",
+        "$K$ est au milieu de $[AC]$, avec A(0 ; 0 ; 0) et C(4 ; 3 ; 0)."
+      ],
+      "solution": "E(0 ; 0 ; 2), G(4 ; 3 ; 2), D(0 ; 3 ; 0), I(4 ; 0 ; 1) (milieu de $[BF]$, entre B(4 ; 0 ; 0) et F(4 ; 0 ; 2)), K(2 ; 1,5 ; 0) (milieu de $[AC]$).",
+      "selfTest": [
+        { "response": { "pairs": { "e": "r1", "g": "r2", "d": "r3", "i": "r4", "k": "r5" } }, "expect": "correct" },
+        { "response": { "pairs": { "e": "r7", "g": "r2", "d": "r3", "i": "r4", "k": "r5" } }, "expect": "mc:ordre-coordonnees" }
+      ]
+    },
+    {
+      "id": "m4-espace-centre",
+      "type": "composite",
+      "skill": "m4.espace.reperage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:centre-sommet"],
+      "expectedSeconds": 150,
+      "params": { "a": { "int": [3, 8] }, "b": { "int": [2, 6] }, "c": { "int": [2, 5] } },
+      "prompt": "Dans le pavé droit de dimensions $AB = {a}$, $AD = {b}$ et $AE = {c}$ (origine $A$, mêmes axes que d’habitude), on cherche les coordonnées du **centre** $O$ du pavé, milieu de la grande diagonale $[AG]$.",
+      "figure": {
+        "alt": "Pavé droit ABCDEFGH en perspective ; la grande diagonale [AG] est tracée en pointillés et son milieu O est marqué.",
+        "w": 380,
+        "h": 280,
+        "frame": { "x": [-0.8, "{a+0.354*b+0.8}"], "y": [-0.8, "{c+0.354*b+0.8}"] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": "{0+0.354*0}", "y": "{0+0.354*0}", "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{a+0.354*0}", "y": "{0+0.354*0}", "pos": "se" },
+          { "type": "point", "id": "C", "x": "{a+0.354*b}", "y": "{0+0.354*b}", "pos": "e" },
+          { "type": "point", "id": "D", "x": "{0+0.354*b}", "y": "{0+0.354*b}", "pos": "nw" },
+          { "type": "point", "id": "E", "x": "{0+0.354*0}", "y": "{c+0.354*0}", "pos": "w" },
+          { "type": "point", "id": "F", "x": "{a+0.354*0}", "y": "{c+0.354*0}", "pos": "e" },
+          { "type": "point", "id": "G", "x": "{a+0.354*b}", "y": "{c+0.354*b}", "pos": "ne" },
+          { "type": "point", "id": "H", "x": "{0+0.354*b}", "y": "{c+0.354*b}", "pos": "nw" },
+          { "type": "segment", "from": "A", "to": "G", "dashed": true, "color": "rouge" },
+          { "type": "point", "id": "O", "x": "{a/2+0.354*b/2}", "y": "{c/2+0.354*b/2}", "pos": "se", "style": "rond", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{a}" },
+          { "type": "segment", "from": "A", "to": "E", "label": "{c}" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{b}" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Abscisse de $O$ :",
+          "answer": "a/2",
+          "misconceptions": [
+            {
+              "answer": "a",
+              "id": "mc:centre-sommet",
+              "error": "notion",
+              "feedback": "{a} est l’abscisse de $G$. Le centre est au **milieu** de $[AG]$ : son abscisse est la moitié de {a}."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Ordonnée de $O$ :",
+          "answer": "b/2",
+          "misconceptions": [
+            {
+              "answer": "b",
+              "id": "mc:centre-sommet",
+              "error": "notion",
+              "feedback": "Le centre est à mi-chemin dans chaque direction : son ordonnée est la moitié de {b}."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Altitude de $O$ :",
+          "answer": "c/2",
+          "misconceptions": [
+            {
+              "answer": "c",
+              "id": "mc:centre-sommet",
+              "error": "notion",
+              "feedback": "Le centre est à mi-hauteur : son altitude est la moitié de {c}."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "A(0 ; 0 ; 0) et G({a} ; {b} ; {c}).",
+        "Le milieu d’un segment qui part de l’origine : on prend la moitié de chaque coordonnée de l’autre extrémité."
+      ],
+      "solution": "G({a} ; {b} ; {c}) et $O$ est le milieu de $[AG]$ : O({a/2} ; {b/2} ; {c/2}). Le centre est à mi-chemin dans les trois directions.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{a/2}" }, { "value": "{b/2}" }, { "value": "{c/2}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{a}" }, { "value": "{b}" }, { "value": "{c}" }] }, "expect": "mc:centre-sommet" }
+      ]
+    },
+    {
+      "id": "m4-espace-patrons",
+      "type": "categorize",
+      "skill": "m4.espace.patrons",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:face-manquante", "mc:aretes-differentes"],
+      "expectedSeconds": 180,
+      "prompt": "Une pyramide régulière a pour base un carré et quatre faces latérales triangulaires identiques. Parmi ces quatre dessins, lesquels sont des patrons de cette pyramide ? Imagine le pliage !",
+      "figure": {
+        "alt": "Quatre dessins numérotés de 1 à 4, formés d’un carré et de triangles.",
+        "w": 380,
+        "h": 359,
+        "frame": { "x": [0, 12.8], "y": [0, 12] },
+        "items": [
+          { "type": "polygon", "points": [[2, 8], [4, 8], [4, 10], [2, 10]], "fill": "orange" },
+          { "type": "polygon", "points": [[2, 8], [4, 8], [3, 6.4]], "fill": "maths" },
+          { "type": "polygon", "points": [[2, 10], [4, 10], [3, 11.6]], "fill": "maths" },
+          { "type": "polygon", "points": [[2, 8], [2, 10], [0.3999999999999999, 9]], "fill": "maths" },
+          { "type": "polygon", "points": [[4, 8], [4, 10], [5.6, 9]], "fill": "maths" },
+          { "type": "polygon", "points": [[8, 8], [10, 8], [10, 10], [8, 10]], "fill": "orange" },
+          { "type": "polygon", "points": [[8, 10], [10, 10], [9, 11.6]], "fill": "maths" },
+          { "type": "polygon", "points": [[8, 8], [8, 10], [6.4, 9]], "fill": "maths" },
+          { "type": "polygon", "points": [[10, 8], [10, 10], [11.6, 9]], "fill": "maths" },
+          { "type": "polygon", "points": [[2.8, 4], [1.8, 2.4], [3.8, 2.4]], "fill": "maths" },
+          { "type": "polygon", "points": [[2.8, 4], [3.8, 2.4], [4.676, 4.198]], "fill": "maths" },
+          { "type": "polygon", "points": [[2.8, 4], [4.676, 4.198], [3.444, 5.773]], "fill": "maths" },
+          { "type": "polygon", "points": [[2.8, 4], [3.444, 5.773], [1.488, 5.356]], "fill": "maths" },
+          { "type": "polygon", "points": [[1.8, 2.4], [3.8, 2.4], [3.8, 0.4], [1.8, 0.4]], "fill": "orange" },
+          { "type": "polygon", "points": [[8, 2], [10, 2], [10, 4], [8, 4]], "fill": "orange" },
+          { "type": "polygon", "points": [[8, 2], [10, 2], [9, 0.3999999999999999]], "fill": "maths" },
+          { "type": "polygon", "points": [[8, 4], [10, 4], [9, 5.6]], "fill": "maths" },
+          { "type": "polygon", "points": [[8, 2], [8, 4], [5.6, 3]], "fill": "maths" },
+          { "type": "polygon", "points": [[10, 2], [10, 4], [12.4, 3]], "fill": "maths" },
+          { "type": "text", "x": 0.4, "y": 11.5, "text": "1", "size": "l", "bold": true },
+          { "type": "text", "x": 6.4, "y": 11.5, "text": "2", "size": "l", "bold": true },
+          { "type": "text", "x": 0.4, "y": 5.5, "text": "3", "size": "l", "bold": true },
+          { "type": "text", "x": 6.4, "y": 5.5, "text": "4", "size": "l", "bold": true }
+        ]
+      },
+      "categories": [{ "id": "oui", "label": "C’est un patron" }, { "id": "non", "label": "Ce n’est pas un patron" }],
+      "items": [
+        { "id": "n1", "label": "Dessin 1", "category": "oui" },
+        { "id": "n2", "label": "Dessin 2", "category": "non" },
+        { "id": "n3", "label": "Dessin 3", "category": "oui" },
+        { "id": "n4", "label": "Dessin 4", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "n2",
+          "category": "oui",
+          "id": "mc:face-manquante",
+          "error": "lecture",
+          "feedback": "Compte les faces : une pyramide à base carrée a 5 faces (1 carré et 4 triangles). Le dessin 2 n’a que 3 triangles."
+        },
+        {
+          "item": "n3",
+          "category": "non",
+          "id": "mc:patron-unique",
+          "error": "notion",
+          "feedback": "Le dessin 3 est bien un patron : les quatre triangles, attachés les uns aux autres par leurs côtés obliques, se replient autour du sommet commun. Une pyramide a plusieurs patrons !"
+        },
+        {
+          "item": "n4",
+          "category": "oui",
+          "id": "mc:aretes-differentes",
+          "error": "notion",
+          "feedback": "Dans le dessin 4, les triangles de gauche et de droite sont plus hauts : leurs côtés obliques sont plus longs que ceux des deux autres. Au pliage, les arêtes ne coïncideraient pas."
+        }
+      ],
+      "hints": [
+        "Un patron de cette pyramide comporte exactement 1 carré et 4 triangles identiques.",
+        "Les arêtes qui se recollent au pliage doivent avoir la même longueur.",
+        "Les triangles peuvent être attachés au carré… ou attachés entre eux, autour du sommet."
+      ],
+      "solution": "Dessins 1 et 3 : ce sont des patrons (le 3 se replie autour du sommet commun des quatre triangles). Dessin 2 : il manque une face. Dessin 4 : les triangles n’ont pas tous la même taille, les arêtes ne se recollent pas.",
+      "selfTest": [
+        { "response": { "assign": { "n1": "oui", "n2": "non", "n3": "oui", "n4": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "n1": "oui", "n2": "oui", "n3": "oui", "n4": "non" } }, "expect": "mc:face-manquante" },
+        { "response": { "assign": { "n1": "oui", "n2": "non", "n3": "oui", "n4": "oui" } }, "expect": "mc:aretes-differentes" }
+      ]
+    },
+    {
+      "id": "m4-espace-cone-angle",
+      "type": "numeric",
+      "skill": "m4.espace.patrons",
+      "skills": ["m5.proportionnalite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:secteur-inverse", "mc:longueur-arc"],
+      "expectedSeconds": 240,
+      "params": { "r": { "int": [2, 6] }, "g": { "int": [4, 12] } },
+      "constraints": ["g > r", "g != 2*r"],
+      "prompt": "On veut fabriquer le patron d’un cône de révolution de rayon {r} cm et de génératrice {g} cm. Sa surface latérale est un secteur de disque de rayon {g} cm, dont l’arc a la même longueur que le périmètre de la base. Quel doit être l’angle de ce secteur, au degré près ? (nombre seul)",
+      "figure": {
+        "alt": "Patron d’un cône : un secteur de disque de rayon égal à la génératrice, et le disque de base collé contre l’arc.",
+        "w": 280,
+        "h": 360,
+        "frame": { "x": ["{-g-0.5}", "{g+0.5}"], "y": ["{-g-2*r-0.5}", "{g+0.5}"] },
+        "items": [
+          { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "E1", "x": "{g*cos(270-180*r/g)}", "y": "{g*sin(270-180*r/g)}", "pos": "w", "label": "" },
+          { "type": "point", "id": "E2", "x": "{g*cos(270+180*r/g)}", "y": "{g*sin(270+180*r/g)}", "pos": "e", "label": "" },
+          { "type": "arc", "center": "S", "r": "{g}", "start": "{270-180*r/g}", "end": "{270+180*r/g}", "color": "maths" },
+          { "type": "segment", "from": "S", "to": "E1", "label": "{g} cm" },
+          { "type": "segment", "from": "S", "to": "E2" },
+          { "type": "circle", "center": "Oc", "r": "{r}", "fill": "orange", "color": "orange" },
+          { "type": "point", "id": "Oc", "x": 0, "y": "{-g-r}", "pos": "n", "label": "" },
+          { "type": "point", "id": "Rc", "x": "{r}", "y": "{-g-r}", "pos": "e", "label": "" },
+          { "type": "segment", "from": "Oc", "to": "Rc", "label": "{r} cm" }
+        ]
+      },
+      "answer": "360*r/g",
+      "tolerance": 0.5,
+      "round": 0,
+      "misconceptions": [
+        {
+          "answer": "360*g/r",
+          "id": "mc:secteur-inverse",
+          "error": "notion",
+          "feedback": "Ton angle dépasse 360° : impossible ! Le secteur est une **partie** du disque de rayon {g} : il en représente $r/g$ = ${r}/{g}$, donc l’angle vaut 360 × {r} ÷ {g}."
+        },
+        {
+          "answer": "2*3.14*r",
+          "id": "mc:longueur-arc",
+          "error": "unite",
+          "feedback": "Tu as calculé la longueur de l’arc (le périmètre de la base), en cm. On demande l’**angle** du secteur, en degrés."
+        }
+      ],
+      "hints": [
+        "Périmètre de la base : $2π × {r}$. Périmètre du disque entier de rayon {g} : $2π × {g}$.",
+        "Le secteur représente la fraction ${r}/{g}$ du disque entier.",
+        "Angle = 360 × {r} ÷ {g}."
+      ],
+      "solution": "L’arc du secteur mesure $2π × {r}$, et le cercle entier de rayon {g} mesure $2π × {g}$. Le secteur est donc la fraction ${r}/{g}$ du disque, et son angle vaut 360 × {r} ÷ {g} ≈ {arrondi(360*r/g;0)}°.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(360*r/g;0)}" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(360*g/r;0)}" }, "expect": "mc:secteur-inverse" }
+      ]
+    },
+    {
+      "id": "m4-espace-verif",
+      "type": "qcm",
+      "skill": "m4.espace.patrons",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : en perspective cavalière, comment représente-t-on deux arêtes **parallèles** d’un solide ?",
+      "figure": {
+        "alt": "Un cube dessiné en perspective cavalière : la face avant est un carré en vraie grandeur, les arêtes fuyantes sont obliques et raccourcies, les trois arêtes cachées sont en pointillés.",
+        "w": 300,
+        "h": 300,
+        "frame": { "x": [-0.8, 4.861], "y": [-0.8, 4.861] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 3, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.061, "y": 1.061, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 3, "pos": "w" },
+          { "type": "point", "id": "F", "x": 3, "y": 3, "pos": "e" },
+          { "type": "point", "id": "G", "x": 4.061, "y": 4.061, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 1.061, "y": 4.061, "pos": "nw" }
+        ]
+      },
+      "choices": [
+        { "text": "Par deux segments parallèles.", "correct": true, "feedback": "Oui : la perspective cavalière conserve le parallélisme." },
+        {
+          "text": "Par deux segments perpendiculaires.",
+          "correct": false,
+          "error": "notion",
+          "feedback": "Regarde le cube : ses arêtes parallèles sont dessinées parallèles."
+        },
+        {
+          "text": "Toujours par deux segments de même longueur que dans la réalité.",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:fuyantes-vraie-grandeur",
+          "feedback": "Les arêtes fuyantes (obliques) sont raccourcies : seules les faces vues de face sont en vraie grandeur."
+        },
+        {
+          "text": "Toujours en pointillés.",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:pointilles",
+          "feedback": "Les pointillés servent uniquement pour les arêtes cachées."
+        }
+      ],
+      "solution": "En perspective cavalière, deux arêtes parallèles sont représentées par deux segments parallèles. Les faces de face sont en vraie grandeur, les fuyantes sont raccourcies, les arêtes cachées sont en pointillés.",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [2] }, "expect": "mc:fuyantes-vraie-grandeur" }]
+    },
+    {
+      "id": "m4-espace-decrire-cone",
+      "type": "open",
+      "skill": "m4.espace.patrons",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 360,
+      "minWords": 30,
+      "prompt": "Explique à un camarade, sans dessin, comment construire le patron du cône de révolution ci-dessous (rayon 3 cm, génératrice 5 cm). Précise toutes les mesures utiles. Tu peux utiliser ce résultat : l’angle du secteur vaut 360° × 3 ÷ 5.",
+      "figure": {
+        "alt": "Un cône de révolution en perspective : rayon de la base 3 cm, génératrice 5 cm ; la hauteur est en pointillés.",
+        "w": 300,
+        "h": 253,
+        "frame": { "x": [-3.8, 3.8], "y": [-1.5, 4.7] },
+        "items": [
+          { "type": "segment", "from": [3, 0], "to": [2.898, 0.272], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [2.898, 0.272], "to": [2.598, 0.525], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [2.598, 0.525], "to": [2.121, 0.742], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [2.121, 0.742], "to": [1.5, 0.909], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [1.5, 0.909], "to": [0.776, 1.014], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [0.776, 1.014], "to": [0, 1.05], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [0, 1.05], "to": [-0.776, 1.014], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-0.776, 1.014], "to": [-1.5, 0.909], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-1.5, 0.909], "to": [-2.121, 0.742], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-2.121, 0.742], "to": [-2.598, 0.525], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-2.598, 0.525], "to": [-2.898, 0.272], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-2.898, 0.272], "to": [-3, 0], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-3, 0], "to": [-2.898, -0.272] },
+          { "type": "segment", "from": [-2.898, -0.272], "to": [-2.598, -0.525] },
+          { "type": "segment", "from": [-2.598, -0.525], "to": [-2.121, -0.742] },
+          { "type": "segment", "from": [-2.121, -0.742], "to": [-1.5, -0.909] },
+          { "type": "segment", "from": [-1.5, -0.909], "to": [-0.776, -1.014] },
+          { "type": "segment", "from": [-0.776, -1.014], "to": [0, -1.05] },
+          { "type": "segment", "from": [0, -1.05], "to": [0.776, -1.014] },
+          { "type": "segment", "from": [0.776, -1.014], "to": [1.5, -0.909] },
+          { "type": "segment", "from": [1.5, -0.909], "to": [2.121, -0.742] },
+          { "type": "segment", "from": [2.121, -0.742], "to": [2.598, -0.525] },
+          { "type": "segment", "from": [2.598, -0.525], "to": [2.898, -0.272] },
+          { "type": "segment", "from": [2.898, -0.272], "to": [3, 0] },
+          { "type": "point", "id": "S", "x": 0, "y": 4, "pos": "n" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "s" },
+          { "type": "point", "id": "R", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "point", "id": "Rg", "x": -3, "y": 0, "pos": "w", "label": "" },
+          { "type": "segment", "from": "S", "to": "R", "label": "5 cm" },
+          { "type": "segment", "from": "S", "to": "Rg" },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true },
+          { "type": "segment", "from": "O", "to": "R", "label": "3 cm", "color": "rouge" },
+          { "type": "angle", "vertex": "O", "from": "R", "to": "S", "right": true }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "Je fais tracer un secteur de disque de rayon 5 cm", "keywords": [["5 cm", "5cm", "rayon 5"]] },
+        { "id": "c2", "label": "J’indique l’angle du secteur : 216°", "keywords": [["216"]] },
+        { "id": "c3", "label": "Je fais tracer le disque de base, de rayon 3 cm", "keywords": [["3 cm", "3cm", "rayon 3"]] },
+        { "id": "c4", "label": "Je précise que le disque touche l’arc du secteur", "keywords": [["touche", "colle", "tangent", "contre", "accole"]] }
+      ],
+      "models": [
+        "Trace un cercle de centre S et de rayon 5 cm, puis deux rayons qui font entre eux un angle de 216° (360 × 3 ÷ 5) : la portion de disque obtenue est la surface latérale. Trace ensuite un disque de rayon 3 cm qui touche l’arc du secteur en un point : c’est la base."
+      ],
+      "hints": [
+        "Le patron a deux morceaux : la surface latérale et la base.",
+        "La surface latérale est une portion de disque dont le rayon est la génératrice.",
+        "360 × 3 ÷ 5 = 216."
+      ],
+      "solution": "Secteur : rayon 5 cm (la génératrice), angle 360° × 3 ÷ 5 = 216°. Base : un disque de rayon 3 cm, qui touche l’arc du secteur en un point. L’arc mesure $2π × 3$ ≈ 18,8 cm, exactement le périmètre de la base.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Je trace un secteur de disque de rayon 5 cm avec un angle de 216°. Puis je trace un disque de rayon 3 cm qui touche l’arc du secteur. Les deux forment le patron.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m4-espace-drone",
+      "type": "composite",
+      "skill": "m4.espace.reperage",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:ordre-coordonnees", "mc:somme-cotes"],
+      "expectedSeconds": 420,
+      "prompt": "Une salle de sport a la forme d’un pavé droit de 20 m de long, 12 m de large et 6 m de haut. On prend pour origine un coin $O$ du sol : abscisses le long de la longueur, ordonnées le long de la largeur, altitudes à la verticale. Un drone est au point K(8 ; 6 ; 4).",
+      "figure": {
+        "alt": "Salle de sport en forme de pavé droit (20 m × 12 m × 6 m) en perspective, avec le coin O du sol, le coin opposé C du sol et le drone K, au-dessus du point K₀ du sol.",
+        "w": 420,
+        "h": 222,
+        "frame": { "x": [-1.2, 25.443], "y": [-1.2, 11.443] },
+        "items": [
+          { "type": "segment", "from": "O", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "O" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "O", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "B", "x": 20, "y": 0, "pos": "se", "label": "" },
+          { "type": "point", "id": "D", "x": 4.243, "y": 4.243, "pos": "nw", "label": "" },
+          { "type": "point", "id": "E", "x": 0, "y": 6, "pos": "w", "label": "" },
+          { "type": "point", "id": "F", "x": 20, "y": 6, "pos": "e", "label": "" },
+          { "type": "point", "id": "G", "x": 24.243, "y": 10.243, "pos": "ne", "label": "" },
+          { "type": "point", "id": "H", "x": 4.243, "y": 10.243, "pos": "nw", "label": "" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 24.243, "y": 4.243, "pos": "e" },
+          { "type": "point", "id": "K", "x": 10.121, "y": 6.121, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "K0", "x": 10.121, "y": 2.121, "pos": "s", "label": "K₀" },
+          { "type": "segment", "from": "K", "to": "K0", "dashed": true, "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "À quelle hauteur au-dessus du sol vole-t-il ? (en m)",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:ordre-coordonnees",
+              "error": "lecture",
+              "feedback": "La hauteur, c’est l’**altitude** : la 3e coordonnée, pas la première."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Il monte de 2 m. Quelle est sa nouvelle altitude ? (en m)", "answer": 6 },
+        {
+          "type": "text",
+          "prompt": "Où est-il alors ? Réponds par un mot : sol, mur ou plafond.",
+          "accept": ["plafond", "au plafond", "il est au plafond", "il touche le plafond"],
+          "misconceptions": [
+            {
+              "answer": "mur",
+              "id": "mc:ordre-coordonnees",
+              "error": "lecture",
+              "feedback": "Une altitude de 6 m, c’est la hauteur de la salle : il est au plafond."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le point du sol situé sous le drone est K₀(8 ; 6 ; 0). Quelle est la distance entre K₀ et le coin C(20 ; 12 ; 0) du sol ? (en m, au centième ; théorème de Pythagore)",
+          "answer": 13.416,
+          "tolerance": 0.006,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 18,
+              "id": "mc:somme-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "On n’additionne pas 12 et 6 : sur le sol, les écarts de 12 m et 6 m sont les côtés d’un triangle rectangle. La distance est son hypoténuse."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Coordonnées : (abscisse ; ordonnée ; altitude).",
+        "La salle mesure 6 m de haut.",
+        "Écarts sur le sol entre K₀ et C : 20 − 8 = 12 m et 12 − 6 = 6 m."
+      ],
+      "solution": "Le drone vole à 4 m (son altitude). Après être monté de 2 m, son altitude est 6 m : il touche le plafond. Sur le sol, de K₀ à C : 12 m et 6 m dans deux directions perpendiculaires, donc $d² = 12² + 6² = 180$ et $d = √180$ ≈ 13,42 m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "4" }, { "value": "6" }, { "value": "plafond" }, { "value": "13,42" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "8" }, { "value": "6" }, { "value": "plafond" }, { "value": "13,42" }] },
+          "expect": "mc:ordre-coordonnees"
+        },
+        { "response": { "parts": [{ "value": "4" }, { "value": "6" }, { "value": "plafond" }, { "value": "18" }] }, "expect": "mc:somme-cotes" }
+      ]
+    },
+    {
+      "id": "m4-espace-louvre",
+      "type": "composite",
+      "skill": "m4.espace.patrons",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:unite-echelle", "mc:demi-cote"],
+      "expectedSeconds": 540,
+      "prompt": "La pyramide du Louvre, à Paris (inaugurée en 1989), est une pyramide à base carrée d’environ 35,4 m de côté et de 21,6 m de haut ; son sommet $S$ est à la verticale du centre $O$ de la base. Tu veux en construire une maquette à l’échelle 1/200 à partir d’un patron.",
+      "figure": {
+        "alt": "Pyramide à base carrée en perspective cavalière : sommet S à la verticale du centre O de la base ; I est le milieu d’un côté de la base ; [SO] est la hauteur et [SI] la hauteur d’une face.",
+        "w": 380,
+        "h": 257,
+        "frame": { "x": [-2, 50], "y": [-3, 30] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 35.4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 47.916, "y": 12.516, "pos": "e" },
+          { "type": "point", "id": "D", "x": 12.516, "y": 12.516, "pos": "nw" },
+          { "type": "point", "id": "O", "x": 23.958, "y": 6.258, "pos": "e" },
+          { "type": "point", "id": "S", "x": 23.958, "y": 27.858, "pos": "n" },
+          { "type": "point", "id": "I", "x": 17.7, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "A", "dashed": true },
+          { "type": "segment", "from": "S", "to": "A" },
+          { "type": "segment", "from": "S", "to": "B" },
+          { "type": "segment", "from": "S", "to": "C" },
+          { "type": "segment", "from": "S", "to": "D", "dashed": true },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true, "label": "21,6 m" },
+          { "type": "segment", "from": "O", "to": "I", "dashed": true, "label": "17,7 m" },
+          { "type": "segment", "from": "S", "to": "I", "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Sur le patron, quelle longueur doit avoir le côté du carré ? (en cm, au millimètre)",
+          "answer": 17.7,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 0.177,
+              "id": "mc:unite-echelle",
+              "error": "unite",
+              "feedback": "35,4 ÷ 200 = 0,177 : c’est en **mètres**. 0,177 m = 17,7 cm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "En vrai, calcule la hauteur $SI$ d’une face triangulaire ($I$ est le milieu d’un côté de la base). Le triangle $SOI$ est rectangle en $O$, avec $SO = 21,6$ m et $OI$ = la moitié du côté. (en m, au dixième)",
+          "answer": 27.926,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 41.47,
+              "id": "mc:demi-cote",
+              "error": "lecture",
+              "feedback": "$O$ est le centre de la base : la distance $OI$ vaut la **moitié** du côté, 17,7 m."
+            },
+            {
+              "answer": 39.3,
+              "id": "mc:somme-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "Dans le triangle $SOI$ rectangle en $O$, on utilise le théorème de Pythagore : $SI² = 21,6² + 17,7²$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Sur le patron, quelle hauteur doit avoir chaque triangle ? (en cm, au millimètre)",
+          "answer": 13.963,
+          "tolerance": 0.06,
+          "round": 1
+        }
+      ],
+      "hints": [
+        "Échelle 1/200 : 1 cm sur le patron représente 200 cm en vrai. 35,4 m = 3 540 cm.",
+        "Dans le triangle $SOI$ rectangle en $O$ : $SI² = SO² + OI²$.",
+        "Hauteur sur le patron : la hauteur réelle (en cm) divisée par 200."
+      ],
+      "solution": "Côté du carré : 3 540 ÷ 200 = 17,7 cm. $SI² = 21,6² + 17,7² = 466,56 + 313,29 = 779,85$, donc $SI$ ≈ 27,9 m. Sur le patron : 2793 cm ÷ 200 ≈ 14 cm. Le patron : un carré de 17,7 cm et quatre triangles isocèles de base 17,7 cm et de hauteur 14 cm environ.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "17,7" }, { "value": "27,9" }, { "value": "14" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,177" }, { "value": "27,9" }, { "value": "14" }] }, "expect": "mc:unite-echelle" }
+      ]
+    },
+    {
+      "id": "m4-espace-cornet",
+      "type": "composite",
+      "skill": "m4.espace.patrons",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:perimetre-rayon", "mc:secteur-inverse"],
+      "expectedSeconds": 600,
+      "prompt": "Pour la fête du collège, tu dois fabriquer des cornets en carton en forme de cône de révolution, de rayon 4 cm et de génératrice 12 cm.",
+      "figure": {
+        "alt": "Un cornet en forme de cône de révolution, en perspective : rayon de la base 4 cm, génératrice 12 cm.",
+        "w": 256,
+        "h": 360,
+        "frame": { "x": [-4.8, 4.8], "y": [-1.9, 12.4] },
+        "items": [
+          { "type": "segment", "from": [4, 0], "to": [3.864, 0.362], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [3.864, 0.362], "to": [3.464, 0.7], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [3.464, 0.7], "to": [2.828, 0.99], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [2.828, 0.99], "to": [2, 1.212], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [2, 1.212], "to": [1.035, 1.352], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [1.035, 1.352], "to": [0, 1.4], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [0, 1.4], "to": [-1.035, 1.352], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-1.035, 1.352], "to": [-2, 1.212], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-2, 1.212], "to": [-2.828, 0.99], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-2.828, 0.99], "to": [-3.464, 0.7], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-3.464, 0.7], "to": [-3.864, 0.362], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-3.864, 0.362], "to": [-4, 0], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [-4, 0], "to": [-3.864, -0.362] },
+          { "type": "segment", "from": [-3.864, -0.362], "to": [-3.464, -0.7] },
+          { "type": "segment", "from": [-3.464, -0.7], "to": [-2.828, -0.99] },
+          { "type": "segment", "from": [-2.828, -0.99], "to": [-2, -1.212] },
+          { "type": "segment", "from": [-2, -1.212], "to": [-1.035, -1.352] },
+          { "type": "segment", "from": [-1.035, -1.352], "to": [0, -1.4] },
+          { "type": "segment", "from": [0, -1.4], "to": [1.035, -1.352] },
+          { "type": "segment", "from": [1.035, -1.352], "to": [2, -1.212] },
+          { "type": "segment", "from": [2, -1.212], "to": [2.828, -0.99] },
+          { "type": "segment", "from": [2.828, -0.99], "to": [3.464, -0.7] },
+          { "type": "segment", "from": [3.464, -0.7], "to": [3.864, -0.362] },
+          { "type": "segment", "from": [3.864, -0.362], "to": [4, 0] },
+          { "type": "point", "id": "S", "x": 0, "y": 11.314, "pos": "n" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "s" },
+          { "type": "point", "id": "R", "x": 4, "y": 0, "pos": "e", "label": "" },
+          { "type": "point", "id": "Rg", "x": -4, "y": 0, "pos": "w", "label": "" },
+          { "type": "segment", "from": "S", "to": "R", "label": "12 cm" },
+          { "type": "segment", "from": "S", "to": "Rg" },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true },
+          { "type": "segment", "from": "O", "to": "R", "label": "4 cm", "color": "rouge" },
+          { "type": "angle", "vertex": "O", "from": "R", "to": "S", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule le périmètre du cercle de base (en cm, au dixième).",
+          "answer": 25.133,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 12.566,
+              "id": "mc:perimetre-rayon",
+              "error": "notion",
+              "feedback": "Le périmètre d’un cercle vaut 2 × π × rayon (ou π × diamètre) : $2 × π × 4$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est l’angle du secteur de disque à découper ? (en degrés, nombre seul)",
+          "answer": 120,
+          "misconceptions": [
+            {
+              "answer": 1080,
+              "id": "mc:secteur-inverse",
+              "error": "notion",
+              "feedback": "Un angle de secteur ne peut pas dépasser 360° : c’est 360 × 4 ÷ 12."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien de cornets peut-on découper, sans perte, dans un disque de carton de rayon 12 cm ?", "answer": 3 },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur du cornet, du sommet au centre de la base ? (en cm, au dixième)",
+          "answer": 11.314,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 12.649,
+              "id": "mc:hypotenuse-mal-placee",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "La génératrice (12 cm) est l’hypoténuse du triangle rectangle : $h² = 12² − 4²$, on soustrait."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Périmètre = 2 × π × 4.",
+        "Le secteur est la fraction $4/12$ du disque de rayon 12 cm.",
+        "Hauteur, rayon et génératrice forment un triangle rectangle dont la génératrice est l’hypoténuse."
+      ],
+      "solution": "Périmètre : $2 × π × 4$ ≈ 25,1 cm. Angle : 360 × 4 ÷ 12 = 120°. Dans un disque de rayon 12 cm : 360 ÷ 120 = 3 cornets. Hauteur : $h² = 12² − 4² = 128$, donc $h$ ≈ 11,3 cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "25,1" }, { "value": "120" }, { "value": "3" }, { "value": "11,3" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "12,6" }, { "value": "120" }, { "value": "3" }, { "value": "11,3" }] }, "expect": "mc:perimetre-rayon" }
+      ]
+    },
+    {
+      "id": "m4-espace-remed-ordre",
+      "type": "composite",
+      "skill": "m4.espace.reperage",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:ordre-coordonnees"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel : on écrit toujours les coordonnées dans l’ordre **(abscisse ; ordonnée ; altitude)**. Pour aller de l’origine $A$ au point $M$, on avance le long de l’axe des abscisses (flèche rouge), puis le long de l’axe des ordonnées (flèche verte), puis on monte (flèche orange).",
+      "figure": {
+        "alt": "Pavé droit en perspective ; un trajet part de l’origine A : 3 le long de l’axe des abscisses, 1 le long de l’axe des ordonnées, puis 2 vers le haut, jusqu’au point M.",
+        "w": 348,
+        "h": 300,
+        "frame": { "x": [-0.8, 5.507], "y": [-0.8, 4.507] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.707, "y": 0.707, "pos": "e" },
+          { "type": "point", "id": "D", "x": 0.707, "y": 0.707, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 3, "pos": "w" },
+          { "type": "point", "id": "F", "x": 4, "y": 3, "pos": "e" },
+          { "type": "point", "id": "G", "x": 4.707, "y": 3.707, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 0.707, "y": 3.707, "pos": "nw" },
+          { "type": "point", "id": "M1", "x": 3, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "M2", "x": 3.354, "y": 0.354, "pos": "e", "label": "" },
+          { "type": "point", "id": "M", "x": 3.354, "y": 2.354, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "arrow", "from": "A", "to": "M1", "color": "rouge", "label": "3" },
+          { "type": "arrow", "from": "M1", "to": "M2", "color": "vert", "label": "1" },
+          { "type": "arrow", "from": "M2", "to": "M", "color": "orange", "label": "2" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Abscisse de $M$ :",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:ordre-coordonnees",
+              "error": "lecture",
+              "feedback": "2, c’est la montée (l’altitude). L’abscisse est le déplacement le long de l’axe des abscisses, la flèche rouge."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Ordonnée de $M$ :", "answer": 1 },
+        {
+          "type": "numeric",
+          "prompt": "Altitude de $M$ :",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:ordre-coordonnees",
+              "error": "lecture",
+              "feedback": "L’altitude est la hauteur : la flèche orange, qui monte de 2."
+            }
+          ]
+        }
+      ],
+      "hints": ["Flèche rouge : abscisse.", "Flèche verte : ordonnée.", "Flèche orange : altitude."],
+      "solution": "M(3 ; 1 ; 2) : 3 le long des abscisses, 1 le long des ordonnées, 2 vers le haut.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3" }, { "value": "1" }, { "value": "2" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2" }, { "value": "1" }, { "value": "3" }] }, "expect": "mc:ordre-coordonnees" }
+      ]
+    },
+    {
+      "id": "m4-espace-cone-inverse",
+      "type": "composite",
+      "skill": "m4.espace.patrons",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:secteur-inverse"],
+      "expectedSeconds": 420,
+      "prompt": "On a découpé un secteur de disque de rayon 10 cm et d’angle 144°, puis on l’a enroulé pour former la surface latérale d’un cône de révolution. Retrouve les dimensions du cône.",
+      "figure": {
+        "alt": "Un secteur de disque de rayon 10 cm et d’angle 144°.",
+        "w": 360,
+        "h": 227,
+        "frame": { "x": [-10.6, 10.6], "y": [-10.7, 1.6] },
+        "items": [
+          { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "E1", "x": -9.511, "y": -3.09, "pos": "w", "label": "" },
+          { "type": "point", "id": "E2", "x": 9.511, "y": -3.09, "pos": "e", "label": "" },
+          { "type": "arc", "center": "S", "r": 10, "start": 198, "end": 342, "color": "maths" },
+          { "type": "segment", "from": "S", "to": "E1", "label": "10 cm" },
+          { "type": "segment", "from": "S", "to": "E2" },
+          { "type": "text", "x": 0, "y": -1.6, "text": "144°", "size": "s" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la génératrice du cône ? (en cm)", "answer": 10 },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le rayon de sa base ? (en cm)",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 25,
+              "id": "mc:secteur-inverse",
+              "error": "notion",
+              "feedback": "Le rayon de la base est plus petit que la génératrice. Le secteur est la fraction 144/360 du disque, et $r = 10 × 144 ÷ 360$."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Quelle est sa hauteur ? (en cm, au dixième)", "answer": 9.165, "tolerance": 0.06, "round": 1 }
+      ],
+      "hints": [
+        "La génératrice est le rayon du secteur.",
+        "Le secteur est la fraction 144/360 = 0,4 du disque : son arc mesure 0,4 × 2π × 10, et c’est aussi 2π × r.",
+        "$h² = 10² − r²$."
+      ],
+      "solution": "Génératrice : 10 cm. L’arc mesure 0,4 × 2π × 10 = 2π × 4 : le rayon de la base est 4 cm. Hauteur : $h² = 10² − 4² = 84$, donc $h$ ≈ 9,2 cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "10" }, { "value": "4" }, { "value": "9,2" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "10" }, { "value": "25" }, { "value": "9,2" }] }, "expect": "mc:secteur-inverse" }
+      ]
+    },
+    {
+      "id": "m4-espace-symetrique",
+      "type": "composite",
+      "skill": "m4.espace.reperage",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:symetrique-ecart"],
+      "expectedSeconds": 360,
+      "prompt": "Dans le pavé droit de dimensions $AB = 6$, $AD = 4$ et $AE = 2$ (origine $A$), le centre du pavé est O(3 ; 2 ; 1). On considère le point P(1 ; 3 ; 0,5). Le point $P’$ est le symétrique de $P$ par rapport à $O$ : $O$ est le milieu de $[PP’]$.",
+      "figure": {
+        "alt": "Pavé droit ABCDEFGH (AB = 6, AD = 4, AE = 2) ; le centre O du pavé et un point P intérieur sont marqués.",
+        "w": 400,
+        "h": 242,
+        "frame": { "x": [-0.8, 8.214], "y": [-0.8, 4.214] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 7.414, "y": 1.414, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.414, "y": 1.414, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+          { "type": "point", "id": "F", "x": 6, "y": 2, "pos": "e" },
+          { "type": "point", "id": "G", "x": 7.414, "y": 3.414, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 1.414, "y": 3.414, "pos": "nw" },
+          { "type": "point", "id": "O", "x": 3.707, "y": 1.707, "pos": "se", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "P", "x": 2.061, "y": 1.561, "pos": "n", "style": "rond", "color": "maths" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Abscisse de $P’$ :",
+          "answer": 5,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:symetrique-ecart",
+              "error": "methode",
+              "feedback": "2, c’est l’écart entre les abscisses de $P$ et de $O$. Il faut le reporter **au-delà** de $O$ : 3 + 2 = 5."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Ordonnée de $P’$ :", "answer": 1 },
+        { "type": "numeric", "prompt": "Altitude de $P’$ :", "answer": 1.5 }
+      ],
+      "hints": [
+        "Coordonnée par coordonnée : de $P$ à $O$, puis encore le même écart.",
+        "Abscisses : de 1 à 3, on a fait +2 ; on refait +2.",
+        "Ordonnées : de 3 à 2, on a fait −1 ; on refait −1."
+      ],
+      "solution": "Pour chaque coordonnée, $O$ est au milieu : abscisse $3 + (3 − 1) = 5$, ordonnée $2 + (2 − 3) = 1$, altitude $1 + (1 − 0,5) = 1,5$. Donc P’(5 ; 1 ; 1,5), qui est bien dans le pavé.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "5" }, { "value": "1" }, { "value": "1,5" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2" }, { "value": "1" }, { "value": "1,5" }] }, "expect": "mc:symetrique-ecart" }
+      ]
+    },
+    {
+      "id": "m4-espace-trois-pyramides",
+      "type": "composite",
+      "skill": "m4.espace.patrons",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:deux-pyramides"],
+      "expectedSeconds": 600,
+      "prompt": "**Trois pyramides dans un cube.** Dans un cube $ABCDEFGH$ d’arête 3 cm, on relie le sommet $G$ aux autres sommets. On obtient trois pyramides de sommet $G$, dont les bases sont les faces carrées $ABCD$, $ABFE$ et $ADHE$. Elles sont superposables et remplissent exactement le cube.",
+      "figure": {
+        "alt": "Cube ABCDEFGH d’arête 3 cm en perspective ; le sommet G est relié aux sommets A, B, D et E.",
+        "w": 300,
+        "h": 300,
+        "frame": { "x": [-0.8, 4.861], "y": [-0.8, 4.861] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 3, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.061, "y": 1.061, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 3, "pos": "w" },
+          { "type": "point", "id": "F", "x": 3, "y": 3, "pos": "e" },
+          { "type": "point", "id": "G", "x": 4.061, "y": 4.061, "pos": "ne" },
+          { "type": "point", "id": "H", "x": 1.061, "y": 4.061, "pos": "nw" },
+          { "type": "segment", "from": "G", "to": "A", "color": "rouge" },
+          { "type": "segment", "from": "G", "to": "B", "color": "rouge" },
+          { "type": "segment", "from": "G", "to": "E", "color": "rouge" },
+          { "type": "segment", "from": "G", "to": "D", "color": "rouge", "dashed": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Volume du cube (en cm³) :", "answer": 27 },
+        {
+          "type": "numeric",
+          "prompt": "Volume d’une des trois pyramides (en cm³) :",
+          "answer": 9,
+          "misconceptions": [{ "answer": 13.5, "id": "mc:deux-pyramides", "error": "lecture", "feedback": "Il y a **trois** pyramides, pas deux : 27 ÷ 3." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Une pyramide a pour base un carré de 9 cm² et pour hauteur 3 cm. Par quel nombre faut-il multiplier (aire de la base × hauteur) pour obtenir son volume ? (une fraction ou un décimal arrondi au centième)",
+          "answer": "1/3",
+          "tolerance": 0.004,
+          "allowExpression": true,
+          "misconceptions": [
+            {
+              "answer": 0.5,
+              "id": "mc:deux-pyramides",
+              "error": "lecture",
+              "feedback": "9 × 3 = 27 et le volume vaut 9 : on a divisé par 3, donc multiplié par $1/3$."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Pourquoi ces trois pyramides ont-elles le même volume ?",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Elles sont superposables (identiques)",
+              "keywords": [["superposable", "identique", "pareil", "egale", "meme forme"]]
+            },
+            {
+              "id": "c2",
+              "label": "Ou : elles ont une base de même aire (un carré de 3 cm de côté) et la même hauteur (3 cm)",
+              "keywords": [["base", "hauteur"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Volume du cube : arête × arête × arête.",
+        "Les trois pyramides remplissent le cube : on partage en 3.",
+        "Aire de la base × hauteur = 9 × 3 = 27."
+      ],
+      "solution": "Cube : $3 × 3 × 3 = 27$ cm³. Chaque pyramide : 27 ÷ 3 = 9 cm³. Or base × hauteur = 9 × 3 = 27 : le volume de la pyramide vaut le tiers de « base × hauteur ». Les trois pyramides ont le même volume car elles sont superposables (chacune a pour base un carré de côté 3 cm et pour hauteur une arête de 3 cm).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "27" },
+              { "value": "9" },
+              { "value": "1/3" },
+              { "text": "Elles sont superposables : même base carrée de 3 cm et même hauteur de 3 cm.", "selfCheck": { "c1": true, "c2": true } }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "27" },
+              { "value": "13,5" },
+              { "value": "1/3" },
+              { "text": "Elles sont identiques.", "selfCheck": { "c1": true, "c2": false } }
+            ]
+          },
+          "expect": "mc:deux-pyramides"
+        }
+      ]
+    },
+    {
+      "id": "m4-espace-fourmi",
+      "type": "numeric",
+      "skill": "m4.espace.patrons",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:traverse", "mc:pas-le-plus-court"],
+      "expectedSeconds": 600,
+      "prompt": "Une fourmi est au sommet $A$ d’une boîte en forme de pavé droit ($AB = 4$ cm, $AD = 3$ cm, $AE = 2$ cm). Elle veut rejoindre le sommet opposé $G$ en marchant **sur la surface** de la boîte. Quelle est la longueur du chemin le plus court ? (en cm, au centième ; pense au patron !)",
+      "figure": {
+        "alt": "Boîte en forme de pavé droit (AB = 4 cm, AD = 3 cm, AE = 2 cm) ; la fourmi part du sommet A pour aller au sommet opposé G.",
+        "w": 400,
+        "h": 293,
+        "frame": { "x": [-0.8, 5.861], "y": [-0.8, 3.861] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "F" },
+          { "type": "segment", "from": "F", "to": "E" },
+          { "type": "segment", "from": "E", "to": "A" },
+          { "type": "segment", "from": "E", "to": "H" },
+          { "type": "segment", "from": "H", "to": "G" },
+          { "type": "segment", "from": "G", "to": "F" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "G" },
+          { "type": "segment", "from": "A", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "C", "dashed": true },
+          { "type": "segment", "from": "D", "to": "H", "dashed": true },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 5.061, "y": 1.061, "pos": "e" },
+          { "type": "point", "id": "D", "x": 1.061, "y": 1.061, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 0, "y": 2, "pos": "w" },
+          { "type": "point", "id": "F", "x": 4, "y": 2, "pos": "e" },
+          { "type": "point", "id": "H", "x": 1.061, "y": 3.061, "pos": "nw" },
+          { "type": "segment", "from": "A", "to": "B", "label": "4 cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "3 cm" },
+          { "type": "segment", "from": "A", "to": "E", "label": "2 cm" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "G", "x": 5.061, "y": 3.061, "pos": "ne", "style": "rond", "color": "rouge" }
+        ]
+      },
+      "answer": 6.4031,
+      "tolerance": 0.006,
+      "round": 2,
+      "misconceptions": [
+        {
+          "answer": 5.3852,
+          "id": "mc:traverse",
+          "error": "notion",
+          "feedback": "La fourmi ne peut pas traverser la boîte : $√29$ ≈ 5,39 cm est la diagonale intérieure. Elle doit rester sur les faces : déplie la boîte et trace un segment sur le patron."
+        },
+        {
+          "answer": 9,
+          "id": "mc:aretes",
+          "error": "notion",
+          "feedback": "En suivant les arêtes (4 + 3 + 2), elle fait un détour. Sur le patron, le plus court chemin est un segment."
+        },
+        {
+          "answer": 7.2801,
+          "id": "mc:pas-le-plus-court",
+          "error": "raisonnement",
+          "feedback": "C’est bien un chemin en ligne droite sur un patron, mais pas le plus court : essaie les autres façons de déplier deux faces voisines."
+        },
+        {
+          "answer": 6.7082,
+          "id": "mc:pas-le-plus-court",
+          "error": "raisonnement",
+          "feedback": "C’est un chemin possible, mais pas le plus court : essaie les autres façons de déplier deux faces voisines."
+        }
+      ],
+      "hints": [
+        "Le chemin traverse deux faces voisines. Déplie-les à plat : le chemin le plus court devient un segment.",
+        "Trois dépliages possibles : on obtient un rectangle de 7 × 2, de 6 × 3 ou de 5 × 4.",
+        "Calcule la diagonale de chacun : $√(7² + 2²)$, $√(6² + 3²)$, $√(5² + 4²)$."
+      ],
+      "solution": "En dépliant deux faces voisines, le chemin est la diagonale d’un rectangle : $√(7² + 2²) = √53$ ≈ 7,28 ; $√(6² + 3²) = √45$ ≈ 6,71 ; $√(5² + 4²) = √41$ ≈ 6,40. Le plus court mesure environ 6,40 cm (la diagonale intérieure $√29$ ≈ 5,39 cm est interdite : elle traverse la boîte).",
+      "methods": [
+        "Tester les trois dépliages et comparer.",
+        "Remarque : on a intérêt à regrouper les deux plus petites dimensions (3 + 2) face à la plus grande (4)."
+      ],
+      "selfTest": [
+        { "response": { "value": "6,4" }, "expect": "correct" },
+        { "response": { "value": "5,39" }, "expect": "mc:traverse" },
+        { "response": { "value": "6,71" }, "expect": "mc:pas-le-plus-court" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,462 @@
+{
+  "id": "m4-premiers",
+  "chapter": "m4-ch-premiers",
+  "title": "Nombres premiers et décomposition en facteurs premiers",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.premiers.reconnaitre", "m4.premiers.decomposer", "m4.premiers.fractions", "m4.premiers.problemes"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Reconnaître les nombres premiers, connaître ceux qui sont inférieurs à 100, décomposer un entier en produit de facteurs premiers et s'en servir pour simplifier des fractions et résoudre des problèmes de partage.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le tamis d'Ératosthène",
+      "body": "Il y a environ 2 200 ans, le savant grec Ératosthène a inventé un **tamis à nombres**. On écrit les nombres de 2 à 100. On garde 2 et on barre tous ses multiples ; puis on garde 3 et on barre ses multiples ; puis 5, puis 7… Les nombres jamais barrés sont les **nombres premiers**.\n\nÀ ton avis, combien en reste-t-il : une dizaine, vingt-cinq, ou cinquante ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🔑", "title": "Qu'est-ce qu'un nombre premier ?",
+          "body": "Un nombre entier est **premier** s'il a exactement **deux** diviseurs : 1 et lui-même. 2, 3, 5, 7, 11, 13 sont premiers. 15 ne l'est pas : $15 = 3 × 5$. **1 n'est pas premier** : il n'a qu'un seul diviseur.",
+          "reveal": { "question": "Devine : quel est le seul nombre premier pair ?", "answer": "2 ! Tous les autres nombres pairs sont divisibles par 2 : ils ont au moins trois diviseurs (1, 2 et eux-mêmes)." }
+        },
+        {
+          "emoji": "🧪", "title": "Tester si un nombre est premier",
+          "body": "On essaie de le diviser par 2, 3, 5, 7, 11… (les nombres premiers, dans l'ordre). On peut s'arrêter dès que le carré du diviseur dépasse le nombre. Pour 97 : ni 2, ni 3, ni 5, ni 7 ne divisent 97, et $11² = 121$ dépasse 97 : 97 est premier.",
+          "example": "Divisible par 2 : dernier chiffre pair. Par 3 : somme des chiffres divisible par 3. Par 5 : dernier chiffre 0 ou 5."
+        },
+        {
+          "emoji": "📜", "title": "Les 25 nombres premiers inférieurs à 100",
+          "body": "2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97. Le tamis d'Ératosthène en laisse donc 25. Et après 100 ? Il y en a une infinité : le Grec Euclide l'a démontré il y a plus de 2 000 ans."
+        },
+        {
+          "emoji": "🌳", "title": "Décomposer en facteurs premiers",
+          "body": "Tout nombre entier supérieur ou égal à 2 s'écrit comme un **produit de nombres premiers**, et d'une seule façon (à l'ordre près). Méthode : on divise par 2 tant qu'on peut, puis par 3, puis par 5, par 7… Exemple : $360 = 2³ × 3² × 5$.",
+          "figure": {
+            "alt": "Arbre de décomposition de 84 : 84 se sépare en 2 et 42, puis 42 en 2 et 21, puis 21 en 3 et 7. Les nombres premiers sont en couleur.",
+            "w": 360, "h": 250,
+            "frame": { "x": [0.5, 10], "y": [0, 7] },
+            "caption": "84 = 2 × 2 × 3 × 7 = 2² × 3 × 7",
+            "items": [
+              { "type": "text", "x": 4, "y": 6.2, "text": "84", "anchor": "middle", "bold": true },
+              { "type": "segment", "from": [4, 5.8], "to": [2.5, 4.9] },
+              { "type": "segment", "from": [4, 5.8], "to": [5.5, 4.9] },
+              { "type": "text", "x": 2.5, "y": 4.3, "text": "2", "anchor": "middle", "bold": true, "color": "maths" },
+              { "type": "text", "x": 5.5, "y": 4.3, "text": "42", "anchor": "middle" },
+              { "type": "segment", "from": [5.5, 3.9], "to": [4, 3] },
+              { "type": "segment", "from": [5.5, 3.9], "to": [7, 3] },
+              { "type": "text", "x": 4, "y": 2.4, "text": "2", "anchor": "middle", "bold": true, "color": "maths" },
+              { "type": "text", "x": 7, "y": 2.4, "text": "21", "anchor": "middle" },
+              { "type": "segment", "from": [7, 2], "to": [5.5, 1.1] },
+              { "type": "segment", "from": [7, 2], "to": [8.5, 1.1] },
+              { "type": "text", "x": 5.5, "y": 0.5, "text": "3", "anchor": "middle", "bold": true, "color": "maths" },
+              { "type": "text", "x": 8.5, "y": 0.5, "text": "7", "anchor": "middle", "bold": true, "color": "maths" }
+            ]
+          }
+        },
+        {
+          "emoji": "✂️", "title": "Simplifier une fraction",
+          "body": "On décompose le numérateur et le dénominateur : $84/120 = (2² × 3 × 7)/(2³ × 3 × 5)$. On simplifie par les facteurs communs ($2²$ et 3) : il reste $7/(2 × 5)$, c'est-à-dire $7/10$. Quand il ne reste aucun facteur premier commun, la fraction est **irréductible**."
+        },
+        {
+          "emoji": "🔐", "title": "Nombres premiers et codes secrets",
+          "body": "Multiplier deux grands nombres premiers est très rapide pour un ordinateur. Mais retrouver ces deux nombres à partir de leur produit, quand il compte des centaines de chiffres, prendrait beaucoup trop de temps, même aux ordinateurs les plus puissants. Certains codes secrets d'Internet, comme la méthode RSA, reposent sur cette difficulté.",
+          "reveal": { "question": "Devine : 91 est-il un nombre premier ?", "answer": "Non : 91 = 7 × 13. Il a l'air premier, mais il ne l'est pas ! Il faut chercher ses facteurs pour le savoir." }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Simplifier 126/180 grâce aux facteurs premiers",
+      "steps": [
+        { "text": "On décompose 126 en divisant par 2, puis par 3 tant que c'est possible : 126 = 2 × 63, 63 = 3 × 21, 21 = 3 × 7.", "math": "126 = 2 × 3 × 3 × 7" },
+        { "text": "On décompose 180 de la même façon : 180 = 2 × 90, 90 = 2 × 45, 45 = 3 × 15, 15 = 3 × 5.", "math": "180 = 2 × 2 × 3 × 3 × 5" },
+        { "text": "On écrit la fraction avec ces produits. Facteurs communs au numérateur et au dénominateur : 2, 3 et 3.", "math": "126/180 = (2 × 3 × 3 × 7)/(2 × 2 × 3 × 3 × 5)" },
+        { "text": "On simplifie par ces facteurs communs, c'est-à-dire par $2 × 3 × 3 = 18$ :", "math": "126/180 = 7/(2 × 5)" },
+        { "text": "7 et 10 n'ont plus aucun facteur premier commun : la fraction est irréductible.", "math": "126/180 = 7/10" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour tester un nombre, utilise les critères de divisibilité par 2, 3 et 5, puis essaie 7, 11, 13… tant que le carré du diviseur ne dépasse pas le nombre.",
+      "exercises": ["m4-premiers-crible", "m4-premiers-tester", "m4-premiers-decomposer", "m4-premiers-simplifier", "m4-premiers-trois", "m4-premiers-verif"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m4-premiers-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m4-premiers-2p1", "m4-premiers-bouquets"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le coffre de l'agent Prisme",
+      "body": "La clé d'un coffre est cachée dans un produit de nombres premiers. Comme les vrais codes secrets, tout repose sur la décomposition.",
+      "exercises": ["m4-premiers-codes"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Un nombre premier a exactement deux diviseurs : 1 et lui-même. Tout entier supérieur ou égal à 2 se décompose en produit de facteurs premiers, d'une seule façon. Cette décomposition sert à simplifier des fractions et à trouver des diviseurs communs.\n\n- **« 1 est premier. »** Non : il n'a qu'un seul diviseur.\n- **« Impair, donc premier. »** Non : 9, 15, 21, 51 et 91 sont impairs, mais pas premiers.\n- **Tester trop peu de diviseurs.** Pour 91, il faut aussi essayer 7 : $91 = 7 × 13$. On teste tous les nombres premiers dont le carré ne dépasse pas le nombre.\n- **Des facteurs qui ne sont pas premiers.** $60 = 4 × 15$ n'est pas une décomposition en facteurs premiers : $60 = 2² × 3 × 5$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des nombres à tester et à décomposer dans quelques jours. Défi pour la route : récite les 25 nombres premiers inférieurs à 100 sans regarder la liste."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Des phares qui s'allument ensemble, et une formule pour compter les diviseurs d'un nombre sans tous les chercher.",
+      "exercises": ["m4-premiers-phares", "m4-premiers-diviseurs"]
+    },
+    "expert": {
+      "intro": "Facultatif : la formule d'Euler qui trompe tout le monde, et l'idée d'Euclide pour prouver qu'il existe une infinité de nombres premiers.",
+      "exercises": ["m4-premiers-euler", "m4-premiers-euclide"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-premiers-crible", "type": "highlight", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:un-premier", "mc:impair-premier"], "expectedSeconds": 180,
+      "prompt": "Le tamis d'Ératosthène, version express : voici les nombres de 1 à 60. Repère tous les nombres premiers. Astuce : écarte les multiples de 2, de 3, de 5 et de 7 (sauf 2, 3, 5 et 7 eux-mêmes). Pourquoi s'arrêter à 7 ? Parce que $8 × 8 = 64$ dépasse déjà 60.",
+      "instruction": "Clique sur tous les nombres premiers.",
+      "text": "1 [2] [3] 4 [5] 6 [7] 8 9 10 [11] 12 [13] 14 15 16 [17] 18 [19] 20 21 22 [23] 24 25 26 27 28 [29] 30 [31] 32 33 34 35 36 [37] 38 39 40 [41] 42 [43] 44 45 46 [47] 48 49 50 51 52 [53] 54 55 56 57 58 [59] 60",
+      "misconceptions": [
+        { "word": "1", "id": "mc:un-premier", "error": "notion", "feedback": "1 n'est pas premier : il n'a qu'un seul diviseur. Un nombre premier en a exactement deux." },
+        { "word": "9", "id": "mc:impair-premier", "error": "notion", "feedback": "9 = 3 × 3 : impair ne veut pas dire premier." },
+        { "word": "15", "id": "mc:impair-premier", "error": "notion", "feedback": "15 = 3 × 5 : impair ne veut pas dire premier." },
+        { "word": "21", "id": "mc:impair-premier", "error": "notion", "feedback": "21 = 3 × 7 : impair ne veut pas dire premier." },
+        { "word": "25", "id": "mc:impair-premier", "error": "notion", "feedback": "25 = 5 × 5." },
+        { "word": "27", "id": "mc:impair-premier", "error": "notion", "feedback": "27 = 3 × 9 (2 + 7 = 9 est divisible par 3)." },
+        { "word": "33", "id": "mc:impair-premier", "error": "notion", "feedback": "33 = 3 × 11." },
+        { "word": "35", "id": "mc:impair-premier", "error": "notion", "feedback": "35 = 5 × 7." },
+        { "word": "39", "id": "mc:impair-premier", "error": "notion", "feedback": "39 = 3 × 13 (3 + 9 = 12 est divisible par 3)." },
+        { "word": "45", "id": "mc:impair-premier", "error": "notion", "feedback": "45 = 5 × 9." },
+        { "word": "49", "id": "mc:impair-premier", "error": "notion", "feedback": "49 = 7 × 7 : pense à tester 7 !" },
+        { "word": "51", "id": "mc:impair-premier", "error": "notion", "feedback": "51 = 3 × 17 (5 + 1 = 6 est divisible par 3)." },
+        { "word": "55", "id": "mc:impair-premier", "error": "notion", "feedback": "55 = 5 × 11." },
+        { "word": "57", "id": "mc:impair-premier", "error": "notion", "feedback": "57 = 3 × 19 (5 + 7 = 12 est divisible par 3)." }
+      ],
+      "hints": ["Les nombres pairs, sauf 2, ne sont pas premiers.", "Écarte les multiples de 3 (somme des chiffres divisible par 3) et ceux qui finissent par 5, sauf 3 et 5.", "Attention aux multiples de 7 : 49 = 7 × 7. Il y a 17 nombres premiers entre 1 et 60."],
+      "solution": "Les nombres premiers jusqu'à 60 : 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59 (17 nombres). 1 n'est pas premier ; 49 = 7 × 7, 51 = 3 × 17 et 57 = 3 × 19 sont des pièges classiques.",
+      "selfTest": [
+        { "response": { "selected": [1, 2, 4, 6, 10, 12, 16, 18, 22, 28, 30, 36, 40, 42, 46, 52, 58] }, "expect": "correct" },
+        { "response": { "selected": [0, 1, 2, 4, 6, 10, 12, 16, 18, 22, 28, 30, 36, 40, 42, 46, 52, 58] }, "expect": "mc:un-premier" },
+        { "response": { "selected": [1, 2, 4, 6, 10, 12, 16, 18, 22, 28, 30, 36, 40, 42, 46, 48, 52, 58] }, "expect": "mc:impair-premier" }
+      ]
+    },
+    {
+      "id": "m4-premiers-tester", "type": "categorize", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:test-incomplet", "mc:impair-premier", "mc:un-premier"], "expectedSeconds": 240,
+      "prompt": "Range chaque nombre : premier ou pas premier ? Pour chacun, teste la divisibilité par 2, 3, 5 et 7 (pour un nombre inférieur à 100, c'est suffisant, car $11² = 121$).",
+      "categories": [ { "id": "premier", "label": "Premier" }, { "id": "non", "label": "Pas premier" } ],
+      "items": [
+        { "id": "n37", "label": "37", "category": "premier" },
+        { "id": "n51", "label": "51", "category": "non" },
+        { "id": "n61", "label": "61", "category": "premier" },
+        { "id": "n87", "label": "87", "category": "non" },
+        { "id": "n89", "label": "89", "category": "premier" },
+        { "id": "n91", "label": "91", "category": "non" },
+        { "id": "n97", "label": "97", "category": "premier" },
+        { "id": "n2", "label": "2", "category": "premier" },
+        { "id": "n1", "label": "1", "category": "non" },
+        { "id": "n77", "label": "77", "category": "non" }
+      ],
+      "misconceptions": [
+        { "item": "n91", "category": "premier", "id": "mc:test-incomplet", "error": "methode", "feedback": "91 n'est divisible ni par 2, ni par 3, ni par 5… mais il faut aussi tester 7 : 91 = 7 × 13." },
+        { "item": "n77", "category": "premier", "id": "mc:test-incomplet", "error": "methode", "feedback": "N'oublie pas de tester 7 : 77 = 7 × 11." },
+        { "item": "n51", "category": "premier", "id": "mc:impair-premier", "error": "notion", "feedback": "5 + 1 = 6 est divisible par 3 : 51 = 3 × 17." },
+        { "item": "n87", "category": "premier", "id": "mc:impair-premier", "error": "notion", "feedback": "8 + 7 = 15 est divisible par 3 : 87 = 3 × 29." },
+        { "item": "n1", "category": "premier", "id": "mc:un-premier", "error": "notion", "feedback": "1 n'a qu'un seul diviseur (lui-même) : il n'est pas premier." },
+        { "item": "n2", "category": "non", "id": "mc:pair-pas-premier", "error": "notion", "feedback": "2 a exactement deux diviseurs, 1 et 2 : il est premier. C'est le seul nombre premier pair." }
+      ],
+      "hints": ["Somme des chiffres divisible par 3 → le nombre est divisible par 3.", "N'oublie pas de tester 7 : $7 × 11 = 77$, $7 × 13 = 91$.", "1 n'a qu'un seul diviseur ; 2 en a exactement deux."],
+      "solution": "Premiers : 2, 37, 61, 89, 97. Pas premiers : 1 (un seul diviseur), 51 = 3 × 17, 77 = 7 × 11, 87 = 3 × 29, 91 = 7 × 13.",
+      "selfTest": [
+        { "response": { "assign": { "n37": "premier", "n51": "non", "n61": "premier", "n87": "non", "n89": "premier", "n91": "non", "n97": "premier", "n2": "premier", "n1": "non", "n77": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "n37": "premier", "n51": "non", "n61": "premier", "n87": "non", "n89": "premier", "n91": "premier", "n97": "premier", "n2": "premier", "n1": "non", "n77": "non" } }, "expect": "mc:test-incomplet" }
+      ]
+    },
+    {
+      "id": "m4-premiers-decomposer", "type": "composite", "skill": "m4.premiers.decomposer", "skills": ["m4.puissances"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:exposant-valeur"], "expectedSeconds": 300,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [0, 2] }, "c": { "int": [0, 1] }, "d": { "int": [0, 1] }, "n": { "expr": "2^a*3^b*5^c*7^d" } },
+      "constraints": ["b + c + d >= 2", "n >= 60", "n <= 1000"],
+      "prompt": "On veut décomposer {n} en produit de facteurs premiers.",
+      "parts": [
+        { "type": "steps", "mode": "calcul", "final": "any", "minSteps": 2, "start": "n",
+          "prompt": "Divise par 2 tant que c'est possible, puis par 3, puis par 5, puis par 7. Écris une étape par ligne, par exemple « {n} = 2 × {n/2} »." },
+        { "type": "table", "prompt": "Combien de fois chaque nombre premier apparaît-il dans la décomposition de {n} ? (Écris 0 s'il n'apparaît pas.)",
+          "columns": ["Facteur premier", "Nombre de fois"],
+          "rows": [ ["2", "?r0c1"], ["3", "?r1c1"], ["5", "?r2c1"], ["7", "?r3c1"] ],
+          "cells": {
+            "r0c1": { "answer": "a", "misconceptions": [ { "answer": "2^a", "id": "mc:exposant-valeur", "error": "notion", "feedback": "{2^a} est la valeur du produit des facteurs 2. On demande combien de fois le facteur 2 apparaît : c'est l'exposant." } ] },
+            "r1c1": { "answer": "b" },
+            "r2c1": { "answer": "c" },
+            "r3c1": { "answer": "d" }
+          } }
+      ],
+      "hints": ["{n} est pair : commence par $ {n} = 2 × {n/2} $.", "Continue avec {n/2} : est-il encore pair ? Sinon, essaie 3 (somme des chiffres), puis 5, puis 7.", "On s'arrête quand il ne reste que des nombres premiers."],
+      "solution": "En divisant successivement par 2, puis par 3, 5 et 7, on trouve que dans la décomposition de {n}, le facteur 2 apparaît {a} fois, le facteur 3 apparaît {b} fois, le facteur 5 apparaît {c} fois et le facteur 7 apparaît {d} fois (0 fois : il n'apparaît pas). Avec les puissances, on regroupe les facteurs égaux : par exemple $ 2 × 2 × 2 = 2³ $.",
+      "selfTest": [
+        { "response": { "parts": [ { "lines": ["{n} = 2 × {n/2}", "2^{a} × 3^{b} × 5^{c} × 7^{d}"] }, { "cells": { "r0c1": "{a}", "r1c1": "{b}", "r2c1": "{c}", "r3c1": "{d}" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "lines": ["{n} = 2 × {n/2}", "2^{a} × 3^{b} × 5^{c} × 7^{d}"] }, { "cells": { "r0c1": "{2^a}", "r1c1": "{b}", "r2c1": "{c}", "r3c1": "{d}" } } ] }, "expect": "mc:exposant-valeur" }
+      ]
+    },
+    {
+      "id": "m4-premiers-simplifier", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m4.premiers.fractions", "skills": ["m5.fractions.egalite"], "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "symbolique", "targets": ["forme", "mc:simplif-soustraction"], "expectedSeconds": 240,
+      "params": { "x": { "int": [1, 2] }, "y": { "int": [1, 2] }, "u": { "choice": [5, 7, 11] }, "v": { "choice": [2, 3, 4, 8, 9, 13] }, "g": { "expr": "2^x*3^y" }, "N": { "expr": "g*u" }, "D": { "expr": "g*v" } },
+      "constraints": ["N <= 600", "D <= 600"],
+      "start": "N/D", "minSteps": 2,
+      "prompt": "Simplifie $ {N}/{D} $ en décomposant le numérateur et le dénominateur en produits de facteurs premiers. Donne la fraction irréductible. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "(N-g)/(D-g)", "id": "mc:simplif-soustraction", "error": "notion", "prerequisite": "m5.fractions.egalite", "feedback": "simplifier, c'est DIVISER le numérateur et le dénominateur par un même nombre, pas soustraire." }
+      ],
+      "hints": ["Décompose {N} : divise par 2, puis par 3, et ainsi de suite.", "Décompose {D} de la même façon, puis repère les facteurs premiers présents en haut ET en bas.", "Les facteurs communs donnent {g} : divise le numérateur et le dénominateur par {g}."],
+      "solution": "Les facteurs premiers communs à {N} et à {D} sont 2, pris {x} fois, et 3, pris {y} fois : leur produit vaut {g}. On simplifie par {g} : $ {N}/{D} = {u}/{v} $. Cette fraction est irréductible : {u} est premier et ne divise pas {v}.",
+      "selfTest": [
+        { "response": { "lines": ["(2^{x} × 3^{y} × {u})/({g} × {v})", "{u}/{v}"] }, "expect": "correct" },
+        { "response": { "lines": ["{N/2}/{D/2}"] }, "expect": "forme" },
+        { "response": { "lines": ["{N-g}/{D-g}"] }, "expect": "mc:simplif-soustraction" }
+      ]
+    },
+    {
+      "id": "m4-premiers-trois", "type": "multi", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:impair-premier", "mc:test-incomplet"], "expectedSeconds": 180,
+      "prompt": "Trouve trois nombres premiers différents compris entre 70 et 100.",
+      "count": 3, "predicate": "estpremier(v) and v > 70 and v < 100", "distinct": true,
+      "hints": ["Écarte les nombres pairs et ceux qui finissent par 5.", "Teste la divisibilité par 3 (somme des chiffres) et par 7 : attention à 77 et 91.", "Il y en a six entre 70 et 100 : à toi d'en trouver trois."],
+      "solution": "Les nombres premiers compris entre 70 et 100 sont 71, 73, 79, 83, 89 et 97. Pièges : 77 = 7 × 11, 81 = 9 × 9, 87 = 3 × 29, 91 = 7 × 13, 93 = 3 × 31.",
+      "selfTest": [ { "response": { "values": ["71", "73", "79"] }, "expect": "correct" }, { "response": { "values": ["71", "91", "97"] }, "expect": "partiel" } ]
+    },
+    {
+      "id": "m4-premiers-verif", "type": "qcm", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:un-premier"], "expectedSeconds": 40,
+      "prompt": "Vérification rapide : 1 est-il un nombre premier ?",
+      "choices": [
+        { "text": "Oui : il n'est divisible que par 1 et par lui-même.", "correct": false, "error": "notion", "misconception": "mc:un-premier", "feedback": "« 1 et lui-même », c'est ici le même nombre : 1 n'a qu'UN seul diviseur. Un nombre premier en a exactement deux." },
+        { "text": "Non : il n'a qu'un seul diviseur, alors qu'un nombre premier en a exactement deux.", "correct": true, "feedback": "Exact. C'est pour cela que la liste des nombres premiers commence à 2." },
+        { "text": "Oui : c'est le plus petit nombre impair.", "correct": false, "error": "raisonnement", "misconception": "mc:impair-premier", "feedback": "Être impair ne suffit pas pour être premier (9 = 3 × 3). Et 1 n'a qu'un seul diviseur : il n'est pas premier." }
+      ],
+      "solution": "1 n'est pas premier : il n'a qu'un seul diviseur. Un nombre premier a exactement deux diviseurs distincts, 1 et lui-même.",
+      "selfTest": [ { "response": { "selected": [1] }, "expect": "correct" }, { "response": { "selected": [0] }, "expect": "mc:un-premier" } ]
+    },
+    {
+      "id": "m4-premiers-expliquer", "type": "open", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:test-incomplet"], "expectedSeconds": 360, "minWords": 25,
+      "prompt": "Sofia affirme : « 91 est premier, car il n'est divisible ni par 2, ni par 3, ni par 5. » Explique-lui pourquoi son test est incomplet, montre que 91 n'est pas premier, puis indique jusqu'où il faut tester pour être sûr qu'un nombre inférieur à 100 est premier.",
+      "criteria": [
+        { "id": "c1", "label": "Je montre que 91 = 7 × 13", "keywords": [["7 × 13", "7x13", "7 x 13", "7*13", "13 × 7", "13 x 7", "divisible par 7"]] },
+        { "id": "c2", "label": "J'explique qu'il faut tester tous les nombres premiers dont le carré ne dépasse pas le nombre (donc aussi 7)", "keywords": [["par 7", "tester 7", "carre", "racine", "jusqu"]] },
+        { "id": "c3", "label": "Je conclus que, pour un nombre inférieur à 100, tester 2, 3, 5 et 7 suffit, car 11 × 11 = 121", "keywords": [["121", "11 × 11", "11 x 11", "11²"]] }
+      ],
+      "models": [
+        "Sofia a oublié de tester 7 : 91 = 7 × 13, donc 91 n'est pas premier. Il faut tester tous les nombres premiers 2, 3, 5, 7, 11… tant que leur carré ne dépasse pas le nombre. Pour un nombre inférieur à 100, il suffit de tester 2, 3, 5 et 7, car 11 × 11 = 121 dépasse 100.",
+        "Ne pas être divisible par 2, 3 et 5 ne suffit pas. Si 91 avait deux facteurs, le plus petit serait au plus 9, car 10 × 10 = 100 dépasse 91. Il faut donc tester 7 aussi, et justement 7 × 13 = 91. Pour tous les nombres plus petits que 100, on teste 2, 3, 5 et 7 (11² = 121 est trop grand)."
+      ],
+      "hints": ["Essaie de diviser 91 par 7.", "Si un nombre n'est pas premier, il a un facteur dont le carré ne dépasse pas ce nombre.", "$11 × 11 = 121$ : est-ce plus grand que 100 ?"],
+      "solution": "$91 = 7 × 13$ : 91 n'est pas premier. Le test de Sofia est incomplet : il faut essayer tous les nombres premiers dont le carré ne dépasse pas le nombre. Pour un nombre inférieur à 100, tester 2, 3, 5 et 7 suffit, car $11 × 11 = 121$ dépasse 100.",
+      "selfTest": [ { "response": { "text": "Sofia a oublié 7 : 91 = 7 × 13 donc 91 n'est pas premier. Il faut tester les nombres premiers dont le carré ne dépasse pas le nombre. Sous 100, 2, 3, 5 et 7 suffisent car 11 × 11 = 121.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m4-premiers-2p1", "type": "counterexample", "skill": "m4.premiers.reconnaitre", "skills": ["m4.raisonner.preuve"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:generalisation-hative"], "expectedSeconds": 180,
+      "claim": "Si $p$ est un nombre premier, alors $ 2p + 1 $ est aussi un nombre premier.",
+      "prompt": "Léa a remarqué : avec 2, on obtient $ 2 × 2 + 1 = 5 $ ; avec 3, on obtient 7 ; avec 5, on obtient 11… Tous premiers ! Elle affirme : « Si $p$ est premier, alors $ 2p + 1 $ est premier. » Trouve un nombre premier $p$ qui prouve qu'elle a tort.",
+      "vars": ["p"], "domain": "estpremier(p)", "domainLabel": "p doit être un nombre premier",
+      "refutes": "not estpremier(2*p+1)", "show": "2*p+1", "showLabel": "2p + 1",
+      "refuteHint": "Continue la liste des nombres premiers : 7, 11, 13…",
+      "hints": ["Teste les nombres premiers suivants : 7, 11, 13, 17…", "Pour $p = 7$, calcule $ 2 × 7 + 1 $. Ce nombre est-il premier ?"],
+      "solution": "Avec $p = 7$ : $ 2 × 7 + 1 = 15 = 3 × 5 $, qui n'est pas premier. (Autres contre-exemples : 13 donne 27, 17 donne 35.) Trois exemples qui marchent ne prouvent rien ; un seul contre-exemple suffit à prouver que l'affirmation est fausse.",
+      "selfTest": [ { "response": { "values": { "p": "7" } }, "expect": "correct" }, { "response": { "values": { "p": "5" } }, "expect": "raisonnement" }, { "response": { "values": { "p": "9" } }, "expect": "lecture" } ]
+    },
+    {
+      "id": "m4-premiers-bouquets", "type": "composite", "skill": "m4.premiers.problemes", "skills": ["m4.premiers.decomposer"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diviseur-pas-plus-grand", "mc:pgcd-ppcm"], "expectedSeconds": 420,
+      "params": { "g": { "choice": [6, 9, 12, 14, 15, 18] }, "u": { "int": [2, 9] }, "v": { "int": [3, 11] } },
+      "constraints": ["u < v", "pgcd(u;v) = 1", "g*v <= 150"],
+      "prompt": "Un fleuriste dispose de {g*u} roses et de {g*v} tulipes. Il veut composer **le plus grand nombre possible** de bouquets **identiques**, en utilisant toutes ses fleurs.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de bouquets peut-il composer, au maximum ?", "answer": "g",
+          "misconceptions": [
+            { "answer": "g/2", "id": "mc:diviseur-pas-plus-grand", "error": "methode", "feedback": "Ce nombre divise peut-être {g*u} et {g*v}, mais ce n'est pas le PLUS GRAND diviseur commun : on peut faire plus de bouquets." },
+            { "answer": "g/3", "id": "mc:diviseur-pas-plus-grand", "error": "methode", "feedback": "Ce nombre divise peut-être {g*u} et {g*v}, mais ce n'est pas le PLUS GRAND diviseur commun : on peut faire plus de bouquets." },
+            { "answer": "ppcm(g*u;g*v)", "id": "mc:pgcd-ppcm", "error": "notion", "feedback": "{ppcm(g*u;g*v)} est un multiple commun de {g*u} et {g*v}. Ici, le nombre de bouquets doit DIVISER le nombre de roses et le nombre de tulipes." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de roses dans chaque bouquet ?", "answer": "u" },
+        { "type": "numeric", "prompt": "Combien de tulipes dans chaque bouquet ?", "answer": "v" }
+      ],
+      "hints": ["Le nombre de bouquets doit diviser {g*u} ET {g*v}.", "Décompose {g*u} et {g*v} en produits de facteurs premiers.", "Le plus grand diviseur commun est le produit des facteurs premiers communs aux deux décompositions."],
+      "solution": "$ {g*u} = {g} × {u} $ et $ {g*v} = {g} × {v} $, et {u} et {v} n'ont aucun facteur premier commun : le plus grand diviseur commun de {g*u} et {g*v} est {g}. Le fleuriste compose {g} bouquets, chacun avec $ {g*u} ÷ {g} = {u} $ roses et $ {g*v} ÷ {g} = {v} $ tulipes.",
+      "methods": ["Décomposer en facteurs premiers et garder les facteurs communs.", "Lister les diviseurs de {g*u} et ceux de {g*v}, puis repérer le plus grand diviseur commun."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{g}" }, { "value": "{u}" }, { "value": "{v}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{ppcm(g*u;g*v)}" }, { "value": "{u}" }, { "value": "{v}" } ] }, "expect": "mc:pgcd-ppcm" }
+      ]
+    },
+    {
+      "id": "m4-premiers-codes", "type": "composite", "skill": "m4.premiers.decomposer", "skills": ["m4.premiers.reconnaitre"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:un-premier", "mc:facteur-non-premier"], "expectedSeconds": 540,
+      "prompt": "Mission de l'agent Prisme. Pour ouvrir le coffre, il faut retrouver les deux nombres premiers secrets $p$ et $q$ dont le produit est la clé publique : $ p × q = 391 $.",
+      "parts": [
+        { "type": "numeric", "prompt": "Le plus petit des deux nombres premiers secrets :", "answer": 17,
+          "misconceptions": [
+            { "answer": 1, "id": "mc:un-premier", "error": "notion", "feedback": "$1 × 391 = 391$, mais 1 n'est pas un nombre premier." },
+            { "answer": 3, "id": "mc:critere-3", "error": "calcul", "feedback": "3 + 9 + 1 = 13 n'est pas divisible par 3 : 3 ne divise pas 391." }
+          ] },
+        { "type": "numeric", "prompt": "Le plus grand des deux :", "answer": 23,
+          "misconceptions": [ { "answer": 391, "id": "mc:un-premier", "error": "notion", "feedback": "391 n'est pas premier, et 1 non plus : la clé est le produit de deux nombres premiers différents de 1." } ] },
+        { "type": "numeric", "prompt": "Pour savoir si un nombre inférieur à 400 est premier, il suffit de tester les nombres premiers dont le carré ne dépasse pas ce nombre. Au maximum, combien de nombres premiers différents faut-il tester ?", "answer": 8,
+          "misconceptions": [ { "answer": 20, "id": "mc:test-tous", "error": "methode", "feedback": "Inutile de tester tous les nombres jusqu'à 20 : seulement les nombres premiers dont le carré ne dépasse pas 400." } ] },
+        { "type": "numeric", "prompt": "Clé de secours : $1 001$ est le produit de trois nombres premiers. Quel est le plus grand des trois ?", "answer": 13,
+          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$1 001 = 7 × 143$, mais 143 n'est pas premier : $143 = 11 × 13$." } ] }
+      ],
+      "hints": ["Teste les nombres premiers dans l'ordre : 2, 3, 5, 7, 11, 13, 17…", "$17 × 23 = ?$ Vérifie.", "Les nombres premiers dont le carré ne dépasse pas 400 : 2, 3, 5, 7, 11, 13, 17, 19 ($19² = 361$ et $23² = 529$)."],
+      "solution": "391 n'est divisible ni par 2, 3, 5, 7, 11 ou 13, mais $391 = 17 × 23$. Pour un nombre inférieur à 400, on teste au plus les 8 nombres premiers 2, 3, 5, 7, 11, 13, 17 et 19 (car $23² = 529$). Enfin $1 001 = 7 × 143 = 7 × 11 × 13$ : le plus grand facteur est 13. Avec des nombres de plusieurs centaines de chiffres, cette recherche deviendrait interminable : c'est ce qui protège les vrais codes secrets.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "17" }, { "value": "23" }, { "value": "8" }, { "value": "13" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "17" }, { "value": "23" }, { "value": "8" }, { "value": "143" } ] }, "expect": "mc:facteur-non-premier" }
+      ]
+    },
+    {
+      "id": "m4-premiers-remed-un", "type": "composite", "skill": "m4.premiers.reconnaitre", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:un-premier"], "expectedSeconds": 120,
+      "params": { "p": { "choice": [5, 7, 11, 13, 17] } },
+      "prompt": "Rappel ciblé : un nombre premier a **exactement deux** diviseurs. Compte les diviseurs de chaque nombre.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de diviseurs le nombre {p} a-t-il ?", "answer": 2 },
+        { "type": "numeric", "prompt": "Combien de diviseurs le nombre 1 a-t-il ?", "answer": 1,
+          "misconceptions": [ { "answer": 2, "id": "mc:un-premier", "error": "notion", "feedback": "1 n'est divisible que par 1 : « 1 et lui-même », c'est ici le même nombre. Il n'a qu'un seul diviseur." } ] },
+        { "type": "numeric", "prompt": "Combien de diviseurs le nombre {p*p} a-t-il ?", "answer": 3,
+          "misconceptions": [ { "answer": 2, "id": "mc:test-incomplet", "error": "methode", "feedback": "$ {p*p} = {p} × {p} $ : ses diviseurs sont 1, {p} et {p*p}." } ] },
+        { "type": "text", "prompt": "Conclusion : 1 est-il un nombre premier ? (réponds oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:un-premier", "error": "notion", "feedback": "Un nombre premier a exactement deux diviseurs ; 1 n'en a qu'un." } ] }
+      ],
+      "hints": ["Un diviseur de {p} est un nombre qui divise {p} sans reste.", "Les seuls diviseurs de {p} sont 1 et {p}."],
+      "solution": "{p} a deux diviseurs (1 et {p}) : il est premier. 1 n'a qu'un diviseur : il n'est pas premier. {p*p} en a trois (1, {p} et {p*p}) : il n'est pas premier.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2" }, { "value": "1" }, { "value": "3" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2" }, { "value": "2" }, { "value": "3" }, { "value": "oui" } ] }, "expect": "mc:un-premier" }
+      ]
+    },
+    {
+      "id": "m4-premiers-remed-facteurs", "type": "composite", "skill": "m4.premiers.decomposer", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:facteur-non-premier", "mc:exposant-valeur"], "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : dans une décomposition en facteurs premiers, **tous** les facteurs doivent être des nombres premiers. Inès a écrit : $ 60 = 4 × 15 $.",
+      "parts": [
+        { "type": "text", "prompt": "Les facteurs 4 et 15 sont-ils des nombres premiers ? (réponds oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$4 = 2 × 2$ et $15 = 3 × 5$ : ce ne sont pas des nombres premiers, il faut continuer à décomposer." } ] },
+        { "type": "numeric", "prompt": "En continuant : $ 60 = 2^k × 3 × 5 $. Que vaut $k$ ?", "answer": 2,
+          "misconceptions": [
+            { "answer": 1, "id": "mc:facteur-oublie", "error": "calcul", "feedback": "$4 = 2 × 2$ : le facteur 2 apparaît deux fois." },
+            { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "$4 = 2²$ : l'exposant est le nombre de facteurs 2, c'est-à-dire 2." }
+          ] },
+        { "type": "numeric", "prompt": "De même, $ 84 = 2^k × 3 × 7 $. Que vaut $k$ ?", "answer": 2,
+          "misconceptions": [ { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "$84 = 4 × 21 = 2 × 2 × 3 × 7$ : le facteur 2 apparaît deux fois." } ] }
+      ],
+      "hints": ["4 a-t-il d'autres diviseurs que 1 et 4 ?", "$4 = 2 × 2 = 2²$."],
+      "solution": "4 et 15 ne sont pas premiers : $ 60 = 4 × 15 = 2 × 2 × 3 × 5 = 2² × 3 × 5 $, donc $k = 2$. De même $ 84 = 2 × 2 × 3 × 7 = 2² × 3 × 7 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "non" }, { "value": "2" }, { "value": "2" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "oui" }, { "value": "2" }, { "value": "2" } ] }, "expect": "mc:facteur-non-premier" }
+      ]
+    },
+    {
+      "id": "m4-premiers-phares", "type": "composite", "skill": "m4.premiers.problemes", "skills": ["m4.premiers.decomposer"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:ppcm-produit", "mc:pgcd-ppcm"], "expectedSeconds": 420,
+      "prompt": "Deux phares sont visibles depuis la plage. Le premier s'allume toutes les 12 secondes, le second toutes les 18 secondes. À minuit pile, ils s'allument en même temps.",
+      "parts": [
+        { "type": "numeric", "prompt": "Après combien de secondes s'allumeront-ils de nouveau en même temps ?", "answer": 36,
+          "misconceptions": [
+            { "answer": 216, "id": "mc:ppcm-produit", "error": "methode", "feedback": "Au bout de $12 × 18 = 216$ s, ils s'allument bien ensemble… mais cela arrive avant ! Cherche le plus petit multiple commun de 12 et 18." },
+            { "answer": 6, "id": "mc:pgcd-ppcm", "error": "notion", "feedback": "6 est le plus grand diviseur commun de 12 et 18. On cherche un multiple commun : un instant où chaque phare a fait un nombre entier de cycles." },
+            { "answer": 30, "id": "mc:somme-periodes", "error": "raisonnement", "feedback": "À 30 s, le premier phare ne s'allume pas (30 n'est pas un multiple de 12)." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de fois s'allument-ils ensemble pendant l'heure qui suit minuit (sans compter minuit) ?", "answer": 100 },
+        { "type": "numeric", "prompt": "Un troisième phare s'allume toutes les 10 secondes. Après combien de secondes les trois s'allument-ils de nouveau ensemble ?", "answer": 180,
+          "misconceptions": [ { "answer": 360, "id": "mc:ppcm-produit", "error": "methode", "feedback": "360 convient, mais il y a plus petit : $ 2² × 3² × 5 = 180 $." } ] }
+      ],
+      "hints": ["Liste les multiples de 12 : 12, 24, 36… et ceux de 18 : 18, 36…", "$12 = 2² × 3$ et $18 = 2 × 3²$ : un multiple commun doit contenir $2²$ et $3²$.", "Pour trois phares : $10 = 2 × 5$, il faut donc $ 2² × 3² × 5 $."],
+      "solution": "Multiples de 12 : 12, 24, 36… ; multiples de 18 : 18, 36… Le plus petit multiple commun est 36 ($ 2² × 3² $). En une heure (3 600 s), ils s'allument ensemble $3 600 ÷ 36 = 100$ fois. Avec un phare de 10 s ($ 2 × 5 $), le plus petit multiple commun est $ 2² × 3² × 5 = 180 $ s, soit 3 minutes.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "36" }, { "value": "100" }, { "value": "180" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "216" }, { "value": "100" }, { "value": "180" } ] }, "expect": "mc:ppcm-produit" }
+      ]
+    },
+    {
+      "id": "m4-premiers-diviseurs", "type": "composite", "skill": "m4.premiers.decomposer", "skills": ["mx.arith.premiers"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:oubli-diviseurs-triviaux", "mc:formule-diviseurs"], "expectedSeconds": 540,
+      "prompt": "Combien un nombre a-t-il de diviseurs ? Sa décomposition en facteurs premiers permet de le prévoir, sans tous les chercher.",
+      "parts": [
+        { "type": "table", "prompt": "Liste les diviseurs de chaque nombre (sans oublier 1 et le nombre lui-même), puis compte-les.",
+          "columns": ["Nombre", "Décomposition", "Nombre de diviseurs"],
+          "rows": [ ["12", "$2² × 3$", "?r0c2"], ["18", "$2 × 3²$", "?r1c2"], ["16", "$2⁴$", "?r2c2"], ["36", "$2² × 3²$", "?r3c2"], ["72", "$2³ × 3²$", "?r4c2"] ],
+          "cells": {
+            "r0c2": { "answer": 6, "misconceptions": [ { "answer": 4, "id": "mc:oubli-diviseurs-triviaux", "error": "methode", "feedback": "N'oublie pas 1 et le nombre lui-même : les diviseurs de 12 sont 1, 2, 3, 4, 6 et 12." } ] },
+            "r1c2": { "answer": 6 },
+            "r2c2": { "answer": 5 },
+            "r3c2": { "answer": 9 },
+            "r4c2": { "answer": 12 }
+          } },
+        { "type": "expression", "prompt": "Conjecture : pour $ n = 2^a × 3^b $, écris le nombre de diviseurs en fonction de $a$ et $b$.", "answer": "(a+1)*(b+1)",
+          "misconceptions": [
+            { "answer": "a*b", "id": "mc:formule-diviseurs", "error": "raisonnement", "feedback": "Teste ta formule sur $ 12 = 2² × 3 $ : $ a × b = 2 $, mais 12 a 6 diviseurs." },
+            { "answer": "a+b", "id": "mc:formule-diviseurs", "error": "raisonnement", "feedback": "Teste ta formule sur $ 12 = 2² × 3 $ : $ a + b = 3 $, mais 12 a 6 diviseurs." }
+          ] },
+        { "type": "numeric", "prompt": "Sans les lister, combien de diviseurs le nombre $ 2⁵ × 3⁴ $ a-t-il ?", "answer": 30 }
+      ],
+      "hints": ["Diviseurs de 36 : 1, 2, 3, 4, 6, 9, 12, 18, 36.", "Un diviseur de $ 2^a × 3^b $ s'écrit $ 2^i × 3^j $ : combien de choix pour $i$ (de 0 à $a$) ? pour $j$ ?", "$a + 1$ choix pour l'exposant de 2, $b + 1$ choix pour celui de 3."],
+      "solution": "12 et 18 ont 6 diviseurs, 16 en a 5, 36 en a 9 et 72 en a 12. Un diviseur de $ 2^a × 3^b $ s'écrit $ 2^i × 3^j $ avec $i$ entre 0 et $a$ ($a + 1$ choix) et $j$ entre 0 et $b$ ($b + 1$ choix) : il y a $ (a + 1)(b + 1) $ diviseurs. Pour $ 2⁵ × 3⁴ $ : $ 6 × 5 = 30 $ diviseurs.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c2": "6", "r1c2": "6", "r2c2": "5", "r3c2": "9", "r4c2": "12" } }, { "value": "(a+1)(b+1)" }, { "value": "30" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c2": "4", "r1c2": "6", "r2c2": "5", "r3c2": "9", "r4c2": "12" } }, { "value": "(a+1)(b+1)" }, { "value": "30" } ] }, "expect": "mc:oubli-diviseurs-triviaux" }
+      ]
+    },
+    {
+      "id": "m4-premiers-euler", "type": "counterexample", "skill": "mx.arith.premiers", "skills": ["m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:generalisation-hative"], "expectedSeconds": 420,
+      "claim": "Pour tout entier naturel $n$, le nombre $ n² + n + 41 $ est premier.",
+      "prompt": "En 1772, le mathématicien Leonhard Euler remarque que $ n² + n + 41 $ donne un nombre premier pour $n = 0, 1, 2, 3$… et encore pour $n = 39$ ! Est-ce vrai pour tout entier naturel $n$ ? Trouve un contre-exemple.",
+      "vars": ["n"], "domain": "n >= 0 and estentier(n)", "domainLabel": "n entier naturel",
+      "refutes": "not estpremier(n^2+n+41)", "show": "n^2+n+41", "showLabel": "n² + n + 41",
+      "refuteHint": "Les essais au hasard ne suffiront pas : regarde la forme de l'expression. Que se passe-t-il si $n$ est un multiple de 41 ?",
+      "hints": ["Pour $n = 41$, chacun des trois termes $n²$, $n$ et 41 est un multiple de 41.", "Pour $n = 40$ : $ 40² + 40 + 41 = 40 × 41 + 41 $. Factorise par 41."],
+      "solution": "Pour $n = 40$ : $ 40² + 40 + 41 = 40 × 41 + 41 = 41 × 41 = 1 681 $, qui n'est pas premier. Pour $n = 41$ : $ 41² + 41 + 41 = 41 × 43 $. Une formule peut marcher 40 fois de suite et être fausse : seule une démonstration prouve un « pour tout ».",
+      "selfTest": [ { "response": { "values": { "n": "40" } }, "expect": "correct" }, { "response": { "values": { "n": "5" } }, "expect": "raisonnement" } ]
+    },
+    {
+      "id": "m4-premiers-euclide", "type": "composite", "skill": "mx.arith.premiers", "skills": ["m4.premiers.decomposer"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "verbale", "targets": ["mc:reste-euclide"], "expectedSeconds": 720,
+      "prompt": "Pourquoi y a-t-il une infinité de nombres premiers ? Voici l'idée d'Euclide : on multiplie entre eux des nombres premiers, puis on ajoute 1.",
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule $ N = 2 × 3 × 5 × 7 + 1 $.", "answer": 211 },
+        { "type": "numeric", "prompt": "Quel est le reste de la division de $N$ par 7 ? (Par 2, 3 ou 5, ce serait le même.)", "answer": 1,
+          "misconceptions": [ { "answer": 0, "id": "mc:reste-euclide", "error": "raisonnement", "feedback": "$ 2 × 3 × 5 × 7 $ est un multiple de 7, mais on lui a ajouté 1 : il reste 1 quand on divise $N$ par 7." } ] },
+        { "type": "numeric", "prompt": "Avec deux nombres premiers de plus : $ M = 2 × 3 × 5 × 7 × 11 × 13 + 1 = 30 031 $. Ce nombre n'est pas premier ! Quel est son plus petit facteur premier ? (calculatrice autorisée)", "answer": 59,
+          "misconceptions": [ { "answer": 509, "id": "mc:plus-petit-facteur", "error": "lecture", "feedback": "$ 30 031 = 59 × 509 $ : 509 est le plus grand des deux facteurs." } ] },
+        { "type": "open", "prompt": "Explique pourquoi $M$ n'est divisible par aucun des nombres 2, 3, 5, 7, 11 et 13, et ce que cela montre : à partir de n'importe quelle liste de nombres premiers, on en trouve toujours un nouveau.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'explique que la division de $M$ par chacun de ces nombres a pour reste 1", "keywords": [["reste 1", "reste de 1", "reste est 1", "+ 1", "plus 1"]] },
+            { "id": "c2", "label": "J'explique que le plus petit facteur premier de $M$ (59) n'est pas dans la liste", "keywords": [["59", "nouveau", "pas dans la liste", "autre nombre premier"]] },
+            { "id": "c3", "label": "Je conclus qu'aucune liste finie ne contient tous les nombres premiers", "keywords": [["infinite", "infini", "jamais", "aucune liste", "toujours un"]] }
+          ] }
+      ],
+      "hints": ["$ 2 × 3 × 5 × 7 = 210 $.", "Un multiple de 7 plus 1 : quel reste dans la division par 7 ?", "Pour 30 031, teste 17, 19, 23, 29… jusqu'à trouver un diviseur."],
+      "solution": "$N = 211$ ; divisé par 2, 3, 5 ou 7, il reste toujours 1 (211 est d'ailleurs premier). $ M = 30 031 = 59 × 509 $ : M n'est pas premier, mais ses facteurs premiers, 59 et 509, ne font pas partie de la liste 2, 3, 5, 7, 11, 13, puisque chaque division par ces nombres laisse un reste de 1. Quelle que soit la liste finie de nombres premiers de départ, ce procédé fournit un nombre premier qui n'y est pas : il en existe donc une infinité.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "211" }, { "value": "1" }, { "value": "59" }, { "text": "Quand on divise M par 2, 3, 5, 7, 11 ou 13, il reste 1 car on a ajouté 1 à un multiple. Donc le facteur 59 est un nouveau nombre premier, pas dans la liste. Aucune liste finie ne contient tous les nombres premiers : il y en a une infinité.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "211" }, { "value": "0" }, { "value": "59" }, { "text": "Il reste 1 dans chaque division, 59 est un nouveau nombre premier : il y en a une infinité.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:reste-euclide" }
+      ]
+    }
+  ]
+}

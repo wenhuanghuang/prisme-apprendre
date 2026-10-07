@@ -1,0 +1,811 @@
+{
+  "id": "m5-droites-remarquables",
+  "chapter": "m5-ch-droites",
+  "title": "Médiatrices, hauteurs et médianes du triangle",
+  "subject": "maths",
+  "level": "5e",
+  "skills": ["m5.geo.mediatrice", "m5.geo.hauteurs", "m5.geo.medianes"],
+  "status": "programme",
+  "programmes": ["maths-c4-2026"],
+  "duration": 60,
+  "summary": "Trois familles de droites remarquables du triangle : les médiatrices (et le cercle circonscrit), les hauteurs (perpendiculaires aux côtés) et les médianes (qui passent par les milieux). On apprend à les reconnaître, à les tracer, et on démontre qu'une médiane partage un triangle en deux triangles de même aire.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La cabane et le champ",
+      "body": "Trois amis habitent dans les maisons A, B et C. Ils veulent construire une cabane **à la même distance** des trois maisons, pour que personne ne marche plus que les autres. Où la placer ?\n\nAutre défi : partager le champ triangulaire ABC en deux parts de **même aire**, avec une seule clôture droite qui part du coin A. Par où la faire passer ?\n\nDeux problèmes, deux droites remarquables du triangle… Lesquelles ?",
+      "figure": {
+        "alt": "Trois maisons représentées par les points A, B et C, formant un triangle",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "style": "rond", "pos": "sw" },
+          { "type": "point", "id": "B", "x": 9, "y": 1, "style": "rond", "pos": "se" },
+          { "type": "point", "id": "C", "x": 3, "y": 7, "style": "rond", "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "vert" },
+          { "type": "text", "x": 4.5, "y": 2.8, "text": "?", "size": "l", "anchor": "middle", "bold": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📐",
+          "title": "La médiatrice d'un segment",
+          "body": "La **médiatrice** de [AB] est la droite **perpendiculaire** à [AB] qui passe par son **milieu**. Propriété : un point est sur la médiatrice de [AB] si, et seulement si, il est **à égale distance** de A et de B.",
+          "example": "M est sur la médiatrice de [AB], donc MA = MB.",
+          "reveal": { "question": "Comment tracer la médiatrice avec un compas et une règle non graduée ?", "answer": "Avec le même écartement, on trace deux arcs centrés en A et deux arcs centrés en B. Leurs deux points d'intersection sont à égale distance de A et de B : la droite qui les relie est la médiatrice." },
+          "figure": {
+            "alt": "Un segment [AB], sa médiatrice verticale passant par le milieu I avec un angle droit, et un point M de la médiatrice relié à A et à B",
+            "w": 360, "h": 250,
+            "frame": { "x": [0, 8], "y": [0, 5.5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1.5, "pos": "w" },
+              { "type": "point", "id": "B", "x": 7, "y": 1.5, "pos": "e" },
+              { "type": "point", "id": "I", "x": 4, "y": 1.5, "pos": "se" },
+              { "type": "point", "id": "M", "x": 4, "y": 4.8, "pos": "ne" },
+              { "type": "line", "through": [[4, 0], [4, 5.5]], "color": "rouge" },
+              { "type": "segment", "from": "A", "to": "I", "marks": 1 },
+              { "type": "segment", "from": "I", "to": "B", "marks": 1 },
+              { "type": "angle", "vertex": "I", "from": "B", "to": "M", "right": true },
+              { "type": "segment", "from": "M", "to": "A", "marks": 2, "dashed": true },
+              { "type": "segment", "from": "M", "to": "B", "marks": 2, "dashed": true }
+            ]
+          }
+        },
+        {
+          "emoji": "⭕",
+          "title": "Les médiatrices et le cercle circonscrit",
+          "body": "Les trois médiatrices d'un triangle se coupent en un même point O. Comme OA = OB = OC, le cercle de centre O qui passe par A passe aussi par B et par C : c'est le **cercle circonscrit** au triangle.",
+          "figure": {
+            "alt": "Un triangle ABC, ses trois médiatrices qui se coupent en O, et le cercle de centre O passant par les trois sommets",
+            "w": 400, "h": 380,
+            "frame": { "x": [-0.5, 10.5], "y": [-2, 8.5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "w" },
+              { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "e" },
+              { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "line", "through": [[5, 1], [5, 3]], "dashed": true, "color": "rouge" },
+              { "type": "line", "through": [[6, 4], [7, 5]], "dashed": true, "color": "rouge" },
+              { "type": "line", "through": [[2, 4], [5, 3]], "dashed": true, "color": "rouge" },
+              { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "se" },
+              { "type": "circle", "center": "O", "r": 4.4721, "color": "bleu" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔺",
+          "title": "Triangles particuliers",
+          "body": "**Rectangle** : le centre du cercle circonscrit est le **milieu de l'hypoténuse** ; le rayon vaut la moitié de l'hypoténuse. **Isocèle** en A : la médiatrice de la base [BC] passe par A, c'est l'axe de symétrie. **Équilatéral** : chaque médiatrice passe par un sommet.",
+          "reveal": { "question": "Devine : si un triangle a un angle obtus, le centre de son cercle circonscrit est-il à l'intérieur du triangle ?", "answer": "Non, il est à l'extérieur. Il est à l'intérieur pour un triangle aux trois angles aigus, et sur l'hypoténuse pour un triangle rectangle." },
+          "figure": {
+            "alt": "Un triangle rectangle en A et son cercle circonscrit, dont le centre I est le milieu de l'hypoténuse [BC]",
+            "w": 320, "h": 300,
+            "frame": { "x": [0, 6], "y": [-0.3, 5.3] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 1, "y": 4, "pos": "nw" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "right": true },
+              { "type": "point", "id": "I", "x": 3, "y": 2.5, "style": "rond", "pos": "ne" },
+              { "type": "segment", "from": "B", "to": "I", "marks": 1 },
+              { "type": "segment", "from": "I", "to": "C", "marks": 1 },
+              { "type": "circle", "center": "I", "r": 2.5, "color": "bleu" }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Les hauteurs",
+          "body": "La **hauteur** issue de A est la droite qui passe par A et qui est **perpendiculaire** au côté opposé (BC). Son pied est sur la droite (BC), parfois en dehors du segment si le triangle a un angle obtus. Les trois hauteurs d'un triangle sont **concourantes**.",
+          "figure": {
+            "alt": "Un triangle ABC et ses trois hauteurs, avec un angle droit au pied de chacune, qui se coupent en un même point",
+            "w": 400, "h": 320,
+            "frame": { "x": [0, 10], "y": [0, 8] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "C", "to": [3, 1], "color": "rouge" },
+              { "type": "segment", "from": "A", "to": [5, 5], "color": "rouge" },
+              { "type": "segment", "from": "B", "to": [1.8, 3.4], "color": "rouge" },
+              { "type": "angle", "vertex": [3, 1], "from": "B", "to": "C", "right": true },
+              { "type": "angle", "vertex": [5, 5], "from": "C", "to": "A", "right": true },
+              { "type": "angle", "vertex": [1.8, 3.4], "from": "B", "to": "C", "right": true },
+              { "type": "point", "id": "H", "x": 3, "y": 3, "style": "rond", "pos": "e" }
+            ]
+          }
+        },
+        {
+          "emoji": "🎯",
+          "title": "Les médianes",
+          "body": "La **médiane** issue de A est la droite (ou le segment) qui joint A au **milieu** du côté opposé [BC]. Les trois médianes sont concourantes en G, le **centre de gravité** : un triangle en carton tient en équilibre sur la pointe d'un crayon placée en G !",
+          "reveal": { "question": "Devine : une médiane est-elle perpendiculaire au côté opposé ?", "answer": "En général, non ! Elle passe par le milieu, pas forcément à angle droit. C'est la hauteur qui est perpendiculaire." },
+          "figure": {
+            "alt": "Un triangle ABC, les milieux de ses côtés codés, et ses trois médianes qui se coupent en G",
+            "w": 400, "h": 320,
+            "frame": { "x": [0, 10], "y": [0, 8] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "se" },
+              { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "M", "x": 6, "y": 4, "pos": "ne" },
+              { "type": "point", "id": "N", "x": 2, "y": 4, "pos": "w" },
+              { "type": "point", "id": "P", "x": 5, "y": 1, "pos": "s" },
+              { "type": "segment", "from": "B", "to": "M", "marks": 1 },
+              { "type": "segment", "from": "M", "to": "C", "marks": 1 },
+              { "type": "segment", "from": "A", "to": "N", "marks": 2 },
+              { "type": "segment", "from": "N", "to": "C", "marks": 2 },
+              { "type": "segment", "from": "A", "to": "P", "marks": 3 },
+              { "type": "segment", "from": "P", "to": "B", "marks": 3 },
+              { "type": "segment", "from": "A", "to": "M", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "N", "color": "vert" },
+              { "type": "segment", "from": "C", "to": "P", "color": "vert" },
+              { "type": "point", "id": "G", "x": 4.3333, "y": 3, "style": "rond", "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Une médiane partage l'aire en deux",
+          "body": "M est le milieu de [BC]. Les triangles ABM et AMC ont des bases de même longueur (BM = MC) et **la même hauteur** [AH]. Comme aire = base × hauteur ÷ 2, ils ont **la même aire** : la médiane partage le triangle en deux parts égales.",
+          "example": "C'est la réponse au champ de la découverte : la clôture doit aller de A au milieu de [BC].",
+          "figure": {
+            "alt": "Un triangle ABC coupé par la médiane [AM] en deux triangles colorés, avec la hauteur [AH] commune en pointillés",
+            "w": 400, "h": 260,
+            "frame": { "x": [-0.5, 8.5], "y": [-0.8, 5.5] },
+            "items": [
+              { "type": "point", "id": "A", "x": 3, "y": 5, "pos": "n" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 8, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 4, "y": 0, "pos": "s" },
+              { "type": "point", "id": "H", "x": 3, "y": 0, "pos": "s" },
+              { "type": "polygon", "points": ["A", "B", "M"], "fill": "bleu" },
+              { "type": "polygon", "points": ["A", "M", "C"], "fill": "orange" },
+              { "type": "segment", "from": "B", "to": "M", "marks": 1 },
+              { "type": "segment", "from": "M", "to": "C", "marks": 1 },
+              { "type": "segment", "from": "A", "to": "H", "dashed": true },
+              { "type": "angle", "vertex": "H", "from": "B", "to": "A", "right": true }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le cercle d'un triangle rectangle",
+      "steps": [
+        { "text": "Le triangle EFG est rectangle en E et son hypoténuse [FG] mesure 10 cm. On cherche le centre et le rayon de son cercle circonscrit." },
+        { "text": "Le centre du cercle circonscrit est le point de concours des médiatrices. Pour un triangle rectangle, c'est le milieu O de l'hypoténuse [FG], le côté opposé à l'angle droit." },
+        { "text": "Le rayon est la distance de O à F, c'est-à-dire la moitié de FG.", "math": "r = 10 ÷ 2 = 5 cm" },
+        {
+          "text": "Vérification : on pique le compas en O, on l'ouvre jusqu'à F. Le cercle passe par G… et aussi par E, le sommet de l'angle droit.",
+          "math": "OE = OF = OG = 5 cm",
+          "figure": {
+            "alt": "Le triangle EFG rectangle en E, le milieu O de l'hypoténuse [FG] et le cercle de centre O passant par E, F et G",
+            "w": 320, "h": 300,
+            "frame": { "x": [0, 6], "y": [-0.3, 5.3] },
+            "items": [
+              { "type": "point", "id": "E", "x": 1, "y": 1, "pos": "sw" },
+              { "type": "point", "id": "F", "x": 1, "y": 4, "pos": "nw" },
+              { "type": "point", "id": "G", "x": 5, "y": 1, "pos": "se" },
+              { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+              { "type": "angle", "vertex": "E", "from": "G", "to": "F", "right": true },
+              { "type": "point", "id": "O", "x": 3, "y": 2.5, "style": "rond", "pos": "ne" },
+              { "type": "segment", "from": "F", "to": "O", "marks": 1 },
+              { "type": "segment", "from": "O", "to": "G", "marks": 1 },
+              { "type": "segment", "from": "O", "to": "E", "marks": 1, "dashed": true },
+              { "type": "circle", "center": "O", "r": 2.5, "color": "bleu" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Hauteur → angle droit. Médiane → milieu. Médiatrice → angle droit ET milieu. Lis bien les codages !",
+      "exercises": ["m5-droites-vocabulaire", "m5-droites-reconnaitre", "m5-droites-equidistant", "m5-droites-pied-hauteur", "m5-droites-rectangle-cercle", "m5-droites-construction"]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi de démontrer",
+      "exercises": ["m5-droites-demo-mediane"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : partager encore",
+      "exercises": ["m5-droites-mediane-aire"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : l'assiette des archéologues",
+      "body": "Un morceau d'assiette ronde, trois points sur son bord… et les médiatrices pour retrouver l'assiette entière.",
+      "exercises": ["m5-droites-assiette"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Médiatrice** de [AB] : perpendiculaire à [AB] en son milieu ; ses points sont à égale distance de A et de B. Les trois médiatrices se coupent au centre du cercle circonscrit (le milieu de l'hypoténuse pour un triangle rectangle). **Hauteur** : passe par un sommet, perpendiculaire au côté opposé. **Médiane** : passe par un sommet et le milieu du côté opposé ; elle partage le triangle en deux triangles de même aire.\n\n- **Confondre hauteur et médiane.** Hauteur → angle droit ; médiane → milieu.\n- **Faire passer la médiatrice par un sommet.** Elle ne dépend que du segment.\n- **Croire qu'une hauteur est toujours à l'intérieur.** Dans un triangle obtus, son pied est sur le prolongement du côté.\n- **Confondre rayon et diamètre** : rayon = hypoténuse ÷ 2."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera hauteurs, médianes et médiatrices dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une hauteur qui sort du triangle, et un triangle isocèle où plusieurs droites remarquables n'en font qu'une.",
+      "exercises": ["m5-droites-obtus", "m5-droites-isocele"]
+    },
+    "expert": {
+      "intro": "Facultatif : démontrer que les trois médiatrices sont concourantes, puis que les médianes découpent le triangle en six parts de même aire.",
+      "exercises": ["m5-droites-concours", "m5-droites-six-parts"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m5-droites-vocabulaire", "type": "match", "skill": "m5.geo.hauteurs", "skills": ["m5.geo.medianes", "m5.geo.mediatrice"], "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:hauteur-mediane", "mc:mediatrice-sommet"], "expectedSeconds": 120,
+      "prompt": "Associe chaque droite (ou cercle) du triangle ABC à sa définition.",
+      "figure": {
+        "alt": "Un triangle ABC quelconque",
+        "w": 320, "h": 256,
+        "frame": { "x": [0, 10], "y": [0, 8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 3, "y": 7, "pos": "n" },
+          { "type": "point", "id": "B", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 9, "y": 1, "pos": "se" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" }
+        ]
+      },
+      "leftTitle": "Droite ou cercle", "rightTitle": "Définition",
+      "left": [
+        { "id": "l1", "label": "La hauteur issue de A" },
+        { "id": "l2", "label": "La médiane issue de A" },
+        { "id": "l3", "label": "La médiatrice de [BC]" },
+        { "id": "l4", "label": "Le cercle circonscrit au triangle" }
+      ],
+      "right": [
+        { "id": "r1", "label": "passe par A et est perpendiculaire à (BC)" },
+        { "id": "r2", "label": "passe par A et par le milieu de [BC]" },
+        { "id": "r3", "label": "est perpendiculaire à [BC] et passe par son milieu" },
+        { "id": "r4", "label": "passe par les trois sommets A, B et C" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l1", "r2"], "id": "mc:hauteur-mediane", "error": "notion", "feedback": "La droite qui passe par A et par le milieu de [BC] est la médiane. La hauteur, elle, est perpendiculaire à (BC) : elle ne passe pas forcément par le milieu." },
+        { "pair": ["l2", "r1"], "id": "mc:hauteur-mediane", "error": "notion", "feedback": "La droite qui passe par A et qui est perpendiculaire à (BC) est la hauteur. La médiane va au milieu de [BC]." },
+        { "pair": ["l3", "r1"], "id": "mc:mediatrice-sommet", "error": "notion", "feedback": "La médiatrice de [BC] ne dépend que du segment [BC] : perpendiculaire en son milieu. Elle ne passe pas forcément par A." }
+      ],
+      "hints": ["« Médiane » fait penser à « milieu ».", "« Hauteur » : on la mesure à angle droit, comme la hauteur d'une personne debout sur le sol.", "La médiatrice combine les deux : angle droit ET milieu, mais pas de sommet."],
+      "solution": "Hauteur issue de A : passe par A, perpendiculaire à (BC). Médiane issue de A : passe par A et le milieu de [BC]. Médiatrice de [BC] : perpendiculaire à [BC] en son milieu. Cercle circonscrit : passe par A, B et C.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r2", "l2": "r1", "l3": "r3", "l4": "r4" } }, "expect": "mc:hauteur-mediane" }
+      ]
+    },
+    {
+      "id": "m5-droites-reconnaitre", "type": "categorize", "skill": "m5.geo.hauteurs", "skills": ["m5.geo.medianes", "m5.geo.mediatrice"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:hauteur-mediane", "mc:mediatrice-hauteur", "mc:lecture-codage"], "expectedSeconds": 180,
+      "prompt": "Sur la figure, quatre droites sont tracées dans le triangle ABC. Utilise uniquement les codages (angles droits, segments de même longueur) pour dire ce qu'est chacune d'elles.",
+      "figure": {
+        "alt": "Un triangle ABC traversé par quatre droites (d1), (d2), (d3) et (d4), avec des angles droits et des segments égaux codés",
+        "w": 400, "h": 360,
+        "frame": { "x": [0, 10], "y": [-1, 8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C"] },
+          { "type": "segment", "from": "C", "to": [3, 1], "label": "(d1)", "color": "rouge" },
+          { "type": "angle", "vertex": [3, 1], "from": "B", "to": "C", "right": true },
+          { "type": "segment", "from": "A", "to": [6, 4], "label": "(d2)", "color": "vert" },
+          { "type": "segment", "from": "B", "to": [6, 4], "marks": 1 },
+          { "type": "segment", "from": [6, 4], "to": "C", "marks": 1 },
+          { "type": "segment", "from": [5, -0.5], "to": [5, 6], "label": "(d3)", "color": "bleu" },
+          { "type": "angle", "vertex": [5, 1], "from": "B", "to": [5, 3], "right": true },
+          { "type": "segment", "from": "A", "to": [5, 1], "marks": 2 },
+          { "type": "segment", "from": [5, 1], "to": "B", "marks": 2 },
+          { "type": "segment", "from": "B", "to": [2.3333, 5], "label": "(d4)", "color": "orange" }
+        ]
+      },
+      "categories": [
+        { "id": "hauteur", "label": "Une hauteur du triangle" },
+        { "id": "mediane", "label": "Une médiane du triangle" },
+        { "id": "mediatrice", "label": "La médiatrice d'un côté" },
+        { "id": "rien", "label": "On ne peut rien affirmer (pas de codage)" }
+      ],
+      "items": [
+        { "id": "d1", "label": "(d1)", "category": "hauteur" },
+        { "id": "d2", "label": "(d2)", "category": "mediane" },
+        { "id": "d3", "label": "(d3)", "category": "mediatrice" },
+        { "id": "d4", "label": "(d4)", "category": "rien" }
+      ],
+      "misconceptions": [
+        { "item": "d1", "category": "mediane", "id": "mc:hauteur-mediane", "error": "notion", "feedback": "(d1) passe par C et coupe (AB) à angle droit (codage) : c'est la hauteur issue de C. Rien n'indique qu'elle passe par le milieu de [AB]." },
+        { "item": "d2", "category": "hauteur", "id": "mc:hauteur-mediane", "error": "notion", "feedback": "(d2) passe par A et par le point de [BC] codé comme milieu : c'est une médiane. Aucun angle droit n'est codé." },
+        { "item": "d3", "category": "hauteur", "id": "mc:mediatrice-hauteur", "error": "notion", "feedback": "(d3) est bien perpendiculaire à [AB]… mais elle ne passe par aucun sommet : elle passe par le milieu de [AB]. C'est la médiatrice de [AB]." },
+        { "item": "d4", "category": "mediane", "id": "mc:lecture-codage", "error": "lecture", "feedback": "Rien n'indique que (d4) passe par le milieu de [AC] ni qu'elle est perpendiculaire à (AC). Sans codage, on ne peut rien affirmer, même si « ça en a l'air »." },
+        { "item": "d4", "category": "hauteur", "id": "mc:lecture-codage", "error": "lecture", "feedback": "Aucun angle droit n'est codé pour (d4) : on ne peut pas affirmer que c'est une hauteur." }
+      ],
+      "hints": ["Pour chaque droite : passe-t-elle par un sommet ?", "Y a-t-il un angle droit codé ? Des segments égaux codés (un milieu) ?", "Angle droit + sommet → hauteur ; milieu + sommet → médiane ; angle droit + milieu → médiatrice."],
+      "solution": "(d1) : passe par C, angle droit avec (AB) → hauteur issue de C. (d2) : passe par A et par le milieu de [BC] → médiane issue de A. (d3) : perpendiculaire à [AB] en son milieu → médiatrice de [AB]. (d4) : aucun codage → on ne peut rien affirmer.",
+      "selfTest": [
+        { "response": { "assign": { "d1": "hauteur", "d2": "mediane", "d3": "mediatrice", "d4": "rien" } }, "expect": "correct" },
+        { "response": { "assign": { "d1": "hauteur", "d2": "hauteur", "d3": "mediatrice", "d4": "rien" } }, "expect": "mc:hauteur-mediane" },
+        { "response": { "assign": { "d1": "hauteur", "d2": "mediane", "d3": "mediatrice", "d4": "mediane" } }, "expect": "mc:lecture-codage" }
+      ]
+    },
+    {
+      "id": "m5-droites-equidistant", "type": "numeric", "skill": "m5.geo.mediatrice", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:oubli-equidistance", "mc:milieu-confusion"], "expectedSeconds": 90,
+      "params": { "a": { "int": [3, 9] }, "b": { "int": [4, 10] } },
+      "constraints": ["2*a > b"],
+      "prompt": "Le point M est sur la médiatrice du segment [AB]. On sait que MA = {a} cm et AB = {b} cm. Calcule le périmètre du triangle MAB, en cm.",
+      "figure": {
+        "alt": "Figure à main levée : un segment [AB], sa médiatrice en pointillés et un point M de la médiatrice relié à A et à B",
+        "w": 360, "h": 250,
+        "frame": { "x": [0, 8], "y": [0, 5.5] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "M", "x": 4, "y": 4.5, "pos": "n" },
+          { "type": "line", "through": [[4, 0], [4, 5.5]], "dashed": true, "color": "rouge" },
+          { "type": "segment", "from": "A", "to": [4, 1], "marks": 1 },
+          { "type": "segment", "from": [4, 1], "to": "B", "marks": 1 },
+          { "type": "angle", "vertex": [4, 1], "from": "B", "to": "M", "right": true },
+          { "type": "segment", "from": "M", "to": "A", "label": "{a} cm" },
+          { "type": "segment", "from": "M", "to": "B" },
+          { "type": "text", "x": 4, "y": 0.4, "text": "AB = {b} cm", "size": "s", "anchor": "middle" }
+        ]
+      },
+      "answer": "2*a + b",
+      "misconceptions": [
+        { "answer": "a + b", "id": "mc:oubli-equidistance", "error": "methode", "feedback": "Il manque MB ! On ne te la donne pas, mais M est sur la médiatrice de [AB] : il est à égale distance de A et de B, donc MB = MA = {a} cm." },
+        { "answer": "a + b + b/2", "id": "mc:milieu-confusion", "error": "notion", "feedback": "MB ne vaut pas la moitié de AB : c'est le milieu de [AB] qui est à {b/2} cm de B. M est sur la médiatrice, donc MB = MA = {a} cm." }
+      ],
+      "hints": ["Le périmètre, c'est MA + AB + MB.", "Que sais-tu des points de la médiatrice de [AB] ?", "MB = MA."],
+      "solution": "M est sur la médiatrice de [AB], donc MB = MA = {a} cm. Périmètre : $ {a} + {b} + {a} = {2*a+b} $ cm.",
+      "selfTest": [ { "response": { "value": "{2*a+b}" }, "expect": "correct" }, { "response": { "value": "{a+b}" }, "expect": "mc:oubli-equidistance" } ]
+    },
+    {
+      "id": "m5-droites-pied-hauteur", "type": "graph", "skill": "m5.geo.hauteurs", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:hauteur-mediane", "notion"], "expectedSeconds": 180,
+      "params": { "c": { "int": [1, 4] }, "e": { "int": [5, 8] } },
+      "constraints": ["mod(c + e; 2) = 0", "c + e != 10"],
+      "prompt": "Dans le quadrillage, A(1 ; 1), B(9 ; 9) et C({c} ; {e}). Le côté [AB] suit les diagonales des carreaux. Place H, le pied de la hauteur issue de C.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 avec le triangle ABC, dont le côté [AB] est en diagonale",
+        "w": 340, "h": 340,
+        "frame": { "x": [0, 10], "y": [0, 10], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "se" },
+          { "type": "point", "id": "B", "x": 9, "y": 9, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{c}", "y": "{e}", "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" }
+        ]
+      },
+      "xRange": [0, 10], "yRange": [0, 10], "gridStep": 1,
+      "expectedPoints": [["(c + e)/2", "(c + e)/2"]],
+      "hints": ["La hauteur issue de C est perpendiculaire à (AB). Ici, (AB) suit une diagonale des carreaux : la perpendiculaire suit l'AUTRE diagonale.", "Depuis C, avance d'un carreau vers la droite et d'un carreau vers le bas, encore et encore, jusqu'à toucher (AB).", "Sur (AB), l'abscisse et l'ordonnée sont égales."],
+      "solution": "En partant de C({c} ; {e}) et en avançant à chaque pas d'un carreau à droite et d'un carreau en bas, on atteint (AB) après {(e-c)/2} pas : H({(c+e)/2} ; {(c+e)/2}). Attention : H n'est pas le milieu de [AB], qui est (5 ; 5) — ça, ce serait le pied de la médiane.",
+      "selfTest": [
+        { "response": { "points": [["{(c+e)/2}", "{(c+e)/2}"]] }, "expect": "correct" },
+        { "response": { "points": [[5, 5]] }, "expect": "incorrect" },
+        { "response": { "points": [["{c}", "{c}"]] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-droites-rectangle-cercle", "type": "composite", "skill": "m5.geo.mediatrice", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:diametre-rayon", "mc:centre-sommet"], "expectedSeconds": 180,
+      "params": { "c": { "int": [5, 15] } },
+      "prompt": "Le triangle ABC est rectangle en A et son hypoténuse [BC] mesure {c} cm.",
+      "figure": {
+        "alt": "Figure à main levée : un triangle ABC rectangle en A, l'hypoténuse [BC] est indiquée",
+        "w": 320, "h": 240,
+        "frame": { "x": [0, 8], "y": [0, 6] },
+        "caption": "Figure à main levée",
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1, "y": 5, "pos": "nw" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "right": true },
+          { "type": "segment", "from": "B", "to": "C", "label": "{c} cm" }
+        ]
+      },
+      "parts": [
+        { "type": "text", "prompt": "Où se trouve le centre de son cercle circonscrit ? Complète : « au milieu de … »", "openEnded": true,
+          "accept": ["[BC]", "BC", "[CB]", "CB", "l'hypoténuse", "hypoténuse", "l'hypoténuse [BC]", "du segment [BC]", "de [BC]", "de BC", "de l'hypoténuse", "milieu de [BC]", "le milieu de [BC]", "au milieu de [BC]", "milieu de BC", "le milieu de BC", "au milieu de BC", "milieu de l'hypoténuse", "le milieu de l'hypoténuse", "au milieu de l'hypoténuse", "au milieu de l'hypoténuse [BC]"],
+          "misconceptions": [
+            { "answer": "A", "id": "mc:centre-sommet", "error": "notion", "feedback": "A est le sommet de l'angle droit : il est SUR le cercle, pas au centre. Le centre est le milieu de l'hypoténuse [BC]." },
+            { "answer": "[AB]", "id": "mc:centre-sommet", "error": "notion", "feedback": "Le centre est le milieu de l'hypoténuse, le côté opposé à l'angle droit : c'est [BC]." }
+          ] },
+        { "type": "numeric", "prompt": "Rayon du cercle circonscrit (en cm) :", "answer": "c/2",
+          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "{c} cm, c'est le diamètre : l'hypoténuse traverse le cercle en passant par le centre. Le rayon est la moitié : {c} ÷ 2 = {c/2} cm." } ] },
+        { "type": "numeric", "prompt": "Distance entre le centre du cercle et le sommet A (en cm) :", "answer": "c/2",
+          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "A est sur le cercle : sa distance au centre est le rayon, {c/2} cm." } ] }
+      ],
+      "hints": ["Dans un triangle rectangle, le centre du cercle circonscrit est un point très particulier de l'hypoténuse.", "Le rayon est la distance du centre à n'importe quel point du cercle.", "Les trois sommets sont sur le cercle : ils sont tous à la même distance du centre."],
+      "solution": "Le centre du cercle circonscrit à un triangle rectangle est le milieu de l'hypoténuse [BC]. Le rayon vaut la moitié de l'hypoténuse : {c/2} cm. A est sur le cercle, donc il est aussi à {c/2} cm du centre.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "milieu de [BC]" }, { "value": "{c/2}" }, { "value": "{c/2}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "milieu de [BC]" }, { "value": "{c}" }, { "value": "{c/2}" } ] }, "expect": "mc:diametre-rayon" }
+      ]
+    },
+    {
+      "id": "m5-droites-construction", "type": "order", "skill": "m5.geo.mediatrice", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "expectedSeconds": 150,
+      "prompt": "On construit la médiatrice du segment [AB] avec un compas et une règle (sans équerre). La figure montre le résultat. Remets les étapes dans l'ordre.",
+      "figure": {
+        "alt": "Un segment [AB], quatre arcs de cercle qui se coupent en deux points M et N, et la droite (MN)",
+        "w": 400, "h": 280,
+        "frame": { "x": [0, 10], "y": [-1.5, 5.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 2, "y": 2, "pos": "w" },
+          { "type": "point", "id": "B", "x": 8, "y": 2, "pos": "e" },
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "arc", "center": "A", "r": 4, "start": 28, "end": 55, "color": "gris" },
+          { "type": "arc", "center": "A", "r": 4, "start": 305, "end": 332, "color": "gris" },
+          { "type": "arc", "center": "B", "r": 4, "start": 125, "end": 152, "color": "gris" },
+          { "type": "arc", "center": "B", "r": 4, "start": 208, "end": 235, "color": "gris" },
+          { "type": "point", "id": "M", "x": 5, "y": 4.6458, "pos": "ne" },
+          { "type": "point", "id": "N", "x": 5, "y": -0.6458, "pos": "se" },
+          { "type": "line", "through": ["M", "N"], "color": "rouge" }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        { "id": "m1", "label": "Je pointe le compas sur A, avec un écartement plus grand que la moitié de AB." },
+        { "id": "m2", "label": "Je trace un arc de chaque côté du segment [AB]." },
+        { "id": "m3", "label": "Sans changer l'écartement, je pointe le compas sur B et je trace deux arcs qui coupent les premiers." },
+        { "id": "m4", "label": "Je nomme M et N les points d'intersection des arcs : chacun est à égale distance de A et de B." },
+        { "id": "m5", "label": "Je trace la droite (MN) : c'est la médiatrice de [AB]." }
+      ],
+      "hints": ["On commence toujours par régler le compas.", "Les arcs centrés en B doivent couper ceux centrés en A : l'écartement ne change pas.", "Deux points suffisent pour tracer une droite."],
+      "solution": "Compas en A (écartement plus grand que la moitié de AB), deux arcs, même écartement en B, deux arcs qui coupent les premiers en M et N. Comme MA = MB et NA = NB, M et N sont sur la médiatrice : c'est la droite (MN).",
+      "selfTest": [
+        { "response": { "order": ["m1", "m2", "m3", "m4", "m5"] }, "expect": "correct" },
+        { "response": { "order": ["m1", "m2", "m3", "m5", "m4"] }, "expect": "partiel" },
+        { "response": { "order": ["m5", "m4", "m3", "m2", "m1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-droites-demo-mediane", "type": "open", "skill": "m5.geo.medianes", "skills": ["m4.raisonner.preuve", "m5.grandeurs.aires"], "track": "classe", "role": "libre", "difficulty": 4,
+      "representation": "verbale", "expectedSeconds": 600, "minWords": 35,
+      "prompt": "Démontre que la médiane [AM] partage le triangle ABC en deux triangles ABM et AMC de même aire. Sur la figure, [AH] est la hauteur issue de A. Écris tes arguments dans l'ordre et termine par « donc… ».",
+      "figure": {
+        "alt": "Un triangle ABC partagé par la médiane [AM] en deux triangles, avec la hauteur [AH] en pointillés et les segments [BM] et [MC] codés égaux",
+        "w": 400, "h": 260,
+        "frame": { "x": [-0.5, 8.5], "y": [-0.8, 5.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 3, "y": 5, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 4, "y": 0, "pos": "s" },
+          { "type": "point", "id": "H", "x": 3, "y": 0, "pos": "s" },
+          { "type": "polygon", "points": ["A", "B", "M"], "fill": "bleu" },
+          { "type": "polygon", "points": ["A", "M", "C"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M", "marks": 1 },
+          { "type": "segment", "from": "M", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "B", "to": "A", "right": true }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "J'utilise que M est le milieu de [BC] : BM = MC", "keywords": [["milieu", "bm = mc", "mc = bm"]] },
+        { "id": "c2", "label": "Je remarque que [AH] est la hauteur des DEUX triangles", "keywords": [["meme hauteur", "hauteur commune", "les deux triangles"]] },
+        { "id": "c3", "label": "J'utilise la formule : aire = base × hauteur ÷ 2", "keywords": [["base"]] },
+        { "id": "c4", "label": "Je conclus que les deux aires sont égales", "keywords": [["donc"]] }
+      ],
+      "models": [
+        "M est le milieu de [BC], donc BM = MC. Dans le triangle ABM, la hauteur relative à la base [BM] est [AH] ; dans le triangle AMC, la hauteur relative à la base [MC] est aussi [AH]. Aire de ABM = BM × AH ÷ 2 et aire de AMC = MC × AH ÷ 2. Comme BM = MC, ces deux calculs donnent le même résultat. Donc les triangles ABM et AMC ont la même aire.",
+        "Les deux triangles ont la même hauteur AH, car leurs bases [BM] et [MC] sont sur la même droite (BC). Leurs bases ont la même longueur puisque M est le milieu de [BC]. Même base et même hauteur : donc même aire, égale à la moitié de l'aire de ABC."
+      ],
+      "hints": ["Rappelle la formule de l'aire d'un triangle.", "Quelle est la hauteur du triangle ABM relative à la base [BM] ? Et celle du triangle AMC relative à la base [MC] ?", "Que sais-tu de BM et de MC ?"],
+      "solution": "Aire(ABM) = BM × AH ÷ 2 et Aire(AMC) = MC × AH ÷ 2, car [AH] est la hauteur des deux triangles (leurs bases sont sur la même droite (BC)). M est le milieu de [BC], donc BM = MC. Les deux aires sont égales : chacune vaut la moitié de l'aire de ABC.",
+      "selfTest": [ { "response": { "text": "M est le milieu de [BC] donc BM = MC. Les deux triangles ont la même hauteur AH. L'aire d'un triangle est base × hauteur ÷ 2, donc aire ABM = BM × AH ÷ 2 = MC × AH ÷ 2 = aire AMC. Donc ils ont la même aire." }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m5-droites-mediane-aire", "type": "composite", "skill": "m5.geo.medianes", "skills": ["m5.grandeurs.aires"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:mediane-une-fois", "mc:oubli-morceau"], "expectedSeconds": 300,
+      "params": { "k": { "int": [3, 15] }, "s": { "expr": "4*k" } },
+      "prompt": "Le triangle ABC a une aire de {s} cm². M est le milieu de [BC], puis N est le milieu de [AM].",
+      "figure": {
+        "alt": "Un triangle ABC, le milieu M de [BC] relié à A, le milieu N de [AM] relié à B et à C",
+        "w": 400, "h": 300,
+        "frame": { "x": [-0.5, 8.5], "y": [-0.8, 6.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 3, "y": 6, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 4, "y": 0, "pos": "s" },
+          { "type": "point", "id": "N", "x": 3.5, "y": 3, "pos": "e" },
+          { "type": "polygon", "points": ["A", "B", "C"] },
+          { "type": "segment", "from": "B", "to": "M", "marks": 1 },
+          { "type": "segment", "from": "M", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "A", "to": "N", "marks": 2 },
+          { "type": "segment", "from": "N", "to": "M", "marks": 2 },
+          { "type": "segment", "from": "B", "to": "N", "color": "vert" },
+          { "type": "segment", "from": "C", "to": "N", "color": "vert" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du triangle ABM (en cm²) :", "answer": "s/2",
+          "misconceptions": [ { "answer": "s/3", "id": "mc:mediane-tiers", "error": "notion", "feedback": "La médiane [AM] partage ABC en DEUX triangles de même aire : {s} ÷ 2 = {s/2} cm²." } ] },
+        { "type": "numeric", "prompt": "Aire du triangle BNM (en cm²) :", "answer": "s/4",
+          "misconceptions": [ { "answer": "s/2", "id": "mc:mediane-une-fois", "error": "methode", "feedback": "Regarde le triangle ABM : N est le milieu de [AM], donc [BN] est une médiane de ABM. Elle le partage en deux : {s/2} ÷ 2 = {s/4} cm²." } ] },
+        { "type": "numeric", "prompt": "Aire du triangle BNC (en cm²) :", "answer": "s/2",
+          "misconceptions": [ { "answer": "s/4", "id": "mc:oubli-morceau", "error": "lecture", "feedback": "Le triangle BNC est formé de DEUX morceaux : BNM et MNC. Chacun vaut {s/4} cm² ([NM] est une médiane du triangle BNC), donc BNC = {s/2} cm²." } ] }
+      ],
+      "hints": ["Une médiane partage un triangle en deux triangles de même aire.", "Dans le triangle ABM, que représente le segment [BN] ?", "Le triangle BNC est fait de deux petits triangles : lesquels ?"],
+      "solution": "[AM] est une médiane de ABC : Aire(ABM) = {s} ÷ 2 = {s/2} cm². [BN] est une médiane de ABM : Aire(BNM) = {s/2} ÷ 2 = {s/4} cm². De même, [CN] est une médiane de AMC : Aire(MNC) = {s/4} cm². Donc Aire(BNC) = {s/4} + {s/4} = {s/2} cm².",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{s/2}" }, { "value": "{s/4}" }, { "value": "{s/2}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{s/2}" }, { "value": "{s/2}" }, { "value": "{s/2}" } ] }, "expect": "mc:mediane-une-fois" }
+      ]
+    },
+    {
+      "id": "m5-droites-assiette", "type": "composite", "skill": "m5.geo.mediatrice", "skills": ["m5.geo.reperage-plan"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:mediatrice-mediane", "mc:diametre-rayon"], "expectedSeconds": 600,
+      "prompt": "Sur un chantier de fouilles, Nora a trouvé un morceau d'assiette ronde. Elle a reporté trois points du bord sur un quadrillage où 1 carreau représente 2 cm : A(1 ; 8), B(2 ; 1) et C(5 ; 0). Pour reconstituer l'assiette, il faut retrouver son centre Ω.",
+      "figure": {
+        "alt": "Quadrillage gradué avec un arc de cercle (le morceau d'assiette) et trois points A, B et C sur cet arc",
+        "w": 340, "h": 370,
+        "frame": { "x": [0, 11], "y": [-1, 11], "grid": true, "axes": true },
+        "items": [
+          { "type": "arc", "center": [5, 5], "r": 5, "start": 135, "end": 280, "color": "orange" },
+          { "type": "point", "id": "A", "x": 1, "y": 8, "pos": "ne" },
+          { "type": "point", "id": "B", "x": 2, "y": 1, "pos": "ne" },
+          { "type": "point", "id": "C", "x": 5, "y": 0, "pos": "ne" }
+        ]
+      },
+      "parts": [
+        { "type": "text", "prompt": "Ω est à égale distance de A, de B et de C. Sur quelles droites se trouve-t-il ? Complète : « sur les … de [AB], de [BC] et de [AC] ».",
+          "accept": ["médiatrices", "les médiatrices", "mediatrices", "les mediatrices", "médiatrice", "la médiatrice"],
+          "misconceptions": [
+            { "answer": "médianes", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les médianes concernent un triangle et ses sommets. Les points à égale distance de deux points A et B forment la médiatrice de [AB]." },
+            { "answer": "hauteurs", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les hauteurs ne sont pas liées aux distances égales. Les points à égale distance de A et de B forment la médiatrice de [AB]." }
+          ] },
+        { "type": "graph", "prompt": "Place le centre Ω de l'assiette.", "xRange": [0, 11], "yRange": [-1, 11], "gridStep": 1, "expectedPoints": [[5, 5]] },
+        { "type": "numeric", "prompt": "Rayon de l'assiette sur le quadrillage (en carreaux) :", "answer": 5,
+          "misconceptions": [ { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 carreaux, c'est le diamètre. Le rayon est la distance de Ω à un point du bord, par exemple de Ω à C : 5 carreaux." } ] },
+        { "type": "numeric", "prompt": "Diamètre de la vraie assiette (en cm) :", "answer": 20,
+          "misconceptions": [
+            { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 cm, c'est le rayon (5 carreaux × 2 cm). Le diamètre est le double : 20 cm." },
+            { "answer": 5, "id": "mc:echelle", "error": "unite", "feedback": "5, c'est le rayon en carreaux. Convertis (1 carreau = 2 cm), puis double pour avoir le diamètre." }
+          ] }
+      ],
+      "hints": ["Un point à égale distance de A et de B est sur la médiatrice de [AB].", "Sur le quadrillage, trace les médiatrices de [AB] et de [BC] : leur point d'intersection est le centre.", "Pour le rayon, mesure la distance du centre à C en comptant les carreaux."],
+      "solution": "Ω est sur les médiatrices de [AB], [BC] et [AC] : c'est le centre du cercle circonscrit au triangle ABC. On trouve Ω(5 ; 5). Rayon : de Ω à C, 5 carreaux, soit 10 cm. Diamètre de l'assiette : 20 cm.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "médiatrices" }, { "points": [[5, 5]] }, { "value": "5" }, { "value": "20" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "médiatrices" }, { "points": [[5, 5]] }, { "value": "5" }, { "value": "10" } ] }, "expect": "mc:diametre-rayon" }
+      ]
+    },
+    {
+      "id": "m5-droites-remed-hauteur-mediane", "type": "composite", "skill": "m5.geo.hauteurs", "skills": ["m5.geo.medianes"], "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:hauteur-mediane"], "expectedSeconds": 120,
+      "params": { "p": { "int": [1, 8], "not": [5] } },
+      "prompt": "Rappel : la **hauteur** issue de A tombe à angle droit sur (BC) ; la **médiane** issue de A va au **milieu** de [BC]. Ici, [BC] est horizontal et mesure 10 cm, et A est juste au-dessus du point de [BC] situé à {p} cm de B. On note H le pied de la hauteur issue de A et M le milieu de [BC].",
+      "figure": {
+        "alt": "Un triangle ABC dont la base [BC], horizontale, mesure 10 cm",
+        "w": 400, "h": 200,
+        "frame": { "x": [-0.5, 10.5], "y": [-0.8, 4.8] },
+        "items": [
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "A", "x": "{p}", "y": 4, "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "text", "x": 5, "y": -0.6, "text": "10 cm", "size": "s", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Distance BH (en cm) :", "answer": "p",
+          "misconceptions": [ { "answer": 5, "id": "mc:hauteur-mediane", "error": "notion", "feedback": "5 cm, c'est la position du milieu M : c'est la MÉDIANE qui passe par le milieu. La hauteur tombe à angle droit, juste sous A : BH = {p} cm." } ] },
+        { "type": "numeric", "prompt": "Distance BM (en cm) :", "answer": 5,
+          "misconceptions": [ { "answer": "p", "id": "mc:hauteur-mediane", "error": "notion", "feedback": "{p} cm, c'est le pied de la HAUTEUR. M est le milieu de [BC] : BM = 10 ÷ 2 = 5 cm." } ] }
+      ],
+      "hints": ["Le pied de la hauteur est le point de (BC) situé juste sous A (angle droit).", "Le pied de la médiane est le milieu de [BC]."],
+      "solution": "H est juste sous A : BH = {p} cm. M est le milieu de [BC] : BM = 5 cm. Hauteur et médiane issues de A sont deux droites différentes (sauf si le triangle est isocèle en A).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p}" }, { "value": "5" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5" }, { "value": "{p}" } ] }, "expect": "mc:hauteur-mediane" }
+      ]
+    },
+    {
+      "id": "m5-droites-remed-mediatrice", "type": "graph", "skill": "m5.geo.mediatrice", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:mediatrice-sommet", "mc:oubli-equidistance"], "expectedSeconds": 150,
+      "params": { "a": { "int": [1, 3] }, "k": { "int": [2, 3] } },
+      "prompt": "Rappel : un point situé à égale distance de A et de B est sur la médiatrice de [AB]. Ici A({a} ; 3) et B({a+2*k} ; 3). Place trois points différents, à coordonnées entières, qui sont chacun à la même distance de A et de B. Que remarques-tu sur leur position ?",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec deux points A et B sur une même ligne horizontale",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": "{a}", "y": 3, "pos": "s" },
+          { "type": "point", "id": "B", "x": "{a+2*k}", "y": 3, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "B" }
+        ]
+      },
+      "xRange": [0, 10], "yRange": [0, 8], "gridStep": 1,
+      "predicate": "x = a + k", "count": 3, "predicateLabel": "« à égale distance de A et de B »",
+      "hints": ["Le milieu de [AB] est un premier point qui convient.", "Monte ou descends à partir du milieu : les distances à A et à B restent-elles égales ?", "Tous les bons points sont sur une même droite : laquelle ?"],
+      "solution": "Les points qui conviennent ont tous pour abscisse {a+k} : par exemple ({a+k} ; 3), ({a+k} ; 0) et ({a+k} ; 6). Ils sont sur la droite verticale passant par le milieu de [AB] : la médiatrice de [AB].",
+      "selfTest": [
+        { "response": { "points": [["{a+k}", 0], ["{a+k}", 3], ["{a+k}", 6]] }, "expect": "correct" },
+        { "response": { "points": [["{a}", 4], ["{a+2*k}", 4], ["{a+2*k}", 5]] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-droites-obtus", "type": "composite", "skill": "m5.geo.hauteurs", "skills": ["m5.grandeurs.aires"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:base-ah", "mc:oubli-moitie"], "expectedSeconds": 360,
+      "params": { "b": { "int": [3, 6] }, "d": { "int": [1, 3] }, "h": { "int": [2, 4] } },
+      "prompt": "Le triangle ABC a un angle obtus en B. AB = {b} cm. La hauteur issue de C coupe la droite (AB) en H, en dehors du segment [AB] : BH = {d} cm et CH = {h} cm.",
+      "figure": {
+        "alt": "Un triangle ABC avec un angle obtus en B ; le côté [AB] est prolongé en pointillés jusqu'à H, pied de la hauteur issue de C",
+        "w": 420, "h": 240,
+        "frame": { "x": [-0.5, 10], "y": [-1, 5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{b}", "y": 0, "pos": "s" },
+          { "type": "point", "id": "C", "x": "{b+d}", "y": "{h}", "pos": "n" },
+          { "type": "point", "id": "H", "x": "{b+d}", "y": 0, "pos": "se" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{b} cm" },
+          { "type": "segment", "from": "B", "to": "H", "dashed": true, "label": "{d} cm" },
+          { "type": "segment", "from": "C", "to": "H", "dashed": true, "label": "{h} cm" },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du triangle ABC (en cm²) :", "answer": "b*h/2",
+          "misconceptions": [
+            { "answer": "(b + d)*h/2", "id": "mc:base-ah", "error": "lecture", "feedback": "Tu as pris AH = {b+d} cm comme base. La base du triangle ABC est [AB], de {b} cm ; la hauteur relative à cette base est CH = {h} cm, même si elle tombe à l'extérieur du triangle." },
+            { "answer": "b*h", "id": "mc:oubli-moitie", "error": "methode", "feedback": "Base × hauteur donne l'aire d'un parallélogramme. Pour un triangle, on divise par 2 : {b} × {h} ÷ 2 = {b*h/2} cm²." }
+          ] },
+        { "type": "numeric", "prompt": "Aire du triangle BHC (en cm²) :", "answer": "d*h/2" },
+        { "type": "numeric", "prompt": "Aire du triangle AHC (en cm²) :", "answer": "(b + d)*h/2" },
+        { "type": "text", "prompt": "Vérifie : l'aire de AHC est-elle égale à la somme des aires de ABC et de BHC ? (oui ou non)", "accept": ["oui"] }
+      ],
+      "hints": ["Aire d'un triangle = base × hauteur ÷ 2, avec la hauteur RELATIVE à la base choisie.", "Pour la base [AB], la hauteur est CH, même si H est en dehors de [AB].", "Le grand triangle AHC est formé des triangles ABC et BHC."],
+      "solution": "Aire(ABC) = AB × CH ÷ 2 = {b} × {h} ÷ 2 = {b*h/2} cm². Aire(BHC) = {d} × {h} ÷ 2 = {d*h/2} cm². Aire(AHC) = {b+d} × {h} ÷ 2 = {(b+d)*h/2} cm², et on a bien {b*h/2} + {d*h/2} = {(b+d)*h/2}.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{b*h/2}" }, { "value": "{d*h/2}" }, { "value": "{(b+d)*h/2}" }, { "value": "oui" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{(b+d)*h/2}" }, { "value": "{d*h/2}" }, { "value": "{(b+d)*h/2}" }, { "value": "oui" } ] }, "expect": "mc:base-ah" }
+      ]
+    },
+    {
+      "id": "m5-droites-isocele", "type": "categorize", "skill": "m5.geo.mediatrice", "skills": ["m5.geo.hauteurs", "m5.geo.medianes"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:mediatrice-isocele"], "expectedSeconds": 240,
+      "prompt": "Le triangle ABC est isocèle en A (AB = AC). La droite (d), en pointillés, est son axe de symétrie. Quelles droites remarquables sont confondues avec (d) ?",
+      "figure": {
+        "alt": "Un triangle ABC isocèle en A, avec les côtés [AB] et [AC] codés égaux et un axe de symétrie vertical (d) en pointillés",
+        "w": 320, "h": 300,
+        "frame": { "x": [0, 8], "y": [0, 7.5] },
+        "items": [
+          { "type": "point", "id": "A", "x": 4, "y": 6.5, "pos": "n" },
+          { "type": "point", "id": "B", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 7, "y": 1, "pos": "se" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+          { "type": "segment", "from": "A", "to": "C", "marks": 1 },
+          { "type": "line", "through": [[4, 0], [4, 7.5]], "dashed": true, "label": "(d)", "color": "rouge" }
+        ]
+      },
+      "categories": [
+        { "id": "axe", "label": "Confondue avec l'axe (d)" },
+        { "id": "autre", "label": "Différente de (d)" }
+      ],
+      "items": [
+        { "id": "hA", "label": "La hauteur issue de A", "category": "axe" },
+        { "id": "mA", "label": "La médiane issue de A", "category": "axe" },
+        { "id": "medBC", "label": "La médiatrice de [BC]", "category": "axe" },
+        { "id": "bisA", "label": "La bissectrice de l'angle en A", "category": "axe" },
+        { "id": "hB", "label": "La hauteur issue de B", "category": "autre" },
+        { "id": "mB", "label": "La médiane issue de B", "category": "autre" },
+        { "id": "medAB", "label": "La médiatrice de [AB]", "category": "autre" }
+      ],
+      "misconceptions": [
+        { "item": "medAB", "category": "axe", "id": "mc:mediatrice-isocele", "error": "notion", "feedback": "La médiatrice de [AB] coupe [AB] en son milieu : elle ne passe pas par A et n'est pas verticale ici. Seules les droites liées au sommet principal A et à la base [BC] sont confondues avec l'axe." },
+        { "item": "hB", "category": "axe", "id": "mc:mediatrice-isocele", "error": "notion", "feedback": "La hauteur issue de B passe par B : elle ne peut pas être l'axe (d), qui passe par A et par le milieu de [BC]." },
+        { "item": "medBC", "category": "autre", "id": "mc:mediatrice-isocele", "error": "notion", "feedback": "A est à égale distance de B et de C (AB = AC) : A est donc sur la médiatrice de [BC]. Cette médiatrice est l'axe (d)." }
+      ],
+      "hints": ["L'axe (d) passe par A et par le milieu de [BC], et il est perpendiculaire à [BC].", "Une droite qui passe par B ou par le milieu de [AB] peut-elle être (d) ?", "Par symétrie, (d) partage aussi l'angle en A en deux angles égaux."],
+      "solution": "L'axe (d) passe par A, par le milieu de [BC], et il est perpendiculaire à (BC) : c'est à la fois la hauteur issue de A, la médiane issue de A, la médiatrice de [BC] et la bissectrice de l'angle en A. Les droites issues de B ou liées à [AB] sont différentes.",
+      "selfTest": [
+        { "response": { "assign": { "hA": "axe", "mA": "axe", "medBC": "axe", "bisA": "axe", "hB": "autre", "mB": "autre", "medAB": "autre" } }, "expect": "correct" },
+        { "response": { "assign": { "hA": "axe", "mA": "axe", "medBC": "axe", "bisA": "axe", "hB": "autre", "mB": "autre", "medAB": "axe" } }, "expect": "mc:mediatrice-isocele" }
+      ]
+    },
+    {
+      "id": "m5-droites-concours", "type": "order", "skill": "m5.geo.mediatrice", "skills": ["m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "verbale", "expectedSeconds": 420,
+      "prompt": "Démonstration : « Les trois médiatrices d'un triangle ABC passent par un même point. » Voici les étapes dans le désordre ; remets-les dans l'ordre logique.",
+      "figure": {
+        "alt": "Un triangle ABC avec les médiatrices de [AB] et de [BC] qui se coupent en O",
+        "w": 380, "h": 300,
+        "frame": { "x": [0, 10], "y": [0, 8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "line", "through": [[5, 1], [5, 3]], "dashed": true, "color": "rouge" },
+          { "type": "line", "through": [[6, 4], [7, 5]], "dashed": true, "color": "rouge" },
+          { "type": "point", "id": "O", "x": 5, "y": 3, "style": "rond", "pos": "se" }
+        ]
+      },
+      "orderLabel": "Du début à la fin de la démonstration",
+      "errorType": "raisonnement",
+      "items": [
+        { "id": "p1", "label": "Les droites (AB) et (BC) ne sont pas parallèles, donc leurs médiatrices non plus : elles se coupent en un point O." },
+        { "id": "p2", "label": "O est sur la médiatrice de [AB], donc OA = OB ; O est sur la médiatrice de [BC], donc OB = OC." },
+        { "id": "p3", "label": "On en déduit que OA = OC." },
+        { "id": "p4", "label": "Un point à égale distance de A et de C est sur la médiatrice de [AC] : O est donc aussi sur cette médiatrice." },
+        { "id": "p5", "label": "Conclusion : les trois médiatrices passent par O, et le cercle de centre O passant par A passe aussi par B et C." }
+      ],
+      "hints": ["On commence par nommer le point d'intersection de DEUX médiatrices.", "Ensuite, on traduit « être sur une médiatrice » en égalité de longueurs.", "La propriété réciproque (égale distance → sur la médiatrice) sert à la fin."],
+      "solution": "1. Deux médiatrices se coupent en O. 2. OA = OB et OB = OC (propriété de la médiatrice). 3. Donc OA = OC. 4. O est donc sur la médiatrice de [AC] (propriété réciproque). 5. Les trois médiatrices sont concourantes en O, centre du cercle circonscrit.",
+      "selfTest": [
+        { "response": { "order": ["p1", "p2", "p3", "p4", "p5"] }, "expect": "correct" },
+        { "response": { "order": ["p5", "p4", "p3", "p2", "p1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m5-droites-six-parts", "type": "composite", "skill": "m5.geo.medianes", "skills": ["m4.raisonner.preuve", "m5.grandeurs.aires"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "visuelle", "targets": ["mc:aire-quart"], "expectedSeconds": 900,
+      "params": { "k": { "int": [4, 15] }, "s": { "expr": "6*k" } },
+      "prompt": "Les trois médianes [AM], [BN] et [CP] du triangle ABC se coupent en G. Elles découpent le triangle en six petits triangles. L'aire du triangle ABC est {s} cm².",
+      "figure": {
+        "alt": "Un triangle ABC, les milieux M, N et P de ses côtés et ses trois médianes qui se coupent en G, formant six petits triangles",
+        "w": 400, "h": 320,
+        "frame": { "x": [0, 10], "y": [0, 8] },
+        "items": [
+          { "type": "point", "id": "A", "x": 1, "y": 1, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 9, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 3, "y": 7, "pos": "n" },
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "M", "x": 6, "y": 4, "pos": "ne" },
+          { "type": "point", "id": "N", "x": 2, "y": 4, "pos": "w" },
+          { "type": "point", "id": "P", "x": 5, "y": 1, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "M" },
+          { "type": "segment", "from": "B", "to": "N" },
+          { "type": "segment", "from": "C", "to": "P" },
+          { "type": "point", "id": "G", "x": 4.3333, "y": 3, "style": "rond", "pos": "n" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du triangle ABM (en cm²) :", "answer": "s/2" },
+        { "type": "numeric", "prompt": "Aire du petit triangle GBM (en cm²) :", "answer": "s/6",
+          "misconceptions": [
+            { "answer": "s/4", "id": "mc:aire-quart", "error": "raisonnement", "feedback": "GBM n'est pas la moitié de ABM : G n'est pas le milieu de [AM] (il est aux deux tiers). Essaie de démontrer que les six petits triangles ont la même aire." },
+            { "answer": "s/3", "id": "mc:aire-quart", "error": "raisonnement", "feedback": "Il y a six petits triangles, pas trois. S'ils ont tous la même aire, chacun vaut {s} ÷ 6." }
+          ] },
+        { "type": "open", "prompt": "Démontre que les six petits triangles ont la même aire. Aide : appelle x l'aire de GBM, y celle de GCN, z celle de GAP.", "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "J'explique que GBM et GMC ont la même aire ([GM] est une médiane du triangle GBC), et de même pour les deux autres paires", "keywords": [["mediane", "milieu"]] },
+            { "id": "c2", "label": "J'utilise que [AM] partage ABC en deux aires égales : z + z + x = y + y + x", "keywords": [["2z", "2 z", "z + z", "2y", "2 y", "y + y"]] },
+            { "id": "c3", "label": "Je conclus que x = y = z : chaque petit triangle vaut le sixième de l'aire de ABC", "keywords": [["sixieme", "÷ 6", "/ 6", "x = y"]] }
+          ] }
+      ],
+      "hints": ["Dans le triangle GBC, [GM] est une médiane : que peux-tu dire des aires de GBM et GMC ?", "Note x = Aire(GBM) = Aire(GMC), y = Aire(GCN) = Aire(GNA), z = Aire(GAP) = Aire(GPB).", "La médiane [AM] partage ABC en deux : Aire(ABM) = Aire(AMC), c'est-à-dire z + z + x = y + y + x. Fais de même avec [BN]."],
+      "solution": "x = Aire(GBM) = Aire(GMC) car [GM] est une médiane du triangle GBC ; de même y = Aire(GCN) = Aire(GNA) et z = Aire(GAP) = Aire(GPB). [AM] partage ABC en deux aires égales : 2z + x = 2y + x, donc z = y. [BN] aussi : 2x + y = 2z + y, donc x = z. Les six triangles ont la même aire, {s} ÷ 6 = {s/6} cm². Aire(ABM) = {s/2} cm².",
+      "methods": ["Écrire des égalités d'aires avec des lettres, puis les comparer.", "Vérifier sur une figure en carton : découpe les six triangles et compare-les en les pesant (même aire, même masse)."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{s/2}" }, { "value": "{s/6}" }, { "text": "GBM et GMC ont la même aire car GM est une médiane du triangle GBC, donc x pour les deux. ABM = AMC donc 2z + x = 2y + x, donc z = y. De même x = z. Donc x = y = z, chaque triangle vaut le sixième.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{s/2}" }, { "value": "{s/4}" }, { "text": "G est au milieu de AM donc c'est la moitié de ABM." } ] }, "expect": "mc:aire-quart" }
+      ]
+    }
+  ]
+}

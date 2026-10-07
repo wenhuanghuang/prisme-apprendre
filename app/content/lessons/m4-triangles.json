@@ -1,0 +1,1373 @@
+{
+  "id": "m4-triangles",
+  "chapter": "m4-ch-triangles",
+  "title": "Cas d’égalité des triangles et constructions",
+  "subject": "maths",
+  "level": "4e",
+  "skills": ["m4.triangles.egalite", "m4.triangles.construire"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Trois informations bien choisies suffisent pour fixer un triangle : trois côtés, deux côtés et l’angle compris, ou un côté et ses deux angles. Mais trois angles ne suffisent pas ! Construire, écrire un programme de construction et démontrer avec des triangles égaux.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le triangle au téléphone",
+      "body": "Lina décrit un triangle à Sam au téléphone : « Ses trois angles mesurent 50°, 60° et 70°. » Sam le construit soigneusement… mais en comparant, leurs triangles n’ont pas la même taille ! Lina a pourtant dit la vérité.\n\nQuelles informations aurait-elle dû donner pour que Sam construise **exactement** le même triangle ?",
+      "figure": {
+        "alt": "Deux triangles qui ont les mêmes angles (50°, 60° et 70°) mais pas la même taille : le second est une fois et demie plus grand.",
+        "w": 400,
+        "h": 215,
+        "frame": { "x": [-0.5, 14.5], "y": [-1.3, 5.9] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths", "color": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "C", "x": 2.962, "y": 3.53, "pos": "n", "label": "" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "50°" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "60°" },
+          { "type": "angle", "vertex": "C", "from": "A", "to": "B", "label": "70°" },
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange", "color": "orange" },
+          { "type": "point", "id": "D", "x": 6.5, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "E", "x": 14, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "F", "x": 10.943, "y": 5.295, "pos": "n", "label": "" },
+          { "type": "angle", "vertex": "D", "from": "E", "to": "F", "label": "50°" },
+          { "type": "angle", "vertex": "E", "from": "F", "to": "D", "label": "60°" },
+          { "type": "angle", "vertex": "F", "from": "D", "to": "E", "label": "70°" },
+          { "type": "text", "x": 2.5, "y": -0.9, "text": "triangle de Lina", "size": "s" },
+          { "type": "text", "x": 10.25, "y": -0.9, "text": "triangle de Sam", "size": "s" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🟰",
+          "title": "Des triangles égaux",
+          "body": "Deux triangles sont **égaux** quand ils sont superposables : on peut faire glisser, tourner ou retourner l’un pour le poser exactement sur l’autre. Leurs côtés sont alors égaux deux à deux, et leurs angles aussi. Sur une figure, on code les éléments égaux par les mêmes signes.",
+          "figure": {
+            "alt": "Deux triangles égaux ABC et DEF, le second retourné : les côtés correspondants portent le même codage et les angles Â et D̂ sont marqués égaux.",
+            "w": 400,
+            "h": 168,
+            "frame": { "x": [-0.6, 10.6], "y": [-0.7, 3.2] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange" },
+              { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+              { "type": "segment", "from": "B", "to": "C", "marks": 2 },
+              { "type": "segment", "from": "C", "to": "A", "marks": 3 },
+              { "type": "segment", "from": "D", "to": "E", "marks": 1 },
+              { "type": "segment", "from": "E", "to": "F", "marks": 2 },
+              { "type": "segment", "from": "F", "to": "D", "marks": 3 },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+              { "type": "angle", "vertex": "D", "from": "F", "to": "E", "marks": 1 },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 1, "y": 2.5, "pos": "n" },
+              { "type": "point", "id": "D", "x": 10, "y": 0, "pos": "se" },
+              { "type": "point", "id": "E", "x": 6, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "F", "x": 9, "y": 2.5, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Cas n° 1 : trois côtés",
+          "body": "Si deux triangles ont leurs **trois côtés** égaux deux à deux, alors ils sont égaux. Pour construire un triangle dont on connaît les trois côtés, on utilise le compas.",
+          "reveal": {
+            "question": "Devine : pourquoi les grues, les pylônes électriques et la tour Eiffel sont-ils remplis de triangles ?",
+            "answer": "Un triangle est indéformable : ses trois côtés fixent complètement sa forme (cas n° 1). Un carré articulé, lui, peut s’aplatir en losange."
+          },
+          "figure": {
+            "alt": "Construction au compas du triangle ABC avec AB = 6 cm, AC = 4 cm et BC = 5 cm : deux arcs de cercle se coupent en C.",
+            "w": 400,
+            "h": 285,
+            "frame": { "x": [-0.7, 6.7], "y": [-0.8, 4.2] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "segment", "from": "A", "to": "C", "label": "4 cm" },
+              { "type": "segment", "from": "B", "to": "C", "label": "5 cm" },
+              { "type": "arc", "center": "A", "r": 4, "start": 41.771, "end": 69.771, "color": "gris" },
+              { "type": "arc", "center": "B", "r": 5, "start": 126.59, "end": 150.59, "color": "gris" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 2.25, "y": 3.307, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Cas n° 2 : un angle compris entre deux côtés",
+          "body": "Si deux triangles ont **deux côtés** égaux deux à deux **et l’angle compris** entre ces côtés égal, alors ils sont égaux. L’angle compris est celui que forment les deux côtés : son sommet est leur point commun.",
+          "figure": {
+            "alt": "Triangle ABC : les côtés [AB] et [AC] sont codés et l’angle Â, compris entre eux, est marqué.",
+            "w": 400,
+            "h": 279,
+            "frame": { "x": [-0.6, 5.6], "y": [-0.6, 3.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+              { "type": "segment", "from": "A", "to": "C", "marks": 2 },
+              { "type": "segment", "from": "B", "to": "C", "dashed": true, "color": "gris" },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 2, "y": 3, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Cas n° 3 : un côté et deux angles",
+          "body": "Si deux triangles ont **un côté** égal **et les deux angles qui touchent ce côté** égaux deux à deux, alors ils sont égaux. Pour construire le triangle, on trace ce côté, puis les deux angles au rapporteur, du même côté.",
+          "example": "Comme la somme des angles d’un triangle vaut 180°, connaître deux angles, c’est connaître le troisième.",
+          "figure": {
+            "alt": "Triangle ABC : le côté [AB] est codé et les deux angles Â et B̂ qui le touchent sont marqués.",
+            "w": 400,
+            "h": 279,
+            "frame": { "x": [-0.6, 5.6], "y": [-0.6, 3.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+              { "type": "segment", "from": "A", "to": "C", "color": "gris", "dashed": true },
+              { "type": "segment", "from": "B", "to": "C", "color": "gris", "dashed": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+              { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 2, "y": 3, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚠️",
+          "title": "Ce qui ne suffit pas",
+          "body": "**Trois angles** égaux ne suffisent pas : un triangle et son agrandissement ont les mêmes angles. **Deux côtés et un angle qui n’est pas compris** entre eux non plus : il peut exister deux triangles différents.",
+          "reveal": {
+            "question": "Devine : avec $AB = 6$ cm, $BC = 4$ cm et Â = 35°, combien de triangles différents peut-on construire ?",
+            "answer": "Deux ! L’arc de centre $B$ et de rayon 4 cm coupe la demi-droite issue de $A$ en deux points : deux triangles non superposables."
+          },
+          "figure": {
+            "alt": "Avec AB = 6 cm, Â = 35° et BC = 4 cm : l’arc de centre B et de rayon 4 cm coupe la demi-droite issue de A en deux points C₁ et C₂.",
+            "w": 400,
+            "h": 290,
+            "frame": { "x": [-0.6, 7.5], "y": [-0.7, 4.9] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "ray", "from": "A", "through": "X", "color": "gris" },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "X", "label": "35°" },
+              { "type": "arc", "center": "B", "r": 4, "start": 80, "end": 170, "color": "gris" },
+              { "type": "segment", "from": "B", "to": "C1", "color": "orange" },
+              { "type": "segment", "from": "B", "to": "C2", "color": "violet" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "X", "x": 6.963, "y": 4.875, "pos": "n", "hidden": true },
+              { "type": "point", "id": "C1", "x": 2.356, "y": 1.65, "pos": "nw", "label": "C₁" },
+              { "type": "point", "id": "C2", "x": 5.696, "y": 3.988, "pos": "nw", "label": "C₂" }
+            ]
+          }
+        },
+        {
+          "emoji": "📝",
+          "title": "Écrire un programme de construction",
+          "body": "Un **programme de construction** est une suite d’instructions précises, une par ligne, avec des verbes d’action : *Trace…*, *Place…*, *Construis…*. On commence toujours par un segment dont on connaît la longueur.",
+          "example": "Trace [AB] de 6 cm. Trace l’arc de centre A et de rayon 4 cm, puis l’arc de centre B et de rayon 5 cm. Nomme C leur point d’intersection."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Construire, puis démontrer",
+      "steps": [
+        {
+          "text": "**Construire $ABC$ avec $AB = 6$ cm, $AC = 4$ cm et $BC = 5$ cm.** On trace d’abord le segment $[AB]$ de 6 cm.",
+          "figure": {
+            "alt": "Construction du triangle ABC (AB = 6 cm, AC = 4 cm, BC = 5 cm), étape 1.",
+            "w": 400,
+            "h": 285,
+            "frame": { "x": [-0.7, 6.7], "y": [-0.8, 4.2] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" }
+            ]
+          }
+        },
+        {
+          "text": "Le point $C$ est à 4 cm de $A$ : il est sur le cercle de centre $A$ et de rayon 4 cm. On en trace un arc.",
+          "figure": {
+            "alt": "Construction du triangle ABC (AB = 6 cm, AC = 4 cm, BC = 5 cm), étape 2.",
+            "w": 400,
+            "h": 285,
+            "frame": { "x": [-0.7, 6.7], "y": [-0.8, 4.2] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "arc", "center": "A", "r": 4, "start": 39.771, "end": 71.771, "color": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" }
+            ]
+          }
+        },
+        {
+          "text": "$C$ est aussi à 5 cm de $B$ : on trace un arc de centre $B$ et de rayon 5 cm. Les deux arcs se coupent en $C$. D’après le cas n° 1, tous les triangles construits ainsi sont égaux.",
+          "figure": {
+            "alt": "Construction du triangle ABC (AB = 6 cm, AC = 4 cm, BC = 5 cm), étape 3.",
+            "w": 400,
+            "h": 285,
+            "frame": { "x": [-0.7, 6.7], "y": [-0.8, 4.2] },
+            "items": [
+              { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+              { "type": "arc", "center": "A", "r": 4, "start": 39.771, "end": 71.771, "color": "maths" },
+              { "type": "arc", "center": "B", "r": 5, "start": 124.59, "end": 152.59, "color": "orange" },
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "C", "x": 2.25, "y": 3.307, "pos": "n" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" }
+            ]
+          }
+        },
+        {
+          "text": "**Démontrer avec un cas d’égalité.** $ABCD$ est un parallélogramme ; on trace sa diagonale $[AC]$. Les triangles $ABC$ et $CDA$ ont $AB = CD$ et $BC = DA$ (côtés opposés d’un parallélogramme), et le côté $[AC]$ en commun.",
+          "figure": {
+            "alt": "Parallélogramme ABCD et sa diagonale [AC] ; les côtés opposés égaux sont codés.",
+            "w": 400,
+            "h": 231,
+            "frame": { "x": [-0.6, 7.6], "y": [-0.7, 3.6] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["C", "D", "A"], "fill": "orange" },
+              { "type": "segment", "from": "A", "to": "C", "color": "rouge" },
+              { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+              { "type": "segment", "from": "C", "to": "D", "marks": 1 },
+              { "type": "segment", "from": "B", "to": "C", "marks": 2 },
+              { "type": "segment", "from": "D", "to": "A", "marks": 2 },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 7, "y": 3, "pos": "ne" },
+              { "type": "point", "id": "D", "x": 2, "y": 3, "pos": "nw" }
+            ]
+          }
+        },
+        {
+          "text": "D’après le cas d’égalité « trois côtés », les triangles $ABC$ et $CDA$ sont égaux. Conséquence : leurs angles correspondants sont égaux, par exemple les angles B̂ et D̂ du parallélogramme."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Pour les constructions, travaille sur ton cahier avec règle, compas et rapporteur, puis reporte ta mesure. Une petite différence avec la réponse attendue est normale : on accepte une marge d’erreur.",
+      "exercises": ["m4-triangles-cas", "m4-triangles-ccc", "m4-triangles-cac", "m4-triangles-aca", "m4-triangles-ordre", "m4-triangles-verif"]
+    },
+    { "kind": "libre", "title": "Écrire un programme de construction", "exercises": ["m4-triangles-programme"] },
+    { "kind": "reinvestissement", "title": "Démontrer et comprendre", "exercises": ["m4-triangles-isocele", "m4-triangles-rigidite"] },
+    {
+      "kind": "mission",
+      "title": "Mission : le plan du paysagiste",
+      "body": "Sur le terrain, les paysagistes et les géomètres ne mesurent que quelques longueurs et quelques angles… juste assez pour reproduire fidèlement un terrain sur un plan.",
+      "exercises": ["m4-triangles-terrain"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Deux triangles sont égaux s’ils ont : leurs trois côtés égaux deux à deux ; ou deux côtés et l’angle **compris** entre eux égaux ; ou un côté et les **deux angles** qui le touchent égaux. Ils ont alors tous leurs côtés et tous leurs angles égaux.\n\n- **Trois angles ne suffisent pas** : un agrandissement a les mêmes angles.\n- **L’angle doit être compris** entre les deux côtés ; sinon, il peut y avoir deux triangles.\n- **Les arcs** : centre $A$ → rayon $AC$ ; centre $B$ → rayon $BC$.\n- **Le rapporteur** a deux graduations : on part du zéro situé sur le côté déjà tracé."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des constructions et des cas d’égalité dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Aller plus loin : un côté et deux angles quelconques suffisent-ils ? Et que se passe-t-il quand l’angle n’est pas compris ?",
+      "exercises": ["m4-triangles-deux-angles", "m4-triangles-ambigu"]
+    },
+    "expert": {
+      "intro": "Au-delà des exercices habituels : démontrer une propriété du parallélogramme avec des triangles égaux, et dénombrer des triangles avec méthode.",
+      "exercises": ["m4-triangles-quadrilatere", "m4-triangles-perimetre12"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m4-triangles-cas",
+      "type": "categorize",
+      "skill": "m4.triangles.egalite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:aaa", "mc:angle-non-compris"],
+      "expectedSeconds": 240,
+      "prompt": "Dans chaque cas, on compare un triangle $ABC$ et un triangle $DEF$. Les informations données suffisent-elles pour affirmer que les deux triangles sont **égaux** ?",
+      "figure": {
+        "alt": "Deux triangles ABC et DEF.",
+        "w": 400,
+        "h": 168,
+        "frame": { "x": [-0.6, 10.6], "y": [-0.7, 3.2] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1.5, "y": 2.5, "pos": "n" },
+          { "type": "point", "id": "D", "x": 6, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "E", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "F", "x": 7.5, "y": 2.5, "pos": "n" }
+        ]
+      },
+      "categories": [{ "id": "oui", "label": "Égaux à coup sûr" }, { "id": "non", "label": "Pas forcément égaux" }],
+      "items": [
+        { "id": "c1", "label": "$AB = DE$, $BC = EF$ et $AC = DF$", "category": "oui" },
+        { "id": "c2", "label": "$AB = DE$, $AC = DF$ et Â = D̂", "category": "oui" },
+        { "id": "c3", "label": "$AB = DE$, Â = D̂ et B̂ = Ê", "category": "oui" },
+        { "id": "c4", "label": "Â = D̂, B̂ = Ê et Ĉ = F̂", "category": "non" },
+        { "id": "c5", "label": "$AB = DE$, $BC = EF$ et Â = D̂", "category": "non" },
+        { "id": "c6", "label": "$AB = DE$ et $AC = DF$", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "c4",
+          "category": "oui",
+          "id": "mc:aaa",
+          "error": "notion",
+          "feedback": "Trois angles égaux donnent la même **forme**, pas la même **taille** : un triangle et son agrandissement ont les mêmes angles."
+        },
+        {
+          "item": "c5",
+          "category": "oui",
+          "id": "mc:angle-non-compris",
+          "error": "notion",
+          "feedback": "Â n’est pas compris entre $[AB]$ et $[BC]$ (l’angle compris entre ces deux côtés est B̂). Avec un angle non compris, il peut exister deux triangles différents."
+        },
+        {
+          "item": "c6",
+          "category": "oui",
+          "id": "mc:deux-infos",
+          "error": "notion",
+          "feedback": "Deux côtés seuls ne suffisent pas : l’angle entre eux peut s’ouvrir ou se fermer."
+        },
+        {
+          "item": "c2",
+          "category": "non",
+          "id": "mc:cas-oublie",
+          "error": "notion",
+          "feedback": "C’est le cas « un angle compris entre deux côtés » : Â est bien l’angle formé par $[AB]$ et $[AC]$."
+        }
+      ],
+      "hints": [
+        "Les trois cas d’égalité : trois côtés ; deux côtés et l’angle compris ; un côté et ses deux angles adjacents.",
+        "L’angle compris entre $[AB]$ et $[AC]$ a pour sommet le point commun, $A$.",
+        "Pense à un triangle et à son agrandissement."
+      ],
+      "solution": "Égaux : cas 1 (trois côtés), cas 2 (Â est compris entre $[AB]$ et $[AC]$), cas 3 (Â et B̂ touchent $[AB]$). Pas forcément : trois angles (agrandissement possible) ; deux côtés et un angle non compris (deux triangles possibles) ; deux côtés seuls.",
+      "selfTest": [
+        { "response": { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "non", "c5": "non", "c6": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "oui", "c5": "non", "c6": "non" } }, "expect": "mc:aaa" },
+        {
+          "response": { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "non", "c5": "oui", "c6": "non" } },
+          "expect": "mc:angle-non-compris"
+        }
+      ]
+    },
+    {
+      "id": "m4-triangles-ccc",
+      "type": "numeric",
+      "skill": "m4.triangles.construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:arcs-inverses"],
+      "expectedSeconds": 300,
+      "params": {
+        "k": { "int": [1, 3] },
+        "c": { "expr": "(k=1)*6 + (k=2)*7 + (k=3)*8" },
+        "b": { "expr": "(k=1)*4 + (k=2)*5 + (k=3)*6" },
+        "a": { "expr": "(k=1)*5 + (k=2)*6 + (k=3)*5" },
+        "g": { "expr": "(k=1)*55.77 + (k=2)*57.12 + (k=3)*38.62" },
+        "s": { "expr": "(k=1)*41.41 + (k=2)*44.42 + (k=3)*48.51" }
+      },
+      "prompt": "Sur ton cahier, construis à la règle et au compas le triangle $ABC$ tel que $AB = {c}$ cm, $AC = {b}$ cm et $BC = {a}$ cm. Mesure ensuite l’angle Â au rapporteur. Quelle mesure trouves-tu, au degré près ? (nombre seul)",
+      "figure": {
+        "alt": "Triangle ABC dont les trois longueurs sont indiquées ; l’angle Â est à mesurer.",
+        "w": 380,
+        "h": 260,
+        "frame": { "x": [-0.8, "{c+0.8}"], "y": [-0.8, "{racine(b^2-((b^2-a^2+c^2)/(2*c))^2)+0.8}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{c} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{b} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "{a} cm" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "?" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{c}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{(b^2-a^2+c^2)/(2*c)}", "y": "{racine(b^2-((b^2-a^2+c^2)/(2*c))^2)}", "pos": "n" }
+        ]
+      },
+      "answer": "g",
+      "tolerance": 2,
+      "misconceptions": [
+        {
+          "answer": "s",
+          "id": "mc:arcs-inverses",
+          "error": "methode",
+          "feedback": "On dirait que tu as inversé les arcs : l’arc de centre $A$ doit avoir pour rayon $AC = {b}$ cm, et celui de centre $B$ le rayon $BC = {a}$ cm."
+        }
+      ],
+      "hints": [
+        "Commence par tracer $[AB]$, de {c} cm.",
+        "$C$ est à {b} cm de $A$ : arc de centre $A$, rayon {b} cm. $C$ est à {a} cm de $B$ : arc de centre $B$, rayon {a} cm.",
+        "Rapporteur : son centre sur $A$, le zéro sur $[AB]$."
+      ],
+      "solution": "On trace $[AB]$, puis l’arc de centre $A$ et de rayon {b} cm et l’arc de centre $B$ et de rayon {a} cm : ils se coupent en $C$. L’angle Â mesure environ {arrondi(g;0)}° (on accepte 2° d’écart, à cause de l’imprécision du tracé).",
+      "selfTest": [
+        { "response": { "value": "{arrondi(g;0)}" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(s;0)}" }, "expect": "mc:arcs-inverses" }
+      ]
+    },
+    {
+      "id": "m4-triangles-cac",
+      "type": "numeric",
+      "skill": "m4.triangles.construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:rapporteur"],
+      "expectedSeconds": 300,
+      "params": { "c": { "int": [5, 9] }, "b": { "int": [3, 7] }, "t": { "choice": [30, 35, 40, 45, 50, 55, 60, 70] } },
+      "constraints": ["racine(c^2 + b^2 - 2*b*c*cos(t)) >= 2"],
+      "prompt": "Construis le triangle $ABC$ tel que $AB = {c}$ cm, $AC = {b}$ cm et Â = {t}°. Mesure ensuite le côté $[BC]$ : quelle longueur trouves-tu, au millimètre près ? (en cm)",
+      "figure": {
+        "alt": "Triangle ABC : les longueurs AB et AC et l’angle Â sont indiqués ; la longueur BC est à mesurer.",
+        "w": 380,
+        "h": 260,
+        "frame": { "x": [-0.8, "{max(c;b*cos(t))+0.8}"], "y": [-0.8, "{b*sin(t)+0.8}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{c} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{b} cm" },
+          { "type": "segment", "from": "B", "to": "C", "label": "?", "dashed": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "{t}°" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{c}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{b*cos(t)}", "y": "{b*sin(t)}", "pos": "n" }
+        ]
+      },
+      "answer": "racine(c^2 + b^2 - 2*b*c*cos(t))",
+      "unit": "cm",
+      "tolerance": 0.2,
+      "misconceptions": [
+        {
+          "answer": "racine(c^2 + b^2 - 2*b*c*cos(180 - t))",
+          "id": "mc:rapporteur",
+          "error": "methode",
+          "feedback": "Ton angle mesure sans doute {180-t}° au lieu de {t}° : tu as lu la mauvaise graduation du rapporteur. Pars du zéro qui est sur $[AB]$."
+        }
+      ],
+      "hints": [
+        "Trace d’abord $[AB]$ de {c} cm.",
+        "Au rapporteur, trace la demi-droite issue de $A$ qui fait un angle de {t}° avec $[AB]$.",
+        "Place $C$ sur cette demi-droite à {b} cm de $A$, puis trace $[BC]$."
+      ],
+      "solution": "C’est le cas « un angle compris entre deux côtés » : le triangle est entièrement déterminé. On trace $[AB]$, l’angle de {t}° en $A$, on place $C$ à {b} cm de $A$, puis on mesure $BC$ ≈ {arrondi(racine(c^2+b^2-2*b*c*cos(t));1)} cm.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(racine(c^2+b^2-2*b*c*cos(t));1)} cm" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(racine(c^2+b^2-2*b*c*cos(180-t));1)} cm" }, "expect": "mc:rapporteur" }
+      ]
+    },
+    {
+      "id": "m4-triangles-aca",
+      "type": "composite",
+      "skill": "m4.triangles.construire",
+      "skills": ["m5.triangle.angles"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:angles-inverses"],
+      "expectedSeconds": 360,
+      "params": { "c": { "int": [5, 9] }, "u": { "choice": [30, 40, 50, 60] }, "v": { "choice": [40, 50, 60, 70, 80] } },
+      "constraints": ["u + v <= 130", "u != v", "u + v != 90"],
+      "prompt": "On veut construire le triangle $ABC$ tel que $AB = {c}$ cm, Â = {u}° et B̂ = {v}°.",
+      "figure": {
+        "alt": "Triangle ABC : la longueur AB et les angles Â et B̂ sont indiqués ; la longueur AC est à mesurer.",
+        "w": 380,
+        "h": 270,
+        "frame": { "x": [-0.8, "{c+0.8}"], "y": [-0.8, "{c*sin(v)/sin(u+v)*sin(u)+0.8}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{c} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "?", "dashed": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "{u}°" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "{v}°" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{c}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{c*sin(v)/sin(u+v)*cos(u)}", "y": "{c*sin(v)/sin(u+v)*sin(u)}", "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Avant de construire : combien mesure l’angle Ĉ ? (nombre seul)",
+          "answer": "180 - u - v",
+          "misconceptions": [
+            {
+              "answer": "u + v",
+              "id": "mc:somme-angles",
+              "error": "notion",
+              "prerequisite": "m5.triangle.angles",
+              "feedback": "La somme des **trois** angles d’un triangle vaut 180° : Ĉ = 180° − {u}° − {v}°."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Construis le triangle, puis mesure $[AC]$ (en cm, au millimètre près).",
+          "answer": "c*sin(v)/sin(180-u-v)",
+          "unit": "cm",
+          "tolerance": 0.2,
+          "misconceptions": [
+            {
+              "answer": "c*sin(u)/sin(180-u-v)",
+              "id": "mc:angles-inverses",
+              "error": "methode",
+              "feedback": "Tu as sans doute placé l’angle de {u}° en $B$ et celui de {v}° en $A$. Vérifie : Â = {u}° se trace au sommet $A$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Somme des angles d’un triangle : 180°.",
+        "Trace $[AB]$, puis les deux angles, du même côté de $(AB)$.",
+        "Les deux demi-droites se coupent en $C$."
+      ],
+      "solution": "Ĉ = 180° − {u}° − {v}° = {180-u-v}°. On trace $[AB]$ de {c} cm, l’angle de {u}° en $A$ et celui de {v}° en $B$ du même côté : les demi-droites se coupent en $C$. On mesure $AC$ ≈ {arrondi(c*sin(v)/sin(180-u-v);1)} cm. C’est le cas « un côté et deux angles adjacents ».",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{180-u-v}" }, { "value": "{arrondi(c*sin(v)/sin(180-u-v);1)} cm" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{180-u-v}" }, { "value": "{arrondi(c*sin(u)/sin(180-u-v);1)} cm" }] }, "expect": "mc:angles-inverses" },
+        { "response": { "parts": [{ "value": "{u+v}" }, { "value": "{arrondi(c*sin(v)/sin(180-u-v);1)} cm" }] }, "expect": "mc:somme-angles" }
+      ]
+    },
+    {
+      "id": "m4-triangles-ordre",
+      "type": "order",
+      "skill": "m4.triangles.construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "expectedSeconds": 150,
+      "prompt": "Voici, dans le désordre, le programme de construction du triangle $ABC$ tel que $AB = 6$ cm, Â = 50° et B̂ = 70°. Remets les instructions dans l’ordre.",
+      "figure": {
+        "alt": "Triangle ABC avec AB = 6 cm, Â = 50° et B̂ = 70°.",
+        "w": 341,
+        "h": 300,
+        "frame": { "x": [-0.6, 6.7], "y": [-0.7, 5.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "50°" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "70°" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.185, "y": 4.987, "pos": "n" }
+        ]
+      },
+      "orderLabel": "de la première à la dernière instruction",
+      "errorType": "methode",
+      "items": [
+        { "id": "s1", "label": "Trace le segment [AB] de 6 cm." },
+        { "id": "s2", "label": "Place le rapporteur en A et trace la demi-droite [Ax) telle que l’angle entre [AB] et [Ax) mesure 50°." },
+        {
+          "id": "s3",
+          "label": "Place le rapporteur en B et trace, du même côté de (AB), la demi-droite [By) telle que l’angle entre [BA] et [By) mesure 70°."
+        },
+        { "id": "s4", "label": "Nomme C le point d’intersection des demi-droites [Ax) et [By)." },
+        { "id": "s5", "label": "Vérifie au rapporteur que l’angle Ĉ mesure bien 60°." }
+      ],
+      "hints": [
+        "On ne peut placer un angle que sur un segment déjà tracé.",
+        "Le point $C$ n’existe qu’une fois les deux demi-droites tracées.",
+        "La vérification vient en dernier."
+      ],
+      "solution": "Segment $[AB]$ → angle de 50° en $A$ → angle de 70° en $B$ (du même côté) → intersection $C$ → vérification : Ĉ = 180° − 50° − 70° = 60°.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5"] }, "expect": "correct" },
+        { "response": { "order": ["s5", "s4", "s3", "s2", "s1"] }, "expect": "methode" }
+      ]
+    },
+    {
+      "id": "m4-triangles-verif",
+      "type": "qcm",
+      "skill": "m4.triangles.egalite",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : deux triangles ont leurs trois angles égaux deux à deux. Peut-on affirmer qu’ils sont égaux ?",
+      "figure": {
+        "alt": "Deux triangles qui ont les mêmes angles (50°, 60° et 70°) mais pas la même taille : le second est une fois et demie plus grand.",
+        "w": 400,
+        "h": 215,
+        "frame": { "x": [-0.5, 14.5], "y": [-1.3, 5.9] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths", "color": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "C", "x": 2.962, "y": 3.53, "pos": "n", "label": "" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "50°" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "60°" },
+          { "type": "angle", "vertex": "C", "from": "A", "to": "B", "label": "70°" },
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange", "color": "orange" },
+          { "type": "point", "id": "D", "x": 6.5, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "E", "x": 14, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "F", "x": 10.943, "y": 5.295, "pos": "n", "label": "" },
+          { "type": "angle", "vertex": "D", "from": "E", "to": "F", "label": "50°" },
+          { "type": "angle", "vertex": "E", "from": "F", "to": "D", "label": "60°" },
+          { "type": "angle", "vertex": "F", "from": "D", "to": "E", "label": "70°" },
+          { "type": "text", "x": 2.5, "y": -0.9, "text": "triangle de Lina", "size": "s" },
+          { "type": "text", "x": 10.25, "y": -0.9, "text": "triangle de Sam", "size": "s" }
+        ]
+      },
+      "choices": [
+        {
+          "text": "Oui, toujours.",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:aaa",
+          "feedback": "Regarde la figure : mêmes angles, mais pas la même taille. Trois angles égaux ne suffisent pas."
+        },
+        {
+          "text": "Non, pas forcément : l’un peut être un agrandissement de l’autre.",
+          "correct": true,
+          "feedback": "Exact : les angles fixent la forme, pas la taille."
+        },
+        {
+          "text": "Oui, mais seulement s’ils sont rectangles.",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:aaa",
+          "feedback": "Même rectangles : un triangle rectangle et son agrandissement ont les mêmes angles, mais pas les mêmes côtés."
+        },
+        {
+          "text": "Non, deux triangles ne sont jamais égaux.",
+          "correct": false,
+          "error": "notion",
+          "feedback": "Deux triangles superposables sont égaux : c’est possible, par exemple avec trois côtés égaux."
+        }
+      ],
+      "solution": "Non : un triangle et son agrandissement ont les mêmes angles mais pas les mêmes longueurs. Pour conclure, il faut au moins une longueur égale (cas « un côté et deux angles adjacents »).",
+      "selfTest": [{ "response": { "selected": [1] }, "expect": "correct" }, { "response": { "selected": [0] }, "expect": "mc:aaa" }]
+    },
+    {
+      "id": "m4-triangles-programme",
+      "type": "open",
+      "skill": "m4.triangles.construire",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 360,
+      "minWords": 20,
+      "prompt": "Écris un programme de construction (une instruction par ligne) qui permettrait à un camarade de reproduire **exactement** le triangle $RST$ ci-dessous, sans voir la figure.",
+      "figure": {
+        "alt": "Triangle RST avec RS = 5 cm, RT = 4 cm et l’angle R̂ = 35°.",
+        "w": 400,
+        "h": 247,
+        "frame": { "x": [-0.6, 5.7], "y": [-0.7, 2.9] },
+        "items": [
+          { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+          { "type": "segment", "from": "R", "to": "S", "label": "5 cm" },
+          { "type": "segment", "from": "R", "to": "T", "label": "4 cm" },
+          { "type": "angle", "vertex": "R", "from": "S", "to": "T", "label": "35°" },
+          { "type": "point", "id": "R", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "S", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "T", "x": 3.277, "y": 2.294, "pos": "n" }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "Je commence par un segment de longueur donnée : [RS] de 5 cm", "keywords": [["5 cm", "5cm"]] },
+        { "id": "c2", "label": "Je fais tracer l’angle de 35° en R, au rapporteur", "keywords": [["35"], ["rapporteur", "angle"]] },
+        { "id": "c3", "label": "Je fais placer T à 4 cm de R sur la demi-droite", "keywords": [["4 cm", "4cm"]] },
+        { "id": "c4", "label": "Je termine en faisant tracer [ST]", "keywords": [["[st]", "st", "relie"]] },
+        { "id": "c5", "label": "J’utilise des verbes d’action (trace, place…)", "keywords": [["trace", "place"]] }
+      ],
+      "models": [
+        "Trace le segment [RS] de 5 cm.\nAvec le rapporteur, trace la demi-droite [Rx) qui fait un angle de 35° avec [RS].\nPlace le point T sur [Rx) tel que RT = 4 cm.\nTrace le segment [ST]."
+      ],
+      "hints": [
+        "Quelles informations la figure donne-t-elle ? Deux côtés et l’angle compris entre eux.",
+        "Commence toujours par tracer un segment dont tu connais la longueur.",
+        "Une instruction = un verbe d’action : Trace, Place, Construis…"
+      ],
+      "solution": "1. Trace le segment $[RS]$ de 5 cm. 2. Au rapporteur, trace la demi-droite [Rx) qui fait un angle de 35° avec $[RS]$. 3. Place $T$ sur [Rx) tel que $RT = 4$ cm. 4. Trace $[ST]$. Ces données (deux côtés et l’angle compris) déterminent un seul triangle.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Trace le segment [RS] de 5 cm. Avec le rapporteur trace la demi-droite [Rx) qui fait un angle de 35° avec [RS]. Place T sur [Rx) à 4 cm de R. Trace le segment [ST].",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true, "c5": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m4-triangles-isocele",
+      "type": "composite",
+      "skill": "m4.triangles.egalite",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:supplementaires", "mc:cas-mal-choisi"],
+      "expectedSeconds": 420,
+      "prompt": "$ABC$ est un triangle isocèle en $A$ et $M$ est le milieu de $[BC]$. On veut **démontrer** que la droite $(AM)$ est perpendiculaire à $(BC)$, en comparant les triangles $ABM$ et $ACM$.",
+      "figure": {
+        "alt": "Triangle ABC isocèle en A ; M est le milieu de [BC] ; le segment [AM] est tracé.",
+        "w": 392,
+        "h": 300,
+        "frame": { "x": [-0.6, 6.6], "y": [-0.7, 4.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "M"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "C"], "fill": "orange" },
+          { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+          { "type": "segment", "from": "A", "to": "C", "marks": 1 },
+          { "type": "segment", "from": "B", "to": "M", "marks": 2 },
+          { "type": "segment", "from": "M", "to": "C", "marks": 2 },
+          { "type": "point", "id": "A", "x": 3, "y": 4, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 3, "y": 0, "pos": "s" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "match",
+          "prompt": "Associe chaque côté du triangle $ABM$ au côté égal du triangle $ACM$ (avec la raison).",
+          "leftTitle": "Triangle ABM",
+          "rightTitle": "Triangle ACM",
+          "left": [{ "id": "ab", "label": "[AB]" }, { "id": "bm", "label": "[BM]" }, { "id": "am", "label": "[AM]" }],
+          "right": [
+            { "id": "ac", "label": "[AC] (triangle isocèle en A)" },
+            { "id": "cm", "label": "[CM] (M est le milieu de [BC])" },
+            { "id": "am2", "label": "[AM] (côté commun)" }
+          ],
+          "pairs": { "ab": "ac", "bm": "cm", "am": "am2" },
+          "misconceptions": [
+            {
+              "pair": ["ab", "cm"],
+              "id": "mc:correspondance",
+              "error": "lecture",
+              "feedback": "L’égalité $AB = AC$ vient du triangle isocèle. $BM = CM$ vient du milieu."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel cas d’égalité permet de conclure que les triangles $ABM$ et $ACM$ sont égaux ?",
+          "accept": [
+            "trois côtés",
+            "les trois côtés",
+            "cas des trois côtés",
+            "le cas des trois côtés",
+            "3 côtés",
+            "les 3 côtés",
+            "côté côté côté",
+            "cas n°1",
+            "le cas n°1",
+            "cas 1"
+          ],
+          "misconceptions": [
+            {
+              "answer": "angle compris",
+              "id": "mc:cas-mal-choisi",
+              "error": "notion",
+              "feedback": "On ne connaît aucun angle ici, seulement des longueurs : c’est le cas des trois côtés."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Les angles $AMB$ et $AMC$ sont donc égaux, et leur somme vaut 180° (ils forment un angle plat). Combien mesure chacun d’eux ? (nombre seul)",
+          "answer": 90,
+          "misconceptions": [
+            {
+              "answer": 180,
+              "id": "mc:supplementaires",
+              "error": "raisonnement",
+              "feedback": "Leur **somme** vaut 180° et ils sont égaux : chacun mesure 180 ÷ 2 = 90°."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$AB = AC$ (isocèle), $BM = CM$ (milieu), et $[AM]$ est commun aux deux triangles.",
+        "Trois paires de côtés égaux : quel cas ?",
+        "Deux angles égaux dont la somme fait 180°…"
+      ],
+      "solution": "$AB = AC$ (triangle isocèle en $A$), $BM = CM$ ($M$ milieu de $[BC]$) et $[AM]$ est un côté commun. D’après le cas d’égalité des trois côtés, $ABM$ et $ACM$ sont égaux. Leurs angles en $M$ sont donc égaux ; comme leur somme vaut 180°, chacun mesure 90° : $(AM) ⊥ (BC)$.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "pairs": { "ab": "ac", "bm": "cm", "am": "am2" } }, { "value": "trois côtés" }, { "value": "90" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "pairs": { "ab": "ac", "bm": "cm", "am": "am2" } }, { "value": "trois côtés" }, { "value": "180" }] },
+          "expect": "mc:supplementaires"
+        }
+      ]
+    },
+    {
+      "id": "m4-triangles-rigidite",
+      "type": "composite",
+      "skill": "m4.triangles.egalite",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:somme-cotes"],
+      "expectedSeconds": 420,
+      "prompt": "Une étagère a un cadre carré de 1 m de côté, articulé aux quatre coins : sans renfort, il se déforme et s’aplatit en losange ! Pour le rigidifier, on visse une barre en diagonale : le cadre est alors formé de deux triangles.",
+      "figure": {
+        "alt": "À gauche, un cadre carré de 1 m de côté renforcé par une barre en diagonale ; à droite, le même cadre sans barre, articulé, qui s’est déformé en losange.",
+        "w": 380,
+        "h": 187,
+        "frame": { "x": [-0.3, 3.7], "y": [-0.4, 1.3] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "C", "color": "rouge", "label": "?" },
+          { "type": "segment", "from": "A", "to": "B", "label": "1 m" },
+          { "type": "polygon", "points": ["E", "F", "G", "H"], "fill": "orange", "dashed": true, "color": "orange" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 1, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1, "y": 1, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 0, "y": 1, "pos": "nw" },
+          { "type": "point", "id": "E", "x": 1.8, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "F", "x": 2.8, "y": 0, "pos": "s", "label": "" },
+          { "type": "point", "id": "G", "x": 3.6, "y": 0.6, "pos": "n", "label": "" },
+          { "type": "point", "id": "H", "x": 2.6, "y": 0.6, "pos": "n", "label": "" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quel cas d’égalité garantit qu’un triangle dont les trois côtés sont fixés ne peut plus se déformer ?",
+          "accept": [
+            "trois côtés",
+            "les trois côtés",
+            "cas des trois côtés",
+            "le cas des trois côtés",
+            "3 côtés",
+            "les 3 côtés",
+            "côté côté côté",
+            "cas n°1",
+            "cas 1"
+          ],
+          "misconceptions": [
+            {
+              "answer": "trois angles",
+              "id": "mc:aaa",
+              "error": "notion",
+              "feedback": "Les angles ne suffisent pas à fixer un triangle. Ici ce sont les longueurs des trois barres qui sont fixées : cas des trois côtés."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle doit être la longueur de la barre pour que l’étagère soit bien carrée ? (en m, au centimètre)",
+          "answer": 1.414,
+          "tolerance": 0.006,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:somme-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "La diagonale d’un carré est l’hypoténuse d’un triangle rectangle : $d² = 1² + 1²$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Si l’on visse par erreur une barre de 1,2 m, le cadre devient rigide… mais c’est un losange ! Combien mesure alors son autre diagonale ? (en m ; les diagonales d’un losange se coupent en leur milieu à angle droit)",
+          "answer": 1.6,
+          "misconceptions": [
+            {
+              "answer": 0.8,
+              "id": "mc:demi-diagonale",
+              "error": "lecture",
+              "feedback": "0,8 m, c’est la moitié de la diagonale (de son milieu à un sommet). La diagonale entière mesure le double."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Un triangle à côtés fixés est indéformable.",
+        "Diagonale d’un carré de côté 1 : $d² = 1 + 1$.",
+        "Losange : demi-diagonales 0,6 m et $x$, avec $0,6² + x² = 1²$."
+      ],
+      "solution": "Le cas des trois côtés : un triangle dont les trois côtés sont fixés est unique, donc indéformable. Barre : $d² = 1² + 1² = 2$, donc $d = √2$ ≈ 1,41 m. Avec 1,2 m : demi-diagonale 0,6 m, et l’autre demi-diagonale vérifie $x² = 1 − 0,36 = 0,64$, donc $x = 0,8$ m : la seconde diagonale mesure 1,6 m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "trois côtés" }, { "value": "1,41" }, { "value": "1,6" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "trois côtés" }, { "value": "2" }, { "value": "1,6" }] }, "expect": "mc:somme-cotes" }
+      ]
+    },
+    {
+      "id": "m4-triangles-terrain",
+      "type": "composite",
+      "skill": "m4.triangles.construire",
+      "skills": ["m4.triangles.egalite"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:cas-mal-choisi", "mc:unite-echelle"],
+      "expectedSeconds": 600,
+      "prompt": "Lou, paysagiste, doit reproduire sur un plan un jardin triangulaire $ABC$. Sur le terrain, elle a mesuré $AB = 30$ m, $AC = 24$ m et l’angle Â = 60°.",
+      "figure": {
+        "alt": "Croquis du jardin triangulaire ABC : AB = 30 m, AC = 24 m et l’angle Â = 60°.",
+        "w": 382,
+        "h": 300,
+        "frame": { "x": [-0.7, 6.7], "y": [-0.8, 4.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "vert", "color": "vert" },
+          { "type": "segment", "from": "A", "to": "B", "label": "30 m" },
+          { "type": "segment", "from": "A", "to": "C", "label": "24 m" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "60°" },
+          { "type": "segment", "from": "B", "to": "C", "label": "?", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 2.4, "y": 4.157, "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Ces trois mesures suffisent à reproduire exactement le jardin. Quel cas d’égalité le garantit ?",
+          "accept": [
+            "angle compris",
+            "un angle compris entre deux côtés",
+            "deux côtés et l’angle compris",
+            "deux côtés et l'angle compris",
+            "deux côtés et l’angle compris entre eux",
+            "deux côtés et l'angle compris entre eux",
+            "l’angle compris entre deux côtés",
+            "l'angle compris entre deux côtés",
+            "2 côtés et l’angle compris",
+            "2 côtés et l'angle compris",
+            "cas n°2",
+            "cas 2"
+          ],
+          "openEnded": true,
+          "misconceptions": [
+            {
+              "answer": "trois côtés",
+              "id": "mc:cas-mal-choisi",
+              "error": "notion",
+              "feedback": "Lou n’a mesuré que deux côtés ; elle connaît aussi l’angle **compris** entre eux : c’est le cas « deux côtés et l’angle compris »."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le plan est à l’échelle 1/500 (1 cm sur le plan représente 500 cm en vrai). Quelle longueur $AB$ doit-elle tracer sur le plan ? (en cm)",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 0.06,
+              "id": "mc:unite-echelle",
+              "error": "unite",
+              "feedback": "30 ÷ 500 = 0,06 : c’est en **mètres**. Convertis : 0,06 m = 6 cm."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Et la longueur $AC$ sur le plan ? (en cm)", "answer": 4.8 },
+        {
+          "type": "numeric",
+          "prompt": "Elle construit le plan, puis mesure $[BC]$ : environ 5,5 cm. Quelle est la longueur réelle de la clôture $[BC]$ ? (en m)",
+          "answer": 27.5,
+          "misconceptions": [
+            {
+              "answer": 2750,
+              "id": "mc:unite-echelle",
+              "error": "unite",
+              "feedback": "5,5 × 500 = 2 750 : ce sont des **centimètres**. 2 750 cm = 27,5 m."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Deux côtés et l’angle formé par ces deux côtés : quel cas ?",
+        "30 m = 3 000 cm ; sur le plan : 3 000 ÷ 500.",
+        "Longueur réelle = longueur sur le plan × 500."
+      ],
+      "solution": "Cas « deux côtés et l’angle compris » : le triangle est déterminé, le plan sera fidèle. Sur le plan : $AB = 3 000 ÷ 500 = 6$ cm et $AC = 2 400 ÷ 500 = 4,8$ cm. Réel : $BC = 5,5 × 500 = 2 750$ cm = 27,5 m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "angle compris" }, { "value": "6" }, { "value": "4,8" }, { "value": "27,5" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "trois côtés" }, { "value": "6" }, { "value": "4,8" }, { "value": "27,5" }] },
+          "expect": "mc:cas-mal-choisi"
+        },
+        {
+          "response": { "parts": [{ "value": "angle compris" }, { "value": "0,06" }, { "value": "4,8" }, { "value": "27,5" }] },
+          "expect": "mc:unite-echelle"
+        }
+      ]
+    },
+    {
+      "id": "m4-triangles-remed-compris",
+      "type": "match",
+      "skill": "m4.triangles.egalite",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:angle-non-compris"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel : l’angle **compris** entre deux côtés est l’angle formé par ces deux côtés ; son sommet est le point commun aux deux côtés. Dans le triangle $ABC$, associe chaque paire de côtés à l’angle compris entre eux.",
+      "figure": {
+        "alt": "Un triangle ABC.",
+        "w": 400,
+        "h": 285,
+        "frame": { "x": [-0.6, 5.6], "y": [-0.6, 3.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+          { "type": "angle", "vertex": "C", "from": "A", "to": "B", "marks": 3 },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1.5, "y": 3, "pos": "n" }
+        ]
+      },
+      "leftTitle": "Deux côtés",
+      "rightTitle": "Angle compris",
+      "left": [{ "id": "abac", "label": "[AB] et [AC]" }, { "id": "babc", "label": "[BA] et [BC]" }, { "id": "cacb", "label": "[CA] et [CB]" }],
+      "right": [{ "id": "a", "label": "Â" }, { "id": "b", "label": "B̂" }, { "id": "c", "label": "Ĉ" }],
+      "pairs": { "abac": "a", "babc": "b", "cacb": "c" },
+      "misconceptions": [
+        {
+          "pair": ["abac", "c"],
+          "id": "mc:angle-non-compris",
+          "error": "notion",
+          "feedback": "Le point commun à [AB] et [AC] est $A$ : l’angle compris est Â. Ĉ est l’angle opposé au côté [AB]."
+        },
+        {
+          "pair": ["babc", "a"],
+          "id": "mc:angle-non-compris",
+          "error": "notion",
+          "feedback": "Le point commun à [BA] et [BC] est $B$ : l’angle compris est B̂."
+        }
+      ],
+      "hints": ["Cherche la lettre qui apparaît dans les deux côtés.", "[AB] et [AC] ont en commun le point $A$."],
+      "solution": "[AB] et [AC] → Â ; [BA] et [BC] → B̂ ; [CA] et [CB] → Ĉ. Le sommet de l’angle compris est la lettre commune aux deux côtés.",
+      "selfTest": [
+        { "response": { "pairs": { "abac": "a", "babc": "b", "cacb": "c" } }, "expect": "correct" },
+        { "response": { "pairs": { "abac": "c", "babc": "b", "cacb": "a" } }, "expect": "mc:angle-non-compris" }
+      ]
+    },
+    {
+      "id": "m4-triangles-deux-angles",
+      "type": "composite",
+      "skill": "m4.triangles.egalite",
+      "skills": ["m5.triangle.angles"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:angles-adjacents"],
+      "expectedSeconds": 360,
+      "prompt": "Les triangles $ABC$ et $DEF$ vérifient : $AB = DE = 5$ cm, Â = D̂ = 40° et Ĉ = F̂ = 75°. Attention : l’angle Ĉ ne touche pas le côté $[AB]$… Peut-on quand même conclure ?",
+      "figure": {
+        "alt": "Triangle ABC avec AB = 5 cm, Â = 40° et Ĉ = 75° ; l’angle B̂ est inconnu.",
+        "w": 400,
+        "h": 298,
+        "frame": { "x": [-0.6, 5.7], "y": [-0.7, 3.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "B", "label": "5 cm" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "40°" },
+          { "type": "angle", "vertex": "C", "from": "A", "to": "B", "label": "75°" },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "label": "?" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 3.594, "y": 3.016, "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule B̂ (nombre seul).",
+          "answer": 65,
+          "misconceptions": [
+            {
+              "answer": 115,
+              "id": "mc:somme-angles",
+              "error": "notion",
+              "prerequisite": "m5.triangle.angles",
+              "feedback": "B̂ = 180° − Â − Ĉ = 180 − 40 − 75."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Calcule Ê (nombre seul).", "answer": 65 },
+        {
+          "type": "text",
+          "prompt": "Les triangles $ABC$ et $DEF$ sont-ils égaux ? (oui ou non)",
+          "accept": ["oui"],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:angles-adjacents",
+              "error": "raisonnement",
+              "feedback": "Avec B̂ = Ê = 65°, le côté $[AB] = [DE]$ est maintenant entre deux angles égaux deux à deux (Â = D̂ et B̂ = Ê) : c’est le cas « un côté et deux angles adjacents »."
+            }
+          ],
+          "justify": { "required": true, "minWords": 6, "prompt": "Quel cas d’égalité utilises-tu ?", "keywords": [["cote"], ["angle"]] }
+        }
+      ],
+      "hints": [
+        "La somme des angles d’un triangle vaut 180°.",
+        "Connaître deux angles d’un triangle, c’est connaître les trois.",
+        "Les angles qui touchent $[AB]$ sont Â et B̂."
+      ],
+      "solution": "B̂ = 180° − 40° − 75° = 65° et Ê = 65° de même. Le côté $[AB] = [DE]$ est compris entre deux angles égaux deux à deux : d’après le cas « un côté et deux angles adjacents », les triangles sont égaux. Conclusion : un côté et **deux angles quelconques** suffisent, grâce à la somme des angles.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "65" },
+              { "value": "65" },
+              { "value": "oui", "justification": "B = E = 65 donc un côté et les deux angles adjacents sont égaux" }
+            ]
+          },
+          "expect": "correct"
+        },
+        { "response": { "parts": [{ "value": "65" }, { "value": "65" }, { "value": "non" }] }, "expect": "mc:angles-adjacents" }
+      ]
+    },
+    {
+      "id": "m4-triangles-ambigu",
+      "type": "composite",
+      "skill": "m4.triangles.construire",
+      "skills": ["m4.triangles.egalite"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "targets": ["mc:une-seule-solution"],
+      "expectedSeconds": 480,
+      "prompt": "Construis un triangle $ABC$ tel que $AB = 6$ cm, $BC = 4$ cm et Â = 35°. Commence par $[AB]$ et la demi-droite [Ax) qui fait un angle de 35° avec $[AB]$, puis cherche $C$ sur [Ax), à 4 cm de $B$ (compas !).",
+      "figure": {
+        "alt": "Segment [AB] de 6 cm et demi-droite issue de A faisant un angle de 35° avec [AB].",
+        "w": 400,
+        "h": 290,
+        "frame": { "x": [-0.6, 7.5], "y": [-0.7, 4.9] },
+        "items": [
+          { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+          { "type": "ray", "from": "A", "through": "X", "color": "gris" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "X", "label": "35°" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "X", "x": 6.963, "y": 4.875, "pos": "n", "label": "x" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de points de [Ax) sont exactement à 4 cm de $B$ ?",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:une-seule-solution",
+              "error": "raisonnement",
+              "feedback": "Le cercle de centre $B$ et de rayon 4 cm coupe la demi-droite [Ax) en **deux** points : regarde bien de part et d’autre."
+            }
+          ]
+        },
+        {
+          "type": "multi",
+          "prompt": "Mesure $AC$ pour chacun des deux triangles obtenus (en cm, au millimètre près).",
+          "count": 2,
+          "distinct": true,
+          "predicate": "abs(v - 2.876) <= 0.2 or abs(v - 6.954) <= 0.2"
+        },
+        {
+          "type": "text",
+          "prompt": "Deux côtés et un angle **non compris** entre eux suffisent-ils à fixer un triangle unique ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:angle-non-compris",
+              "error": "notion",
+              "feedback": "Tu viens d’obtenir deux triangles différents avec les mêmes données : ce n’est pas un cas d’égalité."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Trace le cercle (ou un grand arc) de centre $B$ et de rayon 4 cm.",
+        "Il coupe [Ax) en deux points $C_1$ et $C_2$.",
+        "Mesure $AC_1$ et $AC_2$."
+      ],
+      "solution": "L’arc de centre $B$ et de rayon 4 cm coupe [Ax) en deux points : on obtient deux triangles non superposables, avec $AC$ ≈ 2,9 cm et $AC$ ≈ 7 cm. Deux côtés et un angle non compris ne suffisent donc pas : ce n’est pas un cas d’égalité.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2" }, { "values": ["2,9", "7"] }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "1" }, { "values": ["7", "2,9"] }, { "value": "non" }] }, "expect": "mc:une-seule-solution" }
+      ]
+    },
+    {
+      "id": "m4-triangles-quadrilatere",
+      "type": "composite",
+      "skill": "m4.raisonner.preuve",
+      "skills": ["m4.triangles.egalite"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:cas-mal-choisi"],
+      "expectedSeconds": 720,
+      "prompt": "**Démonstration.** $ABCD$ est un quadrilatère non croisé dont les côtés opposés sont égaux : $AB = CD$ et $AD = BC$. On veut démontrer que c’est un parallélogramme.",
+      "figure": {
+        "alt": "Quadrilatère ABCD dont les côtés opposés sont égaux (codages) ; la diagonale [AC] est tracée et les angles BAC et DCA sont marqués.",
+        "w": 400,
+        "h": 243,
+        "frame": { "x": [-0.6, 7.1], "y": [-0.7, 3.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "segment", "from": "A", "to": "C", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "B", "marks": 1 },
+          { "type": "segment", "from": "C", "to": "D", "marks": 1 },
+          { "type": "segment", "from": "B", "to": "C", "marks": 2 },
+          { "type": "segment", "from": "D", "to": "A", "marks": 2 },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+          { "type": "angle", "vertex": "C", "from": "D", "to": "A", "marks": 1 },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 6.5, "y": 3, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 1.5, "y": 3, "pos": "nw" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Avec la diagonale $[AC]$, quel cas d’égalité montre que les triangles $ABC$ et $CDA$ sont égaux ?",
+          "accept": [
+            "trois côtés",
+            "les trois côtés",
+            "cas des trois côtés",
+            "le cas des trois côtés",
+            "3 côtés",
+            "les 3 côtés",
+            "côté côté côté",
+            "cas n°1",
+            "cas 1"
+          ],
+          "misconceptions": [
+            {
+              "answer": "angle compris",
+              "id": "mc:cas-mal-choisi",
+              "error": "notion",
+              "feedback": "On ne connaît encore aucun angle : $AB = CD$, $BC = DA$ et $[AC]$ est commun. C’est le cas des trois côtés."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Rédige la suite : déduis-en deux angles égaux, puis le parallélisme de $(AB)$ et $(CD)$ (angles alternes-internes), et conclus.",
+          "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "Les triangles étant égaux, les angles $BAC$ et $DCA$ sont égaux", "keywords": [["bac", "dca", "angle"]] },
+            {
+              "id": "c2",
+              "label": "Ces angles sont alternes-internes pour les droites $(AB)$, $(CD)$ et la sécante $(AC)$",
+              "keywords": [["altern"]]
+            },
+            { "id": "c3", "label": "J’en déduis $(AB) // (CD)$", "keywords": [["parallele", "//"]] },
+            {
+              "id": "c4",
+              "label": "Je conclus : deux côtés opposés parallèles et de même longueur, c’est un parallélogramme",
+              "keywords": [["parallelogramme"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$AB = CD$, $BC = DA$, et $[AC]$ est un côté commun.",
+        "Dans deux triangles égaux, les angles opposés à des côtés égaux sont égaux : $BAC$ est opposé à $[BC]$, $DCA$ à $[DA]$.",
+        "Deux angles alternes-internes égaux → droites parallèles."
+      ],
+      "solution": "Les triangles $ABC$ et $CDA$ ont leurs trois côtés égaux ($AB = CD$, $BC = DA$, $[AC]$ commun) : ils sont égaux. L’angle $BAC$ (opposé à $[BC]$) est égal à l’angle $DCA$ (opposé à $[DA]$). Ces angles sont alternes-internes pour $(AB)$ et $(CD)$ coupées par $(AC)$, donc $(AB) // (CD)$. Le quadrilatère non croisé $ABCD$ a deux côtés opposés parallèles et de même longueur : c’est un parallélogramme.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "trois côtés" },
+              {
+                "text": "Les triangles ABC et CDA sont égaux donc les angles BAC et DCA sont égaux. Ce sont des angles alternes-internes, donc (AB) et (CD) sont parallèles. ABCD a deux côtés opposés parallèles et de même longueur, c’est un parallélogramme.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [{ "value": "angle compris" }, { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false, "c3": false, "c4": false } }]
+          },
+          "expect": "mc:cas-mal-choisi"
+        }
+      ]
+    },
+    {
+      "id": "m4-triangles-perimetre12",
+      "type": "numeric",
+      "skill": "m4.triangles.egalite",
+      "skills": ["m5.triangle.inegalite", "m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:triangle-plat", "mc:permutations"],
+      "expectedSeconds": 600,
+      "prompt": "Combien existe-t-il de triangles **différents** (non égaux) dont les trois côtés mesurent un nombre entier de centimètres et dont le périmètre vaut 12 cm ? Deux triangles égaux ne comptent qu’une fois.",
+      "answer": 3,
+      "misconceptions": [
+        {
+          "answer": 6,
+          "id": "mc:triangle-plat",
+          "error": "raisonnement",
+          "prerequisite": "m5.triangle.inegalite",
+          "feedback": "Les « triangles » 1-5-6, 2-4-6 et 3-3-6 sont aplatis : 3 + 3 = 6, les trois sommets seraient alignés. Il faut que le plus grand côté soit **strictement** plus petit que la somme des deux autres."
+        },
+        {
+          "answer": 10,
+          "id": "mc:permutations",
+          "error": "raisonnement",
+          "feedback": "Un triangle de côtés 3, 4, 5 et un triangle de côtés 5, 3, 4 sont égaux (cas des trois côtés) : ils ne comptent qu’une fois."
+        }
+      ],
+      "hints": [
+        "Range les côtés dans l’ordre : $a ≤ b ≤ c$, avec $a + b + c = 12$.",
+        "Inégalité triangulaire : $c < a + b$, donc $c < 6$.",
+        "Essaie $c = 5$, puis $c = 4$."
+      ],
+      "solution": "Avec $a ≤ b ≤ c$ et $a + b + c = 12$ : l’inégalité triangulaire impose $c < a + b = 12 − c$, donc $c < 6$, et $c ≥ 4$ (c’est le plus grand). $c = 5$ : (2 ; 5 ; 5) et (3 ; 4 ; 5). $c = 4$ : (4 ; 4 ; 4). Il y a donc 3 triangles, et deux triangles qui ont les mêmes côtés sont égaux (cas des trois côtés).",
+      "methods": [
+        "Liste organisée en fixant d’abord le plus grand côté.",
+        "Utiliser l’inégalité triangulaire : le plus grand côté est plus petit que la moitié du périmètre."
+      ],
+      "selfTest": [{ "response": { "value": "3" }, "expect": "correct" }, { "response": { "value": "6" }, "expect": "mc:triangle-plat" }]
+    }
+  ]
+}

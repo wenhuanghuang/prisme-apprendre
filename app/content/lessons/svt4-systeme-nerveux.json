@@ -1,0 +1,5361 @@
+{
+  "id": "svt4-systeme-nerveux",
+  "chapter": "svt4-ch-nerveux",
+  "title": "Système nerveux, cerveau et santé",
+  "subject": "svt",
+  "level": "4e",
+  "skills": [
+    "svt4.corps.message-nerveux",
+    "svt4.corps.cerveau-integration",
+    "svt4.corps.hygiene-nerveuse",
+    "svt.demarche.hypothese-temoin",
+    "svt.demarche.exploiter-donnees",
+    "svt.demarche.correlation-causalite"
+  ],
+  "status": "programme",
+  "programmes": [
+    "svt-c4-2020"
+  ],
+  "duration": 55,
+  "summary": "Décrire le trajet d'un message nerveux (récepteur, nerf, centre nerveux, muscle), distinguer réflexe et mouvement volontaire, relier les aires du cerveau à leurs fonctions et comprendre l'effet du sommeil, des écrans, du bruit, des substances et de l'entraînement sur le système nerveux. Le programme de SVT est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "De l'œil à la main",
+      "body": "Une balle arrive vers toi : en environ un cinquième de seconde, tu la rattrapes. Ton œil a capté de la lumière, ton cerveau a analysé la scène, ta main s'est fermée.\n\nComment une information voyage-t-elle de l'œil à la main ? Et que se passe-t-il si tu manques de sommeil ?"
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : la règle qui tombe",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          {
+            "type": "forme",
+            "id": "regle",
+            "shape": "rect",
+            "x": 150,
+            "y": 34,
+            "w": 32,
+            "h": 192,
+            "rx": 3,
+            "fill": "#fde68a",
+            "stroke": "#b45309",
+            "width": 2
+          },
+          {
+            "type": "texte",
+            "id": "g0",
+            "x": 151,
+            "y": 224,
+            "text": "— 0",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g5",
+            "x": 151,
+            "y": 194,
+            "text": "–",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g10",
+            "x": 151,
+            "y": 164,
+            "text": "— 10",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g15",
+            "x": 151,
+            "y": 134,
+            "text": "–",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g20",
+            "x": 151,
+            "y": 104,
+            "text": "— 20",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g25",
+            "x": 151,
+            "y": 74,
+            "text": "–",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "texte",
+            "id": "g30",
+            "x": 151,
+            "y": 44,
+            "text": "— 30",
+            "size": 12,
+            "anchor": "start",
+            "color": "#78350f"
+          },
+          {
+            "type": "forme",
+            "id": "niveau",
+            "shape": "line",
+            "x": 104,
+            "y": 220,
+            "w": 92,
+            "h": 0,
+            "stroke": "#e11d48",
+            "width": 1.5
+          },
+          {
+            "type": "emoji",
+            "id": "mainHaut",
+            "char": "🤏",
+            "x": 166,
+            "y": 20,
+            "size": 32
+          },
+          {
+            "type": "emoji",
+            "id": "mainBas",
+            "char": "✋",
+            "x": 122,
+            "y": 220,
+            "size": 38
+          },
+          {
+            "type": "texte",
+            "x": 192,
+            "y": 26,
+            "text": "l'élève qui lâche",
+            "size": 12,
+            "anchor": "start"
+          },
+          {
+            "type": "texte",
+            "x": 16,
+            "y": 268,
+            "text": "l'élève qui attrape",
+            "size": 12,
+            "anchor": "start"
+          },
+          {
+            "type": "fleche",
+            "id": "chute",
+            "from": [
+              200,
+              222
+            ],
+            "to": [
+              200,
+              304
+            ],
+            "color": "#e11d48",
+            "progress": 0
+          },
+          {
+            "type": "etiquette",
+            "id": "lecture",
+            "x": 264,
+            "y": 180,
+            "text": "lecture : 14 cm",
+            "to": [
+              184,
+              220
+            ],
+            "opacity": 0
+          },
+          {
+            "type": "emoji",
+            "id": "tel",
+            "char": "📱",
+            "x": 60,
+            "y": 170,
+            "size": 40,
+            "label": "message à lire",
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tconv",
+            "x": 340,
+            "y": 8,
+            "w": 200,
+            "title": "Distance → temps",
+            "head": [
+              "Chute",
+              "Temps"
+            ],
+            "rows": [
+              [
+                "10 cm",
+                "143 ms"
+              ],
+              [
+                "15 cm",
+                "175 ms"
+              ],
+              [
+                "20 cm",
+                "202 ms"
+              ],
+              [
+                "25 cm",
+                "226 ms"
+              ],
+              [
+                "30 cm",
+                "247 ms"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tA",
+            "x": 554,
+            "y": 8,
+            "w": 114,
+            "title": "Attentif",
+            "head": [
+              "essai",
+              "cm"
+            ],
+            "rows": [
+              [
+                "1",
+                "14"
+              ],
+              [
+                "2",
+                "16"
+              ],
+              [
+                "3",
+                "12"
+              ],
+              [
+                "4",
+                "18"
+              ],
+              [
+                "5",
+                "15"
+              ],
+              [
+                "moy.",
+                "15"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tD",
+            "x": 676,
+            "y": 8,
+            "w": 114,
+            "title": "Distrait",
+            "head": [
+              "essai",
+              "cm"
+            ],
+            "rows": [
+              [
+                "1",
+                "22"
+              ],
+              [
+                "2",
+                "25"
+              ],
+              [
+                "3",
+                "20"
+              ],
+              [
+                "4",
+                "24"
+              ],
+              [
+                "5",
+                "19"
+              ],
+              [
+                "moy.",
+                "22"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "resA",
+            "x": 565,
+            "y": 248,
+            "text": "Attentif : moyenne 15 cm → environ 175 ms",
+            "size": 14,
+            "bold": true,
+            "opacity": 0
+          },
+          {
+            "type": "texte",
+            "id": "resD",
+            "x": 565,
+            "y": 272,
+            "text": "Distrait : moyenne 22 cm → environ 212 ms",
+            "size": 14,
+            "bold": true,
+            "color": "#b91c1c",
+            "opacity": 0
+          },
+          {
+            "type": "emoji",
+            "id": "oeil",
+            "char": "👁️",
+            "x": 372,
+            "y": 356,
+            "size": 36,
+            "label": "œil",
+            "opacity": 0
+          },
+          {
+            "type": "fleche",
+            "id": "fOptique",
+            "from": [
+              398,
+              356
+            ],
+            "to": [
+              474,
+              356
+            ],
+            "label": "nerf optique",
+            "color": "#2563eb",
+            "progress": 0
+          },
+          {
+            "type": "emoji",
+            "id": "cerveau",
+            "char": "🧠",
+            "x": 510,
+            "y": 356,
+            "size": 36,
+            "label": "cerveau (décide)",
+            "opacity": 0
+          },
+          {
+            "type": "fleche",
+            "id": "fMoteur",
+            "from": [
+              534,
+              356
+            ],
+            "to": [
+              620,
+              356
+            ],
+            "label": "nerfs moteurs",
+            "color": "#16a34a",
+            "progress": 0
+          },
+          {
+            "type": "emoji",
+            "id": "muscles",
+            "char": "💪",
+            "x": 648,
+            "y": 356,
+            "size": 36,
+            "label": "muscles",
+            "opacity": 0
+          },
+          {
+            "type": "fleche",
+            "id": "fDoigts",
+            "from": [
+              670,
+              356
+            ],
+            "to": [
+              722,
+              356
+            ],
+            "color": "#94a3b8",
+            "progress": 0
+          },
+          {
+            "type": "emoji",
+            "id": "doigts",
+            "char": "🤏",
+            "x": 748,
+            "y": 356,
+            "size": 36,
+            "label": "doigts",
+            "opacity": 0
+          },
+          {
+            "type": "texte",
+            "id": "duree1",
+            "x": 565,
+            "y": 424,
+            "text": "Durée totale : environ 0,175 s",
+            "size": 14,
+            "bold": true,
+            "opacity": 0
+          },
+          {
+            "type": "emoji",
+            "id": "peau",
+            "char": "✋",
+            "x": 384,
+            "y": 356,
+            "size": 36,
+            "label": "peau (récepteurs)",
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "feu",
+            "char": "🔥",
+            "x": 384,
+            "y": 316,
+            "size": 26,
+            "hidden": true
+          },
+          {
+            "type": "fleche",
+            "id": "fSensitif",
+            "from": [
+              406,
+              356
+            ],
+            "to": [
+              476,
+              356
+            ],
+            "label": "nerf sensitif",
+            "color": "#2563eb",
+            "progress": 0,
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "moelle",
+            "x": 560,
+            "y": 356,
+            "text": "moelle épinière",
+            "hidden": true
+          },
+          {
+            "type": "fleche",
+            "id": "fMoteur2",
+            "from": [
+              640,
+              356
+            ],
+            "to": [
+              704,
+              356
+            ],
+            "label": "nerf moteur",
+            "color": "#16a34a",
+            "progress": 0,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "bras",
+            "char": "💪",
+            "x": 730,
+            "y": 356,
+            "size": 36,
+            "label": "muscle du bras",
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "cerveau2",
+            "char": "🧠",
+            "x": 560,
+            "y": 300,
+            "size": 30,
+            "label": "cerveau (informé après)",
+            "opacity": 0.5,
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "duree2",
+            "x": 565,
+            "y": 424,
+            "text": "Réflexe : quelques centièmes de seconde",
+            "size": 14,
+            "bold": true,
+            "opacity": 0,
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Deux élèves et une règle graduée de 30 cm. Le premier tient la règle verticalement, l'extrémité du zéro au niveau des doigts écartés du second. Il la lâche sans prévenir ; le second doit la rattraper le plus vite possible.",
+            "focus": [
+              "regle",
+              "mainBas"
+            ]
+          },
+          {
+            "title": "Que mesure-t-on ?",
+            "text": "On lit la graduation à laquelle les doigts se sont refermés : c'est la distance parcourue par la règle avant qu'elle soit attrapée. Plus la réaction est lente, plus la règle tombe loin.",
+            "duration": 3,
+            "do": [
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 0.6
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 118
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 308
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 278
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 248
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 218
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 188
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 158
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 128
+                },
+                "at": 0.6,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 0.95
+              },
+              {
+                "id": "chute",
+                "to": {
+                  "progress": 1
+                },
+                "at": 1.1,
+                "dur": 0.5
+              },
+              {
+                "id": "lecture",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 1.7,
+                "dur": 0.5
+              }
+            ],
+            "focus": [
+              "lecture"
+            ],
+            "ask": {
+              "question": "Que mesure cette distance de chute ?",
+              "choices": [
+                "La force de la main",
+                "Le temps de réaction",
+                "La taille de la main"
+              ],
+              "answer": 1,
+              "explain": "Plus la règle tombe longtemps avant d'être attrapée, plus elle descend : la distance de chute mesure donc le temps de réaction."
+            }
+          },
+          {
+            "title": "De la distance au temps",
+            "text": "La règle tombe d'autant plus loin qu'on réagit tard. Un calcul de physique donne le temps de réaction : 10 cm correspondent à 143 ms, 15 cm à 175 ms, 20 cm à 202 ms, 25 cm à 226 ms, 30 cm à 247 ms (1 ms = un millième de seconde).",
+            "duration": 3,
+            "do": [
+              {
+                "id": "tconv",
+                "to": {
+                  "shown": 5
+                },
+                "dur": 2.5
+              }
+            ],
+            "show": [
+              "tconv"
+            ],
+            "hide": [
+              "chute"
+            ],
+            "focus": [
+              "tconv"
+            ]
+          },
+          {
+            "title": "Cinq essais attentifs",
+            "text": "L'élève attentif obtient 14 cm, 16 cm, 12 cm, 18 cm et 15 cm. Les valeurs varient d'un essai à l'autre : on calcule la moyenne, 15 cm, soit un temps de réaction d'environ 175 ms, c'est-à-dire un peu moins de deux dixièmes de seconde.",
+            "duration": 9.6,
+            "do": [
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 1
+                },
+                "at": 0.2,
+                "dur": 0.3
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 0.8,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 0.8
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 1.2
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 1.7
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 130
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 320
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 290
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 260
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 230
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 200
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 170
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 140
+                },
+                "at": 1.7,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 2.05
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 16 cm"
+                },
+                "at": 2.05
+              },
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 2
+                },
+                "at": 2.1,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 2.6,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 2.6
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 3
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 3.5
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 106
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 296
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 266
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 236
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 206
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 176
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 146
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 116
+                },
+                "at": 3.5,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 3.85
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 12 cm"
+                },
+                "at": 3.85
+              },
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 3
+                },
+                "at": 3.9,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 4.4,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 4.4
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 4.8
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 5.3
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 142
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 332
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 302
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 272
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 242
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 212
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 182
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 152
+                },
+                "at": 5.3,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 5.65
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 18 cm"
+                },
+                "at": 5.65
+              },
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 4
+                },
+                "at": 5.7,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 6.2,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 6.2
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 6.6
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 7.1
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 124
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 314
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 284
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 254
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 224
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 194
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 164
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 134
+                },
+                "at": 7.1,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 7.45
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 15 cm"
+                },
+                "at": 7.45
+              },
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 5
+                },
+                "at": 7.5,
+                "dur": 0.2
+              },
+              {
+                "id": "tA",
+                "to": {
+                  "shown": 6
+                },
+                "at": 8.3,
+                "dur": 0.4
+              },
+              {
+                "id": "resA",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 8.8,
+                "dur": 0.6
+              }
+            ],
+            "show": [
+              "tA"
+            ],
+            "focus": [
+              "tA"
+            ]
+          },
+          {
+            "title": "Le trajet de l'information",
+            "text": "En 0,175 s, l'information va de l'œil au cerveau par le nerf optique ; le cerveau l'analyse et décide ; un message nerveux part vers les muscles du bras et des doigts par des nerfs moteurs. Chaque étape prend du temps.",
+            "duration": 6.5,
+            "do": [
+              {
+                "id": "oeil",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 0.2,
+                "dur": 0.5
+              },
+              {
+                "id": "fOptique",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0.8,
+                "dur": 1
+              },
+              {
+                "id": "cerveau",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 1.8,
+                "dur": 0.5
+              },
+              {
+                "id": "fMoteur",
+                "to": {
+                  "progress": 1
+                },
+                "at": 2.4,
+                "dur": 1
+              },
+              {
+                "id": "muscles",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 3.4,
+                "dur": 0.5
+              },
+              {
+                "id": "fDoigts",
+                "to": {
+                  "progress": 1
+                },
+                "at": 4,
+                "dur": 0.6
+              },
+              {
+                "id": "doigts",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 4.6,
+                "dur": 0.5
+              },
+              {
+                "id": "duree1",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 5.3,
+                "dur": 0.6
+              }
+            ],
+            "focus": [
+              "cerveau"
+            ]
+          },
+          {
+            "title": "Avec une distraction",
+            "text": "On recommence en faisant lire un message sur un téléphone au second élève. On refait cinq essais, toujours sans le prévenir.",
+            "duration": 1.5,
+            "do": [
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 0.2,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 0.2
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 0.6
+              },
+              {
+                "id": "lecture",
+                "to": {
+                  "opacity": 0
+                },
+                "dur": 0.3
+              }
+            ],
+            "show": [
+              "tel"
+            ],
+            "focus": [
+              "tel"
+            ],
+            "ask": {
+              "question": "Que devient le temps de réaction quand on est distrait ?",
+              "choices": [
+                "Il diminue",
+                "Il ne change pas",
+                "Il s'allonge"
+              ],
+              "answer": 2,
+              "explain": "La distraction mobilise l'attention du cerveau : l'analyse de l'information et la décision prennent plus de temps. Les mesures de l'étape suivante le confirment."
+            }
+          },
+          {
+            "title": "Les essais avec distraction",
+            "text": "Le second élève obtient 22 cm, 25 cm, 20 cm, 24 cm et 19 cm. La moyenne est de 22 cm, soit un temps de réaction d'environ 212 ms : 37 ms de plus qu'en étant attentif.",
+            "duration": 10.5,
+            "show": [
+              "tD"
+            ],
+            "do": [
+              {
+                "id": "lecture",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 1.2,
+                "dur": 0.3
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 0,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 0
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 0.4
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 0.9
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 166
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 356
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 326
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 296
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 266
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 236
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 206
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 176
+                },
+                "at": 0.9,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 1.25
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 22 cm"
+                },
+                "at": 1.25
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 1
+                },
+                "at": 1.3,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 1.8,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 1.8
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 2.2
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 2.7
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 184
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 374
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 344
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 314
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 284
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 254
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 224
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 194
+                },
+                "at": 2.7,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 3.05
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 25 cm"
+                },
+                "at": 3.05
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 2
+                },
+                "at": 3.1,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 3.6,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 3.6
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 4
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 4.5
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 154
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 344
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 314
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 284
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 254
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 224
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 194
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 164
+                },
+                "at": 4.5,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 4.85
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 20 cm"
+                },
+                "at": 4.85
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 3
+                },
+                "at": 4.9,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 5.4,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 5.4
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 5.8
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 6.3
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 178
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 368
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 338
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 308
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 278
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 248
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 218
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 188
+                },
+                "at": 6.3,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 6.65
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 24 cm"
+                },
+                "at": 6.65
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 4
+                },
+                "at": 6.7,
+                "dur": 0.2
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 34
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 224
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 194
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 164
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 134
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 104
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 74
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 44
+                },
+                "at": 7.2,
+                "dur": 0.4
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✋"
+                },
+                "at": 7.2
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🤏"
+                },
+                "at": 7.6
+              },
+              {
+                "id": "mainHaut",
+                "set": {
+                  "char": "🖐️"
+                },
+                "at": 8.1
+              },
+              {
+                "id": "regle",
+                "to": {
+                  "y": 148
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g0",
+                "to": {
+                  "y": 338
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g5",
+                "to": {
+                  "y": 308
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g10",
+                "to": {
+                  "y": 278
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g15",
+                "to": {
+                  "y": 248
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g20",
+                "to": {
+                  "y": 218
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g25",
+                "to": {
+                  "y": 188
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "g30",
+                "to": {
+                  "y": 158
+                },
+                "at": 8.1,
+                "dur": 0.35
+              },
+              {
+                "id": "mainBas",
+                "set": {
+                  "char": "✊"
+                },
+                "at": 8.45
+              },
+              {
+                "id": "lecture",
+                "set": {
+                  "text": "lecture : 19 cm"
+                },
+                "at": 8.45
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 5
+                },
+                "at": 8.5,
+                "dur": 0.2
+              },
+              {
+                "id": "tD",
+                "to": {
+                  "shown": 6
+                },
+                "at": 9.3,
+                "dur": 0.4
+              },
+              {
+                "id": "resD",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 9.8,
+                "dur": 0.6
+              }
+            ],
+            "focus": [
+              "tD"
+            ]
+          },
+          {
+            "title": "Un réflexe est plus rapide",
+            "text": "Un réflexe, comme le retrait de la main d'une plaque brûlante, est beaucoup plus rapide : quelques centièmes de seconde. Le message passe par la moelle épinière, qui commande la réponse sans attendre la décision du cerveau.",
+            "duration": 3.5,
+            "do": [
+              {
+                "id": "fSensitif",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0.3,
+                "dur": 0.45
+              },
+              {
+                "id": "fMoteur2",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0.8,
+                "dur": 0.45
+              },
+              {
+                "id": "peau",
+                "to": {
+                  "x": 362
+                },
+                "at": 1.3,
+                "dur": 0.3
+              },
+              {
+                "id": "duree2",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 1.8,
+                "dur": 0.6
+              }
+            ],
+            "show": [
+              "peau",
+              "feu",
+              "fSensitif",
+              "moelle",
+              "fMoteur2",
+              "bras",
+              "cerveau2",
+              "duree2"
+            ],
+            "hide": [
+              "oeil",
+              "fOptique",
+              "cerveau",
+              "fMoteur",
+              "muscles",
+              "fDoigts",
+              "doigts",
+              "duree1"
+            ],
+            "focus": [
+              "moelle"
+            ]
+          }
+        ],
+        "conclusion": "Attraper une règle, c'est un mouvement **volontaire** : le message passe par le cerveau, en environ **0,2 s**. Une distraction allonge ce temps de réaction. Un réflexe, qui ne passe pas par le cerveau, est bien plus rapide."
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧠",
+          "title": "Neurones, nerfs, centres",
+          "body": "Le système nerveux est formé de **cellules nerveuses (neurones)** qui transmettent des **messages nerveux**. Leurs prolongements, réunis en faisceaux, forment les **nerfs** : sensitifs vers les centres, moteurs vers les muscles. Les **centres nerveux** sont l'encéphale (dont le cerveau) et la moelle épinière."
+        },
+        {
+          "emoji": "👁️",
+          "title": "Du stimulus à la réponse",
+          "body": "Un **récepteur sensoriel** (œil, oreille, peau…) transforme un stimulus en message nerveux. Un nerf sensitif le conduit au cerveau, qui l'**intègre** (parfois avec d'autres informations) et commande une réponse : un nerf moteur envoie un ordre aux muscles. Rattraper une règle prend environ 0,2 s."
+        },
+        {
+          "emoji": "⚡",
+          "title": "Réflexe et mouvement volontaire",
+          "body": "Dans un **réflexe** (retirer la main d'une plaque brûlante), le message passe par la moelle épinière, sans attendre la décision du cerveau : c'est rapide et involontaire. Un **mouvement volontaire** fait intervenir le cerveau : il est plus lent, mais il peut être appris et modifié.",
+          "reveal": {
+            "question": "Rattraper une règle qui tombe est-il un réflexe ?",
+            "answer": "Non : le cerveau intervient (analyse puis décision) et il faut environ 0,2 s. Un réflexe est bien plus rapide, quelques centièmes de seconde."
+          }
+        },
+        {
+          "emoji": "🗺️",
+          "title": "Les aires du cerveau",
+          "body": "Le cerveau a des **aires spécialisées** : visuelle (à l'arrière), auditive (sur les côtés), sensitive (toucher) et motrice (à l'avant, elle commande les muscles). L'IRM fonctionnelle montre quelles aires sont actives pendant une tâche. On n'utilise pas « seulement 10 % » du cerveau : toutes les régions servent, à des moments différents."
+        },
+        {
+          "emoji": "🌱",
+          "title": "Un cerveau qui change",
+          "body": "Le cerveau est **plastique** : l'apprentissage et l'entraînement modifient les connexions entre neurones. Apprendre à jongler ou jouer d'un instrument renforce certaines régions. Le cerveau se développe jusqu'à environ 25 ans : il est donc particulièrement sensible aux produits qui agissent sur lui."
+        },
+        {
+          "emoji": "😴",
+          "title": "Prendre soin de son système nerveux",
+          "body": "Le **sommeil** (8 à 10 h à l'adolescence) permet de récupérer et de mémoriser. Les écrans le soir retardent l'endormissement. Un son très fort et prolongé (plus de 85 dB environ) détruit définitivement des cellules de l'oreille. Alcool, tabac ou cannabis perturbent la communication entre neurones et peuvent créer une dépendance.",
+          "reveal": {
+            "question": "Un seul verre d'alcool ne change-t-il vraiment rien ?",
+            "answer": "Si : dès une faible dose, l'alcool ralentit le temps de réaction et perturbe l'équilibre. Plus la dose et la fréquence augmentent, plus les effets et le risque de dépendance sont importants."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        {
+          "text": "Un élève obtient, à la règle, des distances de chute de 16, 14, 15, 17 et 13 cm. Quel est son temps de réaction ?",
+          "math": ""
+        },
+        {
+          "text": "On calcule la moyenne des cinq distances : on additionne, puis on divise par 5.",
+          "math": "(16 + 14 + 15 + 17 + 13) ÷ 5 = 75 ÷ 5 = 15 cm"
+        },
+        {
+          "text": "On lit dans le tableau de conversion le temps qui correspond à 15 cm.",
+          "math": "15 cm → 175 ms",
+          "figure": {
+            "alt": "Tableau de conversion entre la distance de chute de la règle et le temps de réaction",
+            "w": 520,
+            "h": 190,
+            "items": [
+              {
+                "type": "table",
+                "head": [
+                  "Distance de chute (cm)",
+                  "Temps de réaction (ms)"
+                ],
+                "rows": [
+                  [
+                    "10",
+                    "143"
+                  ],
+                  [
+                    "15",
+                    "175"
+                  ],
+                  [
+                    "20",
+                    "202"
+                  ],
+                  [
+                    "22",
+                    "212"
+                  ],
+                  [
+                    "25",
+                    "226"
+                  ],
+                  [
+                    "30",
+                    "247"
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "text": "On convertit en secondes : 1 s = 1 000 ms.",
+          "math": "175 ms = 0,175 s"
+        },
+        {
+          "text": "Conclusion : le temps de réaction moyen de cet élève est d'environ 0,18 s. Ce temps est celui d'un mouvement volontaire, qui passe par le cerveau : il est bien plus long que celui d'un réflexe.",
+          "math": ""
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "svt4-nerveux-trajet",
+        "svt4-nerveux-vocabulaire",
+        "svt4-nerveux-aires",
+        "svt4-nerveux-reflexe",
+        "svt4-nerveux-vitesse",
+        "svt4-nerveux-decibels"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": [
+        "svt4-nerveux-expliquer"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Les nuits de Marc",
+      "body": "Marc dort-il assez ? Calcule ses heures de sommeil et conseille-le.",
+      "exercises": [
+        "svt4-nerveux-sommeil"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Un récepteur transforme un stimulus en **message nerveux** ; un **nerf sensitif** le conduit au **cerveau**, qui l'intègre et commande une réponse par un **nerf moteur**. Le **réflexe** passe par la moelle épinière. Sommeil, écrans, bruit, substances et entraînement agissent sur le système nerveux.\n\n- **« Attraper une règle, c'est un réflexe. »** Non : le cerveau intervient.\n- **« On n'utilise que 10 % du cerveau. »** Faux : toutes les régions servent.\n- **« Le cerveau ne change plus après l'enfance. »** Faux : il est plastique."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un trajet de message nerveux ou une question sur le cerveau : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Tester par des mesures l'effet d'une distraction sur le temps de réaction, et interpréter une étude sur la plasticité du cerveau.",
+      "exercises": [
+        "svt4-nerveux-reaction",
+        "svt4-nerveux-plasticite"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : calculer la distance parcourue pendant un temps de réaction au volant, et distinguer corrélation et causalité à propos du sommeil.",
+      "exercises": [
+        "svt4-nerveux-distance",
+        "svt4-nerveux-correlation"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "svt4-nerveux-trajet",
+      "type": "order",
+      "skill": "svt4.corps.message-nerveux",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [],
+      "expectedSeconds": 150,
+      "prompt": "Tu vois une balle arriver et tu la rattrapes. Remets dans l'ordre le trajet de l'information, de la balle jusqu'à ta main.",
+      "orderLabel": "dans l'ordre du trajet",
+      "items": [
+        {
+          "id": "o1",
+          "label": "La lumière de la balle atteint l'œil : les récepteurs de la rétine la transforment en messages nerveux."
+        },
+        {
+          "id": "o2",
+          "label": "Le nerf optique (nerf sensitif) conduit les messages vers le cerveau."
+        },
+        {
+          "id": "o3",
+          "label": "Dans l'aire visuelle, puis dans d'autres aires, le cerveau analyse l'information et décide d'agir."
+        },
+        {
+          "id": "o4",
+          "label": "L'aire motrice commande le mouvement : un message nerveux part vers les muscles."
+        },
+        {
+          "id": "o5",
+          "label": "Des nerfs moteurs conduisent le message jusqu'aux muscles du bras et de la main."
+        },
+        {
+          "id": "o6",
+          "label": "Les muscles se contractent : la main se ferme sur la balle."
+        }
+      ],
+      "hints": [
+        "Tout commence par un récepteur sensoriel, ici dans l'œil.",
+        "Le cerveau est au milieu : il reçoit par des nerfs sensitifs et il envoie par des nerfs moteurs."
+      ],
+      "solution": "Récepteurs de la rétine ; nerf optique (sensitif) ; aires visuelles et intégration dans le cerveau ; aire motrice ; nerfs moteurs ; contraction des muscles de la main.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5",
+              "o6"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "o6",
+              "o5",
+              "o4",
+              "o3",
+              "o2",
+              "o1"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-vocabulaire",
+      "type": "match",
+      "skill": "svt4.corps.message-nerveux",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:sensitif-moteur",
+        "mc:moelle-nerf",
+        "mc:oeil-cerveau"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Associe chaque élément du système nerveux à son rôle.",
+      "leftTitle": "Élément",
+      "rightTitle": "Rôle",
+      "left": [
+        {
+          "id": "l1",
+          "label": "Un neurone"
+        },
+        {
+          "id": "l2",
+          "label": "Un nerf sensitif"
+        },
+        {
+          "id": "l3",
+          "label": "Un nerf moteur"
+        },
+        {
+          "id": "l4",
+          "label": "La moelle épinière"
+        },
+        {
+          "id": "l5",
+          "label": "Le cerveau"
+        },
+        {
+          "id": "l6",
+          "label": "Un récepteur sensoriel"
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "label": "Cellule nerveuse qui transmet des messages nerveux"
+        },
+        {
+          "id": "r2",
+          "label": "Faisceau de fibres qui conduit les messages des récepteurs vers les centres nerveux"
+        },
+        {
+          "id": "r3",
+          "label": "Faisceau de fibres qui conduit les messages des centres nerveux vers les muscles"
+        },
+        {
+          "id": "r4",
+          "label": "Centre nerveux situé dans la colonne vertébrale, qui relaie les messages et commande les réflexes"
+        },
+        {
+          "id": "r5",
+          "label": "Centre nerveux situé dans le crâne, qui analyse les informations et commande les mouvements volontaires"
+        },
+        {
+          "id": "r6",
+          "label": "Cellule ou organe qui transforme un stimulus (lumière, son, contact…) en message nerveux"
+        }
+      ],
+      "pairs": {
+        "l1": "r1",
+        "l2": "r2",
+        "l3": "r3",
+        "l4": "r4",
+        "l5": "r5",
+        "l6": "r6"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "l2",
+            "r3"
+          ],
+          "id": "mc:sensitif-moteur",
+          "error": "notion",
+          "feedback": "Un nerf sensitif conduit l'information vers les centres nerveux (il « sent »). C'est le nerf moteur qui conduit l'ordre vers les muscles."
+        },
+        {
+          "pair": [
+            "l4",
+            "r2"
+          ],
+          "id": "mc:moelle-nerf",
+          "error": "notion",
+          "feedback": "La moelle épinière n'est pas un nerf : c'est un centre nerveux, protégé par la colonne vertébrale. Les nerfs en partent et y arrivent."
+        },
+        {
+          "pair": [
+            "l5",
+            "r6"
+          ],
+          "id": "mc:oeil-cerveau",
+          "error": "notion",
+          "feedback": "Le cerveau ne capte pas directement les stimulus : il reçoit des messages nerveux des récepteurs sensoriels (œil, oreille, peau…) et les analyse."
+        }
+      ],
+      "hints": [
+        "Sensitif : vers les centres. Moteur : vers les muscles.",
+        "Deux centres nerveux : un dans le crâne, un dans la colonne vertébrale."
+      ],
+      "solution": "Neurone : cellule nerveuse. Nerf sensitif : récepteurs vers centres. Nerf moteur : centres vers muscles. Moelle épinière : centre dans la colonne vertébrale, réflexes. Cerveau : centre dans le crâne, analyse et mouvements volontaires. Récepteur : transforme le stimulus en message nerveux.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r4",
+              "l5": "r5",
+              "l6": "r6"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r3",
+              "l3": "r3",
+              "l4": "r4",
+              "l5": "r5",
+              "l6": "r6"
+            }
+          },
+          "expect": "mc:sensitif-moteur"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r2",
+              "l5": "r5",
+              "l6": "r6"
+            }
+          },
+          "expect": "mc:moelle-nerf"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r4",
+              "l5": "r6",
+              "l6": "r6"
+            }
+          },
+          "expect": "mc:oeil-cerveau"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-aires",
+      "type": "composite",
+      "skill": "svt4.corps.cerveau-integration",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:sensitif-moteur",
+        "mc:oeil-cerveau"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Le cerveau possède des aires spécialisées. On les connaît grâce à des personnes dont une région du cerveau a été lésée (accident, AVC) et grâce à l'imagerie par résonance magnétique fonctionnelle (IRMf), qui repère les régions plus actives pendant une tâche.",
+      "parts": [
+        {
+          "type": "match",
+          "prompt": "Chaque personne ci-dessous a une région du cerveau lésée. Associe son observation à l'aire touchée.",
+          "leftTitle": "Observation",
+          "rightTitle": "Aire lésée",
+          "left": [
+            {
+              "id": "l1",
+              "label": "Ses yeux sont intacts, mais elle ne perçoit plus aucune image."
+            },
+            {
+              "id": "l2",
+              "label": "Ses oreilles sont intactes, mais elle ne perçoit plus les sons."
+            },
+            {
+              "id": "l3",
+              "label": "Les muscles et les nerfs de sa main sont intacts, mais elle ne peut plus la bouger volontairement."
+            },
+            {
+              "id": "l4",
+              "label": "La peau de sa main est intacte, mais elle ne ressent plus le toucher."
+            }
+          ],
+          "right": [
+            {
+              "id": "r1",
+              "label": "Aire visuelle"
+            },
+            {
+              "id": "r2",
+              "label": "Aire auditive"
+            },
+            {
+              "id": "r3",
+              "label": "Aire motrice"
+            },
+            {
+              "id": "r4",
+              "label": "Aire sensitive"
+            }
+          ],
+          "pairs": {
+            "l1": "r1",
+            "l2": "r2",
+            "l3": "r3",
+            "l4": "r4"
+          },
+          "misconceptions": [
+            {
+              "pair": [
+                "l3",
+                "r4"
+              ],
+              "id": "mc:sensitif-moteur",
+              "error": "notion",
+              "feedback": "L'aire sensitive reçoit les sensations. Pouvoir ou non commander volontairement un muscle dépend de l'aire motrice."
+            },
+            {
+              "pair": [
+                "l1",
+                "r4"
+              ],
+              "id": "mc:oeil-cerveau",
+              "error": "notion",
+              "feedback": "Voir dépend de l'aire visuelle du cerveau, pas seulement de l'œil : l'œil capte la lumière, mais c'est le cerveau qui produit l'image perçue."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "En IRMf, quelle aire est la plus active pendant chaque tâche ?",
+          "categories": [
+            {
+              "id": "vis",
+              "label": "Aire visuelle"
+            },
+            {
+              "id": "aud",
+              "label": "Aire auditive"
+            },
+            {
+              "id": "sen",
+              "label": "Aire sensitive"
+            },
+            {
+              "id": "mot",
+              "label": "Aire motrice"
+            }
+          ],
+          "items": [
+            {
+              "id": "t1",
+              "label": "Regarder une photo",
+              "category": "vis"
+            },
+            {
+              "id": "t2",
+              "label": "Écouter une chanson les yeux fermés",
+              "category": "aud"
+            },
+            {
+              "id": "t3",
+              "label": "Sentir la texture d'un tissu posé sur la main immobile",
+              "category": "sen"
+            },
+            {
+              "id": "t4",
+              "label": "Serrer volontairement le poing",
+              "category": "mot"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "t3",
+              "category": "mot",
+              "id": "mc:sensitif-moteur",
+              "error": "notion",
+              "feedback": "La main reste immobile : il s'agit de recevoir une sensation, donc de l'aire sensitive. L'aire motrice s'active quand on commande un mouvement."
+            },
+            {
+              "item": "t2",
+              "category": "vis",
+              "id": "mc:oeil-cerveau",
+              "error": "notion",
+              "feedback": "Les yeux sont fermés : l'information vient des oreilles, donc de l'aire auditive."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pense à la fonction touchée : voir, entendre, bouger, sentir.",
+        "L'œil, l'oreille et la peau captent ; les aires du cerveau analysent."
+      ],
+      "solution": "Image perdue : aire visuelle. Sons perdus : aire auditive. Main immobile mais intacte : aire motrice. Toucher perdu : aire sensitive. En IRMf : photo → visuelle ; chanson → auditive ; texture sur la main immobile → sensitive ; poing serré → motrice.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              },
+              {
+                "assign": {
+                  "t1": "vis",
+                  "t2": "aud",
+                  "t3": "sen",
+                  "t4": "mot"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r4",
+                  "l4": "r4"
+                }
+              },
+              {
+                "assign": {
+                  "t1": "vis",
+                  "t2": "aud",
+                  "t3": "sen",
+                  "t4": "mot"
+                }
+              }
+            ]
+          },
+          "expect": "mc:sensitif-moteur"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "l1": "r4",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              },
+              {
+                "assign": {
+                  "t1": "vis",
+                  "t2": "aud",
+                  "t3": "sen",
+                  "t4": "mot"
+                }
+              }
+            ]
+          },
+          "expect": "mc:oeil-cerveau"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              },
+              {
+                "assign": {
+                  "t1": "vis",
+                  "t2": "aud",
+                  "t3": "mot",
+                  "t4": "mot"
+                }
+              }
+            ]
+          },
+          "expect": "mc:sensitif-moteur"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "l1": "r1",
+                  "l2": "r2",
+                  "l3": "r3",
+                  "l4": "r4"
+                }
+              },
+              {
+                "assign": {
+                  "t1": "vis",
+                  "t2": "vis",
+                  "t3": "sen",
+                  "t4": "mot"
+                }
+              }
+            ]
+          },
+          "expect": "mc:oeil-cerveau"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-reflexe",
+      "type": "categorize",
+      "skill": "svt4.corps.message-nerveux",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:reaction-reflexe",
+        "mc:automatisme-reflexe",
+        "mc:reflexe-decision"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Un **réflexe** est une réponse rapide et involontaire, dont le trajet passe par la moelle épinière (ou le tronc cérébral) sans attendre la décision du cerveau. Un **mouvement volontaire** est décidé par le cerveau. Classe chaque action.",
+      "categories": [
+        {
+          "id": "ref",
+          "label": "Réflexe"
+        },
+        {
+          "id": "vol",
+          "label": "Mouvement volontaire"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "Retirer la main d'une plaque brûlante",
+          "category": "ref"
+        },
+        {
+          "id": "i2",
+          "label": "Écrire son nom",
+          "category": "vol"
+        },
+        {
+          "id": "i3",
+          "label": "Cligner de l'œil quand un objet approche vite",
+          "category": "ref"
+        },
+        {
+          "id": "i4",
+          "label": "Dribbler avec un ballon",
+          "category": "vol"
+        },
+        {
+          "id": "i5",
+          "label": "Attraper une règle qui tombe",
+          "category": "vol"
+        },
+        {
+          "id": "i6",
+          "label": "Le rétrécissement de la pupille à la lumière",
+          "category": "ref"
+        },
+        {
+          "id": "i7",
+          "label": "Répondre à une question en levant la main",
+          "category": "vol"
+        },
+        {
+          "id": "i8",
+          "label": "Sursauter à un bruit très fort",
+          "category": "ref"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "i5",
+          "category": "ref",
+          "id": "mc:reaction-reflexe",
+          "error": "notion",
+          "feedback": "Attraper la règle est rapide (environ 0,2 s), mais c'est volontaire : l'information passe par le cerveau (vision, décision, commande). Un vrai réflexe est bien plus rapide, quelques centièmes de seconde."
+        },
+        {
+          "item": "i4",
+          "category": "ref",
+          "id": "mc:automatisme-reflexe",
+          "error": "notion",
+          "feedback": "Le dribble devient très automatique avec l'entraînement, mais il est commandé par le cerveau et appris. Un réflexe, lui, est inné et involontaire."
+        },
+        {
+          "item": "i1",
+          "category": "vol",
+          "id": "mc:reflexe-decision",
+          "error": "notion",
+          "feedback": "On retire la main avant même d'avoir décidé : le message passe par la moelle épinière, qui commande le retrait. Le cerveau est informé ensuite. C'est un réflexe."
+        }
+      ],
+      "hints": [
+        "Un réflexe protège : il est très rapide, involontaire, et le cerveau n'a pas besoin de décider.",
+        "Une action apprise ou décidée est un mouvement volontaire, même si elle est rapide."
+      ],
+      "solution": "Réflexes : retirer la main d'une plaque brûlante, cligner de l'œil, rétrécissement de la pupille, sursaut. Mouvements volontaires : écrire, dribbler, attraper une règle qui tombe, répondre à une question.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "i1": "ref",
+              "i2": "vol",
+              "i3": "ref",
+              "i4": "vol",
+              "i5": "vol",
+              "i6": "ref",
+              "i7": "vol",
+              "i8": "ref"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "ref",
+              "i2": "vol",
+              "i3": "ref",
+              "i4": "vol",
+              "i5": "ref",
+              "i6": "ref",
+              "i7": "vol",
+              "i8": "ref"
+            }
+          },
+          "expect": "mc:reaction-reflexe"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "ref",
+              "i2": "vol",
+              "i3": "ref",
+              "i4": "ref",
+              "i5": "vol",
+              "i6": "ref",
+              "i7": "vol",
+              "i8": "ref"
+            }
+          },
+          "expect": "mc:automatisme-reflexe"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "vol",
+              "i2": "vol",
+              "i3": "ref",
+              "i4": "vol",
+              "i5": "vol",
+              "i6": "ref",
+              "i7": "vol",
+              "i8": "ref"
+            }
+          },
+          "expect": "mc:reflexe-decision"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-expliquer",
+      "type": "open",
+      "skill": "svt4.corps.message-nerveux",
+      "skills": [
+        "svt4.corps.cerveau-integration"
+      ],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 480,
+      "minWords": 50,
+      "prompt": "Quand on lâche une règle sans prévenir, tu l'attrapes en environ 0,2 seconde. Explique le trajet de l'information entre ton œil et tes doigts, puis pourquoi ce n'est pas un réflexe, en le comparant au retrait de la main d'une plaque brûlante.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je cite le récepteur (œil, rétine) et un nerf sensitif qui conduit le message jusqu'au cerveau",
+          "keywords": [
+            [
+              "oeil",
+              "retine",
+              "recepteur"
+            ],
+            [
+              "nerf",
+              "sensitif",
+              "optique",
+              "message"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "J'explique que le cerveau analyse l'information et commande le mouvement (aire motrice)",
+          "keywords": [
+            [
+              "cerveau"
+            ],
+            [
+              "commande",
+              "decide",
+              "motrice",
+              "analyse",
+              "integr"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Je cite un nerf moteur qui conduit le message jusqu'aux muscles de la main",
+          "keywords": [
+            [
+              "moteur"
+            ],
+            [
+              "muscle",
+              "main",
+              "doigt"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "J'explique qu'un réflexe passe par la moelle épinière, sans décision du cerveau, et qu'il est donc plus rapide et involontaire",
+          "keywords": [
+            [
+              "moelle"
+            ],
+            [
+              "reflexe",
+              "involontaire",
+              "plus rapide"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "La lumière de la règle atteint les récepteurs de la rétine, qui la transforment en messages nerveux. Un nerf sensitif, le nerf optique, les conduit au cerveau, qui analyse l'information et décide d'agir : l'aire motrice commande le mouvement. Des nerfs moteurs conduisent le message aux muscles de la main, qui se ferment. Ce n'est pas un réflexe, car le cerveau intervient et cela prend environ 0,2 s. Dans un réflexe comme le retrait de la main d'une plaque brûlante, le message passe par la moelle épinière sans décision du cerveau : c'est plus rapide et involontaire.",
+        "Mes yeux captent la règle qui tombe et envoient des messages nerveux par le nerf optique jusqu'au cerveau. Le cerveau intègre l'information et envoie un ordre par des nerfs moteurs aux muscles de ma main. Comme le cerveau décide, le trajet est plus long, environ 0,2 s, et le geste est volontaire. Un réflexe passe par la moelle épinière sans que le cerveau décide : il est involontaire et très rapide."
+      ],
+      "hints": [
+        "Commence par le récepteur sensoriel et le nerf qui part de lui.",
+        "Dis ce que fait le cerveau, puis quel nerf conduit son ordre aux muscles.",
+        "Pour comparer au réflexe : où passe le message dans un réflexe ?"
+      ],
+      "solution": "Récepteurs de la rétine → nerf optique (sensitif) → cerveau (analyse, décision, aire motrice) → nerfs moteurs → muscles de la main. C'est un mouvement volontaire (environ 0,2 s). Dans un réflexe, le message passe par la moelle épinière, sans décision du cerveau : c'est plus rapide et involontaire.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "La lumière de la règle atteint les récepteurs de la rétine, qui la transforment en messages nerveux. Un nerf sensitif, le nerf optique, les conduit au cerveau, qui analyse l'information et décide d'agir : l'aire motrice commande le mouvement. Des nerfs moteurs conduisent le message aux muscles de la main, qui se ferment. Ce n'est pas un réflexe, car le cerveau intervient et cela prend environ 0,2 s. Dans un réflexe comme le retrait de la main d'une plaque brûlante, le message passe par la moelle épinière sans décision du cerveau : c'est plus rapide et involontaire.",
+            "selfCheck": {
+              "c1": true,
+              "c2": true,
+              "c3": true,
+              "c4": true
+            }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-sommeil",
+      "type": "composite",
+      "skill": "svt4.corps.hygiene-nerveuse",
+      "skills": [
+        "svt4.corps.cerveau-integration"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:passage-minuit",
+        "mc:oubli-multiplication",
+        "mc:exageration",
+        "mc:stimulant-sommeil",
+        "mc:ecran-sommeil"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Marc, 14 ans, joue sur son téléphone jusque tard : il se couche à 23 h 30 et se réveille à 6 h 15 pour aller au collège. Pour un adolescent, on recommande une nuit de 8 à 10 heures.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien d'heures Marc dort-il par nuit ? (en heures, avec décimale : 15 minutes = 0,25 h)",
+          "answer": 6.75,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 17.25,
+              "id": "mc:passage-minuit",
+              "error": "calcul",
+              "feedback": "17,25 h est la durée entre 6 h 15 et 23 h 30, c'est-à-dire le temps passé éveillé. Dormir, c'est de 23 h 30 à 6 h 15, en passant par minuit : 30 min + 6 h 15 min."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Sur une semaine de cinq jours de collège, combien d'heures de sommeil manque-t-il à Marc par rapport au minimum recommandé de 8 h par nuit ?",
+          "answer": 6.25,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 1.25,
+              "id": "mc:oubli-multiplication",
+              "error": "methode",
+              "feedback": "1,25 h est le déficit d'une seule nuit (8 − 6,75). Il faut le multiplier par les 5 nuits de la semaine."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quelles conséquences peut avoir un manque de sommeil répété ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Possible"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "L'attention et la mémoire peuvent diminuer.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "Le temps de réaction peut s'allonger.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "Le manque de sommeil détruit définitivement le cerveau.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "vrai",
+              "id": "mc:exageration",
+              "error": "raisonnement",
+              "feedback": "Un manque de sommeil perturbe le fonctionnement du système nerveux (attention, mémoire, humeur), mais il ne détruit pas le cerveau : retrouver un sommeil suffisant permet de récupérer."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quels conseils aideraient Marc à mieux dormir ?",
+          "categories": [
+            {
+              "id": "bon",
+              "label": "Bon conseil"
+            },
+            {
+              "id": "mauvais",
+              "label": "Mauvais conseil"
+            }
+          ],
+          "items": [
+            {
+              "id": "a1",
+              "label": "Éteindre les écrans environ une heure avant de se coucher.",
+              "category": "bon"
+            },
+            {
+              "id": "a2",
+              "label": "Se coucher et se lever à des heures régulières.",
+              "category": "bon"
+            },
+            {
+              "id": "a3",
+              "label": "Boire une boisson énergisante le soir pour mieux dormir.",
+              "category": "mauvais"
+            },
+            {
+              "id": "a4",
+              "label": "Garder le téléphone allumé près de l'oreiller pour répondre aux messages.",
+              "category": "mauvais"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "a3",
+              "category": "bon",
+              "id": "mc:stimulant-sommeil",
+              "error": "notion",
+              "feedback": "Une boisson énergisante contient des stimulants (comme la caféine) : elle retarde l'endormissement au lieu de l'aider."
+            },
+            {
+              "item": "a4",
+              "category": "bon",
+              "id": "mc:ecran-sommeil",
+              "error": "notion",
+              "feedback": "Les notifications et la lumière des écrans retardent l'endormissement et interrompent le sommeil : mieux vaut éloigner le téléphone."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "De 23 h 30 à minuit : 30 min ; de minuit à 6 h 15 : 6 h 15 min.",
+        "Déficit d'une nuit = 8 − durée du sommeil, puis multiplie par 5.",
+        "Un manque de sommeil perturbe, mais ne détruit pas."
+      ],
+      "solution": "Sommeil : 30 min + 6 h 15 min = 6 h 45, soit 6,75 h. Déficit d'une nuit : 8 − 6,75 = 1,25 h ; sur 5 nuits : 6,25 h. Le manque de sommeil peut diminuer l'attention, la mémoire et allonger le temps de réaction, mais il est réversible. Éteindre les écrans avant de dormir et garder des horaires réguliers aident ; boissons énergisantes et téléphone allumé nuisent.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,75"
+              },
+              {
+                "value": "6,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "mauvais",
+                  "a4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "17,25"
+              },
+              {
+                "value": "6,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "mauvais",
+                  "a4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:passage-minuit"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,75"
+              },
+              {
+                "value": "1,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "mauvais",
+                  "a4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:oubli-multiplication"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,75"
+              },
+              {
+                "value": "6,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "mauvais",
+                  "a4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:exageration"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,75"
+              },
+              {
+                "value": "6,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "bon",
+                  "a4": "mauvais"
+                }
+              }
+            ]
+          },
+          "expect": "mc:stimulant-sommeil"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,75"
+              },
+              {
+                "value": "6,25"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              },
+              {
+                "assign": {
+                  "a1": "bon",
+                  "a2": "bon",
+                  "a3": "mauvais",
+                  "a4": "bon"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecran-sommeil"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-vitesse",
+      "type": "composite",
+      "skill": "svt4.corps.message-nerveux",
+      "skills": [
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:formule-temps",
+        "mc:s-ms",
+        "mc:rapport-inverse",
+        "mc:proportion-temps",
+        "mc:instantane"
+      ],
+      "expectedSeconds": 300,
+      "prompt": "Dans les nerfs moteurs du bras, le message nerveux se déplace à environ **50 mètres par seconde** (ordre de grandeur). Pour rattraper la règle, l'ordre de fermer la main part de l'encéphale et parcourt environ **1 m** jusqu'aux muscles qui ferment les doigts. Le temps de réaction mesuré est d'environ **175 ms** (1 s = 1 000 ms).",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de temps le message met-il pour parcourir 1 m à 50 m/s ? Réponds en millisecondes (ms).",
+          "answer": 20,
+          "tolerance": 0.5,
+          "misconceptions": [
+            {
+              "answer": 50,
+              "id": "mc:formule-temps",
+              "error": "methode",
+              "feedback": "Le temps se calcule en divisant la distance par la vitesse : t = d ÷ v = 1 ÷ 50 = 0,02 s."
+            },
+            {
+              "answer": 0.02,
+              "id": "mc:s-ms",
+              "error": "unite",
+              "feedback": "0,02 s est juste, mais la réponse est demandée en millisecondes : 0,02 s = 0,02 × 1 000 = 20 ms."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle part du temps de réaction (175 ms) ce trajet dans les nerfs représente-t-il ? (en %, arrondi à l'unité)",
+          "answer": 11,
+          "tolerance": 1,
+          "misconceptions": [
+            {
+              "answer": 875,
+              "id": "mc:rapport-inverse",
+              "error": "calcul",
+              "feedback": "Tu as divisé 175 par 20. La part se calcule dans l'autre sens : 20 ÷ 175 × 100 ≈ 11 %."
+            },
+            {
+              "answer": 8.75,
+              "id": "mc:rapport-inverse",
+              "error": "calcul",
+              "feedback": "175 ÷ 20 ≈ 8,75 indique combien de fois le temps de réaction est plus long que le trajet. La part en % se calcule dans l'autre sens : 20 ÷ 175 × 100 ≈ 11 %."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Le trajet du message dans les nerfs moteurs ne prend qu'une petite partie du temps de réaction.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "L'essentiel du temps de réaction est passé dans l'œil et surtout dans les centres nerveux, qui analysent l'information et décident.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "Si les nerfs conduisaient le message deux fois plus vite, le temps de réaction serait divisé par deux.",
+              "category": "faux"
+            },
+            {
+              "id": "i4",
+              "label": "Le message nerveux se déplace de façon instantanée.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "vrai",
+              "id": "mc:proportion-temps",
+              "error": "raisonnement",
+              "feedback": "Le trajet dans les nerfs moteurs ne compte que pour environ 20 ms : deux fois plus vite, on gagnerait environ 10 ms sur 175 ms, pas la moitié."
+            },
+            {
+              "item": "i4",
+              "category": "vrai",
+              "id": "mc:instantane",
+              "error": "notion",
+              "feedback": "Le message nerveux est rapide (50 m/s, soit 180 km/h), mais pas instantané : il lui faut environ 20 ms pour parcourir 1 m."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Temps = distance ÷ vitesse ; puis 1 s = 1 000 ms.",
+        "Part en % = temps du trajet ÷ temps de réaction × 100.",
+        "Compare 20 ms à 175 ms : où passe le reste du temps ?"
+      ],
+      "solution": "t = 1 ÷ 50 = 0,02 s = 20 ms. Part : 20 ÷ 175 × 100 ≈ 11 %. Le trajet dans les nerfs moteurs ne représente qu'environ un dixième du temps de réaction : la plus grande partie est passée dans l'œil, puis dans le cerveau, qui analyse l'image et décide de fermer la main (il faut aussi un peu de temps aux muscles pour se contracter). Doubler la vitesse des nerfs ne ferait gagner qu'environ 10 ms.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "20"
+              },
+              {
+                "value": "11"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "0,02"
+              },
+              {
+                "value": "11"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:s-ms"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "20"
+              },
+              {
+                "value": "11"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai",
+                  "i4": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:proportion-temps"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-decibels",
+      "type": "table",
+      "skill": "svt4.corps.hygiene-nerveuse",
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:sens-relation",
+        "mc:compte-paliers"
+      ],
+      "expectedSeconds": 240,
+      "prompt": "Un son fort et prolongé peut détruire définitivement des cellules de l'oreille interne : elles ne se réparent pas. En santé au travail, on utilise cette règle de prévention : à **85 dB**, on ne dépasse pas **8 heures (480 min)** par jour ; chaque fois que le niveau sonore augmente de **3 dB**, l'énergie du son double, donc la durée maximale est **divisée par 2**. Complète le tableau (durées en minutes, nombres seuls).",
+      "columns": [
+        "Niveau sonore",
+        "Exemple (ordre de grandeur)",
+        "Durée maximale par jour (min)"
+      ],
+      "rows": [
+        [
+          "85 dB",
+          "Rue à la circulation dense",
+          "480"
+        ],
+        [
+          "88 dB",
+          "Tondeuse à gazon",
+          "240"
+        ],
+        [
+          "91 dB",
+          "Métro qui arrive en station",
+          "?r2c2"
+        ],
+        [
+          "94 dB",
+          "Musique forte au casque",
+          "?r3c2"
+        ],
+        [
+          "100 dB",
+          "Casque réglé au maximum",
+          "?r4c2"
+        ]
+      ],
+      "cells": {
+        "r2c2": {
+          "answer": 120,
+          "misconceptions": [
+            {
+              "answer": 480,
+              "id": "mc:sens-relation",
+              "error": "raisonnement",
+              "feedback": "Plus le son est fort, plus la durée doit être courte : à chaque palier de +3 dB, on divise la durée par 2, on ne la multiplie pas."
+            }
+          ]
+        },
+        "r3c2": {
+          "answer": 60,
+          "misconceptions": [
+            {
+              "answer": 240,
+              "id": "mc:sens-relation",
+              "error": "raisonnement",
+              "feedback": "Plus le son est fort, plus la durée doit être courte : de 91 à 94 dB, on divise la durée par 2."
+            }
+          ]
+        },
+        "r4c2": {
+          "answer": 15,
+          "misconceptions": [
+            {
+              "answer": 30,
+              "id": "mc:compte-paliers",
+              "error": "calcul",
+              "feedback": "De 94 à 100 dB, il y a deux paliers de 3 dB (97 dB, puis 100 dB) : 60 → 30 → 15 minutes."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "De 88 à 91 dB, le niveau augmente de 3 dB : la durée est divisée par 2.",
+        "Compte les paliers de 3 dB entre 94 et 100 dB."
+      ],
+      "solution": "91 dB : 240 ÷ 2 = 120 min (2 h). 94 dB : 120 ÷ 2 = 60 min (1 h). 100 dB : deux paliers de plus (97 puis 100 dB), donc 60 ÷ 2 ÷ 2 = 15 min. Quelques décibels de plus réduisent beaucoup la durée sans danger. En France, la musique des salles de concert est limitée à 102 dB en moyenne sur 15 minutes (décret de 2017) : des pauses au calme, des bouchons d'oreille et un volume modéré au casque protègent l'audition.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r2c2": "120",
+              "r3c2": "60",
+              "r4c2": "15"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r2c2": "120",
+              "r3c2": "60",
+              "r4c2": "30"
+            }
+          },
+          "expect": "mc:compte-paliers"
+        },
+        {
+          "response": {
+            "cells": {
+              "r2c2": "480",
+              "r3c2": "960",
+              "r4c2": "7680"
+            }
+          },
+          "expect": "mc:sens-relation"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-rem-cerveau",
+      "type": "categorize",
+      "skill": "svt4.corps.cerveau-integration",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:dix-pourcent",
+        "mc:cerveau-fige"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : le cerveau fonctionne par aires spécialisées ; selon l'activité, des aires différentes s'activent, et toutes les régions servent. Vrai ou faux ?",
+      "categories": [
+        {
+          "id": "vrai",
+          "label": "Vrai"
+        },
+        {
+          "id": "faux",
+          "label": "Faux"
+        }
+      ],
+      "items": [
+        {
+          "id": "r1",
+          "label": "On n'utilise que 10 % de son cerveau.",
+          "category": "faux"
+        },
+        {
+          "id": "r2",
+          "label": "Selon l'activité, ce ne sont pas les mêmes aires du cerveau qui s'activent.",
+          "category": "vrai"
+        },
+        {
+          "id": "r3",
+          "label": "Le cerveau ne change plus après l'enfance.",
+          "category": "faux"
+        },
+        {
+          "id": "r4",
+          "label": "L'apprentissage et l'entraînement modifient les connexions entre neurones.",
+          "category": "vrai"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "r1",
+          "category": "vrai",
+          "id": "mc:dix-pourcent",
+          "error": "notion",
+          "feedback": "C'est un mythe : l'imagerie montre que toutes les régions du cerveau servent, à des moments différents selon les tâches. Une lésion d'une région, même petite, a des effets."
+        },
+        {
+          "item": "r3",
+          "category": "vrai",
+          "id": "mc:cerveau-fige",
+          "error": "notion",
+          "feedback": "Le cerveau reste plastique toute la vie : l'apprentissage modifie les connexions entre neurones. Il continue même de se développer jusqu'à environ 25 ans."
+        }
+      ],
+      "hints": [
+        "L'IRMf montre des aires actives différentes selon la tâche.",
+        "Le cerveau change quand on apprend."
+      ],
+      "solution": "Faux : on n'utilise pas que 10 % du cerveau ; le cerveau ne se fige pas après l'enfance. Vrai : les aires actives dépendent de l'activité ; l'apprentissage modifie les connexions entre neurones.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "r1": "faux",
+              "r2": "vrai",
+              "r3": "faux",
+              "r4": "vrai"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "vrai",
+              "r2": "vrai",
+              "r3": "faux",
+              "r4": "vrai"
+            }
+          },
+          "expect": "mc:dix-pourcent"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "faux",
+              "r2": "vrai",
+              "r3": "vrai",
+              "r4": "vrai"
+            }
+          },
+          "expect": "mc:cerveau-fige"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-rem-centres",
+      "type": "categorize",
+      "skill": "svt4.corps.message-nerveux",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:moelle-nerf",
+        "mc:oeil-nerf"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : les **centres nerveux** (cerveau, moelle épinière) analysent et commandent ; les **nerfs** conduisent les messages ; les **récepteurs** captent les stimulus. Classe chaque élément.",
+      "categories": [
+        {
+          "id": "centre",
+          "label": "Centre nerveux"
+        },
+        {
+          "id": "nerf",
+          "label": "Nerf"
+        },
+        {
+          "id": "recepteur",
+          "label": "Récepteur sensoriel"
+        }
+      ],
+      "items": [
+        {
+          "id": "r1",
+          "label": "Le cerveau",
+          "category": "centre"
+        },
+        {
+          "id": "r2",
+          "label": "La moelle épinière",
+          "category": "centre"
+        },
+        {
+          "id": "r3",
+          "label": "Le nerf optique",
+          "category": "nerf"
+        },
+        {
+          "id": "r4",
+          "label": "Les cellules sensibles à la lumière de la rétine",
+          "category": "recepteur"
+        },
+        {
+          "id": "r5",
+          "label": "Le nerf sciatique (vers la jambe)",
+          "category": "nerf"
+        },
+        {
+          "id": "r6",
+          "label": "Les cellules sensibles aux sons de l'oreille interne",
+          "category": "recepteur"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "r2",
+          "category": "nerf",
+          "id": "mc:moelle-nerf",
+          "error": "notion",
+          "feedback": "La moelle épinière est un centre nerveux, logé dans la colonne vertébrale. Les nerfs, eux, en partent et y arrivent."
+        },
+        {
+          "item": "r4",
+          "category": "nerf",
+          "id": "mc:oeil-nerf",
+          "error": "notion",
+          "feedback": "Les cellules de la rétine captent la lumière : ce sont des récepteurs. C'est le nerf optique qui conduit ensuite le message vers le cerveau."
+        }
+      ],
+      "hints": [
+        "Un nerf est un câble : il conduit. Un centre analyse. Un récepteur capte.",
+        "La moelle épinière est dans la colonne vertébrale."
+      ],
+      "solution": "Centres nerveux : cerveau, moelle épinière. Nerfs : nerf optique, nerf sciatique. Récepteurs : cellules de la rétine, cellules de l'oreille interne.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "r1": "centre",
+              "r2": "centre",
+              "r3": "nerf",
+              "r4": "recepteur",
+              "r5": "nerf",
+              "r6": "recepteur"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "centre",
+              "r2": "nerf",
+              "r3": "nerf",
+              "r4": "recepteur",
+              "r5": "nerf",
+              "r6": "recepteur"
+            }
+          },
+          "expect": "mc:moelle-nerf"
+        },
+        {
+          "response": {
+            "assign": {
+              "r1": "centre",
+              "r2": "centre",
+              "r3": "nerf",
+              "r4": "nerf",
+              "r5": "nerf",
+              "r6": "recepteur"
+            }
+          },
+          "expect": "mc:oeil-nerf"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-reaction",
+      "type": "composite",
+      "skill": "svt.demarche.hypothese-temoin",
+      "skills": [
+        "svt.demarche.exploiter-donnees",
+        "svt4.corps.hygiene-nerveuse"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:moyenne-somme",
+        "mc:valeur-finale",
+        "mc:ecrans-abiment",
+        "mc:generalisation"
+      ],
+      "expectedSeconds": 420,
+      "figure": {
+        "alt": "Tableau de conversion entre la distance de chute de la règle et le temps de réaction",
+        "w": 520,
+        "h": 190,
+        "items": [
+          {
+            "type": "table",
+            "head": [
+              "Distance de chute (cm)",
+              "Temps de réaction (ms)"
+            ],
+            "rows": [
+              [
+                "10",
+                "143"
+              ],
+              [
+                "15",
+                "175"
+              ],
+              [
+                "20",
+                "202"
+              ],
+              [
+                "22",
+                "212"
+              ],
+              [
+                "25",
+                "226"
+              ],
+              [
+                "30",
+                "247"
+              ]
+            ]
+          }
+        ]
+      },
+      "prompt": "Pour savoir si une distraction allonge le temps de réaction, on mesure la chute de la règle chez le même élève, dans deux conditions : lot A, attentif (distances : 14, 16, 12, 18, 15 cm) ; lot B, en lisant un message sur un téléphone (distances : 22, 25, 20, 24, 19 cm). Le tableau convertit la distance moyenne en temps de réaction (valeurs fictives).",
+      "parts": [
+        {
+          "type": "table",
+          "prompt": "Calcule les distances moyennes (nombres seuls, en cm).",
+          "columns": [
+            "Lot",
+            "Distance moyenne (cm)"
+          ],
+          "rows": [
+            [
+              "A (attentif)",
+              "?r0c1"
+            ],
+            [
+              "B (en lisant un message)",
+              "?r1c1"
+            ]
+          ],
+          "cells": {
+            "r0c1": {
+              "answer": 15,
+              "misconceptions": [
+                {
+                  "answer": 75,
+                  "id": "mc:moyenne-somme",
+                  "error": "methode",
+                  "feedback": "75 est la somme des cinq distances : divise-la par 5 pour obtenir la moyenne."
+                }
+              ]
+            },
+            "r1c1": {
+              "answer": 22,
+              "misconceptions": [
+                {
+                  "answer": 110,
+                  "id": "mc:moyenne-somme",
+                  "error": "methode",
+                  "feedback": "110 est la somme des cinq distances : divise-la par 5 pour obtenir la moyenne."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "numeric",
+          "prompt": "D'après le tableau de conversion, de combien de ms la distraction allonge-t-elle en moyenne le temps de réaction ?",
+          "answer": 37,
+          "misconceptions": [
+            {
+              "answer": 212,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "212 ms est le temps de réaction du lot B. L'allongement est la différence avec le lot A (175 ms)."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que peut-on conclure ?",
+          "categories": [
+            {
+              "id": "valide",
+              "label": "Valide"
+            },
+            {
+              "id": "abusif",
+              "label": "Abusif"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Chez cet élève, la distraction allonge en moyenne le temps de réaction.",
+              "category": "valide"
+            },
+            {
+              "id": "i2",
+              "label": "Le lot A joue le rôle de témoin : la même mesure sans distraction.",
+              "category": "valide"
+            },
+            {
+              "id": "i3",
+              "label": "Cette expérience prouve que les écrans abîment le cerveau.",
+              "category": "abusif"
+            },
+            {
+              "id": "i4",
+              "label": "Cinq essais sur un seul élève suffisent à affirmer la même chose pour tous les adolescents.",
+              "category": "abusif"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "valide",
+              "id": "mc:ecrans-abiment",
+              "error": "raisonnement",
+              "feedback": "L'expérience montre qu'une distraction ralentit la réaction sur le moment. Elle ne mesure aucun effet durable sur le cerveau."
+            },
+            {
+              "item": "i4",
+              "category": "valide",
+              "id": "mc:generalisation",
+              "error": "raisonnement",
+              "feedback": "Un seul élève et cinq essais donnent une indication, pas une preuve générale : il faudrait répéter avec beaucoup d'élèves."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Moyenne = somme des cinq distances ÷ 5.",
+        "Lis le temps correspondant à chaque distance moyenne dans le tableau, puis soustrais.",
+        "L'expérience mesure un effet immédiat sur un seul élève."
+      ],
+      "solution": "Moyennes : lot A 75 ÷ 5 = 15 cm ; lot B 110 ÷ 5 = 22 cm. Temps de réaction : 175 ms contre 212 ms, soit 37 ms de plus avec la distraction. Le lot A est le témoin. On ne peut pas en déduire que les écrans abîment le cerveau, ni généraliser à tous les adolescents.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "15",
+                  "r1c1": "22"
+                }
+              },
+              {
+                "value": "37"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "75",
+                  "r1c1": "22"
+                }
+              },
+              {
+                "value": "37"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "15",
+                  "r1c1": "110"
+                }
+              },
+              {
+                "value": "37"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:moyenne-somme"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "15",
+                  "r1c1": "22"
+                }
+              },
+              {
+                "value": "212"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "15",
+                  "r1c1": "22"
+                }
+              },
+              {
+                "value": "37"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "valide",
+                  "i4": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecrans-abiment"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "cells": {
+                  "r0c1": "15",
+                  "r1c1": "22"
+                }
+              },
+              {
+                "value": "37"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif",
+                  "i4": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:generalisation"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-plasticite",
+      "type": "composite",
+      "skill": "svt4.corps.cerveau-integration",
+      "skills": [
+        "svt.demarche.exploiter-donnees",
+        "svt4.corps.hygiene-nerveuse"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:valeur-finale",
+        "mc:ecart-signe",
+        "mc:cerveau-fige"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Des adultes apprennent à jongler pendant trois mois, puis arrêtent de jongler pendant trois mois. On mesure par IRM le volume d'une région du cerveau liée à la perception du mouvement (unités arbitraires ; chiffres simplifiés d'après une étude de neurosciences). Groupe qui apprend : 100 avant l'apprentissage ; 103 après 3 mois de pratique ; 101 après 3 mois d'arrêt. Groupe témoin (qui ne jongle pas) : 100 ; 100 ; 100.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la variation du volume de cette région chez le groupe qui apprend, entre « avant » et « après 3 mois de pratique » ? (avec son signe)",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 103,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "103 est la valeur après la pratique. La variation est la différence avec la valeur de départ (100)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la variation du volume entre « après 3 mois de pratique » et « après 3 mois d'arrêt » ? (avec son signe)",
+          "answer": -2,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:ecart-signe",
+              "error": "signe",
+              "feedback": "Le volume a diminué (103 → 101) : la variation est négative, −2."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quelles conclusions sont valides ?",
+          "categories": [
+            {
+              "id": "valide",
+              "label": "Valide"
+            },
+            {
+              "id": "abusif",
+              "label": "Abusif"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Apprendre une nouvelle activité peut modifier la structure du cerveau (plasticité).",
+              "category": "valide"
+            },
+            {
+              "id": "i2",
+              "label": "Le groupe témoin montre que ce n'est pas le simple passage du temps qui modifie cette région.",
+              "category": "valide"
+            },
+            {
+              "id": "i3",
+              "label": "Ces modifications sont définitives : arrêter de jongler ne change plus rien.",
+              "category": "abusif"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "valide",
+              "id": "mc:cerveau-fige",
+              "error": "lecture",
+              "feedback": "Après l'arrêt, le volume diminue (103 → 101) : les modifications ne sont pas figées, elles dépendent de l'usage. Le cerveau reste plastique."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Variation = valeur finale − valeur de départ.",
+        "Que se passe-t-il quand on arrête de s'entraîner ?",
+        "À quoi sert le groupe témoin ?"
+      ],
+      "solution": "Variation pendant la pratique : 103 − 100 = +3. Pendant l'arrêt : 101 − 103 = −2. Le groupe témoin reste à 100 : ce n'est pas le temps qui change la région. Le cerveau est plastique : l'apprentissage le modifie, et ces modifications dépendent de l'usage.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3"
+              },
+              {
+                "value": "-2"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "103"
+              },
+              {
+                "value": "-2"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "abusif"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ecart-signe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3"
+              },
+              {
+                "value": "-2"
+              },
+              {
+                "assign": {
+                  "i1": "valide",
+                  "i2": "valide",
+                  "i3": "valide"
+                }
+              }
+            ]
+          },
+          "expect": "mc:cerveau-fige"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-distance",
+      "type": "composite",
+      "skill": "svt4.corps.hygiene-nerveuse",
+      "skills": [
+        "svt4.corps.message-nerveux",
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:conversion-inverse",
+        "mc:unite-kmh",
+        "mc:mains-libres"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "v": {
+          "choice": [
+            36,
+            54,
+            90,
+            108
+          ]
+        }
+      },
+      "prompt": "Un conducteur roule à {v} km/h. Entre le moment où il voit un obstacle et celui où il commence à freiner, la voiture continue à avancer à vitesse constante pendant son temps de réaction. On suppose (valeurs simplifiées) que ce temps est de 1,0 s pour un conducteur attentif et de 1,5 s pour un conducteur qui regarde son téléphone. Pour convertir des km/h en m/s, on divise par 3,6.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la vitesse de la voiture, en m/s ?",
+          "answer": "v/3.6",
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": "v*3.6",
+              "id": "mc:conversion-inverse",
+              "error": "unite",
+              "feedback": "Pour passer de km/h à m/s, on divise par 3,6 (1 m/s = 3,6 km/h) : on obtient un nombre plus petit, pas plus grand."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle distance la voiture parcourt-elle, en mètres, pendant le temps de réaction du conducteur distrait (1,5 s) ?",
+          "answer": "v/3.6*1.5",
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": "v*1.5",
+              "id": "mc:unite-kmh",
+              "error": "unite",
+              "feedback": "Tu as multiplié la vitesse en km/h par une durée en secondes : les unités ne sont pas compatibles. Convertis d'abord la vitesse en m/s (÷ 3,6)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de mètres la distraction allonge-t-elle la distance parcourue avant que le conducteur ne commence à freiner (1,5 s au lieu de 1,0 s) ?",
+          "answer": "v/3.6*0.5",
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": "v*0.5",
+              "id": "mc:unite-kmh",
+              "error": "unite",
+              "feedback": "Convertis d'abord la vitesse en m/s (÷ 3,6) avant de multiplier par une durée en secondes."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que peut-on conclure ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Une petite différence de temps de réaction change nettement la distance parcourue avant de freiner.",
+              "category": "vrai"
+            },
+            {
+              "id": "i2",
+              "label": "La distance parcourue pendant le temps de réaction augmente avec la vitesse.",
+              "category": "vrai"
+            },
+            {
+              "id": "i3",
+              "label": "Utiliser le téléphone en mains libres supprime tout risque de distraction.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i3",
+              "category": "vrai",
+              "id": "mc:mains-libres",
+              "error": "raisonnement",
+              "feedback": "Téléphoner mobilise l'attention du cerveau, même en mains libres : le temps de réaction s'allonge aussi. Le risque vient de la distraction du cerveau, pas seulement des mains."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Vitesse en m/s = vitesse en km/h ÷ 3,6.",
+        "Distance = vitesse (m/s) × durée (s).",
+        "Pour la différence, utilise la durée supplémentaire de 0,5 s."
+      ],
+      "solution": "{v} km/h = {v/3.6} m/s. En 1,5 s, la voiture parcourt {v/3.6*1.5} m ; avec 1,0 s, elle en parcourrait {v/3.6} m. La distraction ajoute donc {v/3.6*0.5} m avant le début du freinage. Plus la vitesse est élevée, plus cette distance est grande. Le téléphone, même en mains libres, distrait le cerveau.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{v/3.6}"
+              },
+              {
+                "value": "{v/3.6*1.5}"
+              },
+              {
+                "value": "{v/3.6*0.5}"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{v*3.6}"
+              },
+              {
+                "value": "{v/3.6*1.5}"
+              },
+              {
+                "value": "{v/3.6*0.5}"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:conversion-inverse"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{v/3.6}"
+              },
+              {
+                "value": "{v*1.5}"
+              },
+              {
+                "value": "{v/3.6*0.5}"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-kmh"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{v/3.6}"
+              },
+              {
+                "value": "{v/3.6*1.5}"
+              },
+              {
+                "value": "{v*0.5}"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:unite-kmh"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{v/3.6}"
+              },
+              {
+                "value": "{v/3.6*1.5}"
+              },
+              {
+                "value": "{v/3.6*0.5}"
+              },
+              {
+                "assign": {
+                  "i1": "vrai",
+                  "i2": "vrai",
+                  "i3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:mains-libres"
+        }
+      ]
+    },
+    {
+      "id": "svt4-nerveux-correlation",
+      "type": "composite",
+      "skill": "svt.demarche.correlation-causalite",
+      "skills": [
+        "svt4.corps.hygiene-nerveuse",
+        "svt.demarche.exploiter-donnees"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": [
+        "mc:valeur-finale",
+        "mc:division-oubliee",
+        "mc:correlation-causalite"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Dans six groupes de collégiens, on a relevé la durée moyenne de sommeil et la moyenne générale en classe (données fictives). Sommeil (h) : moyenne : 6,0 : 10,2 ; 6,5 : 10,9 ; 7,0 : 11,8 ; 7,5 : 12,6 ; 8,0 : 13,1 ; 8,5 : 13,4.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien de points la moyenne générale augmente-t-elle entre le groupe qui dort 6,0 h et celui qui dort 8,5 h ?",
+          "answer": 3.2,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": 13.4,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "13,4 est la moyenne du groupe qui dort 8,5 h. L'augmentation est la différence avec 10,2."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "En moyenne, de combien de points la moyenne générale augmente-t-elle par heure de sommeil supplémentaire ? (arrondi au dixième)",
+          "answer": 1.3,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 3.2,
+              "id": "mc:division-oubliee",
+              "error": "methode",
+              "feedback": "3,2 points est l'augmentation totale, pour 2,5 h de sommeil supplémentaire. Pour une heure, divise par 2,5."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Pour chaque phrase, dis s'il s'agit d'un constat lu dans les données ou d'une explication que ces données ne prouvent pas.",
+          "categories": [
+            {
+              "id": "constat",
+              "label": "Constat (les données le montrent)"
+            },
+            {
+              "id": "explication",
+              "label": "Explication (non prouvée par ces données)"
+            }
+          ],
+          "items": [
+            {
+              "id": "i1",
+              "label": "Les groupes qui dorment plus ont, en moyenne, de meilleures notes.",
+              "category": "constat"
+            },
+            {
+              "id": "i2",
+              "label": "Dormir davantage fait monter les notes.",
+              "category": "explication"
+            },
+            {
+              "id": "i3",
+              "label": "Les élèves qui travaillent très tard le soir dorment moins et ont de moins bonnes notes parce qu'ils sont fatigués ou stressés.",
+              "category": "explication"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "i2",
+              "category": "constat",
+              "id": "mc:correlation-causalite",
+              "error": "raisonnement",
+              "feedback": "Les données montrent que sommeil et notes varient ensemble, pas que l'un fait varier l'autre. Un troisième facteur (motivation, rythme de vie, stress…) peut agir sur les deux."
+            },
+            {
+              "item": "i3",
+              "category": "constat",
+              "id": "mc:correlation-causalite",
+              "error": "raisonnement",
+              "feedback": "C'est une hypothèse possible, pas une observation de ce tableau : les données ne mesurent ni le travail du soir ni la fatigue."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Propose un protocole pour tester si c'est bien le sommeil qui fait varier les résultats (sans mettre personne en danger).",
+          "minWords": 40,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je compare au moins deux groupes comparables (même âge, même niveau)",
+              "keywords": [
+                [
+                  "groupe"
+                ],
+                [
+                  "comparable",
+                  "meme",
+                  "identique",
+                  "temoin"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Je ne fais varier qu'un seul facteur : la durée de sommeil (par exemple en ajoutant 1 h de coucher plus tôt)",
+              "keywords": [
+                [
+                  "seul facteur",
+                  "un seul",
+                  "coucher",
+                  "heure de sommeil",
+                  "dormir plus",
+                  "sommeil"
+                ]
+              ]
+            },
+            {
+              "id": "c3",
+              "label": "Je mesure le même résultat (notes, attention, temps de réaction) dans les deux groupes, avant et après",
+              "keywords": [
+                [
+                  "mesure",
+                  "note",
+                  "avant",
+                  "apres",
+                  "temps de reaction",
+                  "compar"
+                ]
+              ]
+            },
+            {
+              "id": "c4",
+              "label": "Je prévois d'avoir beaucoup d'élèves et de répéter pour éviter les effets du hasard",
+              "keywords": [
+                [
+                  "beaucoup",
+                  "repet",
+                  "nombreux",
+                  "plusieurs semaines",
+                  "hasard"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+            "Pour que seul le sommeil change, je répartirais des élèves comparables en deux groupes au hasard. Le groupe test dormirait une heure de plus pendant un mois, le groupe témoin pas. J'évaluerais tout le monde avec les mêmes tests avant et après et je comparerais les progrès moyens, avec un grand nombre d'élèves."
+          ]
+        }
+      ],
+      "hints": [
+        "Augmentation = valeur finale − valeur de départ ; pour une heure, divise par le nombre d'heures.",
+        "Un constat se lit dans le tableau ; une explication va plus loin.",
+        "Pour tester une cause : deux groupes comparables, un seul facteur qui change, une même mesure."
+      ],
+      "solution": "Augmentation totale : 13,4 − 10,2 = 3,2 points pour 2,5 h de plus, soit environ 1,3 point par heure. Les données montrent une corrélation, pas une cause : un troisième facteur peut jouer. Pour tester la cause, on compare deux groupes comparables dont seul le temps de sommeil change, avec les mêmes mesures avant et après, sur beaucoup d'élèves.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3,2"
+              },
+              {
+                "value": "1,3"
+              },
+              {
+                "assign": {
+                  "i1": "constat",
+                  "i2": "explication",
+                  "i3": "explication"
+                }
+              },
+              {
+                "text": "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true,
+                  "c4": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "13,4"
+              },
+              {
+                "value": "1,3"
+              },
+              {
+                "assign": {
+                  "i1": "constat",
+                  "i2": "explication",
+                  "i3": "explication"
+                }
+              },
+              {
+                "text": "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true,
+                  "c4": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3,2"
+              },
+              {
+                "value": "3,2"
+              },
+              {
+                "assign": {
+                  "i1": "constat",
+                  "i2": "explication",
+                  "i3": "explication"
+                }
+              },
+              {
+                "text": "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true,
+                  "c4": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:division-oubliee"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3,2"
+              },
+              {
+                "value": "1,3"
+              },
+              {
+                "assign": {
+                  "i1": "constat",
+                  "i2": "constat",
+                  "i3": "explication"
+                }
+              },
+              {
+                "text": "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true,
+                  "c4": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:correlation-causalite"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3,2"
+              },
+              {
+                "value": "1,3"
+              },
+              {
+                "assign": {
+                  "i1": "constat",
+                  "i2": "explication",
+                  "i3": "constat"
+                }
+              },
+              {
+                "text": "Je formerais deux groupes d'élèves comparables, de même âge et de même niveau. Un groupe garderait ses habitudes (témoin) ; l'autre se coucherait une heure plus tôt pendant plusieurs semaines. Je mesurerais le même résultat dans les deux groupes, par exemple des notes ou un test d'attention, avant et après. Je prendrais beaucoup d'élèves pour limiter le rôle du hasard, et je comparerais les moyennes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true,
+                  "c4": true
+                }
+              }
+            ]
+          },
+          "expect": "mc:correlation-causalite"
+        }
+      ]
+    }
+  ]
+}

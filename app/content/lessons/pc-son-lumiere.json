@@ -21,9 +21,749 @@
       "links": []
     },
     {
+      "kind": "experience",
+      "title": "L'expérience : à quelle distance est l'orage ?",
+      "body": "Un orage gronde au loin. Avec un simple chronomètre, tu vas mesurer sa distance.",
+      "demo": {
+        "items": [
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 800,
+            "h": 440,
+            "rx": 0,
+            "fill": "#c3d0de"
+          },
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 0,
+            "y": 360,
+            "w": 800,
+            "h": 80,
+            "rx": 0,
+            "fill": "#7da05a"
+          },
+          {
+            "type": "forme",
+            "id": "onde",
+            "shape": "ellipse",
+            "x": 165,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 4,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "nuage",
+            "x": 150,
+            "y": 78,
+            "char": "☁️",
+            "size": 130
+          },
+          {
+            "type": "forme",
+            "id": "eclair",
+            "shape": "polygon",
+            "x": 0,
+            "y": 0,
+            "points": [
+              [
+                152,
+                120
+              ],
+              [
+                180,
+                120
+              ],
+              [
+                166,
+                200
+              ],
+              [
+                192,
+                200
+              ],
+              [
+                150,
+                360
+              ],
+              [
+                160,
+                236
+              ],
+              [
+                134,
+                236
+              ]
+            ],
+            "fill": "#fde047",
+            "stroke": "#ca8a04",
+            "width": 2,
+            "hidden": true
+          },
+          {
+            "type": "rayon",
+            "id": "lum",
+            "from": [
+              176,
+              236
+            ],
+            "to": [
+              676,
+              296
+            ],
+            "color": "#facc15",
+            "progress": 0,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "toi",
+            "x": 700,
+            "y": 318,
+            "char": "🧍",
+            "size": 72,
+            "label": "toi"
+          },
+          {
+            "type": "chrono",
+            "id": "ch",
+            "x": 720,
+            "y": 110,
+            "value": 0,
+            "format": "s",
+            "label": "chronomètre"
+          },
+          {
+            "type": "texte",
+            "id": "boum",
+            "x": 640,
+            "y": 226,
+            "text": "BOUM !",
+            "size": 18,
+            "bold": true,
+            "color": "#7c3aed",
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "boum2",
+            "x": 640,
+            "y": 262,
+            "char": "💥",
+            "size": 44,
+            "hidden": true
+          },
+          {
+            "type": "fleche",
+            "id": "dist",
+            "from": [
+              190,
+              385
+            ],
+            "to": [
+              660,
+              385
+            ],
+            "label": "d = 1 700 m",
+            "color": "#1e293b",
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "calc",
+            "x": 300,
+            "y": 16,
+            "w": 320,
+            "title": "Le calcul",
+            "head": [
+              "grandeur",
+              "valeur"
+            ],
+            "rows": [
+              [
+                "durée Δt",
+                "5,0 s"
+              ],
+              [
+                "vitesse du son",
+                "340 m/s"
+              ],
+              [
+                "distance d",
+                "340 × 5 = 1 700 m"
+              ]
+            ],
+            "shown": 0
+          }
+        ],
+        "steps": [
+          {
+            "title": "La situation",
+            "text": "Un orage gronde au loin. L'éclair et le tonnerre sont produits **au même instant, au même endroit**. Ton plan : déclencher le chronomètre quand tu vois l'éclair, l'arrêter quand tu entends le tonnerre.",
+            "focus": [
+              "nuage",
+              "ch"
+            ]
+          },
+          {
+            "title": "L'éclair",
+            "text": "L'éclair jaillit. Sa lumière se propage à environ **300 000 km par seconde** : elle te parvient presque instantanément, en quelques millionièmes de seconde. Tu déclenches le chronomètre.",
+            "duration": 2,
+            "show": [
+              "eclair",
+              "lum"
+            ],
+            "do": [
+              {
+                "id": "lum",
+                "to": {
+                  "progress": 1
+                },
+                "ease": "lineaire",
+                "dur": 0.3
+              }
+            ],
+            "focus": [
+              "ch"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Le tonnerre est parti en même temps que l'éclair. Quand vas-tu l'entendre ?",
+              "choices": [
+                "En même temps que je vois l'éclair",
+                "Quelques secondes plus tard",
+                "Jamais : le son ne va pas si loin"
+              ],
+              "answer": 1,
+              "explain": "Le son va environ un million de fois moins vite que la lumière : il lui faut plusieurs secondes pour parcourir quelques kilomètres."
+            }
+          },
+          {
+            "title": "Le son voyage",
+            "text": "Le son du tonnerre se propage dans l'air à environ **340 m/s**. Regarde le chronomètre : à chaque seconde, le son avance de 340 m. Cette étape se déroule en temps réel.",
+            "duration": 5,
+            "hide": [
+              "eclair",
+              "lum"
+            ],
+            "show": [
+              "onde"
+            ],
+            "do": [
+              {
+                "id": "onde",
+                "to": {
+                  "w": 1076,
+                  "h": 1076
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "ch",
+                "to": {
+                  "value": 5
+                },
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "ch"
+            ]
+          },
+          {
+            "title": "Boum !",
+            "text": "Le tonnerre arrive enfin : tu arrêtes le chronomètre à **5,0 s**. Ce retard, c'est le temps mis par le son pour venir jusqu'à toi. La lumière, elle, est arrivée presque tout de suite.",
+            "show": [
+              "boum",
+              "boum2"
+            ],
+            "hide": [
+              "onde"
+            ],
+            "focus": [
+              "ch",
+              "toi"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Le son a mis 5 s pour venir jusqu'à toi, à 340 m/s. À quelle distance est l'orage ?",
+              "choices": [
+                "340 m",
+                "1 700 m",
+                "68 m",
+                "1 700 km"
+              ],
+              "answer": 1,
+              "explain": "Distance = vitesse × durée : 340 × 5 = 1 700 m, soit 1,7 km."
+            }
+          },
+          {
+            "title": "Le calcul",
+            "text": "d = v × Δt = 340 × 5 = **1 700 m**, soit 1,7 km. La règle pratique « 3 secondes ≈ 1 km » donne 5 ÷ 3 ≈ 1,7 km. Si le retard diminue d'un éclair à l'autre, l'orage se rapproche.",
+            "duration": 4,
+            "hide": [
+              "boum",
+              "boum2"
+            ],
+            "show": [
+              "dist"
+            ],
+            "do": [
+              {
+                "id": "calc",
+                "to": {
+                  "shown": 3
+                },
+                "dur": 3
+              }
+            ],
+            "focus": [
+              "calc",
+              "dist"
+            ]
+          }
+        ],
+        "conclusion": "- La lumière de l'éclair arrive presque instantanément (environ 300 000 km/s).\n- Le son du tonnerre arrive avec un retard Δt, car il ne va qu'à environ 340 m/s.\n- Distance de l'orage : d = 340 × Δt (ici 340 × 5 = 1 700 m).\n\n> Règle pratique : environ **3 secondes par kilomètre**."
+      }
+    },
+    {
       "kind": "cours",
       "title": "Le cours",
       "body": "**Le son** est une vibration qui se transmet de proche en proche dans un **milieu matériel** (air, eau, solide). Il **ne se propage pas dans le vide**.\n- dans l'air : environ **340 m/s** (la valeur augmente un peu avec la température) ;\n- dans l'eau : environ 1 500 m/s ;\n- dans l'acier : environ 5 000 m/s.\n\n**La lumière** se propage dans le vide et dans les milieux transparents. Dans le vide (et pratiquement dans l'air), sa vitesse vaut environ **300 000 km/s**, soit $3 × 10^8$ m/s : près d'un million de fois plus que le son dans l'air.\n\n> Pour un signal qui se propage à la vitesse $v$ : $d = v × t$ et $t = d / v$.\n> Toujours vérifier que les unités sont cohérentes (m et m/s, ou km et km/s).\n\n**Distance d'un orage.** La lumière de l'éclair arrive presque instantanément ; le tonnerre arrive avec un retard $Δt$ : $d ≈ 340 × Δt$. Règle pratique : 3 secondes ≈ 1 km.\n\n**Écho.** Le son va jusqu'à l'obstacle et **revient** : il parcourt deux fois la distance. $2d = v × t$, donc $d = v × t / 2$. C'est le principe du sondeur des bateaux.\n\n**Année-lumière.** C'est une **distance** : celle que parcourt la lumière en un an, environ $9,5 × 10^12$ km."
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : un réveil sous une cloche à vide",
+      "body": "Le son peut-il traverser le vide ? Pour le savoir, on enferme un réveil qui sonne sous une cloche en verre, puis on retire l'air.",
+      "demo": {
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 392
+          },
+          {
+            "type": "forme",
+            "id": "o1",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 322,
+            "w": 96,
+            "h": 96,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 3,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "o2",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 322,
+            "w": 136,
+            "h": 136,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 3,
+            "opacity": 0.6,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 180,
+            "y": 372,
+            "w": 240,
+            "h": 20,
+            "rx": 4,
+            "fill": "#64748b"
+          },
+          {
+            "type": "forme",
+            "id": "mousse",
+            "shape": "rect",
+            "x": 262,
+            "y": 352,
+            "w": 76,
+            "h": 20,
+            "rx": 5,
+            "fill": "#fde68a",
+            "stroke": "#d4a017",
+            "width": 1.5
+          },
+          {
+            "type": "emoji",
+            "id": "reveil",
+            "x": 300,
+            "y": 322,
+            "char": "⏰",
+            "size": 56
+          },
+          {
+            "type": "fil",
+            "id": "tuyau",
+            "points": [
+              [
+                420,
+                382
+              ],
+              [
+                446,
+                382
+              ],
+              [
+                446,
+                368
+              ],
+              [
+                470,
+                368
+              ]
+            ],
+            "color": "#475569"
+          },
+          {
+            "type": "forme",
+            "id": "pompe",
+            "shape": "rect",
+            "x": 470,
+            "y": 316,
+            "w": 112,
+            "h": 76,
+            "rx": 10,
+            "fill": "#cbd5e1",
+            "stroke": "#475569",
+            "width": 2
+          },
+          {
+            "type": "texte",
+            "x": 526,
+            "y": 359,
+            "text": "pompe à vide",
+            "size": 13,
+            "bold": true
+          },
+          {
+            "type": "zoom",
+            "id": "air",
+            "x": 105,
+            "y": 215,
+            "r": 56,
+            "etat": 2,
+            "n": 30,
+            "color": "#60a5fa",
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "air-t",
+            "x": 105,
+            "y": 134,
+            "text": "l'air de la cloche",
+            "size": 13,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "cloche",
+            "shape": "path",
+            "x": 0,
+            "y": 0,
+            "d": "M210,372 L210,215 Q210,150 300,150 Q390,150 390,215 L390,372",
+            "fill": "#e0f2fe",
+            "stroke": "#5b6b82",
+            "width": 3,
+            "opacity": 0.55
+          },
+          {
+            "type": "forme",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 146,
+            "w": 30,
+            "h": 12,
+            "fill": "#5b6b82"
+          },
+          {
+            "type": "etiquette",
+            "id": "etq-mousse",
+            "x": 150,
+            "y": 345,
+            "text": "mousse",
+            "to": [
+              262,
+              362
+            ]
+          },
+          {
+            "type": "courbe",
+            "id": "son",
+            "x": 470,
+            "y": 14,
+            "w": 315,
+            "h": 200,
+            "title": "Niveau sonore en dB (sonomètre)",
+            "xRange": [
+              0,
+              5
+            ],
+            "yRange": [
+              30,
+              80
+            ],
+            "xLabel": "t (min)",
+            "yLabel": "",
+            "color": "#7c3aed",
+            "progress": 0,
+            "points": [
+              [
+                0,
+                68
+              ],
+              [
+                0.4,
+                68
+              ],
+              [
+                1,
+                62
+              ],
+              [
+                1.5,
+                55
+              ],
+              [
+                2,
+                49
+              ],
+              [
+                2.5,
+                45
+              ],
+              [
+                3,
+                42.5
+              ],
+              [
+                3.5,
+                41.5
+              ],
+              [
+                4,
+                41
+              ],
+              [
+                4.2,
+                52
+              ],
+              [
+                4.4,
+                64
+              ],
+              [
+                4.6,
+                68
+              ],
+              [
+                5,
+                68
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le montage",
+            "text": "Un réveil est posé sur de la **mousse**, sous une cloche en verre fermée. La mousse empêche les vibrations de passer par la table. Une **pompe à vide** peut aspirer l'air de la cloche, et un **sonomètre** mesure le niveau sonore à côté.",
+            "focus": [
+              "reveil",
+              "cloche",
+              "pompe"
+            ]
+          },
+          {
+            "title": "Le réveil sonne",
+            "text": "Le réveil sonne : on l'entend bien à travers le verre, environ 68 décibels. Son marteau vibre et fait vibrer l'air autour de lui. Ces vibrations se transmettent de proche en proche dans l'air, puis au verre, puis à l'air de la salle, jusqu'à nos oreilles.",
+            "duration": 3,
+            "show": [
+              "o1",
+              "o2",
+              "air",
+              "air-t"
+            ],
+            "hide": [
+              "etq-mousse"
+            ],
+            "do": [
+              {
+                "id": "son",
+                "to": {
+                  "progress": 0.08
+                },
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "reveil",
+              "air"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "On aspire peu à peu l'air de la cloche. Le son du réveil va…",
+              "choices": [
+                "devenir de plus en plus faible",
+                "rester le même : le verre laisse passer le son",
+                "devenir plus fort, car plus rien ne le freine"
+              ],
+              "answer": 0,
+              "explain": "Le son a besoin de matière pour se propager : moins il y a d'air autour du réveil, moins le son passe."
+            }
+          },
+          {
+            "title": "On fait le vide",
+            "text": "La pompe aspire l'air : il reste de moins en moins de particules dans la cloche. Le niveau sonore baisse jusqu'à environ 41 dB, presque le bruit de fond de la salle. Pourtant, on voit toujours le marteau du réveil s'agiter !",
+            "duration": 8,
+            "do": [
+              {
+                "id": "tuyau",
+                "set": {
+                  "current": 1
+                }
+              },
+              {
+                "id": "air",
+                "to": {
+                  "n": 3
+                },
+                "at": 0.3,
+                "dur": 7
+              },
+              {
+                "id": "o1",
+                "to": {
+                  "opacity": 0.12
+                },
+                "at": 0.5,
+                "dur": 7
+              },
+              {
+                "id": "o2",
+                "to": {
+                  "opacity": 0.08
+                },
+                "at": 0.5,
+                "dur": 7
+              },
+              {
+                "id": "son",
+                "to": {
+                  "progress": 0.8
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "son",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 0.4,
+                      "to": 4,
+                      "label": "pompage"
+                    }
+                  ]
+                }
+              }
+            ],
+            "focus": [
+              "air",
+              "son"
+            ]
+          },
+          {
+            "title": "Pourquoi le voit-on encore ?",
+            "text": "La **lumière**, elle, se propage même dans le vide : c'est ainsi que la lumière du Soleil traverse l'espace jusqu'à nous. On continue donc de voir le réveil. Le **son**, au contraire, a besoin d'un **milieu matériel** (air, eau, solide) pour se propager.",
+            "focus": [
+              "reveil"
+            ]
+          },
+          {
+            "title": "On fait rentrer l'air",
+            "text": "On ouvre le robinet : l'air rentre dans la cloche, et le son revient à son niveau de départ. C'est la **contre-épreuve** : c'est bien l'air qui transportait le son. Le son n'avait pas tout à fait disparu, car une pompe ne fait jamais un vide parfait.",
+            "duration": 4,
+            "do": [
+              {
+                "id": "tuyau",
+                "set": {
+                  "current": 0
+                }
+              },
+              {
+                "id": "air",
+                "to": {
+                  "n": 30
+                },
+                "dur": 3
+              },
+              {
+                "id": "o1",
+                "to": {
+                  "opacity": 1
+                },
+                "dur": 3
+              },
+              {
+                "id": "o2",
+                "to": {
+                  "opacity": 0.6
+                },
+                "dur": 3
+              },
+              {
+                "id": "son",
+                "to": {
+                  "progress": 1
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "son",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 0.4,
+                      "to": 4,
+                      "label": "pompage"
+                    },
+                    {
+                      "from": 4,
+                      "to": 5,
+                      "label": "air"
+                    }
+                  ]
+                }
+              }
+            ],
+            "focus": [
+              "son"
+            ]
+          }
+        ],
+        "conclusion": "- Quand on retire l'air, on entend de moins en moins le réveil, mais on le voit toujours.\n- Quand l'air revient, le son revient.\n\n> Le **son** a besoin d'un milieu matériel (air, eau, solide) pour se propager : il **ne se propage pas dans le vide**. La **lumière**, elle, se propage dans le vide."
+      }
     },
     {
       "kind": "exemple",
