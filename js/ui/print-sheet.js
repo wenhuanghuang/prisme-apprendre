@@ -3,11 +3,12 @@
  * sur une nouvelle page. Aucun nom d'élève n'est imprimé.
  */
 import { h, richText, inlineHTML } from './dom.js';
-import { interpolate, rng } from '../core/template.js';
+import { interpolate, interpolateDeep, rng } from '../core/template.js';
+import { renderFigure } from '../figures/render.js';
 import { describeExpected } from '../core/checkers/index.js';
 import { tokenizeHighlight } from '../core/checkers/language.js';
 import { canonicalResponse } from '../generators/data-kinds.js';
-import { tryParse, toText, parse, evaluate } from '../core/expr.js';
+import { tryParse, toText, parse, evaluate, formatNumber } from '../core/expr.js';
 
 /** Exercices que le papier ne peut pas remplacer (programme à exécuter, manipulation interactive). */
 export function printable(def) {
@@ -45,7 +46,15 @@ function zone(def, inst) {
 export function answerText(def, inst) {
   try {
     switch (def.type) {
-      case 'numeric': return describeExpected({ def, params: inst.params });
+      case 'numeric': {
+        // exercice généré : la réponse type est déjà écrite comme on l'attend (« 1/6 », « 15 h 30 »)…
+        const g = def.generatedAnswer && def.generatedAnswer.value;
+        if (g && !/\d[.,]\d{4,}/.test(String(g))) return String(g);
+        // … sauf une valeur exacte à rallonge (233,333…) : on l'écrit avec l'arrondi demandé (tolérance ou `round`)
+        const dec = Number.isInteger(def.round) ? def.round : def.tolerance ? Math.max(0, Math.ceil(-Math.log10(def.tolerance * 2) - 1e-9)) : null;
+        if (dec !== null && typeof def.answer === 'number') return `${formatNumber(Math.round(def.answer * 10 ** dec) / 10 ** dec)}${def.unit ? ` ${def.unit}` : ''}`;
+        return describeExpected({ def, params: inst.params });
+      }
       case 'expression': { const p = tryParse(t(inst, def.answer)); return p.ok ? toText(p.node) : def.answer; }
       case 'text': return (def.accept || [])[0] || '';
       case 'qcm': {
@@ -94,7 +103,9 @@ export function printSheet({ title, subtitle, items }) {
   const date = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
   const sheet = h('div', { class: 'print-sheet' },
     h('header', { class: 'ps-head' }, h('h1', {}, title), h('p', {}, subtitle || ''), h('p', { class: 'ps-meta' }, `Prisme · ${date} · Prénom ou pseudo : …………………`)),
-    h('ol', { class: 'ps-list' }, shuffledItems.map(({ def, inst }) => h('li', { class: 'ps-item' }, richText(inst.prompt, 'rich'), zone(def, inst)))),
+    h('ol', { class: 'ps-list' }, shuffledItems.map(({ def, inst }) => h('li', { class: 'ps-item' }, richText(inst.prompt, 'rich'), def.figure ? renderFigure(interpolateDeep(def.figure, inst.params)) : null, zone(def, inst),
+      // problème expert : place pour la justification
+      def.justify ? h('div', {}, h('p', { class: 'ps-note' }, def.justify.prompt || 'Explique ta démarche :'), lines(4)) : null))),
     h('section', { class: 'ps-answers' },
       h('h2', {}, 'Corrigé'),
       h('ol', { class: 'ps-list' }, shuffledItems.map(({ def, inst }) => {

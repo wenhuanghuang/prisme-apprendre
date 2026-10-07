@@ -6,48 +6,15 @@
  * Le tirage est reproductible : même générateur, même graine, mêmes options → même exercice.
  */
 import { rng } from '../core/template.js';
-import { formatNumber, tryParse, equivalent, evaluate } from '../core/expr.js';
+import { tryParse, equivalent, evaluate } from '../core/expr.js';
+import { ri, nz, pick, clean, fr, par, sq, gcd, frac, fracStr, sgn, xTerm, poly, mc, numeric, expression } from './gen-util.js';
+import { TIERS } from './tiers.js';
+import { PROBLEMES_MATHS } from './problemes-maths.js';
+import { PROBLEMES_MATHS_2 } from './problemes-maths-2.js';
+import { PROBLEMES_PC } from './problemes-pc.js';
+import { PROBLEMES_PC_2 } from './problemes-pc-2.js';
 
-const ri = (rand, a, b) => a + Math.floor(rand() * (b - a + 1));
-const nz = (rand, a, b) => { for (;;) { const x = ri(rand, a, b); if (x !== 0) return x; } };
-const pick = (rand, arr) => arr[Math.floor(rand() * arr.length)];
-const clean = (x) => Number(Number(x).toPrecision(12));
-const fr = (n) => formatNumber(clean(n));
-const par = (n) => (n < 0 ? `(${fr(n)})` : fr(n));
-const plain = (n) => String(clean(n)).replace('.', ',');
-const sq = (n) => clean(n * n);
-const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
-function frac(n, d) { const s = d < 0 ? -1 : 1; const g = gcd(n, d) || 1; return [(s * n) / g, (s * d) / g]; }
-const fracStr = ([n, d]) => (d === 1 ? String(n) : `${n}/${d}`);
-/** « + 5 » ou « − 5 » pour écrire un terme à la suite d'un autre. */
-const sgn = (n) => (n < 0 ? ` − ${fr(-n)}` : ` + ${fr(n)}`);
-/** « + 3x », « − x » : terme en x écrit à la suite d'un autre (développement non réduit). */
-const xTerm = (k) => `${k < 0 ? ' − ' : ' + '}${Math.abs(k) === 1 ? '' : fr(Math.abs(k))}x`;
-
-/** Polynôme [a0, a1, a2] écrit dans l'ordre décroissant : « 6x² − 7x + 2 ». */
-function poly(c, v = 'x') {
-  const terms = [];
-  for (let k = c.length - 1; k >= 0; k--) {
-    const a = clean(c[k] || 0);
-    if (!a) continue;
-    const abs = Math.abs(a);
-    const body = k === 0 ? fr(abs) : `${abs === 1 ? '' : fr(abs)}${v}${k === 2 ? '²' : ''}`;
-    terms.push({ neg: a < 0, body });
-  }
-  if (!terms.length) return '0';
-  return terms.map((t, i) => (i === 0 ? `${t.neg ? '−' : ''}${t.body}` : `${t.neg ? ' − ' : ' + '}${t.body}`)).join('');
-}
-
-const mc = (answer, id, error, feedback) => ({ answer, id, error, feedback });
-
-function numeric(answer, rest = {}) {
-  const value = clean(answer);
-  return { type: 'numeric', answer: value, generatedAnswer: { value: rest.unit && !rest.unitOptional ? `${plain(value)} ${rest.unit}` : plain(value) }, ...rest };
-}
-
-function expression(answer, rest = {}) {
-  return { type: 'expression', answer, generatedAnswer: { value: answer }, ...rest };
-}
+export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
 /* ======================================================================= */
 /*                              Mathématiques                              */
@@ -561,7 +528,25 @@ addPc({
 
 /* ======================================================================= */
 
+for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
+
+/** Calculs (avec leurs variantes ◆ et ✦ de tiers.js) puis problèmes à étapes. */
 export const CODE_GENERATORS = GENERATORS;
+
+/** Parcours qu'un générateur sait produire : classe, et les niveaux définis dans tiers.js (ou `tracks` d'un problème). */
+export function generatorTracks(gen) {
+  if (Array.isArray(gen.tracks) && gen.tracks.length) return TRACKS.filter((t) => gen.tracks.includes(t));
+  return ['classe', ...TRACKS.slice(1).filter((t) => TIERS[gen.id] && typeof TIERS[gen.id][t] === 'function')];
+}
+
+/** Niveau demandé s'il existe, sinon le plus proche en dessous (ou au-dessus s'il n'y en a pas). */
+function resolveTier(gen, wanted) {
+  const tracks = generatorTracks(gen);
+  if (tracks.includes(wanted)) return wanted;
+  const w = TRACKS.indexOf(wanted);
+  const below = tracks.filter((t) => TRACKS.indexOf(t) < w);
+  return below.length ? below[below.length - 1] : tracks[0];
+}
 
 /** Garde les idées fausses qui diffèrent de la bonne réponse et entre elles. */
 function keepDistinct(def) {
@@ -588,20 +573,38 @@ function keepDistinct(def) {
   return def.misconceptions || [];
 }
 
-/** Produit un exercice à partir d'un générateur de calcul ; seed et options rendent le tirage reproductible. */
+const TIER_DEFAULTS = {
+  classe: { role: 'libre', difficulty: 2 },
+  approfondissement: { role: 'transfert', difficulty: 3 },
+  expert: { role: 'defi', difficulty: 4 },
+};
+
+/**
+ * Produit un exercice à partir d'un générateur de calcul ou de problème ; seed et options rendent
+ * le tirage reproductible. `opts.parcours` (classe, approfondissement, expert) choisit le niveau.
+ */
 export function generateFromCode(gen, seed, opts = {}) {
   const rand = rng(seed);
-  const d = gen.make(rand, opts);
+  const tier = resolveTier(gen, TRACKS.includes(opts.parcours) ? opts.parcours : 'classe');
+  const variant = tier !== 'classe' && TIERS[gen.id] && TIERS[gen.id][tier];
+  const d = variant ? variant(rand, opts) : gen.make(rand, opts, tier);
   const def = {
-    id: `gen-${gen.id}-${seed}`, skill: gen.skill, track: gen.track || 'classe', role: 'libre',
-    difficulty: 2, representation: 'symbolique', expectedSeconds: 60, generated: gen.id, ...d,
+    // l'identifiant d'un exercice du niveau de la classe ne change pas (historique des tentatives)
+    id: `gen-${gen.id}-${tier === 'classe' ? '' : `${tier}-`}${seed}`, skill: gen.skill, track: tier,
+    ...TIER_DEFAULTS[tier], representation: gen.kind === 'probleme' ? 'concrete' : 'symbolique',
+    expectedSeconds: gen.kind === 'probleme' ? 300 : 60, generated: gen.id, ...d,
   };
-  def.misconceptions = keepDistinct(def);
+  if (def.type === 'composite') def.parts = def.parts.map((p) => ({ ...p, misconceptions: keepDistinct(p) }));
+  else def.misconceptions = keepDistinct(def);
   return Object.fromEntries(Object.entries(def).filter(([, v]) => v !== undefined));
 }
 
 export function codeGeneratorMeta(gen) {
-  return { id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, kind: 'calcul', description: gen.description || '', options: gen.options || [], track: gen.track || 'classe', source: 'code' };
+  return {
+    id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, skills: gen.skills || [],
+    kind: gen.kind || 'calcul', description: gen.description || '', options: gen.options || [],
+    track: 'classe', tracks: generatorTracks(gen), source: 'code',
+  };
 }
 
 /** Valeur numérique d'une réponse type (pour les tests) */

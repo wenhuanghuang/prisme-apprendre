@@ -78,7 +78,9 @@ export function checkNumberline(def, params, response) {
  * response.points = [[x,y],…]
  */
 export function checkGraph(def, params, response) {
-  const pts = response.points || [];
+  // les coordonnées peuvent arriver en texte (« −3 », « 2,5 ») : réponses types interpolées, saisie au clavier
+  const toNum = (v) => (typeof v === 'number' ? v : Number(String(v).trim().replace('−', '-').replace(',', '.')));
+  const pts = (response.points || []).map((p) => (Array.isArray(p) ? p.map(toNum) : p)).filter((p) => Array.isArray(p) && p.every(Number.isFinite));
   if (!pts.length) return diagnosis({ verdict: 'vide', feedback: 'Place des points dans le repère.' });
   const tol = def.tolerance ?? 0.01;
   if (def.expectedPoints) {

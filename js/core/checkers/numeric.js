@@ -35,6 +35,8 @@ export function readNumber(text, expectUnit) {
   }
   // sans unité attendue : un montant « 7,50 € » se lit 7,5 ; « 8 x 3 » = 8 × 3 (la lettre x pour « fois »)
   raw = raw.replace(/\s*(?:€|euros?)\s*$/i, '');
+  // un angle « 37° » ou « 37 degrés » quand on demande le nombre seul
+  raw = raw.replace(/\s*(?:°|degrés?)\s*$/i, '');
   raw = raw.replace(/(\d)\s*[xX]\s*(?=[\d(])/g, '$1 × ');
   const parsed = tryParse(raw);
   if (!parsed.ok) return { error: parsed.error };

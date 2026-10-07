@@ -34,6 +34,8 @@ const UNITS = {
   'Ω': [1, OHM], ohm: [1, OHM], 'kΩ': [1000, OHM], kohm: [1000, OHM], 'MΩ': [1e6, OHM],
   pouce: [0.0254, DIM.L], pouces: [0.0254, DIM.L], po: [0.0254, DIM.L], in: [0.0254, DIM.L],
   Hz: [1, [0, 0, -1, 0, 0]], kHz: [1000, [0, 0, -1, 0, 0]],
+  // angles en degrés : dimension fictive (« 37° », « 37 degrés »)
+  '°': [1, [0, 0, 0, 0, 4]], 'degré': [1, [0, 0, 0, 0, 4]], 'degrés': [1, [0, 0, 0, 0, 4]], deg: [1, [0, 0, 0, 0, 4]],
   // information : dimension fictive (comme °C) ; préfixes du SI (1 ko = 1 000 o) et binaires (1 Kio = 1 024 o)
   o: [1, [0, 0, 0, 0, 3]], ko: [1e3, [0, 0, 0, 0, 3]], Mo: [1e6, [0, 0, 0, 0, 3]], Go: [1e9, [0, 0, 0, 0, 3]], To: [1e12, [0, 0, 0, 0, 3]],
   Kio: [1024, [0, 0, 0, 0, 3]], Mio: [1024 ** 2, [0, 0, 0, 0, 3]], Gio: [1024 ** 3, [0, 0, 0, 0, 3]], bit: [0.125, [0, 0, 0, 0, 3]], bits: [0.125, [0, 0, 0, 0, 3]],

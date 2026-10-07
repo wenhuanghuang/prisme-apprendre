@@ -12,6 +12,8 @@ import { createAnswer, justificationField } from './answers.js';
 import { mountActivity } from '../activities/registry.js';
 import { recordAttempt, store } from '../app/store.js';
 import { photon } from './photon.js';
+import { renderFigure } from '../figures/render.js';
+import { starsFor } from './lesson-play/stars.js';
 
 export const ROLE_LABELS = {
   guide: 'Guidé', libre: 'Réponse libre', reinvestissement: 'Problème', transfert: 'Transfert', remediation: 'Point précis',
@@ -88,14 +90,18 @@ export function mountExercise(container, opts) {
   const btnHint = h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => showHint(), disabled: !inst.hints.length }, inst.hints.length ? `Indice (${inst.hints.length})` : 'Pas d’indice');
   const btnSolution = h('button', { type: 'button', class: 'btn btn--ghost btn--quiet', onclick: () => giveUp() }, 'Voir la correction');
   // désactivé dès le premier clic : un double-clic ne doit pas sauter l'exercice suivant
-  const btnNext = h('button', { type: 'button', class: 'btn btn--primary', hidden: true, onclick: () => { if (btnNext.disabled) return; btnNext.disabled = true; finish(); if (opts.onNext) opts.onNext(lastDiag); } }, opts.nextLabel || 'Continuer');
+  const btnNext = h('button', { type: 'button', class: 'btn btn--primary', hidden: true, onclick: () => { if (btnNext.disabled) return; btnNext.disabled = true; finish(); if (opts.onNext) opts.onNext(lastDiag, outcome()); } }, opts.nextLabel || 'Continuer');
   const btnNewVersion = h('button', { type: 'button', class: 'btn btn--ghost', hidden: true, onclick: () => newVersion() }, 'Améliorer ma réponse (nouvelle version)');
   const actions = h('div', { class: 'ex-actions' }, btnSubmit, btnHint, btnSolution, btnNewVersion, btnNext);
 
   const why = opts.why && opts.why.length ? h('details', { class: 'why' }, h('summary', {}, 'Pourquoi cet exercice ?'), h('ul', {}, opts.why.map((w) => h('li', {}, w)))) : null;
 
+  const figureEl = def.figure ? renderFigure(interpolateDeep(def.figure, inst.params)) : null;
   const card = h('article', { class: `ex ex--${def.type} ${opts.compact ? 'ex--compact' : ''}`, 'aria-label': 'Exercice' },
-    head, why, prompt, listenBefore, activityEl, criteria, h('div', { class: 'ex-answer' }, answer.el, just ? just.el : null), actions, hintsBox, feedback, extra);
+    head, why, prompt, figureEl, listenBefore, activityEl, criteria, h('div', { class: 'ex-answer' }, answer.el, just ? just.el : null), actions, hintsBox, feedback, extra);
+
+  const outcome = () => ({ tries, hintsUsed, solutionShown, stars: starsFor(lastDiag, { tries, hintsUsed, solutionShown }) });
+  const settled = () => { if (opts.onSettled) opts.onSettled(lastDiag, outcome()); };
   container.append(card);
 
   function showHint() {
@@ -174,6 +180,7 @@ export function mountExercise(container, opts) {
       btnSubmit.hidden = true; btnSolution.hidden = true; btnHint.hidden = true;
       btnNewVersion.hidden = def.type !== 'open';
       btnNext.hidden = false;
+      settled();
     } else if (tries >= 3 && !inst.hints.length) {
       btnSolution.classList.remove('btn--quiet');
     }
@@ -210,6 +217,7 @@ export function mountExercise(container, opts) {
     btnSubmit.hidden = true; btnHint.hidden = true; btnSolution.hidden = true;
     btnNext.hidden = false;
     btnNext.focus();
+    settled();
   }
 
   function finish() {

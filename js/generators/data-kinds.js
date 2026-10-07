@@ -164,12 +164,85 @@ const KINDS = {
 
 export const DATA_KINDS = Object.keys(KINDS);
 
+/* ---------- niveaux ◆ approfondissement et ✦ expert ---------- */
+export const DATA_TRACKS = ['classe', 'approfondissement', 'expert'];
+const RANK = { classe: 0, approfondissement: 1, expert: 2 };
+const ROLE = { classe: 'libre', approfondissement: 'transfert', expert: 'defi' };
+/** Réponses courtes : nombre de formes à écrire d'un coup selon le niveau. */
+const PARTS = { approfondissement: 3, expert: 5 };
+const COMPOSITE_PROMPT = {
+  conjugaison: 'Conjugue chaque verbe au temps demandé.',
+  vocab: 'Traduis chaque mot ou expression.',
+  cloze: 'Complète chaque phrase.',
+  chronologie: 'Donne l’année de chaque événement.',
+};
+
+/** Plusieurs réponses courtes d'un même générateur, réunies en un exercice à plusieurs questions. */
+function severalShort(gen, rand, seed, opts, n) {
+  const parts = [];
+  const seen = new Set();
+  for (let k = 0; k < n * 6 && parts.length < n; k++) {
+    const one = KINDS[gen.kind](gen, rand, seed, opts);
+    if (seen.has(one.prompt)) continue;
+    seen.add(one.prompt);
+    parts.push(one);
+  }
+  const strip = ({ id, skill, track, role, difficulty, representation, expectedSeconds, generated, solution, audio, ...rest }) => rest;
+  return base(gen, seed, {
+    type: 'composite',
+    prompt: COMPOSITE_PROMPT[gen.kind] || 'Réponds à chaque question.',
+    parts: parts.map(strip),
+    generatedAnswer: { parts: parts.map((p) => canonicalResponse(p)) },
+    hints: [...new Set(parts.flatMap((p) => p.hints || []))].slice(0, 3),
+    solution: parts.map((p, i) => `${i + 1}. ${p.solution}`).join('\n'),
+    expectedSeconds: (gen.expectedSeconds || 45) * parts.length,
+  });
+}
+
+/** Frise ✦ : des événements proches dans le temps (fenêtre de dates voisines), plus difficiles à ranger. */
+function closeEvents(rand, events, n) {
+  const sorted = events.slice().sort((a, b) => a.year - b.year);
+  const width = Math.min(sorted.length, n + 2);
+  const start = Math.floor(rand() * (sorted.length - width + 1));
+  return sample(rand, sorted.slice(start, start + width), n);
+}
+
+function tiered(gen, rand, seed, opts, tier) {
+  const d = gen.data;
+  const short = ['conjugaison', 'vocab', 'cloze'].includes(gen.kind) || (gen.kind === 'chronologie' && opts.mode === 'date');
+  // vocabulaire : le sens par défaut (du français vers la langue étrangère) est déjà le plus difficile
+  if (short) return severalShort(gen, rand, seed, opts, PARTS[tier]);
+  if (gen.kind === 'chronologie') {
+    const n = Math.min(6, d.events.length);
+    let events = [];
+    for (let k = 0; k < 30; k++) {
+      events = tier === 'expert' ? closeEvents(rand, d.events, n) : sample(rand, d.events, n);
+      if (new Set(events.map((e) => e.year)).size === events.length) break;
+    }
+    events.sort((a, b) => a.year - b.year);
+    return base(gen, seed, {
+      type: 'order', prompt: `Range ces ${events.length} événements du plus ancien au plus récent.${tier === 'expert' ? ' Attention : ils sont proches dans le temps.' : ''}`, orderLabel: 'du plus ancien au plus récent',
+      items: events.map((e, i) => ({ id: `e${i}`, label: e.label })), errorType: 'notion',
+      solution: events.map((e) => `${e.year} : ${e.label}`).join(' ; '), representation: 'visuelle',
+    });
+  }
+  // classements et associations : davantage d'éléments à traiter
+  const bigger = (n) => (tier === 'expert' ? n + 6 : n + 3);
+  if (gen.kind === 'categorize') return KINDS.categorize({ ...gen, data: { ...d, count: Math.min(d.items.length, bigger(d.count || 6)) } }, rand, seed, opts);
+  if (gen.kind === 'match') return KINDS.match({ ...gen, data: { ...d, count: Math.min(d.pairs.length, bigger(d.count || 5) - 1) } }, rand, seed, opts);
+  return KINDS[gen.kind](gen, rand, seed, opts);
+}
+
 /** Produit un exercice à partir d'un générateur de données ; seed et options rendent le tirage reproductible. */
 export function generateFromData(gen, seed, opts = {}) {
   const kind = KINDS[gen.kind];
   if (!kind) throw new Error(`Genre de générateur inconnu : ${gen.kind}`);
   const rand = rng(seed);
-  const def = kind(gen, rand, seed, opts);
+  const tier = DATA_TRACKS.includes(opts.parcours) ? opts.parcours : 'classe';
+  let def = tier === 'classe' ? kind(gen, rand, seed, opts) : tiered(gen, rand, seed, opts, tier);
+  if (tier !== 'classe') {
+    def = { ...def, id: `gen-${gen.id}-${tier}-${seed}`, track: tier, role: ROLE[tier], difficulty: Math.min(5, (gen.difficulty || 2) + RANK[tier]) };
+  }
   return Object.fromEntries(Object.entries(def).filter(([, v]) => v !== undefined));
 }
 

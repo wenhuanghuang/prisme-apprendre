@@ -1,7 +1,7 @@
 /* Service worker : fonctionnement hors connexion.
    VERSION est réécrite par `npm run build` à chaque modification des fichiers : le navigateur voit donc
    un nouveau service worker, l'installe en arrière-plan, et l'application propose de recharger. */
-const VERSION = '1vl2eq2';
+const VERSION = '18aslk5';
 const CACHE = `prisme-v-${VERSION}`;
 
 self.addEventListener('install', (event) => {

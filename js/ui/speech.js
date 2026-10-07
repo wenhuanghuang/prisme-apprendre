@@ -34,7 +34,8 @@ export function speechAvailable() { return Boolean(synth); }
 /** Arrête toute lecture, y compris une lecture encore en attente des voix (changement de page). */
 export function stopSpeaking() {
   generation++;
-  if (synth) synth.cancel();
+  // une lecture mise en pause (expérience) ne doit pas laisser la synthèse vocale en pause pour la suite
+  if (synth) { synth.cancel(); synth.resume(); }
 }
 
 /** Lit un texte. Renvoie false si aucune voix locale n'existe pour cette langue. */
@@ -42,6 +43,7 @@ export async function speak(text, { lang = 'fr-FR', rate = 1 } = {}) {
   if (!synth || !text) return false;
   const ticket = ++generation;
   synth.cancel();
+  synth.resume();
   const voice = await voiceFor(lang);
   if (!voice) return false;
   if (ticket !== generation) return true; // une autre lecture (ou un arrêt) a eu lieu entre-temps

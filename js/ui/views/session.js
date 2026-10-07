@@ -12,6 +12,7 @@ import { interpolate } from '../../core/template.js';
 import { mountExercise } from '../exercise.js';
 import { KIND_UI } from './today.js';
 import { photon } from '../photon.js';
+import { cardsDigest } from '../lesson-play/cards.js';
 
 const LENGTH = { revision: 3, defi: 2, transfert: 2, expliquer: 3 };
 
@@ -39,7 +40,8 @@ async function targetedExplanation(rec) {
     const course = lesson.sections.find((s) => s.kind === 'cours');
     const pitfalls = lesson.sections.find((s) => s.kind === 'correction');
     if (pitfalls && pitfalls.body) out.push(h('details', {}, h('summary', {}, 'Les erreurs fréquentes sur cette notion'), richText(pitfalls.body)));
-    if (course && course.body) out.push(h('details', {}, h('summary', {}, 'Revoir le cours'), richText(course.body)));
+    if (course && Array.isArray(course.cards) && course.cards.length) out.push(h('details', {}, h('summary', {}, 'Revoir le cours'), course.body ? richText(course.body) : null, cardsDigest(course.cards)));
+    else if (course && course.body) out.push(h('details', {}, h('summary', {}, 'Revoir le cours'), richText(course.body)));
   }
   return out;
 }
