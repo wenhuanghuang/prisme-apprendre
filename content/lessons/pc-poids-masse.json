@@ -61,7 +61,15 @@
               { "id": "t", "set": { "shown": 1 }, "at": 2.1 },
               { "id": "g", "to": { "progress": 0.0833 }, "at": 2.1, "dur": 0.6 }
             ],
-            "focus": ["D"]
+            "focus": ["D"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le dynamomètre : quel est le poids de la masse de 100 g ?",
+              "answer": 0.98,
+              "tolerance": 0,
+              "unit": "N",
+              "explain": "L'écran placé à côté du repère rouge du dynamomètre affiche 0,98 N."
+            }
           },
           {
             "title": "200 g, puis 500 g",
@@ -116,7 +124,14 @@
               { "id": "t", "set": { "shown": 4 }, "at": 3.5 },
               { "id": "g", "to": { "progress": 0.8333 }, "at": 3.5, "dur": 0.8 }
             ],
-            "focus": ["D", "g"]
+            "focus": ["D", "g"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le graphique : comment sont placés les points mesurés sur Terre ?",
+              "choices": ["Sur une courbe qui monte de moins en moins vite", "Sur une droite horizontale", "Sur une droite qui passe par l'origine"],
+              "answer": 2,
+              "explain": "Les points, de (0,1 kg ; 0,98 N) à (1 kg ; 9,8 N), sont alignés sur une droite qui part de l'origine : le poids est proportionnel à la masse."
+            }
           },
           {
             "title": "P / m est toujours le même",
@@ -147,7 +162,14 @@
               { "id": "g", "set": { "ref": { "points": [[0, 0], [1.2, 1.92]], "label": "Lune" } }, "at": 2 },
               { "id": "eL", "set": { "hidden": false }, "at": 2 }
             ],
-            "focus": ["D", "astre"]
+            "focus": ["D", "astre"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Sur la Lune, la masse marquée vaut toujours 1 kg, mais son poids n'est plus que 1,6 N. Pourquoi ?",
+              "choices": ["La masse marquée a perdu de la matière pendant le voyage", "La Lune attire les objets moins fort que la Terre", "Il n'y a pas d'air sur la Lune, donc les objets n'y sont presque pas attirés"],
+              "answer": 1,
+              "explain": "La quantité de matière n'a pas changé : la masse reste 1 kg. Le poids est la force d'attraction de l'astre, et la Lune attire environ 6 fois moins fort que la Terre. L'air n'y est pour rien."
+            }
           }
         ],
         "conclusion": "- La **masse** (en kg) mesure la quantité de matière : elle est **la même partout**. La masse marquée vaut 1 kg sur Terre comme sur la Lune.\n- Le **poids** (en N) est la force d'attraction exercée par l'astre : il **dépend de l'astre**. Pour 1 kg : 9,8 N sur Terre, 1,6 N sur la Lune.\n\n> Pour un astre donné, le poids est proportionnel à la masse : **P = m × g**, avec g = 9,8 N/kg sur Terre et 1,6 N/kg sur la Lune."
@@ -232,10 +254,10 @@
         { "type": "numeric", "prompt": "Calcule le quotient P / m, avec m en kg (avec l'unité N/kg).", "answer": 9.8, "unit": "N/kg", "rel": 0.03,
           "misconceptions": [
             { "answer": "1/9.8", "id": "mc:quotient-inverse", "error": "notion", "feedback": "Tu as calculé m / P. On demande P / m (newtons par kilogramme)." },
-            { "answer": 0.0098, "id": "mc:g-non-converti", "error": "unite", "feedback": "Tu as divisé par la masse en grammes. Avec m en kg, on trouve environ 9,8 N/kg." }
+            { "answer": 0.0098, "id": "mc:g-non-converti", "error": "unite", "feedback": "Tu as divisé par la masse en grammes : convertis-la d'abord en kilogrammes (÷ 1 000)." }
           ] },
         { "type": "text", "prompt": "Ce quotient change-t-il pour les autres masses du tableau ? (oui ou non)", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:proportion", "error": "notion", "prerequisite": "m5.proportionnalite", "feedback": "Compare deux lignes du tableau : si la masse double, le poids double, et P / m reste le même. Le poids est proportionnel à la masse." } ] }
+          "misconceptions": [ { "answer": "oui", "id": "mc:proportion", "error": "notion", "prerequisite": "m5.proportionnalite", "feedback": "Compare deux lignes du tableau : si la masse double, que devient le poids ? Calcule P / m pour une autre ligne et compare." } ] }
       ],
       "hints": ["Le dynamomètre indique le poids en newtons : lis-le dans la ligne de {m} g.", "{m} g = {m/1000} kg.", "P / m = (poids lu) ÷ {m/1000}."],
       "solution": "Pour {m} g = {m/1000} kg, le dynamomètre indique environ {m*0.0098} N. P / m ≈ {m*0.0098} / {m/1000} = 9,8 N/kg, et ce quotient est le même pour toutes les masses : c'est g, l'intensité de la pesanteur terrestre.",
@@ -272,16 +294,16 @@
         { "type": "table", "prompt": "Complète le tableau (nombres seulement, sans espace).", "columns": ["m (g)", "m (kg)", "P (N)", "P / m (N/kg)"],
           "rows": [["100", "?r0c1", "0,37", "?r0c3"], ["200", "?r1c1", "0,74", "?r1c3"], ["500", "?r2c1", "1,85", "?r2c3"]],
           "cells": {
-            "r0c1": { "answer": 0.1, "misconceptions": [ { "answer": 100, "id": "mc:g-non-converti", "error": "unite", "feedback": "1 kg = 1 000 g : 100 g = 0,1 kg." }, { "answer": 100000, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Des grammes aux kilogrammes, on DIVISE par 1 000." } ] },
-            "r0c3": { "answer": 3.7, "rel": 0.01, "misconceptions": [ { "answer": 0.0037, "id": "mc:g-non-converti", "error": "unite", "feedback": "Divise par la masse en kg (0,1 kg), pas en grammes." }, { "answer": "0.1/0.37", "id": "mc:quotient-inverse", "error": "notion", "feedback": "On demande P / m, pas m / P." } ] },
-            "r1c1": { "answer": 0.2, "misconceptions": [ { "answer": 200, "id": "mc:g-non-converti", "error": "unite", "feedback": "200 g = 0,2 kg." } ] },
+            "r0c1": { "answer": 0.1, "misconceptions": [ { "answer": 100, "id": "mc:g-non-converti", "error": "unite", "feedback": "1 kg = 1 000 g : pour passer des grammes aux kilogrammes, divise par 1 000." }, { "answer": 100000, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Des grammes aux kilogrammes, on DIVISE par 1 000." } ] },
+            "r0c3": { "answer": 3.7, "rel": 0.01, "misconceptions": [ { "answer": 0.0037, "id": "mc:g-non-converti", "error": "unite", "feedback": "Divise par la masse en kg, pas en grammes." }, { "answer": "0.1/0.37", "id": "mc:quotient-inverse", "error": "notion", "feedback": "On demande P / m, pas m / P." } ] },
+            "r1c1": { "answer": 0.2, "misconceptions": [ { "answer": 200, "id": "mc:g-non-converti", "error": "unite", "feedback": "La masse est demandée en kilogrammes : divise par 1 000." } ] },
             "r1c3": { "answer": 3.7, "rel": 0.01, "misconceptions": [ { "answer": 0.0037, "id": "mc:g-non-converti", "error": "unite", "feedback": "Divise par la masse en kg." } ] },
-            "r2c1": { "answer": 0.5, "misconceptions": [ { "answer": 500, "id": "mc:g-non-converti", "error": "unite", "feedback": "500 g = 0,5 kg." } ] },
+            "r2c1": { "answer": 0.5, "misconceptions": [ { "answer": 500, "id": "mc:g-non-converti", "error": "unite", "feedback": "La masse est demandée en kilogrammes : divise par 1 000." } ] },
             "r2c3": { "answer": 3.7, "rel": 0.01, "misconceptions": [ { "answer": 0.0037, "id": "mc:g-non-converti", "error": "unite", "feedback": "Divise par la masse en kg." } ] }
           } },
         { "type": "numeric", "prompt": "Valeur de g sur cet astre (avec l'unité) :", "answer": 3.7, "unit": "N/kg", "rel": 0.01 },
         { "type": "text", "prompt": "De quel astre s'agit-il : Terre, Lune, Mars ou Jupiter ?", "accept": ["mars", "la planète mars", "planète mars", "sur mars"],
-          "misconceptions": [ { "answer": "lune", "id": "mc:identification", "error": "lecture", "feedback": "Sur la Lune, g = 1,6 N/kg. 3,7 N/kg correspond à Mars." } ] }
+          "misconceptions": [ { "answer": "lune", "id": "mc:identification", "error": "lecture", "feedback": "Sur la Lune, g = 1,6 N/kg : ce n'est pas la valeur mesurée. Compare avec les autres valeurs de g du cours." } ] }
       ],
       "hints": ["Convertis chaque masse en kg (÷ 1 000).", "P / m = 0,37 / 0,1.", "Compare avec les valeurs du cours."],
       "solution": "Masses : 0,1 ; 0,2 ; 0,5 kg. P / m = 3,7 N/kg à chaque ligne : le poids est proportionnel à la masse, et g = 3,7 N/kg : c'est la valeur de Mars.",
@@ -299,8 +321,8 @@
           "misconceptions": [ { "answer": "70/9.8", "id": "mc:formule-poids", "error": "notion", "feedback": "P = m × g : on multiplie." } ] },
         { "type": "numeric", "prompt": "Sa masse sur la Lune (avec l'unité) :", "answer": 70, "unit": "kg", "rel": 0.01,
           "misconceptions": [
-            { "answer": "70*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "La masse est la quantité de matière : elle ne dépend pas de l'astre, elle reste 70 kg. C'est le POIDS qui est plus faible sur la Lune." },
-            { "answer": "70/6", "id": "mc:masse-varie", "error": "notion", "feedback": "« Six fois moins » concerne le poids, pas la masse : la masse reste 70 kg." }
+            { "answer": "70*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "La masse est la quantité de matière : elle ne dépend pas de l'astre. C'est le POIDS qui est plus faible sur la Lune." },
+            { "answer": "70/6", "id": "mc:masse-varie", "error": "notion", "feedback": "« Six fois moins » concerne le poids, pas la masse : la quantité de matière de l'astronaute ne change pas." }
           ] },
         { "type": "numeric", "prompt": "Son poids sur la Lune (avec l'unité) :", "answer": "70*1.6", "unit": "N", "rel": 0.01,
           "misconceptions": [ { "answer": "70*9.8", "id": "mc:poids-invariant", "error": "notion", "feedback": "Le poids dépend de l'astre : sur la Lune, P = 70 × 1,6." } ] },
@@ -318,7 +340,7 @@
       "representation": "verbale", "targets": ["mc:masse-varie"], "expectedSeconds": 60,
       "prompt": "Vérification rapide : un paquet de farine de 1 kg est emporté sur la Lune, sans être ouvert. Qu'est-ce qui change ?",
       "choices": [
-        { "text": "Sa masse et son poids", "correct": false, "error": "notion", "misconception": "mc:masse-varie", "feedback": "La quantité de farine ne change pas pendant le voyage : la masse reste 1 kg. Seul le poids change." },
+        { "text": "Sa masse et son poids", "correct": false, "error": "notion", "misconception": "mc:masse-varie", "feedback": "La quantité de farine ne change pas pendant le voyage : la masse reste 1 kg. Qu'est-ce qui dépend de l'astre ?" },
         { "text": "Seulement son poids", "correct": true, "feedback": "Exact : la masse reste 1 kg ; le poids passe d'environ 9,8 N à 1,6 N." },
         { "text": "Seulement sa masse", "correct": false, "error": "notion", "misconception": "mc:masse-poids", "feedback": "C'est l'inverse : la masse (quantité de matière) ne change pas, le poids (attraction de l'astre) change." },
         { "text": "Rien du tout", "correct": false, "error": "notion", "misconception": "mc:poids-invariant", "feedback": "La Lune attire moins les objets que la Terre : le poids diminue." }
@@ -336,7 +358,7 @@
       "prompt": "Léo affirme : « Je pèse 50 kg sur Terre. Sur la Lune, je ne pèserais plus que 8 kg. »",
       "parts": [
         { "type": "numeric", "prompt": "Quelle serait la masse de Léo sur la Lune (avec l'unité) ?", "answer": 50, "unit": "kg", "rel": 0.03,
-          "misconceptions": [ { "answer": "50*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "C'est l'idée de Léo : mais sa quantité de matière ne change pas, sa masse reste 50 kg." } ] },
+          "misconceptions": [ { "answer": "50*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "C'est l'idée de Léo. Mais a-t-il perdu de la matière pendant le voyage ? La masse mesure la quantité de matière." } ] },
         { "type": "numeric", "prompt": "Quel serait son poids sur la Lune (avec l'unité) ?", "answer": 80, "unit": "N", "rel": 0.01,
           "misconceptions": [ { "answer": 490, "id": "mc:poids-invariant", "error": "notion", "feedback": "490 N est son poids sur Terre. Sur la Lune : 50 × 1,6." } ] },
         { "type": "open", "prompt": "Réécris la phrase de Léo correctement et explique la différence entre masse et poids.", "minWords": 30,
@@ -362,7 +384,7 @@
         { "type": "numeric", "prompt": "Poids du rover sur Terre (avec l'unité) :", "answer": "1025*9.8", "unit": "N", "rel": 0.01,
           "misconceptions": [ { "answer": 1025, "id": "mc:masse-poids", "error": "notion", "feedback": "1 025 est la masse en kg. Le poids est P = m × g." } ] },
         { "type": "text", "prompt": "La grue peut-elle le soulever sur Terre ? (oui ou non)", "accept": ["oui"],
-          "misconceptions": [ { "answer": "non", "id": "mc:comparaison", "error": "raisonnement", "feedback": "Environ 10 000 N < 12 000 N : la grue suffit." } ] },
+          "misconceptions": [ { "answer": "non", "id": "mc:comparaison", "error": "raisonnement", "feedback": "Compare le poids du rover sur Terre (question précédente) à la charge maximale de la grue, 12 000 N." } ] },
         { "type": "numeric", "prompt": "Poids du même rover sur Mars (avec l'unité) :", "answer": "1025*3.7", "unit": "N", "rel": 0.01 },
         { "type": "numeric", "prompt": "Sur Mars, quelle masse maximale une grue limitée à 12 000 N pourrait-elle soulever (avec l'unité) ?", "answer": "12000/3.7", "unit": "kg", "rel": 0.01,
           "misconceptions": [
@@ -392,7 +414,7 @@
             { "answer": "4*1.6", "id": "mc:formule-poids", "error": "notion", "feedback": "m = P / g : on divise le poids par g." }
           ] },
         { "type": "numeric", "prompt": "Une fois ramenée sur Terre, quel sera le poids de cette roche (avec l'unité) ?", "answer": "2.5*9.8", "unit": "N", "rel": 0.01,
-          "misconceptions": [ { "answer": 4, "id": "mc:poids-invariant", "error": "notion", "feedback": "Le poids change avec l'astre. La masse (2,5 kg) ne change pas : sur Terre, P = 2,5 × 9,8." } ] }
+          "misconceptions": [ { "answer": 4, "id": "mc:poids-invariant", "error": "notion", "feedback": "Le poids change avec l'astre, mais pas la masse : sur Terre, P = m × 9,8, avec la masse trouvée à la question précédente." } ] }
       ],
       "hints": ["m = P / g.", "La masse de la roche est la même sur la Lune et sur Terre.", "Sur Terre, ce dynamomètre ne pourrait pas peser cette roche : vérifie !"],
       "solution": "Sur Terre : 10 / 9,8 ≈ 1,02 kg au plus ; sur la Lune : 10 / 1,6 = 6,25 kg au plus. La roche : m = 4,0 / 1,6 = 2,5 kg ; sur Terre, P = 2,5 × 9,8 = 24,5 N, au-delà de la graduation : le dynamomètre convient sur la Lune, pas pour la repeser sur Terre.",
@@ -407,11 +429,11 @@
       "prompt": "Rappel ciblé : la masse mesure la QUANTITÉ DE MATIÈRE. Un sac fermé contient 1 kg de riz, soit environ 50 000 grains. On l'emporte sur la Lune.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de grains le sac contient-il sur la Lune ? (écris le nombre sans espace)", "answer": 50000, "rel": 0.01,
-          "misconceptions": [ { "answer": "50000*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "Aucun grain n'a disparu pendant le voyage : il y en a toujours 50 000." } ] },
+          "misconceptions": [ { "answer": "50000*1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "Aucun grain n'a pu disparaître pendant le voyage : le sac est resté fermé." } ] },
         { "type": "numeric", "prompt": "Quelle est donc la masse du sac sur la Lune (avec l'unité) ?", "answer": 1, "unit": "kg", "rel": 0.02,
-          "misconceptions": [ { "answer": "1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "Même nombre de grains, même quantité de matière : 1 kg." } ] },
+          "misconceptions": [ { "answer": "1.6/9.8", "id": "mc:masse-varie", "error": "notion", "feedback": "Même nombre de grains, donc même quantité de matière qu'au départ sur Terre." } ] },
         { "type": "numeric", "prompt": "Pourtant, le sac « tire » moins sur la main : quel est son poids sur la Lune, où g = 1,6 N/kg (avec l'unité) ?", "answer": 1.6, "unit": "N", "rel": 0.01,
-          "misconceptions": [ { "answer": 9.8, "id": "mc:poids-invariant", "error": "notion", "feedback": "9,8 N est son poids sur Terre. La Lune attire moins : P = 1 × 1,6." } ] }
+          "misconceptions": [ { "answer": 9.8, "id": "mc:poids-invariant", "error": "notion", "feedback": "9,8 N est son poids sur Terre. La Lune attire moins : utilise dans P = m × g la valeur de g sur la Lune." } ] }
       ],
       "hints": ["Des grains peuvent-ils disparaître dans un sac fermé ?", "Le poids est la force avec laquelle l'astre attire le sac."],
       "solution": "50 000 grains, donc 1 kg : la masse n'a pas changé. Le poids, lui, vaut 1 × 1,6 = 1,6 N sur la Lune au lieu de 9,8 N sur Terre.",
@@ -474,8 +496,8 @@
         { "type": "numeric", "prompt": "De combien le poids lu augmente-t-il chaque fois qu'on ajoute 0,100 kg (avec l'unité) ?", "answer": 0.98, "unit": "N", "rel": 0.01 },
         { "type": "numeric", "prompt": "Déduis-en la valeur de g (avec l'unité).", "answer": 9.8, "unit": "N/kg", "rel": 0.01,
           "misconceptions": [
-            { "answer": "(11.8+10.8+3.14/0.3+10.3)/4", "id": "mc:quotient-avec-decalage", "error": "methode", "feedback": "La moyenne des quotients P / m est faussée : le décalage du zéro s'ajoute à chaque mesure et pèse surtout sur les petites masses. L'augmentation de P pour 0,100 kg de plus n'est pas affectée : 0,98 / 0,100 = 9,8 N/kg." },
-            { "answer": 11.8, "id": "mc:quotient-avec-decalage", "error": "methode", "feedback": "Ce quotient contient le décalage du zéro. Utilise plutôt l'augmentation de P : 0,98 N pour 0,100 kg." }
+            { "answer": "(11.8+10.8+3.14/0.3+10.3)/4", "id": "mc:quotient-avec-decalage", "error": "methode", "feedback": "La moyenne des quotients P / m est faussée : le décalage du zéro s'ajoute à chaque mesure et pèse surtout sur les petites masses. L'augmentation de P quand on ajoute 0,100 kg n'est pas affectée : utilise-la." },
+            { "answer": 11.8, "id": "mc:quotient-avec-decalage", "error": "methode", "feedback": "Ce quotient contient le décalage du zéro. Utilise plutôt l'augmentation de P quand on ajoute 0,100 kg." }
           ] },
         { "type": "numeric", "prompt": "Qu'indiquait le dynamomètre à vide (avec l'unité) ?", "answer": 0.2, "unit": "N", "tolerance": 0.01 },
         { "type": "open", "prompt": "Explique pourquoi la droite P = f(m) ne passe pas par l'origine, et comment corriger les mesures.", "minWords": 20,
@@ -497,10 +519,10 @@
       "representation": "symbolique", "targets": ["mc:apesanteur"], "expectedSeconds": 720,
       "prompt": "Le modèle « g = 9,8 N/kg » a des limites. Valeurs de g pour la Terre :\n- au niveau de la mer : 9,81 N/kg (de 9,78 à l'équateur à 9,83 aux pôles)\n- au sommet de l'Everest (8,8 km d'altitude) : 9,78 N/kg\n- à l'altitude de la Station spatiale internationale (400 km) : 8,69 N/kg\n- à l'altitude des satellites géostationnaires (36 000 km) : 0,22 N/kg",
       "parts": [
-        { "type": "numeric", "prompt": "De combien de pour cent g diminue-t-il entre le niveau de la mer (9,81) et le sommet de l'Everest ? (écris seulement le nombre, sans le signe %)", "answer": "(9.81-9.78)/9.81*100", "rel": 0.1,
-          "misconceptions": [ { "answer": "(9.81-9.78)/9.81", "id": "mc:pourcentage", "error": "calcul", "feedback": "Ce rapport vaut environ 0,003 ; en pourcentage, on multiplie par 100 : 0,3 %." } ] },
+        { "type": "numeric", "percent": true, "prompt": "De combien de pour cent g diminue-t-il entre le niveau de la mer (9,81) et le sommet de l'Everest ?", "answer": "(9.81-9.78)/9.81*100", "rel": 0.1,
+          "misconceptions": [ { "answer": "(9.81-9.78)/9.81", "id": "mc:pourcentage", "error": "calcul", "feedback": "Tu as calculé le rapport, pas le pourcentage : multiplie-le par 100." } ] },
         { "type": "text", "prompt": "Pour peser des objets au collège, peut-on garder g = 9,8 N/kg ? (oui ou non)", "accept": ["oui"],
-          "misconceptions": [ { "answer": "non", "id": "mc:precision-modele", "error": "raisonnement", "feedback": "Les variations de g à la surface de la Terre (moins de 1 %) sont bien plus petites que la précision d'un dynamomètre scolaire : le modèle suffit largement." } ] },
+          "misconceptions": [ { "answer": "non", "id": "mc:precision-modele", "error": "raisonnement", "feedback": "Compare les variations de g à la surface de la Terre (moins de 1 %) à la précision d'un dynamomètre scolaire." } ] },
         { "type": "numeric", "prompt": "Poids d'un astronaute de 70 kg (équipement compris) à bord de la Station spatiale (avec l'unité) :", "answer": "70*8.69", "unit": "N", "rel": 0.02,
           "misconceptions": [ { "answer": 0, "id": "mc:apesanteur", "error": "notion", "feedback": "Les astronautes flottent, mais leur poids n'est pas nul : à 400 km, la Terre les attire encore presque autant qu'au sol. Ils flottent parce que la station et eux « tombent » ensemble autour de la Terre." } ] },
         { "type": "numeric", "prompt": "Ce poids représente quel pourcentage de son poids au sol (9,81 N/kg) ? (seulement le nombre)", "answer": "8.69/9.81*100", "rel": 0.02 },
@@ -531,12 +553,12 @@
             { "id": "c4", "label": "Je privilégie les grandes masses (erreur relative plus faible) et je répète les mesures", "keywords": [["grande", "lourde", "precis", "repet"]] }
           ] },
         { "type": "numeric", "prompt": "Résultats de la mission : 50 g → 0,45 N ; 100 g → 0,89 N ; 200 g → 1,78 N ; 400 g → 3,55 N. Valeur de g (avec l'unité) :", "answer": 8.9, "unit": "N/kg", "rel": 0.02,
-          "misconceptions": [ { "answer": 0.0089, "id": "mc:g-non-converti", "error": "unite", "feedback": "Les masses doivent être en kg : 3,55 / 0,400 ≈ 8,9 N/kg." } ] },
+          "misconceptions": [ { "answer": 0.0089, "id": "mc:g-non-converti", "error": "unite", "feedback": "Les masses doivent être en kg : convertis-les avant de calculer P / m." } ] },
         { "type": "text", "prompt": "D'après les valeurs connues (Mercure 3,7 ; Vénus 8,9 ; Mars 3,7 ; Saturne 10,4 N/kg), de quel astre s'agit-il ?", "accept": ["vénus", "venus", "la planète vénus", "planète vénus"],
-          "misconceptions": [ { "answer": "saturne", "id": "mc:identification", "error": "lecture", "feedback": "Saturne : 10,4 N/kg. Les mesures donnent 8,9 N/kg : Vénus." } ] },
+          "misconceptions": [ { "answer": "saturne", "id": "mc:identification", "error": "lecture", "feedback": "Saturne : 10,4 N/kg, c'est trop loin de la valeur mesurée. Cherche l'astre dont g est le plus proche." } ] },
         { "type": "numeric", "prompt": "Avec la masse de 50 g, l'erreur de lecture de ± 0,05 N représente quel pourcentage du poids mesuré ? (seulement le nombre)", "answer": "0.05/0.45*100", "rel": 0.05 },
         { "type": "text", "prompt": "Quelle mesure donne g avec la meilleure précision : celle avec 50 g ou celle avec 400 g ?", "accept": ["400 g", "400", "celle avec 400 g", "la masse de 400 g", "avec 400 g"],
-          "misconceptions": [ { "answer": "50 g", "id": "mc:precision-relative", "error": "raisonnement", "feedback": "± 0,05 N sur 0,45 N, c'est 11 % ; sur 3,55 N, c'est 1,4 % seulement. Plus le poids mesuré est grand, plus l'erreur RELATIVE est faible." }, { "answer": "50", "id": "mc:precision-relative", "error": "raisonnement", "feedback": "Compare les erreurs relatives : 0,05 / 0,45 et 0,05 / 3,55." } ] }
+          "misconceptions": [ { "answer": "50 g", "id": "mc:precision-relative", "error": "raisonnement", "feedback": "Compare les erreurs RELATIVES : ± 0,05 N sur 0,45 N, et ± 0,05 N sur 3,55 N. Une même erreur pèse moins sur une grande valeur." }, { "answer": "50", "id": "mc:precision-relative", "error": "raisonnement", "feedback": "Compare les erreurs relatives : 0,05 / 0,45 et 0,05 / 3,55." } ] }
       ],
       "hints": ["Convertis les masses en kg, calcule P / m ou trace P = f(m).", "Erreur relative = 0,05 / 0,45.", "Une même erreur absolue pèse moins sur une grande valeur."],
       "solution": "Protocole : vérifier le zéro ; accrocher au moins quatre masses différentes ; lire P à l'équilibre ; tracer P en fonction de m (en kg) ; g est le coefficient directeur de la droite passant par l'origine. Résultats : P / m ≈ 9,0 ; 8,9 ; 8,9 ; 8,9 N/kg, donc g ≈ 8,9 N/kg : Vénus. Avec 50 g, l'erreur de lecture vaut 0,05 / 0,45 ≈ 11 % ; avec 400 g, seulement 1,4 % : la grande masse donne la mesure la plus précise. Remarque : cette méthode ne permettrait pas de distinguer Mercure de Mars (même g).",

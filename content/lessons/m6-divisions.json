@@ -1,0 +1,921 @@
+{
+  "id": "m6-divisions",
+  "chapter": "6e-m-divisions",
+  "title": "Division euclidienne et division décimale",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.division.euclidienne", "m6.division.decimale", "m6.division.problemes"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Effectuer une division euclidienne (quotient et reste, avec a = b × q + r et un reste plus petit que le diviseur), diviser un nombre décimal par un entier inférieur à 10, et choisir la bonne division dans un problème : que faire du reste ?",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le coffre des huit pirates",
+      "body": "Huit pirates trouvent un coffre de 100 pièces d’or. Ils partagent : chacun le même nombre de pièces, sans couper de pièce.\n\nCombien chacun en reçoit-il ? Combien en reste-t-il ?\n\nLe soir, ils partagent aussi 100 litres d’eau douce. Là, on peut partager jusqu’au bout !\n\nCombien de litres d’eau chaque pirate aura-t-il ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🏴‍☠️",
+          "title": "La division euclidienne",
+          "body": "Diviser 100 par 8, c’est chercher combien de fois 8 « entre » dans 100. On obtient le **quotient** (12) et le **reste** (4). On écrit : $100 = 8 × 12 + 4$. 100 est le **dividende**, 8 le **diviseur**. Le reste est toujours **plus petit que le diviseur**.",
+          "example": "100 = 8 × 12 + 4 : chaque pirate a 12 pièces, il en reste 4.",
+          "reveal": {
+            "question": "Devine : peut-on écrire $100 = 8 × 11 + 12$ pour la division de 100 par 8 ?",
+            "answer": "L’égalité est juste (88 + 12 = 100), mais ce n’est pas la division euclidienne : le reste 12 est plus grand que 8. On peut encore faire un paquet de 8 !"
+          }
+        },
+        {
+          "emoji": "📝",
+          "title": "Poser la division",
+          "body": "On partage rang par rang, en commençant par la gauche. À chaque étape : combien de fois le diviseur ? On multiplie, on soustrait, puis le reste se change en unités du rang suivant, et on abaisse le chiffre suivant.",
+          "example": "857 ÷ 6 : quotient 142, reste 5, car $857 = 6 × 142 + 5$.",
+          "figure": {
+            "alt": "Les trois étapes de la division de 857 par 6 : centaines, dizaines, puis unités.",
+            "w": 520,
+            "h": 170,
+            "items": [
+              {
+                "type": "table",
+                "head": ["On partage", "Combien de fois 6 ?", "Il reste"],
+                "rows": [["8 centaines", "1", "2 centaines"], ["25 dizaines", "4", "1 dizaine"], ["17 unités", "2", "5 unités"]]
+              }
+            ],
+            "caption": "857 = 6 × 142 + 5"
+          }
+        },
+        {
+          "emoji": "🎯",
+          "title": "Diviser par un nombre à deux chiffres",
+          "body": "Quand le diviseur a deux chiffres, on ne connaît pas sa table par cœur. On **encadre** alors le quotient avec des multiples faciles à calculer (× 10, × 20…), puis on ajuste jusqu’à trouver le bon quotient.",
+          "example": "500 ÷ 23 : 23 × 20 = 460 ; 23 × 21 = 483 ; 23 × 22 = 506, c’est trop. Donc quotient 21 et reste 500 − 483 = 17."
+        },
+        {
+          "emoji": "💧",
+          "title": "La division décimale",
+          "body": "Quand on peut partager le reste (des euros, des litres, des mètres), on continue après la virgule : le reste d’unités se change en dixièmes, puis en centièmes… On écrit la virgule au quotient au moment où l’on abaisse les dixièmes.",
+          "example": "100 ÷ 8 : il reste 4 unités, soit 40 dixièmes, et 40 ÷ 8 = 5. Donc 100 ÷ 8 = 12,5 : chaque pirate a 12,5 L d’eau."
+        },
+        {
+          "emoji": "🤔",
+          "title": "Quelle division choisir ?",
+          "body": "Objets qu’on ne coupe pas (personnes, œufs, bus) : **division euclidienne**, puis on réfléchit au reste. Faut-il le laisser, ou ajouter un bus de plus ? Grandeurs qu’on peut partager (prix, longueurs, volumes) : **division décimale**.",
+          "reveal": {
+            "question": "Devine : 58 élèves partent en sortie, 8 par minibus. Combien de minibus faut-il ?",
+            "answer": "$58 = 8 × 7 + 2$ : avec 7 minibus, 2 élèves resteraient sur le trottoir ! Il en faut 8."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : partager 25,80 € entre six amis",
+      "steps": [
+        { "text": "Six amis partagent 25,80 € en parts égales. On peut partager les centimes : c’est une division décimale.", "math": "25,8 ÷ 6" },
+        { "text": "Les unités : dans 25, combien de fois 6 ? 4 fois, car 6 × 4 = 24. Il reste 1 unité." },
+        { "text": "On écrit la virgule au quotient. L’unité qui reste fait 10 dixièmes ; avec les 8 dixièmes, on a 18 dixièmes." },
+        {
+          "text": "18 dixièmes divisés par 6 : 3 dixièmes, et il reste 0. La division s’arrête.",
+          "math": "25,8 ÷ 6 = 4,3",
+          "figure": {
+            "alt": "Les deux étapes de la division de 25,8 par 6.",
+            "w": 520,
+            "h": 140,
+            "items": [{ "type": "table", "head": ["On partage", "Combien de fois 6 ?", "Il reste"], "rows": [["25 unités", "4", "1 unité"], ["18 dixièmes", "3", "0"]] }]
+          }
+        },
+        { "text": "On vérifie par une multiplication. Chacun reçoit 4,30 €.", "math": "6 × 4,3 = 25,8" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "exercises": ["m6-divisions-euclide", "m6-divisions-egalites", "m6-divisions-poser", "m6-divisions-decimale", "m6-divisions-choisir", "m6-divisions-minibus"]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-divisions-expliquer"] },
+    { "kind": "reinvestissement", "title": "Problèmes : le calendrier et les yaourts", "exercises": ["m6-divisions-calendrier", "m6-divisions-yaourts"] },
+    {
+      "kind": "mission",
+      "title": "Mission : le partage du trésor",
+      "body": "Tu es le trésorier de l’équipage. Les pirates ne plaisantent pas avec le partage : pas une pièce de travers, pas un centime oublié !",
+      "exercises": ["m6-divisions-tresor"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.**\n> - Division euclidienne : $a = b × q + r$, avec un reste r plus petit que le diviseur b.\n> - Division décimale : on continue après la virgule en changeant le reste en dixièmes, centièmes…\n> - Objets entiers : division euclidienne, et on réfléchit au reste. Grandeurs (€, m, L) : division décimale.\n\n- **Un reste plus grand que le diviseur.** $47 = 5 × 8 + 7$ est juste, mais la division euclidienne est $47 = 5 × 9 + 2$.\n- **Oublier le 0 au quotient.** 618 ÷ 6 = 103, et non 13.\n- **Oublier la virgule au quotient.** 25,8 ÷ 6 = 4,3, et non 43.\n- **Négliger le reste.** 58 élèves, 8 par minibus : il faut 8 minibus, pas 7."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des divisions et des problèmes de partage dans quelques jours, avec d’autres nombres."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Retrouver le nombre de départ d’une division, puis fabriquer des nombres qui ont le même reste.",
+      "exercises": ["m6-divisions-dividende", "m6-divisions-meme-reste"]
+    },
+    "expert": {
+      "intro": "Facultatif : une énigme de bonbons à plusieurs conditions, puis le secret des chiffres de 1 ÷ 7 qui se répètent sans fin.",
+      "exercises": ["m6-divisions-bonbons", "m6-divisions-septieme"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-divisions-euclide",
+      "type": "composite",
+      "skill": "m6.division.euclidienne",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:quotient-trop-petit", "mc:reste-trop-grand"],
+      "expectedSeconds": 180,
+      "params": { "b": { "int": [3, 9] }, "q": { "int": [12, 99] }, "r": { "int": [1, 8] }, "a": { "expr": "b*q + r" } },
+      "constraints": ["r < b"],
+      "prompt": "Effectue la division euclidienne de {a} par {b}. Pose-la sur ton cahier.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le quotient ?",
+          "answer": "q",
+          "misconceptions": [
+            {
+              "answer": "q - 1",
+              "id": "mc:quotient-trop-petit",
+              "error": "calcul",
+              "feedback": "Ton quotient est trop petit : avec lui, le reste serait plus grand que {b}. On peut encore faire un paquet de {b}."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le reste ?",
+          "answer": "r",
+          "misconceptions": [
+            {
+              "answer": "r + b",
+              "id": "mc:reste-trop-grand",
+              "error": "notion",
+              "feedback": "Ce reste est plus grand que le diviseur {b} : on peut encore faire un paquet. Le reste doit toujours être plus petit que le diviseur."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pose la division : partage d’abord les centaines (ou les dizaines), puis les unités.",
+        "Pour encadrer le quotient, essaie {b} × 10, {b} × 50, {b} × 100…",
+        "Vérifie : {b} × quotient + reste doit redonner {a}, avec un reste plus petit que {b}."
+      ],
+      "solution": "$ {a} = {b} × {q} + {r} $ avec $ {r} < {b} $ : le quotient est {q} et le reste est {r}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{q}" }, { "value": "{r}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{q-1}" }, { "value": "{r+b}" }] }, "expect": "mc:quotient-trop-petit" }
+      ]
+    },
+    {
+      "id": "m6-divisions-egalites",
+      "type": "categorize",
+      "skill": "m6.division.euclidienne",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:reste-trop-grand", "mc:egalite-non-verifiee"],
+      "expectedSeconds": 210,
+      "prompt": "Chaque élève a écrit l’égalité de sa division. Range chaque égalité dans la bonne case.",
+      "categories": [
+        { "id": "oui", "label": "C’est la division euclidienne" },
+        { "id": "reste", "label": "Égalité juste, mais reste trop grand" },
+        { "id": "faux", "label": "Égalité fausse" }
+      ],
+      "items": [
+        { "id": "d1", "label": "Division de 100 par 8 : $100 = 8 × 12 + 4$", "category": "oui" },
+        { "id": "d2", "label": "Division de 100 par 8 : $100 = 8 × 11 + 12$", "category": "reste" },
+        { "id": "d3", "label": "Division de 75 par 9 : $75 = 9 × 8 + 3$", "category": "oui" },
+        { "id": "d4", "label": "Division de 60 par 7 : $60 = 7 × 8 + 6$", "category": "faux" },
+        { "id": "d5", "label": "Division de 92 par 13 : $92 = 13 × 6 + 14$", "category": "reste" },
+        { "id": "d6", "label": "Division de 92 par 13 : $92 = 13 × 7 + 1$", "category": "oui" },
+        { "id": "d7", "label": "Division de 45 par 6 : $45 = 6 × 7 + 4$", "category": "faux" }
+      ],
+      "misconceptions": [
+        {
+          "item": "d2",
+          "category": "oui",
+          "id": "mc:reste-trop-grand",
+          "error": "notion",
+          "feedback": "L’égalité est juste, mais compare le reste au diviseur : lequel est le plus grand ?"
+        },
+        {
+          "item": "d5",
+          "category": "oui",
+          "id": "mc:reste-trop-grand",
+          "error": "notion",
+          "feedback": "L’égalité est juste, mais compare le reste au diviseur : lequel est le plus grand ?"
+        },
+        {
+          "item": "d4",
+          "category": "oui",
+          "id": "mc:egalite-non-verifiee",
+          "error": "calcul",
+          "feedback": "Calcule le membre de droite : retrouves-tu bien le nombre de gauche ?"
+        },
+        {
+          "item": "d7",
+          "category": "oui",
+          "id": "mc:egalite-non-verifiee",
+          "error": "calcul",
+          "feedback": "Calcule le membre de droite : retrouves-tu bien le nombre de gauche ?"
+        }
+      ],
+      "hints": [
+        "Calcule d’abord le membre de droite : l’égalité est-elle juste ?",
+        "Si elle est juste, compare le reste au diviseur.",
+        "Dans une division euclidienne, le reste est toujours plus petit que le diviseur."
+      ],
+      "solution": "Divisions euclidiennes : $100 = 8 × 12 + 4$, $75 = 9 × 8 + 3$ et $92 = 13 × 7 + 1$. Justes, mais reste trop grand : $100 = 8 × 11 + 12$ (12 > 8) et $92 = 13 × 6 + 14$ (14 > 13). Fausses : $7 × 8 + 6 = 62$, pas 60 ; $6 × 7 + 4 = 46$, pas 45.",
+      "selfTest": [
+        { "response": { "assign": { "d1": "oui", "d2": "reste", "d3": "oui", "d4": "faux", "d5": "reste", "d6": "oui", "d7": "faux" } }, "expect": "correct" },
+        { "response": { "assign": { "d1": "oui", "d2": "oui", "d3": "oui", "d4": "faux", "d5": "reste", "d6": "oui", "d7": "faux" } }, "expect": "mc:reste-trop-grand" }
+      ]
+    },
+    {
+      "id": "m6-divisions-poser",
+      "type": "table",
+      "skill": "m6.division.euclidienne",
+      "skills": ["m6.numeration.unites"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-reste-partiel"],
+      "expectedSeconds": 300,
+      "params": {
+        "b": { "int": [3, 8] },
+        "h": { "int": [3, 9] },
+        "t": { "int": [0, 9] },
+        "u": { "int": [0, 9] },
+        "a": { "expr": "100*h + 10*t + u" },
+        "R": { "expr": "mod(h;b)" },
+        "N": { "expr": "10*R + t" },
+        "S": { "expr": "mod(N;b)" },
+        "M": { "expr": "10*S + u" }
+      },
+      "constraints": ["h >= b", "mod(h;b) != 0"],
+      "prompt": "Pose la division euclidienne de {a} par {b} sur ton cahier. Puis complète le tableau : à chaque étape, on partage un nombre par {b}, on note combien de fois {b} y entre, et le reste. Ce reste se change ensuite en unités du rang suivant.",
+      "columns": ["Étape", "Nombre à partager", "Combien de fois {b} ?", "Reste"],
+      "rows": [
+        ["Centaines", "{h}", "?r0c2", "?r0c3"],
+        ["Dizaines", "?r1c1", "?r1c2", "?r1c3"],
+        ["Unités", "?r2c1", "?r2c2", "?r2c3"],
+        ["Bilan : quotient et reste de la division", "—", "?r3c2", "?r3c3"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "floor(h/b)" },
+        "r0c3": { "answer": "R" },
+        "r1c1": {
+          "answer": "N",
+          "misconceptions": [
+            {
+              "answer": "t",
+              "id": "mc:oubli-reste-partiel",
+              "error": "methode",
+              "feedback": "Tu as oublié le reste de l’étape d’avant : il se change en dizaines et s’ajoute au chiffre des dizaines que l’on abaisse."
+            }
+          ]
+        },
+        "r1c2": { "answer": "floor(N/b)" },
+        "r1c3": { "answer": "S" },
+        "r2c1": {
+          "answer": "M",
+          "misconceptions": [
+            {
+              "answer": "u",
+              "id": "mc:oubli-reste-partiel",
+              "error": "methode",
+              "feedback": "Tu as oublié le reste de l’étape d’avant : il se change en unités et s’ajoute au chiffre des unités que l’on abaisse."
+            }
+          ]
+        },
+        "r2c2": { "answer": "floor(M/b)" },
+        "r2c3": { "answer": "mod(M;b)" },
+        "r3c2": { "answer": "floor(a/b)" },
+        "r3c3": { "answer": "mod(a;b)" }
+      },
+      "hints": [
+        "Centaines : combien de fois {b} dans {h} ? Le reste se change en dizaines.",
+        "Le reste des centaines, changé en dizaines, s’ajoute au chiffre des dizaines, {t}.",
+        "Le quotient s’écrit avec les trois « combien de fois », dans l’ordre : centaines, dizaines, unités."
+      ],
+      "solution": "Centaines : $ {h} = {b} × {floor(h/b)} + {R} $. Dizaines : $ {N} = {b} × {floor(N/b)} + {S} $. Unités : $ {M} = {b} × {floor(M/b)} + {mod(M;b)} $. Donc $ {a} = {b} × {floor(a/b)} + {mod(a;b)} $ : le quotient est {floor(a/b)} et le reste {mod(a;b)}.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r0c2": "{floor(h/b)}",
+              "r0c3": "{R}",
+              "r1c1": "{N}",
+              "r1c2": "{floor(N/b)}",
+              "r1c3": "{S}",
+              "r2c1": "{M}",
+              "r2c2": "{floor(M/b)}",
+              "r2c3": "{mod(M;b)}",
+              "r3c2": "{floor(a/b)}",
+              "r3c3": "{mod(a;b)}"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r0c2": "{floor(h/b)}",
+              "r0c3": "{R}",
+              "r1c1": "{t}",
+              "r1c2": "{floor(N/b)}",
+              "r1c3": "{S}",
+              "r2c1": "{M}",
+              "r2c2": "{floor(M/b)}",
+              "r2c3": "{mod(M;b)}",
+              "r3c2": "{floor(a/b)}",
+              "r3c3": "{mod(a;b)}"
+            }
+          },
+          "expect": "mc:oubli-reste-partiel"
+        }
+      ]
+    },
+    {
+      "id": "m6-divisions-decimale",
+      "type": "numeric",
+      "skill": "m6.division.decimale",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:virgule-quotient", "mc:oubli-virgule", "mc:arret-entier"],
+      "expectedSeconds": 180,
+      "params": { "b": { "int": [2, 9] }, "q": { "int": [105, 995] }, "a": { "expr": "b*q/100" } },
+      "constraints": ["mod(q;10) != 0"],
+      "prompt": "Calcule {a} ÷ {b}. Pose la division, et continue jusqu’à ce que le reste soit nul.",
+      "answer": "q/100",
+      "misconceptions": [
+        {
+          "answer": "q/10",
+          "id": "mc:virgule-quotient",
+          "error": "calcul",
+          "feedback": "La virgule de ton quotient est mal placée. Contrôle avec un ordre de grandeur : {b} fois ton résultat doit être proche de {a}."
+        },
+        {
+          "answer": "q",
+          "id": "mc:oubli-virgule",
+          "error": "calcul",
+          "feedback": "Tu as oublié la virgule au quotient : on l’écrit au moment où l’on abaisse le chiffre des dixièmes."
+        },
+        {
+          "answer": "floor(q/100)",
+          "id": "mc:arret-entier",
+          "error": "methode",
+          "feedback": "Tu t’es arrêté à la partie entière. Le reste peut encore se partager : change-le en dixièmes, puis en centièmes."
+        }
+      ],
+      "hints": [
+        "Commence par la partie entière : combien de fois {b} dans {floor(a)} ?",
+        "Écris la virgule au quotient dès que tu abaisses le chiffre des dixièmes.",
+        "Vérifie : ton quotient multiplié par {b} doit redonner {a}."
+      ],
+      "solution": "$ {a} ÷ {b} = {q/100} $. Vérification : $ {b} × {q/100} = {a} $.",
+      "selfTest": [{ "response": { "value": "{q/100}" }, "expect": "correct" }, { "response": { "value": "{q}" }, "expect": "mc:oubli-virgule" }]
+    },
+    {
+      "id": "m6-divisions-choisir",
+      "type": "categorize",
+      "skill": "m6.division.problemes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:mauvaise-division"],
+      "expectedSeconds": 180,
+      "prompt": "Pour chaque situation, quelle division faut-il faire ? Demande-toi si ce qu’on partage peut être coupé en petits morceaux.",
+      "categories": [{ "id": "euclide", "label": "Division euclidienne (on ne coupe pas)" }, { "id": "decimale", "label": "Division décimale (on partage jusqu’au bout)" }],
+      "items": [
+        { "id": "c1", "label": "Partager 50 € entre 4 amis", "category": "decimale" },
+        { "id": "c2", "label": "Ranger 50 œufs dans des boîtes de 6", "category": "euclide" },
+        { "id": "c3", "label": "Couper un ruban de 7 m en 4 morceaux de même longueur", "category": "decimale" },
+        { "id": "c4", "label": "Faire des équipes de 4 dans une classe de 29 élèves", "category": "euclide" },
+        { "id": "c5", "label": "Verser 3 L de jus dans 8 verres identiques, sans en laisser", "category": "decimale" },
+        { "id": "c6", "label": "Compter les semaines complètes dans 100 jours", "category": "euclide" },
+        { "id": "c7", "label": "Trouver le prix d’un cahier quand 5 cahiers coûtent 7 €", "category": "decimale" }
+      ],
+      "misconceptions": [
+        {
+          "item": "c1",
+          "category": "euclide",
+          "id": "mc:mauvaise-division",
+          "error": "raisonnement",
+          "feedback": "Les euros se partagent en centimes : peut-on continuer le partage après la virgule ?"
+        },
+        {
+          "item": "c7",
+          "category": "euclide",
+          "id": "mc:mauvaise-division",
+          "error": "raisonnement",
+          "feedback": "Un prix peut contenir des centimes : peut-on continuer le partage après la virgule ?"
+        },
+        { "item": "c4", "category": "decimale", "id": "mc:mauvaise-division", "error": "raisonnement", "feedback": "Peut-on couper un élève en morceaux ?" },
+        { "item": "c2", "category": "decimale", "id": "mc:mauvaise-division", "error": "raisonnement", "feedback": "Peut-on couper un œuf pour le ranger ?" }
+      ],
+      "hints": [
+        "Demande-toi : peut-on couper ce qu’on partage en petits morceaux ?",
+        "Les euros, les mètres, les litres se partagent jusqu’au bout ; les personnes et les objets entiers, non."
+      ],
+      "solution": "Division euclidienne : les œufs (50 = 6 × 8 + 2 : 8 boîtes pleines et une 9e pour les 2 derniers œufs), les équipes (29 = 4 × 7 + 1), les semaines (100 = 7 × 14 + 2). Division décimale : 50 ÷ 4 = 12,50 € ; 7 ÷ 4 = 1,75 m ; 3 ÷ 8 = 0,375 L ; 7 ÷ 5 = 1,40 €.",
+      "selfTest": [
+        {
+          "response": { "assign": { "c1": "decimale", "c2": "euclide", "c3": "decimale", "c4": "euclide", "c5": "decimale", "c6": "euclide", "c7": "decimale" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "c1": "euclide", "c2": "euclide", "c3": "decimale", "c4": "euclide", "c5": "decimale", "c6": "euclide", "c7": "decimale" } },
+          "expect": "mc:mauvaise-division"
+        }
+      ]
+    },
+    {
+      "id": "m6-divisions-minibus",
+      "type": "numeric",
+      "skill": "m6.division.problemes",
+      "skills": ["m6.division.euclidienne"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:reste-oublie"],
+      "expectedSeconds": 120,
+      "params": { "p": { "int": [8, 15] }, "n": { "int": [40, 120] } },
+      "constraints": ["mod(n;p) != 0"],
+      "prompt": "Les {n} élèves de 6e partent au musée. Un minibus peut transporter {p} élèves. Combien de minibus faut-il réserver, au minimum ?",
+      "answer": "ceil(n/p)",
+      "misconceptions": [
+        {
+          "answer": "floor(n/p)",
+          "id": "mc:reste-oublie",
+          "error": "raisonnement",
+          "feedback": "Avec ce nombre de minibus, des élèves resteraient sur le trottoir ! Que fait-on des élèves du reste ?"
+        }
+      ],
+      "hints": ["Fais la division euclidienne de {n} par {p}.", "$ {n} = {p} × {floor(n/p)} + {mod(n;p)} $.", "Les {mod(n;p)} élève(s) du reste doivent aussi partir !"],
+      "solution": "$ {n} = {p} × {floor(n/p)} + {mod(n;p)} $. {floor(n/p)} minibus emmènent {p*floor(n/p)} élèves ; il en reste {mod(n;p)}, il faut donc un minibus de plus : {ceil(n/p)} minibus.",
+      "selfTest": [{ "response": { "value": "{ceil(n/p)}" }, "expect": "correct" }, { "response": { "value": "{floor(n/p)}" }, "expect": "mc:reste-oublie" }]
+    },
+    {
+      "id": "m6-divisions-expliquer",
+      "type": "open",
+      "skill": "m6.division.euclidienne",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 20,
+      "prompt": "Zoé a fait la division euclidienne de 47 par 5. Elle a écrit : $47 = 5 × 8 + 7$.\n\nSon égalité est juste… et pourtant sa division est fausse ! Explique pourquoi, puis corrige-la.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je remarque que le reste 7 est plus grand que le diviseur 5",
+          "keywords": [["plus grand que 5", "plus grand que le diviseur", "7 > 5", "superieur", "trop grand"]]
+        },
+        { "id": "c2", "label": "J’explique qu’on peut encore faire un paquet de 5", "keywords": [["encore", "paquet", "groupe"]] },
+        { "id": "c3", "label": "Je corrige : $47 = 5 × 9 + 2$", "keywords": [["5 × 9", "5 x 9", "5x9", "reste 2", "quotient 9", "9 + 2"]] }
+      ],
+      "models": [
+        "Le reste 7 est plus grand que le diviseur 5. Dans les 7 qui restent, on peut encore faire un paquet de 5 : le quotient augmente de 1 et le reste diminue de 5. La bonne division est 47 = 5 × 9 + 2, avec 2 < 5.",
+        "Dans une division euclidienne, le reste doit être plus petit que le diviseur. Ici 7 > 5, donc Zoé n’a pas fini : 5 × 9 = 45 et 47 − 45 = 2. Quotient 9, reste 2."
+      ],
+      "hints": [
+        "Compare le reste et le diviseur.",
+        "Dans 7 objets, peut-on encore faire un paquet de 5 ?",
+        "Si on fait un paquet de plus, que deviennent le quotient et le reste ?"
+      ],
+      "solution": "Le reste (7) est plus grand que le diviseur (5) : on peut encore faire un paquet de 5. Le quotient passe à 9 et le reste à 2 : $47 = 5 × 9 + 2$, avec $2 < 5$. C’est la règle : dans une division euclidienne, le reste est toujours plus petit que le diviseur.",
+      "selfTest": [
+        {
+          "response": { "text": "Le reste 7 est plus grand que le diviseur 5, on peut encore faire un paquet de 5. La bonne réponse est 47 = 5 × 9 + 2." },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m6-divisions-calendrier",
+      "type": "composite",
+      "skill": "m6.division.problemes",
+      "skills": ["m6.division.euclidienne"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:reste-trop-grand", "mc:reste-ignore"],
+      "expectedSeconds": 300,
+      "params": { "n": { "int": [30, 99] } },
+      "constraints": ["mod(n;7) != 0"],
+      "prompt": "Une semaine compte 7 jours. La division euclidienne par 7 permet de voyager dans le calendrier !",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de semaines complètes y a-t-il dans {n} jours ?", "answer": "floor(n/7)" },
+        {
+          "type": "numeric",
+          "prompt": "Combien de jours restent en plus de ces semaines complètes ?",
+          "answer": "mod(n;7)",
+          "misconceptions": [
+            {
+              "answer": "mod(n;7) + 7",
+              "id": "mc:reste-trop-grand",
+              "error": "notion",
+              "feedback": "Ce reste fait 7 jours ou plus : cela forme encore une semaine complète."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Aujourd’hui, c’est lundi. Quel jour de la semaine serons-nous dans 100 jours ?",
+          "accept": ["mercredi"],
+          "misconceptions": [
+            {
+              "answer": "lundi",
+              "id": "mc:reste-ignore",
+              "error": "raisonnement",
+              "feedback": "Tu as fait comme si 100 jours formaient des semaines complètes. Regarde le reste de la division de 100 par 7."
+            },
+            {
+              "answer": "mardi",
+              "id": "mc:compter-jours",
+              "error": "calcul",
+              "feedback": "Vérifie le reste de la division de 100 par 7, puis avance d’autant de jours à partir de lundi."
+            },
+            {
+              "answer": "jeudi",
+              "id": "mc:compter-jours",
+              "error": "calcul",
+              "feedback": "Vérifie le reste de la division de 100 par 7, puis avance d’autant de jours à partir de lundi."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Cherche le plus grand multiple de 7 qui ne dépasse pas {n}.",
+        "Pour 100 jours : $100 = 7 × 14 + 2$. Après 14 semaines complètes, quel jour est-on ?",
+        "Il reste ensuite quelques jours à ajouter à partir de lundi."
+      ],
+      "solution": "$ {n} = 7 × {floor(n/7)} + {mod(n;7)} $ : {floor(n/7)} semaines complètes et {mod(n;7)} jour(s) en plus. Pour 100 jours : $100 = 7 × 14 + 2$. Après 14 semaines, on retombe un lundi ; 2 jours plus tard, c’est mercredi.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{floor(n/7)}" }, { "value": "{mod(n;7)}" }, { "value": "mercredi" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{floor(n/7)}" }, { "value": "{mod(n;7)}" }, { "value": "lundi" }] }, "expect": "mc:reste-ignore" }
+      ]
+    },
+    {
+      "id": "m6-divisions-yaourts",
+      "type": "composite",
+      "skill": "m6.division.decimale",
+      "skills": ["m6.division.problemes", "m6.decimaux.comparer"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:prix-total"],
+      "expectedSeconds": 300,
+      "params": { "b": { "choice": [6, 8] }, "x": { "int": [31, 69] }, "y": { "int": [21, 59] } },
+      "constraints": ["mod(x;5) != 0", "mod(y;5) != 0", "y < x", "4*x < b*y"],
+      "prompt": "Au supermarché, le même yaourt est vendu en deux paquets :\n- paquet A : 4 yaourts pour {4*x/100} € ;\n- paquet B : {b} yaourts pour {b*y/100} €.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien coûte un yaourt du paquet A, en euros ?", "answer": "x/100" },
+        { "type": "numeric", "prompt": "Combien coûte un yaourt du paquet B, en euros ?", "answer": "y/100" },
+        {
+          "type": "text",
+          "prompt": "Quel paquet est le plus avantageux ? Réponds A ou B.",
+          "accept": ["b", "paquet b", "le paquet b"],
+          "misconceptions": [
+            {
+              "answer": "a",
+              "id": "mc:prix-total",
+              "error": "raisonnement",
+              "feedback": "Le paquet A coûte moins cher au total… mais il contient moins de yaourts. Compare le prix d’UN yaourt."
+            },
+            {
+              "answer": "paquet a",
+              "id": "mc:prix-total",
+              "error": "raisonnement",
+              "feedback": "Le paquet A coûte moins cher au total… mais il contient moins de yaourts. Compare le prix d’UN yaourt."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Prix d’un yaourt = prix du paquet ÷ nombre de yaourts.",
+        "Pose la division {4*x/100} ÷ 4 : c’est une division décimale.",
+        "Compare ensuite les deux prix d’un yaourt."
+      ],
+      "solution": "A : {4*x/100} ÷ 4 = {x/100} € le yaourt. B : {b*y/100} ÷ {b} = {y/100} € le yaourt. Le paquet B coûte plus cher au total, mais chaque yaourt y est moins cher : B est le plus avantageux.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{x/100}" }, { "value": "{y/100}" }, { "value": "B" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{x/100}" }, { "value": "{y/100}" }, { "value": "A" }] }, "expect": "mc:prix-total" }
+      ]
+    },
+    {
+      "id": "m6-divisions-tresor",
+      "type": "composite",
+      "skill": "m6.division.problemes",
+      "skills": ["m6.division.euclidienne", "m6.division.decimale"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:reste-oublie", "mc:reste-trop-grand", "mc:arret-entier"],
+      "expectedSeconds": 480,
+      "params": { "p": { "int": [5, 9] }, "c": { "int": [200, 500] }, "w": { "int": [1205, 4995] }, "v": { "expr": "p*w/100" } },
+      "constraints": ["mod(c;p) != 0", "mod(c;12) != 0", "mod(w;10) != 0", "mod(p*w;10) != 0"],
+      "prompt": "Les {p} pirates de l’équipage ont trouvé un coffre de {c} pièces d’or. Le capitaine exige un partage équitable !",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "D’abord, il faut transporter les pièces jusqu’au bateau : on les range par 12 dans des sacs. Combien de sacs faut-il, au minimum ?",
+          "answer": "ceil(c/12)",
+          "misconceptions": [
+            {
+              "answer": "floor(c/12)",
+              "id": "mc:reste-oublie",
+              "error": "raisonnement",
+              "feedback": "Avec ce nombre de sacs, des pièces resteraient sur la plage ! Il faut aussi les emporter."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Chaque pirate reçoit le même nombre de pièces entières. Combien chacun en reçoit-il ?", "answer": "floor(c/p)" },
+        {
+          "type": "numeric",
+          "prompt": "Combien de pièces reste-t-il ? (Elles iront au perroquet !)",
+          "answer": "mod(c;p)",
+          "misconceptions": [
+            {
+              "answer": "mod(c;p) + p",
+              "id": "mc:reste-trop-grand",
+              "error": "notion",
+              "feedback": "Ce reste dépasse le nombre de pirates : on peut encore donner une pièce à chacun."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Ils vendent aussi un rubis {v} € et partagent l’argent au centime près. Combien chaque pirate reçoit-il, en euros ?",
+          "answer": "w/100",
+          "misconceptions": [
+            {
+              "answer": "floor(w/100)",
+              "id": "mc:arret-entier",
+              "error": "methode",
+              "feedback": "Tu t’es arrêté au quotient entier : les euros se partagent aussi en centimes. Continue la division après la virgule."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pour les sacs : division euclidienne de {c} par 12. Attention au reste !",
+        "Pour les pièces : {c} = {p} × … + … avec un reste plus petit que {p}.",
+        "Pour le rubis, on peut partager les centimes : c’est une division décimale, {v} ÷ {p}."
+      ],
+      "solution": "Sacs : $ {c} = 12 × {floor(c/12)} + {mod(c;12)} $ : il faut {ceil(c/12)} sacs (le dernier n’est pas plein). Pièces : $ {c} = {p} × {floor(c/p)} + {mod(c;p)} $ : {floor(c/p)} pièces chacun, et {mod(c;p)} pour le perroquet. Rubis : {v} ÷ {p} = {w/100} € chacun (vérification : {p} × {w/100} = {v}).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{ceil(c/12)}" }, { "value": "{floor(c/p)}" }, { "value": "{mod(c;p)}" }, { "value": "{w/100}" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "{ceil(c/12)}" }, { "value": "{floor(c/p)}" }, { "value": "{mod(c;p)}" }, { "value": "{floor(w/100)}" }] },
+          "expect": "mc:arret-entier"
+        }
+      ]
+    },
+    {
+      "id": "m6-divisions-remed-reste",
+      "type": "numeric",
+      "skill": "m6.division.euclidienne",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:reste-trop-grand", "mc:quotient-trop-petit"],
+      "expectedSeconds": 90,
+      "params": { "b": { "int": [3, 9] }, "q": { "int": [5, 12] }, "r": { "int": [0, 8] }, "a": { "expr": "b*q + r" } },
+      "constraints": ["r < b"],
+      "prompt": "Rappel ciblé : dans une division euclidienne, le reste est toujours **plus petit que le diviseur**. Hugo a écrit $ {a} = {b} × {q-1} + {r+b} $. L’égalité est juste, mais son reste {r+b} est trop grand ! Quel est le vrai quotient de {a} par {b} ?",
+      "answer": "q",
+      "misconceptions": [
+        {
+          "answer": "q - 1",
+          "id": "mc:quotient-trop-petit",
+          "error": "notion",
+          "feedback": "C’est le quotient de Hugo. Avec un reste plus grand que {b}, on peut encore faire un paquet de {b} : le quotient doit changer."
+        }
+      ],
+      "hints": ["Dans le reste {r+b}, combien de fois {b} ?", "Un paquet de plus : le quotient augmente de 1, et le reste diminue de {b}."],
+      "solution": "$ {a} = {b} × {q} + {r} $ : le vrai quotient est {q}, et le reste {r} est bien plus petit que {b}.",
+      "selfTest": [{ "response": { "value": "{q}" }, "expect": "correct" }, { "response": { "value": "{q-1}" }, "expect": "mc:quotient-trop-petit" }]
+    },
+    {
+      "id": "m6-divisions-remed-zero",
+      "type": "numeric",
+      "skill": "m6.division.euclidienne",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-zero-quotient"],
+      "expectedSeconds": 90,
+      "params": { "b": { "int": [3, 9] }, "x": { "int": [1, 9] }, "y": { "int": [1, 9] }, "a": { "expr": "b*(100*x + y)" } },
+      "prompt": "Rappel ciblé : quand le nombre à partager est plus petit que le diviseur, on écrit **0** au quotient, puis on continue. Calcule le quotient de {a} par {b} (le reste est nul).",
+      "answer": "100*x + y",
+      "misconceptions": [
+        {
+          "answer": "10*x + y",
+          "id": "mc:oubli-zero-quotient",
+          "error": "methode",
+          "feedback": "Il manque un chiffre à ton quotient : à l’étape des dizaines, le nombre à partager était plus petit que {b}. Qu’écrit-on alors au quotient ?"
+        }
+      ],
+      "hints": ["Vérifie : {b} fois ton quotient doit redonner {a}.", "À l’étape des dizaines, combien de fois {b} ? Peut-être 0 fois !"],
+      "solution": "$ {a} = {b} × {100*x+y} $ : le quotient est {100*x+y}. À l’étape des dizaines, le nombre à partager est plus petit que {b} : on écrit 0 au quotient.",
+      "selfTest": [{ "response": { "value": "{100*x+y}" }, "expect": "correct" }, { "response": { "value": "{10*x+y}" }, "expect": "mc:oubli-zero-quotient" }]
+    },
+    {
+      "id": "m6-divisions-dividende",
+      "type": "composite",
+      "skill": "m6.division.euclidienne",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-reste", "mc:reste-egal-diviseur"],
+      "expectedSeconds": 240,
+      "params": { "b": { "int": [12, 45] }, "q": { "int": [5, 30] }, "r": { "int": [1, 44] } },
+      "constraints": ["r < b"],
+      "prompt": "Question à l’envers. Dans une division euclidienne, le diviseur est {b}, le quotient {q} et le reste {r}.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le nombre qu’on a divisé (le dividende) ?",
+          "answer": "b*q + r",
+          "misconceptions": [
+            { "answer": "b*q", "id": "mc:oubli-reste", "error": "methode", "feedback": "Tu as oublié le reste : il fait aussi partie du nombre de départ." },
+            {
+              "answer": "b*q - r",
+              "id": "mc:oubli-reste",
+              "error": "methode",
+              "feedback": "Le reste s’AJOUTE aux paquets complets : dividende = diviseur × quotient + reste."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans une division euclidienne par {b}, quel est le plus grand reste possible ?",
+          "answer": "b - 1",
+          "misconceptions": [{ "answer": "b", "id": "mc:reste-egal-diviseur", "error": "notion", "feedback": "Si le reste valait {b}, on pourrait encore faire un paquet de {b}." }]
+        }
+      ],
+      "hints": ["Dividende = diviseur × quotient + reste.", "Le reste est toujours strictement plus petit que le diviseur."],
+      "solution": "Dividende : $ {b} × {q} + {r} = {b*q+r} $. Le plus grand reste possible est {b-1} : avec un reste de {b}, on ferait encore un paquet.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{b*q+r}" }, { "value": "{b-1}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{b*q}" }, { "value": "{b-1}" }] }, "expect": "mc:oubli-reste" }
+      ]
+    },
+    {
+      "id": "m6-divisions-meme-reste",
+      "type": "multi",
+      "skill": "m6.division.euclidienne",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "expectedSeconds": 240,
+      "params": { "d": { "int": [5, 9] }, "r": { "int": [2, 8] } },
+      "constraints": ["r < d"],
+      "prompt": "Trouve trois nombres entiers différents qui, divisés par {d}, donnent un reste de {r}.",
+      "count": 3,
+      "predicate": "estentier(v) and v > 0 and mod(v;d) = r",
+      "hints": [
+        "Un tel nombre s’écrit {d} × quotient + {r}.",
+        "Choisis n’importe quel quotient : 1, 2, 10…",
+        "Le plus petit de ces nombres est {r} lui-même : $ {r} = {d} × 0 + {r} $."
+      ],
+      "solution": "Tous les nombres de la forme {d} × quotient + {r} conviennent : {r}, {d+r}, {2*d+r}, {3*d+r}, {10*d+r}… Il y en a une infinité, de {d} en {d}.",
+      "selfTest": [
+        { "response": { "values": ["{d+r}", "{2*d+r}", "{3*d+r}"] }, "expect": "correct" },
+        { "response": { "values": ["{d+r+1}", "{2*d+r+1}", "{3*d+r+1}"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "m6-divisions-bonbons",
+      "type": "numeric",
+      "skill": "m6.division.problemes",
+      "skills": ["m6.division.euclidienne"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "verbale",
+      "targets": ["mc:reste-zero", "mc:condition-oubliee"],
+      "expectedSeconds": 480,
+      "prompt": "Énigme. Un paquet contient moins de 70 bonbons.\n- Partagés entre 4 enfants, il en reste 3.\n- Partagés entre 5 enfants, il en reste 4.\n- Partagés entre 6 enfants, il en reste 5.\n\nCombien y a-t-il de bonbons dans le paquet ?",
+      "answer": 59,
+      "misconceptions": [
+        {
+          "answer": 60,
+          "id": "mc:reste-zero",
+          "error": "raisonnement",
+          "feedback": "Avec ce nombre, chaque partage tombe juste : il ne reste rien. Or il doit rester des bonbons à chaque fois."
+        },
+        { "answer": 19, "id": "mc:condition-oubliee", "error": "raisonnement", "feedback": "Vérifie la troisième condition : partage ce nombre entre 6 enfants." },
+        { "answer": 39, "id": "mc:condition-oubliee", "error": "raisonnement", "feedback": "Vérifie la troisième condition : partage ce nombre entre 6 enfants." }
+      ],
+      "hints": [
+        "Il reste 3 sur 4, 4 sur 5, 5 sur 6 : à chaque fois, il manque UN bonbon pour que le partage tombe juste.",
+        "Avec un bonbon de plus, le partage tomberait juste entre 4, entre 5 et entre 6.",
+        "Cherche un multiple commun de 4, de 5 et de 6, puis enlève 1."
+      ],
+      "solution": "Avec un bonbon de plus, le partage tomberait juste entre 4, 5 et 6 : ce nombre est un multiple commun de 4, 5 et 6, comme 60. Il y a moins de 70 bonbons, donc il y en a 60 − 1 = 59. Vérification : $59 = 4 × 14 + 3 = 5 × 11 + 4 = 6 × 9 + 5$.",
+      "selfTest": [{ "response": { "value": "59" }, "expect": "correct" }, { "response": { "value": "19" }, "expect": "mc:condition-oubliee" }]
+    },
+    {
+      "id": "m6-divisions-septieme",
+      "type": "composite",
+      "skill": "m6.division.decimale",
+      "skills": ["m6.division.euclidienne", "m6.decimaux.reconnaitre"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:reste-position", "mc:reste-zero-position"],
+      "expectedSeconds": 540,
+      "prompt": "Pose 1 ÷ 7 : la division ne s’arrête jamais ! On trouve 1 ÷ 7 = 0,142857 142857 142857… Le bloc de six chiffres 142857 se répète sans fin.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Dans une division par 7, combien de restes différents sont possibles, en comptant 0 ?",
+          "answer": 7,
+          "misconceptions": [
+            { "answer": 6, "id": "mc:reste-zero-oublie", "error": "notion", "feedback": "As-tu compté le reste 0 ?" },
+            { "answer": 8, "id": "mc:reste-egal-diviseur", "error": "notion", "feedback": "Un reste ne peut pas être égal au diviseur : on ferait encore un paquet." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le 20e chiffre après la virgule ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:reste-position",
+              "error": "raisonnement",
+              "feedback": "Le reste de la division de 20 par 6 n’est pas le chiffre cherché : il donne sa POSITION dans le bloc."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le 100e chiffre après la virgule ?",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 4,
+              "id": "mc:reste-position",
+              "error": "raisonnement",
+              "feedback": "Le reste de la division de 100 par 6 n’est pas le chiffre cherché : il donne sa POSITION dans le bloc."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Et le 60e chiffre après la virgule ?",
+          "answer": 7,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:reste-zero-position",
+              "error": "raisonnement",
+              "feedback": "Un reste de 0 ne veut pas dire « première position » : le 60e chiffre termine exactement un bloc."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les restes possibles dans une division par 7 sont 0, 1, 2… jusqu’à 6. Dès qu’un reste revient, les chiffres se répètent.",
+        "Le bloc a 6 chiffres. Divise le rang du chiffre cherché par 6 : le reste donne la position dans le bloc.",
+        "$20 = 6 × 3 + 2$ : après 3 blocs complets, on prend le 2e chiffre du bloc."
+      ],
+      "solution": "Les restes possibles sont 0, 1, 2, 3, 4, 5, 6 : il y en a 7, donc un reste finit forcément par revenir, et les chiffres se répètent. Le bloc 142857 a 6 chiffres. 20e chiffre : $20 = 6 × 3 + 2$ → 2e chiffre du bloc : 4. 100e : $100 = 6 × 16 + 4$ → 4e chiffre : 8. 60e : $60 = 6 × 10$ (reste 0) → dernier chiffre du 10e bloc : 7.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "7" }, { "value": "4" }, { "value": "8" }, { "value": "7" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "7" }, { "value": "2" }, { "value": "8" }, { "value": "7" }] }, "expect": "mc:reste-position" }
+      ]
+    }
+  ]
+}

@@ -22,7 +22,7 @@
         {
           "emoji": "🌍",
           "title": "Un grand ensemble : l'Afrique de l'Ouest",
-          "body": "L'Afrique de l'Ouest réunit 17 pays et 466,5 millions d'habitants en 2025 (ONU). Elle s'étend du **Sahel**, au nord, une bande semi-aride au sud du Sahara, jusqu'au **golfe de Guinée**, au sud, plus humide. Depuis 1975, la **CEDEAO** organise la coopération et la libre circulation entre ses membres ; depuis le 29 janvier 2025, le Mali, le Burkina Faso et le Niger l'ont quittée : elle compte 12 membres.",
+          "body": "L'Afrique de l'Ouest réunit 16 pays et 466,5 millions d'habitants en 2025 (ONU). Elle s'étend du **Sahel**, au nord, une bande semi-aride au sud du Sahara, jusqu'au **golfe de Guinée**, au sud, plus humide. Depuis 1975, la **CEDEAO** organise la coopération et la libre circulation entre ses membres ; depuis le 29 janvier 2025, le Mali, le Burkina Faso et le Niger l'ont quittée : elle compte 12 membres.",
           "example": "Ces trois pays forment depuis 2024 la Confédération des États du Sahel (AES)."
         },
         {
@@ -220,12 +220,12 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "De combien de milliards d'habitants la population de l'Afrique devrait-elle augmenter entre 2025 et 2050 ? (au centième)", "answer": 0.92, "tolerance": 0.005,
-          "misconceptions": [ { "answer": "2.47/1.55", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,59 est un rapport. L'augmentation est une différence : 2,47 − 1,55 = 0,92 milliard, soit 920 millions d'habitants en plus." } ] },
+          "misconceptions": [ { "answer": "2.47/1.55", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,59 est un rapport (2,47 ÷ 1,55). L'augmentation est une différence : population de 2050 − population de 2025." } ] },
         { "type": "numeric", "prompt": "En 2025, quelle part des habitants d'Afrique de l'Ouest vit au Nigeria ? (en %, arrondie à l'unité)", "answer": "237.5/466.5*100", "tolerance": 0.5,
-          "misconceptions": [ { "answer": 237.5, "id": "mc:part-valeur", "error": "methode", "feedback": "237,5 est un nombre d'habitants (en millions). La part : 237,5 ÷ 466,5 × 100 ≈ 51 %." } ] },
+          "misconceptions": [ { "answer": 237.5, "id": "mc:part-valeur", "error": "methode", "feedback": "237,5 est un nombre d'habitants (en millions), pas une part. Part = habitants du Nigeria ÷ habitants de l'Afrique de l'Ouest × 100." } ] },
         { "type": "text", "prompt": "Quel est le pays le plus peuplé d'Afrique ?", "accept": ["Nigeria", "le Nigeria", "Nigéria", "le Nigéria"],
-          "misconceptions": [ { "answer": "Niger", "id": "mc:niger-nigeria", "error": "lecture", "feedback": "Attention : le Niger et le Nigeria sont deux pays voisins différents. Le Niger, au Sahel, compte environ 27 millions d'habitants ; le Nigeria, au bord du golfe de Guinée, 237,5 millions." },
-                              { "answer": "le Niger", "id": "mc:niger-nigeria", "error": "lecture", "feedback": "Attention : le Niger et le Nigeria sont deux pays voisins différents. Le pays le plus peuplé d'Afrique est le Nigeria, au bord du golfe de Guinée." } ] }
+          "misconceptions": [ { "answer": "Niger", "id": "mc:niger-nigeria", "error": "lecture", "feedback": "Attention : le Niger et le Nigeria sont deux pays voisins différents. Le Niger, au Sahel, compte moins de 30 millions d'habitants : relis bien le nom du pays cité dans le document." },
+                              { "answer": "le Niger", "id": "mc:niger-nigeria", "error": "lecture", "feedback": "Attention : le Niger et le Nigeria sont deux pays voisins différents. Le Niger, au Sahel, est beaucoup moins peuplé : relis bien le nom du pays cité dans le document." } ] }
       ],
       "hints": ["Augmentation = valeur de 2050 − valeur de 2025.", "Part = 237,5 ÷ 466,5 × 100.", "Niger et Nigeria : deux pays voisins, l'un au Sahel, l'autre sur le littoral."],
       "solution": "2,47 − 1,55 = 0,92 milliard : environ 920 millions d'Africains de plus d'ici 2050. Le Nigeria regroupe 237,5 ÷ 466,5 ≈ 51 % des habitants d'Afrique de l'Ouest : plus d'un sur deux. C'est le pays le plus peuplé d'Afrique, à ne pas confondre avec son voisin du Sahel, le Niger.",
@@ -253,9 +253,10 @@
       },
       "parts": [
         { "type": "text", "prompt": "Lequel de ces quatre pays a l'IDH le plus élevé ?", "accept": ["Ghana", "le Ghana"],
-          "misconceptions": [ { "answer": "Côte d'Ivoire", "id": "mc:lecture-barres", "error": "lecture", "feedback": "La Côte d'Ivoire (0,582) est deuxième : la barre la plus haute est celle du Ghana (0,628)." } ] },
+          "misconceptions": [ { "answer": "Côte d'Ivoire", "id": "mc:lecture-barres", "error": "lecture", "feedback": "La Côte d'Ivoire (0,582) est deuxième : cherche la barre la plus haute." } ] },
         { "type": "numeric", "prompt": "Quel est l'écart d'IDH entre le Ghana et le Niger ? (au millième)", "answer": 0.209, "tolerance": 0.0005,
-          "misconceptions": [ { "answer": "0.628/0.419", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,5 est un rapport. L'écart est une différence : 0,628 − 0,419 = 0,209." } ] },
+          "misconceptions": [ { "answer": "0.628/0.419", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,5 est un rapport (0,628 ÷ 0,419). L'écart est une différence : IDH du Ghana − IDH du Niger." },
+                             { "answer": 1.5, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,5 est un rapport (0,628 ÷ 0,419). L'écart est une différence : IDH du Ghana − IDH du Niger." } ] },
         { "type": "text", "prompt": "Les deux pays les moins développés se trouvent-ils sur le littoral du golfe de Guinée ou dans le Sahel ?", "accept": ["Sahel", "le Sahel", "dans le Sahel", "au Sahel"],
           "misconceptions": [ { "answer": "littoral", "id": "mc:littoral-sahel", "error": "lecture", "feedback": "Le Mali et le Niger sont des pays du Sahel, à l'intérieur des terres, sans accès à la mer. Les pays du littoral (Ghana, Côte d'Ivoire) ont un IDH plus élevé." },
                               { "answer": "le littoral", "id": "mc:littoral-sahel", "error": "lecture", "feedback": "Le Mali et le Niger sont des pays du Sahel, à l'intérieur des terres. Les pays du littoral ont un IDH plus élevé." } ] }
@@ -322,9 +323,9 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "La Côte d'Ivoire produit combien de fois plus de cacao que le Ghana ? (au dixième)", "answer": 2.8, "tolerance": 0.05,
-          "misconceptions": [ { "answer": 1.08, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,08 est un écart (1,68 − 0,60). « Combien de fois plus » : 1,68 ÷ 0,60 = 2,8." } ] },
+          "misconceptions": [ { "answer": 1.08, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,08 est un écart (1,68 − 0,60). « Combien de fois plus » demande une division : production de la Côte d'Ivoire ÷ production du Ghana." } ] },
         { "type": "numeric", "prompt": "Si 1,68 million de tonnes représente « plus d'un tiers » de la production mondiale, la production mondiale est inférieure à combien de millions de tonnes ? (au centième)", "answer": 5.04, "tolerance": 0.005,
-          "misconceptions": [ { "answer": 0.56, "id": "mc:tiers", "error": "raisonnement", "feedback": "1,68 est le tiers du TOTAL : le total est donc 3 fois plus grand, 1,68 × 3 = 5,04 millions de tonnes au maximum (et non 1,68 ÷ 3)." } ] },
+          "misconceptions": [ { "answer": 0.56, "id": "mc:tiers", "error": "raisonnement", "feedback": "1,68 est une PARTIE du total (plus d'un tiers) : le total est donc plus grand que 1,68, pas plus petit. Il ne faut pas diviser par 3, mais multiplier." } ] },
         { "type": "text", "prompt": "La fève de cacao exportée est-elle une matière première ou un produit transformé ?", "accept": ["matière première", "une matière première", "c'est une matière première", "matière première agricole"],
           "misconceptions": [ { "answer": "produit transformé", "id": "mc:brut-transforme", "error": "notion", "feedback": "La fève, simplement séchée, est une matière première. Le chocolat, fabriqué ensuite en usine, est un produit transformé." },
                               { "answer": "un produit transformé", "id": "mc:brut-transforme", "error": "notion", "feedback": "La fève, simplement séchée, est une matière première. Le chocolat, fabriqué ensuite en usine, est un produit transformé." } ] }
@@ -342,9 +343,9 @@
       "prompt": "**Mission.** Abidjan compte environ **6,6 millions d'habitants** (ONU, 2025). La mairie te demande d'estimer ses besoins futurs. Pour le calcul, on fait une **hypothèse** : la ville gagne **3 %** d'habitants par an.",
       "parts": [
         { "type": "numeric", "prompt": "Combien d'habitants la ville gagne-t-elle en un an ? (en milliers d'habitants)", "answer": 198, "tolerance": 1,
-          "misconceptions": [ { "answer": 19800, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "3 %, ce n'est pas « fois 3 ». 3 % de 6 600 milliers = 6 600 × 3 ÷ 100 = 198 milliers d'habitants." } ] },
+          "misconceptions": [ { "answer": 19800, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "3 %, ce n'est pas « fois 3 ». 3 % de 6 600 milliers, c'est 6 600 × 3 ÷ 100 : tu as oublié de diviser par 100." } ] },
         { "type": "numeric", "prompt": "Arrondis à 200 000 nouveaux habitants par an. Si un nouvel habitant sur 4 est un enfant d'âge scolaire et qu'une classe accueille 40 élèves, combien de classes faut-il ouvrir chaque année ?", "answer": 1250,
-          "misconceptions": [ { "answer": 5000, "id": "mc:etape-oubliee", "error": "methode", "feedback": "Tu as divisé tous les nouveaux habitants par 40. Or un sur 4 seulement est un enfant d'âge scolaire : 200 000 ÷ 4 = 50 000 enfants, puis 50 000 ÷ 40 = 1 250 classes." } ] },
+          "misconceptions": [ { "answer": 5000, "id": "mc:etape-oubliee", "error": "methode", "feedback": "Tu as divisé tous les nouveaux habitants par 40. Or un sur 4 seulement est un enfant d'âge scolaire : calcule d'abord le nombre d'enfants, puis le nombre de classes." } ] },
         { "type": "open", "prompt": "Propose **trois priorités** à la mairie pour accueillir tous ces nouveaux habitants, et explique pourquoi.", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "Une priorité pour les enfants (écoles, enseignants)", "keywords": [["ecole", "classe", "enseignant", "professeur", "eleve"]] },
@@ -420,9 +421,9 @@
       "prompt": "**Ordres de grandeur prudents** (CNUCED, Eurostat) : environ **15 %** des exportations des pays africains vont vers d'autres pays africains, alors que dans l'Union européenne, environ **60 %** des exportations des pays membres restent dans l'UE. Depuis 2021, la Zone de libre-échange continentale africaine (**ZLECAf**) cherche à supprimer les droits de douane entre pays africains.",
       "parts": [
         { "type": "numeric", "prompt": "Sur 100 dollars d'exportations africaines, combien partent hors d'Afrique ?", "answer": 85,
-          "misconceptions": [ { "answer": 15, "id": "mc:complement", "error": "lecture", "feedback": "15 dollars restent en Afrique. Ceux qui partent ailleurs : 100 − 15 = 85 dollars." } ] },
+          "misconceptions": [ { "answer": 15, "id": "mc:complement", "error": "lecture", "feedback": "15 dollars restent en Afrique. On demande ceux qui partent ailleurs : ce sont les autres, sur les 100 dollars." } ] },
         { "type": "numeric", "prompt": "La part des échanges internes est combien de fois plus forte dans l'UE qu'en Afrique ?", "answer": 4,
-          "misconceptions": [ { "answer": 45, "id": "mc:ecart-rapport", "error": "methode", "feedback": "45 points est un écart (60 − 15). « Combien de fois plus » : 60 ÷ 15 = 4." } ] },
+          "misconceptions": [ { "answer": 45, "id": "mc:ecart-rapport", "error": "methode", "feedback": "45 points est un écart (60 − 15). « Combien de fois plus » demande une division : part dans l'UE ÷ part en Afrique." } ] },
         { "type": "open", "prompt": "Pourquoi les pays d'Afrique de l'Ouest échangent-ils peu entre eux ? Comment la ZLECAf ou le corridor Abidjan-Lagos peuvent-ils changer cela ?", "minWords": 50,
           "criteria": [
             { "id": "c1", "label": "J'explique que les pays exportent surtout des matières premières vers les pays riches", "keywords": [["matiere", "cacao", "petrole", "europe", "chine", "pays riches"]] },

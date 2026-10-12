@@ -1,0 +1,950 @@
+{
+  "id": "m6-durees",
+  "chapter": "6e-m-durees",
+  "title": "Horaires et durées : calculs et conversions",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.durees.convertir", "m6.durees.calculer", "m6.durees.problemes"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 50,
+  "summary": "Distinguer horaire et durée, convertir des durées (jours, heures, minutes, secondes, heures décimales simples comme 1,5 h), calculer une durée ou un horaire de fin par bonds sur une ligne du temps ou en colonnes, et résoudre des problèmes d’emploi du temps et d’horaires de train.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le film qui finit à 21 h 75",
+      "body": "Le film commence à 20 h 45 et dure 1 h 30 min. Léo calcule : « Il finira à 21 h 75. » Sa sœur rit : « 21 h 75, ça n’existe pas ! »\n\nSur le programme, la durée est écrite 1,5 h. Léo s’étonne : « 1,5 h, c’est 1 h 50 ? »\n\nÀ quelle heure le film finit-il vraiment ? Et que veut dire 1,5 h ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "⏰",
+          "title": "Horaire ou durée ?",
+          "body": "Un **horaire** dit QUAND : le film commence à 20 h 45. Une **durée** dit COMBIEN DE TEMPS : le film dure 1 h 30 min. Horaire de début + durée = horaire de fin. On n’additionne jamais deux horaires.",
+          "example": "20 h 45 est un horaire ; 1 h 30 min est une durée."
+        },
+        {
+          "emoji": "🕰️",
+          "title": "Le temps ne compte pas par 10",
+          "body": "1 jour = 24 h ; 1 h = 60 min ; 1 min = 60 s ; 1 semaine = 7 jours. Ce n’est pas un système par 10 ou par 100 : après 59 min, on passe à l’heure suivante.",
+          "example": "75 min = 60 min + 15 min = 1 h 15 min."
+        },
+        {
+          "emoji": "🔄",
+          "title": "Convertir",
+          "body": "Des heures vers les minutes : on **multiplie par 60**. Des minutes vers les heures : on fait la **division euclidienne par 60**. Le quotient donne les heures, le reste les minutes.",
+          "example": "2 h 15 min = 2 × 60 + 15 = 135 min ; 200 min = 3 × 60 + 20, soit 3 h 20 min."
+        },
+        {
+          "emoji": "🍕",
+          "title": "Les heures « à virgule »",
+          "body": "0,5 h, c’est une **demi-heure** : 30 min. 0,25 h, un quart d’heure : 15 min. 0,75 h, trois quarts d’heure : 45 min. Et 0,1 h, un dixième d’heure : 6 min. Donc 1,5 h = 1 h 30 min, pas 1 h 50 min !",
+          "reveal": { "question": "Devine : 1,2 h, est-ce 1 h 20 min ?", "answer": "Non ! 0,1 h = 6 min, donc 0,2 h = 12 min : 1,2 h = 1 h 12 min." }
+        },
+        {
+          "emoji": "🦘",
+          "title": "Calculer une durée par bonds",
+          "body": "Sur une ligne du temps, on avance par **bonds** : jusqu’à l’heure ronde, puis d’heure en heure, puis jusqu’à l’horaire d’arrivée. On additionne les bonds.",
+          "example": "De 8 h 45 à 11 h 20 : 15 min + 2 h + 20 min = 2 h 35 min.",
+          "figure": {
+            "alt": "Ligne du temps de 8 h 45 à 11 h 20 : un bond de 15 min jusqu’à 9 h, un bond de 2 h jusqu’à 11 h, un bond de 20 min.",
+            "w": 560,
+            "h": 150,
+            "frame": { "x": [-0.6, 11], "y": [-1.35, 1.25] },
+            "items": [
+              { "type": "segment", "from": [-0.3, 0], "to": [10.7, 0], "arrows": "end" },
+              { "type": "segment", "from": [0.6, 0.18], "to": [0.6, -0.18] },
+              { "type": "text", "x": 0.6, "y": -0.6, "text": "8 h 45", "size": "s" },
+              { "type": "segment", "from": [2.8, 0.18], "to": [2.8, -0.18] },
+              { "type": "text", "x": 2.8, "y": -0.6, "text": "9 h", "size": "s" },
+              { "type": "segment", "from": [7.2, 0.18], "to": [7.2, -0.18] },
+              { "type": "text", "x": 7.2, "y": -0.6, "text": "11 h", "size": "s" },
+              { "type": "segment", "from": [9.6, 0.18], "to": [9.6, -0.18] },
+              { "type": "text", "x": 9.6, "y": -0.6, "text": "11 h 20", "size": "s" },
+              { "type": "arrow", "from": [0.7, 0.55], "to": [2.6999999999999997, 0.55], "label": "15 min", "color": "maths" },
+              { "type": "arrow", "from": [2.9, 0.55], "to": [7.1000000000000005, 0.55], "label": "2 h", "color": "maths" },
+              { "type": "arrow", "from": [7.3, 0.55], "to": [9.5, 0.55], "label": "20 min", "color": "maths" }
+            ],
+            "caption": "Ligne du temps (pas à l’échelle)"
+          }
+        },
+        {
+          "emoji": "🧮",
+          "title": "Calculer en colonnes",
+          "body": "On pose heures sous heures, minutes sous minutes. Si on obtient 60 min ou plus, on échange 60 min contre 1 h. Pour soustraire, si les minutes ne suffisent pas, on « casse » 1 h en **60** min.",
+          "example": "20 h 45 + 1 h 30 min = 21 h 75 min = 22 h 15. Et 12 h 10 − 1 h 40 min = 11 h 70 − 1 h 40 = 10 h 30.",
+          "reveal": {
+            "question": "Devine : quelle est la durée entre 9 h 50 et 11 h 20 ?",
+            "answer": "11 h 20 = 10 h 80 min. 10 h 80 − 9 h 50 = 1 h 30 min. (Par bonds : 10 min + 1 h + 20 min.)"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : la durée d’un trajet en train",
+      "steps": [
+        { "text": "Un train part de Paris à 10 h 47 et arrive à Lyon à 12 h 44. On cherche la durée du trajet, entre deux horaires." },
+        {
+          "text": "Premier bond, jusqu’à l’heure ronde : de 10 h 47 à 11 h, il y a 13 min.",
+          "figure": {
+            "alt": "Ligne du temps de 10 h 47 à 12 h 44, avec trois bonds : 13 min, 1 h et 44 min.",
+            "w": 560,
+            "h": 150,
+            "frame": { "x": [-0.6, 11], "y": [-1.35, 1.25] },
+            "items": [
+              { "type": "segment", "from": [-0.3, 0], "to": [10.7, 0], "arrows": "end" },
+              { "type": "segment", "from": [0.6, 0.18], "to": [0.6, -0.18] },
+              { "type": "text", "x": 0.6, "y": -0.6, "text": "10 h 47", "size": "s" },
+              { "type": "segment", "from": [2.8, 0.18], "to": [2.8, -0.18] },
+              { "type": "text", "x": 2.8, "y": -0.6, "text": "11 h", "size": "s" },
+              { "type": "segment", "from": [7.2, 0.18], "to": [7.2, -0.18] },
+              { "type": "text", "x": 7.2, "y": -0.6, "text": "12 h", "size": "s" },
+              { "type": "segment", "from": [9.6, 0.18], "to": [9.6, -0.18] },
+              { "type": "text", "x": 9.6, "y": -0.6, "text": "12 h 44", "size": "s" },
+              { "type": "arrow", "from": [0.7, 0.55], "to": [2.6999999999999997, 0.55], "label": "13 min", "color": "maths" },
+              { "type": "arrow", "from": [2.9, 0.55], "to": [7.1000000000000005, 0.55], "label": "1 h", "color": "maths" },
+              { "type": "arrow", "from": [7.3, 0.55], "to": [9.5, 0.55], "label": "44 min", "color": "maths" }
+            ],
+            "caption": "Ligne du temps (pas à l’échelle)"
+          }
+        },
+        { "text": "Deuxième bond, d’heure ronde en heure ronde : de 11 h à 12 h, il y a 1 h." },
+        { "text": "Dernier bond : de 12 h à 12 h 44, il y a 44 min." },
+        { "text": "On additionne : 13 min + 1 h + 44 min = 1 h 57 min. Vérification en colonnes : 12 h 44 = 11 h 104 min, et 11 h 104 − 10 h 47 = 1 h 57 min." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "exercises": ["m6-durees-convertir", "m6-durees-decimales", "m6-durees-fin", "m6-durees-duree", "m6-durees-ranger", "m6-durees-colonnes"]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-durees-expliquer"] },
+    { "kind": "reinvestissement", "title": "Problèmes : la matinée au collège et le cross", "exercises": ["m6-durees-journee", "m6-durees-piste"] },
+    {
+      "kind": "mission",
+      "title": "Mission : le voyage en train jusqu’à la mer",
+      "body": "Direction Marseille ! Lis la fiche horaire, choisis ton train, calcule la durée du voyage… et préviens ton oncle de l’heure à laquelle il doit partir pour venir te chercher.",
+      "exercises": ["m6-durees-train"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.**\n> - 1 j = 24 h ; 1 h = 60 min ; 1 min = 60 s. Le temps ne compte pas par 100 !\n> - 0,5 h = 30 min ; 0,25 h = 15 min ; 0,1 h = 6 min.\n> - Pour une durée : des bonds sur la ligne du temps, ou un calcul en colonnes.\n\n- **Garder 60 minutes ou plus.** 21 h 75 n’existe pas : c’est 22 h 15.\n- **Croire que 1,5 h = 1 h 50 min.** 1,5 h = 1 h 30 min.\n- **« Casser » une heure en 100 minutes.** 12 h 44 = 11 h 104 min, pas 11 h 144 min.\n- **Soustraire des horaires comme des nombres.** De 10 h 47 à 12 h 44, il y a 1 h 57 min, pas 1 h 97 min."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des conversions et des calculs de durées dans quelques jours, avec d’autres horaires."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le temps en très grand (secondes d’une journée, jours de ta vie), puis un horaire à retrouver à l’envers.",
+      "exercises": ["m6-durees-secondes", "m6-durees-debut"]
+    },
+    "expert": {
+      "intro": "Facultatif : qualifier une équipe de relais à la seconde près, puis calculer la durée d’un vol qui traverse les fuseaux horaires.",
+      "exercises": ["m6-durees-relais", "m6-durees-avion"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-durees-convertir",
+      "type": "table",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:base-100", "mc:jour-12h"],
+      "expectedSeconds": 210,
+      "params": { "h": { "int": [2, 5] }, "m": { "int": [11, 55] }, "M": { "int": [130, 290] }, "k": { "int": [2, 9] }, "s": { "int": [11, 55] }, "d": { "int": [2, 7] } },
+      "constraints": ["mod(M;60) != 0"],
+      "prompt": "Le temps ne compte pas par 10 ni par 100 ! Complète chaque conversion.",
+      "columns": ["Conversion", "Nombre manquant"],
+      "rows": [
+        ["{h} h = … min", "?r0c1"],
+        ["{h} h {m} min = … min", "?r1c1"],
+        ["{M} min = … h … min : combien d’heures entières ?", "?r2c1"],
+        ["{M} min = … h … min : combien de minutes en plus ?", "?r3c1"],
+        ["{k} min {s} s = … s", "?r4c1"],
+        ["{d} jours = … h", "?r5c1"]
+      ],
+      "cells": {
+        "r0c1": {
+          "answer": "60*h",
+          "misconceptions": [{ "answer": "100*h", "id": "mc:base-100", "error": "notion", "feedback": "Une heure ne compte pas 100 minutes. Combien de minutes y a-t-il dans une heure ?" }]
+        },
+        "r1c1": {
+          "answer": "60*h + m",
+          "misconceptions": [
+            {
+              "answer": "100*h + m",
+              "id": "mc:base-100",
+              "error": "notion",
+              "feedback": "Une heure ne compte pas 100 minutes. Combien de minutes y a-t-il dans une heure ?"
+            }
+          ]
+        },
+        "r2c1": { "answer": "floor(M/60)" },
+        "r3c1": {
+          "answer": "mod(M;60)",
+          "misconceptions": [
+            {
+              "answer": "mod(M;100)",
+              "id": "mc:base-100",
+              "error": "notion",
+              "feedback": "Tu as séparé les deux derniers chiffres, comme si 1 h valait 100 min. Fais plutôt la division euclidienne de {M} par 60."
+            }
+          ]
+        },
+        "r4c1": {
+          "answer": "60*k + s",
+          "misconceptions": [
+            {
+              "answer": "100*k + s",
+              "id": "mc:base-100",
+              "error": "notion",
+              "feedback": "Une minute ne compte pas 100 secondes. Combien de secondes y a-t-il dans une minute ?"
+            }
+          ]
+        },
+        "r5c1": {
+          "answer": "24*d",
+          "misconceptions": [{ "answer": "12*d", "id": "mc:jour-12h", "error": "notion", "feedback": "Une journée compte aussi la nuit : combien d’heures y a-t-il de minuit à minuit ?" }]
+        }
+      },
+      "hints": [
+        "1 j = 24 h ; 1 h = 60 min ; 1 min = 60 s.",
+        "Pour passer des heures aux minutes, on multiplie par 60.",
+        "Pour passer des minutes aux heures, on fait la division euclidienne par 60 : le quotient donne les heures, le reste les minutes."
+      ],
+      "solution": "{h} h = {h} × 60 = {60*h} min ; {h} h {m} min = {60*h} + {m} = {60*h+m} min ; {M} min = 60 × {floor(M/60)} + {mod(M;60)}, soit {floor(M/60)} h {mod(M;60)} min ; {k} min {s} s = {60*k} + {s} = {60*k+s} s ; {d} jours = {d} × 24 = {24*d} h.",
+      "selfTest": [
+        {
+          "response": { "cells": { "r0c1": "{60*h}", "r1c1": "{60*h+m}", "r2c1": "{floor(M/60)}", "r3c1": "{mod(M;60)}", "r4c1": "{60*k+s}", "r5c1": "{24*d}" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "cells": { "r0c1": "{100*h}", "r1c1": "{60*h+m}", "r2c1": "{floor(M/60)}", "r3c1": "{mod(M;60)}", "r4c1": "{60*k+s}", "r5c1": "{24*d}" } },
+          "expect": "mc:base-100"
+        }
+      ]
+    },
+    {
+      "id": "m6-durees-decimales",
+      "type": "match",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:heure-decimale"],
+      "expectedSeconds": 180,
+      "prompt": "Les durées sont parfois écrites en heures « à virgule ». Associe chaque durée à sa valeur en heures et minutes. Trois étiquettes sont des pièges.",
+      "leftTitle": "En heures décimales",
+      "rightTitle": "En heures et minutes",
+      "left": [
+        { "id": "t1", "label": "0,5 h" },
+        { "id": "t2", "label": "0,25 h" },
+        { "id": "t3", "label": "0,75 h" },
+        { "id": "t4", "label": "1,5 h" },
+        { "id": "t5", "label": "0,1 h" },
+        { "id": "t6", "label": "1,2 h" }
+      ],
+      "right": [
+        { "id": "u1", "label": "30 min" },
+        { "id": "u2", "label": "15 min" },
+        { "id": "u3", "label": "45 min" },
+        { "id": "u4", "label": "1 h 30 min" },
+        { "id": "u5", "label": "6 min" },
+        { "id": "u6", "label": "1 h 12 min" },
+        { "id": "u7", "label": "1 h 50 min" },
+        { "id": "u8", "label": "1 h 20 min" },
+        { "id": "u9", "label": "10 min" }
+      ],
+      "pairs": { "t1": "u1", "t2": "u2", "t3": "u3", "t4": "u4", "t5": "u5", "t6": "u6" },
+      "misconceptions": [
+        { "pair": ["t4", "u7"], "id": "mc:heure-decimale", "error": "notion", "feedback": "Une heure ne compte pas 100 minutes : 0,5 h, c’est la moitié d’une heure." },
+        {
+          "pair": ["t6", "u8"],
+          "id": "mc:heure-decimale",
+          "error": "notion",
+          "feedback": "0,2 h n’est pas 20 minutes, car une heure compte 60 minutes. Cherche d’abord combien vaut 0,1 h."
+        },
+        { "pair": ["t5", "u9"], "id": "mc:heure-decimale", "error": "notion", "feedback": "0,1 h, c’est un dixième d’heure : un dixième de 60 minutes, pas de 100." }
+      ],
+      "hints": ["0,5 h, c’est une demi-heure ; 0,25 h, un quart d’heure.", "0,1 h, c’est un dixième d’heure : 60 min ÷ 10.", "1,2 h = 1 h + 0,2 h, et 0,2 h = 2 × 0,1 h."],
+      "solution": "0,5 h = 30 min ; 0,25 h = 15 min ; 0,75 h = 45 min ; 1,5 h = 1 h 30 min ; 0,1 h = 6 min ; 1,2 h = 1 h 12 min. Les étiquettes 1 h 50 min, 1 h 20 min et 10 min sont des pièges : une heure ne compte pas 100 minutes.",
+      "selfTest": [
+        { "response": { "pairs": { "t1": "u1", "t2": "u2", "t3": "u3", "t4": "u4", "t5": "u5", "t6": "u6" } }, "expect": "correct" },
+        { "response": { "pairs": { "t1": "u1", "t2": "u2", "t3": "u3", "t4": "u7", "t5": "u5", "t6": "u6" } }, "expect": "mc:heure-decimale" }
+      ]
+    },
+    {
+      "id": "m6-durees-fin",
+      "type": "composite",
+      "skill": "m6.durees.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:retenue-oubliee", "mc:minutes-sup-60"],
+      "expectedSeconds": 150,
+      "params": { "H": { "int": [13, 20] }, "M": { "int": [20, 55] }, "dh": { "int": [1, 2] }, "dm": { "int": [10, 55] }, "T": { "expr": "60*H + M + 60*dh + dm" } },
+      "constraints": ["M + dm >= 70"],
+      "prompt": "Un film commence à {H} h {M} et dure {dh} h {dm} min. À quelle heure se termine-t-il ?",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Écris d’abord les heures de l’horaire de fin.",
+          "answer": "floor(T/60)",
+          "misconceptions": [
+            {
+              "answer": "H + dh",
+              "id": "mc:retenue-oubliee",
+              "error": "calcul",
+              "feedback": "Tu as oublié l’heure formée par les minutes : {M} min + {dm} min, cela dépasse une heure."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Puis les minutes.",
+          "answer": "mod(T;60)",
+          "misconceptions": [
+            {
+              "answer": "M + dm",
+              "id": "mc:minutes-sup-60",
+              "error": "notion",
+              "feedback": "Un horaire ne peut pas avoir 60 minutes ou plus : échange 60 minutes contre 1 heure."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Additionne les heures avec les heures, les minutes avec les minutes.",
+        "{M} min + {dm} min = {M+dm} min : c’est plus qu’une heure !",
+        "Change 60 de ces minutes en 1 heure."
+      ],
+      "solution": "{H} h {M} + {dh} h {dm} min = {H+dh} h {M+dm} min. Or {M+dm} min = 1 h {M+dm-60} min. Le film se termine à {floor(T/60)} h {mod(T;60)}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{floor(T/60)}" }, { "value": "{mod(T;60)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{H+dh}" }, { "value": "{M+dm}" }] }, "expect": "mc:retenue-oubliee" }
+      ]
+    },
+    {
+      "id": "m6-durees-duree",
+      "type": "composite",
+      "skill": "m6.durees.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:base-100", "mc:soustraction-inversee"],
+      "expectedSeconds": 240,
+      "params": { "H": { "int": [8, 15] }, "A": { "int": [35, 55] }, "dH": { "int": [2, 3] }, "B": { "int": [10, 30] } },
+      "constraints": ["A - B != 30"],
+      "prompt": "Le stage de piano de Jade commence à {H} h {A} et se termine à {H+dH} h {B}. Calcule sa durée avec des bonds sur la ligne du temps.",
+      "figure": {
+        "alt": "Ligne du temps avec quatre repères : le début du stage, l’heure ronde suivante, l’heure ronde avant la fin, la fin du stage ; trois bonds à compléter.",
+        "w": 560,
+        "h": 150,
+        "frame": { "x": [-0.6, 11], "y": [-1.35, 1.25] },
+        "items": [
+          { "type": "segment", "from": [-0.3, 0], "to": [10.7, 0], "arrows": "end" },
+          { "type": "segment", "from": [0.6, 0.18], "to": [0.6, -0.18] },
+          { "type": "text", "x": 0.6, "y": -0.6, "text": "{H} h {A}", "size": "s" },
+          { "type": "segment", "from": [2.8, 0.18], "to": [2.8, -0.18] },
+          { "type": "text", "x": 2.8, "y": -0.6, "text": "{H+1} h", "size": "s" },
+          { "type": "segment", "from": [7.2, 0.18], "to": [7.2, -0.18] },
+          { "type": "text", "x": 7.2, "y": -0.6, "text": "{H+dH} h", "size": "s" },
+          { "type": "segment", "from": [9.6, 0.18], "to": [9.6, -0.18] },
+          { "type": "text", "x": 9.6, "y": -0.6, "text": "{H+dH} h {B}", "size": "s" },
+          { "type": "arrow", "from": [0.7, 0.55], "to": [2.6999999999999997, 0.55], "label": "? min", "color": "maths" },
+          { "type": "arrow", "from": [2.9, 0.55], "to": [7.1000000000000005, 0.55], "label": "? h", "color": "maths" },
+          { "type": "arrow", "from": [7.3, 0.55], "to": [9.5, 0.55], "label": "? min", "color": "maths" }
+        ],
+        "caption": "Ligne du temps (pas à l’échelle)"
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Premier bond : combien de minutes de {H} h {A} à {H+1} h ?",
+          "answer": "60 - A",
+          "misconceptions": [{ "answer": "100 - A", "id": "mc:base-100", "error": "notion", "feedback": "Une heure compte 60 minutes, pas 100." }]
+        },
+        { "type": "numeric", "prompt": "Deuxième bond : combien d’heures de {H+1} h à {H+dH} h ?", "answer": "dH - 1" },
+        { "type": "numeric", "prompt": "Durée totale du stage : combien d’heures entières ?", "answer": "dH - 1" },
+        {
+          "type": "numeric",
+          "prompt": "… et combien de minutes en plus ?",
+          "answer": "60 - A + B",
+          "misconceptions": [
+            { "answer": "B - A + 100", "id": "mc:base-100", "error": "notion", "feedback": "Tu as « cassé » une heure en 100 minutes. Une heure ne vaut que 60 minutes." },
+            {
+              "answer": "A - B",
+              "id": "mc:soustraction-inversee",
+              "error": "calcul",
+              "feedback": "Tu as soustrait les minutes à l’envers. Additionne plutôt le premier et le dernier bond."
+            }
+          ]
+        }
+      ],
+      "hints": ["Premier bond : jusqu’à l’heure ronde suivante.", "Deuxième bond : d’heure ronde en heure ronde.", "Additionne les minutes du premier et du dernier bond."],
+      "solution": "Bonds : {60-A} min, puis {dH-1} h, puis {B} min. Durée : {dH-1} h et {60-A} + {B} = {60-A+B} min, soit {dH-1} h {60-A+B} min.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{60-A}" }, { "value": "{dH-1}" }, { "value": "{dH-1}" }, { "value": "{60-A+B}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{100-A}" }, { "value": "{dH-1}" }, { "value": "{dH-1}" }, { "value": "{60-A+B}" }] }, "expect": "mc:base-100" }
+      ]
+    },
+    {
+      "id": "m6-durees-ranger",
+      "type": "order",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:heure-decimale", "mc:base-100"],
+      "expectedSeconds": 210,
+      "prompt": "Range ces durées de la plus courte à la plus longue. Astuce : convertis-les d’abord toutes en minutes.",
+      "orderLabel": "De la plus courte à la plus longue",
+      "errorType": "notion",
+      "items": [
+        { "id": "r1", "label": "1 h 05 min" },
+        { "id": "r2", "label": "1,2 h" },
+        { "id": "r3", "label": "4 800 s" },
+        { "id": "r4", "label": "1,5 h" },
+        { "id": "r5", "label": "95 min" },
+        { "id": "r6", "label": "1 h 40 min" }
+      ],
+      "hints": ["1,2 h = 1 h + 0,2 h, et 0,1 h = 6 min.", "4 800 s : divise par 60 pour obtenir des minutes.", "1 h 40 min = 60 min + 40 min."],
+      "solution": "En minutes : 1 h 05 min = 65 ; 1,2 h = 72 ; 4 800 s = 80 ; 1,5 h = 90 ; 95 min ; 1 h 40 min = 100. Pièges : 1,2 h n’est pas 1 h 20 min, et 1,5 h n’est pas 1 h 50 min.",
+      "selfTest": [
+        { "response": { "order": ["r1", "r2", "r3", "r4", "r5", "r6"] }, "expect": "correct" },
+        { "response": { "order": ["r1", "r3", "r5", "r6", "r2", "r4"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-durees-colonnes",
+      "type": "table",
+      "skill": "m6.durees.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:base-100", "mc:soustraction-inversee"],
+      "expectedSeconds": 240,
+      "params": {
+        "Hd": { "int": [7, 13] },
+        "Md": { "int": [20, 55] },
+        "dH": { "int": [1, 3] },
+        "dm": { "int": [15, 55] },
+        "T": { "expr": "60*Hd + Md + 60*dH + dm" },
+        "Ha": { "expr": "floor(T/60)" },
+        "Ma": { "expr": "mod(T;60)" }
+      },
+      "constraints": ["Md + dm >= 70", "dm != 30"],
+      "prompt": "Le car de la classe part à {Hd} h {Md} et arrive à {Ha} h {Ma}. Pour calculer la durée du trajet, pose la soustraction en colonnes : heures sous les heures, minutes sous les minutes. Il y a moins de minutes en haut qu’en bas… il faut « casser » une heure !",
+      "columns": ["", "Heures", "Minutes"],
+      "rows": [
+        ["Arrivée", "{Ha}", "{Ma}"],
+        ["Départ", "{Hd}", "{Md}"],
+        ["Arrivée, après avoir changé 1 h en minutes", "?r2c1", "?r2c2"],
+        ["Durée du trajet (arrivée − départ)", "?r3c1", "?r3c2"]
+      ],
+      "cells": {
+        "r2c1": { "answer": "Ha - 1" },
+        "r2c2": {
+          "answer": "Ma + 60",
+          "misconceptions": [{ "answer": "Ma + 100", "id": "mc:base-100", "error": "notion", "feedback": "Une heure « cassée » donne 60 minutes, pas 100." }]
+        },
+        "r3c1": { "answer": "dH" },
+        "r3c2": {
+          "answer": "dm",
+          "misconceptions": [
+            { "answer": "Ma + 100 - Md", "id": "mc:base-100", "error": "notion", "feedback": "Une heure « cassée » donne 60 minutes, pas 100." },
+            {
+              "answer": "Md - Ma",
+              "id": "mc:soustraction-inversee",
+              "error": "calcul",
+              "feedback": "Tu as soustrait les minutes du haut à celles du bas. On calcule toujours arrivée − départ."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "{Ma} min, c’est moins que {Md} min : on ne peut pas soustraire directement.",
+        "On change 1 h de l’arrivée en 60 min : on enlève 1 aux heures et on ajoute 60 aux minutes.",
+        "Soustrais ensuite les heures, puis les minutes."
+      ],
+      "solution": "{Ha} h {Ma} = {Ha-1} h {Ma+60} min. Durée : {Ha-1} − {Hd} = {dH} h et {Ma+60} − {Md} = {dm} min, soit {dH} h {dm} min.",
+      "selfTest": [
+        { "response": { "cells": { "r2c1": "{Ha-1}", "r2c2": "{Ma+60}", "r3c1": "{dH}", "r3c2": "{dm}" } }, "expect": "correct" },
+        { "response": { "cells": { "r2c1": "{Ha-1}", "r2c2": "{Ma+100}", "r3c1": "{dH}", "r3c2": "{Ma+100-Md}" } }, "expect": "mc:base-100" }
+      ]
+    },
+    {
+      "id": "m6-durees-expliquer",
+      "type": "open",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 20,
+      "prompt": "Léo est sûr de lui : « 1,5 h, c’est 1 h 50 min. »\n\nExplique-lui son erreur, et dis-lui combien de minutes vaut vraiment 1,5 h.",
+      "criteria": [
+        { "id": "c1", "label": "J’explique qu’une heure compte 60 minutes, pas 100", "keywords": [["60 min", "60 minutes", "soixante", "pas 100"]] },
+        { "id": "c2", "label": "J’explique que 0,5 h est une demi-heure, soit 30 min", "keywords": [["demi", "moitie", "30 min", "30 minutes"]] },
+        { "id": "c3", "label": "Je conclus : 1,5 h = 1 h 30 min = 90 min", "keywords": [["1 h 30", "1h30", "90 min", "90 minutes"]] }
+      ],
+      "models": [
+        "Léo croit qu’une heure compte 100 minutes, comme si 0,5 h faisait 50 minutes. Mais une heure compte 60 minutes. 0,5 h, c’est la moitié d’une heure, donc 30 minutes. Ainsi 1,5 h = 1 h 30 min = 90 min.",
+        "Le 5 de 1,5 h compte des dixièmes d’heure, pas des minutes. Un dixième d’heure vaut 6 minutes, donc 0,5 h = 5 × 6 = 30 min. 1,5 h fait 1 h 30 min, et 1 h 50 min serait environ 1,83 h."
+      ],
+      "hints": ["Combien de minutes y a-t-il dans une heure ?", "0,5, c’est la moitié de 1. Que vaut la moitié d’une heure ?", "Écris 1,5 h = 1 h + 0,5 h."],
+      "solution": "Une heure compte 60 minutes, pas 100. 0,5 h est la moitié d’une heure : 30 min. Donc 1,5 h = 1 h 30 min = 90 min. Léo a lu les chiffres après la virgule comme des minutes, ce qui est faux.",
+      "selfTest": [{ "response": { "text": "Une heure c’est 60 minutes et pas 100. 0,5 h c’est une demi-heure donc 30 minutes. 1,5 h = 1 h 30 min." }, "expect": "a-valider" }]
+    },
+    {
+      "id": "m6-durees-journee",
+      "type": "composite",
+      "skill": "m6.durees.problemes",
+      "skills": ["m6.durees.calculer"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:oubli-recre", "mc:retenue-oubliee", "mc:minutes-sup-60"],
+      "expectedSeconds": 300,
+      "params": { "S": { "int": [10, 30] }, "c": { "choice": [50, 55] }, "r": { "choice": [10, 15, 20] }, "T": { "expr": "4*c + r" }, "E": { "expr": "480 + S + T" } },
+      "constraints": ["S + mod(4*c + r;60) >= 60", "mod(480 + S + 4*c + r;60) >= 10"],
+      "prompt": "Au collège, les cours du matin commencent à 8 h {S}. Il y a 4 cours de {c} min, avec une récréation de {r} min après le 2e cours.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de minutes durent les quatre cours et la récréation, en tout ?",
+          "answer": "T",
+          "misconceptions": [{ "answer": "4*c", "id": "mc:oubli-recre", "error": "lecture", "feedback": "As-tu compté la récréation ?" }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle heure finit le 4e cours ? Écris les heures.",
+          "answer": "floor(E/60)",
+          "misconceptions": [
+            {
+              "answer": "8 + floor(T/60)",
+              "id": "mc:retenue-oubliee",
+              "error": "calcul",
+              "feedback": "Tu as oublié l’heure formée par les minutes : additionne les minutes du début et celles de la durée, cela dépasse 60."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Puis les minutes.",
+          "answer": "mod(E;60)",
+          "misconceptions": [
+            {
+              "answer": "S + mod(T;60)",
+              "id": "mc:minutes-sup-60",
+              "error": "notion",
+              "feedback": "Un horaire ne peut pas avoir 60 minutes ou plus : échange 60 minutes contre 1 heure."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Durée totale : 4 × {c} + {r} minutes.",
+        "Convertis cette durée en heures et minutes : division euclidienne par 60.",
+        "Ajoute-la à 8 h {S}. Si les minutes atteignent 60, change 60 min en 1 h."
+      ],
+      "solution": "Durée : 4 × {c} + {r} = {T} min = {floor(T/60)} h {mod(T;60)} min. 8 h {S} + {floor(T/60)} h {mod(T;60)} min = {8+floor(T/60)} h {S+mod(T;60)} min = {floor(E/60)} h {mod(E;60)}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{T}" }, { "value": "{floor(E/60)}" }, { "value": "{mod(E;60)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{4*c}" }, { "value": "{floor(E/60)}" }, { "value": "{mod(E;60)}" }] }, "expect": "mc:oubli-recre" }
+      ]
+    },
+    {
+      "id": "m6-durees-piste",
+      "type": "composite",
+      "skill": "m6.durees.convertir",
+      "skills": ["m6.durees.problemes", "m6.division.euclidienne"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:base-100"],
+      "expectedSeconds": 240,
+      "params": { "t": { "int": [75, 110] } },
+      "prompt": "Au cross du collège, Inès court un tour de piste de 400 m en {t} s. Elle garde la même allure pendant 10 tours.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de secondes met-elle pour faire les 10 tours ?", "answer": "10*t" },
+        {
+          "type": "numeric",
+          "prompt": "Convertis cette durée : combien de minutes entières ?",
+          "answer": "floor(10*t/60)",
+          "misconceptions": [
+            {
+              "answer": "floor(10*t/100)",
+              "id": "mc:base-100",
+              "error": "notion",
+              "feedback": "Une minute compte 60 secondes, pas 100. Fais la division euclidienne par 60."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "… et combien de secondes en plus ?",
+          "answer": "mod(10*t;60)",
+          "misconceptions": [
+            {
+              "answer": "mod(10*t;100)",
+              "id": "mc:base-100",
+              "error": "notion",
+              "feedback": "Une minute compte 60 secondes, pas 100. Fais la division euclidienne par 60."
+            }
+          ]
+        }
+      ],
+      "hints": ["10 tours, c’est 10 fois le temps d’un tour.", "1 min = 60 s : divise le nombre de secondes par 60.", "Le quotient donne les minutes, le reste les secondes."],
+      "solution": "10 × {t} = {10*t} s. $ {10*t} = 60 × {floor(10*t/60)} + {mod(10*t;60)} $ : Inès court les 10 tours en {floor(10*t/60)} min {mod(10*t;60)} s.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{10*t}" }, { "value": "{floor(10*t/60)}" }, { "value": "{mod(10*t;60)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{10*t}" }, { "value": "{floor(10*t/100)}" }, { "value": "{mod(10*t;60)}" }] }, "expect": "mc:base-100" }
+      ]
+    },
+    {
+      "id": "m6-durees-train",
+      "type": "composite",
+      "skill": "m6.durees.problemes",
+      "skills": ["m6.durees.calculer"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:depart-arrivee", "mc:horaires-comme-nombres", "mc:emprunt-oublie", "mc:base-100"],
+      "expectedSeconds": 480,
+      "prompt": "Cet été, tu vas de Lyon à Marseille en train régional. Voici la fiche horaire.",
+      "figure": {
+        "alt": "Fiche horaire de trois trains de Lyon à Marseille, avec les arrêts de Valence et d’Avignon.",
+        "w": 520,
+        "h": 200,
+        "items": [
+          {
+            "type": "table",
+            "head": ["Gare", "Train 1", "Train 2", "Train 3"],
+            "rows": [
+              ["Lyon (départ)", "7 h 48", "9 h 48", "11 h 48"],
+              ["Valence", "8 h 54", "10 h 54", "12 h 54"],
+              ["Avignon", "9 h 56", "11 h 56", "13 h 56"],
+              ["Marseille (arrivée)", "11 h 02", "13 h 02", "15 h 02"]
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Tu dois arriver à Marseille avant 14 h. Quel est le dernier train que tu peux prendre ? Réponds 1, 2 ou 3.",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:depart-arrivee",
+              "error": "lecture",
+              "feedback": "Tu as regardé l’heure de départ. Ce qui compte, c’est l’heure d’ARRIVÉE à Marseille."
+            },
+            { "answer": 1, "id": "mc:dernier-train", "error": "lecture", "feedback": "Ce train convient, mais un train plus tardif arrive aussi avant 14 h." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de minutes dure le trajet de Lyon à Marseille ?",
+          "answer": 194,
+          "misconceptions": [
+            {
+              "answer": 354,
+              "id": "mc:horaires-comme-nombres",
+              "error": "notion",
+              "feedback": "Tu as soustrait les horaires comme des nombres ordinaires. Une heure ne compte pas 100 minutes : avance par bonds jusqu’aux heures rondes."
+            },
+            {
+              "answer": 314,
+              "id": "mc:horaires-comme-nombres",
+              "error": "notion",
+              "feedback": "Tu as écrit les heures et les minutes côte à côte. Convertis les heures en minutes avant d’ajouter."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Ton oncle t’attend à la gare de Marseille, à l’arrivée du train 2. Il lui faut 45 min de route. À quelle heure doit-il partir de chez lui, au plus tard ? Écris les heures.",
+          "answer": 12,
+          "misconceptions": [
+            {
+              "answer": 13,
+              "id": "mc:emprunt-oublie",
+              "error": "calcul",
+              "feedback": "Il n’y a pas assez de minutes pour enlever 45 min : il faut « casser » une heure."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Puis les minutes.",
+          "answer": 17,
+          "misconceptions": [{ "answer": 57, "id": "mc:base-100", "error": "notion", "feedback": "Une heure « cassée » donne 60 minutes, pas 100." }]
+        }
+      ],
+      "hints": [
+        "Pour choisir le train, lis la ligne « Marseille (arrivée) ».",
+        "Durée : de 7 h 48 à 8 h, puis de 8 h à 11 h, puis de 11 h à 11 h 02. Additionne les bonds.",
+        "Pour l’oncle : 13 h 02 − 45 min. Recule d’abord jusqu’à 13 h, puis continue."
+      ],
+      "solution": "Le train 2 arrive à 13 h 02, avant 14 h ; le train 3 arrive trop tard (15 h 02). Trajet : 12 min (7 h 48 → 8 h) + 3 h (8 h → 11 h) + 2 min (11 h → 11 h 02) = 3 h 14 min = 194 min. L’oncle : 13 h 02 = 12 h 62 min, et 12 h 62 − 45 min = 12 h 17.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2" }, { "value": "194" }, { "value": "12" }, { "value": "17" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "3" }, { "value": "194" }, { "value": "12" }, { "value": "17" }] }, "expect": "mc:depart-arrivee" }
+      ]
+    },
+    {
+      "id": "m6-durees-remed-60",
+      "type": "numeric",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:base-100"],
+      "expectedSeconds": 60,
+      "params": { "h": { "int": [1, 4] }, "m": { "int": [11, 55] } },
+      "prompt": "Rappel ciblé : une heure compte **60** minutes, pas 100. Combien de minutes y a-t-il dans {h} h {m} min ?",
+      "answer": "60*h + m",
+      "misconceptions": [{ "answer": "100*h + m", "id": "mc:base-100", "error": "notion", "feedback": "Tu as compté 100 minutes par heure. Combien de minutes y a-t-il dans une heure ?" }],
+      "hints": ["{h} h = {h} × 60 min.", "Ajoute ensuite les {m} min."],
+      "solution": "{h} h {m} min = {h} × 60 + {m} = {60*h+m} min.",
+      "selfTest": [{ "response": { "value": "{60*h+m}" }, "expect": "correct" }, { "response": { "value": "{100*h+m}" }, "expect": "mc:base-100" }]
+    },
+    {
+      "id": "m6-durees-remed-demi",
+      "type": "numeric",
+      "skill": "m6.durees.convertir",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:heure-decimale"],
+      "expectedSeconds": 60,
+      "params": { "h": { "int": [1, 4] } },
+      "prompt": "Rappel ciblé : 0,5 h, c’est une **demi-heure**, la moitié de 60 minutes. Combien de minutes y a-t-il dans {h},5 h ?",
+      "answer": "60*h + 30",
+      "misconceptions": [
+        { "answer": "60*h + 50", "id": "mc:heure-decimale", "error": "notion", "feedback": "0,5 h n’est pas 50 minutes : c’est la moitié d’une heure." },
+        { "answer": "100*h + 50", "id": "mc:heure-decimale", "error": "notion", "feedback": "Une heure ne compte pas 100 minutes, et 0,5 h n’est pas 50 minutes." }
+      ],
+      "hints": ["{h},5 h = {h} h + 0,5 h.", "Que vaut la moitié de 60 minutes ?"],
+      "solution": "{h},5 h = {h} h + 0,5 h = {60*h} min + 30 min = {60*h+30} min.",
+      "selfTest": [{ "response": { "value": "{60*h+30}" }, "expect": "correct" }, { "response": { "value": "{60*h+50}" }, "expect": "mc:heure-decimale" }]
+    },
+    {
+      "id": "m6-durees-secondes",
+      "type": "composite",
+      "skill": "m6.durees.convertir",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:minutes-secondes", "mc:jour-12h", "mc:oubli-jours"],
+      "expectedSeconds": 300,
+      "params": { "k": { "int": [10, 300] } },
+      "prompt": "Le temps en très grand : des secondes, des heures et des jours !",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de secondes y a-t-il dans une journée ?",
+          "answer": 86400,
+          "misconceptions": [
+            {
+              "answer": 1440,
+              "id": "mc:minutes-secondes",
+              "error": "notion",
+              "feedback": "Ce nombre compte les MINUTES d’une journée. Et chaque minute compte 60 secondes."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien d’heures y a-t-il dans une semaine ?",
+          "answer": 168,
+          "misconceptions": [{ "answer": 84, "id": "mc:jour-12h", "error": "notion", "feedback": "Une journée compte 24 heures, nuit comprise." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Tu as fêté tes 11 ans il y a {k} jours. Combien de jours as-tu vécu, environ ? (Compte 365 jours par an.)",
+          "answer": "11*365 + k",
+          "misconceptions": [{ "answer": "11*365", "id": "mc:oubli-jours", "error": "lecture", "feedback": "N’oublie pas les {k} jours écoulés depuis ton anniversaire." }]
+        }
+      ],
+      "hints": ["1 h = 60 min et 1 min = 60 s.", "1 jour = 24 h ; 1 semaine = 7 jours.", "11 ans = 11 × 365 jours."],
+      "solution": "1 jour = 24 × 60 × 60 = 86 400 s. 1 semaine = 7 × 24 = 168 h. 11 × 365 + {k} = {4015+k} jours (en réalité un peu plus, à cause des années bissextiles de 366 jours).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "86400" }, { "value": "168" }, { "value": "{4015+k}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "1440" }, { "value": "168" }, { "value": "{4015+k}" }] }, "expect": "mc:minutes-secondes" }
+      ]
+    },
+    {
+      "id": "m6-durees-debut",
+      "type": "composite",
+      "skill": "m6.durees.calculer",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:emprunt-oublie", "mc:base-100", "mc:soustraction-inversee"],
+      "expectedSeconds": 240,
+      "params": { "He": { "int": [20, 23] }, "Me": { "int": [10, 30] }, "dh": { "int": [1, 2] }, "dm": { "int": [35, 55] }, "S": { "expr": "60*He + Me - 60*dh - dm" } },
+      "constraints": ["dm - Me != 30"],
+      "prompt": "Question à l’envers. Le film se termine à {He} h {Me}. Il dure {dh} h {dm} min. À quelle heure a-t-il commencé ?",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Écris les heures de l’horaire de début.",
+          "answer": "floor(S/60)",
+          "misconceptions": [
+            {
+              "answer": "He - dh",
+              "id": "mc:emprunt-oublie",
+              "error": "calcul",
+              "feedback": "Il n’y a pas assez de minutes pour enlever {dm} min : il faut « casser » une heure de plus."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Puis les minutes.",
+          "answer": "mod(S;60)",
+          "misconceptions": [
+            { "answer": "Me + 100 - dm", "id": "mc:base-100", "error": "notion", "feedback": "Une heure « cassée » donne 60 minutes, pas 100." },
+            {
+              "answer": "dm - Me",
+              "id": "mc:soustraction-inversee",
+              "error": "calcul",
+              "feedback": "Tu as soustrait à l’envers : on part de l’horaire de fin et on enlève la durée."
+            }
+          ]
+        }
+      ],
+      "hints": ["On recule dans le temps : horaire de fin − durée.", "Enlève d’abord les heures, puis les minutes.", "Si les minutes ne suffisent pas, change 1 h en 60 min."],
+      "solution": "{He} h {Me} − {dh} h = {He-dh} h {Me}. Puis on enlève {dm} min : {He-dh} h {Me} = {He-dh-1} h {Me+60} min, et {Me+60} − {dm} = {Me+60-dm}. Le film a commencé à {floor(S/60)} h {mod(S;60)}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{floor(S/60)}" }, { "value": "{mod(S;60)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{He-dh}" }, { "value": "{Me+100-dm}" }] }, "expect": "mc:emprunt-oublie" }
+      ]
+    },
+    {
+      "id": "m6-durees-relais",
+      "type": "composite",
+      "skill": "m6.durees.problemes",
+      "skills": ["m6.durees.convertir"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:min-sec-comme-nombres", "mc:comparaison-duree"],
+      "expectedSeconds": 420,
+      "prompt": "Relais 4 × 400 m ! Les trois premiers coureurs de l’équipe ont mis 1 min 52 s, 2 min 05 s et 1 min 58 s. Pour se qualifier, l’équipe doit faire au plus 8 min en tout.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le temps total des trois premiers coureurs, en secondes ?",
+          "answer": 355,
+          "misconceptions": [
+            {
+              "answer": 515,
+              "id": "mc:min-sec-comme-nombres",
+              "error": "notion",
+              "feedback": "Tu as lu « 1 min 52 s » comme le nombre 152. Une minute compte 60 secondes : convertis d’abord chaque temps en secondes."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel temps maximal le 4e coureur peut-il mettre, en secondes ?",
+          "answer": 125,
+          "misconceptions": [
+            {
+              "answer": 285,
+              "id": "mc:min-sec-comme-nombres",
+              "error": "notion",
+              "feedback": "Tu as compté 100 secondes par minute. Combien de secondes y a-t-il dans 8 minutes ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le 4e coureur court en 2 min 03 s. L’équipe est-elle qualifiée ? Réponds oui ou non.",
+          "accept": ["oui"],
+          "misconceptions": [{ "answer": "non", "id": "mc:comparaison-duree", "error": "raisonnement", "feedback": "Convertis 2 min 03 s en secondes, puis compare au temps maximal." }]
+        }
+      ],
+      "hints": ["1 min 52 s = 60 s + 52 s.", "8 min = 8 × 60 s. Enlève le temps des trois premiers.", "Compare le temps du 4e coureur au temps maximal, en secondes."],
+      "solution": "112 + 125 + 118 = 355 s (soit 5 min 55 s). 8 min = 480 s, donc le 4e peut mettre au plus 480 − 355 = 125 s, soit 2 min 05 s. Avec 2 min 03 s = 123 s, l’équipe est qualifiée, avec 2 s d’avance !",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "355" }, { "value": "125" }, { "value": "oui" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "515" }, { "value": "285" }, { "value": "non" }] }, "expect": "mc:min-sec-comme-nombres" }
+      ]
+    },
+    {
+      "id": "m6-durees-avion",
+      "type": "composite",
+      "skill": "m6.durees.problemes",
+      "skills": ["m6.durees.calculer"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:sens-decalage", "mc:fuseau-oublie"],
+      "expectedSeconds": 480,
+      "prompt": "Un avion décolle de Paris à 10 h 30 (heure de Paris). Il atterrit à New York à 12 h 45 (heure de New York). En général, quand il est midi à Paris, il n’est que 6 h du matin à New York : il y a 6 heures de décalage.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quand l’avion atterrit, quelle heure est-il à Paris ? Écris les heures.",
+          "answer": 18,
+          "misconceptions": [{ "answer": 6, "id": "mc:sens-decalage", "error": "raisonnement", "feedback": "À New York, il est 6 h de MOINS qu’à Paris : à Paris, il est donc plus tard." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de temps dure le vol ? Écris les heures.",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:fuseau-oublie",
+              "error": "raisonnement",
+              "feedback": "Tu as soustrait deux horaires lus sur des horloges différentes. Exprime d’abord les deux horaires à l’heure de Paris."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "… et les minutes.", "answer": 15 }
+      ],
+      "hints": [
+        "Ajoute 6 h à l’heure de New York pour obtenir l’heure de Paris.",
+        "Le vol part à 10 h 30 et arrive à 18 h 45, heure de Paris.",
+        "Durée : de 10 h 30 à 18 h 30, puis de 18 h 30 à 18 h 45."
+      ],
+      "solution": "12 h 45 à New York = 18 h 45 à Paris. Le vol dure de 10 h 30 à 18 h 45 (heure de Paris) : 8 h 15 min. En calculant 12 h 45 − 10 h 30 = 2 h 15 min, on mélangerait deux horloges différentes !",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "18" }, { "value": "8" }, { "value": "15" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "18" }, { "value": "2" }, { "value": "15" }] }, "expect": "mc:fuseau-oublie" }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
  * Niveaux ◆ approfondissement et ✦ expert des générateurs : fractions et puissances.
  * Chaque fonction reçoit (rand, options) et renvoie un exercice comme `make` (numeric, expression, steps).
  */
-import { ri, nz, pick, sample, clean, fr, par, gcd, lcm, frac, fracStr, mc, numeric } from './gen-util.js';
+import { ri, nz, pick, sample, clean, fr, par, gcd, lcm, frac, fracStr, mc, numeric, mcCites, withoutCitedAnswer } from './gen-util.js';
 import { distinct, fdistinct, fadd, fsub, fmul, fdiv, fneg, fm, fp, numFor, e, isNice, VERB, signHint, fracResult, formTxt, negWord, readFrac } from './tiers-nombres-outils.js';
 
 export const TIERS_FRACTIONS = {
@@ -10,13 +10,15 @@ export const TIERS_FRACTIONS = {
     /** ◆ Trois fractions, un entier et deux fractions, fraction manquante (question à l'envers). */
     approfondissement(rand, o) {
       const mode = o.denominateurs || pick(rand, ['multiple', 'quelconques']);
-      return FS_APPRO[pick(rand, ['trois', 'trois', 'entier', 'manquant'])](rand, o, mode);
+      const f = FS_APPRO[pick(rand, ['trois', 'trois', 'entier', 'manquant'])];
+      return withoutCitedAnswer(() => f(rand, o, mode));
     },
     /** ✦ Numérateur manquant, « le reste » d'un tout, « − » devant une parenthèse de fractions. */
     expert(rand, o) {
       const mode = o.denominateurs || pick(rand, ['multiple', 'quelconques']);
       const kinds = o.op === 'addition' ? ['numerateur', 'reste'] : o.op === 'soustraction' ? ['numerateur', 'parentheses', 'reste'] : ['numerateur', 'parentheses', 'reste'];
-      return FS_EXPERT[pick(rand, kinds)](rand, o, mode);
+      const f = FS_EXPERT[pick(rand, kinds)];
+      return withoutCitedAnswer(() => f(rand, o, mode));
     },
   },
 
@@ -24,12 +26,14 @@ export const TIERS_FRACTIONS = {
     /** ◆ Trois facteurs et des signes, entier × fraction, enchaînement ÷ ×, facteur ou diviseur manquant. */
     approfondissement(rand, o) {
       const kinds = o.op === 'multiplication' ? ['trois', 'entier', 'manquant'] : o.op === 'division' ? ['entierDiv', 'chaine', 'manquantDiv'] : ['trois', 'entier', 'manquant', 'entierDiv', 'chaine', 'manquantDiv'];
-      return FP_APPRO[pick(rand, kinds)](rand);
+      const f = FP_APPRO[pick(rand, kinds)];
+      return withoutCitedAnswer(() => f(rand));
     },
     /** ✦ Fractions et priorités, carré d'une fraction négative, inverse, « les 2/3 des 3/5 » à l'envers. */
     expert(rand, o) {
       const kinds = o.op === 'multiplication' ? ['prioMul', 'carre', 'inverse'] : o.op === 'division' ? ['prioDiv', 'fractionDe', 'inverse'] : ['prioMul', 'carre', 'inverse', 'prioDiv', 'fractionDe'];
-      return FP_EXPERT[pick(rand, kinds)](rand);
+      const f = FP_EXPERT[pick(rand, kinds)];
+      return withoutCitedAnswer(() => f(rand));
     },
   },
 
@@ -37,12 +41,12 @@ export const TIERS_FRACTIONS = {
     /** ◆ Signes et carrés (−3² ≠ (−3)²), puissance d'une fraction, deux règles enchaînées, exposant manquant, écriture scientifique d'un nombre mal écrit. */
     approfondissement(rand, o) {
       const mode = o.mode || pick(rand, ['valeur', 'regles', 'scientifique']);
-      return PU_APPRO[mode](rand);
+      return withoutCitedAnswer(() => PU_APPRO[mode](rand));
     },
     /** ✦ Puissances et priorités, exposant à retrouver, décimaux en puissances de 10, notation scientifique d'un produit ou d'un quotient. */
     expert(rand, o) {
       const mode = o.mode || pick(rand, ['valeur', 'regles', 'scientifique']);
-      return PU_EXPERT[mode](rand);
+      return withoutCitedAnswer(() => PU_EXPERT[mode](rand));
     },
   },
 
@@ -186,7 +190,7 @@ const FS_EXPERT = {
     do {
       [b, d] = dens2(rand, mode); L = lcm(b, d);
       A = [numFor(rand, b, b - 1), b]; C = [numFor(rand, d, d - 1), d]; S = fadd(A, C); res = fsub([1, 1], S);
-      mcs = [mc(fracStr(S), 'mc:complement-oublie', 'raisonnement', `$${fm(S)}$ est la part des deux premiers groupes : il faut encore la retirer du total, qui vaut 1.`),
+      mcs = [mc(fracStr(S), 'mc:complement-oublie', 'raisonnement', 'Cette fraction est la part des deux premiers groupes : il faut encore la retirer du total, qui vaut 1.'),
         mc(fracStr(frac(b + d - A[0] - C[0], b + d)), 'mc:ajouter-denominateurs', 'notion', `On n’additionne pas les dénominateurs : $${fm(A)} + ${fm(C)}$ se calcule avec le dénominateur commun ${L}.`),
         mc(fracStr(frac(L - A[0] - C[0], L)), 'mc:numerateur-non-converti', 'notion', `Avec le dénominateur ${L}, les numérateurs changent aussi : $${fm(A)} = ${(A[0] * L) / b}/${L}$.`)];
     } while (res[0] <= 0 || !fdistinct(res, mcs.map((m) => readFrac(m.answer))));
@@ -308,7 +312,7 @@ const FP_APPRO = {
         mcs = [mc(fracStr(fmul([k, 1], A)), 'mc:division-sans-inverse', 'notion', `Diviser par $${fm(A)}$, c’est multiplier par son inverse $${fm(inv(A))}$.`), mc(fracStr(fdiv(A, [k, 1])), 'mc:inverser-premiere', 'notion', 'C’est le diviseur (la fraction) qu’on inverse, pas le premier nombre.')];
       }
       if (ans[0] < 0) mcs.push(mc(fracStr(fneg(ans)), 'mc:regle-signes', 'signe', 'Pour un quotient, la règle des signes est la même que pour un produit.'));
-    } while (Math.abs(k) < 2 || !fdistinct(ans, asFracs(mcs)));
+    } while (Math.abs(k) < 2 || !fdistinct(ans, asFracs(mcs)) || (ans[1] === 1 && mcCites(mcs, ans[0])));
     return fracCalc(ans, expr, {
       expectedSeconds: 90, misconceptions: mcs,
       hints: [INV_HINT, `$${expr} = ${detail}$`, 'Simplifie le résultat.'],
@@ -380,7 +384,7 @@ const FP_EXPERT = {
       ans = minus ? fneg(fmul(S, C)) : fmul(S, C);
       mcs = minus
         ? [mc(fracStr(fneg(ans)), 'mc:moins-carre', 'signe', `Le signe « − » est devant le carré : seul $${a}/${b}$ est élevé au carré, le résultat reste négatif.`), mc(fracStr(fneg(fmul([a * a, b], C))), 'mc:puissance-numerateur', 'notion', `$(${a}/${b})² = ${a * a}/${b * b}$ : le numérateur ET le dénominateur sont élevés au carré.`)]
-        : [mc(fracStr(fneg(ans)), 'mc:carre-negatif', 'signe', `Le carré d’un nombre négatif est positif : $(−${a}/${b})² = ${a * a}/${b * b}$.`), mc(fracStr(fmul([a * a, b], C)), 'mc:puissance-numerateur', 'notion', 'Le numérateur ET le dénominateur sont élevés au carré.'), mc(fracStr(fmul([-2 * a, b], C)), 'mc:carre-double', 'notion', `$(−${a}/${b})²$ = $(−${a}/${b}) × (−${a}/${b})$, pas $2 × (−${a}/${b})$.`)];
+        : [mc(fracStr(fneg(ans)), 'mc:carre-negatif', 'signe', 'Le carré d’un nombre négatif est positif : vérifie le signe de ton résultat.'), mc(fracStr(fmul([a * a, b], C)), 'mc:puissance-numerateur', 'notion', 'Le numérateur ET le dénominateur sont élevés au carré.'), mc(fracStr(fmul([-2 * a, b], C)), 'mc:carre-double', 'notion', `$(−${a}/${b})²$ = $(−${a}/${b}) × (−${a}/${b})$, pas $2 × (−${a}/${b})$.`)];
     } while (gcd(a * a * C[0], b * b * C[1]) < 2 || !fdistinct(ans, asFracs(mcs)));
     const expr = minus ? `−(${a}/${b})² × ${fp(C)}` : `(−${a}/${b})² × ${fp(C)}`;
     return fracCalc(ans, expr, {
@@ -477,20 +481,20 @@ const PU_APPRO = {
         solution: `$${expr} = ${Array(n).fill(fp(base)).join(' × ')} = ${fracStr(ans)}$`,
       });
     }
-    let expr; let ans; let vals; let fbs;
+    let expr; let ans; let vals; let fbs; let detail;
     if (t === 1) {
       // −a² + (−b)³
       let a; let b;
-      do { a = ri(rand, 2, 9); b = ri(rand, 2, 4); ans = -a * a + (-b) ** 3; vals = [a * a + (-b) ** 3, -a * a + b ** 3, -2 * a - 3 * b]; } while (!distinct(ans, vals));
-      expr = `−${a}² + (−${b})³`;
+      do { a = ri(rand, 2, 9); b = ri(rand, 2, 4); ans = -a * a + (-b) ** 3; vals = [a * a + (-b) ** 3, -a * a + b ** 3, -2 * a - 3 * b]; } while (!distinct(ans, vals) || ans === -a * a);
+      expr = `−${a}² + (−${b})³`; detail = `${fr(-a * a)} + ${par((-b) ** 3)}`;
       fbs = [['mc:moins-carre', 'signe', `$−${a}² = −(${a}²) = ${fr(-a * a)}$ : le carré porte seulement sur ${a}, pas sur le signe « − ».`],
         ['mc:regle-signes', 'signe', `$(−${b})³$ : trois facteurs négatifs, le résultat est négatif.`],
         ['mc:puissance-produit', 'notion', `$${a}² = ${a} × ${a}$ (et non ${a} × 2) ; $(−${b})³ = (−${b}) × (−${b}) × (−${b})$.`]];
     } else {
       // k × (−b)^n − a²
       let k; let b; let n; let a;
-      do { k = ri(rand, 2, 5); b = ri(rand, 2, 3); n = ri(rand, 2, 4); a = ri(rand, 2, 9); ans = k * (-b) ** n - a * a; vals = [(-k * b) ** n - a * a, -k * (-b) ** n - a * a, k * -b * n - 2 * a]; } while (!distinct(ans, vals));
-      expr = `${k} × (−${b})^${n} − ${a}²`;
+      do { k = ri(rand, 2, 5); b = ri(rand, 2, 3); n = ri(rand, 2, 4); a = ri(rand, 2, 9); ans = k * (-b) ** n - a * a; vals = [(-k * b) ** n - a * a, -k * (-b) ** n - a * a, k * -b * n - 2 * a]; } while (!distinct(ans, vals) || [(-b) ** n, -b, k].includes(ans));
+      expr = `${k} × (−${b})^${n} − ${a}²`; detail = `${k} × ${par((-b) ** n)} − ${a * a} = ${fr(k * (-b) ** n)} − ${a * a}`;
       fbs = [['mc:puissance-prioritaire', 'notion', `La puissance passe avant la multiplication : on calcule $(−${b})^${n} = ${fr((-b) ** n)}$, puis on multiplie par ${k}.`],
         ['mc:regle-signes', 'signe', `$(−${b})^${n}$ : ${n} facteurs négatifs, le résultat est ${n % 2 ? 'négatif' : 'positif'}.`],
         ['mc:puissance-produit', 'notion', `L’exposant compte des facteurs égaux : $(−${b})^${n}$ n’est pas $(−${b}) × ${n}$.`]];
@@ -499,7 +503,7 @@ const PU_APPRO = {
       prompt: `${pick(rand, VERB)} : $${expr}$`, expectedSeconds: 90,
       misconceptions: vals.map((v, i) => mc(v, ...fbs[i])),
       hints: ['Les puissances se calculent avant les multiplications et les additions.', 'Repère sur quoi porte chaque exposant : $−3²$ = $−(3²)$, mais $(−3)²$ = $(−3) × (−3)$.', 'Calcule chaque puissance, puis termine le calcul.'],
-      solution: `$${expr} = ${fr(ans)}$ (les puissances d’abord, en regardant sur quoi porte chaque exposant).`,
+      solution: `$${expr} = ${detail} = ${fr(ans)}$ (les puissances d’abord, en regardant sur quoi porte chaque exposant).`,
     });
   },
   regles(rand) {
@@ -542,7 +546,7 @@ const PU_APPRO = {
   },
   scientifique(rand) {
     let a; let s; let k; let m; let n;
-    do { a = rand() < 0.3 ? ri(rand, 2, 9) : ri(rand, 11, 99) / 10; s = pick(rand, [-3, -2, -1, 1, 2, 3]); k = nz(rand, -9, 9); m = clean(a * 10 ** s); n = k + s; } while (!n || Math.abs(k) < 2 || Math.abs(n) > 12 || !distinct(n, [k, k - s]));
+    do { a = rand() < 0.3 ? ri(rand, 2, 9) : ri(rand, 11, 99) / 10; s = pick(rand, [-3, -2, -1, 1, 2, 3]); k = nz(rand, -9, 9); m = clean(a * 10 ** s); n = k + s; } while (!n || Math.abs(k) < 2 || Math.abs(n) > 12 || !distinct(n, [k, k - s]) || [10, s, m].includes(n));
     return numeric(n, {
       prompt: `Écris $${fr(m)} × 10^${e(k)}$ en notation scientifique : $${fr(m)} × 10^${e(k)} = ${fr(a)} × 10^n$. ${ASK_N}`, expectedSeconds: 90,
       misconceptions: [mc(k, 'mc:exposant-recopie', 'notion', `${fr(m)} n’est pas compris entre 1 et 10 : écris-le d’abord ${fr(a)} × 10^${e(s)}, puis additionne les exposants.`), mc(k - s, 'mc:sens-decalage', 'notion', `$${fr(m)} = ${fr(a)} × 10^${e(s)}$ : vérifie le sens du décalage de la virgule.`)],
@@ -557,7 +561,7 @@ const PU_EXPERT = {
     if (rand() < 0.5) {
       // a × b² − (−c)³ ÷ d : puissances et priorités
       let a; let b; let c; let d; let ans; let vals;
-      do { a = ri(rand, 2, 6); b = ri(rand, 2, 5); c = ri(rand, 2, 4); d = pick(rand, { 2: [2, 4, 8], 3: [3, 9], 4: [2, 4, 8, 16] }[c]); ans = a * b * b + c ** 3 / d; vals = [(a * b) ** 2 + c ** 3 / d, a * b * b - c ** 3 / d, a * 2 * b + (3 * c) / d]; } while (!distinct(ans, vals));
+      do { a = ri(rand, 2, 6); b = ri(rand, 2, 5); c = ri(rand, 2, 4); d = pick(rand, { 2: [2, 4, 8], 3: [3, 9], 4: [2, 4, 8, 16] }[c]); ans = a * b * b + c ** 3 / d; vals = [(a * b) ** 2 + c ** 3 / d, a * b * b - c ** 3 / d, a * 2 * b + (3 * c) / d]; } while (!distinct(ans, vals) || [c ** 3, b * b, a * b, d].includes(ans));
       const expr = `${a} × ${b}² − (−${c})³ ÷ ${d}`;
       return numeric(ans, {
         prompt: `${pick(rand, VERB)} : $${expr}$`, expectedSeconds: 150, skills: ['m5.calcul.priorites'],
@@ -583,7 +587,7 @@ const PU_EXPERT = {
     if (t === 1) {
       // 0,01 × 10^p × 1000 = 10^n
       let u; let w; let p; let n;
-      do { u = ri(rand, 1, 3); w = ri(rand, 2, 4); p = nz(rand, -6, 6); n = p - u + w; } while (!distinct(n, [p + u + w, p - (u - 1) + w]));
+      do { u = ri(rand, 1, 3); w = ri(rand, 2, 4); p = nz(rand, -6, 6); n = p - u + w; } while (!distinct(n, [p + u + w, p - (u - 1) + w]) || n === -u);
       const dec = fr(10 ** -u); const big = fr(10 ** w);
       return numeric(n, {
         prompt: `Écris sous la forme d’une puissance de 10 : $${dec} × 10^${e(p)} × ${big} = 10^n$. ${ASK_N}`, expectedSeconds: 120,
@@ -621,7 +625,7 @@ const PU_EXPERT = {
       do {
         a = light ? 3 : pick(rand, [1.5, 2, 2.5, 3, 4, 5, 6, 8, 1.2, 3.5]); b = pick(rand, light ? [4, 5, 6, 8] : [2, 2.5, 3, 4, 5, 6, 8]);
         p = light ? 5 : nz(rand, -9, 9); q = light ? ri(rand, 2, 7) : nz(rand, -9, 9); prod = clean(a * b); n = p + q + 1;
-      } while (prod < 10 || !isNice(prod, 2) || Math.abs(n) > 20 || !distinct(n, [p + q, p * q]));
+      } while (prod < 10 || !isNice(prod, 2) || Math.abs(n) > 20 || !distinct(n, [p + q, p * q]) || n === 10 || n === prod);
       prompt = light
         ? `La lumière parcourt environ $3 × 10^5$ km par seconde. Quelle distance parcourt-elle en $${fr(b)} × 10^${e(q)}$ secondes ? Écris le résultat (en km) ${SCI}. ${ASK_N}`
         : `On donne $A = ${fr(a)} × 10^${e(p)}$ et $B = ${fr(b)} × 10^${e(q)}$. Écris le produit A × B ${SCI}. ${ASK_N}`;
@@ -634,7 +638,7 @@ const PU_EXPERT = {
     }
     // quotient : le premier facteur est plus petit que 1
     let a; let b; let p; let q; let n;
-    do { [a, b] = pick(rand, [[1.2, 4], [1.5, 5], [2, 8], [3, 6], [1.8, 2], [4.5, 9], [1.4, 7], [2.4, 8], [1, 4], [2.1, 3]]); p = nz(rand, -9, 9); q = nz(rand, -9, 9); n = p - q - 1; } while (Math.abs(n) > 20 || !distinct(n, [p - q, p + q]));
+    do { [a, b] = pick(rand, [[1.2, 4], [1.5, 5], [2, 8], [3, 6], [1.8, 2], [4.5, 9], [1.4, 7], [2.4, 8], [1, 4], [2.1, 3]]); p = nz(rand, -9, 9); q = nz(rand, -9, 9); n = p - q - 1; } while (Math.abs(n) > 20 || !distinct(n, [p - q, p + q]) || n === -1);
     const r = clean(a / b);
     return numeric(n, {
       prompt: `Écris $(${fr(a)} × 10^${e(p)})/(${fr(b)} × 10^${e(q)})$ ${SCI}. ${ASK_N}`, expectedSeconds: 150,

@@ -10,8 +10,12 @@ const STAR_LABEL = ['passé ou corrigé', '1 étoile', '2 étoiles', '3 étoiles
 
 /**
  * @param {object[]} defs définitions d'exercices
- * @param {{ lessonId: string, results: Record<string, {stars:number}>, onResult?: Function, onChange?: Function, startAt?: string }} opts
+ * @param {{ lessonId?: string, lessonOf?: Function, context?: string, results: Record<string, {stars:number}>, onResult?: Function, onChange?: Function, startAt?: string, lockAttempts?: boolean, scoreOf?: Function, retryLabel?: string }} opts
+ *   `lessonOf(def)` donne la leçon de chaque exercice quand la série en mélange plusieurs (bilan d'unité).
  *   `onChange` est appelé quand l'état « série terminée » peut avoir changé.
+ *   `lockAttempts` (bilan) : quitter un exercice déjà tenté (pastille, même la sienne) le compte manqué, sinon
+ *   on pourrait le recommencer à zéro jusqu'à tomber sur la bonne réponse. `scoreOf(def)` : étoiles qui comptent
+ *   dans le bilan de la série (par défaut, les meilleures obtenues) ; `retryLabel` : bouton des exercices manqués.
  */
 export function exerciseRunner(defs, opts) {
   let i = 0;
@@ -39,7 +43,20 @@ export function exerciseRunner(defs, opts) {
     }));
   }
 
+  /**
+   * Exercice quitté sans résultat : tenté → manqué (« abandon ») ; passé sans rien tenter → « passe ».
+   * Quitté par une pastille sans rien tenter, il reste simplement à faire.
+   */
+  function leave(skipped) {
+    const d = defs[i];
+    if (!mounted || !d || results[d.id]) return;
+    const tried = Boolean(mounted.attempted && mounted.attempted());
+    if (tried && (skipped || opts.lockAttempts)) results[d.id] = { stars: 0, verdict: 'abandon' };
+    else if (skipped) results[d.id] = { stars: 0, verdict: 'passe' };
+  }
+
   function show(j) {
+    leave(false);
     if (mounted) { mounted.destroy(); mounted = null; }
     summaryShown = false;
     i = j;
@@ -50,12 +67,12 @@ export function exerciseRunner(defs, opts) {
     slot.append(box);
     const def = defs[j];
     mounted = mountExercise(box, {
-      def, lessonId: opts.lessonId,
+      def, lessonId: opts.lessonOf ? opts.lessonOf(def) : opts.lessonId, context: opts.context,
       nextLabel: defs.some((d, k) => k !== j && !results[d.id]) ? 'Exercice suivant →' : 'Terminer la série',
       onSettled: (diag, out) => {
         const prevBest = results[def.id] ? results[def.id].stars : -1;
         if (out.stars > prevBest) {
-          results[def.id] = { stars: out.stars, verdict: diag ? diag.verdict : 'abandon' };
+          results[def.id] = { stars: out.stars, verdict: diag ? diag.verdict : 'abandon', tries: out.tries, solutionShown: out.solutionShown };
           if (opts.onResult) opts.onResult(def.id, out.stars);
         }
         if (out.stars >= 2) burstStars(box, out.stars);
@@ -73,7 +90,7 @@ export function exerciseRunner(defs, opts) {
   }
 
   function advance(done) {
-    if (!done && !results[defs[i].id]) results[defs[i].id] = { stars: 0, verdict: 'passe' };
+    if (!done) leave(true);
     const after = defs.findIndex((d, j) => j > i && !results[d.id]);
     const any = after >= 0 ? after : defs.findIndex((d) => !results[d.id]);
     if (any >= 0) show(any); else summary();
@@ -83,7 +100,8 @@ export function exerciseRunner(defs, opts) {
     if (mounted) { mounted.destroy(); mounted = null; }
     summaryShown = true;
     skip.hidden = true;
-    const total = defs.reduce((a, d) => a + (results[d.id] ? results[d.id].stars : 0), 0);
+    const scoreOf = opts.scoreOf || ((d) => (results[d.id] ? results[d.id].stars : 0));
+    const total = defs.reduce((a, d) => a + scoreOf(d), 0);
     const max = defs.length * 3;
     const ratio = total / max;
     const mood = ratio >= 0.7 ? 'bravo' : ratio >= 0.4 ? 'joie' : 'encourage';
@@ -95,7 +113,7 @@ export function exerciseRunner(defs, opts) {
       h('div', {},
         h('p', { class: 'run-summary-stars', 'aria-label': `${total} étoiles sur ${max}` }, `${total} ★`, h('small', {}, ` / ${max}`)),
         h('p', { class: 'run-summary-msg' }, msg),
-        missed.length ? h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { for (const [d] of missed) delete results[d.id]; show(missed[0][1]); } }, `Réessayer ${missed.length > 1 ? `les ${missed.length} exercices manqués` : 'l’exercice manqué'}`) : null)));
+        missed.length ? h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { for (const [d] of missed) delete results[d.id]; show(missed[0][1]); } }, opts.retryLabel || `Réessayer ${missed.length > 1 ? `les ${missed.length} exercices manqués` : 'l’exercice manqué'}`) : null)));
     paintDots();
     announce(`Série terminée : ${total} étoiles sur ${max}.`);
     changed();

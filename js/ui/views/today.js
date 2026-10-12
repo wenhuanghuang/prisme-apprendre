@@ -1,6 +1,8 @@
 /** « Aujourd'hui » : recommandations expliquées, révisions dues, accès rapide aux leçons. */
 import { h, relDays } from '../dom.js';
-import { store, recommendations, dueReviews, badges, skillLevel } from '../../app/store.js';
+import { store, recommendations, dueReviews, badges, skillLevel, gameProgress } from '../../app/store.js';
+import { goalRing, streakLabel } from '../game/hud.js';
+import { coursesOf, pathOf, progressNow, subjectLabel, levelOfProfile, SUBJECT_ICONS } from '../parcours/data.js';
 import { photon, PHOTON_TIPS } from '../photon.js';
 
 export const KIND_UI = {
@@ -35,6 +37,26 @@ export function recoCard(r) {
       lesson ? h('a', { class: 'btn btn--ghost btn--small', href: `#/lecon/${lesson.id}` }, 'Leçon') : null));
 }
 
+/** « Continuer » : la prochaine leçon de chaque parcours de la classe, comme sur une appli de langues. */
+function continueStrip() {
+  const strip = h('section', { class: 'continue-strip', 'aria-label': 'Continuer mes parcours' });
+  const progress = progressNow();
+  Promise.all(coursesOf(levelOfProfile()).map(async (c) => {
+    const data = await pathOf(c.id, progress);
+    if (!data || !data.path.total || !data.path.next) return null;
+    const { path } = data;
+    const href = path.next.kind === 'bilan' ? `#/parcours/${c.subject}/bilan/${path.next.id}` : `#/lecon/${path.next.id}`;
+    return h('a', { class: `continue-card subj-${c.subject}`, href },
+      h('span', { class: 'continue-ring' }, goalRing(path.progress, 46, 6), h('span', { 'aria-hidden': 'true' }, SUBJECT_ICONS[c.subject] || '•')),
+      h('span', { class: 'continue-text' }, h('small', {}, subjectLabel(c.subject)), h('strong', {}, path.next.title)),
+      h('span', { class: 'continue-go', 'aria-hidden': 'true' }, '▶'));
+  })).then((cards) => {
+    const list = cards.filter(Boolean);
+    if (list.length) strip.append(h('h2', {}, 'Continuer mes parcours'), h('div', { class: 'continue-cards' }, list));
+  }).catch(() => { /* les parcours restent accessibles par le menu */ });
+  return strip;
+}
+
 export function render(root) {
   const p = store.profile;
   const recos = recommendations(8);
@@ -50,12 +72,14 @@ export function render(root) {
   const hour = new Date().getHours();
   const hello = hour < 12 ? 'Bonjour' : hour < 18 ? 'Bon après-midi' : 'Bonsoir';
   const tip = PHOTON_TIPS[new Date().getDate() % PHOTON_TIPS.length];
+  const g = gameProgress();
 
   root.append(
-    p.demo ? h('p', { class: 'demo-banner' }, h('strong', {}, 'Profil fictif. '), p.story || '', ' Son historique a été simulé par le moteur réel.') : null,
+    p.demo ? h('p', { class: 'demo-banner' }, h('strong', {}, 'Profil fictif. '), p.story || '', ' Son historique a été simulé par le moteur réel.') : '', // append() natif : null s'afficherait « null »
     h('div', { class: 'page-head' },
       h('div', {}, h('p', { class: 'eyebrow' }, `${p.level} · ${new Date().toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}`), h('h1', {}, `${hello}, ${p.pseudo}`)),
-      h('div', { class: 'btn-row' }, h('a', { class: 'btn', href: '#/carte' }, 'Ma carte de progression'), h('a', { class: 'btn btn--ghost', href: '#/labo' }, 'Laboratoire libre'))),
+      h('div', { class: 'btn-row' }, h('a', { class: 'btn', href: '#/parcours' }, 'Mes parcours'), h('a', { class: 'btn btn--ghost', href: '#/labo' }, 'Laboratoire libre'))),
+    continueStrip(),
     h('div', { class: 'today' },
       h('section', { 'aria-labelledby': 'reco-title' },
         h('h2', { id: 'reco-title' }, 'Pour toi aujourd’hui'),
@@ -63,8 +87,13 @@ export function render(root) {
           ? h('div', { class: 'reco-list' }, recos.map(recoCard))
           : h('div', { class: 'card empty' }, photon('attentif', 64),
             h('p', {}, 'Pas encore assez de traces pour te conseiller : commence par une leçon de ta classe.'),
-            h('div', { class: 'btn-row', style: { justifyContent: 'center' } }, myLessons.slice(0, 3).map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, l.title)), h('a', { class: 'btn btn--ghost btn--small', href: '#/carte' }, 'Toutes les leçons')))),
+            h('div', { class: 'btn-row', style: { justifyContent: 'center' } }, myLessons.slice(0, 3).map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, l.title)), h('a', { class: 'btn btn--ghost btn--small', href: '#/parcours' }, 'Toutes les leçons')))),
       h('aside', { class: 'grid' },
+        g ? h('a', { class: 'card side-card today-goal', href: '#/progression', style: { textDecoration: 'none', color: 'inherit' } },
+          goalRing(g.todayXp / g.goal, 64, 8),
+          h('h3', {}, g.goalReached ? '🎯 Objectif du jour atteint' : 'Objectif du jour'),
+          h('p', {}, h('strong', {}, `${g.todayXp} / ${g.goal} points`), g.streak ? ` · 🔥 ${streakLabel(g.streak)}` : ''),
+          h('p', { class: 'small muted' }, g.atRisk ? 'Atteins-le aujourd’hui pour garder ta série !' : `Niveau ${g.level} · ${g.title} — voir ma progression`)) : null,
         h('div', { class: 'card side-card' },
           h('h3', {}, 'Où j’en suis'),
           h('div', { class: 'stat-row' },

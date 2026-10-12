@@ -24,7 +24,7 @@
     {
       "kind": "cours",
       "title": "Le cours",
-      "body": "**Vocabulaire.** Un angle **plat** mesure 180° (un demi-tour), un angle **droit** 90°. Deux angles sont **supplémentaires** si leur somme vaut 180°, **complémentaires** si elle vaut 90°.\n\nQuand une droite (une **sécante**) coupe deux droites, elle forme des angles **alternes-internes** (entre les deux droites, de part et d'autre de la sécante) et des angles **correspondants** (du même côté de la sécante, à la même place).\n\n> Si deux droites **parallèles** sont coupées par une sécante, alors les angles alternes-internes sont égaux, et les angles correspondants sont égaux.\n\n> **Propriété.** Dans un triangle, la somme des mesures des trois angles est égale à **180°**.\n\nCette propriété se **démontre** : on trace la parallèle à un côté passant par le sommet opposé, et on utilise les angles alternes-internes et un angle plat (voir les exercices).\n\n**Conséquences**\n- Si on connaît deux angles d'un triangle, on calcule le troisième : $180 −$ (somme des deux autres).\n- Dans un triangle **rectangle**, les deux angles aigus sont complémentaires.\n- Dans un triangle **isocèle**, les deux angles à la base sont égaux.\n- Dans un triangle **équilatéral**, chaque angle mesure $180 ÷ 3 = 60$°.\n\n**Construire à partir de données partielles.** Avec un côté et les deux angles à ses extrémités, on peut construire le triangle… à condition que la somme de ces deux angles soit strictement inférieure à 180°. Le troisième angle est alors imposé. Agrandir un triangle ne change pas ses angles.\n\n*Pour aller plus loin (approfondissement, hors programme 2026 de 5e) : avec trois longueurs, un triangle n'est constructible que si la plus grande est strictement inférieure à la somme des deux autres : c'est l'inégalité triangulaire.*"
+      "body": "**Vocabulaire.** Un angle **plat** mesure 180° (un demi-tour), un angle **droit** 90°. Deux angles sont **supplémentaires** si leur somme vaut 180°, **complémentaires** si elle vaut 90°.\n\nQuand une droite (une **sécante**) coupe deux droites, elle forme des angles **alternes-internes** (entre les deux droites, de part et d'autre de la sécante) et des angles **correspondants** (du même côté de la sécante, à la même place).\n\n> Si deux droites **parallèles** sont coupées par une sécante, alors les angles alternes-internes sont égaux, et les angles correspondants sont égaux.\n\n> **Réciproquement**, si deux droites coupées par une sécante forment deux angles alternes-internes égaux (ou deux angles correspondants égaux), alors ces deux droites sont parallèles.\n\n> **Propriété.** Dans un triangle, la somme des mesures des trois angles est égale à **180°**.\n\nCette propriété se **démontre** : on trace la parallèle à un côté passant par le sommet opposé, et on utilise les angles alternes-internes et un angle plat (voir les exercices).\n\n**Conséquences**\n- Si on connaît deux angles d'un triangle, on calcule le troisième : $180 −$ (somme des deux autres).\n- Dans un triangle **rectangle**, les deux angles aigus sont complémentaires.\n- Dans un triangle **isocèle**, les deux angles à la base sont égaux.\n- Dans un triangle **équilatéral**, chaque angle mesure $180 ÷ 3 = 60$°.\n\n**Construire à partir de données partielles.** Avec un côté et les deux angles à ses extrémités, on peut construire le triangle… à condition que la somme de ces deux angles soit strictement inférieure à 180°. Le troisième angle est alors imposé. Agrandir un triangle ne change pas ses angles.\n\n*Pour aller plus loin (approfondissement, hors programme 2026 de 5e) : avec trois longueurs, un triangle n'est constructible que si la plus grande est strictement inférieure à la somme des deux autres : c'est l'inégalité triangulaire.*"
     },
     {
       "kind": "manipulation",
@@ -95,8 +95,8 @@
       "prompt": "Dans un triangle ABC, l'angle en A mesure {a}° et l'angle en B mesure {b}°. Calcule la mesure de l'angle en C, en degrés.",
       "answer": "180 - a - b",
       "misconceptions": [
-        { "answer": "360 - a - b", "id": "mc:somme-360", "error": "notion", "feedback": "La somme des trois angles d'un triangle vaut 180°, et non 360° (360°, c'est un tour complet). Ici : $ 180 − {a} − {b} = {180-a-b} $°." },
-        { "answer": "a + b", "id": "mc:somme-deux", "error": "lecture", "feedback": "$ {a} + {b} = {a+b} $ est la somme des deux angles connus. L'angle cherché est ce qui manque pour arriver à 180° : $ 180 − {a+b} = {180-a-b} $°." }
+        { "answer": "360 - a - b", "id": "mc:somme-360", "error": "notion", "feedback": "La somme des trois angles d'un triangle vaut 180°, et non 360° (360°, c'est un tour complet). Recommence en partant de 180°." },
+        { "answer": "a + b", "id": "mc:somme-deux", "error": "lecture", "feedback": "$ {a} + {b} = {a+b} $ est la somme des deux angles connus. L'angle cherché est ce qui manque pour arriver à 180°." }
       ],
       "hints": ["Que vaut la somme des trois angles d'un triangle ?", "Additionne d'abord les deux angles connus : $ {a} + {b} = {a+b} $.", "L'angle en C est ce qu'il manque pour atteindre 180°."],
       "solution": "Angle en C : $ 180 − ({a} + {b}) = 180 − {a+b} = {180-a-b} $°.",
@@ -113,8 +113,8 @@
       "prompt": "Le triangle DEF est isocèle en D : l'angle au sommet principal, en D, mesure {a}°. Calcule la mesure de chacun des deux angles à la base, en E et en F.",
       "answer": "(180 - a)/2",
       "misconceptions": [
-        { "answer": "180 - a", "id": "mc:oubli-partage", "error": "methode", "feedback": "$ 180 − {a} = {180-a} $° est la somme des DEUX angles à la base. Comme ils sont égaux, chacun mesure $ {180-a} ÷ 2 = {(180-a)/2} $°." },
-        { "answer": "180 - 2*a", "id": "mc:isocele-mauvais-angle", "error": "lecture", "feedback": "Tu as considéré que l'angle de {a}° était un angle à la base. Or il est au sommet principal D : ce sont les angles en E et en F qui sont égaux. Chacun mesure $ (180 − {a}) ÷ 2 = {(180-a)/2} $°." }
+        { "answer": "180 - a", "id": "mc:oubli-partage", "error": "methode", "feedback": "$ 180 − {a} = {180-a} $° est la somme des DEUX angles à la base. Comme ils sont égaux, il reste à partager cette somme en deux." },
+        { "answer": "180 - 2*a", "id": "mc:isocele-mauvais-angle", "error": "lecture", "feedback": "Tu as considéré que l'angle de {a}° était un angle à la base. Or il est au sommet principal D : ce sont les angles en E et en F qui sont égaux, et ils se partagent ce qui reste pour arriver à 180°." }
       ],
       "hints": ["Dans un triangle isocèle, les deux angles à la base sont égaux.", "Ensemble, les angles en E et en F mesurent $ 180 − {a} = {180-a} $°.", "Partage {180-a}° en deux angles égaux."],
       "solution": "Les angles en E et en F sont égaux et mesurent ensemble $ 180 − {a} = {180-a} $°. Chacun mesure donc $ {180-a} ÷ 2 = {(180-a)/2} $°.",
@@ -130,9 +130,9 @@
       "prompt": "Programme de construction : tracer un segment [AB] de 6 cm ; tracer en A une demi-droite faisant un angle de 50° avec [AB], et en B une demi-droite faisant un angle de 70° avec [BA] ; elles se coupent en C.",
       "parts": [
         { "type": "numeric", "prompt": "Avant même de construire : combien mesurera l'angle en C, en degrés ?", "answer": 60,
-          "misconceptions": [ { "answer": 240, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles d'un triangle vaut 180°, pas 360° : $ 180 − 50 − 70 = 60 $°." } ] },
+          "misconceptions": [ { "answer": 240, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles d'un triangle vaut 180°, pas 360° : recommence à partir de 180°." } ] },
         { "type": "numeric", "prompt": "Hugo suit le même programme, mais avec AB = 12 cm. Combien mesure l'angle en C de son triangle ?", "answer": 60,
-          "misconceptions": [ { "answer": 120, "id": "mc:angles-taille", "error": "notion", "feedback": "Agrandir un triangle ne change pas ses angles : un angle mesure une ouverture, pas une longueur. Les angles en A et en B mesurent toujours 50° et 70°, donc l'angle en C mesure toujours 60°." } ] }
+          "misconceptions": [ { "answer": 120, "id": "mc:angles-taille", "error": "notion", "feedback": "Agrandir un triangle ne change pas ses angles : un angle mesure une ouverture, pas une longueur. Les angles en A et en B n'ont pas changé : qu'en est-il de l'angle en C ?" } ] }
       ],
       "hints": ["La somme des trois angles vaut 180°.", "Pour Hugo : les demi-droites tracées en A et en B ont exactement les mêmes directions que dans la première construction."],
       "solution": "Angle en C : $ 180 − 50 − 70 = 60 $°. Avec AB = 12 cm, les angles en A et en B sont les mêmes, donc l'angle en C aussi : 60°. Le triangle de Hugo est deux fois plus grand, mais il a la même forme.",
@@ -199,11 +199,11 @@
       "parts": [
         { "type": "numeric", "prompt": "Quel angle l'échelle fait-elle avec le mur, en degrés ?", "answer": 20,
           "misconceptions": [
-            { "answer": 110, "id": "mc:oubli-angle-droit", "error": "lecture", "feedback": "Tu as calculé $ 180 − 70 $ en oubliant le troisième angle : le mur et le sol forment un angle droit, 90°. Il reste $ 180 − 90 − 70 = 20 $°." },
-            { "answer": 200, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles d'un triangle vaut 180°, pas 360° : $ 180 − 90 − 70 = 20 $°." }
+            { "answer": 110, "id": "mc:oubli-angle-droit", "error": "lecture", "feedback": "Tu as calculé $ 180 − 70 $ en oubliant le troisième angle : le mur et le sol forment un angle droit, 90°. Il faut le retirer aussi." },
+            { "answer": 200, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles d'un triangle vaut 180°, pas 360° : recommence à partir de 180°, sans oublier l'angle droit." }
           ] },
         { "type": "numeric", "prompt": "Pour être stable et sûre, une échelle doit faire avec le sol un angle compris entre 65° et 75°. Quel est alors le plus grand angle possible entre l'échelle et le mur ?", "answer": 25,
-          "misconceptions": [ { "answer": 15, "id": "mc:sens-variation", "error": "raisonnement", "feedback": "Les deux angles aigus font ensemble 90° : plus l'angle avec le sol est petit, plus l'angle avec le mur est grand. Le plus grand angle avec le mur correspond donc au plus petit angle avec le sol, 65° : $ 90 − 65 = 25 $°." } ] }
+          "misconceptions": [ { "answer": 15, "id": "mc:sens-variation", "error": "raisonnement", "feedback": "Les deux angles aigus font ensemble 90° : plus l'angle avec le sol est petit, plus l'angle avec le mur est grand. Le plus grand angle avec le mur correspond donc au PLUS PETIT angle avec le sol." } ] }
       ],
       "hints": ["Le mur et le sol sont perpendiculaires : quel angle forment-ils ?", "Dans un triangle rectangle, les deux angles aigus font ensemble $ 180 − 90 = 90 $°.", "Ces deux angles sont complémentaires : si l'un diminue, l'autre augmente d'autant."],
       "solution": "$ 180 − 90 − 70 = 20 $°. Les deux angles aigus d'un triangle rectangle font ensemble 90° : l'angle avec le mur vaut 90° moins l'angle avec le sol. Il est le plus grand quand l'angle avec le sol est le plus petit, 65° : $ 90 − 65 = 25 $°.",
@@ -218,11 +218,11 @@
       "prompt": "Trace un triangle ABC dont l'angle en B mesure 72° et l'angle en C mesure 48°. Place un point D sur le segment [BC] tel que l'angle BAD mesure 30°. Retrouve tous les angles de la figure, sans rapporteur.",
       "parts": [
         { "type": "numeric", "prompt": "Angle BAC :", "answer": 60,
-          "misconceptions": [ { "answer": 240, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles du triangle ABC vaut 180° : $ 180 − 72 − 48 = 60 $°." } ] },
+          "misconceptions": [ { "answer": 240, "id": "mc:somme-360", "error": "notion", "feedback": "La somme des angles du triangle ABC vaut 180°, pas 360°." } ] },
         { "type": "numeric", "prompt": "Angle ADB :", "answer": 78,
-          "misconceptions": [ { "answer": 102, "id": "mc:triangle-confondu", "error": "lecture", "feedback": "102° est l'angle ADC. L'angle ADB se calcule dans le triangle ABD : $ 180 − 72 − 30 = 78 $°." } ] },
+          "misconceptions": [ { "answer": 102, "id": "mc:triangle-confondu", "error": "lecture", "feedback": "Tu as calculé l'angle de l'autre côté de D, l'angle ADC. L'angle ADB se calcule dans le triangle ABD, dont tu connais deux angles." } ] },
         { "type": "numeric", "prompt": "Angle ADC :", "answer": 102,
-          "misconceptions": [ { "answer": 78, "id": "mc:angle-plat", "error": "notion", "feedback": "Les angles ADB et ADC sont adjacents et forment l'angle plat BDC (B, D et C sont alignés) : ils sont supplémentaires, $ 180 − 78 = 102 $°." } ] },
+          "misconceptions": [ { "answer": 78, "id": "mc:angle-plat", "error": "notion", "feedback": "Les angles ADB et ADC sont adjacents et forment l'angle plat BDC (B, D et C sont alignés) : ils sont supplémentaires, pas égaux." } ] },
         { "type": "numeric", "prompt": "Angle DAC :", "answer": 30 },
         { "type": "open", "prompt": "Vérifie tes résultats avec la somme des angles du triangle ADC, puis explique ta démarche.", "minWords": 20,
           "criteria": [
@@ -247,8 +247,8 @@
       "prompt": "Expérience à faire avec une feuille : découpe un triangle, déchire ses trois coins et place-les côte à côte, pointes réunies. Ils forment toujours une ligne droite, un angle plat : un demi-tour de 180°, et non un tour complet. Un triangle a deux angles de {a}° et {b}°. Combien mesure le troisième ?",
       "answer": "180 - a - b",
       "misconceptions": [
-        { "answer": "360 - a - b", "id": "mc:somme-360", "error": "notion", "feedback": "Les trois coins réunis forment un demi-tour (une ligne droite), soit 180°, et non un tour complet. Il reste $ 180 − {a+b} = {180-a-b} $°." },
-        { "answer": "a + b", "id": "mc:somme-deux", "error": "lecture", "feedback": "{a+b}° est la place occupée par les deux coins connus. Le troisième coin remplit ce qui manque pour arriver à 180° : $ 180 − {a+b} = {180-a-b} $°." }
+        { "answer": "360 - a - b", "id": "mc:somme-360", "error": "notion", "feedback": "Les trois coins réunis forment un demi-tour (une ligne droite), soit 180°, et non un tour complet. Recommence à partir de 180°." },
+        { "answer": "a + b", "id": "mc:somme-deux", "error": "lecture", "feedback": "{a+b}° est la place occupée par les deux coins connus. Le troisième coin remplit ce qui manque pour arriver à 180°." }
       ],
       "hints": ["Les trois coins mis côte à côte forment une ligne droite : 180°.", "Les deux coins connus occupent déjà $ {a} + {b} = {a+b} $°."],
       "solution": "Le troisième angle mesure $ 180 − {a} − {b} = {180-a-b} $°.",
@@ -265,7 +265,7 @@
       "answer": 40,
       "misconceptions": [
         { "answer": 55, "id": "mc:isocele-mauvais-angle", "error": "lecture", "feedback": "55° serait la mesure des angles à la base si l'angle au sommet mesurait 70°. Ici, ce sont les DEUX angles à la base qui mesurent 70°." },
-        { "answer": 110, "id": "mc:isocele-un-angle", "error": "methode", "feedback": "Il y a DEUX angles à la base de 70° : $ 70 + 70 = 140 $, il reste $ 180 − 140 = 40 $° pour l'angle au sommet." }
+        { "answer": 110, "id": "mc:isocele-un-angle", "error": "methode", "feedback": "Il y a DEUX angles à la base de 70° : il faut les retirer tous les deux de 180° pour trouver l'angle au sommet." }
       ],
       "hints": ["Dans le labo, les deux angles égaux sont ceux qui touchent le côté de 4 cm.", "Les deux angles à la base occupent $ 70 + 70 = 140 $°."],
       "solution": "$ 180 − 70 − 70 = 40 $°.",
@@ -312,9 +312,9 @@
       "prompt": "Hors du programme 2026 de 5e (inégalité triangulaire). Dans un triangle ABC, AB = 5 cm et BC = 8 cm. Le côté AC mesure un nombre entier de centimètres.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de longueurs entières sont possibles pour AC ?", "answer": 9,
-          "misconceptions": [ { "answer": 11, "id": "mc:triangle-plat", "error": "notion", "feedback": "Avec AC = 3 cm ou AC = 13 cm, les trois points sont alignés : le « triangle » est aplati. Il faut $ 3 < $ AC $ < 13 $ : de 4 à 12 cm, soit 9 longueurs." } ] },
+          "misconceptions": [ { "answer": 11, "id": "mc:triangle-plat", "error": "notion", "feedback": "Avec AC = 3 cm ou AC = 13 cm, les trois points sont alignés : le « triangle » est aplati. Les inégalités sont strictes : $ 3 < $ AC $ < 13 $." } ] },
         { "type": "expression", "form": "any", "prompt": "Généralise : si AB = $a$ et BC = $b$, avec $a$ et $b$ entiers et $a < b$, combien de longueurs entières sont possibles pour AC ? Exprime ce nombre en fonction de $a$.", "answer": "2a - 1",
-          "misconceptions": [ { "answer": "2a + 1", "id": "mc:triangle-plat", "error": "notion", "feedback": "Les deux cas limites ($b − a$ et $b + a$) donnent un triangle aplati : il faut les exclure. Vérifie avec $a = 5$ : on doit trouver 9." } ] }
+          "misconceptions": [ { "answer": "2a + 1", "id": "mc:triangle-plat", "error": "notion", "feedback": "Les deux cas limites ($b − a$ et $b + a$) donnent un triangle aplati : il faut les exclure. Vérifie ta formule avec $a = 5$ et $b = 8$ en comptant les longueurs possibles." } ] }
       ],
       "hints": ["Il faut $ 8 − 5 < $ AC $ < 8 + 5 $.", "Compte les entiers strictement compris entre 3 et 13.", "En général : les entiers strictement compris entre $b − a$ et $b + a$."],
       "solution": "$ 3 < $ AC $ < 13 $ : AC peut valoir 4, 5, …, 12, soit 9 longueurs. En général, AC est strictement compris entre $b − a$ et $b + a$ : de $b − a + 1$ à $b + a − 1$, cela fait $ 2a − 1 $ longueurs. Surprise : le résultat ne dépend pas de $b$ !",
@@ -330,7 +330,7 @@
       "constraints": ["a + b < 170", "a + b != 90"],
       "prompt": "Dans un triangle ABC, l'angle en A mesure {a}° et l'angle en B mesure {b}°. On prolonge le côté [BC] au-delà de C, jusqu'à un point E. Combien mesure l'angle ACE, appelé angle « extérieur » en C ?",
       "answer": "a + b",
-      "misconceptions": [ { "answer": "180 - a - b", "id": "mc:angle-interieur", "error": "lecture", "feedback": "$ 180 − {a} − {b} = {180-a-b} $° est l'angle INTÉRIEUR en C (l'angle ACB). L'angle extérieur ACE forme avec lui un angle plat : $ 180 − {180-a-b} = {a+b} $°." } ],
+      "misconceptions": [ { "answer": "180 - a - b", "id": "mc:angle-interieur", "error": "lecture", "feedback": "$ 180 − {a} − {b} = {180-a-b} $° est l'angle INTÉRIEUR en C (l'angle ACB). L'angle extérieur ACE forme avec lui un angle plat : il reste un calcul à faire." } ],
       "justify": { "required": true, "minWords": 8, "prompt": "Que remarques-tu ? Énonce une règle valable pour tous les triangles et justifie-la." },
       "hints": ["Commence par calculer l'angle intérieur ACB.", "B, C et E sont alignés : les angles ACB et ACE forment un angle plat.", "Compare ton résultat avec $ {a} + {b} $…"],
       "solution": "Angle ACB : $ 180 − {a} − {b} = {180-a-b} $°. Angle plat : ACE $ = 180 − {180-a-b} = {a+b} $°. Règle : l'angle extérieur en un sommet est égal à la somme des angles intérieurs des deux autres sommets. Preuve : ACE $= 180 −$ ACB, et ACB $= 180 −$ (A + B), donc ACE $=$ A + B.",
@@ -347,7 +347,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Nombre de triangles de périmètre 12 cm :", "answer": 3,
           "misconceptions": [
-            { "answer": 6, "id": "mc:triangle-plat", "error": "notion", "feedback": "Les triplets 1-5-6, 2-4-6 et 3-3-6 donnent des « triangles » aplatis : $1 + 5 = 6$, $2 + 4 = 6$, $3 + 3 = 6$. Il ne reste que 2-5-5, 3-4-5 et 4-4-4." },
+            { "answer": 6, "id": "mc:triangle-plat", "error": "notion", "feedback": "Les triplets 1-5-6, 2-4-6 et 3-3-6 donnent des « triangles » aplatis : $1 + 5 = 6$, $2 + 4 = 6$, $3 + 3 = 6$. Il faut les retirer de ta liste." },
             { "answer": 10, "id": "mc:ordre-compte", "error": "methode", "feedback": "Tu as sans doute compté 3-4-5 et 4-3-5 comme deux triangles différents. Range les côtés dans l'ordre croissant pour ne compter chaque triangle qu'une fois." }
           ] },
         { "type": "numeric", "prompt": "Et pour un périmètre de 13 cm ?", "answer": 5 },
@@ -372,9 +372,9 @@
       "prompt": "Généralisation : la somme des angles d'un polygone. Dans un polygone convexe, on trace depuis un même sommet toutes les diagonales possibles : le polygone est découpé en triangles.",
       "parts": [
         { "type": "numeric", "prompt": "En combien de triangles un pentagone (5 côtés) est-il découpé ainsi ?", "answer": 3,
-          "misconceptions": [ { "answer": 5, "id": "mc:diagonales-voisins", "error": "raisonnement", "feedback": "Depuis un sommet, on ne peut tracer de diagonale ni vers lui-même ni vers ses deux voisins : il n'y a que 2 diagonales, qui découpent le pentagone en 3 triangles." } ] },
+          "misconceptions": [ { "answer": 5, "id": "mc:diagonales-voisins", "error": "raisonnement", "feedback": "Depuis un sommet, on ne peut tracer de diagonale ni vers lui-même ni vers ses deux voisins : compte les diagonales possibles, puis les triangles qu'elles découpent." } ] },
         { "type": "numeric", "prompt": "Quelle est la somme des angles d'un pentagone, en degrés ?", "answer": 540,
-          "misconceptions": [ { "answer": 900, "id": "mc:triangles-centre", "error": "raisonnement", "feedback": "Si tu as découpé le pentagone en 5 triangles à partir d'un point intérieur, les angles autour de ce point (360° en tout) ne sont pas des angles du pentagone : il faut les retirer. $ 5 × 180 − 360 = 540 $°." } ] },
+          "misconceptions": [ { "answer": 900, "id": "mc:triangles-centre", "error": "raisonnement", "feedback": "Si tu as découpé le pentagone en 5 triangles à partir d'un point intérieur, les angles autour de ce point (360° en tout) ne sont pas des angles du pentagone : il faut les retirer." } ] },
         { "type": "numeric", "prompt": "Dans un pentagone régulier, tous les angles sont égaux. Combien mesure chacun ?", "answer": 108 },
         { "type": "expression", "form": "any", "prompt": "Écris la somme des angles d'un polygone convexe à $n$ côtés, en fonction de $n$.", "answer": "180(n - 2)",
           "misconceptions": [ { "answer": "180n", "id": "mc:triangles-centre", "error": "raisonnement", "feedback": "Depuis un sommet, on obtient $n − 2$ triangles, et non $n$. Vérifie avec $ n = 3 $ : un triangle, 180°." } ] },

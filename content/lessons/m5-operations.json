@@ -358,6 +358,7 @@
       "prompt": "Dans le nombre {a}★{c}, le chiffre des dizaines a été effacé (★). Quels chiffres peut-on écrire à la place de ★ pour que le nombre soit divisible par 3 ? Donne trois réponses.",
       "count": 3,
       "predicate": "estentier(v) and v >= 0 and v <= 9 and mod(a + c + v; 3) = 0",
+      "correctFeedback": "Toutes tes réponses conviennent : les chiffres qui marchent vont de 3 en 3.",
       "hints": ["Un nombre est divisible par 3 si la somme de ses chiffres est un multiple de 3.", "La somme des chiffres vaut $ {a} + {c} + ★ = {a+c} + ★ $.", "Les chiffres qui conviennent vont de 3 en 3."],
       "solution": "La somme des chiffres est $ {a+c} + ★ $ : elle doit être un multiple de 3. Les chiffres qui conviennent sont espacés de 3 : {mod(3 - mod(a+c;3);3)}, {mod(3 - mod(a+c;3);3) + 3} et {mod(3 - mod(a+c;3);3) + 6} (et aussi 9 quand la somme {a+c} est déjà un multiple de 3).",
       "selfTest": [
@@ -372,7 +373,7 @@
       "count": 2,
       "predicate": "estentier(v) and v > 1 and v < 50 and v != 12 and nbdiv(v) = 6",
       "hints": ["Pour lister les diviseurs d'un nombre, cherche-les par paires : $18 = 1 × 18 = 2 × 9 = 3 × 6$.", "Essaie des nombres qui ont beaucoup de petits diviseurs, sans en avoir trop : 18, 20, 28…", "Attention : un carré comme 16 a un nombre IMPAIR de diviseurs ($4 × 4$ ne compte qu'une fois)."],
-      "solution": "Les nombres inférieurs à 50 qui ont exactement six diviseurs sont 12, 18, 20, 28, 32, 44, 45 et 50. Par exemple, $18$ : 1, 2, 3, 6, 9, 18 ; $20$ : 1, 2, 4, 5, 10, 20 ; $32$ : 1, 2, 4, 8, 16, 32.",
+      "solution": "Les nombres inférieurs à 50 qui ont exactement six diviseurs sont 12, 18, 20, 28, 32, 44 et 45 (50 en a six aussi, mais il n'est pas inférieur à 50). Par exemple, $18$ : 1, 2, 3, 6, 9, 18 ; $20$ : 1, 2, 4, 5, 10, 20 ; $32$ : 1, 2, 4, 8, 16, 32.",
       "selfTest": [
         { "response": { "values": ["18", "20"] }, "expect": "correct" },
         { "response": { "values": ["16", "24"] }, "expect": "incorrect" }
@@ -384,9 +385,9 @@
       "prompt": "Pourquoi le critère de divisibilité par 9 marche-t-il ? Prenons un nombre de trois chiffres : $a$ centaines, $b$ dizaines et $c$ unités. Il vaut $100a + 10b + c$. Par exemple, 774 vaut $100 × 7 + 10 × 7 + 4$.",
       "parts": [
         { "type": "expression", "form": "any", "prompt": "On écrit $100a = 99a + a$ et $10b = 9b + b$. Complète : $100a + 10b + c = 99a + 9b + (…)$. Écris seulement ce qui va dans la parenthèse.", "answer": "a + b + c",
-          "misconceptions": [ { "answer": "c", "id": "mc:oubli-reste", "error": "calcul", "feedback": "Il reste $a$ (de $100a = 99a + a$) et $b$ (de $10b = 9b + b$), en plus de $c$." } ] },
+          "misconceptions": [ { "answer": "c", "id": "mc:oubli-reste", "error": "calcul", "feedback": "Tu as oublié des morceaux : quand on écrit $100a = 99a + a$ et $10b = 9b + b$, il reste quelque chose en plus de $99a$ et de $9b$." } ] },
         { "type": "text", "prompt": "Le nombre $99a + 9b$ est-il toujours un multiple de 9, quels que soient les chiffres $a$ et $b$ ? Réponds par oui ou par non.", "accept": ["oui", "oui toujours", "toujours"],
-          "misconceptions": [ { "answer": "non", "id": "mc:multiple-somme", "error": "raisonnement", "feedback": "$99a = 9 × 11a$ et $9b = 9 × b$ : ce sont deux multiples de 9, et leur somme $9 × (11a + b)$ en est un aussi." } ] },
+          "misconceptions": [ { "answer": "non", "id": "mc:multiple-somme", "error": "raisonnement", "feedback": "Écris $99a$ et $9b$ sous la forme « 9 × … » : que peux-tu dire de chacun, puis de leur somme ?" } ] },
         { "type": "open", "prompt": "Rédige la preuve : pourquoi un nombre de trois chiffres est-il divisible par 9 exactement quand la somme de ses chiffres l'est ?", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "J'écris $99a + 9b = 9 × (11a + b)$ : c'est un multiple de 9", "keywords": [["9(11a", "9 × (11a", "9 x (11a", "multiple de 9", "9 fois"]] },

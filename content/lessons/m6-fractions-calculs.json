@@ -1,0 +1,495 @@
+{
+  "id": "m6-fractions-calculs",
+  "chapter": "6e-m-fractions-calculs",
+  "title": "Calculer avec des fractions : additionner, soustraire, multiplier par un entier",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.fractions.addition", "m6.fractions.produit-entier", "m6.fractions.problemes"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Additionner et soustraire des fractions de même dénominateur, ou dont un dénominateur est un multiple de l'autre ; multiplier une fraction par un nombre entier ; résoudre et inventer des problèmes avec des fractions.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La potion de Merlin",
+      "body": "Pour sa potion, l'apprenti sorcier verse $1/4$ de litre de jus de citrouille, puis $1/2$ litre de sirop de myrtille.\n\nIl annonce fièrement : « $1/4 + 1/2$, ça fait $2/6$ de litre ! »\n\nMerlin éclate de rire : « Tu as versé un demi-litre de sirop, et ta potion en contiendrait moins ? »\n\nOù est l'erreur ? Quelle quantité y a-t-il vraiment dans le chaudron ?",
+      "figure": {
+        "alt": "Deux barres représentant chacune 1 litre : la première est partagée en 4 parts dont 1 est colorée, la seconde en 2 parts dont 1 est colorée.",
+        "w": 400, "h": 170,
+        "frame": { "x": [-0.2, 8.2], "y": [-0.3, 3.9] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 2, "w": 2, "h": 1, "fill": "orange" },
+          { "type": "rect", "x": 0, "y": 2, "w": 8, "h": 1 },
+          { "type": "segment", "from": [2, 2], "to": [2, 3] },
+          { "type": "segment", "from": [4, 2], "to": [4, 3] },
+          { "type": "segment", "from": [6, 2], "to": [6, 3] },
+          { "type": "text", "x": 4, "y": 3.5, "text": "jus de citrouille : 1/4 L", "size": "s" },
+          { "type": "rect", "x": 0, "y": 0, "w": 4, "h": 1, "fill": "violet" },
+          { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 1 },
+          { "type": "segment", "from": [4, 0], "to": [4, 1] },
+          { "type": "text", "x": 4, "y": 1.5, "text": "sirop de myrtille : 1/2 L", "size": "s" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧩",
+          "title": "Même dénominateur : on compte les parts",
+          "body": "$2/7 + 3/7$ : des septièmes plus des septièmes, ce sont toujours des septièmes ! On additionne les numérateurs et on **garde** le dénominateur : $2/7 + 3/7 = 5/7$. Pour soustraire, c'est pareil : $5/8 − 2/8 = 3/8$. Le dénominateur donne la **taille** des parts : il ne s'additionne pas.",
+          "figure": {
+            "alt": "Une barre partagée en 7 parts égales : 2 parts bleues, puis 3 parts orange.",
+            "w": 380, "h": 100,
+            "frame": { "x": [-0.2, 7.2], "y": [-0.2, 1.2] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 2, "h": 1, "fill": "bleu" },
+              { "type": "rect", "x": 2, "y": 0, "w": 3, "h": 1, "fill": "orange" },
+              { "type": "rect", "x": 0, "y": 0, "w": 7, "h": 1 },
+              { "type": "segment", "from": [1, 0], "to": [1, 1] },
+              { "type": "segment", "from": [2, 0], "to": [2, 1] },
+              { "type": "segment", "from": [3, 0], "to": [3, 1] },
+              { "type": "segment", "from": [4, 0], "to": [4, 1] },
+              { "type": "segment", "from": [5, 0], "to": [5, 1] },
+              { "type": "segment", "from": [6, 0], "to": [6, 1] }
+            ]
+          }
+        },
+        {
+          "emoji": "🔁",
+          "title": "Un dénominateur multiple de l'autre",
+          "body": "Pour $1/4 + 1/2$, les parts n'ont pas la même taille. Mais 4 est un multiple de 2 : on écrit $1/2 = 2/4$ (on multiplie en haut et en bas par 2). Les parts ont alors la même taille : $1/4 + 2/4 = 3/4$. La potion contient $3/4$ de litre !",
+          "reveal": {
+            "question": "Devine : $1/2 + 1/2$, est-ce $2/4$ ?",
+            "answer": "Non ! Deux moitiés font une unité entière : $1/2 + 1/2 = 2/2 = 1$. Et $2/4$, ce n'est qu'une moitié. Voilà pourquoi on n'additionne jamais les dénominateurs."
+          }
+        },
+        {
+          "emoji": "1️⃣",
+          "title": "Avec un nombre entier",
+          "body": "Un nombre entier peut s'écrire comme une fraction : $1 = 4/4$, $2 = 8/4$, $3 = 9/3$. On peut alors calculer : $2 − 3/4 = 8/4 − 3/4 = 5/4$, et $1 + 2/3 = 3/3 + 2/3 = 5/3$.",
+          "example": "Il reste $1 − 3/8 = 8/8 − 3/8 = 5/8$ du gâteau."
+        },
+        {
+          "emoji": "✖️",
+          "title": "Multiplier une fraction par un entier",
+          "body": "$3 × (2/5)$, c'est $2/5 + 2/5 + 2/5$ : trois fois deux cinquièmes, soit six cinquièmes. On multiplie le **numérateur** par l'entier et on **garde** le dénominateur : $3 × (2/5) = 6/5$. Les parts gardent la même taille : il y en a seulement plus.",
+          "example": "$4 × (3/8) = 12/8$, qu'on peut aussi écrire $3/2$."
+        },
+        {
+          "emoji": "🧠",
+          "title": "Résoudre un problème",
+          "body": "Repère le **tout** (la pizza, le trajet, la classe) : il vaut 1. Dessine une barre et colorie les fractions. Calcule, puis vérifie : des parts d'un même tout ne peuvent pas dépasser 1 en tout. Ce qui reste, c'est 1 moins les parts déjà utilisées.",
+          "reveal": {
+            "question": "Devine : peut-on manger $1/2$ puis $3/4$ de la même pizza ?",
+            "answer": "Non ! $1/2 + 3/4 = 2/4 + 3/4 = 5/4$ : c'est plus qu'une pizza entière. Il faudrait une deuxième pizza."
+          }
+        },
+        {
+          "emoji": "✍️",
+          "title": "Inventer un problème",
+          "body": "Un bon problème de fractions a un **tout** bien identifié, des **fractions** de ce même tout et une **question** précise. Exemple : « Tom lit $1/3$ de son livre lundi et $1/6$ mardi. Quelle fraction du livre a-t-il lue ? » Réponse : $2/6 + 1/6 = 3/6$, soit la moitié du livre."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le jardin de Mme Lopez",
+      "steps": [
+        { "text": "Énoncé : dans son jardin, Mme Lopez plante des tomates sur $1/3$ de la surface et des salades sur $1/6$. Le reste est pour les fleurs. Quelle fraction du jardin reste pour les fleurs ?" },
+        { "text": "Les dénominateurs 3 et 6 sont différents, mais 6 est un multiple de 3. On écrit $1/3$ en sixièmes, en multipliant en haut et en bas par 2 :", "math": "1/3 = 2/6" },
+        {
+          "text": "Tomates et salades occupent ensemble :",
+          "math": "2/6 + 1/6 = 3/6",
+          "figure": {
+            "alt": "Une barre partagée en 6 parts égales : 2 parts pour les tomates, 1 part pour les salades, 3 parts pour les fleurs.",
+            "w": 480, "h": 100,
+            "frame": { "x": [-0.2, 12.2], "y": [-0.2, 1.6] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 4, "h": 1.2, "fill": "rouge", "label": "tomates" },
+              { "type": "rect", "x": 4, "y": 0, "w": 2, "h": 1.2, "fill": "vert", "label": "salades" },
+              { "type": "rect", "x": 6, "y": 0, "w": 6, "h": 1.2, "fill": "violet", "label": "fleurs" },
+              { "type": "segment", "from": [2, 0], "to": [2, 1.2] },
+              { "type": "segment", "from": [8, 0], "to": [8, 1.2] },
+              { "type": "segment", "from": [10, 0], "to": [10, 1.2] }
+            ]
+          }
+        },
+        { "text": "Le jardin entier vaut 1, c'est-à-dire $6/6$. Il reste :", "math": "6/6 − 3/6 = 3/6" },
+        { "text": "Réponse : les fleurs occupent $3/6$ du jardin, c'est-à-dire la moitié ($3/6 = 1/2$). Contrôle sur le dessin : 3 parts sur 6 restent libres." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Avant de calculer, regarde les dénominateurs : sont-ils égaux ? L'un est-il un multiple de l'autre ?",
+      "exercises": ["m6-fractions-calculs-meme-den", "m6-fractions-calculs-barres", "m6-fractions-calculs-multiples", "m6-fractions-calculs-associer", "m6-fractions-calculs-fois-entier", "m6-fractions-calculs-estimer"]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'inventer",
+      "exercises": ["m6-fractions-calculs-inventer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes : le jardin partagé et la gourde",
+      "exercises": ["m6-fractions-calculs-jardin", "m6-fractions-calculs-gourde"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la soirée pizzas",
+      "body": "Tu organises une soirée pizzas avec tes amis. Ton rôle : vérifier qu'il y en a assez… et prévoir ce qui restera pour le petit-déjeuner !",
+      "exercises": ["m6-fractions-calculs-pizzas"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Pour additionner ou soustraire des fractions, les parts doivent avoir la même taille : il faut le même dénominateur. Si un dénominateur est un multiple de l'autre, on transforme une seule fraction ($1/2 = 2/4$). On additionne alors les numérateurs et on garde le dénominateur. Pour multiplier une fraction par un entier, on multiplie seulement le numérateur.\n\n- **$1/4 + 1/2 = 2/6$ ?** Non : on n'additionne jamais les dénominateurs. $1/4 + 2/4 = 3/4$.\n- **Changer le dénominateur sans changer le numérateur.** $1/2$ ne vaut pas $1/4$ : $1/2 = 2/4$.\n- **$3 × (2/5) = 6/15$ ?** Non : multiplier en haut et en bas redonne une fraction égale à $2/5$. $3 × (2/5) = 6/5$.\n- **Oublier le tout.** Des parts d'un même tout ne peuvent pas dépasser 1."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des sommes, des différences et des produits de fractions dans quelques jours, avec d'autres nombres."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Trois fractions à enchaîner, puis une course très lente entre un escargot et une limace.",
+      "exercises": ["m6-fractions-calculs-trois", "m6-fractions-calculs-escargot"]
+    },
+    "expert": {
+      "intro": "Facultatif : retrouver l'argent de départ à partir de ce qui reste, puis compléter un carré magique de fractions.",
+      "exercises": ["m6-fractions-calculs-argent", "m6-fractions-calculs-carre-magique"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-fractions-calculs-meme-den", "type": "composite", "skill": "m6.fractions.addition", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:somme-num-den", "mc:un-en-fraction"], "expectedSeconds": 120,
+      "params": { "n": { "choice": [5, 7, 9, 11] }, "a": { "int": [1, 6] }, "b": { "int": [1, 6] }, "c": { "int": [3, 9] }, "d": { "int": [1, 8] }, "e": { "int": [1, 8] } },
+      "constraints": ["d < c", "e < n"],
+      "prompt": "Même dénominateur : calcule et écris chaque résultat sous forme de fraction.",
+      "parts": [
+        { "type": "numeric", "prompt": "$ {a}/{n} + {b}/{n} = … $", "answer": "(a+b)/n",
+          "misconceptions": [ { "answer": "(a+b)/(2*n)", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les dénominateurs. Le dénominateur dit la TAILLE des parts : des parts de taille $ 1/{n} $ ajoutées à des parts de taille $ 1/{n} $ gardent la même taille. Seul leur nombre change." } ] },
+        { "type": "numeric", "prompt": "$ {c}/{n} − {d}/{n} = … $", "answer": "(c-d)/n",
+          "misconceptions": [ { "answer": "c-d", "id": "mc:oubli-denominateur", "error": "forme", "feedback": "Tu as compté des parts, mais tu as oublié leur taille : écris aussi le dénominateur." } ] },
+        { "type": "numeric", "prompt": "$ 1 − {e}/{n} = … $", "answer": "(n-e)/n",
+          "misconceptions": [ { "answer": "(1-e)/n", "id": "mc:un-en-fraction", "error": "methode", "feedback": "Avant de soustraire, écris 1 comme une fraction de dénominateur {n} : en combien de parts égales l'unité entière est-elle partagée ?" } ] }
+      ],
+      "hints": ["Même dénominateur : on additionne (ou on soustrait) les numérateurs, et on garde le dénominateur.", "Le dénominateur ne change pas : il donne la taille des parts.", "Une unité entière, c'est $ {n}/{n} $."],
+      "solution": "$ {a}/{n} + {b}/{n} = {a+b}/{n} $ ; $ {c}/{n} − {d}/{n} = {c-d}/{n} $ ; $ 1 − {e}/{n} = {n}/{n} − {e}/{n} = {n-e}/{n} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a+b}/{n}" }, { "value": "{c-d}/{n}" }, { "value": "{n-e}/{n}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a+b}/{2*n}" }, { "value": "{c-d}/{n}" }, { "value": "{n-e}/{n}" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-barres", "type": "numeric", "skill": "m6.fractions.addition", "skills": ["m6.fractions.egalites"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:somme-num-den", "mc:oubli-numerateur"], "expectedSeconds": 120,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [1, 2] } },
+      "prompt": "La barre représente une unité, partagée en huitièmes. En bleu : $ {a}/8 $ de la barre. En orange : $ {b}/4 $ de la barre. Quelle fraction de la barre est coloriée en tout ?",
+      "figure": {
+        "alt": "Une barre partagée en 8 parts égales : à gauche des parts bleues, puis des parts orange.",
+        "w": 420, "h": 110,
+        "frame": { "x": [-0.2, 8.2], "y": [-0.2, 1.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": "{a}", "h": 1.2, "fill": "bleu" },
+          { "type": "rect", "x": "{a}", "y": 0, "w": "{2*b}", "h": 1.2, "fill": "orange" },
+          { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 1.2 },
+          { "type": "segment", "from": [1, 0], "to": [1, 1.2] },
+          { "type": "segment", "from": [2, 0], "to": [2, 1.2] },
+          { "type": "segment", "from": [3, 0], "to": [3, 1.2] },
+          { "type": "segment", "from": [4, 0], "to": [4, 1.2] },
+          { "type": "segment", "from": [5, 0], "to": [5, 1.2] },
+          { "type": "segment", "from": [6, 0], "to": [6, 1.2] },
+          { "type": "segment", "from": [7, 0], "to": [7, 1.2] }
+        ]
+      },
+      "answer": "(a+2*b)/8",
+      "misconceptions": [
+        { "answer": "(a+b)/12", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les numérateurs et les dénominateurs. Regarde la barre : en combien de parts est-elle partagée ?" },
+        { "answer": "(a+b)/8", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Tu as écrit $ {b}/4 $ en huitièmes sans changer son numérateur. Sur la barre, compte combien de huitièmes la partie orange recouvre." }
+      ],
+      "hints": ["Un quart, c'est combien de huitièmes ? Regarde la barre.", "Écris $ {b}/4 $ en huitièmes : multiplie le haut et le bas par 2.", "Additionne ensuite les huitièmes."],
+      "solution": "$ {b}/4 = {2*b}/8 $ : la partie orange couvre {2*b} huitièmes. En tout : $ {a}/8 + {2*b}/8 = {a+2*b}/8 $.",
+      "selfTest": [
+        { "response": { "value": "{a+2*b}/8" }, "expect": "correct" },
+        { "response": { "value": "{a+b}/12" }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-multiples", "type": "steps", "mode": "calcul", "skill": "m6.fractions.addition", "skills": ["m6.fractions.egalites"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:somme-num-den", "mc:oubli-numerateur"], "expectedSeconds": 150,
+      "params": { "b": { "choice": [2, 3, 4, 5] }, "k": { "choice": [2, 3] }, "a": { "int": [1, 4] }, "c": { "int": [1, 14] } },
+      "constraints": ["a < b", "c < b*k", "mod(c;k) != 0"],
+      "start": "a/b + c/(b*k)", "minSteps": 2,
+      "prompt": "Calcule $ {a}/{b} + {c}/{b*k} $. Commence par écrire $ {a}/{b} $ avec le dénominateur {b*k}. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "(a+c)/(b+b*k)", "id": "mc:somme-num-den", "error": "notion", "feedback": "tu as additionné les numérateurs entre eux et les dénominateurs entre eux. Les parts n'ont pas la même taille : écris d'abord les deux fractions avec le même dénominateur." },
+        { "answer": "(a+c)/(b*k)", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "tu as changé le dénominateur de $ {a}/{b} $ sans changer son numérateur. Ce que l'on fait en bas, on le fait aussi en haut." }
+      ],
+      "hints": ["Par combien multiplie-t-on {b} pour obtenir {b*k} ?", "Multiplie le numérateur ET le dénominateur de $ {a}/{b} $ par {k}.", "Quand les deux fractions ont le même dénominateur, additionne les numérateurs."],
+      "solution": "$ {a}/{b} = ({a} × {k})/({b} × {k}) = {a*k}/{b*k} $, donc $ {a}/{b} + {c}/{b*k} = {a*k}/{b*k} + {c}/{b*k} = {a*k+c}/{b*k} $.",
+      "selfTest": [
+        { "response": { "lines": ["{a*k}/{b*k} + {c}/{b*k}", "{a*k+c}/{b*k}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a+c}/{b+b*k}"] }, "expect": "mc:somme-num-den" },
+        { "response": { "lines": ["{a}/{b*k} + {c}/{b*k}", "{a+c}/{b*k}"] }, "expect": "mc:oubli-numerateur" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-associer", "type": "match", "skill": "m6.fractions.addition", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:somme-num-den", "mc:entier-numerateur"], "expectedSeconds": 240,
+      "prompt": "Associe chaque calcul à son résultat. Attention, certains résultats sont des pièges !",
+      "leftTitle": "Calcul", "rightTitle": "Résultat",
+      "left": [
+        { "id": "l1", "label": "$1/2 + 1/4$" },
+        { "id": "l2", "label": "$3/5 + 1/10$" },
+        { "id": "l3", "label": "$5/6 − 1/3$" },
+        { "id": "l4", "label": "$2 − 1/3$" },
+        { "id": "l5", "label": "$7/8 − 1/4$" }
+      ],
+      "right": [
+        { "id": "r1", "label": "3/4" },
+        { "id": "r2", "label": "7/10" },
+        { "id": "r3", "label": "1/2" },
+        { "id": "r4", "label": "5/3" },
+        { "id": "r5", "label": "5/8" },
+        { "id": "r6", "label": "2/6" },
+        { "id": "r7", "label": "4/15" },
+        { "id": "r8", "label": "1/3" },
+        { "id": "r9", "label": "4/3" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" },
+      "misconceptions": [
+        { "pair": ["l1", "r6"], "id": "mc:somme-num-den", "error": "notion", "feedback": "Pour $1/2 + 1/4$, tu as additionné les numérateurs et les dénominateurs. Ton résultat serait plus petit que $1/2$ : impossible !" },
+        { "pair": ["l2", "r7"], "id": "mc:somme-num-den", "error": "notion", "feedback": "Pour $3/5 + 1/10$, tu as additionné les dénominateurs. Écris d'abord $3/5$ en dixièmes." },
+        { "pair": ["l3", "r9"], "id": "mc:somme-num-den", "error": "notion", "feedback": "Pour $5/6 − 1/3$, tu as soustrait les dénominateurs. Écris d'abord $1/3$ en sixièmes." },
+        { "pair": ["l4", "r8"], "id": "mc:entier-numerateur", "error": "methode", "feedback": "Pour $2 − 1/3$, tu as enlevé 1 au numérateur, comme si 2 valait $2/3$. Écris d'abord 2 en tiers." }
+      ],
+      "hints": ["Dans chaque calcul, l'un des dénominateurs est un multiple de l'autre : écris les deux fractions avec le plus grand.", "Un nombre entier s'écrit aussi en tiers : $1 = 3/3$.", "Vérifie avec un ordre de grandeur : $1/2 + 1/4$ doit être plus grand que $1/2$."],
+      "solution": "$1/2 + 1/4 = 2/4 + 1/4 = 3/4$. $3/5 + 1/10 = 6/10 + 1/10 = 7/10$. $5/6 − 1/3 = 5/6 − 2/6 = 3/6 = 1/2$. $2 − 1/3 = 6/3 − 1/3 = 5/3$. $7/8 − 1/4 = 7/8 − 2/8 = 5/8$.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r6", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" } }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-fois-entier", "type": "table", "skill": "m6.fractions.produit-entier", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:multiplie-haut-bas", "mc:somme-num-den"], "expectedSeconds": 180,
+      "params": { "k": { "int": [2, 5] }, "a": { "int": [1, 4] }, "b": { "choice": [5, 7, 9] }, "m": { "int": [2, 7] } },
+      "constraints": ["a < b"],
+      "prompt": "Multiplier une fraction par un entier, c'est l'additionner plusieurs fois. Complète le tableau (écris chaque résultat sous forme de fraction ou de nombre entier).",
+      "columns": ["Calcul", "Résultat"],
+      "rows": [ ["$ {k} × ({a}/{b}) $", "?r0c1"], ["$ {m} × (3/4) $", "?r1c1"], ["$ 2/3 + 2/3 + 2/3 + 2/3 $", "?r2c1"], ["$ 6 × (1/6) $", "?r3c1"] ],
+      "cells": {
+        "r0c1": { "answer": "k*a/b", "misconceptions": [ { "answer": "a/b", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le numérateur ET le dénominateur : cela donne une fraction égale à celle du départ, pas {k} fois plus. Les parts gardent la même taille : seul leur nombre est multiplié." } ] },
+        "r1c1": { "answer": "3*m/4", "misconceptions": [ { "answer": "3/4", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le numérateur ET le dénominateur : la fraction n'a pas changé. Seul le nombre de quarts est multiplié." } ] },
+        "r2c1": { "answer": "8/3", "misconceptions": [ { "answer": "8/12", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les dénominateurs. Quatre fois deux tiers, ce sont toujours des tiers : seul leur nombre change." } ] },
+        "r3c1": { "answer": 1, "misconceptions": [ { "answer": "1/6", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut et le bas par 6 : la fraction n'a pas changé. Que forment six parts de taille $1/6$ ?" } ] }
+      },
+      "hints": ["Multiplier par un entier, c'est additionner plusieurs fois la même fraction.", "On multiplie le numérateur par l'entier ; le dénominateur, lui, ne change pas.", "Six sixièmes forment une unité entière."],
+      "solution": "$ {k} × ({a}/{b}) = {k*a}/{b} $. $ {m} × (3/4) = {3*m}/4 $. $2/3 + 2/3 + 2/3 + 2/3 = 4 × (2/3) = 8/3$. $6 × (1/6) = 6/6 = 1$.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{k*a}/{b}", "r1c1": "{3*m}/4", "r2c1": "8/3", "r3c1": "1" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{a}/{b}", "r1c1": "{3*m}/4", "r2c1": "8/3", "r3c1": "1" } }, "expect": "mc:multiplie-haut-bas" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-estimer", "type": "qcm", "skill": "m6.fractions.addition", "skills": ["m6.fractions.comparer"], "track": "classe", "role": "verification", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:somme-num-den"], "expectedSeconds": 45,
+      "params": { "b": { "choice": [4, 6, 8] }, "a": { "int": [3, 7] }, "d": { "choice": [3, 5] }, "c": { "int": [2, 4] } },
+      "constraints": ["2*a > b", "a < b", "2*c > d", "c < d"],
+      "prompt": "Vérification rapide, **sans calculer** : $ {a}/{b} + {c}/{d} $ est…",
+      "choices": [
+        { "text": "plus grand que 1", "correct": true, "feedback": "Oui : chaque fraction est plus grande que la moitié, donc leur somme dépasse deux moitiés, c'est-à-dire 1." },
+        { "text": "plus petit que 1, car $ {a+c}/{b+d} $ est plus petit que 1", "correct": false, "error": "notion", "misconception": "mc:somme-num-den", "feedback": "On n'additionne pas les dénominateurs ! Compare plutôt chaque fraction à $1/2$ : que se passe-t-il quand on ajoute deux nombres plus grands qu'une moitié ?" },
+        { "text": "égal à 1", "correct": false, "error": "raisonnement", "feedback": "Compare chaque fraction à $1/2$ : chacune est-elle plus petite ou plus grande que la moitié ?" }
+      ],
+      "hints": ["Compare $ {a}/{b} $ à la moitié : {a} est-il plus grand que la moitié de {b} ?", "Si deux nombres dépassent chacun $1/2$, que peut-on dire de leur somme ?"],
+      "solution": "$ {a}/{b} $ est plus grand que $1/2$, car {a} est plus grand que la moitié de {b}. De même, $ {c}/{d} $ est plus grand que $1/2$. Deux nombres plus grands que $1/2$ ont une somme plus grande que $1/2 + 1/2 = 1$.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:somme-num-den" } ]
+    },
+    {
+      "id": "m6-fractions-calculs-inventer", "type": "open", "skill": "m6.fractions.problemes", "skills": ["m6.fractions.addition"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "expectedSeconds": 420, "minWords": 25,
+      "prompt": "À toi d'être l'auteur ! Invente un petit problème de la vie courante qui se résout en calculant $1/4 + 1/2$. Écris l'énoncé avec une question, puis résous-le.",
+      "criteria": [
+        { "id": "c1", "label": "Mon énoncé parle d'un tout bien identifié (une pizza, une heure, une bouteille, un trajet…)", "keywords": [["pizza", "gateau", "tarte", "bouteille", "litre", "trajet", "chemin", "livre", "tablette", "jardin", "heure", "ruban", "terrain", "piscine"]] },
+        { "id": "c2", "label": "Mon énoncé se termine par une question précise", "keywords": [["combien", "quelle", "quel", "?"]] },
+        { "id": "c3", "label": "Je résous : $1/2 = 2/4$, donc le résultat est $3/4$", "keywords": [["3/4", "trois quarts", "2/4"]] }
+      ],
+      "models": [
+        "Énoncé : Léa mange 1/4 d'une pizza à midi et 1/2 de la même pizza le soir. Quelle fraction de la pizza a-t-elle mangée ? Solution : 1/2 = 2/4, donc 1/4 + 2/4 = 3/4. Léa a mangé les trois quarts de la pizza.",
+        "Énoncé : pour aller au collège, Tom marche pendant 1/4 d'heure, puis prend le bus pendant 1/2 heure. Combien de temps dure son trajet ? Solution : 1/4 + 2/4 = 3/4 d'heure, soit 45 minutes."
+      ],
+      "hints": ["Choisis un tout : une pizza, une heure, une bouteille, un trajet…", "Les deux fractions doivent porter sur le MÊME tout.", "Pour résoudre, écris $1/2$ en quarts."],
+      "solution": "Exemple : « Léa mange $1/4$ d'une pizza à midi et $1/2$ de la même pizza le soir. Quelle fraction de la pizza a-t-elle mangée ? » Résolution : $1/2 = 2/4$, donc $1/4 + 2/4 = 3/4$ : elle a mangé les trois quarts de la pizza.",
+      "selfTest": [ { "response": { "text": "Léa mange 1/4 d'une pizza à midi et 1/2 de la pizza le soir. Combien de pizza a-t-elle mangé ? 1/2 = 2/4 donc 1/4 + 2/4 = 3/4.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m6-fractions-calculs-jardin", "type": "composite", "skill": "m6.fractions.problemes", "skills": ["m6.fractions.addition", "m6.fractions.operateur"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:somme-num-den", "mc:oubli-numerateur", "mc:partie-reste"], "expectedSeconds": 360,
+      "params": { "a": { "choice": [1, 3] }, "b": { "int": [1, 3] }, "s": { "int": [2, 6] } },
+      "constraints": ["2*a + b < 8", "2*a + b != 4"],
+      "prompt": "Le jardin partagé du collège : les légumes occupent $ {a}/4 $ de la surface, les plantes aromatiques $ {b}/8 $, et le reste est pour les fleurs.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle fraction du jardin est occupée par les légumes et les aromates ensemble ?", "answer": "(2*a+b)/8",
+          "misconceptions": [
+            { "answer": "(a+b)/12", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les numérateurs et les dénominateurs. Écris d'abord $ {a}/4 $ en huitièmes." },
+            { "answer": "(a+b)/8", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Tu as écrit $ {a}/4 $ en huitièmes sans changer son numérateur : ce que l'on fait en bas, on le fait aussi en haut." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle fraction du jardin reste pour les fleurs ?", "answer": "(8-2*a-b)/8",
+          "misconceptions": [ { "answer": "(2*a+b)/8", "id": "mc:partie-reste", "error": "lecture", "feedback": "Ça, c'est la partie déjà occupée. Les fleurs ont ce qui RESTE : pars du jardin entier, $8/8$." } ] },
+        { "type": "numeric", "prompt": "Le jardin mesure {8*s} m². Quelle aire est réservée aux fleurs, en m² ?", "answer": "s*(8-2*a-b)",
+          "misconceptions": [ { "answer": "s*(2*a+b)", "id": "mc:partie-reste", "error": "lecture", "feedback": "Tu as calculé l'aire des légumes et des aromates. Les fleurs occupent le reste du jardin." } ] }
+      ],
+      "hints": ["$ {a}/4 = {2*a}/8 $ : multiplie le haut et le bas par 2.", "Le jardin entier vaut $8/8$ : enlève la partie occupée.", "$1/8$ du jardin mesure $ {8*s} ÷ 8 = {s} $ m²."],
+      "solution": "Légumes et aromates : $ {2*a}/8 + {b}/8 = {2*a+b}/8 $. Fleurs : $ 8/8 − {2*a+b}/8 = {8-2*a-b}/8 $ du jardin. $1/8$ du jardin mesure {s} m², donc les fleurs ont $ {8-2*a-b} × {s} = {s*(8-2*a-b)} $ m².",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{2*a+b}/8" }, { "value": "{8-2*a-b}/8" }, { "value": "{s*(8-2*a-b)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a+b}/12" }, { "value": "{8-2*a-b}/8" }, { "value": "{s*(8-2*a-b)}" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-gourde", "type": "composite", "skill": "m6.fractions.produit-entier", "skills": ["m6.fractions.problemes"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:multiplie-haut-bas", "mc:arrondi-par-defaut"], "expectedSeconds": 300,
+      "params": { "n": { "int": [5, 11] } },
+      "constraints": ["mod(n;4) != 0"],
+      "prompt": "Chaque jour, Zoé boit $3/4$ de litre d'eau avec sa gourde. Elle part en classe de découverte pendant {n} jours.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle quantité d'eau boit-elle en {n} jours ? Écris une fraction de litre.", "answer": "3*n/4",
+          "misconceptions": [ { "answer": "3/4", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut ET le bas : la fraction n'a pas changé, alors qu'elle boit pendant {n} jours. Seul le nombre de quarts de litre est multiplié." } ] },
+        { "type": "numeric", "prompt": "Combien de litres entiers cela fait-il ? (Donne seulement le nombre entier de litres, sans la fraction qui reste.)", "answer": "floor(3*n/4)" },
+        { "type": "numeric", "prompt": "L'eau est vendue en bouteilles de 1 L. Combien de bouteilles faut-il ouvrir pour ces {n} jours ?", "answer": "ceil(3*n/4)",
+          "misconceptions": [ { "answer": "floor(3*n/4)", "id": "mc:arrondi-par-defaut", "error": "raisonnement", "feedback": "Avec ce nombre de bouteilles, il manquerait un peu d'eau les derniers jours. On ne peut pas ouvrir un morceau de bouteille : arrondis au-dessus." } ] }
+      ],
+      "hints": ["{n} jours, c'est {n} fois $3/4$ de litre : multiplie le numérateur.", "Pour trouver les litres entiers, cherche combien de fois $4/4$ (1 litre) tient dans ta fraction.", "Il reste une fraction de litre : il faut une bouteille de plus pour elle."],
+      "solution": "$ {n} × (3/4) = {3*n}/4 $ de litre. Or $ {3*n}/4 = {floor(3*n/4)} + {mod(3*n;4)}/4 $ : cela fait {floor(3*n/4)} litres entiers et $ {mod(3*n;4)}/4 $ de litre. Il faut donc ouvrir {ceil(3*n/4)} bouteilles (la dernière ne sera pas finie).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{3*n}/4" }, { "value": "{floor(3*n/4)}" }, { "value": "{ceil(3*n/4)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{3*n}/4" }, { "value": "{floor(3*n/4)}" }, { "value": "{floor(3*n/4)}" } ] }, "expect": "mc:arrondi-par-defaut" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-pizzas", "type": "composite", "skill": "m6.fractions.problemes", "skills": ["m6.fractions.addition", "m6.fractions.produit-entier"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:somme-num-den", "mc:oubli-numerateur", "mc:multiplie-haut-bas", "mc:partie-reste"], "expectedSeconds": 480,
+      "params": { "f": { "int": [2, 3] } },
+      "prompt": "Tu as commandé 3 pizzas identiques, chacune coupée en 8 parts égales. Léa, Tom et {f} autres amis vont les manger.",
+      "parts": [
+        { "type": "numeric", "prompt": "Léa mange $3/8$ d'une pizza et Tom $1/4$ d'une pizza. Quelle fraction de pizza ont-ils mangée à eux deux ?", "answer": "5/8",
+          "misconceptions": [
+            { "answer": "4/12", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les dénominateurs. Écris d'abord $1/4$ en huitièmes : les parts doivent avoir la même taille." },
+            { "answer": "4/8", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Un quart de pizza ne fait pas une seule part de huitième : combien de huitièmes dans un quart ?" }
+          ] },
+        { "type": "numeric", "prompt": "Les {f} autres amis mangent chacun $5/8$ de pizza. Combien de pizza mangent-ils à eux tous ? Écris une fraction.", "answer": "5*f/8",
+          "misconceptions": [ { "answer": "5/8", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut ET le bas par {f}. Ils sont {f} à manger chacun $5/8$ : multiplie seulement le nombre de parts." } ] },
+        { "type": "numeric", "prompt": "Combien de parts (de huitième) ont été mangées en tout ?", "answer": "5 + 5*f",
+          "misconceptions": [ { "answer": "5*f", "id": "mc:oubli-partie", "error": "lecture", "feedback": "N'oublie pas les parts mangées par Léa et Tom !" } ] },
+        { "type": "numeric", "prompt": "Les 3 pizzas faisaient 24 parts. Combien de parts reste-t-il pour le petit-déjeuner ?", "answer": "19 - 5*f",
+          "misconceptions": [ { "answer": "5 + 5*f", "id": "mc:partie-reste", "error": "lecture", "feedback": "Ça, ce sont les parts mangées. Cherche ce qui RESTE sur les 24 parts." } ] }
+      ],
+      "hints": ["Écris $1/4$ en huitièmes avant d'additionner.", "Chacun des {f} amis mange 5 parts de huitième : multiplie le nombre de parts.", "Compte tout en huitièmes : 3 pizzas, ce sont $24/8$."],
+      "solution": "Léa et Tom : $3/8 + 2/8 = 5/8$ de pizza. Les {f} amis : $ {f} × (5/8) = {5*f}/8 $ de pizza. En tout : $ 5/8 + {5*f}/8 = {5+5*f}/8 $, soit {5+5*f} parts. Il reste $ 24 − {5+5*f} = {19-5*f} $ parts, c'est-à-dire $ {19-5*f}/8 $ de pizza.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5/8" }, { "value": "{5*f}/8" }, { "value": "{5+5*f}" }, { "value": "{19-5*f}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4/12" }, { "value": "{5*f}/8" }, { "value": "{5+5*f}" }, { "value": "{19-5*f}" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-remed-parts", "type": "numeric", "skill": "m6.fractions.addition", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:somme-num-den"], "expectedSeconds": 60,
+      "params": { "n": { "int": [3, 9] } },
+      "prompt": "Rappel ciblé : $ 1/{n} + 1/{n} $, ce sont deux parts de même taille, chacune égale à $ 1/{n} $ d'unité. Combien cela fait-il ? Écris une fraction.",
+      "answer": "2/n",
+      "misconceptions": [ { "answer": "2/(2*n)", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les dénominateurs : ton résultat est égal à UNE seule part. Deux parts de même taille : leur nombre change, pas leur taille." } ],
+      "hints": ["Dessine une barre partagée en {n} parts égales et colorie deux parts.", "Le dénominateur (la taille des parts) ne change pas."],
+      "solution": "$ 1/{n} + 1/{n} = 2/{n} $ : deux parts de taille $ 1/{n} $. Additionner les dénominateurs donnerait $ 2/{2*n} = 1/{n} $, une seule part : impossible !",
+      "selfTest": [ { "response": { "value": "2/{n}" }, "expect": "correct" }, { "response": { "value": "2/{2*n}" }, "expect": "mc:somme-num-den" } ]
+    },
+    {
+      "id": "m6-fractions-calculs-trois", "type": "steps", "mode": "calcul", "skill": "m6.fractions.addition", "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:oubli-numerateur"], "expectedSeconds": 240,
+      "params": { "b": { "choice": [2, 3] }, "a": { "int": [1, 2] }, "c": { "int": [1, 5] }, "e": { "int": [1, 11] } },
+      "constraints": ["a < b", "c < 2*b", "e < 4*b", "4*a + 2*c - e > 0", "mod(c;2) = 1", "mod(e;2) = 1"],
+      "start": "a/b + c/(2*b) - e/(4*b)", "minSteps": 2,
+      "prompt": "Calcule $ {a}/{b} + {c}/{2*b} − {e}/{4*b} $. Choisis le dénominateur {4*b} : c'est un multiple de {b} et de {2*b}. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "(a+c-e)/(4*b)", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "tu as mis toutes les fractions sur {4*b} sans changer leurs numérateurs. Ce que l'on fait en bas, on le fait aussi en haut." }
+      ],
+      "hints": ["Pour passer de {b} à {4*b}, on multiplie par 4 ; de {2*b} à {4*b}, par 2.", "Écris chaque fraction avec le dénominateur {4*b}, en multipliant aussi les numérateurs.", "Calcule ensuite de gauche à droite avec les numérateurs."],
+      "solution": "$ {a}/{b} + {c}/{2*b} − {e}/{4*b} = {4*a}/{4*b} + {2*c}/{4*b} − {e}/{4*b} = {4*a+2*c-e}/{4*b} $.",
+      "selfTest": [
+        { "response": { "lines": ["{4*a}/{4*b} + {2*c}/{4*b} − {e}/{4*b}", "{4*a+2*c-e}/{4*b}"] }, "expect": "correct" },
+        { "response": { "lines": ["{a}/{4*b} + {c}/{4*b} − {e}/{4*b}", "{a+c-e}/{4*b}"] }, "expect": "mc:oubli-numerateur" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-escargot", "type": "composite", "skill": "m6.fractions.produit-entier", "skills": ["m6.fractions.addition", "m6.fractions.problemes"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:multiplie-haut-bas", "mc:avance-une-heure"], "expectedSeconds": 300,
+      "params": { "n": { "int": [2, 9] } },
+      "prompt": "Course de lenteur ! Un escargot avance de $3/8$ de mètre par heure ; une limace avance de $1/2$ mètre par heure. Elles partent ensemble, au même endroit.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle distance l'escargot parcourt-il en {n} heures ? Écris une fraction de mètre.", "answer": "3*n/8",
+          "misconceptions": [ { "answer": "3/8", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut et le bas : la fraction n'a pas changé, alors que l'escargot avance pendant {n} heures." } ] },
+        { "type": "numeric", "prompt": "Et la limace, en {n} heures ?", "answer": "n/2",
+          "misconceptions": [ { "answer": "1/2", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut et le bas : la fraction n'a pas changé, alors que la limace avance pendant {n} heures." } ] },
+        { "type": "numeric", "prompt": "Quelle avance la limace a-t-elle sur l'escargot au bout de {n} heures ? Écris une fraction de mètre.", "answer": "n/8",
+          "misconceptions": [ { "answer": "1/8", "id": "mc:avance-une-heure", "error": "lecture", "feedback": "C'est l'avance gagnée en UNE heure. Au bout de {n} heures, cette avance a été gagnée {n} fois." } ] }
+      ],
+      "hints": ["{n} heures, c'est {n} fois $3/8$ de mètre.", "Pour comparer, écris la distance de la limace en huitièmes de mètre : $1/2 = 4/8$.", "Chaque heure, la limace gagne $4/8 − 3/8$ de mètre sur l'escargot."],
+      "solution": "Escargot : $ {n} × (3/8) = {3*n}/8 $ m. Limace : $ {n} × (1/2) = {n}/2 = {4*n}/8 $ m. Avance : $ {4*n}/8 − {3*n}/8 = {n}/8 $ m. Chaque heure, la limace gagne $1/8$ de mètre.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{3*n}/8" }, { "value": "{n}/2" }, { "value": "{n}/8" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3/8" }, { "value": "{n}/2" }, { "value": "{n}/8" } ] }, "expect": "mc:multiplie-haut-bas" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-argent", "type": "composite", "skill": "m6.fractions.problemes", "skills": ["m6.fractions.addition", "m6.fractions.operateur"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:somme-num-den", "mc:fraction-de-la-partie"], "expectedSeconds": 420,
+      "params": { "r": { "choice": [5, 6, 7, 8, 9] } },
+      "prompt": "Question à l'envers ! Inès dépense $1/4$ de son argent de poche pour un livre et $1/2$ pour une place de cinéma. Il lui reste {r} €. Combien avait-elle au départ ?",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle fraction de son argent a-t-elle dépensée ?", "answer": "3/4",
+          "misconceptions": [ { "answer": "2/6", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les dénominateurs. Écris d'abord $1/2$ en quarts." } ] },
+        { "type": "numeric", "prompt": "Quelle fraction de son argent lui reste-t-il ?", "answer": "1/4" },
+        { "type": "numeric", "prompt": "Combien d'euros avait-elle au départ ?", "answer": "4*r",
+          "misconceptions": [ { "answer": "r/4", "id": "mc:fraction-de-la-partie", "error": "raisonnement", "feedback": "Tu as pris le quart de {r} €. Mais {r} € est DÉJÀ une partie de l'argent (ce qui reste) : le tout est plus grand." } ] },
+        { "type": "numeric", "prompt": "Combien a coûté la place de cinéma, en euros ?", "answer": "2*r",
+          "misconceptions": [ { "answer": "r/2", "id": "mc:fraction-de-la-partie", "error": "raisonnement", "feedback": "La place coûte la moitié de l'argent de DÉPART, pas la moitié de ce qui reste." } ] }
+      ],
+      "hints": ["Écris $1/2$ en quarts pour additionner.", "Ce qui n'a pas été dépensé est une fraction de l'argent : c'est elle qui vaut {r} €.", "Dessine une barre en 4 parts égales : une part vaut {r} €."],
+      "solution": "Dépensé : $1/4 + 2/4 = 3/4$. Il reste $4/4 − 3/4 = 1/4$ de l'argent, qui vaut {r} €. Le tout, ce sont 4 quarts : $ 4 × {r} = {4*r} $ €. Le cinéma coûte la moitié de {4*r} €, soit {2*r} €. Vérification : livre {r} € + cinéma {2*r} € + reste {r} € = {4*r} €.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3/4" }, { "value": "1/4" }, { "value": "{4*r}" }, { "value": "{2*r}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3/4" }, { "value": "1/4" }, { "value": "{r}/4" }, { "value": "{2*r}" } ] }, "expect": "mc:fraction-de-la-partie" }
+      ]
+    },
+    {
+      "id": "m6-fractions-calculs-carre-magique", "type": "composite", "skill": "m6.fractions.addition", "skills": ["m6.fractions.produit-entier", "m6.fractions.egalites"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "visuelle", "targets": ["mc:somme-num-den", "mc:multiplie-haut-bas"], "expectedSeconds": 540,
+      "prompt": "Dans un carré magique, les sommes de chaque ligne, de chaque colonne et de chaque diagonale sont toutes égales. Retrouve les cases cachées de ce carré magique de fractions.",
+      "figure": {
+        "alt": "Carré magique de 3 cases sur 3 contenant des fractions ; deux cases sont cachées par un point d'interrogation.",
+        "w": 300, "h": 160,
+        "items": [ { "type": "table", "rows": [ ["1/6", "7/12", "1/2"], ["3/4", "?", "1/12"], ["?", "1/4", "2/3"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule la somme de la première ligne. Écris une fraction.", "answer": "15/12",
+          "misconceptions": [ { "answer": "9/20", "id": "mc:somme-num-den", "error": "notion", "feedback": "Tu as additionné les numérateurs et les dénominateurs. Écris d'abord les trois fractions en douzièmes." } ] },
+        { "type": "numeric", "prompt": "Quelle fraction se cache dans la case du centre ?", "answer": "5/12" },
+        { "type": "numeric", "prompt": "Et dans la case en bas à gauche ?", "answer": "1/3" },
+        { "type": "numeric", "prompt": "Quelle est la somme de TOUTES les cases du carré ?", "answer": "45/12",
+          "misconceptions": [ { "answer": "45/36", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Tu as multiplié le haut et le bas par 3 : la fraction n'a pas changé. Trois lignes, c'est trois fois plus de douzièmes." } ] }
+      ],
+      "hints": ["Écris toutes les fractions en douzièmes : $1/6 = 2/12$, $1/2 = 6/12$, $3/4 = 9/12$…", "Pour la case du centre, utilise la deuxième ligne : somme magique moins les deux cases connues.", "Toutes les cases, ce sont les trois lignes réunies : multiplie la somme magique par 3."],
+      "solution": "En douzièmes, la première ligne donne $2/12 + 7/12 + 6/12 = 15/12$ (soit $5/4$). Centre : $15/12 − 9/12 − 1/12 = 5/12$. En bas à gauche, avec la première colonne : $15/12 − 2/12 − 9/12 = 4/12 = 1/3$. Vérification par une diagonale : $2/12 + 5/12 + 8/12 = 15/12$. Toutes les cases : $3 × (15/12) = 45/12$ (soit $15/4$).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "15/12" }, { "value": "5/12" }, { "value": "1/3" }, { "value": "45/12" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "9/20" }, { "value": "5/12" }, { "value": "1/3" }, { "value": "45/12" } ] }, "expect": "mc:somme-num-den" }
+      ]
+    }
+  ]
+}

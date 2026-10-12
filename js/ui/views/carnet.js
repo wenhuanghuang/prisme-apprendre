@@ -25,7 +25,7 @@ export function render(root) {
         h('div', {}, h('strong', {}, x.label), h('br'), h('small', {}, x.attests), h('div', { class: 'progress-mini' }, h('i', { style: { width: `${(x.value / x.goal) * 100}%` } })), h('small', {}, `${x.value}/${x.goal}${x.earned ? ' · obtenu' : ''}`))))),
       b.skills.length ? h('div', { style: { marginTop: '14px' } }, h('h3', {}, 'Notions consolidées'), h('div', { class: 'skill-pills' }, b.skills.map((s) => h('span', { class: 'skill-pill lvl-consolide' }, `✓ ${s.label}`)))) : null),
     upcoming.length ? h('section', { class: 'card', style: { marginBottom: '18px' } }, h('h2', {}, 'Mes prochaines révisions'),
-      h('ul', {}, upcoming.map((x) => h('li', {}, `${store.index.skills.get(x.id).label} — ${relDays(x.st.due, store.now())}`)))) : null,
+      h('ul', {}, upcoming.map((x) => h('li', {}, `${store.index.skills.get(x.id).label} — ${relDays(x.st.due, store.now())}`)))) : '', // append() natif : jamais null
     ...Object.entries(bySubject).map(([subj, ids]) => h('section', { class: `card card--accent subj-${subj}`, style: { marginBottom: '18px' } },
       h('h2', {}, SUBJECT_LABEL[subj] || subj),
       h('div', { class: 'tbl-wrap' }, h('table', { class: 'skill-table' },
@@ -36,9 +36,9 @@ export function render(root) {
             h('td', {}, h('div', { class: 'bar' }, h('i', { style: { width: pct(st.pL).replace(' ', '') } }))),
             h('td', { class: 'small' }, `${st.successes}/${st.n} · ${st.autonomousSuccesses} sans aide`));
         })))))),
-    !worked.length ? h('p', { class: 'card empty' }, 'Ton carnet se remplira au fil des exercices.') : null,
+    !worked.length ? h('p', { class: 'card empty' }, 'Ton carnet se remplira au fil des exercices.') : '',
     reviewed.length ? h('section', { class: 'card' }, h('h2', {}, 'Mes réponses relues par un adulte'),
       ...reviewed.map((s) => h('div', { class: 'pending-item', style: { marginBottom: '10px' } },
         h('strong', {}, s.status === 'valide' ? '✓ Validée' : '↻ À retravailler'), richText(s.prompt || ''), s.comment ? h('blockquote', {}, s.comment) : null,
-        s.lessonId ? h('a', { class: 'btn btn--ghost btn--small', href: `#/lecon/${s.lessonId}` }, 'Retourner à la leçon') : null))) : null);
+        s.lessonId ? h('a', { class: 'btn btn--ghost btn--small', href: `#/lecon/${s.lessonId}` }, 'Retourner à la leçon') : null))) : '');
 }

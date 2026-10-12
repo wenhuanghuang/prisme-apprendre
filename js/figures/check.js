@@ -64,7 +64,10 @@ export function checkFigure(fig, where = 'figure') {
         break;
       case 'timeline':
         needNum('from', 'to');
-        if (num(it.from) >= num(it.to)) errs.push(`${at} : « from » doit précéder « to »`);
+        // unit: "Ma" : âges en millions d'années avant aujourd'hui, « from » = le plus ancien donc le plus grand
+        if (it.unit !== undefined && it.unit !== 'Ma') errs.push(`${at} : « unit » vaut « Ma » (millions d'années) ou est absent (années)`);
+        else if (it.unit === 'Ma') { if (!(num(it.from) > num(it.to) && num(it.to) >= 0)) errs.push(`${at} : en Ma, « from » est l'âge le plus ancien : from > to ≥ 0 (ex. 540 → 0)`); }
+        else if (num(it.from) >= num(it.to)) errs.push(`${at} : « from » doit précéder « to »`);
         if (it.step !== undefined && !(num(it.step) > 0)) errs.push(`${at} : « step » doit être un nombre positif`);
         for (const e of it.events || []) if (!Number.isFinite(num(e.year)) || !e.label) errs.push(`${at} : évènement invalide (year + label)`);
         for (const p of it.periods || []) if (!Number.isFinite(num(p.from)) || !Number.isFinite(num(p.to)) || !p.label) errs.push(`${at} : période invalide (from, to, label)`);

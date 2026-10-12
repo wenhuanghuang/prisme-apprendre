@@ -1,0 +1,2094 @@
+{
+  "id": "m3-sphere-sections",
+  "chapter": "m3-ch-espace",
+  "title": "Sphère, boule, repérage sur la Terre et sections de solides",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.sphere.volume", "m3.sphere.reperage", "m3.solides.sections", "m3.grandeurs.conversions"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 60,
+  "summary": "Une sphère, c’est la peau d’un ballon ; une boule, le ballon plein. On calcule leur aire et leur volume, on repère un point sur la Terre avec sa latitude et sa longitude, et on découvre la forme des tranches obtenues en coupant un solide par un plan… sans oublier les conversions de litres et de mètres cubes.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le message de détresse",
+      "body": "Un voilier en panne envoie ce message : « Position 46° N, 4° O ». Quelques heures plus tard, les sauveteurs le rejoignent en plein océan Atlantique, sans aucun repère visible à l’horizon.\n\nComment deux angles suffisent-ils à repérer un point sur la Terre, qui est presque une boule ? Que signifient « N » et « O » ?",
+      "figure": {
+        "alt": "Un globe terrestre vu un peu par-dessus : l'équateur (en rouge), le méridien de Greenwich (en orange), le pôle Nord, le parallèle 46° N et un point P repéré par 46° N et 4° O.",
+        "w": 300,
+        "h": 300,
+        "frame": { "x": [-5.2, 5.2], "y": [-5.2, 5.2] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-2.61, 3.03], "to": [-2.77, 2.79], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.77, 2.79], "to": [-2.74, 2.54], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.74, 2.54], "to": [-2.52, 2.3], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.52, 2.3], "to": [-2.13, 2.09], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.13, 2.09], "to": [-1.59, 1.93], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.59, 1.93], "to": [-0.95, 1.81], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.95, 1.81], "to": [-0.24, 1.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.24, 1.76], "to": [0.48, 1.77], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.48, 1.77], "to": [1.17, 1.84], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.17, 1.84], "to": [1.79, 1.98], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.79, 1.98], "to": [2.28, 2.16], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.28, 2.16], "to": [2.61, 2.38], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.61, 2.38], "to": [2.77, 2.62], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.77, 2.62], "to": [2.74, 2.87], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.37, 1.29], "to": [0.5, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.5, 1.36], "to": [-0.4, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.4, 1.36], "to": [-1.27, 1.3], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.27, 1.3], "to": [-2.09, 1.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.09, 1.17], "to": [-2.79, 0.98], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.79, 0.98], "to": [-3.36, 0.74], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.36, 0.74], "to": [-3.76, 0.47], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.76, 0.47], "to": [-3.97, 0.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.97, 0.17], "to": [-3.98, -0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.98, -0.14], "to": [-3.79, -0.44], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.79, -0.44], "to": [-3.41, -0.71], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.41, -0.71], "to": [-2.86, -0.96], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.86, -0.96], "to": [-2.17, -1.15], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.17, -1.15], "to": [-1.37, -1.29], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-0.5, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-0.5, -1.36], "to": [0.4, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [0.4, -1.36], "to": [1.27, -1.3], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [1.27, -1.3], "to": [2.09, -1.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.09, -1.17], "to": [2.79, -0.98], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.79, -0.98], "to": [3.36, -0.74], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.36, -0.74], "to": [3.76, -0.47], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.76, -0.47], "to": [3.97, -0.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.97, -0.17], "to": [3.98, 0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.98, 0.14], "to": [3.79, 0.44], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.79, 0.44], "to": [3.41, 0.71], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.41, 0.71], "to": [2.86, 0.96], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.86, 0.96], "to": [2.17, 1.15], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.17, 1.15], "to": [1.37, 1.29], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, -3.76], "to": [-0.24, -3.92], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.24, -3.92], "to": [-0.47, -3.97], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.47, -3.97], "to": [-0.68, -3.9], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.68, -3.9], "to": [-0.88, -3.71], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, -3.71], "to": [-1.05, -3.4], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, -3.4], "to": [-1.18, -2.99], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, -2.99], "to": [-1.29, -2.49], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, -2.49], "to": [-1.35, -1.92], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -1.92], "to": [-1.37, -1.29], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-1.35, -0.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -0.61], "to": [-1.29, 0.08], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, 0.08], "to": [-1.18, 0.77], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, 0.77], "to": [-1.05, 1.43], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, 1.43], "to": [-0.88, 2.05], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, 2.05], "to": [-0.68, 2.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.68, 2.61], "to": [-0.47, 3.09], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.47, 3.09], "to": [-0.24, 3.48], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.24, 3.48], "to": [0, 3.76], "color": "orange", "width": 2 },
+          { "type": "point", "id": "Np", "x": 0, "y": 3.76, "pos": "n", "label": "pôle Nord" },
+          { "type": "point", "id": "P", "x": -1.13, "y": 1.84, "pos": "w", "style": "rond", "color": "rouge" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "⚽",
+          "title": "Sphère et boule",
+          "body": "La **sphère** de centre $O$ et de rayon $R$ est formée des points situés à la distance $R$ de $O$ : c’est une surface, comme la peau d’un ballon. La **boule** contient en plus tout l’intérieur.\n\n- Aire de la sphère : $4 × π × R²$\n- Volume de la boule : $(4/3) × π × R³$",
+          "reveal": {
+            "question": "Devine : une boule de rayon deux fois plus grand a-t-elle un volume deux fois plus grand ?",
+            "answer": "Non : huit fois plus grand ! Le rayon est multiplié par 2, donc le volume par $2³ = 8$ (et l’aire de la sphère par $2² = 4$)."
+          },
+          "figure": {
+            "alt": "Une sphère de centre O et de rayon R, avec son équateur dessiné en ellipse.",
+            "w": 260,
+            "h": 254,
+            "frame": { "x": [-3.6, 3.8], "y": [-3.6, 3.6] },
+            "items": [
+              { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+              { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+              { "type": "point", "id": "M", "x": 3, "y": 0, "pos": "e", "label": "" },
+              { "type": "segment", "from": "O", "to": "M", "label": "R", "color": "rouge" }
+            ]
+          }
+        },
+        {
+          "emoji": "🌍",
+          "title": "Latitude et longitude",
+          "body": "Sur la Terre, l’**équateur** partage le globe en deux hémisphères, Nord et Sud ; le **méridien de Greenwich** relie les pôles en passant près de Londres. La **latitude** d’un point (de 0° à 90°, Nord ou Sud) mesure son écart angulaire avec l’équateur ; sa **longitude** (de 0° à 180°, Est ou Ouest), son écart avec le méridien de Greenwich.",
+          "figure": {
+            "alt": "Coupe de la Terre passant par les pôles : le point M est sur la surface ; l'angle au centre O entre le plan de l'équateur et la droite (OM) est la latitude de M.",
+            "w": 300,
+            "h": 286,
+            "frame": { "x": [-5, 5.6], "y": [-4.8, 5.2] },
+            "items": [
+              { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+              { "type": "segment", "from": [-4.6, 0], "to": [4.6, 0], "color": "rouge", "dashed": true },
+              { "type": "segment", "from": [0, -4.6], "to": [0, 4.6], "color": "gris", "dashed": true },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "E", "x": 4, "y": 0, "pos": "se", "label": "" },
+              { "type": "point", "id": "M", "x": 2.78, "y": 2.88, "pos": "ne", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "N", "x": 0, "y": 4, "pos": "n", "label": "pôle Nord" },
+              { "type": "segment", "from": "O", "to": "M", "color": "rouge" },
+              { "type": "angle", "vertex": "O", "from": "E", "to": "M", "label": "latitude", "r": 34 },
+              { "type": "text", "x": 4.6, "y": -0.5, "text": "équateur", "size": "s", "color": "rouge", "anchor": "end" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "Lire des coordonnées géographiques",
+          "body": "On écrit la latitude, puis la longitude : Paris ≈ (49° N ; 2° E), Rio de Janeiro ≈ (23° S ; 43° O). Tous les points d’un même **parallèle** (cercle parallèle à l’équateur) ont la même latitude ; tous les points d’un même **méridien** (demi-cercle d’un pôle à l’autre) ont la même longitude.",
+          "reveal": {
+            "question": "Devine : quelle est la latitude du pôle Nord ? Et sa longitude ?",
+            "answer": "Sa latitude est 90° N. Sa longitude n’est pas définie : tous les méridiens s’y rejoignent !"
+          },
+          "figure": {
+            "alt": "Planisphère où les méridiens et les parallèles sont des droites tracées tous les 30° ; Paris est à 49° N et 2° E, Rio de Janeiro à 23° S et 43° O.",
+            "w": 440,
+            "h": 238,
+            "frame": { "x": [-222, 186], "y": [-106, 94] },
+            "items": [
+              { "type": "rect", "x": -180, "y": -90, "w": 360, "h": 180, "fill": "maths", "color": "gris" },
+              { "type": "segment", "from": [-180, -60], "to": [180, -60], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-180, -30], "to": [180, -30], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-180, 30], "to": [180, 30], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-180, 60], "to": [180, 60], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-150, -90], "to": [-150, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-120, -90], "to": [-120, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-90, -90], "to": [-90, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-60, -90], "to": [-60, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-30, -90], "to": [-30, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [30, -90], "to": [30, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [60, -90], "to": [60, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [90, -90], "to": [90, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [120, -90], "to": [120, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [150, -90], "to": [150, 90], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-180, 0], "to": [180, 0], "color": "rouge", "width": 2 },
+              { "type": "segment", "from": [0, -90], "to": [0, 90], "color": "orange", "width": 2 },
+              { "type": "text", "x": 178, "y": 7, "text": "équateur", "size": "s", "color": "rouge", "anchor": "end" },
+              { "type": "text", "x": 4, "y": 82, "text": "Greenwich", "size": "s", "color": "orange", "anchor": "start" },
+              { "type": "text", "x": -184, "y": 60, "text": "60° N", "size": "s", "anchor": "end" },
+              { "type": "text", "x": -184, "y": 30, "text": "30° N", "size": "s", "anchor": "end" },
+              { "type": "text", "x": -184, "y": 0, "text": "0°", "size": "s", "anchor": "end" },
+              { "type": "text", "x": -184, "y": -30, "text": "30° S", "size": "s", "anchor": "end" },
+              { "type": "text", "x": -184, "y": -60, "text": "60° S", "size": "s", "anchor": "end" },
+              { "type": "text", "x": -120, "y": -98, "text": "120° O", "size": "s" },
+              { "type": "text", "x": -60, "y": -98, "text": "60° O", "size": "s" },
+              { "type": "text", "x": 0, "y": -98, "text": "0°", "size": "s" },
+              { "type": "text", "x": 60, "y": -98, "text": "60° E", "size": "s" },
+              { "type": "text", "x": 120, "y": -98, "text": "120° E", "size": "s" },
+              { "type": "point", "id": "Paris", "x": 2, "y": 49, "pos": "ne", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "Rio", "x": -43, "y": -23, "pos": "sw", "style": "rond", "color": "rouge" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔪",
+          "title": "Couper une sphère",
+          "body": "Un plan qui coupe une sphère la coupe selon un **cercle**. Si $d$ est la distance du centre $O$ au plan, le rayon $r$ de ce cercle vérifie $r² = R² − d²$ (Pythagore dans le triangle $OHM$ rectangle en $H$). Si le plan passe par $O$, on obtient un **grand cercle**, de rayon $R$.",
+          "figure": {
+            "alt": "Coupe d'une sphère de centre O et de rayon R par un plan situé à la distance d de O ; H est le centre du cercle de section et M un point de ce cercle, de rayon r.",
+            "w": 280,
+            "h": 257,
+            "frame": { "x": [-6.2, 6.2], "y": [-5.6, 5.6] },
+            "items": [
+              { "type": "circle", "center": [0, 0], "r": 5, "fill": "maths", "color": "maths" },
+              { "type": "segment", "from": [-6, 3], "to": [6, 3], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-4, 3], "to": [4, 3], "color": "orange", "width": 3 },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "H", "x": 0, "y": 3, "pos": "nw" },
+              { "type": "point", "id": "M", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "segment", "from": "O", "to": "M", "label": "R", "color": "rouge" },
+              { "type": "segment", "from": "O", "to": "H", "label": "d" },
+              { "type": "segment", "from": "H", "to": "M", "label": "r", "color": "orange" },
+              { "type": "angle", "vertex": "H", "from": "O", "to": "M", "right": true }
+            ]
+          }
+        },
+        {
+          "emoji": "🧊",
+          "title": "Sections planes des autres solides",
+          "body": "- **Cube, pavé** : parallèlement à une face → un rectangle (ou un carré) identique à la face ; parallèlement à une arête → un rectangle.\n- **Cylindre** : parallèlement à la base → un disque identique à la base ; parallèlement à l’axe → un rectangle.\n- **Cône, pyramide** : parallèlement à la base → une **réduction** de la base.",
+          "figure": {
+            "alt": "Un pavé droit en perspective cavalière, coupé par un plan parallèle à sa face de gauche : la section, en orange, est un rectangle identique à cette face.",
+            "w": 314,
+            "h": 240,
+            "frame": { "x": [-0.6, 6.7], "y": [-0.6, 4.7] },
+            "items": [
+              { "type": "segment", "from": [0, 0], "to": [5, 0] },
+              { "type": "segment", "from": [5, 0], "to": [5, 3] },
+              { "type": "segment", "from": [5, 3], "to": [0, 3] },
+              { "type": "segment", "from": [0, 3], "to": [0, 0] },
+              { "type": "segment", "from": [0, 3], "to": [1.06, 4.06] },
+              { "type": "segment", "from": [1.06, 4.06], "to": [6.06, 4.06] },
+              { "type": "segment", "from": [6.06, 4.06], "to": [5, 3] },
+              { "type": "segment", "from": [5, 0], "to": [6.06, 1.06] },
+              { "type": "segment", "from": [6.06, 1.06], "to": [6.06, 4.06] },
+              { "type": "segment", "from": [0, 0], "to": [1.06, 1.06], "dashed": true },
+              { "type": "segment", "from": [1.06, 1.06], "to": [6.06, 1.06], "dashed": true },
+              { "type": "segment", "from": [1.06, 1.06], "to": [1.06, 4.06], "dashed": true },
+              { "type": "polygon", "points": [[2.5, 0], [3.56, 1.06], [3.56, 4.06], [2.5, 3]], "fill": "orange", "color": "orange" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Grandeurs composées et conversions",
+          "body": "Un volume se convertit en contenance : 1 dm³ = 1 L et 1 m³ = 1 000 L. Une **grandeur composée** relie deux grandeurs : un débit en L/min, une masse volumique en kg/m³. On convertit **avant** de calculer, puis on vérifie l’unité du résultat.",
+          "example": "Une cuve de 2,4 m³ remplie à 40 L/min : 2,4 m³ = 2 400 L, et 2 400 ÷ 40 = 60 min.",
+          "reveal": { "question": "Devine : combien de litres y a-t-il dans 1 cm³ ?", "answer": "0,001 L, c’est-à-dire 1 mL : 1 L = 1 000 cm³." }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple résolu : le ballon de basket",
+      "steps": [
+        {
+          "text": "Un ballon de basket a un diamètre de 24 cm. Quel volume d’air contient-il, en litres ? Quelle est l’aire de sa surface ? **D’abord le rayon** : $R = 24 ÷ 2 = 12$ cm.",
+          "figure": {
+            "alt": "Une sphère de diamètre 24 cm.",
+            "w": 260,
+            "h": 249,
+            "frame": { "x": [-3.8, 3.8], "y": [-3.6, 3.6] },
+            "items": [
+              { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+              { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+              { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+              { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+              { "type": "point", "id": "M1", "x": -3, "y": 0, "pos": "w", "label": "" },
+              { "type": "point", "id": "M2", "x": 3, "y": 0, "pos": "e", "label": "" },
+              { "type": "segment", "from": "M1", "to": "M2", "label": "24 cm", "color": "rouge" }
+            ]
+          }
+        },
+        { "text": "**Le volume** de la boule :", "math": "V = (4/3) × π × 12³ ≈ 7 238 cm³" },
+        { "text": "**La conversion** : 1 L = 1 000 cm³, donc $V$ ≈ 7,2 L d’air (au dixième)." },
+        { "text": "**L’aire** de la sphère :", "math": "A = 4 × π × 12² ≈ 1 810 cm²" },
+        { "text": "Contrôle : le rayon est en cm, le volume en cm³ (trois dimensions, $R³$) et l’aire en cm² (deux dimensions, $R²$)." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Pour une boule, repère d’abord le **rayon** (la moitié du diamètre). Pour les coordonnées, écris la latitude puis la longitude, avec N, S, E ou O. Pour une section, imagine le couteau qui tranche le solide.",
+      "exercises": ["m3-sphere-sections-solides", "m3-sphere-volume", "m3-sphere-aire", "m3-sphere-coordonnees", "m3-sphere-section-rayon", "m3-sphere-verif"]
+    },
+    { "kind": "libre", "title": "Expliquer avec ses mots", "exercises": ["m3-sphere-explique"] },
+    { "kind": "reinvestissement", "title": "Boules et grandeurs dans la vraie vie", "exercises": ["m3-sphere-glace", "m3-sphere-citerne"] },
+    {
+      "kind": "mission",
+      "title": "Mission : la naissance du mètre",
+      "body": "Pourquoi le mètre mesure-t-il un mètre ? Remonte en 1791, et refais avec la géométrie de la sphère le calcul des savants de la Révolution.",
+      "exercises": ["m3-sphere-metre"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Sphère de rayon $R$ : aire $4πR²$. Boule : volume $(4/3)πR³$. Sur la Terre, un point est repéré par sa **latitude** (0° à 90°, N ou S : écart à l’équateur) puis sa **longitude** (0° à 180°, E ou O : écart au méridien de Greenwich). Un plan coupe une sphère selon un cercle de rayon $r$, avec $r² = R² − d²$ ; il coupe un pavé ou un cylindre selon un rectangle ou un disque, un cône ou une pyramide (parallèlement à la base) selon une réduction de la base.\n\n- **Rayon ou diamètre ?** Les formules utilisent le rayon.\n- **Aire ou volume ?** $R²$ pour une aire, $R³$ pour un volume.\n- **Latitude d’abord**, puis longitude.\n- **Conversions** : 1 dm³ = 1 L ; 1 m³ = 1 000 L."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des calculs de volumes de boules, des repérages sur le globe et des sections de solides dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Couper la pyramide du Louvre à mi-hauteur, puis remplir un silo à grains : sections, réductions et grandeurs composées.",
+      "exercises": ["m3-sphere-louvre", "m3-sphere-silo"]
+    },
+    "expert": {
+      "intro": "Un problème de type brevet sur des balles de tennis (et un résultat découvert par Archimède), puis la longueur d’un parallèle terrestre, où la trigonométrie rejoint la géographie.",
+      "exercises": ["m3-sphere-brevet", "m3-sphere-parallele"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-sphere-sections-solides",
+      "type": "categorize",
+      "skill": "m3.solides.sections",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:cylindre-axe", "mc:cone-triangle", "mc:pyramide-base"],
+      "expectedSeconds": 240,
+      "prompt": "Quelle est la forme de la section obtenue ? Classe chaque situation. (Sur la figure : deux cylindres coupés de deux façons différentes.)",
+      "figure": {
+        "alt": "Deux cylindres de révolution : le premier est coupé par un plan parallèle à sa base (section en orange), le second par un plan parallèle à son axe (section en orange).",
+        "w": 350,
+        "h": 260,
+        "frame": { "x": [-2.6, 8.6], "y": [-1.8, 6.1] },
+        "items": [
+          { "type": "segment", "from": [-2, 0], "to": [-1.96, -0.12] },
+          { "type": "segment", "from": [-1.96, -0.12], "to": [-1.85, -0.23] },
+          { "type": "segment", "from": [-1.85, -0.23], "to": [-1.66, -0.33] },
+          { "type": "segment", "from": [-1.66, -0.33], "to": [-1.41, -0.42] },
+          { "type": "segment", "from": [-1.41, -0.42], "to": [-1.11, -0.5] },
+          { "type": "segment", "from": [-1.11, -0.5], "to": [-0.77, -0.55] },
+          { "type": "segment", "from": [-0.77, -0.55], "to": [-0.39, -0.59] },
+          { "type": "segment", "from": [-0.39, -0.59], "to": [0, -0.6] },
+          { "type": "segment", "from": [0, -0.6], "to": [0.39, -0.59] },
+          { "type": "segment", "from": [0.39, -0.59], "to": [0.77, -0.55] },
+          { "type": "segment", "from": [0.77, -0.55], "to": [1.11, -0.5] },
+          { "type": "segment", "from": [1.11, -0.5], "to": [1.41, -0.42] },
+          { "type": "segment", "from": [1.41, -0.42], "to": [1.66, -0.33] },
+          { "type": "segment", "from": [1.66, -0.33], "to": [1.85, -0.23] },
+          { "type": "segment", "from": [1.85, -0.23], "to": [1.96, -0.12] },
+          { "type": "segment", "from": [1.96, -0.12], "to": [2, 0] },
+          { "type": "segment", "from": [2, 0], "to": [1.96, 0.12], "dashed": true },
+          { "type": "segment", "from": [1.96, 0.12], "to": [1.85, 0.23], "dashed": true },
+          { "type": "segment", "from": [1.85, 0.23], "to": [1.66, 0.33], "dashed": true },
+          { "type": "segment", "from": [1.66, 0.33], "to": [1.41, 0.42], "dashed": true },
+          { "type": "segment", "from": [1.41, 0.42], "to": [1.11, 0.5], "dashed": true },
+          { "type": "segment", "from": [1.11, 0.5], "to": [0.77, 0.55], "dashed": true },
+          { "type": "segment", "from": [0.77, 0.55], "to": [0.39, 0.59], "dashed": true },
+          { "type": "segment", "from": [0.39, 0.59], "to": [0, 0.6], "dashed": true },
+          { "type": "segment", "from": [0, 0.6], "to": [-0.39, 0.59], "dashed": true },
+          { "type": "segment", "from": [-0.39, 0.59], "to": [-0.77, 0.55], "dashed": true },
+          { "type": "segment", "from": [-0.77, 0.55], "to": [-1.11, 0.5], "dashed": true },
+          { "type": "segment", "from": [-1.11, 0.5], "to": [-1.41, 0.42], "dashed": true },
+          { "type": "segment", "from": [-1.41, 0.42], "to": [-1.66, 0.33], "dashed": true },
+          { "type": "segment", "from": [-1.66, 0.33], "to": [-1.85, 0.23], "dashed": true },
+          { "type": "segment", "from": [-1.85, 0.23], "to": [-1.96, 0.12], "dashed": true },
+          { "type": "segment", "from": [-1.96, 0.12], "to": [-2, 0], "dashed": true },
+          { "type": "segment", "from": [2, 5], "to": [1.93, 5.16] },
+          { "type": "segment", "from": [1.93, 5.16], "to": [1.73, 5.3] },
+          { "type": "segment", "from": [1.73, 5.3], "to": [1.41, 5.42] },
+          { "type": "segment", "from": [1.41, 5.42], "to": [1, 5.52] },
+          { "type": "segment", "from": [1, 5.52], "to": [0.52, 5.58] },
+          { "type": "segment", "from": [0.52, 5.58], "to": [0, 5.6] },
+          { "type": "segment", "from": [0, 5.6], "to": [-0.52, 5.58] },
+          { "type": "segment", "from": [-0.52, 5.58], "to": [-1, 5.52] },
+          { "type": "segment", "from": [-1, 5.52], "to": [-1.41, 5.42] },
+          { "type": "segment", "from": [-1.41, 5.42], "to": [-1.73, 5.3] },
+          { "type": "segment", "from": [-1.73, 5.3], "to": [-1.93, 5.16] },
+          { "type": "segment", "from": [-1.93, 5.16], "to": [-2, 5] },
+          { "type": "segment", "from": [-2, 5], "to": [-1.93, 4.84] },
+          { "type": "segment", "from": [-1.93, 4.84], "to": [-1.73, 4.7] },
+          { "type": "segment", "from": [-1.73, 4.7], "to": [-1.41, 4.58] },
+          { "type": "segment", "from": [-1.41, 4.58], "to": [-1, 4.48] },
+          { "type": "segment", "from": [-1, 4.48], "to": [-0.52, 4.42] },
+          { "type": "segment", "from": [-0.52, 4.42], "to": [0, 4.4] },
+          { "type": "segment", "from": [0, 4.4], "to": [0.52, 4.42] },
+          { "type": "segment", "from": [0.52, 4.42], "to": [1, 4.48] },
+          { "type": "segment", "from": [1, 4.48], "to": [1.41, 4.58] },
+          { "type": "segment", "from": [1.41, 4.58], "to": [1.73, 4.7] },
+          { "type": "segment", "from": [1.73, 4.7], "to": [1.93, 4.84] },
+          { "type": "segment", "from": [1.93, 4.84], "to": [2, 5] },
+          { "type": "segment", "from": [-2, 0], "to": [-2, 5] },
+          { "type": "segment", "from": [2, 0], "to": [2, 5] },
+          {
+            "type": "polygon",
+            "points": [
+              [2, 2.5],
+              [1.93, 2.66],
+              [1.73, 2.8],
+              [1.41, 2.92],
+              [1, 3.02],
+              [0.52, 3.08],
+              [0, 3.1],
+              [-0.52, 3.08],
+              [-1, 3.02],
+              [-1.41, 2.92],
+              [-1.73, 2.8],
+              [-1.93, 2.66],
+              [-2, 2.5],
+              [-1.93, 2.34],
+              [-1.73, 2.2],
+              [-1.41, 2.08],
+              [-1, 1.98],
+              [-0.52, 1.92],
+              [0, 1.9],
+              [0.52, 1.92],
+              [1, 1.98],
+              [1.41, 2.08],
+              [1.73, 2.2],
+              [1.93, 2.34],
+              [2, 2.5]
+            ],
+            "fill": "orange",
+            "color": "orange"
+          },
+          { "type": "segment", "from": [4, 0], "to": [4.04, -0.12] },
+          { "type": "segment", "from": [4.04, -0.12], "to": [4.15, -0.23] },
+          { "type": "segment", "from": [4.15, -0.23], "to": [4.34, -0.33] },
+          { "type": "segment", "from": [4.34, -0.33], "to": [4.59, -0.42] },
+          { "type": "segment", "from": [4.59, -0.42], "to": [4.89, -0.5] },
+          { "type": "segment", "from": [4.89, -0.5], "to": [5.23, -0.55] },
+          { "type": "segment", "from": [5.23, -0.55], "to": [5.61, -0.59] },
+          { "type": "segment", "from": [5.61, -0.59], "to": [6, -0.6] },
+          { "type": "segment", "from": [6, -0.6], "to": [6.39, -0.59] },
+          { "type": "segment", "from": [6.39, -0.59], "to": [6.77, -0.55] },
+          { "type": "segment", "from": [6.77, -0.55], "to": [7.11, -0.5] },
+          { "type": "segment", "from": [7.11, -0.5], "to": [7.41, -0.42] },
+          { "type": "segment", "from": [7.41, -0.42], "to": [7.66, -0.33] },
+          { "type": "segment", "from": [7.66, -0.33], "to": [7.85, -0.23] },
+          { "type": "segment", "from": [7.85, -0.23], "to": [7.96, -0.12] },
+          { "type": "segment", "from": [7.96, -0.12], "to": [8, 0] },
+          { "type": "segment", "from": [8, 0], "to": [7.96, 0.12], "dashed": true },
+          { "type": "segment", "from": [7.96, 0.12], "to": [7.85, 0.23], "dashed": true },
+          { "type": "segment", "from": [7.85, 0.23], "to": [7.66, 0.33], "dashed": true },
+          { "type": "segment", "from": [7.66, 0.33], "to": [7.41, 0.42], "dashed": true },
+          { "type": "segment", "from": [7.41, 0.42], "to": [7.11, 0.5], "dashed": true },
+          { "type": "segment", "from": [7.11, 0.5], "to": [6.77, 0.55], "dashed": true },
+          { "type": "segment", "from": [6.77, 0.55], "to": [6.39, 0.59], "dashed": true },
+          { "type": "segment", "from": [6.39, 0.59], "to": [6, 0.6], "dashed": true },
+          { "type": "segment", "from": [6, 0.6], "to": [5.61, 0.59], "dashed": true },
+          { "type": "segment", "from": [5.61, 0.59], "to": [5.23, 0.55], "dashed": true },
+          { "type": "segment", "from": [5.23, 0.55], "to": [4.89, 0.5], "dashed": true },
+          { "type": "segment", "from": [4.89, 0.5], "to": [4.59, 0.42], "dashed": true },
+          { "type": "segment", "from": [4.59, 0.42], "to": [4.34, 0.33], "dashed": true },
+          { "type": "segment", "from": [4.34, 0.33], "to": [4.15, 0.23], "dashed": true },
+          { "type": "segment", "from": [4.15, 0.23], "to": [4.04, 0.12], "dashed": true },
+          { "type": "segment", "from": [4.04, 0.12], "to": [4, 0], "dashed": true },
+          { "type": "segment", "from": [8, 5], "to": [7.93, 5.16] },
+          { "type": "segment", "from": [7.93, 5.16], "to": [7.73, 5.3] },
+          { "type": "segment", "from": [7.73, 5.3], "to": [7.41, 5.42] },
+          { "type": "segment", "from": [7.41, 5.42], "to": [7, 5.52] },
+          { "type": "segment", "from": [7, 5.52], "to": [6.52, 5.58] },
+          { "type": "segment", "from": [6.52, 5.58], "to": [6, 5.6] },
+          { "type": "segment", "from": [6, 5.6], "to": [5.48, 5.58] },
+          { "type": "segment", "from": [5.48, 5.58], "to": [5, 5.52] },
+          { "type": "segment", "from": [5, 5.52], "to": [4.59, 5.42] },
+          { "type": "segment", "from": [4.59, 5.42], "to": [4.27, 5.3] },
+          { "type": "segment", "from": [4.27, 5.3], "to": [4.07, 5.16] },
+          { "type": "segment", "from": [4.07, 5.16], "to": [4, 5] },
+          { "type": "segment", "from": [4, 5], "to": [4.07, 4.84] },
+          { "type": "segment", "from": [4.07, 4.84], "to": [4.27, 4.7] },
+          { "type": "segment", "from": [4.27, 4.7], "to": [4.59, 4.58] },
+          { "type": "segment", "from": [4.59, 4.58], "to": [5, 4.48] },
+          { "type": "segment", "from": [5, 4.48], "to": [5.48, 4.42] },
+          { "type": "segment", "from": [5.48, 4.42], "to": [6, 4.4] },
+          { "type": "segment", "from": [6, 4.4], "to": [6.52, 4.42] },
+          { "type": "segment", "from": [6.52, 4.42], "to": [7, 4.48] },
+          { "type": "segment", "from": [7, 4.48], "to": [7.41, 4.58] },
+          { "type": "segment", "from": [7.41, 4.58], "to": [7.73, 4.7] },
+          { "type": "segment", "from": [7.73, 4.7], "to": [7.93, 4.84] },
+          { "type": "segment", "from": [7.93, 4.84], "to": [8, 5] },
+          { "type": "segment", "from": [4, 0], "to": [4, 5] },
+          { "type": "segment", "from": [8, 0], "to": [8, 5] },
+          { "type": "polygon", "points": [[4.27, 0.3], [7.73, 0.3], [7.73, 5.3], [4.27, 5.3]], "fill": "orange", "color": "orange" },
+          { "type": "text", "x": 0, "y": -1.2, "text": "parallèle à la base", "size": "s" },
+          { "type": "text", "x": 6, "y": -1.2, "text": "parallèle à l’axe", "size": "s" }
+        ]
+      },
+      "categories": [{ "id": "disque", "label": "Un disque" }, { "id": "rect", "label": "Un rectangle (ou un carré)" }, { "id": "tri", "label": "Un triangle" }],
+      "items": [
+        { "id": "i1", "label": "Une boule coupée par un plan", "category": "disque" },
+        { "id": "i2", "label": "Un cylindre de révolution coupé parallèlement à sa base", "category": "disque" },
+        { "id": "i3", "label": "Un cylindre de révolution coupé parallèlement à son axe", "category": "rect" },
+        { "id": "i4", "label": "Un pavé droit coupé parallèlement à une arête", "category": "rect" },
+        { "id": "i5", "label": "Un cône de révolution coupé parallèlement à sa base", "category": "disque" },
+        { "id": "i6", "label": "Une pyramide à base triangulaire coupée parallèlement à sa base", "category": "tri" },
+        { "id": "i7", "label": "Un cube coupé parallèlement à une face", "category": "rect" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i3",
+          "category": "disque",
+          "id": "mc:cylindre-axe",
+          "error": "notion",
+          "feedback": "Un plan parallèle à l’axe coupe les deux bases selon des segments : imagine une bûche fendue dans sa longueur."
+        },
+        {
+          "item": "i5",
+          "category": "tri",
+          "id": "mc:cone-triangle",
+          "error": "notion",
+          "feedback": "Coupé parallèlement à sa base, un solide « pointu » donne une réduction de sa base. Quelle est la forme de la base d’un cône ?"
+        },
+        {
+          "item": "i6",
+          "category": "rect",
+          "id": "mc:pyramide-base",
+          "error": "notion",
+          "feedback": "La section parallèle à la base est une réduction de la base : regarde la forme de la base de cette pyramide."
+        }
+      ],
+      "hints": [
+        "Coupe parallèle à la base d’un cylindre, d’un cône ou d’une pyramide : on retrouve la forme de la base.",
+        "Coupe parallèle à l’axe d’un cylindre : regarde la figure de droite.",
+        "Toute section d’une boule par un plan est un disque."
+      ],
+      "solution": "Disques : la boule, le cylindre coupé parallèlement à sa base, le cône coupé parallèlement à sa base (réduction du disque de base). Rectangles : le cylindre coupé parallèlement à son axe, le pavé coupé parallèlement à une arête, le cube coupé parallèlement à une face (un carré). Triangle : la pyramide à base triangulaire (réduction de sa base).",
+      "selfTest": [
+        {
+          "response": { "assign": { "i1": "disque", "i2": "disque", "i3": "rect", "i4": "rect", "i5": "disque", "i6": "tri", "i7": "rect" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "i1": "disque", "i2": "disque", "i3": "disque", "i4": "rect", "i5": "disque", "i6": "tri", "i7": "rect" } },
+          "expect": "mc:cylindre-axe"
+        },
+        {
+          "response": { "assign": { "i1": "disque", "i2": "disque", "i3": "rect", "i4": "rect", "i5": "tri", "i6": "tri", "i7": "rect" } },
+          "expect": "mc:cone-triangle"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-volume",
+      "type": "numeric",
+      "skill": "m3.sphere.volume",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:aire-volume", "mc:oubli-quatre-tiers", "mc:rayon-diametre"],
+      "expectedSeconds": 120,
+      "params": { "r": { "int": [2, 15], "not": [3] } },
+      "prompt": "Calcule le volume d’une boule de rayon {r} cm, arrondi au cm³.",
+      "figure": {
+        "alt": "Une boule de centre O ; son rayon est indiqué.",
+        "w": 259,
+        "h": 250,
+        "frame": { "x": [-3.6, 3.9], "y": [-3.6, 3.6] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "M", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "segment", "from": "O", "to": "M", "label": "{r} cm", "color": "rouge" }
+        ]
+      },
+      "answer": "arrondi(4/3*pi*r^3;0)",
+      "unit": "cm³",
+      "tolerance": 0.5,
+      "round": 0,
+      "misconceptions": [
+        {
+          "answer": "arrondi(4*pi*r^2;0)",
+          "id": "mc:aire-volume",
+          "error": "notion",
+          "feedback": "Tu as calculé l’**aire** de la sphère (en cm²). Un volume utilise le rayon au cube."
+        },
+        {
+          "answer": "arrondi(pi*r^3;0)",
+          "id": "mc:oubli-quatre-tiers",
+          "error": "notion",
+          "feedback": "Il manque un facteur dans la formule du volume de la boule : $(4/3) × π × R³$."
+        },
+        {
+          "answer": "arrondi(4/3*pi*(2*r)^3;0)",
+          "id": "mc:rayon-diametre",
+          "error": "lecture",
+          "feedback": "Tu as utilisé le diamètre à la place du rayon : la formule utilise le rayon."
+        },
+        {
+          "answer": "arrondi(4/3*pi*r^2;0)",
+          "id": "mc:exposant-volume",
+          "error": "notion",
+          "feedback": "Un volume a trois dimensions : le rayon doit être élevé au cube, pas au carré."
+        }
+      ],
+      "hints": [
+        "Volume d’une boule : $(4/3) × π × R³$.",
+        "$R³ = {r} × {r} × {r}$ = {r^3}.",
+        "Calcule $(4/3) × π × {r^3}$ à la calculatrice, puis arrondis à l’unité."
+      ],
+      "solution": "$V = (4/3) × π × {r}³ = (4/3) × π × {r^3}$ ≈ {arrondi(4/3*pi*r^3;0)} cm³.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(4/3*pi*r^3;0)} cm³" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(4*pi*r^2;0)} cm³" }, "expect": "mc:aire-volume" },
+        { "response": { "value": "{arrondi(4/3*pi*(2*r)^3;0)} cm³" }, "expect": "mc:rayon-diametre" }
+      ]
+    },
+    {
+      "id": "m3-sphere-aire",
+      "type": "numeric",
+      "skill": "m3.sphere.volume",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:rayon-diametre", "mc:aire-volume", "mc:aire-perimetre"],
+      "expectedSeconds": 150,
+      "params": { "d": { "choice": [12, 18, 20, 24, 30] } },
+      "prompt": "Un ballon a un diamètre de {d} cm. Calcule l’aire de sa surface (la sphère), arrondie au cm².",
+      "figure": {
+        "alt": "Un ballon sphérique ; son diamètre est indiqué.",
+        "w": 260,
+        "h": 249,
+        "frame": { "x": [-3.8, 3.8], "y": [-3.6, 3.6] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "M1", "x": -3, "y": 0, "pos": "w", "label": "" },
+          { "type": "point", "id": "M2", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "segment", "from": "M1", "to": "M2", "label": "{d} cm", "color": "rouge" }
+        ]
+      },
+      "answer": "arrondi(pi*d^2;0)",
+      "unit": "cm²",
+      "tolerance": 0.5,
+      "round": 0,
+      "misconceptions": [
+        {
+          "answer": "arrondi(4*pi*d^2;0)",
+          "id": "mc:rayon-diametre",
+          "error": "lecture",
+          "feedback": "Tu as utilisé le diamètre comme rayon : commence par calculer le rayon."
+        },
+        {
+          "answer": "arrondi(pi*d^3/6;0)",
+          "id": "mc:aire-volume",
+          "error": "notion",
+          "feedback": "Tu as calculé le **volume** de la boule (en cm³). L’aire de la sphère utilise le rayon au carré."
+        },
+        {
+          "answer": "arrondi(pi*d;0)",
+          "id": "mc:aire-perimetre",
+          "error": "notion",
+          "feedback": "Tu as calculé le périmètre d’un grand cercle, en cm. On demande une aire, en cm²."
+        }
+      ],
+      "hints": [
+        "Le rayon est la moitié du diamètre : $R = {d} ÷ 2 = {d/2}$ cm.",
+        "Aire d’une sphère : $4 × π × R²$.",
+        "$4 × π × {d/2}²$, puis arrondis à l’unité."
+      ],
+      "solution": "$R = {d/2}$ cm, donc l’aire vaut $4 × π × {d/2}²$ ≈ {arrondi(pi*d^2;0)} cm².",
+      "selfTest": [
+        { "response": { "value": "{arrondi(pi*d^2;0)} cm²" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(4*pi*d^2;0)} cm²" }, "expect": "mc:rayon-diametre" }
+      ]
+    },
+    {
+      "id": "m3-sphere-coordonnees",
+      "type": "match",
+      "skill": "m3.sphere.reperage",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:lat-long-inverse", "mc:nord-sud"],
+      "expectedSeconds": 150,
+      "prompt": "Sur ce planisphère, les parallèles et les méridiens sont tracés tous les 30°. Associe chaque point à ses coordonnées (latitude ; longitude).",
+      "figure": {
+        "alt": "Planisphère avec l'équateur, le méridien de Greenwich et des lignes tous les 30° ; quatre points A, B, C et D.",
+        "w": 460,
+        "h": 248,
+        "frame": { "x": [-222, 186], "y": [-106, 94] },
+        "items": [
+          { "type": "rect", "x": -180, "y": -90, "w": 360, "h": 180, "fill": "maths", "color": "gris" },
+          { "type": "segment", "from": [-180, -60], "to": [180, -60], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-180, -30], "to": [180, -30], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-180, 30], "to": [180, 30], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-180, 60], "to": [180, 60], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-150, -90], "to": [-150, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-120, -90], "to": [-120, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-90, -90], "to": [-90, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-60, -90], "to": [-60, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-30, -90], "to": [-30, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [30, -90], "to": [30, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [60, -90], "to": [60, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [90, -90], "to": [90, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [120, -90], "to": [120, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [150, -90], "to": [150, 90], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-180, 0], "to": [180, 0], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [0, -90], "to": [0, 90], "color": "orange", "width": 2 },
+          { "type": "text", "x": 178, "y": 7, "text": "équateur", "size": "s", "color": "rouge", "anchor": "end" },
+          { "type": "text", "x": 4, "y": 82, "text": "Greenwich", "size": "s", "color": "orange", "anchor": "start" },
+          { "type": "text", "x": -184, "y": 60, "text": "60° N", "size": "s", "anchor": "end" },
+          { "type": "text", "x": -184, "y": 30, "text": "30° N", "size": "s", "anchor": "end" },
+          { "type": "text", "x": -184, "y": 0, "text": "0°", "size": "s", "anchor": "end" },
+          { "type": "text", "x": -184, "y": -30, "text": "30° S", "size": "s", "anchor": "end" },
+          { "type": "text", "x": -184, "y": -60, "text": "60° S", "size": "s", "anchor": "end" },
+          { "type": "text", "x": -120, "y": -98, "text": "120° O", "size": "s" },
+          { "type": "text", "x": -60, "y": -98, "text": "60° O", "size": "s" },
+          { "type": "text", "x": 0, "y": -98, "text": "0°", "size": "s" },
+          { "type": "text", "x": 60, "y": -98, "text": "60° E", "size": "s" },
+          { "type": "text", "x": 120, "y": -98, "text": "120° E", "size": "s" },
+          { "type": "point", "id": "A", "x": 60, "y": 30, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "B", "x": -90, "y": -60, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "C", "x": -120, "y": 0, "pos": "n", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "D", "x": -30, "y": 60, "pos": "ne", "style": "rond", "color": "rouge" }
+        ]
+      },
+      "leftTitle": "Point",
+      "rightTitle": "Coordonnées (latitude ; longitude)",
+      "left": [{ "id": "a", "label": "A" }, { "id": "b", "label": "B" }, { "id": "c", "label": "C" }, { "id": "d", "label": "D" }],
+      "right": [
+        { "id": "r1", "label": "(30° N ; 60° E)" },
+        { "id": "r2", "label": "(60° S ; 90° O)" },
+        { "id": "r3", "label": "(0° ; 120° O)" },
+        { "id": "r4", "label": "(60° N ; 30° O)" },
+        { "id": "r5", "label": "(60° N ; 30° E)" },
+        { "id": "r6", "label": "(60° N ; 90° O)" },
+        { "id": "r7", "label": "(30° S ; 60° E)" }
+      ],
+      "pairs": { "a": "r1", "b": "r2", "c": "r3", "d": "r4" },
+      "misconceptions": [
+        {
+          "pair": ["a", "r5"],
+          "id": "mc:lat-long-inverse",
+          "error": "lecture",
+          "feedback": "La latitude se lit verticalement (écart à l’équateur), la longitude horizontalement (écart au méridien de Greenwich). Et on écrit la latitude en premier."
+        },
+        {
+          "pair": ["b", "r6"],
+          "id": "mc:nord-sud",
+          "error": "lecture",
+          "feedback": "Regarde de quel côté de l’équateur se trouve $B$ : cela décide entre N et S."
+        },
+        {
+          "pair": ["a", "r7"],
+          "id": "mc:nord-sud",
+          "error": "lecture",
+          "feedback": "Regarde de quel côté de l’équateur se trouve $A$ : cela décide entre N et S."
+        }
+      ],
+      "hints": [
+        "Au-dessus de l’équateur : Nord ; en dessous : Sud. À droite de Greenwich : Est ; à gauche : Ouest.",
+        "Compte les lignes de 30° en partant de l’équateur, puis de Greenwich.",
+        "On écrit (latitude ; longitude)."
+      ],
+      "solution": "A(30° N ; 60° E), B(60° S ; 90° O), C(0° ; 120° O) — sur l’équateur —, D(60° N ; 30° O).",
+      "selfTest": [
+        { "response": { "pairs": { "a": "r1", "b": "r2", "c": "r3", "d": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "a": "r5", "b": "r2", "c": "r3", "d": "r4" } }, "expect": "mc:lat-long-inverse" },
+        { "response": { "pairs": { "a": "r1", "b": "r6", "c": "r3", "d": "r4" } }, "expect": "mc:nord-sud" }
+      ]
+    },
+    {
+      "id": "m3-sphere-section-rayon",
+      "type": "numeric",
+      "skill": "m3.solides.sections",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:difference-cotes", "mc:oubli-racine", "mc:hypotenuse-mal-placee"],
+      "expectedSeconds": 180,
+      "params": {
+        "t": { "int": [1, 8] },
+        "ra": { "expr": "(t=1)*5 + (t=2)*5 + (t=3)*10 + (t=4)*13 + (t=5)*13 + (t=6)*17 + (t=7)*10 + (t=8)*25" },
+        "di": { "expr": "(t=1)*3 + (t=2)*4 + (t=3)*6 + (t=4)*5 + (t=5)*12 + (t=6)*8 + (t=7)*8 + (t=8)*7" },
+        "rs": { "expr": "(t=1)*4 + (t=2)*3 + (t=3)*8 + (t=4)*12 + (t=5)*5 + (t=6)*15 + (t=7)*6 + (t=8)*24" }
+      },
+      "prompt": "Une sphère de centre $O$ et de rayon {ra} cm est coupée par un plan situé à {di} cm de $O$. Calcule le rayon $HM$ du cercle de section (en cm).",
+      "figure": {
+        "alt": "Coupe de la sphère : le cercle de centre O, le plan de section horizontal, H le centre du cercle de section et M un point de ce cercle ; OM et OH sont indiquées.",
+        "w": 290,
+        "h": 280,
+        "frame": { "x": ["{-ra*1.2}", "{ra*1.2}"], "y": ["{-ra*1.12}", "{ra*1.12}"] },
+        "items": [
+          { "type": "circle", "center": "O", "r": "{ra}", "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": ["{-ra*1.15}", "{di}"], "to": ["{ra*1.15}", "{di}"], "color": "gris", "width": 1 },
+          { "type": "segment", "from": ["{-rs}", "{di}"], "to": ["{rs}", "{di}"], "color": "orange", "width": 3 },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "H", "x": 0, "y": "{di}", "pos": "nw" },
+          { "type": "point", "id": "M", "x": "{rs}", "y": "{di}", "pos": "ne" },
+          { "type": "segment", "from": "O", "to": "M", "label": "{ra} cm", "color": "rouge" },
+          { "type": "segment", "from": "O", "to": "H", "label": "{di} cm" },
+          { "type": "segment", "from": "H", "to": "M", "label": "?", "color": "orange" },
+          { "type": "angle", "vertex": "H", "from": "O", "to": "M", "right": true }
+        ]
+      },
+      "answer": "rs",
+      "unit": "cm",
+      "misconceptions": [
+        {
+          "answer": "ra - di",
+          "id": "mc:difference-cotes",
+          "error": "notion",
+          "prerequisite": "m4.pythagore.calcul",
+          "feedback": "On ne soustrait pas les longueurs : le triangle $OHM$ est rectangle en $H$, utilise le théorème de Pythagore."
+        },
+        {
+          "answer": "ra^2 - di^2",
+          "id": "mc:oubli-racine",
+          "error": "methode",
+          "feedback": "Tu as trouvé $HM²$ : il reste à trouver la longueur $HM$ elle-même."
+        },
+        {
+          "answer": "racine(ra^2 + di^2)",
+          "id": "mc:hypotenuse-mal-placee",
+          "error": "notion",
+          "prerequisite": "m4.pythagore.calcul",
+          "feedback": "L’hypoténuse du triangle $OHM$ est $[OM]$, le rayon de la sphère : $HM$ est un côté de l’angle droit, il est plus court."
+        }
+      ],
+      "hints": [
+        "Le triangle $OHM$ est rectangle en $H$, d’hypoténuse $[OM]$ = {ra} cm.",
+        "$HM² = OM² − OH² = {ra}² − {di}²$.",
+        "$HM² = {ra^2-di^2}$ : prends la racine carrée."
+      ],
+      "solution": "Dans le triangle $OHM$ rectangle en $H$ : $OM² = OH² + HM²$, donc $HM² = {ra}² − {di}² = {ra^2} − {di^2} = {ra^2-di^2}$, et $HM = √{ra^2-di^2}$ = {rs} cm.",
+      "selfTest": [
+        { "response": { "value": "{rs} cm" }, "expect": "correct" },
+        { "response": { "value": "{ra-di} cm" }, "expect": "mc:difference-cotes" },
+        { "response": { "value": "{ra^2-di^2} cm" }, "expect": "mc:oubli-racine" }
+      ]
+    },
+    {
+      "id": "m3-sphere-verif",
+      "type": "qcm",
+      "skill": "m3.sphere.reperage",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : tous les points situés sur l’équateur ont…",
+      "figure": {
+        "alt": "Un globe terrestre vu un peu par-dessus, avec l'équateur en rouge, le méridien de Greenwich en orange et le pôle Nord.",
+        "w": 260,
+        "h": 260,
+        "frame": { "x": [-5.2, 5.2], "y": [-5.2, 5.2] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3.45, 1.98], "to": [-3.41, 1.67], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.41, 1.67], "to": [-3.14, 1.38], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.14, 1.38], "to": [-2.65, 1.12], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.65, 1.12], "to": [-1.99, 0.91], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.99, 0.91], "to": [-1.18, 0.77], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.18, 0.77], "to": [-0.3, 0.7], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.3, 0.7], "to": [0.6, 0.71], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.6, 0.71], "to": [1.46, 0.81], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.46, 0.81], "to": [2.23, 0.97], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, 0.97], "to": [2.84, 1.2], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.84, 1.2], "to": [3.26, 1.47], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3.26, 1.47], "to": [3.45, 1.78], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3.45, 1.78], "to": [3.41, 2.09], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.14, -2.38], "to": [-2.65, -2.64], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.65, -2.64], "to": [-1.99, -2.85], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.99, -2.85], "to": [-1.18, -2.99], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.18, -2.99], "to": [-0.3, -3.06], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.3, -3.06], "to": [0.6, -3.05], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.6, -3.05], "to": [1.46, -2.95], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.46, -2.95], "to": [2.23, -2.79], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, -2.79], "to": [2.84, -2.56], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.84, -2.56], "to": [3.26, -2.28], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.81, -1.2], "to": [-3.94, -0.24], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.94, -0.24], "to": [-3.81, 0.74], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.81, 0.74], "to": [-3.41, 1.67], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.41, 1.67], "to": [-2.79, 2.49], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.79, 2.49], "to": [-1.97, 3.14], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.97, 3.14], "to": [-1.02, 3.57], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.02, 3.57], "to": [0, 3.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.29, -3.78], "to": [1.82, -3.4], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.82, -3.4], "to": [2.23, -2.79], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, -2.79], "to": [2.48, -1.99], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.48, -1.99], "to": [2.57, -1.05], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.57, -1.05], "to": [2.48, -0.04], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.48, -0.04], "to": [2.23, 0.97], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, 0.97], "to": [1.82, 1.92], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.82, 1.92], "to": [1.29, 2.73], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.29, 2.73], "to": [0.67, 3.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, 3.36], "to": [0, 3.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.37, 1.29], "to": [0.5, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.5, 1.36], "to": [-0.4, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.4, 1.36], "to": [-1.27, 1.3], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.27, 1.3], "to": [-2.09, 1.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.09, 1.17], "to": [-2.79, 0.98], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.79, 0.98], "to": [-3.36, 0.74], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.36, 0.74], "to": [-3.76, 0.47], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.76, 0.47], "to": [-3.97, 0.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.97, 0.17], "to": [-3.98, -0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.98, -0.14], "to": [-3.79, -0.44], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.79, -0.44], "to": [-3.41, -0.71], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.41, -0.71], "to": [-2.86, -0.96], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.86, -0.96], "to": [-2.17, -1.15], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.17, -1.15], "to": [-1.37, -1.29], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-0.5, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-0.5, -1.36], "to": [0.4, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [0.4, -1.36], "to": [1.27, -1.3], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [1.27, -1.3], "to": [2.09, -1.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.09, -1.17], "to": [2.79, -0.98], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.79, -0.98], "to": [3.36, -0.74], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.36, -0.74], "to": [3.76, -0.47], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.76, -0.47], "to": [3.97, -0.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.97, -0.17], "to": [3.98, 0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.98, 0.14], "to": [3.79, 0.44], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.79, 0.44], "to": [3.41, 0.71], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.41, 0.71], "to": [2.86, 0.96], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.86, 0.96], "to": [2.17, 1.15], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.17, 1.15], "to": [1.37, 1.29], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, -3.76], "to": [-0.24, -3.92], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.24, -3.92], "to": [-0.47, -3.97], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.47, -3.97], "to": [-0.68, -3.9], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.68, -3.9], "to": [-0.88, -3.71], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, -3.71], "to": [-1.05, -3.4], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, -3.4], "to": [-1.18, -2.99], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, -2.99], "to": [-1.29, -2.49], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, -2.49], "to": [-1.35, -1.92], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -1.92], "to": [-1.37, -1.29], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-1.35, -0.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -0.61], "to": [-1.29, 0.08], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, 0.08], "to": [-1.18, 0.77], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, 0.77], "to": [-1.05, 1.43], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, 1.43], "to": [-0.88, 2.05], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, 2.05], "to": [-0.68, 2.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.68, 2.61], "to": [-0.47, 3.09], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.47, 3.09], "to": [-0.24, 3.48], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.24, 3.48], "to": [0, 3.76], "color": "orange", "width": 2 },
+          { "type": "point", "id": "Np", "x": 0, "y": 3.76, "pos": "n", "label": "pôle Nord" }
+        ]
+      },
+      "choices": [
+        { "text": "la même latitude, 0°", "correct": true, "feedback": "Oui : l’équateur est le parallèle de latitude 0°." },
+        {
+          "text": "la même longitude, 0°",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:lat-long-inverse",
+          "feedback": "La longitude 0° est celle des points du méridien de Greenwich, qui va d’un pôle à l’autre."
+        },
+        {
+          "text": "une latitude de 90°",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:latitude-pole",
+          "feedback": "90° (Nord ou Sud) est la latitude des pôles, les points les plus éloignés de l’équateur."
+        },
+        {
+          "text": "la même latitude et la même longitude",
+          "correct": false,
+          "error": "raisonnement",
+          "misconception": "mc:memes-coordonnees",
+          "feedback": "Deux points différents ne peuvent pas avoir exactement les mêmes coordonnées."
+        }
+      ],
+      "hints": [
+        "L’équateur est le parallèle situé à égale distance des deux pôles.",
+        "Quelle coordonnée mesure l’écart avec l’équateur ? Et laquelle mesure l’écart avec le méridien de Greenwich ?"
+      ],
+      "solution": "L’équateur est le parallèle de latitude 0° : tous ses points ont une latitude nulle, mais des longitudes différentes (de 180° O à 180° E).",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:lat-long-inverse" }]
+    },
+    {
+      "id": "m3-sphere-explique",
+      "type": "open",
+      "skill": "m3.sphere.reperage",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 30,
+      "prompt": "Explique à un camarade la différence entre la latitude et la longitude d’un lieu. Dis ensuite ce qu’ont en commun deux villes de même latitude, puis deux villes de même longitude.",
+      "figure": {
+        "alt": "Un globe avec quelques parallèles et méridiens, l'équateur en rouge et le méridien de Greenwich en orange.",
+        "w": 260,
+        "h": 260,
+        "frame": { "x": [-5.2, 5.2], "y": [-5.2, 5.2] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3.45, 1.98], "to": [-3.41, 1.67], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.41, 1.67], "to": [-3.14, 1.38], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.14, 1.38], "to": [-2.65, 1.12], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.65, 1.12], "to": [-1.99, 0.91], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.99, 0.91], "to": [-1.18, 0.77], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.18, 0.77], "to": [-0.3, 0.7], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.3, 0.7], "to": [0.6, 0.71], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.6, 0.71], "to": [1.46, 0.81], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.46, 0.81], "to": [2.23, 0.97], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, 0.97], "to": [2.84, 1.2], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.84, 1.2], "to": [3.26, 1.47], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3.26, 1.47], "to": [3.45, 1.78], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3.45, 1.78], "to": [3.41, 2.09], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.14, -2.38], "to": [-2.65, -2.64], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.65, -2.64], "to": [-1.99, -2.85], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.99, -2.85], "to": [-1.18, -2.99], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.18, -2.99], "to": [-0.3, -3.06], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.3, -3.06], "to": [0.6, -3.05], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.6, -3.05], "to": [1.46, -2.95], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.46, -2.95], "to": [2.23, -2.79], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, -2.79], "to": [2.84, -2.56], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.84, -2.56], "to": [3.26, -2.28], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.81, -1.2], "to": [-3.94, -0.24], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.94, -0.24], "to": [-3.81, 0.74], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.81, 0.74], "to": [-3.41, 1.67], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-3.41, 1.67], "to": [-2.79, 2.49], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.79, 2.49], "to": [-1.97, 3.14], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.97, 3.14], "to": [-1.02, 3.57], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.02, 3.57], "to": [0, 3.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.29, -3.78], "to": [1.82, -3.4], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.82, -3.4], "to": [2.23, -2.79], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, -2.79], "to": [2.48, -1.99], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.48, -1.99], "to": [2.57, -1.05], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.57, -1.05], "to": [2.48, -0.04], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.48, -0.04], "to": [2.23, 0.97], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.23, 0.97], "to": [1.82, 1.92], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.82, 1.92], "to": [1.29, 2.73], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.29, 2.73], "to": [0.67, 3.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, 3.36], "to": [0, 3.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.37, 1.29], "to": [0.5, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.5, 1.36], "to": [-0.4, 1.36], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.4, 1.36], "to": [-1.27, 1.3], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.27, 1.3], "to": [-2.09, 1.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.09, 1.17], "to": [-2.79, 0.98], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.79, 0.98], "to": [-3.36, 0.74], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.36, 0.74], "to": [-3.76, 0.47], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.76, 0.47], "to": [-3.97, 0.17], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.97, 0.17], "to": [-3.98, -0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-3.98, -0.14], "to": [-3.79, -0.44], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.79, -0.44], "to": [-3.41, -0.71], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-3.41, -0.71], "to": [-2.86, -0.96], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.86, -0.96], "to": [-2.17, -1.15], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-2.17, -1.15], "to": [-1.37, -1.29], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-0.5, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [-0.5, -1.36], "to": [0.4, -1.36], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [0.4, -1.36], "to": [1.27, -1.3], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [1.27, -1.3], "to": [2.09, -1.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.09, -1.17], "to": [2.79, -0.98], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [2.79, -0.98], "to": [3.36, -0.74], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.36, -0.74], "to": [3.76, -0.47], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.76, -0.47], "to": [3.97, -0.17], "color": "rouge", "width": 2 },
+          { "type": "segment", "from": [3.97, -0.17], "to": [3.98, 0.14], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.98, 0.14], "to": [3.79, 0.44], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.79, 0.44], "to": [3.41, 0.71], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [3.41, 0.71], "to": [2.86, 0.96], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.86, 0.96], "to": [2.17, 1.15], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.17, 1.15], "to": [1.37, 1.29], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, -3.76], "to": [-0.24, -3.92], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.24, -3.92], "to": [-0.47, -3.97], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.47, -3.97], "to": [-0.68, -3.9], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.68, -3.9], "to": [-0.88, -3.71], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, -3.71], "to": [-1.05, -3.4], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, -3.4], "to": [-1.18, -2.99], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, -2.99], "to": [-1.29, -2.49], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, -2.49], "to": [-1.35, -1.92], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -1.92], "to": [-1.37, -1.29], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.37, -1.29], "to": [-1.35, -0.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.35, -0.61], "to": [-1.29, 0.08], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.29, 0.08], "to": [-1.18, 0.77], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.18, 0.77], "to": [-1.05, 1.43], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-1.05, 1.43], "to": [-0.88, 2.05], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.88, 2.05], "to": [-0.68, 2.61], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.68, 2.61], "to": [-0.47, 3.09], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.47, 3.09], "to": [-0.24, 3.48], "color": "orange", "width": 2 },
+          { "type": "segment", "from": [-0.24, 3.48], "to": [0, 3.76], "color": "orange", "width": 2 },
+          { "type": "point", "id": "Np", "x": 0, "y": 3.76, "pos": "n", "label": "pôle Nord" }
+        ]
+      },
+      "criteria": [
+        { "id": "c1", "label": "La latitude indique l’écart avec l’équateur, vers le Nord ou le Sud (de 0° à 90°)", "keywords": [["equateur"]] },
+        {
+          "id": "c2",
+          "label": "La longitude indique l’écart avec le méridien de Greenwich, vers l’Est ou l’Ouest (de 0° à 180°)",
+          "keywords": [["greenwich"]]
+        },
+        { "id": "c3", "label": "Deux villes de même latitude sont sur le même parallèle", "keywords": [["parallele"]] },
+        { "id": "c4", "label": "Deux villes de même longitude sont sur le même méridien", "keywords": [["meridien"]] }
+      ],
+      "models": [
+        "La latitude mesure à quelle distance angulaire on est de l’équateur, vers le Nord ou vers le Sud, de 0° à 90°. La longitude mesure l’écart avec le méridien de Greenwich, vers l’Est ou vers l’Ouest, de 0° à 180°. Deux villes de même latitude sont sur le même parallèle, à la même distance de l’équateur. Deux villes de même longitude sont sur le même méridien, sur une ligne qui va d’un pôle à l’autre."
+      ],
+      "hints": [
+        "La latitude se compte à partir de l’équateur.",
+        "La longitude se compte à partir du méridien de Greenwich.",
+        "Parallèles : cercles parallèles à l’équateur ; méridiens : demi-cercles d’un pôle à l’autre."
+      ],
+      "solution": "Latitude : écart avec l’équateur, de 0° à 90° Nord ou Sud. Longitude : écart avec le méridien de Greenwich, de 0° à 180° Est ou Ouest. Même latitude : même parallèle. Même longitude : même méridien.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "La latitude c'est l'écart avec l'équateur, vers le Nord ou le Sud. La longitude c'est l'écart avec le méridien de Greenwich, vers l'Est ou l'Ouest. Deux villes de même latitude sont sur le même parallèle et deux villes de même longitude sont sur le même méridien.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-glace",
+      "type": "composite",
+      "skill": "m3.sphere.volume",
+      "skills": ["m4.grandeurs.volume-pyramide-cone", "m3.grandeurs.conversions"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:oubli-tiers", "mc:demi-boule"],
+      "expectedSeconds": 420,
+      "prompt": "Un cornet de glace est formé d’un cône de rayon 3 cm et de hauteur 10 cm, rempli de glace, surmonté d’une demi-boule de glace de même rayon.",
+      "figure": {
+        "alt": "Un cornet : un cône pointe en bas, de rayon 3 cm et de hauteur 10 cm, surmonté d'une demi-boule de rayon 3 cm.",
+        "w": 208,
+        "h": 320,
+        "frame": { "x": [-4.4, 4.4], "y": [-11, 3.8] },
+        "items": [
+          { "type": "polygon", "points": [[0, -10], [-3, 0], [3, 0]], "fill": "orange", "color": "orange" },
+          {
+            "type": "polygon",
+            "points": [
+              [3, 0],
+              [2.95, 0.52],
+              [2.82, 1.03],
+              [2.6, 1.5],
+              [2.3, 1.93],
+              [1.93, 2.3],
+              [1.5, 2.6],
+              [1.03, 2.82],
+              [0.52, 2.95],
+              [0, 3],
+              [-0.52, 2.95],
+              [-1.03, 2.82],
+              [-1.5, 2.6],
+              [-1.93, 2.3],
+              [-2.3, 1.93],
+              [-2.6, 1.5],
+              [-2.82, 1.03],
+              [-2.95, 0.52],
+              [-3, 0]
+            ],
+            "fill": "violet",
+            "color": "violet"
+          },
+          { "type": "segment", "from": [-3, 0], "to": [-2.94, -0.16], "color": "orange" },
+          { "type": "segment", "from": [-2.94, -0.16], "to": [-2.77, -0.31], "color": "orange" },
+          { "type": "segment", "from": [-2.77, -0.31], "to": [-2.49, -0.44], "color": "orange" },
+          { "type": "segment", "from": [-2.49, -0.44], "to": [-2.12, -0.57], "color": "orange" },
+          { "type": "segment", "from": [-2.12, -0.57], "to": [-1.67, -0.67], "color": "orange" },
+          { "type": "segment", "from": [-1.67, -0.67], "to": [-1.15, -0.74], "color": "orange" },
+          { "type": "segment", "from": [-1.15, -0.74], "to": [-0.59, -0.78], "color": "orange" },
+          { "type": "segment", "from": [-0.59, -0.78], "to": [0, -0.8], "color": "orange" },
+          { "type": "segment", "from": [0, -0.8], "to": [0.59, -0.78], "color": "orange" },
+          { "type": "segment", "from": [0.59, -0.78], "to": [1.15, -0.74], "color": "orange" },
+          { "type": "segment", "from": [1.15, -0.74], "to": [1.67, -0.67], "color": "orange" },
+          { "type": "segment", "from": [1.67, -0.67], "to": [2.12, -0.57], "color": "orange" },
+          { "type": "segment", "from": [2.12, -0.57], "to": [2.49, -0.44], "color": "orange" },
+          { "type": "segment", "from": [2.49, -0.44], "to": [2.77, -0.31], "color": "orange" },
+          { "type": "segment", "from": [2.77, -0.31], "to": [2.94, -0.16], "color": "orange" },
+          { "type": "segment", "from": [2.94, -0.16], "to": [3, 0], "color": "orange" },
+          { "type": "point", "id": "S", "x": 0, "y": -10, "pos": "s" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "nw" },
+          { "type": "point", "id": "R", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true, "label": "10 cm" },
+          { "type": "segment", "from": "O", "to": "R", "label": "3 cm", "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de glace contenu dans le cône (en cm³, au dixième).",
+          "answer": 94.2478,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 282.7433,
+              "id": "mc:oubli-tiers",
+              "error": "notion",
+              "prerequisite": "m4.grandeurs.volume-pyramide-cone",
+              "feedback": "Le volume d’un cône est le **tiers** de celui du cylindre de même base et de même hauteur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de la demi-boule (en cm³, au dixième).",
+          "answer": 56.5487,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [{ "answer": 113.0973, "id": "mc:demi-boule", "error": "lecture", "feedback": "Il n’y a qu’une **demi**-boule sur le cornet." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume total de glace, en centilitres ? (au cL près ; 1 cL = 10 cm³)",
+          "answer": 15.0796,
+          "tolerance": 0.5,
+          "round": 0
+        }
+      ],
+      "hints": ["Cône : $(1/3) × π × r² × h$.", "Demi-boule : la moitié de $(4/3) × π × r³$.", "1 L = 1 000 cm³, donc 1 cL = 10 cm³."],
+      "solution": "1) $(1/3) × π × 3² × 10 = 30π$ ≈ 94,2 cm³.\n2) $(1/2) × (4/3) × π × 3³ = 18π$ ≈ 56,5 cm³.\n3) Total : $48π$ ≈ 150,8 cm³, soit environ 15 cL.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "94,2" }, { "value": "56,5" }, { "value": "15" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "282,7" }, { "value": "56,5" }, { "value": "15" }] }, "expect": "mc:oubli-tiers" },
+        { "response": { "parts": [{ "value": "94,2" }, { "value": "113,1" }, { "value": "15" }] }, "expect": "mc:demi-boule" }
+      ]
+    },
+    {
+      "id": "m3-sphere-citerne",
+      "type": "composite",
+      "skill": "m3.grandeurs.conversions",
+      "skills": ["m3.sphere.volume"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:rayon-diametre", "mc:debit-inverse", "mc:pourcentage-oublie"],
+      "expectedSeconds": 540,
+      "params": { "d": { "choice": [2, 3, 4, 5] } },
+      "prompt": "Une citerne de propane a la forme d’une boule de {d} m de diamètre (on néglige l’épaisseur de la paroi).",
+      "figure": {
+        "alt": "Une citerne en forme de boule, posée sur des pieds ; son diamètre est indiqué.",
+        "w": 259,
+        "h": 270,
+        "frame": { "x": [-3.9, 3.9], "y": [-4.6, 3.6] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "M1", "x": -3, "y": 0, "pos": "w", "label": "" },
+          { "type": "point", "id": "M2", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "segment", "from": "M1", "to": "M2", "label": "{d} m", "color": "rouge" },
+          { "type": "segment", "from": [-1.8, -2.4], "to": [-2.2, -4.2], "width": 3, "color": "gris" },
+          { "type": "segment", "from": [1.8, -2.4], "to": [2.2, -4.2], "width": 3, "color": "gris" },
+          { "type": "segment", "from": [-3.4, -4.2], "to": [3.4, -4.2], "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de la citerne (en m³, au centième).",
+          "answer": "pi*d^3/6",
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": "4/3*pi*d^3",
+              "id": "mc:rayon-diametre",
+              "error": "lecture",
+              "feedback": "La formule utilise le **rayon** : la moitié du diamètre."
+            },
+            {
+              "answer": "pi*d^2",
+              "id": "mc:aire-volume",
+              "error": "notion",
+              "feedback": "Tu as calculé l’aire de la sphère. Pour un volume, le rayon est au cube."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Exprime ce volume en litres (à l’unité, en gardant la valeur exacte du volume).",
+          "answer": "1000*pi*d^3/6",
+          "tolerance": 6,
+          "round": 0
+        },
+        {
+          "type": "numeric",
+          "prompt": "On la remplit avec une pompe de débit 250 L/min. Combien de minutes faut-il pour la remplir entièrement ? (à la minute près)",
+          "answer": "4*pi*d^3/6",
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "250000*pi*d^3/6",
+              "id": "mc:debit-inverse",
+              "error": "notion",
+              "feedback": "Un débit de 250 L/min signifie 250 L chaque minute : durée = volume ÷ débit."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Par sécurité, on ne la remplit qu’à 80 %. Le propane liquide a une masse volumique d’environ 500 kg/m³. Quelle masse de propane contient-elle alors ? (en kg, à l’unité)",
+          "answer": "400*pi*d^3/6",
+          "tolerance": 3,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "500*pi*d^3/6",
+              "id": "mc:pourcentage-oublie",
+              "error": "lecture",
+              "feedback": "La citerne n’est remplie qu’à 80 % : prends 80 % du volume avant de multiplier par la masse volumique."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Rayon : {d} ÷ 2 = {d/2} m. Volume : $(4/3) × π × R³$.",
+        "1 m³ = 1 000 L ; durée = volume (en L) ÷ 250.",
+        "Masse = masse volumique × volume (en m³), avec 80 % du volume."
+      ],
+      "solution": "1) $R = {d/2}$ m, $V = (4/3) × π × {d/2}³$ ≈ {arrondi(pi*d^3/6;2)} m³.\n2) Soit environ {arrondi(1000*pi*d^3/6;0)} L.\n3) {arrondi(1000*pi*d^3/6;0)} ÷ 250 ≈ {arrondi(4*pi*d^3/6;0)} min.\n4) $0,8 × V × 500$ ≈ {arrondi(400*pi*d^3/6;0)} kg.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "{arrondi(pi*d^3/6;2)}" },
+              { "value": "{arrondi(1000*pi*d^3/6;0)}" },
+              { "value": "{arrondi(4*pi*d^3/6;0)}" },
+              { "value": "{arrondi(400*pi*d^3/6;0)}" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "{arrondi(4/3*pi*d^3;2)}" },
+              { "value": "{arrondi(1000*pi*d^3/6;0)}" },
+              { "value": "{arrondi(4*pi*d^3/6;0)}" },
+              { "value": "{arrondi(400*pi*d^3/6;0)}" }
+            ]
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-metre",
+      "type": "composite",
+      "skill": "m3.sphere.reperage",
+      "skills": ["m3.grandeurs.conversions", "m6.grandeurs.perimetres"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:lat-long-inverse", "mc:demi-meridien", "mc:latitudes-additionnees"],
+      "expectedSeconds": 600,
+      "prompt": "En 1791, la France décide de définir le mètre comme la dix-millionième partie de la distance entre le pôle Nord et l’équateur, mesurée le long d’un méridien. De 1792 à 1798, les savants Delambre et Méchain mesurent l’arc de méridien entre Dunkerque (≈ 51,0° N ; 2,4° E) et Barcelone (≈ 41,4° N ; 2,2° E). On assimile la Terre à une boule de rayon 6 371 km.",
+      "figure": {
+        "alt": "Coupe de la Terre le long d'un méridien : O est le centre, N le pôle Nord ; Dunkerque et Barcelone sont sur le cercle, à 51° et 41,4° au-dessus de l'équateur.",
+        "w": 336,
+        "h": 290,
+        "frame": { "x": [-4.8, 6.6], "y": [-4.6, 5] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-4.5, 0], "to": [4.5, 0], "color": "rouge", "dashed": true },
+          { "type": "segment", "from": [0, 0], "to": [0, 4], "color": "gris", "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "Q", "x": 4, "y": 0, "pos": "se", "label": "" },
+          { "type": "point", "id": "N", "x": 0, "y": 4, "pos": "n", "label": "pôle Nord" },
+          { "type": "point", "id": "Du", "x": 2.52, "y": 3.11, "pos": "ne", "label": "Dunkerque", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "Ba", "x": 3, "y": 2.65, "pos": "e", "label": "Barcelone", "style": "rond", "color": "rouge" },
+          { "type": "segment", "from": "O", "to": "Du", "color": "gris" },
+          { "type": "segment", "from": "O", "to": "Ba", "color": "gris" },
+          { "type": "angle", "vertex": "O", "from": "Q", "to": "Ba", "label": "41,4°", "r": 40 },
+          { "type": "angle", "vertex": "O", "from": "Ba", "to": "Du", "r": 26, "color": "orange" },
+          { "type": "text", "x": 4.4, "y": -0.45, "text": "équateur", "size": "s", "color": "rouge", "anchor": "end" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Dunkerque et Barcelone sont presque sur le même méridien. Quelle coordonnée ont-elles presque en commun ? (latitude ou longitude)",
+          "accept": ["longitude", "la longitude", "leur longitude", "la même longitude", "même longitude"],
+          "misconceptions": [
+            {
+              "answer": "latitude",
+              "id": "mc:lat-long-inverse",
+              "error": "notion",
+              "feedback": "Les points d’un même parallèle ont la même latitude. Sur un même méridien, c’est l’autre coordonnée qui est commune."
+            },
+            {
+              "answer": "la latitude",
+              "id": "mc:lat-long-inverse",
+              "error": "notion",
+              "feedback": "Les points d’un même parallèle ont la même latitude. Sur un même méridien, c’est l’autre coordonnée qui est commune."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un méridien complet (aller-retour d’un pôle à l’autre) est un grand cercle de la Terre. Quelle est la distance entre le pôle Nord et l’équateur, le long d’un méridien ? (en km, à l’unité)",
+          "answer": 10007.5434,
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 20015.0868,
+              "id": "mc:demi-meridien",
+              "error": "notion",
+              "feedback": "Du pôle Nord à l’équateur, on parcourt 90°, soit un quart de tour seulement."
+            },
+            {
+              "answer": 5003.7717,
+              "id": "mc:perimetre-rayon",
+              "error": "notion",
+              "feedback": "Le périmètre d’un cercle vaut 2 × π × rayon : reprends le calcul du tour complet avant d’en prendre le quart."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la distance entre Dunkerque et Barcelone, le long du méridien ? (en km, à l’unité)",
+          "answer": 1067.4713,
+          "tolerance": 1.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 10274.4045,
+              "id": "mc:latitudes-additionnees",
+              "error": "notion",
+              "feedback": "Les deux villes sont dans l’hémisphère Nord : l’écart de latitude entre elles est une différence, pas une somme."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec la définition de 1791 et notre Terre de rayon 6 371 km, combien mesure ce « mètre » ? (distance pôle–équateur en mètres ÷ 10 000 000, en m, au millième)",
+          "answer": 1.00075,
+          "tolerance": 0.0006,
+          "round": 3
+        }
+      ],
+      "hints": [
+        "Même méridien : même longitude.",
+        "Périmètre d’un grand cercle : $2 × π × 6 371$ ; du pôle à l’équateur, c’est le quart.",
+        "Écart de latitude : 51,0 − 41,4 = 9,6° ; la longueur d’un arc est proportionnelle à son angle (360° pour le tour complet)."
+      ],
+      "solution": "1) La longitude (≈ 2° E pour les deux villes).\n2) Tour complet : $2 × π × 6 371$ ≈ 40 030 km ; du pôle à l’équateur, un quart : ≈ 10 008 km.\n3) Écart de latitude : 9,6° ; $40 030 × 9,6 ÷ 360$ ≈ 1 067 km.\n4) 10 007 543 m ÷ 10 000 000 ≈ 1,001 m : très proche de notre mètre ! (La Terre n’est pas une boule parfaite, et le mètre est aujourd’hui défini autrement.)",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "longitude" }, { "value": "10008" }, { "value": "1067" }, { "value": "1,001" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "latitude" }, { "value": "10008" }, { "value": "1067" }, { "value": "1,001" }] },
+          "expect": "mc:lat-long-inverse"
+        },
+        {
+          "response": { "parts": [{ "value": "longitude" }, { "value": "20015" }, { "value": "1067" }, { "value": "1,001" }] },
+          "expect": "mc:demi-meridien"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-remed",
+      "type": "composite",
+      "skill": "m3.sphere.volume",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:rayon-diametre", "mc:cube-triple"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : pour une boule de **rayon** $R$, le volume vaut $(4/3) × π × R³$, avec $R³ = R × R × R$. Une balle a un diamètre de 8 cm.",
+      "figure": {
+        "alt": "Une balle de diamètre 8 cm.",
+        "w": 240,
+        "h": 230,
+        "frame": { "x": [-3.8, 3.8], "y": [-3.6, 3.6] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 3, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-3, 0], "to": [-2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.92, -0.19], "to": [-2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.7, -0.36], "to": [-2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-2.35, -0.52], "to": [-1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.87, -0.66], "to": [-1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-1.3, -0.76], "to": [-0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [-0.67, -0.82], "to": [0, -0.84], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0, -0.84], "to": [0.67, -0.82], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [0.67, -0.82], "to": [1.3, -0.76], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.3, -0.76], "to": [1.87, -0.66], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [1.87, -0.66], "to": [2.35, -0.52], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.35, -0.52], "to": [2.7, -0.36], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.7, -0.36], "to": [2.92, -0.19], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [2.92, -0.19], "to": [3, 0], "color": "gris", "width": 1 },
+          { "type": "segment", "from": [3, 0], "to": [2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.85, 0.26], "to": [2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [2.43, 0.49], "to": [1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [1.76, 0.68], "to": [0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0.93, 0.8], "to": [0, 0.84], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [0, 0.84], "to": [-0.93, 0.8], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-0.93, 0.8], "to": [-1.76, 0.68], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-1.76, 0.68], "to": [-2.43, 0.49], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.43, 0.49], "to": [-2.85, 0.26], "color": "gris", "width": 1, "dashed": true },
+          { "type": "segment", "from": [-2.85, 0.26], "to": [-3, 0], "color": "gris", "width": 1, "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "n" },
+          { "type": "point", "id": "M1", "x": -3, "y": 0, "pos": "w", "label": "" },
+          { "type": "point", "id": "M2", "x": 3, "y": 0, "pos": "e", "label": "" },
+          { "type": "segment", "from": "M1", "to": "M2", "label": "8 cm", "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est son rayon ? (en cm)",
+          "answer": 4,
+          "misconceptions": [{ "answer": 16, "id": "mc:rayon-diametre", "error": "lecture", "feedback": "Le rayon est la **moitié** du diamètre." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $R³$.",
+          "answer": 64,
+          "misconceptions": [{ "answer": 12, "id": "mc:cube-triple", "error": "calcul", "feedback": "$R³$, c’est $R × R × R$, pas $3 × R$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de la balle (en cm³, à l’unité).",
+          "answer": 268.0826,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [{ "answer": 2144.6606, "id": "mc:rayon-diametre", "error": "lecture", "feedback": "Tu as pris le diamètre comme rayon." }]
+        }
+      ],
+      "hints": ["$R = 8 ÷ 2$.", "$4 × 4 × 4$.", "$(4/3) × π × 64$."],
+      "solution": "$R = 4$ cm ; $R³ = 64$ ; $V = (4/3) × π × 64$ ≈ 268 cm³.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "4" }, { "value": "64" }, { "value": "268" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "4" }, { "value": "12" }, { "value": "268" }] }, "expect": "mc:cube-triple" }
+      ]
+    },
+    {
+      "id": "m3-sphere-louvre",
+      "type": "composite",
+      "skill": "m3.solides.sections",
+      "skills": ["m3.transfo.effets", "m4.grandeurs.volume-pyramide-cone"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:section-triangle", "mc:aire-k", "mc:volume-k"],
+      "expectedSeconds": 600,
+      "prompt": "La pyramide du Louvre est une pyramide régulière à base carrée, d’environ 35,4 m de côté et 21,6 m de haut. On la coupe (en pensée !) par un plan horizontal à mi-hauteur, à 10,8 m du sol : la petite pyramide du dessus est une réduction de la grande.",
+      "figure": {
+        "alt": "Pyramide à base carrée ABCD de sommet S, coupée à mi-hauteur par un plan parallèle à la base ; la section est en orange.",
+        "w": 380,
+        "h": 239,
+        "frame": { "x": [-0.8, 14], "y": [-0.9, 7.7] },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 7.08, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 9.58, "y": 2.5, "pos": "e" },
+          { "type": "point", "id": "D", "x": 2.5, "y": 2.5, "pos": "nw" },
+          { "type": "point", "id": "S", "x": 4.79, "y": 5.57, "pos": "n" },
+          { "type": "point", "id": "O", "x": 4.79, "y": 1.25, "pos": "s", "label": "" },
+          { "type": "segment", "from": "A", "to": "B" },
+          { "type": "segment", "from": "B", "to": "C" },
+          { "type": "segment", "from": "C", "to": "D", "dashed": true },
+          { "type": "segment", "from": "D", "to": "A", "dashed": true },
+          { "type": "segment", "from": "S", "to": "A" },
+          { "type": "segment", "from": "S", "to": "B" },
+          { "type": "segment", "from": "S", "to": "C" },
+          { "type": "segment", "from": "S", "to": "D", "dashed": true },
+          { "type": "segment", "from": "S", "to": "O", "dashed": true, "color": "gris" },
+          { "type": "polygon", "points": [[2.4, 2.79], [5.94, 2.79], [7.19, 4.04], [3.65, 4.04]], "fill": "orange", "color": "orange" },
+          { "type": "segment", "from": [11.48, 0], "to": [11.48, 4.32], "arrows": "both", "label": "21,6 m", "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quelle est la nature de la section ?",
+          "accept": ["un carré", "carré", "c’est un carré", "c'est un carré", "un carre", "carre", "la section est un carré", "un petit carré"],
+          "misconceptions": [
+            {
+              "answer": "un triangle",
+              "id": "mc:section-triangle",
+              "error": "notion",
+              "feedback": "Un plan parallèle à la base coupe les quatre faces latérales : la section est une réduction de la base."
+            },
+            {
+              "answer": "un rectangle",
+              "id": "mc:section-imprecise",
+              "error": "forme",
+              "feedback": "C’est bien un rectangle… mais sois plus précis : comment sont ses quatre côtés ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la longueur du côté de la section ? (en m)",
+          "answer": 17.7,
+          "misconceptions": [
+            {
+              "answer": 35.4,
+              "id": "mc:section-identique",
+              "error": "notion",
+              "feedback": "La section d’une pyramide parallèle à la base est une **réduction** de la base, pas une copie."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’aire de la section ? (en m², au dixième)",
+          "answer": 313.29,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [{ "answer": 626.58, "id": "mc:aire-k", "error": "notion", "feedback": "Avec $k = 0,5$, l’aire est multipliée par $k²$, pas par $k$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de la grande pyramide (en m³, à l’unité).",
+          "answer": 9022.752,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 27068.256,
+              "id": "mc:oubli-tiers",
+              "error": "notion",
+              "prerequisite": "m4.grandeurs.volume-pyramide-cone",
+              "feedback": "Le volume d’une pyramide est le **tiers** de aire de base × hauteur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le volume de la petite pyramide du dessus (en m³, à l’unité).",
+          "answer": 1127.844,
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": 4511.376, "id": "mc:volume-k", "error": "notion", "feedback": "Un volume est multiplié par $k³$, pas par $k$." },
+            { "answer": 2255.688, "id": "mc:volume-k2", "error": "notion", "feedback": "Pour un volume, c’est $k³$, pas $k²$." }
+          ]
+        }
+      ],
+      "hints": [
+        "Coupe à mi-hauteur : coefficient de réduction $k = 0,5$.",
+        "Longueurs × $k$, aires × $k²$, volumes × $k³$.",
+        "Volume d’une pyramide : (aire de la base × hauteur) ÷ 3."
+      ],
+      "solution": "1) Un carré (réduction de la base).\n2) $35,4 × 0,5 = 17,7$ m.\n3) $17,7² = 313,29$ m², soit $35,4² × 0,5²$.\n4) $35,4² × 21,6 ÷ 3$ ≈ 9 023 m³.\n5) $9 022,752 × 0,5³$ ≈ 1 128 m³ : la pointe ne contient qu’un huitième du volume.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "un carré" }, { "value": "17,7" }, { "value": "313,3" }, { "value": "9023" }, { "value": "1128" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "un carré" }, { "value": "17,7" }, { "value": "626,6" }, { "value": "9023" }, { "value": "1128" }] },
+          "expect": "mc:aire-k"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-silo",
+      "type": "composite",
+      "skill": "m3.grandeurs.conversions",
+      "skills": ["m3.sphere.volume"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:rayon-diametre", "mc:demi-boule", "mc:arrondi-superieur"],
+      "expectedSeconds": 600,
+      "prompt": "Un silo à grains est formé d’un cylindre de 4 m de diamètre et de 10 m de haut, surmonté d’une demi-boule de même diamètre. On le remplit de blé jusqu’en haut du cylindre seulement. La masse volumique du blé est d’environ 750 kg/m³.",
+      "figure": {
+        "alt": "Coupe d'un silo : un rectangle de 4 m de large et 10 m de haut, surmonté d'un demi-disque de 4 m de diamètre ; la partie cylindrique est remplie de blé.",
+        "w": 197,
+        "h": 320,
+        "frame": { "x": [-3.4, 4.6], "y": [-1.8, 12.6] },
+        "items": [
+          { "type": "rect", "x": -2, "y": 0, "w": 4, "h": 10, "fill": "orange", "color": "noir" },
+          { "type": "arc", "center": [0, 10], "r": 2, "start": 0, "end": 180 },
+          { "type": "segment", "from": [-2, -0.8], "to": [2, -0.8], "arrows": "both", "label": "4 m", "color": "gris" },
+          { "type": "segment", "from": [2.8, 0], "to": [2.8, 10], "arrows": "both", "label": "10 m", "color": "gris" },
+          { "type": "text", "x": 0, "y": 5, "text": "blé", "size": "s" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Volume de la partie cylindrique (en m³, au dixième) :",
+          "answer": 125.6637,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 502.6548,
+              "id": "mc:rayon-diametre",
+              "error": "lecture",
+              "feedback": "L’aire du disque de base utilise le **rayon** : 4 m est le diamètre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Volume de la demi-boule (en m³, au dixième) :",
+          "answer": 16.7552,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [{ "answer": 33.5103, "id": "mc:demi-boule", "error": "lecture", "feedback": "Le toit n’est qu’une **demi**-boule." }]
+        },
+        { "type": "numeric", "prompt": "Volume total du silo (en m³, au dixième) :", "answer": 142.4189, "tolerance": 0.1, "round": 1 },
+        {
+          "type": "numeric",
+          "prompt": "Quelle masse de blé contient le silo ? (en tonnes, au dixième ; 1 t = 1 000 kg)",
+          "answer": 94.2478,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 106.8142,
+              "id": "mc:volume-total",
+              "error": "lecture",
+              "feedback": "Le blé ne remplit que la partie cylindrique, pas le toit."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un camion transporte au plus 25 t. Combien de camions faut-il pour vider le silo ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:arrondi-superieur",
+              "error": "raisonnement",
+              "feedback": "Après 3 camions, il reste encore du blé : il faut un camion de plus."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Rayon : 2 m. Cylindre : $π × R² × h$.",
+        "Demi-boule : $(1/2) × (4/3) × π × R³$.",
+        "Masse = 750 kg/m³ × volume du cylindre, puis conversion en tonnes."
+      ],
+      "solution": "1) $π × 2² × 10 = 40π$ ≈ 125,7 m³.\n2) $(2/3) × π × 2³$ ≈ 16,8 m³.\n3) Total ≈ 142,4 m³.\n4) $750 × 40π$ ≈ 94 248 kg ≈ 94,2 t.\n5) $94,2 ÷ 25$ ≈ 3,8 : il faut 4 camions.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "125,7" }, { "value": "16,8" }, { "value": "142,4" }, { "value": "94,2" }, { "value": "4" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "125,7" }, { "value": "16,8" }, { "value": "142,4" }, { "value": "94,2" }, { "value": "3" }] },
+          "expect": "mc:arrondi-superieur"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-brevet",
+      "type": "composite",
+      "skill": "m3.sphere.volume",
+      "skills": ["m3.grandeurs.conversions", "m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:rayon-diametre", "mc:aire-volume", "mc:une-balle"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Des balles de tennis de 6,6 cm de diamètre sont vendues par 3 dans un tube cylindrique. Les balles sont empilées et touchent la paroi, le fond et le couvercle du tube.",
+      "figure": {
+        "alt": "Un tube cylindrique vu en coupe contenant trois balles empilées de 6,6 cm de diamètre, qui touchent la paroi, le fond et le couvercle.",
+        "w": 193,
+        "h": 330,
+        "frame": { "x": [-5, 7], "y": [-2.4, 20.6] },
+        "items": [
+          { "type": "rect", "x": -3.3, "y": 0, "w": 6.6, "h": 19.8, "color": "gris" },
+          { "type": "circle", "center": [0, 3.3], "r": 3.3, "fill": "vert", "color": "vert" },
+          { "type": "circle", "center": [0, 9.9], "r": 3.3, "fill": "vert", "color": "vert" },
+          { "type": "circle", "center": [0, 16.5], "r": 3.3, "fill": "vert", "color": "vert" },
+          { "type": "segment", "from": [-3.3, -1], "to": [3.3, -1], "arrows": "both", "label": "6,6 cm", "color": "gris" },
+          { "type": "segment", "from": [4.3, 0], "to": [4.3, 19.8], "arrows": "both", "label": "?", "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Quelle est la hauteur intérieure du tube ? (en cm)",
+          "answer": 19.8,
+          "misconceptions": [
+            {
+              "answer": 6.6,
+              "id": "mc:hauteur-tube",
+              "error": "lecture",
+              "feedback": "Le tube contient 3 balles empilées : sa hauteur vaut plusieurs diamètres."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Calcule le volume du tube (en cm³, au dixième).",
+          "answer": 677.3946,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 2709.5785,
+              "id": "mc:rayon-diametre",
+              "error": "lecture",
+              "feedback": "L’aire du disque de base utilise le rayon, pas le diamètre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Calcule le volume d’une balle (en cm³, au dixième).",
+          "answer": 150.5321,
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 136.8474,
+              "id": "mc:aire-volume",
+              "error": "notion",
+              "feedback": "Tu as calculé l’aire de la sphère. Le volume de la boule utilise $R³$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Quel pourcentage du volume du tube les balles occupent-elles ? (au pourcent près)",
+          "answer": 66.667,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [{ "answer": 22.222, "id": "mc:une-balle", "error": "lecture", "feedback": "Il y a 3 balles dans le tube." }]
+        },
+        {
+          "type": "open",
+          "prompt": "5. Montre que ce pourcentage ne dépend pas de la taille des balles. (Appelle $r$ le rayon d’une balle.)",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Volume du tube : $π × r² × 6r = 6πr³$", "keywords": [["6r", "6 r", "6 × r", "6πr", "6 π r", "6pi"]] },
+            { "id": "c2", "label": "Volume des balles : $3 × (4/3)πr³ = 4πr³$", "keywords": [["4πr", "4 π r", "4pi", "4/3"]] },
+            { "id": "c3", "label": "Quotient : $4/6 = 2/3$, quel que soit $r$", "keywords": [["2/3", "deux tiers", "4/6"]] }
+          ]
+        }
+      ],
+      "hints": [
+        "Hauteur = 3 diamètres ; rayon = 3,3 cm.",
+        "Tube : $π × R² × h$ ; balle : $(4/3) × π × R³$.",
+        "Pour la question 5, la hauteur du tube vaut $6r$."
+      ],
+      "solution": "1) $3 × 6,6 = 19,8$ cm.\n2) $π × 3,3² × 19,8$ ≈ 677,4 cm³.\n3) $(4/3) × π × 3,3³$ ≈ 150,5 cm³.\n4) $3 × 150,5 ÷ 677,4$ ≈ 0,667 : environ 67 %.\n5) Tube : $π × r² × 6r = 6πr³$ ; balles : $3 × (4/3)πr³ = 4πr³$ ; quotient : $4/6$ = $2/3$, quel que soit $r$. Archimède avait découvert ce rapport $2/3$ entre une boule et le cylindre qui l’enveloppe !",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "19,8" },
+              { "value": "677,4" },
+              { "value": "150,5" },
+              { "value": "67" },
+              {
+                "text": "Le tube a pour volume π × r² × 6r = 6πr³ et les trois balles 3 × 4/3 πr³ = 4πr³. Le quotient vaut 4/6 = 2/3 quel que soit r.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "19,8" },
+              { "value": "2709,6" },
+              { "value": "150,5" },
+              { "value": "67" },
+              { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false, "c3": false } }
+            ]
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m3-sphere-parallele",
+      "type": "composite",
+      "skill": "m3.sphere.reperage",
+      "skills": ["m3.trigo.longueur", "m6.grandeurs.perimetres"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:sin-cos", "mc:perimetre-rayon", "mc:longitudes-soustraites"],
+      "expectedSeconds": 900,
+      "prompt": "On assimile la Terre à une boule de centre $O$ et de rayon 6 371 km. Le parallèle de latitude 49° N est un cercle dont le centre $K$ est sur l’axe des pôles. Sur la coupe ci-dessous, $M$ est un point de ce parallèle : le triangle $OKM$ est rectangle en $K$, et l’angle $KMO$ mesure 49° (comme l’angle entre $(OM)$ et l’équateur).",
+      "figure": {
+        "alt": "Coupe de la Terre : centre O, axe des pôles vertical, équateur horizontal ; M est à la latitude 49° ; K est sur l'axe des pôles, à la hauteur de M ; [KM] est le rayon du parallèle.",
+        "w": 320,
+        "h": 309,
+        "frame": { "x": [-5, 5.4], "y": [-4.8, 5.2] },
+        "items": [
+          { "type": "circle", "center": [0, 0], "r": 4, "fill": "maths", "color": "maths" },
+          { "type": "segment", "from": [-4.6, 0], "to": [4.6, 0], "color": "rouge", "dashed": true },
+          { "type": "segment", "from": [0, -4.6], "to": [0, 4.6], "color": "gris", "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "Q", "x": 4, "y": 0, "pos": "se", "label": "" },
+          { "type": "point", "id": "M", "x": 2.62, "y": 3.02, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "point", "id": "K", "x": 0, "y": 3.02, "pos": "w" },
+          { "type": "point", "id": "N", "x": 0, "y": 4, "pos": "n", "label": "pôle Nord" },
+          { "type": "segment", "from": "O", "to": "M", "label": "6 371 km" },
+          { "type": "segment", "from": "K", "to": "M", "color": "orange", "width": 3, "label": "?" },
+          { "type": "angle", "vertex": "K", "from": "O", "to": "M", "right": true },
+          { "type": "angle", "vertex": "O", "from": "Q", "to": "M", "label": "49°", "r": 30 },
+          { "type": "angle", "vertex": "M", "from": "K", "to": "O", "label": "49°", "r": 24, "color": "orange" },
+          { "type": "text", "x": 4.4, "y": -0.45, "text": "équateur", "size": "s", "color": "rouge", "anchor": "end" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule le rayon $KM$ du parallèle 49° N (en km, à l’unité).",
+          "answer": 4179.7571,
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 4808.2747,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Pour l’angle de 49° en $M$, $[KM]$ est le côté **adjacent** et $[OM]$ l’hypoténuse."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la longueur de ce parallèle ? (en km, à l’unité)",
+          "answer": 26262.3655,
+          "tolerance": 4,
+          "round": 0,
+          "misconceptions": [{ "answer": 13131.1827, "id": "mc:perimetre-rayon", "error": "notion", "feedback": "Le périmètre d’un cercle vaut $2 × π × r$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Paris (≈ 49° N ; 2° E) et Vancouver, au Canada (≈ 49° N ; 123° O), sont presque sur ce parallèle. Quelle distance les sépare en suivant le parallèle ? (en km, à 10 km près)",
+          "answer": 9118.877,
+          "tolerance": 6,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 8827,
+              "id": "mc:longitudes-soustraites",
+              "error": "notion",
+              "feedback": "Les deux villes sont de part et d’autre du méridien de Greenwich, l’une à l’Est, l’autre à l’Ouest : les deux écarts s’ajoutent."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Un avion de ligne relie Paris à Vancouver en parcourant environ 7 900 km : moins que ta réponse précédente ! Explique pourquoi suivre le parallèle n’est pas le plus court chemin.",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Le chemin le plus court suit un grand cercle (centré au centre de la Terre), qui passe plus au nord, près du pôle",
+              "keywords": [["grand cercle", "centre de la terre", "plus court", "pole", "nord"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans $OKM$ rectangle en $K$ : cos 49° = $KM/OM$.",
+        "Longueur du parallèle : $2 × π × KM$.",
+        "Écart de longitude : 2° E et 123° O, soit 125° ; la distance est proportionnelle à l’angle (360° pour le tour complet)."
+      ],
+      "solution": "1) cos 49° = $KM/6 371$, donc $KM = 6 371 × cos(49)$ ≈ 4 180 km.\n2) $2 × π × KM$ ≈ 26 262 km.\n3) Écart : 2 + 123 = 125° ; $26 262 × 125 ÷ 360$ ≈ 9 119 km.\n4) Le plus court chemin sur une sphère suit un grand cercle (dont le centre est celui de la Terre) : entre Paris et Vancouver, il passe bien plus au nord, près du Groenland, et mesure environ 7 900 km.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "4180" },
+              { "value": "26262" },
+              { "value": "9119" },
+              {
+                "text": "Le chemin le plus court suit un grand cercle qui a pour centre le centre de la Terre, il passe plus au nord près du pôle.",
+                "selfCheck": { "c1": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "4808" }, { "value": "26262" }, { "value": "9119" }, { "text": "Je ne sais pas.", "selfCheck": { "c1": false } }] },
+          "expect": "mc:sin-cos"
+        }
+      ]
+    }
+  ]
+}

@@ -917,6 +917,24 @@
             ]
           },
           {
+            "title": "Et si on éloigne la lampe ?",
+            "text": "On va placer la lampe plus loin de l'élodée, à 20 cm puis à 40 cm : la plante recevra moins de lumière. Tout le reste ne change pas.",
+            "ask": {
+              "kind": "prevoir",
+              "question": "Que va devenir le nombre de bulles par minute ?",
+              "choices": [
+                "Il va diminuer.",
+                "Il va augmenter.",
+                "Il ne changera pas."
+              ],
+              "answer": 0,
+              "explain": "Moins la plante reçoit de lumière, moins elle produit de gaz : le dégagement de bulles ralentit. Les comptages de l'étape suivante vont le vérifier."
+            },
+            "focus": [
+              "lampe"
+            ]
+          },
+          {
             "title": "On éloigne la lampe",
             "text": "On éloigne la lampe à 20 cm : 30 bulles par minute. Puis à 40 cm : 14 bulles par minute. Moins la plante est éclairée, moins elle dégage de bulles.",
             "duration": 9.2,
@@ -1301,12 +1319,21 @@
             ],
             "focus": [
               "tab"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis dans le tableau le nombre de bulles par minute quand la lampe est à 40 cm.",
+              "answer": 14,
+              "tolerance": 0,
+              "unit": "bulles/min",
+              "explain": "Ligne « lampe à 40 cm » du tableau : 14 bulles par minute, trois fois moins qu'avec la lampe à 10 cm (42)."
+            }
           },
           {
             "title": "Quel est ce gaz ?",
             "text": "On recueille le gaz dans le tube. On y plonge une allumette qui ne brûle plus, juste rougeoyante : elle se rallume vivement. Seul le dioxygène produit ce résultat. Les bulles sont donc du dioxygène.",
             "ask": {
+              "kind": "expliquer",
               "question": "Que prouve ce test de l'allumette rougeoyante ?",
               "choices": [
                 "Le gaz est du dioxygène.",
@@ -1663,7 +1690,18 @@
             "focus": [
               "bk",
               "tab"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "À quoi sert ce montage sans élodée ?",
+              "choices": [
+                "À vérifier que les bulles viennent bien de la plante.",
+                "À vérifier que la lampe éclaire assez fort.",
+                "À obtenir davantage de bulles."
+              ],
+              "answer": 0,
+              "explain": "Le témoin est identique, sauf qu'il n'y a pas de plante. Sans élodée, aucune bulle : les bulles ne viennent ni de l'eau, ni de la lampe, ni du sel dissous, mais de la plante."
+            }
           },
           {
             "title": "Et à l'obscurité ?",
@@ -1728,7 +1766,18 @@
             ],
             "focus": [
               "tab"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Que montrent tous ces résultats ?",
+              "choices": [
+                "Une plante verte produit du dioxygène à la lumière, d'autant plus que l'éclairement est fort.",
+                "Une plante verte produit du dioxygène même dans le noir.",
+                "Les bulles viennent de l'eau chauffée par la lampe."
+              ],
+              "answer": 0,
+              "explain": "42, 30 puis 14 bulles par minute quand la lampe s'éloigne, 0 sans plante, 0 dans le noir : il faut une plante verte et de la lumière pour produire du dioxygène. C'est la photosynthèse."
+            }
           }
         ],
         "conclusion": "Une plante verte éclairée produit du dioxygène : c'est la photosynthèse. Plus l'éclairement est fort, plus la production est importante ; sans lumière, elle s'arrête, alors que la respiration continue."
@@ -1787,7 +1836,7 @@
           "math": "42 ÷ 14 = 3"
         },
         {
-          "text": "Interprétation : à 10 cm, la plante dégage 3 fois plus de bulles qu'à 40 cm, donc sa photosynthèse est 3 fois plus intense.",
+          "text": "Interprétation : à 10 cm, la plante dégage 3 fois plus de dioxygène qu'à 40 cm : plus elle est éclairée, plus sa photosynthèse est intense.",
           "math": ""
         },
         {
@@ -2794,7 +2843,7 @@
           "answer": 1,
           "id": "mc:photosynthese-respiration-confondues",
           "error": "notion",
-          "feedback": "Tu confonds respiration et photosynthèse. La photosynthèse n'a lieu que le jour ; la respiration, elle, continue la nuit comme le jour."
+          "feedback": "Tu confonds respiration et photosynthèse. La photosynthèse n'a lieu qu'à la lumière ; la respiration, elle, continue la nuit comme le jour."
         },
         {
           "answer": 2,
@@ -2807,7 +2856,7 @@
         "Toutes les cellules vivantes respirent en permanence.",
         "La photosynthèse, elle, a besoin de lumière."
       ],
-      "solution": "Une plante respire jour et nuit, comme tous les êtres vivants. Seule la photosynthèse dépend de la lumière.",
+      "solution": "Réponse : 3 (jour et nuit). Une plante respire jour et nuit, comme tous les êtres vivants. Seule la photosynthèse dépend de la lumière.",
       "selfTest": [
         {
           "response": {
@@ -3231,7 +3280,7 @@
               ],
               "id": "mc:temoin-mauvais-facteur",
               "error": "raisonnement",
-              "feedback": "Entre A et B, c'est la lumière qui change, pas la présence de la plante. Pour savoir si les bulles viennent de la plante, compare deux montages qui ne diffèrent QUE par la plante : A et C."
+              "feedback": "Entre A et B, c'est la lumière qui change, pas la présence de la plante. Pour savoir si les bulles viennent de la plante, compare deux montages qui ne diffèrent QUE par la plante."
             },
             {
               "pair": [
@@ -3249,7 +3298,7 @@
               ],
               "id": "mc:temoin-mauvais-facteur",
               "error": "raisonnement",
-              "feedback": "Entre A et C, c'est la plante qui change, pas la lumière. Pour tester la lumière, compare A (éclairée) et B (obscurité)."
+              "feedback": "Entre A et C, c'est la plante qui change, pas la lumière. Pour tester la lumière, compare deux montages qui ne diffèrent QUE par la lumière."
             }
           ]
         },
@@ -4001,7 +4050,7 @@
               "answer": -0.4,
               "id": "mc:signe-consommation",
               "error": "signe",
-              "feedback": "−0,4 est le bilan net (une baisse). La quantité consommée est une valeur positive : 0,4 mL par heure."
+              "feedback": "Tu as donné le bilan net à l'obscurité, négatif puisque la teneur en dioxygène baisse. Une quantité consommée est toujours une valeur positive : pense à la quantité, pas au signe de la variation."
             }
           ]
         },
@@ -4029,7 +4078,7 @@
               "answer": 0,
               "id": "mc:bilan-nul",
               "error": "raisonnement",
-              "feedback": "Un bilan nul ne veut pas dire qu'il ne se passe rien : la photosynthèse produit exactement ce que la respiration consomme (0,4 mL)."
+              "feedback": "Un bilan nul ne veut pas dire qu'il ne se passe rien : la photosynthèse produit exactement ce que la respiration consomme."
             }
           ]
         },
@@ -4047,7 +4096,7 @@
               "answer": "point de saturation",
               "id": "mc:compensation-saturation",
               "error": "notion",
-              "feedback": "Le point de saturation est celui où la photosynthèse ne peut plus augmenter. Ici, c'est le point de compensation : production et consommation de dioxygène s'équilibrent."
+              "feedback": "Le point de saturation est celui où la photosynthèse ne peut plus augmenter. Ce n'est pas la situation décrite ici : cherche le nom de l'éclairement où production et consommation de dioxygène s'équilibrent."
             }
           ]
         }
@@ -4243,7 +4292,7 @@
               "answer": 190,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "La masse sèche a diminué (400 → 210) : la variation est négative, −190 mg."
+              "feedback": "La masse sèche a diminué : la variation (valeur finale − valeur de départ) est donc négative."
             }
           ]
         },
@@ -4314,7 +4363,7 @@
               "answer": 6,
               "id": "mc:lecture-courbe",
               "error": "lecture",
-              "feedback": "Au jour 6, la masse sèche (380 mg) est encore inférieure à celle du départ (400 mg). Elle ne dépasse 400 mg qu'au jour 12 (520 mg)."
+              "feedback": "Au jour 6, la masse sèche (380 mg) est encore inférieure à celle du départ (400 mg). Compare chaque mesure à la valeur de départ."
             }
           ]
         }

@@ -49,7 +49,7 @@
         },
         {
           "emoji": "➗", "title": "Diviser, c'est multiplier par l'inverse",
-          "body": "Pour diviser par un nombre non nul, on multiplie par son inverse : $a/b ÷ (c/d) = (a/b) × (d/c)$. Combien de quarts d'heure dans $3/2$ heure ? $3/2 ÷ (1/4) = (3/2) × 4 = 6$. Diviser par un nombre plus petit que 1 donne un résultat **plus grand** !",
+          "body": "Pour diviser par un nombre non nul, on multiplie par son inverse : $a/b ÷ (c/d) = (a/b) × (d/c)$. Combien de quarts d'heure dans $3/2$ heure ? $3/2 ÷ (1/4) = (3/2) × 4 = 6$. Diviser un nombre positif par un nombre compris entre 0 et 1 donne un résultat **plus grand** !",
           "example": "$2/3 ÷ (4/5) = (2/3) × (5/4) = 10/12 = 5/6$"
         },
         {
@@ -63,7 +63,7 @@
         },
         {
           "emoji": "🎯", "title": "Contrôler avec un ordre de grandeur",
-          "body": "Avant de calculer, estime ! Multiplier un nombre positif par un nombre compris entre 0 et 1 le rend plus petit : $(7/8) × 40$ est un peu moins que 40 (c'est 35). Diviser par un nombre compris entre 0 et 1 rend plus grand : $5 ÷ (1/3) = 15$. Si ton résultat contredit ton estimation, cherche l'erreur."
+          "body": "Avant de calculer, estime ! Multiplier un nombre positif par un nombre compris entre 0 et 1 le rend plus petit : $(7/8) × 40$ est un peu moins que 40 (c'est 35). Diviser un nombre positif par un nombre compris entre 0 et 1 le rend plus grand : $5 ÷ (1/3) = 15$. Si ton résultat contredit ton estimation, cherche l'erreur."
         }
       ]
     },
@@ -158,7 +158,7 @@
     {
       "id": "m4-fractions-inverse", "type": "table", "skill": "m4.fractions.inverse", "track": "classe", "role": "guide", "difficulty": 2,
       "representation": "symbolique", "targets": ["mc:inverse-oppose", "mc:inverse-signe"], "expectedSeconds": 150,
-      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "c": { "int": [2, 9] }, "d": { "int": [1, 9] }, "e": { "int": [2, 9] } },
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] }, "c": { "int": [2, 9] }, "d": { "int": [2, 9] }, "e": { "int": [2, 9] } },
       "constraints": ["a != b", "pgcd(a;b) = 1", "d != e", "pgcd(d;e) = 1"],
       "prompt": "Deux nombres sont inverses quand leur **produit** vaut 1. Complète le tableau (écris chaque inverse sous forme de fraction ou de nombre entier).",
       "columns": ["Nombre", "Son inverse"],
@@ -166,13 +166,13 @@
       "cells": {
         "r0c1": { "answer": "b/a", "misconceptions": [ { "answer": "-a/b", "id": "mc:inverse-oppose", "error": "notion", "feedback": "$ −{a}/{b} $ est l'**opposé** de $ {a}/{b} $ (leur somme vaut 0). L'inverse est le nombre dont le **produit** avec $ {a}/{b} $ vaut 1 : on échange le numérateur et le dénominateur." } ] },
         "r1c1": { "answer": "-1/c", "misconceptions": [
-          { "answer": "c", "id": "mc:inverse-oppose", "error": "notion", "feedback": "{c} est l'opposé de −{c}. L'inverse de −{c} est $ −1/{c} $, car $ (−{c}) × (−1/{c}) = 1 $." },
-          { "answer": "1/c", "id": "mc:inverse-signe", "error": "signe", "feedback": "Un nombre et son inverse ont toujours le même signe, puisque leur produit vaut 1 (un nombre positif) : l'inverse de −{c} est $ −1/{c} $." } ] },
-        "r2c1": { "answer": 4, "misconceptions": [ { "answer": -0.25, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−0,25 est l'opposé de 0,25. Or $ 0,25 = 1/4 $ : son inverse est 4, car $ 0,25 × 4 = 1 $." } ] },
+          { "answer": "c", "id": "mc:inverse-oppose", "error": "notion", "feedback": "{c} est l'opposé de −{c} (leur somme vaut 0). L'inverse est le nombre dont le **produit** avec −{c} vaut 1." },
+          { "answer": "1/c", "id": "mc:inverse-signe", "error": "signe", "feedback": "Vérifie le signe : un nombre et son inverse ont toujours le même signe, puisque leur produit vaut 1 (un nombre positif)." } ] },
+        "r2c1": { "answer": 4, "misconceptions": [ { "answer": -0.25, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−0,25 est l'opposé de 0,25 (leur somme vaut 0). Pour l'inverse, écris d'abord 0,25 sous forme de fraction, puis retourne-la." } ] },
         "r3c1": { "answer": "-e/d", "misconceptions": [
-          { "answer": "e/d", "id": "mc:inverse-signe", "error": "signe", "feedback": "Le signe ne change pas quand on prend l'inverse : l'inverse de $ −{d}/{e} $ est $ −{e}/{d} $." },
+          { "answer": "e/d", "id": "mc:inverse-signe", "error": "signe", "feedback": "Le signe ne change pas quand on prend l'inverse : un nombre et son inverse ont le même signe, puisque leur produit vaut 1." },
           { "answer": "d/e", "id": "mc:inverse-oppose", "error": "notion", "feedback": "$ {d}/{e} $ est l'opposé de $ −{d}/{e} $. Pour l'inverse, on « retourne » la fraction et on garde le signe." } ] },
-        "r4c1": { "answer": 1, "misconceptions": [ { "answer": -1, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−1 est l'opposé de 1. L'inverse de 1 est 1 lui-même, car $ 1 × 1 = 1 $." } ] }
+        "r4c1": { "answer": 1, "misconceptions": [ { "answer": -1, "id": "mc:inverse-oppose", "error": "notion", "feedback": "−1 est l'opposé de 1 (leur somme vaut 0). Cherche le nombre dont le **produit** avec 1 vaut 1." } ] }
       },
       "hints": ["L'inverse de $ a/b $ est $ b/a $ : on « retourne » la fraction.", "Un nombre et son inverse ont le même signe.", "$ 0,25 = 1/4 $."],
       "solution": "Inverse de $ {a}/{b} $ : $ {b}/{a} $. Inverse de −{c} : $ −1/{c} $. Inverse de $ 0,25 = 1/4 $ : 4. Inverse de $ −{d}/{e} $ : $ −{e}/{d} $. Inverse de 1 : 1. Chaque produit vaut 1. L'inverse n'est pas l'opposé : l'opposé de $ {a}/{b} $ est $ −{a}/{b} $ (leur somme vaut 0).",
@@ -267,12 +267,12 @@
       "parts": [
         { "type": "numeric", "prompt": "Combien de gobelets peut-on remplir avec la gourde pleine ?", "answer": 4,
           "misconceptions": [
-            { "answer": "9/64", "id": "mc:diviser-sans-inverse", "error": "methode", "feedback": "Tu as multiplié $3/4$ par $3/16$. On cherche combien de fois $3/16$ tient dans $3/4$ : c'est une **division**, $ 3/4 ÷ (3/16) = (3/4) × (16/3) $." },
+            { "answer": "9/64", "id": "mc:diviser-sans-inverse", "error": "methode", "feedback": "Tu as multiplié $3/4$ par $3/16$. On cherche combien de fois $3/16$ tient dans $3/4$ : c'est une **division**, $ 3/4 ÷ (3/16) $, qui revient à multiplier par l'inverse de $3/16$." },
             { "answer": "1/4", "id": "mc:division-sens", "error": "methode", "feedback": "Tu as divisé $3/16$ par $3/4$. On cherche combien de gobelets tiennent dans la gourde : $ 3/4 ÷ (3/16) $." }
           ] },
-        { "type": "expression", "form": "irreductible", "prompt": "Léo boit les $2/5$ du jus de la gourde pleine. Quelle quantité de jus a-t-il bue, en litre ?", "answer": "3/10",
+        { "type": "expression", "form": "irreductible", "prompt": "Léo boit les $2/5$ du jus de la gourde pleine. Quelle quantité de jus a-t-il bue, en litre ? Donne une fraction irréductible.", "answer": "3/10",
           "misconceptions": [ { "answer": "2/5", "id": "mc:fraction-de-quantite", "error": "lecture", "feedback": "$2/5$, c'est la fraction **de la gourde** qu'il a bue. En litre, il faut prendre les $2/5$ de $3/4$ L : $ (2/5) × (3/4) $." } ] },
-        { "type": "expression", "form": "irreductible", "prompt": "Quelle quantité de jus reste-t-il dans la gourde, en litre ?", "answer": "9/20",
+        { "type": "expression", "form": "irreductible", "prompt": "Quelle quantité de jus reste-t-il dans la gourde, en litre ? Donne une fraction irréductible.", "answer": "9/20",
           "misconceptions": [ { "answer": "3/5", "id": "mc:fraction-de-quantite", "error": "lecture", "feedback": "Il reste les $3/5$ **de la gourde**, mais la question demande des litres : $ (3/5) × (3/4) $, ou bien $ 3/4 − 3/10 $." } ] },
         { "type": "numeric", "prompt": "Contrôle : combien de centilitres de jus reste-t-il ? (1 L = 100 cL)", "answer": 45 }
       ],
@@ -296,7 +296,7 @@
           ] },
         { "type": "expression", "form": "irreductible", "prompt": "Quelle fraction du troupeau n'est attribuée à personne ?", "answer": "1/18" },
         { "type": "numeric", "prompt": "Avec 18 chameaux (les 17 du marchand et celui de la voyageuse), combien de chameaux distribue-t-on en tout ?", "answer": 17,
-          "misconceptions": [ { "answer": 18, "id": "mc:fraction-total", "error": "lecture", "feedback": "Le testament ne distribue que les $17/18$ du troupeau : $9 + 6 + 2 = 17$ chameaux. Le dix-huitième reste libre." } ] },
+          "misconceptions": [ { "answer": 18, "id": "mc:fraction-total", "error": "lecture", "feedback": "Le testament ne distribue que les $17/18$ du troupeau, pas tout le troupeau : additionne les parts de l'aînée, du cadet et du benjamin." } ] },
         { "type": "expression", "form": "irreductible", "prompt": "Le cadet reçoit 6 chameaux au lieu du tiers de 17. Combien reçoit-il en plus de sa part exacte ? Calcule $ 6 − 17/3 $.", "answer": "1/3",
           "misconceptions": [ { "answer": "-1/3", "id": "mc:ordre-soustraction", "error": "signe", "feedback": "Le cadet reçoit 6 chameaux, et 6 est plus grand que $17/3$ (qui vaut environ 5,67) : la différence $ 6 − 17/3 $ est positive." } ] }
       ],
@@ -326,7 +326,7 @@
       "prompt": "Rappel ciblé : pour **multiplier** deux fractions, pas besoin de dénominateur commun. On multiplie les numérateurs entre eux **et** les dénominateurs entre eux. Calcule $ {a}/{c} × ({b}/{c}) $ et donne le résultat sous forme irréductible.",
       "answer": "(a*b)/(c*c)",
       "misconceptions": [
-        { "answer": "(a*b)/c", "id": "mc:produit-denominateur-commun", "error": "notion", "feedback": "Garder le dénominateur {c}, c'est la règle de l'**addition**. Pour la multiplication, on multiplie aussi les dénominateurs : $ {c} × {c} = {c*c} $." }
+        { "answer": "(a*b)/c", "id": "mc:produit-denominateur-commun", "error": "notion", "feedback": "Garder le dénominateur {c}, c'est la règle de l'**addition**. Pour la multiplication, on multiplie aussi les dénominateurs entre eux." }
       ],
       "hints": ["Numérateur : $ {a} × {b} $.", "Dénominateur : $ {c} × {c} $."],
       "solution": "$ {a}/{c} × ({b}/{c}) = ({a} × {b})/({c} × {c}) = {a*b}/{c*c} $.",

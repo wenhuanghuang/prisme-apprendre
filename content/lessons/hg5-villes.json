@@ -199,7 +199,7 @@
     {
       "id": "hg5-villes-siecles", "type": "table", "skill": "hg5.chronologie", "skills": ["hg5.villes.essor"], "track": "classe", "role": "guide", "difficulty": 2,
       "representation": "symbolique", "targets": ["mc:siecle-calcul", "mc:siecle-annee-ronde", "mc:siecle-annees"], "expectedSeconds": 180,
-      "prompt": "Piège classique : le **XIIe siècle**, ce sont les années **1101 à 1200**, et non les « années 1200 » !\n\nComplète la colonne « siècle » **en chiffres** (exemple : 12 pour le XIIe siècle).",
+      "prompt": "Piège classique : le **XVe siècle**, ce sont les années **1401 à 1500**, et non les « années 1500 » !\n\nComplète la colonne « siècle » **en chiffres** (exemple : 12 pour le XIIe siècle).",
       "columns": ["Événement", "Date", "Siècle (en chiffres)"],
       "rows": [
         ["Révolte de la commune de Laon", "1112", "?r0c2"],
@@ -209,11 +209,11 @@
         ["La peste noire arrive à Marseille", "1347", "?r4c2"]
       ],
       "cells": {
-        "r0c2": { "answer": 12, "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1112 contient 11 centaines complètes : on ajoute 1. 1112 appartient au XIIe siècle (1101-1200)." } ] },
-        "r1c2": { "answer": 12, "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1163 contient 11 centaines complètes : on ajoute 1. Notre-Dame est commencée au XIIe siècle (1101-1200)." } ] },
-        "r2c2": { "answer": 12, "misconceptions": [ { "answer": 13, "id": "mc:siecle-annee-ronde", "error": "methode", "feedback": "Piège de l'année ronde : 1200 est la DERNIÈRE année du XIIe siècle (1101-1200). Le XIIIe siècle commence en 1201." } ] },
-        "r3c2": { "answer": 13, "misconceptions": [ { "answer": 12, "id": "mc:siecle-annees", "error": "methode", "feedback": "1268 fait partie des « années 1200 »… qui forment le XIIIe siècle (1201-1300) ! 12 centaines complètes, plus 1 : XIIIe." } ] },
-        "r4c2": { "answer": 14, "misconceptions": [ { "answer": 13, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1347 contient 13 centaines complètes : on ajoute 1. 1347 appartient au XIVe siècle (1301-1400)." } ] }
+        "r0c2": { "answer": 12, "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1112 contient 11 centaines complètes, mais il faut encore ajouter 1 pour trouver le numéro du siècle." } ] },
+        "r1c2": { "answer": 12, "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1163 contient 11 centaines complètes, mais il faut encore ajouter 1 pour trouver le numéro du siècle." } ] },
+        "r2c2": { "answer": 12, "misconceptions": [ { "answer": 13, "id": "mc:siecle-annee-ronde", "error": "methode", "feedback": "Piège de l'année ronde : un siècle se termine par une année ronde (le Ier siècle va de 1 à 100). 1200 est donc la DERNIÈRE année d'un siècle, pas la première du suivant." } ] },
+        "r3c2": { "answer": 13, "misconceptions": [ { "answer": 12, "id": "mc:siecle-annees", "error": "methode", "feedback": "Piège des « années 1200 » : elles n'appartiennent pas au siècle numéro 12. Compte les centaines complètes de 1268, puis ajoute 1." } ] },
+        "r4c2": { "answer": 14, "misconceptions": [ { "answer": 13, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1347 contient 13 centaines complètes, mais il faut encore ajouter 1 pour trouver le numéro du siècle." } ] }
       },
       "hints": [
         "Compte les centaines complètes, puis ajoute 1.",
@@ -323,15 +323,15 @@
           ] },
         { "type": "text", "prompt": "D'après le texte, combien de fois par an les habitants paient-ils désormais leur redevance ?", "accept": ["une fois", "une", "1", "une seule fois", "une fois par an", "1 fois", "une fois l'an", "une seule", "1 fois par an"],
           "misconceptions": [
-            { "answer": "jamais", "id": "mc:commune-plus-rien", "error": "lecture", "feedback": "La commune ne supprime pas tout : les habitants paient encore leur redevance, mais une seule fois par an." },
-            { "answer": "0", "id": "mc:commune-plus-rien", "error": "lecture", "feedback": "La commune ne supprime pas tout : les habitants paient encore leur redevance, mais une seule fois par an." }
+            { "answer": "jamais", "id": "mc:commune-plus-rien", "error": "lecture", "feedback": "La commune ne supprime pas tout : relis la fin de la citation, les habitants paient encore leur redevance." },
+            { "answer": "0", "id": "mc:commune-plus-rien", "error": "lecture", "feedback": "La commune ne supprime pas tout : relis la fin de la citation, les habitants paient encore leur redevance." }
           ] },
         { "type": "text", "prompt": "Guibert est un abbé, c'est-à-dire un seigneur d'Église. Est-il favorable ou hostile à la commune ?", "accept": ["hostile", "il est hostile", "hostile à la commune", "défavorable", "il est défavorable", "contre", "il est contre", "contre la commune", "il est contre la commune", "il la déteste", "il est hostile à la commune"],
           "misconceptions": [
-            { "answer": "favorable", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis son jugement : un auteur qui trouve la commune « détestable » n'y est pas favorable. Comme beaucoup de seigneurs d'Église, Guibert y est hostile." },
-            { "answer": "il est favorable", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis son jugement : un auteur qui trouve la commune « détestable » n'y est pas favorable. Comme beaucoup de seigneurs d'Église, Guibert y est hostile." },
-            { "answer": "pour", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis son jugement : un auteur qui trouve la commune « détestable » n'y est pas favorable. Comme beaucoup de seigneurs d'Église, Guibert y est hostile." },
-            { "answer": "il est pour", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis son jugement : un auteur qui trouve la commune « détestable » n'y est pas favorable. Comme beaucoup de seigneurs d'Église, Guibert y est hostile." }
+            { "answer": "favorable", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis le jugement de Guibert : un auteur qui qualifie ainsi la commune peut-il y être favorable ? Pense aussi à ce qu'un seigneur d'Église perd avec une commune." },
+            { "answer": "il est favorable", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis le jugement de Guibert : un auteur qui qualifie ainsi la commune peut-il y être favorable ? Pense aussi à ce qu'un seigneur d'Église perd avec une commune." },
+            { "answer": "pour", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis le jugement de Guibert : un auteur qui qualifie ainsi la commune peut-il y être favorable ? Pense aussi à ce qu'un seigneur d'Église perd avec une commune." },
+            { "answer": "il est pour", "id": "mc:point-de-vue-document", "error": "lecture", "feedback": "Relis le jugement de Guibert : un auteur qui qualifie ainsi la commune peut-il y être favorable ? Pense aussi à ce qu'un seigneur d'Église perd avec une commune." }
           ] },
         { "type": "open", "prompt": "Explique ce que les habitants gagnent avec la commune, puis pourquoi ce seul document ne suffit pas pour connaître leur point de vue.", "minWords": 30,
           "criteria": [
@@ -409,9 +409,9 @@
           ] },
         { "type": "text", "prompt": "Tes pièces viennent de Florence, mais le drapier flamand veut être payé en deniers de Provins, la monnaie des foires. Qui va échanger tes pièces ?", "accept": ["un changeur", "changeur", "le changeur", "les changeurs", "des changeurs", "un changeur de monnaie", "un banquier", "banquier", "le banquier"],
           "misconceptions": [
-            { "answer": "le comte", "id": "mc:role-comte", "error": "notion", "feedback": "Le comte de Champagne protège les marchands et perçoit des taxes, mais ce sont les changeurs, installés à leur table, qui échangent les monnaies." },
-            { "answer": "le comte de Champagne", "id": "mc:role-comte", "error": "notion", "feedback": "Le comte de Champagne protège les marchands et perçoit des taxes, mais ce sont les changeurs, installés à leur table, qui échangent les monnaies." },
-            { "answer": "le seigneur", "id": "mc:role-comte", "error": "notion", "feedback": "Le seigneur ne s'occupe pas lui-même des monnaies des marchands : ce sont les changeurs qui les échangent." }
+            { "answer": "le comte", "id": "mc:role-comte", "error": "notion", "feedback": "Le comte de Champagne protège les marchands et perçoit des taxes, mais il ne change pas lui-même les pièces. Relis la carte 2 : qui échange les monnaies à la foire ?" },
+            { "answer": "le comte de Champagne", "id": "mc:role-comte", "error": "notion", "feedback": "Le comte de Champagne protège les marchands et perçoit des taxes, mais il ne change pas lui-même les pièces. Relis la carte 2 : qui échange les monnaies à la foire ?" },
+            { "answer": "le seigneur", "id": "mc:role-comte", "error": "notion", "feedback": "Le seigneur ne s'occupe pas lui-même des monnaies des marchands. Relis la carte 2 : qui échange les monnaies à la foire ?" }
           ] },
         { "type": "open", "prompt": "Explique à ton associé resté à Florence pourquoi tant de marchands se retrouvent en Champagne plutôt qu'ailleurs.", "minWords": 20,
           "criteria": [
@@ -439,20 +439,20 @@
     {
       "id": "hg5-villes-remed-siecle", "type": "composite", "skill": "hg5.chronologie", "track": "classe", "role": "remediation", "difficulty": 1,
       "representation": "symbolique", "targets": ["mc:siecle-annees", "mc:siecle-calcul"], "expectedSeconds": 150,
-      "prompt": "Le piège des « années 1200 », pas à pas.\n- Le Ier siècle a commencé en l'an 1 : il va de 1 à 100.\n- Donc le **XIIe siècle** va de **1101 à 1200**, et le **XIIIe siècle** de **1201 à 1300**.\n\nRéponds avec des nombres.",
+      "prompt": "Le piège des « années 1200 », pas à pas.\n- Le Ier siècle a commencé en l'an 1 : il va de 1 à 100.\n- Donc le **IIe siècle** va de **101 à 200**, et le **XIe siècle** de **1001 à 1100**.\n\nRéponds avec des nombres.",
       "parts": [
         { "type": "numeric", "prompt": "En quelle année commence le XIIe siècle ?", "answer": 1101,
           "misconceptions": [
-            { "answer": 1200, "id": "mc:siecle-annees", "error": "methode", "feedback": "C'est le piège ! « XIIe » fait penser à 1200, mais le XIIe siècle COMMENCE en 1101 : 1200 en est la dernière année." },
-            { "answer": 1201, "id": "mc:siecle-annees", "error": "methode", "feedback": "1201 est le début du XIIIe siècle. Le XIIe siècle commence un siècle plus tôt, en 1101." },
-            { "answer": 1100, "id": "mc:siecle-annee-ronde", "error": "precision", "feedback": "Presque ! 1100 est la dernière année du XIe siècle. Le XIIe siècle commence en 1101." }
+            { "answer": 1200, "id": "mc:siecle-annees", "error": "methode", "feedback": "C'est le piège ! « XIIe » fait penser à 1200, mais 1200 est la DERNIÈRE année du XIIe siècle, pas la première. Un siècle dure 100 ans : quand commence-t-il ?" },
+            { "answer": 1201, "id": "mc:siecle-annees", "error": "methode", "feedback": "1201 est le début du XIIIe siècle. Le XIIe siècle commence un siècle plus tôt." },
+            { "answer": 1100, "id": "mc:siecle-annee-ronde", "error": "precision", "feedback": "Presque ! 1100 est la dernière année du XIe siècle : le XIIe commence l'année d'après." }
           ] },
         { "type": "numeric", "prompt": "En quelle année se termine le XIIe siècle ?", "answer": 1200,
-          "misconceptions": [ { "answer": 1299, "id": "mc:siecle-annees", "error": "methode", "feedback": "1299 appartient au XIIIe siècle (1201-1300). Le XIIe siècle se termine en 1200." } ] },
+          "misconceptions": [ { "answer": 1299, "id": "mc:siecle-annees", "error": "methode", "feedback": "1299 appartient déjà au siècle suivant. Un siècle se termine toujours par une année ronde : laquelle, pour le XIIe siècle ?" } ] },
         { "type": "numeric", "prompt": "Notre-Dame de Paris est commencée en 1163. Siècle numéro :", "answer": 12,
-          "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "1163 : 11 centaines complètes, plus 1 → 12e siècle (XIIe)." } ] },
+          "misconceptions": [ { "answer": 11, "id": "mc:siecle-calcul", "error": "methode", "feedback": "Tu as bien compté les centaines complètes de 1163, mais tu as oublié d'ajouter 1." } ] },
         { "type": "numeric", "prompt": "Le Livre des métiers est écrit vers 1268. Siècle numéro :", "answer": 13,
-          "misconceptions": [ { "answer": 12, "id": "mc:siecle-annees", "error": "methode", "feedback": "1268 fait partie des « années 1200 », qui forment le 13e siècle (1201-1300)." } ] }
+          "misconceptions": [ { "answer": 12, "id": "mc:siecle-annees", "error": "methode", "feedback": "Piège des « années 1200 » : elles n'appartiennent pas au siècle numéro 12. Compte les centaines complètes de 1268, puis ajoute 1." } ] }
       ],
       "hints": ["Le 1er siècle : de 1 à 100. Le 2e siècle : de 101 à 200. Continue le raisonnement.", "Un siècle se termine toujours par une année « ronde » : 100, 200… 1200."],
       "solution": "Le XIIe siècle va de 1101 à 1200. Notre-Dame (1163) : XIIe siècle. Le Livre des métiers (vers 1268) : XIIIe siècle. Retenir : « années 1200 » = XIIIe siècle.",

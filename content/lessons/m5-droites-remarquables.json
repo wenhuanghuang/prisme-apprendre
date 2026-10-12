@@ -427,13 +427,13 @@
         { "type": "text", "prompt": "Où se trouve le centre de son cercle circonscrit ? Complète : « au milieu de … »", "openEnded": true,
           "accept": ["[BC]", "BC", "[CB]", "CB", "l'hypoténuse", "hypoténuse", "l'hypoténuse [BC]", "du segment [BC]", "de [BC]", "de BC", "de l'hypoténuse", "milieu de [BC]", "le milieu de [BC]", "au milieu de [BC]", "milieu de BC", "le milieu de BC", "au milieu de BC", "milieu de l'hypoténuse", "le milieu de l'hypoténuse", "au milieu de l'hypoténuse", "au milieu de l'hypoténuse [BC]"],
           "misconceptions": [
-            { "answer": "A", "id": "mc:centre-sommet", "error": "notion", "feedback": "A est le sommet de l'angle droit : il est SUR le cercle, pas au centre. Le centre est le milieu de l'hypoténuse [BC]." },
-            { "answer": "[AB]", "id": "mc:centre-sommet", "error": "notion", "feedback": "Le centre est le milieu de l'hypoténuse, le côté opposé à l'angle droit : c'est [BC]." }
+            { "answer": "A", "id": "mc:centre-sommet", "error": "notion", "feedback": "A est le sommet de l'angle droit : il est SUR le cercle, pas au centre. Cherche le centre sur le côté opposé à l'angle droit." },
+            { "answer": "[AB]", "id": "mc:centre-sommet", "error": "notion", "feedback": "[AB] est un côté de l'angle droit. Le centre est le milieu de l'hypoténuse : quel côté est opposé à l'angle droit ?" }
           ] },
         { "type": "numeric", "prompt": "Rayon du cercle circonscrit (en cm) :", "answer": "c/2",
-          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "{c} cm, c'est le diamètre : l'hypoténuse traverse le cercle en passant par le centre. Le rayon est la moitié : {c} ÷ 2 = {c/2} cm." } ] },
+          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "{c} cm, c'est le diamètre : l'hypoténuse traverse le cercle en passant par le centre. Le rayon en est la moitié." } ] },
         { "type": "numeric", "prompt": "Distance entre le centre du cercle et le sommet A (en cm) :", "answer": "c/2",
-          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "A est sur le cercle : sa distance au centre est le rayon, {c/2} cm." } ] }
+          "misconceptions": [ { "answer": "c", "id": "mc:diametre-rayon", "error": "notion", "feedback": "A est sur le cercle : sa distance au centre est le rayon, pas le diamètre." } ] }
       ],
       "hints": ["Dans un triangle rectangle, le centre du cercle circonscrit est un point très particulier de l'hypoténuse.", "Le rayon est la distance du centre à n'importe quel point du cercle.", "Les trois sommets sont sur le cercle : ils sont tous à la même distance du centre."],
       "solution": "Le centre du cercle circonscrit à un triangle rectangle est le milieu de l'hypoténuse [BC]. Le rayon vaut la moitié de l'hypoténuse : {c/2} cm. A est sur le cercle, donc il est aussi à {c/2} cm du centre.",
@@ -542,11 +542,11 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Aire du triangle ABM (en cm²) :", "answer": "s/2",
-          "misconceptions": [ { "answer": "s/3", "id": "mc:mediane-tiers", "error": "notion", "feedback": "La médiane [AM] partage ABC en DEUX triangles de même aire : {s} ÷ 2 = {s/2} cm²." } ] },
+          "misconceptions": [ { "answer": "s/3", "id": "mc:mediane-tiers", "error": "notion", "feedback": "La médiane [AM] partage ABC en DEUX triangles de même aire, pas en trois." } ] },
         { "type": "numeric", "prompt": "Aire du triangle BNM (en cm²) :", "answer": "s/4",
-          "misconceptions": [ { "answer": "s/2", "id": "mc:mediane-une-fois", "error": "methode", "feedback": "Regarde le triangle ABM : N est le milieu de [AM], donc [BN] est une médiane de ABM. Elle le partage en deux : {s/2} ÷ 2 = {s/4} cm²." } ] },
+          "misconceptions": [ { "answer": "s/2", "id": "mc:mediane-une-fois", "error": "methode", "feedback": "Regarde le triangle ABM : N est le milieu de [AM], donc [BN] est une médiane de ABM. Elle le partage, lui aussi, en deux triangles de même aire." } ] },
         { "type": "numeric", "prompt": "Aire du triangle BNC (en cm²) :", "answer": "s/2",
-          "misconceptions": [ { "answer": "s/4", "id": "mc:oubli-morceau", "error": "lecture", "feedback": "Le triangle BNC est formé de DEUX morceaux : BNM et MNC. Chacun vaut {s/4} cm² ([NM] est une médiane du triangle BNC), donc BNC = {s/2} cm²." } ] }
+          "misconceptions": [ { "answer": "s/4", "id": "mc:oubli-morceau", "error": "lecture", "feedback": "Le triangle BNC est formé de DEUX morceaux : BNM et MNC. Ils ont la même aire ([NM] est une médiane du triangle BNC) : additionne-les." } ] }
       ],
       "hints": ["Une médiane partage un triangle en deux triangles de même aire.", "Dans le triangle ABM, que représente le segment [BN] ?", "Le triangle BNC est fait de deux petits triangles : lesquels ?"],
       "solution": "[AM] est une médiane de ABC : Aire(ABM) = {s} ÷ 2 = {s/2} cm². [BN] est une médiane de ABM : Aire(BNM) = {s/2} ÷ 2 = {s/4} cm². De même, [CN] est une médiane de AMC : Aire(MNC) = {s/4} cm². Donc Aire(BNC) = {s/4} + {s/4} = {s/2} cm².",
@@ -574,15 +574,15 @@
         { "type": "text", "prompt": "Ω est à égale distance de A, de B et de C. Sur quelles droites se trouve-t-il ? Complète : « sur les … de [AB], de [BC] et de [AC] ».",
           "accept": ["médiatrices", "les médiatrices", "mediatrices", "les mediatrices", "médiatrice", "la médiatrice"],
           "misconceptions": [
-            { "answer": "médianes", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les médianes concernent un triangle et ses sommets. Les points à égale distance de deux points A et B forment la médiatrice de [AB]." },
-            { "answer": "hauteurs", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les hauteurs ne sont pas liées aux distances égales. Les points à égale distance de A et de B forment la médiatrice de [AB]." }
+            { "answer": "médianes", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les médianes relient un sommet au milieu du côté opposé : elles ne sont pas liées aux distances égales. Quelle droite est formée des points à égale distance de A et de B ?" },
+            { "answer": "hauteurs", "id": "mc:mediatrice-mediane", "error": "notion", "feedback": "Les hauteurs ne sont pas liées aux distances égales. Quelle droite est formée des points à égale distance de A et de B ?" }
           ] },
         { "type": "graph", "prompt": "Place le centre Ω de l'assiette.", "xRange": [0, 11], "yRange": [-1, 11], "gridStep": 1, "expectedPoints": [[5, 5]] },
         { "type": "numeric", "prompt": "Rayon de l'assiette sur le quadrillage (en carreaux) :", "answer": 5,
-          "misconceptions": [ { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 carreaux, c'est le diamètre. Le rayon est la distance de Ω à un point du bord, par exemple de Ω à C : 5 carreaux." } ] },
+          "misconceptions": [ { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 carreaux, c'est le diamètre. Le rayon est la distance de Ω à un point du bord, par exemple de Ω à C." } ] },
         { "type": "numeric", "prompt": "Diamètre de la vraie assiette (en cm) :", "answer": 20,
           "misconceptions": [
-            { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 cm, c'est le rayon (5 carreaux × 2 cm). Le diamètre est le double : 20 cm." },
+            { "answer": 10, "id": "mc:diametre-rayon", "error": "notion", "feedback": "10 cm, c'est le rayon (5 carreaux × 2 cm). Le diamètre en est le double." },
             { "answer": 5, "id": "mc:echelle", "error": "unite", "feedback": "5, c'est le rayon en carreaux. Convertis (1 carreau = 2 cm), puis double pour avoir le diamètre." }
           ] }
       ],
@@ -612,9 +612,9 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Distance BH (en cm) :", "answer": "p",
-          "misconceptions": [ { "answer": 5, "id": "mc:hauteur-mediane", "error": "notion", "feedback": "5 cm, c'est la position du milieu M : c'est la MÉDIANE qui passe par le milieu. La hauteur tombe à angle droit, juste sous A : BH = {p} cm." } ] },
+          "misconceptions": [ { "answer": 5, "id": "mc:hauteur-mediane", "error": "notion", "feedback": "5 cm, c'est la position du milieu M : c'est la MÉDIANE qui passe par le milieu. La hauteur tombe à angle droit, juste sous A : relis où se trouve A." } ] },
         { "type": "numeric", "prompt": "Distance BM (en cm) :", "answer": 5,
-          "misconceptions": [ { "answer": "p", "id": "mc:hauteur-mediane", "error": "notion", "feedback": "{p} cm, c'est le pied de la HAUTEUR. M est le milieu de [BC] : BM = 10 ÷ 2 = 5 cm." } ] }
+          "misconceptions": [ { "answer": "p", "id": "mc:hauteur-mediane", "error": "notion", "feedback": "{p} cm, c'est le pied de la HAUTEUR. M est le milieu de [BC], qui mesure 10 cm." } ] }
       ],
       "hints": ["Le pied de la hauteur est le point de (BC) situé juste sous A (angle droit).", "Le pied de la médiane est le milieu de [BC]."],
       "solution": "H est juste sous A : BH = {p} cm. M est le milieu de [BC] : BM = 5 cm. Hauteur et médiane issues de A sont deux droites différentes (sauf si le triangle est isocèle en A).",
@@ -672,7 +672,7 @@
         { "type": "numeric", "prompt": "Aire du triangle ABC (en cm²) :", "answer": "b*h/2",
           "misconceptions": [
             { "answer": "(b + d)*h/2", "id": "mc:base-ah", "error": "lecture", "feedback": "Tu as pris AH = {b+d} cm comme base. La base du triangle ABC est [AB], de {b} cm ; la hauteur relative à cette base est CH = {h} cm, même si elle tombe à l'extérieur du triangle." },
-            { "answer": "b*h", "id": "mc:oubli-moitie", "error": "methode", "feedback": "Base × hauteur donne l'aire d'un parallélogramme. Pour un triangle, on divise par 2 : {b} × {h} ÷ 2 = {b*h/2} cm²." }
+            { "answer": "b*h", "id": "mc:oubli-moitie", "error": "methode", "feedback": "Base × hauteur donne l'aire d'un parallélogramme. Pour un triangle, il faut encore diviser par 2." }
           ] },
         { "type": "numeric", "prompt": "Aire du triangle BHC (en cm²) :", "answer": "d*h/2" },
         { "type": "numeric", "prompt": "Aire du triangle AHC (en cm²) :", "answer": "(b + d)*h/2" },
@@ -790,7 +790,7 @@
         { "type": "numeric", "prompt": "Aire du petit triangle GBM (en cm²) :", "answer": "s/6",
           "misconceptions": [
             { "answer": "s/4", "id": "mc:aire-quart", "error": "raisonnement", "feedback": "GBM n'est pas la moitié de ABM : G n'est pas le milieu de [AM] (il est aux deux tiers). Essaie de démontrer que les six petits triangles ont la même aire." },
-            { "answer": "s/3", "id": "mc:aire-quart", "error": "raisonnement", "feedback": "Il y a six petits triangles, pas trois. S'ils ont tous la même aire, chacun vaut {s} ÷ 6." }
+            { "answer": "s/3", "id": "mc:aire-quart", "error": "raisonnement", "feedback": "Il y a six petits triangles, pas trois. S'ils ont tous la même aire, partage l'aire de ABC entre les six." }
           ] },
         { "type": "open", "prompt": "Démontre que les six petits triangles ont la même aire. Aide : appelle x l'aire de GBM, y celle de GCN, z celle de GAP.", "minWords": 30,
           "criteria": [

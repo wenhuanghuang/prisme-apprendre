@@ -71,7 +71,15 @@
               { "id": "t", "set": { "shown": 1 }, "at": 2.5 },
               { "id": "g", "to": { "progress": 0.1667 }, "at": 2.5, "dur": 1.5 }
             ],
-            "focus": ["V", "A"]
+            "focus": ["V", "A"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis l'ampèremètre : quelle est l'intensité I du courant sous 2 V ?",
+              "answer": 20,
+              "tolerance": 0,
+              "unit": "mA",
+              "explain": "L'écran de l'ampèremètre, branché en série, affiche 20,0 mA."
+            }
           },
           {
             "title": "Prévois !",
@@ -132,7 +140,14 @@
               { "id": "t", "set": { "shown": 5 }, "at": 5.5 },
               { "id": "g", "to": { "progress": 0.8333 }, "at": 5, "dur": 1 }
             ],
-            "focus": ["A", "g"]
+            "focus": ["A", "g"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le graphique : comment sont placés les points mesurés ?",
+              "choices": ["Sur une courbe qui monte de plus en plus vite", "Sur une droite qui passe par l'origine", "Sur une droite horizontale"],
+              "answer": 1,
+              "explain": "Les points (20 mA ; 2 V), (40 mA ; 4 V)… jusqu'à (100 mA ; 10 V) sont alignés sur une droite qui part de l'origine du graphique."
+            }
           },
           {
             "title": "Prévois !",
@@ -167,7 +182,14 @@
               { "id": "t", "set": { "head": ["U (V)", "I (A)", "U / I (Ω)"],
                 "rows": [["2,0", "0,020", "100"], ["4,0", "0,040", "100"], ["6,0", "0,060", "100"], ["8,0", "0,080", "100"], ["10,0", "0,100", "100"], ["12,0", "0,120", "100"]] } }
             ],
-            "focus": ["t"]
+            "focus": ["t"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pour chaque mesure, U / I donne 100 Ω. Que peut-on en conclure ?",
+              "choices": ["La résistance augmente quand la tension augmente", "La tension et l'intensité ne sont pas liées", "U est proportionnelle à I : U = R × I, avec R = 100 Ω"],
+              "answer": 2,
+              "explain": "Un quotient U / I constant signifie que la tension est proportionnelle à l'intensité. Ce coefficient constant est la résistance du dipôle : R = 100 Ω."
+            }
           }
         ],
         "conclusion": "Pour une résistance (un **conducteur ohmique**), la tension U est **proportionnelle** à l'intensité I : quand U double, I double.\n\n- La caractéristique U = f(I) est une **droite qui passe par l'origine**.\n- Le quotient U / I, avec I en ampères, est constant : c'est la **résistance** R, ici 100 Ω.\n\n> **Loi d'Ohm** : U = R × I, avec U en volts, I en ampères et R en ohms."
@@ -276,7 +298,7 @@
         "r2c2": { "answer": "6/R", "rel": 0.01, "misconceptions": [ { "answer": "6000/R", "id": "mc:ma-non-converti", "error": "unite", "feedback": "C'est la valeur en mA. En ampères, on divise par 1 000." } ] },
         "r2c3": { "answer": "R", "rel": 0.02, "misconceptions": [ { "answer": "R/1000", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Tu as divisé par l'intensité en mA : utilise l'intensité en A." }, { "answer": "1/R", "id": "mc:r-inverse", "error": "notion", "feedback": "Le tableau demande U / I, pas I / U." } ] }
       },
-      "hints": ["1 mA = 0,001 A : {2000/R|d1} mA = {2/R|d4} A.", "U / I = 2,0 ÷ (intensité en A).", "Si les trois quotients sont égaux, U est proportionnelle à I : ce quotient est R."],
+      "hints": ["1 mA = 0,001 A : pour passer des mA aux A, on divise par 1 000.","U / I = 2,0 ÷ (intensité en A).", "Si les trois quotients sont égaux, U est proportionnelle à I : ce quotient est R."],
       "solution": "Intensités en A : {2/R|d4} ; {4/R|d4} ; {6/R|d4}. Les trois quotients U / I valent environ {R} Ω : U est proportionnelle à I, le dipôle est un conducteur ohmique de résistance R ≈ {R} Ω.",
       "selfTest": [
         { "response": { "cells": { "r0c2": "{2/R}", "r0c3": "{R}", "r1c2": "{4/R}", "r1c3": "{R}", "r2c2": "{6/R}", "r2c3": "{R}" } }, "expect": "correct" },
@@ -293,7 +315,7 @@
           "expectedPoints": [[0, 0], [20, 3], [40, 6], [60, 9], [80, 12]] },
         { "type": "numeric", "prompt": "Quel est le coefficient directeur de la droite, exprimé en ohms ? (Attention : sur l'axe, I est en mA.)", "answer": 150, "unit": "Ω", "rel": 0.01,
           "misconceptions": [
-            { "answer": 0.15, "id": "mc:ma-non-converti", "error": "unite", "feedback": "3,0 V pour 20 mA donne 0,15 V par mA. Pour obtenir des ohms (des volts par AMPÈRE), utilise I = 0,020 A : 3,0 / 0,020 = 150 Ω." },
+            { "answer": 0.15, "id": "mc:ma-non-converti", "error": "unite", "feedback": "3,0 V pour 20 mA donne 0,15 V par mA. Pour obtenir des ohms (des volts par AMPÈRE), refais le calcul avec l'intensité en ampères (20 mA = 0,020 A)." },
             { "answer": "20/3", "id": "mc:r-inverse", "error": "notion", "feedback": "Tu as calculé I / U. Le coefficient directeur de U = f(I) est U / I." },
             { "answer": "0.02/3", "id": "mc:r-inverse", "error": "notion", "feedback": "Tu as calculé I / U. Le coefficient directeur de U = f(I) est U / I." }
           ],
@@ -315,7 +337,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Une résistance de {Ra} Ω est parcourue par un courant de {Ia} mA. Quelle est la tension à ses bornes ?", "answer": "Ra*Ia/1000", "unit": "V", "rel": 0.01,
           "misconceptions": [
-            { "answer": "Ra*Ia", "id": "mc:ma-non-converti", "error": "unite", "feedback": "{Ra} × {Ia} : l'intensité est restée en mA. Avec I = {Ia/1000} A, U = {Ra} × {Ia/1000} = {Ra*Ia/1000} V." },
+            { "answer": "Ra*Ia", "id": "mc:ma-non-converti", "error": "unite", "feedback": "{Ra} × {Ia} : l'intensité est restée en mA. Convertis-la d'abord en ampères ({Ia} mA = {Ia/1000} A), puis refais le produit." },
             { "answer": "Ra*1000/Ia", "id": "mc:formule-ohm", "error": "notion", "feedback": "U = R × I : on multiplie la résistance par l'intensité." }
           ] },
         { "type": "numeric", "prompt": "Une tension de {Ub} V est appliquée aux bornes d'une résistance de {Rb} Ω. Quelle est l'intensité du courant ?", "answer": "Ub/Rb", "unit": "A", "rel": 0.01,
@@ -325,7 +347,7 @@
           ] },
         { "type": "numeric", "prompt": "Un conducteur ohmique est soumis à {Uc} V et parcouru par {Ic} mA. Quelle est sa résistance ?", "answer": "Uc*1000/Ic", "unit": "Ω", "rel": 0.01,
           "misconceptions": [
-            { "answer": "Uc/Ic", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Tu as divisé par l'intensité en mA. Avec I = {Ic/1000} A : R = {Uc} / {Ic/1000} = {Uc*1000/Ic} Ω." },
+            { "answer": "Uc/Ic", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Tu as divisé par l'intensité en mA. Convertis-la d'abord en ampères ({Ic} mA = {Ic/1000} A), puis refais la division." },
             { "answer": "Ic/1000/Uc", "id": "mc:r-inverse", "error": "notion", "feedback": "R = U / I et non I / U." },
             { "answer": "Ic/Uc", "id": "mc:r-inverse", "error": "notion", "feedback": "R = U / I et non I / U (et l'intensité doit être en A)." }
           ] }
@@ -344,7 +366,7 @@
       "prompt": "Vérification rapide : un conducteur ohmique est parcouru par 30 mA sous 3,0 V. On applique maintenant 6,0 V. Que devient l'intensité ?",
       "choices": [
         { "text": "Elle est divisée par 2 (15 mA)", "correct": false, "error": "notion", "misconception": "mc:proportion", "prerequisite": "m5.proportionnalite", "feedback": "U et I sont proportionnelles : si U double, I double aussi (I = U / R avec R fixe)." },
-        { "text": "Elle ne change pas (30 mA)", "correct": false, "error": "notion", "misconception": "mc:i-fixe", "feedback": "L'intensité n'est pas une propriété du dipôle : elle dépend de la tension appliquée. Ici I = U / R double." },
+        { "text": "Elle ne change pas (30 mA)", "correct": false, "error": "notion", "misconception": "mc:i-fixe", "feedback": "L'intensité n'est pas une propriété du dipôle : elle dépend de la tension appliquée. Que devient I = U / R quand U double ?" },
         { "text": "Elle double (60 mA)", "correct": true, "feedback": "Exact : U = R × I avec R constante, donc I est proportionnelle à U." },
         { "text": "Elle est multipliée par 4 (120 mA)", "correct": false, "error": "notion", "misconception": "mc:proportion", "prerequisite": "m5.proportionnalite", "feedback": "Pour un conducteur ohmique, la relation est proportionnelle : tension × 2 donne intensité × 2." }
       ],
@@ -441,7 +463,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Convertis {I} mA en ampères (écris seulement le nombre d'ampères).", "answer": "I/1000",
           "misconceptions": [
-            { "answer": "I", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Le nombre doit changer avec l'unité : {I} mA, ce sont {I} millièmes d'ampère, soit {I/1000} A." },
+            { "answer": "I", "id": "mc:ma-non-converti", "error": "unite", "feedback": "Le nombre doit changer avec l'unité : {I} mA, ce sont {I} millièmes d'ampère : divise par 1 000." },
             { "answer": "I*1000", "id": "mc:conversion-inverse", "error": "unite", "feedback": "Un milliampère est plus PETIT qu'un ampère : le nombre d'ampères est plus petit que le nombre de milliampères." }
           ] },
         { "type": "numeric", "prompt": "Calcule la tension aux bornes d'une résistance de {R} Ω parcourue par {I} mA (avec l'unité).", "answer": "R*I/1000", "unit": "V", "rel": 0.01,
@@ -481,7 +503,7 @@
       },
       "parts": [
         { "type": "text", "prompt": "Le quotient U / I est-il constant pour cette lampe ? (oui ou non)", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:lampe-ohmique", "error": "notion", "feedback": "Calcule U / I : environ 5 Ω sous 0,5 V, mais 20 Ω sous 6 V. La caractéristique n'est pas une droite passant par l'origine : la lampe n'est pas un conducteur ohmique." } ] },
+          "misconceptions": [ { "answer": "oui", "id": "mc:lampe-ohmique", "error": "notion", "feedback": "Calcule U / I pour la première et pour la dernière mesure, puis compare. Regarde aussi la caractéristique : est-ce une droite qui passe par l'origine ?" } ] },
         { "type": "numeric", "prompt": "Calcule U / I pour U = 1,0 V (avec l'unité).", "answer": "1/0.14", "unit": "Ω", "rel": 0.02 },
         { "type": "numeric", "prompt": "Calcule U / I pour U = 6,0 V (avec l'unité).", "answer": 20, "unit": "Ω", "rel": 0.02,
           "misconceptions": [ { "answer": "0.3/6", "id": "mc:r-inverse", "error": "notion", "feedback": "U / I, pas I / U." } ] },
@@ -494,7 +516,7 @@
             { "id": "c3", "label": "J'explique : le filament chauffe, et la résistance d'un métal augmente avec sa température", "keywords": [["chauff", "temperature", "filament"]] }
           ] }
       ],
-      "hints": ["U / I = 1,0 / 0,14 ≈ 7 Ω ; U / I = 6,0 / 0,30 = 20 Ω.", "Le modèle « R fixe = 20 Ω » donne I = 1,0 / 20 = 0,05 A sous 1,0 V.", "Plus la tension est grande, plus le filament est chaud et lumineux."],
+      "hints": ["Calcule U / I (I en ampères) pour chaque mesure, par exemple 1,0 / 0,14 puis 6,0 / 0,30.","Le modèle « R fixe = 20 Ω » donne I = 1,0 / 20 = 0,05 A sous 1,0 V.", "Plus la tension est grande, plus le filament est chaud et lumineux."],
       "solution": "U / I vaut environ 7,1 Ω sous 1,0 V et 20 Ω sous 6,0 V : il n'est pas constant, la lampe n'est pas un conducteur ohmique. Un modèle à résistance fixe de 20 Ω prévoit 0,05 A sous 1,0 V alors qu'on mesure 0,14 A : il n'est valable qu'au voisinage du point où on l'a établi. Explication : le filament s'échauffe quand l'intensité augmente, et la résistance d'un métal augmente avec la température.",
       "selfTest": [
         { "response": { "parts": [ { "value": "non" }, { "value": "7,1 Ω" }, { "value": "20 Ω" }, { "value": "0,05 A" }, { "text": "Le modèle prévoit 0,05 A mais on mesure 0,14 A, c'est presque 3 fois plus. U / I augmente avec la tension car le filament chauffe et sa résistance augmente avec la température.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
@@ -510,7 +532,7 @@
         { "type": "numeric", "prompt": "Pour quelle tension la mesure est-elle aberrante (avec l'unité) ?", "answer": 6, "unit": "V" },
         { "type": "numeric", "prompt": "Valeur de R d'après les mesures cohérentes (avec l'unité) :", "answer": 100, "unit": "Ω", "rel": 0.01,
           "misconceptions": [
-            { "answer": 96, "id": "mc:moyenne-aberrante", "error": "methode", "feedback": "Ta moyenne inclut le point aberrant (6,0 / 0,075 = 80 Ω). On l'écarte avant de calculer : les quatre autres donnent exactement 100 Ω." },
+            { "answer": 96, "id": "mc:moyenne-aberrante", "error": "methode", "feedback": "Ta moyenne inclut le point aberrant (6,0 / 0,075 = 80 Ω). On l'écarte avant de calculer : utilise seulement les quatre autres mesures." },
             { "answer": 0.1, "id": "mc:ma-non-converti", "error": "unite", "feedback": "Convertis les intensités en ampères." }
           ] },
         { "type": "numeric", "prompt": "Quelle intensité aurait-on dû mesurer sous 6,0 V (avec l'unité) ?", "answer": 0.06, "unit": "A", "rel": 0.01 },
@@ -545,7 +567,7 @@
         { "type": "numeric", "prompt": "Estime l'incertitude sur R par la demi-étendue : (plus grande − plus petite) ÷ 2 (avec l'unité).", "answer": "(4/0.0179-2/0.0093)/2", "unit": "Ω", "rel": 0.1,
           "misconceptions": [ { "answer": "4/0.0179-2/0.0093", "id": "mc:etendue", "error": "methode", "feedback": "C'est l'étendue entière. L'incertitude s'écrit « valeur ± demi-étendue » : divise par 2." } ] },
         { "type": "text", "prompt": "Le résultat du groupe 2 (environ 219 Ω ± 4 Ω) est-il compatible avec l'indication « 220 Ω ± 5 % » ? (oui ou non)", "accept": ["oui"],
-          "misconceptions": [ { "answer": "non", "id": "mc:compatibilite", "error": "raisonnement", "feedback": "220 Ω ± 5 % signifie entre 209 Ω et 231 Ω. L'intervalle mesuré (215 à 223 Ω) est entièrement dedans : c'est compatible, même si ce n'est pas exactement 220." } ] },
+          "misconceptions": [ { "answer": "non", "id": "mc:compatibilite", "error": "raisonnement", "feedback": "Calcule l'intervalle permis par « 220 Ω ± 5 % » (5 % de 220 Ω = 11 Ω), puis regarde si l'intervalle mesuré (215 à 223 Ω) est dedans. Une mesure n'a pas besoin de donner exactement 220 Ω." } ] },
         { "type": "open", "prompt": "Pourquoi trace-t-on une droite qui passe AU PLUS PRÈS des points, au lieu de relier les points un à un ?", "minWords": 20,
           "criteria": [
             { "id": "c1", "label": "Le modèle (loi d'Ohm) prévoit une droite passant par l'origine", "keywords": [["modele", "loi d'ohm", "droite", "origine"]] },
@@ -569,11 +591,11 @@
         { "type": "numeric", "prompt": "On lui applique 6,0 V. Intensité du courant (avec l'unité) :", "answer": 0.06, "unit": "A", "rel": 0.01,
           "misconceptions": [ { "answer": "100/6", "id": "mc:formule-ohm", "error": "notion", "feedback": "I = U / R = 6,0 / 100." } ] },
         { "type": "numeric", "prompt": "Puissance reçue par la résistance (avec l'unité) :", "answer": 0.36, "unit": "W", "rel": 0.01,
-          "misconceptions": [ { "answer": 360, "id": "mc:ma-non-converti", "error": "unite", "feedback": "6,0 × 60 = 360 : tu as utilisé I en mA. Avec I = 0,060 A : P = 6,0 × 0,060 = 0,36 W." } ] },
+          "misconceptions": [ { "answer": 360, "id": "mc:ma-non-converti", "error": "unite", "feedback": "6,0 × 60 = 360 : tu as utilisé I en mA. Dans P = U × I, l'intensité doit être en ampères : convertis-la, puis refais le produit." } ] },
         { "type": "text", "prompt": "La résistance risque-t-elle d'être détériorée ? (oui ou non)", "accept": ["oui"],
-          "misconceptions": [ { "answer": "non", "id": "mc:comparaison", "error": "raisonnement", "feedback": "0,36 W > 0,25 W : la puissance reçue dépasse celle que la résistance peut supporter." } ] },
+          "misconceptions": [ { "answer": "non", "id": "mc:comparaison", "error": "raisonnement", "feedback": "Compare la puissance reçue (calculée à la question précédente) à la puissance maximale que la résistance peut supporter : 0,25 W." } ] },
         { "type": "numeric", "prompt": "En combinant P = U × I et I = U / R, on obtient P = U² / R. Quelle est la tension maximale qu'on peut appliquer à cette résistance (avec l'unité) ?", "answer": 5, "unit": "V", "rel": 0.01,
-          "misconceptions": [ { "answer": 25, "id": "mc:racine", "error": "calcul", "feedback": "25 est la valeur de U² (= P × R = 0,25 × 100). Il faut encore prendre la racine carrée : U = √25 = 5 V." } ],
+          "misconceptions": [ { "answer": 25, "id": "mc:racine", "error": "calcul", "feedback": "25 est la valeur de U² (= P × R = 0,25 × 100). Il faut encore prendre la racine carrée de ce nombre pour obtenir U." } ],
           "justify": { "required": true, "minWords": 3, "prompt": "Écris le calcul qui mène à U.", "keywords": [["u²", "u^2", "u2", "racine", "√"]] } }
       ],
       "hints": ["I = U / R avec U = 6,0 V et R = 100 Ω.", "P = U × I avec I en ampères.", "P = U² / R donne U² = P × R = 0,25 × 100."],

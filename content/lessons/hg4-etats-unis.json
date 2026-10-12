@@ -145,7 +145,7 @@
         { "pair": ["delocalisation", "d-relocalisation"], "id": "mc:delocalisation-relocalisation", "error": "notion", "feedback": "« Dé- » : la production quitte le pays. « Re- » : elle revient." },
         { "pair": ["relocalisation", "d-delocalisation"], "id": "mc:delocalisation-relocalisation", "error": "notion", "feedback": "Relocaliser, c'est faire revenir une production dans son pays ; délocaliser, c'est l'envoyer à l'étranger." }
       ],
-      "hints": ["Sun = soleil ; rust = rouille.", "« Dé- » éloigne, « re- » ramène.", "Une technopôle, c'est « technologie » + « pôle »."],
+      "hints": ["Sun = soleil ; rust = rouille.", "« Dé- » éloigne, « re- » ramène.", "Un technopôle, c'est « technologie » + « pôle »."],
       "solution": "Sun Belt : régions ensoleillées du sud et de l'ouest, en essor. Rust Belt : ancienne région industrielle du Nord-Est. Mégalopole : chapelet de villes de Boston à Washington. Technopôle : universités et entreprises de haute technologie réunies. Façade maritime : littoral aligné de grands ports. Interface : zone de contact et d'échanges. Délocalisation : production envoyée à l'étranger. Relocalisation : production qui revient.",
       "selfTest": [
         { "response": { "pairs": { "sunbelt": "d-sunbelt", "rustbelt": "d-rustbelt", "megalopole": "d-megalopole", "technopole": "d-technopole", "facade": "d-facade", "interface": "d-interface", "delocalisation": "d-delocalisation", "relocalisation": "d-relocalisation" } }, "expect": "correct" },
@@ -214,10 +214,10 @@
         ["Ouest", "13", "24", "?r3c3"]
       ],
       "cells": {
-        "r0c3": { "answer": -9, "misconceptions": [ { "answer": 9, "id": "mc:signe-evolution", "error": "signe", "feedback": "La part du Nord-Est a BAISSÉ (de 26 à 17) : l'évolution est négative, 17 − 26 = −9 points." } ] },
-        "r1c3": { "answer": -8, "misconceptions": [ { "answer": 8, "id": "mc:signe-evolution", "error": "signe", "feedback": "La part du Midwest a baissé : 21 − 29 = −8 points." } ] },
+        "r0c3": { "answer": -9, "misconceptions": [ { "answer": 9, "id": "mc:signe-evolution", "error": "signe", "feedback": "La part du Nord-Est a BAISSÉ (de 26 à 17) : l'évolution est négative. Calcule valeur de 2020 − valeur de 1950 et garde le signe −." } ] },
+        "r1c3": { "answer": -8, "misconceptions": [ { "answer": 8, "id": "mc:signe-evolution", "error": "signe", "feedback": "La part du Midwest a baissé (de 29 à 21) : l'évolution est négative. Garde le signe −." } ] },
         "r2c3": { "answer": 7 },
-        "r3c3": { "answer": 11, "misconceptions": [ { "answer": "24/13", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,8 est un rapport (24 ÷ 13). Une évolution en points est une soustraction : 24 − 13 = +11 points." } ] }
+        "r3c3": { "answer": 11, "tolerance": 0.05, "misconceptions": [ { "answer": "24/13", "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,8 est un rapport (24 ÷ 13). Une évolution en points est une soustraction : valeur de 2020 − valeur de 1950." } ] }
       },
       "hints": ["Évolution = valeur de 2020 − valeur de 1950.", "Si la part diminue, le résultat est négatif."],
       "solution": "Nord-Est : −9 points. Midwest : −8 points. Sud : +7 points. Ouest : +11 points. En 70 ans, le centre de gravité de la population s'est déplacé vers le Sud et l'Ouest, la Sun Belt : en 2020, plus de six Américains sur dix y vivent (38 + 24 = 62 %).",
@@ -243,10 +243,10 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Combien de millions d'habitants Detroit a-t-elle perdus entre 1950 et 2020 ? (au centième)", "answer": 1.21, "tolerance": 0.005,
-          "misconceptions": [ { "answer": "1.85/0.64", "id": "mc:ecart-rapport", "error": "methode", "feedback": "2,89 est un rapport. Le nombre d'habitants perdus est une différence : 1,85 − 0,64 = 1,21 million." } ] },
+          "misconceptions": [ { "answer": "1.85/0.64", "id": "mc:ecart-rapport", "error": "methode", "feedback": "2,89 est un rapport (1,85 ÷ 0,64). Le nombre d'habitants perdus est une différence : population de 1950 − population de 2020." } ] },
         { "type": "numeric", "prompt": "Entre 1950 et 2020, la population de Houston a été multipliée par combien ? (au dixième)", "answer": "2.30/0.60", "tolerance": 0.06,
-          "misconceptions": [ { "answer": 1.7, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,7 million est l'augmentation (2,30 − 0,60). « Multipliée par » : 2,30 ÷ 0,60 ≈ 3,8." } ] },
-        { "type": "text", "prompt": "Houston appartient à quelle grande région des États-Unis : la Sun Belt ou la Rust Belt ?", "accept": ["Sun Belt", "la Sun Belt", "Sunbelt", "la Sunbelt"],
+          "misconceptions": [ { "answer": 1.7, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1,7 million est l'augmentation (2,30 − 0,60). « Multipliée par » demande une division : population de 2020 ÷ population de 1950." } ] },
+        { "type": "text", "prompt": "Houston appartient à quelle grande région des États-Unis : la Sun Belt ou la Rust Belt ?", "accept": ["Sun Belt", "la Sun Belt", "Sunbelt", "la Sunbelt", "à la Sun Belt", "à la Sunbelt"],
           "misconceptions": [ { "answer": "Rust Belt", "id": "mc:sun-rust", "error": "notion", "feedback": "Houston, au Texas, est au sud et en plein essor : c'est la Sun Belt. Detroit, elle, appartient à la Rust Belt." },
                               { "answer": "la Rust Belt", "id": "mc:sun-rust", "error": "notion", "feedback": "Houston, au Texas, est au sud et en plein essor : c'est la Sun Belt. Detroit, elle, appartient à la Rust Belt." } ] }
       ],
@@ -313,10 +313,10 @@
       "parts": [
         { "type": "numeric", "prompt": "Combien de millions d'EVP ces deux ports américains traitent-ils ensemble ?", "answer": 20.1, "tolerance": 0.05 },
         { "type": "numeric", "prompt": "Shanghai en traite combien de fois plus que ces deux ports réunis ? (arrondi au dixième)", "answer": "55.1/20.1", "tolerance": 0.06,
-          "misconceptions": [ { "answer": 35, "id": "mc:ecart-rapport", "error": "methode", "feedback": "35 est un écart (55,1 − 20,1). « Combien de fois plus » : 55,1 ÷ 20,1 ≈ 2,7." } ] },
+          "misconceptions": [ { "answer": 35, "id": "mc:ecart-rapport", "error": "methode", "feedback": "35 est un écart (55,1 − 20,1). « Combien de fois plus » demande une division : conteneurs de Shanghai ÷ conteneurs des deux ports réunis." } ] },
         { "type": "text", "prompt": "Sur quelle façade maritime se trouvent Los Angeles et Long Beach ?", "accept": ["Pacifique", "la façade Pacifique", "façade pacifique", "le Pacifique", "l'océan Pacifique", "océan Pacifique", "la façade du Pacifique", "côte Pacifique", "la côte Pacifique"],
-          "misconceptions": [ { "answer": "Atlantique", "id": "mc:facade-atlantique", "error": "lecture", "feedback": "Los Angeles est en Californie, sur la côte ouest : c'est la façade Pacifique, tournée vers l'Asie. New York est sur l'Atlantique." },
-                              { "answer": "la façade Atlantique", "id": "mc:facade-atlantique", "error": "lecture", "feedback": "Los Angeles est en Californie, sur la côte ouest : c'est la façade Pacifique, tournée vers l'Asie." } ] }
+          "misconceptions": [ { "answer": "Atlantique", "id": "mc:facade-atlantique", "error": "lecture", "feedback": "Los Angeles est en Californie, sur la côte ouest. L'Atlantique borde la côte est, celle de New York. Quel océan borde la côte ouest, tournée vers l'Asie ?" },
+                              { "answer": "la façade Atlantique", "id": "mc:facade-atlantique", "error": "lecture", "feedback": "Los Angeles est en Californie, sur la côte ouest, pas sur la côte est. Quel océan borde la côte ouest, tournée vers l'Asie ?" } ] }
       ],
       "hints": ["10,2 + 9,9 = ?", "« Combien de fois plus » : division.", "La Californie est sur la côte ouest."],
       "solution": "10,2 + 9,9 = 20,1 millions d'EVP, le premier ensemble portuaire du pays. Shanghai en traite encore 55,1 ÷ 20,1 ≈ 2,7 fois plus. Los Angeles et Long Beach sont sur la façade Pacifique : ils reçoivent surtout des conteneurs venus d'Asie (Chine, Japon, Corée du Sud, Asie du Sud-Est). Le basculement vers le Pacifique est l'une des adaptations du territoire à la mondialisation.",
@@ -331,12 +331,12 @@
       "prompt": "**Mission.** Une entreprise française de batteries électriques veut construire une usine aux États-Unis. Tu lui proposes le **Texas** : 31,7 millions d'habitants en 2025, l'une des plus fortes hausses du pays (Census Bureau) ; les États-Unis comptent 341,8 millions d'habitants. Le Texas possède le port de Houston et une longue frontière avec un pays voisin.",
       "parts": [
         { "type": "numeric", "prompt": "Quelle part de la population des États-Unis vit au Texas ? (en %, arrondie à l'unité)", "answer": "31.7/341.8*100", "tolerance": 0.5,
-          "misconceptions": [ { "answer": 31.7, "id": "mc:part-valeur", "error": "methode", "feedback": "31,7 est un nombre d'habitants (en millions). La part : 31,7 ÷ 341,8 × 100 ≈ 9 %." } ] },
-        { "type": "text", "prompt": "Dans quelle grande région des États-Unis se trouve le Texas : la Sun Belt ou la Rust Belt ?", "accept": ["Sun Belt", "la Sun Belt", "Sunbelt", "la Sunbelt"],
+          "misconceptions": [ { "answer": 31.7, "id": "mc:part-valeur", "error": "methode", "feedback": "31,7 est un nombre d'habitants (en millions), pas une part. Part = habitants du Texas ÷ habitants des États-Unis × 100." } ] },
+        { "type": "text", "prompt": "Dans quelle grande région des États-Unis se trouve le Texas : la Sun Belt ou la Rust Belt ?", "accept": ["Sun Belt", "la Sun Belt", "Sunbelt", "la Sunbelt", "dans la Sun Belt", "dans la Sunbelt"],
           "misconceptions": [ { "answer": "Rust Belt", "id": "mc:sun-rust", "error": "notion", "feedback": "Le Texas est au sud et attire entreprises et habitants : c'est la Sun Belt." } ] },
         { "type": "text", "prompt": "Avec quel pays voisin le Texas partage-t-il une frontière ?", "accept": ["Mexique", "le Mexique"],
-          "misconceptions": [ { "answer": "Canada", "id": "mc:frontiere-canada", "error": "lecture", "feedback": "Le Canada est au nord des États-Unis. Le Texas, au sud, borde le Mexique, premier partenaire commercial des États-Unis pour les marchandises." },
-                              { "answer": "le Canada", "id": "mc:frontiere-canada", "error": "lecture", "feedback": "Le Canada est au nord des États-Unis. Le Texas, au sud, borde le Mexique." } ] },
+          "misconceptions": [ { "answer": "Canada", "id": "mc:frontiere-canada", "error": "lecture", "feedback": "Le Canada est au nord des États-Unis. Le Texas est tout au sud : quel pays se trouve de l'autre côté de sa frontière ?" },
+                              { "answer": "le Canada", "id": "mc:frontiere-canada", "error": "lecture", "feedback": "Le Canada est au nord des États-Unis. Le Texas est tout au sud : quel pays se trouve de l'autre côté de sa frontière ?" } ] },
         { "type": "open", "prompt": "Écris trois arguments pour convaincre l'entreprise de s'installer au Texas.", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "Un argument sur la population et la main-d'œuvre (habitants nombreux, en hausse, clients)", "keywords": [["habitant", "population", "travailleur", "main", "client", "hausse"]] },
@@ -399,11 +399,11 @@
       "prompt": "**BEA, Census Bureau, FMI, ONU** : en 2025, les États-Unis comptent 341,8 millions d'habitants sur environ 8,2 milliards d'humains. Leur PIB atteint 30 861 milliards de dollars, soit environ 26 % du PIB mondial.",
       "parts": [
         { "type": "numeric", "prompt": "Quelle part de l'humanité vit aux États-Unis ? (en %, au dixième)", "answer": "341.8/8200*100", "tolerance": 0.06,
-          "misconceptions": [ { "answer": 341.8, "id": "mc:part-valeur", "error": "methode", "feedback": "341,8 est un nombre d'habitants (en millions). Part : 341,8 ÷ 8 200 × 100 ≈ 4,2 %." } ] },
+          "misconceptions": [ { "answer": 341.8, "id": "mc:part-valeur", "error": "methode", "feedback": "341,8 est un nombre d'habitants (en millions), pas une part. Part = habitants des États-Unis ÷ habitants du monde × 100, les deux en millions (8,2 milliards = 8 200 millions)." } ] },
         { "type": "numeric", "prompt": "Quel est environ le PIB mondial ? (en milliers de milliards de dollars, arrondi à l'unité)", "answer": "30.861/0.26", "tolerance": 0.6,
-          "misconceptions": [ { "answer": "30.861*0.26", "id": "mc:division-inverse", "error": "methode", "feedback": "Le PIB américain est 26 % du PIB mondial : le PIB mondial est donc plus grand ! On divise : 30,9 ÷ 0,26 ≈ 119 milliers de milliards de dollars." } ] },
-        { "type": "text", "prompt": "La part des États-Unis dans la richesse mondiale est-elle plus grande ou plus petite que leur part dans la population mondiale ?", "accept": ["plus grande", "plus grande que", "elle est plus grande", "beaucoup plus grande", "plus grosse", "supérieure"],
-          "misconceptions": [ { "answer": "plus petite", "id": "mc:comparer-parts", "error": "lecture", "feedback": "26 % de la richesse pour environ 4 % de la population : la part de richesse est environ six fois plus grande." } ] }
+          "misconceptions": [ { "answer": "30.861*0.26", "id": "mc:division-inverse", "error": "methode", "feedback": "Le PIB américain est 26 % du PIB mondial : le PIB mondial est donc plus grand, pas plus petit ! Il faut diviser le PIB américain par 0,26 au lieu de le multiplier." } ] },
+        { "type": "text", "prompt": "La part des États-Unis dans la richesse mondiale est-elle plus grande ou plus petite que leur part dans la population mondiale ?", "accept": ["plus grande", "plus grande que", "elle est plus grande", "beaucoup plus grande", "plus grosse", "supérieure", "plus importante", "plus élevée"],
+          "misconceptions": [ { "answer": "plus petite", "id": "mc:comparer-parts", "error": "lecture", "feedback": "Compare les deux parts : 26 % de la richesse mondiale, et la part de la population mondiale que tu as calculée à la première question." } ] }
       ],
       "hints": ["Mets tout en millions : 8,2 milliards = 8 200 millions.", "Si 26 % du total vaut 30,9, le total vaut 30,9 ÷ 0,26.", "Compare 26 % et ton premier résultat."],
       "solution": "341,8 ÷ 8 200 × 100 ≈ 4,2 % de l'humanité. PIB mondial ≈ 30,9 ÷ 0,26 ≈ 119 milliers de milliards de dollars. Avec environ 4 % des humains, les États-Unis produisent environ 26 % de la richesse mondiale, six fois plus que leur poids démographique : c'est la marque de leur puissance.",
@@ -459,12 +459,12 @@
       "prompt": "**Le protectionnisme** consiste à taxer les produits importés pour protéger la production nationale. Un **droit de douane** est payé à la frontière par l'entreprise qui importe. Exemple récent : le 2 avril 2025, le gouvernement américain a imposé des droits de douane d'au moins 10 % sur la plupart des importations ; le 20 février 2026, la Cour suprême les a annulés.",
       "parts": [
         { "type": "numeric", "prompt": "Une entreprise importe un téléviseur fabriqué en Asie pour 400 dollars. Avec un droit de douane de 10 %, combien de dollars de taxe paie-t-elle ?", "answer": 40,
-          "misconceptions": [ { "answer": 440, "id": "mc:pourcentage-calcul", "error": "lecture", "feedback": "440 $ est le prix total avec la taxe. La taxe seule : 400 × 10 ÷ 100 = 40 $." },
-                              { "answer": 4000, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "10 % de 400, c'est 400 × 10 ÷ 100 = 40 $, pas 400 × 10." } ] },
+          "misconceptions": [ { "answer": 440, "id": "mc:pourcentage-calcul", "error": "lecture", "feedback": "440 dollars est le prix total avec la taxe. On demande la taxe seule : 10 % de 400 dollars." },
+                              { "answer": 4000, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "10 % de 400, c'est 400 × 10 ÷ 100 : tu as oublié de diviser par 100." } ] },
         { "type": "text", "prompt": "Si l'entreprise augmente son prix de vente pour payer la taxe, qui la paie finalement ?", "openEnded": true,
           "accept": ["le consommateur", "les consommateurs", "l'acheteur", "les acheteurs", "le client", "les clients", "les Américains", "les consommateurs américains", "les clients américains"],
-          "misconceptions": [ { "answer": "le pays qui exporte", "id": "mc:qui-paie", "error": "raisonnement", "feedback": "La taxe est payée à la frontière par l'importateur américain ; s'il augmente ses prix, ce sont les clients américains qui la paient finalement." },
-                              { "answer": "la Chine", "id": "mc:qui-paie", "error": "raisonnement", "feedback": "La taxe est payée par l'importateur américain ; s'il augmente ses prix, ce sont les clients américains qui la paient finalement." } ] },
+          "misconceptions": [ { "answer": "le pays qui exporte", "id": "mc:qui-paie", "error": "raisonnement", "feedback": "La taxe est payée à la frontière par l'importateur américain, pas par le pays qui exporte. S'il augmente son prix de vente, qui paie ce prix plus élevé au magasin ?" },
+                              { "answer": "la Chine", "id": "mc:qui-paie", "error": "raisonnement", "feedback": "La taxe est payée par l'importateur américain, pas par la Chine. S'il augmente son prix de vente, qui paie ce prix plus élevé au magasin ?" } ] },
         { "type": "open", "prompt": "Le protectionnisme est-il une bonne façon d'adapter un territoire à la mondialisation ? Donne un avantage, un inconvénient, et ton avis argumenté.", "minWords": 50,
           "criteria": [
             { "id": "c1", "label": "Un avantage (protéger des emplois, relocaliser des usines, moins dépendre de l'étranger)", "keywords": [["emploi", "usine", "relocalis", "proteg", "dependre", "dependance"]] },
@@ -473,7 +473,7 @@
           ] }
       ],
       "hints": ["10 % de 400 = 400 × 10 ÷ 100.", "Qui achète le téléviseur au magasin ?", "Pense aux salariés des usines, mais aussi aux clients et aux autres pays."],
-      "solution": "10 % de 400 $ = 40 $ de taxe. Si l'importateur répercute la taxe sur son prix, ce sont les consommateurs américains qui la paient. Avantages du protectionnisme : protéger certains emplois, encourager la production sur place, réduire la dépendance envers l'étranger. Inconvénients : prix plus élevés pour les consommateurs et les entreprises qui utilisent des pièces importées, risque de représailles des autres pays contre les exportations américaines. Le débat reste vif, comme le montre l'annulation par la Cour suprême, en 2026, des droits de douane de 2025.",
+      "solution": "10 % de 400 dollars = 40 dollars de taxe. Si l'importateur répercute la taxe sur son prix, ce sont les consommateurs américains qui la paient. Avantages du protectionnisme : protéger certains emplois, encourager la production sur place, réduire la dépendance envers l'étranger. Inconvénients : prix plus élevés pour les consommateurs et les entreprises qui utilisent des pièces importées, risque de représailles des autres pays contre les exportations américaines. Le débat reste vif, comme le montre l'annulation par la Cour suprême, en 2026, des droits de douane de 2025.",
       "selfTest": [
         { "response": { "parts": [ { "value": "40" }, { "value": "les consommateurs" }, { "text": "Le protectionnisme peut protéger des emplois et faire revenir des usines. Mais les prix augmentent pour les consommateurs et les autres pays peuvent répliquer en taxant les exportations américaines. À mon avis, il faut l'utiliser seulement pour quelques produits stratégiques.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "440" }, { "value": "les consommateurs" }, { "text": "Je ne sais pas." } ] }, "expect": "mc:pourcentage-calcul" }

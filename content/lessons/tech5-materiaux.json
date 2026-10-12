@@ -295,11 +295,11 @@
       "prompt": "Données simplifiées pour l'exercice (empreinte carbone en kg d'équivalent CO₂, notée kg CO₂e) :\n- fabriquer et transporter une **gourde en inox** : **4 kg CO₂e** ; elle sert des années ;\n- fabriquer, transporter et recycler une **bouteille jetable** de 50 cl : **0,1 kg CO₂e**.\n\nOn ne compte pas le lavage de la gourde.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de bouteilles jetables ont, ensemble, la même empreinte que la gourde ?", "answer": 40,
-          "misconceptions": [ { "answer": 0.025, "id": "mc:division-inversee", "error": "methode", "feedback": "0,1 ÷ 4 donne une fraction de bouteille. On cherche combien de fois 0,1 kg « rentre » dans 4 kg : 4 ÷ 0,1 = 40." } ] },
+          "misconceptions": [ { "answer": 0.025, "id": "mc:division-inversee", "error": "methode", "feedback": "0,1 ÷ 4 donne une fraction de bouteille. On cherche combien de fois 0,1 kg « rentre » dans 4 kg : divise 4 par 0,1." } ] },
         { "type": "numeric", "prompt": "Lucas remplit sa gourde 200 fois dans l'année au lieu d'acheter des bouteilles. Combien de kg CO₂e évite-t-il la première année ?", "answer": 16,
           "misconceptions": [
-            { "answer": 20, "id": "mc:oubli-fabrication", "error": "raisonnement", "feedback": "200 bouteilles × 0,1 = 20 kg évités… mais fabriquer la gourde a émis 4 kg : le gain réel est 20 − 4 = 16 kg." },
-            { "answer": 24, "id": "mc:oubli-fabrication", "error": "raisonnement", "feedback": "La fabrication de la gourde émet du CO₂ : on la retire du gain, on ne l'ajoute pas. 20 − 4 = 16 kg." }
+            { "answer": 20, "id": "mc:oubli-fabrication", "error": "raisonnement", "feedback": "200 bouteilles × 0,1 = 20 kg évités… mais fabriquer la gourde a émis 4 kg : il faut les retirer du gain." },
+            { "answer": 24, "id": "mc:oubli-fabrication", "error": "raisonnement", "feedback": "La fabrication de la gourde émet du CO₂ : on la retire du gain, on ne l'ajoute pas." }
           ] },
         { "type": "open", "prompt": "Cite deux autres critères que l'empreinte carbone pour comparer ces deux solutions (pense au cycle de vie et à l'usage).", "minWords": 12,
           "criteria": [
@@ -378,10 +378,10 @@
         ["Plastique ABS", "1,05", "?r3c2"]
       ],
       "cells": {
-        "r0c2": { "answer": 1560, "tolerance": 1, "misconceptions": [ { "answer": "200/7.8", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "La masse volumique est la masse d'1 cm³ : pour 200 cm³, on multiplie par 200. 7,8 × 200 = 1 560 g." } ] },
-        "r1c2": { "answer": 540, "tolerance": 1, "misconceptions": [ { "answer": "200/2.7", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "Multiplie : 2,7 g par cm³, et 200 cm³, cela fait 2,7 × 200 = 540 g." } ] },
-        "r2c2": { "answer": 100, "tolerance": 1, "misconceptions": [ { "answer": 400, "id": "mc:division-masse-volumique", "error": "methode", "feedback": "200 ÷ 0,5 = 400, mais il faut multiplier : 0,5 × 200 = 100 g. Le bois est léger : la pièce doit peser moins de 200 g." } ] },
-        "r3c2": { "answer": 210, "tolerance": 1, "misconceptions": [ { "answer": "200/1.05", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "Multiplie : 1,05 × 200 = 210 g." } ] }
+        "r0c2": { "answer": 1560, "tolerance": 1, "misconceptions": [ { "answer": "200/7.8", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "La masse volumique est la masse d'1 cm³ : pour 200 cm³, on multiplie par 200, on ne divise pas." } ] },
+        "r1c2": { "answer": 540, "tolerance": 1, "misconceptions": [ { "answer": "200/2.7", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "Il faut multiplier, pas diviser : 2,7 g pour chaque cm³, et il y a 200 cm³." } ] },
+        "r2c2": { "answer": 100, "tolerance": 1, "misconceptions": [ { "answer": 400, "id": "mc:division-masse-volumique", "error": "methode", "feedback": "200 ÷ 0,5 = 400, mais il faut multiplier la masse volumique par le volume. Le bois est léger : la pièce doit peser moins de 200 g." } ] },
+        "r3c2": { "answer": 210, "tolerance": 1, "misconceptions": [ { "answer": "200/1.05", "id": "mc:division-masse-volumique", "error": "methode", "feedback": "Il faut multiplier la masse volumique par le volume, pas diviser." } ] }
       },
       "hints": ["« 7,8 g/cm³ » veut dire : 1 cm³ d'acier pèse 7,8 g.", "200 cm³ pèsent donc 200 fois plus.", "Vérifie l'ordre de grandeur : le bois flotte, il est plus léger que l'eau (1 g/cm³)."],
       "solution": "Acier : 7,8 × 200 = 1 560 g ; aluminium : 540 g ; pin : 100 g ; ABS : 210 g. Pour un support léger, l'aluminium est près de trois fois plus léger que l'acier ; le bois est encore plus léger mais moins résistant à l'humidité : le choix dépend aussi des autres critères du cahier des charges.",

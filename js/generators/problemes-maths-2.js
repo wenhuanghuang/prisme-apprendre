@@ -4,7 +4,7 @@
  * à rédiger. Chaque générateur déclare ses `tracks` et `make(rand, options, parcours)` renvoie un `problem(...)`.
  * Voir docs/GENERATEURS.md.
  */
-import { ri, pick, sample, clean, fr, sgn, poly, gcd, lcm, frac, fracStr, mc, numeric, expression, problem } from './gen-util.js';
+import { ri, pick, sample, clean, fr, sgn, poly, gcd, lcm, frac, fracStr, mc, numeric, expression, problem, withoutCitedAnswer } from './gen-util.js';
 import { sum, nom, noms, round, eur, plur, quot, hhmm, divisors, isPrime, decomp, lin, yesNo, choose, proba, probaForm, fracTxt, cap, byTier, asHour, ALL_TRACKS } from './problemes-outils.js';
 
 
@@ -70,7 +70,7 @@ function partagePlus(rand) {
     numeric(partC, { prompt: `Quelle part reçoit ${C} ? (en ${ctx.unit})`, ...unitOf(ctx), misconceptions: [
       mc(clean((T * (pA + pB)) / D), 'mc:mauvaise-part', 'lecture', `Ce nombre est la part de ${A} et ${B} réunis ; ${C} reçoit le reste.`),
     ] }),
-    choose('Qui reçoit la plus grande part ? (écris le prénom)', [winner], people.filter((x) => x !== winner).map((x) => ({ accept: [x], id: 'mc:comparaison-fractions', error: 'notion', feedback: `Pour comparer, écris les trois fractions avec le dénominateur ${D} : ${pA}/${D}, ${pB}/${D} et ${pC}/${D}.` }))),
+    choose('Qui reçoit la plus grande part ? (écris le prénom)', [winner], people.filter((x) => x !== winner).map((x) => ({ accept: [x], id: 'mc:comparaison-fractions', error: 'notion', feedback: `Pour comparer, écris les trois fractions avec le même dénominateur (${D}), puis compare leurs numérateurs.` }))),
   ], {
     prompt: `${A}, ${B} et ${C} se partagent ${ctx.label(T)}. ${A} reçoit ${nA}/${dA} ${ctx.de}, ${B} en reçoit ${nB}/${dB}, et ${C} reçoit le reste.`,
     hints: [`Le dénominateur commun de ${nA}/${dA} et ${nB}/${dB} est ${D}.`, `${nA}/${dA} = ${pA}/${D} et ${nB}/${dB} = ${pB}/${D} ; le tout vaut ${D}/${D}.`, 'Pour comparer les trois parts, compare les numérateurs des fractions de même dénominateur.'],
@@ -172,7 +172,7 @@ function paquetsPlus(rand) {
       mc(g, 'mc:lots-au-lieu-contenu', 'lecture', `${g}, c’est le nombre de ${lot.pack} ; dans chaque ${lot.one}, il y a ${b} ÷ ${g} ${i2}.`),
     ] }),
     numeric(p + q + r, { prompt: `Combien d’objets en tout y aura-t-il dans chaque ${lot.one} ?`, misconceptions: [
-      mc(a + b + c, 'mc:total-au-lieu-lot', 'lecture', `${a + b + c}, c’est le nombre total d’objets ; il faut le répartir dans les ${g} ${lot.pack}.`),
+      mc(a + b + c, 'mc:total-au-lieu-lot', 'lecture', `${a + b + c}, c’est le nombre total d’objets ; il faut le répartir entre les ${lot.pack}.`),
     ] }),
   ], {
     prompt: `${who} a ${a} ${i1}, ${b} ${i2} et ${c} ${i3}, et veut composer des ${lot.pack} identiques en utilisant la totalité des objets : chaque ${lot.one} doit contenir le même nombre de ${i1}, de ${i2} et de ${i3}.`,
@@ -195,7 +195,7 @@ function dallesExpert(rand) {
     ] }),
     numeric(n, { prompt: 'Combien de dalles faut-il ?', misconceptions: [
       mc(p + q, 'mc:addition-au-lieu-produit', 'raisonnement', 'Le nombre de dalles est (dalles dans la longueur) × (dalles dans la largeur), pas leur somme.'),
-      mc((L * l) / g, 'mc:aire-dalle', 'notion', `L’aire d’une dalle est ${g} × ${g} cm² : on divise l’aire de la terrasse par ${g * g}, pas par ${g}.`),
+      mc((L * l) / g, 'mc:aire-dalle', 'notion', 'L’aire d’une dalle est côté × côté : on divise l’aire de la terrasse par l’aire d’une dalle, pas par son côté.'),
     ] }),
     numeric(4 * n, { prompt: `Avec des dalles de ${g / 2} cm de côté, combien en faudrait-il ?`, misconceptions: [
       mc(2 * n, 'mc:aire-double', 'raisonnement', 'Si le côté est divisé par 2, l’aire de chaque dalle est divisée par 4 : il faut 4 fois plus de dalles, pas 2 fois plus.'),
@@ -250,10 +250,10 @@ function programmePlus(rand) {
       mc(lin(b, a - c), 'mc:distributivite-partielle', 'calcul', `${b} multiplie x et aussi ${fr(a)}.`),
     ] }),
     expression(lin(b, K), { form: 'developpee-reduite', prompt: 'Développe et réduis cette expression.', misconceptions: [
-      mc(lin(b, a - c), 'mc:distributivite-partielle', 'calcul', `${b}(x${sgn(a)}) = ${b}x${sgn(a * b)} : ${b} multiplie les deux termes.`),
+      mc(lin(b, a - c), 'mc:distributivite-partielle', 'calcul', `${b} multiplie les deux termes de la parenthèse, y compris ${fr(a)}.`),
     ] }),
     numeric(x0, { prompt: `Quel nombre faut-il choisir pour obtenir ${fr(R)} ?`, misconceptions: [
-      mc(clean((R + K) / b), 'mc:transposition', 'signe', `Pour isoler ${b}x dans ${poly([K, b])} = ${fr(R)}, on soustrait ${fr(K)} aux deux membres (on change le signe en le faisant passer de l’autre côté).`),
+      mc(clean((R + K) / b), 'mc:transposition', 'signe', `Pour isoler ${b}x, on soustrait ${fr(K)} aux deux membres (on change le signe en le faisant passer de l’autre côté).`),
       mc(clean(R - K - b), 'mc:soustraction-au-lieu-division', 'methode', `${b}x signifie ${b} × x : pour trouver x, on divise par ${b}.`),
     ] }),
   ], {
@@ -279,7 +279,7 @@ function programmeExpert(rand) {
       mc(b * (n2 + a) - c + m * n2, 'mc:signe-soustraction', 'signe', `Soustraire ${m === 1 ? '' : `${m} fois `}${fr(n2)}, c’est soustraire ${fr(m * n2)}, donc ajouter ${fr(-m * n2)}.`),
     ] }),
     expression(lin(b - m, K), { form: 'developpee-reduite', prompt: 'On note x le nombre choisi. Écris le résultat en fonction de x, sous forme développée et réduite.', misconceptions: [
-      mc(lin(b - m, a - c), 'mc:distributivite-partielle', 'calcul', `${b}(x${sgn(a)}) = ${b}x${sgn(a * b)} : ${b} multiplie les deux termes.`),
+      mc(lin(b - m, a - c), 'mc:distributivite-partielle', 'calcul', `${b} multiplie les deux termes de la parenthèse, y compris ${fr(a)}.`),
     ] }),
     yesNo(constant, 'Le résultat est-il toujours le même, quel que soit le nombre choisi ? (oui ou non)', 'mc:exemples-ne-prouvent-pas', 'raisonnement', constant ? 'Regarde l’expression réduite : contient-elle encore x ? Si non, le résultat ne dépend pas du nombre choisi.' : 'L’expression réduite contient encore x : le résultat dépend du nombre choisi (compare tes deux essais). Deux essais égaux ne prouvent jamais que c’est toujours vrai.'),
   ], {
@@ -295,6 +295,7 @@ function programmeExpert(rand) {
  * 10. Le jeu est-il équitable ? (probabilités)
  * ---------------------------------------------------------------------------------------- */
 
+const COMPARE_PROBAS = 'Compare les deux probabilités que tu as calculées : elles ont le même dénominateur, il suffit de comparer les numérateurs.';
 const EQUITABLE = ['équitable', 'equitable', 'le jeu est équitable', 'c’est équitable', 'égalité', 'egalite', 'les deux', 'autant', 'personne', 'aucun'];
 /** Qui a le plus de chances ? (prénom, ou « équitable »). */
 function whoWins(prompt, A, B, pA, pB, feedback) {
@@ -350,7 +351,7 @@ function deApprof(rand) {
   return problem([
     proba(cA, n, { prompt: `Quelle est la probabilité que ${A} marque un point ? ${probaForm(cA, n)}`, misconceptions: faux(eA, cA) }),
     proba(cB, n, { prompt: `Quelle est la probabilité que ${B} marque un point ? ${probaForm(cB, n)}`, misconceptions: faux(eB, cB) }),
-    whoWins('Qui a le plus de chances de marquer un point ? (écris le prénom, ou « équitable » si les chances sont égales)', A, B, cA, cB, `Compare les deux probabilités : ${cA}/${n} pour ${A} et ${cB}/${n} pour ${B}.`),
+    whoWins('Qui a le plus de chances de marquer un point ? (écris le prénom, ou « équitable » si les chances sont égales)', A, B, cA, cB, COMPARE_PROBAS),
   ], {
     prompt: `${A} et ${B} lancent un dé équilibré à ${n} faces, numérotées de 1 à ${n}. ${A} marque un point si le dé donne ${eA.label} ; ${B} marque un point si le dé donne ${eB.label} (les deux peuvent marquer en même temps).`,
     hints: [`Il y a ${n} issues équiprobables : 1, 2, …, ${n}.`, `Écris la liste des faces qui font marquer ${A}, puis celle des faces qui font marquer ${B}.`, `Les deux probabilités ont le même dénominateur ${n} : compare les numérateurs.`],
@@ -392,11 +393,11 @@ function deuxDesExpert(rand) {
   return problem([
     numeric(36, { prompt: 'Combien y a-t-il d’issues possibles (couples formés par le résultat du dé rouge et celui du dé bleu) ?', misconceptions: [
       mc(12, 'mc:issues-additionnees', 'raisonnement', 'Chaque issue est un couple (dé rouge ; dé bleu) : il y a 6 × 6 issues, pas 6 + 6.'),
-      mc(11, 'mc:sommes-equiprobables', 'notion', 'Il y a 11 sommes possibles, mais 36 couples de résultats, tous équiprobables.'),
+      mc(11, 'mc:sommes-equiprobables', 'notion', 'Il y a 11 sommes possibles, mais on compte ici les couples (dé rouge ; dé bleu), tous équiprobables.'),
     ] }),
     proba(cA, 36, { prompt: `Quelle est la probabilité que ${A} marque un point ? ${probaForm(cA, 36)}`, misconceptions: faux(eA) }),
     proba(cB, 36, { prompt: `Quelle est la probabilité que ${B} marque un point ? ${probaForm(cB, 36)}`, misconceptions: faux(eB) }),
-    whoWins('Qui a le plus de chances de marquer un point ? (écris le prénom, ou « équitable » si les chances sont égales)', A, B, cA, cB, `Compare les deux probabilités : ${cA}/36 pour ${A} et ${cB}/36 pour ${B}.`),
+    whoWins('Qui a le plus de chances de marquer un point ? (écris le prénom, ou « équitable » si les chances sont égales)', A, B, cA, cB, COMPARE_PROBAS),
   ], {
     prompt: `${A} et ${B} lancent ensemble un dé rouge et un dé bleu, équilibrés, à six faces. ${A} marque un point si ${eA.label} ; ${B} marque un point si ${eB.label} (les deux peuvent marquer en même temps).`,
     hints: ['Fais un tableau à double entrée : le dé rouge en ligne, le dé bleu en colonne.', 'Il y a 6 × 6 = 36 couples, tous équiprobables.', 'Colorie dans le tableau les cases qui font marquer chaque joueur, puis compte-les.'],
@@ -423,7 +424,7 @@ function aquariumClasse(rand) {
       mc(clean(V / 100), 'mc:conversion-litres', 'unite', '1 L = 1 dm³ = 1 000 cm³ : on divise par 1 000.'),
     ] }),
     numeric(W, { prompt: `${who} remplit l’aquarium jusqu’à ${e} cm de hauteur. Combien de litres d’eau faut-il ?`, unit: 'L', unitOptional: true, misconceptions: [
-      mc(VL, 'mc:hauteur-eau', 'lecture', `L’eau ne monte que jusqu’à ${e} cm : la hauteur à utiliser est ${e} cm, pas ${h} cm.`),
+      mc(VL, 'mc:hauteur-eau', 'lecture', 'L’eau ne monte pas jusqu’en haut : utilise la hauteur de l’eau, pas celle de l’aquarium.'),
     ] }),
   ], {
     prompt: `${who} a un aquarium en forme de pavé droit : ${L} cm de long, ${l} cm de large et ${h} cm de haut.`,
@@ -450,7 +451,7 @@ function piscinePlus(rand) {
     numeric(T, { prompt: 'Combien de temps dure le remplissage ? (en minutes, ou en heures et minutes, par exemple 2 h 15)', unit: 'min', unitOptional: true, misconceptions: [
       mc(clean(V / d), 'mc:conversion-m3-l', 'unite', 'Le débit est en litres par minute : convertis d’abord le volume en litres (1 m³ = 1 000 L).'),
     ] }),
-    numeric(cout, { prompt: `L’eau coûte ${eur(p)} le mètre cube. Combien coûte le remplissage ? (en €)`, tolerance: 0.01, misconceptions: [
+    numeric(cout, { prompt: `L’eau coûte ${eur(p)} le mètre cube. Combien coûte le remplissage ? (en €)`, tolerance: 0.005, misconceptions: [
       mc(clean(V * 1000 * p), 'mc:prix-au-litre', 'unite', 'Le prix est donné par mètre cube : multiplie le volume en m³, pas en litres.'),
     ] }),
   ], {
@@ -504,6 +505,7 @@ const SERIES = [
 ];
 const IND_MOY = ['la moyenne', 'moyenne'];
 const IND_MED = ['la médiane', 'médiane', 'la mediane', 'mediane'];
+const MEDIANE_PAIRE = 'Le nombre de notes est maintenant pair : la médiane est la moyenne des deux notes du milieu de la série rangée.';
 const median = (sorted) => { const n = sorted.length; return n % 2 ? sorted[(n - 1) / 2] : (sorted[n / 2 - 1] + sorted[n / 2]) / 2; };
 
 function statsClasse(rand) {
@@ -550,7 +552,7 @@ function statsPlus(rand) {
       mc(round(sum(v) / 5, 1), 'mc:effectifs-oublies', 'methode', 'Chaque note doit compter autant de fois que d’élèves l’ont obtenue : multiplie chaque note par son effectif.'),
     ] }),
     numeric(med, { prompt: 'Quelle est la note médiane ?', misconceptions: [
-      mc(v[2], 'mc:effectifs-oublies', 'methode', `La médiane se cherche parmi les ${N} notes rangées (en tenant compte des effectifs), pas parmi les 5 notes différentes.`),
+      mc(v[2], 'mc:effectifs-oublies', 'methode', 'La médiane se cherche parmi les notes de tous les élèves, rangées (en tenant compte des effectifs), pas parmi les 5 notes différentes.'),
       mc(mode, 'mc:mode-au-lieu-mediane', 'notion', 'Ce nombre est la note la plus fréquente ; la médiane partage les élèves en deux groupes de même effectif.'),
     ] }),
   ], {
@@ -576,19 +578,19 @@ function statsExpert(rand) {
   const dm = clean(Math.abs(mb - ma)); const moyPlus = dm > Math.abs(medb - meda); const baisse = X < mb;
   return problem([
     numeric(ma, { prompt: `Quelle est la moyenne des 10 notes, avec celle de ${who} ?`, misconceptions: [
-      mc(clean((tot + X) / 9), 'mc:effectif-non-mis-a-jour', 'calcul', 'Il y a maintenant 10 notes : on divise le total par 10.'),
+      mc(clean((tot + X) / 9), 'mc:effectif-non-mis-a-jour', 'calcul', 'Il y a maintenant une note de plus : on divise le nouveau total par le nouveau nombre de notes.'),
       mc(mb, 'mc:ancienne-moyenne', 'lecture', `Ce nombre est la moyenne des 9 premières notes, sans celle de ${who}.`),
     ] }),
     numeric(meda, { prompt: 'Quelle est la médiane des 10 notes ?', misconceptions: [
-      mc(s2[4], 'mc:mediane-effectif-pair', 'methode', 'Avec 10 notes, la médiane est la moyenne de la 5e et de la 6e note rangées dans l’ordre croissant.'),
-      mc(s2[5], 'mc:mediane-effectif-pair', 'methode', 'Avec 10 notes, la médiane est la moyenne de la 5e et de la 6e note rangées dans l’ordre croissant.'),
+      mc(s2[4], 'mc:mediane-effectif-pair', 'methode', MEDIANE_PAIRE),
+      mc(s2[5], 'mc:mediane-effectif-pair', 'methode', MEDIANE_PAIRE),
       mc(medb, 'mc:ancienne-mediane', 'lecture', `Ce nombre est la médiane des 9 premières notes, sans celle de ${who}.`),
     ] }),
     numeric(dm, { prompt: `De combien de points la moyenne a-t-elle ${baisse ? 'baissé' : 'augmenté'} avec la note de ${who} ?`, misconceptions: [
       mc(Math.abs(X - mb), 'mc:ecart-au-lieu-variation', 'raisonnement', `C’est l’écart entre la note de ${who} et l’ancienne moyenne. Compare plutôt l’ancienne moyenne et la nouvelle.`),
     ] }),
     choose('Quel indicateur a été le plus modifié par cette note : la moyenne ou la médiane ?', moyPlus ? IND_MOY : IND_MED, [
-      { accept: moyPlus ? IND_MED : IND_MOY, id: 'mc:indicateur-modifie', feedback: `Compare les variations : la moyenne passe de ${fr(mb)} à ${fr(ma)}, la médiane de ${fr(medb)} à ${fr(meda)}.` },
+      { accept: moyPlus ? IND_MED : IND_MOY, id: 'mc:indicateur-modifie', feedback: 'Pour chacun des deux indicateurs, calcule l’écart entre l’ancienne et la nouvelle valeur, puis compare ces deux écarts.' },
     ]),
   ], {
     prompt: `Voici les notes sur 20 de 9 élèves à un contrôle : ${vals.join(' ; ')}. ${who} n’a pas pu passer ce contrôle le même jour ; au rattrapage, la note de ${who} est ${X}.`,
@@ -606,42 +608,42 @@ function statsExpert(rand) {
 export const PROBLEMES_MATHS_2 = [
   {
     id: 'p-partage-fractions', subject: 'maths', label: 'Problème : partager un jardin, une cagnotte ou un héritage en fractions',
-    skill: 'm5.fractions.addition', skills: ['m4.fractions.problemes', 'm4.fractions.produit', 'm5.fractions.comparaison'], levels: ['5e', '4e'],
+    skill: 'm5.fractions.addition', skills: ['m4.fractions.problemes', 'm4.fractions.produit', 'm5.fractions.comparaison'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Additionner deux parts et trouver le reste ; ◆ dénominateurs quelconques, fraction irréductible, qui reçoit le plus ? ; ✦ fraction d’un reste et montant total retrouvé, avec justification.',
     make: byTier({ classe: partageClasse, approfondissement: partagePlus, expert: partageExpert }),
   },
   {
     id: 'p-paquets-identiques', subject: 'maths', label: 'Problème : faire le plus de paquets identiques possible',
-    skill: 'm5.arith.multiples', skills: ['m4.premiers.problemes', 'm4.premiers.decomposer'], levels: ['5e', '4e'],
+    skill: 'm5.arith.multiples', skills: ['m4.premiers.problemes', 'm4.premiers.decomposer'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Diviseurs communs de deux quantités ; ◆ trois quantités et décomposition en facteurs premiers ; ✦ dalles carrées les plus grandes possible, effet d’un côté divisé par 2, justification.',
     make: byTier({ classe: paquetsClasse, approfondissement: paquetsPlus, expert: dallesExpert }),
   },
   {
     id: 'p-programme-de-calcul', subject: 'maths', label: 'Problème : programme de calcul, retrouver le départ et prouver',
-    skill: 'm5.calcul.enchainer', skills: ['m4.litteral.programmes', 'm5.litteral.expression', 'm5.litteral.distributivite', 'm4.equations.resoudre'], levels: ['5e', '4e'],
+    skill: 'm5.calcul.enchainer', skills: ['m4.litteral.programmes', 'm5.litteral.expression', 'm5.litteral.distributivite', 'm4.equations.resoudre'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Exécuter un programme et le remonter ; ◆ l’écrire avec x, développer et résoudre ; ✦ le résultat est-il toujours le même ? preuve littérale ou contre-exemple.',
-    make: byTier({ classe: programmeClasse, approfondissement: programmePlus, expert: programmeExpert }),
+    make: byTier({ classe: (rand) => withoutCitedAnswer(() => programmeClasse(rand)), approfondissement: (rand) => withoutCitedAnswer(() => programmePlus(rand)), expert: (rand) => withoutCitedAnswer(() => programmeExpert(rand)) }),
   },
   {
     id: 'p-jeu-equitable', subject: 'maths', label: 'Problème : le jeu est-il équitable ?',
-    skill: 'm5.probabilites', skills: ['m4.probas.equiprobabilite', 'm4.probas.vocabulaire', 'm5.fractions.comparaison'], levels: ['5e', '4e'],
+    skill: 'm5.probabilites', skills: ['m4.probas.equiprobabilite', 'm4.probas.vocabulaire', 'm5.fractions.comparaison'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Urne et probabilités ; ◆ dé à n faces et évènements (premier, multiple, inégalités) ; ✦ deux dés, 36 issues, sommes non équiprobables et justification.',
     make: byTier({ classe: urneClasse, approfondissement: deApprof, expert: deuxDesExpert }),
   },
   {
     id: 'p-remplir-aquarium-piscine', subject: 'maths', label: 'Problème : remplir un aquarium ou une piscine',
-    skill: 'm5.grandeurs.volumes', skills: ['m5.grandeurs.conversions', 'm4.grandeurs.composees'], levels: ['5e', '4e'],
+    skill: 'm5.grandeurs.volumes', skills: ['m5.grandeurs.conversions', 'm4.grandeurs.composees'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Volume d’un pavé et litres ; ◆ piscine, conversions, durée avec un débit et coût de l’eau ; ✦ fond en pente (prisme à base trapèze), durée et heure de fin, justification.',
-    make: byTier({ classe: aquariumClasse, approfondissement: piscinePlus, expert: piscineExpert }),
+    make: byTier({ classe: aquariumClasse, approfondissement: (rand) => withoutCitedAnswer(() => piscinePlus(rand)), expert: piscineExpert }),
   },
   {
     id: 'p-moyenne-mediane', subject: 'maths', label: 'Problème : moyenne, médiane et effet d’une nouvelle note',
-    skill: 'm4.stats.mediane', skills: ['m5.stats.moyenne'], levels: ['4e'],
+    skill: 'm4.stats.mediane', skills: ['m5.stats.moyenne'], levels: ['4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Moyenne, médiane et étendue ; ◆ tableau d’effectifs ; ✦ une note extrême ajoutée : comparer l’effet sur la moyenne et sur la médiane, et l’expliquer.',
     make: byTier({ classe: statsClasse, approfondissement: statsPlus, expert: statsExpert }),

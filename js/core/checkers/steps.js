@@ -20,6 +20,11 @@ function readLines(lines) {
   return (lines || []).map(cleanLine).filter((l) => l.length > 0);
 }
 
+/** Ligne ramenée à une forme comparable : sans espaces, signes moins et de multiplication unifiés, en minuscules. */
+export function lineKey(line) {
+  return String(line).replace(/\s+/g, '').replace(/[−–—]/g, '-').replace(/[×·∙⋅]/g, '*').toLowerCase();
+}
+
 /** Découpe « a = b = c » au niveau des signes = hors parenthèses. */
 export function splitEqualities(line) {
   const parts = []; let depth = 0; let cur = '';
@@ -135,20 +140,21 @@ export function checkSteps(def, params, response) {
 
   if (firstBad === -1) {
     const last = nodes[nodes.length - 1];
-    let finished;
-    if (mode === 'equation') finished = isSolvedForm(last, v);
-    else finished = (FORMS[def.final || (mode === 'calcul' ? 'nombre' : 'developpee-reduite')] || FORMS.any).test(last);
+    const finalForm = mode === 'equation' ? null : FORMS[def.final || (mode === 'calcul' ? 'nombre' : 'developpee-reduite')] || FORMS.any;
+    const finished = finalForm ? finalForm.test(last) : isSolvedForm(last, v);
     if (!finished) {
-      return diagnosis({
-        verdict: 'partiel', score: 0.5, errorType: 'forme', stepsOk: lines.length, stepsTotal: lines.length, details,
-        feedback: mode === 'equation' ? `Toutes tes étapes sont justes. Continue jusqu'à obtenir « ${v} = … ».` : 'Toutes tes étapes sont justes, mais le calcul n’est pas terminé.',
-      });
+      let feedback = `Toutes tes étapes sont justes. Continue jusqu'à obtenir « ${v} = … ».`;
+      if (finalForm) feedback = finalForm.feedback ? finalForm.feedback(last) : 'Toutes tes étapes sont justes, mais le calcul n’est pas terminé.';
+      return diagnosis({ verdict: 'partiel', score: 0.5, errorType: 'forme', stepsOk: lines.length, stepsTotal: lines.length, details, feedback });
     }
     const minSteps = def.minSteps ?? 2;
-    if (lines.length < minSteps) {
+    // une ligne recopiée (à l'écriture près) ne montre pas une étape de plus
+    const distinctSteps = new Set(lines.map(lineKey)).size;
+    if (distinctSteps < minSteps) {
+      const copied = distinctSteps < lines.length ? ' Une ligne recopiée ne compte qu’une fois.' : '';
       return diagnosis({
         verdict: 'partiel', score: 0.7, errorType: 'sans-justification', stepsOk: lines.length, stepsTotal: lines.length, details,
-        feedback: `Le résultat est juste. Montre au moins ${minSteps} étapes pour qu’on puisse suivre ta démarche.`,
+        feedback: `Le résultat est juste. Montre au moins ${minSteps} étapes pour qu’on puisse suivre ta démarche.${copied}`,
       });
     }
     if (mode === 'equation' && def.checkUnique !== false) {

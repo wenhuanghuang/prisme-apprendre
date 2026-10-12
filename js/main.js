@@ -3,16 +3,20 @@
  */
 import { store, init, subscribe } from './app/store.js';
 import { h, clear, focusPendingTab } from './ui/dom.js';
+import { gameHud } from './ui/game/hud.js';
 
 const ROUTES = [
   { re: /^\/?$/, view: () => import('./ui/views/today.js'), needsProfile: true, nav: 'today' },
   { re: /^\/profils$/, view: () => import('./ui/views/welcome.js'), nav: null },
   { re: /^\/carte(?:\/([\w-]+))?$/, view: () => import('./ui/views/map.js'), needsProfile: true, nav: 'map' },
-  { re: /^\/lecon\/([\w-]+)$/, view: () => import('./ui/views/lesson.js'), needsProfile: true, nav: 'map' },
+  { re: /^\/parcours(?:\/([\w-]+))?$/, view: () => import('./ui/views/parcours.js'), needsProfile: true, nav: 'parcours' },
+  { re: /^\/parcours\/([\w-]+)\/bilan\/([\w-]+)$/, view: () => import('./ui/views/bilan.js'), needsProfile: true, nav: 'parcours' },
+  { re: /^\/lecon\/([\w-]+)$/, view: () => import('./ui/views/lesson.js'), needsProfile: true, nav: 'parcours' },
   { re: /^\/seance$/, view: () => import('./ui/views/session.js'), needsProfile: true, nav: 'today' },
   { re: /^\/exercices$/, view: () => import('./ui/views/exercices.js'), needsProfile: true, nav: 'exercices' },
   { re: /^\/labo$/, view: () => import('./ui/views/labo.js'), nav: 'labo' },
   { re: /^\/carnet$/, view: () => import('./ui/views/carnet.js'), needsProfile: true, nav: 'carnet' },
+  { re: /^\/progression$/, view: () => import('./ui/views/progression.js'), needsProfile: true, nav: null },
   { re: /^\/parents$/, view: () => import('./ui/views/parents.js'), nav: 'parents' },
   { re: /^\/programmes$/, view: () => import('./ui/views/programmes.js'), nav: 'programmes' },
   { re: /^\/a-propos$/, view: () => import('./ui/views/about.js'), nav: null },
@@ -20,7 +24,7 @@ const ROUTES = [
 
 const NAV = [
   { id: 'today', href: '#/', label: "Aujourd'hui", needsProfile: true },
-  { id: 'map', href: '#/carte', label: 'Carte', needsProfile: true },
+  { id: 'parcours', href: '#/parcours', label: 'Parcours', needsProfile: true },
   { id: 'exercices', href: '#/exercices', label: 'Exercices', needsProfile: true },
   { id: 'labo', href: '#/labo', label: 'Labo' },
   { id: 'carnet', href: '#/carnet', label: 'Mon carnet', needsProfile: true },
@@ -48,6 +52,7 @@ function renderNav(active) {
   clear(who);
   if (store.profile) {
     who.append(
+      gameHud(),
       h('a', { href: '#/profils', class: 'who-link', style: { display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'inherit' }, 'aria-label': `Profil ${store.profile.pseudo}, changer de profil` },
         h('span', { class: 'avatar', style: { background: store.profile.color } }, store.profile.symbol),
         h('span', {}, h('span', { class: 'who-name' }, store.profile.pseudo), h('br'), h('span', { class: 'who-level' }, `${store.profile.level}${store.profile.demo ? ' · fictif' : ''}`))));

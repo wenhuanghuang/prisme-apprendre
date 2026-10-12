@@ -1,0 +1,1634 @@
+{
+  "id": "m3-thales",
+  "chapter": "m3-ch-geometrie",
+  "title": "Le théorème de Thalès : triangles emboîtés et papillon",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.thales.calcul", "m3.thales.reciproque"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Quand deux droites sécantes sont coupées par deux parallèles, les longueurs sont proportionnelles, que les triangles soient emboîtés ou opposés comme les ailes d’un papillon. Le théorème calcule des longueurs ; sa réciproque prouve un parallélisme… à condition de respecter l’ordre des points.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La pyramide de Thalès",
+      "body": "Vers 600 av. J.-C., Thalès de Milet aurait mesuré la grande pyramide d’Égypte sans y grimper. Au même instant, un bâton vertical de 1 m a une ombre de 1,6 m. Du centre de la base de la pyramide jusqu’au bout de son ombre, Thalès compte 234 m.\n\nComment a-t-il pu en déduire la hauteur de la pyramide ? Et toi, que trouves-tu ?",
+      "figure": {
+        "alt": "Au sol, le bout O de l'ombre de la pyramide, un bâton vertical [PQ] et la hauteur [HS] de la pyramide ; un rayon de soleil en pointillés passe par O, le haut du bâton et le sommet S.",
+        "w": 420,
+        "h": 256,
+        "frame": { "x": [-14, 362], "y": [-50, 162] },
+        "caption": "Le bâton est dessiné beaucoup plus grand qu’en réalité. Les rayons du soleil sont parallèles entre eux.",
+        "items": [
+          { "type": "polygon", "points": [[119, 0], [349, 0], [234, 146.25]], "fill": "orange" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": 48, "y": 0, "pos": "se" },
+          { "type": "point", "id": "Q", "x": 48, "y": 30, "pos": "nw" },
+          { "type": "point", "id": "H", "x": 234, "y": 0, "pos": "s" },
+          { "type": "point", "id": "S", "x": 234, "y": 146.25, "pos": "n" },
+          { "type": "segment", "from": "O", "to": "S", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "P", "to": "Q", "color": "maths", "width": 3, "label": "1 m" },
+          { "type": "segment", "from": "H", "to": "S", "dashed": true, "color": "vert", "label": "?" },
+          { "type": "segment", "from": "O", "to": "P", "label": "1,6 m" },
+          { "type": "segment", "from": [0, -30], "to": [234, -30], "arrows": "both", "label": "234 m", "color": "gris" },
+          { "type": "angle", "vertex": "P", "from": "H", "to": "Q", "right": true },
+          { "type": "angle", "vertex": "H", "from": "S", "to": "O", "right": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🦋",
+          "title": "Deux configurations de Thalès",
+          "body": "Les droites $(BM)$ et $(CN)$ se coupent en $A$, et $(MN) // (BC)$. Si $M$ et $N$ sont du **même côté** de $A$ que $B$ et $C$, les triangles $AMN$ et $ABC$ sont **emboîtés** (vu en 4e). S’ils sont de **l’autre côté** de $A$, les deux triangles forment un **papillon**.",
+          "figure": {
+            "alt": "À gauche, deux triangles emboîtés ABC et AMN ; à droite, une configuration papillon : les triangles ABC et AMN sont de part et d'autre du point A ; dans les deux cas (MN) et (BC), en rouge, sont parallèles.",
+            "w": 420,
+            "h": 240,
+            "frame": { "x": [-0.7, 11.8], "y": [-1.4, 5.1] },
+            "items": [
+              { "type": "polygon", "points": ["A1", "B1", "C1"], "fill": "maths" },
+              { "type": "polygon", "points": ["A1", "M1", "N1"], "fill": "orange" },
+              { "type": "polygon", "points": ["A2", "B2", "C2"], "fill": "maths" },
+              { "type": "polygon", "points": ["A2", "M2", "N2"], "fill": "orange" },
+              { "type": "segment", "from": "M1", "to": "N1", "color": "rouge" },
+              { "type": "segment", "from": "B1", "to": "C1", "color": "rouge" },
+              { "type": "segment", "from": "M2", "to": "N2", "color": "rouge" },
+              { "type": "segment", "from": "B2", "to": "C2", "color": "rouge" },
+              { "type": "point", "id": "A1", "x": 2, "y": 4.5, "pos": "n", "label": "A" },
+              { "type": "point", "id": "B1", "x": 0, "y": 0, "pos": "sw", "label": "B" },
+              { "type": "point", "id": "C1", "x": 4, "y": 0, "pos": "se", "label": "C" },
+              { "type": "point", "id": "M1", "x": 1, "y": 2.25, "pos": "w", "label": "M" },
+              { "type": "point", "id": "N1", "x": 3, "y": 2.25, "pos": "e", "label": "N" },
+              { "type": "point", "id": "A2", "x": 9, "y": 2.4, "pos": "e", "label": "A" },
+              { "type": "point", "id": "B2", "x": 7.5, "y": 0, "pos": "sw", "label": "B" },
+              { "type": "point", "id": "C2", "x": 11, "y": 0, "pos": "se", "label": "C" },
+              { "type": "point", "id": "M2", "x": 9.9, "y": 3.84, "pos": "ne", "label": "M" },
+              { "type": "point", "id": "N2", "x": 7.8, "y": 3.84, "pos": "nw", "label": "N" },
+              { "type": "text", "x": 2, "y": -0.9, "text": "triangles emboîtés", "size": "s", "bold": true },
+              { "type": "text", "x": 9.25, "y": -0.9, "text": "papillon", "size": "s", "bold": true }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Le théorème de Thalès",
+          "body": "**Si** les droites $(BM)$ et $(CN)$ se coupent en $A$ et si $(MN) // (BC)$, **alors** :\n\n$AM/AB$ = $AN/AC$ = $MN/BC$\n\nC’est vrai dans les deux configurations. Chaque rapport compare un côté du triangle $AMN$ au côté **correspondant** du triangle $ABC$ : porté par la même droite, ou parallèle.",
+          "reveal": {
+            "question": "Devine : dans un papillon, le rapport $AM/AB$ peut-il être plus grand que 1 ?",
+            "answer": "Oui ! Si le triangle $AMN$ est plus grand que $ABC$, le rapport dépasse 1. Ce qui compte, c’est d’écrire les trois rapports dans le même sens : triangle $AMN$ en haut, triangle $ABC$ en bas."
+          }
+        },
+        {
+          "emoji": "🧮",
+          "title": "Calculer une longueur dans un papillon",
+          "body": "On repère le point $A$ où les droites se croisent, on écrit l’égalité des rapports avec les noms, puis on remplace et on fait un produit en croix. Ici : $AM/AB$ = $MN/BC$, soit $3/5$ = $MN/7$, donc $MN = (3 × 7)/5$ = 4,2 cm.",
+          "example": "Piège : le segment $[BM]$ traverse $A$ ; ce n’est un côté d’aucun des deux triangles.",
+          "figure": {
+            "alt": "Configuration papillon : les droites (BM) et (CN) se coupent en A, (MN) est parallèle à (BC) ; AM = 3 cm, AB = 5 cm, BC = 7 cm, MN est inconnue.",
+            "w": 339,
+            "h": 320,
+            "frame": { "x": [-1.3, 8.2], "y": [-1, 7.9] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+              { "type": "segment", "from": "B", "to": "M" },
+              { "type": "segment", "from": "C", "to": "N" },
+              { "type": "segment", "from": "M", "to": "N", "color": "rouge", "label": "?" },
+              { "type": "segment", "from": "B", "to": "C", "color": "rouge", "label": "7 cm" },
+              { "type": "segment", "from": "A", "to": "M", "label": "3 cm" },
+              { "type": "segment", "from": "A", "to": "B", "label": "5 cm" },
+              { "type": "point", "id": "A", "x": 2.5, "y": 4.33, "pos": "e" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 7, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 4, "y": 6.93, "pos": "ne" },
+              { "type": "point", "id": "N", "x": -0.2, "y": 6.93, "pos": "nw" }
+            ]
+          }
+        },
+        {
+          "emoji": "↩️",
+          "title": "La réciproque : attention à l’ordre",
+          "body": "**Si** les points $A$, $M$, $B$ d’une part, et $A$, $N$, $C$ d’autre part, sont alignés **dans le même ordre**, **et si** $AM/AB$ = $AN/AC$, **alors** $(MN) // (BC)$. On calcule les deux rapports **séparément**, puis on les compare.",
+          "reveal": {
+            "question": "Piège : $AM/AB$ = $AN/AC$ = 0,5, mais $M$ est sur $[AB]$ alors que $N$ est de l’autre côté de $A$ par rapport à $C$. Les droites $(MN)$ et $(BC)$ sont-elles parallèles ?",
+            "answer": "Non ! Les points ne sont pas dans le même ordre : la réciproque ne s’applique pas. La figure le montre, les droites $(MN)$ et $(BC)$ se coupent."
+          },
+          "figure": {
+            "alt": "Triangle ABC ; M est sur [AB] mais N est de l'autre côté de A par rapport à C ; la droite (MN) coupe la droite (BC).",
+            "w": 316,
+            "h": 320,
+            "frame": { "x": [-0.8, 6.8], "y": [-0.9, 6.8] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "segment", "from": "A", "to": "N" },
+              { "type": "line", "through": ["M", "N"], "color": "rouge" },
+              { "type": "line", "through": ["B", "C"], "color": "gris" },
+              { "type": "point", "id": "A", "x": 2.5, "y": 4, "pos": "e" },
+              { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "C", "x": 6, "y": 0, "pos": "se" },
+              { "type": "point", "id": "M", "x": 1.25, "y": 2, "pos": "w" },
+              { "type": "point", "id": "N", "x": 0.75, "y": 6, "pos": "ne" }
+            ]
+          }
+        },
+        {
+          "emoji": "🚫",
+          "title": "Prouver que deux droites ne sont pas parallèles",
+          "body": "Si $AM/AB$ ≠ $AN/AC$, alors $(MN)$ et $(BC)$ **ne sont pas** parallèles : sinon, d’après le théorème de Thalès, les rapports seraient égaux. C’est la **contraposée** du théorème. Compare des valeurs **exactes** (fractions ou produits en croix), jamais des arrondis.",
+          "example": "$AM/AB$ = $4/7$ et $AN/AC$ = $5/9$ : $4 × 9 = 36$ mais $7 × 5 = 35$. Les rapports sont différents : pas de parallélisme."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple résolu, rédigé comme au brevet",
+      "steps": [
+        {
+          "text": "**Énoncé.** Les droites $(RU)$ et $(SV)$ se coupent en $O$, avec $OR = 4$ cm, $OU = 6$ cm, $OS = 5$ cm, $OV = 7,5$ cm et $RS = 3,6$ cm. Les droites $(RS)$ et $(UV)$ sont-elles parallèles ? Si oui, calcule $UV$.",
+          "figure": {
+            "alt": "Les droites (RU) et (SV) se coupent en O ; R et U sont de part et d'autre de O, ainsi que S et V ; OR = 4 cm, OU = 6 cm, OS = 5 cm, OV = 7,5 cm, RS = 3,6 cm.",
+            "w": 292,
+            "h": 330,
+            "frame": { "x": [-4.9, 6.7], "y": [-5.6, 7.8] },
+            "items": [
+              { "type": "polygon", "points": ["O", "R", "S"], "fill": "maths" },
+              { "type": "polygon", "points": ["O", "U", "V"], "fill": "orange" },
+              { "type": "segment", "from": "R", "to": "U" },
+              { "type": "segment", "from": "S", "to": "V" },
+              { "type": "segment", "from": "O", "to": "R", "label": "4 cm" },
+              { "type": "segment", "from": "O", "to": "U", "label": "6 cm" },
+              { "type": "segment", "from": "O", "to": "S", "label": "5 cm" },
+              { "type": "segment", "from": "O", "to": "V", "label": "7,5 cm" },
+              { "type": "segment", "from": "R", "to": "S", "color": "rouge", "label": "3,6 cm" },
+              { "type": "segment", "from": "U", "to": "V", "color": "rouge", "label": "?" },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "e" },
+              { "type": "point", "id": "R", "x": -3.76, "y": -1.37, "pos": "w" },
+              { "type": "point", "id": "S", "x": -2.07, "y": -4.55, "pos": "s" },
+              { "type": "point", "id": "U", "x": 5.64, "y": 2.05, "pos": "e" },
+              { "type": "point", "id": "V", "x": 3.11, "y": 6.82, "pos": "n" }
+            ]
+          }
+        },
+        {
+          "text": "**L’ordre des points.** $R$, $O$, $U$ sont alignés dans cet ordre, ainsi que $S$, $O$, $V$ : c’est un papillon. On calcule les deux rapports **séparément** :",
+          "math": "OR/OU = 4/6 = 2/3 et OS/OV = 5/7,5 = 2/3"
+        },
+        {
+          "text": "Les rapports sont égaux et les points sont alignés dans le même ordre : **d’après la réciproque du théorème de Thalès**, les droites $(RS)$ et $(UV)$ sont parallèles."
+        },
+        {
+          "text": "**Le calcul.** Maintenant que l’on **sait** que $(RS) // (UV)$, on utilise le **théorème** de Thalès : $OR/OU$ = $RS/UV$, soit",
+          "math": "4/6 = 3,6/UV"
+        },
+        {
+          "text": "Produit en croix : $UV = (6 × 3,6)/4$ = **5,4 cm**. Contrôle : le triangle $OUV$ est un agrandissement de $ORS$ de rapport 1,5, et $3,6 × 1,5 = 5,4$."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Avant chaque calcul, repère le point où les droites se coupent, puis les deux triangles. Écris l’égalité des rapports avec les noms des segments **avant** de remplacer par des nombres. Pour la réciproque, vérifie l’ordre des points.",
+      "exercises": ["m3-thales-associer", "m3-thales-papillon", "m3-thales-segment", "m3-thales-paralleles", "m3-thales-verif", "m3-thales-redaction"]
+    },
+    { "kind": "libre", "title": "Rédiger une démonstration", "exercises": ["m3-thales-demo"] },
+    { "kind": "reinvestissement", "title": "Thalès dans la vraie vie", "exercises": ["m3-thales-chaise", "m3-thales-pyramide"] },
+    {
+      "kind": "mission",
+      "title": "Mission : la passerelle de la rivière",
+      "body": "Le club de randonnée veut poser une passerelle au-dessus d’une rivière. Personne ne peut traverser pour mesurer : à toi de jouer avec quelques piquets… et Thalès !",
+      "exercises": ["m3-thales-riviere"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Si $(BM)$ et $(CN)$ se coupent en $A$ et si $(MN) // (BC)$, alors $AM/AB$ = $AN/AC$ = $MN/BC$, en configuration emboîtée comme en papillon. Réciproque : si $A, M, B$ et $A, N, C$ sont alignés **dans le même ordre** et si $AM/AB$ = $AN/AC$, alors $(MN) // (BC)$. Rapports différents : les droites ne sont pas parallèles.\n\n- **Rapports à l’envers.** Même sens partout : triangle $AMN$ en haut, triangle $ABC$ en bas.\n- **Le segment qui traverse.** $[BM]$ passe par $A$ : ce n’est un côté d’aucun triangle.\n- **L’ordre des points.** Des rapports égaux ne suffisent pas si l’ordre diffère.\n- **Théorème ou réciproque ?** Le théorème quand on **sait** que les droites sont parallèles ; la réciproque pour le **prouver**."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des calculs de longueurs et des preuves de parallélisme avec Thalès dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Thalès plus loin : une longueur inconnue à trouver avec une équation, et les diagonales d’un trapèze qui dessinent un papillon.",
+      "exercises": ["m3-thales-equation", "m3-thales-trapeze"]
+    },
+    "expert": {
+      "intro": "Un problème complet de type brevet (Pythagore, Thalès, réciproque et aire), puis la croix du bûcheron, un vieil outil pour mesurer les arbres.",
+      "exercises": ["m3-thales-brevet", "m3-thales-bucheron"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-thales-associer",
+      "type": "match",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:papillon-croise", "mc:thales-morceaux"],
+      "expectedSeconds": 90,
+      "prompt": "Les droites $(FK)$ et $(GL)$ se coupent en $E$, et les droites $(KL)$ et $(FG)$ sont parallèles : c’est une configuration papillon. Associe chaque côté du triangle $EKL$ au côté **correspondant** du triangle $EFG$.",
+      "figure": {
+        "alt": "Configuration papillon : les droites (FK) et (GL) se coupent en E ; les triangles EFG et EKL sont de part et d'autre de E ; (KL) et (FG), en rouge, sont parallèles.",
+        "w": 380,
+        "h": 299,
+        "frame": { "x": [-5.6, 3.9], "y": [-4.3, 2.9] },
+        "items": [
+          { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+          { "type": "polygon", "points": ["E", "K", "L"], "fill": "orange" },
+          { "type": "segment", "from": "F", "to": "K" },
+          { "type": "segment", "from": "G", "to": "L" },
+          { "type": "segment", "from": "K", "to": "L", "color": "rouge" },
+          { "type": "segment", "from": "F", "to": "G", "color": "rouge" },
+          { "type": "point", "id": "E", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "F", "x": -4.7, "y": -1.71, "pos": "w" },
+          { "type": "point", "id": "G", "x": 2, "y": -3.46, "pos": "se" },
+          { "type": "point", "id": "K", "x": 2.82, "y": 1.03, "pos": "ne" },
+          { "type": "point", "id": "L", "x": -1.2, "y": 2.08, "pos": "nw" }
+        ]
+      },
+      "leftTitle": "Triangle EKL",
+      "rightTitle": "Triangle EFG",
+      "left": [{ "id": "ek", "label": "[EK]" }, { "id": "el", "label": "[EL]" }, { "id": "kl", "label": "[KL]" }],
+      "right": [
+        { "id": "ef", "label": "[EF]" },
+        { "id": "eg", "label": "[EG]" },
+        { "id": "fg", "label": "[FG]" },
+        { "id": "kf", "label": "[KF]" },
+        { "id": "lg", "label": "[LG]" }
+      ],
+      "pairs": { "ek": "ef", "el": "eg", "kl": "fg" },
+      "misconceptions": [
+        {
+          "pair": ["ek", "eg"],
+          "id": "mc:papillon-croise",
+          "error": "lecture",
+          "feedback": "[EK] et [EG] ne sont pas portés par la même droite. Cherche le côté du triangle $EFG$ qui part de $E$ sur la droite $(FK)$."
+        },
+        {
+          "pair": ["el", "ef"],
+          "id": "mc:papillon-croise",
+          "error": "lecture",
+          "feedback": "[EL] et [EF] ne sont pas portés par la même droite. Cherche le côté du triangle $EFG$ qui part de $E$ sur la droite $(GL)$."
+        },
+        {
+          "pair": ["ek", "kf"],
+          "id": "mc:thales-morceaux",
+          "error": "notion",
+          "feedback": "[KF] traverse le point $E$ : ce n’est un côté d’aucun des deux triangles. Deux côtés correspondants partent tous les deux de $E$."
+        },
+        {
+          "pair": ["el", "lg"],
+          "id": "mc:thales-morceaux",
+          "error": "notion",
+          "feedback": "[LG] traverse le point $E$ : ce n’est un côté d’aucun des deux triangles. Deux côtés correspondants partent tous les deux de $E$."
+        }
+      ],
+      "hints": [
+        "Les deux triangles ont un sommet commun : $E$, le point où les droites se croisent.",
+        "Deux côtés correspondants sont portés par la même droite, de part et d’autre de $E$… ou bien ils sont parallèles.",
+        "$[KL]$ est parallèle à $[FG]$."
+      ],
+      "solution": "[EK] ↔ [EF] (sur la droite $(FK)$), [EL] ↔ [EG] (sur la droite $(GL)$) et [KL] ↔ [FG] (les côtés parallèles). D’où l’égalité de Thalès : $EK/EF$ = $EL/EG$ = $KL/FG$.",
+      "selfTest": [
+        { "response": { "pairs": { "ek": "ef", "el": "eg", "kl": "fg" } }, "expect": "correct" },
+        { "response": { "pairs": { "ek": "eg", "el": "ef", "kl": "fg" } }, "expect": "mc:papillon-croise" },
+        { "response": { "pairs": { "ek": "kf", "el": "eg", "kl": "fg" } }, "expect": "mc:thales-morceaux" }
+      ]
+    },
+    {
+      "id": "m3-thales-papillon",
+      "type": "numeric",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:thales-inverse", "mc:papillon-segment", "mc:thales-difference"],
+      "expectedSeconds": 150,
+      "params": { "b": { "choice": [4, 5, 8, 10] }, "a": { "int": [2, 9] }, "c": { "int": [3, 12] } },
+      "constraints": ["a != b", "a*c/b != c - b + a"],
+      "prompt": "Les droites $(BM)$ et $(CN)$ se coupent en $A$, et les droites $(MN)$ et $(BC)$ sont parallèles. On donne $AM = {a}$ cm, $AB = {b}$ cm et $BC = {c}$ cm. Calcule la longueur $MN$ (valeur exacte, en cm).",
+      "figure": {
+        "alt": "Configuration papillon : les droites (BM) et (CN) se coupent en A ; (MN) et (BC), en rouge, sont parallèles ; AM, AB et BC sont indiquées, MN est inconnue.",
+        "w": 380,
+        "h": 320,
+        "frame": { "x": ["{min(0;b/2+a/b*(b/2-c))-1.2}", "{max(c;(a+b)/2)+1.2}"], "y": [-1.2, "{0.866*(a+b)+1.2}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "A", "to": "M", "label": "{a} cm" },
+          { "type": "segment", "from": "A", "to": "B", "label": "{b} cm" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge", "label": "{c} cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "label": "?" },
+          { "type": "point", "id": "A", "x": "{b/2}", "y": "{0.866*b}", "pos": "e" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": "{c}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": "{(a+b)/2}", "y": "{0.866*(a+b)}", "pos": "ne" },
+          { "type": "point", "id": "N", "x": "{b/2+a/b*(b/2-c)}", "y": "{0.866*(a+b)}", "pos": "nw" }
+        ]
+      },
+      "answer": "a*c/b",
+      "unit": "cm",
+      "tolerance": 0.001,
+      "misconceptions": [
+        {
+          "answer": "b*c/a",
+          "id": "mc:thales-inverse",
+          "error": "notion",
+          "feedback": "Tu as inversé un rapport. Écris les rapports dans le même sens : côtés du triangle $AMN$ en haut, côtés correspondants du triangle $ABC$ en bas, $AM/AB$ = $MN/BC$."
+        },
+        {
+          "answer": "a*c/(a+b)",
+          "id": "mc:papillon-segment",
+          "error": "notion",
+          "feedback": "Tu as divisé par $BM = AB + AM$. Le segment $[BM]$ traverse $A$ : ce n’est pas un côté du triangle $ABC$. Le côté qui correspond à $[AM]$ part de $A$."
+        },
+        {
+          "answer": "c - b + a",
+          "id": "mc:thales-difference",
+          "error": "notion",
+          "feedback": "Tu as retranché un écart. Les deux triangles ne diffèrent pas « du même nombre de centimètres » : leurs longueurs sont **proportionnelles**, on multiplie par un rapport."
+        }
+      ],
+      "hints": [
+        "Les triangles $AMN$ et $ABC$ sont de part et d’autre de $A$ : c’est un papillon, et Thalès s’applique : $AM/AB$ = $AN/AC$ = $MN/BC$.",
+        "Remplace : ${a}/{b}$ = $MN/{c}$.",
+        "Produit en croix : $MN = ({a} × {c})/{b}$."
+      ],
+      "solution": "Les droites $(BM)$ et $(CN)$ se coupent en $A$ et $(MN) // (BC)$. D’après le théorème de Thalès : $AM/AB$ = $AN/AC$ = $MN/BC$, donc ${a}/{b}$ = $MN/{c}$, d’où $MN = ({a} × {c})/{b}$ = {a*c/b} cm.",
+      "selfTest": [
+        { "response": { "value": "{a*c/b} cm" }, "expect": "correct" },
+        { "response": { "value": "{b*c/a} cm" }, "expect": "mc:thales-inverse" },
+        { "response": { "value": "{a*c/(a+b)} cm" }, "expect": "mc:papillon-segment" }
+      ]
+    },
+    {
+      "id": "m3-thales-segment",
+      "type": "numeric",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:papillon-somme", "mc:thales-inverse"],
+      "expectedSeconds": 180,
+      "params": { "b": { "choice": [4, 5, 8, 10] }, "a": { "int": [2, 9] }, "e": { "int": [3, 9] } },
+      "constraints": ["a != b", "2*a != b"],
+      "prompt": "Les points $B$, $A$, $M$ sont alignés dans cet ordre, ainsi que $C$, $A$, $N$, et les droites $(MN)$ et $(BC)$ sont parallèles. On donne $AB = {b}$ cm, $AM = {a}$ cm et $AC = {e}$ cm. Calcule la longueur $CN$ du segment vert (valeur exacte, en cm).",
+      "figure": {
+        "alt": "Configuration papillon : B, A, M alignés et C, A, N alignés, A entre les points ; (MN) et (BC) sont parallèles ; AB, AM et AC sont indiquées ; le segment [CN], en vert, traverse A.",
+        "w": 380,
+        "h": 300,
+        "frame": { "x": ["{-0.819*max(b;a*e/b)-1.2}", "{0.819*max(e;a)+1.2}"], "y": ["{-0.574*max(b;e)-1.2}", "{0.574*max(a;a*e/b)+1.2}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N", "color": "vert", "width": 3 },
+          { "type": "segment", "from": "A", "to": "B", "label": "{b} cm" },
+          { "type": "segment", "from": "A", "to": "M", "label": "{a} cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{e} cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "B", "x": "{-0.819*b}", "y": "{-0.574*b}", "pos": "w" },
+          { "type": "point", "id": "C", "x": "{0.819*e}", "y": "{-0.574*e}", "pos": "e" },
+          { "type": "point", "id": "M", "x": "{0.819*a}", "y": "{0.574*a}", "pos": "e" },
+          { "type": "point", "id": "N", "x": "{-0.819*a*e/b}", "y": "{0.574*a*e/b}", "pos": "w" }
+        ]
+      },
+      "answer": "e + a*e/b",
+      "unit": "cm",
+      "tolerance": 0.001,
+      "misconceptions": [
+        {
+          "answer": "a*e/b",
+          "id": "mc:papillon-somme",
+          "error": "methode",
+          "feedback": "Tu as calculé $AN$ seulement. Les points $C$, $A$, $N$ sont alignés avec $A$ **entre** $C$ et $N$ : le segment $[CN]$ est formé de deux morceaux."
+        },
+        {
+          "answer": "e - a*e/b",
+          "id": "mc:papillon-difference",
+          "error": "methode",
+          "feedback": "Tu as fait une soustraction. Ici, $A$ est entre $C$ et $N$ : les longueurs $CA$ et $AN$ se mettent bout à bout."
+        },
+        {
+          "answer": "e + e*b/a",
+          "id": "mc:thales-inverse",
+          "error": "notion",
+          "feedback": "Un des rapports est à l’envers. Garde le même ordre : $AM/AB$ = $AN/AC$, côtés du triangle $AMN$ en haut, côtés du triangle $ABC$ en bas."
+        }
+      ],
+      "hints": [
+        "Commence par calculer $AN$ avec Thalès : $AM/AB$ = $AN/AC$.",
+        "${a}/{b}$ = $AN/{e}$, donc $AN = ({a} × {e})/{b}$.",
+        "$A$ est entre $C$ et $N$ : $CN = CA + AN$."
+      ],
+      "solution": "Les droites $(BM)$ et $(CN)$ se coupent en $A$ et $(MN) // (BC)$ : d’après le théorème de Thalès, $AM/AB$ = $AN/AC$, soit ${a}/{b}$ = $AN/{e}$. Donc $AN = ({a} × {e})/{b}$ = {a*e/b} cm. Comme $A$ est entre $C$ et $N$ : $CN = CA + AN = {e} + {a*e/b}$ = {e+a*e/b} cm.",
+      "selfTest": [
+        { "response": { "value": "{e+a*e/b} cm" }, "expect": "correct" },
+        { "response": { "value": "{a*e/b} cm" }, "expect": "mc:papillon-somme" },
+        { "response": { "value": "{e+e*b/a} cm" }, "expect": "mc:thales-inverse" }
+      ]
+    },
+    {
+      "id": "m3-thales-paralleles",
+      "type": "categorize",
+      "skill": "m3.thales.reciproque",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:ordre-points", "mc:presque-egal", "mc:thales-difference"],
+      "expectedSeconds": 300,
+      "prompt": "Dans chaque cas, les droites $(BM)$ et $(CN)$ se coupent en $A$ (longueurs en cm). Les droites $(MN)$ et $(BC)$ sont-elles parallèles ? Calcule les deux rapports $AM/AB$ et $AN/AC$, et regarde l’ordre des points **avant** de classer.",
+      "figure": {
+        "alt": "Deux schémas : à gauche des triangles emboîtés, à droite un papillon ; dans les deux, le segment [MN] est en pointillés.",
+        "w": 420,
+        "h": 240,
+        "frame": { "x": [-0.7, 11.8], "y": [-1.4, 5.1] },
+        "items": [
+          { "type": "polygon", "points": ["A1", "B1", "C1"], "fill": "maths" },
+          { "type": "polygon", "points": ["A1", "M1", "N1"], "fill": "orange" },
+          { "type": "polygon", "points": ["A2", "B2", "C2"], "fill": "maths" },
+          { "type": "polygon", "points": ["A2", "M2", "N2"], "fill": "orange" },
+          { "type": "segment", "from": "M1", "to": "N1", "dashed": true, "color": "rouge" },
+          { "type": "segment", "from": "B1", "to": "C1", "color": "rouge" },
+          { "type": "segment", "from": "M2", "to": "N2", "dashed": true, "color": "rouge" },
+          { "type": "segment", "from": "B2", "to": "C2", "color": "rouge" },
+          { "type": "point", "id": "A1", "x": 2, "y": 4.5, "pos": "n", "label": "A" },
+          { "type": "point", "id": "B1", "x": 0, "y": 0, "pos": "sw", "label": "B" },
+          { "type": "point", "id": "C1", "x": 4, "y": 0, "pos": "se", "label": "C" },
+          { "type": "point", "id": "M1", "x": 1, "y": 2.25, "pos": "w", "label": "M" },
+          { "type": "point", "id": "N1", "x": 3, "y": 2.25, "pos": "e", "label": "N" },
+          { "type": "point", "id": "A2", "x": 9, "y": 2.4, "pos": "e", "label": "A" },
+          { "type": "point", "id": "B2", "x": 7.5, "y": 0, "pos": "sw", "label": "B" },
+          { "type": "point", "id": "C2", "x": 11, "y": 0, "pos": "se", "label": "C" },
+          { "type": "point", "id": "M2", "x": 9.9, "y": 3.84, "pos": "ne", "label": "M" },
+          { "type": "point", "id": "N2", "x": 7.8, "y": 3.84, "pos": "nw", "label": "N" },
+          { "type": "text", "x": 2, "y": -0.9, "text": "triangles emboîtés", "size": "s", "bold": true },
+          { "type": "text", "x": 9.25, "y": -0.9, "text": "papillon", "size": "s", "bold": true }
+        ]
+      },
+      "categories": [{ "id": "par", "label": "Parallèles" }, { "id": "non", "label": "Pas parallèles" }],
+      "items": [
+        { "id": "i1", "label": "Papillon : $AM = 3$ ; $AB = 5$ ; $AN = 4,2$ ; $AC = 7$", "category": "par" },
+        {
+          "id": "i2",
+          "label": "$M$ sur $[AB]$, mais $N$ de l’autre côté de $A$ par rapport à $C$ : $AM = 2$ ; $AB = 6$ ; $AN = 3$ ; $AC = 9$",
+          "category": "non"
+        },
+        { "id": "i3", "label": "Emboîtés : $AM = 4$ ; $AB = 10$ ; $AN = 5$ ; $AC = 12$", "category": "non" },
+        { "id": "i4", "label": "Papillon : $AM = 7$ ; $AB = 5$ ; $AN = 8,4$ ; $AC = 6$", "category": "par" },
+        { "id": "i5", "label": "Emboîtés : $AM = 6$ ; $AB = 8$ ; $AN = 7,4$ ; $AC = 10$", "category": "non" },
+        { "id": "i6", "label": "Papillon : $AM = 3$ ; $AB = 5$ ; $AN = 6$ ; $AC = 8$", "category": "non" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i2",
+          "category": "par",
+          "id": "mc:ordre-points",
+          "error": "raisonnement",
+          "feedback": "Les rapports sont bien égaux… mais regarde l’ordre : $M$ est du même côté de $A$ que $B$, alors que $N$ est de l’autre côté par rapport à $C$. La réciproque exige que les points soient alignés **dans le même ordre**."
+        },
+        {
+          "item": "i5",
+          "category": "par",
+          "id": "mc:presque-egal",
+          "error": "raisonnement",
+          "feedback": "0,75 et 0,74 sont proches, mais pas égaux. La réciproque demande une égalité **exacte** des deux rapports."
+        },
+        {
+          "item": "i6",
+          "category": "par",
+          "id": "mc:thales-difference",
+          "error": "notion",
+          "feedback": "Ici $AB − AM = AC − AN = 2$ : ce sont les **écarts** qui sont égaux. Thalès compare des **quotients** : calcule $3/5$ et $6/8$."
+        },
+        {
+          "item": "i4",
+          "category": "non",
+          "id": "mc:rapport-superieur",
+          "error": "notion",
+          "feedback": "Un rapport plus grand que 1 ne pose aucun problème : dans un papillon, le triangle $AMN$ peut être plus grand que $ABC$. Compare $7/5$ et $8,4/6$."
+        }
+      ],
+      "hints": [
+        "Pour chaque cas, calcule séparément $AM/AB$ et $AN/AC$.",
+        "Rapports égaux et points alignés dans le même ordre : réciproque. Rapports différents : contraposée.",
+        "Une ligne cache un piège d’ordre des points, une autre un piège « presque égal »."
+      ],
+      "solution": "1) $3/5$ = $4,2/7$ = 0,6, même ordre : parallèles. 2) $2/6$ = $3/9$, mais les points ne sont pas dans le même ordre : pas parallèles. 3) 0,4 et $5/12$ ≈ 0,417 : pas parallèles. 4) $7/5$ = $8,4/6$ = 1,4 : parallèles. 5) 0,75 et 0,74 : pas parallèles. 6) 0,6 et 0,75 : pas parallèles (des écarts égaux ne prouvent rien).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "par", "i2": "non", "i3": "non", "i4": "par", "i5": "non", "i6": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "par", "i2": "par", "i3": "non", "i4": "par", "i5": "non", "i6": "non" } }, "expect": "mc:ordre-points" },
+        {
+          "response": { "assign": { "i1": "par", "i2": "non", "i3": "non", "i4": "par", "i5": "non", "i6": "par" } },
+          "expect": "mc:thales-difference"
+        }
+      ]
+    },
+    {
+      "id": "m3-thales-verif",
+      "type": "qcm",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : les droites $(BM)$ et $(CN)$ se coupent en $A$, et $(MN) // (BC)$. Quelle égalité est vraie ?",
+      "figure": {
+        "alt": "Configuration papillon : les droites (BM) et (CN) se coupent en A ; (MN) et (BC), en rouge, sont parallèles.",
+        "w": 317,
+        "h": 300,
+        "frame": { "x": [-1.3, 8.2], "y": [-1, 7.9] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "point", "id": "A", "x": 2.5, "y": 4.33, "pos": "e" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 7, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 4, "y": 6.93, "pos": "ne" },
+          { "type": "point", "id": "N", "x": -0.2, "y": 6.93, "pos": "nw" }
+        ]
+      },
+      "choices": [
+        {
+          "text": "$AM/AB$ = $AN/AC$ = $MN/BC$",
+          "correct": true,
+          "feedback": "Oui : chaque rapport compare un côté du triangle $AMN$ au côté correspondant du triangle $ABC$, exactement comme pour des triangles emboîtés."
+        },
+        {
+          "text": "$AM/BM$ = $AN/CN$ = $MN/BC$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:papillon-segment",
+          "feedback": "$[BM]$ et $[CN]$ traversent le point $A$ : ce ne sont des côtés d’aucun des deux triangles."
+        },
+        {
+          "text": "$AM/AC$ = $AN/AB$ = $MN/BC$",
+          "correct": false,
+          "error": "lecture",
+          "misconception": "mc:papillon-croise",
+          "feedback": "$[AM]$ et $[AC]$ ne sont pas portés par la même droite : ce ne sont pas des côtés correspondants."
+        },
+        {
+          "text": "$AB/AM$ = $AN/AC$ = $MN/BC$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:thales-inverse",
+          "feedback": "Le premier rapport est à l’envers par rapport aux deux autres : on garde le même ordre partout."
+        }
+      ],
+      "hints": [
+        "Repère le point $A$ où les droites se croisent : les côtés utilisés partent tous de $A$.",
+        "Les rapports s’écrivent dans le même sens : côtés du triangle $AMN$ en haut, côtés du triangle $ABC$ en bas."
+      ],
+      "solution": "Dans la configuration papillon comme dans la configuration emboîtée : $AM/AB$ = $AN/AC$ = $MN/BC$ (côtés du triangle $AMN$ en haut, côtés correspondants du triangle $ABC$ en bas).",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:papillon-segment" }]
+    },
+    {
+      "id": "m3-thales-redaction",
+      "type": "order",
+      "skill": "m3.thales.reciproque",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "expectedSeconds": 150,
+      "prompt": "Les droites $(BM)$ et $(CN)$ se coupent en $A$, avec $AB = 6$ cm, $AM = 4,5$ cm, $AC = 8$ cm et $AN = 6$ cm. Voici, dans le désordre, les lignes d’une démonstration qui prouve que $(MN)$ et $(BC)$ sont parallèles. Remets-les dans l’ordre, comme sur une copie de brevet.",
+      "figure": {
+        "alt": "Configuration papillon : B, A, M alignés et C, A, N alignés ; AB = 6 cm, AM = 4,5 cm, AC = 8 cm, AN = 6 cm.",
+        "w": 271,
+        "h": 330,
+        "frame": { "x": [-6.6, 5.4], "y": [-8.5, 6.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+          { "type": "segment", "from": "A", "to": "M", "label": "4,5 cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "8 cm" },
+          { "type": "segment", "from": "A", "to": "N", "label": "6 cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "dashed": true },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge", "dashed": true },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "B", "x": -5.64, "y": -2.05, "pos": "w" },
+          { "type": "point", "id": "M", "x": 4.23, "y": 1.54, "pos": "e" },
+          { "type": "point", "id": "C", "x": 2.74, "y": -7.52, "pos": "s" },
+          { "type": "point", "id": "N", "x": -2.05, "y": 5.64, "pos": "n" }
+        ]
+      },
+      "orderLabel": "de la première à la dernière ligne",
+      "errorType": "methode",
+      "items": [
+        { "id": "s1", "label": "Les points $B$, $A$, $M$ sont alignés dans cet ordre, et les points $C$, $A$, $N$ aussi, dans le même ordre." },
+        { "id": "s2", "label": "D’une part, $AM/AB$ = $4,5/6$ = 0,75." },
+        { "id": "s3", "label": "D’autre part, $AN/AC$ = $6/8$ = 0,75." },
+        { "id": "s4", "label": "Donc $AM/AB$ = $AN/AC$." },
+        { "id": "s5", "label": "D’après la réciproque du théorème de Thalès, les droites $(MN)$ et $(BC)$ sont parallèles." }
+      ],
+      "hints": [
+        "Une démonstration commence par les données utiles : ici, l’alignement et l’ordre des points.",
+        "On calcule chaque rapport séparément (« d’une part », « d’autre part ») avant de les comparer.",
+        "La propriété utilisée et la conclusion viennent à la fin."
+      ],
+      "solution": "Ordre : alignement et ordre des points → $AM/AB$ = 0,75 → $AN/AC$ = 0,75 → les rapports sont égaux → d’après la réciproque du théorème de Thalès, $(MN) // (BC)$.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5"] }, "expect": "correct" },
+        { "response": { "order": ["s5", "s4", "s3", "s2", "s1"] }, "expect": "methode" }
+      ]
+    },
+    {
+      "id": "m3-thales-demo",
+      "type": "open",
+      "skill": "m3.thales.reciproque",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 420,
+      "minWords": 30,
+      "prompt": "Les droites $(RT)$ et $(SU)$ se coupent en $O$ ; $O$ est entre $R$ et $T$, et entre $S$ et $U$. On a mesuré : $OR = 2,4$ cm, $OT = 3,6$ cm, $OS = 3$ cm et $OU = 4,4$ cm. Les droites $(RS)$ et $(TU)$ sont-elles parallèles ? Rédige une démonstration complète.",
+      "figure": {
+        "alt": "Configuration papillon : les droites (RT) et (SU) se coupent en O ; OR = 2,4 cm, OT = 3,6 cm, OS = 3 cm, OU = 4,4 cm ; les segments [RS] et [TU] sont tracés.",
+        "w": 300,
+        "h": 330,
+        "frame": { "x": [-3.2, 4.4], "y": [-3.6, 4.9] },
+        "items": [
+          { "type": "segment", "from": "R", "to": "T" },
+          { "type": "segment", "from": "S", "to": "U" },
+          { "type": "segment", "from": "R", "to": "S", "color": "rouge" },
+          { "type": "segment", "from": "T", "to": "U", "color": "rouge" },
+          { "type": "segment", "from": "O", "to": "R", "label": "2,4 cm" },
+          { "type": "segment", "from": "O", "to": "T", "label": "3,6 cm" },
+          { "type": "segment", "from": "O", "to": "S", "label": "3 cm" },
+          { "type": "segment", "from": "O", "to": "U", "label": "4,4 cm" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "R", "x": -2.32, "y": -0.62, "pos": "w" },
+          { "type": "point", "id": "T", "x": 3.48, "y": 0.93, "pos": "e" },
+          { "type": "point", "id": "S", "x": -0.78, "y": -2.9, "pos": "s" },
+          { "type": "point", "id": "U", "x": 1.14, "y": 4.25, "pos": "n" }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je calcule $OR/OT$ (= $2/3$ ≈ 0,67)",
+          "keywords": [["2,4/3,6", "2,4 / 3,6", "2,4 ÷ 3,6", "2/3", "0,67", "0,666", "0.67"]]
+        },
+        { "id": "c2", "label": "Je calcule séparément $OS/OU$ (≈ 0,68)", "keywords": [["3/4,4", "3 / 4,4", "3 ÷ 4,4", "0,68", "0.68", "15/22"]] },
+        {
+          "id": "c3",
+          "label": "Je constate que les rapports sont différents (produits en croix 10,56 et 10,8)",
+          "keywords": [["different", "pas egaux", "pas egal", "≠", "10,56", "10,8"]]
+        },
+        { "id": "c4", "label": "Je cite le théorème de Thalès (sa contraposée)", "keywords": [["thales", "contraposee"]] },
+        {
+          "id": "c5",
+          "label": "Je conclus : les droites ne sont pas parallèles",
+          "keywords": [["pas parallele", "ne sont pas parallele", "non parallele"]]
+        }
+      ],
+      "models": [
+        "Les droites (RT) et (SU) se coupent en O. D’une part, OR/OT = 2,4/3,6 = 2/3 ≈ 0,67. D’autre part, OS/OU = 3/4,4 ≈ 0,68. Les produits en croix 2,4 × 4,4 = 10,56 et 3,6 × 3 = 10,8 sont différents, donc OR/OT ≠ OS/OU. Si les droites (RS) et (TU) étaient parallèles, ces rapports seraient égaux d’après le théorème de Thalès. Donc les droites (RS) et (TU) ne sont pas parallèles."
+      ],
+      "hints": [
+        "Calcule séparément $OR/OT$ et $OS/OU$.",
+        "Pour comparer sans arrondir, compare les produits en croix $2,4 × 4,4$ et $3,6 × 3$.",
+        "Rapports différents : c’est la contraposée du théorème de Thalès qui permet de conclure."
+      ],
+      "solution": "$OR/OT$ = $2,4/3,6$ = $2/3$ ≈ 0,67 et $OS/OU$ = $3/4,4$ ≈ 0,68. Produits en croix : $2,4 × 4,4 = 10,56$ et $3,6 × 3 = 10,8$ : les rapports sont différents. Si $(RS)$ et $(TU)$ étaient parallèles, les rapports seraient égaux (théorème de Thalès) : donc les droites $(RS)$ et $(TU)$ ne sont pas parallèles.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "D'une part OR/OT = 2,4/3,6 = 2/3 environ 0,67. D'autre part OS/OU = 3/4,4 environ 0,68. Les produits en croix 10,56 et 10,8 sont différents donc les rapports ne sont pas égaux. D'après la contraposée du théorème de Thalès, les droites (RS) et (TU) ne sont pas parallèles.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true, "c5": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m3-thales-chaise",
+      "type": "composite",
+      "skill": "m3.thales.reciproque",
+      "skills": ["m3.thales.calcul"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse", "mc:presque-egal"],
+      "expectedSeconds": 420,
+      "params": { "s": { "choice": [42, 45, 48, 51, 54] }, "xa": { "expr": "(s^2 - 891)/(2*s)" }, "ya": { "expr": "racine(2025 - xa^2)" } },
+      "prompt": "Vue de côté, une chaise pliante a deux pieds $[BM]$ et $[CN]$ articulés en $A$ ; $[MN]$ est le bord du siège et $(BC)$ le sol. On mesure $AB = 45$ cm, $AM = 30$ cm, $AC = 54$ cm et $AN = 36$ cm ; l’écartement des pieds au sol est $BC = {s}$ cm.",
+      "figure": {
+        "alt": "Chaise pliante vue de côté : les pieds [BM] et [CN] se croisent en A ; [MN] est le siège, (BC) le sol ; AB, AM, AC, AN et BC sont indiquées.",
+        "w": 340,
+        "h": 340,
+        "frame": { "x": ["{min(0;5*xa/3-2*s/3)-8}", "{max(s;5*xa/3)+8}"], "y": [-8, "{5*ya/3+8}"] },
+        "items": [
+          { "type": "point", "id": "g1", "x": "{min(0;5*xa/3-2*s/3)-6}", "y": 0, "hidden": true },
+          { "type": "point", "id": "g2", "x": "{max(s;5*xa/3)+6}", "y": 0, "hidden": true },
+          { "type": "segment", "from": "g1", "to": "g2", "color": "gris" },
+          { "type": "segment", "from": "B", "to": "M", "width": 3 },
+          { "type": "segment", "from": "C", "to": "N", "width": 3 },
+          { "type": "segment", "from": "M", "to": "N", "color": "orange", "width": 4 },
+          { "type": "segment", "from": "A", "to": "B", "label": "45 cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "54 cm" },
+          { "type": "text", "x": "{4*xa/3+7}", "y": "{4*ya/3}", "text": "30 cm", "anchor": "start" },
+          { "type": "text", "x": "{4*xa/3-s/3-7}", "y": "{4*ya/3}", "text": "36 cm", "anchor": "end" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge", "dashed": true, "label": "{s} cm" },
+          { "type": "point", "id": "A", "x": "{xa}", "y": "{ya}", "pos": "e" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": "{s}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": "{5*xa/3}", "y": "{5*ya/3}", "pos": "ne" },
+          { "type": "point", "id": "N", "x": "{5*xa/3-2*s/3}", "y": "{5*ya/3}", "pos": "nw" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Le siège $[MN]$ est-il parallèle au sol $(BC)$ ? (oui ou non)",
+          "accept": [
+            "oui",
+            "oui, il est parallèle au sol",
+            "oui il est parallèle au sol",
+            "oui, il est parallèle",
+            "oui il est parallele",
+            "il est parallèle au sol",
+            "oui, le siège est parallèle au sol",
+            "le siège est parallèle au sol",
+            "oui, (MN) et (BC) sont parallèles",
+            "oui (mn) // (bc)",
+            "oui, ils sont parallèles",
+            "oui car les rapports sont égaux"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:reciproque-oubliee",
+              "error": "raisonnement",
+              "feedback": "Calcule $AM/AB$ et $AN/AC$ séparément, puis compare-les : la réciproque du théorème de Thalès permet de conclure."
+            }
+          ],
+          "justify": {
+            "required": true,
+            "minWords": 6,
+            "prompt": "Donne les deux rapports et la propriété utilisée.",
+            "keywords": [["30/45", "2/3", "0,67"], ["36/54", "2/3", "0,67"], ["reciproque"]]
+          }
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la largeur $MN$ du siège ? (en cm)",
+          "answer": "2*s/3",
+          "misconceptions": [
+            {
+              "answer": "3*s/2",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le siège est plus étroit que l’écartement des pieds : le rapport $AM/AB$ est plus petit que 1. Écris $AM/AB$ = $MN/BC$, dans le même sens."
+            },
+            {
+              "answer": "s - 15",
+              "id": "mc:thales-difference",
+              "error": "notion",
+              "feedback": "On ne retire pas $AB − AM = 15$ cm : les longueurs sont proportionnelles, on multiplie $BC$ par le rapport $AM/AB$."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Pour régler la hauteur, on déplace l’articulation sur le pied $[CN]$ seulement : maintenant $AC = 55$ cm et $AN = 35$ cm (le pied $[BM]$ ne change pas). Le siège est-il encore parallèle au sol ? (oui ou non)",
+          "accept": [
+            "non",
+            "non, il n’est pas parallèle",
+            "non, il n'est pas parallèle",
+            "non il n'est pas parallele",
+            "non, il n’est plus parallèle au sol",
+            "non, il n'est plus parallèle au sol",
+            "il n'est pas parallèle",
+            "il n’est pas parallèle",
+            "il n'est plus parallèle au sol",
+            "non, le siège n’est plus parallèle au sol",
+            "non, le siège n'est plus parallèle au sol",
+            "non, pas parallèle",
+            "non car les rapports sont différents"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:presque-egal",
+              "error": "raisonnement",
+              "feedback": "Compare $AN/AC$ avec $AM/AB$ : des rapports seulement proches ne suffisent pas, il faut une égalité exacte."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les pieds se croisent en $A$ : c’est une configuration papillon.",
+        "$AM/AB$ = $30/45$ et $AN/AC$ = $36/54$ : simplifie ces deux fractions.",
+        "Pour la largeur du siège : $MN/BC$ = $AM/AB$."
+      ],
+      "solution": "1) $B$, $A$, $M$ et $C$, $A$, $N$ sont alignés dans le même ordre ; $AM/AB$ = $30/45$ = $2/3$ et $AN/AC$ = $36/54$ = $2/3$. D’après la réciproque du théorème de Thalès, $(MN) // (BC)$ : le siège est parallèle au sol.\n2) D’après le théorème de Thalès, $MN/BC$ = $2/3$, donc $MN = {s} × 2 ÷ 3$ = {2*s/3} cm.\n3) $35/55$ ≈ 0,636 alors que $2/3$ ≈ 0,667 : les rapports sont différents, donc (contraposée) le siège n’est plus parallèle au sol.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "oui", "justification": "AM/AB = 30/45 = 2/3 et AN/AC = 36/54 = 2/3, réciproque de Thalès" },
+              { "value": "{2*s/3}" },
+              { "value": "non" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "oui", "justification": "AM/AB = 30/45 = 2/3 et AN/AC = 36/54 = 2/3, réciproque de Thalès" },
+              { "value": "{3*s/2}" },
+              { "value": "non" }
+            ]
+          },
+          "expect": "mc:thales-inverse"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "oui", "justification": "AM/AB = 30/45 = 2/3 et AN/AC = 36/54 = 2/3, réciproque de Thalès" },
+              { "value": "{2*s/3}" },
+              { "value": "oui" }
+            ]
+          },
+          "expect": "mc:presque-egal"
+        }
+      ]
+    },
+    {
+      "id": "m3-thales-pyramide",
+      "type": "composite",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:demi-base-oubliee", "mc:thales-inverse"],
+      "expectedSeconds": 420,
+      "params": { "h": { "choice": [1, 2] }, "r": { "choice": [1.2, 1.5, 1.6, 2] }, "s": { "expr": "h*r" }, "d": { "expr": "arrondi(146*r - 115;0)" } },
+      "prompt": "Pour mesurer la grande pyramide, Thalès plante un bâton vertical $[PQ]$ de {h} m. Au même instant, l’ombre du bâton mesure {s} m, et l’ombre de la pyramide dépasse de {d} m le bord de la base. La base est un carré de 230 m de côté, et le sommet $S$ est à la verticale de son centre $H$.",
+      "figure": {
+        "alt": "Au sol, le bout O de l'ombre de la pyramide, un bâton vertical [PQ] et la hauteur [HS] de la pyramide ; un rayon de soleil en pointillés passe par O, le haut du bâton et le sommet S.",
+        "w": 420,
+        "h": 256,
+        "frame": { "x": [-14, 362], "y": [-50, 162] },
+        "caption": "La figure n’est pas à l’échelle : le bâton est dessiné beaucoup plus grand.",
+        "items": [
+          { "type": "polygon", "points": [[119, 0], [349, 0], [234, 146.25]], "fill": "orange" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": 48, "y": 0, "pos": "se" },
+          { "type": "point", "id": "Q", "x": 48, "y": 30, "pos": "nw" },
+          { "type": "point", "id": "H", "x": 234, "y": 0, "pos": "s" },
+          { "type": "point", "id": "S", "x": 234, "y": 146.25, "pos": "n" },
+          { "type": "segment", "from": "O", "to": "S", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "P", "to": "Q", "color": "maths", "width": 3, "label": "{h} m" },
+          { "type": "segment", "from": "H", "to": "S", "dashed": true, "color": "vert", "label": "?" },
+          { "type": "segment", "from": "O", "to": "P", "label": "{s} m" },
+          { "type": "segment", "from": [0, -30], "to": [119, -30], "arrows": "both", "label": "{d} m", "color": "gris" },
+          { "type": "segment", "from": [119, -30], "to": [349, -30], "arrows": "both", "label": "230 m", "color": "gris" },
+          { "type": "angle", "vertex": "P", "from": "H", "to": "Q", "right": true },
+          { "type": "angle", "vertex": "H", "from": "S", "to": "O", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la distance $OH$ entre le bout $O$ de l’ombre et le centre $H$ de la base ? (en m)",
+          "answer": "115 + d",
+          "misconceptions": [
+            {
+              "answer": "d",
+              "id": "mc:demi-base-oubliee",
+              "error": "lecture",
+              "feedback": "Le sommet est au-dessus du **centre** de la base : il faut ajouter la distance entre le bord de la base et son centre."
+            },
+            {
+              "answer": "230 + d",
+              "id": "mc:demi-base",
+              "error": "lecture",
+              "feedback": "Le centre $H$ est au milieu de la base : la distance entre le bord et le centre est la **moitié** du côté."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur $HS$ de la pyramide ? (en m, arrondie à l’unité)",
+          "answer": "(115 + d)/r",
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "(115 + d)*r",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Tu as inversé un rapport : écris (ombre du bâton) ÷ $OH$ = (hauteur du bâton) ÷ $HS$, dans le même sens."
+            },
+            {
+              "answer": "d/r",
+              "id": "mc:demi-base-oubliee",
+              "error": "lecture",
+              "feedback": "Le triangle utile va jusqu’au centre $H$ de la base, sous le sommet : reprends la distance $OH$ de la question 1."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aujourd’hui, la pyramide a perdu sa pointe : elle mesure environ 139 m. Au même moment de la journée, de combien son ombre dépasserait-elle le bord de la base ? (en m, arrondi à l’unité)",
+          "answer": "139*r - 115",
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "139*r",
+              "id": "mc:demi-base-oubliee",
+              "error": "lecture",
+              "feedback": "Cette longueur se mesure depuis le centre $H$ : retire la distance entre le centre et le bord de la base."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le bâton et la hauteur $[HS]$ sont verticaux, donc parallèles : les triangles $OPQ$ et $OHS$ sont emboîtés, de sommet $O$.",
+        "$OH$ = (ombre qui dépasse) + (moitié du côté de la base).",
+        "Thalès : $OP/OH$ = $PQ/HS$, soit {s} ÷ $OH$ = {h} ÷ $HS$."
+      ],
+      "solution": "1) $OH = {d} + 230 ÷ 2 = {d+115}$ m.\n2) $(PQ) // (HS)$ ; $O$, $P$, $H$ sont alignés, ainsi que $O$, $Q$, $S$. D’après le théorème de Thalès : $OP/OH$ = $PQ/HS$, soit ${s}/{d+115}$ = ${h}/HS$. Donc $HS = ({d+115} × {h})/{s}$ ≈ {arrondi((115+d)/r;0)} m.\n3) Avec ce soleil, une ombre mesure {r} fois la hauteur : $139 × {r}$ ≈ {arrondi(139*r;1)} m depuis $H$, donc l’ombre dépasse la base d’environ {arrondi(139*r-115;0)} m.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "{115+d}" }, { "value": "{arrondi((115+d)/r;0)}" }, { "value": "{arrondi(139*r-115;0)}" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{d}" }, { "value": "{arrondi((115+d)/r;0)}" }, { "value": "{arrondi(139*r-115;0)}" }] },
+          "expect": "mc:demi-base-oubliee"
+        }
+      ]
+    },
+    {
+      "id": "m3-thales-riviere",
+      "type": "composite",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse", "mc:papillon-segment"],
+      "expectedSeconds": 600,
+      "prompt": "Pour mesurer la largeur d’une rivière sans la traverser, Lina repère un arbre $T$ sur l’autre rive, juste en face d’un piquet $B$ planté sur sa rive : $(BT)$ est perpendiculaire à la rive. Elle longe la rive sur 30 m jusqu’à un piquet $A$, puis sur 6 m de plus jusqu’à $M$. Là, elle s’éloigne de la rivière perpendiculairement à la rive, jusqu’au point $N$ d’où elle voit $A$ et l’arbre $T$ alignés : $MN = 4,5$ m.",
+      "figure": {
+        "alt": "Une rivière vue de dessus : l'arbre T est sur l'autre rive, en face du piquet B ; A et M sont sur la rive de Lina ; N est à 4,5 m de M, perpendiculairement à la rive ; T, A et N sont alignés.",
+        "w": 400,
+        "h": 286,
+        "frame": { "x": [-7, 43], "y": [-8, 26] },
+        "items": [
+          { "type": "rect", "x": -6, "y": 0, "w": 48, "h": 22.5, "fill": "bleu", "color": "bleu" },
+          { "type": "text", "x": 13, "y": 15, "text": "rivière", "color": "bleu", "size": "s" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "A", "x": 30, "y": 0, "pos": "nw" },
+          { "type": "point", "id": "M", "x": 36, "y": 0, "pos": "ne" },
+          { "type": "point", "id": "N", "x": 36, "y": -4.5, "pos": "se" },
+          { "type": "point", "id": "T", "x": 0, "y": 22.5, "pos": "ne", "label": "T (arbre)", "style": "rond", "color": "vert" },
+          { "type": "segment", "from": "B", "to": "T", "dashed": true, "label": "?" },
+          { "type": "segment", "from": "T", "to": "N", "color": "orange", "dashed": true },
+          { "type": "segment", "from": "B", "to": "A", "label": "30 m" },
+          { "type": "segment", "from": "A", "to": "M", "label": "6 m" },
+          { "type": "segment", "from": "M", "to": "N", "label": "4,5 m", "color": "rouge" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "T", "right": true },
+          { "type": "angle", "vertex": "M", "from": "N", "to": "A", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Les droites $(BT)$ et $(MN)$ sont parallèles (toutes deux perpendiculaires à la rive). Quelle est la largeur $BT$ de la rivière ? (en m)",
+          "answer": 22.5,
+          "misconceptions": [
+            {
+              "answer": 0.9,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Ta rivière est plus étroite que $MN$, alors que le triangle $ABT$ est bien plus grand que $AMN$ : un rapport est à l’envers."
+            },
+            {
+              "answer": 27,
+              "id": "mc:papillon-segment",
+              "error": "notion",
+              "feedback": "Tu as utilisé $BM = 36$ m. Le segment $[BM]$ traverse $A$ : le côté du triangle $ABT$ qui correspond à $[AM]$ est $[AB]$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La passerelle doit reposer sur 1,5 m de berge de chaque côté. Quelle est sa longueur totale ? (en m)",
+          "answer": 25.5,
+          "misconceptions": [
+            {
+              "answer": 24,
+              "id": "mc:un-seul-appui",
+              "error": "lecture",
+              "feedback": "La passerelle s’appuie sur les **deux** berges : compte un appui de chaque côté."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour vérifier, Lina recommence en s’arrêtant cette fois à $AM = 8$ m. À quelle distance $MN$ de la rive doit-elle s’éloigner pour voir $A$ et $T$ alignés ? (en m)",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 84.375,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le triangle $AMN$ est plus petit que $ABT$ : $MN$ doit être plus courte que $BT$. Écris $AM/AB$ = $MN/BT$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$(BT)$ et $(MN)$ sont perpendiculaires à la même droite (la rive) : elles sont parallèles.",
+        "Les droites $(BM)$ et $(TN)$ se coupent en $A$ : c’est un papillon. $AM/AB$ = $MN/BT$.",
+        "$6/30$ = $4,5/BT$."
+      ],
+      "solution": "1) $(BT)$ et $(MN)$ sont perpendiculaires à la rive, donc parallèles ; $(BM)$ et $(TN)$ se coupent en $A$. D’après le théorème de Thalès : $AM/AB$ = $MN/BT$, soit $6/30$ = $4,5/BT$, donc $BT = 30 × 4,5 ÷ 6$ = 22,5 m.\n2) $22,5 + 2 × 1,5 = 25,5$ m.\n3) $8/30$ = $MN/22,5$, donc $MN = 22,5 × 8 ÷ 30$ = 6 m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "22,5" }, { "value": "25,5" }, { "value": "6" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "27" }, { "value": "25,5" }, { "value": "6" }] }, "expect": "mc:papillon-segment" },
+        { "response": { "parts": [{ "value": "0,9" }, { "value": "25,5" }, { "value": "6" }] }, "expect": "mc:thales-inverse" }
+      ]
+    },
+    {
+      "id": "m3-thales-remed-papillon",
+      "type": "composite",
+      "skill": "m3.thales.calcul",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:papillon-segment", "mc:thales-inverse"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : dans un papillon, les côtés correspondants partent tous du point $A$ où les droites se croisent. Sur la figure, $(MN) // (BC)$, $AM = 2$ cm, $AB = 5$ cm et $BC = 10$ cm.",
+      "figure": {
+        "alt": "Configuration papillon : (BM) et (CN) se coupent en A ; (MN) parallèle à (BC) ; AM = 2 cm, AB = 5 cm, BC = 10 cm.",
+        "w": 380,
+        "h": 263,
+        "frame": { "x": [-1.3, 11], "y": [-1, 7] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "M", "N"], "fill": "orange" },
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "A", "to": "M", "label": "2 cm" },
+          { "type": "segment", "from": "A", "to": "B", "label": "5 cm" },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge", "label": "10 cm" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "label": "?" },
+          { "type": "point", "id": "A", "x": 2.5, "y": 4.33, "pos": "e" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 3.5, "y": 6.06, "pos": "ne" },
+          { "type": "point", "id": "N", "x": -0.5, "y": 6.06, "pos": "nw" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure le segment $[BM]$, qui traverse $A$ ? (en cm)",
+          "answer": 7,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:papillon-difference",
+              "error": "methode",
+              "feedback": "$A$ est entre $B$ et $M$ : les longueurs $BA$ et $AM$ se mettent bout à bout."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule le rapport $AM/AB$ (nombre décimal).",
+          "answer": 0.4,
+          "tolerance": 0.001,
+          "misconceptions": [
+            {
+              "answer": "arrondi(2/7;3)",
+              "id": "mc:papillon-segment",
+              "error": "notion",
+              "feedback": "Tu as divisé par $BM$. Le côté du triangle $ABC$ qui correspond à $[AM]$ est $[AB]$, qui part de $A$."
+            },
+            { "answer": 2.5, "id": "mc:thales-inverse", "error": "notion", "feedback": "Le rapport demandé est $AM ÷ AB$, dans cet ordre." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Déduis-en $MN$ (en cm).",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 25,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "$MN$ est plus court que $BC$ : multiplie $BC$ par le rapport $AM/AB$."
+            }
+          ]
+        }
+      ],
+      "hints": ["$B$, $A$, $M$ sont alignés avec $A$ au milieu.", "Rapport : $2/5$.", "$MN = 10 × 0,4$."],
+      "solution": "$BM = 5 + 2 = 7$ cm, mais ce segment ne sert pas dans Thalès. $AM/AB$ = $2/5$ = 0,4 ; comme $(MN) // (BC)$, $MN/BC$ = 0,4, donc $MN = 10 × 0,4 = 4$ cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "7" }, { "value": "0,4" }, { "value": "4" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "7" }, { "value": "0,286" }, { "value": "4" }] }, "expect": "mc:papillon-segment" }
+      ]
+    },
+    {
+      "id": "m3-thales-equation",
+      "type": "composite",
+      "skill": "m3.thales.reciproque",
+      "skills": ["m4.equations.resoudre"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:papillon-segment", "mc:thales-inverse"],
+      "expectedSeconds": 480,
+      "prompt": "Les droites $(BM)$ et $(CN)$ se coupent en $A$ ; $A$ est entre $B$ et $M$, et entre $C$ et $N$. On donne $BM = 12$ cm, $AN = 3$ cm et $AC = 5$ cm. On note $x$ la longueur $AM$. Pour quelle valeur de $x$ les droites $(MN)$ et $(BC)$ sont-elles parallèles ?",
+      "figure": {
+        "alt": "Configuration papillon : B, A, M alignés avec BM = 12 cm et AM = x ; C, A, N alignés avec AC = 5 cm et AN = 3 cm.",
+        "w": 400,
+        "h": 296,
+        "frame": { "x": [-8, 5], "y": [-5.6, 3.6] },
+        "items": [
+          { "type": "segment", "from": "B", "to": "M" },
+          { "type": "segment", "from": "C", "to": "N" },
+          { "type": "segment", "from": "M", "to": "N", "color": "rouge", "dashed": true },
+          { "type": "segment", "from": "B", "to": "C", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "M", "label": "x" },
+          { "type": "segment", "from": "A", "to": "N", "label": "3" },
+          { "type": "segment", "from": "A", "to": "C", "label": "5" },
+          { "type": "text", "x": -2.4, "y": 0.3, "text": "BM = 12 cm", "size": "s" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "se" },
+          { "type": "point", "id": "B", "x": -7.05, "y": -2.57, "pos": "w" },
+          { "type": "point", "id": "M", "x": 4.23, "y": 1.54, "pos": "e" },
+          { "type": "point", "id": "C", "x": 1.29, "y": -4.83, "pos": "s" },
+          { "type": "point", "id": "N", "x": -0.78, "y": 2.9, "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "expression",
+          "prompt": "Exprime $AB$ en fonction de $x$.",
+          "answer": "12 - x",
+          "misconceptions": [
+            {
+              "answer": "12 + x",
+              "id": "mc:papillon-segment",
+              "error": "notion",
+              "feedback": "$A$ est **sur** le segment $[BM]$ : $AB$ et $AM$ se partagent les 12 cm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Écris l’égalité $AM/AB$ = $AN/AC$, puis résous l’équation : quelle valeur de $x$ convient ? (en cm)",
+          "answer": 4.5,
+          "misconceptions": [
+            {
+              "answer": 7.2,
+              "id": "mc:papillon-segment",
+              "error": "notion",
+              "feedback": "Tu as écrit $x/12$ : mais $[BM]$ traverse $A$. Le côté qui correspond à $[AM]$ est $[AB]$, qui mesure $12 − x$."
+            },
+            {
+              "answer": 7.5,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Un des rapports est à l’envers : $AM$ correspond à $AN$, et $AB$ à $AC$."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien mesure alors $AB$ ? (en cm)", "answer": 7.5 }
+      ],
+      "hints": [
+        "$A$ est sur $[BM]$ : $AB = BM − AM = 12 − x$.",
+        "Réciproque : il faut $x/(12 − x)$ = $3/5$.",
+        "Produits en croix : $5x = 3(12 − x)$, soit $5x = 36 − 3x$."
+      ],
+      "solution": "$AB = 12 − x$. Les points sont dans le même ordre ; il faut $x/(12 − x)$ = $3/5$, soit $5x = 36 − 3x$, $8x = 36$, $x = 4,5$ cm. Alors $AB = 7,5$ cm et $4,5/7,5$ = 0,6 = $3/5$ : d’après la réciproque du théorème de Thalès, $(MN) // (BC)$.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "12 - x" }, { "value": "4,5" }, { "value": "7,5" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "12 + x" }, { "value": "7,2" }, { "value": "4,8" }] }, "expect": "mc:papillon-segment" }
+      ]
+    },
+    {
+      "id": "m3-thales-trapeze",
+      "type": "composite",
+      "skill": "m3.thales.calcul",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:papillon-segment", "mc:thales-inverse"],
+      "expectedSeconds": 420,
+      "prompt": "$ABCD$ est un trapèze : ses bases $[AB]$ et $[CD]$ sont parallèles, avec $AB = 6$ cm et $CD = 10$ cm. Ses diagonales $[AC]$ et $[BD]$ se coupent en $O$, et $AC = 12$ cm.",
+      "figure": {
+        "alt": "Trapèze ABCD de bases [AB] = 6 cm et [CD] = 10 cm, parallèles ; les diagonales [AC] et [BD] se coupent en O ; AC = 12 cm.",
+        "w": 329,
+        "h": 310,
+        "frame": { "x": [-1, 11], "y": [-1.2, 10] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C", "D"], "fill": "maths" },
+          { "type": "polygon", "points": ["O", "A", "B"], "fill": "orange" },
+          { "type": "polygon", "points": ["O", "C", "D"], "fill": "orange" },
+          { "type": "segment", "from": "A", "to": "C" },
+          { "type": "segment", "from": "B", "to": "D" },
+          { "type": "segment", "from": "A", "to": "B", "color": "rouge", "label": "6 cm" },
+          { "type": "segment", "from": "D", "to": "C", "color": "rouge", "label": "10 cm" },
+          { "type": "point", "id": "A", "x": 2, "y": 8.94, "pos": "nw" },
+          { "type": "point", "id": "B", "x": 8, "y": 8.94, "pos": "ne" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "D", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "O", "x": 5, "y": 5.59, "pos": "e" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Les droites $(AC)$ et $(BD)$ se coupent en $O$ et $(AB) // (CD)$. Que vaut le rapport $OA/OC$ ? (nombre décimal)",
+          "answer": 0.6,
+          "tolerance": 0.001,
+          "misconceptions": [
+            {
+              "answer": "arrondi(10/6;3)",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le triangle $OAB$ est le plus petit : $OA/OC$ est plus petit que 1. Écris $OA/OC$ = $AB/CD$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $OA$ (en cm).",
+          "answer": 4.5,
+          "misconceptions": [
+            {
+              "answer": 7.2,
+              "id": "mc:papillon-segment",
+              "error": "notion",
+              "feedback": "12 cm, c’est toute la diagonale $AC = OA + OC$, pas $OC$. Partage 12 cm en deux morceaux dans le rapport trouvé."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Calcule $OC$ (en cm).", "answer": 7.5 }
+      ],
+      "hints": [
+        "Les triangles $OAB$ et $OCD$ forment un papillon : $OA/OC$ = $OB/OD$ = $AB/CD$.",
+        "$OA = 0,6 × OC$ et $OA + OC = 12$.",
+        "$0,6 × OC + OC = 1,6 × OC = 12$."
+      ],
+      "solution": "D’après le théorème de Thalès (papillon de centre $O$) : $OA/OC$ = $AB/CD$ = $6/10$ = 0,6. Donc $OA = 0,6 × OC$ et $OA + OC = 12$, soit $1,6 × OC = 12$ : $OC = 7,5$ cm et $OA = 4,5$ cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "0,6" }, { "value": "4,5" }, { "value": "7,5" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,6" }, { "value": "7,2" }, { "value": "4,8" }] }, "expect": "mc:papillon-segment" }
+      ]
+    },
+    {
+      "id": "m3-thales-brevet",
+      "type": "composite",
+      "skill": "m3.thales.reciproque",
+      "skills": ["m3.thales.calcul", "m4.pythagore.reciproque"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:carre-somme", "mc:thales-inverse", "mc:aire-k"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Sur la figure (qui n’est pas à l’échelle), les points $B$, $A$, $E$ sont alignés, ainsi que les points $C$, $A$, $D$. On donne : $AB = 6$ cm, $AC = 8$ cm, $BC = 10$ cm, $AE = 4,5$ cm et $AD = 6$ cm.",
+      "figure": {
+        "alt": "Les droites (BE) et (CD) se coupent en A ; AB = 6 cm, AC = 8 cm, BC = 10 cm, AE = 4,5 cm, AD = 6 cm ; les segments [BC] et [DE] sont tracés.",
+        "w": 266,
+        "h": 330,
+        "frame": { "x": [-6.6, 5.2], "y": [-8.6, 6.6] },
+        "items": [
+          { "type": "segment", "from": "B", "to": "E" },
+          { "type": "segment", "from": "C", "to": "D" },
+          { "type": "segment", "from": "B", "to": "C", "label": "10 cm" },
+          { "type": "segment", "from": "D", "to": "E", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "B", "label": "6 cm" },
+          { "type": "segment", "from": "A", "to": "C", "label": "8 cm" },
+          { "type": "segment", "from": "A", "to": "E", "label": "4,5 cm" },
+          { "type": "segment", "from": "A", "to": "D", "label": "6 cm" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "e" },
+          { "type": "point", "id": "B", "x": -5.64, "y": -2.05, "pos": "w" },
+          { "type": "point", "id": "C", "x": 2.74, "y": -7.52, "pos": "s" },
+          { "type": "point", "id": "E", "x": 4.23, "y": 1.54, "pos": "e" },
+          { "type": "point", "id": "D", "x": -2.05, "y": 5.64, "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. a) Calcule $AB² + AC²$.",
+          "answer": 100,
+          "misconceptions": [
+            {
+              "answer": 196,
+              "id": "mc:carre-somme",
+              "error": "calcul",
+              "feedback": "Tu as calculé $(6 + 8)²$. On élève chaque longueur au carré séparément, puis on additionne."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "1. b) Le triangle $ABC$ est-il rectangle ? Si oui, écris seulement le sommet de l’angle droit (une lettre).",
+          "accept": [
+            "A",
+            "en A",
+            "rectangle en A",
+            "oui en A",
+            "oui, en A",
+            "oui, rectangle en A",
+            "oui, il est rectangle en A",
+            "il est rectangle en A",
+            "ABC est rectangle en A",
+            "oui, ABC est rectangle en A"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:reciproque-pythagore",
+              "error": "raisonnement",
+              "feedback": "Compare $AB² + AC²$ et $BC²$ : la réciproque du théorème de Pythagore permet de conclure."
+            },
+            {
+              "answer": "C",
+              "id": "mc:sommet-angle-droit",
+              "error": "lecture",
+              "feedback": "L’angle droit est en face du plus long côté, l’hypoténuse $[BC]$."
+            },
+            {
+              "answer": "B",
+              "id": "mc:sommet-angle-droit",
+              "error": "lecture",
+              "feedback": "L’angle droit est en face du plus long côté, l’hypoténuse $[BC]$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. a) Calcule $AE/AB$.",
+          "answer": 0.75,
+          "misconceptions": [
+            {
+              "answer": "arrondi(6/4.5;3)",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le rapport demandé est $AE ÷ AB$, dans cet ordre."
+            }
+          ],
+          "tolerance": 0.001
+        },
+        { "type": "numeric", "prompt": "2. b) Calcule $AD/AC$.", "answer": 0.75 },
+        {
+          "type": "text",
+          "prompt": "2. c) Les droites $(DE)$ et $(BC)$ sont-elles parallèles ? (oui ou non)",
+          "accept": [
+            "oui",
+            "oui, elles sont parallèles",
+            "oui elles sont paralleles",
+            "elles sont parallèles",
+            "oui, (DE) et (BC) sont parallèles",
+            "oui (de) // (bc)",
+            "oui, (de)//(bc)"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:reciproque-oubliee",
+              "error": "raisonnement",
+              "feedback": "Compare les deux rapports calculés, et vérifie l’ordre des points : la réciproque du théorème de Thalès permet de conclure."
+            }
+          ],
+          "justify": {
+            "required": true,
+            "minWords": 6,
+            "prompt": "Cite les arguments et la propriété utilisée.",
+            "keywords": [["reciproque"], ["ordre", "align"]]
+          }
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Calcule $DE$ (en cm).",
+          "answer": 7.5,
+          "misconceptions": [
+            {
+              "answer": "arrondi(40/3;2)",
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le triangle $ADE$ est plus petit que $ABC$ : $DE$ doit être plus courte que $BC$. Écris $AE/AB$ = $DE/BC$."
+            }
+          ],
+          "tolerance": 0.01
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Les angles $BAC$ et $DAE$ sont opposés par le sommet. Calcule l’aire du triangle $ADE$ (en cm²).",
+          "answer": 13.5,
+          "misconceptions": [
+            {
+              "answer": 18,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Les longueurs sont multipliées par 0,75… mais une aire est le produit de deux longueurs. Calcule directement l’aire du triangle $ADE$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Réciproque de Pythagore : compare $AB² + AC²$ et $BC²$.",
+        "Réciproque de Thalès : points alignés dans le même ordre et rapports égaux.",
+        "Deux angles opposés par le sommet ont la même mesure : le triangle $ADE$ est rectangle en $A$ lui aussi."
+      ],
+      "solution": "1) $AB² + AC² = 36 + 64 = 100$ et $BC² = 100$ : d’après la réciproque du théorème de Pythagore, $ABC$ est rectangle en $A$.\n2) $AE/AB$ = $4,5/6$ = 0,75 et $AD/AC$ = $6/8$ = 0,75 ; $B$, $A$, $E$ et $C$, $A$, $D$ sont alignés dans le même ordre. D’après la réciproque du théorème de Thalès, $(DE) // (BC)$.\n3) D’après le théorème de Thalès, $DE/BC$ = 0,75, donc $DE = 7,5$ cm.\n4) L’angle $DAE$ est opposé par le sommet à l’angle droit $BAC$ : $ADE$ est rectangle en $A$, et son aire vaut $4,5 × 6 ÷ 2 = 13,5$ cm² (c’est bien $24 × 0,75²$).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "100" },
+              { "value": "A" },
+              { "value": "0,75" },
+              { "value": "0,75" },
+              { "value": "oui", "justification": "les points sont alignés dans le même ordre et les rapports sont égaux, réciproque de Thalès" },
+              { "value": "7,5" },
+              { "value": "13,5" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "100" },
+              { "value": "A" },
+              { "value": "0,75" },
+              { "value": "0,75" },
+              { "value": "oui", "justification": "les points sont alignés dans le même ordre et les rapports sont égaux, réciproque de Thalès" },
+              { "value": "7,5" },
+              { "value": "18" }
+            ]
+          },
+          "expect": "mc:aire-k"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "196" },
+              { "value": "A" },
+              { "value": "0,75" },
+              { "value": "0,75" },
+              { "value": "oui", "justification": "les points sont alignés dans le même ordre et les rapports sont égaux, réciproque de Thalès" },
+              { "value": "7,5" },
+              { "value": "13,5" }
+            ]
+          },
+          "expect": "mc:carre-somme"
+        }
+      ]
+    },
+    {
+      "id": "m3-thales-bucheron",
+      "type": "composite",
+      "skill": "m3.thales.calcul",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:thales-inverse"],
+      "expectedSeconds": 720,
+      "prompt": "**La croix du bûcheron.** Pour estimer la hauteur d’un arbre, un bûcheron tient un bâton vertical $[PQ]$ à bout de bras, à la distance $OH$ de son œil $O$. Il recule jusqu’à voir le pied $K$ de l’arbre aligné avec $Q$, et le sommet $T$ aligné avec $P$. La droite horizontale qui passe par $O$ coupe le bâton en $H$ et l’arbre en $F$ ; le bâton et l’arbre sont verticaux. On admet que $PQ/TK$ = $OH/OF$ (deux applications du théorème de Thalès).",
+      "figure": {
+        "alt": "Le bûcheron, œil en O, tient un bâton vertical [PQ] ; les visées O-P-T et O-Q-K vont vers le sommet T et le pied K de l'arbre ; la droite horizontale passant par O coupe le bâton en H et l'arbre en F.",
+        "w": 330,
+        "h": 302,
+        "frame": { "x": [-1.5, 14], "y": [-1, 13] },
+        "caption": "La figure n’est pas à l’échelle.",
+        "items": [
+          { "type": "point", "id": "g1", "x": -1, "y": 0, "hidden": true },
+          { "type": "point", "id": "g2", "x": 13.5, "y": 0, "hidden": true },
+          { "type": "segment", "from": "g1", "to": "g2", "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": "O", "color": "gris", "width": 3 },
+          { "type": "segment", "from": "T", "to": "K", "color": "vert", "width": 4 },
+          { "type": "segment", "from": "P", "to": "Q", "color": "maths", "width": 3 },
+          { "type": "segment", "from": "O", "to": "T", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "O", "to": "K", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "O", "to": "F", "dashed": true },
+          { "type": "point", "id": "O", "x": 0, "y": 3, "pos": "nw" },
+          { "type": "point", "id": "H", "x": 4, "y": 3, "pos": "ne" },
+          { "type": "point", "id": "F", "x": 12, "y": 3, "pos": "e" },
+          { "type": "point", "id": "K", "x": 12, "y": 0, "pos": "se" },
+          { "type": "point", "id": "T", "x": 12, "y": 12, "pos": "ne" },
+          { "type": "point", "id": "P", "x": 4, "y": 6, "pos": "n" },
+          { "type": "point", "id": "Q", "x": 4, "y": 2, "pos": "s" },
+          { "type": "angle", "vertex": "F", "from": "O", "to": "T", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Le bâton mesure $PQ = 50$ cm, il est tenu à $OH = 60$ cm de l’œil, et le bûcheron est à $OF = 15$ m de l’arbre. Quelle est la hauteur $TK$ de l’arbre ? (en m)",
+          "answer": 12.5,
+          "misconceptions": [
+            {
+              "answer": 18,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Un rapport est à l’envers : écris $PQ/TK$ = $OH/OF$, avec les longueurs du « petit » triangle en haut."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Le bûcheron règle son bâton pour que $PQ = OH$. Explique pourquoi la hauteur de l’arbre est alors égale à sa distance $OF$ à l’arbre.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "J’utilise l’égalité $PQ/TK$ = $OH/OF$ (Thalès)", "keywords": [["thales", "pq/tk", "oh/of"]] },
+            {
+              "id": "c2",
+              "label": "Comme $PQ = OH$, le rapport $PQ/OH$ vaut 1 (ou : les produits en croix sont égaux)",
+              "keywords": [["egal", "egaux", "meme", "vaut 1", "produit en croix"]]
+            },
+            { "id": "c3", "label": "Je conclus : $TK = OF$", "keywords": [["tk = of", "tk=of", "hauteur"], ["distance"]] }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec un bâton de 40 cm tenu à 64 cm de l’œil, il veut viser une tour de 25 m. À quelle distance $OF$ de la tour doit-il se placer ? (en m)",
+          "answer": 40,
+          "misconceptions": [
+            {
+              "answer": 15.625,
+              "id": "mc:thales-inverse",
+              "error": "notion",
+              "feedback": "Le bâton est plus court que la distance $OH$ : le bûcheron doit donc être plus loin de la tour que la tour n’est haute. Vérifie le sens des rapports."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$PQ/TK$ = $OH/OF$ : remplace par les valeurs, en mètres.",
+        "$0,5/TK$ = $0,6/15$.",
+        "Si $PQ = OH$, les produits en croix donnent $PQ × OF = OH × TK$."
+      ],
+      "solution": "1) $0,5/TK$ = $0,6/15$, donc $TK = 0,5 × 15 ÷ 0,6 = 12,5$ m.\n2) $PQ/TK$ = $OH/OF$ donne $PQ × OF = OH × TK$ ; si $PQ = OH$, on peut simplifier : $OF = TK$. La distance à l’arbre est sa hauteur : il suffit de compter ses pas !\n3) $0,4/25$ = $0,64/OF$, donc $OF = 25 × 0,64 ÷ 0,4 = 40$ m.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "12,5" },
+              {
+                "text": "D'après Thalès PQ/TK = OH/OF. Comme PQ = OH, le rapport vaut 1 donc TK = OF : la hauteur est égale à la distance.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              },
+              { "value": "40" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "18" }, { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false, "c3": false } }, { "value": "40" }] },
+          "expect": "mc:thales-inverse"
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,8 @@ import { LEVELS as MASTERY, DAY } from '../../engine/mastery.js';
 import { validateBackup } from '../../storage/backup.js';
 import { ERROR_FAMILIES } from '../../core/errors.js';
 import { KIND_UI } from './today.js';
+import { computeGame } from '../../engine/game.js';
+import { speak, voiceFor, naturalVoicesAllowed, setNaturalVoicesAllowed } from '../speech.js';
 
 let unlocked = false;
 
@@ -70,6 +72,9 @@ async function renderDashboard(container, profileId) {
   if (!data) return;
   const now = store.now();
   const d = computeDashboard(store.index, data, now);
+  const g = computeGame(data.attempts, data.states.game, now);
+  const weekXp = g.week.reduce((a, x) => a + x.xp, 0);
+  const weekGoals = g.week.filter((x) => x.reached).length;
   const pending = data.submissions.filter((s) => s.status === 'en-attente');
   const p = data.profile;
   fill(container, 
@@ -81,6 +86,7 @@ async function renderDashboard(container, profileId) {
       h('div', { class: 'kpi' }, h('b', {}, d.totals.autonomyRate === null ? '—' : pct(d.totals.autonomyRate)), h('span', {}, 'réussites sans aide')),
       h('div', { class: 'kpi' }, h('b', {}, String(d.totals.delayed)), h('span', {}, 'réussites différées (mémoire)')),
       h('div', { class: 'kpi kpi--expert' }, h('b', {}, `${d.advanced.approfondissement.ok + d.advanced.expert.ok}`), h('span', {}, 'réussites facultatives ◆ ✦'))),
+    h('p', { class: 'small muted parent-game' }, `Régularité : objectif du jour (${g.goal} points) atteint ${weekGoals} jour${weekGoals > 1 ? 's' : ''} sur les 7 derniers, ${weekXp} points cette semaine, série en cours : ${g.streak} jour${g.streak > 1 ? 's' : ''}, niveau ${g.level} (${g.title}). Les points récompensent l’effort régulier et la réussite autonome ; la maîtrise des notions est mesurée à part, ci-dessous.`),
     h('section', { class: 'card' }, h('h2', {}, 'Exercices recommandés, et pourquoi'),
       d.recos.length ? h('ul', { class: 'err-list' }, d.recos.slice(0, 8).map((r) => h('li', {}, h('span', { class: 'chip chip--role' }, `${(KIND_UI[r.kind] || {}).icon || ''} ${(KIND_UI[r.kind] || {}).label || r.kind}`), h('span', {}, h('strong', {}, r.title), h('br'), h('span', { class: 'small muted' }, r.reasonParent))))) : h('p', { class: 'muted' }, 'Pas encore assez de traces.')),
     h('div', { class: 'grid grid--2' },
@@ -158,6 +164,21 @@ function dataSection(rerender) {
     msg);
 }
 
+async function voiceSection() {
+  const status = h('p', { class: 'small', 'aria-live': 'polite' });
+  const describe = async () => {
+    const v = await voiceFor('fr-FR');
+    status.textContent = v ? `Voix utilisée en français : ${v.name.replace(/ - .*$/, '')}${v.localService === false ? ' (en ligne)' : ' (installée sur l’ordinateur)'}.` : 'Aucune voix française disponible dans ce navigateur.';
+  };
+  const box = h('input', { type: 'checkbox', checked: naturalVoicesAllowed(), onchange: (e) => { setNaturalVoicesAllowed(e.target.checked); describe(); } });
+  describe();
+  return h('section', { class: 'card' }, h('h2', {}, 'Lecture à voix haute'),
+    h('label', { class: 'check-inline' }, box, ' ', 'Permettre les voix naturelles (en ligne)'),
+    h('p', { class: 'small muted' }, 'Par défaut, Prisme lit avec les voix installées sur l’ordinateur : rien ne quitte l’appareil, mais ces voix sont assez robotiques. Dans Microsoft Edge, les voix naturelles sont bien plus humaines, et lisent aussi l’anglais et l’espagnol sans rien installer. En cochant cette case, vous acceptez que le texte lu (énoncés, explications des expériences, dictées) soit envoyé au service de voix de Microsoft (ou de Google dans Chrome). Aucune réponse, aucun prénom ni résultat de l’enfant n’est envoyé. Sans connexion, Prisme revient de lui-même aux voix de l’ordinateur.'),
+    h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--small', onclick: () => speak('Bonjour ! Je vais te lire les explications des expériences. Prêt ? On commence.') }, '▶ Essayer la voix')),
+    status);
+}
+
 async function pinSection(rerender) {
   const has = await hasParentPin();
   const input = h('input', { class: 'field-input', type: 'password', inputmode: 'numeric', autocomplete: 'new-password', maxlength: 8, style: { maxWidth: '160px' }, 'aria-label': 'Nouveau code parent' });
@@ -192,7 +213,7 @@ export async function render(root) {
     root.append(tabBar, dash);
     await dashboardFor(dash, current);
   }
-  root.append(h('div', { class: 'grid', style: { marginTop: '24px' } }, dataSection(rerender), await pinSection(rerender)));
+  root.append(h('div', { class: 'grid', style: { marginTop: '24px' } }, dataSection(rerender), await voiceSection(), await pinSection(rerender)));
   return relock;
 }
 

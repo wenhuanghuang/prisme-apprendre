@@ -1,0 +1,3971 @@
+{
+ "id": "m6-algebre",
+ "chapter": "6e-m-algebre",
+ "title": "Pensée algébrique : schémas en barres et motifs évolutifs",
+ "subject": "maths",
+ "level": "6e",
+ "skills": [
+  "m6.algebre.barres",
+  "m6.algebre.motifs"
+ ],
+ "status": "programme",
+ "programmes": [
+  "maths-c3-2025"
+ ],
+ "duration": 55,
+ "summary": "Résoudre des problèmes sans lettres, en dessinant des schémas en barres (partie et tout, « fois plus », « de plus que »), puis découvrir la structure d'un motif qui grandit pour prévoir une étape lointaine ou retrouver une étape à l'envers.",
+ "sections": [
+  {
+   "kind": "decouverte",
+   "title": "Le défi de Léo et Zoé",
+   "body": "À eux deux, Léo et Zoé ont 36 billes. Zoé en a deux fois plus que Léo.\n\nCombien de billes chacun possède-t-il ?\n\nInutile de chercher au hasard : un simple dessin de barres suffit pour résoudre ce problème, sans aucune lettre. Et toi, saurais-tu le dessiner ?"
+  },
+  {
+   "kind": "cours",
+   "title": "Le cours en 5 cartes",
+   "cards": [
+    {
+     "emoji": "📊",
+     "title": "Le schéma en barres : la partie et le tout",
+     "body": "On dessine chaque quantité par une **barre**. Quand un tout est formé de deux parties, la barre du tout est aussi longue que les deux parties mises bout à bout. Si l'on connaît le tout et une partie, on trouve l'autre partie par une **soustraction** : ici, 45 − 28 = 17.",
+     "figure": {
+      "alt": "Schéma en barres : une barre « 45 (le tout) » au-dessus de deux barres mises bout à bout, « 28 » et « ? ».",
+      "w": 440,
+      "h": 140,
+      "frame": {
+       "x": [
+        -0.2,
+        9.2
+       ],
+       "y": [
+        -0.3,
+        2.9
+       ]
+      },
+      "items": [
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 1.6,
+        "w": 9,
+        "h": 1,
+        "label": "45 (le tout)"
+       },
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 5.6,
+        "h": 1,
+        "fill": "bleu",
+        "label": "28"
+       },
+       {
+        "type": "rect",
+        "x": 5.6,
+        "y": 0,
+        "w": 3.4,
+        "h": 1,
+        "fill": "orange",
+        "label": "?"
+       }
+      ]
+     }
+    },
+    {
+     "emoji": "✖️",
+     "title": "« Fois plus » : des barres identiques",
+     "body": "« Zoé a 2 fois plus de billes que Léo » : la barre de Zoé est faite de **2 barres** identiques à celle de Léo. Ensemble, ils ont 36 billes : cela fait **3 barres** égales. Une barre vaut 36 ÷ 3 = 12. Léo a 12 billes et Zoé 24.",
+     "figure": {
+      "alt": "Schéma en barres : une barre pour Léo, deux barres identiques pour Zoé, 36 billes en tout.",
+      "w": 460,
+      "h": 150,
+      "frame": {
+       "x": [
+        -1.8,
+        11.6
+       ],
+       "y": [
+        -0.3,
+        3.3
+       ]
+      },
+      "items": [
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 2,
+        "w": 2.5,
+        "h": 1,
+        "fill": "bleu",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 2.5,
+        "h": 1,
+        "fill": "orange",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 2.5,
+        "y": 0,
+        "w": 2.5,
+        "h": 1,
+        "fill": "orange",
+        "label": "?"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 2.5,
+        "text": "Léo",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 0.5,
+        "text": "Zoé",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": 7.9,
+        "y": 1.5,
+        "text": "36 billes en tout",
+        "anchor": "start",
+        "size": "s"
+       }
+      ]
+     },
+     "reveal": {
+      "question": "Devine : Zoé a 3 fois plus de billes que Léo, et ils en ont 40 à eux deux. Combien Léo en a-t-il ?",
+      "answer": "Il y a 4 barres égales pour 40 billes : une barre vaut 10. Léo a 10 billes et Zoé 30."
+     }
+    },
+    {
+     "emoji": "➕",
+     "title": "« De plus que » : un morceau en plus",
+     "body": "« Tom a 5 € de plus qu'Ana » : la barre de Tom est celle d'Ana, plus un **petit morceau** de 5 €. Ensemble, ils ont 25 €. On enlève d'abord le morceau : 25 − 5 = 20 € pour **2 barres égales**. Ana a 10 € et Tom 10 + 5 = 15 €.",
+     "figure": {
+      "alt": "Schéma en barres : une barre pour Ana ; pour Tom, la même barre plus un morceau de 5 € ; 25 € en tout.",
+      "w": 460,
+      "h": 150,
+      "frame": {
+       "x": [
+        -1.8,
+        11.6
+       ],
+       "y": [
+        -0.3,
+        3.3
+       ]
+      },
+      "items": [
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 2,
+        "w": 5,
+        "h": 1,
+        "fill": "bleu",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 5,
+        "h": 1,
+        "fill": "bleu",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 5,
+        "y": 0,
+        "w": 2,
+        "h": 1,
+        "fill": "orange",
+        "label": "5 €"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 2.5,
+        "text": "Ana",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 0.5,
+        "text": "Tom",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": 7.9,
+        "y": 1.5,
+        "text": "25 € en tout",
+        "anchor": "start",
+        "size": "s"
+       }
+      ]
+     }
+    },
+    {
+     "emoji": "🔺",
+     "title": "Un motif qui grandit",
+     "body": "Un **motif évolutif** est une suite de figures qui grandit selon une règle. Ici, chaque étape ajoute un carré, donc **3 allumettes**. Étape 1 : 4 allumettes ; étape 2 : 7 ; étape 3 : 10. La structure : **1 allumette de départ**, plus 3 allumettes par carré.",
+     "figure": {
+      "alt": "Motif en allumettes : 1 carré, puis 2 carrés accolés, puis 3 carrés accolés.",
+      "w": 460,
+      "h": 140,
+      "frame": {
+       "x": [
+        -0.4,
+        9.4
+       ],
+       "y": [
+        -0.9,
+        1.4
+       ]
+      },
+      "items": [
+       {
+        "type": "segment",
+        "from": [
+         0,
+         0
+        ],
+        "to": [
+         1,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         0,
+         1
+        ],
+        "to": [
+         1,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         0,
+         0
+        ],
+        "to": [
+         0,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         1,
+         0
+        ],
+        "to": [
+         1,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "text",
+        "x": 0.5,
+        "y": -0.5,
+        "text": "étape 1",
+        "size": "s"
+       },
+       {
+        "type": "segment",
+        "from": [
+         2.5,
+         0
+        ],
+        "to": [
+         3.5,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         2.5,
+         1
+        ],
+        "to": [
+         3.5,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         3.5,
+         0
+        ],
+        "to": [
+         4.5,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         3.5,
+         1
+        ],
+        "to": [
+         4.5,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         2.5,
+         0
+        ],
+        "to": [
+         2.5,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         3.5,
+         0
+        ],
+        "to": [
+         3.5,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         4.5,
+         0
+        ],
+        "to": [
+         4.5,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "text",
+        "x": 3.5,
+        "y": -0.5,
+        "text": "étape 2",
+        "size": "s"
+       },
+       {
+        "type": "segment",
+        "from": [
+         6,
+         0
+        ],
+        "to": [
+         7,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         6,
+         1
+        ],
+        "to": [
+         7,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         7,
+         0
+        ],
+        "to": [
+         8,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         7,
+         1
+        ],
+        "to": [
+         8,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         8,
+         0
+        ],
+        "to": [
+         9,
+         0
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         8,
+         1
+        ],
+        "to": [
+         9,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         6,
+         0
+        ],
+        "to": [
+         6,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         7,
+         0
+        ],
+        "to": [
+         7,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         8,
+         0
+        ],
+        "to": [
+         8,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "segment",
+        "from": [
+         9,
+         0
+        ],
+        "to": [
+         9,
+         1
+        ],
+        "color": "orange",
+        "width": 3
+       },
+       {
+        "type": "text",
+        "x": 7.5,
+        "y": -0.5,
+        "text": "étape 3",
+        "size": "s"
+       }
+      ]
+     }
+    },
+    {
+     "emoji": "🔍",
+     "title": "Aller loin sans tout dessiner",
+     "body": "Grâce à la structure, inutile de dessiner l'étape 10 : 1 + 3 × 10 = 31 allumettes. Et **à l'envers** : avec 61 allumettes, on enlève l'allumette de départ (il en reste 60), puis on cherche le nombre de carrés : 60 ÷ 3 = 20. C'est l'étape 20.",
+     "reveal": {
+      "question": "Devine : peut-on construire une étape de ce motif avec exactement 50 allumettes ?",
+      "answer": "Non : 50 − 1 = 49, et 49 n'est pas dans la table de 3. Aucune étape ne convient !"
+     }
+    }
+   ]
+  },
+  {
+   "kind": "exemple",
+   "title": "Exemple résolu : les cartes de Sami et Nina",
+   "steps": [
+    {
+     "text": "Énoncé : Sami et Nina ont 50 cartes à eux deux. Nina en a 8 de plus que Sami. Combien de cartes chacun a-t-il ?"
+    },
+    {
+     "text": "On dessine : une barre pour Sami ; pour Nina, la même barre plus un morceau de 8.",
+     "figure": {
+      "alt": "Schéma en barres : une barre pour Sami ; pour Nina, la même barre plus un morceau de 8 ; 50 cartes en tout.",
+      "w": 460,
+      "h": 150,
+      "frame": {
+       "x": [
+        -1.8,
+        11.6
+       ],
+       "y": [
+        -0.3,
+        3.3
+       ]
+      },
+      "items": [
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 2,
+        "w": 4,
+        "h": 1,
+        "fill": "bleu",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 1,
+        "fill": "bleu",
+        "label": "?"
+       },
+       {
+        "type": "rect",
+        "x": 4,
+        "y": 0,
+        "w": 1.5,
+        "h": 1,
+        "fill": "orange",
+        "label": "8"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 2.5,
+        "text": "Sami",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": -0.3,
+        "y": 0.5,
+        "text": "Nina",
+        "anchor": "end"
+       },
+       {
+        "type": "text",
+        "x": 7.9,
+        "y": 1.5,
+        "text": "50 cartes en tout",
+        "anchor": "start",
+        "size": "s"
+       }
+      ]
+     }
+    },
+    {
+     "text": "On enlève le morceau de 8 : il reste deux barres égales.",
+     "math": "50 − 8 = 42"
+    },
+    {
+     "text": "Une barre vaut la moitié de 42 :",
+     "math": "42 ÷ 2 = 21"
+    },
+    {
+     "text": "Sami a 21 cartes et Nina 21 + 8 = 29 cartes. Vérification : 21 + 29 = 50, et 29 − 21 = 8. Tout est juste !"
+    }
+   ]
+  },
+  {
+   "kind": "exercices",
+   "title": "Je m'entraîne",
+   "body": "Pour chaque problème, commence par dessiner les barres sur ton brouillon.",
+   "exercises": [
+    "m6-algebre-partie-tout",
+    "m6-algebre-fois-plus",
+    "m6-algebre-de-plus",
+    "m6-algebre-calculs",
+    "m6-algebre-allumettes",
+    "m6-algebre-croix"
+   ]
+  },
+  {
+   "kind": "libre",
+   "title": "Avec tes mots",
+   "exercises": [
+    "m6-algebre-expliquer"
+   ]
+  },
+  {
+   "kind": "reinvestissement",
+   "title": "Réfléchir et résoudre",
+   "exercises": [
+    "m6-algebre-chat-lapin",
+    "m6-algebre-etapes-possibles"
+   ]
+  },
+  {
+   "kind": "mission",
+   "title": "Mission : l'allée du jardin",
+   "body": "Le jardinier du collège pave une allée de dalles blanches, entourée d'une bordure de dalles grises. Aide-le à commander juste ce qu'il faut.",
+   "exercises": [
+    "m6-algebre-allee"
+   ]
+  },
+  {
+   "kind": "correction",
+   "title": "À retenir et erreurs fréquentes",
+   "body": "> **À retenir.** Un schéma en barres remplace les lettres : une barre par quantité inconnue, des barres identiques pour « fois plus », un morceau en plus pour « de plus que ». Dans un motif évolutif, on cherche ce qui reste fixe et ce qui s'ajoute à chaque étape, puis on calcule l'étape voulue sans tout dessiner.\n\n- **Oublier une barre.** « Zoé a 3 fois plus que Léo » : il y a 4 barres en tout, pas 3.\n- **Partager en parts égales trop tôt.** « Tom a 5 € de plus » : on enlève d'abord le morceau en plus.\n- **Croire le motif proportionnel.** L'étape 10 n'a pas 10 fois plus d'allumettes que l'étape 1 : les carrés partagent des côtés.\n- **Oublier l'élément de départ** quand on remonte à l'envers."
+  },
+  {
+   "kind": "revision",
+   "title": "Révision programmée",
+   "body": "Le moteur te reproposera des problèmes en barres et des motifs à prolonger dans quelques jours, avec d'autres nombres."
+  }
+ ],
+ "tracks": {
+  "approfondissement": {
+   "intro": "Une bande de triangles en allumettes, puis trois sœurs qui se partagent une somme avec deux conditions à la fois.",
+   "exercises": [
+    "m6-algebre-triangles",
+    "m6-algebre-trois-soeurs"
+   ]
+  },
+  "expert": {
+   "intro": "Facultatif : des billets de cinéma où chaque adulte paie un supplément, puis des carrés creux qui cachent une surprise.",
+   "exercises": [
+    "m6-algebre-billets",
+    "m6-algebre-carres-creux"
+   ]
+  }
+ },
+ "exercises": [
+  {
+   "id": "m6-algebre-partie-tout",
+   "type": "numeric",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 1,
+   "representation": "visuelle",
+   "targets": [
+    "mc:ajout-au-lieu-de-soustraire"
+   ],
+   "expectedSeconds": 90,
+   "params": {
+    "T": {
+     "choice": [
+      60,
+      80,
+      90,
+      120
+     ]
+    },
+    "p": {
+     "int": [
+      15,
+      50
+     ]
+    }
+   },
+   "constraints": [
+    "p <= T - 10"
+   ],
+   "prompt": "Une ficelle de {T} cm est coupée en deux morceaux. Le premier morceau mesure {p} cm. Combien mesure le second, en cm ? Le schéma t'aide.",
+   "figure": {
+    "alt": "Schéma en barres : la ficelle entière au-dessus ; en dessous, le premier morceau et le second morceau, inconnu, mis bout à bout.",
+    "w": 440,
+    "h": 140,
+    "frame": {
+     "x": [
+      -0.2,
+      10.2
+     ],
+     "y": [
+      -0.3,
+      2.9
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 1.6,
+      "w": 10,
+      "h": 1,
+      "label": "{T} cm"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": "{10*p/T}",
+      "h": 1,
+      "fill": "bleu",
+      "label": "{p} cm"
+     },
+     {
+      "type": "rect",
+      "x": "{10*p/T}",
+      "y": 0,
+      "w": "{10-10*p/T}",
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     }
+    ]
+   },
+   "answer": "T - p",
+   "misconceptions": [
+    {
+     "answer": "T + p",
+     "id": "mc:ajout-au-lieu-de-soustraire",
+     "error": "raisonnement",
+     "feedback": "Le second morceau est une partie de la ficelle : il est forcément plus court que la ficelle entière. Sur le schéma, quelle opération donne la partie manquante ?"
+    }
+   ],
+   "hints": [
+    "Sur le schéma, la barre du haut (le tout) est aussi longue que les deux morceaux réunis.",
+    "On connaît le tout et une partie : l'autre partie s'obtient par une soustraction.",
+    "Calcule {T} − {p}."
+   ],
+   "solution": "Le tout ({T} cm) est formé des deux morceaux. Second morceau : $ {T} − {p} = {T-p} $ cm. Vérification : $ {p} + {T-p} = {T} $.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "{T-p}"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "{T+p}"
+     },
+     "expect": "mc:ajout-au-lieu-de-soustraire"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-fois-plus",
+   "type": "composite",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "visuelle",
+   "targets": [
+    "mc:oubli-barre"
+   ],
+   "expectedSeconds": 150,
+   "params": {
+    "m": {
+     "int": [
+      6,
+      15
+     ]
+    }
+   },
+   "prompt": "Léo et Zoé ont {4*m} billes à eux deux. Zoé en a 3 fois plus que Léo.",
+   "figure": {
+    "alt": "Schéma en barres : une barre pour Léo, trois barres identiques pour Zoé, et le nombre total de billes.",
+    "w": 460,
+    "h": 150,
+    "frame": {
+     "x": [
+      -1.8,
+      11.6
+     ],
+     "y": [
+      -0.3,
+      3.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 2,
+      "w": 2.5,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 2.5,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 5.0,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 2.5,
+      "text": "Léo",
+      "anchor": "end"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 0.5,
+      "text": "Zoé",
+      "anchor": "end"
+     },
+     {
+      "type": "text",
+      "x": 7.9,
+      "y": 1.5,
+      "text": "{4*m} billes en tout",
+      "anchor": "start",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de barres identiques y a-t-il en tout sur le schéma ?",
+     "answer": 4,
+     "misconceptions": [
+      {
+       "answer": 3,
+       "id": "mc:oubli-barre",
+       "error": "lecture",
+       "feedback": "Tu as oublié une barre : compte toutes les barres, celles de Léo ET celles de Zoé."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de billes a Léo ?",
+     "answer": "m",
+     "misconceptions": [
+      {
+       "answer": "4*m/3",
+       "id": "mc:oubli-barre",
+       "error": "raisonnement",
+       "feedback": "Tu as partagé le total en autant de parts que Zoé a de barres. Mais le total est formé des barres de Zoé ET de celle de Léo."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de billes a Zoé ?",
+     "answer": "3*m"
+    }
+   ],
+   "hints": [
+    "Compte les barres : une pour Léo, trois pour Zoé.",
+    "Toutes les barres sont identiques : partage le total en parts égales.",
+    "Zoé a 3 barres."
+   ],
+   "solution": "Il y a 1 + 3 = 4 barres identiques pour {4*m} billes. Une barre vaut $ {4*m} ÷ 4 = {m} $ : Léo a {m} billes. Zoé a $ 3 × {m} = {3*m} $ billes. Vérification : $ {m} + {3*m} = {4*m} $.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "{m}"
+       },
+       {
+        "value": "{3*m}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "3"
+       },
+       {
+        "value": "{4*m/3}"
+       },
+       {
+        "value": "{3*m}"
+       }
+      ]
+     },
+     "expect": "mc:oubli-barre"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-de-plus",
+   "type": "composite",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "visuelle",
+   "targets": [
+    "mc:partage-egal",
+    "mc:ajout-au-lieu-de-soustraire",
+    "mc:sens-difference"
+   ],
+   "expectedSeconds": 180,
+   "params": {
+    "a": {
+     "int": [
+      8,
+      25
+     ]
+    },
+    "d": {
+     "int": [
+      3,
+      12
+     ]
+    }
+   },
+   "prompt": "Ana et Tom ont {2*a+d} € à eux deux. Tom a {d} € de plus qu'Ana.",
+   "figure": {
+    "alt": "Schéma en barres : une barre pour Ana ; pour Tom, la même barre plus un morceau ; et la somme totale.",
+    "w": 460,
+    "h": 150,
+    "frame": {
+     "x": [
+      -1.8,
+      11.6
+     ],
+     "y": [
+      -0.3,
+      3.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 2,
+      "w": 5,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 5,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 0,
+      "w": 2,
+      "h": 1,
+      "fill": "orange",
+      "label": "{d} €"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 2.5,
+      "text": "Ana",
+      "anchor": "end"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 0.5,
+      "text": "Tom",
+      "anchor": "end"
+     },
+     {
+      "type": "text",
+      "x": 7.9,
+      "y": 1.5,
+      "text": "{2*a+d} € en tout",
+      "anchor": "start",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Si l'on enlève le morceau de {d} € en plus de Tom, quelle somme reste-t-il pour les deux barres égales, en € ?",
+     "answer": "2*a",
+     "misconceptions": [
+      {
+       "answer": "2*a + 2*d",
+       "id": "mc:ajout-au-lieu-de-soustraire",
+       "error": "raisonnement",
+       "feedback": "Tu as ajouté le morceau au lieu de l'enlever. Sur le schéma, que reste-t-il quand on retire le morceau ?"
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien d'euros a Ana ?",
+     "answer": "a",
+     "misconceptions": [
+      {
+       "answer": "(2*a+d)/2",
+       "id": "mc:partage-egal",
+       "error": "raisonnement",
+       "feedback": "Tu as partagé le total en deux parts égales, mais Ana et Tom n'ont pas la même somme ! Enlève d'abord le morceau en plus."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien d'euros a Tom ?",
+     "answer": "a + d",
+     "misconceptions": [
+      {
+       "answer": "a - d",
+       "id": "mc:sens-difference",
+       "error": "lecture",
+       "feedback": "Relis l'énoncé : Tom a PLUS qu'Ana, pas moins."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Sur le schéma, la barre de Tom = la barre d'Ana + un morceau de {d} €.",
+    "Sans le morceau, il reste deux barres identiques.",
+    "Partage ce qui reste en deux, puis ajoute le morceau pour Tom."
+   ],
+   "solution": "On enlève le morceau : $ {2*a+d} − {d} = {2*a} $ € pour deux barres égales. Une barre : $ {2*a} ÷ 2 = {a} $ € : c'est la somme d'Ana. Tom : $ {a} + {d} = {a+d} $ €. Vérification : $ {a} + {a+d} = {2*a+d} $.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{2*a}"
+       },
+       {
+        "value": "{a}"
+       },
+       {
+        "value": "{a+d}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{2*a}"
+       },
+       {
+        "value": "{(2*a+d)/2}"
+       },
+       {
+        "value": "{a+d}"
+       }
+      ]
+     },
+     "expect": "mc:partage-egal"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-calculs",
+   "type": "match",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:oubli-barre",
+    "mc:partage-egal",
+    "mc:ajout-au-lieu-de-soustraire"
+   ],
+   "expectedSeconds": 240,
+   "prompt": "Pour chaque problème, dessine le schéma en barres dans ta tête (ou sur ton brouillon), puis choisis le calcul qui donne la quantité demandée.",
+   "leftTitle": "Problème",
+   "rightTitle": "Calcul qui le résout",
+   "left": [
+    {
+     "id": "l1",
+     "label": "Léo et Zoé ont 36 billes ; Zoé en a 3 fois plus que Léo. Combien Léo en a-t-il ?"
+    },
+    {
+     "id": "l2",
+     "label": "Ana et Tom ont 25 € ; Tom a 5 € de plus qu'Ana. Combien Ana a-t-elle ?"
+    },
+    {
+     "id": "l3",
+     "label": "Une ficelle de 60 cm est coupée en deux ; un morceau mesure 25 cm. Combien mesure l'autre ?"
+    },
+    {
+     "id": "l4",
+     "label": "Un chat pèse 3 fois plus qu'un lapin, et 4 kg de plus que lui. Combien pèse le lapin ?"
+    }
+   ],
+   "right": [
+    {
+     "id": "r1",
+     "label": "36 ÷ 4"
+    },
+    {
+     "id": "r2",
+     "label": "(25 − 5) ÷ 2"
+    },
+    {
+     "id": "r3",
+     "label": "60 − 25"
+    },
+    {
+     "id": "r4",
+     "label": "4 ÷ 2"
+    },
+    {
+     "id": "r5",
+     "label": "36 ÷ 3"
+    },
+    {
+     "id": "r6",
+     "label": "25 ÷ 2"
+    },
+    {
+     "id": "r7",
+     "label": "60 + 25"
+    },
+    {
+     "id": "r8",
+     "label": "4 ÷ 3"
+    }
+   ],
+   "pairs": {
+    "l1": "r1",
+    "l2": "r2",
+    "l3": "r3",
+    "l4": "r4"
+   },
+   "misconceptions": [
+    {
+     "pair": [
+      "l1",
+      "r5"
+     ],
+     "id": "mc:oubli-barre",
+     "error": "raisonnement",
+     "feedback": "Pour les billes, tu as oublié la barre de Léo : compte toutes les barres du schéma."
+    },
+    {
+     "pair": [
+      "l2",
+      "r6"
+     ],
+     "id": "mc:partage-egal",
+     "error": "raisonnement",
+     "feedback": "Pour Ana et Tom, tu as partagé en deux parts égales, mais Tom a un morceau en plus : enlève-le d'abord."
+    },
+    {
+     "pair": [
+      "l3",
+      "r7"
+     ],
+     "id": "mc:ajout-au-lieu-de-soustraire",
+     "error": "raisonnement",
+     "feedback": "Pour la ficelle, un morceau est plus court que la ficelle entière : l'addition ne convient pas."
+    },
+    {
+     "pair": [
+      "l4",
+      "r8"
+     ],
+     "id": "mc:oubli-barre",
+     "error": "raisonnement",
+     "feedback": "Pour le chat et le lapin, les 4 kg de différence correspondent seulement aux barres EN PLUS du chat."
+    }
+   ],
+   "hints": [
+    "« 3 fois plus » : la grande quantité est faite de 3 barres identiques à la petite.",
+    "« De plus que » : un morceau en plus, à enlever avant de partager.",
+    "Pour le chat : combien de barres le chat a-t-il de plus que le lapin ?"
+   ],
+   "solution": "Billes : 1 + 3 = 4 barres, donc 36 ÷ 4 = 9 billes pour Léo. Ana : on enlève les 5 € de plus, (25 − 5) ÷ 2 = 10 €. Ficelle : 60 − 25 = 35 cm. Chat : il a 2 barres de plus que le lapin, et ces 2 barres font 4 kg, donc 4 ÷ 2 = 2 kg pour le lapin.",
+   "selfTest": [
+    {
+     "response": {
+      "pairs": {
+       "l1": "r1",
+       "l2": "r2",
+       "l3": "r3",
+       "l4": "r4"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "pairs": {
+       "l1": "r5",
+       "l2": "r2",
+       "l3": "r3",
+       "l4": "r4"
+      }
+     },
+     "expect": "mc:oubli-barre"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-allumettes",
+   "type": "table",
+   "skill": "m6.algebre.motifs",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "visuelle",
+   "targets": [
+    "mc:proportionnel-a-tort",
+    "mc:oubli-depart"
+   ],
+   "expectedSeconds": 180,
+   "prompt": "Voici les trois premières étapes d'un motif en allumettes. Observe ce qui s'ajoute d'une étape à la suivante, puis complète le tableau.",
+   "figure": {
+    "alt": "Motif en allumettes : étape 1, un carré ; étape 2, deux carrés accolés ; étape 3, trois carrés accolés.",
+    "w": 460,
+    "h": 140,
+    "frame": {
+     "x": [
+      -0.4,
+      9.4
+     ],
+     "y": [
+      -0.9,
+      1.4
+     ]
+    },
+    "items": [
+     {
+      "type": "segment",
+      "from": [
+       0,
+       0
+      ],
+      "to": [
+       1,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       0,
+       1
+      ],
+      "to": [
+       1,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       0,
+       0
+      ],
+      "to": [
+       0,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       1,
+       0
+      ],
+      "to": [
+       1,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.5,
+      "text": "étape 1",
+      "size": "s"
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       0
+      ],
+      "to": [
+       3.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       1
+      ],
+      "to": [
+       3.5,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       3.5,
+       0
+      ],
+      "to": [
+       4.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       3.5,
+       1
+      ],
+      "to": [
+       4.5,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       0
+      ],
+      "to": [
+       2.5,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       3.5,
+       0
+      ],
+      "to": [
+       3.5,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       4.5,
+       0
+      ],
+      "to": [
+       4.5,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 3.5,
+      "y": -0.5,
+      "text": "étape 2",
+      "size": "s"
+     },
+     {
+      "type": "segment",
+      "from": [
+       6,
+       0
+      ],
+      "to": [
+       7,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       6,
+       1
+      ],
+      "to": [
+       7,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       7,
+       0
+      ],
+      "to": [
+       8,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       7,
+       1
+      ],
+      "to": [
+       8,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       8,
+       0
+      ],
+      "to": [
+       9,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       8,
+       1
+      ],
+      "to": [
+       9,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       6,
+       0
+      ],
+      "to": [
+       6,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       7,
+       0
+      ],
+      "to": [
+       7,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       8,
+       0
+      ],
+      "to": [
+       8,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       9,
+       0
+      ],
+      "to": [
+       9,
+       1
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 7.5,
+      "y": -0.5,
+      "text": "étape 3",
+      "size": "s"
+     }
+    ]
+   },
+   "columns": [
+    "Étape",
+    "Nombre d'allumettes"
+   ],
+   "rows": [
+    [
+     "1",
+     "4"
+    ],
+    [
+     "2",
+     "7"
+    ],
+    [
+     "3",
+     "10"
+    ],
+    [
+     "4",
+     "?r3c1"
+    ],
+    [
+     "5",
+     "?r4c1"
+    ],
+    [
+     "10",
+     "?r5c1"
+    ]
+   ],
+   "cells": {
+    "r3c1": {
+     "answer": 13,
+     "misconceptions": [
+      {
+       "answer": 16,
+       "id": "mc:proportionnel-a-tort",
+       "error": "notion",
+       "feedback": "Tu as compté 4 allumettes par carré. Mais un nouveau carré partage un côté avec le précédent : regarde combien d'allumettes s'ajoutent vraiment."
+      }
+     ]
+    },
+    "r4c1": {
+     "answer": 16
+    },
+    "r5c1": {
+     "answer": 31,
+     "misconceptions": [
+      {
+       "answer": 40,
+       "id": "mc:proportionnel-a-tort",
+       "error": "notion",
+       "feedback": "Tu as multiplié l'étape 1 par dix. Mais les carrés voisins partagent une allumette : le motif n'est pas proportionnel au numéro de l'étape."
+      },
+      {
+       "answer": 30,
+       "id": "mc:oubli-depart",
+       "error": "methode",
+       "feedback": "Tu as compté les allumettes ajoutées par chaque carré, mais oublié l'allumette du tout début, à gauche."
+      }
+     ]
+    }
+   },
+   "hints": [
+    "D'une étape à la suivante, combien d'allumettes ajoute-t-on ?",
+    "Chaque nouveau carré ajoute 3 allumettes (il réutilise un côté du carré précédent).",
+    "Structure : 1 allumette de départ, plus 3 allumettes par carré. À l'étape 10, il y a 10 carrés."
+   ],
+   "solution": "À chaque étape, on ajoute 3 allumettes : étape 4 : 13 ; étape 5 : 16. Structure : 1 allumette de départ + 3 allumettes par carré. Étape 10 : $1 + 3 × 10 = 31$ allumettes, et non 40 : les carrés voisins partagent un côté.",
+   "selfTest": [
+    {
+     "response": {
+      "cells": {
+       "r3c1": "13",
+       "r4c1": "16",
+       "r5c1": "31"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "cells": {
+       "r3c1": "13",
+       "r4c1": "16",
+       "r5c1": "40"
+      }
+     },
+     "expect": "mc:proportionnel-a-tort"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-croix",
+   "type": "composite",
+   "skill": "m6.algebre.motifs",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 3,
+   "representation": "visuelle",
+   "targets": [
+    "mc:proportionnel-a-tort",
+    "mc:oubli-centre",
+    "mc:confond-etape-ajout"
+   ],
+   "expectedSeconds": 240,
+   "prompt": "Voici un motif de croix en carreaux. Le carreau du centre est en orange.",
+   "figure": {
+    "alt": "Trois croix de carreaux de plus en plus grandes : un carreau orange au centre et quatre bras de carreaux bleus, qui s'allongent d'un carreau à chaque étape.",
+    "w": 520,
+    "h": 260,
+    "frame": {
+     "x": [
+      -0.5,
+      17.5
+     ],
+     "y": [
+      -1.3,
+      7.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "orange"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 2,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "text",
+      "x": 1.5,
+      "y": -0.7,
+      "text": "étape 1",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "orange"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 8,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 5,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "text",
+      "x": 6.5,
+      "y": -0.7,
+      "text": "étape 2",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "orange"
+     },
+     {
+      "type": "rect",
+      "x": 12,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 14,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 4,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 11,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 15,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 5,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 16,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 6,
+      "w": 1,
+      "h": 1,
+      "fill": "bleu"
+     },
+     {
+      "type": "text",
+      "x": 13.5,
+      "y": -0.7,
+      "text": "étape 3",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de carreaux s'ajoutent d'une étape à la suivante ?",
+     "answer": 4,
+     "misconceptions": [
+      {
+       "answer": 5,
+       "id": "mc:confond-etape-ajout",
+       "error": "lecture",
+       "feedback": "Ça, c'est le nombre de carreaux de la première étape. Compare deux étapes qui se suivent : combien de carreaux de plus ?"
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de carreaux faut-il pour l'étape 4 ?",
+     "answer": 17
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de carreaux faut-il pour l'étape 10 ?",
+     "answer": 41,
+     "misconceptions": [
+      {
+       "answer": 50,
+       "id": "mc:proportionnel-a-tort",
+       "error": "notion",
+       "feedback": "Tu as multiplié l'étape 1 par dix. Mais le carreau du centre ne se répète pas : regarde la structure, le centre plus les quatre bras."
+      },
+      {
+       "answer": 40,
+       "id": "mc:oubli-centre",
+       "error": "methode",
+       "feedback": "Tu as bien compté les quatre bras, mais oublié le carreau orange du centre."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Compare l'étape 1 et l'étape 2 : chaque bras s'allonge d'un carreau.",
+    "Structure : 1 carreau au centre, plus 4 bras. À l'étape 10, chaque bras a 10 carreaux.",
+    "Étape 10 : 1 + 4 × 10."
+   ],
+   "solution": "Chaque bras s'allonge d'un carreau : on ajoute 4 carreaux par étape (5, 9, 13, puis 17 à l'étape 4). Structure : 1 carreau au centre + 4 bras de n carreaux. Étape 10 : $1 + 4 × 10 = 41$ carreaux.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "17"
+       },
+       {
+        "value": "41"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "17"
+       },
+       {
+        "value": "50"
+       }
+      ]
+     },
+     "expect": "mc:proportionnel-a-tort"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-expliquer",
+   "type": "open",
+   "skill": "m6.algebre.motifs",
+   "track": "classe",
+   "role": "libre",
+   "difficulty": 3,
+   "representation": "verbale",
+   "targets": [
+    "mc:proportionnel-a-tort"
+   ],
+   "expectedSeconds": 300,
+   "minWords": 25,
+   "prompt": "Reprends le motif des carrés en allumettes (étape 1 : 4 allumettes ; étape 2 : 7 ; étape 3 : 10).\n\nExplique à un camarade comment trouver le nombre d'allumettes de l'étape 100, sans dessiner les 100 étapes. Donne le résultat.",
+   "criteria": [
+    {
+     "id": "c1",
+     "label": "J'explique que chaque nouveau carré ajoute 3 allumettes",
+     "keywords": [
+      [
+       "3 allumettes",
+       "trois allumettes",
+       "+ 3",
+       "+3",
+       "ajoute 3"
+      ]
+     ]
+    },
+    {
+     "id": "c2",
+     "label": "J'explique la structure : 1 allumette de départ plus 3 allumettes par carré",
+     "keywords": [
+      [
+       "1 +",
+       "1+",
+       "plus 1",
+       "+ 1",
+       "depart",
+       "premiere"
+      ]
+     ]
+    },
+    {
+     "id": "c3",
+     "label": "Je donne le résultat : 301 allumettes",
+     "keywords": [
+      [
+       "301"
+      ]
+     ]
+    }
+   ],
+   "models": [
+    "À chaque étape, on ajoute un carré qui utilise 3 nouvelles allumettes, car il partage un côté avec le carré d'avant. Il y a donc 1 allumette de départ, plus 3 allumettes par carré. À l'étape 100, il y a 100 carrés : 1 + 3 × 100 = 301 allumettes.",
+    "Je remarque que 4 = 1 + 3, 7 = 1 + 3 × 2 et 10 = 1 + 3 × 3. Pour l'étape 100, je fais donc 1 + 3 × 100 = 301 allumettes. Ce n'est pas 4 × 100 = 400, car les carrés partagent des côtés."
+   ],
+   "hints": [
+    "Que s'ajoute-t-il d'une étape à la suivante ?",
+    "Écris 4, 7 et 10 sous la forme 1 + 3 × … ."
+   ],
+   "solution": "Chaque nouveau carré ajoute 3 allumettes, car il réutilise un côté du carré précédent. Structure : 1 allumette de départ + 3 allumettes par carré. À l'étape 100, il y a 100 carrés : $1 + 3 × 100 = 301$ allumettes (et non 400).",
+   "selfTest": [
+    {
+     "response": {
+      "text": "Chaque carré ajoute 3 allumettes. Il y a 1 allumette au départ plus 3 par carré, donc pour l'étape 100 : 1 + 3 × 100 = 301 allumettes.",
+      "selfCheck": {
+       "c1": true,
+       "c2": true,
+       "c3": true
+      }
+     },
+     "expect": "a-valider"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-chat-lapin",
+   "type": "composite",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "reinvestissement",
+   "difficulty": 3,
+   "representation": "visuelle",
+   "targets": [
+    "mc:oubli-barre",
+    "mc:difference-total"
+   ],
+   "expectedSeconds": 240,
+   "params": {
+    "r": {
+     "int": [
+      2,
+      6
+     ]
+    }
+   },
+   "prompt": "Le chat Félix pèse 3 fois plus que le lapin Pompon. Félix pèse {2*r} kg de plus que Pompon. Combien pèse chacun ?",
+   "figure": {
+    "alt": "Schéma en barres : une barre pour le lapin Pompon ; trois barres identiques pour le chat Félix ; une flèche sous les deux dernières barres de Félix indique la différence de masse.",
+    "w": 440,
+    "h": 170,
+    "frame": {
+     "x": [
+      -2.4,
+      8.2
+     ],
+     "y": [
+      -1.1,
+      3.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 2,
+      "w": 2.5,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 2.5,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 0,
+      "w": 2.5,
+      "h": 1,
+      "fill": "orange",
+      "label": "?"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 2.5,
+      "text": "Pompon",
+      "anchor": "end"
+     },
+     {
+      "type": "text",
+      "x": -0.3,
+      "y": 0.5,
+      "text": "Félix",
+      "anchor": "end"
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       -0.25
+      ],
+      "to": [
+       7.5,
+       -0.25
+      ],
+      "arrows": "both"
+     },
+     {
+      "type": "text",
+      "x": 5,
+      "y": -0.7,
+      "text": "{2*r} kg de plus",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "La différence de masse correspond à combien de barres de Pompon ?",
+     "answer": 2,
+     "misconceptions": [
+      {
+       "answer": 3,
+       "id": "mc:oubli-barre",
+       "error": "lecture",
+       "feedback": "Compare les deux lignes du schéma : combien de barres Félix a-t-il EN PLUS de celles de Pompon ?"
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien pèse Pompon, en kg ?",
+     "answer": "r",
+     "misconceptions": [
+      {
+       "answer": "2*r/3",
+       "id": "mc:oubli-barre",
+       "error": "raisonnement",
+       "feedback": "Tu as partagé la différence en autant de parts que Félix a de barres. Mais la différence ne correspond qu'aux barres EN PLUS de Félix."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien pèse Félix, en kg ?",
+     "answer": "3*r",
+     "misconceptions": [
+      {
+       "answer": "2*r",
+       "id": "mc:difference-total",
+       "error": "lecture",
+       "feedback": "Ça, c'est la différence de masse entre les deux animaux, pas la masse de Félix."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Félix a 3 barres, Pompon 1 : Félix en a 2 de plus.",
+    "Ces barres en plus pèsent {2*r} kg en tout.",
+    "Une barre, c'est la masse de Pompon ; Félix, c'est 3 barres."
+   ],
+   "solution": "Félix a 3 barres et Pompon 1 : la différence, c'est 2 barres, qui pèsent {2*r} kg. Une barre pèse $ {2*r} ÷ 2 = {r} $ kg : Pompon pèse {r} kg. Félix pèse $ 3 × {r} = {3*r} $ kg. Vérification : $ {3*r} − {r} = {2*r} $.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "{r}"
+       },
+       {
+        "value": "{3*r}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "3"
+       },
+       {
+        "value": "{2*r/3}"
+       },
+       {
+        "value": "{3*r}"
+       }
+      ]
+     },
+     "expect": "mc:oubli-barre"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-etapes-possibles",
+   "type": "categorize",
+   "skill": "m6.algebre.motifs",
+   "track": "classe",
+   "role": "reinvestissement",
+   "difficulty": 3,
+   "representation": "symbolique",
+   "targets": [
+    "mc:oubli-depart",
+    "mc:table-de-trois"
+   ],
+   "expectedSeconds": 240,
+   "prompt": "Motif des carrés en allumettes : 1 allumette de départ, plus 3 allumettes par carré (étape 1 : 4 ; étape 2 : 7 ; étape 3 : 10…). Pour chaque nombre, existe-t-il une étape qui utilise exactement ce nombre d'allumettes ?",
+   "categories": [
+    {
+     "id": "oui",
+     "label": "Une étape existe"
+    },
+    {
+     "id": "non",
+     "label": "Aucune étape"
+    }
+   ],
+   "items": [
+    {
+     "id": "n1",
+     "label": "31 allumettes",
+     "category": "oui"
+    },
+    {
+     "id": "n2",
+     "label": "46 allumettes",
+     "category": "oui"
+    },
+    {
+     "id": "n3",
+     "label": "50 allumettes",
+     "category": "non"
+    },
+    {
+     "id": "n4",
+     "label": "61 allumettes",
+     "category": "oui"
+    },
+    {
+     "id": "n5",
+     "label": "75 allumettes",
+     "category": "non"
+    },
+    {
+     "id": "n6",
+     "label": "100 allumettes",
+     "category": "oui"
+    },
+    {
+     "id": "n7",
+     "label": "200 allumettes",
+     "category": "non"
+    },
+    {
+     "id": "n8",
+     "label": "301 allumettes",
+     "category": "oui"
+    }
+   ],
+   "misconceptions": [
+    {
+     "item": "n5",
+     "category": "oui",
+     "id": "mc:table-de-trois",
+     "error": "raisonnement",
+     "feedback": "Être dans la table de 3 ne suffit pas : que faut-il enlever d'abord au nombre d'allumettes ?"
+    },
+    {
+     "item": "n6",
+     "category": "non",
+     "id": "mc:oubli-depart",
+     "error": "methode",
+     "feedback": "Enlève d'abord l'allumette de départ, puis regarde si le nombre restant est dans la table de 3."
+    },
+    {
+     "item": "n1",
+     "category": "non",
+     "id": "mc:oubli-depart",
+     "error": "methode",
+     "feedback": "Enlève d'abord l'allumette de départ, puis regarde si le nombre restant est dans la table de 3."
+    }
+   ],
+   "hints": [
+    "Pour chaque nombre, enlève d'abord l'allumette de départ.",
+    "Le nombre restant doit être dans la table de 3 : il donne le nombre de carrés, donc l'étape.",
+    "Exemple : 31 − 1 = 30 = 3 × 10, c'est l'étape 10."
+   ],
+   "solution": "On enlève l'allumette de départ, puis on divise par 3. 31 → 30 → étape 10. 46 → 45 → étape 15. 61 → 60 → étape 20. 100 → 99 → étape 33. 301 → 300 → étape 100. En revanche, 50 → 49, 75 → 74 et 200 → 199 ne sont pas dans la table de 3 : aucune étape ne convient.",
+   "selfTest": [
+    {
+     "response": {
+      "assign": {
+       "n1": "oui",
+       "n2": "oui",
+       "n3": "non",
+       "n4": "oui",
+       "n5": "non",
+       "n6": "oui",
+       "n7": "non",
+       "n8": "oui"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "assign": {
+       "n1": "oui",
+       "n2": "oui",
+       "n3": "non",
+       "n4": "oui",
+       "n5": "oui",
+       "n6": "oui",
+       "n7": "non",
+       "n8": "oui"
+      }
+     },
+     "expect": "mc:table-de-trois"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-allee",
+   "type": "composite",
+   "skill": "m6.algebre.motifs",
+   "skills": [
+    "m6.algebre.barres"
+   ],
+   "track": "classe",
+   "role": "mission",
+   "difficulty": 3,
+   "representation": "concrete",
+   "targets": [
+    "mc:proportionnel-a-tort",
+    "mc:oubli-coins",
+    "mc:oubli-division"
+   ],
+   "expectedSeconds": 480,
+   "prompt": "À l'étape 1, l'allée compte 1 dalle blanche ; à l'étape 2, 2 dalles blanches ; et ainsi de suite. Chaque allée est entourée d'une bordure de dalles grises.",
+   "figure": {
+    "alt": "Trois allées de dalles blanches (1, puis 2, puis 3 dalles en ligne), chacune entourée d'une bordure de dalles grises.",
+    "w": 480,
+    "h": 160,
+    "frame": {
+     "x": [
+      -0.3,
+      14.3
+     ],
+     "y": [
+      -1.1,
+      3.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 2,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 2,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 2,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "text",
+      "x": 1.5,
+      "y": -0.6,
+      "text": "étape 1",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "text",
+      "x": 6.0,
+      "y": -0.6,
+      "text": "étape 2",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 9,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 9,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 11,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 11,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 12,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 12,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 9,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 13,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "gris"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "rect",
+      "x": 11,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "rect",
+      "x": 12,
+      "y": 1,
+      "w": 1,
+      "h": 1
+     },
+     {
+      "type": "text",
+      "x": 11.5,
+      "y": -0.6,
+      "text": "étape 3",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de dalles grises faut-il pour une allée de 4 dalles blanches ?",
+     "answer": 14
+    },
+    {
+     "type": "numeric",
+     "prompt": "Et pour une allée de 10 dalles blanches ?",
+     "answer": 26,
+     "misconceptions": [
+      {
+       "answer": 80,
+       "id": "mc:proportionnel-a-tort",
+       "error": "notion",
+       "feedback": "Tu as multiplié l'étape 1 par dix. Mais les dalles grises des deux bouts ne se répètent pas : regarde ce qui s'ajoute quand l'allée s'allonge d'une dalle."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Le jardinier a 50 dalles grises. Combien de dalles blanches peut-il entourer, au maximum ?",
+     "answer": 22,
+     "misconceptions": [
+      {
+       "answer": 25,
+       "id": "mc:oubli-coins",
+       "error": "methode",
+       "feedback": "Tu as oublié les dalles grises des deux bouts de l'allée : elles sont là quelle que soit la longueur."
+      },
+      {
+       "answer": 44,
+       "id": "mc:oubli-division",
+       "error": "methode",
+       "feedback": "Chaque dalle blanche de plus demande DEUX dalles grises : une au-dessus et une en dessous."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de dalles faut-il en tout (blanches et grises) pour cette allée ?",
+     "answer": 72
+    }
+   ],
+   "hints": [
+    "Compte les dalles grises aux étapes 1, 2 et 3 : que s'ajoute-t-il à chaque étape ?",
+    "Structure : une rangée grise au-dessus et une en dessous, chacune avec 2 dalles de plus que l'allée, plus 2 dalles aux bouts. Pour n dalles blanches : 2 × n + 6 dalles grises.",
+    "À l'envers : enlève les 6 dalles fixes, puis partage le reste en deux."
+   ],
+   "solution": "Les dalles grises : 8, 10, 12… On ajoute 2 dalles grises par dalle blanche. Structure : 6 dalles fixes (les deux bouts de chaque rangée et les deux dalles aux extrémités) + 2 par dalle blanche. 4 dalles blanches : $6 + 2 × 4 = 14$. 10 dalles blanches : $6 + 2 × 10 = 26$. Avec 50 dalles grises : $50 − 6 = 44$, puis $44 ÷ 2 = 22$ dalles blanches. En tout : $22 + 50 = 72$ dalles.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "14"
+       },
+       {
+        "value": "26"
+       },
+       {
+        "value": "22"
+       },
+       {
+        "value": "72"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "14"
+       },
+       {
+        "value": "26"
+       },
+       {
+        "value": "25"
+       },
+       {
+        "value": "75"
+       }
+      ]
+     },
+     "expect": "mc:oubli-coins"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-remed-barres",
+   "type": "numeric",
+   "skill": "m6.algebre.barres",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 1,
+   "representation": "visuelle",
+   "targets": [
+    "mc:soustraire-au-lieu-de-diviser"
+   ],
+   "expectedSeconds": 60,
+   "params": {
+    "m": {
+     "int": [
+      4,
+      15
+     ]
+    }
+   },
+   "prompt": "Rappel ciblé : sur ce schéma, 3 barres identiques valent {3*m} en tout. Combien vaut une barre ?",
+   "figure": {
+    "alt": "Trois barres identiques mises bout à bout, avec le total écrit au-dessus.",
+    "w": 380,
+    "h": 110,
+    "frame": {
+     "x": [
+      -0.2,
+      9.2
+     ],
+     "y": [
+      -0.3,
+      2
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 3,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 3,
+      "y": 0,
+      "w": 3,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "rect",
+      "x": 6,
+      "y": 0,
+      "w": 3,
+      "h": 1,
+      "fill": "bleu",
+      "label": "?"
+     },
+     {
+      "type": "text",
+      "x": 4.5,
+      "y": 1.5,
+      "text": "{3*m} en tout"
+     }
+    ]
+   },
+   "answer": "m",
+   "misconceptions": [
+    {
+     "answer": "3*m - 3",
+     "id": "mc:soustraire-au-lieu-de-diviser",
+     "error": "methode",
+     "feedback": "Les barres sont identiques : on PARTAGE le total en parts égales, on ne retire pas le nombre de barres."
+    }
+   ],
+   "hints": [
+    "Les 3 barres ont la même valeur.",
+    "Partage {3*m} en 3 parts égales."
+   ],
+   "solution": "Une barre vaut $ {3*m} ÷ 3 = {m} $. Vérification : $ 3 × {m} = {3*m} $.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "{m}"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "{3*m-3}"
+     },
+     "expect": "mc:soustraire-au-lieu-de-diviser"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-remed-envers",
+   "type": "numeric",
+   "skill": "m6.algebre.motifs",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 2,
+   "representation": "symbolique",
+   "targets": [
+    "mc:oubli-depart",
+    "mc:oubli-division"
+   ],
+   "expectedSeconds": 90,
+   "params": {
+    "k": {
+     "int": [
+      12,
+      40
+     ]
+    }
+   },
+   "prompt": "Rappel ciblé : dans le motif des carrés en allumettes (1 allumette de départ, plus 3 allumettes par carré), on remonte à l'étape en faisant le chemin inverse : on enlève l'allumette de départ, puis on cherche combien de fois 3. Quelle étape utilise exactement {3*k+1} allumettes ?",
+   "answer": "k",
+   "misconceptions": [
+    {
+     "answer": "(3*k+1)/3",
+     "id": "mc:oubli-depart",
+     "error": "methode",
+     "feedback": "Tu as divisé directement, sans enlever l'allumette du tout début : tu n'obtiens pas un nombre entier d'étapes."
+    },
+    {
+     "answer": "3*k",
+     "id": "mc:oubli-division",
+     "error": "methode",
+     "feedback": "Tu as bien enlevé l'allumette de départ, mais il reste à trouver le nombre de carrés : chaque carré ajoute 3 allumettes."
+    }
+   ],
+   "hints": [
+    "Enlève l'allumette de départ : {3*k+1} − 1.",
+    "Chaque carré compte 3 allumettes : divise par 3."
+   ],
+   "solution": "$ {3*k+1} − 1 = {3*k} $, puis $ {3*k} ÷ 3 = {k} $ : c'est l'étape {k}. Vérification : $ 1 + 3 × {k} = {3*k+1} $.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "{k}"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "{3*k}"
+     },
+     "expect": "mc:oubli-division"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-triangles",
+   "type": "composite",
+   "skill": "m6.algebre.motifs",
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 3,
+   "representation": "visuelle",
+   "targets": [
+    "mc:proportionnel-a-tort",
+    "mc:oubli-depart",
+    "mc:confond-etape-ajout"
+   ],
+   "expectedSeconds": 300,
+   "prompt": "Voici une bande de triangles en allumettes, qui s'allonge d'un triangle à chaque étape.",
+   "figure": {
+    "alt": "Trois bandes de triangles en allumettes : 1 triangle, puis 2 triangles accolés, puis 3 triangles accolés, pointes alternativement vers le haut et vers le bas.",
+    "w": 440,
+    "h": 150,
+    "frame": {
+     "x": [
+      -0.3,
+      6.8
+     ],
+     "y": [
+      -0.8,
+      1.2
+     ]
+    },
+    "items": [
+     {
+      "type": "segment",
+      "from": [
+       0,
+       0
+      ],
+      "to": [
+       1,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       0,
+       0
+      ],
+      "to": [
+       0.5,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       0.5,
+       0.866
+      ],
+      "to": [
+       1,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 0.5,
+      "y": -0.45,
+      "text": "étape 1",
+      "size": "s"
+     },
+     {
+      "type": "segment",
+      "from": [
+       2,
+       0
+      ],
+      "to": [
+       3,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       2,
+       0
+      ],
+      "to": [
+       2.5,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       0.866
+      ],
+      "to": [
+       3,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       2.5,
+       0.866
+      ],
+      "to": [
+       3.5,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       3,
+       0
+      ],
+      "to": [
+       3.5,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 2.75,
+      "y": -0.45,
+      "text": "étape 2",
+      "size": "s"
+     },
+     {
+      "type": "segment",
+      "from": [
+       4.5,
+       0
+      ],
+      "to": [
+       5.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       4.5,
+       0
+      ],
+      "to": [
+       5.0,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       5.0,
+       0.866
+      ],
+      "to": [
+       5.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       5.0,
+       0.866
+      ],
+      "to": [
+       6.0,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       5.5,
+       0
+      ],
+      "to": [
+       6.0,
+       0.866
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       5.5,
+       0
+      ],
+      "to": [
+       6.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "segment",
+      "from": [
+       6.0,
+       0.866
+      ],
+      "to": [
+       6.5,
+       0
+      ],
+      "color": "orange",
+      "width": 3
+     },
+     {
+      "type": "text",
+      "x": 5.5,
+      "y": -0.45,
+      "text": "étape 3",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien d'allumettes s'ajoutent d'une étape à la suivante ?",
+     "answer": 2,
+     "misconceptions": [
+      {
+       "answer": 3,
+       "id": "mc:confond-etape-ajout",
+       "error": "lecture",
+       "feedback": "Ça, c'est le nombre d'allumettes d'un triangle seul. Mais chaque nouveau triangle partage un côté avec le précédent."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien d'allumettes faut-il pour l'étape 10 ?",
+     "answer": 21,
+     "misconceptions": [
+      {
+       "answer": 30,
+       "id": "mc:proportionnel-a-tort",
+       "error": "notion",
+       "feedback": "Tu as compté chaque triangle avec toutes ses allumettes, comme s'ils étaient séparés. Mais deux triangles voisins partagent une allumette."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Question à l'envers : quelle étape utilise exactement 101 allumettes ?",
+     "answer": 50,
+     "misconceptions": [
+      {
+       "answer": 50.5,
+       "id": "mc:oubli-depart",
+       "error": "methode",
+       "feedback": "Tu as divisé directement, sans enlever l'allumette du tout début : tu n'obtiens pas un nombre entier d'étapes."
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "prompt": "Peut-on construire une étape avec exactement 60 allumettes ? Réponds par oui ou par non.",
+     "accept": [
+      "non"
+     ],
+     "misconceptions": [
+      {
+       "answer": "oui",
+       "id": "mc:parite",
+       "error": "raisonnement",
+       "feedback": "Regarde la suite des nombres d'allumettes : sont-ils pairs ou impairs ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Étape 1 : 3 allumettes ; étape 2 : 5 ; étape 3 : 7.",
+    "Structure : 1 allumette de départ, plus 2 allumettes par triangle.",
+    "À l'envers : enlève 1, puis divise par 2."
+   ],
+   "solution": "On ajoute 2 allumettes par triangle : 3, 5, 7… Structure : 1 allumette de départ + 2 par triangle. Étape 10 : $1 + 2 × 10 = 21$. Pour 101 allumettes : $101 − 1 = 100$, puis $100 ÷ 2 = 50$ : étape 50. Tous ces nombres sont impairs (1 plus un nombre pair) : 60, nombre pair, est impossible.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "21"
+       },
+       {
+        "value": "50"
+       },
+       {
+        "value": "non"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "30"
+       },
+       {
+        "value": "50"
+       },
+       {
+        "value": "non"
+       }
+      ]
+     },
+     "expect": "mc:proportionnel-a-tort"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-trois-soeurs",
+   "type": "composite",
+   "skill": "m6.algebre.barres",
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "concrete",
+   "targets": [
+    "mc:partage-egal",
+    "mc:une-barre-par-personne"
+   ],
+   "expectedSeconds": 420,
+   "params": {
+    "m": {
+     "int": [
+      6,
+      20
+     ]
+    },
+    "d": {
+     "int": [
+      2,
+      9
+     ]
+    }
+   },
+   "prompt": "Mia, Léa et Zoé se partagent {5*m+d} €. Léa reçoit 2 fois plus que Mia, et Zoé reçoit {d} € de plus que Léa. Dessine d'abord le schéma en barres sur ton brouillon !",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Ton schéma compte combien de barres identiques à celle de Mia, en tout ?",
+     "answer": 5,
+     "misconceptions": [
+      {
+       "answer": 3,
+       "id": "mc:une-barre-par-personne",
+       "error": "raisonnement",
+       "feedback": "Une barre par personne ne suffit pas : Léa reçoit plusieurs fois la part de Mia, et Zoé autant que Léa plus un morceau."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien reçoit Mia, en € ?",
+     "answer": "m",
+     "misconceptions": [
+      {
+       "answer": "(5*m+d)/3",
+       "id": "mc:partage-egal",
+       "error": "raisonnement",
+       "feedback": "Tu as partagé la somme en trois parts égales, mais les trois sœurs ne reçoivent pas la même somme."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien reçoit Léa, en € ?",
+     "answer": "2*m"
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien reçoit Zoé, en € ?",
+     "answer": "2*m + d"
+    }
+   ],
+   "hints": [
+    "Mia : 1 barre. Léa : 2 barres. Zoé : 2 barres et un morceau de {d} €.",
+    "Enlève le morceau de {d} € : il reste {5*m} € pour les barres identiques.",
+    "Partage ce reste entre toutes les barres."
+   ],
+   "solution": "Mia : 1 barre ; Léa : 2 barres ; Zoé : 2 barres + {d} €. Cela fait 5 barres et un morceau. On enlève le morceau : $ {5*m+d} − {d} = {5*m} $ €, donc une barre vaut $ {5*m} ÷ 5 = {m} $ €. Mia reçoit {m} €, Léa {2*m} € et Zoé $ {2*m} + {d} = {2*m+d} $ €. Vérification : $ {m} + {2*m} + {2*m+d} = {5*m+d} $.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "5"
+       },
+       {
+        "value": "{m}"
+       },
+       {
+        "value": "{2*m}"
+       },
+       {
+        "value": "{2*m+d}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "3"
+       },
+       {
+        "value": "{m}"
+       },
+       {
+        "value": "{2*m}"
+       },
+       {
+        "value": "{2*m+d}"
+       }
+      ]
+     },
+     "expect": "mc:une-barre-par-personne"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-billets",
+   "type": "composite",
+   "skill": "m6.algebre.barres",
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "concrete",
+   "targets": [
+    "mc:supplement-une-fois",
+    "mc:partage-egal"
+   ],
+   "expectedSeconds": 420,
+   "params": {
+    "e": {
+     "int": [
+      5,
+      9
+     ]
+    },
+    "d": {
+     "int": [
+      2,
+      5
+     ]
+    }
+   },
+   "prompt": "Au cinéma, un billet adulte coûte {d} € de plus qu'un billet enfant. Une famille de 2 adultes et 3 enfants paie {5*e+2*d} € en tout.",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Si les deux adultes payaient le prix enfant, combien la famille paierait-elle, en € ?",
+     "answer": "5*e",
+     "misconceptions": [
+      {
+       "answer": "5*e + d",
+       "id": "mc:supplement-une-fois",
+       "error": "raisonnement",
+       "feedback": "Il y a DEUX adultes : chacun paie le supplément. Enlève-le autant de fois qu'il y a d'adultes."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien coûte un billet enfant, en € ?",
+     "answer": "e",
+     "misconceptions": [
+      {
+       "answer": "(5*e+2*d)/5",
+       "id": "mc:partage-egal",
+       "error": "raisonnement",
+       "feedback": "Tu as partagé le total en parts égales, mais les billets adultes coûtent plus cher : enlève d'abord les suppléments."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien coûte un billet adulte, en € ?",
+     "answer": "e + d"
+    },
+    {
+     "type": "numeric",
+     "prompt": "Une autre famille, avec 1 adulte et 4 enfants, va voir le même film. Combien paie-t-elle, en € ?",
+     "answer": "5*e + d"
+    }
+   ],
+   "hints": [
+    "Dessine 5 barres « billet enfant » ; deux d'entre elles ont un morceau de {d} € en plus.",
+    "Enlève les deux morceaux : {5*e+2*d} − 2 × {d}.",
+    "Il reste 5 barres identiques : partage."
+   ],
+   "solution": "Sans les suppléments : $ {5*e+2*d} − 2 × {d} = {5*e} $ € pour 5 billets enfant. Un billet enfant : $ {5*e} ÷ 5 = {e} $ €. Un billet adulte : $ {e} + {d} = {e+d} $ €. Vérification : $ 2 × {e+d} + 3 × {e} = {5*e+2*d} $. L'autre famille : $ {e+d} + 4 × {e} = {5*e+d} $ €.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{5*e}"
+       },
+       {
+        "value": "{e}"
+       },
+       {
+        "value": "{e+d}"
+       },
+       {
+        "value": "{5*e+d}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{5*e+d}"
+       },
+       {
+        "value": "{e}"
+       },
+       {
+        "value": "{e+d}"
+       },
+       {
+        "value": "{5*e+d}"
+       }
+      ]
+     },
+     "expect": "mc:supplement-une-fois"
+    }
+   ]
+  },
+  {
+   "id": "m6-algebre-carres-creux",
+   "type": "composite",
+   "skill": "m6.algebre.motifs",
+   "skills": [
+    "m6.proportionnalite.reconnaitre"
+   ],
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 5,
+   "representation": "visuelle",
+   "targets": [
+    "mc:coins-comptes-deux-fois",
+    "mc:cote-trou",
+    "mc:jamais-proportionnel"
+   ],
+   "expectedSeconds": 540,
+   "prompt": "Voici un motif de carrés creux. À l'étape 1, c'est un carré plein de 2 carreaux sur 2 ; ensuite, on ne garde que le tour d'un carré de plus en plus grand.",
+   "figure": {
+    "alt": "Trois bordures carrées de carreaux de plus en plus grandes : un carré plein de 2 carreaux sur 2, puis le tour d'un carré de 3 sur 3, puis le tour d'un carré de 4 sur 4.",
+    "w": 440,
+    "h": 180,
+    "frame": {
+     "x": [
+      -0.3,
+      11.3
+     ],
+     "y": [
+      -1.1,
+      4.3
+     ]
+    },
+    "items": [
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 0,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 1,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "text",
+      "x": 1.0,
+      "y": -0.6,
+      "text": "étape 1",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 3,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 3,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 3,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 4,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 5,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "text",
+      "x": 4.5,
+      "y": -0.6,
+      "text": "étape 2",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 7,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 8,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 8,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 9,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 9,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 2,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 10,
+      "y": 3,
+      "w": 1,
+      "h": 1,
+      "fill": "violet"
+     },
+     {
+      "type": "text",
+      "x": 9.0,
+      "y": -0.6,
+      "text": "étape 3",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de carreaux faut-il pour l'étape 10 ?",
+     "answer": 40,
+     "misconceptions": [
+      {
+       "answer": 44,
+       "id": "mc:coins-comptes-deux-fois",
+       "error": "methode",
+       "feedback": "Tu as compté chaque côté en entier : les carreaux des coins sont alors comptés deux fois."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Question à l'envers : quelle étape utilise exactement 100 carreaux ?",
+     "answer": 25,
+     "misconceptions": [
+      {
+       "answer": 24,
+       "id": "mc:coins-comptes-deux-fois",
+       "error": "methode",
+       "feedback": "Vérifie en recalculant le nombre de carreaux de l'étape que tu proposes : retrouves-tu le bon total ?"
+      }
+     ]
+    },
+    {
+     "type": "text",
+     "prompt": "Le nombre de carreaux est-il proportionnel au numéro de l'étape ? Réponds par oui ou par non.",
+     "accept": [
+      "oui"
+     ],
+     "misconceptions": [
+      {
+       "answer": "non",
+       "id": "mc:jamais-proportionnel",
+       "error": "raisonnement",
+       "feedback": "Calcule les carreaux de l'étape 2 et de l'étape 4 : le double de l'étape donne-t-il le double de carreaux ? Vérifie avec d'autres étapes."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "À l'étape 10, combien de carreaux faudrait-il pour boucher le trou du milieu ?",
+     "answer": 81,
+     "misconceptions": [
+      {
+       "answer": 100,
+       "id": "mc:cote-trou",
+       "error": "raisonnement",
+       "feedback": "Le trou est plus petit que le grand carré : son côté n'est pas égal au numéro de l'étape. Compte les carreaux sur le côté du trou aux étapes 2 et 3."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Étape 1 : 4 carreaux ; étape 2 : 8 ; étape 3 : 12. Que s'ajoute-t-il ?",
+    "À l'étape n, le grand carré a n + 1 carreaux de côté, et le trou n − 1 carreaux de côté.",
+    "Étape 10 : un grand carré de 11 sur 11 avec un trou de 9 sur 9."
+   ],
+   "solution": "On ajoute 4 carreaux par étape : 4, 8, 12… À l'étape n, il y a 4 × n carreaux : 40 à l'étape 10, et 100 carreaux à l'étape 25. Surprise : ce motif EST proportionnel (on multiplie toujours le numéro par 4 ; l'étape 2 en a 8, l'étape 4 en a 16). À l'étape 10, le grand carré fait 11 carreaux de côté et le trou 9 : il faudrait $9 × 9 = 81$ carreaux pour le boucher. Vérification : $11 × 11 − 81 = 121 − 81 = 40$.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "40"
+       },
+       {
+        "value": "25"
+       },
+       {
+        "value": "oui"
+       },
+       {
+        "value": "81"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "44"
+       },
+       {
+        "value": "25"
+       },
+       {
+        "value": "oui"
+       },
+       {
+        "value": "81"
+       }
+      ]
+     },
+     "expect": "mc:coins-comptes-deux-fois"
+    }
+   ]
+  }
+ ]
+}

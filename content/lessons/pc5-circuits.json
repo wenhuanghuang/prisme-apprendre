@@ -721,7 +721,7 @@
           },
           {
             "title": "Lire l’intensité",
-            "text": "On ferme l’interrupteur : la lampe s’allume. L’ampèremètre affiche 0,24 A, soit 240 mA. Un calibre de 200 mA serait trop petit : l’appareil afficherait « 1 » ou « OL ».",
+            "text": "On ferme l’interrupteur : la lampe s’allume et l’ampèremètre affiche l’intensité du courant. Un calibre de 200 mA serait trop petit : l’appareil afficherait « 1 » ou « OL ».",
             "duration": 3,
             "do": [
               {
@@ -775,7 +775,15 @@
             ],
             "focus": [
               "MA"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis l’ampèremètre : quelle est l’intensité du courant ?",
+              "answer": 0.24,
+              "tolerance": 0,
+              "unit": "A",
+              "explain": "L’écran du multimètre affiche 0,24 A, soit 240 mA. C’est plus que 200 mA : voilà pourquoi un calibre de 200 mA serait trop petit."
+            }
           },
           {
             "title": "Prévois !",
@@ -791,7 +799,7 @@
           },
           {
             "title": "Brancher le voltmètre",
-            "text": "On retire l’ampèremètre et on rebranche le fil. Le multimètre, réglé en voltmètre, est relié aux deux bornes de la lampe : V du côté de la borne + du générateur, COM du côté de la borne −. Il affiche 5,98 V, environ 6,0 V.",
+            "text": "On retire l’ampèremètre et on rebranche le fil. Le multimètre, réglé en voltmètre, est relié aux deux bornes de la lampe : V du côté de la borne + du générateur, COM du côté de la borne −.",
             "duration": 3,
             "hide": [
               "MA",
@@ -822,7 +830,15 @@
             ],
             "focus": [
               "MV"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le voltmètre : quelle est la tension aux bornes de la lampe ?",
+              "answer": 5.98,
+              "tolerance": 0,
+              "unit": "V",
+              "explain": "L’écran du multimètre affiche 5,98 V, environ 6,0 V : presque toute la tension du générateur se retrouve aux bornes de la lampe."
+            }
           },
           {
             "title": "Prévois !",
@@ -891,6 +907,21 @@
               "MV",
               "eK"
             ]
+          },
+          {
+            "title": "Deux branchements différents",
+            "text": "L’ampèremètre était placé dans la boucle ; le voltmètre, aux bornes de la lampe.",
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi l’ampèremètre doit-il être branché en série, dans la boucle ?",
+              "choices": [
+                "Pour protéger la lampe d’un courant trop fort",
+                "Parce qu’il compare deux points du circuit",
+                "Parce qu’il mesure le courant qui le traverse : le courant du circuit doit passer par lui"
+              ],
+              "answer": 2,
+              "explain": "Un ampèremètre mesure le courant qui passe à travers lui, comme un compteur d’eau placé sur un tuyau : il doit être dans la boucle. C’est le voltmètre qui compare deux points : il se branche en dérivation."
+            }
           }
         ],
         "conclusion": "L’**ampèremètre** se branche **en série** (il est traversé par le courant) et mesure l’intensité en ampères ; le **voltmètre** se branche **en dérivation** (aux bornes d’un dipôle) et mesure la tension en volts. On commence toujours par le plus grand calibre."
@@ -1499,7 +1530,7 @@
               "answer": 0.0045,
               "id": "mc:conversion-inverse",
               "error": "unite",
-              "feedback": "Des volts en millivolts, on multiplie par 1 000 : 4,5 V = 4 500 mV."
+              "feedback": "Des volts en millivolts, on multiplie par 1 000 : le millivolt est plus petit, il en faut plus."
             }
           ]
         }
@@ -1591,7 +1622,7 @@
               "answer": "x",
               "id": "mc:conversion-oubliee",
               "error": "unite",
-              "feedback": "Sur le calibre 200 mA, l'écran affiche des milliampères : {x} mA = {x/1000} A."
+              "feedback": "Sur le calibre 200 mA, l'écran affiche des milliampères : convertis en ampères (1 A = 1 000 mA)."
             }
           ]
         },
@@ -1700,7 +1731,11 @@
             "ampoule",
             "la lampe (filament cassé)",
             "le filament de la lampe",
-            "le filament"
+            "le filament",
+            "c'est la lampe",
+            "la lampe est grillée",
+            "la lampe grillée",
+            "l'ampoule est grillée"
           ],
           "misconceptions": [
             {
@@ -1915,7 +1950,7 @@
               "answer": "A",
               "id": "mc:unites-confusion",
               "error": "unite",
-              "feedback": "A (ampère) est l'unité d'intensité. La tension se mesure en volts : V."
+              "feedback": "A (ampère) est l'unité d'intensité, pas de tension. Relis la carte « Intensité et tension »."
             }
           ]
         }
@@ -2001,7 +2036,7 @@
               "answer": "I",
               "id": "mc:conversion-oubliee",
               "error": "unite",
-              "feedback": "{I} mm, c'est {I/1000} m ; de même, {I} mA = {I/1000} A. Le nombre change avec l'unité."
+              "feedback": "Pour passer des millimètres aux mètres, on divise par 1 000 ; c'est pareil des milliampères aux ampères. Le nombre change avec l'unité."
             },
             {
               "answer": "I*1000",
@@ -2081,7 +2116,7 @@
         },
         {
           "id": "e2",
-          "label": "Régler le multimètre en ampèremètre (A), sur le plus grand calibre"
+          "label": "Circuit ouvert, régler le multimètre en ampèremètre (A), sur le plus grand calibre"
         },
         {
           "id": "e3",
@@ -2224,7 +2259,7 @@
               "answer": 0,
               "id": "mc:tension-sans-courant",
               "error": "notion",
-              "feedback": "Une tension peut exister sans courant ! Interrupteur ouvert, on retrouve toute la tension du générateur à ses bornes : {U} V."
+              "feedback": "Une tension peut exister sans courant ! Interrupteur ouvert, toute la tension du générateur se retrouve à ses bornes, comme dans l'expérience."
             }
           ]
         }
@@ -2306,7 +2341,7 @@
               "answer": "verte",
               "id": "mc:del-sens",
               "error": "notion",
-              "feedback": "C'est la patte longue qui doit être du côté de la borne + : c'est le cas de la rouge."
+              "feedback": "C'est la patte longue qui doit être du côté de la borne + : vérifie, pour chaque DEL, quelle patte est reliée au +."
             }
           ]
         },
@@ -2325,7 +2360,7 @@
               "answer": "rouge",
               "id": "mc:del-sens",
               "error": "notion",
-              "feedback": "En retournant la pile, le sens du courant s'inverse : c'est maintenant la verte qui est dans le sens passant."
+              "feedback": "En retournant la pile, le sens du courant s'inverse dans tout le circuit : la DEL qui était dans le sens passant ne l'est plus."
             }
           ]
         },
@@ -2341,7 +2376,7 @@
               "answer": 20,
               "id": "mc:conversion-oubliee",
               "error": "unite",
-              "feedback": "20 mA = 20 ÷ 1 000 = 0,020 A."
+              "feedback": "20 est la valeur en milliampères : pour l'exprimer en ampères, on divise par 1 000."
             }
           ]
         },
@@ -2476,7 +2511,7 @@
               "answer": 35.2,
               "id": "mc:conversion-oubliee",
               "error": "unite",
-              "feedback": "Sur le calibre 200 mA, l'affichage est en milliampères : 35,2 mA = 0,0352 A."
+              "feedback": "Sur le calibre 200 mA, l'affichage est en milliampères : convertis en ampères (1 A = 1 000 mA)."
             }
           ]
         }
@@ -2582,7 +2617,7 @@
               "answer": 0.23,
               "id": "mc:conversion-oubliee",
               "error": "unite",
-              "feedback": "230 ÷ 1 000 = 0,23 A, c'est-à-dire 230 mA."
+              "feedback": "0,23 est l'intensité en ampères ; la question la demande en milliampères (1 A = 1 000 mA)."
             }
           ]
         },
@@ -2590,7 +2625,7 @@
           "type": "numeric",
           "prompt": "Combien de fois le seuil de danger de 30 mA cette intensité représente-t-elle ? (un nombre, au dixième près)",
           "answer": "230/30",
-          "rel": 0.03
+          "tolerance": 0.1
         },
         {
           "type": "open",
@@ -2743,13 +2778,13 @@
               "answer": "autant",
               "id": "mc:courant-fixe",
               "error": "raisonnement",
-              "feedback": "Avant, la tension de la pile se partageait entre L1 et L2. Maintenant, L1 la reçoit en entier : le courant augmente, L1 brille davantage."
+              "feedback": "Avant, la tension de la pile se partageait entre L1 et L2. Maintenant, L1 la reçoit en entier : le courant dans le circuit n'est plus le même."
             },
             {
               "answer": "moins",
               "id": "mc:courant-fixe",
               "error": "raisonnement",
-              "feedback": "Il n'y a plus qu'une lampe à traverser : le courant augmente et L1 brille davantage."
+              "feedback": "Il n'y a plus qu'une lampe à traverser au lieu de deux : réfléchis à ce que devient le courant dans le circuit."
             }
           ]
         },

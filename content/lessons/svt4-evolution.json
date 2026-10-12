@@ -1595,7 +1595,15 @@
             ],
             "focus": [
               "oiseau"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le tableau : combien de phalènes sombres ont survécu sur le tronc clair ?",
+              "answer": 3,
+              "tolerance": 0,
+              "unit": "phalènes",
+              "explain": "Ligne « Tronc clair », colonne « Sombres » : 3. Sur 10 phalènes sombres, l'oiseau en a mangé 7, contre seulement 2 claires."
+            }
           },
           {
             "title": "Les troncs noircissent",
@@ -1942,7 +1950,18 @@
             ],
             "focus": [
               "oiseau"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Sur le tronc noir, quelles phalènes l'oiseau a-t-il surtout mangées ?",
+              "choices": [
+                "Les sombres, comme sur le tronc clair",
+                "Autant de claires que de sombres",
+                "Les claires, qui se voient bien sur le fond noir"
+              ],
+              "answer": 2,
+              "explain": "Cette fois, ce sont les claires qui disparaissent : il en reste 3, contre 8 sombres. L'oiseau mange celles qu'il voit le mieux."
+            }
           },
           {
             "title": "Générations suivantes",
@@ -2020,6 +2039,24 @@
               ],
               "answer": 1,
               "explain": "La couleur est héréditaire et ne change pas pendant la vie. Le milieu trie : les sombres survivent plus, se reproduisent plus, et leur proportion augmente de génération en génération."
+            }
+          },
+          {
+            "title": "Comprendre le mécanisme",
+            "text": "Récapitulons ce que montre la simulation, génération après génération, sur des troncs noircis par la suie.",
+            "focus": [
+              "gen"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi la part de phalènes sombres augmente-t-elle à chaque génération ?",
+              "choices": [
+                "La suie des usines noircit les ailes des phalènes claires",
+                "Les sombres survivent plus souvent et transmettent leur couleur sombre à leurs descendants",
+                "Les phalènes claires deviennent sombres pour échapper aux oiseaux"
+              ],
+              "answer": 1,
+              "explain": "C'est la sélection naturelle : le milieu ne transforme pas les phalènes, il favorise celles qui sont déjà camouflées. Leur couleur, héréditaire, devient plus fréquente."
             }
           }
         ],
@@ -2308,19 +2345,19 @@
               "answer": "salamandre",
               "id": "mc:caractere-oublie",
               "error": "lecture",
-              "feedback": "La salamandre partage 3 caractères avec la souris, le lézard en partage 4 (il a aussi l'amnios) : c'est lui le plus proche."
+              "feedback": "La salamandre partage 3 caractères avec la souris. Compte maintenant ceux que le lézard et la truite partagent avec elle, puis compare."
             },
             {
               "answer": "la salamandre",
               "id": "mc:caractere-oublie",
               "error": "lecture",
-              "feedback": "La salamandre partage 3 caractères avec la souris, le lézard en partage 4 (il a aussi l'amnios) : c'est lui le plus proche."
+              "feedback": "La salamandre partage 3 caractères avec la souris. Compte maintenant ceux que le lézard et la truite partagent avec elle, puis compare."
             },
             {
               "answer": "truite",
               "id": "mc:milieu-parente",
               "error": "raisonnement",
-              "feedback": "La truite ne partage que deux caractères avec la souris (colonne vertébrale, squelette osseux). Le lézard en partage quatre."
+              "feedback": "La truite ne partage que deux caractères avec la souris (colonne vertébrale, squelette osseux). Compte ceux que chacun des deux autres animaux partage avec elle, puis compare."
             }
           ]
         }
@@ -2772,13 +2809,13 @@
               "answer": "salamandre",
               "id": "mc:lecture-noeud",
               "error": "lecture",
-              "feedback": "Remonte depuis la souris : le premier ancêtre rencontré (D) est commun avec le lézard. L'ancêtre commun avec la salamandre (C) est plus ancien."
+              "feedback": "Remonte depuis la souris et note les ancêtres communs dans l'ordre où tu les rencontres : le premier est le plus récent. Avec quel animal est-il partagé ?"
             },
             {
               "answer": "la salamandre",
               "id": "mc:lecture-noeud",
               "error": "lecture",
-              "feedback": "Remonte depuis la souris : le premier ancêtre rencontré (D) est commun avec le lézard. L'ancêtre commun avec la salamandre (C) est plus ancien."
+              "feedback": "Remonte depuis la souris et note les ancêtres communs dans l'ordre où tu les rencontres : le premier est le plus récent. Avec quel animal est-il partagé ?"
             }
           ]
         },
@@ -2818,7 +2855,7 @@
               "category": "vrai",
               "id": "mc:ancetre-espece-actuelle",
               "error": "notion",
-              "feedback": "Le requin et la truite sont deux espèces actuelles. Elles ont un ancêtre commun disparu (l'ancêtre B ou A selon la comparaison), qui n'était ni l'une ni l'autre."
+              "feedback": "Le requin et la truite sont deux espèces actuelles. Elles ont un ancêtre commun disparu (l'ancêtre A de l'arbre), qui n'était ni l'une ni l'autre."
             },
             {
               "item": "i3",
@@ -3324,7 +3361,7 @@
               "answer": 40,
               "id": "mc:categorie-confondue",
               "error": "lecture",
-              "feedback": "40 est le nombre de phalènes claires à la génération 3. On demande la part des sombres : 60 sur 100."
+              "feedback": "40 est le nombre de phalènes claires à la génération 3. On demande la part des sombres : repars du nombre de phalènes sombres."
             }
           ]
         },
@@ -3337,7 +3374,7 @@
               "answer": 700,
               "id": "mc:points-pourcentage",
               "error": "methode",
-              "feedback": "700 % est l'augmentation relative du nombre de sombres (80 contre 10). On demande l'écart entre les deux pourcentages : 80 % − 10 %, soit 70 points."
+              "feedback": "700 % est l'augmentation relative du nombre de sombres (80 contre 10). On demande l'écart entre les deux pourcentages de sombres, exprimé en points : soustrais-les."
             }
           ]
         },
@@ -3723,7 +3760,7 @@
               "answer": 24,
               "id": "mc:part-depart",
               "error": "raisonnement",
-              "feedback": "La génération 1 compte 100 phalènes dans les mêmes proportions que les survivantes de la génération 0 : 60 % de sombres, soit 60 sombres."
+              "feedback": "La génération 1 compte 100 phalènes dans les mêmes proportions que les survivantes de la génération 0 : reprends le pourcentage de sombres que tu viens de calculer pour ces survivantes."
             }
           ]
         },
@@ -4659,7 +4696,7 @@
               "answer": 7,
               "id": "mc:absence-partagee",
               "error": "raisonnement",
-              "feedback": "Tu as compté tous les caractères. Seuls comptent ceux que les deux animaux possèdent : colonne vertébrale, corps fuselé, nageoire dorsale, vie dans l'eau."
+              "feedback": "Tu as compté tous les caractères. Seuls comptent ceux que les deux animaux possèdent à la fois (un 1 dans les deux lignes du tableau)."
             }
           ]
         },
@@ -4672,7 +4709,7 @@
               "answer": 3,
               "id": "mc:caractere-oublie",
               "error": "lecture",
-              "feedback": "Tu as oublié un caractère : colonne vertébrale, poils, mamelles et poumons, soit 4."
+              "feedback": "Tu as oublié un caractère : compare le dauphin et le chat caractère par caractère, sans en sauter."
             }
           ]
         },
@@ -4750,13 +4787,13 @@
               "answer": "requin",
               "id": "mc:convergence-parente",
               "error": "raisonnement",
-              "feedback": "En ne gardant que les caractères hérités, le dauphin partage 4 caractères avec le chat (colonne vertébrale, poils, mamelles, poumons) et 1 seul avec le requin. Les ressemblances de forme viennent de la vie dans l'eau."
+              "feedback": "En ne gardant que les caractères hérités, compte ceux que le dauphin partage avec le chat, puis avec le requin. Les ressemblances de forme viennent de la vie dans l'eau."
             },
             {
               "answer": "le requin",
               "id": "mc:convergence-parente",
               "error": "raisonnement",
-              "feedback": "En ne gardant que les caractères hérités, le dauphin partage 4 caractères avec le chat et 1 seul avec le requin."
+              "feedback": "En ne gardant que les caractères hérités, compte ceux que le dauphin partage avec le chat, puis avec le requin."
             }
           ]
         }
@@ -4980,7 +5017,7 @@
               "answer": 9,
               "id": "mc:comptage-erreur",
               "error": "lecture",
-              "feedback": "9 est le nombre de bases identiques. On compte les bases différentes : seule la 9e position change (A contre T)."
+              "feedback": "9 est le nombre de bases identiques. On compte les bases différentes : repère les positions où les deux lettres ne sont pas les mêmes."
             }
           ]
         },
@@ -4993,7 +5030,7 @@
               "answer": 8,
               "id": "mc:comptage-erreur",
               "error": "lecture",
-              "feedback": "8 est le nombre de bases identiques. On compte les bases différentes : les positions 1 (A contre T) et 7 (T contre C)."
+              "feedback": "8 est le nombre de bases identiques. On compte les bases différentes : repère les positions où les deux lettres ne sont pas les mêmes."
             }
           ]
         },
@@ -5010,13 +5047,13 @@
               "answer": "a",
               "id": "mc:comptage-erreur",
               "error": "lecture",
-              "feedback": "A et D diffèrent par 6 bases, C et D par seulement 2 : c'est C la plus proche."
+              "feedback": "A et D diffèrent par 6 bases. Compte les différences entre D et chacune des deux autres espèces, puis compare."
             },
             {
               "answer": "b",
               "id": "mc:comptage-erreur",
               "error": "lecture",
-              "feedback": "B et D diffèrent par 5 bases, C et D par seulement 2 : c'est C la plus proche."
+              "feedback": "B et D diffèrent par 5 bases. Compte les différences entre D et chacune des deux autres espèces, puis compare."
             }
           ]
         },

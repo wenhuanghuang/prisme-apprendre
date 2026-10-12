@@ -21,7 +21,7 @@
     {
       "kind": "decouverte",
       "title": "Même mot, deux idées",
-      "body": "Lundi, ton appli météo annonce « averses et 14 °C ». Mais tu entends aussi : « À Valcour, il pleut toute l'année et les étés sont doux. »\n\nLes deux phrases parlent du temps qu'il fait, et pourtant elles ne disent pas la même chose : l'une peut être fausse demain, l'autre reste vraie pendant des dizaines d'années. Laquelle décrit la météo, laquelle décrit le climat ?"
+      "body": "Lundi, ton appli météo annonce « averses et 14 °C ». Mais tu entends aussi, à propos de Valcour (une ville imaginaire) : « Il y pleut toute l'année et les étés sont doux. »\n\nLes deux phrases parlent du temps qu'il fait, et pourtant elles ne disent pas la même chose : l'une peut être fausse demain, l'autre reste vraie pendant des dizaines d'années. Laquelle décrit la météo, laquelle décrit le climat ?"
     },
     {
       "kind": "experience",
@@ -453,7 +453,15 @@
             "focus": [
               "th",
               "abri"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la température affichée par le thermomètre de l'abri.",
+              "answer": 24,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur relié au thermomètre indique 24 °C : c'est la température de l'air à ce moment-là, à l'ombre de l'abri."
+            }
           },
           {
             "title": "Prédire",
@@ -771,11 +779,22 @@
             ],
             "focus": [
               "gj"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde la courbe de juillet. Comment varie la température d'un jour à l'autre ?",
+              "choices": [
+                "Elle monte et descend autour de la moyenne du mois, de 17 °C à 29 °C.",
+                "Elle reste égale à 20,6 °C tous les jours.",
+                "Elle monte régulièrement du 1er au 31 juillet."
+              ],
+              "answer": 0,
+              "explain": "La courbe passe au-dessus et au-dessous de la ligne en pointillés (20,6 °C) : un jour isolé peut être bien plus frais ou bien plus chaud que la moyenne du mois."
+            }
           },
           {
             "title": "Cinq années de juillet",
-            "text": "On recommence les années suivantes. Les moyennes de juillet sont 19,8 °C, 21,4 °C, 20,6 °C, 18,2 °C et 20,0 °C. D'une année à l'autre, elles changent : un juillet isolé peut être plus frais ou plus chaud que d'habitude.",
+            "text": "On recommence sur cinq années de suite. Les moyennes de juillet sont 19,8 °C, 21,4 °C, 20,6 °C, 18,2 °C et 20,0 °C. D'une année à l'autre, elles changent : un juillet isolé peut être plus frais ou plus chaud que d'habitude.",
             "duration": 5.6,
             "hide": [
               "pied1",
@@ -842,7 +861,15 @@
             ],
             "focus": [
               "ga"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis dans le tableau la moyenne de juillet la plus basse des cinq années.",
+              "answer": 18.2,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "Ligne « année 4 » du tableau : 18,2 °C, le juillet le plus frais des cinq. Le plus chaud était celui de l'année 2 (21,4 °C)."
+            }
           },
           {
             "title": "La moyenne et la normale",
@@ -885,7 +912,18 @@
             ],
             "focus": [
               "tab"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi calcule-t-on la normale sur 30 années plutôt que sur une seule ?",
+              "choices": [
+                "Sur beaucoup d'années, les juillets trop chauds et trop frais se compensent : la moyenne décrit mieux le climat habituel.",
+                "Parce qu'un thermomètre ne dure que 30 ans.",
+                "Parce que le climat change complètement tous les 30 ans."
+              ],
+              "answer": 0,
+              "explain": "Une seule année peut être exceptionnelle. Sur 30 ans, les écarts dans un sens et dans l'autre se compensent : la normale représente le temps habituel du mois."
+            }
           },
           {
             "title": "Un écart à la normale",
@@ -2417,7 +2455,7 @@
           "answer": 10,
           "id": "mc:climat-dix-ans",
           "error": "notion",
-          "feedback": "Dix ans, c'est mieux qu'un an, mais la durée de référence retenue internationalement est de 30 ans."
+          "feedback": "Dix ans, c'est mieux qu'un an, mais ce n'est pas encore assez : la durée de référence retenue internationalement est plus longue."
         }
       ],
       "hints": [
@@ -2573,7 +2611,7 @@
               "answer": 2.5,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "Écart = observée − normale = 2,0 − 4,5. Janvier a été plus froid que d'habitude : l'écart est négatif, −2,5 °C."
+              "feedback": "Écart = observée − normale = 2,0 − 4,5. Janvier a été plus froid que d'habitude : l'écart est négatif."
             },
             {
               "answer": 6.5,
@@ -2603,7 +2641,7 @@
               "answer": -2.4,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "Écart = observée − normale = 22,9 − 20,5 = +2,4 °C : un juillet plus chaud que la normale."
+              "feedback": "Écart = observée − normale = 22,9 − 20,5. Un juillet plus chaud que la normale donne un écart positif."
             }
           ]
         },
@@ -3753,7 +3791,7 @@
               "answer": 5.5,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "Écart = valeur observée − normale : −1,0 − 4,5 = −5,5. Le signe négatif dit que ce janvier est plus froid que la normale."
+              "feedback": "Écart = valeur observée − normale, dans cet ordre. Un écart négatif dit que ce janvier est plus froid que la normale : refais la soustraction avec −1,0 et 4,5."
             },
             {
               "answer": -1,

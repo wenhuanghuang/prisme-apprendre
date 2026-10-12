@@ -589,11 +589,20 @@
             ],
             "show": [
               "bille"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le chronomètre : combien de temps la bille a-t-elle mis pour aller de la 1re à la 5e position ?",
+              "answer": 0.4,
+              "tolerance": 0,
+              "unit": "s",
+              "explain": "Le chronomètre affiche 0,4 s : entre la 1re et la 5e position, il y a 4 intervalles de 0,1 s."
+            }
           },
           {
             "title": "Prévois !",
             "ask": {
+              "kind": "observer",
               "question": "Comment est le mouvement de la bille sur la table ?",
               "choices": [
                 "Rectiligne uniforme",
@@ -606,7 +615,7 @@
           },
           {
             "title": "Dans la pente",
-            "text": "Le chronomètre repart de zéro pour la pente. La bille avance toujours en ligne droite, mais les écarts augmentent : 3,5 cm, puis 4,5 cm, 5,5 cm et 6,5 cm. Elle parcourt de plus en plus de distance en 0,1 s : son mouvement est **accéléré**.",
+            "text": "Le chronomètre repart de zéro pour la pente. La bille avance toujours en ligne droite. Compare les écarts entre ses positions successives.",
             "duration": 3.6,
             "do": [
               {
@@ -721,7 +730,18 @@
             ],
             "focus": [
               "e2"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Dans la pente, comment est le mouvement de la bille ?",
+              "choices": [
+                "Rectiligne uniforme",
+                "Rectiligne ralenti",
+                "Rectiligne accéléré"
+              ],
+              "answer": 2,
+              "explain": "Les écarts augmentent (3,5 cm, puis 4,5 cm, 5,5 cm et 6,5 cm) pendant des durées égales de 0,1 s : la bille parcourt de plus en plus de distance. Son mouvement est **accéléré**."
+            }
           },
           {
             "title": "Sur le tapis",
@@ -941,7 +961,18 @@
           },
           {
             "title": "Ce qu’on a appris",
-            "text": "Un même mouvement se décrit différemment selon le référentiel. Pour décrire un mouvement, on précise donc toujours le référentiel, puis la trajectoire et l’évolution de la vitesse."
+            "text": "Un même mouvement se décrit différemment selon le référentiel. Pour décrire un mouvement, on précise donc toujours le référentiel, puis la trajectoire et l’évolution de la vitesse.",
+            "ask": {
+              "kind": "expliquer",
+              "question": "Tu es assis dans un train qui roule. Es-tu en mouvement ?",
+              "choices": [
+                "Non, puisque je ne bouge pas de mon siège",
+                "Oui, puisque le train roule",
+                "Cela dépend du référentiel : immobile par rapport au train, en mouvement par rapport aux rails"
+              ],
+              "answer": 2,
+              "explain": "C’est comme la bille filmée depuis le chariot : par rapport au train, tu es immobile ; par rapport aux rails ou au quai, tu te déplaces avec le train."
+            }
           }
         ],
         "conclusion": "Une chronophotographie donne la trajectoire et la nature du mouvement : écarts égaux → **uniforme** ; écarts croissants → **accéléré** ; écarts décroissants → **ralenti**. Il faut toujours préciser le **référentiel** : la même bille est en mouvement par rapport à la table et immobile par rapport au chariot."
@@ -1417,7 +1448,7 @@
               "answer": "accéléré",
               "id": "mc:positions-ecarts",
               "error": "notion",
-              "feedback": "Les positions augmentent toujours quand l'objet avance. Regarde les ÉCARTS entre deux positions successives : ils sont tous égaux."
+              "feedback": "Les positions augmentent toujours quand l'objet avance. Calcule plutôt les ÉCARTS entre deux positions successives, et compare-les."
             }
           ]
         },
@@ -1671,7 +1702,7 @@
               "answer": "accéléré",
               "id": "mc:positions-ecarts",
               "error": "notion",
-              "feedback": "Ce sont les écarts qui comptent : 1,0 m à chaque intervalle de 0,5 s, ils sont égaux."
+              "feedback": "Ce sont les écarts qui comptent, pas les positions : calcule-les pendant les 2 premières secondes et compare-les."
             }
           ]
         },
@@ -1690,7 +1721,7 @@
               "answer": "accéléré",
               "id": "mc:positions-ecarts",
               "error": "notion",
-              "feedback": "Les positions augmentent encore, mais les écarts diminuent : 0,8 m ; 0,6 m ; 0,4 m ; 0,2 m. La vitesse diminue."
+              "feedback": "Les positions augmentent encore, mais ce sont les écarts qui comptent : calcule-les à la fin du trajet et regarde comment ils évoluent."
             }
           ]
         },
@@ -2049,7 +2080,7 @@
               "answer": "accéléré",
               "id": "mc:positions-ecarts",
               "error": "notion",
-              "feedback": "Les écarts sont tous égaux : la voiture parcourt la même distance pendant chaque intervalle. Sa vitesse est constante."
+              "feedback": "Regarde tes écarts : ils sont tous égaux, la voiture parcourt la même distance pendant chaque intervalle. Quel mot désigne un mouvement à vitesse constante ?"
             }
           ]
         }
@@ -2140,7 +2171,7 @@
           "answer": "e/dt",
           "id": "mc:cm-m",
           "error": "unite",
-          "feedback": "Tu as obtenu une vitesse en centimètres par seconde ({e/dt} cm/s), mais tu as écrit m/s. Convertis d'abord la distance : {e} cm = {e/100} m."
+          "feedback": "Ton nombre est une vitesse en centimètres par seconde, mais tu as écrit m/s. Convertis d'abord la distance en mètres (1 m = 100 cm)."
         },
         {
           "answer": "dt/(e/100)",
@@ -2309,7 +2340,7 @@
               "answer": "rectiligne",
               "id": "mc:referentiel-trajectoire",
               "error": "notion",
-              "feedback": "Par rapport au cadre, la roue ne fait que tourner autour de son axe : la valve décrit un cercle."
+              "feedback": "Par rapport au cadre, la roue ne fait que tourner autour de son axe : imagine la trace laissée par la valve pendant un tour."
             }
           ]
         },
@@ -2457,7 +2488,7 @@
               "answer": 0.4,
               "id": "mc:minutes-heures",
               "error": "unite",
-              "feedback": "12 / 30 = 0,4 : ce sont des kilomètres par MINUTE. En une heure (60 min), le bus parcourrait 60 × 0,4 = 24 km."
+              "feedback": "12 / 30 = 0,4 : ce sont des kilomètres par MINUTE. Pour obtenir des km/h, exprime d'abord la durée en heures."
             },
             {
               "answer": 50,
@@ -2735,7 +2766,7 @@
               "answer": "curviligne",
               "id": "mc:referentiel-trajectoire",
               "error": "notion",
-              "feedback": "Pour Sami, la balle monte et redescend à la verticale de sa main : trajectoire rectiligne. La courbe, c'est ce que voit Ana."
+              "feedback": "Pour Sami, la balle monte et redescend à la verticale de sa main, sans s'écarter. La courbe, c'est ce que voit Ana."
             }
           ]
         },

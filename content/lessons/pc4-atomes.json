@@ -218,7 +218,15 @@
               { "id": "b3", "to": { "bubbles": 0.2 }, "at": 5, "dur": 2 },
               { "id": "tab", "set": { "shown": 2 }, "at": 6.7 }
             ],
-            "focus": ["bal"]
+            "focus": ["bal"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la balance à la fin de l'effervescence.",
+              "answer": 148.9,
+              "tolerance": 0,
+              "unit": "g",
+              "explain": "L'écran de la balance affiche 148,9 g, soit 1,1 g de moins qu'au début (150,0 g)."
+            }
           },
           {
             "title": "Identifier le gaz",
@@ -235,7 +243,14 @@
           {
             "title": "La leçon de Lavoisier",
             "text": "En récipient fermé, la masse ne change jamais. La masse « perdue » dans le bécher ouvert est celle du dioxyde de carbone qui s'est échappé dans l'air. Lavoisier l'a établi au XVIIIe siècle grâce à des pesées très précises.",
-            "focus": ["tab"]
+            "focus": ["tab"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Avec le bécher ouvert, la balance a perdu 1,1 g. Pourquoi ?",
+              "choices": ["Des atomes ont disparu pendant la transformation", "Le bicarbonate s'est dissous, et ce qui est dissous n'a plus de masse", "Du dioxyde de carbone s'est formé et s'est échappé dans l'air"],
+              "answer": 2,
+              "explain": "Aucun atome ne disparaît. Le dioxyde de carbone formé a quitté le bécher ouvert en emportant sa masse : en récipient fermé, la balance indiquerait toujours 150,0 g."
+            }
           }
         ],
         "conclusion": "Lors d'une transformation chimique, les atomes se réarrangent sans disparaître : la masse totale se conserve. Si la masse semble diminuer, c'est qu'un gaz s'est échappé d'un récipient ouvert."
@@ -372,7 +387,14 @@
               { "id": "g6", "to": { "opacity": 1 }, "at": 2.6999999999999997, "dur": 0.6 },
               { "id": "g7", "to": { "opacity": 1 }, "at": 3.05, "dur": 0.6 }
             ],
-            "focus": ["verre"]
+            "focus": ["verre"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi fallait-il un verre bien sec au départ ?",
+              "choices": ["Pour que le verre ne se casse pas à la chaleur", "Pour être sûr que l'eau observée a été formée par la combustion", "Pour que la flamme reste bleue"],
+              "answer": 1,
+              "explain": "Si le verre avait déjà été mouillé, on ne pourrait pas savoir d'où vient l'eau. Sec au départ, il montre que l'eau est apparue pendant la combustion."
+            }
           },
           {
             "title": "Le test de l'eau de chaux",
@@ -380,7 +402,14 @@
             "duration": 5,
             "show": ["flGaz"],
             "do": [{ "id": "flGaz", "to": { "progress": 1 }, "at": 0, "dur": 1.5 }, { "id": "chaux", "to": { "cloudy": 0.9 }, "at": 1.4, "dur": 3.2 }],
-            "focus": ["chaux"]
+            "focus": ["chaux"],
+            "ask": {
+              "kind": "observer",
+              "question": "Qu'arrive-t-il à l'eau de chaux quand on l'agite avec le gaz recueilli ?",
+              "choices": ["Elle reste limpide", "Elle devient bleue", "Elle se trouble"],
+              "answer": 2,
+              "explain": "L'eau de chaux devient trouble, comme si on y avait versé un peu de lait : c'est le test qui révèle le dioxyde de carbone."
+            }
           },
           {
             "title": "Zoom sur les molécules",
@@ -502,7 +531,14 @@
               { "id": "compte", "set": { "shown": 3 }, "at": 2.2 },
               { "id": "eq", "set": { "hidden": false }, "at": 3 }
             ],
-            "focus": ["compte", "eq"]
+            "focus": ["compte", "eq"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi la masse se conserve-t-elle pendant cette combustion ?",
+              "choices": ["Les mêmes atomes sont présents avant et après : ils ont seulement changé de partenaires", "Les molécules restent les mêmes avant et après", "Des atomes de carbone se transforment en atomes d'oxygène"],
+              "answer": 0,
+              "explain": "Les molécules changent (CH₄ et O₂ deviennent CO₂ et H₂O), mais les atomes restent les mêmes, en même nombre : 1 C, 4 H et 4 O. La masse totale ne change donc pas."
+            }
           }
         ],
         "conclusion": "La combustion du méthane produit de l'**eau** (la buée) et du **dioxyde de carbone** (l'eau de chaux se trouble). À l'échelle des molécules, les atomes des réactifs se **réarrangent** pour former les produits : aucun n'apparaît, aucun ne disparaît.\n\n> CH₄ + 2 O₂ → CO₂ + 2 H₂O : 1 C, 4 H et 4 O de chaque côté de la flèche."
@@ -603,10 +639,10 @@
       ],
       "pairs": { "hydrogene": "H", "carbone": "C", "azote": "N", "oxygene": "O", "sodium": "Na", "chlore": "Cl", "fer": "Fe", "cuivre": "Cu" },
       "misconceptions": [
-        { "pair": ["sodium", "S"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "S est le symbole du soufre. Le sodium se note Na, de son nom latin natrium." },
-        { "pair": ["azote", "Az"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "L'azote se note N, de son autre nom, nitrogène (en anglais : nitrogen). « Az » n'est pas un symbole." },
-        { "pair": ["cuivre", "Co"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "Co est le cobalt. Le cuivre se note Cu, du latin cuprum." },
-        { "pair": ["chlore", "C"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "C est le carbone. Le chlore se note Cl : majuscule C, minuscule l." }
+        { "pair": ["sodium", "S"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "S est le symbole du soufre. Le symbole du sodium vient de son nom latin, natrium." },
+        { "pair": ["azote", "Az"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "« Az » n'est pas un symbole. Le symbole de l'azote vient de son autre nom, nitrogène (en anglais : nitrogen)." },
+        { "pair": ["cuivre", "Co"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "Co est le cobalt. Le symbole du cuivre vient de son nom latin, cuprum." },
+        { "pair": ["chlore", "C"], "id": "mc:symbole-initiale", "error": "notion", "feedback": "C seul est le carbone. Le symbole du chlore commence aussi par C, mais il est suivi d'une minuscule." }
       ],
       "hints": ["Un symbole commence par une majuscule, parfois suivie d'une minuscule.", "Certains symboles viennent du latin : sodium (natrium), cuivre (cuprum), fer (ferrum).", "L'azote s'appelle aussi nitrogène."],
       "solution": "Hydrogène H ; carbone C ; azote N ; oxygène O ; sodium Na ; chlore Cl ; fer Fe ; cuivre Cu. (S est le soufre, Co le cobalt ; Az n'existe pas.)",
@@ -631,9 +667,9 @@
         { "id": "alcool", "label": "Une goutte d'alcool s'évapore sur la peau", "category": "physique" }
       ],
       "misconceptions": [
-        { "item": "sucre", "category": "chimique", "id": "mc:dissolution-chimique", "error": "notion", "feedback": "Le sucre dissous est toujours du sucre : si on fait évaporer l'eau, on le récupère. Une dissolution est une transformation physique." },
-        { "item": "glace", "category": "chimique", "id": "mc:etat-chimique", "error": "notion", "feedback": "La glace et l'eau liquide sont la même espèce, H₂O : seul l'état change. C'est une transformation physique." },
-        { "item": "rouille", "category": "physique", "id": "mc:rouille-physique", "error": "notion", "feedback": "La rouille est une nouvelle espèce, formée à partir du fer, du dioxygène et de l'eau : c'est une transformation chimique (une corrosion)." }
+        { "item": "sucre", "category": "chimique", "id": "mc:dissolution-chimique", "error": "notion", "feedback": "Le sucre dissous est toujours du sucre : si on fait évaporer l'eau, on le récupère. Une nouvelle espèce est-elle apparue ?" },
+        { "item": "glace", "category": "chimique", "id": "mc:etat-chimique", "error": "notion", "feedback": "La glace et l'eau liquide sont la même espèce, H₂O : seul l'état change, aucune nouvelle espèce n'apparaît." },
+        { "item": "rouille", "category": "physique", "id": "mc:rouille-physique", "error": "notion", "feedback": "La rouille est une nouvelle espèce, formée à partir du fer, du dioxygène et de l'eau (on parle de corrosion) : le fer ne se retrouve pas tel quel." }
       ],
       "hints": ["Demande-toi : l'espèce chimique de départ est-elle toujours là, ou en voit-on une nouvelle ?", "Changements d'état et dissolutions ne créent pas d'espèce nouvelle.", "Effervescence, nouveau solide, changement de couleur durable : indices d'une transformation chimique."],
       "solution": "Physiques : la glace qui fond, le sucre qui se dissout, l'eau qui bout, l'alcool qui s'évapore (mêmes espèces). Chimiques : la bûche qui brûle, le fer qui rouille, l'œuf qui cuit, le vinaigre avec le bicarbonate (nouvelles espèces : dioxyde de carbone, rouille…).",
@@ -650,13 +686,13 @@
       "parts": [
         { "type": "numeric", "prompt": "Combien d'atomes d'hydrogène y a-t-il du côté des réactifs ?", "answer": 4 },
         { "type": "numeric", "prompt": "Combien d'atomes d'hydrogène du côté des produits ?", "answer": 4,
-          "misconceptions": [ { "answer": 2, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "Le 2 devant H₂O multiplie toute la molécule : 2 molécules de 2 atomes H, soit 4 atomes H." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "Le 2 devant H₂O multiplie toute la molécule : il y a 2 molécules, qui contiennent chacune 2 atomes H." } ] },
         { "type": "numeric", "prompt": "Combien d'atomes d'oxygène du côté des réactifs ?", "answer": 4,
-          "misconceptions": [ { "answer": 2, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "2 O₂, ce sont 2 molécules de dioxygène de 2 atomes chacune : 4 atomes O." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "2 O₂, ce sont 2 molécules de dioxygène, qui contiennent chacune 2 atomes O : n'oublie pas le coefficient." } ] },
         { "type": "numeric", "prompt": "Combien d'atomes d'oxygène du côté des produits ?", "answer": 4,
-          "misconceptions": [ { "answer": 3, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "CO₂ apporte 2 atomes O, et 2 H₂O en apportent 2 × 1 = 2 : en tout, 4." } ] },
+          "misconceptions": [ { "answer": 3, "id": "mc:coefficient-oublie", "error": "notion", "feedback": "Compte les atomes O dans CO₂, puis dans 2 H₂O (2 molécules d'eau, avec 1 atome O chacune), et additionne." } ] },
         { "type": "text", "prompt": "Les atomes sont-ils conservés au cours de cette transformation ? (oui ou non)", "accept": ["oui"],
-          "misconceptions": [ { "answer": "non", "id": "mc:atomes-non-conserves", "error": "notion", "feedback": "Compte chaque élément : 1 C, 4 H et 4 O de chaque côté. Les atomes se réarrangent mais se conservent." } ] }
+          "misconceptions": [ { "answer": "non", "id": "mc:atomes-non-conserves", "error": "notion", "feedback": "Compare tes comptes : pour chaque élément (C, H et O), combien d'atomes avant la flèche, et combien après ?" } ] }
       ],
       "hints": ["Un coefficient (nombre devant une formule) multiplie tous les atomes de la molécule.", "2 H₂O = 2 × (2 H et 1 O) = 4 H et 2 O.", "Compte séparément C, H et O de chaque côté."],
       "solution": "Réactifs : CH₄ (1 C, 4 H) + 2 O₂ (4 O). Produits : CO₂ (1 C, 2 O) + 2 H₂O (4 H, 2 O). De chaque côté : 1 C, 4 H, 4 O. Les atomes sont conservés : ils se sont réarrangés pour former de nouvelles molécules.",
@@ -689,11 +725,11 @@
       "parts": [
         { "type": "text", "prompt": "Quel gaz de l'air la flamme a-t-elle consommé, au point de s'éteindre ? (nom)", "accept": ["le dioxygène", "dioxygène", "dioxygene", "du dioxygène", "O2", "O₂"],
           "misconceptions": [
-            { "answer": "l'oxygène", "id": "mc:oxygene-dioxygene", "error": "forme", "feedback": "Presque : l'oxygène est l'élément (l'atome O). Le gaz de l'air qui entretient les combustions est le dioxygène, O₂." },
-            { "answer": "l'air", "id": "mc:air-oxygene", "error": "notion", "feedback": "L'air est un mélange : seul le dioxygène (21 % de l'air) participe à la combustion. Le diazote, lui, ne réagit pas." }
+            { "answer": "l'oxygène", "id": "mc:oxygene-dioxygene", "error": "forme", "feedback": "Presque : l'oxygène est l'élément (l'atome O). Le gaz de l'air qui entretient les combustions est formé de molécules de DEUX atomes d'oxygène : quel est son nom ?" },
+            { "answer": "l'air", "id": "mc:air-oxygene", "error": "notion", "feedback": "L'air est un mélange de gaz : un seul d'entre eux (21 % de l'air), le comburant, participe à la combustion. Le diazote, lui, ne réagit pas. Lequel est-ce ?" }
           ] },
         { "type": "text", "prompt": "Quel gaz a troublé l'eau de chaux ? (nom)", "accept": ["le dioxyde de carbone", "dioxyde de carbone", "du dioxyde de carbone", "CO2", "CO₂"],
-          "misconceptions": [ { "answer": "la vapeur d'eau", "id": "mc:test-eau-chaux", "error": "notion", "feedback": "La vapeur d'eau forme la buée. Le gaz qui trouble l'eau de chaux est le dioxyde de carbone." }, { "answer": "le monoxyde de carbone", "id": "mc:co-co2", "error": "notion", "feedback": "Le test de l'eau de chaux identifie le dioxyde de carbone, CO₂ (deux atomes d'oxygène)." } ] },
+          "misconceptions": [ { "answer": "la vapeur d'eau", "id": "mc:test-eau-chaux", "error": "notion", "feedback": "La vapeur d'eau forme la buée, mais elle ne trouble pas l'eau de chaux. Ce test identifie un autre produit de la combustion, qui contient du carbone." }, { "answer": "le monoxyde de carbone", "id": "mc:co-co2", "error": "notion", "feedback": "Le test de l'eau de chaux identifie un autre oxyde de carbone : celui dont la molécule contient DEUX atomes d'oxygène." } ] },
         { "type": "text", "prompt": "Quelle espèce forme la buée sur la paroi ?", "accept": ["l'eau", "eau", "de l'eau", "H2O", "H₂O", "la vapeur d'eau", "de la vapeur d'eau", "des gouttelettes d'eau"] },
         { "type": "open", "prompt": "Écris le bilan de cette combustion sous la forme « réactifs → produits », puis explique pourquoi la flamme s'éteint. Termine par une règle de sécurité.", "minWords": 30,
           "criteria": [
@@ -837,19 +873,19 @@
           "pair": ["C", "O"],
           "id": "mc:atome-molecule",
           "error": "notion",
-          "feedback": "O désigne UN seul atome d'oxygène. Le modèle C montre deux atomes liés : c'est une molécule, le dioxygène O₂."
+          "feedback": "O désigne UN seul atome d'oxygène. Le modèle C montre deux atomes liés : c'est une molécule. Cherche la formule qui compte deux atomes d'oxygène."
         },
         {
           "pair": ["E", "NO2"],
           "id": "mc:indice-portee",
           "error": "notion",
-          "feedback": "NO₂ aurait 1 atome N et 2 atomes O. Le modèle E a 2 atomes N et 1 atome O : l'indice 2 se place après N, on écrit N₂O."
+          "feedback": "NO₂ aurait 1 atome N et 2 atomes O. Compte les boules du modèle E : l'indice se place juste après le symbole de l'élément qu'il compte."
         },
         {
           "pair": ["A", "CO"],
           "id": "mc:atomes-oublies",
           "error": "lecture",
-          "feedback": "Compte toutes les boules : le modèle A a 1 atome C et 2 atomes O, c'est CO₂. CO (le monoxyde de carbone) n'a qu'un atome d'oxygène."
+          "feedback": "Compte toutes les boules du modèle A : combien d'atomes d'oxygène ? CO (le monoxyde de carbone) n'a qu'un atome d'oxygène."
         }
       ],
       "hints": [
@@ -894,21 +930,21 @@
               "category": "reactif",
               "id": "mc:air-oxygene",
               "error": "notion",
-              "feedback": "L'air est un mélange : seul son dioxygène réagit. Le diazote n'apparaît pas dans l'équation : il est présent, mais il ne réagit pas."
+              "feedback": "L'air est un mélange : seul son dioxygène réagit. Cherche le diazote dans l'équation : y apparaît-il ?"
             },
             {
               "item": "eau",
               "category": "reactif",
               "id": "mc:reactif-produit",
               "error": "notion",
-              "feedback": "L'eau est écrite à droite de la flèche : elle se forme pendant la combustion, c'est un produit. L'eau des pâtes, elle, ne fait que chauffer."
+              "feedback": "Regarde de quel côté de la flèche l'eau est écrite : elle se forme pendant la combustion. L'eau des pâtes, elle, ne fait que chauffer."
             },
             {
               "item": "co2",
               "category": "reactif",
               "id": "mc:reactif-produit",
               "error": "notion",
-              "feedback": "Le dioxyde de carbone est écrit à droite de la flèche : il apparaît, c'est un produit."
+              "feedback": "Regarde de quel côté de la flèche le dioxyde de carbone est écrit : il apparaît pendant la combustion."
             }
           ]
         },
@@ -921,9 +957,9 @@
               "answer": 4,
               "id": "mc:coefficient-oublie",
               "error": "notion",
-              "feedback": "2 C₄H₁₀, ce sont 2 molécules de butane qui ont chacune 4 atomes de carbone : 2 × 4 = 8."
+              "feedback": "2 C₄H₁₀, ce sont 2 molécules de butane qui ont chacune 4 atomes de carbone : n'oublie pas le coefficient."
             },
-            { "answer": 6, "id": "mc:coefficient-oublie", "error": "calcul", "feedback": "Le coefficient multiplie, il ne s'ajoute pas : 2 molécules × 4 atomes C = 8." }
+            { "answer": 6, "id": "mc:coefficient-oublie", "error": "calcul", "feedback": "Le coefficient multiplie, il ne s'ajoute pas : 2 molécules de 4 atomes C chacune." }
           ]
         },
         {
@@ -943,7 +979,7 @@
               "answer": 150,
               "id": "mc:masse-gaz-oubliee",
               "error": "raisonnement",
-              "feedback": "Rien n'est retiré : tous les atomes des réactifs se retrouvent dans les produits. Masse des produits = 58 + 208."
+              "feedback": "Rien n'est retiré : tous les atomes des réactifs se retrouvent dans les produits. On additionne les masses des réactifs qui ont réagi."
             }
           ]
         }
@@ -999,11 +1035,11 @@
       "prompt": "Extrait des trois premières lignes de la classification périodique (symbole : numéro atomique Z) :\n- 1re ligne : H : 1 ; He : 2\n- 2e ligne : Li : 3 ; Be : 4 ; B : 5 ; C : 6 ; N : 7 ; O : 8 ; F : 9 ; Ne : 10\n- 3e ligne : Na : 11 ; Mg : 12 ; Al : 13 ; Si : 14 ; P : 15 ; S : 16 ; Cl : 17 ; Ar : 18\nL'hélium (He), le néon (Ne) et l'argon (Ar) sont dans la même colonne (la dernière).",
       "parts": [
         { "type": "text", "prompt": "Quel est le symbole de l'élément de numéro atomique 11 ? (respecte majuscule et minuscule)", "accept": ["Na"], "caseSensitive": true,
-          "misconceptions": [ { "answer": "N", "id": "mc:symbole-initiale", "error": "lecture", "feedback": "N est l'azote (Z = 7). Cherche la case de numéro 11 : au début de la 3e ligne." }, { "answer": "NA", "id": "mc:symbole-casse", "error": "forme", "feedback": "Un symbole s'écrit avec une majuscule puis une minuscule : Na." } ] },
+          "misconceptions": [ { "answer": "N", "id": "mc:symbole-initiale", "error": "lecture", "feedback": "N est l'azote (Z = 7). Cherche la case de numéro 11 : au début de la 3e ligne." }, { "answer": "NA", "id": "mc:symbole-casse", "error": "forme", "feedback": "Bon élément, mais un symbole de deux lettres s'écrit avec une majuscule puis une minuscule : recopie-le exactement comme dans le tableau." } ] },
         { "type": "numeric", "prompt": "Quel est le numéro atomique du chlore (Cl) ?", "answer": 17,
           "misconceptions": [ { "answer": 6, "id": "mc:symbole-initiale", "error": "lecture", "feedback": "6 est le numéro du carbone C. Le chlore se note Cl." } ] },
         { "type": "numeric", "prompt": "Combien y a-t-il d'atomes en tout dans une molécule de dioxyde de soufre SO₂ ?", "answer": 3,
-          "misconceptions": [ { "answer": 2, "id": "mc:indice-portee", "error": "notion", "feedback": "SO₂ : 1 atome de soufre (sans indice) et 2 atomes d'oxygène, soit 3 atomes." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:indice-portee", "error": "notion", "feedback": "On demande TOUS les atomes : le symbole S, sans indice, compte aussi pour un atome. Additionne les atomes de chaque élément." } ] },
         { "type": "text", "prompt": "Ces trois gaz (He, Ne, Ar) réagissent-ils facilement avec d'autres espèces, ou presque pas ? (facilement / presque pas)", "accept": ["presque pas", "ils ne réagissent presque pas", "ne réagissent presque pas", "pas du tout", "ils ne réagissent pas", "non"],
           "misconceptions": [ { "answer": "facilement", "id": "mc:gaz-nobles", "error": "notion", "feedback": "Les éléments de la dernière colonne (hélium, néon, argon) sont les « gaz nobles » : ils ne réagissent presque pas. C'est pour cela qu'on remplit les ballons d'hélium et certaines ampoules d'argon." } ] }
       ],
@@ -1027,7 +1063,7 @@
         { "type": "numeric", "prompt": "Dans ce cas, quelle masse de dioxyde de carbone se forme (avec l'unité) ?", "answer": 132, "unit": "g", "rel": 0.01,
           "misconceptions": [ { "answer": 44, "id": "mc:additif", "error": "raisonnement", "prerequisite": "m5.proportionnalite", "feedback": "Avec 3 fois plus de méthane, il se forme 3 fois plus de dioxyde de carbone : 3 × 44 g." } ] },
         { "type": "text", "prompt": "Si le dioxygène manque (chaudière mal réglée), quel gaz toxique et inodore peut se former ? (nom)", "accept": ["le monoxyde de carbone", "monoxyde de carbone", "du monoxyde de carbone", "CO"],
-          "misconceptions": [ { "answer": "le dioxyde de carbone", "id": "mc:co-co2", "error": "notion", "feedback": "Le dioxyde de carbone (CO₂) se forme même avec assez de dioxygène. Quand il en manque, il se forme du MONOxyde de carbone, CO, très dangereux : c'est pourquoi on installe des détecteurs et on fait entretenir les chaudières." } ] }
+          "misconceptions": [ { "answer": "le dioxyde de carbone", "id": "mc:co-co2", "error": "notion", "feedback": "Le dioxyde de carbone (CO₂) se forme même avec assez de dioxygène. Quand il en manque, il se forme un autre oxyde de carbone, qui contient moins d'oxygène, très dangereux : c'est pourquoi on installe des détecteurs et on fait entretenir les chaudières." } ] }
       ],
       "hints": ["Masse des réactifs = masse des produits : 16 + 64 = 44 + masse d'eau.", "48 g = 3 × 16 g : toutes les masses sont multipliées par 3.", "« Mono » = un seul atome d'oxygène."],
       "solution": "Conservation de la masse : 16 + 64 = 80 g = 44 g + masse d'eau, donc 36 g d'eau. Les masses qui réagissent sont proportionnelles : avec 48 g de méthane (3 fois plus), il faut 3 × 64 = 192 g de dioxygène et il se forme 3 × 44 = 132 g de CO₂. Si le dioxygène manque, il se forme du monoxyde de carbone CO, toxique et inodore.",
@@ -1047,11 +1083,11 @@
         { "type": "numeric", "prompt": "Coefficient devant H₂O :", "answer": 2 },
         { "type": "numeric", "prompt": "Combustion du propane : … C₃H₈ + … O₂ → … CO₂ + … H₂O (avec 1 devant C₃H₈). Coefficient devant CO₂ :", "answer": 3 },
         { "type": "numeric", "prompt": "Coefficient devant H₂O :", "answer": 4,
-          "misconceptions": [ { "answer": 8, "id": "mc:atomes-molecules", "error": "notion", "feedback": "Il faut 8 atomes H à droite. Chaque molécule H₂O en contient 2 : il faut donc 4 molécules." } ] },
+          "misconceptions": [ { "answer": 8, "id": "mc:atomes-molecules", "error": "notion", "feedback": "Il faut 8 atomes H à droite, mais le coefficient compte des MOLÉCULES : chaque molécule H₂O contient 2 atomes H." } ] },
         { "type": "numeric", "prompt": "Coefficient devant O₂ :", "answer": 5,
           "misconceptions": [
-            { "answer": 10, "id": "mc:atomes-molecules", "error": "notion", "feedback": "À droite, il y a 3 × 2 + 4 × 1 = 10 atomes O. Chaque molécule O₂ en apporte 2 : il en faut 5." },
-            { "answer": 7, "id": "mc:atomes-molecules", "error": "calcul", "feedback": "Compte les atomes O à droite : 3 CO₂ en contiennent 6, et 4 H₂O en contiennent 4, soit 10 atomes, donc 5 molécules O₂." }
+            { "answer": 10, "id": "mc:atomes-molecules", "error": "notion", "feedback": "10, c'est le nombre d'ATOMES O à droite. Le coefficient compte des molécules : chaque molécule O₂ apporte 2 atomes O." },
+            { "answer": 7, "id": "mc:atomes-molecules", "error": "calcul", "feedback": "Recompte les atomes O à droite : 3 CO₂ en contiennent 3 × 2 et 4 H₂O en contiennent 4 × 1. Chaque molécule O₂ en apporte 2." }
           ] }
       ],
       "hints": ["Commence par l'élément présent dans une seule molécule de chaque côté (H dans le premier cas, C dans le second).", "Pour le propane : 3 atomes C → 3 CO₂ ; 8 atomes H → 4 H₂O.", "Termine par l'oxygène : compte tous les O à droite, puis divise par 2."],
@@ -1064,7 +1100,7 @@
     {
       "id": "pc4-atomes-taille", "type": "composite", "skill": "pc4.matiere.atomes-molecules", "skills": ["pc.mesure.incertitudes"], "track": "expert", "role": "defi", "difficulty": 4,
       "representation": "symbolique", "targets": ["mc:mm-m", "mc:produit-quotient"], "expectedSeconds": 480,
-      "prompt": "Ordres de grandeur de l'infiniment petit (puissances de 10, passerelle vers la 3e). Un atome a un diamètre d'environ 10⁻¹⁰ m. Une molécule d'eau a une masse d'environ 3 × 10⁻²³ g. Tu peux écrire les nombres sous la forme 1,7×10^21.",
+      "prompt": "Ordres de grandeur de l'infiniment petit (puissances de 10, passerelle vers la 3e). Un atome a un diamètre d'environ 10⁻¹⁰ m. Une molécule d'eau a une masse d'environ 3 × 10⁻²³ g. Tu peux écrire les nombres sous la forme 2,5×10^18.",
       "parts": [
         { "type": "numeric", "prompt": "Combien d'atomes faudrait-il aligner pour former une ligne de 1 mm ?", "answer": "10^7", "rel": 0.01,
           "misconceptions": [ { "answer": "10^10", "id": "mc:mm-m", "error": "unite", "feedback": "10¹⁰ atomes forment une ligne de 1 m. 1 mm = 10⁻³ m : il en faut 1 000 fois moins." } ] },

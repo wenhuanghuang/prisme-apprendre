@@ -91,14 +91,14 @@
     {
       "id": "m5-probabilites-urne", "type": "numeric", "skill": "m5.probabilites", "track": "classe", "role": "guide", "difficulty": 1,
       "representation": "concrete", "targets": ["mc:favorables-defavorables", "mc:couleurs-equiprobables", "mc:nombre-cas"], "expectedSeconds": 90,
-      "params": { "r": { "int": [2, 9] }, "v": { "int": [1, 6] }, "b": { "int": [2, 9] } },
+      "params": { "r": { "int": [2, 9] }, "v": { "int": [2, 6] }, "b": { "int": [2, 9] } },
       "constraints": ["2*v != r + b", "r + b != 3*v"],
-      "prompt": "Un sac contient {r} boules rouges, {v} boules vertes et {b} boules bleues, indiscernables au toucher. On tire une boule au hasard. Quelle est la probabilité de tirer une boule verte ? Réponds par une fraction ou un nombre décimal.",
+      "prompt": "Un sac contient {r} boules rouges, {v} boules vertes et {b} boules bleues, indiscernables au toucher. On tire une boule au hasard. Quelle est la probabilité de tirer une boule verte ? Réponds par une fraction.",
       "answer": "v/(r+v+b)",
       "misconceptions": [
-        { "answer": "v/(r+b)", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "Tu as divisé par le nombre de boules qui ne sont PAS vertes. Une probabilité compare les issues favorables à TOUTES les issues possibles : {v} boules vertes sur {r+v+b} boules en tout." },
-        { "answer": "v", "id": "mc:nombre-cas", "error": "lecture", "feedback": "{v} est le nombre de boules vertes, c'est-à-dire le nombre d'issues favorables. La probabilité est ce nombre divisé par le nombre total de boules : {v}/{r+v+b}." },
-        { "answer": "1/3", "id": "mc:couleurs-equiprobables", "error": "notion", "feedback": "Il y a trois couleurs, mais elles n'ont pas la même chance d'être tirées : ce sont les BOULES qui sont équiprobables, pas les couleurs. {v} boules sur {r+v+b} sont vertes." }
+        { "answer": "v/(r+b)", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "Tu as divisé par le nombre de boules qui ne sont PAS vertes. Une probabilité compare les issues favorables à TOUTES les issues possibles : divise par le nombre total de boules du sac." },
+        { "answer": "v", "id": "mc:nombre-cas", "error": "lecture", "feedback": "{v} est le nombre de boules vertes, c'est-à-dire le nombre d'issues favorables. La probabilité est ce nombre divisé par le nombre total de boules." },
+        { "answer": "1/3", "id": "mc:couleurs-equiprobables", "error": "notion", "feedback": "Il y a trois couleurs, mais elles n'ont pas la même chance d'être tirées : ce sont les BOULES qui sont équiprobables, pas les couleurs. Compte les boules vertes et toutes les boules du sac." }
       ],
       "hints": ["Compte d'abord toutes les boules du sac : ce sont les issues possibles, toutes équiprobables.", "Combien de boules sont vertes ?", "Probabilité = (nombre d'issues favorables) ÷ (nombre d'issues possibles)."],
       "solution": "Il y a $ {r} + {v} + {b} = {r+v+b} $ boules, qui ont toutes la même chance d'être tirées, et {v} d'entre elles sont vertes. La probabilité de tirer une boule verte est donc $ {v}/{r+v+b} $ (à peu près {v/(r+v+b)|d2}).",
@@ -154,9 +154,9 @@
       "prompt": "Une pièce de monnaie équilibrée vient de tomber {n} fois de suite sur Pile. On la lance une nouvelle fois. Quelle est la probabilité d'obtenir Face ?",
       "answer": "1/2",
       "misconceptions": [
-        { "answer": "1", "id": "mc:biais-joueur", "error": "notion", "feedback": "La pièce n'a pas de mémoire : elle ne « sait » pas qu'elle est tombée {n} fois sur Pile. Chaque lancer est indépendant des précédents : Face a toujours une chance sur deux." },
-        { "answer": "n/(n+1)", "id": "mc:biais-joueur", "error": "notion", "feedback": "La pièce n'a pas de mémoire : elle ne « sait » pas qu'elle est tombée {n} fois sur Pile. Chaque lancer est indépendant des précédents : Face a toujours une chance sur deux." },
-        { "answer": "0", "id": "mc:serie", "error": "notion", "feedback": "Après {n} Pile, on peut croire que la pièce « préfère » Pile. Mais elle est équilibrée : chaque lancer donne Face avec une chance sur deux." }
+        { "answer": "1", "id": "mc:biais-joueur", "error": "notion", "feedback": "La pièce n'a pas de mémoire : elle ne « sait » pas qu'elle est tombée {n} fois sur Pile. Chaque lancer est indépendant des précédents : Face a les mêmes chances qu'au tout premier lancer." },
+        { "answer": "n/(n+1)", "id": "mc:biais-joueur", "error": "notion", "feedback": "La pièce n'a pas de mémoire : elle ne « sait » pas qu'elle est tombée {n} fois sur Pile. Chaque lancer est indépendant des précédents : Face a les mêmes chances qu'au tout premier lancer." },
+        { "answer": "0", "id": "mc:serie", "error": "notion", "feedback": "Après {n} Pile, on peut croire que la pièce « préfère » Pile. Mais elle est équilibrée : à chaque lancer, Pile et Face ont les mêmes chances." }
       ],
       "justify": { "required": true, "minWords": 6, "keywords": [["memoire", "independ", "chaque lancer", "equilibr"]], "prompt": "Explique ton raisonnement." },
       "hints": ["La pièce se souvient-elle des lancers précédents ?", "Chaque lancer est une nouvelle expérience, avec les mêmes chances que le premier."],
@@ -178,10 +178,10 @@
           "rows": [ ["Effectif", "5", "8", "6", "7", "4", "10"], ["Fréquence", "?r1c1", "?r1c2", "?r1c3", "?r1c4", "?r1c5", "?r1c6"] ],
           "cells": {
             "r1c1": { "answer": "5/40" }, "r1c2": { "answer": "8/40" }, "r1c3": { "answer": "6/40" }, "r1c4": { "answer": "7/40" }, "r1c5": { "answer": "4/40" },
-            "r1c6": { "answer": "10/40", "misconceptions": [ { "answer": "10", "id": "mc:effectif-frequence", "error": "lecture", "feedback": "10 est l'effectif du 6 : le nombre de fois où il est sorti. La fréquence est la part du total : $ 10 ÷ 40 = 0,25 $." } ] }
+            "r1c6": { "answer": "10/40", "misconceptions": [ { "answer": "10", "id": "mc:effectif-frequence", "error": "lecture", "feedback": "10 est l'effectif du 6 : le nombre de fois où il est sorti. La fréquence est la part du total : divise l'effectif par le nombre de lancers." } ] }
           } },
         { "type": "numeric", "prompt": "Écris la fréquence du 6 en pourcentage (le nombre seul, sans le signe %).", "answer": 25,
-          "misconceptions": [ { "answer": 0.25, "id": "mc:pourcentage", "error": "lecture", "feedback": "0,25 est l'écriture décimale. En pourcentage : $ 0,25 = 25/100 $, soit 25 %." } ] },
+          "misconceptions": [ { "answer": 0.25, "id": "mc:pourcentage", "error": "lecture", "feedback": "0,25 est l'écriture décimale. Pour l'écrire en pourcentage, cherche combien cela fait sur 100 (multiplie par 100)." } ] },
         { "type": "open", "prompt": "Yanis conclut que son dé favorise le 6. Dans le labo, fais plusieurs séries de 40 lancers, puis une série de 6 000 lancers, en observant la fréquence du 6. Qu'en penses-tu ?", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "Je compare avec la probabilité $1/6 ≈ 0,17$", "keywords": [["1/6", "0,17", "0.17", "17 %", "16,7"]] },
@@ -203,13 +203,13 @@
       "parts": [
         { "type": "numeric", "prompt": "Quelle est la probabilité que le premier ticket vendu soit gagnant ? Donne-la en pourcentage (le nombre seul).", "answer": 7.5,
           "misconceptions": [
-            { "answer": 0.075, "id": "mc:pourcentage", "error": "lecture", "feedback": "0,075 est l'écriture décimale. En pourcentage : $ 0,075 × 100 = 7,5 $ %." },
-            { "answer": 15, "id": "mc:nombre-cas", "error": "lecture", "feedback": "15 est le nombre de tickets gagnants. La probabilité est $ 15/200 = 0,075 $, soit 7,5 %." }
+            { "answer": 0.075, "id": "mc:pourcentage", "error": "lecture", "feedback": "0,075 est l'écriture décimale. Pour l'écrire en pourcentage, multiplie par 100." },
+            { "answer": 15, "id": "mc:nombre-cas", "error": "lecture", "feedback": "15 est le nombre de tickets gagnants. La probabilité est ce nombre divisé par le nombre total de tickets ; écris-la ensuite en pourcentage." }
           ] },
         { "type": "numeric", "prompt": "Les 50 premiers tickets vendus sont tous perdants. Quelle est maintenant la probabilité que le ticket suivant soit gagnant ? (fraction ou décimal)", "answer": "15/150",
-          "misconceptions": [ { "answer": "15/200", "id": "mc:sans-remise", "error": "raisonnement", "feedback": "Contrairement à un dé, la tombola a changé : les 50 tickets vendus ne sont pas remis. Il reste 150 tickets, dont toujours 15 gagnants : $ 15/150 = 1/10 $." } ] },
+          "misconceptions": [ { "answer": "15/200", "id": "mc:sans-remise", "error": "raisonnement", "feedback": "Contrairement à un dé, la tombola a changé : les 50 tickets vendus ne sont pas remis. Combien reste-t-il de tickets, et combien de gagnants parmi eux ?" } ] },
         { "type": "numeric", "prompt": "Combien de tickets perdants faudrait-il encore vendre, après ces 50, pour que la probabilité de gagner atteigne $1/5$ ?", "answer": 75,
-          "misconceptions": [ { "answer": 125, "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "125 est le nombre total de tickets vendus depuis le début. Il en reste 150 : pour qu'il n'en reste que 75, il faut encore en vendre $ 150 − 75 = 75 $." } ] }
+          "misconceptions": [ { "answer": 125, "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "125 est le nombre total de tickets vendus depuis le début. La question porte sur les tickets à vendre APRÈS les 50 premiers : il en reste 150." } ] }
       ],
       "hints": ["Probabilité = tickets gagnants ÷ tickets restants.", "Après 50 tickets perdants vendus, combien reste-t-il de tickets ? Et de tickets gagnants ?", "Pour une probabilité de $1/5$, les 15 gagnants doivent représenter un ticket sur cinq : combien de tickets doit-il rester ?"],
       "solution": "Au départ : $ 15/200 = 0,075 = 7,5 $ %. Après 50 tickets perdants : il reste 150 tickets dont 15 gagnants, $ 15/150 = 1/10 $. Pour atteindre $1/5$, il doit rester $ 15 × 5 = 75 $ tickets : il faut encore vendre $ 150 − 75 = 75 $ tickets perdants. Différence avec un dé : ici, on tire sans remettre, la composition change à chaque tirage.",
@@ -224,9 +224,9 @@
       "prompt": "Tu conçois une roue de loterie partagée en 20 secteurs identiques. Cahier des charges : la probabilité de gagner le gros lot doit être de 5 %, celle de gagner un petit lot d'une chance sur quatre ; les autres secteurs sont perdants.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de secteurs « gros lot » faut-il ?", "answer": 1,
-          "misconceptions": [ { "answer": 5, "id": "mc:pourcentage-effectif", "error": "notion", "feedback": "5 % de 20 secteurs, ce n'est pas 5 secteurs : $ 5/100 × 20 = 1 $ secteur. 5 secteurs sur 20, cela ferait 25 %." } ] },
+          "misconceptions": [ { "answer": 5, "id": "mc:pourcentage-effectif", "error": "notion", "feedback": "5 % de 20 secteurs, ce n'est pas 5 secteurs (5 secteurs sur 20, cela ferait 25 %). Calcule $ 5/100 × 20 $." } ] },
         { "type": "numeric", "prompt": "Combien de secteurs « petit lot » ?", "answer": 5,
-          "misconceptions": [ { "answer": 4, "id": "mc:chance-sur", "error": "notion", "feedback": "« Une chance sur quatre », c'est un quart des secteurs : $ 20 ÷ 4 = 5 $ secteurs, et non 4." } ] },
+          "misconceptions": [ { "answer": 4, "id": "mc:chance-sur", "error": "notion", "feedback": "« Une chance sur quatre », ce n'est pas 4 secteurs : c'est un quart des 20 secteurs." } ] },
         { "type": "numeric", "prompt": "Quelle est la probabilité de perdre, en pourcentage (le nombre seul) ?", "answer": 70 },
         { "type": "numeric", "prompt": "La roue sera lancée environ 200 fois dans la journée. Combien de petits lots peut-on s'attendre à distribuer ?", "answer": 50 },
         { "type": "open", "prompt": "Faut-il prévoir exactement ce nombre de petits lots ? Explique, en pensant aux fréquences.", "minWords": 20,
@@ -251,8 +251,8 @@
       "prompt": "Rappel avec des objets : une boîte contient {g} jetons gagnants et {p} jetons perdants, tous identiques au toucher. Imagine que tu numérotes chaque jeton : chacun a exactement la même chance d'être tiré. Quelle est la probabilité de tirer un jeton gagnant ?",
       "answer": "g/(g+p)",
       "misconceptions": [
-        { "answer": "g/p", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "{g}/{p} compare les jetons gagnants aux jetons perdants. Une probabilité compare les gagnants à TOUS les jetons : il y en a $ {g} + {p} = {g+p} $. La probabilité vaut {g}/{g+p}." },
-        { "answer": "g", "id": "mc:nombre-cas", "error": "lecture", "feedback": "{g} est le nombre de jetons gagnants. La probabilité est ce nombre divisé par le nombre total de jetons : {g}/{g+p}." }
+        { "answer": "g/p", "id": "mc:favorables-defavorables", "error": "notion", "feedback": "{g}/{p} compare les jetons gagnants aux jetons perdants. Une probabilité compare les gagnants à TOUS les jetons : compte d'abord combien il y en a en tout." },
+        { "answer": "g", "id": "mc:nombre-cas", "error": "lecture", "feedback": "{g} est le nombre de jetons gagnants. La probabilité est ce nombre divisé par le nombre total de jetons." }
       ],
       "hints": ["Combien y a-t-il de jetons en tout ?", "Parmi ces {g+p} jetons, combien font gagner ?"],
       "solution": "$ {g}/{g+p} $ : {g} jetons gagnants sur {g+p} jetons en tout.",
@@ -279,7 +279,7 @@
       "representation": "concrete", "targets": ["mc:total-vs-ajout"], "expectedSeconds": 300,
       "prompt": "Un sac contient 4 boules rouges et 6 boules bleues. Combien de boules rouges faut-il **ajouter** pour que la probabilité de tirer une boule rouge soit égale à $2/3$ ?",
       "answer": 8,
-      "misconceptions": [ { "answer": 12, "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "Avec 12 boules rouges et 6 bleues, la probabilité vaut bien $ 12/18 = 2/3 $. Mais il y a déjà 4 rouges dans le sac : il faut en AJOUTER $ 12 − 4 = 8 $." } ],
+      "misconceptions": [ { "answer": 12, "id": "mc:total-vs-ajout", "error": "lecture", "feedback": "Avec 12 boules rouges et 6 bleues, la probabilité vaut bien $ 12/18 = 2/3 $. Mais il y a déjà 4 rouges dans le sac : combien faut-il en AJOUTER ?" } ],
       "hints": ["Teste : si on ajoute 2 boules rouges, la probabilité vaut $6/12$. C'est assez ?", "$2/3$, c'est « deux chances sur trois » : il faut deux fois plus de boules rouges que de bleues.", "Le nombre de boules bleues ne change pas : 6."],
       "solution": "Pour une probabilité de $2/3$, les boules rouges doivent être deux fois plus nombreuses que les bleues. Les bleues restent 6 : il faut 12 rouges, donc ajouter $ 12 − 4 = 8 $ boules rouges. Vérification : $ 12/18 = 2/3 $.",
       "methods": ["Essais organisés dans un tableau : on ajoute 1, 2, 3… boules et on calcule la probabilité.", "Raisonner sur les parts : $2/3$ de rouges, donc $1/3$ de bleues ; 6 bleues forment un tiers du sac, qui contient donc 18 boules.", "Avec une lettre (méthode de 4e) : $ (4 + x)/(10 + x) = 2/3 $."],
@@ -296,13 +296,13 @@
           "rows": [ ["Nombre de couples", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"] ],
           "cells": {
             "r0c1": { "answer": "1" }, "r0c2": { "answer": "4" },
-            "r0c3": { "answer": "6", "misconceptions": [ { "answer": "3", "id": "mc:ordre-des", "error": "notion", "feedback": "(1 ; 6) et (6 ; 1) sont deux résultats différents : le dé rouge n'a pas donné le même nombre. La somme 7 s'obtient avec 6 couples." } ] },
+            "r0c3": { "answer": "6", "misconceptions": [ { "answer": "3", "id": "mc:ordre-des", "error": "notion", "feedback": "(1 ; 6) et (6 ; 1) sont deux résultats différents : le dé rouge n'a pas donné le même nombre. Compte les couples dans les deux ordres." } ] },
             "r0c4": { "answer": "3" }, "r0c5": { "answer": "1" }
           } },
         { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir une somme égale à 7 ?", "answer": "6/36",
-          "misconceptions": [ { "answer": "1/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Il y a 11 sommes possibles (de 2 à 12), mais elles ne sont pas équiprobables : la somme 7 s'obtient avec 6 couples, la somme 2 avec un seul. Ce sont les 36 couples qui sont équiprobables : $ 6/36 = 1/6 $." } ] },
+          "misconceptions": [ { "answer": "1/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Il y a 11 sommes possibles (de 2 à 12), mais elles ne sont pas équiprobables : la somme 2 ne s'obtient qu'avec un seul couple. Ce sont les 36 couples qui sont équiprobables : combien donnent 7 ?" } ] },
         { "type": "numeric", "prompt": "Combien de fois la somme 7 est-elle plus probable que la somme 2 ?", "answer": 6,
-          "misconceptions": [ { "answer": 1, "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les sommes ne sont pas équiprobables : 6 couples donnent 7, un seul donne 2. La somme 7 est 6 fois plus probable." } ] }
+          "misconceptions": [ { "answer": 1, "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les sommes ne sont pas équiprobables : compare le nombre de couples qui donnent 7 et le nombre de couples qui donnent 2." } ] }
       ],
       "hints": ["Fais un tableau : en ligne le dé rouge, en colonne le dé bleu, et dans chaque case la somme.", "Pour la somme 7 : (1 ; 6), (2 ; 5), (3 ; 4), (4 ; 3), (5 ; 2), (6 ; 1).", "(1 ; 6) et (6 ; 1) sont deux résultats différents."],
       "solution": "Somme 2 : 1 couple ; 5 : 4 couples ; 7 : 6 couples ; 10 : 3 couples ; 12 : 1 couple. $ P(7) = 6/36 = 1/6 $ et $ P(2) = 1/36 $ : la somme 7 est 6 fois plus probable que la somme 2. Les sommes ne sont pas équiprobables : ce sont les couples qui le sont. Le labo le confirme : sur beaucoup de lancers, la fréquence de la somme 7 est proche de 0,17.",
@@ -318,7 +318,7 @@
       "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 2, "event": "somme égale à 6, 7 ou 8" } },
       "parts": [
         { "type": "numeric", "prompt": "Quelle est la probabilité qu'Alex gagne ?", "answer": "16/36",
-          "misconceptions": [ { "answer": "3/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les 11 sommes ne sont pas équiprobables. Compte les couples : 6 → 5 couples, 7 → 6 couples, 8 → 5 couples, soit 16 couples sur 36." } ] },
+          "misconceptions": [ { "answer": "3/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les 11 sommes ne sont pas équiprobables : ce sont les 36 couples qui le sont. Compte les couples qui donnent 6, 7 ou 8." } ] },
         { "type": "numeric", "prompt": "Quelle est la probabilité que Bea gagne ?", "answer": "20/36" },
         { "type": "open", "prompt": "Propose une nouvelle règle (une liste de sommes gagnantes pour Alex) qui rend le jeu parfaitement équitable, et justifie-la en comptant les couples.", "minWords": 15,
           "criteria": [
@@ -343,7 +343,7 @@
           "columns": ["Décomposition", "Nombre de résultats"],
           "rows": [ ["1 + 2 + 6", "6"], ["1 + 4 + 4", "?r1c1"], ["3 + 3 + 3", "?r2c1"], ["2 + 3 + 4", "?r3c1"], ["2 + 2 + 6", "?r4c1"], ["3 + 3 + 4", "?r5c1"] ],
           "cells": {
-            "r1c1": { "answer": "3", "misconceptions": [ { "answer": "6", "id": "mc:ordre-repetitions", "error": "raisonnement", "feedback": "Avec deux nombres égaux, échanger les deux 4 ne donne pas un nouveau résultat : seuls 1-4-4, 4-1-4 et 4-4-1 sont différents, soit 3 résultats." } ] },
+            "r1c1": { "answer": "3", "misconceptions": [ { "answer": "6", "id": "mc:ordre-repetitions", "error": "raisonnement", "feedback": "Avec deux nombres égaux, échanger les deux 4 ne donne pas un nouveau résultat. Il suffit de choisir le dé qui porte le 1 : combien de choix ?" } ] },
             "r2c1": { "answer": "1" }, "r3c1": { "answer": "6" }, "r4c1": { "answer": "3" }, "r5c1": { "answer": "3" }
           } },
         { "type": "numeric", "prompt": "Combien de résultats (rouge ; vert ; bleu) donnent une somme égale à 9 ?", "answer": 25,
@@ -373,9 +373,9 @@
       "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 1, "event": "le dé tombe sur 3, 4, 5 ou 6 : changer de porte fait gagner" } },
       "parts": [
         { "type": "numeric", "prompt": "Avec la stratégie « je garde ma porte », quelle est la probabilité de gagner la voiture ?", "answer": "1/3",
-          "misconceptions": [ { "answer": "1/2", "id": "mc:monty-moitie", "error": "raisonnement", "feedback": "Il reste deux portes fermées, mais elles ne sont pas équiprobables : ton premier choix avait une chance sur trois d'être le bon, et l'ouverture d'une porte par le présentateur (qui sait où est la voiture) n'y change rien." } ] },
+          "misconceptions": [ { "answer": "1/2", "id": "mc:monty-moitie", "error": "raisonnement", "feedback": "Il reste deux portes fermées, mais elles ne sont pas équiprobables. Au moment de ton premier choix, quelle chance avais-tu de tomber sur la voiture ? L'ouverture d'une porte par le présentateur (qui sait où est la voiture) n'y change rien." } ] },
         { "type": "numeric", "prompt": "Avec la stratégie « je change de porte » ?", "answer": "2/3",
-          "misconceptions": [ { "answer": "1/2", "id": "mc:monty-moitie", "error": "raisonnement", "feedback": "En changeant, tu gagnes chaque fois que ton premier choix était une chèvre, c'est-à-dire deux fois sur trois. Vérifie avec la simulation." } ] },
+          "misconceptions": [ { "answer": "1/2", "id": "mc:monty-moitie", "error": "raisonnement", "feedback": "En changeant, tu gagnes chaque fois que ton premier choix était une chèvre. Quelle est la probabilité que ton premier choix soit une chèvre ? Vérifie avec la simulation." } ] },
         { "type": "open", "prompt": "Lance la simulation 3 000 fois dans le labo. Quelle fréquence obtiens-tu pour « changer fait gagner » ? Essaie d'expliquer pourquoi il vaut mieux changer.", "minWords": 20,
           "criteria": [
             { "id": "c1", "label": "J'indique une fréquence proche de 0,67", "keywords": [["0,6", "0.6", "2/3", "66", "67"]] },

@@ -12,7 +12,7 @@
   "sections": [
     {
       "kind": "decouverte",
-      "title": "Quelques dizaines d'habitants, 3 millions de visiteurs",
+      "title": "Quelques dizaines d'habitants, jusqu'à 3 millions de visiteurs",
       "body": "Le Mont-Saint-Michel ne compte que quelques dizaines d'habitants… et reçoit environ 2,5 à 3 millions de visiteurs par an. Cela fait des dizaines de milliers de visiteurs pour un seul habitant ! Partout dans le monde, des plages, des montagnes et des villes historiques se transforment pour accueillir les touristes. En 2025, on a compté plus de 1,5 milliard d'arrivées de touristes internationaux (ONU Tourisme).\n\nComment le tourisme transforme-t-il les lieux qu'il touche ?"
     },
     {
@@ -240,11 +240,11 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Entre 1950 et 2025, le nombre d'arrivées a été multiplié par environ combien ? (arrondi à l'unité)", "answer": 61, "tolerance": 1,
-          "misconceptions": [ { "answer": 1498, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1 498 millions est l'augmentation (1 523 − 25). « Multiplié par » demande une division : 1 523 ÷ 25 ≈ 61." } ] },
+          "misconceptions": [ { "answer": 1498, "id": "mc:ecart-rapport", "error": "methode", "feedback": "1 498 millions est l'augmentation (1 523 − 25). « Multiplié par » demande une division : arrivées de 2025 ÷ arrivées de 1950." } ] },
         { "type": "numeric", "prompt": "De combien de pour cent les arrivées ont-elles baissé entre 2019 et 2020 ? (arrondi à l'unité)", "answer": 72, "tolerance": 1,
           "misconceptions": [
-            { "answer": 28, "id": "mc:part-restante", "error": "methode", "feedback": "28 % est ce qui RESTE en 2020 (409 ÷ 1 469). La baisse est de 100 − 28 = 72 %." },
-            { "answer": 1060, "id": "mc:valeur-pourcentage", "error": "methode", "feedback": "1 060 millions est la baisse en nombre. En pourcentage : 1 060 ÷ 1 469 × 100 ≈ 72 %." }
+            { "answer": 28, "id": "mc:part-restante", "error": "methode", "feedback": "28 % est ce qui RESTE en 2020 (409 ÷ 1 469). La baisse, c'est ce qui a disparu : la part qui manque pour arriver à 100 %." },
+            { "answer": 1060, "id": "mc:valeur-pourcentage", "error": "methode", "feedback": "1 060 millions est la baisse en nombre. Pour l'exprimer en pourcentage, divise-la par la valeur de départ (2019), puis multiplie par 100." }
           ] },
         { "type": "text", "prompt": "Quel évènement explique cette chute de 2020 ?", "openEnded": true,
           "accept": ["covid", "le covid", "la covid", "covid-19", "le covid-19", "la covid-19", "covid 19", "pandémie", "la pandémie", "pandémie de covid", "la pandémie de covid", "la pandémie de covid-19", "coronavirus", "le coronavirus", "épidémie", "l'épidémie", "épidémie de covid", "confinement", "le confinement", "les confinements"] }
@@ -325,8 +325,8 @@
         ["Hausse 2024 → 2025", "?r2c1", "?r2c2", "—"]
       ],
       "cells": {
-        "r0c3": { "answer": 710, "tolerance": 5, "misconceptions": [ { "answer": 0.71, "id": "mc:unite-milliards", "error": "unite", "feedback": "71 ÷ 100 = 0,71… mais on divise des milliards d'euros par des millions de touristes : 71 000 millions ÷ 100 millions = 710 €." } ] },
-        "r1c3": { "answer": "77500/102", "tolerance": 5, "misconceptions": [ { "answer": "77.5/102", "id": "mc:unite-milliards", "error": "unite", "feedback": "Attention aux unités : 77,5 milliards = 77 500 millions d'euros. 77 500 ÷ 102 ≈ 760 €." } ] },
+        "r0c3": { "answer": 710, "tolerance": 5, "misconceptions": [ { "answer": 0.71, "id": "mc:unite-milliards", "error": "unite", "feedback": "71 ÷ 100 = 0,71… mais on divise des milliards d'euros par des millions de touristes : convertis d'abord les recettes en millions d'euros (1 milliard = 1 000 millions)." } ] },
+        "r1c3": { "answer": "77500/102", "tolerance": 5, "misconceptions": [ { "answer": "77.5/102", "id": "mc:unite-milliards", "error": "unite", "feedback": "Attention aux unités : on divise des milliards d'euros par des millions de touristes. Convertis d'abord 77,5 milliards en millions d'euros." } ] },
         "r2c1": { "answer": 2 },
         "r2c2": { "answer": 6.5 }
       },
@@ -343,9 +343,9 @@
       "prompt": "**Mission.** Ton paquebot de **5 000 passagers** fait escale à Venise un jour de forte affluence. Depuis 2024, les visiteurs d'un jour paient ces jours-là une contribution d'accès : **5 €** s'ils ont réservé à l'avance, **10 €** s'ils réservent moins de 4 jours avant (règle en vigueur depuis 2025). Et les plus grands paquebots n'ont plus le droit de passer devant la place Saint-Marc.",
       "parts": [
         { "type": "numeric", "prompt": "Tous tes passagers visitent Venise et ont réservé à l'avance. Combien la ville reçoit-elle ? (en euros)", "answer": 25000,
-          "misconceptions": [ { "answer": 1000, "id": "mc:operation", "error": "methode", "feedback": "5 000 ÷ 5 = 1 000 : il fallait multiplier. Chaque passager paie 5 € : 5 000 × 5 = 25 000 €." } ] },
+          "misconceptions": [ { "answer": 1000, "id": "mc:operation", "error": "methode", "feedback": "5 000 ÷ 5 = 1 000 : il fallait multiplier. Chaque passager paie 5 € : multiplie le nombre de passagers par 5." } ] },
         { "type": "text", "prompt": "Comment appelle-t-on l'excès de visiteurs qui abîme un lieu et gêne ses habitants, et que Venise veut limiter ?", "accept": ["surtourisme", "le surtourisme", "sur-tourisme", "le sur-tourisme", "surfréquentation", "la surfréquentation", "overtourism"],
-          "misconceptions": [ { "answer": "tourisme durable", "id": "mc:surtourisme-durable", "error": "notion", "feedback": "Le tourisme durable est la solution recherchée. Le problème, l'excès de visiteurs, s'appelle le surtourisme." } ] },
+          "misconceptions": [ { "answer": "tourisme durable", "id": "mc:surtourisme-durable", "error": "notion", "feedback": "Le tourisme durable est la solution recherchée, pas le problème. L'excès de visiteurs porte un autre nom : pense au préfixe « sur- », qui veut dire « trop »." } ] },
         { "type": "open", "prompt": "Propose **trois règles** pour que ta croisière soit plus responsable.", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "Une règle pour limiter la foule (réserver, étaler les visites, éviter les jours d'affluence, moins d'escales)", "keywords": [["reserv", "foule", "jour", "affluence", "moins", "groupe", "horaire", "escale"]] },
@@ -410,14 +410,14 @@
       "prompt": "**Le poids du tourisme dans l'économie mondiale.** Selon l'ONU Tourisme, les touristes internationaux ont dépensé **1,7 trillion de dollars** en 2024 (chiffre publié en anglais), pour **1 465 millions** d'arrivées. Selon le WTTC, le tourisme fait vivre **366 millions** de personnes (2025), alors qu'environ **3,6 milliards** de personnes ont un emploi dans le monde (ordre de grandeur, OIT).",
       "parts": [
         { "type": "numeric", "prompt": "En anglais, « one trillion » = 1 000 milliards. Combien de milliards de dollars font 1,7 trillion ?", "answer": 1700,
-          "misconceptions": [ { "answer": 1.7, "id": "mc:trillion", "error": "unite", "feedback": "Piège de traduction : un « trillion » anglais vaut 1 000 milliards. 1,7 trillion = 1 700 milliards de dollars, pas 1,7 milliard." } ] },
+          "misconceptions": [ { "answer": 1.7, "id": "mc:trillion", "error": "unite", "feedback": "Piège de traduction : un « trillion » anglais vaut 1 000 milliards, pas 1 milliard. Multiplie donc 1,7 par 1 000." } ] },
         { "type": "numeric", "prompt": "Quelle est la dépense moyenne d'un touriste international en 2024 ? (en dollars, arrondie à la dizaine)", "answer": "1700000/1465", "tolerance": 6,
-          "misconceptions": [ { "answer": "1465/1700", "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as divisé dans le mauvais sens. Dépense moyenne = dépenses ÷ touristes : 1 700 000 millions ÷ 1 465 millions ≈ 1 160 $." } ] },
+          "misconceptions": [ { "answer": "1465/1700", "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as divisé dans le mauvais sens. Dépense moyenne = dépenses ÷ nombre de touristes, les deux en millions (1 700 milliards = 1 700 000 millions)." } ] },
         { "type": "numeric", "prompt": "Sur 100 emplois dans le monde, combien sont liés au tourisme ? (arrondi à l'unité)", "answer": 10, "tolerance": 0.5,
-          "misconceptions": [ { "answer": 366, "id": "mc:part-valeur", "error": "methode", "feedback": "366 millions est un nombre de personnes. La part : 366 ÷ 3 600 × 100 ≈ 10 emplois sur 100." } ] }
+          "misconceptions": [ { "answer": 366, "id": "mc:part-valeur", "error": "methode", "feedback": "366 millions est un nombre de personnes. Pour savoir combien sur 100, calcule la part : emplois du tourisme ÷ emplois dans le monde × 100 (3,6 milliards = 3 600 millions)." } ] }
       ],
       "hints": ["1,7 × 1 000 = ?", "Mets tout en millions : 1 700 milliards = 1 700 000 millions.", "Part = 366 millions ÷ 3 600 millions × 100."],
-      "solution": "1,7 trillion = 1 700 milliards de dollars. Dépense moyenne : 1 700 000 ÷ 1 465 ≈ 1 160 $ par touriste. Emplois : 366 ÷ 3 600 × 100 ≈ 10 : environ un emploi sur dix dans le monde est lié au tourisme. C'est pourquoi la chute de 2020 a été si grave pour beaucoup de pays.",
+      "solution": "1,7 trillion = 1 700 milliards de dollars. Dépense moyenne : 1 700 000 ÷ 1 465 ≈ 1 160 dollars par touriste. Emplois : 366 ÷ 3 600 × 100 ≈ 10 : environ un emploi sur dix dans le monde est lié au tourisme. C'est pourquoi la chute de 2020 a été si grave pour beaucoup de pays.",
       "selfTest": [
         { "response": { "parts": [ { "value": "1700" }, { "value": "1160" }, { "value": "10" } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "1,7" }, { "value": "1160" }, { "value": "10" } ] }, "expect": "mc:trillion" }
@@ -450,8 +450,8 @@
       "prompt": "**Atout France, ONU Tourisme** : en 2025, la France a reçu 102 millions de touristes internationaux, plus que n'importe quel autre pays, pour 77,5 milliards d'euros de recettes. Pourtant, pour les recettes, elle est dépassée par les États-Unis et par l'Espagne.\n\nIndice : un Néerlandais qui traverse la France en voiture pour aller en Espagne et dort une nuit près de Lyon compte comme une « arrivée » de touriste international en France.",
       "parts": [
         { "type": "text", "prompt": "Quel pays tire le plus d'argent du tourisme international ?", "accept": ["les États-Unis", "États-Unis", "Etats-Unis", "les Etats-Unis", "USA", "les USA"],
-          "misconceptions": [ { "answer": "France", "id": "mc:arrivees-recettes", "error": "lecture", "feedback": "La France reçoit le plus de touristes, mais ce sont les États-Unis qui en tirent le plus de recettes : leurs visiteurs restent plus longtemps et dépensent davantage." },
-                               { "answer": "la France", "id": "mc:arrivees-recettes", "error": "lecture", "feedback": "La France reçoit le plus de touristes, mais ce sont les États-Unis qui en tirent le plus de recettes : leurs visiteurs restent plus longtemps et dépensent davantage." } ] },
+          "misconceptions": [ { "answer": "France", "id": "mc:arrivees-recettes", "error": "lecture", "feedback": "La France reçoit le plus de touristes, mais elle n'en tire pas le plus de recettes : dans d'autres pays, les visiteurs restent plus longtemps et dépensent davantage. Relis la fin du cours : quel pays en tire le plus d'argent ?" },
+                               { "answer": "la France", "id": "mc:arrivees-recettes", "error": "lecture", "feedback": "La France reçoit le plus de touristes, mais elle n'en tire pas le plus de recettes : dans d'autres pays, les visiteurs restent plus longtemps et dépensent davantage. Relis la fin du cours : quel pays en tire le plus d'argent ?" } ] },
         { "type": "open", "prompt": "Explique pourquoi le nombre d'arrivées ne suffit pas à mesurer l'importance du tourisme dans un pays. Quels autres chiffres faudrait-il regarder ?", "minWords": 50,
           "criteria": [
             { "id": "c1", "label": "J'explique qu'une arrivée peut être un simple passage d'une nuit (transit vers un autre pays)", "keywords": [["nuit", "passage", "traverse", "transit", "espagne"]] },

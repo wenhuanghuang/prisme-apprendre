@@ -2,7 +2,9 @@
  * Lancers de dés : simulation par paquets (1 à 10 000) avec un générateur cryptographique sans biais,
  * histogramme des fréquences (avec 2 dés : des sommes), probabilité théorique affichable sur demande,
  * courbe de la fréquence d'un résultat en fonction du nombre de lancers, tableau effectifs / fréquences.
- * config : { faces (4 à 20), dice (1 ou 2), event (texte décrivant l'événement étudié) }
+ * config : { faces (4 à 20), dice (1 ou 2), event (texte décrivant l'événement étudié),
+ *            track (résultat suivi, ou liste de résultats suivis ensemble : [3, 4, 5, 6]) }
+ * Sans `track`, les résultats suivis sont lus dans `event` : « obtenir 6 » → 6, « somme égale à 6, 7 ou 8 » → 6, 7 et 8.
  */
 import { h } from '../ui/dom.js';
 import { formatNumber } from '../core/expr.js';
@@ -56,15 +58,28 @@ function niceInt(raw) {
   return 10 * p;
 }
 
-function readConfig(cfg) {
+/** « 6 », « 6, 7 ou 8 » */
+export function trackLabel(set) {
+  return set.length === 1 ? String(set[0]) : `${set.slice(0, -1).join(', ')} ou ${set[set.length - 1]}`;
+}
+
+/** Résultats suivis : option `track`, sinon la première liste de nombres de l'événement (« 3, 4, 5 ou 6 »). */
+function readTracked(cfg, event, dice, faces) {
+  let raw = Array.isArray(cfg.track) ? cfg.track : cfg.track !== undefined ? [cfg.track] : [];
+  if (!raw.length) {
+    const m = event.match(/\d+(?:\s*(?:,|ou)\s*\d+)*/);
+    raw = m ? m[0].match(/\d+/g) : [];
+  }
+  const set = [...new Set(raw.map((v) => toInt(v, NaN)))].filter((v) => v >= dice && v <= dice * faces).sort((a, b) => a - b);
+  return set.length ? set : [dice === 1 ? faces : faces + 1];
+}
+
+export function readConfig(cfg) {
   const faces = Math.max(4, Math.min(20, toInt(cfg.faces, 6)));
   const dice = toInt(cfg.dice, 1) === 2 ? 2 : 1;
   const event = typeof cfg.event === 'string' ? cfg.event.trim().slice(0, 140) : '';
   const lo = dice; const hi = dice * faces;
-  const m = event.match(/\d+/);
-  const fromEvent = m ? Number(m[0]) : NaN;
-  const tracked = fromEvent >= lo && fromEvent <= hi ? fromEvent : (dice === 1 ? faces : faces + 1);
-  return { faces, dice, event, lo, hi, tracked };
+  return { faces, dice, event, lo, hi, tracked: readTracked(cfg, event, dice, faces) };
 }
 
 export function mount(container, config = {}) {
@@ -84,8 +99,11 @@ export function mount(container, config = {}) {
     'aria-label': n === 1 ? 'Lancer une fois' : `Lancer ${txt} fois`, onclick: () => roll(n),
   }, n === 1 ? txt : `× ${txt}`));
   const probBox = h('input', { type: 'checkbox', onchange: () => { st.showProb = probBox.checked; render(); } });
-  const trackSel = h('select', { class: 'field-input dice-select', onchange: () => { st.tracked = Number(trackSel.value); render(); } },
-    values.map((v) => h('option', { value: String(v), selected: v === st.tracked }, String(v))));
+  // suivre plusieurs résultats ensemble (« 3, 4, 5 ou 6 ») : l'élève n'a pas à additionner les fréquences lui-même
+  const several = tracked0.length > 1;
+  const trackSel = h('select', { class: 'field-input dice-select', onchange: () => { st.tracked = trackSel.value === 'set' ? tracked0 : [Number(trackSel.value)]; render(); } },
+    several ? h('option', { value: 'set', selected: true }, trackLabel(tracked0)) : null,
+    values.map((v) => h('option', { value: String(v), selected: !several && v === tracked0[0] }, String(v))));
   const resetBtn = h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: reset }, 'Réinitialiser');
   const lastBox = h('div', { class: 'dice-last', 'aria-hidden': 'true' });
   const readout = h('div', { class: 'lab-readout dice-readout' });
@@ -140,10 +158,15 @@ export function mount(container, config = {}) {
     render();
     clearTimeout(st.liveTimer);
     st.liveTimer = setTimeout(() => {
-      live.textContent = `${fmtN(k)} lancer${k > 1 ? 's' : ''} de plus, ${fmtN(st.total)} au total. Fréquence de ${st.tracked} : ${fix3(freq(st.tracked))}.`;
+      live.textContent = `${fmtN(k)} lancer${k > 1 ? 's' : ''} de plus, ${fmtN(st.total)} au total. Fréquence de ${trackLabel(st.tracked)} : ${fix3(freqOf(st.tracked))}.`;
     }, 300);
   }
   const freq = (v) => (st.total ? st.counts[v - lo] / st.total : 0);
+  const isTracked = (v) => st.tracked.includes(v);
+  const countOf = (set) => set.reduce((n, v) => n + st.counts[v - lo], 0);
+  const freqOf = (set) => (st.total ? countOf(set) / st.total : 0);
+  const probOf = (set) => set.reduce((p, v) => p + prob(v), 0);
+  const probTxtOf = (set) => `${set.reduce((n, v) => n + ways(v), 0)}/${outcomes}`;
 
   function reset() {
     st.counts = values.map(() => 0); st.total = 0; st.last = null;
@@ -172,8 +195,8 @@ export function mount(container, config = {}) {
     measureWidth();
     const full = st.total >= MAX_TOTAL;
     for (const b of batchBtns) b.disabled = full;
-    const c = st.counts[st.tracked - lo];
-    readout.textContent = `Lancers : ${fmtN(st.total)}\n« ${st.tracked} » : ${fmtN(c)} fois${st.total ? `, fréquence ${fix3(freq(st.tracked))}` : ''}${full ? '\n(limite atteinte)' : ''}`;
+    const c = countOf(st.tracked);
+    readout.textContent = `Lancers : ${fmtN(st.total)}\n« ${trackLabel(st.tracked)} » : ${fmtN(c)} fois${st.total ? `, fréquence ${fix3(freqOf(st.tracked))}` : ''}${full ? '\n(limite atteinte)' : ''}`;
     renderHistogram();
     renderCurve();
     renderTable();
@@ -199,10 +222,10 @@ export function mount(container, config = {}) {
     const labelEvery = slot >= 18 ? 1 : slot >= 9 ? 2 : 4;
     values.forEach((v, i) => {
       const x = ML + i * slot + (slot - bw) / 2; const y = Y(freqs[i]);
-      const bar = s('rect', { x: x.toFixed(1), y: y.toFixed(1), width: bw.toFixed(1), height: Math.max(0, MT + plotH - y).toFixed(1), class: `dice-bar${v === st.tracked ? ' is-tracked' : ''}` });
-      bar.addEventListener('click', () => { st.tracked = v; trackSel.value = String(v); render(); });
+      const bar = s('rect', { x: x.toFixed(1), y: y.toFixed(1), width: bw.toFixed(1), height: Math.max(0, MT + plotH - y).toFixed(1), class: `dice-bar${isTracked(v) ? ' is-tracked' : ''}` });
+      bar.addEventListener('click', () => { st.tracked = [v]; trackSel.value = String(v); render(); });
       hist.append(bar);
-      if ((v - lo) % labelEvery === 0) hist.append(s('text', { x: (x + bw / 2).toFixed(1), y: HH - MB + 16, 'text-anchor': 'middle', class: `dice-tick${v === st.tracked ? ' is-tracked' : ''}` }, String(v)));
+      if ((v - lo) % labelEvery === 0) hist.append(s('text', { x: (x + bw / 2).toFixed(1), y: HH - MB + 16, 'text-anchor': 'middle', class: `dice-tick${isTracked(v) ? ' is-tracked' : ''}` }, String(v)));
     });
     hist.append(s('text', { x: ML + plotW / 2, y: HH - 6, 'text-anchor': 'middle', class: 'dice-axis-title' }, word));
     if (st.showProb) drawProbOnHistogram(Y, slot, bw);
@@ -227,21 +250,23 @@ export function mount(container, config = {}) {
     hist.append(s('text', { x: HW - MR - 4, y: MT + 10, 'text-anchor': 'end', class: 'dice-prob-label' }, '— probabilité de chaque somme'));
   }
 
-  function curvePoints(target) {
+  function curvePoints(set) {
     const N = st.total; const pts = [];
     if (!N) return pts;
+    const hit = new Uint8Array(hi + 1);
+    for (const v of set) hit[v] = 1;
     const nPts = Math.min(N, 600);
     let c = 0; let k = 1; let mark = Math.round(N / nPts);
     for (let i = 0; i < N; i++) {
-      if (st.seq[i] === target) c += 1;
+      if (hit[st.seq[i]]) c += 1;
       while (i + 1 >= mark && k <= nPts) { pts.push([i + 1, c / (i + 1)]); k += 1; mark = Math.round((k * N) / nPts); }
     }
     return pts;
   }
 
   function renderCurve() {
-    const v = st.tracked; const p = prob(v);
-    curveTitle.textContent = `Fréquence de « ${v} » en fonction du nombre de lancers`;
+    const set = st.tracked; const p = probOf(set); const label = trackLabel(set);
+    curveTitle.textContent = `Fréquence de « ${label} » en fonction du nombre de lancers`;
     const CW = st.w; const plotW = CW - ML - MR; const plotH = CH - MT - MB;
     const { step, top } = yScale(Math.min(1, Math.max(0.1, 3 * p)));
     const N = Math.max(st.total, 10);
@@ -257,18 +282,18 @@ export function mount(container, config = {}) {
     curve.append(s('text', { x: ML + plotW / 2, y: CH - 6, 'text-anchor': 'middle', class: 'dice-axis-title' }, 'nombre de lancers'));
     if (st.showProb) {
       curve.append(s('line', { x1: ML, y1: Y(p), x2: CW - MR, y2: Y(p), class: 'dice-prob' }),
-        s('text', { x: CW - MR - 4, y: Y(p) - 6, 'text-anchor': 'end', class: 'dice-prob-label' }, `probabilité : ${probTxt(v)} ≈ ${fix3(p)}`));
+        s('text', { x: CW - MR - 4, y: Y(p) - 6, 'text-anchor': 'end', class: 'dice-prob-label' }, `probabilité : ${probTxtOf(set)} ≈ ${fix3(p)}`));
     }
-    const pts = curvePoints(v);
+    const pts = curvePoints(set);
     if (pts.length) curve.append(s('polyline', { points: pts.map(([n, f]) => `${X(n).toFixed(1)},${Y(f).toFixed(1)}`).join(' '), class: 'dice-line' }));
     curve.setAttribute('aria-label', st.total
-      ? `Courbe de la fréquence de ${v} : après ${fmtN(st.total)} lancers, elle vaut ${fix3(freq(v))}.`
+      ? `Courbe de la fréquence de ${label} : après ${fmtN(st.total)} lancers, elle vaut ${fix3(freqOf(set))}.`
       : 'Courbe vide : aucun lancer pour l’instant.');
   }
 
   function renderTable() {
     const head = [word, 'Effectif', 'Fréquence', ...(st.showProb ? ['Probabilité'] : [])];
-    const rows = values.map((v) => h('tr', { class: v === st.tracked ? 'is-tracked' : null },
+    const rows = values.map((v) => h('tr', { class: isTracked(v) ? 'is-tracked' : null },
       h('th', { scope: 'row' }, String(v)),
       h('td', {}, fmtN(st.counts[v - lo])),
       h('td', {}, st.total ? fix3(freq(v)) : '—'),
@@ -277,7 +302,10 @@ export function mount(container, config = {}) {
       h('caption', { class: 'sr-only' }, 'Effectifs et fréquences de chaque résultat'),
       h('thead', {}, h('tr', {}, head.map((t) => h('th', { scope: 'col' }, t)))),
       h('tbody', {}, rows),
-      h('tfoot', {}, h('tr', {}, h('th', { scope: 'row' }, 'Total'), h('td', {}, fmtN(st.total)), h('td', {}, st.total ? '1' : '—'), st.showProb ? h('td', {}, '1') : null))));
+      h('tfoot', {}, st.tracked.length > 1 ? h('tr', { class: 'is-tracked' }, h('th', { scope: 'row' }, trackLabel(st.tracked)),
+        h('td', {}, fmtN(countOf(st.tracked))), h('td', {}, st.total ? fix3(freqOf(st.tracked)) : '—'),
+        st.showProb ? h('td', {}, `${probTxtOf(st.tracked)} ≈ ${fix3(probOf(st.tracked))}`) : null) : null,
+      h('tr', {}, h('th', { scope: 'row' }, 'Total'), h('td', {}, fmtN(st.total)), h('td', {}, st.total ? '1' : '—'), st.showProb ? h('td', {}, '1') : null))));
   }
 
   render();

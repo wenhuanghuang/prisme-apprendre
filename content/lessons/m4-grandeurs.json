@@ -387,7 +387,7 @@
       },
       "answer": "pi*r^2*h/3",
       "unit": "cm³",
-      "tolerance": 0.06,
+      "tolerance": 0.05,
       "round": 1,
       "misconceptions": [
         {
@@ -796,6 +796,7 @@
           "prompt": "Quel est le volume d'un cornet, arrondi au dixième de cm³ ? (le nombre seul)",
           "answer": "pi*2.5^2*12/3",
           "tolerance": 0.06,
+          "round": 1,
           "misconceptions": [
             {
               "answer": "pi*2.5^2*12",
@@ -824,6 +825,7 @@
           "prompt": "Pour les petits, un cornet « mini » est une réduction de rapport 1/2 du cornet normal. Quel est son volume, arrondi au dixième de cm³ ?",
           "answer": "pi*2.5^2*12/3/8",
           "tolerance": 0.06,
+          "round": 1,
           "misconceptions": [
             {
               "answer": "pi*2.5^2*12/3/2",
@@ -848,7 +850,7 @@
               "answer": "mini",
               "id": "mc:volume-k",
               "error": "raisonnement",
-              "feedback": "Le cornet normal coûte 3 fois plus cher, mais il contient 8 fois plus de glace (2³ = 8). Compare : pour 3 €, un cornet normal ou trois minis ?"
+              "feedback": "Le mini coûte 3 fois moins cher, mais contient-il seulement 3 fois moins de glace ? Pense à l’effet d’une réduction de rapport 1/2 sur un volume, puis compare : pour 3 €, un cornet normal ou trois minis ?"
             }
           ]
         }
@@ -932,7 +934,7 @@
         },
         { "pair": ["l1", "r6"], "id": "mc:diviser-par-10", "error": "calcul", "feedback": "36 ÷ 10 = 3,6 : on ne divise pas par 10, mais par 3,6." }
       ],
-      "hints": ["36 ÷ 3,6 = 10.", "Le nombre de m/s est toujours plus petit que le nombre de km/h."],
+      "hints": ["Pour chaque vitesse en km/h, calcule le quotient par 3,6.", "Le nombre de m/s est toujours plus petit que le nombre de km/h."],
       "solution": "36 ÷ 3,6 = 10 m/s ; 72 ÷ 3,6 = 20 m/s ; 18 ÷ 3,6 = 5 m/s ; 108 ÷ 3,6 = 30 m/s.",
       "selfTest": [
         { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
@@ -1016,12 +1018,13 @@
         ]
       },
       "parts": [
-        { "type": "numeric", "prompt": "Quel est le volume du verre plein, arrondi au cm³ ?", "answer": "pi*16*10/3", "tolerance": 0.5 },
+        { "type": "numeric", "prompt": "Quel est le volume du verre plein, arrondi au cm³ ?", "answer": "pi*16*10/3", "tolerance": 0.5, "round": 0 },
         {
           "type": "numeric",
           "prompt": "Quel est le volume du liquide, arrondi au cm³ ?",
           "answer": "pi*16*10/3/8",
           "tolerance": 0.5,
+          "round": 0,
           "misconceptions": [
             {
               "answer": "pi*16*10/3/2",
@@ -1086,6 +1089,7 @@
           "prompt": "Quelle masse de sucre contient une canette, arrondie au gramme ?",
           "answer": "106*0.33",
           "tolerance": 0.5,
+          "round": 0,
           "misconceptions": [{ "answer": "10.6*33", "id": "mc:conversion-cl", "error": "unite", "feedback": "33 cL = 330 mL, soit 3,3 fois 100 mL (et non 33 fois)." }]
         },
         {

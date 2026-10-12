@@ -1,0 +1,1247 @@
+{
+  "id": "pc3-energie-cinetique",
+  "chapter": "pc3-energie",
+  "title": "Énergie cinétique, conservation de l'énergie et effet de serre",
+  "subject": "pc",
+  "level": "3e",
+  "skills": ["pc.energie.cinetique", "pc.energie.conservation", "pc.energie.rayonnement"],
+  "status": "programme",
+  "programmes": ["pc-c4-2020"],
+  "duration": 60,
+  "summary": "Calculer l'énergie cinétique d'un objet (Ec = ½ × m × v²) et comprendre son lien avec la sécurité routière ; suivre les conversions entre énergie de position, énergie cinétique et énergie thermique (conservation de l'énergie, bilan énergétique) ; expliquer le transfert d'énergie par rayonnement, l'effet de serre et le bilan énergétique Terre-atmosphère. Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 3e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Deux fois plus vite, quatre fois plus loin",
+      "body": "Sur route sèche, une voiture qui freine d'urgence à **50 km/h** parcourt environ **14 m** avant de s'arrêter (sans compter le temps de réaction). À **100 km/h**, sa vitesse a doublé… mais il lui faut environ **56 m** : quatre fois plus !\n\nPourquoi doubler la vitesse ne double-t-il pas simplement la distance de freinage ? Et où passe l'énergie de la voiture quand elle s'arrête ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🏎️",
+          "title": "L'énergie cinétique",
+          "body": "Tout objet en mouvement possède une **énergie cinétique** : $Ec = ½ × m × v²$, avec m en kilogrammes, v en mètres par seconde et Ec en **joules (J)**. La vitesse est **au carré** : elle compte bien plus que la masse. Une vitesse en km/h se convertit en m/s en divisant par 3,6.",
+          "example": "Une cycliste et son vélo (80 kg) à 5 m/s : Ec = ½ × 80 × 5² = 1 000 J.",
+          "reveal": {
+            "question": "Devine : si la vitesse double, l'énergie cinétique est multipliée par combien ?",
+            "answer": "Par 4, car 2² = 4. Si la vitesse triple, par 9 (3² = 9)."
+          }
+        },
+        {
+          "emoji": "🚸",
+          "title": "Vitesse et sécurité routière",
+          "body": "Pour s'arrêter, les freins doivent convertir **toute** l'énergie cinétique du véhicule en énergie thermique (disques et pneus qui chauffent). À vitesse double, l'énergie cinétique est quadruple : la distance de freinage est environ quatre fois plus longue. Lors d'un choc, c'est cette énergie qui déforme la carrosserie… et blesse les corps."
+        },
+        {
+          "emoji": "🎢",
+          "title": "Énergie de position et conservation",
+          "body": "Un objet en hauteur possède une **énergie de position** (ou énergie potentielle), d'autant plus grande qu'il est lourd et haut : $Ep = m × g × h$. L'énergie ne se crée pas et ne disparaît pas : elle se **convertit**. Un objet qui tombe perd de l'énergie de position et gagne autant d'énergie cinétique : sans frottements, $Ep + Ec$ reste constante.",
+          "reveal": {
+            "question": "Devine : un skateur descend une rampe puis remonte de l'autre côté. Pourquoi ne remonte-t-il jamais tout à fait aussi haut ?",
+            "answer": "Les frottements convertissent une partie de son énergie en énergie thermique (roues, air) : il lui reste moins d'énergie pour remonter. Elle n'a pas disparu, mais elle n'est plus utile."
+          }
+        },
+        {
+          "emoji": "📊",
+          "title": "Le bilan énergétique",
+          "body": "Pour un convertisseur : **énergie reçue = énergie utile + énergie dissipée**. On le représente par un diagramme : une flèche qui entre, des flèches qui sortent. Exemple : un moteur reçoit 100 J d'énergie électrique et fournit 70 J d'énergie cinétique ; les 30 J restants sont dissipés, surtout en énergie thermique."
+        },
+        {
+          "emoji": "☀️",
+          "title": "Rayonnement et effet de serre",
+          "body": "Le Soleil transfère de l'énergie à la Terre par **rayonnement**, même à travers le vide. Le sol chauffé émet à son tour un rayonnement **infrarouge**, invisible. Des gaz de l'atmosphère (vapeur d'eau, dioxyde de carbone CO₂, méthane) en absorbent une partie et en renvoient vers le sol : c'est l'**effet de serre**. Sans lui, la Terre serait en moyenne à −18 °C au lieu d'environ +15 °C."
+        },
+        {
+          "emoji": "🌍",
+          "title": "Le bilan Terre-atmosphère",
+          "body": "À température stable, la Terre renvoie vers l'espace autant d'énergie qu'elle en absorbe. En brûlant charbon, pétrole et gaz, l'être humain a fait passer le CO₂ de l'air d'environ 280 ppm (vers 1750) à plus de 420 ppm (NOAA, 2024) : la Terre garde un peu plus d'énergie qu'elle n'en perd, elle se réchauffe. Le « trou » de la couche d'ozone, lui, concerne les ultraviolets : il n'est pas la cause de ce réchauffement."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : une boule qui tombe",
+      "body": "On suit, au ralenti, l'énergie d'une boule lâchée de 5,0 m de haut.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "forme", "shape": "line", "x": 70, "y": 76, "w": 0, "h": 300, "stroke": "#334155", "width": 2 },
+          { "type": "texte", "x": 62, "y": 81, "text": "5,0 m", "size": 13, "anchor": "end" },
+          { "type": "texte", "x": 62, "y": 231, "text": "2,5 m", "size": 13, "anchor": "end" },
+          { "type": "texte", "x": 62, "y": 381, "text": "0 m", "size": 13, "anchor": "end" },
+          { "type": "objet", "id": "g0", "shape": "boule", "x": 240, "y": 76, "size": 22, "color": "#64748b", "opacity": 0.4, "hidden": true },
+          { "type": "objet", "id": "g1", "shape": "boule", "x": 240, "y": 94.75, "size": 22, "color": "#64748b", "opacity": 0.4, "hidden": true },
+          { "type": "objet", "id": "g2", "shape": "boule", "x": 240, "y": 151, "size": 22, "color": "#64748b", "opacity": 0.4, "hidden": true },
+          { "type": "objet", "id": "g3", "shape": "boule", "x": 240, "y": 244.75, "size": 22, "color": "#64748b", "opacity": 0.4, "hidden": true },
+          { "type": "objet", "id": "g4", "shape": "boule", "x": 240, "y": 376, "size": 22, "color": "#64748b", "opacity": 0.4, "hidden": true },
+          { "type": "texte", "id": "gt1", "x": 335, "y": 160, "text": "une image", "size": 13, "hidden": true },
+          { "type": "texte", "id": "gt2", "x": 335, "y": 178, "text": "toutes les 0,25 s", "size": 13, "hidden": true },
+          { "type": "objet", "id": "B", "shape": "boule", "x": 160, "y": 76, "size": 28, "color": "#64748b", "label": "0,40 kg" },
+          { "type": "forme", "id": "sable", "shape": "rect", "x": 100, "y": 376, "w": 180, "h": 16, "fill": "sable" },
+          { "type": "etiquette", "id": "vit", "x": 350, "y": 300, "text": "v = 9,9 m/s", "to": [176, 362], "hidden": true },
+          { "type": "forme", "shape": "rect", "x": 455, "y": 20, "w": 335, "h": 350, "fill": "blanc", "stroke": "#c5ccd8", "width": 1.5 },
+          { "type": "texte", "x": 622, "y": 44, "text": "Les énergies de la boule", "size": 15, "bold": true },
+          { "type": "texte", "id": "tot", "x": 622, "y": 70, "text": "Total : 19,6 J", "size": 15 },
+          { "type": "texte", "id": "info", "x": 622, "y": 96, "text": "Ep = 0,40 × 9,8 × 5,0 = 19,6 J", "size": 14 },
+          { "type": "forme", "id": "bEp", "shape": "rect", "x": 482, "y": 134, "w": 60, "h": 196, "fill": "bleu" },
+          { "type": "forme", "id": "bEc", "shape": "rect", "x": 592, "y": 330, "w": 60, "h": 0, "fill": "orange" },
+          { "type": "forme", "id": "bEt", "shape": "rect", "x": 702, "y": 330, "w": 60, "h": 0, "fill": "rouge" },
+          { "type": "forme", "shape": "line", "x": 470, "y": 330, "w": 305, "h": 0, "stroke": "#334155", "width": 2 },
+          { "type": "texte", "x": 512, "y": 352, "text": "position", "size": 14 },
+          { "type": "texte", "x": 622, "y": 352, "text": "cinétique", "size": 14 },
+          { "type": "texte", "x": 732, "y": 352, "text": "thermique", "size": 14 },
+          { "type": "texte", "id": "vEp", "x": 512, "y": 124, "text": "19,6 J", "size": 14, "bold": true },
+          { "type": "texte", "id": "vEc", "x": 622, "y": 320, "text": "0 J", "size": 14, "bold": true },
+          { "type": "texte", "id": "vEt", "x": 732, "y": 320, "text": "0 J", "size": 14, "bold": true }
+        ],
+        "steps": [
+          {
+            "title": "La situation",
+            "text": "Une boule de **0,40 kg** est tenue immobile à **5,0 m** au-dessus d'un bac à sable. Immobile, elle n'a **pas d'énergie cinétique**. En hauteur, elle possède une **énergie de position** : Ep = m × g × h = 0,40 × 9,8 × 5,0 = **19,6 J** (le sol sert de niveau zéro).",
+            "focus": ["B", "bEp"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On lâche la boule. Pendant la chute, que devient son énergie de position ?",
+              "choices": ["Elle disparaît peu à peu", "Elle se convertit peu à peu en énergie cinétique", "Elle reste la même jusqu'au sol"],
+              "answer": 1,
+              "explain": "En descendant, la boule perd de la hauteur et gagne de la vitesse : son énergie de position se convertit en énergie cinétique."
+            }
+          },
+          {
+            "title": "La chute, au ralenti",
+            "text": "La boule tombe de plus en plus vite. Son énergie de position diminue ; son énergie cinétique augmente d'autant. Le total reste égal à **19,6 J** (sur une chute aussi courte, on néglige les frottements de l'air).",
+            "duration": 5.6,
+            "hide": ["vEp", "vEc", "info"],
+            "do": [
+              { "id": "B", "set": { "label": "" } },
+              { "id": "B", "to": { "y": 676 }, "at": 0.6, "dur": 5 },
+              { "id": "B", "set": { "y": 376 }, "at": 3.1 },
+              { "id": "bEp", "to": { "y": 526, "h": -196 }, "at": 0.6, "dur": 5 },
+              { "id": "bEp", "set": { "y": 330, "h": 0 }, "at": 3.1 },
+              { "id": "bEc", "to": { "y": -62, "h": 392 }, "at": 0.6, "dur": 5 },
+              { "id": "bEc", "set": { "y": 134, "h": 196 }, "at": 3.1 }
+            ],
+            "focus": ["B"],
+            "ask": {
+              "kind": "observer",
+              "question": "La boule arrive au niveau du sable. Que montrent maintenant les barres d'énergie ?",
+              "choices": ["La barre « position » est vide, la barre « cinétique » est pleine", "Les deux barres sont à moitié pleines", "Les deux barres sont vides : l'énergie a disparu"],
+              "answer": 0,
+              "explain": "En bas, la hauteur est nulle : l'énergie de position vaut 0 J. Elle est entièrement devenue de l'énergie cinétique."
+            }
+          },
+          {
+            "title": "Juste avant le sol",
+            "text": "Juste avant de toucher le sable, la boule va à **9,9 m/s** (environ 36 km/h). Son énergie cinétique vaut Ec = ½ × m × v² = ½ × 0,40 × 9,9² ≈ **19,6 J** : toute l'énergie de position est devenue énergie cinétique.",
+            "show": ["vEp", "vEc", "vit", "info"],
+            "do": [
+              { "id": "vEp", "set": { "text": "0 J", "y": 320 } },
+              { "id": "vEc", "set": { "text": "19,6 J", "y": 124 } },
+              { "id": "info", "set": { "text": "Ec = ½ × 0,40 × 9,9² ≈ 19,6 J" } }
+            ],
+            "focus": ["vit", "bEc"]
+          },
+          {
+            "title": "La chronophotographie",
+            "text": "Voici les positions de la boule photographiées toutes les 0,25 s environ. Les écarts grandissent : pendant une même durée, la boule parcourt une distance de plus en plus grande. Sa vitesse augmente, donc son énergie cinétique aussi.",
+            "show": ["g0", "g1", "g2", "g3", "g4", "gt1", "gt2"],
+            "focus": ["g1", "g2", "g3"],
+            "ask": {
+              "kind": "observer",
+              "question": "Sur la chronophotographie, à quel endroit la boule va-t-elle le plus vite ?",
+              "choices": ["En haut, juste après le lâcher", "Au milieu de la chute", "En bas, juste avant le sable"],
+              "answer": 2,
+              "explain": "Entre deux images, il s'écoule toujours la même durée. C'est en bas que l'écart entre deux images est le plus grand : la boule y parcourt la plus grande distance, elle va donc le plus vite."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "La boule s'enfonce dans le sable et s'arrête. Que devient son énergie cinétique ?",
+              "choices": ["Elle disparaît : l'énergie est perdue", "Elle est convertie, surtout en énergie thermique : le sable et la boule chauffent un tout petit peu", "Elle redevient de l'énergie de position"],
+              "answer": 1,
+              "explain": "L'énergie ne disparaît jamais : elle se convertit. Ici, elle devient surtout de l'énergie thermique (et un peu d'énergie sonore), qui se disperse dans le sable et l'air."
+            }
+          },
+          {
+            "title": "Le choc",
+            "text": "La boule s'arrête : son énergie cinétique tombe à zéro. Mais le total vaut toujours **19,6 J** : l'énergie est devenue de l'**énergie thermique**, qui se disperse. Elle n'est pas perdue… mais on ne peut plus l'utiliser.",
+            "duration": 3,
+            "hide": ["vit"],
+            "do": [
+              { "id": "B", "to": { "y": 386 }, "dur": 0.4 },
+              { "id": "bEc", "to": { "y": 330, "h": 0 }, "at": 0.3, "dur": 1.5 },
+              { "id": "bEt", "to": { "y": 134, "h": 196 }, "at": 0.3, "dur": 1.5 },
+              { "id": "vEc", "to": { "y": 320 }, "at": 0.3, "dur": 1.5 },
+              { "id": "vEc", "set": { "text": "0 J" }, "at": 1.8 },
+              { "id": "vEt", "to": { "y": 124 }, "at": 0.3, "dur": 1.5 },
+              { "id": "vEt", "set": { "text": "19,6 J" }, "at": 1.8 },
+              { "id": "info", "set": { "text": "cinétique → thermique (+ un peu de son)" } }
+            ],
+            "focus": ["bEt", "tot"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Du début à la fin, le total est resté à 19,6 J. Que montre cette expérience ?",
+              "choices": ["L'énergie a été créée pendant la chute, puis détruite au choc", "L'énergie change de forme, mais elle se conserve", "L'énergie de position s'est transformée directement en énergie thermique, sans passer par l'énergie cinétique"],
+              "answer": 1,
+              "explain": "Position → cinétique pendant la chute, puis cinétique → thermique (et un peu de son) au choc : la forme change, mais le total reste 19,6 J. L'énergie se conserve."
+            }
+          }
+        ],
+        "conclusion": "Pendant la chute, l'**énergie de position** se convertit en **énergie cinétique** (Ec = ½ × m × v²) ; au choc, l'énergie cinétique devient surtout de l'**énergie thermique**. À chaque instant, le total reste le même : l'énergie **se conserve**, elle change seulement de forme."
+      }
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : deux bocaux sous une lampe",
+      "body": "Un modèle de l'effet de serre : même lumière, même bocal… mais pas le même gaz.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "texte", "x": 16, "y": 28, "text": "— rayonnement de la lampe", "size": 14, "anchor": "start", "bold": true, "color": "#a16207" },
+          { "type": "texte", "x": 16, "y": 50, "text": "— infrarouge (invisible)", "size": 14, "anchor": "start", "bold": true, "color": "#dc2626" },
+          { "type": "courbe", "id": "g", "x": 545, "y": 8, "w": 245, "h": 155, "title": "Bocal B (trait plein)", "xRange": [0, 15], "yRange": [15, 35], "xLabel": "t (min)", "yLabel": "θ (°C)", "points": [[0, 20], [3, 23.6], [6, 26.1], [9, 27.8], [12, 28.9], [15, 29.5]], "ref": { "points": [[0, 20], [3, 22.6], [6, 24.5], [9, 25.8], [12, 26.6], [15, 27]], "label": "bocal A" }, "progress": 0, "color": "#dc2626" },
+          { "type": "lampe", "id": "lamp", "x": 400, "y": 90, "on": 0, "label": "lampe" },
+          { "type": "becher", "id": "A", "x": 220, "y": 392, "w": 150, "h": 170, "level": 0, "grad": false },
+          { "type": "becher", "id": "B", "x": 580, "y": 392, "w": 150, "h": 170, "level": 0, "grad": false },
+          { "type": "forme", "id": "solA", "shape": "rect", "x": 150, "y": 376, "w": 140, "h": 10, "fill": "noir" },
+          { "type": "forme", "id": "solB", "shape": "rect", "x": 510, "y": 376, "w": 140, "h": 10, "fill": "noir" },
+          { "type": "forme", "shape": "ellipse", "x": 530, "y": 300, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "forme", "shape": "ellipse", "x": 556, "y": 262, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "forme", "shape": "ellipse", "x": 598, "y": 262, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "forme", "shape": "ellipse", "x": 540, "y": 345, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "forme", "shape": "ellipse", "x": 605, "y": 330, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "forme", "shape": "ellipse", "x": 585, "y": 295, "w": 7, "h": 7, "fill": "#475569" },
+          { "type": "rayon", "id": "vA1", "from": [394, 112], "to": [208, 374], "color": "#facc15", "width": 4, "progress": 0 },
+          { "type": "rayon", "id": "vA2", "from": [400, 114], "to": [262, 374], "color": "#facc15", "width": 4, "progress": 0 },
+          { "type": "rayon", "id": "vB1", "from": [400, 114], "to": [540, 374], "color": "#facc15", "width": 4, "progress": 0 },
+          { "type": "rayon", "id": "vB2", "from": [406, 112], "to": [594, 374], "color": "#facc15", "width": 4, "progress": 0 },
+          { "type": "rayon", "id": "irA", "from": [235, 374], "to": [235, 262], "color": "#dc2626", "width": 3, "progress": 0 },
+          { "type": "rayon", "id": "irB", "from": [566, 374], "to": [566, 302], "color": "#dc2626", "width": 3, "progress": 0 },
+          { "type": "rayon", "id": "irB2", "from": [566, 302], "to": [528, 370], "color": "#dc2626", "width": 3, "progress": 0 },
+          { "type": "forme", "id": "lidA", "shape": "rect", "x": 139, "y": 213, "w": 162, "h": 9, "fill": "#e2e8f0", "stroke": "#94a3b8", "width": 1.5 },
+          { "type": "forme", "id": "lidB", "shape": "rect", "x": 499, "y": 213, "w": 162, "h": 9, "fill": "#e2e8f0", "stroke": "#94a3b8", "width": 1.5 },
+          { "type": "thermometre", "id": "thA", "x": 185, "y": 372, "h": 200, "value": 20, "min": 10, "max": 40, "decimals": 1, "dx": -75 },
+          { "type": "thermometre", "id": "thB", "x": 625, "y": 372, "h": 200, "value": 20, "min": 10, "max": 40, "decimals": 1, "dx": 75 },
+          { "type": "chrono", "id": "ch", "x": 400, "y": 290, "value": 0, "hidden": true },
+          { "type": "etiquette", "id": "eCO2", "x": 720, "y": 192, "text": "le CO₂ absorbe", "to": [598, 262], "hidden": true },
+          { "type": "texte", "x": 220, "y": 418, "text": "Bocal A : air", "size": 14, "bold": true },
+          { "type": "texte", "x": 580, "y": 418, "text": "Bocal B : air + CO₂", "size": 14, "bold": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Deux bocaux identiques, fermés par un couvercle en verre, avec un fond noir et un thermomètre. Le bocal A contient de l'air ; le bocal B, de l'air enrichi en **dioxyde de carbone (CO₂)**, représenté par les petits points. Au départ, les deux sont à **20 °C**.",
+            "focus": ["A", "B"]
+          },
+          {
+            "title": "On allume la lampe",
+            "text": "La lampe émet un **rayonnement** (de la lumière visible, mais aussi de l'infrarouge) qui traverse le couvercle en verre et le gaz. Le fond noir l'**absorbe** et s'échauffe. L'énergie est transférée sans contact, par rayonnement, comme celle du Soleil jusqu'à la Terre.",
+            "duration": 3,
+            "do": [
+              { "id": "lamp", "to": { "on": 1 }, "dur": 1 },
+              { "id": "vA1", "to": { "progress": 1 }, "at": 0.5, "dur": 1.5 },
+              { "id": "vA2", "to": { "progress": 1 }, "at": 0.5, "dur": 1.5 },
+              { "id": "vB1", "to": { "progress": 1 }, "at": 0.5, "dur": 1.5 },
+              { "id": "vB2", "to": { "progress": 1 }, "at": 0.5, "dur": 1.5 }
+            ],
+            "focus": ["lamp"]
+          },
+          {
+            "title": "Le fond chaud rayonne",
+            "text": "Un objet chaud émet à son tour un rayonnement **infrarouge**, invisible pour nos yeux (en rouge sur le dessin). Le fond noir de chaque bocal en émet vers le haut, à travers le gaz.",
+            "duration": 3,
+            "do": [
+              { "id": "irA", "to": { "progress": 1 }, "dur": 2 },
+              { "id": "irB", "to": { "progress": 1 }, "dur": 2 }
+            ],
+            "focus": ["irA", "irB"],
+            "ask": {
+              "kind": "observer",
+              "question": "D'où partent les traits rouges de rayonnement infrarouge ?",
+              "choices": ["De la lampe", "Du fond noir, vers le haut", "Du thermomètre"],
+              "answer": 1,
+              "explain": "Les traits rouges partent du fond noir : chauffé par la lampe, il émet à son tour de l'infrarouge vers le haut, à travers le gaz."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "La lampe reste allumée 15 minutes. À la fin, quel bocal sera le plus chaud ?",
+              "choices": ["Le bocal A (air)", "Le bocal B (air + CO₂)", "Les deux auront la même température"],
+              "answer": 1,
+              "explain": "Le CO₂ absorbe une partie du rayonnement infrarouge émis par le fond et en renvoie vers le bas : le bocal B garde un peu plus d'énergie, il chauffe davantage."
+            }
+          },
+          {
+            "title": "15 minutes plus tard",
+            "text": "Les deux bocaux se réchauffent, mais le bocal B monte plus haut : **29,5 °C** contre **27,0 °C** pour le bocal A (mesures d'une expérience de classe, données à titre d'exemple). Sur le graphique, le trait plein (B) passe au-dessus des pointillés (A).",
+            "duration": 6,
+            "show": ["ch"],
+            "do": [
+              { "id": "ch", "to": { "value": 900 }, "dur": 5 },
+              { "id": "thA", "to": { "value": 27 }, "dur": 5 },
+              { "id": "thB", "to": { "value": 29.5 }, "dur": 5 },
+              { "id": "g", "to": { "progress": 1 }, "dur": 5 },
+              { "id": "irB2", "to": { "progress": 1 }, "dur": 1.5 }
+            ],
+            "focus": ["thA", "thB", "g"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le thermomètre du bocal B (air + CO₂) au bout de 15 minutes.",
+              "answer": 29.5,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre de droite, celui du bocal B, indique 29,5 °C. Celui du bocal A, à gauche, n'indique que 27,0 °C."
+            }
+          },
+          {
+            "title": "Pourquoi ?",
+            "text": "Le diazote et le dioxygène, principaux gaz de l'air, laissent passer l'infrarouge. Le **CO₂**, lui, en **absorbe** une partie et en **renvoie** une partie vers le fond : c'est l'**effet de serre**. Les deux bocaux étant identiques, seul le gaz explique la différence.",
+            "show": ["eCO2"],
+            "focus": ["irB2", "eCO2"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "À quoi sert le bocal A, qui ne contient que de l'air ?",
+              "choices": ["C'est le témoin : il sert de comparaison pour voir l'effet du CO₂", "À rien : on pourrait l'enlever", "À fabriquer le CO₂ du bocal B"],
+              "answer": 0,
+              "explain": "Les deux bocaux sont identiques, sauf le gaz. En comparant le bocal B au témoin A, on sait que la différence de température vient du CO₂."
+            }
+          },
+          {
+            "title": "Et la Terre ?",
+            "text": "Dans l'atmosphère, c'est pareil : le Soleil chauffe le sol, le sol émet de l'infrarouge, et les **gaz à effet de serre** (vapeur d'eau, CO₂, méthane…) en renvoient une partie vers le sol. Attention : un bocal n'est qu'un **modèle** ; l'atmosphère, elle, n'a pas de couvercle !",
+            "focus": ["B"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Dans ce modèle de l'effet de serre, que représente le fond noir du bocal ?",
+              "choices": ["Le Soleil", "Le sol de la Terre, chauffé par le Soleil", "Les gaz à effet de serre"],
+              "answer": 1,
+              "explain": "La lampe joue le rôle du Soleil ; le fond noir, celui du sol qui chauffe et émet de l'infrarouge ; le CO₂, celui des gaz à effet de serre de l'atmosphère."
+            }
+          }
+        ],
+        "conclusion": "Un corps chaud émet un rayonnement **infrarouge**. Le **CO₂** absorbe une partie de ce rayonnement et en renvoie vers le sol : le bocal qui en contient chauffe davantage. Dans l'atmosphère, c'est l'**effet de serre** ; plus il y a de gaz à effet de serre, plus il se renforce, et plus la Terre se réchauffe."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : le scooter",
+      "steps": [
+        { "text": "Un scooter et son pilote ont une masse de 120 kg. Ils roulent à 45 km/h. On cherche leur énergie cinétique.", "math": "" },
+        { "text": "La formule exige une vitesse en m/s : on divise par 3,6.", "math": "v = 45 ÷ 3,6 = 12,5 m/s" },
+        { "text": "On applique la formule, sans oublier le carré :", "math": "Ec = ½ × 120 × 12,5² = 0,5 × 120 × 156,25 = 9 375 J" },
+        { "text": "À 90 km/h (vitesse doublée), v = 25 m/s :", "math": "Ec = 0,5 × 120 × 25² = 37 500 J" },
+        { "text": "Contrôle : 37 500 ÷ 9 375 = 4. Vitesse doublée, énergie cinétique quadruplée, comme l'annonce le carré de la formule.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Écris les énergies **avec leur unité** (1 000 J ou 1 kJ) et les vitesses en m/s.",
+      "exercises": [
+        "pc3-energie-cinetique-calcul",
+        "pc3-energie-cinetique-kmh",
+        "pc3-energie-cinetique-conservation",
+        "pc3-energie-cinetique-conversions",
+        "pc3-energie-cinetique-bilan",
+        "pc3-energie-cinetique-effet-serre",
+        "pc3-energie-cinetique-gaz"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["pc3-energie-cinetique-ozone"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Le bilan énergétique de la Terre",
+      "exercises": ["pc3-energie-cinetique-bilan-terre"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : une zone 30 devant le collège",
+      "body": "La mairie hésite à limiter la vitesse devant ton collège. Convaincs le conseil municipal avec des calculs d'énergie cinétique.",
+      "exercises": ["pc3-energie-cinetique-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> $Ec = ½ × m × v²$ (J, kg, m/s). L'énergie se conserve : elle se convertit (position ↔ cinétique, puis thermique avec les frottements). Effet de serre : des gaz absorbent l'infrarouge émis par la Terre et en renvoient une partie vers le sol.\n\n- **Oublier le carré.** C'est v² : vitesse doublée, énergie quadruplée.\n- **Garder des km/h.** Convertis en m/s (÷ 3,6) avant d'appliquer la formule.\n- **« L'énergie disparaît. »** Elle devient de l'énergie thermique, moins utile, mais toujours là.\n- **Confondre effet de serre et trou de la couche d'ozone.** L'ozone filtre les ultraviolets du Soleil ; l'effet de serre concerne l'infrarouge émis par la Terre."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un calcul d'énergie cinétique et un bilan d'énergie."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le skateur dans la rampe (énergie de position et vitesse), puis la distance de freinage à différentes vitesses.",
+      "exercises": ["pc3-energie-cinetique-skate", "pc3-energie-cinetique-freinage"]
+    },
+    "expert": {
+      "intro": "Facultatif : deux sujets type brevet, les montagnes russes et le dioxyde de carbone dans l'atmosphère.",
+      "exercises": ["pc3-energie-cinetique-montagnes-russes", "pc3-energie-cinetique-co2"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc3-energie-cinetique-calcul",
+      "type": "numeric",
+      "skill": "pc.energie.cinetique",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:v-non-carre", "mc:demi-oublie", "mc:tout-au-carre"],
+      "expectedSeconds": 120,
+      "params": {
+        "m": { "choice": [50, 60, 70, 80] },
+        "v": { "choice": [3, 4, 5, 6, 8] }
+      },
+      "prompt": "Une cycliste et son vélo ont une masse totale de {m} kg. Elle roule à {v} m/s. Calcule son énergie cinétique (avec l'unité). Rappel : $Ec = ½ × m × v²$.",
+      "answer": "0.5*m*v^2",
+      "unit": "J",
+      "rel": 0.01,
+      "misconceptions": [
+        { "answer": "0.5*m*v", "id": "mc:v-non-carre", "error": "calcul", "feedback": "Tu n'as pas mis la vitesse au carré : dans la formule, v est multipliée par elle-même." },
+        { "answer": "m*v^2", "id": "mc:demi-oublie", "error": "calcul", "feedback": "Tu as oublié le facteur ½ de la formule." },
+        { "answer": "(0.5*m*v)^2", "id": "mc:tout-au-carre", "error": "calcul", "feedback": "Seule la vitesse est au carré, pas tout le produit." }
+      ],
+      "hints": [
+        "m = {m} kg et v = {v} m/s : les unités sont déjà les bonnes.",
+        "Calcule d'abord v² = {v} × {v}.",
+        "Ec = 0,5 × {m} × {v*v}."
+      ],
+      "solution": "$Ec = ½ × m × v² = 0,5 × {m} × {v}² = 0,5 × {m} × {v*v} = {0.5*m*v*v}$ J.",
+      "selfTest": [
+        { "response": { "value": "{0.5*m*v^2} J" }, "expect": "correct" },
+        { "response": { "value": "{m*v^2/2000} kJ" }, "expect": "correct" },
+        { "response": { "value": "{0.5*m*v} J" }, "expect": "mc:v-non-carre" },
+        { "response": { "value": "{m*v^2} J" }, "expect": "mc:demi-oublie" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-kmh",
+      "type": "numeric",
+      "skill": "pc.energie.cinetique",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:kmh-non-converti", "mc:conversion-inverse", "mc:v-non-carre"],
+      "expectedSeconds": 180,
+      "params": {
+        "m": { "choice": [900, 1000, 1200, 1500] },
+        "V": { "choice": [36, 54, 72, 90] }
+      },
+      "prompt": "Une voiture de masse {m} kg roule à {V} km/h. Calcule son énergie cinétique en joules (avec l'unité).",
+      "answer": "0.5*m*(V/3.6)^2",
+      "unit": "J",
+      "rel": 0.01,
+      "misconceptions": [
+        { "answer": "0.5*m*V^2", "id": "mc:kmh-non-converti", "error": "unite", "feedback": "Dans la formule Ec = ½ × m × v², la vitesse doit être en m/s : convertis d'abord les km/h." },
+        { "answer": "0.5*m*(V*3.6)^2", "id": "mc:conversion-inverse", "error": "unite", "feedback": "Ta conversion est à l'envers : une vitesse en m/s est un nombre plus PETIT que la même vitesse en km/h." },
+        { "answer": "0.5*m*V/3.6", "id": "mc:v-non-carre", "error": "calcul", "feedback": "Tu n'as pas mis la vitesse au carré." }
+      ],
+      "hints": [
+        "Convertis la vitesse : on divise les km/h par 3,6 pour obtenir des m/s.",
+        "v = {V} ÷ 3,6 = {V/3.6} m/s.",
+        "Ec = 0,5 × {m} × {V/3.6}²."
+      ],
+      "solution": "$v = {V} ÷ 3,6 = {V/3.6}$ m/s. $Ec = 0,5 × {m} × {V/3.6}² = {0.5*m*(V/3.6)^2}$ J.",
+      "selfTest": [
+        { "response": { "value": "{0.5*m*(V/3.6)^2} J" }, "expect": "correct" },
+        { "response": { "value": "{0.5*m*V^2} J" }, "expect": "mc:kmh-non-converti" },
+        { "response": { "value": "{0.5*m*V/3.6} J" }, "expect": "mc:v-non-carre" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-conservation",
+      "type": "table",
+      "skill": "pc.energie.conservation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:energie-disparait", "mc:ec-nulle", "mc:immobile-ec"],
+      "expectedSeconds": 240,
+      "params": {
+        "E": { "choice": [4, 6, 10, 12, 20] }
+      },
+      "prompt": "Une bille est lâchée sans vitesse du haut d'un toboggan. On néglige les frottements. Au départ, son énergie de position vaut {E} J (le bas du toboggan sert de niveau zéro). Complète le tableau (nombres seulement, en joules).",
+      "columns": ["Position de la bille", "Ep (J)", "Ec (J)", "Ep + Ec (J)"],
+      "rows": [
+        ["Au départ (immobile)", "{E}", "?r0c2", "?r0c3"],
+        ["À mi-hauteur", "{E/2}", "?r1c2", "?r1c3"],
+        ["En bas du toboggan", "0", "?r2c2", "?r2c3"]
+      ],
+      "cells": {
+        "r0c2": { "answer": 0, "misconceptions": [{ "answer": "E", "id": "mc:immobile-ec", "error": "notion", "feedback": "Au départ, la bille est immobile : a-t-elle une énergie de mouvement ?" }] },
+        "r0c3": { "answer": "E" },
+        "r1c2": { "answer": "E/2", "misconceptions": [{ "answer": 0, "id": "mc:ec-nulle", "error": "notion", "feedback": "À mi-hauteur, la bille roule déjà : elle a gagné de la vitesse." }, { "answer": "E", "id": "mc:ec-totale", "error": "notion", "feedback": "La bille n'est pas encore en bas : elle a encore de l'énergie de position." }] },
+        "r1c3": { "answer": "E", "misconceptions": [{ "answer": "E/2", "id": "mc:energie-disparait", "error": "notion", "feedback": "Sans frottements, l'énergie ne disparaît pas : le total reste le même du début à la fin." }] },
+        "r2c2": { "answer": "E", "misconceptions": [{ "answer": 0, "id": "mc:energie-disparait", "error": "notion", "feedback": "L'énergie de position n'a pas disparu : en quoi s'est-elle convertie ?" }] },
+        "r2c3": { "answer": "E", "misconceptions": [{ "answer": 0, "id": "mc:energie-disparait", "error": "notion", "feedback": "Sans frottements, le total ne change pas : l'énergie se conserve." }] }
+      },
+      "hints": [
+        "Immobile → pas d'énergie cinétique.",
+        "Sans frottements, Ep + Ec reste constante.",
+        "Ec = total − Ep."
+      ],
+      "solution": "Le total Ep + Ec vaut toujours {E} J. Au départ : Ec = 0 J. À mi-hauteur : Ec = {E} − {E/2} = {E/2} J. En bas : Ep = 0, donc Ec = {E} J : toute l'énergie de position est devenue énergie cinétique.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "0", "r0c3": "{E}", "r1c2": "{E/2}", "r1c3": "{E}", "r2c2": "{E}", "r2c3": "{E}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "0", "r0c3": "{E}", "r1c2": "{E/2}", "r1c3": "{E/2}", "r2c2": "0", "r2c3": "0" } }, "expect": "mc:energie-disparait" },
+        { "response": { "cells": { "r0c2": "{E}", "r0c3": "{E}", "r1c2": "{E/2}", "r1c3": "{E}", "r2c2": "{E}", "r2c3": "{E}" } }, "expect": "mc:immobile-ec" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-conversions",
+      "type": "categorize",
+      "skill": "pc.energie.conservation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:freinage-position", "mc:sens-conversion"],
+      "expectedSeconds": 180,
+      "prompt": "Quelle conversion d'énergie a lieu principalement dans chaque situation ?",
+      "categories": [
+        { "id": "pc", "label": "position → cinétique" },
+        { "id": "cp", "label": "cinétique → position" },
+        { "id": "ct", "label": "cinétique → thermique" }
+      ],
+      "items": [
+        { "id": "pomme", "label": "Une pomme tombe de l'arbre", "category": "pc" },
+        { "id": "ballon", "label": "Un ballon lancé vers le haut monte en ralentissant", "category": "cp" },
+        { "id": "frein", "label": "Une voiture freine jusqu'à l'arrêt", "category": "ct" },
+        { "id": "barrage", "label": "L'eau d'un barrage descend dans une conduite et accélère", "category": "pc" },
+        { "id": "velo", "label": "Un vélo lancé gravit une côte sans pédaler, en ralentissant", "category": "cp" },
+        { "id": "meteo", "label": "Une météorite freinée par l'air devient incandescente", "category": "ct" },
+        { "id": "skieuse", "label": "Une skieuse descend une piste en prenant de la vitesse", "category": "pc" },
+        { "id": "mains", "label": "Tu frottes tes mains l'une contre l'autre pour les réchauffer", "category": "ct" }
+      ],
+      "misconceptions": [
+        { "item": "frein", "category": "cp", "id": "mc:freinage-position", "error": "notion", "feedback": "La voiture reste au même niveau : elle ne gagne pas de hauteur. Après un long freinage, les disques de frein sont brûlants : qu'est-ce que cela indique ?" },
+        { "item": "ballon", "category": "pc", "id": "mc:sens-conversion", "error": "notion", "feedback": "Le ballon monte : il gagne de la hauteur et perd de la vitesse. Dans quel sens se fait la conversion ?" },
+        { "item": "meteo", "category": "pc", "id": "mc:meteo", "error": "notion", "feedback": "La météorite tombe, mais ce qui la rend incandescente, c'est le frottement de l'air à très grande vitesse." }
+      ],
+      "hints": [
+        "L'objet gagne-t-il de la vitesse ou de la hauteur ? En perd-il ?",
+        "Quand quelque chose chauffe à cause d'un frottement, l'énergie cinétique devient de l'énergie thermique."
+      ],
+      "solution": "Position → cinétique : la pomme, l'eau du barrage, la skieuse (ils descendent en accélérant). Cinétique → position : le ballon et le vélo (ils montent en ralentissant). Cinétique → thermique : le freinage, la météorite, les mains frottées (les frottements chauffent).",
+      "selfTest": [
+        { "response": { "assign": { "pomme": "pc", "ballon": "cp", "frein": "ct", "barrage": "pc", "velo": "cp", "meteo": "ct", "skieuse": "pc", "mains": "ct" } }, "expect": "correct" },
+        { "response": { "assign": { "pomme": "pc", "ballon": "cp", "frein": "cp", "barrage": "pc", "velo": "cp", "meteo": "ct", "skieuse": "pc", "mains": "ct" } }, "expect": "mc:freinage-position" },
+        { "response": { "assign": { "pomme": "pc", "ballon": "pc", "frein": "ct", "barrage": "pc", "velo": "cp", "meteo": "ct", "skieuse": "pc", "mains": "ct" } }, "expect": "mc:sens-conversion" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-bilan",
+      "type": "composite",
+      "skill": "pc.energie.conservation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:bilan-addition", "mc:energie-disparait", "mc:forme-dissipee"],
+      "expectedSeconds": 180,
+      "params": {
+        "Ee": { "choice": [400, 500, 600, 700] },
+        "k": { "choice": [0.6, 0.7, 0.75] }
+      },
+      "prompt": "Chaque seconde, le moteur d'une perceuse reçoit {Ee} J d'énergie électrique et fournit {Ee*k} J d'énergie cinétique au foret qui tourne.",
+      "figure": {
+        "alt": "Diagramme énergétique du moteur de la perceuse : une flèche d'énergie électrique entre dans le moteur ; deux flèches en sortent, l'énergie cinétique fournie au foret et une énergie dissipée inconnue.",
+        "w": 460,
+        "h": 170,
+        "items": [
+          { "type": "rect", "x": 170, "y": 60, "w": 110, "h": 50, "label": "moteur" },
+          { "type": "arrow", "from": [20, 85], "to": [166, 85], "label": "électrique : {Ee} J" },
+          { "type": "arrow", "from": [284, 75], "to": [440, 30], "label": "cinétique : {Ee*k} J" },
+          { "type": "arrow", "from": [284, 95], "to": [440, 140], "label": "dissipée : ?" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Énergie dissipée chaque seconde (avec l'unité) :",
+          "answer": "Ee-Ee*k",
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": "Ee+Ee*k", "id": "mc:bilan-addition", "error": "raisonnement", "feedback": "L'énergie dissipée ne peut pas dépasser l'énergie reçue. Relis le bilan : énergie reçue = énergie utile + énergie dissipée." },
+            { "answer": 0, "id": "mc:energie-disparait", "error": "notion", "feedback": "Une partie de l'énergie reçue n'est pas devenue énergie cinétique : elle n'a pas disparu, elle a été dissipée." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Sous quelle forme cette énergie est-elle principalement dissipée ? (un mot)",
+          "accept": ["thermique", "énergie thermique", "l'énergie thermique", "sous forme thermique", "chaleur", "de la chaleur", "sous forme de chaleur"],
+          "misconceptions": [
+            { "answer": "électrique", "id": "mc:forme-dissipee", "error": "notion", "feedback": "Le moteur a déjà converti l'énergie électrique. Pose la main sur une perceuse après un long perçage : que ressens-tu ?" }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "L'énergie dissipée a-t-elle disparu ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:energie-disparait", "error": "notion", "feedback": "Relis le principe de conservation de l'énergie : l'énergie peut-elle être détruite ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Énergie reçue = énergie utile + énergie dissipée.",
+        "Énergie dissipée = {Ee} − {Ee*k}.",
+        "Pense à l'état de la perceuse après un long perçage."
+      ],
+      "solution": "Énergie dissipée = {Ee} − {Ee*k} = {Ee-Ee*k} J chaque seconde, surtout sous forme d'énergie thermique : le moteur chauffe. Elle n'a pas disparu : elle se disperse dans l'air, où on ne peut plus l'utiliser.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{Ee-Ee*k} J" }, { "value": "thermique" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{Ee+Ee*k} J" }, { "value": "thermique" }, { "value": "non" }] }, "expect": "mc:bilan-addition" },
+        { "response": { "parts": [{ "value": "{Ee-Ee*k} J" }, { "value": "thermique" }, { "value": "oui" }] }, "expect": "mc:energie-disparait" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-effet-serre",
+      "type": "order",
+      "skill": "pc.energie.rayonnement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:ordre-effet-serre"],
+      "expectedSeconds": 150,
+      "prompt": "Range dans l'ordre les étapes de l'effet de serre, depuis le Soleil.",
+      "orderLabel": "du Soleil jusqu'au réchauffement du sol",
+      "errorType": "notion",
+      "items": [
+        { "id": "s1", "label": "Le Soleil émet un rayonnement (visible, infrarouge, ultraviolet) qui traverse en grande partie l'atmosphère" },
+        { "id": "s2", "label": "Le sol absorbe une partie de ce rayonnement et s'échauffe" },
+        { "id": "s3", "label": "Le sol chaud émet à son tour un rayonnement infrarouge" },
+        { "id": "s4", "label": "Les gaz à effet de serre absorbent une partie de cet infrarouge" },
+        { "id": "s5", "label": "Ces gaz renvoient une partie de l'énergie vers le sol, qui se réchauffe davantage" }
+      ],
+      "hints": [
+        "Tout commence par la lumière du Soleil.",
+        "Le sol doit d'abord être chauffé pour émettre de l'infrarouge.",
+        "Les gaz à effet de serre agissent surtout sur l'infrarouge émis par le sol, pas sur le rayonnement venu du Soleil, qu'ils laissent en grande partie passer."
+      ],
+      "solution": "Le Soleil émet un rayonnement qui traverse l'atmosphère → le sol l'absorbe et s'échauffe → le sol émet de l'infrarouge → les gaz à effet de serre en absorbent une partie → ils en renvoient une partie vers le sol. Sans cet effet, la Terre serait en moyenne à −18 °C ; avec lui, elle est à environ +15 °C.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5"] }, "expect": "correct" },
+        { "response": { "order": ["s1", "s4", "s2", "s3", "s5"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-gaz",
+      "type": "highlight",
+      "skill": "pc.energie.rayonnement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:o2-ges", "mc:n2-ges"],
+      "expectedSeconds": 120,
+      "prompt": "Les gaz à effet de serre absorbent le rayonnement infrarouge émis par la Terre.",
+      "instruction": "Clique sur tous les gaz à effet de serre cités dans ce texte, et seulement sur eux.",
+      "text": "L'air que tu respires contient surtout du diazote (78 %) et du dioxygène (21 %). On y trouve aussi de l'argon, de la [vapeur d'eau], du néon, du [dioxyde de carbone], de l'hélium et du [méthane].",
+      "misconceptions": [
+        { "word": "dioxygène", "id": "mc:o2-ges", "error": "notion", "feedback": "Le dioxygène, indispensable pour respirer, laisse passer le rayonnement infrarouge : ce n'est pas un gaz à effet de serre." },
+        { "word": "diazote", "id": "mc:n2-ges", "error": "notion", "feedback": "Le diazote est le gaz le plus abondant de l'air, mais il n'absorbe presque pas l'infrarouge." },
+        { "word": "argon", "id": "mc:gaz-rare", "error": "notion", "feedback": "L'argon, comme le néon et l'hélium, laisse passer l'infrarouge." }
+      ],
+      "hints": [
+        "Un gaz à effet de serre absorbe l'infrarouge émis par le sol.",
+        "Les deux gaz les plus abondants de l'air n'en font pas partie.",
+        "Il y en a trois dans ce texte : l'un vient de l'évaporation des océans, un autre de la combustion du pétrole, le dernier de l'élevage et des rizières."
+      ],
+      "solution": "Gaz à effet de serre : la vapeur d'eau, le dioxyde de carbone (CO₂) et le méthane (CH₄). Le diazote, le dioxygène, l'argon, le néon et l'hélium laissent passer l'infrarouge.",
+      "selfTest": [
+        { "response": { "selected": [23, 27, 33] }, "expect": "correct" },
+        { "response": { "selected": [23, 27, 33, 12] }, "expect": "mc:o2-ges" },
+        { "response": { "selected": [8, 23, 27, 33] }, "expect": "mc:n2-ges" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-ozone",
+      "type": "open",
+      "skill": "pc.energie.rayonnement",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:ozone-effet-serre"],
+      "expectedSeconds": 420,
+      "prompt": "Ton cousin affirme : « Le réchauffement climatique, c'est à cause du trou dans la couche d'ozone. » Explique-lui la différence entre l'effet de serre et le trou de la couche d'ozone.",
+      "minWords": 35,
+      "criteria": [
+        { "id": "c1", "label": "J'explique l'effet de serre : des gaz (CO₂, vapeur d'eau, méthane) absorbent l'infrarouge émis par la Terre et en renvoient vers le sol", "keywords": [["infrarouge", "absorb", "renvoi"]] },
+        { "id": "c2", "label": "J'explique que la couche d'ozone filtre les ultraviolets du Soleil (le trou laisse passer plus d'UV : coups de soleil, cancers de la peau)", "keywords": [["ultraviolet", "uv"]] },
+        { "id": "c3", "label": "Je conclus : le réchauffement vient surtout du renforcement de l'effet de serre (CO₂ rejeté par les combustibles fossiles), pas du trou de la couche d'ozone", "keywords": [["co2", "co₂", "dioxyde de carbone", "combustible", "fossile", "charbon", "petrole"]] }
+      ],
+      "models": [
+        "Ce sont deux phénomènes différents. L'effet de serre : des gaz comme le CO₂ absorbent le rayonnement infrarouge émis par la Terre et en renvoient une partie vers le sol, ce qui la réchauffe. La couche d'ozone, elle, filtre les ultraviolets du Soleil : son trou laisse passer plus d'UV, dangereux pour la peau et les yeux. Le réchauffement climatique vient surtout du CO₂ rejeté en brûlant charbon, pétrole et gaz."
+      ],
+      "hints": [
+        "Quel rayonnement est concerné par l'effet de serre ? Lequel par la couche d'ozone ?",
+        "La couche d'ozone protège des coups de soleil : de quel rayonnement s'agit-il ?"
+      ],
+      "solution": "L'effet de serre concerne l'infrarouge émis par la Terre : des gaz comme le CO₂, la vapeur d'eau ou le méthane l'absorbent et en renvoient une partie vers le sol. Il est renforcé par le CO₂ rejeté par la combustion du charbon, du pétrole et du gaz : c'est la cause principale du réchauffement actuel. La couche d'ozone, elle, absorbe une grande partie des ultraviolets du Soleil ; son « trou » (causé par certains gaz industriels, aujourd'hui interdits) laisse passer plus d'UV, dangereux pour la peau et les yeux, mais ce n'est pas lui qui réchauffe la Terre.",
+      "selfTest": [
+        { "response": { "text": "L'effet de serre, c'est le CO₂ qui absorbe l'infrarouge émis par la Terre et en renvoie vers le sol. La couche d'ozone filtre les ultraviolets du Soleil. Le réchauffement vient du CO₂ des combustibles fossiles, pas du trou d'ozone.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-bilan-terre",
+      "type": "composite",
+      "skill": "pc.energie.rayonnement",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:bilan-oubli", "mc:reflechi-oublie", "mc:bilan-sens"],
+      "expectedSeconds": 420,
+      "prompt": "Document (d'après le GIEC, 2021 ; moyennes sur toute la Terre, valeurs arrondies). Au sommet de l'atmosphère, le Soleil apporte en moyenne 340 W sur chaque mètre carré (340 W/m²). Les nuages, l'air et le sol en renvoient directement 100 W/m² vers l'espace ; l'atmosphère en absorbe 80 W/m² ; le reste est absorbé par la surface (sol et océans).",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Puissance absorbée par la surface, en W/m² (seulement le nombre) :",
+          "answer": 160,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 240, "id": "mc:bilan-oubli", "error": "methode", "feedback": "Ce nombre correspond à ce qu'absorbent ENSEMBLE l'atmosphère et la surface : retire aussi la part de l'atmosphère." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour que la température moyenne de la Terre reste stable, quelle puissance par m² le système Terre-atmosphère doit-il renvoyer vers l'espace sous forme d'infrarouge ? (seulement le nombre)",
+          "answer": 240,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 340, "id": "mc:reflechi-oublie", "error": "raisonnement", "feedback": "Les 100 W/m² réfléchis sont déjà repartis vers l'espace : seule l'énergie absorbée doit être renvoyée sous forme d'infrarouge." },
+            { "answer": 160, "id": "mc:atmosphere-oubliee", "error": "raisonnement", "feedback": "L'énergie absorbée par l'atmosphère doit, elle aussi, être renvoyée vers l'espace." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Les mesures récentes montrent que la Terre renvoie un peu moins que cette valeur (environ 239 W/m²). Que lui arrive-t-il ?",
+          "accept": ["elle se réchauffe", "la terre se réchauffe", "elle chauffe", "elle se réchauffe lentement", "sa température augmente", "la température augmente", "elle gagne de l'énergie", "réchauffement", "elle stocke de l'énergie"],
+          "openEnded": true,
+          "misconceptions": [
+            { "answer": "elle se refroidit", "id": "mc:bilan-sens", "error": "raisonnement", "feedback": "Si la Terre renvoie moins d'énergie qu'elle n'en absorbe, l'énergie s'accumule. Que fait alors sa température ?" }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Cite un gaz dont l'augmentation dans l'atmosphère explique cet écart.",
+          "accept": ["le dioxyde de carbone", "dioxyde de carbone", "co2", "le co2", "co₂", "le co₂", "le méthane", "méthane", "les gaz à effet de serre", "gaz à effet de serre"],
+          "openEnded": true,
+          "misconceptions": [
+            { "answer": "le dioxygène", "id": "mc:o2-ges", "error": "notion", "feedback": "Le dioxygène laisse passer l'infrarouge : il ne participe pas à l'effet de serre." },
+            { "answer": "dioxygène", "id": "mc:o2-ges", "error": "notion", "feedback": "Le dioxygène laisse passer l'infrarouge : il ne participe pas à l'effet de serre." }
+          ]
+        }
+      ],
+      "hints": [
+        "Surface = 340 − (ce qui est réfléchi) − (ce qu'absorbe l'atmosphère).",
+        "À température stable, la Terre renvoie autant d'énergie qu'elle en absorbe : 340 − 100.",
+        "Si elle en renvoie moins, l'énergie s'accumule."
+      ],
+      "solution": "Surface : 340 − 100 − 80 = 160 W/m². Pour garder une température stable, la Terre doit renvoyer vers l'espace toute l'énergie absorbée : 340 − 100 = 240 W/m², sous forme d'infrarouge. Elle n'en renvoie qu'environ 239 W/m² : elle garde un peu d'énergie et se réchauffe. En cause : l'augmentation des gaz à effet de serre, surtout du CO₂ rejeté par la combustion du charbon, du pétrole et du gaz, qui absorbent davantage d'infrarouge.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "160" }, { "value": "240" }, { "value": "elle se réchauffe" }, { "value": "le CO2" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "240" }, { "value": "240" }, { "value": "elle se réchauffe" }, { "value": "le CO2" }] }, "expect": "mc:bilan-oubli" },
+        { "response": { "parts": [{ "value": "160" }, { "value": "340" }, { "value": "elle se réchauffe" }, { "value": "le CO2" }] }, "expect": "mc:reflechi-oublie" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-mission",
+      "type": "composite",
+      "skill": "pc.energie.cinetique",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:conversion-inverse", "mc:kmh-non-converti", "mc:proportion-vitesse"],
+      "expectedSeconds": 720,
+      "prompt": "Mission : une zone 30 devant le collège. La mairie hésite à limiter la vitesse à 30 km/h devant ton collège, au lieu de 50 km/h. Tu dois convaincre le conseil municipal avec des calculs. Voiture étudiée : 1 200 kg.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Vitesse de 50 km/h en m/s, arrondie au dixième (avec l'unité) :",
+          "answer": "50/3.6",
+          "unit": "m/s",
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            { "answer": 180, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Une vitesse en m/s est un nombre plus PETIT que la même vitesse en km/h : as-tu multiplié au lieu de diviser ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie cinétique de la voiture à 50 km/h, en joules (avec l'unité) :",
+          "answer": "0.5*1200*(50/3.6)^2",
+          "unit": "J",
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": 1500000, "id": "mc:kmh-non-converti", "error": "unite", "feedback": "La formule exige une vitesse en m/s : tu as gardé des km/h." },
+            { "answer": "0.5*1200*50/3.6", "id": "mc:v-non-carre", "error": "calcul", "feedback": "Tu n'as pas mis la vitesse au carré." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie cinétique de la voiture à 30 km/h, en joules (avec l'unité) :",
+          "answer": "0.5*1200*(30/3.6)^2",
+          "unit": "J",
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": 540000, "id": "mc:kmh-non-converti", "error": "unite", "feedback": "La formule exige une vitesse en m/s : tu as gardé des km/h." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois l'énergie cinétique est-elle plus grande à 50 km/h qu'à 30 km/h ? Arrondis au dixième.",
+          "answer": "(50/30)^2",
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            { "answer": "50/30", "id": "mc:proportion-vitesse", "error": "raisonnement", "feedback": "Tu as comparé les vitesses. Or l'énergie cinétique dépend du CARRÉ de la vitesse : compare les énergies." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Rédige un court message pour le conseil municipal : pourquoi la zone 30 protège-t-elle les piétons ?",
+          "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "J'utilise mon résultat : à 30 km/h, la voiture a presque trois fois moins d'énergie cinétique", "keywords": [["2,8", "2.8", "trois fois", "fois moins"]] },
+            { "id": "c2", "label": "J'explique que les freins doivent convertir toute cette énergie : la distance de freinage est plus courte", "keywords": [["frein", "distance", "arret"]] },
+            { "id": "c3", "label": "J'explique qu'en cas de choc, le piéton reçoit beaucoup moins d'énergie", "keywords": [["choc", "pieton", "blessure", "collision", "heurt"]] }
+          ],
+          "models": [
+            "À 30 km/h, une voiture a presque trois fois moins d'énergie cinétique qu'à 50 km/h (environ 41 700 J au lieu de 115 700 J). Les freins doivent convertir moins d'énergie : la voiture s'arrête sur une distance environ 2,8 fois plus courte. Et en cas de choc, le piéton reçoit beaucoup moins d'énergie : ses blessures sont bien moins graves."
+          ]
+        }
+      ],
+      "hints": [
+        "v (en m/s) = v (en km/h) ÷ 3,6.",
+        "Ec = 0,5 × 1 200 × v², avec v en m/s.",
+        "Rapport : Ec à 50 km/h ÷ Ec à 30 km/h."
+      ],
+      "solution": "50 km/h ≈ 13,9 m/s : Ec ≈ 0,5 × 1 200 × 13,9² ≈ 115 700 J. 30 km/h ≈ 8,3 m/s : Ec ≈ 41 700 J. Rapport : 115 700 ÷ 41 700 ≈ 2,8, c'est-à-dire (50 ÷ 30)². À 30 km/h, la voiture a presque trois fois moins d'énergie cinétique : sa distance de freinage est environ 2,8 fois plus courte et, en cas de choc, le piéton reçoit beaucoup moins d'énergie.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "13,9 m/s" }, { "value": "115741 J" }, { "value": "41667 J" }, { "value": "2,8" }, { "text": "À 30 km/h la voiture a 2,8 fois moins d'énergie cinétique : la distance de freinage est plus courte et en cas de choc le piéton reçoit moins d'énergie.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "13,9 m/s" }, { "value": "1500000 J" }, { "value": "540000 J" }, { "value": "2,8" }, { "text": "La zone 30 est plus sûre." }] }, "expect": "mc:kmh-non-converti" },
+        { "response": { "parts": [{ "value": "13,9 m/s" }, { "value": "115741 J" }, { "value": "41667 J" }, { "value": "1,7" }, { "text": "La zone 30 est plus sûre." }] }, "expect": "mc:proportion-vitesse" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-remed-carre",
+      "type": "composite",
+      "skill": "pc.energie.cinetique",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:v-non-carre", "mc:masse-carre"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : dans $Ec = ½ × m × v²$, seule la vitesse est au carré ; v² = v × v. La masse, elle, n'apparaît qu'une fois.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Si la vitesse est multipliée par 2 (même masse), l'énergie cinétique est multipliée par :",
+          "answer": 4,
+          "misconceptions": [
+            { "answer": 2, "id": "mc:v-non-carre", "error": "notion", "feedback": "Tu as oublié le carré : calcule (2v)² = 2v × 2v." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Si la masse est multipliée par 2 (même vitesse), l'énergie cinétique est multipliée par :",
+          "answer": 2,
+          "misconceptions": [
+            { "answer": 4, "id": "mc:masse-carre", "error": "notion", "feedback": "Seule la vitesse est au carré : la masse, elle, n'apparaît qu'une fois dans la formule." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Si la vitesse est multipliée par 3 (même masse), l'énergie cinétique est multipliée par :",
+          "answer": 9,
+          "misconceptions": [
+            { "answer": 3, "id": "mc:v-non-carre", "error": "notion", "feedback": "N'oublie pas le carré : calcule (3v)² = 3v × 3v." },
+            { "answer": 6, "id": "mc:carre-double", "error": "calcul", "feedback": "Le carré d'un nombre, c'est ce nombre multiplié par lui-même, et non par 2." }
+          ]
+        }
+      ],
+      "hints": [
+        "(2v)² = 2v × 2v = 2 × 2 × v².",
+        "La masse n'est pas au carré."
+      ],
+      "solution": "Vitesse × 2 : Ec × 2² = Ec × 4. Masse × 2 : Ec × 2. Vitesse × 3 : Ec × 3² = Ec × 9.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "4" }, { "value": "2" }, { "value": "9" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2" }, { "value": "2" }, { "value": "3" }] }, "expect": "mc:v-non-carre" },
+        { "response": { "parts": [{ "value": "4" }, { "value": "4" }, { "value": "9" }] }, "expect": "mc:masse-carre" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-remed-disparait",
+      "type": "composite",
+      "skill": "pc.energie.conservation",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:energie-disparait", "mc:freinage-position"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : l'énergie ne disparaît jamais, elle se convertit. Quand une voiture freine, son énergie cinétique devient de l'énergie thermique dans les freins. Une balle roule sur l'herbe et finit par s'arrêter, sans changer de hauteur.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "L'énergie cinétique de la balle a-t-elle disparu ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:energie-disparait", "error": "notion", "feedback": "Relis le rappel : l'énergie peut-elle être détruite ?" }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "En quelle forme d'énergie s'est-elle surtout convertie ? (un mot)",
+          "accept": ["thermique", "énergie thermique", "l'énergie thermique", "chaleur", "de la chaleur"],
+          "misconceptions": [
+            { "answer": "position", "id": "mc:freinage-position", "error": "notion", "feedback": "La balle est restée au sol : elle n'a pas gagné de hauteur." },
+            { "answer": "de position", "id": "mc:freinage-position", "error": "notion", "feedback": "La balle est restée au sol : elle n'a pas gagné de hauteur." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La balle avait 12 J d'énergie cinétique. Combien de joules d'énergie thermique ont été produits jusqu'à l'arrêt ? (avec l'unité)",
+          "answer": 12,
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0, "id": "mc:energie-disparait", "error": "notion", "feedback": "Toute l'énergie cinétique a été convertie : elle se retrouve forcément quelque part." }
+          ]
+        }
+      ],
+      "hints": [
+        "Les frottements de l'herbe freinent la balle, comme les freins d'une voiture.",
+        "Toute l'énergie cinétique est convertie, sans changement de hauteur."
+      ],
+      "solution": "Non, l'énergie n'a pas disparu : les frottements l'ont convertie surtout en énergie thermique (l'herbe et la balle chauffent un tout petit peu). Les 12 J d'énergie cinétique sont devenus 12 J d'énergie thermique, dispersée.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "non" }, { "value": "thermique" }, { "value": "12 J" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "oui" }, { "value": "thermique" }, { "value": "0 J" }] }, "expect": "mc:energie-disparait" },
+        { "response": { "parts": [{ "value": "non" }, { "value": "position" }, { "value": "12 J" }] }, "expect": "mc:freinage-position" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-skate",
+      "type": "composite",
+      "skill": "pc.energie.conservation",
+      "skills": ["pc.energie.cinetique"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:g-oublie", "mc:racine-oubliee", "mc:bilan-confusion"],
+      "expectedSeconds": 600,
+      "prompt": "Un skateur de 50 kg part sans vitesse du haut d'une rampe, à 2,0 m au-dessus du bas de la rampe. Données : énergie de position $Ep = m × g × h$, avec g = 9,8 N/kg ; $Ec = ½ × m × v²$.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Énergie de position au départ, le bas de la rampe servant de niveau zéro (avec l'unité) :",
+          "answer": 980,
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 100, "id": "mc:g-oublie", "error": "methode", "feedback": "Il manque l'intensité de la pesanteur g dans ton calcul." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Sans frottements, énergie cinétique en bas de la rampe (avec l'unité) :",
+          "answer": 980,
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0, "id": "mc:energie-disparait", "error": "notion", "feedback": "Sans frottements, l'énergie de position perdue ne disparaît pas : en quoi se convertit-elle ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Vitesse du skateur en bas de la rampe, en m/s arrondie au dixième (avec l'unité) :",
+          "answer": "sqrt(2*980/50)",
+          "unit": "m/s",
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            { "answer": 39.2, "id": "mc:racine-oubliee", "error": "methode", "feedback": "Tu as trouvé v², pas v : il reste une étape." },
+            { "answer": "sqrt(980/50)", "id": "mc:demi-oublie", "error": "calcul", "feedback": "Tu as oublié le facteur ½ : isole v² dans Ec = ½ × m × v²." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "En réalité, le skateur remonte de l'autre côté jusqu'à 1,8 m seulement. Quelle énergie a été convertie en énergie thermique (avec l'unité) ?",
+          "answer": 98,
+          "unit": "J",
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": 882, "id": "mc:bilan-confusion", "error": "raisonnement", "feedback": "Ce nombre est l'énergie de position qu'il possède en haut, à 1,8 m : cherche ce qui manque par rapport au départ." }
+          ]
+        }
+      ],
+      "hints": [
+        "Ep = 50 × 9,8 × 2,0.",
+        "Sans frottements : ½ × 50 × v² = 980, donc v² = 2 × 980 ÷ 50.",
+        "À 1,8 m : Ep = 50 × 9,8 × 1,8 ; compare avec l'énergie de départ."
+      ],
+      "solution": "Ep = 50 × 9,8 × 2,0 = 980 J. Sans frottements, Ec = 980 J en bas. v² = 2 × 980 ÷ 50 = 39,2, donc v = √39,2 ≈ 6,3 m/s (environ 23 km/h). À 1,8 m : Ep = 50 × 9,8 × 1,8 = 882 J. Il manque 980 − 882 = 98 J, convertis en énergie thermique par les frottements.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "980 J" }, { "value": "980 J" }, { "value": "6,3 m/s" }, { "value": "98 J" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "980 J" }, { "value": "980 J" }, { "value": "39,2 m/s" }, { "value": "98 J" }] }, "expect": "mc:racine-oubliee" },
+        { "response": { "parts": [{ "value": "980 J" }, { "value": "980 J" }, { "value": "6,3 m/s" }, { "value": "882 J" }] }, "expect": "mc:bilan-confusion" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-freinage",
+      "type": "composite",
+      "skill": "pc.energie.cinetique",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:proportion-vitesse"],
+      "expectedSeconds": 480,
+      "prompt": "Lors d'un freinage d'urgence sur route sèche, les freins convertissent à peu près la même quantité d'énergie à chaque mètre parcouru : la distance de freinage est donc proportionnelle à l'énergie cinétique. À 50 km/h, une voiture freine sur environ 14 m.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "À 100 km/h, sur quelle distance freine-t-elle ? (avec l'unité)",
+          "answer": 56,
+          "unit": "m",
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": 28, "id": "mc:proportion-vitesse", "error": "raisonnement", "feedback": "La distance est proportionnelle à l'énergie cinétique, pas à la vitesse. Par combien Ec est-elle multipliée quand v double ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À 130 km/h ? (avec l'unité, arrondi au mètre)",
+          "answer": "14*(130/50)^2",
+          "unit": "m",
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "14*130/50", "id": "mc:proportion-vitesse", "error": "raisonnement", "feedback": "Tu as utilisé le rapport des vitesses ; il faut celui des énergies cinétiques, qui fait intervenir le carré." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À 30 km/h ? (avec l'unité, arrondi au mètre)",
+          "answer": "14*(30/50)^2",
+          "unit": "m",
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "14*30/50", "id": "mc:proportion-vitesse", "error": "raisonnement", "feedback": "Tu as utilisé le rapport des vitesses ; il faut celui des énergies cinétiques, qui fait intervenir le carré." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "La distance d'arrêt est la somme de la distance parcourue pendant le temps de réaction (environ 1 s si l'on est attentif) et de la distance de freinage. Explique pourquoi un conducteur qui regarde son téléphone augmente sa distance d'arrêt.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'explique que le temps de réaction est plus long quand on est distrait", "keywords": [["reaction", "distrait", "regarde", "attention"]] },
+            { "id": "c2", "label": "J'explique que pendant ce temps la voiture roule toujours à la même vitesse : la distance de réaction augmente", "keywords": [["meme vitesse", "continue", "roule", "distance de reaction"]] }
+          ],
+          "models": [
+            "Un conducteur distrait par son téléphone met plus de temps à réagir. Pendant ce temps de réaction, la voiture continue de rouler à la même vitesse sans freiner : la distance de réaction est plus longue, donc la distance d'arrêt aussi."
+          ]
+        }
+      ],
+      "hints": [
+        "v × 2 → Ec × 4 → distance × 4.",
+        "Rapport des vitesses 130 ÷ 50 = 2,6 ; rapport des énergies 2,6².",
+        "30 ÷ 50 = 0,6 ; 0,6² = 0,36."
+      ],
+      "solution": "À 100 km/h, la vitesse double, Ec et la distance sont multipliées par 4 : 14 × 4 = 56 m. À 130 km/h : 14 × 2,6² ≈ 95 m. À 30 km/h : 14 × 0,6² ≈ 5 m. Un conducteur distrait réagit plus tard : pendant ce temps, la voiture roule sans freiner, la distance de réaction s'allonge.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "56 m" }, { "value": "95 m" }, { "value": "5 m" }, { "text": "Il réagit plus tard car il regarde son téléphone : pendant ce temps de réaction plus long, la voiture continue de rouler à la même vitesse.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "28 m" }, { "value": "36 m" }, { "value": "8 m" }, { "text": "Il réagit plus tard." }] }, "expect": "mc:proportion-vitesse" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-montagnes-russes",
+      "type": "composite",
+      "skill": "pc.energie.conservation",
+      "skills": ["pc.energie.cinetique"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:g-oublie", "mc:racine-oubliee", "mc:conversion-inverse", "mc:bilan-confusion"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Les montagnes russes.\n\n**Document 1.** Le wagon d'un grand huit, avec ses passagers, a une masse de 500 kg. Il est hissé jusqu'au sommet de la première descente, à 40 m au-dessus du point le plus bas, où il arrive presque sans vitesse.\n\n**Document 2.** Énergie de position : $Ep = m × g × h$, avec g = 9,8 N/kg. Énergie cinétique : $Ec = ½ × m × v²$. 1 m/s = 3,6 km/h.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Calcule l'énergie de position du wagon au sommet, le point le plus bas servant de niveau zéro (avec l'unité).",
+          "answer": 196000,
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 20000, "id": "mc:g-oublie", "error": "methode", "feedback": "Il manque l'intensité de la pesanteur g dans ton calcul." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "2. Pendant la descente, l'énergie de position se convertit principalement en énergie… (un mot)",
+          "accept": ["cinétique", "énergie cinétique", "l'énergie cinétique"],
+          "misconceptions": [
+            { "answer": "thermique", "id": "mc:conversion-principale", "error": "notion", "feedback": "Il y a bien un peu d'énergie thermique (frottements), mais ce n'est pas la conversion principale : le wagon prend de la vitesse." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. En négligeant les frottements, calcule la vitesse du wagon au point le plus bas, en m/s (avec l'unité).",
+          "answer": 28,
+          "unit": "m/s",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 784, "id": "mc:racine-oubliee", "error": "methode", "feedback": "Tu as trouvé v², pas v : il reste une étape." },
+            { "answer": "sqrt(196000/500)", "id": "mc:demi-oublie", "error": "calcul", "feedback": "Tu as oublié le facteur ½ : isole v² dans Ec = ½ × m × v²." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Convertis cette vitesse en km/h, arrondie à l'unité (avec l'unité km/h).",
+          "answer": 100.8,
+          "unit": "km/h",
+          "strictUnit": true,
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "28/3.6", "id": "mc:conversion-inverse", "error": "unite", "feedback": "Ta conversion est à l'envers : une vitesse en km/h est un nombre plus GRAND que la même vitesse en m/s." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "5. Au point le plus bas, on mesure en réalité une vitesse de 25 m/s. Calcule l'énergie convertie en énergie thermique pendant la descente (avec l'unité).",
+          "answer": 39750,
+          "unit": "J",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 156250, "id": "mc:bilan-confusion", "error": "raisonnement", "feedback": "Ce nombre est l'énergie cinétique réelle du wagon en bas : l'énergie thermique, c'est ce qui manque par rapport à l'énergie de départ." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "6. Explique pourquoi, sans moteur, le wagon ne pourra jamais remonter à 40 m de haut.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'explique que les frottements convertissent une partie de l'énergie en énergie thermique", "keywords": [["frottement", "thermique", "chaleur"]] },
+            { "id": "c2", "label": "J'en déduis qu'il lui reste moins d'énergie qu'au départ : pas assez pour retrouver 196 000 J d'énergie de position", "keywords": [["moins", "pas assez", "196", "inferieur"]] }
+          ],
+          "models": [
+            "Pendant le parcours, les frottements convertissent une partie de l'énergie du wagon en énergie thermique, qui se disperse. Il lui reste donc moins d'énergie que les 196 000 J du départ : il ne peut pas retrouver une énergie de position aussi grande, donc pas remonter à 40 m."
+          ]
+        }
+      ],
+      "hints": [
+        "Ep = 500 × 9,8 × 40.",
+        "Sans frottements, Ec en bas = Ep au sommet : ½ × 500 × v² = 196 000.",
+        "v² = 2 × 196 000 ÷ 500 = 784 ; puis v = √784."
+      ],
+      "solution": "1. Ep = 500 × 9,8 × 40 = 196 000 J. 2. Énergie cinétique. 3. ½ × 500 × v² = 196 000, donc v² = 784 et v = 28 m/s. 4. 28 × 3,6 ≈ 101 km/h. 5. Ec réelle = ½ × 500 × 25² = 156 250 J ; énergie thermique = 196 000 − 156 250 = 39 750 J. 6. À cause des frottements, une partie de l'énergie devient de l'énergie thermique : il reste moins de 196 000 J, ce qui ne suffit pas pour remonter à 40 m.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "196000 J" }, { "value": "cinétique" }, { "value": "28 m/s" }, { "value": "101 km/h" }, { "value": "39750 J" }, { "text": "Les frottements convertissent une partie de l'énergie en énergie thermique. Il reste moins d'énergie qu'au départ, pas assez pour remonter à 40 m.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "196000 J" }, { "value": "cinétique" }, { "value": "784 m/s" }, { "value": "101 km/h" }, { "value": "39750 J" }, { "text": "À cause des frottements." }] }, "expect": "mc:racine-oubliee" },
+        { "response": { "parts": [{ "value": "20000 J" }, { "value": "cinétique" }, { "value": "28 m/s" }, { "value": "101 km/h" }, { "value": "39750 J" }, { "text": "À cause des frottements." }] }, "expect": "mc:g-oublie" }
+      ]
+    },
+    {
+      "id": "pc3-energie-cinetique-co2",
+      "type": "composite",
+      "skill": "pc.energie.rayonnement",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:pourcentage-total", "mc:ozone-effet-serre"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Le dioxyde de carbone et le climat.\n\n**Document 1.** Teneur de l'air en dioxyde de carbone, en ppm (parties par million : nombre de molécules de CO₂ pour un million de molécules d'air). Avant 1958 : bulles d'air piégées dans les glaces de l'Antarctique ; depuis 1958 : mesures directes de l'observatoire de Mauna Loa, à Hawaï (NOAA). Valeurs arrondies.\n\n**Document 2.** Le CO₂ est un gaz à effet de serre. Il est rejeté notamment par la combustion du charbon, du pétrole et du gaz naturel.",
+      "figure": {
+        "alt": "Courbe de la teneur en CO₂ de l'air de 1750 à 2024 : presque stable autour de 280 ppm jusqu'en 1850, puis en hausse de plus en plus rapide jusqu'à environ 425 ppm en 2024.",
+        "w": 560,
+        "h": 280,
+        "items": [
+          { "type": "linechart", "xLabel": "année", "yLabel": "CO₂ (ppm)", "yRange": [250, 450], "series": [{ "label": "CO₂ (ppm)", "points": [[1750, 278], [1850, 285], [1900, 296], [1960, 317], [1980, 339], [2000, 370], [2020, 414], [2024, 425]] }] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. D'après le document 1, de combien de ppm la teneur en CO₂ a-t-elle augmenté entre 1960 et 2024 ?",
+          "answer": 108,
+          "tolerance": 3
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Calcule l'augmentation, en pourcentage, entre 1750 et 2024 (arrondie à l'unité).",
+          "answer": "(425-278)/278*100",
+          "tolerance": 1,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "425/278*100", "id": "mc:pourcentage-total", "error": "methode", "feedback": "Ce nombre compare la valeur de 2024 à celle de 1750 en entier : on demande seulement l'AUGMENTATION." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "3. Le trou de la couche d'ozone est-il la cause principale du réchauffement climatique ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:ozone-effet-serre", "error": "notion", "feedback": "La couche d'ozone concerne les ultraviolets venus du Soleil. Quel rayonnement intervient dans l'effet de serre ?" }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "4. Explique le lien entre la combustion des combustibles fossiles et le réchauffement climatique, en utilisant les mots : CO₂, infrarouge, effet de serre.",
+          "minWords": 40,
+          "criteria": [
+            { "id": "c1", "label": "La combustion du charbon, du pétrole et du gaz rejette du CO₂ : sa teneur dans l'air augmente", "keywords": [["combustion", "brul", "rejet"]] },
+            { "id": "c2", "label": "Le CO₂ absorbe une partie de l'infrarouge émis par la Terre et en renvoie vers le sol", "keywords": [["infrarouge"]] },
+            { "id": "c3", "label": "L'effet de serre se renforce : la Terre garde plus d'énergie, sa température moyenne augmente", "keywords": [["effet de serre"]] }
+          ],
+          "models": [
+            "En brûlant du charbon, du pétrole et du gaz, on rejette du CO₂ : sa teneur dans l'air est passée d'environ 278 ppm en 1750 à 425 ppm en 2024. Or le CO₂ est un gaz à effet de serre : il absorbe une partie du rayonnement infrarouge émis par la Terre et en renvoie une partie vers le sol. Plus il y a de CO₂, plus l'effet de serre se renforce : la Terre garde davantage d'énergie et sa température moyenne augmente."
+          ]
+        }
+      ],
+      "hints": [
+        "Lis les valeurs de 1960 (environ 317 ppm) et de 2024 (environ 425 ppm).",
+        "Pourcentage d'augmentation = (valeur finale − valeur initiale) ÷ valeur initiale × 100.",
+        "La couche d'ozone filtre les ultraviolets ; l'effet de serre concerne l'infrarouge."
+      ],
+      "solution": "1. 425 − 317 ≈ 108 ppm. 2. (425 − 278) ÷ 278 × 100 ≈ 53 % d'augmentation depuis 1750. 3. Non : le trou de la couche d'ozone laisse passer plus d'ultraviolets, mais le réchauffement vient surtout du renforcement de l'effet de serre. 4. La combustion des combustibles fossiles rejette du CO₂ ; le CO₂ absorbe l'infrarouge émis par la Terre et en renvoie vers le sol ; l'effet de serre se renforce et la température moyenne augmente.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "108" }, { "value": "53" }, { "value": "non" }, { "text": "La combustion du charbon et du pétrole rejette du CO₂. Le CO₂ absorbe l'infrarouge émis par la Terre et en renvoie vers le sol. L'effet de serre se renforce, la Terre garde plus d'énergie et se réchauffe.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "108" }, { "value": "153" }, { "value": "non" }, { "text": "Le CO₂ renforce l'effet de serre." }] }, "expect": "mc:pourcentage-total" },
+        { "response": { "parts": [{ "value": "108" }, { "value": "53" }, { "value": "oui" }, { "text": "Le CO₂ renforce l'effet de serre." }] }, "expect": "mc:ozone-effet-serre" }
+      ]
+    }
+  ]
+}

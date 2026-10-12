@@ -63,7 +63,15 @@
               { "id": "bal", "to": { "value": 27 }, "at": 2.4, "dur": 0.8 },
               { "id": "t", "set": { "shown": 1 }, "at": 3.2 }
             ],
-            "focus": ["bal"]
+            "focus": ["bal"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la balance : quelle est la masse du cube d'aluminium A ?",
+              "answer": 27,
+              "tolerance": 0,
+              "unit": "g",
+              "explain": "L'écran de la balance affiche 27,0 g. Elle avait été tarée : c'est la masse du cube seul."
+            }
           },
           {
             "title": "On pèse le cube B",
@@ -80,7 +88,14 @@
               { "id": "bal", "to": { "value": 79 }, "at": 4.6, "dur": 0.8 },
               { "id": "t", "set": { "shown": 2 }, "at": 5.4 }
             ],
-            "focus": ["bal"]
+            "focus": ["bal"],
+            "ask": {
+              "kind": "observer",
+              "question": "Compare les masses des deux cubes, qui ont pourtant le même volume. Que constates-tu ?",
+              "choices": ["Les deux cubes ont la même masse", "La masse du cube de fer B est presque 3 fois plus grande", "Le cube d'aluminium A a la plus grande masse"],
+              "answer": 1,
+              "explain": "La balance indique 79,0 g pour le fer et 27,0 g pour l'aluminium : presque 3 fois plus, pour le même volume de 10 cm³."
+            }
           },
           {
             "title": "Comparer les matériaux",
@@ -118,7 +133,14 @@
               { "id": "bal", "to": { "value": 54 }, "at": 4.6, "dur": 0.8 },
               { "id": "t", "set": { "shown": 3 }, "at": 5.4 }
             ],
-            "focus": ["bal", "t"]
+            "focus": ["bal", "t"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Petit ou gros, un cube d'aluminium donne toujours m / V = 2,7 g/cm³. Que permet donc de reconnaître ce quotient ?",
+              "choices": ["La taille de l'objet", "La forme de l'objet", "Le matériau dont l'objet est fait"],
+              "answer": 2,
+              "explain": "Le quotient m / V ne dépend pas de la taille de l'objet, mais de son matériau : 2,7 g/cm³ pour l'aluminium, 7,9 g/cm³ pour le fer. C'est la masse volumique."
+            }
           }
         ],
         "conclusion": "Deux objets de même volume n'ont pas forcément la même masse : tout dépend du **matériau**.\n\n- La masse d'un cm³ (le quotient m / V) vaut **2,7 g/cm³** pour l'aluminium et **7,9 g/cm³** pour le fer.\n- Elle ne dépend pas de la taille de l'objet : petit ou gros, un cube d'aluminium donne 2,7 g/cm³.\n\n> Ce nombre s'appelle la **masse volumique** du matériau."
@@ -193,14 +215,29 @@
               { "id": "E", "to": { "value": 80 }, "at": 2.6, "dur": 1.4 },
               { "id": "v2", "set": { "hidden": false }, "at": 4.1 }
             ],
-            "focus": ["E"]
+            "focus": ["E"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis l'éprouvette : jusqu'à quelle graduation l'eau monte-t-elle quand la pierre est dedans ?",
+              "answer": 80,
+              "tolerance": 2.5,
+              "unit": "mL",
+              "explain": "Le bas du ménisque est au niveau de la graduation 80 mL. La pierre a donc un volume de 80 − 50 = 30 mL."
+            }
           },
           {
             "title": "On calcule la masse volumique",
             "text": "Masse volumique de la pierre : ρ = m / V = 81,0 / 30 = **2,70 g/cm³**. On l'écrit dans le tableau.",
             "duration": 1,
             "do": [ { "id": "t", "set": { "shown": 1 }, "at": 0.3 } ],
-            "focus": ["t"]
+            "focus": ["t"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi mesure-t-on le volume de la pierre avec de l'eau plutôt qu'avec une règle ?",
+              "choices": ["Pour nettoyer la pierre avant la mesure", "Parce que l'eau rend la pierre plus légère", "Sa forme est irrégulière : on ne peut pas calculer son volume avec des longueurs"],
+              "answer": 2,
+              "explain": "Le volume d'un cube se calcule avec la longueur de ses arêtes. Pour une pierre de forme irrégulière, c'est impossible : on mesure le volume d'eau qu'elle déplace, V = V2 − V1."
+            }
           },
           {
             "title": "Les autres objets",
@@ -211,7 +248,14 @@
               { "id": "t", "set": { "shown": 3 }, "at": 2 },
               { "id": "t", "set": { "shown": 4 }, "at": 3.2 }
             ],
-            "focus": ["C", "N", "K", "t"]
+            "focus": ["C", "N", "K", "t"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde la dernière colonne du tableau : quels objets ont la même masse volumique ?",
+              "choices": ["L'écrou et la clé", "La pierre et le cylindre", "Le cylindre et l'écrou"],
+              "answer": 1,
+              "explain": "La pierre et le cylindre ont tous les deux ρ = 2,70 g/cm³. L'écrou (7,90 g/cm³) et la clé (8,50 g/cm³) ont des valeurs différentes."
+            }
           },
           {
             "title": "Prévois !",
@@ -341,21 +385,21 @@
       "rows": [["Aluminium", "2,7", "?r0c2", "?r0c3"], ["Huile de tournesol", "?r1c1", "920", "?r1c3"], ["Air (20 °C)", "?r2c1", "?r2c2", "1,2"]],
       "cells": {
         "r0c2": { "answer": 2700, "misconceptions": [
-          { "answer": 2.7, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "Le nombre change quand l'unité change : 1 g/cm³ = 1 000 kg/m³, donc 2,7 g/cm³ = 2 700 kg/m³." },
+          { "answer": 2.7, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "Le nombre change quand l'unité change : 1 g/cm³ = 1 000 kg/m³. Multiplie par 1 000." },
           { "answer": 0.0027, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Tu as divisé par 1 000 au lieu de multiplier. Un m³ d'aluminium est beaucoup plus lourd qu'un cm³ : le nombre doit augmenter." } ] },
         "r0c3": { "answer": 2700, "misconceptions": [
-          { "answer": 2.7, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "1 L = 1 000 cm³ : un litre d'aluminium pèse 1 000 fois plus qu'un cm³, soit 2 700 g." } ] },
+          { "answer": 2.7, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "1 L = 1 000 cm³ : un litre d'aluminium pèse 1 000 fois plus qu'un cm³." } ] },
         "r1c1": { "answer": 0.92, "misconceptions": [
-          { "answer": 920000, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Pour passer des kg/m³ aux g/cm³, on divise par 1 000 : 920 kg/m³ = 0,92 g/cm³." },
+          { "answer": 920000, "id": "mc:conversion-inverse", "error": "unite", "feedback": "Pour passer des kg/m³ aux g/cm³, on divise par 1 000 : tu as multiplié." },
           { "answer": 920, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "920 est la valeur en kg/m³ ; en g/cm³ on divise par 1 000." } ] },
         "r1c3": { "answer": 920, "misconceptions": [
-          { "answer": 0.92, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : la valeur en g/L est la même qu'en kg/m³, ici 920." } ] },
+          { "answer": 0.92, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : la valeur en g/L est la même qu'en kg/m³." } ] },
         "r2c1": { "answer": 0.0012, "misconceptions": [
-          { "answer": 1.2, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "1,2 g dans un LITRE, c'est 1,2 g pour 1 000 cm³ : 0,0012 g/cm³." },
-          { "answer": 1200, "id": "mc:conversion-inverse", "error": "unite", "feedback": "L'air est bien plus léger que l'eau (1 g/cm³) : sa masse volumique en g/cm³ est très petite, 0,0012." } ] },
+          { "answer": 1.2, "id": "mc:conversion-oubliee", "error": "unite", "feedback": "1,2 g dans un LITRE, c'est 1,2 g pour 1 000 cm³ : divise par 1 000 pour obtenir la masse d'un seul cm³." },
+          { "answer": 1200, "id": "mc:conversion-inverse", "error": "unite", "feedback": "L'air est bien plus léger que l'eau (1 g/cm³) : sa masse volumique en g/cm³ est très petite. Pour passer des g/L aux g/cm³, on divise par 1 000." } ] },
         "r2c2": { "answer": 1.2, "misconceptions": [
-          { "answer": 1200, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : un m³ contient 1 000 L et un kg vaut 1 000 g, les deux facteurs 1 000 se compensent. 1,2 g/L = 1,2 kg/m³." },
-          { "answer": 0.0012, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : même nombre, 1,2." } ] }
+          { "answer": 1200, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : un m³ contient 1 000 L et un kg vaut 1 000 g, les deux facteurs 1 000 se compensent." },
+          { "answer": 0.0012, "id": "mc:conversion-inverse", "error": "unite", "feedback": "1 g/L = 1 kg/m³ : pars de la valeur en g/L, pas de celle en g/cm³." } ] }
       },
       "hints": ["Un m³ contient un million de cm³ et un kg vaut 1 000 g : de g/cm³ vers kg/m³, on multiplie par 1 000.", "Un litre contient 1 000 cm³ : de g/cm³ vers g/L, on multiplie aussi par 1 000.", "1 g/L = 1 kg/m³ : les colonnes kg/m³ et g/L contiennent toujours le même nombre."],
       "solution": "Aluminium : 2,7 g/cm³ = 2 700 kg/m³ = 2 700 g/L. Huile : 920 kg/m³ = 0,92 g/cm³ = 920 g/L. Air : 1,2 g/L = 1,2 kg/m³ = 0,0012 g/cm³. L'air est environ 800 fois moins dense que l'eau.",
@@ -372,7 +416,7 @@
       "choices": [
         { "text": "1,35 g/cm³", "correct": false, "error": "notion", "misconception": "mc:rho-taille", "feedback": "La masse est divisée par 2, mais le volume aussi : le quotient m / V ne change pas. La masse volumique caractérise le matériau, pas la taille de l'objet." },
         { "text": "2,7 g/cm³", "correct": true, "feedback": "Exact : masse et volume sont divisés par 2, leur quotient reste 2,7 g/cm³." },
-        { "text": "5,4 g/cm³", "correct": false, "error": "notion", "misconception": "mc:rho-taille", "feedback": "Couper l'objet ne rend pas l'aluminium plus « serré » : masse et volume sont divisés par 2, ρ reste 2,7 g/cm³." }
+        { "text": "5,4 g/cm³", "correct": false, "error": "notion", "misconception": "mc:rho-taille", "feedback": "Couper l'objet ne rend pas l'aluminium plus « serré » : masse et volume sont divisés par 2 : que devient leur quotient ?" }
       ],
       "justify": { "required": true, "minWords": 6, "prompt": "Justifie en parlant de la masse ET du volume d'une moitié.", "keywords": [["volume", "m / v", "m/v", "materiau"]] },
       "solution": "Une moitié a une masse $m/2$ et un volume $V/2$ : $(m/2) / (V/2) = m / V = 2,7$ g/cm³.",
@@ -423,7 +467,7 @@
           "justify": { "required": true, "minWords": 6, "prompt": "Justifie que la masse est proportionnelle au volume.", "keywords": [["origine", "proportionn", "droite", "meme quotient", "constant"]] } },
         { "type": "numeric", "prompt": "Quelle est la masse d'un morceau de laiton de 25 cm³ (avec l'unité) ?", "answer": 212.5, "unit": "g", "rel": 0.005,
           "misconceptions": [
-            { "answer": 175, "id": "mc:additif", "error": "raisonnement", "prerequisite": "m5.proportionnalite", "feedback": "Ajouter 5 cm³ n'ajoute pas 5 g : chaque cm³ de laiton a une masse de 8,5 g. On multiplie : 25 × 8,5 = 212,5 g." },
+            { "answer": 175, "id": "mc:additif", "error": "raisonnement", "prerequisite": "m5.proportionnalite", "feedback": "Ajouter 5 cm³ n'ajoute pas 5 g : chaque cm³ de laiton a une masse de 8,5 g. On multiplie le volume par la masse d'un cm³." },
             { "answer": "25/8.5", "id": "mc:rho-inverse", "error": "notion", "feedback": "m = ρ × V : on multiplie le volume par la masse volumique, on ne divise pas." }
           ] }
       ],
@@ -450,7 +494,7 @@
         { "type": "numeric", "prompt": "Masse volumique du lingot B (avec l'unité) :", "answer": 11.3, "unit": "g/cm3", "rel": 0.02,
           "misconceptions": [ { "answer": "1/11.3", "id": "mc:rho-inverse", "error": "notion", "feedback": "ρ = m / V : masse divisée par volume." } ] },
         { "type": "text", "prompt": "De quel métal le lingot B est-il probablement fait, sous sa dorure ?", "accept": ["plomb", "le plomb", "du plomb", "en plomb"],
-          "misconceptions": [ { "answer": "argent", "id": "mc:identification", "error": "lecture", "feedback": "L'argent a une masse volumique de 10,5 g/cm³ ; 11,3 g/cm³ correspond au plomb." }, { "answer": "or", "id": "mc:apparence", "error": "raisonnement", "feedback": "La couleur ne prouve rien : 11,3 g/cm³ est très loin des 19,3 g/cm³ de l'or." } ] },
+          "misconceptions": [ { "answer": "argent", "id": "mc:identification", "error": "lecture", "feedback": "L'argent a une masse volumique de 10,5 g/cm³, pas 11,3 g/cm³ : cherche la valeur qui correspond dans les données de référence." }, { "answer": "or", "id": "mc:apparence", "error": "raisonnement", "feedback": "La couleur ne prouve rien : 11,3 g/cm³ est très loin des 19,3 g/cm³ de l'or." } ] },
         { "type": "open", "prompt": "Rédige ta conclusion pour le bijoutier : quel lingot est en or massif, et qu'est-ce qui le prouve ?", "minWords": 20,
           "criteria": [
             { "id": "c1", "label": "Je cite les mesures (masses et volumes) et les masses volumiques calculées", "keywords": [["g/cm"]] },
@@ -485,7 +529,7 @@
     {
       "id": "pc-masse-volumique-remed-volume", "type": "composite", "skill": "pc.matiere.masse-volumique", "track": "classe", "role": "remediation", "difficulty": 1,
       "representation": "visuelle", "targets": ["mc:volume-total"], "expectedSeconds": 120,
-      "params": { "Vi": { "choice": [30, 40, 50] }, "V": { "int": [6, 18] }, "Vf": { "expr": "Vi+V" } },
+      "params": { "Vi": { "choice": [30, 40, 50] }, "V": { "choice": [5, 10, 15, 20] }, "Vf": { "expr": "Vi+V" } },
       "prompt": "Autre représentation : la graduation d'une éprouvette, vue comme une règle. Avant d'y plonger une bille, l'eau arrive à {Vi} mL ; après, à {Vf} mL.",
       "parts": [
         { "type": "numberline", "prompt": "Place les deux niveaux lus sur la graduation de l'éprouvette.", "min": 0, "max": 100, "step": 5, "tolerance": 1,
@@ -534,7 +578,7 @@
         { "type": "numeric", "prompt": "Trace la droite passant par l'origine et au plus près des points. Quel est son coefficient directeur (avec l'unité) ?", "answer": 7.9, "unit": "g/cm3", "rel": 0.02,
           "misconceptions": [ { "answer": "1/7.9", "id": "mc:pente-inverse", "error": "lecture", "feedback": "Tu as calculé V / m. Le coefficient directeur est « ce que gagne l'ordonnée quand l'abscisse augmente de 1 » : ici la masse d'un cm³." } ] },
         { "type": "text", "prompt": "D'après le tableau du cours, de quel métal s'agit-il ?", "accept": ["fer", "le fer", "du fer", "acier", "l'acier", "de l'acier"],
-          "misconceptions": [ { "answer": "cuivre", "id": "mc:identification", "error": "lecture", "feedback": "Le cuivre a une masse volumique de 8,96 g/cm³, nettement au-dessus de 7,9 g/cm³ : c'est du fer (ou de l'acier)." }, { "answer": "zinc", "id": "mc:identification", "error": "lecture", "feedback": "Le zinc (7,1 g/cm³) est trop loin de 7,9 g/cm³." } ] },
+          "misconceptions": [ { "answer": "cuivre", "id": "mc:identification", "error": "lecture", "feedback": "Le cuivre a une masse volumique de 8,96 g/cm³, nettement au-dessus de ta mesure : cherche dans le tableau le métal dont la masse volumique est la plus proche." }, { "answer": "zinc", "id": "mc:identification", "error": "lecture", "feedback": "Le zinc (7,1 g/cm³) est trop loin de la valeur mesurée : cherche le métal le plus proche." } ] },
         { "type": "open", "prompt": "Pourquoi la droite donne-t-elle un résultat plus fiable que le quotient m / V d'une seule mesure ?", "minWords": 15,
           "criteria": [
             { "id": "c1", "label": "La droite tient compte de toutes les mesures : les petites erreurs se compensent en partie", "keywords": [["toutes", "plusieurs", "compens", "moyenne"]] },
@@ -542,9 +586,9 @@
             { "id": "c3", "label": "La droite doit passer par l'origine (0 cm³ ↔ 0 g)", "keywords": [["origine", "zero"]] }
           ] }
       ],
-      "hints": ["Les quotients m / V valent 7,8 ; 8,0 ; 7,87 ; 7,9 ; 7,88 : ils sont proches mais pas égaux.", "La droite passe par l'origine ; le point (20 ; 158) est presque dessus.", "Coefficient directeur ≈ 158 / 20."],
+      "hints": ["Calcule le quotient m / V pour chaque échantillon : les résultats sont proches, mais pas égaux.","La droite passe par l'origine ; le point (20 ; 158) est presque dessus.", "Coefficient directeur ≈ 158 / 20."],
       "solution": "Les points sont presque alignés avec l'origine. La droite la plus proche a un coefficient directeur d'environ 7,9 g/cm³ (par exemple 197 / 25 ≈ 7,88) : c'est du fer (ou un acier). Chaque mesure isolée donne entre 7,8 et 8,0 g/cm³ ; la droite « moyenne » les erreurs de toutes les mesures.",
-      "methods": ["Graphique : tracer la droite passant par l'origine au plus près des points, lire le coefficient directeur.", "Calcul : faire la moyenne des cinq quotients m / V (≈ 7,89 g/cm³).", "Rapport global : masse totale / volume totale = 592 / 75 ≈ 7,89 g/cm³."],
+      "methods": ["Graphique : tracer la droite passant par l'origine au plus près des points, lire le coefficient directeur.", "Calcul : faire la moyenne des cinq quotients m / V (≈ 7,89 g/cm³).", "Rapport global : masse totale / volume total = 592 / 75 ≈ 7,89 g/cm³."],
       "selfTest": [
         { "response": { "parts": [ { "points": [[5, 39], [10, 80], [15, 118], [20, 158], [25, 197]] }, { "value": "7,9 g/cm3" }, { "value": "fer" }, { "text": "La droite utilise toutes les mesures donc les erreurs se compensent. Un point aberrant s'écarte de la droite.", "selfCheck": { "c1": true, "c2": true, "c3": false } } ] }, "expect": "correct" },
         { "response": { "parts": [ { "points": [[5, 39], [10, 80], [15, 118], [20, 158], [25, 197]] }, { "value": "0,127 g/cm3" }, { "value": "fer" }, { "text": "La droite utilise toutes les mesures donc les erreurs se compensent." } ] }, "expect": "mc:pente-inverse" }
@@ -561,7 +605,7 @@
         { "type": "numeric", "prompt": "Quelle est la plus grande valeur de ρ compatible avec les mesures ?", "answer": "27/9", "unit": "g/cm3", "rel": 0.01,
           "misconceptions": [ { "answer": "27/11", "id": "mc:encadrement-inverse", "error": "raisonnement", "feedback": "ρ est la plus grande quand on divise par le plus PETIT volume possible : 27,0 / 9." } ] },
         { "type": "text", "prompt": "Quelle mesure limite le plus la précision du résultat : la masse ou le volume ?", "accept": ["le volume", "volume", "la mesure du volume", "v"],
-          "misconceptions": [ { "answer": "la masse", "id": "mc:source-incertitude", "error": "raisonnement", "feedback": "La masse est connue à 0,1 g près sur 27 g (environ 0,4 %) ; le volume à 1 mL près sur 10 mL (10 %) : c'est le volume qui limite." }, { "answer": "masse", "id": "mc:source-incertitude", "error": "raisonnement", "feedback": "Compare les erreurs relatives : 0,1 g sur 27 g, contre 1 mL sur 10 mL." } ] },
+          "misconceptions": [ { "answer": "la masse", "id": "mc:source-incertitude", "error": "raisonnement", "feedback": "La masse est connue à 0,1 g près sur 27 g (environ 0,4 %) ; le volume à 1 mL près sur 10 mL (10 %) : compare ces deux pourcentages." }, { "answer": "masse", "id": "mc:source-incertitude", "error": "raisonnement", "feedback": "Compare les erreurs relatives : 0,1 g sur 27 g, contre 1 mL sur 10 mL." } ] },
         { "type": "open", "prompt": "Avec ces mesures, l'objet peut-il être en aluminium (2,70 g/cm³) ? en verre (environ 2,5 g/cm³) ? en titane (4,5 g/cm³) ? Propose ensuite une façon d'améliorer la mesure.", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "J'utilise l'encadrement 2,45 ≤ ρ ≤ 3,0 g/cm³ pour décider", "keywords": [["2,45", "2.45", "3,0", "encadr", "entre"]] },
@@ -587,7 +631,7 @@
         { "type": "numeric", "prompt": "Quel volume occuperait une couronne de 1 000 g en or pur (avec l'unité) ?", "answer": "1000/19.3", "unit": "cm3", "rel": 0.01,
           "misconceptions": [ { "answer": "1000*19.3", "id": "mc:rho-produit", "error": "notion", "feedback": "V = m / ρ : un métal plus dense occupe MOINS de volume pour la même masse." } ] },
         { "type": "numeric", "prompt": "On suppose que la couronne ne contient que de l'or et de l'argent et que leurs volumes s'additionnent. Quelle masse d'or contient-elle (avec l'unité) ?", "answer": "(60-1000/10.5)/(1/19.3-1/10.5)", "unit": "g", "rel": 0.02,
-          "misconceptions": [ { "answer": "1000*(1000/60-10.5)/(19.3-10.5)", "id": "mc:fraction-volume-masse", "error": "raisonnement", "feedback": "Tu as placé ρ = 16,7 g/cm³ « à 70 % du chemin » entre 10,5 et 19,3, puis appliqué ces 70 % à la MASSE. Or ce pourcentage est la part du VOLUME occupée par l'or : 70 % de 60 cm³ = 42 cm³ d'or, soit 42 × 19,3 ≈ 812 g." } ] },
+          "misconceptions": [ { "answer": "1000*(1000/60-10.5)/(19.3-10.5)", "id": "mc:fraction-volume-masse", "error": "raisonnement", "feedback": "Tu as placé ρ = 16,7 g/cm³ « à 70 % du chemin » entre 10,5 et 19,3, puis appliqué ces 70 % à la MASSE. Or ce pourcentage est la part du VOLUME occupée par l'or : calcule d'abord le volume d'or, puis sa masse." } ] },
         { "type": "open", "prompt": "Quelles hypothèses du modèle pourraient être fausses ? Peut-on conclure avec certitude sur la composition ?", "minWords": 25,
           "criteria": [
             { "id": "c1", "label": "Je cite l'hypothèse « volumes additifs » et ses limites (exemple : 50 mL d'eau + 50 mL d'alcool donnent moins de 100 mL)", "keywords": [["additi", "s'ajoutent", "100 ml", "alcool"]] },
@@ -597,7 +641,7 @@
       ],
       "hints": ["Si la couronne était en or pur, elle aurait ρ = 19,3 g/cm³.", "Appelle x la masse d'or : volume d'or x / 19,3 ; volume d'argent (1 000 − x) / 10,5 ; leur somme vaut 60.", "Autre démarche : cherche d'abord le VOLUME d'or V, avec 19,3 V + 10,5 (60 − V) = 1 000."],
       "solution": "ρ = 1 000 / 60 ≈ 16,7 g/cm³ < 19,3 : la couronne n'est pas en or pur (en or pur, elle n'occuperait que 1 000 / 19,3 ≈ 51,8 cm³). Avec V le volume d'or : 19,3 V + 10,5 (60 − V) = 1 000, donc 8,8 V = 370 et V ≈ 42,0 cm³ ; masse d'or ≈ 42,0 × 19,3 ≈ 812 g (81 % de la masse). Ce résultat dépend du modèle : volumes additifs (à peu près vrai pour ces métaux, faux pour eau + alcool) et seulement deux métaux.",
-      "methods": ["Inconnue x = masse d'or : x / 19,3 + (1 000 − x) / 10,5 = 60.", "Inconnue V = volume d'or : 19,3 V + 10,5 (60 − V) = 1 000, puis m = 19,3 V.", "Raisonnement par écart : un cm³ d'or remplacé par un cm³ d'argent fait perdre 8,8 g ; il manque 51,8 … (méthode « tout en or » puis correction)."],
+      "methods": ["Inconnue x = masse d'or : x / 19,3 + (1 000 − x) / 10,5 = 60.", "Inconnue V = volume d'or : 19,3 V + 10,5 (60 − V) = 1 000, puis m = 19,3 V.", "Raisonnement par écart : tout en or, 60 cm³ pèseraient 60 × 19,3 = 1 158 g, soit 158 g de trop ; chaque cm³ d'or remplacé par un cm³ d'argent fait perdre 8,8 g, il faut donc 158 / 8,8 ≈ 18 cm³ d'argent et environ 42 cm³ d'or."],
       "selfTest": [
         { "response": { "parts": [ { "value": "16,7 g/cm3" }, { "value": "51,8 cm3" }, { "value": "812 g" }, { "text": "On a supposé que les volumes s'ajoutent, ce qui n'est pas toujours vrai (eau et alcool). Il pourrait aussi y avoir du cuivre. Et la mesure du volume est imprécise.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "16,7 g/cm3" }, { "value": "51,8 cm3" }, { "value": "701 g" }, { "text": "On a supposé que les volumes s'ajoutent. Il pourrait aussi y avoir du cuivre." } ] }, "expect": "mc:fraction-volume-masse" }
@@ -616,7 +660,7 @@
             { "answer": "168*1000", "id": "mc:eau-air", "error": "notion", "feedback": "1 000 kg/m³ est la masse volumique de l'eau, pas de l'air." }
           ] },
         { "type": "numeric", "prompt": "Ordre de grandeur : cette masse vaut environ $10^n$ kg. Quelle est la valeur de l'entier n ?", "answer": 2,
-          "misconceptions": [ { "answer": 3, "id": "mc:ordre-grandeur", "error": "raisonnement", "prerequisite": "m4.puissances", "feedback": "Environ 200 kg = 2 × 10² kg : la puissance de 10 la plus proche est 10², pas 10³ (qui vaut 1 000 kg)." } ] },
+          "misconceptions": [ { "answer": 3, "id": "mc:ordre-grandeur", "error": "raisonnement", "prerequisite": "m4.puissances", "feedback": "Compare la masse trouvée à 10² kg = 100 kg et à 10³ kg = 1 000 kg : de laquelle est-elle la plus proche ?" } ] },
         { "type": "numeric", "prompt": "Combien d'élèves de 50 kg faudrait-il pour avoir la même masse que l'air de la salle ?", "answer": 4, "tolerance": 0.2 },
         { "type": "open", "prompt": "Ce résultat te surprend-il ? Quelles hypothèses du calcul pourraient changer le résultat ?", "minWords": 20,
           "criteria": [

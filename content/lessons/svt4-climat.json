@@ -860,7 +860,18 @@
             ],
             "focus": [
               "gT"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde la courbe : comment la température de l'Antarctique a-t-elle évolué pendant 800 000 ans ?",
+              "choices": [
+                "Elle a monté régulièrement",
+                "Elle a alterné entre périodes froides et périodes plus chaudes",
+                "Elle est restée à peu près constante"
+              ],
+              "answer": 1,
+              "explain": "La courbe monte et descend plusieurs fois : de longues périodes froides, les glaciations, alternent avec des périodes plus chaudes."
+            }
           },
           {
             "title": "Prédire",
@@ -944,11 +955,19 @@
             "focus": [
               "gT",
               "gC"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le graphique du CO₂ : quelle est la concentration la plus haute atteinte pendant ces 800 000 ans ?",
+              "answer": 300,
+              "tolerance": 10,
+              "unit": "ppm",
+              "explain": "La ligne en pointillés du graphique du bas marque ce maximum : environ 300 ppm. La courbe bleue ne la dépasse jamais."
+            }
           },
           {
             "title": "Et aujourd'hui ?",
-            "text": "Les mesures directes de l'air donnent 423,9 ppm en 2024 (OMM). C'est environ 1,4 fois la valeur maximale des 800 000 dernières années, atteinte en un peu plus de deux siècles, alors que les ajouts du passé se faisaient en milliers d'années.",
+            "text": "Les mesures directes de l'air donnent 423,9 ppm en 2024 (OMM). C'est environ 1,4 fois la valeur maximale des 800 000 dernières années, atteinte en moins de trois siècles, alors que les ajouts du passé se faisaient en milliers d'années.",
             "duration": 4,
             "do": [
               {
@@ -1149,6 +1168,7 @@
               "gC"
             ],
             "ask": {
+              "kind": "observer",
               "question": "Cette concentration de 424 ppm a-t-elle été observée dans les 800 000 dernières années de la carotte ?",
               "choices": [
                 "Oui, plusieurs fois.",
@@ -1157,6 +1177,24 @@
               ],
               "answer": 1,
               "explain": "Dans la glace, la valeur maximale est d'environ 300 ppm : la concentration actuelle n'a pas d'équivalent sur cette période (l'OMM la juge supérieure à tout ce qui s'est vu depuis au moins 2 millions d'années)."
+            }
+          },
+          {
+            "title": "Une variation normale ?",
+            "text": "Les carottes de glace servent de point de comparaison : elles montrent comment le CO₂ variait avant que les activités humaines n'en rejettent de grandes quantités.",
+            "focus": [
+              "gC"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi peut-on dire que la hausse actuelle du CO₂ n'est pas une variation « normale » ?",
+              "choices": [
+                "Parce que le CO₂ n'avait jamais varié avant aujourd'hui",
+                "Parce qu'elle dépasse de loin le maximum du passé, en quelques siècles au lieu de milliers d'années",
+                "Parce qu'elle est plus lente que les variations du passé"
+              ],
+              "answer": 1,
+              "explain": "Pendant 800 000 ans, le CO₂ a varié entre 180 et 300 ppm, en milliers d'années. Aujourd'hui, il atteint 424 ppm en moins de trois siècles : c'est plus haut et beaucoup plus rapide."
             }
           }
         ],
@@ -1189,7 +1227,7 @@
         {
           "emoji": "⏳",
           "title": "Climats passés, climat actuel",
-          "body": "Le climat a toujours varié : les glaciations ont fait osciller la température d'environ 5 à 6 °C sur des milliers d'années, à cause de changements lents de l'orbite de la Terre. Le réchauffement actuel est bien plus rapide, et il est dû à nos émissions de gaz à effet de serre."
+          "body": "Le climat a toujours varié : les glaciations ont fait osciller la température moyenne de la Terre d'environ 5 à 6 °C sur des milliers d'années, à cause de changements lents de l'orbite de la Terre. Le réchauffement actuel est bien plus rapide, et il est dû à nos émissions de gaz à effet de serre."
         },
         {
           "emoji": "🪸",
@@ -2690,7 +2728,7 @@
               "category": "vrai",
               "id": "mc:rythme-passe",
               "error": "lecture",
-              "feedback": "Sur la courbe, chaque passage d'une période froide à une période chaude dure des milliers d'années. La hausse actuelle (de 278 à 424 ppm) s'est faite en un peu plus de deux siècles."
+              "feedback": "Sur la courbe, chaque passage d'une période froide à une période chaude dure des milliers d'années. La hausse actuelle (de 278 à 424 ppm) s'est faite en moins de trois siècles."
             },
             {
               "item": "i3",
@@ -2707,7 +2745,7 @@
         "Écart = valeur de 2024 − maximum de la glace.",
         "Compare la durée des variations passées (des milliers d'années) avec celle de la hausse actuelle (depuis 1750)."
       ],
-      "solution": "Le maximum de la glace est d'environ 300 ppm (il y a environ 330 000 ans). En 2024 : 424 − 300 = 124 ppm de plus, soit environ 1,4 fois ce maximum. Le CO₂ a bien varié naturellement entre 180 et 300 ppm, mais lentement, sur des milliers d'années. La valeur actuelle n'a aucun équivalent sur 800 000 ans et elle a été atteinte en environ deux siècles : elle est due aux activités humaines.",
+      "solution": "Le maximum de la glace est d'environ 300 ppm (il y a environ 330 000 ans). En 2024 : 424 − 300 = 124 ppm de plus, soit environ 1,4 fois ce maximum. Le CO₂ a bien varié naturellement entre 180 et 300 ppm, mais lentement, sur des milliers d'années. La valeur actuelle n'a aucun équivalent sur 800 000 ans et elle a été atteinte en moins de trois siècles : elle est due aux activités humaines.",
       "selfTest": [
         {
           "response": {
@@ -3291,7 +3329,7 @@
         "mc:banquise-niveau"
       ],
       "expectedSeconds": 420,
-      "prompt": "Pour savoir si la fonte de la glace fait monter le niveau de l'eau, on réalise deux montages (valeurs fictives). Verre A : 100 mL d'eau et 12 g de glace qui flotte ; on marque le niveau. Verre B : 100 mL d'eau, et 12 g de glace posée sur une grille au-dessus du verre, de sorte que l'eau de fonte tombe dans le verre. Après fonte complète, le niveau est resté à 100 mL dans le verre A et il est monté à 112 mL dans le verre B.",
+      "prompt": "Pour savoir si la fonte de la glace fait monter le niveau de l'eau, on réalise deux montages (valeurs fictives). Verre A : 100 mL d'eau et 12 g de glace qui flotte ; on marque le niveau. Verre B : 100 mL d'eau, et 12 g de glace posée sur une grille au-dessus du verre, de sorte que l'eau de fonte tombe dans le verre. Après fonte complète, le niveau est resté exactement au repère marqué dans le verre A, et il est monté de 100 mL à 112 mL dans le verre B.",
       "parts": [
         {
           "type": "numeric",
@@ -3848,7 +3886,7 @@
               "answer": 0,
               "id": "mc:baisse-stabilise",
               "error": "raisonnement",
-              "feedback": "Baisser les émissions de 10 % ne les fait pas passer sous l'absorption (22 Gt) : il reste 36 − 22 = 14 Gt qui s'accumulent encore chaque année."
+              "feedback": "Baisser les émissions de 10 % ne les fait pas passer sous l'absorption (22 Gt) : la différence entre les émissions et l'absorption continue de s'accumuler chaque année."
             }
           ]
         },
@@ -3888,7 +3926,7 @@
               "category": "vrai",
               "id": "mc:baisse-stabilise",
               "error": "raisonnement",
-              "feedback": "La concentration augmente tant que les émissions dépassent l'absorption : avec 36 Gt émises pour 22 Gt absorbées, 14 Gt s'accumulent encore. Ralentir n'est pas stopper."
+              "feedback": "La concentration augmente tant que les émissions dépassent l'absorption : avec 36 Gt émises pour 22 Gt absorbées, il en reste encore à accumuler chaque année. Ralentir n'est pas stopper."
             }
           ]
         }

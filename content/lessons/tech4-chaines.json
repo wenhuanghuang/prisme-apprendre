@@ -215,8 +215,8 @@
       "reference": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]",
       "codeConstraints": { "mustUse": ["si"] },
       "misconceptions": [
-        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature > 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:condition-inversee", "error": "notion", "feedback": "Le chronogramme n'a pas changé : le chauffage s'allume encore à 20, 21 et 22 °C. Il faut allumer quand la température est plus PETITE que 19 : « < »." },
-        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature <= 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:seuil-inclus", "error": "precision", "feedback": "Presque : avec « <= », le chauffage s'allume aussi à 19 °C pile (un palier haut de trop). La consigne dit « strictement inférieure » : « < »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature > 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:condition-inversee", "error": "notion", "feedback": "Le chronogramme n'a pas changé : le chauffage s'allume encore à 20, 21 et 22 °C. Il faut allumer quand la température est plus PETITE que 19." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature <= 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:seuil-inclus", "error": "precision", "feedback": "Presque : avec « <= », le chauffage s'allume aussi à 19 °C pile (un palier haut de trop). La consigne dit « strictement inférieure » : 19 °C ne doit pas allumer le chauffage." },
         { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  si temperature < 19 [ allume ] sinon [ eteint ]\n]\najoute 1 à temperature", "id": "mc:mise-a-jour-hors-boucle", "error": "notion", "feedback": "La température n'augmente plus pendant le test : « ajoute 1 à temperature » est sorti de la boucle. Elle reste à 15 °C et le chauffage reste allumé." }
       ],
       "hints": ["Exécute le programme : à quelles températures le chauffage est-il allumé ?", "Le bug est dans la condition de la ligne « si ».", "On veut allumer quand temperature est plus petite que 19 : « temperature < 19 »."],
@@ -297,9 +297,9 @@
           "accept": ["capteur de niveau", "un capteur de niveau", "capteur de niveau d'eau", "un capteur de niveau d'eau", "détecteur de niveau", "un détecteur de niveau", "flotteur", "un flotteur", "capteur à flotteur", "un capteur à flotteur", "interrupteur à flotteur", "un interrupteur à flotteur", "capteur de niveau du réservoir"],
           "openEnded": true,
           "misconceptions": [
-            { "answer": "capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut mesurer le niveau d'eau du réservoir : un capteur de niveau (par exemple à flotteur)." },
-            { "answer": "un capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut un capteur de niveau." },
-            { "answer": "pompe", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "La pompe est un actionneur : elle agit, elle ne mesure rien. Il faut un capteur qui surveille le niveau d'eau." }
+            { "answer": "capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut un capteur qui surveille ce qui reste dans le réservoir." },
+            { "answer": "un capteur d'humidité", "id": "mc:capteur-mauvaise-grandeur", "error": "raisonnement", "feedback": "Le capteur d'humidité mesure l'eau dans la terre, pas dans le réservoir. Il faut un capteur qui surveille ce qui reste dans le réservoir." },
+            { "answer": "pompe", "id": "mc:capteur-actionneur", "error": "notion", "feedback": "La pompe est un actionneur : elle agit, elle ne mesure rien. Il faut un capteur qui surveille ce qui reste dans le réservoir." }
           ] }
       ],
       "hints": ["Suis la chaîne : acquérir → traiter → communiquer → distribuer → convertir.", "Durée totale de pompage par jour : 6 × 10 s.", "Quelle grandeur faut-il surveiller dans le réservoir ?"],
@@ -377,7 +377,7 @@
       "codeConstraints": { "mustUse": ["si"] },
       "misconceptions": [
         { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:oubli-condition", "error": "methode", "feedback": "Le chronogramme n'a pas changé : le chauffage reste allumé à 16 et 17 °C alors que la fenêtre est ouverte. Ajoute la condition sur « fenetre »." },
-        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 ou fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:et-ou", "error": "raisonnement", "feedback": "Avec « ou », une seule condition suffit : le chauffage s'allume dès que la fenêtre est fermée, même à 22 °C. Il faut que les DEUX conditions soient vraies : « et »." },
+        { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 ou fenetre = 0 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:et-ou", "error": "raisonnement", "feedback": "Avec « ou », une seule condition suffit : le chauffage s'allume dès que la fenêtre est fermée, même à 22 °C. Il faut que les DEUX conditions soient vraies en même temps." },
         { "program": "pour allume [ lève gauche 90 avance 40 droite 90 pose avance 20 lève droite 90 avance 40 gauche 90 pose ]\npour eteint [ avance 20 ]\nmets temperature à 15\nrépète 8 [\n  mets fenetre à 0\n  si temperature = 16 ou temperature = 17 [ mets fenetre à 1 ]\n  si temperature < 19 et fenetre = 1 [ allume ] sinon [ eteint ]\n  ajoute 1 à temperature\n]", "id": "mc:condition-inversee", "error": "notion", "feedback": "Le chauffage s'allume seulement quand la fenêtre est ouverte : c'est l'inverse ! Fenêtre fermée, c'est « fenetre = 0 »." }
       ],
       "hints": ["Le chauffage doit rester éteint à 16 et 17 °C.", "Deux conditions doivent être vraies en même temps : on les relie par « et ».", "« si temperature < 19 et fenetre = 0 [ allume ] sinon [ eteint ] »."],
@@ -397,18 +397,18 @@
       "prompt": "Sur un vélo, la chaîne **transmet** le mouvement du plateau (à l'avant, **48 dents**) au pignon de la roue arrière (**{z} dents**). À chaque tour de plateau, 48 maillons de chaîne passent, et entraînent 48 dents du pignon.",
       "parts": [
         { "type": "numeric", "prompt": "Quand le pédalier fait 1 tour, combien de tours fait la roue arrière ?", "answer": "48/z", "rel": 0.02,
-          "misconceptions": [ { "answer": "z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le petit pignon tourne plus vite que le grand plateau, pas moins : 48 dents passent, soit 48 ÷ {z} tours de pignon (et donc de roue)." } ] },
+          "misconceptions": [ { "answer": "z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le petit pignon tourne plus vite que le grand plateau, pas moins : quand 48 dents défilent, combien de fois ses {z} dents passent-elles ?" } ] },
         { "type": "numeric", "prompt": "La roue a une circonférence de 2,1 m. Quelle distance le vélo parcourt-il pour 1 tour de pédalier ? (avec l'unité m)", "answer": "2.1*48/z", "unit": "m", "rel": 0.01,
           "misconceptions": [
-            { "answer": 2.1, "id": "mc:oubli-rapport", "error": "methode", "feedback": "2,1 m, c'est la distance pour UN tour de roue. Or la roue fait {48/z} tours pour un tour de pédalier." },
-            { "answer": "2.1*z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le rapport est inversé : la roue fait {48/z} tours par tour de pédalier, pas {z/48}." }
+            { "answer": 2.1, "id": "mc:oubli-rapport", "error": "methode", "feedback": "2,1 m, c'est la distance pour UN tour de roue. Or la roue fait plusieurs tours pour un tour de pédalier (question 1)." },
+            { "answer": "2.1*z/48", "id": "mc:rapport-inverse", "error": "notion", "feedback": "Le rapport est inversé : la roue tourne plus vite que le pédalier, pas moins." }
           ] },
         { "type": "text", "prompt": "Pour monter une côte raide, vaut-il mieux passer sur un pignon arrière **plus grand** ou **plus petit** ?",
           "accept": ["plus grand", "un plus grand", "grand", "un grand pignon", "le plus grand", "un pignon plus grand", "plus grand pignon", "le grand pignon"],
           "misconceptions": [
-            { "answer": "plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon fait avancer plus loin à chaque tour de pédale… mais demande plus de force. En côte, on choisit un grand pignon : moins de distance par tour, un pédalage plus facile." },
-            { "answer": "petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, on choisit un grand pignon." },
-            { "answer": "un plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, on choisit un grand pignon." }
+            { "answer": "plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon fait avancer plus loin à chaque tour de pédale… mais demande plus de force. En côte, de quoi a-t-on surtout besoin ?" },
+            { "answer": "petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, de quoi a-t-on surtout besoin ?" },
+            { "answer": "un plus petit", "id": "mc:rapport-effort", "error": "raisonnement", "feedback": "Un petit pignon demande plus de force à chaque tour de pédale. En côte, de quoi a-t-on surtout besoin ?" }
           ] }
       ],
       "hints": ["Combien de tours fait un pignon de {z} dents quand 48 dents passent ?", "Distance = nombre de tours de roue × circonférence.", "Plus le pignon arrière est grand, moins la roue tourne à chaque coup de pédale."],
@@ -426,12 +426,12 @@
       "prompt": "Le moteur d'un ventilateur reçoit une puissance électrique de **{a} W** et fournit une puissance mécanique de **{a*r} W** aux pales. Toute l'énergie reçue ressort, mais pas entièrement sous la forme utile.",
       "parts": [
         { "type": "numeric", "prompt": "Quelle puissance est perdue ? (avec l'unité W)", "answer": "a - a*r", "unit": "W", "rel": 0.001,
-          "misconceptions": [ { "answer": "a*r", "id": "mc:utile-perdue", "error": "lecture", "feedback": "{a*r} W est la puissance utile (elle fait tourner les pales). La perte, c'est ce qui manque : {a} − {a*r}." } ] },
+          "misconceptions": [ { "answer": "a*r", "id": "mc:utile-perdue", "error": "lecture", "feedback": "{a*r} W est la puissance utile (elle fait tourner les pales). La perte, c'est ce qui manque à la puissance utile pour atteindre la puissance reçue." } ] },
         { "type": "text", "prompt": "Sous quelle forme cette énergie perdue apparaît-elle surtout ?",
           "accept": ["thermique", "chaleur", "énergie thermique", "de la chaleur", "sous forme de chaleur", "en chaleur", "l'énergie thermique"],
           "misconceptions": [
-            { "answer": "mécanique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie mécanique est l'énergie utile : les pales tournent. La perte, c'est le moteur qui chauffe : énergie thermique." },
-            { "answer": "électrique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie électrique est celle que le moteur reçoit. Ce qui est perdu ressort surtout en chaleur : énergie thermique." }
+            { "answer": "mécanique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie mécanique est l'énergie utile : les pales tournent. Pense à ce que tu sens en touchant un moteur qui a tourné longtemps." },
+            { "answer": "électrique", "id": "mc:perte-forme", "error": "notion", "feedback": "L'énergie électrique est celle que le moteur reçoit. Pense à ce que tu sens en touchant un moteur qui a tourné longtemps." }
           ] },
         { "type": "numeric", "prompt": "Le **rendement** est le quotient puissance utile ÷ puissance reçue. Calcule-le (en % ou en nombre décimal).", "answer": "r", "rel": 0.001,
           "misconceptions": [ { "answer": "1/r", "id": "mc:rendement-inverse", "error": "methode", "feedback": "Un rendement est toujours inférieur à 1 (100 %) : on ne récupère jamais plus que ce qu'on fournit. Divise la puissance utile par la puissance reçue." } ] }

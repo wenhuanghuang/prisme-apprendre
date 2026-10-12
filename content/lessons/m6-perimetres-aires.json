@@ -1,0 +1,3520 @@
+{
+  "id": "m6-perimetres-aires",
+  "chapter": "6e-m-perimetres-aires",
+  "title": "Périmètres et aires : cercle, carré, rectangle, conversions",
+  "subject": "maths",
+  "level": "6e",
+  "skills": [
+    "m6.grandeurs.perimetres",
+    "m6.grandeurs.aires-rectangle",
+    "m6.grandeurs.conversions-aires"
+  ],
+  "status": "programme",
+  "programmes": [
+    "maths-c3-2025"
+  ],
+  "duration": 60,
+  "summary": "Faire le tour d'une figure ou recouvrir sa surface ? On calcule des périmètres (polygones, cercle, figures composées), on découvre que le périmètre d'un cercle est proportionnel à son diamètre (π × d), on calcule l'aire du carré et du rectangle, et on convertit les unités d'aire, sans jamais confondre cm et cm².",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un tour de roue",
+      "body": "La roue d'un vélo mesure 70 cm de diamètre. Quand elle fait un tour complet sans glisser, de combien le vélo avance-t-il ? De 70 cm ? Du double ? Du triple ?\n\nFais l'essai avec une boîte de conserve : enroule une ficelle autour, coupe-la, puis compare sa longueur avec le diamètre de la boîte. Combien de diamètres peux-tu placer le long de la ficelle ?",
+      "figure": {
+        "alt": "Une roue posée sur le sol avec son diamètre tracé, et le chemin parcouru au sol pendant un tour, dont la longueur est inconnue",
+        "w": 460,
+        "h": 200,
+        "frame": {
+          "x": [
+            -1.4,
+            12
+          ],
+          "y": [
+            -1,
+            3.6
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              1.4
+            ],
+            "r": 1.4,
+            "fill": "gris"
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 1.4,
+            "pos": "n",
+            "label": "",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -1.4,
+              1.4
+            ],
+            "to": [
+              1.4,
+              1.4
+            ],
+            "label": "70 cm",
+            "color": "rouge"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -1.4,
+              0
+            ],
+            "to": [
+              12,
+              0
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              -0.45
+            ],
+            "to": [
+              8.796,
+              -0.45
+            ],
+            "arrows": "both",
+            "color": "bleu",
+            "label": "un tour : ?"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🔁",
+          "title": "Le périmètre : le tour d'une figure",
+          "body": "Le **périmètre** d'une figure est la longueur de son tour. Pour un polygone, on additionne les longueurs de tous ses côtés. **Carré** de côté c : 4 × c. **Rectangle** de longueur L et de largeur l : 2 × (L + l). Un périmètre est une longueur : il s'exprime en mm, cm, m, km…",
+          "example": "Rectangle de 5 cm sur 3 cm : 2 × (5 + 3) = 16 cm.",
+          "figure": {
+            "alt": "Un rectangle de 5 cm sur 3 cm dont le tour est surligné",
+            "w": 320,
+            "h": 200,
+            "frame": {
+              "x": [
+                -0.8,
+                6.2
+              ],
+              "y": [
+                -0.8,
+                3.8
+              ]
+            },
+            "items": [
+              {
+                "type": "rect",
+                "x": 0,
+                "y": 0,
+                "w": 5,
+                "h": 3,
+                "fill": "bleu",
+                "color": "rouge",
+                "width": 3
+              },
+              {
+                "type": "text",
+                "x": 2.5,
+                "y": -0.45,
+                "text": "5 cm",
+                "size": "s",
+                "anchor": "middle"
+              },
+              {
+                "type": "text",
+                "x": -0.2,
+                "y": 1.5,
+                "text": "3 cm",
+                "size": "s",
+                "anchor": "end"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⭕",
+          "title": "Le périmètre d'un cercle",
+          "body": "Pour **tous** les cercles, le périmètre est **proportionnel** au diamètre : on multiplie toujours le diamètre par le même nombre, noté **π** (« pi »), un peu plus grand que 3. **Périmètre = π × d = 2 × π × r.** Avec π ≈ 3,14, on obtient une valeur approchée.",
+          "example": "Diamètre 10 cm : π × 10 ≈ 3,14 × 10 = 31,4 cm.",
+          "reveal": {
+            "question": "Devine : si on double le diamètre d’une roue, que devient son périmètre ?",
+            "answer": "Il double aussi : c'est la proportionnalité. Avec un diamètre 3 fois plus grand, le périmètre est 3 fois plus grand."
+          },
+          "figure": {
+            "alt": "Un cercle de centre O, son diamètre d et son rayon r",
+            "w": 240,
+            "h": 220,
+            "frame": {
+              "x": [
+                -2.6,
+                2.6
+              ],
+              "y": [
+                -2.4,
+                2.6
+              ]
+            },
+            "caption": "Périmètre = π × d",
+            "items": [
+              {
+                "type": "circle",
+                "center": [
+                  0,
+                  0
+                ],
+                "r": 2,
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "pos": "n",
+                "style": "rond"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  -2,
+                  0
+                ],
+                "to": [
+                  2,
+                  0
+                ],
+                "color": "rouge"
+              },
+              {
+                "type": "text",
+                "x": -1,
+                "y": -0.4,
+                "text": "d = 2 × r",
+                "size": "s",
+                "anchor": "middle",
+                "color": "rouge"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🧩",
+          "title": "Figures composées",
+          "body": "On découpe le bord en morceaux connus : segments, demi-cercles, quarts de cercle. Un demi-cercle de diamètre d mesure π × d ÷ 2. On ne compte que le **bord extérieur** : un trait intérieur, comme le diamètre d'un demi-cercle collé à un rectangle, ne fait pas partie du tour.",
+          "figure": {
+            "alt": "Une piste formée de deux segments et de deux demi-cercles ; les traits intérieurs sont en pointillés",
+            "w": 380,
+            "h": 180,
+            "frame": {
+              "x": [
+                -2,
+                8
+              ],
+              "y": [
+                -0.9,
+                3.4
+              ]
+            },
+            "items": [
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  0
+                ],
+                "to": [
+                  6,
+                  0
+                ],
+                "label": "6 m"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  3
+                ],
+                "to": [
+                  6,
+                  3
+                ]
+              },
+              {
+                "type": "arc",
+                "center": [
+                  0,
+                  1.5
+                ],
+                "r": 1.5,
+                "start": 90,
+                "end": 270,
+                "color": "maths"
+              },
+              {
+                "type": "arc",
+                "center": [
+                  6,
+                  1.5
+                ],
+                "r": 1.5,
+                "start": -90,
+                "end": 90,
+                "color": "maths"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  0
+                ],
+                "to": [
+                  0,
+                  3
+                ],
+                "dashed": true,
+                "color": "gris",
+                "label": "3 m"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  6,
+                  0
+                ],
+                "to": [
+                  6,
+                  3
+                ],
+                "dashed": true,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🟩",
+          "title": "L'aire : la surface",
+          "body": "L'**aire** mesure la surface à l'intérieur d'une figure : le nombre de carrés-unités qui la recouvrent. **Rectangle** : L × l. **Carré** : c × c. Les deux longueurs doivent être dans la même unité ; l'aire s'écrit alors en cm², m²… Un carré de 1 cm de côté a une aire de 1 cm².",
+          "example": "Rectangle de 5 cm sur 3 cm : 5 × 3 = 15 cm², soit 15 carrés de 1 cm de côté.",
+          "reveal": {
+            "question": "Devine : si on double la longueur ET la largeur d’un rectangle, son aire double-t-elle ?",
+            "answer": "Non : elle est multipliée par 4 (2 × 2). On peut ranger 4 petits rectangles dans le grand !"
+          },
+          "figure": {
+            "alt": "Un rectangle de 5 sur 3 recouvert de 15 carrés-unités",
+            "w": 300,
+            "h": 200,
+            "frame": {
+              "x": [
+                -0.8,
+                5.8
+              ],
+              "y": [
+                -0.8,
+                3.6
+              ],
+              "grid": true
+            },
+            "items": [
+              {
+                "type": "rect",
+                "x": 0,
+                "y": 0,
+                "w": 5,
+                "h": 3,
+                "fill": "vert"
+              },
+              {
+                "type": "text",
+                "x": 2.5,
+                "y": -0.45,
+                "text": "5 cm",
+                "size": "s",
+                "anchor": "middle"
+              },
+              {
+                "type": "text",
+                "x": -0.2,
+                "y": 1.5,
+                "text": "3 cm",
+                "size": "s",
+                "anchor": "end"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🔄",
+          "title": "Convertir des aires",
+          "body": "1 dm² est un carré de 10 cm de côté : il contient 10 × 10 = **100 cm²**. D'une unité d'aire à la suivante, on multiplie donc par **100** : 1 m² = 100 dm² = 10 000 cm². Pour les terrains, on utilise aussi l'**hectare** : 1 ha = 10 000 m², l'aire d'un carré de 100 m de côté.",
+          "example": "3,5 m² = 350 dm² ; 600 cm² = 6 dm².",
+          "figure": {
+            "alt": "Un carré de 1 dm de côté découpé en 100 petits carrés de 1 cm de côté, dont un est colorié",
+            "w": 250,
+            "h": 270,
+            "frame": {
+              "x": [
+                -0.5,
+                10.5
+              ],
+              "y": [
+                -1.4,
+                10.5
+              ],
+              "grid": true
+            },
+            "items": [
+              {
+                "type": "rect",
+                "x": 0,
+                "y": 0,
+                "w": 10,
+                "h": 10,
+                "color": "bleu"
+              },
+              {
+                "type": "rect",
+                "x": 0,
+                "y": 0,
+                "w": 1,
+                "h": 1,
+                "fill": "orange"
+              },
+              {
+                "type": "text",
+                "x": 5,
+                "y": -0.8,
+                "text": "1 dm² = 100 cm²",
+                "size": "s",
+                "anchor": "middle"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "En résumé : périmètre ou aire ?",
+          "body": "Le **périmètre** est une longueur : on fait le **tour** (clôture, ruban, plinthe), en cm ou en m. L'**aire** est une surface : on **recouvre** (moquette, peinture, gazon), en cm² ou en m². Deux figures peuvent avoir le même périmètre et des aires différentes. Et toujours une unité dans la réponse !"
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : un tour de piste",
+      "steps": [
+        {
+          "text": "La piste du stade est formée de deux lignes droites de 80 m et de deux demi-cercles de 50 m de diamètre. Quelle est la longueur d’un tour ?",
+          "figure": {
+            "alt": "Une piste de stade : deux lignes droites de 80 m et deux demi-cercles de 50 m de diamètre",
+            "w": 420,
+            "h": 200,
+            "frame": {
+              "x": [
+                -30,
+                110
+              ],
+              "y": [
+                -12,
+                58
+              ]
+            },
+            "items": [
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  0
+                ],
+                "to": [
+                  80,
+                  0
+                ],
+                "label": "80 m"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  50
+                ],
+                "to": [
+                  80,
+                  50
+                ]
+              },
+              {
+                "type": "arc",
+                "center": [
+                  0,
+                  25
+                ],
+                "r": 25,
+                "start": 90,
+                "end": 270,
+                "color": "maths"
+              },
+              {
+                "type": "arc",
+                "center": [
+                  80,
+                  25
+                ],
+                "r": 25,
+                "start": -90,
+                "end": 90,
+                "color": "maths"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  0,
+                  0
+                ],
+                "to": [
+                  0,
+                  50
+                ],
+                "dashed": true,
+                "color": "gris",
+                "label": "50 m"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  80,
+                  0
+                ],
+                "to": [
+                  80,
+                  50
+                ],
+                "dashed": true,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On découpe le tour en morceaux connus. Les deux lignes droites mesurent :",
+          "math": "2 × 80 = 160 m"
+        },
+        {
+          "text": "Les deux demi-cercles, mis bout à bout, forment un cercle entier de 50 m de diamètre. Son périmètre :",
+          "math": "π × 50 ≈ 3,14 × 50 = 157 m"
+        },
+        {
+          "text": "On additionne. Les traits en pointillés sont à l’intérieur : ils ne comptent pas.",
+          "math": "160 + 157 = 317 m"
+        },
+        {
+          "text": "Un tour de piste mesure environ 317 m (avec la touche π : environ 317,08 m). C'est une valeur approchée, car π n'est pas exactement 3,14."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour chaque réponse : une longueur en cm ou en m, une aire en cm² ou en m².",
+      "exercises": [
+        "m6-perimetres-aires-rectangle",
+        "m6-perimetres-aires-cercle",
+        "m6-perimetres-aires-proportionnel",
+        "m6-perimetres-aires-fenetre",
+        "m6-perimetres-aires-conversions",
+        "m6-perimetres-aires-meme-perimetre"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Défi : Malo a-t-il raison ?",
+      "exercises": [
+        "m6-perimetres-aires-contre-exemple"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes : la chambre et la roue",
+      "exercises": [
+        "m6-perimetres-aires-chambre",
+        "m6-perimetres-aires-roue"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le jardin de l'école",
+      "body": "Grillage, gazon, bordure du bassin : prépare la commande du jardinier, sans confondre longueurs et aires.",
+      "exercises": [
+        "m6-perimetres-aires-jardin"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Périmètre** (une longueur) : carré 4 × c ; rectangle 2 × (L + l) ; cercle π × d = 2 × π × r, proportionnel au diamètre, avec π ≈ 3,14. **Aire** (une surface) : carré c × c ; rectangle L × l. D'une unité d'aire à la suivante, × 100 : 1 m² = 100 dm² = 10 000 cm² ; 1 ha = 10 000 m².\n\n- **Confondre aire et périmètre**, ou cm et cm².\n- **Prendre le rayon pour le diamètre** dans π × d.\n- **Compter un trait intérieur** dans le périmètre d'une figure composée.\n- **Convertir les aires avec × 10** au lieu de × 100.\n- **Oublier que 3,14 est une valeur approchée de π** : on arrondit le résultat."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des calculs de périmètres, d’aires et des conversions dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une fleur en demi-cercles, et le rectangle le plus « économe » en clôture.",
+      "exercises": [
+        "m6-perimetres-aires-fleur",
+        "m6-perimetres-aires-meme-aire"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : une corde autour de la Terre, et des aires immenses ou minuscules à convertir.",
+      "exercises": [
+        "m6-perimetres-aires-corde-terre",
+        "m6-perimetres-aires-grandes-aires"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-perimetres-aires-rectangle",
+      "type": "composite",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "skills": [
+        "m6.grandeurs.perimetres"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:aire-perimetre",
+        "mc:demi-perimetre",
+        "unite"
+      ],
+      "expectedSeconds": 150,
+      "params": {
+        "L": {
+          "int": [
+            4,
+            12
+          ]
+        },
+        "l": {
+          "int": [
+            2,
+            7
+          ]
+        }
+      },
+      "constraints": [
+        "L > l",
+        "L*l != 2*(L + l)"
+      ],
+      "prompt": "Un rectangle mesure {L} cm de long et {l} cm de large. Calcule son périmètre et son aire, avec leur unité.",
+      "figure": {
+        "alt": "Un rectangle dont la longueur et la largeur sont indiquées",
+        "w": 360,
+        "h": 240,
+        "frame": {
+          "x": [
+            -1.6,
+            12.6
+          ],
+          "y": [
+            -1.2,
+            7.6
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": "{L}",
+            "h": "{l}",
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": "{L/2}",
+            "y": -0.6,
+            "text": "{L} cm",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": -0.3,
+            "y": "{l/2}",
+            "text": "{l} cm",
+            "size": "s",
+            "anchor": "end"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Périmètre du rectangle :",
+          "answer": "2*(L + l)",
+          "unit": "cm",
+          "misconceptions": [
+            {
+              "answer": "L*l",
+              "id": "mc:aire-perimetre",
+              "error": "notion",
+              "feedback": "Tu as multiplié la longueur par la largeur : c'est le calcul de l'aire. Le périmètre, c'est le tour : on ajoute les longueurs des quatre côtés."
+            },
+            {
+              "answer": "L + l",
+              "id": "mc:demi-perimetre",
+              "error": "methode",
+              "feedback": "Tu as ajouté une longueur et une largeur : ce n'est que la moitié du tour. Un rectangle a quatre côtés."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aire du rectangle :",
+          "answer": "L*l",
+          "unit": "cm²",
+          "misconceptions": [
+            {
+              "answer": "2*(L + l)",
+              "id": "mc:aire-perimetre",
+              "error": "notion",
+              "feedback": "Tu as calculé le tour du rectangle : c'est son périmètre. L'aire, c'est le nombre de carrés de 1 cm de côté qui le recouvrent."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Périmètre : le tour, 2 × (longueur + largeur).",
+        "Aire : longueur × largeur.",
+        "Un périmètre s’écrit en cm, une aire en cm²."
+      ],
+      "solution": "Périmètre : 2 × ({L} + {l}) = 2 × {L+l} = {2*(L+l)} cm. Aire : {L} × {l} = {L*l} cm².",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*(L+l)} cm"
+              },
+              {
+                "value": "{L*l} cm²"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{L*l} cm"
+              },
+              {
+                "value": "{2*(L+l)} cm²"
+              }
+            ]
+          },
+          "expect": "mc:aire-perimetre"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*(L+l)} cm"
+              },
+              {
+                "value": "{L*l} cm"
+              }
+            ]
+          },
+          "expect": "unite"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-cercle",
+      "type": "composite",
+      "skill": "m6.grandeurs.perimetres",
+      "skills": [
+        "m6.geo.cercle"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:rayon-diametre",
+        "mc:rayon-au-lieu-diametre",
+        "mc:double-diametre"
+      ],
+      "expectedSeconds": 150,
+      "params": {
+        "r": {
+          "int": [
+            2,
+            9
+          ]
+        }
+      },
+      "prompt": "Un cercle a un rayon de {r} cm. Utilise π ≈ 3,14 (ou la touche π de la calculatrice) et arrondis le périmètre au dixième.",
+      "figure": {
+        "alt": "Un cercle de centre O avec un rayon tracé et sa longueur indiquée",
+        "w": 230,
+        "h": 220,
+        "frame": {
+          "x": [
+            -2.6,
+            2.6
+          ],
+          "y": [
+            -2.5,
+            2.5
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 2,
+            "fill": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              2,
+              0
+            ],
+            "label": "{r} cm"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Diamètre du cercle (en cm) :",
+          "answer": "2*r",
+          "misconceptions": [
+            {
+              "answer": "r/2",
+              "id": "mc:rayon-diametre",
+              "error": "notion",
+              "feedback": "Le diamètre est plus long que le rayon : il traverse tout le cercle en passant par le centre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Périmètre du cercle (avec l’unité) :",
+          "answer": "2*pi*r",
+          "unit": "cm",
+          "tolerance": 0.1,
+          "misconceptions": [
+            {
+              "answer": "pi*r",
+              "id": "mc:rayon-au-lieu-diametre",
+              "error": "notion",
+              "feedback": "Tu as multiplié π par le rayon. La formule est π × DIAMÈTRE (ou 2 × π × rayon)."
+            },
+            {
+              "answer": "4*pi*r",
+              "id": "mc:double-diametre",
+              "error": "notion",
+              "feedback": "Tu as compté le diamètre deux fois : soit π × diamètre, soit 2 × π × rayon, mais pas les deux."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le diamètre vaut deux rayons.",
+        "Périmètre = π × diamètre.",
+        "Calcule 3,14 × {2*r}, puis arrondis au dixième."
+      ],
+      "solution": "Diamètre : 2 × {r} = {2*r} cm. Périmètre : π × {2*r} ≈ 3,14 × {2*r} = {3.14*2*r} cm, soit environ {arrondi(2*pi*r;1)} cm (avec la touche π : {2*pi*r|d2} cm).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*r}"
+              },
+              {
+                "value": "{arrondi(2*pi*r;1)} cm"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*r}"
+              },
+              {
+                "value": "{arrondi(6.28*r;1)} cm"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*r}"
+              },
+              {
+                "value": "{arrondi(pi*r;1)} cm"
+              }
+            ]
+          },
+          "expect": "mc:rayon-au-lieu-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-proportionnel",
+      "type": "table",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:additif",
+        "mc:rayon-au-lieu-diametre",
+        "mc:diviser"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "d": {
+          "int": [
+            3,
+            9
+          ]
+        }
+      },
+      "constraints": [
+        "d != 5"
+      ],
+      "prompt": "Le périmètre d'un cercle est proportionnel à son diamètre. Complète le tableau. Utilise π ≈ 3,14 (ou la touche π de la calculatrice), et arrondis au centième.",
+      "figure": {
+        "alt": "Trois cercles de diamètres 1 cm, 2 cm et 5 cm, côte à côte",
+        "w": 420,
+        "h": 190,
+        "frame": {
+          "x": [
+            0,
+            10.2
+          ],
+          "y": [
+            -0.9,
+            5.2
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0.8,
+              2.5
+            ],
+            "r": 0.5
+          },
+          {
+            "type": "segment",
+            "from": [
+              0.3,
+              2.5
+            ],
+            "to": [
+              1.3,
+              2.5
+            ],
+            "color": "rouge"
+          },
+          {
+            "type": "text",
+            "x": 0.8,
+            "y": -0.4,
+            "text": "d = 1 cm",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "circle",
+            "center": [
+              3,
+              2.5
+            ],
+            "r": 1
+          },
+          {
+            "type": "segment",
+            "from": [
+              2,
+              2.5
+            ],
+            "to": [
+              4,
+              2.5
+            ],
+            "color": "rouge"
+          },
+          {
+            "type": "text",
+            "x": 3,
+            "y": -0.4,
+            "text": "d = 2 cm",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "circle",
+            "center": [
+              7.4,
+              2.5
+            ],
+            "r": 2.5
+          },
+          {
+            "type": "segment",
+            "from": [
+              4.9,
+              2.5
+            ],
+            "to": [
+              9.9,
+              2.5
+            ],
+            "color": "rouge"
+          },
+          {
+            "type": "text",
+            "x": 7.4,
+            "y": -0.4,
+            "text": "d = 5 cm",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "columns": [
+        "Diamètre",
+        "Périmètre"
+      ],
+      "rows": [
+        [
+          "1 cm",
+          "?r0c1"
+        ],
+        [
+          "2 cm",
+          "?r1c1"
+        ],
+        [
+          "5 cm",
+          "?r2c1"
+        ],
+        [
+          "{d} cm",
+          "?r3c1"
+        ],
+        [
+          "?r4c0",
+          "62,8 cm"
+        ]
+      ],
+      "cells": {
+        "r0c1": {
+          "answer": "pi",
+          "rel": 0.004,
+          "misconceptions": [
+            {
+              "answer": "pi/2",
+              "id": "mc:rayon-au-lieu-diametre",
+              "error": "notion",
+              "feedback": "Tu as pris la moitié du diamètre. La formule est π × diamètre."
+            }
+          ]
+        },
+        "r1c1": {
+          "answer": "2*pi",
+          "rel": 0.004,
+          "misconceptions": [
+            {
+              "answer": "pi + 1",
+              "id": "mc:additif",
+              "error": "raisonnement",
+              "feedback": "Quand le diamètre est multiplié par 2, le périmètre est multiplié par 2 lui aussi : c'est la proportionnalité. On ne fait pas « + 1 »."
+            }
+          ]
+        },
+        "r2c1": {
+          "answer": "5*pi",
+          "rel": 0.004,
+          "misconceptions": [
+            {
+              "answer": "5*pi/2",
+              "id": "mc:rayon-au-lieu-diametre",
+              "error": "notion",
+              "feedback": "Tu as utilisé la moitié du diamètre. Périmètre = π × diamètre."
+            }
+          ]
+        },
+        "r3c1": {
+          "answer": "d*pi",
+          "rel": 0.004,
+          "misconceptions": [
+            {
+              "answer": "pi + d - 1",
+              "id": "mc:additif",
+              "error": "raisonnement",
+              "feedback": "Le périmètre n'augmente pas « du même nombre » que le diamètre : il est multiplié par le même nombre."
+            }
+          ]
+        },
+        "r4c0": {
+          "answer": "62.8/pi",
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": "62.8*3.14",
+              "id": "mc:diviser",
+              "error": "methode",
+              "feedback": "Ici, on connaît le périmètre et on cherche le diamètre : il faut faire l'opération inverse de la multiplication par π."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Périmètre = π × diamètre ≈ 3,14 × diamètre.",
+        "Si le diamètre est multiplié par 2, le périmètre aussi.",
+        "Dernière ligne : quel nombre, multiplié par 3,14, donne 62,8 ?"
+      ],
+      "solution": "On multiplie le diamètre par π ≈ 3,14 : 1 cm → 3,14 cm ; 2 cm → 6,28 cm ; 5 cm → 15,7 cm ; {d} cm → {3.14*d} cm. Dernière ligne : 62,8 ÷ 3,14 = 20 cm.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r0c1": "3,14",
+              "r1c1": "6,28",
+              "r2c1": "15,7",
+              "r3c1": "{3.14*d}",
+              "r4c0": "20"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r0c1": "3,14",
+              "r1c1": "4,14",
+              "r2c1": "15,7",
+              "r3c1": "{3.14*d}",
+              "r4c0": "20"
+            }
+          },
+          "expect": "mc:additif"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-fenetre",
+      "type": "numeric",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:trait-interieur",
+        "mc:cercle-entier",
+        "mc:rayon-au-lieu-diametre"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "L": {
+          "choice": [
+            60,
+            80,
+            100,
+            120
+          ]
+        },
+        "h": {
+          "choice": [
+            100,
+            110,
+            120,
+            130,
+            140,
+            150
+          ]
+        }
+      },
+      "prompt": "Une fenêtre a la forme d'un rectangle de {L} cm de large et {h} cm de haut, surmonté d'un demi-cercle. On pose un joint sur tout son contour extérieur. Quelle longueur de joint faut-il (en cm, arrondi à l'unité) ? Utilise π ≈ 3,14 (ou la touche π de la calculatrice).",
+      "figure": {
+        "alt": "Une fenêtre : un rectangle surmonté d’un demi-cercle dont le diamètre est le côté du haut, tracé en pointillés",
+        "w": 240,
+        "h": 300,
+        "frame": {
+          "x": [
+            -1.4,
+            5
+          ],
+          "y": [
+            -0.9,
+            7.4
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              4,
+              0
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              0,
+              5
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              4,
+              0
+            ],
+            "to": [
+              4,
+              5
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              5
+            ],
+            "to": [
+              4,
+              5
+            ],
+            "dashed": true,
+            "color": "gris"
+          },
+          {
+            "type": "arc",
+            "center": [
+              2,
+              5
+            ],
+            "r": 2,
+            "start": 0,
+            "end": 180,
+            "color": "maths"
+          },
+          {
+            "type": "text",
+            "x": 2,
+            "y": -0.5,
+            "text": "{L} cm",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": -0.2,
+            "y": 2.5,
+            "text": "{h} cm",
+            "size": "s",
+            "anchor": "end"
+          }
+        ]
+      },
+      "answer": "2*h + L + pi*L/2",
+      "unit": "cm",
+      "unitOptional": true,
+      "tolerance": 0.6,
+      "misconceptions": [
+        {
+          "answer": "2*h + 2*L + pi*L/2",
+          "id": "mc:trait-interieur",
+          "error": "methode",
+          "feedback": "Tu as compté le trait en pointillés, entre le rectangle et le demi-cercle. Il est à l'intérieur de la fenêtre : le joint n'y passe pas."
+        },
+        {
+          "answer": "2*h + L + pi*L",
+          "id": "mc:cercle-entier",
+          "error": "methode",
+          "feedback": "En haut, il n'y a qu'un DEMI-cercle : sa longueur est la moitié de celle d'un cercle entier."
+        },
+        {
+          "answer": "2*h + L + pi*L/4",
+          "id": "mc:rayon-au-lieu-diametre",
+          "error": "notion",
+          "feedback": "Pour le demi-cercle, tu as utilisé le rayon dans π × d. Son diamètre est la largeur de la fenêtre."
+        }
+      ],
+      "hints": [
+        "Le contour est formé de trois côtés du rectangle et d’un demi-cercle.",
+        "Le demi-cercle a pour diamètre {L} cm : sa longueur est π × {L} ÷ 2.",
+        "Le trait en pointillés ne compte pas."
+      ],
+      "solution": "Côtés du rectangle : {h} + {L} + {h} = {2*h+L} cm. Demi-cercle : π × {L} ÷ 2 ≈ 3,14 × {L} ÷ 2 = {1.57*L} cm. Total : {2*h+L} + {1.57*L} = {2*h+L+1.57*L} cm, soit environ {arrondi(2*h+L+pi*L/2;0)} cm.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{arrondi(2*h+L+pi*L/2;0)}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{arrondi(2*h+2*L+pi*L/2;0)} cm"
+          },
+          "expect": "mc:trait-interieur"
+        },
+        {
+          "response": {
+            "value": "{arrondi(2*h+L+pi*L;0)}"
+          },
+          "expect": "mc:cercle-entier"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-conversions",
+      "type": "table",
+      "skill": "m6.grandeurs.conversions-aires",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:aire-facteur-10",
+        "mc:une-seule-etape"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "a": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "b": {
+          "dec": [
+            1.5,
+            9.5
+          ],
+          "step": 0.5
+        },
+        "c": {
+          "int": [
+            120,
+            980
+          ]
+        },
+        "e": {
+          "int": [
+            2,
+            9
+          ]
+        },
+        "f": {
+          "dec": [
+            1.2,
+            4.8
+          ],
+          "step": 0.1
+        },
+        "g": {
+          "int": [
+            2,
+            9
+          ]
+        }
+      },
+      "prompt": "Complète le tableau de conversions. Rappel : d'une unité d'aire à la suivante, on multiplie par 100 ; 1 ha = 10 000 m².",
+      "figure": {
+        "alt": "Un carré de 1 dm de côté découpé en 100 petits carrés de 1 cm de côté",
+        "w": 220,
+        "h": 240,
+        "frame": {
+          "x": [
+            -0.5,
+            10.5
+          ],
+          "y": [
+            -1.4,
+            10.5
+          ],
+          "grid": true
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 10,
+            "h": 10,
+            "color": "bleu"
+          },
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 1,
+            "h": 1,
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 5,
+            "y": -0.8,
+            "text": "1 dm² = 100 cm²",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "columns": [
+        "Aire",
+        "Unité demandée",
+        "Résultat"
+      ],
+      "rows": [
+        [
+          "{a} m²",
+          "dm²",
+          "?r0c2"
+        ],
+        [
+          "{b} dm²",
+          "cm²",
+          "?r1c2"
+        ],
+        [
+          "{c} cm²",
+          "dm²",
+          "?r2c2"
+        ],
+        [
+          "{e} cm²",
+          "mm²",
+          "?r3c2"
+        ],
+        [
+          "{f} m²",
+          "cm²",
+          "?r4c2"
+        ],
+        [
+          "{g} ha",
+          "m²",
+          "?r5c2"
+        ]
+      ],
+      "cells": {
+        "r0c2": {
+          "answer": "a*100",
+          "misconceptions": [
+            {
+              "answer": "a*10",
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "Pour les aires, on ne multiplie pas par 10 : un carré de 1 m de côté contient 10 rangées de 10 carrés de 1 dm de côté."
+            }
+          ]
+        },
+        "r1c2": {
+          "answer": "b*100",
+          "misconceptions": [
+            {
+              "answer": "b*10",
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "1 dm² contient 10 rangées de 10 petits carrés de 1 cm de côté : le facteur n'est pas 10."
+            }
+          ]
+        },
+        "r2c2": {
+          "answer": "c/100",
+          "misconceptions": [
+            {
+              "answer": "c/10",
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "Pour passer des cm² aux dm², on ne divise pas par 10 : pense aux 10 rangées de 10 petits carrés."
+            }
+          ]
+        },
+        "r3c2": {
+          "answer": "e*100",
+          "misconceptions": [
+            {
+              "answer": "e*10",
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "1 cm² est un carré de 10 mm de côté : combien de petits carrés de 1 mm de côté contient-il ?"
+            }
+          ]
+        },
+        "r4c2": {
+          "answer": "f*10000",
+          "misconceptions": [
+            {
+              "answer": "f*100",
+              "id": "mc:une-seule-etape",
+              "error": "unite",
+              "feedback": "Des m² aux cm², il y a DEUX étapes : m² → dm², puis dm² → cm². Chaque étape multiplie par 100."
+            }
+          ]
+        },
+        "r5c2": {
+          "answer": "g*10000",
+          "misconceptions": [
+            {
+              "answer": "g*100",
+              "id": "mc:une-seule-etape",
+              "error": "unite",
+              "feedback": "Un hectare est un carré de 100 m de côté : 100 rangées de 100 carrés de 1 m de côté."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "1 m² = 100 dm², 1 dm² = 100 cm², 1 cm² = 100 mm².",
+        "Vers une unité plus petite, on multiplie ; vers une unité plus grande, on divise.",
+        "Des m² aux cm², on multiplie deux fois par 100."
+      ],
+      "solution": "{a} m² = {a*100} dm² ; {b} dm² = {b*100} cm² ; {c} cm² = {c/100} dm² ; {e} cm² = {e*100} mm² ; {f} m² = {f*10000} cm² ; {g} ha = {g*10000} m².",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r0c2": "{a*100}",
+              "r1c2": "{b*100}",
+              "r2c2": "{c/100}",
+              "r3c2": "{e*100}",
+              "r4c2": "{f*10000}",
+              "r5c2": "{g*10000}"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r0c2": "{a*10}",
+              "r1c2": "{b*100}",
+              "r2c2": "{c/100}",
+              "r3c2": "{e*100}",
+              "r4c2": "{f*10000}",
+              "r5c2": "{g*10000}"
+            }
+          },
+          "expect": "mc:aire-facteur-10"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-meme-perimetre",
+      "type": "order",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "skills": [
+        "m6.grandeurs.perimetres"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "expectedSeconds": 180,
+      "prompt": "Les cinq rectangles A, B, C, D et E ont tous le même périmètre : 20 côtés de carreau (vérifie !). Ont-ils la même aire ? Range-les de la plus petite aire à la plus grande.",
+      "figure": {
+        "alt": "Cinq rectangles nommés A, B, C, D et E, dessinés sur un quadrillage",
+        "w": 520,
+        "h": 260,
+        "frame": {
+          "x": [
+            0,
+            25
+          ],
+          "y": [
+            0,
+            13
+          ],
+          "grid": true
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 1,
+            "y": 7,
+            "w": 7,
+            "h": 3,
+            "fill": "bleu",
+            "label": "A"
+          },
+          {
+            "type": "rect",
+            "x": 9,
+            "y": 7,
+            "w": 9,
+            "h": 1,
+            "fill": "vert",
+            "label": "B"
+          },
+          {
+            "type": "rect",
+            "x": 19,
+            "y": 7,
+            "w": 5,
+            "h": 5,
+            "fill": "orange",
+            "label": "C"
+          },
+          {
+            "type": "rect",
+            "x": 1,
+            "y": 1,
+            "w": 8,
+            "h": 2,
+            "fill": "violet",
+            "label": "D"
+          },
+          {
+            "type": "rect",
+            "x": 11,
+            "y": 1,
+            "w": 6,
+            "h": 4,
+            "fill": "rouge",
+            "label": "E"
+          }
+        ]
+      },
+      "orderLabel": "De la plus petite aire à la plus grande",
+      "errorType": "notion",
+      "items": [
+        {
+          "id": "B",
+          "label": "Rectangle B"
+        },
+        {
+          "id": "D",
+          "label": "Rectangle D"
+        },
+        {
+          "id": "A",
+          "label": "Rectangle A"
+        },
+        {
+          "id": "E",
+          "label": "Rectangle E"
+        },
+        {
+          "id": "C",
+          "label": "Rectangle C"
+        }
+      ],
+      "hints": [
+        "Pour chaque rectangle, compte sa longueur et sa largeur en carreaux.",
+        "Aire = longueur × largeur : multiplie les deux nombres.",
+        "Plus le rectangle est « ramassé » (proche d’un carré), plus son aire est grande."
+      ],
+      "solution": "Aires : B = 9 × 1 = 9 ; D = 8 × 2 = 16 ; A = 7 × 3 = 21 ; E = 6 × 4 = 24 ; C = 5 × 5 = 25 carreaux. Même périmètre ne veut pas dire même aire ! Pour un périmètre donné, c’est le carré qui a la plus grande aire.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "B",
+              "D",
+              "A",
+              "E",
+              "C"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "B",
+              "D",
+              "A",
+              "C",
+              "E"
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "order": [
+              "C",
+              "E",
+              "A",
+              "D",
+              "B"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-contre-exemple",
+      "type": "counterexample",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "skills": [
+        "m6.grandeurs.perimetres"
+      ],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "expectedSeconds": 300,
+      "claim": "Deux rectangles qui ont le même périmètre ont toujours la même aire.",
+      "prompt": "Malo affirme : « Deux rectangles qui ont le même périmètre ont toujours la même aire. » Trouve deux rectangles qui prouvent qu'il a tort : le premier mesure a cm sur b cm, le second c cm sur d cm.",
+      "figure": {
+        "alt": "Deux rectangles à main levée : le premier de côtés a et b, le second de côtés c et d",
+        "w": 380,
+        "h": 170,
+        "frame": {
+          "x": [
+            -1,
+            13
+          ],
+          "y": [
+            -1,
+            4.2
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 6,
+            "h": 2,
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": 3,
+            "y": -0.5,
+            "text": "a",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": -0.3,
+            "y": 1,
+            "text": "b",
+            "size": "s",
+            "anchor": "end"
+          },
+          {
+            "type": "rect",
+            "x": 8,
+            "y": 0,
+            "w": 4,
+            "h": 3.4,
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 10,
+            "y": -0.5,
+            "text": "c",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 7.7,
+            "y": 1.7,
+            "text": "d",
+            "size": "s",
+            "anchor": "end"
+          }
+        ]
+      },
+      "vars": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "domain": "a > 0 and b > 0 and c > 0 and d > 0",
+      "domainLabel": "des longueurs strictement positives",
+      "refutes": "abs((a + b) - (c + d)) < 0.000001 and abs(a*b - c*d) > 0.000001",
+      "refuteHint": "Vérifie que tes deux rectangles ont bien le même périmètre ET des aires différentes. Essaie un carré et un rectangle très allongé.",
+      "hints": [
+        "Choisis d’abord un périmètre, par exemple 12 cm : la longueur et la largeur doivent alors faire 6 cm ensemble.",
+        "Essaie 5 cm sur 1 cm, puis 3 cm sur 3 cm.",
+        "Compare les deux aires."
+      ],
+      "solution": "Par exemple 5 cm × 1 cm et 3 cm × 3 cm : même périmètre (12 cm), mais des aires de 5 cm² et 9 cm². Malo a tort : un seul contre-exemple suffit.",
+      "selfTest": [
+        {
+          "response": {
+            "values": {
+              "a": "5",
+              "b": "1",
+              "c": "3",
+              "d": "3"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "values": {
+              "a": "4",
+              "b": "2",
+              "c": "2",
+              "d": "4"
+            }
+          },
+          "expect": "raisonnement"
+        },
+        {
+          "response": {
+            "values": {
+              "a": "0",
+              "b": "6",
+              "c": "3",
+              "d": "3"
+            }
+          },
+          "expect": "lecture"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-chambre",
+      "type": "numeric",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:oubli-coin",
+        "mc:aire-perimetre"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "a": {
+          "int": [
+            6,
+            10
+          ]
+        },
+        "b": {
+          "int": [
+            5,
+            8
+          ]
+        },
+        "p": {
+          "int": [
+            2,
+            3
+          ]
+        },
+        "q": {
+          "int": [
+            2,
+            3
+          ]
+        }
+      },
+      "constraints": [
+        "a*b - p*q != 2*(a + b)"
+      ],
+      "prompt": "Le sol d'une chambre a la forme d'un L : un rectangle de {a} m sur {b} m auquel il manque un coin rectangulaire de {p} m sur {q} m (un placard). Quelle surface de moquette faut-il pour couvrir le sol (avec l'unité) ?",
+      "figure": {
+        "alt": "Le plan d’une chambre en forme de L : un grand rectangle dont un coin rectangulaire a été retiré, avec les dimensions",
+        "w": 380,
+        "h": 300,
+        "frame": {
+          "x": [
+            -1.8,
+            11.4
+          ],
+          "y": [
+            -1.4,
+            9.2
+          ]
+        },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0,
+                0
+              ],
+              [
+                "{a}",
+                0
+              ],
+              [
+                "{a}",
+                "{b-q}"
+              ],
+              [
+                "{a-p}",
+                "{b-q}"
+              ],
+              [
+                "{a-p}",
+                "{b}"
+              ],
+              [
+                0,
+                "{b}"
+              ]
+            ],
+            "fill": "vert"
+          },
+          {
+            "type": "rect",
+            "x": "{a-p}",
+            "y": "{b-q}",
+            "w": "{p}",
+            "h": "{q}",
+            "dashed": true,
+            "color": "gris",
+            "label": "placard"
+          },
+          {
+            "type": "text",
+            "x": "{a/2}",
+            "y": -0.6,
+            "text": "{a} m",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": -0.3,
+            "y": "{b/2}",
+            "text": "{b} m",
+            "size": "s",
+            "anchor": "end"
+          },
+          {
+            "type": "text",
+            "x": "{a-p/2}",
+            "y": "{b+0.5}",
+            "text": "{p} m",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": "{a+0.3}",
+            "y": "{b-q/2}",
+            "text": "{q} m",
+            "size": "s",
+            "anchor": "start"
+          }
+        ]
+      },
+      "answer": "a*b - p*q",
+      "unit": "m²",
+      "misconceptions": [
+        {
+          "answer": "a*b",
+          "id": "mc:oubli-coin",
+          "error": "methode",
+          "feedback": "Tu as calculé l'aire du grand rectangle entier, placard compris. Le placard ne reçoit pas de moquette : il faut l'enlever."
+        },
+        {
+          "answer": "2*(a + b)",
+          "id": "mc:aire-perimetre",
+          "error": "notion",
+          "feedback": "Tu as calculé le tour de la pièce (une longueur). La moquette recouvre une surface : il faut une aire."
+        }
+      ],
+      "hints": [
+        "Calcule l’aire du grand rectangle, placard compris.",
+        "Calcule l’aire du placard.",
+        "Retire l’aire du placard de celle du grand rectangle."
+      ],
+      "solution": "Grand rectangle : {a} × {b} = {a*b} m². Placard : {p} × {q} = {p*q} m². Moquette : {a*b} − {p*q} = {a*b-p*q} m².",
+      "methods": [
+        "Retirer le coin : {a} × {b} − {p} × {q}.",
+        "Découper le L en deux rectangles et additionner leurs aires : {a-p} × {b} + {p} × {b-q}."
+      ],
+      "selfTest": [
+        {
+          "response": {
+            "value": "{a*b-p*q} m²"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{a*b} m²"
+          },
+          "expect": "mc:oubli-coin"
+        },
+        {
+          "response": {
+            "value": "{a*b-p*q} m"
+          },
+          "expect": "unite"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-roue",
+      "type": "composite",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:diametre-perimetre",
+        "mc:conversion",
+        "mc:proportionnel"
+      ],
+      "expectedSeconds": 360,
+      "params": {
+        "d": {
+          "choice": [
+            50,
+            60,
+            70
+          ]
+        },
+        "n": {
+          "choice": [
+            100,
+            200,
+            500
+          ]
+        }
+      },
+      "prompt": "La roue du vélo d'Adam a un diamètre de {d} cm. Utilise π ≈ 3,14 (ou la touche π de la calculatrice).",
+      "figure": {
+        "alt": "Une roue de vélo posée sur le sol, avec son diamètre indiqué",
+        "w": 260,
+        "h": 220,
+        "frame": {
+          "x": [
+            -2.6,
+            2.6
+          ],
+          "y": [
+            -0.6,
+            4.4
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              2
+            ],
+            "r": 2
+          },
+          {
+            "type": "circle",
+            "center": [
+              0,
+              2
+            ],
+            "r": 0.2,
+            "fill": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -2,
+              2
+            ],
+            "to": [
+              2,
+              2
+            ],
+            "label": "{d} cm",
+            "color": "rouge"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -2.6,
+              0
+            ],
+            "to": [
+              2.6,
+              0
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              2,
+              2
+            ],
+            "to": [
+              -2,
+              2
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              1.4142,
+              3.4142
+            ],
+            "to": [
+              -1.4142,
+              0.5858
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              4
+            ],
+            "to": [
+              0,
+              0
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              -1.4142,
+              3.4142
+            ],
+            "to": [
+              1.4142,
+              0.5858
+            ],
+            "color": "gris"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien le vélo avance-t-il quand la roue fait un tour (en cm, arrondi à l’unité) ?",
+          "answer": "pi*d",
+          "tolerance": 0.6,
+          "misconceptions": [
+            {
+              "answer": "d",
+              "id": "mc:diametre-perimetre",
+              "error": "notion",
+              "feedback": "En un tour, le vélo avance de la longueur du tour de la roue, son périmètre : c'est plus que son diamètre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien avance-t-il quand la roue fait {n} tours (en m, arrondi à l’unité) ?",
+          "answer": "pi*d*n/100",
+          "rel": 0.003,
+          "misconceptions": [
+            {
+              "answer": "pi*d*n",
+              "id": "mc:conversion",
+              "error": "unite",
+              "feedback": "Ton résultat est en centimètres. Convertis-le en mètres : 1 m = 100 cm."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Une roue deux fois plus grande (en diamètre) ferait-elle avancer le vélo deux fois plus loin à chaque tour ? Réponds par oui ou par non.",
+          "accept": [
+            "oui"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:proportionnel",
+              "error": "notion",
+              "feedback": "Le périmètre d'un cercle est proportionnel à son diamètre : que devient-il quand le diamètre est multiplié par 2 ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "En un tour, la roue déroule son périmètre sur le sol.",
+        "Périmètre = π × diamètre ≈ 3,14 × {d}.",
+        "Pour {n} tours, multiplie par {n}, puis convertis les cm en m."
+      ],
+      "solution": "Un tour : π × {d} ≈ 3,14 × {d} = {3.14*d} cm, soit environ {arrondi(pi*d;0)} cm. {n} tours : {3.14*d} × {n} = {3.14*d*n} cm, soit environ {arrondi(pi*d*n/100;0)} m. Le périmètre est proportionnel au diamètre : une roue deux fois plus grande ferait avancer deux fois plus loin à chaque tour.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{arrondi(pi*d;0)}"
+              },
+              {
+                "value": "{arrondi(pi*d*n/100;0)}"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{d}"
+              },
+              {
+                "value": "{arrondi(pi*d*n/100;0)}"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "mc:diametre-perimetre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-jardin",
+      "type": "composite",
+      "skill": "m6.grandeurs.perimetres",
+      "skills": [
+        "m6.grandeurs.aires-rectangle",
+        "m6.grandeurs.conversions-aires"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:oubli-portail",
+        "mc:aire-perimetre",
+        "mc:rayon-au-lieu-diametre",
+        "mc:aire-facteur-10"
+      ],
+      "expectedSeconds": 600,
+      "params": {
+        "L": {
+          "int": [
+            8,
+            14
+          ]
+        },
+        "l": {
+          "int": [
+            5,
+            9
+          ]
+        },
+        "d": {
+          "choice": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "constraints": [
+        "L > l",
+        "L*l != 2*(L + l)",
+        "L*l != 2*(L + l) - 1"
+      ],
+      "prompt": "Le jardin de l'école est un rectangle de {L} m sur {l} m. On veut l'entourer d'un grillage, sauf devant le portail, large de 1 m. Au milieu, il y a un bassin rond de {d} m de diamètre, qu'on veut entourer d'une bordure en bois. Utilise π ≈ 3,14 (ou la touche π de la calculatrice).",
+      "figure": {
+        "alt": "Le plan du jardin : un rectangle avec un portail sur le côté du bas et un bassin rond au milieu",
+        "w": 400,
+        "h": 300,
+        "frame": {
+          "x": [
+            -1.6,
+            14.6
+          ],
+          "y": [
+            -1.6,
+            10
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": "{L}",
+            "h": "{l}",
+            "fill": "vert"
+          },
+          {
+            "type": "circle",
+            "center": [
+              "{L/2}",
+              "{l/2}"
+            ],
+            "r": "{d/2}",
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": [
+              1,
+              0
+            ],
+            "to": [
+              2,
+              0
+            ],
+            "color": "rouge",
+            "width": 4
+          },
+          {
+            "type": "text",
+            "x": 1.5,
+            "y": -0.6,
+            "text": "portail",
+            "size": "s",
+            "anchor": "middle",
+            "color": "rouge"
+          },
+          {
+            "type": "text",
+            "x": "{L/2}",
+            "y": "{l+0.6}",
+            "text": "{L} m",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": "{L+0.3}",
+            "y": "{l/2}",
+            "text": "{l} m",
+            "size": "s",
+            "anchor": "start"
+          },
+          {
+            "type": "text",
+            "x": "{L/2}",
+            "y": "{l/2-d/2-0.5}",
+            "text": "bassin",
+            "size": "s",
+            "anchor": "middle",
+            "color": "bleu"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Longueur de grillage (en m) :",
+          "answer": "2*(L + l) - 1",
+          "unit": "m",
+          "unitOptional": true,
+          "misconceptions": [
+            {
+              "answer": "2*(L + l)",
+              "id": "mc:oubli-portail",
+              "error": "lecture",
+              "feedback": "Tu as compté tout le tour du jardin. Mais on ne met pas de grillage devant le portail."
+            },
+            {
+              "answer": "L*l",
+              "id": "mc:aire-perimetre",
+              "error": "notion",
+              "feedback": "Tu as calculé l'aire du jardin. Le grillage suit le bord : c'est une longueur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aire du jardin (avec l’unité) :",
+          "answer": "L*l",
+          "unit": "m²",
+          "misconceptions": [
+            {
+              "answer": "2*(L + l)",
+              "id": "mc:aire-perimetre",
+              "error": "notion",
+              "feedback": "Tu as calculé le tour du jardin. L'aire mesure la surface : longueur × largeur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Longueur de la bordure du bassin (en m, au dixième) :",
+          "answer": "pi*d",
+          "unit": "m",
+          "unitOptional": true,
+          "tolerance": 0.1,
+          "misconceptions": [
+            {
+              "answer": "pi*d/2",
+              "id": "mc:rayon-au-lieu-diametre",
+              "error": "notion",
+              "feedback": "Tu as utilisé le rayon dans la formule π × d. Le diamètre du bassin est donné dans l'énoncé."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le jardinier compte en dm². Aire du jardin en dm² :",
+          "answer": "L*l*100",
+          "unit": "dm²",
+          "unitOptional": true,
+          "misconceptions": [
+            {
+              "answer": "L*l*10",
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "Pour les aires, on ne multiplie pas par 10 d'une unité à la suivante : 1 m² est un carré de 10 dm de côté."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le grillage suit le bord : c’est un périmètre, moins le portail.",
+        "Le bassin est un cercle : périmètre = π × diamètre.",
+        "1 m² = 100 dm²."
+      ],
+      "solution": "Grillage : 2 × ({L} + {l}) − 1 = {2*(L+l)-1} m. Aire : {L} × {l} = {L*l} m². Bordure : π × {d} ≈ 3,14 × {d} = {3.14*d} m, soit environ {arrondi(pi*d;1)} m. En dm² : {L*l} × 100 = {L*l*100} dm².",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*(L+l)-1}"
+              },
+              {
+                "value": "{L*l} m²"
+              },
+              {
+                "value": "{arrondi(pi*d;1)}"
+              },
+              {
+                "value": "{L*l*100}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*(L+l)}"
+              },
+              {
+                "value": "{L*l} m²"
+              },
+              {
+                "value": "{arrondi(pi*d;1)}"
+              },
+              {
+                "value": "{L*l*100}"
+              }
+            ]
+          },
+          "expect": "mc:oubli-portail"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*(L+l)-1}"
+              },
+              {
+                "value": "{L*l} m²"
+              },
+              {
+                "value": "{arrondi(pi*d;1)}"
+              },
+              {
+                "value": "{L*l*10}"
+              }
+            ]
+          },
+          "expect": "mc:aire-facteur-10"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-remed-tour-surface",
+      "type": "categorize",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "skills": [
+        "m6.grandeurs.perimetres"
+      ],
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:aire-perimetre"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel : le périmètre, c'est la longueur du TOUR (on suit le bord) ; l'aire, c'est la SURFACE (on recouvre l'intérieur). Que faut-il calculer dans chaque situation ?",
+      "figure": {
+        "alt": "Deux rectangles : le premier avec seulement son bord surligné, le second entièrement colorié",
+        "w": 380,
+        "h": 170,
+        "frame": {
+          "x": [
+            -0.5,
+            12.5
+          ],
+          "y": [
+            -1,
+            4
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0.3,
+            "w": 5,
+            "h": 3,
+            "color": "rouge",
+            "width": 3.5
+          },
+          {
+            "type": "text",
+            "x": 2.5,
+            "y": -0.5,
+            "text": "périmètre : le tour",
+            "size": "s",
+            "anchor": "middle",
+            "color": "rouge"
+          },
+          {
+            "type": "rect",
+            "x": 7,
+            "y": 0.3,
+            "w": 5,
+            "h": 3,
+            "fill": "vert"
+          },
+          {
+            "type": "text",
+            "x": 9.5,
+            "y": -0.5,
+            "text": "aire : la surface",
+            "size": "s",
+            "anchor": "middle",
+            "color": "vert"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "per",
+          "label": "Un périmètre (m, cm…)"
+        },
+        {
+          "id": "aire",
+          "label": "Une aire (m², cm²…)"
+        }
+      ],
+      "items": [
+        {
+          "id": "u1",
+          "label": "La clôture autour d'un champ",
+          "category": "per"
+        },
+        {
+          "id": "u2",
+          "label": "La moquette d'une chambre",
+          "category": "aire"
+        },
+        {
+          "id": "u3",
+          "label": "Le cadre en bois autour d'un tableau",
+          "category": "per"
+        },
+        {
+          "id": "u4",
+          "label": "La peinture d'un plafond",
+          "category": "aire"
+        },
+        {
+          "id": "u5",
+          "label": "Le gazon d’un terrain de football",
+          "category": "aire"
+        },
+        {
+          "id": "u6",
+          "label": "La ligne blanche qui fait le tour du terrain",
+          "category": "per"
+        },
+        {
+          "id": "u7",
+          "label": "Le papier cadeau qui recouvre une boîte",
+          "category": "aire"
+        },
+        {
+          "id": "u8",
+          "label": "Le ruban autour d’une boîte ronde",
+          "category": "per"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "u1",
+          "category": "aire",
+          "id": "mc:aire-perimetre",
+          "error": "notion",
+          "feedback": "La clôture suit le bord du champ, elle ne recouvre pas l'herbe. Suit-on une ligne ou recouvre-t-on une surface ?"
+        },
+        {
+          "item": "u2",
+          "category": "per",
+          "id": "mc:aire-perimetre",
+          "error": "notion",
+          "feedback": "La moquette recouvre tout le sol de la chambre, pas seulement le bord. Suit-on une ligne ou recouvre-t-on une surface ?"
+        }
+      ],
+      "hints": [
+        "Suit-on le bord, comme une ficelle ? Ou recouvre-t-on l’intérieur, comme une nappe ?",
+        "Le tour d’une figure, c’est toujours un périmètre."
+      ],
+      "solution": "Périmètres : la clôture, le cadre, la ligne blanche, le ruban (on suit le bord). Aires : la moquette, la peinture, le gazon, le papier cadeau (on recouvre une surface).",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "u1": "per",
+              "u2": "aire",
+              "u3": "per",
+              "u4": "aire",
+              "u5": "aire",
+              "u6": "per",
+              "u7": "aire",
+              "u8": "per"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "u1": "aire",
+              "u2": "aire",
+              "u3": "per",
+              "u4": "aire",
+              "u5": "aire",
+              "u6": "per",
+              "u7": "aire",
+              "u8": "per"
+            }
+          },
+          "expect": "mc:aire-perimetre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-remed-diametre",
+      "type": "numeric",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": [
+        "mc:rayon-au-lieu-diametre"
+      ],
+      "expectedSeconds": 90,
+      "params": {
+        "r": {
+          "int": [
+            2,
+            9
+          ]
+        }
+      },
+      "prompt": "Rappel : périmètre du cercle = π × DIAMÈTRE, et le diamètre vaut deux rayons. Un cercle a un rayon de {r} cm. Calcule son périmètre en cm avec π ≈ 3,14, arrondi au dixième.",
+      "figure": {
+        "alt": "Un cercle avec un rayon tracé et sa longueur indiquée",
+        "w": 220,
+        "h": 210,
+        "frame": {
+          "x": [
+            -2.6,
+            2.6
+          ],
+          "y": [
+            -2.5,
+            2.5
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 2
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              2,
+              0
+            ],
+            "label": "{r} cm",
+            "color": "rouge"
+          }
+        ]
+      },
+      "answer": "2*pi*r",
+      "tolerance": 0.1,
+      "misconceptions": [
+        {
+          "answer": "pi*r",
+          "id": "mc:rayon-au-lieu-diametre",
+          "error": "notion",
+          "feedback": "Tu as multiplié π par le rayon. Il faut d'abord trouver le diamètre (deux rayons)."
+        }
+      ],
+      "hints": [
+        "Diamètre = 2 × {r}.",
+        "Puis 3,14 × diamètre."
+      ],
+      "solution": "Diamètre : {2*r} cm. Périmètre : 3,14 × {2*r} = {3.14*2*r}, soit environ {arrondi(2*pi*r;1)} cm.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{arrondi(6.28*r;1)}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{arrondi(3.14*r;1)}"
+          },
+          "expect": "mc:rayon-au-lieu-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-fleur",
+      "type": "composite",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:cercle-entier",
+        "mc:cote-interieur"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "c": {
+          "choice": [
+            2,
+            4,
+            6,
+            8,
+            10
+          ]
+        }
+      },
+      "prompt": "Sur chaque côté d'un carré de {c} cm de côté, on a dessiné un demi-cercle vers l'extérieur : on obtient une fleur. Utilise π ≈ 3,14 (ou la touche π de la calculatrice).",
+      "figure": {
+        "alt": "Un carré avec un demi-cercle construit vers l’extérieur sur chacun de ses quatre côtés : une fleur à quatre pétales",
+        "w": 280,
+        "h": 280,
+        "frame": {
+          "x": [
+            -4.3,
+            4.3
+          ],
+          "y": [
+            -4.3,
+            4.3
+          ]
+        },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                -2,
+                -2
+              ],
+              [
+                2,
+                -2
+              ],
+              [
+                2,
+                2
+              ],
+              [
+                -2,
+                2
+              ]
+            ],
+            "fill": "orange",
+            "dashed": true
+          },
+          {
+            "type": "arc",
+            "center": [
+              0,
+              -2
+            ],
+            "r": 2,
+            "start": 180,
+            "end": 360,
+            "color": "maths"
+          },
+          {
+            "type": "arc",
+            "center": [
+              2,
+              0
+            ],
+            "r": 2,
+            "start": -90,
+            "end": 90,
+            "color": "maths"
+          },
+          {
+            "type": "arc",
+            "center": [
+              0,
+              2
+            ],
+            "r": 2,
+            "start": 0,
+            "end": 180,
+            "color": "maths"
+          },
+          {
+            "type": "arc",
+            "center": [
+              -2,
+              0
+            ],
+            "r": 2,
+            "start": 90,
+            "end": 270,
+            "color": "maths"
+          },
+          {
+            "type": "text",
+            "x": 0,
+            "y": -1.6,
+            "text": "{c} cm",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Périmètre du carré (en cm) :",
+          "answer": "4*c"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Périmètre de la fleur, c’est-à-dire la longueur des quatre demi-cercles (en cm, au dixième) :",
+          "answer": "2*pi*c",
+          "tolerance": 0.15,
+          "misconceptions": [
+            {
+              "answer": "4*pi*c",
+              "id": "mc:cercle-entier",
+              "error": "methode",
+              "feedback": "Chaque pétale n'est qu'un DEMI-cercle : tu as compté quatre cercles entiers."
+            },
+            {
+              "answer": "2*pi*c + 4*c",
+              "id": "mc:cote-interieur",
+              "error": "methode",
+              "feedback": "Les côtés du carré sont à l'intérieur de la fleur : ils ne font pas partie de son contour."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois le tour de la fleur est-il plus long que le tour du carré (au centième) ?",
+          "answer": "pi/2",
+          "tolerance": 0.01
+        }
+      ],
+      "hints": [
+        "Chaque demi-cercle a pour diamètre le côté du carré.",
+        "Quatre demi-cercles de même diamètre font deux cercles entiers.",
+        "Divise le périmètre de la fleur par celui du carré."
+      ],
+      "solution": "Carré : 4 × {c} = {4*c} cm. Fleur : 4 demi-cercles de diamètre {c} cm = 2 cercles entiers : 2 × π × {c} ≈ {6.28*c} cm. Rapport : {6.28*c} ÷ {4*c} ≈ 1,57, quelle que soit la taille du carré (c’est π ÷ 2).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{4*c}"
+              },
+              {
+                "value": "{arrondi(2*pi*c;1)}"
+              },
+              {
+                "value": "1,57"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{4*c}"
+              },
+              {
+                "value": "{arrondi(4*pi*c;1)}"
+              },
+              {
+                "value": "1,57"
+              }
+            ]
+          },
+          "expect": "mc:cercle-entier"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-meme-aire",
+      "type": "composite",
+      "skill": "m6.grandeurs.aires-rectangle",
+      "skills": [
+        "m6.grandeurs.perimetres"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": [
+        "mc:aire-perimetre",
+        "mc:carre"
+      ],
+      "expectedSeconds": 480,
+      "params": {
+        "n": {
+          "int": [
+            5,
+            9
+          ]
+        }
+      },
+      "prompt": "Un éleveur veut un enclos rectangulaire de {n*n} m², avec des côtés mesurant un nombre entier de mètres. La clôture coûte cher : il cherche le plus petit périmètre possible.",
+      "figure": {
+        "alt": "Deux enclos rectangulaires de même aire : un très allongé et un plus ramassé",
+        "w": 400,
+        "h": 170,
+        "frame": {
+          "x": [
+            -0.5,
+            16.5
+          ],
+          "y": [
+            -1,
+            5
+          ]
+        },
+        "caption": "Les deux enclos ont la même aire.",
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0.8,
+            "w": 9,
+            "h": 1.2,
+            "fill": "vert"
+          },
+          {
+            "type": "text",
+            "x": 4.5,
+            "y": 0.2,
+            "text": "très allongé",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "rect",
+            "x": 11,
+            "y": 0.3,
+            "w": 4.2,
+            "h": 4.2,
+            "fill": "vert"
+          },
+          {
+            "type": "text",
+            "x": 13.1,
+            "y": -0.4,
+            "text": "ramassé",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus PETIT périmètre possible (en m) ?",
+          "answer": "4*n",
+          "misconceptions": [
+            {
+              "answer": "n*n",
+              "id": "mc:aire-perimetre",
+              "error": "notion",
+              "feedback": "Ce nombre est l'aire de l'enclos. On cherche la longueur de clôture : le tour du rectangle."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus GRAND périmètre possible (en m) ?",
+          "answer": "2*(1 + n*n)"
+        },
+        {
+          "type": "text",
+          "prompt": "Quelle forme a l’enclos de plus petit périmètre ?",
+          "accept": [
+            "carré",
+            "un carré",
+            "c’est un carré",
+            "c'est un carré",
+            "le carré"
+          ],
+          "misconceptions": [
+            {
+              "answer": "rectangle",
+              "id": "mc:carre",
+              "error": "notion",
+              "feedback": "C'est bien un rectangle… mais un rectangle très particulier : compare sa longueur et sa largeur."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Cherche toutes les façons d’écrire {n*n} comme produit de deux nombres entiers : 1 × {n*n}, …",
+        "Calcule le périmètre de chaque rectangle.",
+        "Le plus allongé a le plus grand périmètre ; le plus « ramassé », le plus petit."
+      ],
+      "solution": "Le rectangle de 1 m sur {n*n} m a le plus grand périmètre : 2 × (1 + {n*n}) = {2*(1+n*n)} m. Le plus petit périmètre est obtenu avec le carré de {n} m de côté : 4 × {n} = {4*n} m. À aire égale, plus le rectangle est proche d'un carré, plus son périmètre est petit.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{4*n}"
+              },
+              {
+                "value": "{2*(1+n*n)}"
+              },
+              {
+                "value": "un carré"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{n*n}"
+              },
+              {
+                "value": "{2*(1+n*n)}"
+              },
+              {
+                "value": "un carré"
+              }
+            ]
+          },
+          "expect": "mc:aire-perimetre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-corde-terre",
+      "type": "composite",
+      "skill": "m6.grandeurs.perimetres",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": [
+        "mc:allonge-diametre",
+        "mc:diametre-hauteur"
+      ],
+      "expectedSeconds": 720,
+      "prompt": "On entoure la Terre, à l'équateur, d'une corde bien serrée (environ 40 000 km). Puis on rallonge la corde de 1 m seulement, et on la soulève pour qu'elle forme un cercle un peu plus grand, partout à la même hauteur au-dessus du sol. Utilise π ≈ 3,14 (ou la touche π de la calculatrice).",
+      "figure": {
+        "alt": "La Terre vue comme un disque, entourée d’une corde un peu plus grande en pointillés ; l’écart entre les deux est la hauteur cherchée",
+        "w": 280,
+        "h": 280,
+        "frame": {
+          "x": [
+            -3.6,
+            3.6
+          ],
+          "y": [
+            -3.6,
+            3.6
+          ]
+        },
+        "caption": "L'écart est très exagéré sur le dessin.",
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 2.8,
+            "fill": "bleu"
+          },
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 3.2,
+            "dashed": true,
+            "color": "orange"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              2.8
+            ],
+            "to": [
+              0,
+              3.2
+            ],
+            "color": "rouge",
+            "label": "?"
+          },
+          {
+            "type": "text",
+            "x": 0,
+            "y": 0,
+            "text": "Terre",
+            "size": "m",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Le périmètre augmente de 1 m. De combien le diamètre du cercle augmente-t-il (en m, au centième) ?",
+          "answer": "1/pi",
+          "tolerance": 0.006,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:allonge-diametre",
+              "error": "notion",
+              "feedback": "C'est le PÉRIMÈTRE qui a augmenté de 1 m. Le périmètre vaut π fois le diamètre : le diamètre augmente donc moins."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle hauteur au-dessus du sol la corde flotte-t-elle (en cm, à l’unité) ?",
+          "answer": "100/(2*pi)",
+          "tolerance": 0.6,
+          "misconceptions": [
+            {
+              "answer": "100/pi",
+              "id": "mc:diametre-hauteur",
+              "error": "raisonnement",
+              "feedback": "L'augmentation du diamètre se partage entre les deux côtés de la Terre : la hauteur n'en est qu'une partie."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Même expérience autour d’un ballon de football (70 cm de tour) : on rallonge la corde de 1 m. À quelle hauteur flotte-t-elle (en cm, à l’unité) ?",
+          "answer": "100/(2*pi)",
+          "tolerance": 0.6,
+          "misconceptions": [
+            {
+              "answer": "100/pi",
+              "id": "mc:diametre-hauteur",
+              "error": "raisonnement",
+              "feedback": "L'augmentation du diamètre se partage entre les deux côtés du ballon : la hauteur n'en est qu'une partie."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Es-tu surpris(e) ? Explique pourquoi la hauteur ne dépend pas de la taille de la boule.",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je dis que la hauteur est la même pour la Terre et pour le ballon",
+              "keywords": [
+                [
+                  "meme",
+                  "pareil",
+                  "ne depend pas",
+                  "toujours"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "J'explique avec la proportionnalité : 1 m de périmètre en plus donne toujours 1 ÷ π m de diamètre en plus",
+              "keywords": [
+                [
+                  "proportionnel",
+                  "π",
+                  "pi",
+                  "diametre"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Périmètre = π × diamètre. Si le périmètre augmente de 1 m, le diamètre augmente de 1 ÷ π m.",
+        "La hauteur, c’est la moitié de l’augmentation du diamètre (elle se partage entre les deux côtés).",
+        "Le calcul ne fait jamais intervenir la taille de la Terre !"
+      ],
+      "solution": "Le diamètre augmente de 1 ÷ π ≈ 0,32 m. La hauteur est la moitié de cette augmentation : environ 0,16 m, soit 16 cm. Pour le ballon, c'est exactement pareil : 16 cm ! Comme le périmètre est proportionnel au diamètre, 1 m de corde en plus donne toujours 1 ÷ π m de diamètre en plus, quelle que soit la taille de la boule.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "0,32"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "text": "La hauteur est la même pour la Terre et le ballon, car le périmètre est proportionnel au diamètre.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "1"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "text": "Je ne sais pas."
+              }
+            ]
+          },
+          "expect": "mc:allonge-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-perimetres-aires-grandes-aires",
+      "type": "composite",
+      "skill": "m6.grandeurs.conversions-aires",
+      "skills": [
+        "m6.grandeurs.aires-rectangle"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": [
+        "mc:une-seule-etape",
+        "mc:aire-facteur-10"
+      ],
+      "expectedSeconds": 600,
+      "prompt": "Des aires immenses et des aires minuscules. Un champ rectangulaire mesure 250 m sur 160 m. Une feuille de papier A4 mesure 21 cm sur 29,7 cm.",
+      "figure": {
+        "alt": "Un champ rectangulaire de 250 m sur 160 m et une feuille A4 de 21 cm sur 29,7 cm (les échelles sont différentes)",
+        "w": 440,
+        "h": 200,
+        "frame": {
+          "x": [
+            -1.6,
+            17
+          ],
+          "y": [
+            -1.2,
+            7
+          ]
+        },
+        "caption": "Les deux dessins ne sont pas à la même échelle.",
+        "items": [
+          {
+            "type": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 8,
+            "h": 5.12,
+            "fill": "vert",
+            "label": "champ"
+          },
+          {
+            "type": "text",
+            "x": 4,
+            "y": -0.6,
+            "text": "250 m",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": -0.3,
+            "y": 2.56,
+            "text": "160 m",
+            "size": "s",
+            "anchor": "end"
+          },
+          {
+            "type": "rect",
+            "x": 11,
+            "y": 0,
+            "w": 4.2,
+            "h": 5.94,
+            "fill": "gris",
+            "label": "A4"
+          },
+          {
+            "type": "text",
+            "x": 13.1,
+            "y": -0.6,
+            "text": "21 cm",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 15.5,
+            "y": 2.97,
+            "text": "29,7 cm",
+            "size": "s",
+            "anchor": "start"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Aire du champ (en m²) :",
+          "answer": 40000
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aire du champ en hectares (1 ha = 10 000 m²) :",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 400,
+              "id": "mc:une-seule-etape",
+              "error": "unite",
+              "feedback": "Un hectare est un carré de 100 m de côté, soit 100 × 100 m² : il ne suffit pas de diviser par 100."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aire d’une feuille A4 (en cm²) :",
+          "answer": 623.7
+        },
+        {
+          "type": "numeric",
+          "prompt": "Aire d’une feuille A4 en dm² :",
+          "answer": 6.237,
+          "misconceptions": [
+            {
+              "answer": 62.37,
+              "id": "mc:aire-facteur-10",
+              "error": "unite",
+              "feedback": "Des cm² aux dm², on ne divise pas par 10 : 1 dm² contient 10 rangées de 10 carrés de 1 cm de côté."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "1 m² vaut à peu près combien de fois l’aire d’une feuille A4 (arrondi à l’unité) ?",
+          "answer": 16,
+          "tolerance": 0.5,
+          "misconceptions": [
+            {
+              "answer": 1.6,
+              "id": "mc:une-seule-etape",
+              "error": "unite",
+              "feedback": "Exprime 1 m² dans la même unité que l'aire de la feuille avant de diviser : 1 m² = 100 dm²."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Aire d’un rectangle : longueur × largeur.",
+        "1 ha = 10 000 m² ; 1 dm² = 100 cm² ; 1 m² = 100 dm² = 10 000 cm².",
+        "Pour comparer, exprime les deux aires dans la même unité, puis divise."
+      ],
+      "solution": "Champ : 250 × 160 = 40 000 m² = 4 ha. Feuille : 21 × 29,7 = 623,7 cm² = 6,237 dm². 1 m² = 10 000 cm² et 10 000 ÷ 623,7 ≈ 16 : il faut environ 16 feuilles A4 pour faire 1 m² (c’est voulu : la feuille A0 mesure 1 m², et l’A4 en est le seizième).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "40000"
+              },
+              {
+                "value": "4"
+              },
+              {
+                "value": "623,7"
+              },
+              {
+                "value": "6,237"
+              },
+              {
+                "value": "16"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "40000"
+              },
+              {
+                "value": "400"
+              },
+              {
+                "value": "623,7"
+              },
+              {
+                "value": "6,237"
+              },
+              {
+                "value": "16"
+              }
+            ]
+          },
+          "expect": "mc:une-seule-etape"
+        }
+      ]
+    }
+  ]
+}

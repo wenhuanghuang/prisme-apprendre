@@ -206,11 +206,11 @@
           "misconceptions": [ { "answer": "a^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié ! On cherche le nombre qui, multiplié par lui-même, donne {a^2}." } ] },
         { "type": "numeric", "prompt": "$ √{e^2/100} $", "answer": "e/10",
           "misconceptions": [
-            { "answer": "e/100", "id": "mc:racine-decimale", "error": "calcul", "feedback": "Vérifie : $ {e/100} × {e/100} = {e^2/10000} $, pas {e^2/100}. Essaie plutôt $ {e/10} × {e/10} $." },
+            { "answer": "e/100", "id": "mc:racine-decimale", "error": "calcul", "feedback": "Vérifie : $ {e/100} × {e/100} = {e^2/10000} $, pas {e^2/100}. Attention à la place de la virgule." },
             { "answer": "e^2/200", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié ! On cherche le nombre qui, multiplié par lui-même, donne {e^2/100}." }
           ] },
         { "type": "numeric", "prompt": "$ (√{d})² $", "answer": "d",
-          "misconceptions": [ { "answer": "d^2", "id": "mc:racine-carre-confusion", "error": "notion", "feedback": "$ √{d} $ est le nombre dont le carré vaut {d}. Donc son carré, $ (√{d})² $, vaut {d} : c'est la définition même." } ] }
+          "misconceptions": [ { "answer": "d^2", "id": "mc:racine-carre-confusion", "error": "notion", "feedback": "On ne met pas {d} au carré : relis la définition. $ √{d} $ est le nombre positif dont le carré vaut… ?" } ] }
       ],
       "hints": ["$ √{a^2} $ : quel nombre, multiplié par lui-même, donne {a^2} ?", "Pour $ √{e^2/100} $, pense à $ {e} × {e} = {e^2} $ et regarde où placer la virgule.", "Par définition, le carré de $ √{d} $ est {d}."],
       "solution": "$ √{a^2} = {a} $, car $ {a} × {a} = {a^2} $. $ √{e^2/100} = {e/10} $, car $ {e/10} × {e/10} = {e^2/100} $. $ (√{d})² = {d} $ par définition de la racine carrée.",
@@ -246,7 +246,7 @@
           "misconceptions": [ { "answer": "(p+1)^2", "id": "mc:encadrer-depasse", "error": "lecture", "feedback": "{(p+1)^2} est plus grand que {n}. On cherche le carré parfait juste **en dessous** de {n}." } ] },
         { "type": "numeric", "prompt": "$ √{n} $ est compris entre un entier $a$ et l'entier suivant $a + 1$. Que vaut $a$ ?", "answer": "p",
           "misconceptions": [
-            { "answer": "p^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{p^2} est le carré parfait qui encadre {n}. Mais on encadre $ √{n} $ : il faut prendre la racine, $ √{p^2} = {p} $." },
+            { "answer": "p^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{p^2} est le carré parfait qui encadre {n}. Mais on encadre $ √{n} $ : il faut prendre la racine carrée de ce carré parfait." },
             { "answer": "floor(n/2)", "id": "mc:racine-moitie", "error": "notion", "feedback": "La racine carrée n'est pas la moitié : $ {floor(n/2)} × {floor(n/2)} $ est bien plus grand que {n}." }
           ] },
         { "type": "numeric", "prompt": "Avec la calculatrice : donne la valeur de $ √{n} $ arrondie au dixième.", "answer": "arrondi(racine(n);1)", "tolerance": 0.0001, "round": 1 }
@@ -265,7 +265,7 @@
       "prompt": "Vérification rapide : $ √({9*k^2} + {16*k^2}) $ est égal à…",
       "choices": [
         { "text": "{5*k}", "correct": true, "feedback": "Oui : $ {9*k^2} + {16*k^2} = {25*k^2} $ et $ {5*k}² = {25*k^2} $." },
-        { "text": "{7*k}", "correct": false, "error": "notion", "misconception": "mc:racine-somme", "feedback": "$ √{9*k^2} + √{16*k^2} = {3*k} + {4*k} = {7*k} $, mais la racine d'une somme n'est pas la somme des racines. On calcule d'abord sous le radical : $ {9*k^2} + {16*k^2} = {25*k^2} $, puis $ √{25*k^2} = {5*k} $." },
+        { "text": "{7*k}", "correct": false, "error": "notion", "misconception": "mc:racine-somme", "feedback": "$ √{9*k^2} + √{16*k^2} = {3*k} + {4*k} = {7*k} $, mais la racine d'une somme n'est pas la somme des racines. On calcule d'abord ce qu'il y a sous le radical, puis on prend la racine carrée du résultat." },
         { "text": "{25*k^2/2}", "correct": false, "error": "notion", "misconception": "mc:racine-moitie", "feedback": "La racine carrée n'est pas la moitié : on cherche le nombre positif qui, multiplié par lui-même, donne {25*k^2}." },
         { "text": "{25*k^2}", "correct": false, "error": "notion", "misconception": "mc:oubli-racine", "feedback": "{25*k^2} est le nombre sous le radical : il reste à prendre sa racine carrée." }
       ],
@@ -353,7 +353,7 @@
           ] },
         { "type": "numeric", "prompt": "Elle la recouvre avec des dalles carrées de 50 cm de côté. Combien de dalles lui faut-il ?", "answer": 81,
           "misconceptions": [
-            { "answer": 9, "id": "mc:cote-aire", "error": "lecture", "feedback": "9 dalles, c'est seulement le long d'un côté (4,5 m ÷ 0,5 m). La terrasse est un carré de 9 rangées de 9 dalles." },
+            { "answer": 9, "id": "mc:cote-aire", "error": "lecture", "feedback": "9 dalles, c'est seulement le long d'un côté (4,5 m ÷ 0,5 m). Combien de rangées comme celle-ci faut-il pour couvrir toute la terrasse ?" },
             { "answer": 40.5, "id": "mc:aire-longueur", "error": "unite", "feedback": "On ne divise pas une aire (20,25 m²) par une longueur (0,5 m). Compte plutôt les dalles le long d'un côté, puis le nombre de rangées." }
           ] }
       ],
@@ -385,7 +385,7 @@
         { "type": "numeric", "prompt": "Le carré parfait juste en dessous de {n} :", "answer": "p^2" },
         { "type": "numeric", "prompt": "Le carré parfait juste au-dessus de {n} :", "answer": "(p+1)^2" },
         { "type": "numeric", "prompt": "$ √{n} $ est donc compris entre deux entiers consécutifs. Quel est le plus grand des deux ?", "answer": "p+1",
-          "misconceptions": [ { "answer": "(p+1)^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{(p+1)^2} encadre {n}, mais on encadre $ √{n} $ : il faut prendre la racine de {(p+1)^2}, c'est-à-dire {p+1}." } ] }
+          "misconceptions": [ { "answer": "(p+1)^2", "id": "mc:encadrer-carres", "error": "notion", "feedback": "{(p+1)^2} encadre {n}, mais on encadre $ √{n} $ : il faut prendre la racine carrée de {(p+1)^2}." } ] }
       ],
       "hints": ["Quel carré parfait est juste avant {n} dans la liste ?", "Quelle est la racine carrée de {(p+1)^2} ?"],
       "solution": "$ {p^2} < {n} < {(p+1)^2} $, donc $ √{n} $ est compris entre $ √{p^2} = {p} $ et $ √{(p+1)^2} = {p+1} $.",
@@ -401,7 +401,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Longueur du côté du premier carré, arrondie au dixième (en cm) :", "answer": 7.1, "tolerance": 0.0001, "round": 1 },
         { "type": "numeric", "prompt": "Longueur exacte du côté du carré d'aire double (en cm) :", "answer": 10, "rel": 0.01,
-          "misconceptions": [ { "answer": "2*racine(50)", "id": "mc:aire-double-cote", "error": "notion", "feedback": "Doubler le côté multiplie l'aire par 4 : un carré de côté 14,1 cm a une aire d'environ 200 cm². L'aire double vaut 100 cm² : son côté est $√100$." } ] },
+          "misconceptions": [ { "answer": "2*racine(50)", "id": "mc:aire-double-cote", "error": "notion", "feedback": "Doubler le côté multiplie l'aire par 4 : un carré de côté 14,1 cm a une aire d'environ 200 cm². L'aire double vaut 100 cm² : cherche le côté d'un carré qui a cette aire." } ] },
         { "type": "numeric", "prompt": "Par quel nombre a-t-on multiplié la longueur du côté ? (arrondi au centième)", "answer": "racine(2)", "tolerance": 0.005,
           "misconceptions": [ { "answer": 2, "id": "mc:aire-double-cote", "error": "notion", "feedback": "Si le côté était multiplié par 2, l'aire serait multipliée par $2 × 2 = 4$. Calcule $10 ÷ √50$." } ] },
         { "type": "numeric", "prompt": "Pour obtenir un carré d'aire **9 fois** plus grande, par quel nombre faut-il multiplier le côté ?", "answer": 3,
@@ -422,13 +422,13 @@
       "rows": [ ["Départ", "1", "1"], ["Étape 1", "?r1c1", "?r1c2"], ["Étape 2", "?r2c1", "?r2c2"], ["Étape 3", "?r3c1", "?r3c2"] ],
       "cells": {
         "r1c1": { "answer": 1.5, "misconceptions": [ { "answer": 3, "id": "mc:moyenne-oubli", "error": "methode", "feedback": "$1 + 2/1 = 3$, mais il faut ensuite prendre la moyenne : diviser par 2." } ] },
-        "r1c2": { "answer": 2.25, "misconceptions": [ { "answer": 3, "id": "mc:carre-double", "error": "notion", "feedback": "$1,5 × 1,5$ ne vaut pas $2 × 1,5$ : calcule $1,5 × 1,5 = 2,25$." } ] },
+        "r1c2": { "answer": 2.25, "misconceptions": [ { "answer": 3, "id": "mc:carre-double", "error": "notion", "feedback": "$1,5 × 1,5$ ne vaut pas $2 × 1,5$ : multiplie 1,5 par lui-même." } ] },
         "r2c1": { "answer": 1.417, "tolerance": 0.0011 },
         "r2c2": { "answer": 2.007, "tolerance": 0.0021 },
         "r3c1": { "answer": 1.414, "tolerance": 0.0011 },
         "r3c2": { "answer": 2, "tolerance": 0.0011 }
       },
-      "hints": ["Étape 1 : $(1 + 2/1)/2 = 3/2 = 1,5$.", "Étape 2 : $2/1,5 ≈ 1,333$ ; la moyenne de 1,5 et 1,333 est environ 1,417.", "Étape 3 : $2/1,417 ≈ 1,411$ ; la moyenne de 1,417 et 1,411 est environ 1,414."],
+      "hints": ["Étape 1 : calcule $(1 + 2/1)/2$, puis le carré du résultat.", "Étape 2 : $2/1,5 ≈ 1,333$ ; la moyenne de 1,5 et 1,333 est environ 1,417.", "Étape 3 : $2/1,417 ≈ 1,411$ ; la moyenne de 1,417 et 1,411 est environ 1,414."],
       "solution": "Étape 1 : $x = 1,5$ et $x × x = 2,25$. Étape 2 : $x ≈ 1,417$ et $x × x ≈ 2,007$. Étape 3 : $x ≈ 1,414$ et $x × x ≈ 2,000$. Le carré de $x$ se rapproche très vite de 2 : $x$ se rapproche de $√2 ≈ 1,41421$. Idée de la méthode : si $x$ est trop grand, $2/x$ est trop petit, et leur moyenne tombe entre les deux, plus près de $√2$.",
       "selfTest": [
         { "response": { "cells": { "r1c1": "1,5", "r1c2": "2,25", "r2c1": "1,417", "r2c2": "2,007", "r3c1": "1,414", "r3c2": "2" } }, "expect": "correct" },
@@ -442,7 +442,7 @@
       "parts": [
         { "type": "numeric", "prompt": "En élevant au carré : $ 2 = p²/q² $, donc $ p² = k × q² $. Que vaut $k$ ?", "answer": 2 },
         { "type": "text", "prompt": "Le carré d'un nombre impair est-il pair ou impair ? (essaie 3, 5, 7…)", "accept": ["impair", "il est impair"],
-          "misconceptions": [ { "answer": "pair", "id": "mc:parite-carre", "error": "raisonnement", "feedback": "$3² = 9$, $5² = 25$, $7² = 49$ : tous impairs. Un nombre impair multiplié par un nombre impair donne un nombre impair." } ] },
+          "misconceptions": [ { "answer": "pair", "id": "mc:parite-carre", "error": "raisonnement", "feedback": "Teste vraiment : calcule $3²$, $5²$ et $7²$, puis regarde s'ils sont pairs." } ] },
         { "type": "text", "prompt": "Puisque $ p² = 2q² $ est pair, le nombre $p$ est-il pair ou impair ?", "accept": ["pair", "p est pair", "il est pair"],
           "misconceptions": [ { "answer": "impair", "id": "mc:parite-carre", "error": "raisonnement", "feedback": "Si $p$ était impair, $p²$ serait impair (question précédente). Or $p² = 2q²$ est pair : $p$ ne peut pas être impair." } ] },
         { "type": "open", "prompt": "On peut donc écrire $p = 2r$. Remplace $p$ par $2r$ dans $ p² = 2q² $, montre que $q$ est lui aussi pair, puis explique pourquoi c'est une contradiction.", "minWords": 20,
@@ -468,9 +468,9 @@
         { "type": "numeric", "prompt": "$ √(4 × 9) $", "answer": 6 },
         { "type": "numeric", "prompt": "$ √2 × √8 $ (inspire-toi des deux questions précédentes)", "answer": 4, "tolerance": 0.02 },
         { "type": "numeric", "prompt": "On peut écrire $ √50 = k × √2 $ avec $k$ entier. Que vaut $k$ ? (pense à $ 50 = 25 × 2 $)", "answer": 5,
-          "misconceptions": [ { "answer": 25, "id": "mc:oubli-racine", "error": "notion", "feedback": "$ √50 = √25 × √2 $ : il faut prendre la racine de 25, qui vaut 5." } ] },
+          "misconceptions": [ { "answer": 25, "id": "mc:oubli-racine", "error": "notion", "feedback": "$ √50 = √25 × √2 $ : il faut prendre la racine carrée de 25, pas 25 lui-même." } ] },
         { "type": "numeric", "prompt": "Et avec une somme ? Calcule la différence $ (√9 + √16) − √(9 + 16) $.", "answer": 2,
-          "misconceptions": [ { "answer": 0, "id": "mc:racine-somme", "error": "notion", "feedback": "Si la différence valait 0, on aurait $ √9 + √16 = √(9 + 16) $. Or $ 3 + 4 = 7 $ et $ √25 = 5 $ : la règle du produit ne marche pas pour une somme !" } ] }
+          "misconceptions": [ { "answer": 0, "id": "mc:racine-somme", "error": "notion", "feedback": "Si la différence valait 0, on aurait $ √9 + √16 = √(9 + 16) $. Calcule séparément $ √9 + √16 $ et $ √(9 + 16) $ : la règle du produit ne marche pas pour une somme !" } ] }
       ],
       "hints": ["$ √4 = 2 $ et $ √9 = 3 $.", "Il semble que $ √a × √b = √(a × b) $ pour des nombres positifs : donc $ √2 × √8 = √16 $.", "$ √50 = √(25 × 2) = √25 × √2 $."],
       "solution": "$ √4 × √9 = 2 × 3 = 6 $ et $ √(4 × 9) = √36 = 6 $. Pour des nombres positifs, $ √a × √b = √(a × b) $ : donc $ √2 × √8 = √16 = 4 $ et $ √50 = √25 × √2 = 5√2 $. Mais attention : $ √9 + √16 = 7 $ alors que $ √(9 + 16) = 5 $ ; la différence vaut 2. Il n'existe pas de règle de ce genre pour la somme.",

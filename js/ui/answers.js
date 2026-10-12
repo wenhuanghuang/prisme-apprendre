@@ -9,7 +9,7 @@ import { interpolate, parseWithParams } from '../core/template.js';
 import { createNumberLine } from './visual-inputs.js';
 import { createGraphInput } from './graph-input.js';
 import { createCodeEditor } from '../activities/turtle-editor.js';
-import { tokenizeHighlight } from '../core/checkers/language.js';
+import { tokenizeHighlight, highlightLang, withParentLang } from '../core/checkers/language.js';
 
 let uid = 0;
 const nextId = (p) => `${p}-${++uid}`;
@@ -273,8 +273,19 @@ function codeInput(inst, def) {
   return { el: ed.el, getResponse: () => ({ program: ed.program() }), show(d) { ed.showResult(d); }, lock: (b) => ed.lock(b), focus: () => ed.focus() };
 }
 
+const PART_MARKS = { correct: '✓', 'a-valider': '✎ à relire', partiel: '≈ presque', incorrect: '✗', vide: '' };
+
+/**
+ * Pastille d'une question d'un problème : symbole du verdict et message au survol. Le message vient du correcteur
+ * de la question, qui n'interpole pas les paramètres (« {h} − {m|p} ») : on le fait ici.
+ */
+export function partStatus(det, params = {}) {
+  return { text: PART_MARKS[det.verdict] || '', title: interpolate(det.feedback || '', params) };
+}
+
 function compositeInput(inst, def, ctx) {
-  const parts = (def.parts || []).map((part, i) => {
+  const parts = (def.parts || []).map((rawPart, i) => {
+    const part = withParentLang(def, rawPart); // mêmes mots découpés que pour le correcteur (anglais : « don't »)
     const sub = createAnswer(inst, part, ctx);
     const just = part.justify ? justificationField(part.justify) : null;
     const status = h('span', { class: 'part-status', 'aria-live': 'polite' });
@@ -295,8 +306,9 @@ function compositeInput(inst, def, ctx) {
         p.box.classList.remove('is-ok', 'is-ko', 'is-pending');
         const cls = det.verdict === 'correct' ? 'is-ok' : det.verdict === 'a-valider' ? 'is-pending' : det.verdict === 'vide' ? '' : 'is-ko';
         if (cls) p.box.classList.add(cls);
-        p.status.textContent = { correct: '✓', 'a-valider': '✎ à relire', partiel: '≈ presque', incorrect: '✗', vide: '' }[det.verdict] || '';
-        p.status.title = det.feedback || '';
+        const mark = partStatus(det, inst.params);
+        p.status.textContent = mark.text;
+        p.status.title = mark.title;
       });
     },
     lock: (b) => parts.forEach((p) => { p.sub.lock(b); if (p.just) p.just.lock(b); }),
@@ -306,9 +318,12 @@ function compositeInput(inst, def, ctx) {
 
 /* ------------------- Français, langues, histoire-géographie, SVT… ------------------- */
 
-/** Mots à repérer : chaque mot est un bouton à bascule (clic, Espace ou Entrée) ; flèches pour circuler. */
+/**
+ * Mots à repérer : chaque mot est un bouton à bascule (clic, Espace ou Entrée) ; flèches pour circuler.
+ * Un groupe cible (« [sont venus] ») est découpé en mots comme le reste du texte : rien ne le distingue à l'écran.
+ */
 function highlightInput(inst, def) {
-  const tokens = tokenizeHighlight(interpolate(def.text || '', inst.params));
+  const tokens = tokenizeHighlight(interpolate(def.text || '', inst.params), { lang: highlightLang(def), words: true });
   const selected = new Set();
   const buttons = [];
   const count = h('span', { class: 'muted small', 'aria-live': 'polite' });
@@ -338,7 +353,7 @@ function highlightInput(inst, def) {
     text, count);
   return {
     el,
-    getResponse: () => ({ selected: [...selected].sort((a, b) => a - b) }),
+    getResponse: () => ({ words: [...selected].sort((a, b) => a - b) }),
     show(d) {
       for (const det of d.details || []) {
         const b = buttons[det.index];

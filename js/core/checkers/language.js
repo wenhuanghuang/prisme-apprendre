@@ -12,34 +12,115 @@ import { interpolate } from '../template.js';
 const strip = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '');
 const norm = (s) => String(s || '').toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').trim();
 
+// mot : lettres, chiffres, traits d'union ; en français l'élision se détache (« l'arbre » → « l' » + « arbre »)
+const WORD_FR = /[\p{L}\p{N}]+(?:['’](?=[\p{L}]))?(?:-[\p{L}\p{N}]+)*['’]?/u;
+// en anglais, l'apostrophe entre deux lettres reste dans le mot : o'clock, don't, it's, they're, I'll, I've, I'm, I'd
+const WORD_EN = /[\p{L}\p{N}]+(?:['’]\p{L}+)*(?:-[\p{L}\p{N}]+(?:['’]\p{L}+)*)*['’]?/u;
+
+/** Langue du texte à surligner : `lang`, sinon celle de l'écoute (`audio.lang`, qui lit ce texte). */
+/** Une question d'un problème hérite de la langue du problème (ou de son écoute de la bonne réponse) : correcteur et affichage. */
+export function withParentLang(def, part) {
+  const lang = def.lang || (def.audio && def.audio.after && def.audio.lang) || '';
+  return lang && !part.lang ? { ...part, lang } : part;
+}
+
+export function highlightLang(def) {
+  return def.lang || (def.audio && def.audio.lang) || '';
+}
+
+/** Jetons d'un morceau de texte ; `start` = position dans le texte (pour relier deux découpages). */
+function scan(text, word, offset = 0) {
+  const re = new RegExp(String.raw`\[([^\]]+)\]|(${word.source})|(\s+)|([^\s\p{L}\p{N}[\]]+)`, 'gu');
+  const out = [];
+  let m;
+  while ((m = re.exec(text))) {
+    const start = offset + m.index;
+    if (m[1] !== undefined) out.push({ text: m[1], word: true, target: true, start: start + 1 });
+    else if (m[2] !== undefined) out.push({ text: m[2], word: true, target: false, start });
+    else if (m[3] !== undefined) out.push({ text: m[3], word: false, space: true, start });
+    else out.push({ text: m[4], word: false, start });
+  }
+  return out;
+}
+
+/** Un groupe entre crochets devient ses mots, tous cibles et marqués du numéro du groupe. */
+function splitGroups(tokens, word) {
+  let g = 0;
+  return tokens.flatMap((t) => {
+    if (!t.target) return [t];
+    const group = g++;
+    return scan(t.text, word, t.start).map((x) => (x.word ? { ...x, target: true, group } : x));
+  });
+}
+
 /**
  * Découpe un texte de surlignage. Les cibles sont écrites entre crochets : « Le [petit] chat [noir] dort. »
  * Un groupe entre crochets peut contenir plusieurs mots (« [sont venus] »). Renvoie la liste des jetons
  * sélectionnables (mots) et non sélectionnables (ponctuation, espaces).
+ *   opts.lang  : langue du texte ; en anglais (« en-GB »…), « o'clock » et « don't » restent un seul mot.
+ *   opts.words : un groupe est découpé en mots (champ `group`), comme le reste du texte : l'élève voit le même
+ *                découpage partout (un groupe affiché d'un bloc donnerait la réponse).
+ * Sans option : découpage historique (un groupe = un jeton), celui des réponses types `selected`.
  */
-export function tokenizeHighlight(text) {
-  const tokens = [];
-  const re = /\[([^\]]+)\]|([\p{L}\p{N}]+(?:['’](?=[\p{L}]))?(?:-[\p{L}\p{N}]+)*['’]?)|(\s+)|([^\s\p{L}\p{N}[\]]+)/gu;
-  let m;
-  while ((m = re.exec(String(text || '')))) {
-    if (m[1] !== undefined) tokens.push({ text: m[1], word: true, target: true });
-    else if (m[2] !== undefined) tokens.push({ text: m[2], word: true, target: false });
-    else if (m[3] !== undefined) tokens.push({ text: m[3], word: false, space: true });
-    else tokens.push({ text: m[4], word: false });
-  }
+export function tokenizeHighlight(text, opts = {}) {
+  const word = /^en\b/i.test(opts.lang || '') ? WORD_EN : WORD_FR;
+  const tokens = scan(String(text || ''), word);
   let w = 0;
-  for (const t of tokens) if (t.word) t.index = w++;
-  return tokens;
+  return (opts.words ? splitGroups(tokens, word) : tokens).map((t) => (t.word ? { ...t, index: w++ } : t));
 }
 
+const overlaps = (a, b) => a.start < b.start + b.text.length && b.start < a.start + a.text.length;
+
+/**
+ * Index des mots choisis. L'application envoie `words` (un index par mot). L'ancien format `selected`
+ * (découpage historique : un groupe = un index) reste accepté : chaque jeton choisi vaut les mots qu'il recouvre.
+ */
+function selectedWords(text, words, response) {
+  if (Array.isArray(response.words)) return new Set(response.words.map(Number));
+  const legacy = new Set((response.selected || []).map(Number));
+  const chosen = tokenizeHighlight(text).filter((t) => t.word && legacy.has(t.index));
+  return new Set(words.filter((w) => chosen.some((c) => overlaps(c, w))).map((w) => w.index));
+}
+
+/** Cibles : une par groupe entre crochets, avec ses mots. */
+function targetGroups(words) {
+  const groups = new Map();
+  for (const t of words) if (t.target) groups.set(t.group, [...(groups.get(t.group) || []), t]);
+  return [...groups.values()];
+}
+
+// mots-outils en bordure d'un groupe (« l'université Stanford », « to the beach ») : les oublier n'est pas une erreur
+const BORDER_WORDS = new Set(['le', 'la', 'les', 'l', "l'", 'un', 'une', 'des', 'du', 'de', 'd', "d'", 'à', 'a', 'au', 'aux', 'en', 'the', 'an', 'to', 'of', 'el', 'los', 'las', 'una', 'del', 'al']);
+
+/** Mots porteurs de sens d'un groupe : sans les mots-outils du début et de la fin (le groupe entier s'il n'en reste rien). */
+function coreWords(g) {
+  let a = 0; let b = g.length;
+  while (a < b && BORDER_WORDS.has(norm(g[a].text))) a += 1;
+  while (b > a && BORDER_WORDS.has(norm(g[b - 1].text))) b -= 1;
+  return a < b ? g.slice(a, b) : g;
+}
+
+/**
+ * Un groupe est trouvé quand ses mots porteurs de sens sont sélectionnés ; dans un long groupe (4 mots ou plus),
+ * les trois quarts suffisent (l'élève a repéré le passage). Les mots-outils de bordure ne sont pas exigés.
+ */
+export function groupFound(g, selected) {
+  const core = coreWords(g);
+  const n = core.filter((t) => selected.has(t.index)).length;
+  return n === core.length || (core.length >= 4 && n >= Math.ceil(0.75 * core.length));
+}
+
+/** Un groupe compte quand ses mots porteurs de sens sont sélectionnés (voir groupFound). */
 export function checkHighlight(def, params, response) {
-  const tokens = tokenizeHighlight(interpolate(def.text || '', params || {})).filter((t) => t.word);
-  const selected = new Set((response.selected || []).map(Number));
+  const text = interpolate(def.text || '', params || {});
+  const tokens = tokenizeHighlight(text, { lang: highlightLang(def), words: true }).filter((t) => t.word);
+  const selected = selectedWords(text, tokens, response);
   if (!selected.size) return diagnosis({ verdict: 'vide', feedback: 'Clique sur les mots demandés.' });
-  const targets = tokens.filter((t) => t.target);
-  const found = targets.filter((t) => selected.has(t.index));
+  const targets = targetGroups(tokens);
+  const found = targets.filter((g) => groupFound(g, selected));
+  const missing = targets.filter((g) => !found.includes(g));
+  const incomplete = missing.filter((g) => g.some((t) => selected.has(t.index)));
   const extra = tokens.filter((t) => !t.target && selected.has(t.index));
-  const missing = targets.filter((t) => !selected.has(t.index));
   const details = tokens.map((t) => ({ index: t.index, text: t.text, target: t.target, selected: selected.has(t.index) }));
   if (!extra.length && !missing.length) return diagnosis({ verdict: 'correct', score: 1, details, feedback: def.correctFeedback || 'Tous les mots demandés, et seulement eux.' });
   const mc = (def.misconceptions || []).find((m) => extra.some((t) => norm(t.text) === norm(m.word)));
@@ -47,9 +128,10 @@ export function checkHighlight(def, params, response) {
   parts.push(`${found.length}/${targets.length} trouvé${found.length > 1 ? 's' : ''}`);
   if (extra.length) parts.push(`${extra.length} en trop (${extra.slice(0, 3).map((t) => `« ${t.text} »`).join(', ')})`);
   if (missing.length && found.length) parts.push(`il en manque ${missing.length}`);
+  if (incomplete.length) parts.push(`${incomplete.length} groupe${incomplete.length > 1 ? 's' : ''} de mots incomplet${incomplete.length > 1 ? 's' : ''} : sélectionne les autres mots importants du groupe`);
   return diagnosis({
-    verdict: found.length ? 'partiel' : 'incorrect',
-    score: Math.max(0, (found.length - extra.length) / targets.length) * 0.8,
+    verdict: found.length || incomplete.length ? 'partiel' : 'incorrect',
+    score: Math.max(0, (found.length + incomplete.length / 2 - extra.length) / targets.length) * 0.8,
     stepsOk: found.length, stepsTotal: targets.length, details,
     errorType: mc ? mc.error || 'notion' : extra.length ? 'notion' : 'lecture',
     misconception: mc ? mc.id || null : null,

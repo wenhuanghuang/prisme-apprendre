@@ -1,0 +1,1555 @@
+{
+  "id": "m3-trigonometrie",
+  "chapter": "m3-ch-geometrie",
+  "title": "Trigonométrie : cosinus, sinus et tangente",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.trigo.longueur", "m3.trigo.angle"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Dans un triangle rectangle, trois quotients ne dépendent que d’un angle aigu : son cosinus, son sinus et sa tangente. Avec eux et la calculatrice, on calcule un côté ou un angle à partir de deux informations… et on mesure des arbres, des pentes ou des altitudes sans les toucher.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L’arbre trop haut",
+      "body": "Zoé se place à 20 m du pied d’un grand arbre, sur un sol horizontal. Avec une application de son téléphone, elle vise le sommet : sa visée fait un angle de 35° avec le sol (on imagine son œil au ras du sol).\n\nElle connaît un côté et un angle d’un triangle rectangle… mais ni Pythagore ni le cosinus ne donnent la hauteur. Quel outil lui manque-t-il ?",
+      "figure": {
+        "alt": "Zoé, au point Z, est à 20 m du pied P d'un arbre ; sa visée vers le sommet T fait un angle de 35° avec le sol ; la hauteur PT est inconnue.",
+        "w": 400,
+        "h": 297,
+        "frame": { "x": [-2, 24], "y": [-2.5, 16] },
+        "items": [
+          { "type": "point", "id": "Z", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "P", "x": 20, "y": 0, "pos": "se" },
+          { "type": "point", "id": "T", "x": 20, "y": 14, "pos": "ne" },
+          { "type": "segment", "from": "Z", "to": "P", "label": "20 m" },
+          { "type": "segment", "from": "P", "to": "T", "color": "vert", "width": 4, "label": "?" },
+          { "type": "segment", "from": "Z", "to": "T", "dashed": true, "color": "orange" },
+          { "type": "angle", "vertex": "Z", "from": "P", "to": "T", "label": "35°", "r": 34 },
+          { "type": "angle", "vertex": "P", "from": "T", "to": "Z", "right": true }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧭",
+          "title": "Trois côtés, trois rôles",
+          "body": "Dans un triangle rectangle, l’**hypoténuse** est le côté en face de l’angle droit. Pour un angle aigu marqué, ici Â : le **côté adjacent** est l’autre côté de l’angle ; le **côté opposé** est le côté qui ne touche pas l’angle.",
+          "reveal": {
+            "question": "Devine : si l’on regarde l’autre angle aigu, Ĉ, que devient le côté opposé à Â ?",
+            "answer": "Il devient le côté **adjacent** à Ĉ ! Adjacent et opposé échangent leurs rôles quand on change d’angle ; l’hypoténuse, elle, ne change pas."
+          },
+          "figure": {
+            "alt": "Triangle ABC rectangle en B ; l'angle Â est marqué ; [AB] est le côté adjacent à Â, [BC] le côté opposé à Â, [AC] l'hypoténuse.",
+            "w": 400,
+            "h": 255,
+            "frame": { "x": [-0.6, 7], "y": [-0.9, 3.6] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+              { "type": "segment", "from": "A", "to": "B", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "C", "color": "orange" },
+              { "type": "segment", "from": "A", "to": "C", "color": "rouge" },
+              { "type": "text", "x": 2, "y": -0.55, "text": "adjacent à Â", "color": "vert", "size": "s" },
+              { "type": "text", "x": 4.25, "y": 1.5, "text": "opposé à Â", "color": "orange", "size": "s", "anchor": "start" },
+              { "type": "text", "x": 1.55, "y": 1.9, "text": "hypoténuse", "color": "rouge", "size": "s", "anchor": "end" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Cosinus, sinus, tangente",
+          "body": "Pour un angle aigu Â d’un triangle rectangle :\n\n- cos Â = côté adjacent ÷ hypoténuse\n- sin Â = côté opposé ÷ hypoténuse\n- tan Â = côté opposé ÷ côté adjacent\n\nCes trois quotients ne dépendent que de l’angle, pas de la taille du triangle. Ici : cos Â = 0,8 ; sin Â = 0,6 ; tan Â = 0,75.",
+          "example": "Pour retenir : **SOH CAH TOA** (Sinus = Opposé ÷ Hypoténuse, Cosinus = Adjacent ÷ Hypoténuse, Tangente = Opposé ÷ Adjacent).",
+          "figure": {
+            "alt": "Triangle ABC rectangle en B, avec AB = 4 cm, BC = 3 cm et AC = 5 cm ; l'angle Â est marqué.",
+            "w": 360,
+            "h": 291,
+            "frame": { "x": [-0.6, 4.9], "y": [-0.8, 3.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+              { "type": "segment", "from": "A", "to": "B", "label": "4 cm", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "C", "label": "3 cm", "color": "orange" },
+              { "type": "segment", "from": "A", "to": "C", "label": "5 cm", "color": "rouge" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔍",
+          "title": "Choisir le bon quotient",
+          "body": "1. Repère l’angle droit et l’angle aigu utilisé.\n2. Nomme les deux côtés en jeu : celui qu’on connaît et celui qu’on cherche (hypoténuse, adjacent ou opposé).\n3. Choisis le quotient qui contient **ces deux côtés-là**.",
+          "figure": {
+            "alt": "Tableau : adjacent et hypoténuse donnent le cosinus, opposé et hypoténuse le sinus, opposé et adjacent la tangente.",
+            "w": 420,
+            "h": 130,
+            "items": [
+              {
+                "type": "table",
+                "head": ["Les deux côtés en jeu", "Le quotient à utiliser"],
+                "rows": [["adjacent et hypoténuse", "cosinus"], ["opposé et hypoténuse", "sinus"], ["opposé et adjacent", "tangente"]]
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Calculer une longueur",
+          "body": "On écrit le quotient, on remplace, puis on isole la longueur. Si l’inconnue est **au numérateur**, on multiplie ; si elle est **au dénominateur**, on divise. Pour l’arbre de Zoé : tan 35° = $h/20$, donc $h = 20 × tan(35)$ ≈ 14 m.",
+          "example": "Calculatrice en mode **degrés** (« D » ou « DEG » à l’écran) !"
+        },
+        {
+          "emoji": "🔄",
+          "title": "Calculer un angle",
+          "body": "On calcule d’abord le quotient, puis on utilise la touche réciproque : **Arccos**, **Arcsin** ou **Arctan** (souvent cos⁻¹, sin⁻¹, tan⁻¹, avec « 2nde » ou « Shift »). Ici : tan Â = $3/4$ = 0,75, donc Â = arctan(0,75) ≈ 36,9°.",
+          "reveal": {
+            "question": "Devine : la calculatrice affiche sin(30) ≈ −0,988. Que se passe-t-il ?",
+            "answer": "Elle est en mode **radians** ! En degrés, sin(30) = 0,5. Le sinus d’un angle aigu est toujours compris entre 0 et 1."
+          },
+          "figure": {
+            "alt": "Triangle ABC rectangle en B, avec AB = 4 cm et BC = 3 cm ; l'angle Â est inconnu.",
+            "w": 360,
+            "h": 291,
+            "frame": { "x": [-0.6, 4.9], "y": [-0.8, 3.5] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 4, "y": 3, "pos": "ne" },
+              { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "?" },
+              { "type": "segment", "from": "A", "to": "B", "label": "4 cm", "color": "vert" },
+              { "type": "segment", "from": "B", "to": "C", "label": "3 cm", "color": "orange" }
+            ]
+          }
+        },
+        {
+          "emoji": "✅",
+          "title": "Contrôler son résultat",
+          "body": "Le sinus et le cosinus d’un angle aigu sont toujours **entre 0 et 1**, car l’hypoténuse est le plus long côté. La tangente, elle, peut dépasser 1 : tan 45° = 1, et au-delà de 45° le côté opposé est plus long que le côté adjacent. Enfin, les deux angles aigus ont pour somme 90°.",
+          "figure": {
+            "alt": "Tableau des sinus et des tangentes de 10°, 30°, 45°, 60° et 80°, arrondis au millième.",
+            "w": 440,
+            "h": 120,
+            "items": [
+              {
+                "type": "table",
+                "head": ["Angle", "10°", "30°", "45°", "60°", "80°"],
+                "rows": [["sinus", "0,174", "0,5", "0,707", "0,866", "0,985"], ["tangente", "0,176", "0,577", "1", "1,732", "5,671"]]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Deux exemples entièrement résolus",
+      "steps": [
+        {
+          "text": "**Une longueur.** $EFG$ est rectangle en $F$, avec $EG = 9$ cm et Ê = 28°. On cherche $FG$. Pour l’angle Ê : $[EG]$ est l’hypoténuse (connue) et $[FG]$ le côté opposé (cherché). Opposé et hypoténuse : c’est le **sinus**.",
+          "figure": {
+            "alt": "Triangle EFG rectangle en F, avec EG = 9 cm et l'angle Ê = 28° ; FG est inconnue.",
+            "w": 380,
+            "h": 247,
+            "frame": { "x": [-0.8, 9.3], "y": [-0.9, 5.2] },
+            "items": [
+              { "type": "polygon", "points": ["E", "F", "G"], "fill": "maths" },
+              { "type": "point", "id": "E", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "F", "x": 7.95, "y": 0, "pos": "se" },
+              { "type": "point", "id": "G", "x": 7.95, "y": 4.23, "pos": "ne" },
+              { "type": "angle", "vertex": "F", "from": "E", "to": "G", "right": true },
+              { "type": "angle", "vertex": "E", "from": "F", "to": "G", "label": "28°" },
+              { "type": "segment", "from": "E", "to": "G", "label": "9 cm", "color": "rouge" },
+              { "type": "segment", "from": "F", "to": "G", "label": "?", "color": "orange" }
+            ]
+          }
+        },
+        { "text": "sin Ê = $FG/EG$, donc", "math": "sin(28) = FG/9" },
+        { "text": "L’inconnue est au numérateur : on multiplie. $FG = 9 × sin(28)$ ≈ 4,23, soit environ **4,2 cm**.", "math": "FG = 9 × sin(28)" },
+        {
+          "text": "**Un angle.** $RST$ est rectangle en $S$, avec $RS = 7$ cm et $ST = 4$ cm. Pour l’angle R̂ : $[ST]$ est opposé et $[RS]$ adjacent. Opposé et adjacent : c’est la **tangente**, tan R̂ = $4/7$.",
+          "figure": {
+            "alt": "Triangle RST rectangle en S, avec RS = 7 cm et ST = 4 cm ; l'angle R̂ est inconnu.",
+            "w": 377,
+            "h": 260,
+            "frame": { "x": [-0.8, 8], "y": [-0.9, 4.8] },
+            "items": [
+              { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+              { "type": "point", "id": "R", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "S", "x": 7, "y": 0, "pos": "se" },
+              { "type": "point", "id": "T", "x": 7, "y": 4, "pos": "ne" },
+              { "type": "angle", "vertex": "S", "from": "R", "to": "T", "right": true },
+              { "type": "angle", "vertex": "R", "from": "S", "to": "T", "label": "?" },
+              { "type": "segment", "from": "R", "to": "S", "label": "7 cm", "color": "vert" },
+              { "type": "segment", "from": "S", "to": "T", "label": "4 cm", "color": "orange" }
+            ]
+          }
+        },
+        {
+          "text": "Touche Arctan, en mode degrés : R̂ = arctan(4 ÷ 7) ≈ **29,7°**. Contrôle : T̂ ≈ 90 − 29,7 = 60,3°, et tan R̂ ≈ 0,57 est bien plus petit que 1, car $ST < RS$."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Avant chaque calcul : repère l’angle droit, l’angle utilisé, puis nomme les deux côtés en jeu. Calculatrice en mode **degrés**. Pour les angles, écris seulement le nombre (sans le symbole °).",
+      "exercises": ["m3-trigo-formules", "m3-trigo-choisir", "m3-trigo-sinus", "m3-trigo-tangente", "m3-trigo-angle", "m3-trigo-verif"]
+    },
+    { "kind": "libre", "title": "Expliquer une erreur", "exercises": ["m3-trigo-explique"] },
+    { "kind": "reinvestissement", "title": "La trigonométrie dans la vraie vie", "exercises": ["m3-trigo-arbre", "m3-trigo-avion"] },
+    {
+      "kind": "mission",
+      "title": "Mission : la rampe d’accès de la médiathèque",
+      "body": "Tout le monde doit pouvoir entrer à la médiathèque, y compris en fauteuil roulant. Tu es chargé·e de vérifier les plans de la rampe : angle, longueurs… et respect de la règle.",
+      "exercises": ["m3-trigo-rampe"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Dans un triangle rectangle, pour un angle aigu Â : cos Â = adjacent ÷ hypoténuse, sin Â = opposé ÷ hypoténuse, tan Â = opposé ÷ adjacent (**SOH CAH TOA**). On choisit le quotient qui contient le côté connu et le côté cherché. Pour un angle : Arccos, Arcsin ou Arctan, en mode degrés.\n\n- **Adjacent ou opposé ?** Ils échangent leurs rôles quand on change d’angle.\n- **Multiplier ou diviser ?** Inconnue au dénominateur : on divise.\n- **Mode radians.** sin(30) ≈ −0,99 : passe la calculatrice en degrés.\n- **Contrôler.** Sinus et cosinus entre 0 et 1 ; l’hypoténuse est le plus long côté."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des calculs de longueurs et d’angles avec le cosinus, le sinus et la tangente dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "La trigonométrie hors du triangle rectangle : l’aire d’un triangle quelconque, puis les liens entre cosinus, sinus et tangente.",
+      "exercises": ["m3-trigo-aire", "m3-trigo-relations"]
+    },
+    "expert": {
+      "intro": "Un problème complet de type brevet sur une piste de ski, puis la hauteur d’une falaise inaccessible grâce à deux visées.",
+      "exercises": ["m3-trigo-brevet", "m3-trigo-deux-visees"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-trigo-formules",
+      "type": "match",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:sin-cos", "mc:tan-inverse", "mc:cos-inverse"],
+      "expectedSeconds": 90,
+      "prompt": "Le triangle $KLM$ est rectangle en $L$. Pour l’angle K̂, associe chaque rapport trigonométrique au quotient de longueurs qui lui est égal.",
+      "figure": {
+        "alt": "Triangle KLM rectangle en L ; l'angle K̂ est marqué.",
+        "w": 366,
+        "h": 280,
+        "frame": { "x": [-0.8, 6.3], "y": [-0.9, 4.3] },
+        "items": [
+          { "type": "polygon", "points": ["K", "L", "M"], "fill": "maths" },
+          { "type": "point", "id": "K", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "L", "x": 5, "y": 0, "pos": "se" },
+          { "type": "point", "id": "M", "x": 5, "y": 3.5, "pos": "ne" },
+          { "type": "angle", "vertex": "L", "from": "K", "to": "M", "right": true },
+          { "type": "angle", "vertex": "K", "from": "L", "to": "M" }
+        ]
+      },
+      "leftTitle": "Rapport",
+      "rightTitle": "Quotient",
+      "left": [{ "id": "cos", "label": "cos K̂" }, { "id": "sin", "label": "sin K̂" }, { "id": "tan", "label": "tan K̂" }],
+      "right": [
+        { "id": "q1", "label": "KL ÷ KM" },
+        { "id": "q2", "label": "LM ÷ KM" },
+        { "id": "q3", "label": "LM ÷ KL" },
+        { "id": "q4", "label": "KM ÷ KL" },
+        { "id": "q5", "label": "KL ÷ LM" }
+      ],
+      "pairs": { "cos": "q1", "sin": "q2", "tan": "q3" },
+      "misconceptions": [
+        {
+          "pair": ["sin", "q1"],
+          "id": "mc:sin-cos",
+          "error": "notion",
+          "feedback": "$[KL]$ touche l’angle K̂ : c’est le côté adjacent. Le sinus utilise le côté **opposé**."
+        },
+        {
+          "pair": ["cos", "q2"],
+          "id": "mc:sin-cos",
+          "error": "notion",
+          "feedback": "$[LM]$ ne touche pas l’angle K̂ : c’est le côté opposé. Le cosinus utilise le côté **adjacent**."
+        },
+        {
+          "pair": ["tan", "q5"],
+          "id": "mc:tan-inverse",
+          "error": "notion",
+          "feedback": "La tangente, c’est opposé ÷ adjacent, dans cet ordre (TOA)."
+        },
+        {
+          "pair": ["cos", "q4"],
+          "id": "mc:cos-inverse",
+          "error": "notion",
+          "feedback": "Ce quotient est plus grand que 1 : impossible pour un cosinus. L’hypoténuse se met au dénominateur."
+        }
+      ],
+      "hints": ["L’hypoténuse est $[KM]$, en face de l’angle droit.", "Pour K̂ : $[KL]$ est adjacent, $[LM]$ est opposé.", "SOH CAH TOA."],
+      "solution": "Pour K̂ : hypoténuse $[KM]$, côté adjacent $[KL]$, côté opposé $[LM]$. cos K̂ = $KL/KM$, sin K̂ = $LM/KM$, tan K̂ = $LM/KL$.",
+      "selfTest": [
+        { "response": { "pairs": { "cos": "q1", "sin": "q2", "tan": "q3" } }, "expect": "correct" },
+        { "response": { "pairs": { "cos": "q2", "sin": "q1", "tan": "q3" } }, "expect": "mc:sin-cos" },
+        { "response": { "pairs": { "cos": "q1", "sin": "q2", "tan": "q5" } }, "expect": "mc:tan-inverse" }
+      ]
+    },
+    {
+      "id": "m3-trigo-choisir",
+      "type": "categorize",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m3.trigo.angle"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:sin-cos", "mc:tan-cos", "mc:tan-hypotenuse"],
+      "expectedSeconds": 180,
+      "prompt": "Le triangle $RST$ est rectangle en $S$ ; on s’intéresse à l’angle R̂. Pour chaque situation, quel quotient faut-il utiliser ?",
+      "figure": {
+        "alt": "Triangle RST rectangle en S ; l'angle R̂ est marqué.",
+        "w": 380,
+        "h": 260,
+        "frame": { "x": [-0.8, 7.3], "y": [-0.9, 4.3] },
+        "items": [
+          { "type": "polygon", "points": ["R", "S", "T"], "fill": "maths" },
+          { "type": "point", "id": "R", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "S", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "T", "x": 6, "y": 3.5, "pos": "ne" },
+          { "type": "angle", "vertex": "S", "from": "R", "to": "T", "right": true },
+          { "type": "angle", "vertex": "R", "from": "S", "to": "T" }
+        ]
+      },
+      "categories": [{ "id": "cos", "label": "Cosinus" }, { "id": "sin", "label": "Sinus" }, { "id": "tan", "label": "Tangente" }],
+      "items": [
+        { "id": "i1", "label": "On connaît $RT$ et R̂ ; on cherche $ST$.", "category": "sin" },
+        { "id": "i2", "label": "On connaît $RS$ et R̂ ; on cherche $ST$.", "category": "tan" },
+        { "id": "i3", "label": "On connaît $RT$ et $RS$ ; on cherche R̂.", "category": "cos" },
+        { "id": "i4", "label": "On connaît $ST$ et $RS$ ; on cherche R̂.", "category": "tan" },
+        { "id": "i5", "label": "On connaît $ST$ et R̂ ; on cherche $RT$.", "category": "sin" },
+        { "id": "i6", "label": "On connaît $RS$ et R̂ ; on cherche $RT$.", "category": "cos" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i1",
+          "category": "cos",
+          "id": "mc:sin-cos",
+          "error": "notion",
+          "feedback": "Pour l’angle R̂, $[ST]$ ne touche pas l’angle : c’est le côté opposé, pas le côté adjacent."
+        },
+        {
+          "item": "i2",
+          "category": "cos",
+          "id": "mc:tan-cos",
+          "error": "notion",
+          "feedback": "Les deux côtés en jeu sont $[RS]$ et $[ST]$. Le cosinus utilise l’hypoténuse $[RT]$, qui n’intervient pas ici."
+        },
+        {
+          "item": "i6",
+          "category": "sin",
+          "id": "mc:sin-cos",
+          "error": "notion",
+          "feedback": "$[RS]$ touche l’angle R̂ : c’est son côté adjacent, pas son côté opposé."
+        },
+        {
+          "item": "i5",
+          "category": "tan",
+          "id": "mc:tan-hypotenuse",
+          "error": "notion",
+          "feedback": "La tangente n’utilise pas l’hypoténuse… or on cherche justement $RT$, l’hypoténuse."
+        }
+      ],
+      "hints": [
+        "L’hypoténuse est $[RT]$ ; pour R̂, $[RS]$ est adjacent et $[ST]$ opposé.",
+        "Pour chaque ligne, nomme les deux côtés en jeu (le connu et le cherché).",
+        "Adjacent et hypoténuse : cosinus ; opposé et hypoténuse : sinus ; opposé et adjacent : tangente."
+      ],
+      "solution": "$RT$ et $ST$ (hypoténuse et opposé) : sinus. $RS$ et $ST$ (adjacent et opposé) : tangente. $RT$ et $RS$ (hypoténuse et adjacent) : cosinus. Donc : 1 sinus, 2 tangente, 3 cosinus, 4 tangente, 5 sinus, 6 cosinus.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "sin", "i2": "tan", "i3": "cos", "i4": "tan", "i5": "sin", "i6": "cos" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "cos", "i2": "tan", "i3": "cos", "i4": "tan", "i5": "sin", "i6": "cos" } }, "expect": "mc:sin-cos" },
+        { "response": { "assign": { "i1": "sin", "i2": "cos", "i3": "cos", "i4": "tan", "i5": "sin", "i6": "cos" } }, "expect": "mc:tan-cos" }
+      ]
+    },
+    {
+      "id": "m3-trigo-sinus",
+      "type": "numeric",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:sin-cos", "mc:trigo-division", "mc:mode-radians"],
+      "expectedSeconds": 150,
+      "params": { "h": { "int": [5, 15] }, "t": { "int": [20, 70] } },
+      "constraints": ["abs(sin(t) - cos(t))*h > 0.3", "abs(sin(t*180/pi) - sin(t))*h > 0.3"],
+      "prompt": "Le triangle $ABC$ est rectangle en $B$, avec $AC = {h}$ cm et Â = {t}°. Calcule la longueur $BC$, arrondie au dixième de centimètre.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B ; l'hypoténuse AC et l'angle Â sont indiqués ; BC est inconnue.",
+        "w": 380,
+        "h": 300,
+        "frame": { "x": [-1, "{h*cos(t)+1.5}"], "y": [-1, "{h*sin(t)+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": "{h*cos(t)}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": "{h*cos(t)}", "y": "{h*sin(t)}", "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "{t}°" },
+          { "type": "segment", "from": "A", "to": "C", "label": "{h} cm", "color": "rouge" },
+          { "type": "segment", "from": "B", "to": "C", "label": "?", "color": "orange" }
+        ]
+      },
+      "answer": "arrondi(h*sin(t);1)",
+      "unit": "cm",
+      "tolerance": 0.05,
+      "round": 1,
+      "misconceptions": [
+        {
+          "answer": "arrondi(h*cos(t);1)",
+          "id": "mc:sin-cos",
+          "error": "notion",
+          "feedback": "Tu as calculé le côté **adjacent** à Â. $[BC]$ ne touche pas l’angle Â : c’est le côté opposé."
+        },
+        {
+          "answer": "arrondi(h/sin(t);1)",
+          "id": "mc:trigo-division",
+          "error": "methode",
+          "feedback": "Ton résultat dépasse l’hypoténuse : impossible ! $BC$ est au numérateur du quotient, il faut donc multiplier."
+        },
+        {
+          "answer": "arrondi(h*sin(t*180/pi);1)",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ta calculatrice est en mode radians : passe-la en mode **degrés** et recommence."
+        }
+      ],
+      "hints": [
+        "Pour l’angle Â : $[AC]$ est l’hypoténuse et $[BC]$ le côté opposé.",
+        "Opposé et hypoténuse : c’est le sinus. sin Â = $BC/AC$.",
+        "$BC = {h} × sin({t})$, calculatrice en mode degrés."
+      ],
+      "solution": "Dans le triangle $ABC$ rectangle en $B$, $[AC]$ est l’hypoténuse et $[BC]$ le côté opposé à Â. sin Â = $BC/AC$, soit sin {t}° = $BC/{h}$, donc $BC = {h} × sin({t})$ ≈ {arrondi(h*sin(t);1)} cm.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(h*sin(t);1)} cm" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(h*cos(t);1)} cm" }, "expect": "mc:sin-cos" },
+        { "response": { "value": "{arrondi(h/sin(t);1)} cm" }, "expect": "mc:trigo-division" }
+      ]
+    },
+    {
+      "id": "m3-trigo-tangente",
+      "type": "numeric",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:trigo-produit", "mc:tan-hypotenuse", "mc:mode-radians"],
+      "expectedSeconds": 180,
+      "params": { "o": { "int": [3, 12] }, "t": { "int": [25, 65] } },
+      "constraints": ["t != 45", "abs(o/tan(t) - o*tan(t)) > 0.3", "abs(o/tan(t) - o/tan(t*180/pi)) > 0.3"],
+      "prompt": "Le triangle $DEF$ est rectangle en $E$, avec $EF = {o}$ cm et D̂ = {t}°. Calcule la longueur $DE$, arrondie au dixième de centimètre.",
+      "figure": {
+        "alt": "Triangle DEF rectangle en E ; le côté EF et l'angle D̂ sont indiqués ; DE est inconnue.",
+        "w": 380,
+        "h": 300,
+        "frame": { "x": [-1, "{o/tan(t)+1.5}"], "y": [-1, "{o+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "maths" },
+          { "type": "point", "id": "D", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "E", "x": "{o/tan(t)}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "F", "x": "{o/tan(t)}", "y": "{o}", "pos": "ne" },
+          { "type": "angle", "vertex": "E", "from": "D", "to": "F", "right": true },
+          { "type": "angle", "vertex": "D", "from": "E", "to": "F", "label": "{t}°" },
+          { "type": "segment", "from": "E", "to": "F", "label": "{o} cm", "color": "orange" },
+          { "type": "segment", "from": "D", "to": "E", "label": "?", "color": "vert" }
+        ]
+      },
+      "answer": "arrondi(o/tan(t);1)",
+      "unit": "cm",
+      "tolerance": 0.05,
+      "round": 1,
+      "misconceptions": [
+        {
+          "answer": "arrondi(o*tan(t);1)",
+          "id": "mc:trigo-produit",
+          "error": "methode",
+          "feedback": "L’inconnue $DE$ est au **dénominateur** : tan D̂ = $EF/DE$. Pour l’isoler, on ne multiplie pas."
+        },
+        {
+          "answer": "arrondi(o/sin(t);1)",
+          "id": "mc:tan-hypotenuse",
+          "error": "notion",
+          "feedback": "Tu as calculé l’hypoténuse $DF$. $[DE]$ touche l’angle D̂ sans être en face de l’angle droit : c’est le côté adjacent."
+        },
+        {
+          "answer": "arrondi(o/tan(t*180/pi);1)",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ta calculatrice est en mode radians : passe-la en mode **degrés** et recommence."
+        }
+      ],
+      "hints": [
+        "Pour D̂ : $[EF]$ est le côté opposé (connu), $[DE]$ le côté adjacent (cherché).",
+        "Opposé et adjacent : tangente. tan D̂ = $EF/DE$, soit tan {t}° = ${o}/DE$.",
+        "L’inconnue est au dénominateur : $DE = {o} ÷ tan({t})$."
+      ],
+      "solution": "Pour l’angle D̂, $[EF]$ est le côté opposé et $[DE]$ le côté adjacent : tan D̂ = $EF/DE$, soit tan {t}° = ${o}/DE$. Donc $DE = {o} ÷ tan({t})$ ≈ {arrondi(o/tan(t);1)} cm.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(o/tan(t);1)} cm" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(o*tan(t);1)} cm" }, "expect": "mc:trigo-produit" },
+        { "response": { "value": "{arrondi(o/sin(t);1)} cm" }, "expect": "mc:tan-hypotenuse" }
+      ]
+    },
+    {
+      "id": "m3-trigo-angle",
+      "type": "numeric",
+      "skill": "m3.trigo.angle",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:angle-complementaire", "mc:mode-radians"],
+      "expectedSeconds": 180,
+      "params": {
+        "t": { "int": [1, 7] },
+        "a": { "expr": "(t=1)*5 + (t=2)*8 + (t=3)*6 + (t=4)*4 + (t=5)*10 + (t=6)*12 + (t=7)*3" },
+        "o": { "expr": "(t=1)*3 + (t=2)*5 + (t=3)*7 + (t=4)*9 + (t=5)*4 + (t=6)*5 + (t=7)*8" },
+        "g": { "expr": "(t=1)*30.9638 + (t=2)*32.0054 + (t=3)*49.3987 + (t=4)*66.0375 + (t=5)*21.8014 + (t=6)*22.6199 + (t=7)*69.444" },
+        "c": { "expr": "(t=1)*59.0362 + (t=2)*57.9946 + (t=3)*40.6013 + (t=4)*23.9625 + (t=5)*68.1986 + (t=6)*67.3801 + (t=7)*20.556" },
+        "r": { "expr": "(t=1)*0.5404 + (t=2)*0.5586 + (t=3)*0.8622 + (t=4)*1.1526 + (t=5)*0.3805 + (t=6)*0.3948 + (t=7)*1.212" }
+      },
+      "prompt": "Le triangle $GHI$ est rectangle en $H$, avec $GH = {a}$ cm et $HI = {o}$ cm. Calcule la mesure de l’angle Ĝ, arrondie au degré. (Écris seulement le nombre, sans le symbole °.)",
+      "figure": {
+        "alt": "Triangle GHI rectangle en H ; les longueurs GH et HI sont indiquées ; l'angle Ĝ est inconnu.",
+        "w": 360,
+        "h": 300,
+        "frame": { "x": [-1, "{a+1.5}"], "y": [-1, "{o+1}"] },
+        "items": [
+          { "type": "polygon", "points": ["G", "H", "I"], "fill": "maths" },
+          { "type": "point", "id": "G", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "H", "x": "{a}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "I", "x": "{a}", "y": "{o}", "pos": "ne" },
+          { "type": "angle", "vertex": "H", "from": "G", "to": "I", "right": true },
+          { "type": "angle", "vertex": "G", "from": "H", "to": "I", "label": "?" },
+          { "type": "segment", "from": "G", "to": "H", "label": "{a} cm", "color": "vert" },
+          { "type": "segment", "from": "H", "to": "I", "label": "{o} cm", "color": "orange" }
+        ]
+      },
+      "answer": "g",
+      "tolerance": 0.5,
+      "round": 0,
+      "misconceptions": [
+        {
+          "answer": "c",
+          "id": "mc:angle-complementaire",
+          "error": "notion",
+          "feedback": "Tu as obtenu la mesure de l’**autre** angle aigu, Î. Pour Ĝ, le côté opposé est $[HI]$ et le côté adjacent $[GH]$."
+        },
+        {
+          "answer": "r",
+          "id": "mc:mode-radians",
+          "error": "methode",
+          "feedback": "Ce résultat est en radians, pas en degrés : passe ta calculatrice en mode **degrés**, puis recommence."
+        }
+      ],
+      "hints": [
+        "Pour Ĝ : $[HI]$ est opposé, $[GH]$ est adjacent. Pas d’hypoténuse connue : c’est la tangente.",
+        "tan Ĝ = $HI/GH$ = ${o}/{a}$.",
+        "Touche Arctan (tan⁻¹) en mode degrés : Ĝ = arctan({o} ÷ {a})."
+      ],
+      "solution": "Pour l’angle Ĝ, $[HI]$ est le côté opposé et $[GH]$ le côté adjacent : tan Ĝ = $HI/GH$ = ${o}/{a}$. À la calculatrice : Ĝ = arctan({o} ÷ {a}) ≈ {arrondi(g;1)}°, soit {arrondi(g;0)}° au degré près.",
+      "selfTest": [
+        { "response": { "value": "{arrondi(g;0)}" }, "expect": "correct" },
+        { "response": { "value": "{arrondi(c;0)}" }, "expect": "mc:angle-complementaire" },
+        { "response": { "value": "{arrondi(r;2)}" }, "expect": "mc:mode-radians" }
+      ]
+    },
+    {
+      "id": "m3-trigo-verif",
+      "type": "qcm",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "concrete",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : pour calculer la hauteur $h$ d’un arbre, Zoé connaît la distance $d$ entre elle et le pied de l’arbre, et l’angle α sous lequel elle voit le sommet (son œil est au ras du sol). Quel outil lui faut-il ?",
+      "figure": {
+        "alt": "Zoé est à la distance d du pied d'un arbre de hauteur h ; sa visée vers le sommet fait un angle α avec le sol.",
+        "w": 340,
+        "h": 255,
+        "frame": { "x": [-2, 24], "y": [-2.5, 16] },
+        "items": [
+          { "type": "point", "id": "Z", "x": 0, "y": 0, "pos": "sw", "label": "Zoé" },
+          { "type": "point", "id": "P", "x": 20, "y": 0, "pos": "se", "label": "" },
+          { "type": "point", "id": "T", "x": 20, "y": 14, "pos": "ne", "label": "" },
+          { "type": "segment", "from": "Z", "to": "P", "label": "d" },
+          { "type": "segment", "from": "P", "to": "T", "color": "vert", "width": 4, "label": "h" },
+          { "type": "segment", "from": "Z", "to": "T", "dashed": true, "color": "orange" },
+          { "type": "angle", "vertex": "Z", "from": "P", "to": "T", "label": "α", "r": 34 },
+          { "type": "angle", "vertex": "P", "from": "T", "to": "Z", "right": true }
+        ]
+      },
+      "choices": [
+        {
+          "text": "La tangente de l’angle α",
+          "correct": true,
+          "feedback": "Oui : tan α = $h/d$ relie le côté opposé (la hauteur) et le côté adjacent (la distance), donc $h = d × tan(α)$."
+        },
+        {
+          "text": "Le sinus de l’angle α",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:sin-tan",
+          "feedback": "Le sinus fait intervenir l’hypoténuse, ici la ligne de visée, que Zoé ne connaît pas."
+        },
+        {
+          "text": "Le cosinus de l’angle α",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:tan-cos",
+          "feedback": "Le cosinus relie le côté adjacent et l’hypoténuse : la hauteur cherchée n’y apparaît pas."
+        },
+        {
+          "text": "Le théorème de Pythagore",
+          "correct": false,
+          "error": "methode",
+          "misconception": "mc:pythagore-angle",
+          "feedback": "Pythagore demande deux côtés connus ; ici, Zoé ne connaît qu’un côté et un angle."
+        }
+      ],
+      "hints": [
+        "Nomme les deux côtés en jeu par rapport à l’angle α : celui qu’on connaît et celui qu’on cherche.",
+        "La distance $d$ touche l’angle α sans être l’hypoténuse ; la hauteur $h$ ne touche pas l’angle."
+      ],
+      "solution": "La distance $d$ est le côté adjacent à α et la hauteur $h$ le côté opposé : tan α = $h/d$, donc $h = d × tan(α)$.",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:sin-tan" }]
+    },
+    {
+      "id": "m3-trigo-explique",
+      "type": "open",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m4.raisonner.preuve"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 25,
+      "prompt": "Inès doit calculer l’hypoténuse $AC$ du triangle $ABC$ rectangle en $B$, avec $BC = 6$ cm et Â = 35°. Elle écrit : « $AC = 6 × sin(35)$ ≈ 3,4 cm ». Explique-lui pourquoi son résultat est impossible, quelle est son erreur, puis calcule la bonne valeur.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B, avec BC = 6 cm et l'angle Â = 35° ; l'hypoténuse AC est inconnue.",
+        "w": 380,
+        "h": 286,
+        "frame": { "x": [-0.9, 9.8], "y": [-0.9, 6.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 8.57, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 8.57, "y": 6, "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "35°" },
+          { "type": "segment", "from": "B", "to": "C", "label": "6 cm", "color": "orange" },
+          { "type": "segment", "from": "A", "to": "C", "label": "?", "color": "rouge" }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J’explique que l’hypoténuse est le plus long côté : 3,4 cm < 6 cm est impossible",
+          "keywords": [["plus long", "plus grand", "plus petit que 6", "inferieur a 6", "impossible", "moins de 6"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je repère l’erreur : $AC$ est au dénominateur de sin Â = $BC/AC$, il fallait diviser",
+          "keywords": [["diviser", "divise", "division", "denominateur", "6 ÷", "6/sin"]]
+        },
+        { "id": "c3", "label": "Je donne la bonne valeur : $AC = 6 ÷ sin(35)$ ≈ 10,5 cm", "keywords": [["10,5", "10,46", "10.5", "10.46"]] }
+      ],
+      "models": [
+        "C’est impossible : l’hypoténuse [AC] est le plus long côté du triangle, elle ne peut pas mesurer moins que BC = 6 cm. Inès a multiplié alors que AC est au dénominateur : sin Â = BC/AC, donc sin(35) = 6/AC et AC = 6 ÷ sin(35) ≈ 10,5 cm."
+      ],
+      "hints": [
+        "Compare 3,4 cm avec la longueur de $[BC]$.",
+        "Écris sin Â avec les noms des côtés : où se trouve $AC$ ?",
+        "sin 35° = $6/AC$ : produit en croix."
+      ],
+      "solution": "L’hypoténuse est le plus long côté, donc $AC > 6$ cm : 3,4 cm est impossible. sin Â = $BC/AC$ : $AC$ est au dénominateur, il faut diviser. $AC = 6 ÷ sin(35)$ ≈ 10,5 cm.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "C'est impossible car l'hypoténuse est le plus long côté, et 3,4 est plus petit que 6. AC est au dénominateur dans sin A = BC/AC donc il fallait diviser : AC = 6 ÷ sin(35) ≈ 10,5 cm.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m3-trigo-arbre",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:sin-tan", "mc:oubli-hauteur-oeil"],
+      "expectedSeconds": 420,
+      "params": { "d": { "int": [12, 30] }, "t": { "int": [25, 55] } },
+      "constraints": ["t != 45"],
+      "prompt": "Pour mesurer un sapin, Zoé se place à {d} m de son tronc, sur un sol horizontal ; son œil $O$ est à 1,5 m du sol. Elle vise le sommet $S$ : sa visée fait un angle de {t}° avec l’horizontale $(OH)$, où $H$ est le point du tronc à la hauteur de son œil.",
+      "figure": {
+        "alt": "Zoé, œil en O à 1,5 m du sol, vise le sommet S d'un sapin ; H est le point du tronc à la hauteur de l'œil ; OH est indiquée et l'angle en O est marqué.",
+        "w": 340,
+        "h": 340,
+        "frame": { "x": [-3, "{d+3}"], "y": [-1.5, "{d*tan(t)+3.5}"] },
+        "items": [
+          { "type": "point", "id": "g1", "x": -2.5, "y": 0, "hidden": true },
+          { "type": "point", "id": "g2", "x": "{d+2.5}", "y": 0, "hidden": true },
+          { "type": "segment", "from": "g1", "to": "g2", "color": "gris" },
+          { "type": "point", "id": "Z", "x": 0, "y": 0, "pos": "s", "label": "" },
+          { "type": "segment", "from": "Z", "to": "O", "color": "gris", "width": 3, "label": "1,5 m" },
+          { "type": "point", "id": "P", "x": "{d}", "y": 0, "pos": "se", "label": "" },
+          { "type": "segment", "from": "P", "to": "S", "color": "vert", "width": 4 },
+          { "type": "point", "id": "O", "x": 0, "y": 1.5, "pos": "n" },
+          { "type": "point", "id": "H", "x": "{d}", "y": 1.5, "pos": "e" },
+          { "type": "point", "id": "S", "x": "{d}", "y": "{1.5+d*tan(t)}", "pos": "ne" },
+          { "type": "segment", "from": "O", "to": "H", "dashed": true, "label": "{d} m" },
+          { "type": "segment", "from": "O", "to": "S", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "H", "to": "S", "label": "?" },
+          { "type": "angle", "vertex": "O", "from": "H", "to": "S", "label": "{t}°", "r": 30 },
+          { "type": "angle", "vertex": "H", "from": "O", "to": "S", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Calcule $HS$, la hauteur du sommet au-dessus de l’œil de Zoé (en m, au dixième).",
+          "answer": "arrondi(d*tan(t);1)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(d*sin(t);1)",
+              "id": "mc:sin-tan",
+              "error": "notion",
+              "feedback": "Le sinus utilise l’hypoténuse $[OS]$, que tu ne connais pas. Ici, on connaît le côté adjacent $[OH]$ et on cherche le côté opposé $[HS]$."
+            },
+            {
+              "answer": "arrondi(d/tan(t);1)",
+              "id": "mc:trigo-division",
+              "error": "methode",
+              "feedback": "L’inconnue $HS$ est au numérateur : tan {t}° = $HS/{d}$. On ne divise pas."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur du sapin ? (en m, au dixième)",
+          "answer": "arrondi(d*tan(t)+1.5;1)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(d*tan(t);1)",
+              "id": "mc:oubli-hauteur-oeil",
+              "error": "lecture",
+              "feedback": "Le triangle rectangle commence à la hauteur de l’œil : il manque le morceau du sapin situé sous la ligne $(OH)$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle distance du sapin Zoé devrait-elle se placer pour voir le sommet sous un angle de 45° ? (en m, au dixième)",
+          "answer": "arrondi(d*tan(t);1)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(d*tan(t)+1.5;1)",
+              "id": "mc:oubli-hauteur-oeil",
+              "error": "lecture",
+              "feedback": "Sous 45°, le côté opposé et le côté adjacent sont égaux (tan 45° = 1). Mais le côté opposé est $HS$, pas la hauteur totale du sapin."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans le triangle $OHS$ rectangle en $H$ : $[OH]$ est adjacent à l’angle de {t}°, $[HS]$ est opposé.",
+        "tan {t}° = $HS/{d}$, donc $HS = {d} × tan({t})$.",
+        "Hauteur du sapin = $HS$ + 1,5 m."
+      ],
+      "solution": "1) Dans le triangle $OHS$ rectangle en $H$ : tan {t}° = $HS/OH$, donc $HS = {d} × tan({t})$ ≈ {arrondi(d*tan(t);1)} m.\n2) Le sapin mesure $HS + 1,5$ ≈ {arrondi(d*tan(t)+1.5;1)} m.\n3) Sous 45°, tan 45° = 1, donc $OH = HS$ : Zoé doit être à environ {arrondi(d*tan(t);1)} m du tronc.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "{arrondi(d*tan(t);1)}" }, { "value": "{arrondi(d*tan(t)+1.5;1)}" }, { "value": "{arrondi(d*tan(t);1)}" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{arrondi(d*tan(t);1)}" }, { "value": "{arrondi(d*tan(t);1)}" }, { "value": "{arrondi(d*tan(t);1)}" }] },
+          "expect": "mc:oubli-hauteur-oeil"
+        },
+        {
+          "response": { "parts": [{ "value": "{arrondi(d*sin(t);1)}" }, { "value": "{arrondi(d*tan(t)+1.5;1)}" }, { "value": "{arrondi(d*tan(t);1)}" }] },
+          "expect": "mc:sin-tan"
+        }
+      ]
+    },
+    {
+      "id": "m3-trigo-avion",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m3.trigo.angle"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:sin-cos", "mc:trigo-produit", "mc:angle-complementaire"],
+      "expectedSeconds": 540,
+      "prompt": "Juste après le décollage, un avion monte en ligne droite en faisant un angle de 12° avec le sol, supposé horizontal.",
+      "figure": {
+        "alt": "Un avion part du point O et monte en ligne droite jusqu'au point A ; OA = 5 km et l'angle avec le sol mesure 12° ; H est au sol, à la verticale de A.",
+        "w": 440,
+        "h": 183,
+        "frame": { "x": [-0.4, 5.6], "y": [-0.6, 1.5] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "H", "x": 4.89, "y": 0, "pos": "se" },
+          { "type": "point", "id": "A", "x": 4.89, "y": 1.04, "pos": "ne", "style": "rond", "color": "rouge" },
+          { "type": "segment", "from": "O", "to": "A", "color": "orange", "label": "5 km" },
+          { "type": "segment", "from": "O", "to": "H", "label": "?" },
+          { "type": "segment", "from": "H", "to": "A", "dashed": true, "label": "?" },
+          { "type": "angle", "vertex": "O", "from": "H", "to": "A", "label": "12°", "r": 60 },
+          { "type": "angle", "vertex": "H", "from": "O", "to": "A", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle altitude $AH$ a-t-il atteinte après avoir parcouru 5 km le long de sa trajectoire ? (en m, au mètre près)",
+          "answer": "5000*sin(12)",
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "5000*cos(12)",
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Tu as calculé la distance horizontale (le côté adjacent). L’altitude est le côté **opposé** à l’angle de 12°."
+            },
+            {
+              "answer": "5000*tan(12)",
+              "id": "mc:sin-tan",
+              "error": "notion",
+              "feedback": "Les 5 km parcourus forment l’hypoténuse : la tangente ne l’utilise pas. Quel quotient relie le côté opposé et l’hypoténuse ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle distance horizontale $OH$ a-t-il alors parcourue au-dessus du sol ? (en m, au mètre près)",
+          "answer": "5000*cos(12)",
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": "5000*sin(12)",
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Ce résultat est l’altitude. La distance horizontale touche l’angle de 12° : c’est le côté adjacent."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "L’avion se met en palier à 3 000 m d’altitude. Quelle distance a-t-il parcourue en montée, le long de sa trajectoire ? (en km, au dixième)",
+          "answer": "3/sin(12)",
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": "arrondi(3*sin(12);1)",
+              "id": "mc:trigo-produit",
+              "error": "methode",
+              "feedback": "Ta distance est plus courte que l’altitude atteinte : impossible ! La trajectoire est au dénominateur : sin 12° = 3 ÷ $L$."
+            },
+            {
+              "answer": "arrondi(3/tan(12);1)",
+              "id": "mc:sin-tan",
+              "error": "notion",
+              "feedback": "Tu as calculé la distance horizontale. La trajectoire est l’hypoténuse : le quotient à utiliser relie l’opposé et l’hypoténuse."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un deuxième avion atteint 3 000 m d’altitude après 10 km de distance horizontale. Quel angle sa trajectoire fait-elle avec le sol ? (au degré près, nombre seul)",
+          "answer": 16.6992,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 73.3008,
+              "id": "mc:angle-complementaire",
+              "error": "notion",
+              "feedback": "Tu as trouvé l’angle entre la trajectoire et la verticale. L’angle avec le sol a pour tangente $3/10$."
+            },
+            {
+              "answer": 0.2915,
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Résultat en radians : passe la calculatrice en mode **degrés**."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "La trajectoire est l’hypoténuse du triangle $OHA$, rectangle en $H$.",
+        "Altitude : sin 12° = $AH/5000$. Distance au sol : cos 12° = $OH/5000$.",
+        "Deuxième avion : tan α = $3/10$, puis touche Arctan."
+      ],
+      "solution": "1) sin 12° = $AH/5000$, donc $AH = 5000 × sin(12)$ ≈ 1 040 m.\n2) cos 12° = $OH/5000$, donc $OH = 5000 × cos(12)$ ≈ 4 891 m.\n3) sin 12° = $3/L$, donc $L = 3 ÷ sin(12)$ ≈ 14,4 km.\n4) tan α = $3/10$ = 0,3, donc α = arctan(0,3) ≈ 17°.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "1040" }, { "value": "4891" }, { "value": "14,4" }, { "value": "17" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "4891" }, { "value": "1040" }, { "value": "14,4" }, { "value": "17" }] }, "expect": "mc:sin-cos" }
+      ]
+    },
+    {
+      "id": "m3-trigo-rampe",
+      "type": "composite",
+      "skill": "m3.trigo.angle",
+      "skills": ["m3.trigo.longueur"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:pourcent-degre", "mc:trigo-produit", "mc:comparaison"],
+      "expectedSeconds": 540,
+      "prompt": "L’entrée de la médiathèque est à 40 cm au-dessus du trottoir. Pour les personnes en fauteuil roulant, on construit une rampe. La règle générale pour les bâtiments recevant du public : une **pente d’au plus 5 %**, c’est-à-dire au plus 5 cm de montée pour 100 cm parcourus à l’horizontale. La pente est donc la tangente de l’angle α entre la rampe et le sol.",
+      "figure": {
+        "alt": "Une rampe [OE] monte du trottoir jusqu'à l'entrée E, située 40 cm plus haut ; H est au pied de l'entrée ; l'angle α est entre la rampe et le sol.",
+        "w": 420,
+        "h": 207,
+        "frame": { "x": [-0.6, 10], "y": [-0.8, 3.8] },
+        "caption": "La pente est très exagérée sur le dessin.",
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "H", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "E", "x": 8, "y": 1.6, "pos": "ne" },
+          { "type": "rect", "x": 8, "y": 0, "w": 1.4, "h": 3.4, "fill": "gris", "color": "gris" },
+          { "type": "segment", "from": "O", "to": "E", "color": "orange", "width": 3, "label": "rampe" },
+          { "type": "segment", "from": "O", "to": "H", "label": "?" },
+          { "type": "segment", "from": "H", "to": "E", "label": "40 cm", "color": "rouge" },
+          { "type": "angle", "vertex": "O", "from": "H", "to": "E", "label": "α", "r": 46 },
+          { "type": "angle", "vertex": "H", "from": "O", "to": "E", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est l’angle maximal α entre la rampe et le sol ? (en degrés, au dixième ; tan α = 0,05)",
+          "answer": 2.8624,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 5,
+              "id": "mc:pourcent-degre",
+              "error": "notion",
+              "feedback": "Une pente de 5 % n’est pas un angle de 5° : c’est le quotient montée ÷ distance horizontale, c’est-à-dire la tangente de l’angle."
+            },
+            {
+              "answer": 0.05,
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Résultat en radians : passe la calculatrice en mode **degrés**."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle longueur horizontale $OH$ faut-il au minimum pour monter les 40 cm ? (en m)",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 0.02,
+              "id": "mc:trigo-produit",
+              "error": "methode",
+              "feedback": "Avec 2 cm de long, la rampe serait un mur ! La longueur horizontale est au dénominateur : 0,05 = 0,40 ÷ $OH$."
+            },
+            {
+              "answer": 2,
+              "id": "mc:pourcent-decimal",
+              "error": "calcul",
+              "feedback": "5 % s’écrit 0,05 (et non 5) dans un calcul : 0,05 = 0,40 ÷ $OH$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un premier projet prévoyait une rampe inclinée à 4° sur le sol. Quelle serait sa pente, en pourcentage (au dixième) ?",
+          "answer": 6.9927,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 4,
+              "id": "mc:pourcent-degre",
+              "error": "notion",
+              "feedback": "Un angle de 4° ne fait pas une pente de 4 % : la pente, c’est tan(4°) écrite en pourcentage."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Ce premier projet respecte-t-il la règle des 5 % ? (oui ou non)",
+          "accept": [
+            "non",
+            "non, il ne la respecte pas",
+            "non il ne respecte pas la règle",
+            "non, la pente est trop forte",
+            "non, pente trop forte",
+            "non, 7 % c’est plus que 5 %",
+            "non, 7 % c'est plus que 5 %",
+            "non car 7 > 5",
+            "non, il ne respecte pas la règle",
+            "il ne respecte pas la règle",
+            "non, trop raide",
+            "non, il est trop raide"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:comparaison",
+              "error": "raisonnement",
+              "feedback": "Compare la pente trouvée à la question précédente avec la limite de 5 %."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pente = tan α = montée ÷ longueur horizontale.",
+        "α = arctan(0,05) ; et 0,05 = 0,40 ÷ $OH$.",
+        "Projet à 4° : la pente est tan(4°), écrite en pourcentage."
+      ],
+      "solution": "1) tan α = 0,05, donc α = arctan(0,05) ≈ 2,9°.\n2) 0,05 = 0,40 ÷ $OH$, donc $OH = 0,40 ÷ 0,05 = 8$ m.\n3) tan 4° ≈ 0,0699, soit une pente d’environ 7,0 %.\n4) 7 % > 5 % : ce projet ne respecte pas la règle, la rampe serait trop raide.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2,9" }, { "value": "8" }, { "value": "7" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "5" }, { "value": "8" }, { "value": "7" }, { "value": "non" }] }, "expect": "mc:pourcent-degre" },
+        { "response": { "parts": [{ "value": "2,9" }, { "value": "0,02" }, { "value": "7" }, { "value": "non" }] }, "expect": "mc:trigo-produit" }
+      ]
+    },
+    {
+      "id": "m3-trigo-remed",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:sin-cos", "mc:tan-inverse", "mc:adjacent-oppose"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : **SOH CAH TOA** — Sinus = Opposé ÷ Hypoténuse, Cosinus = Adjacent ÷ Hypoténuse, Tangente = Opposé ÷ Adjacent. Le triangle $MNP$ est rectangle en $N$, avec $MN = 8$, $NP = 6$ et $MP = 10$ ; on s’intéresse à l’angle M̂.",
+      "figure": {
+        "alt": "Triangle MNP rectangle en N, avec MN = 8, NP = 6 et MP = 10 ; l'angle M̂ est marqué.",
+        "w": 360,
+        "h": 287,
+        "frame": { "x": [-0.8, 9.2], "y": [-0.9, 6.8] },
+        "items": [
+          { "type": "polygon", "points": ["M", "N", "P"], "fill": "maths" },
+          { "type": "point", "id": "M", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "N", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "P", "x": 8, "y": 6, "pos": "ne" },
+          { "type": "angle", "vertex": "N", "from": "M", "to": "P", "right": true },
+          { "type": "angle", "vertex": "M", "from": "N", "to": "P" },
+          { "type": "segment", "from": "M", "to": "N", "label": "8" },
+          { "type": "segment", "from": "N", "to": "P", "label": "6" },
+          { "type": "segment", "from": "M", "to": "P", "label": "10" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quel est le côté opposé à l’angle M̂ ? Écris-le avec des crochets, par exemple [AB].",
+          "accept": ["[NP]", "[PN]", "NP", "PN"],
+          "misconceptions": [
+            {
+              "answer": "[MN]",
+              "id": "mc:adjacent-oppose",
+              "error": "notion",
+              "feedback": "$[MN]$ touche l’angle M̂ : c’est son côté adjacent. Le côté opposé ne touche pas l’angle."
+            },
+            {
+              "answer": "[MP]",
+              "id": "mc:adjacent-hypotenuse",
+              "error": "notion",
+              "feedback": "$[MP]$ est en face de l’angle droit : c’est l’hypoténuse."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "sin M̂ = ? (nombre décimal)",
+          "answer": 0.6,
+          "misconceptions": [
+            {
+              "answer": 0.8,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Tu as utilisé le côté adjacent : c’est le cosinus. Le sinus utilise le côté **opposé**."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "tan M̂ = ? (nombre décimal)",
+          "answer": 0.75,
+          "tolerance": 0.01,
+          "misconceptions": [
+            {
+              "answer": "arrondi(8/6;3)",
+              "id": "mc:tan-inverse",
+              "error": "notion",
+              "feedback": "La tangente, c’est opposé ÷ adjacent : le côté opposé en haut."
+            }
+          ]
+        }
+      ],
+      "hints": ["L’angle droit est en $N$ : l’hypoténuse est $[MP]$.", "Pour M̂ : adjacent $[MN]$, opposé $[NP]$.", "sin M̂ = $6/10$ ; tan M̂ = $6/8$."],
+      "solution": "Pour M̂ : hypoténuse $[MP]$, côté adjacent $[MN]$, côté opposé $[NP]$. sin M̂ = $6/10$ = 0,6 ; tan M̂ = $6/8$ = 0,75.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "[NP]" }, { "value": "0,6" }, { "value": "0,75" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "[NP]" }, { "value": "0,8" }, { "value": "0,75" }] }, "expect": "mc:sin-cos" }
+      ]
+    },
+    {
+      "id": "m3-trigo-aire",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:sin-cos", "mc:aire-triangle-moitie"],
+      "expectedSeconds": 420,
+      "prompt": "Dans le triangle $ABC$, qui n’est pas rectangle, $AB = 8$ cm, $AC = 6$ cm et Â = 40°. On trace la hauteur $[CH]$ issue de $C$ ($H$ est sur $[AB]$).",
+      "figure": {
+        "alt": "Triangle ABC avec AB = 8 cm, AC = 6 cm et l'angle Â = 40° ; [CH] est la hauteur issue de C.",
+        "w": 400,
+        "h": 252,
+        "frame": { "x": [-0.8, 8.8], "y": [-1, 4.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 8, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 4.6, "y": 3.86, "pos": "n" },
+          { "type": "point", "id": "H", "x": 4.6, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "C", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "B", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "40°" },
+          { "type": "segment", "from": "A", "to": "C", "label": "6 cm" },
+          { "type": "text", "x": 6.6, "y": -0.55, "text": "AB = 8 cm", "size": "s" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Dans le triangle $ACH$, rectangle en $H$, calcule la hauteur $CH$ (en cm, au centième).",
+          "answer": 3.8567,
+          "tolerance": 0.005,
+          "round": 2,
+          "misconceptions": [
+            {
+              "answer": 4.5963,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Tu as calculé $AH$, le côté adjacent à Â. $[CH]$ est le côté opposé à l’angle Â dans le triangle $ACH$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule l’aire du triangle $ABC$ (en cm², au dixième).",
+          "answer": 15.4269,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 30.8538,
+              "id": "mc:aire-triangle-moitie",
+              "error": "notion",
+              "feedback": "L’aire d’un triangle, c’est base × hauteur, **divisé par 2**."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec les mêmes longueurs $AB = 8$ cm et $AC = 6$ cm, pour quelle mesure de l’angle Â l’aire serait-elle la plus grande possible ? (en degrés)",
+          "answer": 90
+        }
+      ],
+      "hints": [
+        "Dans $ACH$ rectangle en $H$ : sin Â = $CH/AC$.",
+        "Aire = $AB × CH ÷ 2$.",
+        "La hauteur $CH = 6 × sin(Â)$ est la plus grande quand sin Â est le plus grand possible."
+      ],
+      "solution": "1) sin 40° = $CH/6$, donc $CH = 6 × sin(40)$ ≈ 3,86 cm.\n2) Aire = $8 × CH ÷ 2$ ≈ 15,4 cm².\n3) $CH = 6 × sin(Â)$ est maximale quand $[AC]$ est perpendiculaire à $[AB]$, c’est-à-dire pour Â = 90° : l’aire vaut alors 24 cm².",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3,86" }, { "value": "15,4" }, { "value": "90" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "4,6" }, { "value": "15,4" }, { "value": "90" }] }, "expect": "mc:sin-cos" }
+      ]
+    },
+    {
+      "id": "m3-trigo-relations",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m4.pythagore.calcul", "m4.raisonner.preuve"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:difference-cotes", "mc:sin-cos", "mc:tan-inverse"],
+      "expectedSeconds": 540,
+      "prompt": "Le triangle $ABC$ est rectangle en $B$ et son hypoténuse mesure $AC = 1$ (dans une unité de longueur au choix). On sait que cos Â = 0,6.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en B, d'hypoténuse AC = 1 ; l'angle Â est marqué ; AB et BC sont inconnues.",
+        "w": 280,
+        "h": 320,
+        "frame": { "x": [-0.8, 7.5], "y": [-0.9, 8.8] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 6, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 6, "y": 8, "pos": "ne" },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "C", "right": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C" },
+          { "type": "segment", "from": "A", "to": "C", "label": "1", "color": "rouge" },
+          { "type": "segment", "from": "A", "to": "B", "label": "?" },
+          { "type": "segment", "from": "B", "to": "C", "label": "?" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien mesure $AB$ ?", "answer": 0.6 },
+        {
+          "type": "numeric",
+          "prompt": "Avec le théorème de Pythagore, calcule $BC$.",
+          "answer": 0.8,
+          "misconceptions": [
+            {
+              "answer": 0.4,
+              "id": "mc:difference-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "On ne soustrait pas les longueurs : $BC² = AC² − AB²$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Déduis-en sin Â.",
+          "answer": 0.8,
+          "misconceptions": [
+            {
+              "answer": 0.6,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "0,6, c’est le cosinus. Le sinus utilise le côté opposé à Â, divisé par l’hypoténuse."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule tan Â (arrondi au centième).",
+          "answer": "arrondi(0.8/0.6;2)",
+          "tolerance": 0.01,
+          "round": 2,
+          "misconceptions": [{ "answer": 0.75, "id": "mc:tan-inverse", "error": "notion", "feedback": "La tangente, c’est opposé ÷ adjacent : $BC ÷ AB$." }]
+        },
+        {
+          "type": "open",
+          "prompt": "Démontre que, dans tout triangle rectangle, tan Â = sin Â ÷ cos Â.",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J’écris sin Â ÷ cos Â avec les longueurs : $(BC/AC) ÷ (AB/AC)$",
+              "keywords": [["bc/ac", "ab/ac", "oppose", "adjacent"]]
+            },
+            { "id": "c2", "label": "Je simplifie par l’hypoténuse $AC$", "keywords": [["simplifi", "hypotenuse", "ac"]] },
+            { "id": "c3", "label": "J’obtiens $BC/AB$, c’est-à-dire tan Â", "keywords": [["bc/ab", "tan"]] }
+          ]
+        }
+      ],
+      "hints": ["cos Â = $AB/AC$ = $AB/1$.", "$BC² = 1 − 0,6²$.", "Diviser par une fraction, c’est multiplier par son inverse : $(BC/AC) × (AC/AB)$."],
+      "solution": "$AB = 0,6$ ; $BC² = 1 − 0,36 = 0,64$, donc $BC = 0,8$ ; sin Â = 0,8 ; tan Â = $0,8/0,6$ ≈ 1,33 = sin Â ÷ cos Â. En général : sin Â ÷ cos Â = $(BC/AC) × (AC/AB)$ = $BC/AB$ = tan Â.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "0,6" },
+              { "value": "0,8" },
+              { "value": "0,8" },
+              { "value": "1,33" },
+              {
+                "text": "sin A / cos A = (BC/AC) / (AB/AC). On simplifie par AC, l’hypoténuse, et il reste BC/AB, qui est tan A.",
+                "selfCheck": { "c1": true, "c2": true, "c3": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "0,6" },
+              { "value": "0,4" },
+              { "value": "0,8" },
+              { "value": "1,33" },
+              { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false, "c3": false } }
+            ]
+          },
+          "expect": "mc:difference-cotes"
+        }
+      ]
+    },
+    {
+      "id": "m3-trigo-brevet",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m3.trigo.angle", "m4.grandeurs.composees"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:sin-cos", "mc:angle-complementaire", "mc:oubli-conversion-duree"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Le schéma (qui n’est pas à l’échelle) représente une station de ski. Le téléski part du point $D$ et arrive au sommet $A$ ; le point $H$ est à la verticale de $A$, à l’altitude de $D$. Le câble mesure $DA = 1 200$ m et l’angle D̂ du triangle $DHA$ mesure 20°. Une piste rouge redescend en ligne droite de $A$ jusqu’au point $B$, à l’altitude de $D$, avec $HB = 800$ m.",
+      "figure": {
+        "alt": "Le triangle DHA rectangle en H, avec DA = 1 200 m et l'angle D̂ = 20°, et le triangle AHB rectangle en H, avec HB = 800 m ; l'angle B̂ est inconnu.",
+        "w": 460,
+        "h": 178,
+        "frame": { "x": [-0.12, 2.05], "y": [-0.15, 0.55] },
+        "items": [
+          { "type": "polygon", "points": ["D", "H", "A"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "H", "B"], "fill": "orange" },
+          { "type": "point", "id": "D", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "H", "x": 1.13, "y": 0, "pos": "s" },
+          { "type": "point", "id": "A", "x": 1.13, "y": 0.41, "pos": "n" },
+          { "type": "point", "id": "B", "x": 1.93, "y": 0, "pos": "se" },
+          { "type": "segment", "from": "D", "to": "A", "label": "1 200 m", "width": 3 },
+          { "type": "segment", "from": "H", "to": "B", "label": "800 m" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "H", "from": "B", "to": "A", "right": true },
+          { "type": "angle", "vertex": "D", "from": "H", "to": "A", "label": "20°", "r": 50 },
+          { "type": "angle", "vertex": "B", "from": "A", "to": "H", "label": "?", "r": 34 }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Calcule le dénivelé $AH$ (au mètre près).",
+          "answer": 410.4242,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 1127.6311,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Tu as calculé le côté adjacent à l’angle de 20°. Le dénivelé $[AH]$ est le côté opposé."
+            },
+            { "answer": 436.7643, "id": "mc:sin-tan", "error": "notion", "feedback": "Le câble est l’hypoténuse : la tangente ne l’utilise pas." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Calcule la distance horizontale $DH$ (au mètre près).",
+          "answer": 1127.6311,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 410.4242,
+              "id": "mc:sin-cos",
+              "error": "notion",
+              "feedback": "Ce résultat est le dénivelé. $[DH]$ touche l’angle de 20° : c’est le côté adjacent."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Le téléski tire les skieurs à la vitesse de 2,5 m/s. Combien de minutes dure la montée ?",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 480,
+              "id": "mc:oubli-conversion-duree",
+              "error": "unite",
+              "feedback": "Cette durée est en secondes : la question demande des minutes."
+            },
+            { "answer": 3000, "id": "mc:vitesse-produit", "error": "notion", "feedback": "Durée = distance ÷ vitesse." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Calcule la mesure de l’angle B̂ du triangle $AHB$ (au degré près, nombre seul).",
+          "answer": 27.1592,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 62.8408,
+              "id": "mc:angle-complementaire",
+              "error": "notion",
+              "feedback": "Tu as trouvé l’angle en $A$. Pour l’angle B̂ : le côté opposé est $[AH]$ et le côté adjacent $[HB]$."
+            },
+            {
+              "answer": 0.474,
+              "id": "mc:mode-radians",
+              "error": "methode",
+              "feedback": "Résultat en radians : passe la calculatrice en mode **degrés**."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "5. La pente moyenne d’une piste, c’est le dénivelé divisé par la distance horizontale. Calcule celle de la piste rouge, en pourcentage (au pourcent près).",
+          "answer": 51.303,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 27.1592,
+              "id": "mc:pourcent-degre",
+              "error": "notion",
+              "feedback": "La pente en pourcentage n’est pas la mesure de l’angle : c’est le quotient dénivelé ÷ distance horizontale, multiplié par 100."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans $DHA$ rectangle en $H$ : sin 20° = $AH/1200$ et cos 20° = $DH/1200$.",
+        "Durée = distance ÷ vitesse, puis 60 s = 1 min.",
+        "Dans $AHB$ : tan B̂ = $AH/HB$ (garde la valeur exacte de $AH$)."
+      ],
+      "solution": "1) $AH = 1200 × sin(20)$ ≈ 410 m.\n2) $DH = 1200 × cos(20)$ ≈ 1 128 m.\n3) $1200 ÷ 2,5 = 480$ s, soit 8 min.\n4) tan B̂ = $AH/HB$ ≈ 410,4 ÷ 800 ≈ 0,513, donc B̂ ≈ 27°.\n5) Pente ≈ 410,4 ÷ 800 ≈ 0,513, soit environ 51 %.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "410" }, { "value": "1128" }, { "value": "8" }, { "value": "27" }, { "value": "51" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "1128" }, { "value": "1128" }, { "value": "8" }, { "value": "27" }, { "value": "51" }] },
+          "expect": "mc:sin-cos"
+        },
+        {
+          "response": { "parts": [{ "value": "410" }, { "value": "1128" }, { "value": "480" }, { "value": "27" }, { "value": "51" }] },
+          "expect": "mc:oubli-conversion-duree"
+        }
+      ]
+    },
+    {
+      "id": "m3-trigo-deux-visees",
+      "type": "composite",
+      "skill": "m3.trigo.longueur",
+      "skills": ["m4.equations.resoudre"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:distance-hauteur", "mc:trigo-produit"],
+      "expectedSeconds": 720,
+      "prompt": "Depuis un bateau en $P$, Sami voit le sommet $S$ d’une falaise verticale sous un angle de 30° avec l’horizontale. Le bateau avance de 50 m en ligne droite vers la falaise, jusqu’en $Q$ : l’angle devient 45°. $H$ est le pied de la falaise ; on note $h = HS$ la hauteur de la falaise et $x = QH$.",
+      "figure": {
+        "alt": "Un bateau en P puis en Q, 50 m plus près d'une falaise [HS] ; les visées vers le sommet S font 30° depuis P et 45° depuis Q.",
+        "w": 406,
+        "h": 280,
+        "frame": { "x": [-8, 130], "y": [-12, 78] },
+        "items": [
+          { "type": "polygon", "points": ["H", "S", "P"], "fill": "maths" },
+          { "type": "point", "id": "P", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "Q", "x": 50, "y": 0, "pos": "s" },
+          { "type": "point", "id": "H", "x": 118.3, "y": 0, "pos": "se" },
+          { "type": "point", "id": "S", "x": 118.3, "y": 68.3, "pos": "ne" },
+          { "type": "segment", "from": "H", "to": "S", "width": 4, "color": "gris" },
+          { "type": "segment", "from": "P", "to": "S", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "Q", "to": "S", "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "P", "to": "Q", "label": "50 m" },
+          { "type": "angle", "vertex": "P", "from": "H", "to": "S", "label": "30°", "r": 46 },
+          { "type": "angle", "vertex": "Q", "from": "H", "to": "S", "label": "45°", "r": 30 },
+          { "type": "angle", "vertex": "H", "from": "P", "to": "S", "right": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Dans le triangle $QHS$ rectangle en $H$, tan 45° = $h/x$. Que vaut tan 45° ? (Que peut-on en déduire pour $h$ et $x$ ?)",
+          "answer": 1
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans le triangle $PHS$, tan 30° = $h/(x + 50)$. Comme $h = x$, on obtient $x = (x + 50) × tan(30)$. Résous cette équation : combien vaut $x$ ? (en m, au dixième)",
+          "answer": 68.3013,
+          "tolerance": 0.05,
+          "round": 1
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur $h$ de la falaise ? (au mètre près)",
+          "answer": 68.3013,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 118.3013,
+              "id": "mc:distance-hauteur",
+              "error": "lecture",
+              "feedback": "Cette longueur est la distance $PH$. Avec l’angle de 45°, la hauteur est égale à la distance $QH$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la longueur de la visée $[PS]$ ? (au mètre près)",
+          "answer": 136.6025,
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            {
+              "answer": 34.1506,
+              "id": "mc:trigo-produit",
+              "error": "methode",
+              "feedback": "La visée $[PS]$ est l’hypoténuse : elle doit être plus longue que la hauteur. sin 30° = $h/PS$, l’inconnue est au dénominateur."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "tan 45° = 1, donc $h = x$.",
+        "$x = (x + 50) × tan(30)$ : développe, puis regroupe les termes en $x$ : $x − x × tan(30) = 50 × tan(30)$.",
+        "$x = 50 × tan(30) ÷ (1 − tan(30))$."
+      ],
+      "solution": "1) tan 45° = 1, donc $h = x$.\n2) $x = (x + 50) × tan(30)$ donne $x(1 − tan(30)) = 50 × tan(30)$, d’où $x$ ≈ 68,3 m.\n3) $h = x$ ≈ 68 m.\n4) sin 30° = $h/PS$, donc $PS = h ÷ sin(30)$ ≈ 137 m (le double de $h$, car sin 30° = 0,5).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "1" }, { "value": "68,3" }, { "value": "68" }, { "value": "137" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "1" }, { "value": "68,3" }, { "value": "118" }, { "value": "137" }] }, "expect": "mc:distance-hauteur" }
+      ]
+    }
+  ]
+}

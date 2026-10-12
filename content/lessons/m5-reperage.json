@@ -289,8 +289,8 @@
       },
       "answer": "-2 + 0.2*k",
       "misconceptions": [
-        { "answer": "-2 + 0.1*k", "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1 ! Entre −2 et −1, il y a 5 intervalles : une graduation vaut 1 ÷ 5 = 0,2. M est à {k} graduations de −2 : −2 + {k} × 0,2 = {-2+0.2*k}." },
-        { "answer": "-0.2*k", "id": "mc:origine-lecture", "error": "lecture", "feedback": "Tu as compté les graduations à partir de 0, mais M est à {k} graduations à DROITE de −2. Abscisse : −2 + {k} × 0,2 = {-2+0.2*k}." }
+        { "answer": "-2 + 0.1*k", "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1 ! Entre −2 et −1, il y a 5 intervalles : une graduation vaut 1 ÷ 5 = 0,2. Repars de −2 avec cette valeur." },
+        { "answer": "-0.2*k", "id": "mc:origine-lecture", "error": "lecture", "feedback": "Tu as compté les graduations à partir de 0, mais M est à {k} graduations à DROITE de −2 : pars de −2 et avance vers la droite." }
       ],
       "hints": ["Combien d'intervalles (petits espaces) y a-t-il entre −2 et −1 ?", "Une graduation vaut donc 1 ÷ 5 = 0,2.", "Pars de −2 et avance vers la droite d'autant de graduations qu'il faut pour atteindre M."],
       "solution": "Entre −2 et −1, l'unité est partagée en 5 : une graduation vaut 0,2. M est à {k} graduations à droite de −2 : $ −2 + {k} × 0,2 = {-2+0.2*k} $.",
@@ -447,12 +447,12 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Combien d'arêtes sont dessinées en pointillés ?", "answer": 3,
-          "misconceptions": [ { "answer": 12, "id": "mc:aretes-cachees", "error": "lecture", "feedback": "Le pavé a 12 arêtes en tout, mais seules celles qu'on ne voit pas sont en pointillés : les trois arêtes qui partent du sommet caché D." } ] },
+          "misconceptions": [ { "answer": 12, "id": "mc:aretes-cachees", "error": "lecture", "feedback": "Le pavé a 12 arêtes en tout, mais seules celles qu'on ne voit pas sont en pointillés : compte celles qui partent du sommet caché D." } ] },
         { "type": "numeric", "prompt": "Vraie longueur de l'arête [HG] (en cm) :", "answer": "L",
-          "misconceptions": [ { "answer": "p", "id": "mc:arete-parallele", "error": "lecture", "feedback": "[HG] est parallèle à [EF] et à [AB] : dans un pavé, ces arêtes ont la même longueur, {L} cm." } ] },
+          "misconceptions": [ { "answer": "p", "id": "mc:arete-parallele", "error": "lecture", "feedback": "[HG] n'est pas parallèle à [AD]. Cherche l'arête du devant à laquelle [HG] est parallèle : dans un pavé, ces arêtes ont la même longueur." } ] },
         { "type": "numeric", "prompt": "Vraie longueur de l'arête [CG] (en cm) :", "answer": "h" },
         { "type": "numeric", "prompt": "Sur le dessin, l'arête [BC] mesure 1,8 cm. Quelle est sa vraie longueur (en cm) ?", "answer": "p",
-          "misconceptions": [ { "answer": 1.8, "id": "mc:fuyante-mesuree", "error": "notion", "feedback": "[BC] est une arête fuyante : en perspective cavalière, elle est dessinée raccourcie. Sa vraie longueur est celle de [AD], {p} cm." } ] }
+          "misconceptions": [ { "answer": 1.8, "id": "mc:fuyante-mesuree", "error": "notion", "feedback": "[BC] est une arête fuyante : en perspective cavalière, elle est dessinée raccourcie. Cherche l'arête parallèle à [BC] dont la vraie longueur est donnée." } ] }
       ],
       "hints": ["Les arêtes cachées partent toutes d'un même sommet, celui qu'on ne voit pas.", "Dans un pavé droit, des arêtes parallèles ont la même longueur.", "Les arêtes fuyantes sont raccourcies sur le dessin : on ne mesure pas leur vraie longueur avec la règle."],
       "solution": "Trois arêtes cachées partent de D : [DA], [DC] et [DH]. [HG] est parallèle à [AB] : {L} cm. [CG] est parallèle à [AE] : {h} cm. [BC] est parallèle à [AD] : {p} cm dans la réalité, même si elle est dessinée plus courte.",
@@ -511,7 +511,7 @@
         { "type": "numeric", "prompt": "Longueur de l'étiquette, arrondie au dixième (en cm) :", "answer": "2*pi*r", "tolerance": 0.1,
           "misconceptions": [
             { "answer": "pi*r", "id": "mc:demi-perimetre", "error": "methode", "feedback": "π × r, c'est seulement la moitié du tour. Le périmètre d'un cercle est 2 × π × r (ou π × diamètre)." },
-            { "answer": "2*r", "id": "mc:diametre-perimetre", "error": "notion", "feedback": "{2*r} cm, c'est le diamètre : il traverse le disque. L'étiquette doit faire le TOUR de la boîte : 2 × π × {r} ≈ {2*pi*r|d2} cm." },
+            { "answer": "2*r", "id": "mc:diametre-perimetre", "error": "notion", "feedback": "{2*r} cm, c'est le diamètre : il traverse le disque. L'étiquette doit faire le TOUR de la boîte : c'est le périmètre du cercle, 2 × π × r." },
             { "answer": "pi*r*r", "id": "mc:aire-perimetre", "error": "notion", "feedback": "π × r × r est l'aire du disque (une surface). Ici on cherche une longueur, le tour du cercle : 2 × π × r." }
           ] }
       ],
@@ -537,9 +537,9 @@
       "parts": [
         { "type": "graph", "prompt": "Place le palmier P et le trésor T.", "xRange": [-6, 6], "yRange": [-5, 5], "gridStep": 1, "expectedPoints": [[-4, 3], [2, -2]] },
         { "type": "numeric", "prompt": "Abscisse du crabe C :", "answer": -2,
-          "misconceptions": [ { "answer": 2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées : T(2 ; −2) donne C(−2 ; 2)." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées de T, l'abscisse comme l'ordonnée." } ] },
         { "type": "numeric", "prompt": "Ordonnée du crabe C :", "answer": 2,
-          "misconceptions": [ { "answer": -2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées : l'ordonnée −2 de T devient 2." } ] },
+          "misconceptions": [ { "answer": -2, "id": "mc:symetrique-origine", "error": "notion", "feedback": "Le symétrique par rapport à l'origine change le signe des DEUX coordonnées : l'ordonnée de T change de signe, elle aussi." } ] },
         { "type": "numeric", "prompt": "En marchant le long des lignes du quadrillage, combien de pas au minimum séparent le crabe du palmier ?", "answer": 3 }
       ],
       "hints": ["De P(−4 ; 3), 6 pas vers la droite : l'abscisse augmente de 6. Puis 5 pas vers le bas : l'ordonnée diminue de 5.", "O est le milieu de [TC] : les coordonnées de C sont les opposées de celles de T.", "Du crabe au palmier : compte les pas horizontaux, puis les pas verticaux."],
@@ -587,11 +587,11 @@
       "parts": [
         { "type": "numeric", "prompt": "Que vaut une graduation ?", "answer": 0.25,
           "misconceptions": [
-            { "answer": 0.1, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1. Ici l'unité est partagée en 4 intervalles : 1 ÷ 4 = 0,25." },
-            { "answer": 0.2, "id": "mc:traits-intervalles", "error": "lecture", "feedback": "Tu as compté 5 traits, mais il n'y a que 4 intervalles entre 0 et 1 : 1 ÷ 4 = 0,25." }
+            { "answer": 0.1, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "Une graduation ne vaut pas toujours 0,1. Compte les intervalles entre 0 et 1, puis divise 1 par ce nombre." },
+            { "answer": 0.2, "id": "mc:traits-intervalles", "error": "lecture", "feedback": "Tu as compté 5 traits, mais il y a moins d'intervalles que de traits entre 0 et 1 : compte les petits espaces." }
           ] },
         { "type": "numeric", "prompt": "Quelle est l'abscisse du point M ?", "answer": 0.75,
-          "misconceptions": [ { "answer": 0.3, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "M est à 3 graduations de 0, et chaque graduation vaut 0,25 : 3 × 0,25 = 0,75." } ] }
+          "misconceptions": [ { "answer": 0.3, "id": "mc:graduation-dixieme", "error": "lecture", "feedback": "M est à 3 graduations de 0, mais une graduation ne vaut pas 0,1 ici : utilise la valeur trouvée à la question précédente." } ] }
       ],
       "hints": ["Compte les petits espaces entre 0 et 1, pas les traits.", "Une graduation vaut 1 ÷ (nombre d'intervalles)."],
       "solution": "Il y a 4 intervalles entre 0 et 1 : une graduation vaut 0,25. M est à 3 graduations de 0 : 3 × 0,25 = 0,75 (c'est aussi 3/4).",
@@ -637,7 +637,7 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Combien de faces a ce prisme ?", "answer": 5,
-          "misconceptions": [ { "answer": 6, "id": "mc:faces-prisme", "error": "notion", "feedback": "6 faces, c'est le pavé. Un prisme à base triangulaire a 2 bases et 3 faces latérales (une par côté du triangle) : 5 faces." } ] },
+          "misconceptions": [ { "answer": 6, "id": "mc:faces-prisme", "error": "notion", "feedback": "6 faces, c'est le pavé. Un prisme à base triangulaire a 2 bases et une face latérale par côté du triangle : compte-les sur le patron." } ] },
         { "type": "numeric", "prompt": "Longueur totale de la bande des trois faces latérales (en cm) :", "answer": 12 },
         { "type": "numeric", "prompt": "Aire de cette bande latérale (en cm²) :", "answer": "12*h",
           "misconceptions": [ { "answer": "6*h", "id": "mc:aire-volume", "error": "notion", "feedback": "3 × 4 ÷ 2 × {h} = {6*h} : c'est le volume du prisme (en cm³). La bande latérale est un rectangle de 12 cm sur {h} cm." } ] }
@@ -667,12 +667,12 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Abscisse de M :", "answer": "(a + c)/2",
-          "misconceptions": [ { "answer": "(c - a)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "{(c-a)/2}, c'est la moitié de l'écart horizontal entre A et B. Le milieu s'obtient en partant de A et en avançant de cette moitié : {a} + {(c-a)/2} = {(a+c)/2}. Plus simple : la moyenne ({a} + {c}) ÷ 2." } ] },
+          "misconceptions": [ { "answer": "(c - a)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "{(c-a)/2}, c'est la moitié de l'écart horizontal entre A et B. Le milieu s'obtient en partant de A et en avançant de cette moitié. Plus simple : calcule la moyenne des deux abscisses." } ] },
         { "type": "numeric", "prompt": "Ordonnée de M :", "answer": "(b + d)/2",
-          "misconceptions": [ { "answer": "(d - b)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "C'est la moitié de l'écart vertical. Le milieu a pour ordonnée la moyenne : ({b} + {d}) ÷ 2 = {(b+d)/2}." } ] }
+          "misconceptions": [ { "answer": "(d - b)/2", "id": "mc:demi-ecart", "error": "methode", "feedback": "C'est la moitié de l'écart vertical. Le milieu a pour ordonnée la moyenne des deux ordonnées : (ordonnée de A + ordonnée de B) ÷ 2." } ] }
       ],
       "hints": ["Le milieu est « à mi-chemin » : son abscisse est entre celles de A et de B, exactement au milieu.", "Abscisse du milieu = moyenne des abscisses : (abscisse de A + abscisse de B) ÷ 2.", "Fais pareil pour les ordonnées. Attention aux nombres négatifs."],
-      "solution": "M a pour coordonnées les moyennes : $ ({a} + {c}) ÷ 2 = {(a+c)/2} $ et $ ({b} + {d}) ÷ 2 = {(b+d)/2} $. Donc M({(a+c)/2} ; {(b+d)/2}).",
+      "solution": "M a pour coordonnées les moyennes : $ ({a} + {c}) ÷ 2 = {(a+c)/2} $ et $ ({b} + {d|p}) ÷ 2 = {(b+d)/2} $. Donc M({(a+c)/2} ; {(b+d)/2}).",
       "selfTest": [
         { "response": { "parts": [ { "value": "{(a+c)/2}" }, { "value": "{(b+d)/2}" } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "{(c-a)/2}" }, { "value": "{(b+d)/2}" } ] }, "expect": "mc:demi-ecart" }
@@ -699,9 +699,9 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Nombre sur la face X :", "answer": "7 - a",
-          "misconceptions": [ { "answer": "7 - b", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "Dans un escalier, deux faces séparées par une seule autre ne sont pas forcément opposées : la face {b} touche la face X par une arête une fois le dé plié. Plie le patron dans ta tête (ou découpe-le) : X est en face de la face {a}." } ] },
+          "misconceptions": [ { "answer": "7 - b", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "Dans un escalier, deux faces séparées par une seule autre ne sont pas forcément opposées : la face {b} touche la face X par une arête une fois le dé plié. Plie le patron dans ta tête (ou découpe-le) pour trouver la face opposée à X." } ] },
         { "type": "numeric", "prompt": "Nombre sur la face Y :", "answer": "7 - b",
-          "misconceptions": [ { "answer": "7 - c", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "La face {c} est voisine de Y une fois le dé plié. Y est en face de la face {b}." } ] },
+          "misconceptions": [ { "answer": "7 - c", "id": "mc:une-sur-deux", "error": "raisonnement", "feedback": "La face {c} est voisine de Y une fois le dé plié, pas opposée. Cherche la face qui sera en face de Y." } ] },
         { "type": "numeric", "prompt": "Nombre sur la face Z :", "answer": "7 - c" }
       ],
       "hints": ["Prends la face {c} comme fond du dé. Quelles faces se relèvent autour d'elle ?", "La face {b} et la face X se relèvent sur deux côtés voisins du fond ; la face {a}, accrochée à {b}, vient fermer un troisième côté.", "Dans ce patron en escalier, chaque face est opposée à celle qui est trois cases plus loin dans l'escalier."],
@@ -743,7 +743,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Si elle ne marche que sur les arêtes, quelle est la longueur du plus court trajet de A à G (en dm) ?", "answer": 3 },
         { "type": "numeric", "prompt": "Combien de trajets différents, le long des arêtes, ont cette longueur minimale ?", "answer": 6,
-          "misconceptions": [ { "answer": 3, "id": "mc:chemins-trois", "error": "methode", "feedback": "Il y a 3 choix pour la première arête, mais ensuite encore 2 choix pour la deuxième, puis 1 seul : 3 × 2 × 1 = 6 trajets." } ] },
+          "misconceptions": [ { "answer": 3, "id": "mc:chemins-trois", "error": "methode", "feedback": "Il y a 3 choix pour la première arête, mais ensuite il reste encore des choix pour la deuxième arête : compte-les avec un arbre." } ] },
         { "type": "text", "prompt": "Dépliée à plat, la face avant ABFE et la face du dessus EFGH forment un rectangle de 1 dm sur 2 dm. Si la fourmi traverse ces deux faces en ligne droite sur ce patron, son trajet est-il plus court que 3 dm ? (oui ou non)", "accept": ["oui"],
           "misconceptions": [ { "answer": "non", "id": "mc:ligne-droite", "error": "raisonnement", "feedback": "Sur le patron, A et G sont deux coins opposés d'un rectangle de 1 dm sur 2 dm. La ligne droite (la diagonale) est plus courte que le chemin qui suit les bords (1 + 2 = 3 dm) : elle mesure environ 2,24 dm." } ] }
       ],

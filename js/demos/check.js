@@ -5,6 +5,7 @@
 import { PRIM_TYPES } from './prims.js';
 
 const HEX = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
+const ASK_KINDS = ['prevoir', 'observer', 'mesurer', 'expliquer']; // genres de questions (voir docs/EXPERIENCES.md)
 const isPt = (v) => Array.isArray(v) && v.length === 2 && v.every((x) => Number.isFinite(Number(x)));
 
 export function checkDemo(demo, where = 'expérience') {
@@ -47,7 +48,11 @@ export function checkDemo(demo, where = 'expérience') {
     if (st.ask) {
       const a = st.ask;
       if (!a.question) errs.push(`${at} : ask.question manquant`);
-      if (!Array.isArray(a.choices) || a.choices.length < 2) errs.push(`${at} : ask.choices = au moins 2 propositions`);
+      if (a.kind !== undefined && !ASK_KINDS.includes(a.kind)) errs.push(`${at} : ask.kind « ${a.kind} » inconnu (${ASK_KINDS.join(', ')})`);
+      if (a.kind === 'mesurer') {
+        if (!Number.isFinite(Number(a.answer)) || a.answer === '' || a.answer === null) errs.push(`${at} : ask.answer = la valeur à lire (un nombre)`);
+        if (a.tolerance !== undefined && !(Number(a.tolerance) >= 0)) errs.push(`${at} : ask.tolerance = un nombre positif`);
+      } else if (!Array.isArray(a.choices) || a.choices.length < 2) errs.push(`${at} : ask.choices = au moins 2 propositions`);
       else if (!Number.isInteger(Number(a.answer)) || Number(a.answer) < 0 || Number(a.answer) >= a.choices.length) errs.push(`${at} : ask.answer = numéro (à partir de 0) de la bonne proposition`);
       if (!a.explain) errs.push(`${at} : ask.explain manquant (explication après la réponse)`);
     }

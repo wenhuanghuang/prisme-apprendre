@@ -174,19 +174,19 @@
         { "type": "text", "prompt": "Quel est le sujet de l'exposé ?", "openEnded": true,
           "accept": ["le sommeil des adolescents", "le sommeil des ados", "sommeil des adolescents", "le sommeil", "sommeil", "le sommeil chez les adolescents", "le sommeil des jeunes"],
           "misconceptions": [
-            { "answer": "bâiller", "id": "mc:accroche-sujet", "error": "lecture", "feedback": "Le bâillement sert d'accroche, pour capter l'attention. Le sujet est annoncé juste après : « je vais vous parler du sommeil des adolescents »." },
-            { "answer": "le bâillement", "id": "mc:accroche-sujet", "error": "lecture", "feedback": "Le bâillement sert d'accroche, pour capter l'attention. Le sujet est annoncé juste après : « je vais vous parler du sommeil des adolescents »." }
+            { "answer": "bâiller", "id": "mc:accroche-sujet", "error": "lecture", "feedback": "Le bâillement sert d'accroche, pour capter l'attention. Le sujet est annoncé juste après, par la formule « je vais vous parler de… » : réécoute ce passage." },
+            { "answer": "le bâillement", "id": "mc:accroche-sujet", "error": "lecture", "feedback": "Le bâillement sert d'accroche, pour capter l'attention. Le sujet est annoncé juste après, par la formule « je vais vous parler de… » : réécoute ce passage." }
           ] },
         { "type": "text", "prompt": "Combien de parties Nora annonce-t-elle ?",
           "accept": ["3", "trois", "3 parties", "trois parties"],
           "misconceptions": [
-            { "answer": "4", "id": "mc:plan-accroche", "error": "lecture", "feedback": "L'accroche et la présentation du sujet ne sont pas des parties : le plan commence à « D'abord » et compte trois parties (d'abord, ensuite, enfin)." },
-            { "answer": "quatre", "id": "mc:plan-accroche", "error": "lecture", "feedback": "L'accroche et la présentation du sujet ne sont pas des parties : le plan commence à « D'abord » et compte trois parties (d'abord, ensuite, enfin)." }
+            { "answer": "4", "id": "mc:plan-accroche", "error": "lecture", "feedback": "L'accroche et la présentation du sujet ne sont pas des parties : le plan commence à « D'abord ». Compte les mots d'ordre qui annoncent chaque partie." },
+            { "answer": "quatre", "id": "mc:plan-accroche", "error": "lecture", "feedback": "L'accroche et la présentation du sujet ne sont pas des parties : le plan commence à « D'abord ». Compte les mots d'ordre qui annoncent chaque partie." }
           ] },
         { "type": "text", "prompt": "Quel mot annonce la dernière partie ?",
           "accept": ["enfin"],
           "misconceptions": [
-            { "answer": "ensuite", "id": "mc:connecteurs-ordre", "error": "lecture", "feedback": "« Ensuite » annonce la deuxième partie ; la dernière commence par « Enfin »." }
+            { "answer": "ensuite", "id": "mc:connecteurs-ordre", "error": "lecture", "feedback": "« Ensuite » annonce la deuxième partie. Réécoute : quel mot ouvre la toute dernière partie ?" }
           ] },
         { "type": "text", "prompt": "Que demande Nora au public dans sa toute première phrase ?", "openEnded": true,
           "accept": ["de lever la main", "lever la main", "qu'ils lèvent la main", "lever la main s'ils ont bâillé", "de lever la main s'ils ont bâillé", "de lever la main s'ils ont bâillé ce matin"] }
@@ -350,16 +350,16 @@
       "representation": "concrete", "targets": ["mc:minutage", "mc:connecteurs-ordre"], "expectedSeconds": 600,
       "prompt": "**Mission : la journée portes ouvertes.** Le collège accueille les futurs élèves de 6e et leurs parents. Tu as **3 minutes** pour présenter le club théâtre. Ton plan : une introduction, trois parties de même durée (les activités, le spectacle de fin d'année, l'inscription) et une conclusion.",
       "parts": [
-        { "type": "numeric", "prompt": "Tu gardes 30 secondes pour l'introduction et 30 secondes pour la conclusion. Combien de **secondes** peux-tu consacrer à chacune des trois parties ?", "answer": "40",
+        { "type": "numeric", "prompt": "Tu gardes 30 secondes pour l'introduction et 30 secondes pour la conclusion. Combien de **secondes** peux-tu consacrer à chacune des trois parties ?", "answer": "40", "unit": "s", "unitOptional": true,
           "misconceptions": [
-            { "answer": 60, "id": "mc:minutage", "error": "calcul", "feedback": "Tu as partagé les 3 minutes entières entre les trois parties. Enlève d'abord l'introduction et la conclusion : 180 − 60 = 120 secondes, puis 120 ÷ 3 = 40 secondes." },
-            { "answer": 50, "id": "mc:minutage", "error": "calcul", "feedback": "Tu n'as retiré que 30 secondes : il faut enlever l'introduction ET la conclusion (60 s en tout). 180 − 60 = 120, puis 120 ÷ 3 = 40 secondes." }
+            { "answer": 60, "id": "mc:minutage", "error": "calcul", "feedback": "Tu as partagé les 3 minutes entières entre les trois parties. Enlève d'abord le temps de l'introduction et de la conclusion, puis partage ce qui reste entre les trois parties." },
+            { "answer": 50, "id": "mc:minutage", "error": "calcul", "feedback": "Tu n'as retiré que 30 secondes : il faut enlever l'introduction ET la conclusion avant de partager le temps restant en trois." }
           ] },
         { "type": "text", "prompt": "Complète l'annonce de ton plan : « D'abord, je vous présenterai nos activités ; ___, je vous parlerai du spectacle de fin d'année ; enfin, je vous expliquerai comment vous inscrire. »",
           "accept": ["ensuite", "puis", "après", "ensuite,", "puis,"],
           "misconceptions": [
-            { "answer": "enfin", "id": "mc:connecteurs-ordre", "error": "notion", "feedback": "« Enfin » annonce la dernière partie, et il est déjà employé. Pour la partie du milieu : « ensuite » ou « puis »." },
-            { "answer": "d'abord", "id": "mc:connecteurs-ordre", "error": "notion", "feedback": "« D'abord » ouvre la première partie. Pour la deuxième : « ensuite » ou « puis »." }
+            { "answer": "enfin", "id": "mc:connecteurs-ordre", "error": "notion", "feedback": "« Enfin » annonce la dernière partie, et il est déjà employé. Cherche un mot qui annonce la partie du milieu." },
+            { "answer": "d'abord", "id": "mc:connecteurs-ordre", "error": "notion", "feedback": "« D'abord » ouvre la première partie, déjà annoncée. Cherche un mot qui annonce la deuxième." }
           ] },
         { "type": "text", "prompt": "Un parent bâille au fond de la salle. Cite un moyen simple de relancer son attention (quelques mots).", "openEnded": true,
           "accept": ["poser une question", "poser une question au public", "lui poser une question", "regarder le public", "le regarder", "changer de ton", "faire une pause", "montrer une photo", "montrer une image", "parler plus fort"] },

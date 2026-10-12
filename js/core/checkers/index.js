@@ -12,7 +12,7 @@ import { checkOpen, checkText, wordCount, detectCriterion } from './open.js';
 import { checkCounterexample, checkMulti, checkEquation } from './logic.js';
 import { checkTable, checkOrder, checkNumberline, checkGraph, checkQcm } from './structured.js';
 import { runProgram, sameDrawing, TurtleError, programKeywords } from '../turtle.js';
-import { checkHighlight, checkMatch, checkCategorize, checkDictation } from './language.js';
+import { checkHighlight, checkMatch, checkCategorize, checkDictation, withParentLang } from './language.js';
 
 function checkCode(def, params, response) {
   const src = String(response.program || '');
@@ -50,9 +50,8 @@ function checkCode(def, params, response) {
 
 function checkComposite(def, params, response) {
   const parts = def.parts || [];
-  const results = parts.map((part, i) => {
-    return checkDef(part, params, (response.parts || [])[i] || {});
-  });
+  // la langue du problème vaut pour ses questions (en espagnol, l'accent compte) : même règle qu'à l'affichage
+  const results = parts.map((part, i) => checkDef(withParentLang(def, part), params, (response.parts || [])[i] || {}));
   // « à valider » et « incertain » relèvent d'un adulte : ils ne comptent ni juste ni faux
   const HUMAN = ['a-valider', 'incertain'];
   const scorable = results.filter((r) => !HUMAN.includes(r.verdict));

@@ -14,6 +14,7 @@ import { recordAttempt, store } from '../app/store.js';
 import { photon } from './photon.js';
 import { renderFigure } from '../figures/render.js';
 import { starsFor } from './lesson-play/stars.js';
+import { revealsAnswer } from '../core/reveal.js';
 
 export const ROLE_LABELS = {
   guide: 'Guidé', libre: 'Réponse libre', reinvestissement: 'Problème', transfert: 'Transfert', remediation: 'Point précis',
@@ -53,6 +54,7 @@ export function mountExercise(container, opts) {
   const inst = instantiate(def, opts.seed ?? Math.floor(Math.random() * 1e9));
   const started = Date.now();
   let tries = 0; let hintsUsed = 0; let solutionShown = false; let finished = false; let recorded = false;
+  let answerRevealed = false; // un message d'erreur a donné la réponse attendue
   let lastDiag = null; let firstError = null; let giveUpArmed = false; const cleanups = [];
 
   const skill = store.index && store.index.skills.get(def.skill);
@@ -100,7 +102,7 @@ export function mountExercise(container, opts) {
   const card = h('article', { class: `ex ex--${def.type} ${opts.compact ? 'ex--compact' : ''}`, 'aria-label': 'Exercice' },
     head, why, prompt, figureEl, listenBefore, activityEl, criteria, h('div', { class: 'ex-answer' }, answer.el, just ? just.el : null), actions, hintsBox, feedback, extra);
 
-  const outcome = () => ({ tries, hintsUsed, solutionShown, stars: starsFor(lastDiag, { tries, hintsUsed, solutionShown }) });
+  const outcome = () => ({ tries, hintsUsed, solutionShown, answerRevealed, stars: starsFor(lastDiag, { tries, hintsUsed, solutionShown, answerRevealed }) });
   const settled = () => { if (opts.onSettled) opts.onSettled(lastDiag, outcome()); };
   container.append(card);
 
@@ -153,7 +155,7 @@ export function mountExercise(container, opts) {
     recorded = true;
     const response = answer.getResponse();
     await recordAttempt(inst, { ...d, errorType: d.verdict === 'correct' ? null : d.errorType }, {
-      tries, hintsUsed, solutionShown, durationMs: Date.now() - started, lessonId: opts.lessonId, context: opts.context || null,
+      tries, hintsUsed, solutionShown, answerRevealed, untried: !lastDiag, durationMs: Date.now() - started, lessonId: opts.lessonId, context: opts.context || null,
       response: def.type === 'open' || d.needsHuman ? response : undefined, firstError,
     });
   }
@@ -166,6 +168,7 @@ export function mountExercise(container, opts) {
     tries++;
     lastDiag = d;
     if (d.errorType && !firstError && d.verdict !== 'correct') firstError = d.errorType;
+    if (d.verdict !== 'correct' && revealsAnswer(inst, d)) answerRevealed = true;
     renderFeedback(d);
     answer.show(d);
     announce(`${VERDICT_UI[d.verdict] ? VERDICT_UI[d.verdict].title : ''}. ${d.feedback || ''}`);
@@ -227,6 +230,8 @@ export function mountExercise(container, opts) {
   return {
     el: card,
     instance: inst,
+    /** Une réponse a été envoyée, un indice ou la correction a été vu. */
+    attempted: () => tries > 0 || hintsUsed > 0 || solutionShown,
     destroy() { finish(); stopSpeaking(); cleanups.forEach((c) => c && c()); },
   };
 }

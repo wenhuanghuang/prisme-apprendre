@@ -111,10 +111,10 @@
       "prompt": "**ONU, *International Migrant Stock 2024*** : 154 millions de migrants internationaux en 1990 (2,9 % de la population mondiale) ; 304 millions en 2024 (3,7 %).",
       "parts": [
         { "type": "numeric", "prompt": "Entre 1990 et 2024, le nombre de migrants a été multiplié par environ combien ? (au dixième)", "answer": 2, "tolerance": 0.05,
-          "misconceptions": [ { "answer": 150, "id": "mc:ecart-rapport", "error": "methode", "feedback": "150 millions, c'est l'augmentation (304 − 154). « Multiplié par » demande une division : 304 ÷ 154 ≈ 2,0. Le nombre a presque doublé." } ] },
+          "misconceptions": [ { "answer": 150, "id": "mc:ecart-rapport", "error": "methode", "feedback": "150 millions, c'est l'augmentation (304 − 154). « Multiplié par » demande une division : nombre de 2024 ÷ nombre de 1990." } ] },
         { "type": "numeric", "prompt": "Si l'humanité était un village de 1 000 habitants, combien seraient des migrants internationaux en 2024 ?", "answer": 37, "tolerance": 0.5,
-          "misconceptions": [ { "answer": 304, "id": "mc:part-valeur", "error": "methode", "feedback": "304 millions est le nombre réel de migrants. Pour 1 000 habitants : 3,7 % de 1 000 = 37." } ] },
-        { "type": "text", "prompt": "Les migrants internationaux sont-ils une petite ou une grande partie de l'humanité ?", "accept": ["une petite partie", "petite", "une petite", "petite partie", "une petite part", "une faible part", "une minorité", "faible"],
+          "misconceptions": [ { "answer": 304, "id": "mc:part-valeur", "error": "methode", "feedback": "304 millions est le nombre réel de migrants. Dans un village de 1 000 habitants, il faut utiliser la part : calcule 3,7 % de 1 000." } ] },
+        { "type": "text", "prompt": "Les migrants internationaux sont-ils une petite ou une grande partie de l'humanité ?", "accept": ["une petite partie", "petite", "une petite", "petite partie", "une petite part", "petite part", "une faible part", "faible part", "une faible partie", "une minorité", "minorité", "faible", "une très petite partie", "une toute petite partie", "très petite"],
           "misconceptions": [ { "answer": "une grande partie", "id": "mc:migrants-nombreux", "error": "notion", "feedback": "304 millions, c'est un nombre important, mais seulement 3,7 % de l'humanité : environ 96 personnes sur 100 vivent dans leur pays de naissance." },
                              { "answer": "grande", "id": "mc:migrants-nombreux", "error": "notion", "feedback": "304 millions, c'est un nombre important, mais seulement 3,7 % de l'humanité : environ 96 personnes sur 100 vivent dans leur pays de naissance." } ] }
       ],
@@ -137,8 +137,8 @@
         ["France", "9,2", "?r3c2"]
       ],
       "cells": {
-        "r0c2": { "answer": "52.4/304*100", "tolerance": 0.1, "misconceptions": [ { "answer": 52.4, "id": "mc:part-valeur", "error": "methode", "feedback": "52,4 est le nombre de migrants (en millions). Part : 52,4 ÷ 304 × 100 ≈ 17,2 %." } ] },
-        "r1c2": { "answer": "16.8/304*100", "tolerance": 0.1, "misconceptions": [ { "answer": 16.8, "id": "mc:part-valeur", "error": "methode", "feedback": "16,8 est un nombre en millions. Part : 16,8 ÷ 304 × 100 ≈ 5,5 %." } ] },
+        "r0c2": { "answer": "52.4/304*100", "tolerance": 0.1, "misconceptions": [ { "answer": 52.4, "id": "mc:part-valeur", "error": "methode", "feedback": "52,4 est le nombre de migrants (en millions), pas une part. Part = migrants du pays ÷ total mondial × 100." } ] },
+        "r1c2": { "answer": "16.8/304*100", "tolerance": 0.1, "misconceptions": [ { "answer": 16.8, "id": "mc:part-valeur", "error": "methode", "feedback": "16,8 est un nombre de migrants (en millions), pas une part. Part = migrants du pays ÷ total mondial × 100." } ] },
         "r2c2": { "answer": "13.7/304*100", "tolerance": 0.1 },
         "r3c2": { "answer": "9.2/304*100", "tolerance": 0.1 }
       },
@@ -296,11 +296,11 @@
       "parts": [
         { "type": "numeric", "prompt": "Sur ces 100 migrants, combien vivent dans un autre pays d'Afrique subsaharienne ?", "answer": 64 },
         { "type": "numeric", "prompt": "Combien vivent hors de cette région (Europe, Golfe, Amérique…) ?", "answer": 36,
-          "misconceptions": [ { "answer": 64, "id": "mc:migrations-sud-nord", "error": "lecture", "feedback": "64 est le nombre de ceux qui restent dans la région. Hors de la région : 100 − 64 = 36." } ] },
+          "misconceptions": [ { "answer": 64, "id": "mc:migrations-sud-nord", "error": "lecture", "feedback": "64 est le nombre de ceux qui restent dans la région. Ceux qui vivent hors de la région sont les autres : retire-les des 100." } ] },
         { "type": "text", "prompt": "La plupart des migrants nés en Afrique subsaharienne vivent-ils en Europe ? (oui ou non)", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:migrations-sud-nord", "error": "notion", "feedback": "Non : près des deux tiers vivent dans un autre pays d'Afrique subsaharienne. Ceux qui vivent hors de la région (36 sur 100) se répartissent entre l'Europe, le Golfe, l'Amérique…" } ] }
+          "misconceptions": [ { "answer": "oui", "id": "mc:migrations-sud-nord", "error": "notion", "feedback": "Non : près des deux tiers vivent dans un autre pays d'Afrique subsaharienne. Ceux qui vivent hors de la région se répartissent entre l'Europe, le Golfe, l'Amérique…" } ] }
       ],
-      "hints": ["64 % de 100 = 64.", "Ceux qui ne restent pas dans la région : 100 − 64."],
+      "hints": ["Un pourcentage, c'est un nombre « sur 100 ».", "Ceux qui ne restent pas dans la région : 100 − 64."],
       "solution": "64 migrants sur 100 vivent dans un autre pays d'Afrique subsaharienne ; 36 vivent ailleurs, et seulement une partie d'entre eux en Europe. L'idée que la plupart des migrants africains vont en Europe est donc fausse.",
       "selfTest": [
         { "response": { "parts": [ { "value": "64" }, { "value": "36" }, { "value": "non" } ] }, "expect": "correct" },
@@ -313,11 +313,11 @@
       "prompt": "**ONU, 2024** : sur 304 millions de migrants internationaux, on compte près de 38 millions de réfugiés à la mi-2024. En ajoutant les demandeurs d'asile et les autres personnes ayant besoin d'une protection internationale, 51,7 millions de personnes ont été déplacées de force d'un pays à un autre : c'est la plus forte proportion depuis les années 1950.",
       "parts": [
         { "type": "numeric", "prompt": "Quelle part des migrants internationaux sont des réfugiés ? (en %, arrondi à l'unité)", "answer": 12.5, "tolerance": 0.6,
-          "misconceptions": [ { "answer": 38, "id": "mc:part-valeur", "error": "methode", "feedback": "38 millions est un nombre de personnes. Part : 38 ÷ 304 × 100 ≈ 12,5 %, soit environ 12 ou 13 %." } ] },
+          "misconceptions": [ { "answer": 38, "id": "mc:part-valeur", "error": "methode", "feedback": "38 millions est un nombre de personnes, pas une part. Part = nombre de réfugiés ÷ nombre de migrants × 100." } ] },
         { "type": "numeric", "prompt": "Les personnes déplacées de force représentent environ un migrant sur combien ? (nombre entier)", "answer": 6, "tolerance": 0.2,
-          "misconceptions": [ { "answer": 17, "id": "mc:pourcentage-proportion", "error": "methode", "feedback": "17 % est la part. Un sur combien : 304 ÷ 51,7 ≈ 5,9, soit environ un sur six." } ] },
+          "misconceptions": [ { "answer": 17, "id": "mc:pourcentage-proportion", "error": "methode", "feedback": "17 % est la part des déplacés de force. « Un sur combien » demande une autre division : nombre de migrants ÷ nombre de déplacés de force." } ] },
         { "type": "text", "prompt": "La majorité des migrants internationaux sont-ils des réfugiés ? (oui ou non)", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:migrant-refugie", "error": "notion", "feedback": "Non : environ un migrant sur huit est réfugié, un sur six a été déplacé de force. La majorité migre pour le travail, la famille ou les études." } ] }
+          "misconceptions": [ { "answer": "oui", "id": "mc:migrant-refugie", "error": "notion", "feedback": "La majorité, c'est plus de la moitié : compare la part des réfugiés, et même celle de toutes les personnes déplacées de force, à 50 %. La plupart des migrants partent pour le travail, la famille ou les études." } ] }
       ],
       "hints": ["Part = 38 ÷ 304 × 100.", "« Un sur combien » : 304 ÷ 51,7."],
       "solution": "38 ÷ 304 ≈ 12,5 % des migrants sont des réfugiés (environ un sur huit). 304 ÷ 51,7 ≈ 5,9 : environ un migrant sur six a été déplacé de force. La majorité des migrants ne sont donc pas des réfugiés, mais la part des déplacés de force n'a jamais été aussi forte depuis les années 1950 (Syrie, Afghanistan, Ukraine, Soudan, Venezuela…).",
@@ -353,7 +353,7 @@
       "prompt": "**Deux sources, deux chiffres pour la France** :\n- ONU (2024) : 9,2 millions de « migrants internationaux », c'est-à-dire de personnes nées à l'étranger ;\n- Insee (2025, données provisoires) : 8,0 millions d'« immigrés » (nés étrangers à l'étranger) ; au total, 9,6 millions de personnes vivant en France sont nées à l'étranger, dont 1,7 million de personnes nées françaises à l'étranger (par exemple des enfants d'expatriés).",
       "parts": [
         { "type": "numeric", "prompt": "D'après l'Insee, combien de personnes nées à l'étranger ne sont PAS des immigrés ? (en millions, au dixième)", "answer": 1.6, "tolerance": 0.15,
-          "misconceptions": [ { "answer": 17.6, "id": "mc:ecart-addition", "error": "methode", "feedback": "On cherche une différence : 9,6 − 8,0 = 1,6 million (ce qui correspond, aux arrondis près, aux 1,7 million de personnes nées françaises à l'étranger)." } ] },
+          "misconceptions": [ { "answer": 17.6, "id": "mc:ecart-addition", "error": "methode", "feedback": "Tu as additionné les deux nombres. On cherche les personnes nées à l'étranger qui ne sont PAS immigrées : c'est une différence (toutes les personnes nées à l'étranger, moins les immigrés)." } ] },
         { "type": "text", "prompt": "L'ONU compte-t-elle comme migrant un Français né au Canada de parents français, revenu vivre en France ? (oui ou non)", "accept": ["oui"],
           "misconceptions": [ { "answer": "non", "id": "mc:definition-statistique", "error": "lecture", "feedback": "Pour l'ONU, est migrant international toute personne qui vit dans un autre pays que son pays de naissance, quelle que soit sa nationalité : ce Français né au Canada est compté. Pour l'Insee, il n'est pas immigré, car il est né français." } ] },
         { "type": "open", "prompt": "Explique pourquoi l'ONU et l'Insee donnent des chiffres différents, et pourquoi aucun des deux n'est « faux ». Termine par une règle à retenir pour utiliser ces chiffres dans un débat.", "minWords": 40,

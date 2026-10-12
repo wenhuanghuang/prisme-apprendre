@@ -160,11 +160,11 @@
       "prompt": "**ONU, *World Urbanization Prospects 2025*** : en 2025, sur environ 8,2 milliards d'habitants, 45 % vivent dans des villes, 36 % dans des petites villes et 19 % à la campagne. En 1950, 20 % de l'humanité vivait dans des villes.",
       "parts": [
         { "type": "numeric", "prompt": "Combien d'habitants vivent dans des villes en 2025 ? (en milliards, arrondi au dixième)", "answer": 3.7, "tolerance": 0.05,
-          "misconceptions": [ { "answer": 45, "id": "mc:part-valeur", "error": "methode", "feedback": "45 est un pourcentage. Pour trouver un nombre d'habitants : 8,2 × 45 ÷ 100 ≈ 3,7 milliards." } ] },
+          "misconceptions": [ { "answer": 45, "id": "mc:part-valeur", "error": "methode", "feedback": "45 est un pourcentage, pas un nombre d'habitants. Pour trouver un nombre d'habitants, calcule 45 % de 8,2 milliards : 8,2 × 45 ÷ 100." } ] },
         { "type": "numeric", "prompt": "Entre 1950 et 2025, la part de l'humanité vivant dans des villes a été multipliée par combien ? (au centième)", "answer": 2.25, "tolerance": 0.01,
-          "misconceptions": [ { "answer": 25, "id": "mc:ecart-rapport", "error": "methode", "feedback": "25 points, c'est l'écart (45 − 20). « Multipliée par » demande une division : 45 ÷ 20 = 2,25." } ] },
+          "misconceptions": [ { "answer": 25, "id": "mc:ecart-rapport", "error": "methode", "feedback": "25 points, c'est l'écart (45 − 20). « Multipliée par » demande une division : part de 2025 ÷ part de 1950." } ] },
         { "type": "numeric", "prompt": "Quelle part de l'humanité vit dans des villes ou des petites villes ? (en %)", "answer": 81,
-          "misconceptions": [ { "answer": 19, "id": "mc:lecture-complement", "error": "lecture", "feedback": "19 % est la part des habitants des campagnes. Villes + petites villes : 45 + 36 = 81 %." } ] }
+          "misconceptions": [ { "answer": 19, "id": "mc:lecture-complement", "error": "lecture", "feedback": "19 % est la part des habitants des campagnes. On demande la part des villes ET des petites villes : additionne ces deux parts (ou retire la part des campagnes de 100 %)." } ] }
       ],
       "hints": ["Un pourcentage d'une quantité : quantité × pourcentage ÷ 100.", "« Multiplié par » : nouvelle valeur ÷ ancienne valeur.", "Les trois parts font 100 %."],
       "solution": "8,2 × 0,45 ≈ 3,7 milliards de citadins (villes). 45 ÷ 20 = 2,25 : la part a plus que doublé depuis 1950. Villes + petites villes : 45 + 36 = 81 % (ou 100 − 19).",
@@ -179,14 +179,14 @@
       "prompt": "**ONU, 2025** : le nombre de mégapoles (plus de 10 millions d'habitants) est passé de 8 en 1975 à 33 en 2025, dont 19 en Asie. Les trois plus peuplées sont Jakarta (près de 42 millions), Dhaka (37 millions) et Tokyo (33 millions).",
       "parts": [
         { "type": "numeric", "prompt": "Le nombre de mégapoles a été multiplié par environ combien entre 1975 et 2025 ? (arrondi à l'unité)", "answer": 4, "tolerance": 0.2,
-          "misconceptions": [ { "answer": 25, "id": "mc:ecart-rapport", "error": "methode", "feedback": "25 est l'augmentation (33 − 8). Multiplié par : 33 ÷ 8 ≈ 4. L'ONU dit que leur nombre a « quadruplé »." } ] },
+          "misconceptions": [ { "answer": 25, "id": "mc:ecart-rapport", "error": "methode", "feedback": "25 est l'augmentation (33 − 8). « Multiplié par » demande une division : nombre de 2025 ÷ nombre de 1975." } ] },
         { "type": "numeric", "prompt": "Quelle part des mégapoles se trouve en Asie ? (en %, arrondi à l'unité)", "answer": 58, "tolerance": 1,
-          "misconceptions": [ { "answer": 19, "id": "mc:part-valeur", "error": "methode", "feedback": "19 est le nombre de mégapoles asiatiques. Part : 19 ÷ 33 × 100 ≈ 58 %." } ] },
+          "misconceptions": [ { "answer": 19, "id": "mc:part-valeur", "error": "methode", "feedback": "19 est le nombre de mégapoles asiatiques, pas une part. Part = mégapoles d'Asie ÷ nombre total de mégapoles × 100." } ] },
         { "type": "text", "prompt": "Quelle est la ville la plus peuplée du monde en 2025, selon l'ONU ?", "accept": ["Jakarta", "Djakarta"],
           "misconceptions": [
-            { "answer": "Tokyo", "id": "mc:tokyo-premiere", "error": "lecture", "feedback": "Tokyo a longtemps été présentée comme la première, mais selon le rapport de 2025, qui délimite les villes avec une nouvelle méthode, Jakarta (près de 42 millions) et Dhaka (37 millions) la dépassent. Tokyo, dont la population devrait diminuer d'ici 2050, est troisième." },
-            { "answer": "New York", "id": "mc:grandes-villes-nord", "error": "notion", "feedback": "Les plus grandes villes du monde ne sont plus en Europe ni en Amérique du Nord : les trois premières sont asiatiques. Selon l'ONU (2025), c'est Jakarta." },
-            { "answer": "Paris", "id": "mc:grandes-villes-nord", "error": "notion", "feedback": "Paris est une grande métropole, mais elle est loin des plus grandes villes du monde. Selon l'ONU (2025), la première est Jakarta, en Indonésie." }
+            { "answer": "Tokyo", "id": "mc:tokyo-premiere", "error": "lecture", "feedback": "Tokyo a longtemps été présentée comme la première, mais selon le rapport de 2025, qui délimite les villes avec une nouvelle méthode, deux villes la dépassent : Tokyo, dont la population devrait diminuer d'ici 2050, est troisième. Relis l'ordre des villes dans le document." },
+            { "answer": "New York", "id": "mc:grandes-villes-nord", "error": "notion", "feedback": "Les plus grandes villes du monde ne sont plus en Europe ni en Amérique du Nord : les trois premières sont asiatiques. Relis le document : laquelle est en tête ?" },
+            { "answer": "Paris", "id": "mc:grandes-villes-nord", "error": "notion", "feedback": "Paris est une grande métropole, mais elle est loin des plus grandes villes du monde. Selon l'ONU (2025), la première est une ville d'Asie : relis le document." }
           ] }
       ],
       "hints": ["33 ÷ 8 ≈ ?", "Part = 19 ÷ 33 × 100.", "Relis les trois villes citées, dans l'ordre."],
@@ -264,9 +264,9 @@
       "representation": "concrete", "targets": ["mc:periurbain-banlieue"], "expectedSeconds": 120,
       "prompt": "Pour distinguer banlieue et périurbain, pose-toi une seule question : **entre les maisons, y a-t-il des champs ?** Si le bâti est continu, c'est la banlieue ; si les lotissements alternent avec les champs, c'est le périurbain.",
       "parts": [
-        { "type": "text", "prompt": "Léa habite un immeuble ; de sa fenêtre, elle voit d'autres immeubles et une zone commerciale, tous accolés à la ville-centre. Banlieue ou périurbain ?", "accept": ["banlieue", "la banlieue", "en banlieue"],
+        { "type": "text", "prompt": "Léa habite un immeuble ; de sa fenêtre, elle voit d'autres immeubles et une zone commerciale, tous accolés à la ville-centre. Banlieue ou périurbain ?", "accept": ["banlieue", "la banlieue", "en banlieue", "dans la banlieue"],
           "misconceptions": [ { "answer": "périurbain", "id": "mc:periurbain-banlieue", "error": "notion", "feedback": "Le bâti est continu jusqu'à la ville-centre, sans champs : c'est la banlieue." } ] },
-        { "type": "text", "prompt": "Tom habite une maison neuve dans un lotissement ; derrière son jardin commence un champ de blé, et il faut 40 minutes de voiture pour aller au centre. Banlieue ou périurbain ?", "accept": ["périurbain", "le périurbain", "espace périurbain", "l'espace périurbain", "dans le périurbain"],
+        { "type": "text", "prompt": "Tom habite une maison neuve dans un lotissement ; derrière son jardin commence un champ de blé, et il faut 40 minutes de voiture pour aller au centre. Banlieue ou périurbain ?", "accept": ["périurbain", "le périurbain", "espace périurbain", "l'espace périurbain", "dans le périurbain", "un espace périurbain", "dans l'espace périurbain"],
           "misconceptions": [ { "answer": "banlieue", "id": "mc:periurbain-banlieue", "error": "notion", "feedback": "Les champs entre les maisons et le long trajet en voiture sont les marques du périurbain, au-delà de la banlieue." } ] }
       ],
       "hints": ["Cherche les champs dans chaque description."],
@@ -282,9 +282,9 @@
       "prompt": "**ONU, 2025** : le monde compte environ 12 000 villes. 96 % d'entre elles ont moins d'un million d'habitants, et 81 % moins de 250 000. Seules 33 sont des mégapoles. Les petites villes et les villes moyennes sont parmi celles qui grandissent le plus vite, surtout en Afrique subsaharienne et en Asie.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de villes ont au moins un million d'habitants ? (environ)", "answer": 480, "tolerance": 5,
-          "misconceptions": [ { "answer": 11520, "id": "mc:complement", "error": "methode", "feedback": "11 520 est le nombre de villes de MOINS d'un million (96 %). Celles d'au moins un million représentent 4 % : 12 000 × 4 ÷ 100 = 480." } ] },
-        { "type": "numeric", "prompt": "Quelle part des villes du monde sont des mégapoles ? (en %, arrondi au dixième)", "answer": 0.3, "tolerance": 0.05,
-          "misconceptions": [ { "answer": 33, "id": "mc:part-valeur", "error": "methode", "feedback": "33 est le nombre de mégapoles. Part : 33 ÷ 12 000 × 100 ≈ 0,3 %." } ] },
+          "misconceptions": [ { "answer": 11520, "id": "mc:complement", "error": "methode", "feedback": "11 520 est le nombre de villes de MOINS d'un million (96 %). Celles d'au moins un million sont les autres : cherche leur part (100 − 96), puis calcule ce pourcentage de 12 000." } ] },
+        { "type": "numeric", "percent": true, "prompt": "Quelle part des villes du monde sont des mégapoles ? (en %, arrondi au dixième)", "answer": 0.3, "tolerance": 0.05,
+          "misconceptions": [ { "answer": 33, "id": "mc:part-valeur", "error": "methode", "feedback": "33 est le nombre de mégapoles, pas une part. Part = nombre de mégapoles ÷ nombre total de villes × 100." } ] },
         { "type": "text", "prompt": "Un camarade affirme : « La plupart des citadins du monde vivent dans des mégapoles. » A-t-il raison ? (oui ou non)", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:citadins-megapoles", "error": "notion", "feedback": "Non : selon l'ONU, la majorité des citadins vit dans des villes petites et moyennes. Les mégapoles sont spectaculaires, mais elles sont très peu nombreuses (33 sur environ 12 000 villes)." } ] }
       ],

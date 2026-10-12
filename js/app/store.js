@@ -8,6 +8,7 @@ import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } fro
 import { recommend } from '../engine/recommend.js';
 import { summarizeAttempts, computeBadges, skillBadges } from '../engine/badges.js';
 import { DEMO_PROFILES, simulateProfile } from '../engine/demo-profiles.js';
+import { computeGame, withEvent, withGoal, migrateGoals, GOALS } from '../engine/game.js';
 
 const listeners = new Set();
 const lessonCache = new Map();
@@ -122,6 +123,8 @@ export async function selectProfile(id, opts = {}) {
   store.states = normalizeStates(await db.get('states', id), id);
   store.attempts = (await db.byProfile('attempts', id)).sort((a, b) => a.ts - b.ts);
   store.submissions = await db.byProfile('submissions', id);
+  const game = migrateGoals(store.states.game, store.now(), store.attempts.length > 0 || store.states.game.events.length > 0);
+  if (game !== store.states.game) { store.states = { ...store.states, game }; await db.put('states', store.states); }
   localStorageSet('prisme:last-profile', id);
   if (!opts.silent) emit();
 }
@@ -163,7 +166,7 @@ export async function loadDemoProfiles() {
 
 /**
  * Enregistre une tentative corrigée et met à jour le modèle de l'élève.
- * meta : { tries, hintsUsed, solutionShown, durationMs, response, lessonId, context }
+ * meta : { tries, hintsUsed, solutionShown, answerRevealed, durationMs, response, lessonId, context }
  */
 export async function recordAttempt(instance, diagnosis, meta) {
   if (!store.profile) return null;
@@ -191,6 +194,8 @@ export async function recordAttempt(instance, diagnosis, meta) {
     tries: meta.tries || 1,
     hintsUsed: meta.hintsUsed || 0,
     solutionShown: Boolean(meta.solutionShown),
+    answerRevealed: Boolean(meta.answerRevealed),
+    untried: Boolean(meta.untried), // correction affichée sans aucune réponse
     durationMs: meta.durationMs || null,
     expectedSeconds: def.expectedSeconds || 120,
     justified: Boolean(diagnosis.justified),
@@ -277,12 +282,55 @@ export async function profileData(id) {
   const profile = store.profiles.find((p) => p.id === id);
   if (!profile) return null;
   if (store.profile && store.profile.id === id) return { profile, states: store.states, attempts: store.attempts, submissions: store.submissions };
-  return {
-    profile,
-    states: (await db.get('states', id)) || { profileId: id, skills: {}, lessons: {} },
-    attempts: (await db.byProfile('attempts', id)).sort((a, b) => a.ts - b.ts),
-    submissions: await db.byProfile('submissions', id),
-  };
+  const states = normalizeStates(await db.get('states', id), id);
+  const attempts = (await db.byProfile('attempts', id)).sort((a, b) => a.ts - b.ts);
+  // profil pas encore rouvert depuis la mise à jour des objectifs : conversion en mémoire seulement (lecture parent)
+  const game = migrateGoals(states.game, store.now(), attempts.length > 0 || states.game.events.length > 0);
+  return { profile, states: { ...states, game }, attempts, submissions: await db.byProfile('submissions', id) };
+}
+
+/* ------------------------------ Progression ludique ------------------------------ */
+
+/** Points, niveau, objectif du jour, série, trophées : recalculés à partir de l'historique. */
+export function gameProgress() {
+  if (!store.profile || !store.states) return null;
+  return computeGame(store.attempts, store.states.game, store.now());
+}
+
+async function saveGame(game) {
+  if (!store.profile) return;
+  store.states = { ...store.states, game };
+  await db.put('states', store.states);
+  emit();
+}
+
+/** Leçon terminée, expérience regardée jusqu'au bout : rapporte des points une seule fois par identifiant. */
+export async function recordGameEvent(type, id) {
+  if (!store.profile || !store.states) return;
+  const next = withEvent(store.states.game, type, String(id), store.now());
+  if (next !== store.states.game) await saveGame(next);
+}
+
+export async function setDailyGoal(xp) {
+  if (!store.profile || !GOALS.some((g) => g.xp === xp)) return;
+  await saveGame(withGoal(store.states.game, xp, store.now()));
+}
+
+/** Apparence de Photon : seulement parmi ce qui est débloqué. */
+export async function equipPhoton(changes) {
+  if (!store.profile) return;
+  const g = gameProgress();
+  const equipped = { ...store.states.game.equipped };
+  if ('accessory' in changes) equipped.accessory = changes.accessory === null || g.unlocked.accessories.includes(changes.accessory) ? changes.accessory : equipped.accessory;
+  if (changes.tint && g.unlocked.tints.includes(changes.tint)) equipped.tint = changes.tint;
+  await saveGame({ ...store.states.game, equipped });
+}
+
+/** Niveau dont la fête a déjà été montrée (évite de la rejouer à chaque ouverture). */
+export async function markLevelSeen(level) {
+  if (!store.profile || store.states.game.seenLevel === level) return;
+  store.states = { ...store.states, game: { ...store.states.game, seenLevel: level } };
+  await db.put('states', store.states);
 }
 
 export function skillLevel(skillId) {

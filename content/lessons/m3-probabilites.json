@@ -1,0 +1,683 @@
+{
+  "id": "m3-probabilites",
+  "chapter": "m3-ch-stats-probas",
+  "title": "Probabilités : deux épreuves, fréquences et simulation",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.probas.deux-epreuves", "m3.probas.frequences", "m3.probas.sans-remise"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 60,
+  "summary": "Dénombrer les issues d'une expérience à deux épreuves avec un tableau à double entrée ou un arbre, calculer des probabilités (sans additionner ce qui doit être multiplié), relier la stabilisation des fréquences à la probabilité et simuler une expérience au tableur.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le stand « Lucky 7 »",
+      "body": "À la fête foraine, le stand « Lucky 7 » propose : « Lance deux dés ; si la somme fait 7, tu gagnes ! » Le forain affirme : « Il y a 11 sommes possibles, de 2 à 12 : tu as donc une chance sur 11. »\n\nAvant de calculer, lance les dés virtuels du labo des centaines de fois. La fréquence de la somme 7 ressemble-t-elle à « une chance sur 11 » ? Le forain a-t-il raison ?",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 2, "event": "somme égale à 7", "track": [7] } }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🎲", "title": "Une expérience à deux épreuves",
+          "body": "Une expérience à **deux épreuves** enchaîne deux expériences aléatoires : lancer deux dés, tirer deux boules, faire tourner une roue deux fois. Une issue est alors un **couple** de résultats, comme (3 ; 5). Attention : (3 ; 5) et (5 ; 3) sont deux issues **différentes**.",
+          "example": "Une pièce lancée deux fois : 4 issues, (P ; P), (P ; F), (F ; P) et (F ; F)."
+        },
+        {
+          "emoji": "📋", "title": "Le tableau à double entrée",
+          "body": "Pour deux dés (un rouge, un bleu), un tableau de 6 lignes et 6 colonnes donne les **36 issues**, toutes équiprobables. On compte ensuite les cases favorables : la somme 7 apparaît dans 6 cases, donc P(somme = 7) = 6/36 = 1/6.",
+          "figure": {
+            "alt": "Tableau à double entrée des sommes de deux dés à six faces",
+            "w": 420, "h": 250,
+            "items": [ { "type": "table", "head": ["Rouge ↓ Bleu →", "1", "2", "3", "4", "5", "6"], "rows": [
+              ["1", "2", "3", "4", "5", "6", "7"], ["2", "3", "4", "5", "6", "7", "8"], ["3", "4", "5", "6", "7", "8", "9"],
+              ["4", "5", "6", "7", "8", "9", "10"], ["5", "6", "7", "8", "9", "10", "11"], ["6", "7", "8", "9", "10", "11", "12"] ] } ]
+          },
+          "reveal": {
+            "question": "Devine : la somme 2 et la somme 7 ont-elles autant de chances de sortir ?",
+            "answer": "Non ! La somme 2 n'apparaît qu'une fois, (1 ; 1) : probabilité 1/36. La somme 7 apparaît 6 fois : 6/36 = 1/6. Les 11 sommes ne sont pas équiprobables, le forain se trompe."
+          }
+        },
+        {
+          "emoji": "🌳", "title": "L'arbre des possibles",
+          "body": "Un **arbre** représente les issues : un premier niveau de branches pour la 1re épreuve, puis, au bout de chacune, les branches de la 2de. Chaque chemin, de la racine au bout, est une issue. C'est pratique pour deux tirages dans un sac, avec ou sans remise.",
+          "figure": {
+            "alt": "Arbre des possibles de deux tirages successifs avec remise dans un sac de boules rouges et vertes : quatre chemins",
+            "w": 440, "h": 290,
+            "frame": { "x": [0, 10.2], "y": [0, 6.5] },
+            "items": [
+              { "type": "point", "id": "O", "x": 0.5, "y": 3, "style": "rond", "label": "" },
+              { "type": "segment", "from": [0.6, 3], "to": [3.2, 4.4] },
+              { "type": "segment", "from": [0.6, 3], "to": [3.2, 1.6] },
+              { "type": "segment", "from": [3.8, 4.6], "to": [6.7, 5.35] },
+              { "type": "segment", "from": [3.8, 4.4], "to": [6.7, 3.65] },
+              { "type": "segment", "from": [3.8, 1.6], "to": [6.7, 2.35] },
+              { "type": "segment", "from": [3.8, 1.4], "to": [6.7, 0.65] },
+              { "type": "text", "x": 3.5, "y": 4.5, "text": "R", "color": "rouge", "bold": true },
+              { "type": "text", "x": 3.5, "y": 1.5, "text": "V", "color": "vert", "bold": true },
+              { "type": "text", "x": 7, "y": 5.4, "text": "R", "color": "rouge", "bold": true },
+              { "type": "text", "x": 7, "y": 3.6, "text": "V", "color": "vert", "bold": true },
+              { "type": "text", "x": 7, "y": 2.4, "text": "R", "color": "rouge", "bold": true },
+              { "type": "text", "x": 7, "y": 0.6, "text": "V", "color": "vert", "bold": true },
+              { "type": "text", "x": 9, "y": 5.4, "text": "(R ; R)", "color": "maths" },
+              { "type": "text", "x": 9, "y": 3.6, "text": "(R ; V)", "color": "maths" },
+              { "type": "text", "x": 9, "y": 2.4, "text": "(V ; R)", "color": "maths" },
+              { "type": "text", "x": 9, "y": 0.6, "text": "(V ; V)", "color": "maths" },
+              { "type": "text", "x": 3.5, "y": 6.1, "text": "1er tirage", "size": "s" },
+              { "type": "text", "x": 7, "y": 6.1, "text": "2e tirage", "size": "s" },
+              { "type": "text", "x": 9, "y": 6.1, "text": "issue", "size": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "✖️", "title": "Le raccourci du produit",
+          "body": "Quand le résultat de la 1re épreuve ne change rien à la 2de (deux dés, tirage **avec remise**, deux urnes différentes), la probabilité d'un chemin est le **produit** des probabilités rencontrées. On le retrouve en comptant les cases du tableau : P(6 puis 6) = 1/6 × 1/6 = 1/36.",
+          "reveal": {
+            "question": "Devine : avec une pièce lancée deux fois, P(Pile puis Pile) = 1/2 + 1/2 = 1 ?",
+            "answer": "Non : une probabilité de 1, ce serait un évènement certain ! P(Pile puis Pile) = 1/2 × 1/2 = 1/4 : une issue sur les quatre (P ; P), (P ; F), (F ; P), (F ; F)."
+          }
+        },
+        {
+          "emoji": "📉", "title": "Fréquences et simulation",
+          "body": "Quand on répète une expérience un grand nombre de fois, la **fréquence** d'un évènement se **stabilise** autour de sa probabilité. On peut donc **simuler** l'expérience (tableur, programme Scratch) pour estimer une probabilité qu'on ne sait pas calculer. Sur peu d'essais, la fréquence varie beaucoup : on ne conclut rien.",
+          "example": "Au tableur, =ALEA.ENTRE.BORNES(1;6)+ALEA.ENTRE.BORNES(1;6) simule la somme de deux dés."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : deux tirages dans le sac de Malo",
+      "steps": [
+        { "text": "Le sac contient 2 boules rouges et 1 boule verte. On tire une boule, on la remet, puis on en tire une seconde. Pour avoir des issues équiprobables, on numérote les boules : R1, R2 et V." },
+        { "text": "Le tableau à double entrée donne les 3 × 3 = 9 issues, toutes équiprobables.",
+          "figure": { "alt": "Tableau des neuf issues de deux tirages avec remise parmi les boules R1, R2 et V", "w": 440, "h": 160,
+            "items": [ { "type": "table", "head": ["1er ↓ 2e →", "R1", "R2", "V"], "rows": [["R1", "R1-R1", "R1-R2", "R1-V"], ["R2", "R2-R1", "R2-R2", "R2-V"], ["V", "V-R1", "V-R2", "V-V"]] } ] } },
+        { "text": "Évènement « deux boules rouges » : les cases R1-R1, R1-R2, R2-R1 et R2-R2, soit 4 cases sur 9.", "math": "P(deux rouges) = 4/9" },
+        { "text": "Le raccourci du produit donne le même résultat, car le premier tirage ne change pas le sac (et non 2/3 + 2/3 = 4/3, qui dépasse 1 !).", "math": "2/3 × 2/3 = 4/9" },
+        { "text": "Évènement contraire, « au moins une boule verte » : on utilise P(non A) = 1 − P(A).", "math": "1 − 4/9 = 5/9" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m3-probabilites-classement", "m3-probabilites-somme-des", "m3-probabilites-arbre-roue", "m3-probabilites-produit", "m3-probabilites-frequences", "m3-probabilites-simulation"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Raisonner et expliquer",
+      "body": "Deux urnes à comparer, puis un dé soupçonné d'être truqué.",
+      "exercises": ["m3-probabilites-deux-urnes", "m3-probabilites-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le jeu est-il équitable ?",
+      "body": "Tu tiens le stand « Lucky 7 » de la fête du collège : simule, calcule, puis propose un gain juste pour les joueurs.",
+      "exercises": ["m3-probabilites-fete"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Deux épreuves : une issue est un couple de résultats. On les dénombre avec un tableau à double entrée ou un arbre, en vérifiant qu'elles sont équiprobables. Si les épreuves sont indépendantes, la probabilité d'un chemin est le produit des probabilités. Sur un grand nombre d'essais, la fréquence se stabilise autour de la probabilité.\n\n- **Additionner au lieu de multiplier.** P(6 puis 6) = 1/6 × 1/6 = 1/36, pas 1/3.\n- **Croire les sommes équiprobables.** La somme 7 a 6 chances sur 36, la somme 2 une seule.\n- **Oublier l'ordre.** (3 ; 5) et (5 ; 3) sont deux issues différentes.\n- **Conclure sur peu d'essais.** Cinq 6 en 12 lancers ne prouvent rien."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des tableaux, des arbres et des simulations dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Des tirages sans remise, puis une estimation façon biologiste : combien de poissons dans l'étang ?",
+      "exercises": ["m3-probabilites-sans-remise", "m3-probabilites-capture"]
+    },
+    "expert": {
+      "intro": "Un jeu de dés façon brevet, puis un sac mystère à percer.",
+      "exercises": ["m3-probabilites-brevet", "m3-probabilites-defi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-probabilites-classement", "type": "order", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:sommes-equiprobables", "raisonnement"], "expectedSeconds": 240,
+      "prompt": "On lance deux dés équilibrés à six faces, un rouge et un bleu. Range ces évènements du MOINS probable au PLUS probable. Aide-toi du tableau des sommes.",
+      "figure": {
+        "alt": "Tableau à double entrée des sommes de deux dés à six faces",
+        "w": 420, "h": 250,
+        "items": [ { "type": "table", "head": ["Rouge ↓ Bleu →", "1", "2", "3", "4", "5", "6"], "rows": [
+          ["1", "2", "3", "4", "5", "6", "7"], ["2", "3", "4", "5", "6", "7", "8"], ["3", "4", "5", "6", "7", "8", "9"],
+          ["4", "5", "6", "7", "8", "9", "10"], ["5", "6", "7", "8", "9", "10", "11"], ["6", "7", "8", "9", "10", "11", "12"] ] } ]
+      },
+      "orderLabel": "Du moins probable au plus probable",
+      "errorType": "raisonnement",
+      "items": [
+        { "id": "A", "label": "Obtenir une somme égale à 12" },
+        { "id": "B", "label": "Obtenir une somme égale à 7" },
+        { "id": "C", "label": "Obtenir deux nombres pairs" },
+        { "id": "D", "label": "Obtenir au moins un 6" },
+        { "id": "E", "label": "Obtenir une somme supérieure ou égale à 4" }
+      ],
+      "hints": ["Compte les cases du tableau qui réalisent chaque évènement.", "Deux nombres pairs : 3 choix pour le dé rouge et 3 choix pour le bleu.", "Somme supérieure ou égale à 4 : passe par le contraire, une somme de 2 ou de 3."],
+      "solution": "Somme 12 : 1 case (1/36). Somme 7 : 6 cases (6/36). Deux pairs : 3 × 3 = 9 cases (9/36). Au moins un 6 : 6 + 6 − 1 = 11 cases, car (6 ; 6) ne compte qu'une fois (11/36). Somme ≥ 4 : le contraire (somme 2 ou 3) compte 3 cases, donc 36 − 3 = 33 cases (33/36). Ordre : somme 12, somme 7, deux pairs, au moins un 6, somme ≥ 4.",
+      "selfTest": [
+        { "response": { "order": ["A", "B", "C", "D", "E"] }, "expect": "correct" },
+        { "response": { "order": ["A", "B", "D", "C", "E"] }, "expect": "partiel" },
+        { "response": { "order": ["E", "D", "C", "B", "A"] }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-somme-des", "type": "composite", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:sommes-equiprobables", "mc:un-seul-double"], "expectedSeconds": 300,
+      "params": { "s": { "choice": [5, 6, 8, 9] } },
+      "prompt": "On lance un dé rouge et un dé bleu, équilibrés, à six faces, et on additionne les deux nombres. Le tableau donne toutes les sommes possibles : chacune des 36 cases est une issue équiprobable.",
+      "figure": {
+        "alt": "Tableau à double entrée des sommes de deux dés à six faces",
+        "w": 420, "h": 250,
+        "items": [ { "type": "table", "head": ["Rouge ↓ Bleu →", "1", "2", "3", "4", "5", "6"], "rows": [
+          ["1", "2", "3", "4", "5", "6", "7"], ["2", "3", "4", "5", "6", "7", "8"], ["3", "4", "5", "6", "7", "8", "9"],
+          ["4", "5", "6", "7", "8", "9", "10"], ["5", "6", "7", "8", "9", "10", "11"], ["6", "7", "8", "9", "10", "11", "12"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de cases du tableau donnent une somme égale à {s} ?", "answer": "6 - abs(s - 7)" },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir une somme égale à {s} ? (fraction)", "answer": "(6 - abs(s - 7))/36",
+          "misconceptions": [ { "answer": "1/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les 11 sommes possibles (de 2 à 12) ne sont pas équiprobables : ce sont les 36 cases du tableau qui le sont." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir un double (deux nombres identiques) ?", "answer": "6/36",
+          "misconceptions": [ { "answer": "1/36", "id": "mc:un-seul-double", "error": "lecture", "feedback": "Il n'y a pas qu'un seul double : regarde toute la diagonale du tableau." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir une somme d'au moins 10 ?", "answer": "6/36",
+          "misconceptions": [ { "answer": "3/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les sommes 10, 11 et 12 ne sont pas équiprobables avec les autres : compte les cases du tableau." } ] }
+      ],
+      "hints": ["Repère dans le tableau toutes les cases qui contiennent {s}.", "Probabilité = nombre de cases favorables ÷ 36.", "Somme d'au moins 10 : sommes 10, 11 ou 12."],
+      "solution": "La somme {s} apparaît dans {6-abs(s-7)} cases, donc sa probabilité vaut $ {6-abs(s-7)}/36 $. Les doubles forment la diagonale : 6 cases, probabilité $ 6/36 = 1/6 $. Somme d'au moins 10 : 3 cases pour 10, 2 pour 11 et 1 pour 12, soit 6 cases : probabilité $ 6/36 = 1/6 $. Les sommes ne sont pas équiprobables : 7 est la plus probable, 2 et 12 les moins probables.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{6-abs(s-7)}" }, { "value": "{6-abs(s-7)}/36" }, { "value": "6/36" }, { "value": "1/6" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{6-abs(s-7)}" }, { "value": "1/11" }, { "value": "6/36" }, { "value": "1/6" } ] }, "expect": "mc:sommes-equiprobables" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-arbre-roue", "type": "composite", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:additionner-issues", "mc:additionner-probas", "mc:un-seul-chemin", "mc:contraire-oublie"], "expectedSeconds": 300,
+      "prompt": "Une roue est partagée en trois secteurs égaux : Rouge (R), Vert (V) et Bleu (B). On la fait tourner deux fois et on note les deux couleurs obtenues. L'arbre ci-dessous représente toutes les issues.",
+      "figure": {
+        "alt": "Arbre des possibles de deux tours de roue à trois couleurs : trois branches, puis trois branches au bout de chacune",
+        "w": 380, "h": 400,
+        "frame": { "x": [0, 8.6], "y": [0, 9.6] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0.5, "y": 4.5, "style": "rond", "label": "" },
+          { "type": "segment", "from": [0.6, 4.5], "to": [3.2, 7.35] },
+          { "type": "segment", "from": [0.6, 4.5], "to": [3.2, 4.5] },
+          { "type": "segment", "from": [0.6, 4.5], "to": [3.2, 1.65] },
+          { "type": "segment", "from": [3.8, 7.6], "to": [6.7, 8.45] },
+          { "type": "segment", "from": [3.8, 7.5], "to": [6.7, 7.5] },
+          { "type": "segment", "from": [3.8, 7.4], "to": [6.7, 6.55] },
+          { "type": "segment", "from": [3.8, 4.6], "to": [6.7, 5.45] },
+          { "type": "segment", "from": [3.8, 4.5], "to": [6.7, 4.5] },
+          { "type": "segment", "from": [3.8, 4.4], "to": [6.7, 3.55] },
+          { "type": "segment", "from": [3.8, 1.6], "to": [6.7, 2.45] },
+          { "type": "segment", "from": [3.8, 1.5], "to": [6.7, 1.5] },
+          { "type": "segment", "from": [3.8, 1.4], "to": [6.7, 0.55] },
+          { "type": "text", "x": 3.5, "y": 7.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 3.5, "y": 4.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 3.5, "y": 1.5, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 7, "y": 8.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7, "y": 7.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7, "y": 6.5, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 7, "y": 5.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7, "y": 4.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7, "y": 3.5, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 7, "y": 2.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7, "y": 1.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7, "y": 0.5, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 3.5, "y": 9.3, "text": "1er tour", "size": "s" },
+          { "type": "text", "x": 7, "y": 9.3, "text": "2e tour", "size": "s" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien y a-t-il d'issues, toutes équiprobables ?", "answer": 9,
+          "misconceptions": [ { "answer": 6, "id": "mc:additionner-issues", "error": "raisonnement", "feedback": "Chaque couleur du premier tour peut être suivie de chacune des couleurs du second : on multiplie, on n'additionne pas." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux fois Rouge ?", "answer": "1/9",
+          "misconceptions": [ { "answer": "2/3", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "Additionner les probabilités des deux tours donne un nombre bien trop grand : un seul chemin de l'arbre réalise cet évènement." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux fois la même couleur ?", "answer": "3/9",
+          "misconceptions": [ { "answer": "1/9", "id": "mc:un-seul-chemin", "error": "lecture", "feedback": "Deux fois Rouge n'est qu'un des cas : deux fois Vert et deux fois Bleu conviennent aussi." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir au moins une fois Rouge ?", "answer": "5/9",
+          "misconceptions": [
+            { "answer": "2/3", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "1/3 + 1/3 compte deux fois le chemin Rouge puis Rouge. Compte les chemins qui contiennent au moins un R, ou passe par l'évènement contraire." },
+            { "answer": "4/9", "id": "mc:contraire-oublie", "error": "notion", "feedback": "C'est la probabilité de n'avoir AUCUN Rouge, l'évènement contraire. Il reste une étape." }
+          ] }
+      ],
+      "hints": ["Compte les bouts de branches à droite de l'arbre : chacun termine un chemin, c'est-à-dire une issue.", "Deux fois Rouge : un seul chemin, R puis R.", "Au moins un Rouge : le contraire est « aucun Rouge » ; compte les chemins sans R."],
+      "solution": "L'arbre a 3 × 3 = 9 chemins équiprobables. Deux fois Rouge : 1 chemin, probabilité 1/9. Même couleur : (R ; R), (V ; V), (B ; B), soit 3/9 = 1/3. Au moins un Rouge : le contraire, « aucun Rouge », compte 2 × 2 = 4 chemins, donc la probabilité vaut 1 − 4/9 = 5/9. On peut aussi compter directement : (R ; R), (R ; V), (R ; B), (V ; R) et (B ; R).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "9" }, { "value": "1/9" }, { "value": "1/3" }, { "value": "5/9" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "9" }, { "value": "2/3" }, { "value": "1/3" }, { "value": "5/9" } ] }, "expect": "mc:additionner-probas" },
+        { "response": { "parts": [ { "value": "9" }, { "value": "1/9" }, { "value": "1/3" }, { "value": "4/9" } ] }, "expect": "mc:contraire-oublie" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-produit", "type": "numeric", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:additionner-probas", "mc:une-seule-epreuve", "mc:confusion-remise"], "expectedSeconds": 150,
+      "params": { "r": { "int": [2, 5] }, "b": { "int": [2, 6] } },
+      "prompt": "Un sac contient {r} boules rouges et {b} boules bleues, indiscernables au toucher. On tire une boule, on note sa couleur, on la REMET dans le sac, puis on tire une deuxième boule. Quelle est la probabilité d'obtenir deux boules rouges ? (fraction)",
+      "figure": {
+        "alt": "Arbre de deux tirages avec remise, avec la probabilité de rouge et de bleu écrite sur chaque branche",
+        "w": 420, "h": 290,
+        "frame": { "x": [0, 9], "y": [0, 6.5] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0.5, "y": 3, "style": "rond", "label": "" },
+          { "type": "point", "id": "C", "x": 4.5, "y": 3, "hidden": true },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 4.4], "label": "{r}/{r+b}" },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 1.6], "label": "{b}/{r+b}" },
+          { "type": "segment", "from": [3.8, 4.6], "to": [7.2, 5.35], "label": "{r}/{r+b}" },
+          { "type": "segment", "from": [3.8, 4.4], "to": [7.2, 3.65], "label": "{b}/{r+b}" },
+          { "type": "segment", "from": [3.8, 1.6], "to": [7.2, 2.35], "label": "{r}/{r+b}" },
+          { "type": "segment", "from": [3.8, 1.4], "to": [7.2, 0.65], "label": "{b}/{r+b}" },
+          { "type": "text", "x": 3.5, "y": 4.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 3.5, "y": 1.5, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 7.5, "y": 5.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 3.6, "text": "B", "color": "bleu", "bold": true },
+          { "type": "text", "x": 7.5, "y": 2.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 0.6, "text": "B", "color": "bleu", "bold": true }
+        ]
+      },
+      "answer": "(r/(r+b))^2",
+      "misconceptions": [
+        { "answer": "2*r/(r+b)", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "Additionner les probabilités des deux tirages donne un nombre trop grand (parfois même plus grand que 1 !). Pour un chemin de l'arbre, on multiplie." },
+        { "answer": "r/(r+b)", "id": "mc:une-seule-epreuve", "error": "lecture", "feedback": "C'est la probabilité de tirer une rouge au PREMIER tirage seulement. Il faut que les deux tirages donnent rouge." },
+        { "answer": "r*(r-1)/((r+b)*(r+b-1))", "id": "mc:confusion-remise", "error": "notion", "feedback": "Ce calcul correspond à un tirage SANS remise. Ici, la boule est remise : le sac est identique au second tirage." }
+      ],
+      "hints": ["Au premier tirage, la probabilité de tirer une rouge vaut {r}/{r+b}.", "La boule est remise : au second tirage, le sac est identique.", "Probabilité d'un chemin = produit des probabilités de ses branches."],
+      "solution": "Chaque tirage donne rouge avec la probabilité $ {r}/{r+b} $. Le chemin « rouge puis rouge » a pour probabilité $ {r}/{r+b} × {r}/{r+b} = {r*r}/{(r+b)*(r+b)} $. En comptant : si l'on numérote les boules, il y a $ {r+b} × {r+b} = {(r+b)*(r+b)} $ couples équiprobables, dont $ {r} × {r} = {r*r} $ formés de deux rouges.",
+      "selfTest": [
+        { "response": { "value": "{r*r}/{(r+b)*(r+b)}" }, "expect": "correct" },
+        { "response": { "value": "{2*r}/{r+b}" }, "expect": "mc:additionner-probas" },
+        { "response": { "value": "{r*(r-1)}/{(r+b)*(r+b-1)}" }, "expect": "mc:confusion-remise" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-frequences", "type": "composite", "skill": "m3.probas.frequences", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:petit-echantillon", "mc:contraire-oublie"], "expectedSeconds": 240,
+      "prompt": "Une punaise lancée peut retomber « pointe en l'air » ou « sur le côté » : ces deux issues ne sont pas équiprobables, on ne peut pas calculer leur probabilité. Jade et sa classe ont lancé une punaise 1 000 fois en notant, au fur et à mesure, la fréquence de « pointe en l'air » (résultats d'exemple).",
+      "figure": {
+        "alt": "Fréquence de « pointe en l'air » en fonction du nombre de lancers, de 10 à 1 000 lancers",
+        "w": 520, "h": 290,
+        "items": [ { "type": "linechart", "xLabel": "nombre de lancers", "yLabel": "fréquence", "yRange": [0, 1],
+          "series": [ { "label": "Fréquence de « pointe en l'air »", "points": [[10, 0.8], [50, 0.54], [100, 0.58], [200, 0.645], [300, 0.613], [400, 0.63], [500, 0.618], [600, 0.625], [700, 0.617], [800, 0.621], [900, 0.619], [1000, 0.62]] } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle estimation de la probabilité de « pointe en l'air » proposes-tu ? (au centième)", "answer": 0.62, "tolerance": 0.015,
+          "misconceptions": [ { "answer": 0.8, "id": "mc:petit-echantillon", "error": "raisonnement", "feedback": "Cette fréquence a été observée sur très peu de lancers : elle varie beaucoup. Regarde où la courbe se stabilise quand le nombre de lancers devient grand." } ] },
+        { "type": "numeric", "prompt": "Estime la probabilité que la punaise retombe sur le côté.", "answer": 0.38, "tolerance": 0.015,
+          "misconceptions": [ { "answer": 0.62, "id": "mc:contraire-oublie", "error": "notion", "feedback": "C'est l'estimation pour « pointe en l'air ». « Sur le côté » est l'évènement contraire." } ] },
+        { "type": "numeric", "prompt": "Sur 5 000 lancers, combien de fois environ la punaise retombera-t-elle pointe en l'air ?", "answer": 3100, "rel": 0.03,
+          "misconceptions": [ { "answer": 620, "id": "mc:mauvais-effectif", "error": "lecture", "feedback": "Ce nombre correspond à 1 000 lancers. Pour 5 000 lancers, multiplie ton estimation de la probabilité par 5 000." } ] }
+      ],
+      "hints": ["Au début, avec peu de lancers, la fréquence varie beaucoup.", "Après quelques centaines de lancers, la courbe reste autour d'une même valeur.", "Nombre attendu ≈ probabilité × nombre de lancers."],
+      "solution": "La fréquence se stabilise autour de 0,62 : on estime que la probabilité de « pointe en l'air » vaut environ 0,62. L'évènement contraire, « sur le côté », a donc une probabilité d'environ 1 − 0,62 = 0,38. Sur 5 000 lancers, on peut s'attendre à environ 0,62 × 5 000 = 3 100 « pointe en l'air » : ce n'est qu'une prévision, le nombre réel sera proche mais pas forcément égal.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "0,62" }, { "value": "0,38" }, { "value": "3100" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,8" }, { "value": "0,38" }, { "value": "3100" } ] }, "expect": "mc:petit-echantillon" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-simulation", "type": "match", "skill": "m3.probas.frequences", "skills": ["m3.algo.aleatoire"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:sommes-equiprobables", "mc:double-un-de"], "expectedSeconds": 180,
+      "prompt": "Dans un tableur, la formule =ALEA.ENTRE.BORNES(a;b) donne un nombre entier au hasard entre a et b (inclus), chaque entier ayant la même chance. Associe chaque expérience à la formule qui la simule. Attention : deux formules sont des pièges.",
+      "leftTitle": "Expérience", "rightTitle": "Formule",
+      "left": [
+        { "id": "l1", "label": "Lancer un dé équilibré à 6 faces" },
+        { "id": "l2", "label": "Lancer deux dés équilibrés à 6 faces et additionner les résultats" },
+        { "id": "l3", "label": "Lancer une pièce (1 pour Pile, 0 pour Face)" },
+        { "id": "l4", "label": "Tirer une boule dans un sac de 10 boules numérotées de 1 à 10" }
+      ],
+      "right": [
+        { "id": "r1", "label": "=ALEA.ENTRE.BORNES(1;6)" },
+        { "id": "r2", "label": "=ALEA.ENTRE.BORNES(1;6)+ALEA.ENTRE.BORNES(1;6)" },
+        { "id": "r3", "label": "=ALEA.ENTRE.BORNES(0;1)" },
+        { "id": "r4", "label": "=ALEA.ENTRE.BORNES(1;10)" },
+        { "id": "r5", "label": "=2*ALEA.ENTRE.BORNES(1;6)" },
+        { "id": "r6", "label": "=ALEA.ENTRE.BORNES(2;12)" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l2", "r6"], "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Cette formule donne autant de chances à chaque somme de 2 à 12. Or, avec deux dés, la somme 7 sort bien plus souvent que 2 ou 12 : il faut simuler chaque dé séparément." },
+        { "pair": ["l2", "r5"], "id": "mc:double-un-de", "error": "notion", "feedback": "Cette formule double le résultat d'UN seul dé : elle ne donne que des nombres pairs ! Deux dés, ce sont deux tirages indépendants." }
+      ],
+      "hints": ["Un dé à 6 faces donne un entier de 1 à 6, chacun avec la même chance.", "La somme de deux dés n'est pas équiprobable : il faut deux tirages.", "Doubler un dé, ce n'est pas lancer deux dés : le double ne peut pas valoir 7."],
+      "solution": "Dé : =ALEA.ENTRE.BORNES(1;6). Deux dés : la somme de deux tirages, =ALEA.ENTRE.BORNES(1;6)+ALEA.ENTRE.BORNES(1;6). Pièce : =ALEA.ENTRE.BORNES(0;1). Sac de 10 boules : =ALEA.ENTRE.BORNES(1;10). Pièges : =ALEA.ENTRE.BORNES(2;12) rend les 11 sommes équiprobables, et =2*ALEA.ENTRE.BORNES(1;6) ne donne que les nombres pairs 2, 4, …, 12.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r6", "l3": "r3", "l4": "r4" } }, "expect": "mc:sommes-equiprobables" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r5", "l3": "r3", "l4": "r4" } }, "expect": "mc:double-un-de" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-deux-urnes", "type": "composite", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:additionner-probas", "mc:couleurs-equiprobables", "mc:contraire-oublie"], "expectedSeconds": 420,
+      "prompt": "L'urne A contient 1 boule rouge et 2 boules bleues. L'urne B contient 2 boules rouges et 2 boules bleues. On tire une boule dans chaque urne. Pour avoir des issues équiprobables, on a numéroté les boules : le tableau donne les 12 issues.",
+      "figure": {
+        "alt": "Tableau des 12 issues : en ligne les boules de l'urne A, en colonne les boules de l'urne B, chaque case indique les deux couleurs",
+        "w": 460, "h": 160,
+        "items": [ { "type": "table", "head": ["A ↓ B →", "R1", "R2", "B1", "B2"], "rows": [
+          ["R", "(R ; R)", "(R ; R)", "(R ; B)", "(R ; B)"],
+          ["B1", "(B ; R)", "(B ; R)", "(B ; B)", "(B ; B)"],
+          ["B2", "(B ; R)", "(B ; R)", "(B ; B)", "(B ; B)"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux boules rouges ?", "answer": "2/12",
+          "misconceptions": [
+            { "answer": "5/6", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "Additionner les probabilités des deux urnes donne un nombre trop grand. Compte plutôt les cases du tableau où les deux boules sont rouges." },
+            { "answer": "1/4", "id": "mc:couleurs-equiprobables", "error": "notion", "feedback": "Les 4 combinaisons de couleurs ne sont pas équiprobables : ce sont les 12 cases du tableau qui le sont." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux boules de la même couleur ?", "answer": "6/12" },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir au moins une boule bleue ?", "answer": "10/12",
+          "misconceptions": [ { "answer": "2/12", "id": "mc:contraire-oublie", "error": "notion", "feedback": "C'est la probabilité de l'évènement contraire, « deux rouges ». Utilise P(non A) = 1 − P(A)." } ] },
+        { "type": "open", "prompt": "Retrouve la probabilité de « deux rouges » avec le raccourci du produit, et explique pourquoi on a le droit de l'utiliser ici.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je calcule 1/3 × 2/4 = 2/12 = 1/6", "keywords": [["1/3", "2/4", "1/6", "produit", "multipli"]] },
+            { "id": "c2", "label": "J'explique que le tirage dans l'urne A ne change rien à l'urne B (épreuves indépendantes)", "keywords": [["independ", "ne change pas", "ne change rien", "ne depend pas", "differentes"]] }
+          ] }
+      ],
+      "hints": ["Compte les cases (R ; R) du tableau.", "Même couleur : (R ; R) ou (B ; B).", "Au moins une bleue : c'est le contraire de « deux rouges »."],
+      "solution": "Deux rouges : 2 cases sur 12, soit 1/6. Même couleur : 2 cases (R ; R) et 4 cases (B ; B), soit 6/12 = 1/2. Au moins une bleue : $ 1 − 2/12 = 10/12 = 5/6 $. Produit : P(rouge dans A) × P(rouge dans B) = $ 1/3 × 2/4 = 2/12 = 1/6 $. On a le droit de multiplier car les deux tirages ont lieu dans des urnes différentes : le premier ne modifie pas le second.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1/6" }, { "value": "1/2" }, { "value": "5/6" }, { "text": "1/3 × 2/4 = 2/12 = 1/6 : on peut multiplier car le tirage dans l'urne A ne change rien à l'urne B.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5/6" }, { "value": "1/2" }, { "value": "5/6" }, { "text": "On additionne." } ] }, "expect": "mc:additionner-probas" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-expliquer", "type": "open", "skill": "m3.probas.frequences", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:petit-echantillon"], "expectedSeconds": 360,
+      "prompt": "Lucas a lancé 12 fois un dé et a obtenu 5 fois le 6. Il affirme : « Ce dé est truqué, car la fréquence du 6 est bien plus grande que 1/6. » Que lui réponds-tu ? Comment pourrait-il vérifier son idée ? Tu peux faire des essais dans le labo de dés.",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 1, "event": "obtenir 6" } },
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "12 lancers, c'est trop peu : sur un petit nombre d'essais, la fréquence varie beaucoup", "keywords": [["peu", "petit nombre", "pas assez", "fluctu", "varie"]] },
+        { "id": "c2", "label": "Il faut un très grand nombre de lancers et regarder autour de quelle valeur la fréquence se stabilise", "keywords": [["grand nombre", "beaucoup de lancers", "1000", "1 000", "stabilis", "simul"]] },
+        { "id": "c3", "label": "Si la fréquence se stabilise loin de 1/6 (environ 0,17), on pourra soupçonner un dé truqué", "keywords": [["1/6", "0,17", "0,167", "loin"]] }
+      ],
+      "models": [
+        "Avec seulement 12 lancers, la fréquence du 6 peut varier énormément, même avec un dé parfaitement équilibré : obtenir 5 fois le 6 est rare mais possible. Pour vérifier, Lucas doit lancer le dé un très grand nombre de fois, par exemple 1 000 fois, et regarder si la fréquence du 6 se stabilise autour de 1/6 ≈ 0,17. Si elle reste nettement au-dessus, il pourra soupçonner que le dé est truqué.",
+        "On ne peut rien conclure sur 12 lancers : c'est un trop petit nombre d'essais, les fréquences fluctuent. Dans le labo, en lançant 12 fois plusieurs fois de suite, on obtient des fréquences très différentes. Il faut faire des centaines de lancers : si la fréquence du 6 se stabilise loin de 0,17, le dé est sans doute truqué."
+      ],
+      "hints": ["Dans le labo, lance 12 fois le dé, puis recommence plusieurs fois : la fréquence du 6 est-elle toujours la même ?", "Que se passe-t-il pour la fréquence quand le nombre de lancers devient très grand ?"],
+      "solution": "12 lancers, c'est bien trop peu : sur un petit nombre d'essais, la fréquence varie beaucoup d'une série à l'autre, même avec un dé équilibré. Pour vérifier, il faut lancer le dé un très grand nombre de fois (des centaines, des milliers) et observer autour de quelle valeur la fréquence du 6 se stabilise. Si elle se stabilise près de 1/6 ≈ 0,17, le dé est sans doute équilibré ; si elle reste nettement plus grande, on peut soupçonner un dé truqué.",
+      "selfTest": [
+        { "response": { "text": "12 lancers c'est trop peu, la fréquence varie beaucoup. Il faut faire 1 000 lancers et voir si la fréquence se stabilise autour de 1/6, sinon le dé est peut-être truqué.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "Oui il est truqué." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-fete", "type": "composite", "skill": "m3.probas.deux-epreuves", "skills": ["m3.probas.frequences"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:sommes-equiprobables", "mc:tous-payes"], "expectedSeconds": 720,
+      "prompt": "Mission : à la fête du collège, tu tiens le stand « Lucky 7 ». Chaque partie coûte 1 €. Le joueur lance deux dés équilibrés : si la somme vaut 7, il reçoit 5 €. Le principal veut savoir si le jeu est équitable : sur un grand nombre de parties, ce que reçoivent les joueurs doit compenser ce qu'ils ont misé. Simule d'abord des parties dans le labo, puis calcule.",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 2, "event": "somme égale à 7", "track": [7] } },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir une somme égale à 7 ? (fraction)", "answer": "1/6",
+          "misconceptions": [ { "answer": "1/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les 11 sommes possibles ne sont pas équiprobables : ce sont les 36 couples (dé 1 ; dé 2) qui le sont." } ] },
+        { "type": "numeric", "prompt": "Sur 360 parties, combien de parties gagnantes peut-on prévoir environ ?", "answer": 60, "tolerance": 1,
+          "misconceptions": [ { "answer": "360/11", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Ton calcul suppose que les 11 sommes sont équiprobables. Reprends la probabilité obtenue avec le tableau des 36 issues." } ] },
+        { "type": "numeric", "prompt": "Sur ces 360 parties, combien le stand encaisse-t-il en mises, en € ?", "answer": 360 },
+        { "type": "numeric", "prompt": "Combien le stand reverse-t-il aux gagnants, en € ?", "answer": 300,
+          "misconceptions": [ { "answer": 1800, "id": "mc:tous-payes", "error": "lecture", "feedback": "Seules les parties gagnantes sont payées, pas toutes les parties." } ] },
+        { "type": "numeric", "prompt": "Combien faudrait-il donner à chaque gagnant pour que le jeu soit équitable, en € ?", "answer": 6,
+          "misconceptions": [ { "answer": 11, "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Ce montant correspondrait à une chance sur 11 de gagner. Pars du nombre de parties gagnantes prévu sur 360 parties." } ] }
+      ],
+      "hints": ["Dans le tableau des 36 issues, la somme 7 apparaît 6 fois.", "Parties gagnantes ≈ probabilité × nombre de parties.", "Équitable : le total reversé aux gagnants doit être égal au total des mises."],
+      "solution": "P(somme = 7) = 6/36 = 1/6. Sur 360 parties, on peut prévoir environ $ 360 × 1/6 = 60 $ parties gagnantes. Le stand encaisse 360 € et reverse environ $ 60 × 5 = 300 $ € : il gagne environ 60 €, le jeu n'est pas équitable (il avantage le stand). Pour qu'il le soit, il faudrait reverser 360 € aux 60 gagnants, soit $ 360 ÷ 60 = 6 $ € par partie gagnée. Dans le labo, la fréquence de la somme 7 se stabilise bien autour de 1/6 ≈ 0,167, et non de 1/11 ≈ 0,09.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1/6" }, { "value": "60" }, { "value": "360" }, { "value": "300" }, { "value": "6" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1/11" }, { "value": "33" }, { "value": "360" }, { "value": "300" }, { "value": "11" } ] }, "expect": "mc:sommes-equiprobables" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-issues", "type": "numeric", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:additionner-issues"], "expectedSeconds": 60,
+      "params": { "n": { "choice": [4, 6, 8, 10, 12] }, "m": { "int": [2, 5] } },
+      "prompt": "Rappel : dans une expérience à deux épreuves, chaque résultat de la première peut être suivi de chaque résultat de la seconde. On lance un dé à {n} faces, puis on tire une boule dans un sac de {m} boules numérotées. Combien y a-t-il d'issues (dé ; boule) possibles ?",
+      "figure": {
+        "alt": "Début du tableau à double entrée des issues (dé ; boule)",
+        "w": 360, "h": 150,
+        "items": [ { "type": "table", "head": ["Dé ↓ Boule →", "1", "2", "…"], "rows": [["1", "(1 ; 1)", "(1 ; 2)", "…"], ["2", "(2 ; 1)", "(2 ; 2)", "…"], ["…", "…", "…", "…"]] } ]
+      },
+      "answer": "n*m",
+      "misconceptions": [ { "answer": "n+m", "id": "mc:additionner-issues", "error": "raisonnement", "feedback": "Chaque face du dé peut aller avec CHACUNE des boules : le tableau a autant de lignes que de faces et autant de colonnes que de boules. On multiplie." } ],
+      "hints": ["Le tableau à double entrée a {n} lignes (les faces du dé).", "Combien de colonnes ? Combien de cases en tout ?"],
+      "solution": "Le tableau a {n} lignes et {m} colonnes, donc $ {n} × {m} = {n*m} $ cases : il y a {n*m} issues.",
+      "selfTest": [
+        { "response": { "value": "{n*m}" }, "expect": "correct" },
+        { "response": { "value": "{n+m}" }, "expect": "mc:additionner-issues" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-remed-tableau", "type": "composite", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:produit-au-lieu-somme", "mc:sommes-equiprobables"], "expectedSeconds": 180,
+      "prompt": "Rappel : un tableau à double entrée donne toutes les issues. On fait tourner deux roues, chacune partagée en 3 secteurs égaux numérotés 1, 2 et 3, et on additionne les deux nombres obtenus.",
+      "parts": [
+        { "type": "table", "prompt": "Complète le tableau des sommes.",
+          "columns": ["Roue 1 ↓ Roue 2 →", "1", "2", "3"],
+          "rows": [["1", "?r0c1", "?r0c2", "?r0c3"], ["2", "?r1c1", "?r1c2", "?r1c3"], ["3", "?r2c1", "?r2c2", "?r2c3"]],
+          "cells": {
+            "r0c1": { "answer": "2" }, "r0c2": { "answer": "3" }, "r0c3": { "answer": "4" },
+            "r1c1": { "answer": "3" }, "r1c2": { "answer": "4" }, "r1c3": { "answer": "5" },
+            "r2c1": { "answer": "4" }, "r2c2": { "answer": "5" },
+            "r2c3": { "answer": "6", "misconceptions": [ { "answer": "9", "id": "mc:produit-au-lieu-somme", "error": "calcul", "feedback": "On additionne les deux nombres, on ne les multiplie pas." } ] }
+          } },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir une somme égale à 4 ?", "answer": "3/9",
+          "misconceptions": [ { "answer": "1/5", "id": "mc:sommes-equiprobables", "error": "notion", "feedback": "Les 5 sommes possibles (de 2 à 6) ne sont pas équiprobables : ce sont les 9 cases du tableau qui le sont." } ] }
+      ],
+      "hints": ["Chaque case : nombre de la roue 1 + nombre de la roue 2.", "Compte les cases qui contiennent 4, puis divise par le nombre total de cases."],
+      "solution": "Sommes : 2, 3, 4 / 3, 4, 5 / 4, 5, 6. Il y a 9 issues équiprobables ; la somme 4 apparaît 3 fois : probabilité 3/9 = 1/3.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c1": "2", "r0c2": "3", "r0c3": "4", "r1c1": "3", "r1c2": "4", "r1c3": "5", "r2c1": "4", "r2c2": "5", "r2c3": "6" } }, { "value": "1/3" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c1": "2", "r0c2": "3", "r0c3": "4", "r1c1": "3", "r1c2": "4", "r1c3": "5", "r2c1": "4", "r2c2": "5", "r2c3": "6" } }, { "value": "1/5" } ] }, "expect": "mc:sommes-equiprobables" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-remed-piece", "type": "composite", "skill": "m3.probas.deux-epreuves", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:ordre-ignore", "mc:additionner-probas"], "expectedSeconds": 90,
+      "prompt": "Rappel avec une pièce équilibrée lancée deux fois. L'arbre donne toutes les issues.",
+      "figure": {
+        "alt": "Arbre des possibles de deux lancers d'une pièce : Pile ou Face, puis Pile ou Face",
+        "w": 440, "h": 290,
+        "frame": { "x": [0, 10.2], "y": [0, 6.5] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0.5, "y": 3, "style": "rond", "label": "" },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 4.4] },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 1.6] },
+          { "type": "segment", "from": [3.8, 4.6], "to": [6.7, 5.35] },
+          { "type": "segment", "from": [3.8, 4.4], "to": [6.7, 3.65] },
+          { "type": "segment", "from": [3.8, 1.6], "to": [6.7, 2.35] },
+          { "type": "segment", "from": [3.8, 1.4], "to": [6.7, 0.65] },
+          { "type": "text", "x": 3.5, "y": 4.5, "text": "P", "bold": true },
+          { "type": "text", "x": 3.5, "y": 1.5, "text": "F", "bold": true },
+          { "type": "text", "x": 7, "y": 5.4, "text": "P", "bold": true },
+          { "type": "text", "x": 7, "y": 3.6, "text": "F", "bold": true },
+          { "type": "text", "x": 7, "y": 2.4, "text": "P", "bold": true },
+          { "type": "text", "x": 7, "y": 0.6, "text": "F", "bold": true },
+          { "type": "text", "x": 9, "y": 5.4, "text": "(P ; P)", "color": "maths" },
+          { "type": "text", "x": 9, "y": 3.6, "text": "(P ; F)", "color": "maths" },
+          { "type": "text", "x": 9, "y": 2.4, "text": "(F ; P)", "color": "maths" },
+          { "type": "text", "x": 9, "y": 0.6, "text": "(F ; F)", "color": "maths" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien y a-t-il d'issues équiprobables ?", "answer": 4,
+          "misconceptions": [ { "answer": 3, "id": "mc:ordre-ignore", "error": "raisonnement", "feedback": "« Pile puis Face » et « Face puis Pile » sont deux issues différentes : regarde les chemins de l'arbre." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux fois Pile ?", "answer": "1/4",
+          "misconceptions": [
+            { "answer": 1, "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "1/2 + 1/2 = 1 voudrait dire qu'on obtient deux Pile à coup sûr ! Sur un chemin, on multiplie les probabilités." },
+            { "answer": "1/3", "id": "mc:ordre-ignore", "error": "raisonnement", "feedback": "Les résultats « deux Pile », « un de chaque » et « deux Face » ne sont pas équiprobables : « un de chaque » correspond à deux chemins." }
+          ] }
+      ],
+      "hints": ["Compte les chemins de l'arbre.", "Un seul chemin donne deux fois Pile."],
+      "solution": "L'arbre a 2 × 2 = 4 chemins équiprobables : (P ; P), (P ; F), (F ; P), (F ; F). Deux fois Pile : 1 chemin sur 4, probabilité 1/4. C'est aussi 1/2 × 1/2.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4" }, { "value": "1/4" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4" }, { "value": "1" } ] }, "expect": "mc:additionner-probas" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-sans-remise", "type": "composite", "skill": "m3.probas.sans-remise", "skills": ["m3.probas.deux-epreuves"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:confusion-remise", "mc:additionner-probas", "mc:un-seul-chemin"], "expectedSeconds": 480,
+      "params": { "r": { "int": [2, 5] }, "v": { "int": [2, 4] }, "N": { "expr": "r + v" } },
+      "prompt": "Un sac contient {r} boules rouges et {v} boules vertes. On tire une boule, on la GARDE (on ne la remet pas), puis on tire une deuxième boule. L'arbre indique les probabilités sur chaque branche.",
+      "figure": {
+        "alt": "Arbre de deux tirages sans remise, avec les probabilités sur chaque branche",
+        "w": 420, "h": 290,
+        "frame": { "x": [0, 9], "y": [0, 6.5] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0.5, "y": 3, "style": "rond", "label": "" },
+          { "type": "point", "id": "C", "x": 4.5, "y": 3, "hidden": true },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 4.4], "label": "{r}/{N}" },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 1.6], "label": "{v}/{N}" },
+          { "type": "segment", "from": [3.8, 4.6], "to": [7.2, 5.35], "label": "{r-1}/{N-1}" },
+          { "type": "segment", "from": [3.8, 4.4], "to": [7.2, 3.65], "label": "{v}/{N-1}" },
+          { "type": "segment", "from": [3.8, 1.6], "to": [7.2, 2.35], "label": "{r}/{N-1}" },
+          { "type": "segment", "from": [3.8, 1.4], "to": [7.2, 0.65], "label": "{v-1}/{N-1}" },
+          { "type": "text", "x": 3.5, "y": 4.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 3.5, "y": 1.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7.5, "y": 5.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 3.6, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7.5, "y": 2.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 0.6, "text": "V", "color": "vert", "bold": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Après avoir tiré une boule rouge, combien reste-t-il de boules dans le sac ?", "answer": "N - 1",
+          "misconceptions": [ { "answer": "N", "id": "mc:confusion-remise", "error": "notion", "feedback": "La première boule n'est pas remise : le sac en contient une de moins." } ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de tirer deux boules rouges ? (fraction)", "answer": "r*(r-1)/(N*(N-1))",
+          "misconceptions": [
+            { "answer": "(r/N)^2", "id": "mc:confusion-remise", "error": "notion", "feedback": "Ce calcul correspond à un tirage AVEC remise. Ici, au second tirage, il reste une rouge de moins et une boule de moins en tout." },
+            { "answer": "r/N + (r-1)/(N-1)", "id": "mc:additionner-probas", "error": "raisonnement", "feedback": "Sur un chemin de l'arbre, on multiplie les probabilités, on ne les additionne pas." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est la probabilité d'obtenir deux boules de couleurs différentes ? (fraction)", "answer": "2*r*v/(N*(N-1))",
+          "misconceptions": [ { "answer": "r*v/(N*(N-1))", "id": "mc:un-seul-chemin", "error": "lecture", "feedback": "Tu n'as compté qu'un des deux chemins, rouge puis verte. Verte puis rouge convient aussi." } ] }
+      ],
+      "hints": ["Au premier tirage : {r} rouges sur {N} boules.", "Si la première boule est rouge, il reste {r-1} rouges sur {N-1} boules.", "Couleurs différentes : deux chemins, R puis V et V puis R. On additionne les probabilités de chemins différents."],
+      "solution": "Après une rouge, il reste {N-1} boules, dont {r-1} rouges. P(R puis R) = $ {r}/{N} × {r-1}/{N-1} = {r*(r-1)}/{N*(N-1)} $. Couleurs différentes : P(R puis V) + P(V puis R) = $ {r}/{N} × {v}/{N-1} + {v}/{N} × {r}/{N-1} = {2*r*v}/{N*(N-1)} $. Retiens : on MULTIPLIE le long d'un chemin, on ADDITIONNE les probabilités de chemins différents.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{N-1}" }, { "value": "{r*(r-1)}/{N*(N-1)}" }, { "value": "{2*r*v}/{N*(N-1)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{N-1}" }, { "value": "{r*r}/{N*N}" }, { "value": "{2*r*v}/{N*(N-1)}" } ] }, "expect": "mc:confusion-remise" },
+        { "response": { "parts": [ { "value": "{N-1}" }, { "value": "{r*(r-1)}/{N*(N-1)}" }, { "value": "{r*v}/{N*(N-1)}" } ] }, "expect": "mc:un-seul-chemin" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-capture", "type": "composite", "skill": "m3.probas.frequences", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:frequence-inverse", "mc:proportion-inverse", "mc:additionner-captures"], "expectedSeconds": 420,
+      "params": { "M": { "choice": [40, 50, 60, 80] }, "n": { "choice": [100, 120, 150, 200] }, "N": { "choice": [300, 400, 500, 600, 800] }, "k": { "expr": "M*n/N" } },
+      "constraints": ["estentier(k)", "k >= 5", "k < M"],
+      "prompt": "Pour estimer le nombre de poissons d'un étang, des biologistes en capturent {M}, les marquent et les relâchent. Une semaine plus tard, ils pêchent {n} poissons : {k} portent une marque. On suppose que les poissons marqués se sont bien mélangés aux autres.",
+      "figure": {
+        "alt": "Résumé des deux pêches : poissons marqués lors de la première, poissons pêchés et poissons marqués retrouvés lors de la seconde",
+        "w": 440, "h": 130,
+        "items": [ { "type": "table", "head": ["", "Poissons pêchés", "Dont marqués"], "rows": [["1re pêche", "{M}", "{M} (marqués puis relâchés)"], ["2e pêche", "{n}", "{k}"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la fréquence des poissons marqués dans la deuxième pêche ?", "answer": "k/n", "tolerance": 0.005,
+          "misconceptions": [ { "answer": "n/k", "id": "mc:frequence-inverse", "error": "methode", "feedback": "Ta fraction est à l'envers : une fréquence est toujours comprise entre 0 et 1." } ] },
+        { "type": "numeric", "prompt": "On admet que cette fréquence est proche de la proportion de poissons marqués dans tout l'étang. Estime le nombre de poissons de l'étang.", "answer": "N",
+          "misconceptions": [
+            { "answer": "M*k/n", "id": "mc:proportion-inverse", "error": "methode", "feedback": "Ton estimation est plus petite que le nombre de poissons marqués : impossible ! Les poissons marqués ne représentent qu'une petite part de l'étang." },
+            { "answer": "M + n", "id": "mc:additionner-captures", "error": "raisonnement", "feedback": "Additionner les deux pêches ne tient compte ni des poissons pêchés deux fois, ni de ceux qui n'ont jamais été pêchés. Utilise la proportion de poissons marqués." }
+          ] },
+        { "type": "open", "prompt": "Pourquoi ce nombre n'est-il qu'une estimation ?", "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "La fréquence observée sur un échantillon n'est qu'une approximation de la proportion réelle", "keywords": [["echantillon", "frequence", "approx", "hasard", "fluctu"]] },
+            { "id": "c2", "label": "Une autre pêche donnerait un résultat un peu différent", "keywords": [["autre peche", "different", "change", "varier"]] }
+          ] }
+      ],
+      "hints": ["Fréquence = poissons marqués ÷ poissons pêchés.", "La même proportion vaut pour l'étang : {M} poissons marqués sur un nombre inconnu de poissons.", "Produit en croix : nombre de poissons ≈ {M} × {n} ÷ {k}."],
+      "solution": "Fréquence : $ {k} ÷ {n} ≈ {k/n|d3} $. On suppose que cette proportion est la même dans tout l'étang : {M} poissons marqués sur N poissons, donc $ N ≈ {M} × {n} ÷ {k} = {N} $ poissons. C'est seulement une estimation : une autre pêche donnerait une fréquence un peu différente (fluctuation d'échantillonnage), donc une autre estimation. Cette méthode, appelée capture-recapture, est réellement utilisée pour estimer des populations d'animaux.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{k}/{n}" }, { "value": "{N}" }, { "text": "La fréquence de la deuxième pêche n'est qu'un échantillon : une autre pêche donnerait un résultat différent.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{k}/{n}" }, { "value": "{M+n}" }, { "text": "Car." } ] }, "expect": "mc:additionner-captures" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-brevet", "type": "composite", "skill": "m3.probas.deux-epreuves", "skills": ["m3.probas.frequences"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "visuelle", "targets": ["mc:additionner-issues", "mc:un-seul-chemin", "mc:pair-impair-equiprobable", "mc:borne-incluse"], "expectedSeconds": 900,
+      "prompt": "Type brevet — Au jeu « Duo de dés », on lance un dé équilibré à 6 faces et un dé équilibré à 4 faces (numérotées de 1 à 4), puis on calcule le PRODUIT des deux nombres obtenus. Le tableau donne tous les produits possibles.",
+      "figure": {
+        "alt": "Tableau à double entrée des produits : en ligne le dé à 6 faces, en colonne le dé à 4 faces",
+        "w": 400, "h": 250,
+        "items": [ { "type": "table", "head": ["Dé à 6 faces ↓ Dé à 4 faces →", "1", "2", "3", "4"], "rows": [
+          ["1", "1", "2", "3", "4"], ["2", "2", "4", "6", "8"], ["3", "3", "6", "9", "12"],
+          ["4", "4", "8", "12", "16"], ["5", "5", "10", "15", "20"], ["6", "6", "12", "18", "24"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "1. Combien y a-t-il d'issues équiprobables ?", "answer": 24,
+          "misconceptions": [ { "answer": 10, "id": "mc:additionner-issues", "error": "raisonnement", "feedback": "Chaque face du premier dé peut aller avec chaque face du second : on multiplie les nombres de faces." } ] },
+        { "type": "numeric", "prompt": "2. Quelle est la probabilité que le produit soit égal à 12 ?", "answer": "3/24",
+          "misconceptions": [ { "answer": "1/24", "id": "mc:un-seul-chemin", "error": "lecture", "feedback": "Le produit 12 apparaît dans plusieurs cases du tableau : compte-les toutes." } ] },
+        { "type": "numeric", "prompt": "3. Quelle est la probabilité que le produit soit impair ?", "answer": "6/24",
+          "misconceptions": [ { "answer": "1/2", "id": "mc:pair-impair-equiprobable", "error": "notion", "feedback": "Pair et impair ne sont pas équiprobables ici : un produit n'est impair que si les DEUX nombres sont impairs. Compte les cases." } ] },
+        { "type": "text", "prompt": "4. Sam parie sur « le produit est pair », Léa sur « le produit est strictement supérieur à 10 ». Qui a le plus de chances de gagner ? (écris un prénom)", "accept": ["Sam", "c'est Sam", "Sam a plus de chances"],
+          "misconceptions": [
+            { "answer": "Léa", "id": "mc:intuition", "error": "raisonnement", "feedback": "Compare les deux probabilités en comptant les cases ; pour « pair », pense à l'évènement contraire." },
+            { "answer": "Lea", "id": "mc:intuition", "error": "raisonnement", "feedback": "Compare les deux probabilités en comptant les cases ; pour « pair », pense à l'évènement contraire." }
+          ] },
+        { "type": "numeric", "prompt": "5. Quelle est la probabilité que le produit soit strictement supérieur à 10 ?", "answer": "8/24",
+          "misconceptions": [ { "answer": "9/24", "id": "mc:borne-incluse", "error": "lecture", "feedback": "« Strictement supérieur à 10 » exclut la case où le produit vaut exactement 10." } ] },
+        { "type": "open", "prompt": "6. Léa simule 1 000 parties sur un tableur et obtient 341 produits strictement supérieurs à 10. Ce résultat est-il cohérent avec ta réponse à la question 5 ? Explique.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "341/1 000 = 0,341 est proche de 1/3 ≈ 0,333", "keywords": [["0,341", "0,33", "1/3", "proche"]] },
+            { "id": "c2", "label": "Sur un grand nombre de parties, la fréquence est proche de la probabilité, sans lui être forcément égale", "keywords": [["frequence", "grand nombre", "pas exactement", "fluctu"]] }
+          ] }
+      ],
+      "hints": ["Le tableau compte 6 × 4 cases.", "Produit impair : les deux nombres sont impairs (3 choix pour le premier dé, 2 pour le second). Produit pair : passe par l'évènement contraire.", "Strictement supérieur à 10 : compte les cases 12, 15, 16, 18, 20 et 24."],
+      "solution": "1. $ 6 × 4 = 24 $ issues équiprobables. 2. Le produit 12 apparaît 3 fois : (3 ; 4), (4 ; 3) et (6 ; 2), donc 3/24 = 1/8. 3. Produit impair : 3 × 2 = 6 cases, soit 6/24 = 1/4. 4. et 5. P(pair) = 1 − 1/4 = 3/4. Produit strictement supérieur à 10 : 12, 12, 15, 16, 18, 20, 12 et 24, soit 8 cases et une probabilité de 8/24 = 1/3. Comme 3/4 > 1/3, c'est Sam qui a le plus de chances. 6. 341/1 000 = 0,341, très proche de 1/3 ≈ 0,333 : c'est cohérent. Sur 1 000 parties, la fréquence n'est pas exactement égale à la probabilité, mais elle en est proche.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "24" }, { "value": "1/8" }, { "value": "1/4" }, { "value": "Sam" }, { "value": "1/3" }, { "text": "Oui : 341/1000 = 0,341 est proche de 1/3. Sur un grand nombre de parties la fréquence est proche de la probabilité.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "10" }, { "value": "1/8" }, { "value": "1/4" }, { "value": "Sam" }, { "value": "1/3" }, { "text": "Oui." } ] }, "expect": "mc:additionner-issues" },
+        { "response": { "parts": [ { "value": "24" }, { "value": "1/8" }, { "value": "1/2" }, { "value": "Léa" }, { "value": "1/3" }, { "text": "Oui." } ] }, "expect": "mc:pair-impair-equiprobable" }
+      ]
+    },
+    {
+      "id": "m3-probabilites-defi", "type": "composite", "skill": "m3.probas.deux-epreuves", "skills": ["m3.probas.sans-remise"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:diviser-par-deux", "mc:une-seule-epreuve", "mc:confusion-remise"], "expectedSeconds": 600,
+      "prompt": "Un sac contient 12 boules, rouges ou vertes. On tire une boule, on note sa couleur, on la remet, puis on en tire une seconde. La probabilité d'obtenir deux boules rouges vaut 4/9.",
+      "figure": {
+        "alt": "Arbre de deux tirages avec remise : la probabilité p de tirer une rouge est inconnue",
+        "w": 420, "h": 290,
+        "frame": { "x": [0, 9], "y": [0, 6.5] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0.5, "y": 3, "style": "rond", "label": "" },
+          { "type": "point", "id": "C", "x": 4.5, "y": 3, "hidden": true },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 4.4], "label": "p" },
+          { "type": "segment", "from": [0.6, 3], "to": [3.2, 1.6], "label": "1 − p" },
+          { "type": "segment", "from": [3.8, 4.6], "to": [7.2, 5.35], "label": "p" },
+          { "type": "segment", "from": [3.8, 4.4], "to": [7.2, 3.65], "label": "1 − p" },
+          { "type": "segment", "from": [3.8, 1.6], "to": [7.2, 2.35], "label": "p" },
+          { "type": "segment", "from": [3.8, 1.4], "to": [7.2, 0.65], "label": "1 − p" },
+          { "type": "text", "x": 3.5, "y": 4.5, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 3.5, "y": 1.5, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7.5, "y": 5.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 3.6, "text": "V", "color": "vert", "bold": true },
+          { "type": "text", "x": 7.5, "y": 2.4, "text": "R", "color": "rouge", "bold": true },
+          { "type": "text", "x": 7.5, "y": 0.6, "text": "V", "color": "vert", "bold": true }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité p de tirer une boule rouge en un seul tirage ?", "answer": "2/3",
+          "misconceptions": [
+            { "answer": "2/9", "id": "mc:diviser-par-deux", "error": "raisonnement", "feedback": "Pour deux tirages avec remise, on MULTIPLIE la probabilité d'un tirage par elle-même : cherche le nombre qui, multiplié par lui-même, donne 4/9." },
+            { "answer": "4/9", "id": "mc:une-seule-epreuve", "error": "lecture", "feedback": "4/9 correspond aux deux tirages réunis. La probabilité d'un seul tirage est plus grande." }
+          ] },
+        { "type": "numeric", "prompt": "Combien le sac contient-il de boules rouges ?", "answer": 8 },
+        { "type": "numeric", "prompt": "On tire maintenant deux boules SANS remise. Quelle est la probabilité d'obtenir deux boules rouges ? (fraction)", "answer": "56/132",
+          "misconceptions": [ { "answer": "4/9", "id": "mc:confusion-remise", "error": "notion", "feedback": "Sans remise, le sac change entre les deux tirages : il reste une boule rouge de moins et une boule de moins en tout." } ] },
+        { "type": "open", "prompt": "Explique pourquoi cette probabilité est plus petite qu'avec remise.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Après une rouge, il reste 7 rouges sur 11 boules, et 7/11 est plus petit que 8/12", "keywords": [["7/11", "8/12", "une de moins", "moins de rouges"]] },
+            { "id": "c2", "label": "La proportion de rouges diminue après le premier tirage", "keywords": [["proportion", "baisse", "diminue", "plus petite"]] }
+          ] }
+      ],
+      "hints": ["Avec remise, P(deux rouges) = p × p.", "Quel nombre positif, multiplié par lui-même, donne 4/9 ? Pense aux carrés de 2 et de 3.", "Sans remise : 8/12 pour la première rouge, puis 7/11 pour la seconde."],
+      "solution": "Avec remise : p × p = 4/9 et p est positif, donc p = 2/3 (car 2/3 × 2/3 = 4/9). Le sac contient $ 2/3 × 12 = 8 $ boules rouges. Sans remise : $ 8/12 × 7/11 = 56/132 = 14/33 ≈ 0,42 $, plus petit que 4/9 ≈ 0,44 : après une rouge, il reste 7 rouges sur 11 boules, une proportion plus faible que 8 sur 12.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2/3" }, { "value": "8" }, { "value": "14/33" }, { "text": "Après une rouge il reste 7 rouges sur 11 boules : 7/11 est plus petit que 8/12, la proportion de rouges diminue.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2/9" }, { "value": "8" }, { "value": "14/33" }, { "text": "Car." } ] }, "expect": "mc:diviser-par-deux" }
+      ]
+    }
+  ]
+}

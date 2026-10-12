@@ -323,7 +323,15 @@
             ],
             "focus": [
               "dyn"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le dynamomètre : quel est le poids de la masse de 100 g ?",
+              "answer": 0.98,
+              "tolerance": 0,
+              "unit": "N",
+              "explain": "L'écran placé à côté du repère rouge affiche 0,98 N : c'est la valeur du poids de la masse de 100 g."
+            }
           },
           {
             "title": "Prévois !",
@@ -385,7 +393,18 @@
             "focus": [
               "dyn",
               "g"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le ressort du dynamomètre : qu'a-t-il fait quand on est passé de 100 g à 200 g ?",
+              "choices": [
+                "Il s'est raccourci",
+                "Il s'est allongé davantage",
+                "Il n'a pas bougé"
+              ],
+              "answer": 1,
+              "explain": "La masse de 200 g est attirée deux fois plus fort par la Terre : elle tire davantage sur le crochet, le ressort s'allonge et le repère rouge descend."
+            }
           },
           {
             "title": "Une masse de 500 g",
@@ -463,14 +482,36 @@
             ],
             "focus": [
               "P"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Observe la flèche qui représente le poids : d'où part-elle et dans quelle direction va-t-elle ?",
+              "choices": [
+                "Du crochet du dynamomètre, verticalement vers le haut",
+                "Du centre de l'objet, horizontalement",
+                "Du centre de l'objet, verticalement vers le bas"
+              ],
+              "answer": 2,
+              "explain": "La flèche part du point d'application, au centre de l'objet. Elle est verticale et dirigée vers le bas."
+            }
           },
           {
             "title": "Un nombre qui revient",
             "text": "Dans chaque cas, le poids divisé par la masse donne 9,8 N/kg. C'est l'intensité de la pesanteur g sur Terre : P = m × g. Sur la Lune, on trouverait environ 1,6 N/kg.",
             "focus": [
               "t"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi peut-on écrire P = m × g ?",
+              "choices": [
+                "Parce que P ÷ m donne toujours le même nombre, 9,8 N/kg",
+                "Parce que le poids et la masse sont la même grandeur",
+                "Parce que le dynamomètre est gradué en kilogrammes"
+              ],
+              "answer": 0,
+              "explain": "Le quotient P ÷ m est constant : le poids est proportionnel à la masse, et ce coefficient est g = 9,8 N/kg. Le poids (en N) et la masse (en kg) restent deux grandeurs différentes."
+            }
           }
         ],
         "conclusion": "Le poids est une force : point d'application au centre de l'objet, direction verticale, sens vers le bas, valeur en newtons. Sur Terre, il est proportionnel à la masse : **P = m × g**, avec g ≈ 9,8 N/kg."
@@ -624,21 +665,21 @@
           "category": "distance",
           "id": "mc:vent-distance",
           "error": "notion",
-          "feedback": "L'air est de la matière, même s'il est invisible : il touche la voile. C'est une action de contact."
+          "feedback": "L'air est de la matière, même s'il est invisible : il touche la voile."
         },
         {
           "item": "aimant",
           "category": "contact",
           "id": "mc:aimant-contact",
           "error": "notion",
-          "feedback": "L'aimant attire le trombone avant même de le toucher : c'est une action à distance."
+          "feedback": "L'aimant attire le trombone avant même de le toucher : y a-t-il contact entre eux ?"
         },
         {
           "item": "pomme",
           "category": "contact",
           "id": "mc:poids-contact",
           "error": "notion",
-          "feedback": "La Terre attire la pomme même quand celle-ci ne touche plus rien : le poids est une action à distance."
+          "feedback": "La Terre attire la pomme même quand celle-ci ne touche plus rien : y a-t-il contact entre la Terre et la pomme qui tombe ?"
         }
       ],
       "hints": [
@@ -757,7 +798,7 @@
           "category": "contact",
           "id": "mc:poids-contact",
           "error": "notion",
-          "feedback": "La Terre attire le livre sans le toucher : c'est une interaction à distance (le poids). Ce qui touche le livre par en dessous, c'est la table."
+          "feedback": "La Terre attire le livre sans le toucher (c'est le poids). Ce qui touche le livre par en dessous, c'est la table."
         },
         {
           "item": "eleve",
@@ -771,7 +812,7 @@
           "category": "aucune",
           "id": "mc:objet-oublie",
           "error": "notion",
-          "feedback": "Le cahier appuie sur le livre : c'est une interaction de contact, à ne pas oublier."
+          "feedback": "Le cahier, posé dessus, appuie sur le livre : il agit sur lui, à ne pas oublier."
         }
       ],
       "hints": [
@@ -867,7 +908,7 @@
               "answer": "la main",
               "id": "mc:point-application",
               "error": "notion",
-              "feedback": "La force de la corde sur la caisse s'applique là où la corde touche la caisse : au point A."
+              "feedback": "La force de la corde sur la caisse s'applique là où la corde touche la caisse, pas sur la main de Hugo."
             }
           ]
         },
@@ -878,14 +919,16 @@
             "horizontale",
             "horizontal",
             "l'horizontale",
-            "la direction horizontale"
+            "la direction horizontale",
+            "direction horizontale",
+            "elle est horizontale"
           ],
           "misconceptions": [
             {
               "answer": "vers la droite",
               "id": "mc:direction-sens",
               "error": "notion",
-              "feedback": "« Vers la droite », c'est le SENS. La direction est la droite qui porte la force : ici, horizontale."
+              "feedback": "« Vers la droite », c'est le SENS. La direction est la droite qui porte la force : verticale, horizontale… ?"
             }
           ]
         },
@@ -897,14 +940,15 @@
             "à droite",
             "la droite",
             "droite",
-            "vers hugo"
+            "vers hugo",
+            "de gauche à droite"
           ],
           "misconceptions": [
             {
               "answer": "horizontale",
               "id": "mc:direction-sens",
               "error": "notion",
-              "feedback": "« Horizontale », c'est la DIRECTION. Le sens dit de quel côté la force est orientée : vers la droite."
+              "feedback": "« Horizontale », c'est la DIRECTION. Le sens dit de quel côté la force est orientée (vers le haut, vers la gauche…)."
             }
           ]
         },
@@ -1321,14 +1365,16 @@
             "haut",
             "le haut",
             "vers le plafond",
-            "en haut"
+            "en haut",
+            "verticale vers le haut",
+            "verticalement vers le haut"
           ],
           "misconceptions": [
             {
               "answer": "vers le bas",
               "id": "mc:sens-tension",
               "error": "notion",
-              "feedback": "Le fil retient la lampe en tirant vers le haut, vers son point d'accroche ; c'est le poids qui est vers le bas."
+              "feedback": "Le fil retient la lampe en la tirant vers son point d'accroche, au plafond ; c'est le poids qui est vers le bas."
             }
           ]
         },
@@ -1505,7 +1551,7 @@
               "answer": "non",
               "id": "mc:action-unique",
               "error": "notion",
-              "feedback": "Oui, c'est une interaction : la pomme attire la Terre aussi fort que la Terre l'attire. Mais la Terre est si massive qu'elle ne bouge presque pas."
+              "feedback": "Applique la règle de l'interaction : si A agit sur B, B agit aussi sur A. Que la Terre ne bouge presque pas ne veut pas dire qu'elle n'est pas attirée : elle est simplement énorme."
             }
           ]
         },
@@ -1524,7 +1570,7 @@
               "answer": "je reste immobile",
               "id": "mc:action-unique",
               "error": "notion",
-              "feedback": "Ton ami te pousse aussi, au même moment : toi aussi tu es mis en mouvement, vers l'arrière."
+              "feedback": "Pendant que tu pousses ton ami, il te pousse aussi, au même moment. Sur des patins, rien ne te retient : que t'arrive-t-il ?"
             }
           ]
         }
@@ -1643,14 +1689,14 @@
           "category": "poids",
           "id": "mc:poids-masse",
           "error": "notion",
-          "feedback": "Sur la Lune, l'attraction est plus faible : le poids change. C'est la masse, la quantité de matière, qui reste la même."
+          "feedback": "Sur la Lune, l'attraction est plus faible : le poids change. Quelle grandeur, elle, mesure la quantité de matière, qui ne change pas ?"
         },
         {
           "item": "pese",
           "category": "poids",
           "id": "mc:poids-masse",
           "error": "notion",
-          "feedback": "Dans la vie courante on dit « je pèse 45 kg », mais une valeur en kg est une masse. Le poids correspondant vaut environ 45 × 9,8 ≈ 440 N."
+          "feedback": "Dans la vie courante on dit « je pèse 45 kg », mais regarde l'unité : de quelle grandeur le kilogramme est-il l'unité ? Un poids, lui, s'exprime en newtons (ici, environ 440 N)."
         }
       ],
       "hints": [
@@ -1757,7 +1803,7 @@
               "answer": "mg",
               "id": "mc:g-kg",
               "error": "unite",
-              "feedback": "La masse est demandée en kilogrammes : {mg} g = {mg/1000} kg (on divise par 1 000)."
+              "feedback": "La masse est demandée en kilogrammes : convertis les grammes en divisant par 1 000."
             }
           ]
         },
@@ -1811,7 +1857,7 @@
               "answer": "mg",
               "id": "mc:g-kg",
               "error": "unite",
-              "feedback": "La masse est demandée en kilogrammes : {mg} g = {mg/1000} kg."
+              "feedback": "La masse est demandée en kilogrammes : convertis les grammes (1 kg = 1 000 g)."
             }
           ]
         },
@@ -1997,7 +2043,7 @@
               "answer": 4.9,
               "id": "mc:poids-fixe",
               "error": "notion",
-              "feedback": "Le dynamomètre mesure le poids, qui dépend de l'astre : sur la Lune, P = 0,5 × 1,6."
+              "feedback": "Le dynamomètre mesure le poids, qui dépend de l'astre : sur la Lune, P = m × 1,6, avec la masse trouvée à la question précédente."
             }
           ]
         },
@@ -2012,7 +2058,7 @@
               "answer": "0.5*1.6/9.8",
               "id": "mc:masse-lune",
               "error": "notion",
-              "feedback": "La masse est la quantité de matière : elle ne change pas sur la Lune. La balance à plateaux compare deux masses attirées de la même façon : elle indique toujours 500 g."
+              "feedback": "La masse est la quantité de matière : elle ne change pas sur la Lune. La balance à plateaux compare deux masses attirées de la même façon par la Lune."
             }
           ]
         },
@@ -2027,7 +2073,7 @@
               "answer": "non",
               "id": "mc:compensation",
               "error": "notion",
-              "feedback": "L'objet est immobile : la force du ressort, vers le haut, compense exactement le poids, vers le bas. Elles ont la même valeur."
+              "feedback": "L'objet est immobile : la force du ressort, vers le haut, compense exactement le poids, vers le bas."
             }
           ]
         }
@@ -2237,7 +2283,7 @@
         "mc:interaction-inegale"
       ],
       "expectedSeconds": 720,
-      "prompt": "Passerelle vers la 3e (expression fournie) : deux objets de masses m₁ et m₂, dont les centres sont à la distance d, s'attirent avec des forces de même valeur F = G × m₁ × m₂ ÷ d², avec G = 6,67 × 10⁻¹¹ N·m²/kg², les masses en kg et d en m. Données : masse de la Terre 5,97 × 10²⁴ kg ; masse de la Lune 7,35 × 10²² kg ; distance Terre-Lune 3,84 × 10⁸ m ; rayon de la Terre 6,37 × 10⁶ m. Tu peux écrire 2×10^20.",
+      "prompt": "Passerelle vers la 3e (expression fournie) : deux objets de masses m₁ et m₂, dont les centres sont à la distance d, s'attirent avec des forces de même valeur F = G × m₁ × m₂ ÷ d², avec G = 6,67 × 10⁻¹¹ N·m²/kg², les masses en kg et d en m. Données : masse de la Terre 5,97 × 10²⁴ kg ; masse de la Lune 7,35 × 10²² kg ; distance Terre-Lune 3,84 × 10⁸ m ; rayon de la Terre 6,37 × 10⁶ m. Tu peux écrire les grands nombres sous la forme 3×10^15.",
       "parts": [
         {
           "type": "numeric",
@@ -2265,7 +2311,7 @@
               "answer": "6.67*10^-11*7.35*10^22*7.35*10^22/(3.84*10^8)^2",
               "id": "mc:interaction-inegale",
               "error": "notion",
-              "feedback": "C'est une interaction : la Lune attire la Terre avec une force de même valeur que celle de la Terre sur la Lune (la formule contient les deux masses)."
+              "feedback": "C'est une interaction : la formule F = G × m₁ × m₂ ÷ d² contient les DEUX masses. Échanger m₁ et m₂ change-t-il le résultat ?"
             }
           ]
         },
@@ -2423,7 +2469,7 @@
           "category": "compensent",
           "id": "mc:virage",
           "error": "notion",
-          "feedback": "La valeur de la vitesse est constante, mais sa direction change : le mouvement n'est pas rectiligne uniforme, les forces ne se compensent pas."
+          "feedback": "La valeur de la vitesse est constante, mais sa direction change : le mouvement est-il vraiment rectiligne et uniforme ?"
         }
       ],
       "hints": [

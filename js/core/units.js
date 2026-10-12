@@ -22,11 +22,13 @@ const UNITS = {
   m: [1, DIM.L], km: [1000, DIM.L], hm: [100, DIM.L], dam: [10, DIM.L], dm: [0.1, DIM.L], cm: [0.01, DIM.L], mm: [0.001, DIM.L],
   'µm': [1e-6, DIM.L], um: [1e-6, DIM.L], nm: [1e-9, DIM.L], 'a.l.': [9.461e15, DIM.L], al: [9.461e15, DIM.L], ua: [1.496e11, DIM.L],
   g: [0.001, DIM.M], kg: [1, DIM.M], hg: [0.1, DIM.M], dag: [0.01, DIM.M], mg: [1e-6, DIM.M], t: [1000, DIM.M], cg: [1e-5, DIM.M], dg: [1e-4, DIM.M],
-  s: [1, DIM.T], ms: [0.001, DIM.T], 'µs': [1e-6, DIM.T], min: [60, DIM.T], h: [3600, DIM.T], j: [86400, DIM.T], jours: [86400, DIM.T], an: [31557600, DIM.T], ans: [31557600, DIM.T], 'siècle': [3155760000, DIM.T], 'siècles': [3155760000, DIM.T],
+  s: [1, DIM.T], ms: [0.001, DIM.T], 'µs': [1e-6, DIM.T], min: [60, DIM.T], h: [3600, DIM.T], j: [86400, DIM.T], jours: [86400, DIM.T], jour: [86400, DIM.T],
+  seconde: [1, DIM.T], secondes: [1, DIM.T], minute: [60, DIM.T], minutes: [60, DIM.T], heure: [3600, DIM.T], heures: [3600, DIM.T], an: [31557600, DIM.T], ans: [31557600, DIM.T], 'siècle': [3155760000, DIM.T], 'siècles': [3155760000, DIM.T],
   A: [1, DIM.I], mA: [0.001, DIM.I],
   K: [1, DIM.K], '°C': [1, [0, 0, 0, 0, 2]], // dimension fictive : °C et K ne se convertissent pas par simple facteur
   L: [0.001, [3, 0, 0, 0, 0]], l: [0.001, [3, 0, 0, 0, 0]], dL: [1e-4, [3, 0, 0, 0, 0]], cL: [1e-5, [3, 0, 0, 0, 0]], mL: [1e-6, [3, 0, 0, 0, 0]],
   ml: [1e-6, [3, 0, 0, 0, 0]], cl: [1e-5, [3, 0, 0, 0, 0]], dl: [1e-4, [3, 0, 0, 0, 0]], hL: [0.1, [3, 0, 0, 0, 0]],
+  ha: [1e4, [2, 0, 0, 0, 0]], // hectare (les aires s'écrivent sinon m², km²…)
   N: [1, FORCE], kN: [1000, FORCE],
   J: [1, ENERGY], kJ: [1000, ENERGY], MJ: [1e6, ENERGY], Wh: [3600, ENERGY], kWh: [3.6e6, ENERGY],
   W: [1, POWER], kW: [1000, POWER], MW: [1e6, POWER], mW: [0.001, POWER],
@@ -53,11 +55,20 @@ function normalizeUnit(u) {
 
 const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 
-/** Symbole d'unité connu ; tolère une majuscule initiale (« Km » pour « km »). */
+/** Unités écrites en toutes lettres (« 5 mètres », « 2 kilogrammes ») → symbole. */
+const WORD_UNITS = {
+  metre: 'm', metres: 'm', kilometre: 'km', kilometres: 'km', centimetre: 'cm', centimetres: 'cm', millimetre: 'mm', millimetres: 'mm',
+  decimetre: 'dm', decimetres: 'dm', gramme: 'g', grammes: 'g', kilogramme: 'kg', kilogrammes: 'kg', milligramme: 'mg', milligrammes: 'mg',
+  tonne: 't', tonnes: 't', litre: 'L', litres: 'L', centilitre: 'cL', centilitres: 'cL', millilitre: 'mL', millilitres: 'mL', decilitre: 'dL', decilitres: 'dL',
+};
+
+/** Symbole d'unité connu ; tolère une majuscule initiale (« Km » pour « km ») et les noms en toutes lettres. */
 function lookupUnit(sym) {
   if (has(UNITS, sym)) return UNITS[sym];
   const lower = sym.charAt(0).toLowerCase() + sym.slice(1);
   if (has(UNITS, lower)) return UNITS[lower];
+  const word = sym.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  if (has(WORD_UNITS, word)) return UNITS[WORD_UNITS[word]];
   return null;
 }
 

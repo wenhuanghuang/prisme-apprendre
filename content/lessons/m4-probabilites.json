@@ -186,7 +186,7 @@
     {
       "id": "m4-probabilites-formes", "type": "table", "skill": "m4.probas.contraire", "skills": ["m4.probas.equiprobabilite"], "track": "classe", "role": "guide", "difficulty": 2,
       "representation": "symbolique", "targets": ["mc:contraire-egal", "mc:contraire-inverse", "mc:un-seul-as"], "expectedSeconds": 240,
-      "prompt": "Complète le tableau : pour chaque évènement A, écris la probabilité de A quand elle manque, et celle de son contraire. Tu peux répondre en fraction, en décimal ou en pourcentage (avec le signe %).",
+      "prompt": "Complète le tableau : pour chaque évènement A, écris la probabilité de A quand elle manque, et celle de son contraire. Tu peux répondre en fraction, en décimal ou en pourcentage (avec le signe %), mais sans arrondir.",
       "columns": ["Évènement A", "P(A)", "P(non A)"],
       "rows": [
         ["Obtenir 6 avec un dé équilibré", "1/6", "?r0c2"],
@@ -216,7 +216,7 @@
       "representation": "concrete", "targets": ["mc:contraire-egal", "mc:favorables-defavorables", "mc:couleurs-equiprobables"], "expectedSeconds": 120,
       "params": { "r": { "int": [2, 9] }, "v": { "int": [2, 8] }, "b": { "int": [2, 9] } },
       "constraints": ["r + b != v", "r + b != 2*v"],
-      "prompt": "Un sac contient {r} billes rouges, {v} billes vertes et {b} billes bleues, indiscernables au toucher. On tire une bille au hasard. Quelle est la probabilité de ne PAS tirer une bille verte ? (fraction ou nombre décimal)",
+      "prompt": "Un sac contient {r} billes rouges, {v} billes vertes et {b} billes bleues, indiscernables au toucher. On tire une bille au hasard. Quelle est la probabilité de ne PAS tirer une bille verte ? (valeur exacte : fraction, ou nombre décimal si la division tombe juste)",
       "answer": "(r+b)/(r+v+b)",
       "misconceptions": [
         { "answer": "v/(r+v+b)", "id": "mc:contraire-egal", "error": "notion", "feedback": "Tu as calculé la probabilité de tirer une bille verte. On demande celle de l'évènement contraire : P(non A) = 1 − P(A)." },
@@ -282,7 +282,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Combien de billes rouges y a-t-il dans le sac ?", "answer": "r",
           "misconceptions": [ { "answer": "r*5", "id": "mc:pourcentage-effectif", "error": "notion", "feedback": "{r/20}, c'est {r*5} % des billes. Mais le sac ne contient que 20 billes : calcule {r*5} % de 20." } ] },
-        { "type": "numeric", "prompt": "Malo ajoute {k} billes bleues dans le sac. Quelle est maintenant la probabilité de ne PAS tirer une bille rouge ? (fraction ou décimal)", "answer": "(20-r+k)/(20+k)",
+        { "type": "numeric", "prompt": "Malo ajoute {k} billes bleues dans le sac. Quelle est maintenant la probabilité de ne PAS tirer une bille rouge ? (valeur exacte : fraction, ou nombre décimal si la division tombe juste)", "answer": "(20-r+k)/(20+k)",
           "misconceptions": [
             { "answer": "1 - r/20", "id": "mc:composition-change", "error": "raisonnement", "feedback": "C'est la probabilité AVANT l'ajout. Le sac contient maintenant {20+k} billes, dont toujours {r} rouges." },
             { "answer": "r/(20+k)", "id": "mc:contraire-egal", "error": "notion", "feedback": "C'est la probabilité de tirer une rouge. On demande celle de l'évènement contraire." }
@@ -437,7 +437,7 @@
       "prompt": "Un sac contient des billes rouges et des billes bleues. La probabilité de tirer une bille rouge vaut 3/8. On ajoute 4 billes rouges : la probabilité de tirer une bille rouge devient 1/2.",
       "parts": [
         { "type": "numeric", "prompt": "Combien de billes le sac contenait-il au départ ?", "answer": 16,
-          "misconceptions": [ { "answer": 8, "id": "mc:fraction-effectif", "error": "raisonnement", "feedback": "3/8 ne veut pas forcément dire 3 billes rouges sur 8 : avec 3 rouges sur 8, après l'ajout, on aurait 7 rouges sur 12, pas une sur deux. Le sac pourrait aussi contenir 6 rouges sur 16, 9 sur 24… Teste, ou écris une équation." } ] },
+          "misconceptions": [ { "answer": 8, "id": "mc:fraction-effectif", "error": "raisonnement", "feedback": "3/8 ne veut pas forcément dire 3 billes rouges sur 8 : avec 3 rouges sur 8, après l'ajout, on aurait 7 rouges sur 12, pas une sur deux. Le sac pourrait contenir plus de billes, toujours avec 3 rouges sur 8 en proportion : teste d’autres multiples de 8, ou écris une équation." } ] },
         { "type": "numeric", "prompt": "Combien de billes rouges contenait-il au départ ?", "answer": 6 },
         { "type": "open", "prompt": "Explique ta démarche : essais organisés ou équation.", "minWords": 15,
           "criteria": [

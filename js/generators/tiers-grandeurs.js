@@ -4,7 +4,7 @@
  * ◆ : conversions, plusieurs opérations, question posée à l'envers ; ✦ : plusieurs étapes, cas piège,
  * conclusion à donner (oui / non, matériau…). Toutes les idées fausses sont calculées avec les nombres tirés.
  */
-import { ri, pick, sample, clean, fr, mc, text, problem } from './gen-util.js';
+import { ri, pick, sample, clean, fr, mc, text, problem, roundedTo, withoutCitedAnswer } from './gen-util.js';
 import { prenom, round, isRound, eur, cap, de, choice, num, yesNo, tableFig } from './tiers-outils.js';
 
 /* ======================================================================= */
@@ -22,7 +22,7 @@ function propPrixMasse(rand) {
     u = pick(rand, [2.4, 3.2, 3.6, 4.8, 5.6, 6.4, 7.2, 8.5, 9.6, 12.8, 14, 18.5]);
     m1 = pick(rand, [250, 300, 400, 600, 750, 800, 1200, 1500]); p1 = clean((u * m1) / 1000);
   } while (!isRound(p1));
-  const m2 = pick(rand, [0.5, 1.5, 2, 2.5, 3, 3.5, 4]); const kg1 = clean(m1 / 1000);
+  const m2 = pick(rand, [0.5, 1.5, 2, 2.5, 3, 3.5, 4].filter((x) => x * 1000 !== m1)); const kg1 = clean(m1 / 1000);
   const ans = clean(u * m2); const food = pick(rand, DENREES);
   return num(ans, {
     prompt: `Au marché, ${fr(m1)} g ${food} coûtent ${eur(p1)} €. Le prix est proportionnel à la masse. Combien coûtent ${fr(m2)} kg ${food} ?`,
@@ -61,14 +61,14 @@ function propTableau(rand) {
 /** ◆ Recette : litres → centilitres. */
 function propRecetteLitres(rand) {
   const per = pick(rand, [0.05, 0.075, 0.1, 0.125, 0.15, 0.2, 0.25]);
-  const n1 = pick(rand, [2, 4, 6, 8]); const n2 = pick(rand, [3, 5, 10, 12, 14, 15].filter((n) => n !== n1));
+  const n1 = pick(rand, [2, 4, 6, 8]); const n2 = pick(rand, [3, 5, 10, 12, 14, 15].filter((n) => n !== n1 && clean(per * n) !== 1));
   const v1 = clean(per * n1); const ans = clean(per * n2 * 100); const liq = pick(rand, ['de lait', 'de crème liquide', 'de bouillon', 'de jus d’orange']);
   return num(ans, {
     prompt: `Pour ${n1} personnes, une recette demande ${fr(v1)} L ${liq}. Quelle quantité ${liq}, en cL, faut-il pour ${n2} personnes ?`,
     unit: 'cL', unitOptional: true, strictUnit: true, tolerance: 0.005, representation: 'concrete', expectedSeconds: 150,
     misconceptions: [
       mc(clean(per * n2), 'mc:conversion-oubliee', 'unite', 'Ce nombre est la quantité en litres : 1 L = 100 cL.'),
-      mc(clean(v1 * 100 + (n2 - n1)), 'mc:modele-additif', 'raisonnement', `Ajouter ${Math.abs(n2 - n1)} (la différence du nombre de personnes) ne respecte pas la proportionnalité : il faut multiplier.`),
+      mc(clean(v1 * 100 + (n2 - n1)), 'mc:modele-additif', 'raisonnement', `${n2 > n1 ? 'Ajouter' : 'Retirer'} ${Math.abs(n2 - n1)} (la différence du nombre de personnes) ne respecte pas la proportionnalité : il faut multiplier.`),
       mc(clean(v1 * n2 * 100), 'mc:oubli-unitaire', 'methode', `Tu as multiplié la quantité pour ${n1} personnes par ${n2} : cherche d’abord la quantité pour une personne.`),
     ],
     hints: [`Convertis : ${fr(v1)} L = ${fr(v1 * 100)} cL.`, `Pour une personne : ${fr(v1 * 100)} ÷ ${n1} cL.`, `Puis multiplie par ${n2}.`],
@@ -117,7 +117,7 @@ function propCoutTrajet(rand) {
   const prix = pick(rand, [1.7, 1.75, 1.8, 1.85, 1.9, 1.95]); const L = clean((cons * d) / 100); const cost = round(L * prix, 2);
   return problem([
     num(L, { prompt: 'Combien de litres de carburant faut-il pour ce trajet ?', unit: 'L', unitOptional: true, misconceptions: [mc(clean(cons * d), 'mc:oubli-cent-km', 'methode', `La consommation est donnée pour 100 km : ${d} km, c’est ${fr(d / 100)} fois 100 km.`), mc(clean(cons + (d - 100)), 'mc:modele-additif', 'raisonnement', 'On ne peut pas ajouter des kilomètres à des litres : il faut multiplier.')] }),
-    num(cost, { prompt: 'Combien coûte ce carburant (arrondi au centime) ?', tolerance: 0.01, misconceptions: [mc(round(d * prix, 2), 'mc:prix-par-km', 'lecture', 'Le prix est donné par litre, pas par kilomètre : multiplie le nombre de litres par le prix d’un litre.'), mc(round(cons * prix, 2), 'mc:cout-100km', 'methode', `C’est le coût pour 100 km seulement ; le trajet fait ${d} km.`)] }),
+    num(cost, { prompt: 'Combien coûte ce carburant (arrondi au centime) ?', ...roundedTo(2), misconceptions: [mc(round(d * prix, 2), 'mc:prix-par-km', 'lecture', 'Le prix est donné par litre, pas par kilomètre : multiplie le nombre de litres par le prix d’un litre.'), mc(round(cons * prix, 2), 'mc:cout-100km', 'methode', `C’est le coût pour 100 km seulement ; le trajet fait ${d} km.`)] }),
   ], {
     prompt: `Une voiture consomme ${fr(cons)} L aux 100 km. Le carburant coûte ${eur(prix)} € le litre. On fait un trajet de ${d} km.`,
     representation: 'concrete', expectedSeconds: 240,
@@ -142,7 +142,7 @@ function propAbonnement(rand) {
     prompt: `${lieu}, deux formules : formule A, ${eur(pa)} € ${unite} ; formule B, une carte de ${fee} € pour l’année, puis ${eur(pb)} € ${unite}.`,
     representation: 'concrete', expectedSeconds: 360,
     hints: [`Formule B : prix de la carte + prix de toutes les ${plur}.`, `Combien paie-t-on pour 0 ${sing} avec chaque formule ?`, `Avec B, chaque ${sing} coûte ${eur(pa - pb)} € de moins : combien ${de(plur)} faut-il pour compenser les ${fee} € de la carte ?`],
-    solution: `B pour ${n} ${plur} : ${fee} + ${n} × ${eur(pb)} = ${eur(costB)} €. Ce n’est pas proportionnel : 0 ${sing} coûte déjà ${fee} €. Économie par ${sing} avec B : ${eur(pa)} − ${eur(pb)} = ${eur(pa - pb)} € ; ${fee} ÷ ${eur(pa - pb)} ${tie ? '=' : '≈'} ${fr(round(s, 2))}${tie ? ` (égalité pour ${s} ${plur})` : ''}. B est strictement moins chère à partir de ${first} ${plur} : ${eur(fee + pb * first)} € contre ${eur(pa * first)} €.`,
+    solution: `B pour ${n} ${plur} : ${fee} + ${n} × ${eur(pb)} = ${eur(costB)} €. Ce n’est pas proportionnel : 0 ${sing} coûte déjà ${fee} €. Économie par ${sing} avec B : ${eur(pa)} − ${eur(pb)} = ${eur(pa - pb)} € ; ${fee} ÷ ${eur(pa - pb)} ${isRound(s, 2) ? '=' : '≈'} ${fr(round(s, 2))}${tie ? ` (égalité pour ${s} ${plur})` : ''}. B est strictement moins chère à partir de ${first} ${plur} : ${eur(fee + pb * first)} € contre ${eur(pa * first)} €.`,
   });
 }
 
@@ -180,7 +180,7 @@ function propIngredientLimitant(rand) {
   const egg = ['les œufs', 'œufs', 'les oeufs', 'oeufs', 'œuf', 'oeuf']; const far = ['la farine', 'farine'];
   return problem([
     num(pF, { prompt: 'Pour combien de personnes la farine suffit-elle ?', misconceptions: [mc(clean(flour / f), 'mc:unites-melangees', 'unite', `Convertis la farine en grammes : ${fr(flour)} kg = ${fr(flour * 1000)} g.`), mc(clean(pF / n1), 'mc:nombre-de-recettes', 'methode', `Tu as trouvé combien de fois on peut faire la recette pour ${n1} personnes : multiplie par ${n1}.`)] }),
-    num(pE, { prompt: 'Pour combien de personnes les œufs suffisent-ils ?', misconceptions: [mc(k, 'mc:nombre-de-recettes', 'methode', `${eggs} œufs permettent de faire ${k} fois la recette pour ${n1} personnes, soit ${k} × ${n1} personnes.`), mc(clean((eggs * e) / n1), 'mc:rapport-inverse', 'raisonnement', `Il faut ${e} œufs pour ${n1} personnes : divise le nombre d’œufs par ${e}, puis multiplie par ${n1}.`)] }),
+    num(pE, { prompt: 'Pour combien de personnes les œufs suffisent-ils ?', misconceptions: [mc(k, 'mc:nombre-de-recettes', 'methode', `Ce nombre compte les recettes pour ${n1} personnes que permettent les œufs : multiplie-le par le nombre de personnes d’une recette.`), mc(clean((eggs * e) / n1), 'mc:rapport-inverse', 'raisonnement', `Il faut ${e} œufs pour ${n1} personnes : divise le nombre d’œufs par ${e}, puis multiplie par ${n1}.`)] }),
     num(max, { prompt: 'Pour combien de personnes au maximum peut-on préparer la recette ?', misconceptions: [mc(Math.max(pF, pE), 'mc:ingredient-limitant', 'raisonnement', 'Il faut assez de chaque ingrédient : c’est celui qui s’épuise le premier qui fixe le maximum (le plus petit des deux nombres).'), mc(pF + pE, 'mc:addition-ingredients', 'raisonnement', 'On ne cumule pas les personnes : chaque personne a besoin de farine ET d’œufs.')] }),
     text(eggsLimit ? egg : far, { prompt: 'Quel ingrédient limite la recette ? (la farine ou les œufs)', misconceptions: [mc(eggsLimit ? 'la farine' : 'les œufs', 'mc:ingredient-limitant', 'raisonnement', 'L’ingrédient qui limite est celui qui permet de servir le MOINS de personnes.')] }),
   ], {
@@ -203,12 +203,12 @@ function propConsoMoyenne(rand) {
   return problem([
     num(Lv, { prompt: 'Combien de litres la voiture consomme-t-elle en ville ?', unit: 'L', unitOptional: true, misconceptions: [mc(clean(c1 * d1), 'mc:oubli-cent-km', 'methode', `La consommation est donnée pour 100 km : ${d1} km, c’est ${fr(d1 / 100)} fois 100 km.`)] }),
     num(L, { prompt: 'Combien de litres consomme-t-elle sur l’ensemble du trajet ?', unit: 'L', unitOptional: true, misconceptions: [mc(clean(c1 + c2), 'mc:taux-additionnes', 'raisonnement', 'On n’additionne pas des consommations aux 100 km : calcule les litres de chaque partie, puis additionne-les.'), mc(clean((((c1 + c2) / 2) * (d1 + d2)) / 100), 'mc:moyenne-des-taux', 'raisonnement', 'Les deux parties n’ont pas la même longueur : calcule séparément les litres de chaque partie.')] }),
-    num(A, { prompt: 'Quelle est la consommation moyenne sur le trajet, en L pour 100 km (arrondie au dixième) ?', round: 1, tolerance: 0.051, misconceptions: [mc(clean((c1 + c2) / 2), 'mc:moyenne-des-taux', 'raisonnement', `La moyenne de ${fr(c1)} et ${fr(c2)} ne convient pas : on roule ${d1} km en ville et ${d2} km sur route, pas la même distance.`), mc(round(L / (d1 + d2), 3), 'mc:oubli-cent-km', 'methode', 'Ce nombre est la consommation pour 1 km : multiplie par 100.')] }),
+    num(A, { prompt: 'Quelle est la consommation moyenne sur le trajet, en L pour 100 km (arrondie au dixième) ?', ...roundedTo(1), misconceptions: [mc(clean((c1 + c2) / 2), 'mc:moyenne-des-taux', 'raisonnement', `La moyenne de ${fr(c1)} et ${fr(c2)} ne convient pas : on roule ${d1} km en ville et ${d2} km sur route, pas la même distance.`), mc(round(L / (d1 + d2), 3), 'mc:oubli-cent-km', 'methode', 'Ce nombre est la consommation pour 1 km : multiplie par 100.')] }),
   ], {
     prompt: `Une voiture parcourt ${d1} km en ville, où elle consomme ${fr(c1)} L aux 100 km, puis ${d2} km sur route, où elle consomme ${fr(c2)} L aux 100 km.`,
     representation: 'concrete', expectedSeconds: 360,
     hints: ['Calcule les litres consommés dans chaque partie (consommation × distance ÷ 100).', `Distance totale : ${d1} + ${d2} = ${d1 + d2} km.`, 'Consommation moyenne = litres consommés ÷ distance totale × 100.'],
-    solution: `Ville : ${fr(c1)} × ${d1} ÷ 100 = ${fr(Lv)} L. Route : ${fr(c2)} × ${d2} ÷ 100 = ${fr(clean((c2 * d2) / 100))} L. Total : ${fr(L)} L pour ${d1 + d2} km, soit ${fr(L)} ÷ ${d1 + d2} × 100 ≈ ${fr(A)} L aux 100 km — et non ${fr((c1 + c2) / 2)} L : la partie la plus longue pèse davantage.`,
+    solution: `Ville : ${fr(c1)} × ${d1} ÷ 100 = ${fr(Lv)} L. Route : ${fr(c2)} × ${d2} ÷ 100 = ${fr(clean((c2 * d2) / 100))} L. Total : ${fr(L)} L pour ${d1 + d2} km, soit ${fr(L)} ÷ ${d1 + d2} × 100 ${isRound(avg, 1) ? '=' : '≈'} ${fr(A)} L aux 100 km — et non ${fr((c1 + c2) / 2)} L : la partie la plus longue pèse davantage.`,
     justify: { prompt: 'Explique pourquoi la consommation moyenne n’est pas la moyenne des deux consommations.', minWords: 10, keywords: [['distance', 'kilomètres', 'plus long', 'longueur']], example: `On ne roule pas la même distance dans les deux parties : les ${Math.max(d1, d2)} km pèsent plus que les ${Math.min(d1, d2)} km, donc on divise le total des litres par la distance totale.` },
   });
 }
@@ -316,9 +316,9 @@ function pctSuccessifs(rand, up) {
   } while (!isRound(P1) || !isRound(P2));
   const k1 = clean(1 + (s * p1) / 100); const k2 = clean(1 + (s * p2) / 100); const g = clean(Math.abs(k1 * k2 - 1) * 100);
   return problem([
-    num(P1, { prompt: `Prix après ${up ? 'la première hausse' : 'la première réduction'}, en € ?`, tolerance: 0.005, misconceptions: [mc(clean(P0 + s * p1), 'mc:soustraire-p', 'notion', `${p1} % de ${eur(P0)} € ne valent pas ${p1} € : calcule ${eur(P0)} × ${p1} ÷ 100.`)] }),
+    num(P1, { prompt: `Prix après ${up ? 'la première hausse' : 'la première réduction'}, en € ?`, tolerance: 0.005, misconceptions: [mc(clean(P0 + s * p1), 'mc:soustraire-p', 'notion', `${p1} % de ${eur(P0)} € ne valent pas ${p1} € : multiplie le prix par ${p1}, puis divise par 100.`)] }),
     num(P2, { prompt: 'Prix final, en € ?', tolerance: 0.005, misconceptions: [mc(clean(P0 * (1 + (s * (p1 + p2)) / 100)), 'mc:taux-additionnes', 'raisonnement', `${up ? 'La seconde hausse' : 'La seconde réduction'} se calcule sur le nouveau prix (${eur(P1)} €), pas sur le prix de départ.`)] }),
-    num(g, { prompt: `De quel pourcentage le prix a-t-il ${up ? 'augmenté' : 'baissé'} en tout ?`, tolerance: 0.05, misconceptions: [mc(p1 + p2, 'mc:taux-additionnes', 'raisonnement', `Les pourcentages successifs ne s’additionnent pas : ${up ? 'la seconde hausse porte sur un prix déjà augmenté' : 'la seconde réduction porte sur un prix déjà réduit'}. Compare le prix final au prix de départ.`), mc(clean(Math.abs(P2 - P0)), 'mc:difference-euros', 'notion', `C’est l’écart en euros ; pour un pourcentage, divise-le par le prix de départ (${eur(P0)} €).`)] }),
+    num(g, { prompt: `De quel pourcentage le prix a-t-il ${up ? 'augmenté' : 'baissé'} en tout ?`, tolerance: 0.005, misconceptions: [mc(p1 + p2, 'mc:taux-additionnes', 'raisonnement', `Les pourcentages successifs ne s’additionnent pas : ${up ? 'la seconde hausse porte sur un prix déjà augmenté' : 'la seconde réduction porte sur un prix déjà réduit'}. Compare le prix final au prix de départ.`), mc(clean(Math.abs(P2 - P0)), 'mc:difference-euros', 'notion', `C’est l’écart en euros ; pour un pourcentage, divise-le par le prix de départ (${eur(P0)} €).`)] }),
   ], {
     prompt: up ? `${cap(item)} coûte ${eur(P0)} €. Son prix augmente de ${p1} %, puis, l’année suivante, de ${p2} %.` : `${cap(item)} coûte ${eur(P0)} €. Pendant les soldes, son prix baisse de ${p1} %, puis une remise supplémentaire de ${p2} % s’applique au prix soldé.`,
     representation: 'concrete', expectedSeconds: 330,
@@ -336,8 +336,8 @@ function pctAllerRetour(rand) {
   return problem([
     num(P1, { prompt: 'Prix après la hausse, en € ?', tolerance: 0.005, misconceptions: [mc(P0 + p, 'mc:soustraire-p', 'notion', `${p} % de ${eur(P0)} € ne valent pas ${p} €.`)] }),
     num(P2, { prompt: 'Prix après la baisse, en € ?', tolerance: 0.005, misconceptions: [mc(P0, 'mc:pourcentages-compenses', 'raisonnement', `La baisse de ${p} % se calcule sur le prix augmenté (${eur(P1)} €), plus grand que le prix de départ : elle enlève plus que la hausse n’avait ajouté.`)] }),
-    yesNo(false, 'Le prix final est-il égal au prix de départ ? (oui ou non)', 'mc:pourcentages-compenses', 'raisonnement', `Compare : ${eur(P2)} € ≠ ${eur(P0)} €. Une hausse puis une baisse du même pourcentage ne se compensent pas.`),
-    num(g, { prompt: 'De quel pourcentage le prix final est-il inférieur au prix de départ ?', tolerance: 0.05, misconceptions: [mc(0, 'mc:pourcentages-compenses', 'raisonnement', `Le prix final (${eur(P2)} €) est plus petit que le prix de départ (${eur(P0)} €) : la baisse globale n’est pas nulle.`), mc(clean(P0 - P2), 'mc:difference-euros', 'notion', `C’est l’écart en euros ; divise-le par ${eur(P0)} € pour obtenir un pourcentage.`)] }),
+    yesNo(false, 'Le prix final est-il égal au prix de départ ? (oui ou non)', 'mc:pourcentages-compenses', 'raisonnement', 'Compare le prix final que tu as calculé au prix de départ.'),
+    num(g, { prompt: 'De quel pourcentage le prix final est-il inférieur au prix de départ ?', tolerance: 0.005, misconceptions: [mc(0, 'mc:pourcentages-compenses', 'raisonnement', `Le prix final (${eur(P2)} €) est plus petit que le prix de départ (${eur(P0)} €) : la baisse globale n’est pas nulle.`), mc(clean(P0 - P2), 'mc:difference-euros', 'notion', `C’est l’écart en euros ; divise-le par ${eur(P0)} € pour obtenir un pourcentage.`)] }),
   ], {
     prompt: `Le prix ${de(item)} est de ${eur(P0)} €. Il augmente de ${p} %, puis le nouveau prix baisse de ${p} %.`,
     representation: 'concrete', expectedSeconds: 330,
@@ -354,8 +354,8 @@ function pctRevenir(rand) {
   const back = clean(P0 - P1); const up = round((p / (100 - p)) * 100, 1); const exact = isRound((p / (100 - p)) * 100, 1);
   return problem([
     num(P1, { prompt: 'Nouveau prix après la baisse, en € ?', tolerance: 0.005, misconceptions: [mc(P0 - p, 'mc:soustraire-p', 'notion', `${p} % de ${eur(P0)} € ne valent pas ${p} €.`), mc(clean((P0 * p) / 100), 'mc:reduction-seule', 'methode', `Tu as calculé la baisse (${eur((P0 * p) / 100)} €) : il faut encore la retirer du prix de départ.`)] }),
-    num(back, { prompt: 'De combien d’euros faut-il augmenter ce nouveau prix pour revenir au prix de départ ?', tolerance: 0.005, misconceptions: [mc(clean((P1 * p) / 100), 'mc:pourcentages-compenses', 'raisonnement', `${p} % du nouveau prix ne suffisent pas : il faut regagner tout l’écart, ${eur(P0)} − ${eur(P1)}.`)] }),
-    num(up, { prompt: 'Quel pourcentage de hausse faut-il appliquer au nouveau prix ? (arrondi au dixième si besoin)', tolerance: 0.05, round: 1, misconceptions: [mc(p, 'mc:pourcentages-compenses', 'raisonnement', `La hausse se calcule sur le prix baissé (${eur(P1)} €), plus petit : il faut un pourcentage plus grand que ${p} % pour regagner ${eur(back)} €.`), mc(round((P0 / P1) * 100, 1), 'mc:coefficient-pourcentage', 'methode', 'Ce nombre compare le prix de départ au nouveau prix ; la hausse, c’est ce qui dépasse 100 %.')] }),
+    num(back, { prompt: 'De combien d’euros faut-il augmenter ce nouveau prix pour revenir au prix de départ ?', tolerance: 0.005, misconceptions: [mc(clean((P1 * p) / 100), 'mc:pourcentages-compenses', 'raisonnement', `${p} % du nouveau prix ne suffisent pas : il faut regagner tout l’écart entre le prix de départ et le nouveau prix.`)] }),
+    num(up, { prompt: 'Quel pourcentage de hausse faut-il appliquer au nouveau prix ? (arrondi au dixième si besoin)', ...roundedTo(1), misconceptions: [mc(p, 'mc:pourcentages-compenses', 'raisonnement', `La hausse se calcule sur le prix baissé (${eur(P1)} €), plus petit : il faut un pourcentage plus grand que ${p} % pour regagner ${eur(back)} €.`), mc(round((P0 / P1) * 100, 1), 'mc:coefficient-pourcentage', 'methode', 'Ce nombre est le prix de départ exprimé en pourcentage du nouveau prix : la hausse n’en est que la partie au-delà du nouveau prix lui-même.')] }),
   ], {
     prompt: `Le prix ${de(item)} baisse de ${p} % : il passe de ${eur(P0)} € à un nouveau prix. Le magasin veut ensuite revenir exactement au prix de départ.`,
     representation: 'concrete', expectedSeconds: 330,
@@ -378,7 +378,7 @@ function pctDePct(rand) {
   return problem([
     num(nA, { prompt: `Combien y a-t-il ${de(c.groupe)} ?`, misconceptions: [mc(N * p1, 'mc:oubli-cent', 'calcul', 'Prendre p %, c’est multiplier par p puis diviser par 100.'), mc(N - p1, 'mc:soustraire-p', 'notion', 'Un pourcentage n’est pas une quantité à retirer : c’est une proportion du total.')] }),
     num(nB, { prompt: `Combien ${de(c.noms)} ${c.b} ?`, misconceptions: [mc(clean((N * p2) / 100), 'mc:pourcentage-mauvais-total', 'raisonnement', `Les ${p2} % portent sur les ${c.groupe} (${fr(nA)}), pas sur les ${fr(N)} ${c.noms}.`)] }),
-    num(g, { prompt: `Quel pourcentage de l’ensemble des ${c.noms} cela représente-t-il ?`, tolerance: 0.05, misconceptions: [mc(p2, 'mc:pourcentage-mauvais-total', 'raisonnement', `${p2} % est la part parmi les ${c.groupe} seulement ; rapporte le nombre trouvé aux ${fr(N)} ${c.noms}.`), mc(p1 * p2, 'mc:oubli-cent', 'calcul', `${p2} % de ${p1} %, c’est ${fr(p2 / 100)} × ${p1} % : n’oublie pas de diviser par 100.`)] }),
+    num(g, { prompt: `Quel pourcentage de l’ensemble des ${c.noms} cela représente-t-il ?`, tolerance: 0.005, misconceptions: [mc(p2, 'mc:pourcentage-mauvais-total', 'raisonnement', `${p2} % est la part parmi les ${c.groupe} seulement ; rapporte le nombre trouvé aux ${fr(N)} ${c.noms}.`), mc(p1 * p2, 'mc:oubli-cent', 'calcul', `${p2} % de ${p1} %, ce n’est pas ${p2} × ${p1} : n’oublie pas de diviser par 100.`)] }),
   ], {
     prompt: `${c.lieu} compte ${fr(N)} ${c.noms}. ${p1} % des ${c.noms} ${c.a}, et ${p2} % de ces ${c.groupe} ${c.b}.`,
     representation: 'concrete', expectedSeconds: 300,
@@ -405,15 +405,15 @@ export const TIERS_GRANDEURS = {
   'm-pourcentages': {
     approfondissement(rand, o = {}) {
       const mode = choice(rand, o.mode, ['part', 'reduction', 'augmentation']);
-      if (mode === 'part') return rand() < 0.5 ? pctTotal(rand) : pctTaux(rand);
       const up = mode === 'augmentation';
-      return rand() < 0.6 ? pctDepart(rand, up) : pctTauxEvolution(rand, up);
+      const f = mode === 'part' ? (rand() < 0.5 ? pctTotal : pctTaux) : rand() < 0.6 ? pctDepart : pctTauxEvolution;
+      return withoutCitedAnswer(() => f(rand, up));
     },
     expert(rand, o = {}) {
       const mode = choice(rand, o.mode, ['part', 'reduction', 'augmentation']);
-      if (mode === 'part') return pctDePct(rand);
-      if (mode === 'augmentation') return rand() < 0.5 ? pctSuccessifs(rand, true) : pctAllerRetour(rand);
-      return rand() < 0.5 ? pctSuccessifs(rand, false) : pctRevenir(rand);
+      const up = mode === 'augmentation';
+      const f = mode === 'part' ? pctDePct : rand() < 0.5 ? pctSuccessifs : up ? pctAllerRetour : pctRevenir;
+      return withoutCitedAnswer(() => f(rand, up));
     },
   },
 };

@@ -495,11 +495,22 @@
               "truite",
               "dauphin",
               "chauve"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Que montre ce premier tri ?",
+              "choices": [
+                "Le milieu de vie ne suffit pas à montrer les vraies ressemblances entre les animaux.",
+                "Le dauphin est un poisson, puisqu'il vit dans l'eau.",
+                "La chauve-souris est un oiseau, puisqu'elle vole."
+              ],
+              "answer": 0,
+              "explain": "Le dauphin respire avec des poumons et allaite ses petits, comme la chauve-souris : tous deux sont des mammifères. Vivre dans l'eau ou voler ne renseigne pas sur ces ressemblances."
+            }
           },
           {
             "title": "Deuxième idée : les attributs",
-            "text": "On choisit des attributs que l'on peut vérifier sur chaque animal : colonne vertébrale, quatre membres (ou membres transformés en ailes ou en nageoires), poils et mamelles, plumes. Pour chaque animal, on note ce qu'il possède.",
+            "text": "On choisit des attributs que l'on peut vérifier sur chaque animal : colonne vertébrale, quatre membres (ou membres transformés, comme l'aile d'un oiseau ou la nageoire d'un dauphin), poils et mamelles, plumes. Pour chaque animal, on note ce qu'il possède.",
             "duration": 5,
             "hide": [
               "bEau",
@@ -657,7 +668,18 @@
             ],
             "focus": [
               "tab"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Dans le tableau, quel animal ne possède aucun des quatre attributs ?",
+              "choices": [
+                "La truite",
+                "L'escargot",
+                "La grenouille"
+              ],
+              "answer": 1,
+              "explain": "La ligne de l'escargot ne contient que des « non » : il n'a même pas de colonne vertébrale. La truite et la grenouille, elles, ont une colonne vertébrale."
+            }
           },
           {
             "title": "Prédire",
@@ -669,7 +691,7 @@
                 "L'escargot"
               ],
               "answer": 1,
-              "explain": "Dauphin et chauve-souris partagent quatre attributs : colonne vertébrale, quatre membres (transformés), poils et mamelles. La truite n'en partage qu'un."
+              "explain": "Dauphin et chauve-souris partagent trois attributs du tableau : colonne vertébrale, quatre membres (transformés), poils et mamelles. La truite n'en partage qu'un."
             },
             "focus": [
               "tab",
@@ -931,7 +953,18 @@
                 "at": 5.5,
                 "dur": 0.6
               }
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Le moineau est dans le groupe des tétrapodes, mais pas dans celui des mammifères. Pourquoi ?",
+              "choices": [
+                "Il a quatre membres (ses ailes en font partie), mais ni poils ni mamelles.",
+                "Parce qu'il vole au lieu de marcher.",
+                "Parce qu'il est plus petit que les mammifères."
+              ],
+              "answer": 0,
+              "explain": "Ses ailes sont des membres transformés : avec ses pattes, il a bien quatre membres. Mais il a des plumes, pas de poils ni de mamelles : il est rangé avec les oiseaux."
+            }
           }
         ],
         "conclusion": "On classe d'après les **attributs partagés**, pas d'après le milieu de vie ni la forme du corps. Chaque nouvel attribut définit un groupe plus petit, emboîté dans un groupe plus grand."
@@ -1049,7 +1082,7 @@
         {
           "emoji": "🪶",
           "title": "Quelques groupes de tétrapodes",
-          "body": "Les **tétrapodes** ont quatre membres, parfois transformés (ailes, nageoires) ou perdus (serpents). Parmi eux : les **mammifères** (poils, mamelles), les **oiseaux** (plumes) et les **amphibiens** (peau nue et humide, comme la salamandre)."
+          "body": "Les **tétrapodes** ont quatre membres, parfois transformés (ailes, nageoires de dauphin) ou perdus (serpents) ; les nageoires d'un poisson ne sont pas des membres de tétrapode. Parmi eux : les **mammifères** (poils, mamelles), les **oiseaux** (plumes) et les **amphibiens** (peau nue et humide, comme la salamandre)."
         },
         {
           "emoji": "🗝️",
@@ -1445,7 +1478,7 @@
         "mc:tetrapode-quatre-pattes"
       ],
       "expectedSeconds": 180,
-      "prompt": "Complète le tableau des attributs : écris **1** si l'animal possède l'attribut, **0** sinon. (Pour les membres, compte aussi les membres transformés en ailes ou en nageoires.)",
+      "prompt": "Complète le tableau des attributs : écris **1** si l'animal possède l'attribut, **0** sinon. (Pour les membres, compte aussi les membres transformés en ailes ou en nageoires, c'est-à-dire ceux qui renferment encore des os de bras et de doigts.)",
       "columns": [
         "Animal",
         "Colonne vertébrale",
@@ -1803,7 +1836,7 @@
               "answer": 5,
               "id": "mc:groupe-confondu",
               "error": "lecture",
-              "feedback": "5 animaux ont une colonne vertébrale : ce sont les vertébrés. Les tétrapodes forment un groupe plus petit, qui ont en plus quatre membres (ou dérivés)."
+              "feedback": "5 animaux ont une colonne vertébrale : ce sont les vertébrés. Les tétrapodes forment un groupe plus petit : ils ont en plus quatre membres (ou dérivés)."
             }
           ]
         },
@@ -2038,14 +2071,14 @@
           "answer": 1,
           "id": "mc:vertebre-os",
           "error": "notion",
-          "feedback": "Tu as oublié le requin : son squelette est en cartilage, mais il possède une colonne vertébrale. Les vertébrés sont les requin ET moineau."
+          "feedback": "Tu as oublié un vertébré. Une colonne vertébrale peut être en os ou en cartilage : « vertébré » veut dire « qui a des vertèbres ». Reprends chaque animal avec cette idée."
         }
       ],
       "hints": [
         "Cherche les vertèbres, pas les os.",
         "Un squelette externe (carapace) ou aucun squelette : pas de colonne vertébrale."
       ],
-      "solution": "Le requin (vertèbres en cartilage) et le moineau sont des vertébrés. L'escargot, l'écrevisse et le ver de terre sont des invertébrés.",
+      "solution": "Il y a 2 vertébrés : le requin (vertèbres en cartilage) et le moineau. L'escargot, l'écrevisse et le ver de terre sont des invertébrés.",
       "selfTest": [
         {
           "response": {
@@ -2335,7 +2368,7 @@
       ],
       "hints": [
         "Un attribut se vérifie sur l'animal lui-même ; « voler » ou « vivre dans l'eau » décrivent un mode de vie.",
-        "Plus un attribut est répandu, plus le groupe qu'il définit est grand : ici, la colonne vertébrale définit le plus grand groupe.",
+        "Plus un attribut est répandu, plus le groupe qu'il définit est grand : ici, la colonne vertébrale définit le plus grand des groupes emboîtés.",
         "Un oiseau se reconnaît à ses plumes, un mammifère à ses poils et à ses mamelles."
       ],
       "solution": "Colonne vertébrale → vertébrés ; quatre membres → tétrapodes ; poils et mamelles → mammifères ; plumes → oiseaux ; six pattes articulées → insectes. « Animaux qui volent » et « animaux aquatiques » ne sont pas des groupes de la classification : voler ou nager décrit un mode de vie, pas un attribut partagé.",
@@ -2471,7 +2504,7 @@
           "category": "mam",
           "id": "mc:ressemblance-forme",
           "error": "notion",
-          "feedback": "Une tête en forme de cheval n'est qu'une ressemblance. Nageoires et branchies, sans quatre membres : l'hippocampe est un poisson, un vertébré non tétrapode."
+          "feedback": "Une tête en forme de cheval n'est qu'une ressemblance. Nageoires et branchies, sans quatre membres : l'hippocampe est un vertébré non tétrapode (ce que l'on appelle couramment un poisson)."
         },
         {
           "item": "baleine",
@@ -2486,7 +2519,7 @@
         "Ne te laisse piéger ni par le milieu de vie, ni par la forme du corps.",
         "Des plumes → oiseau ; des poils et des mamelles → mammifère ; quatre membres, même transformés ou perdus → tétrapode."
       ],
-      "solution": "Manchot : oiseau (plumes), même s'il ne vole pas. Orvet : tétrapode sans plumes ni poils ; comme les serpents, il a perdu ses pattes. Hippocampe : vertébré non tétrapode (un poisson : nageoires et branchies), malgré sa tête de cheval. Baleine bleue : mammifère (elle allaite son petit), même si elle vit dans l'eau. Pieuvre : invertébré (un mollusque). Tortue : tétrapode sans plumes ni poils.",
+      "solution": "Manchot : oiseau (plumes), même s'il ne vole pas. Orvet : tétrapode sans plumes ni poils ; comme les serpents, il a perdu ses pattes. Hippocampe : vertébré non tétrapode (ce que l'on appelle couramment un poisson : nageoires et branchies), malgré sa tête de cheval. Baleine bleue : mammifère (elle allaite son petit), même si elle vit dans l'eau. Pieuvre : invertébré (un mollusque). Tortue : tétrapode sans plumes ni poils.",
       "selfTest": [
         {
           "response": {
@@ -2895,7 +2928,7 @@
               "answer": 3,
               "id": "mc:etape-oubliee",
               "error": "lecture",
-              "feedback": "La salamandre n'a pas de plumes (2b), pas de poils (3b) et arrive en 4a : il faut lire les numéros 1, 2, 3 et 4."
+              "feedback": "Tu as oublié un numéro. Dans une clé, chaque réponse renvoie à un nouveau numéro, et on continue jusqu'à lire un nom de groupe. Reprends le trajet de la salamandre depuis le numéro 1, en notant chaque numéro lu."
             }
           ]
         },
@@ -2908,7 +2941,7 @@
               "answer": 1,
               "id": "mc:etape-oubliee",
               "error": "lecture",
-              "feedback": "À la question 1, l'hirondelle a une colonne vertébrale : la clé continue en 2, où ses plumes la désignent comme oiseau."
+              "feedback": "Tu t'es arrêté trop tôt : la réponse à la question 1 ne donne pas encore un nom de groupe, elle renvoie à un autre numéro. Poursuis le trajet jusqu'à lire un nom de groupe."
             }
           ]
         }
@@ -3067,13 +3100,13 @@
               "answer": "requin",
               "id": "mc:poisson-groupe",
               "error": "raisonnement",
-              "feedback": "Truite et requin vivent dans l'eau et nagent, mais la truite partage plus d'attributs avec le chat (3) qu'avec le requin (2). On compare les attributs, pas les milieux de vie."
+              "feedback": "Truite et requin vivent dans l'eau et nagent, mais on compare les attributs, pas les milieux de vie. Compare le nombre d'attributs que la truite partage avec chacun des deux autres animaux."
             },
             {
               "answer": "le requin",
               "id": "mc:poisson-groupe",
               "error": "raisonnement",
-              "feedback": "Truite et requin vivent dans l'eau et nagent, mais la truite partage plus d'attributs avec le chat (3) qu'avec le requin (2)."
+              "feedback": "Truite et requin vivent dans l'eau et nagent, mais on compare les attributs, pas les milieux de vie. Compare le nombre d'attributs que la truite partage avec chacun des deux autres animaux."
             }
           ]
         },
@@ -3292,7 +3325,7 @@
               "answer": 3,
               "id": "mc:absence-partagee",
               "error": "raisonnement",
-              "feedback": "Tu as compté les plumes, que ni l'un ni l'autre n'a. Seuls comptent les attributs présents chez les deux : poils et lait."
+              "feedback": "Tu as compté les plumes, que ni l'un ni l'autre n'a. Seuls comptent les attributs présents chez les deux animaux."
             }
           ]
         },
@@ -3305,7 +3338,7 @@
               "answer": 2,
               "id": "mc:absence-partagee",
               "error": "raisonnement",
-              "feedback": "Tu as compté les plumes, que ni l'un ni l'autre n'a. Il n'y a qu'un attribut présent chez les deux : la ponte d'œufs."
+              "feedback": "Tu as compté les plumes, que ni l'un ni l'autre n'a. Seuls comptent les attributs présents chez les deux animaux."
             }
           ]
         },

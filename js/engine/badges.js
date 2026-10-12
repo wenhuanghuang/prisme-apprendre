@@ -15,7 +15,7 @@ export function summarizeAttempts(attempts) {
       if (ok) sum[key][val].ok += 1;
     }
     if (a.humanValidated === true) sum.validatedOpen += 1;
-    if (a.verdict === 'correct' && (a.tries || 1) >= 3 && !a.solutionShown) sum.persistence += 1;
+    if (a.verdict === 'correct' && (a.tries || 1) >= 3 && !a.solutionShown && !a.answerRevealed) sum.persistence += 1;
     if (a.delayed && a.credit >= 0.7) sum.delayed += 1;
   }
   return sum;

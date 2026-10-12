@@ -193,7 +193,7 @@
       "constraints": ["b + c + d >= 2", "n >= 60", "n <= 1000"],
       "prompt": "On veut décomposer {n} en produit de facteurs premiers.",
       "parts": [
-        { "type": "steps", "mode": "calcul", "final": "any", "minSteps": 2, "start": "n",
+        { "type": "steps", "mode": "calcul", "final": "premiers", "minSteps": 2, "start": "n",
           "prompt": "Divise par 2 tant que c'est possible, puis par 3, puis par 5, puis par 7. Écris une étape par ligne, par exemple « {n} = 2 × {n/2} »." },
         { "type": "table", "prompt": "Combien de fois chaque nombre premier apparaît-il dans la décomposition de {n} ? (Écris 0 s'il n'apparaît pas.)",
           "columns": ["Facteur premier", "Nombre de fois"],
@@ -319,7 +319,7 @@
         { "type": "numeric", "prompt": "Pour savoir si un nombre inférieur à 400 est premier, il suffit de tester les nombres premiers dont le carré ne dépasse pas ce nombre. Au maximum, combien de nombres premiers différents faut-il tester ?", "answer": 8,
           "misconceptions": [ { "answer": 20, "id": "mc:test-tous", "error": "methode", "feedback": "Inutile de tester tous les nombres jusqu'à 20 : seulement les nombres premiers dont le carré ne dépasse pas 400." } ] },
         { "type": "numeric", "prompt": "Clé de secours : $1 001$ est le produit de trois nombres premiers. Quel est le plus grand des trois ?", "answer": 13,
-          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$1 001 = 7 × 143$, mais 143 n'est pas premier : $143 = 11 × 13$." } ] }
+          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$1 001 = 7 × 143$, mais 143 n'est pas premier : continue à le décomposer (essaie 11)." } ] }
       ],
       "hints": ["Teste les nombres premiers dans l'ordre : 2, 3, 5, 7, 11, 13, 17…", "$17 × 23 = ?$ Vérifie.", "Les nombres premiers dont le carré ne dépasse pas 400 : 2, 3, 5, 7, 11, 13, 17, 19 ($19² = 361$ et $23² = 529$)."],
       "solution": "391 n'est divisible ni par 2, 3, 5, 7, 11 ou 13, mais $391 = 17 × 23$. Pour un nombre inférieur à 400, on teste au plus les 8 nombres premiers 2, 3, 5, 7, 11, 13, 17 et 19 (car $23² = 529$). Enfin $1 001 = 7 × 143 = 7 × 11 × 13$ : le plus grand facteur est 13. Avec des nombres de plusieurs centaines de chiffres, cette recherche deviendrait interminable : c'est ce qui protège les vrais codes secrets.",
@@ -336,9 +336,9 @@
       "parts": [
         { "type": "numeric", "prompt": "Combien de diviseurs le nombre {p} a-t-il ?", "answer": 2 },
         { "type": "numeric", "prompt": "Combien de diviseurs le nombre 1 a-t-il ?", "answer": 1,
-          "misconceptions": [ { "answer": 2, "id": "mc:un-premier", "error": "notion", "feedback": "1 n'est divisible que par 1 : « 1 et lui-même », c'est ici le même nombre. Il n'a qu'un seul diviseur." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:un-premier", "error": "notion", "feedback": "Attention : pour 1, « 1 et lui-même », c'est le même nombre. On ne le compte pas deux fois." } ] },
         { "type": "numeric", "prompt": "Combien de diviseurs le nombre {p*p} a-t-il ?", "answer": 3,
-          "misconceptions": [ { "answer": 2, "id": "mc:test-incomplet", "error": "methode", "feedback": "$ {p*p} = {p} × {p} $ : ses diviseurs sont 1, {p} et {p*p}." } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:test-incomplet", "error": "methode", "feedback": "$ {p*p} = {p} × {p} $ : en plus de 1 et de {p*p}, il a un autre diviseur. Liste-les tous." } ] },
         { "type": "text", "prompt": "Conclusion : 1 est-il un nombre premier ? (réponds oui ou non)", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:un-premier", "error": "notion", "feedback": "Un nombre premier a exactement deux diviseurs ; 1 n'en a qu'un." } ] }
       ],
@@ -358,11 +358,11 @@
           "misconceptions": [ { "answer": "oui", "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$4 = 2 × 2$ et $15 = 3 × 5$ : ce ne sont pas des nombres premiers, il faut continuer à décomposer." } ] },
         { "type": "numeric", "prompt": "En continuant : $ 60 = 2^k × 3 × 5 $. Que vaut $k$ ?", "answer": 2,
           "misconceptions": [
-            { "answer": 1, "id": "mc:facteur-oublie", "error": "calcul", "feedback": "$4 = 2 × 2$ : le facteur 2 apparaît deux fois." },
-            { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "$4 = 2²$ : l'exposant est le nombre de facteurs 2, c'est-à-dire 2." }
+            { "answer": 1, "id": "mc:facteur-oublie", "error": "calcul", "feedback": "$4 = 2 × 2$ : compte combien de fois le facteur 2 apparaît dans la décomposition." },
+            { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "L'exposant n'est pas la valeur 4 : c'est le nombre de facteurs 2 qu'il faut écrire pour obtenir 4." }
           ] },
         { "type": "numeric", "prompt": "De même, $ 84 = 2^k × 3 × 7 $. Que vaut $k$ ?", "answer": 2,
-          "misconceptions": [ { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "$84 = 4 × 21 = 2 × 2 × 3 × 7$ : le facteur 2 apparaît deux fois." } ] }
+          "misconceptions": [ { "answer": 4, "id": "mc:exposant-valeur", "error": "notion", "feedback": "L'exposant n'est pas la valeur 4 : écris $84 = 4 × 21$, décompose 4, puis compte les facteurs 2." } ] }
       ],
       "hints": ["4 a-t-il d'autres diviseurs que 1 et 4 ?", "$4 = 2 × 2 = 2²$."],
       "solution": "4 et 15 ne sont pas premiers : $ 60 = 4 × 15 = 2 × 2 × 3 × 5 = 2² × 3 × 5 $, donc $k = 2$. De même $ 84 = 2 × 2 × 3 × 7 = 2² × 3 × 7 $.",
@@ -384,9 +384,9 @@
           ] },
         { "type": "numeric", "prompt": "Combien de fois s'allument-ils ensemble pendant l'heure qui suit minuit (sans compter minuit) ?", "answer": 100 },
         { "type": "numeric", "prompt": "Un troisième phare s'allume toutes les 10 secondes. Après combien de secondes les trois s'allument-ils de nouveau ensemble ?", "answer": 180,
-          "misconceptions": [ { "answer": 360, "id": "mc:ppcm-produit", "error": "methode", "feedback": "360 convient, mais il y a plus petit : $ 2² × 3² × 5 = 180 $." } ] }
+          "misconceptions": [ { "answer": 360, "id": "mc:ppcm-produit", "error": "methode", "feedback": "360 convient, mais il y a plus petit : décompose 12, 18 et 10, puis prends chaque facteur premier juste le nombre de fois nécessaire." } ] }
       ],
-      "hints": ["Liste les multiples de 12 : 12, 24, 36… et ceux de 18 : 18, 36…", "$12 = 2² × 3$ et $18 = 2 × 3²$ : un multiple commun doit contenir $2²$ et $3²$.", "Pour trois phares : $10 = 2 × 5$, il faut donc $ 2² × 3² × 5 $."],
+      "hints": ["Liste les multiples de 12 : 12, 24… et ceux de 18 : 18… Continue jusqu'à trouver un nombre présent dans les deux listes.", "$12 = 2² × 3$ et $18 = 2 × 3²$ : un multiple commun doit contenir $2²$ et $3²$.", "Pour trois phares : $10 = 2 × 5$, il faut donc $ 2² × 3² × 5 $."],
       "solution": "Multiples de 12 : 12, 24, 36… ; multiples de 18 : 18, 36… Le plus petit multiple commun est 36 ($ 2² × 3² $). En une heure (3 600 s), ils s'allument ensemble $3 600 ÷ 36 = 100$ fois. Avec un phare de 10 s ($ 2 × 5 $), le plus petit multiple commun est $ 2² × 3² × 5 = 180 $ s, soit 3 minutes.",
       "selfTest": [
         { "response": { "parts": [ { "value": "36" }, { "value": "100" }, { "value": "180" } ] }, "expect": "correct" },
@@ -402,7 +402,7 @@
           "columns": ["Nombre", "Décomposition", "Nombre de diviseurs"],
           "rows": [ ["12", "$2² × 3$", "?r0c2"], ["18", "$2 × 3²$", "?r1c2"], ["16", "$2⁴$", "?r2c2"], ["36", "$2² × 3²$", "?r3c2"], ["72", "$2³ × 3²$", "?r4c2"] ],
           "cells": {
-            "r0c2": { "answer": 6, "misconceptions": [ { "answer": 4, "id": "mc:oubli-diviseurs-triviaux", "error": "methode", "feedback": "N'oublie pas 1 et le nombre lui-même : les diviseurs de 12 sont 1, 2, 3, 4, 6 et 12." } ] },
+            "r0c2": { "answer": 6, "misconceptions": [ { "answer": 4, "id": "mc:oubli-diviseurs-triviaux", "error": "methode", "feedback": "N'oublie pas 1 et le nombre lui-même dans ta liste des diviseurs de 12." } ] },
             "r1c2": { "answer": 6 },
             "r2c2": { "answer": 5 },
             "r3c2": { "answer": 9 },
@@ -415,7 +415,7 @@
           ] },
         { "type": "numeric", "prompt": "Sans les lister, combien de diviseurs le nombre $ 2⁵ × 3⁴ $ a-t-il ?", "answer": 30 }
       ],
-      "hints": ["Diviseurs de 36 : 1, 2, 3, 4, 6, 9, 12, 18, 36.", "Un diviseur de $ 2^a × 3^b $ s'écrit $ 2^i × 3^j $ : combien de choix pour $i$ (de 0 à $a$) ? pour $j$ ?", "$a + 1$ choix pour l'exposant de 2, $b + 1$ choix pour celui de 3."],
+      "hints": ["Exemple : les diviseurs de 20 sont 1, 2, 4, 5, 10 et 20 (6 diviseurs). Fais de même pour chaque nombre du tableau.", "Un diviseur de $ 2^a × 3^b $ s'écrit $ 2^i × 3^j $ : combien de choix pour $i$ (de 0 à $a$) ? pour $j$ ?", "$a + 1$ choix pour l'exposant de 2, $b + 1$ choix pour celui de 3."],
       "solution": "12 et 18 ont 6 diviseurs, 16 en a 5, 36 en a 9 et 72 en a 12. Un diviseur de $ 2^a × 3^b $ s'écrit $ 2^i × 3^j $ avec $i$ entre 0 et $a$ ($a + 1$ choix) et $j$ entre 0 et $b$ ($b + 1$ choix) : il y a $ (a + 1)(b + 1) $ diviseurs. Pour $ 2⁵ × 3⁴ $ : $ 6 × 5 = 30 $ diviseurs.",
       "selfTest": [
         { "response": { "parts": [ { "cells": { "r0c2": "6", "r1c2": "6", "r2c2": "5", "r3c2": "9", "r4c2": "12" } }, { "value": "(a+1)(b+1)" }, { "value": "30" } ] }, "expect": "correct" },
@@ -441,9 +441,9 @@
       "parts": [
         { "type": "numeric", "prompt": "Calcule $ N = 2 × 3 × 5 × 7 + 1 $.", "answer": 211 },
         { "type": "numeric", "prompt": "Quel est le reste de la division de $N$ par 7 ? (Par 2, 3 ou 5, ce serait le même.)", "answer": 1,
-          "misconceptions": [ { "answer": 0, "id": "mc:reste-euclide", "error": "raisonnement", "feedback": "$ 2 × 3 × 5 × 7 $ est un multiple de 7, mais on lui a ajouté 1 : il reste 1 quand on divise $N$ par 7." } ] },
+          "misconceptions": [ { "answer": 0, "id": "mc:reste-euclide", "error": "raisonnement", "feedback": "$ 2 × 3 × 5 × 7 $ est un multiple de 7, mais on lui a ajouté 1 : $N$ n'est donc pas un multiple de 7. Que reste-t-il ?" } ] },
         { "type": "numeric", "prompt": "Avec deux nombres premiers de plus : $ M = 2 × 3 × 5 × 7 × 11 × 13 + 1 = 30 031 $. Ce nombre n'est pas premier ! Quel est son plus petit facteur premier ? (calculatrice autorisée)", "answer": 59,
-          "misconceptions": [ { "answer": 509, "id": "mc:plus-petit-facteur", "error": "lecture", "feedback": "$ 30 031 = 59 × 509 $ : 509 est le plus grand des deux facteurs." } ] },
+          "misconceptions": [ { "answer": 509, "id": "mc:plus-petit-facteur", "error": "lecture", "feedback": "509 divise bien 30 031, mais ce n'est pas son plus petit facteur premier : cherche un diviseur plus petit." } ] },
         { "type": "open", "prompt": "Explique pourquoi $M$ n'est divisible par aucun des nombres 2, 3, 5, 7, 11 et 13, et ce que cela montre : à partir de n'importe quelle liste de nombres premiers, on en trouve toujours un nouveau.", "minWords": 25,
           "criteria": [
             { "id": "c1", "label": "J'explique que la division de $M$ par chacun de ces nombres a pour reste 1", "keywords": [["reste 1", "reste de 1", "reste est 1", "+ 1", "plus 1"]] },
@@ -451,7 +451,7 @@
             { "id": "c3", "label": "Je conclus qu'aucune liste finie ne contient tous les nombres premiers", "keywords": [["infinite", "infini", "jamais", "aucune liste", "toujours un"]] }
           ] }
       ],
-      "hints": ["$ 2 × 3 × 5 × 7 = 210 $.", "Un multiple de 7 plus 1 : quel reste dans la division par 7 ?", "Pour 30 031, teste 17, 19, 23, 29… jusqu'à trouver un diviseur."],
+      "hints": ["Calcule d'abord $ 2 × 3 × 5 × 7 $, puis ajoute 1.", "Un multiple de 7 plus 1 : quel reste dans la division par 7 ?", "Pour 30 031, teste 17, 19, 23, 29… jusqu'à trouver un diviseur."],
       "solution": "$N = 211$ ; divisé par 2, 3, 5 ou 7, il reste toujours 1 (211 est d'ailleurs premier). $ M = 30 031 = 59 × 509 $ : M n'est pas premier, mais ses facteurs premiers, 59 et 509, ne font pas partie de la liste 2, 3, 5, 7, 11, 13, puisque chaque division par ces nombres laisse un reste de 1. Quelle que soit la liste finie de nombres premiers de départ, ce procédé fournit un nombre premier qui n'y est pas : il en existe donc une infinité.",
       "selfTest": [
         { "response": { "parts": [ { "value": "211" }, { "value": "1" }, { "value": "59" }, { "text": "Quand on divise M par 2, 3, 5, 7, 11 ou 13, il reste 1 car on a ajouté 1 à un multiple. Donc le facteur 59 est un nouveau nombre premier, pas dans la liste. Aucune liste finie ne contient tous les nombres premiers : il y en a une infinité.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },

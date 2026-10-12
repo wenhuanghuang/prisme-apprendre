@@ -1,0 +1,947 @@
+{
+  "id": "st6-developpement-durable",
+  "chapter": "6e-st-developpement-durable",
+  "title": "Ressources et biodiversité : agir pour le développement durable",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": [
+    "st6.ah.ressources-raisonnees",
+    "st6.ah.objets-biodiversite",
+    "st6.ah.projet-edd",
+    "st6.demarche.modele"
+  ],
+  "status": "programme",
+  "programmes": ["sciences-techno-c3-2023"],
+  "duration": 55,
+  "summary": "Justifier une exploitation raisonnée des ressources grâce à un modèle (prélever moins que ce qui se renouvelle), relier les besoins des êtres vivants aux caractéristiques d'objets techniques qui favorisent la biodiversité (nichoir, hôtel à insectes, mangeoire), et mener un projet de développement durable au collège : observer, proposer, agir, mesurer. Programme de sciences et technologie du cycle 3 (version de 2023), attendus de fin de 6e.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Pêcher beaucoup… ou longtemps ?",
+      "body": "Le club nature prépare une fête et veut pêcher dans l'étang voisin. Lucas propose : « Pêchons le plus possible cette année, on en aura plein ! » Inès répond : « Si on pêche trop, l'an prochain, il n'y aura plus rien. »\n\nQui a raison ? Et comment le savoir avant de commencer à pêcher ?"
+    },
+    {
+      "kind": "experience",
+      "title": "Le modèle de l'étang : pêcher sans épuiser",
+      "body": "Un modèle très simple permet de tester deux façons de pêcher, année après année.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "forme", "id": "sol", "shape": "rect", "x": 0, "y": 392, "w": 800, "h": 48, "rx": 0, "fill": "#bfe3a5" },
+          { "type": "forme", "id": "etang", "shape": "ellipse", "x": 205, "y": 250, "w": 360, "h": 210, "fill": "#93c5fd", "stroke": "#3b82f6", "width": 3 },
+          { "type": "texte", "id": "regle", "x": 205, "y": 30, "text": "Règle du modèle", "size": 16, "bold": true },
+          { "type": "texte", "id": "r1", "x": 205, "y": 54, "text": "1. Chaque année, le nombre de poissons double.", "size": 14 },
+          { "type": "texte", "id": "r2", "x": 205, "y": 76, "text": "2. L'étang nourrit 100 poissons au maximum.", "size": 14 },
+          { "type": "texte", "id": "r3", "x": 205, "y": 98, "text": "3. Ensuite, on pêche.", "size": 14 },
+          { "type": "texte", "id": "legende", "x": 205, "y": 130, "text": "🐟 = 10 poissons", "size": 14, "bold": true },
+          { "type": "emoji", "id": "f1", "x": 95, "y": 210, "char": "🐟", "size": 30 },
+          { "type": "emoji", "id": "f2", "x": 150, "y": 210, "char": "🐟", "size": 30 },
+          { "type": "emoji", "id": "f3", "x": 205, "y": 210, "char": "🐟", "size": 30 },
+          { "type": "emoji", "id": "f4", "x": 260, "y": 210, "char": "🐟", "size": 30 },
+          { "type": "emoji", "id": "f5", "x": 315, "y": 210, "char": "🐟", "size": 30, "hidden": true },
+          { "type": "emoji", "id": "f6", "x": 95, "y": 290, "char": "🐟", "size": 30, "hidden": true },
+          { "type": "emoji", "id": "f7", "x": 150, "y": 290, "char": "🐟", "size": 30, "hidden": true },
+          { "type": "emoji", "id": "f8", "x": 205, "y": 290, "char": "🐟", "size": 30, "hidden": true },
+          { "type": "texte", "id": "vide", "x": 205, "y": 258, "text": "étang vide", "size": 18, "bold": true, "color": "#1e3a8a", "hidden": true },
+          { "type": "emoji", "id": "pecheur", "x": 362, "y": 350, "char": "🎣", "size": 38 },
+          { "type": "courbe", "id": "g", "x": 410, "y": 8, "w": 380, "h": 162, "title": "Poissons en fin d'année : pêche 20/an", "xRange": [0, 6], "yRange": [0, 100], "xLabel": "année", "yLabel": "poissons", "points": [[0, 40], [1, 60], [2, 80], [3, 80], [4, 80], [5, 80], [6, 80]], "progress": 0, "color": "#2563eb", "hidden": true },
+          { "type": "releve", "id": "tab", "x": 410, "y": 178, "w": 380, "head": ["fin de l'année", "pêche 20/an", "pêche 50/an"], "rows": [["0 (départ)", "40", "…"], ["1", "60", "…"], ["2", "80", "…"], ["3", "80", "…"], ["4", "80", "…"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]], "shown": 0, "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "L'étang et sa règle",
+            "text": "Dans ce modèle, l'étang contient 40 poissons (un 🐟 = 10 poissons). Chaque année, les poissons se reproduisent : leur nombre double. Mais l'étang ne peut pas nourrir plus de 100 poissons. Ensuite, on pêche.",
+            "focus": ["etang"]
+          },
+          {
+            "title": "Pêche raisonnée : 20 poissons par an",
+            "text": "Année 1 : 40 poissons deviennent 80, on en pêche 20, il en reste 60. Année 2 : 60 deviennent 120, mais l'étang n'en nourrit que 100 ; on en pêche 20, il en reste 80. Ensuite, chaque année : 80, puis 100, puis 80. La population reste stable.",
+            "duration": 8,
+            "show": ["g", "tab"],
+            "do": [
+              { "id": "tab", "set": { "shown": 1 }, "at": 0 },
+              { "id": "g", "to": { "progress": 1 }, "at": 0.2, "dur": 7.6, "ease": "lineaire" },
+              { "id": "tab", "set": { "shown": 2 }, "at": 1.47 },
+              { "id": "f5", "set": { "hidden": false }, "at": 1.47 },
+              { "id": "f6", "set": { "hidden": false }, "at": 1.47 },
+              { "id": "tab", "set": { "shown": 3 }, "at": 2.73 },
+              { "id": "f7", "set": { "hidden": false }, "at": 2.73 },
+              { "id": "f8", "set": { "hidden": false }, "at": 2.73 },
+              { "id": "tab", "set": { "shown": 4 }, "at": 4 },
+              { "id": "tab", "set": { "shown": 5 }, "at": 5.27 },
+              { "id": "tab", "set": { "shown": 6 }, "at": 6.53 }
+            ],
+            "focus": ["g"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Compte les 🐟 dans l'étang (un 🐟 = 10 poissons) : combien de poissons l'étang contient-il à la fin de l'année 5 ?",
+              "answer": 80,
+              "tolerance": 0,
+              "unit": "poissons",
+              "explain": "On voit 8 🐟 dans l'étang, soit 8 × 10 = 80 poissons. Le tableau et la courbe bleue indiquent aussi 80."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "On recommence avec 40 poissons au départ, mais cette fois on en pêche 50 par an.",
+            "ask": {
+              "question": "Si on pêche 50 poissons par an, que va devenir l'étang ?",
+              "choices": ["Il y aura toujours autant de poissons.", "Il n'y aura bientôt plus de poissons.", "Il y aura de plus en plus de poissons."],
+              "answer": 1,
+              "explain": "40 deviennent 80, on en pêche 50 : il en reste 30. Puis 30 deviennent 60, moins 50 : il en reste 10. L'année suivante, 10 deviennent 20 : on ne peut en pêcher que 20, et il n'en reste plus aucun."
+            },
+            "focus": ["etang"]
+          },
+          {
+            "title": "Surpêche : 50 poissons par an",
+            "text": "Année 1 : 80 − 50 = 30 poissons. Année 2 : 60 − 50 = 10. Année 3 : les 10 poissons deviennent 20, on pêche les 20 : l'étang est vide. Sans poissons, plus aucune naissance : la ressource est épuisée.",
+            "duration": 8,
+            "hide": ["f5", "f6", "f7", "f8"],
+            "do": [
+              { "id": "g", "set": { "points": [[0, 40], [1, 30], [2, 10], [3, 0], [4, 0], [5, 0], [6, 0]], "progress": 0, "color": "#e11d48", "title": "Poissons en fin d'année : pêche 50/an", "ref": { "points": [[0, 40], [1, 60], [2, 80], [3, 80], [4, 80], [5, 80], [6, 80]], "label": "pêche 20/an" } }, "at": 0 },
+              { "id": "g", "to": { "progress": 1 }, "at": 0.2, "dur": 7.6, "ease": "lineaire" },
+              { "id": "tab", "set": { "highlight": false, "rows": [["0 (départ)", "40", "40"], ["1", "60", "…"], ["2", "80", "…"], ["3", "80", "…"], ["4", "80", "…"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]] }, "at": 0 },
+              { "id": "tab", "set": { "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "…"], ["3", "80", "…"], ["4", "80", "…"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]] }, "at": 1.47 },
+              { "id": "f4", "set": { "hidden": true }, "at": 1.47 },
+              { "id": "tab", "set": { "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "10"], ["3", "80", "…"], ["4", "80", "…"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]] }, "at": 2.73 },
+              { "id": "f2", "set": { "hidden": true }, "at": 2.73 },
+              { "id": "f3", "set": { "hidden": true }, "at": 2.73 },
+              { "id": "tab", "set": { "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "10"], ["3", "80", "0"], ["4", "80", "…"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]] }, "at": 4 },
+              { "id": "f1", "set": { "hidden": true }, "at": 4 },
+              { "id": "vide", "set": { "hidden": false }, "at": 4 },
+              { "id": "tab", "set": { "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "10"], ["3", "80", "0"], ["4", "80", "0"], ["5", "80", "…"], ["pêchés en 10 ans", "…", "…"]] }, "at": 5.27 },
+              { "id": "tab", "set": { "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "10"], ["3", "80", "0"], ["4", "80", "0"], ["5", "80", "0"], ["pêchés en 10 ans", "…", "…"]] }, "at": 6.53 }
+            ],
+            "focus": ["g"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde la courbe rouge : que devient le nombre de poissons quand on en pêche 50 par an ?",
+              "choices": ["Il reste stable, autour de 80", "Il baisse un peu, puis remonte", "Il baisse jusqu'à 0 en 3 ans"],
+              "answer": 2,
+              "explain": "La courbe rouge descend : 40, puis 30, puis 10, puis 0 à la fin de l'année 3. Elle reste ensuite à 0 : l'étang est vide."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "Comptons maintenant les poissons pêchés pendant 10 ans.",
+            "ask": {
+              "question": "Au bout de 10 ans, quelle façon de pêcher aura rapporté le plus de poissons ?",
+              "choices": ["La surpêche : 50 poissons par an.", "La pêche raisonnée : 20 poissons par an.", "Les deux autant."],
+              "answer": 1,
+              "explain": "Pêche raisonnée : 20 poissons chaque année, soit 20 × 10 = 200 poissons. Surpêche : 50 + 50 + 20 = 120 poissons, puis plus rien, car l'étang est vide."
+            },
+            "focus": ["tab"]
+          },
+          {
+            "title": "Le bilan",
+            "text": "En 10 ans, la pêche raisonnée a rapporté 200 poissons, et l'étang en contient encore 80. La surpêche n'en a rapporté que 120, et l'étang est vide pour toujours. Pêcher moins chaque année, c'est pêcher plus longtemps, et finalement davantage.",
+            "duration": 1.5,
+            "do": [
+              { "id": "tab", "set": { "highlight": true, "shown": 7, "rows": [["0 (départ)", "40", "40"], ["1", "60", "30"], ["2", "80", "10"], ["3", "80", "0"], ["4", "80", "0"], ["5", "80", "0"], ["pêchés en 10 ans", "200", "120"]] }, "at": 0.3 }
+            ],
+            "focus": ["tab"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi la pêche raisonnée rapporte-t-elle finalement plus de poissons ?",
+              "choices": ["Elle laisse assez de poissons pour qu'ils se reproduisent : on peut pêcher chaque année", "Elle permet de pêcher plus de poissons chaque année", "Quand on pêche moins, l'étang peut nourrir plus de 100 poissons"],
+              "answer": 0,
+              "explain": "En pêchant 20 poissons par an, il en reste toujours assez pour se reproduire : la pêche continue pendant les 10 ans. La surpêche prend plus au début, puis plus rien."
+            }
+          },
+          {
+            "title": "Dans la réalité",
+            "text": "Un vrai lac ou la mer sont plus compliqués : le climat, la pollution et les autres espèces comptent aussi. Mais l'idée reste vraie. Au Canada, la pêche à la morue de Terre-Neuve a dû être interdite en 1992 : le stock s'était effondré à cause de la surpêche. Aujourd'hui, plus d'un tiers des stocks de poissons marins sont surexploités (FAO, 2024).",
+            "focus": ["pecheur"]
+          }
+        ],
+        "conclusion": "Une ressource **renouvelable** reste disponible si l'on prélève **moins** que ce qui se renouvelle : c'est une **exploitation raisonnée**. Si l'on prélève plus, elle s'épuise, et l'on perd tout ce qu'elle aurait pu donner les années suivantes.\n\n*Modèle simplifié : dans la nature, la reproduction dépend aussi du climat, de la nourriture et des pollutions.*"
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "♻️",
+          "title": "Ressources renouvelables ou non",
+          "body": "Une **ressource naturelle** est ce que l'on prélève dans la nature : eau, bois, poissons, sols, minerais, pétrole. Certaines se **renouvellent** à l'échelle d'une vie humaine (bois, poissons, eau douce), si l'on n'en prend pas trop. D'autres non (pétrole, charbon, minerais) : elles ont mis des millions d'années à se former.",
+          "reveal": {
+            "question": "Devine : le sol des champs est-il une ressource qui se renouvelle vite ?",
+            "answer": "Non : il peut falloir jusqu'à 1 000 ans pour former 1 cm de sol (FAO). À l'échelle d'une vie humaine, un sol emporté par l'érosion est presque perdu."
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Exploiter de façon raisonnée",
+          "body": "Une ressource renouvelable reste disponible si l'on prélève **moins** que ce qui se renouvelle : c'est une **exploitation raisonnée**. Si l'on prélève plus, elle diminue puis s'épuise : c'est la **surexploitation**. Aujourd'hui, plus d'un tiers des stocks de poissons marins sont surexploités (FAO, 2024).",
+          "example": "Pour laisser les poissons se reproduire : quotas de pêche, taille minimale, filets à larges mailles."
+        },
+        {
+          "emoji": "🌱",
+          "title": "Le développement durable",
+          "body": "Le **développement durable** répond aux besoins des humains d'aujourd'hui sans empêcher les générations futures de répondre aux leurs (rapport Brundtland, ONU, 1987). Il cherche à concilier trois choses : protéger l'environnement, permettre à chacun de vivre dignement, et avoir une économie qui fonctionne."
+        },
+        {
+          "emoji": "🐦",
+          "title": "Des objets pour la biodiversité",
+          "body": "Pour aider un être vivant, on part de ses **besoins** : s'abriter, se nourrir, se reproduire. Un **nichoir** offre une cavité où des oiseaux, comme les mésanges, font leur nid. Un **hôtel à insectes** offre des tiges creuses où pondent des abeilles solitaires. Une **mangeoire** aide les oiseaux en hiver, quand la nourriture manque.",
+          "reveal": {
+            "question": "Devine : faut-il remplir la mangeoire toute l'année ?",
+            "answer": "Non : seulement en hiver, quand il fait froid et que la nourriture manque. Au printemps, les oiseaux nourrissent leurs petits avec des insectes. Et jamais de pain !"
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Bien concevoir un nichoir",
+          "body": "Le **trou d'entrée** choisit l'espèce : un trou d'environ 3 cm laisse passer une mésange, pas une pie. On fixe le nichoir à au moins 2 m de haut, hors de portée des chats, l'entrée tournée vers l'est ou le sud-est, à l'abri de la pluie. Pas de perchoir : il aiderait les prédateurs. On le nettoie en automne."
+        },
+        {
+          "emoji": "🤝",
+          "title": "Agir au collège, en projet",
+          "body": "Un projet de développement durable se mène en équipe : **observer** (un problème, un besoin), **proposer** des actions, **choisir** celles qui sont réalistes, **agir**, puis **mesurer** les résultats pour s'améliorer. Au collège, des éco-délégués élus dans les classes aident à porter ces projets."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : concevoir un nichoir à partir des besoins",
+      "steps": [
+        { "text": "Le problème : dans la cour du collège, il n'y a pas de vieux arbres creux. Les mésanges, qui nichent dans des cavités, ne trouvent pas où faire leur nid." },
+        {
+          "text": "1. On liste les besoins de l'oiseau, puis on cherche pour chacun un choix technique.",
+          "figure": {
+            "alt": "Tableau qui associe chaque besoin de la mésange à une caractéristique du nichoir",
+            "w": 640,
+            "h": 230,
+            "items": [
+              { "type": "table", "head": ["Besoin de la mésange", "Choix technique pour le nichoir"], "rows": [
+                ["Une cavité fermée pour cacher son nid", "Une boîte en bois avec un toit"],
+                ["Entrer, sans que de plus gros oiseaux entrent", "Un trou d'entrée d'environ 3 cm"],
+                ["Être à l'abri des chats et des fouines", "Fixé à au moins 2 m de haut, sans perchoir"],
+                ["Rester au sec", "Toit qui dépasse ; entrée vers l'est ou le sud-est"],
+                ["Ne pas être en contact avec des produits toxiques", "Bois brut, ni peint ni verni à l'intérieur"]
+              ] }
+            ]
+          }
+        },
+        { "text": "2. On dessine un schéma avec les dimensions, puis on fabrique le nichoir." },
+        { "text": "3. On l'installe en hiver, avant la saison des nids, qui commence au printemps." },
+        { "text": "4. On observe sans déranger : de loin, sans ouvrir le nichoir. On note s'il est occupé. En automne, une fois vide, on le nettoie." },
+        { "text": "La méthode : **besoin de l'être vivant → choix technique**. C'est ainsi qu'on conçoit tout objet qui favorise la biodiversité." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "st6-developpement-durable-ressources",
+        "st6-developpement-durable-etang",
+        "st6-developpement-durable-tableau",
+        "st6-developpement-durable-objets",
+        "st6-developpement-durable-nichoir",
+        "st6-developpement-durable-projet",
+        "st6-developpement-durable-mangeoire"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["st6-developpement-durable-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : trois actions pour la biodiversité au collège",
+      "body": "Le club nature veut rendre la cour plus accueillante pour les êtres vivants. À toi de jouer !",
+      "exercises": ["st6-developpement-durable-plan"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Une **ressource renouvelable** (bois, poissons, eau douce) reste disponible si l'on prélève **moins** que ce qui se renouvelle : c'est une **exploitation raisonnée**, au cœur du **développement durable**. Les ressources non renouvelables (pétrole, charbon, minerais) s'épuisent. Pour aider la biodiversité, on part des **besoins** des êtres vivants (abri, nourriture, reproduction) pour concevoir des objets adaptés : nichoir, hôtel à insectes, mangeoire.\n\n- **« Renouvelable, donc inépuisable. »** Non : un stock surexploité s'effondre.\n- **« Un perchoir aide l'oiseau. »** Il aide surtout ses prédateurs.\n- **« On nourrit les oiseaux toute l'année. »** Seulement en hiver, et jamais de pain.\n- **« Un projet, c'est fini quand l'objet est posé. »** Non : on observe, on compte, on améliore."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours une question sur les ressources ou la biodiversité : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Faire les comptes de dix ans de pêche avec le modèle de l'étang, puis découvrir pourquoi le sol est une ressource si lente à se renouveler.",
+      "exercises": ["st6-developpement-durable-dix-ans", "st6-developpement-durable-sol"]
+    },
+    "expert": {
+      "intro": "Facultatif : calculer le « jour du dépassement » de l'humanité, puis évaluer un vrai suivi de nichoirs.",
+      "exercises": ["st6-developpement-durable-depassement", "st6-developpement-durable-suivi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-developpement-durable-ressources",
+      "type": "categorize",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:fossile-renouvelable", "mc:renouvelable-illimite"],
+      "expectedSeconds": 120,
+      "prompt": "Range chaque ressource : se renouvelle-t-elle à l'échelle d'une vie humaine, si l'on n'en prend pas trop ?",
+      "categories": [
+        { "id": "renouv", "label": "Renouvelable à l'échelle d'une vie humaine" },
+        { "id": "non", "label": "Non renouvelable à l'échelle d'une vie humaine" }
+      ],
+      "items": [
+        { "id": "r1", "label": "Le bois des forêts", "category": "renouv" },
+        { "id": "r2", "label": "Les poissons de la mer", "category": "renouv" },
+        { "id": "r3", "label": "L'eau douce des rivières", "category": "renouv" },
+        { "id": "r4", "label": "Le pétrole", "category": "non" },
+        { "id": "r5", "label": "Le charbon", "category": "non" },
+        { "id": "r6", "label": "Le minerai de fer", "category": "non" }
+      ],
+      "misconceptions": [
+        { "item": "r4", "category": "renouv", "id": "mc:fossile-renouvelable", "error": "notion", "feedback": "Le pétrole s'est formé à partir d'êtres vivants très anciens. Combien de temps cela a-t-il pris ? Compare avec la durée d'une vie humaine." },
+        { "item": "r5", "category": "renouv", "id": "mc:fossile-renouvelable", "error": "notion", "feedback": "Le charbon s'est formé à partir de forêts très anciennes. Combien de temps cela a-t-il pris ? Compare avec la durée d'une vie humaine." },
+        { "item": "r2", "category": "non", "id": "mc:renouvelable-illimite", "error": "notion", "feedback": "Les poissons peuvent s'épuiser si on en pêche trop, c'est vrai. Mais la question est : se reproduisent-ils, si l'on n'en prend pas trop ?" }
+      ],
+      "hints": [
+        "Une ressource renouvelable se reforme vite : par la reproduction des êtres vivants, la pousse des arbres, la pluie…",
+        "Le pétrole, le charbon et les minerais ont mis des millions d'années à se former."
+      ],
+      "solution": "Renouvelables à l'échelle d'une vie humaine, si l'on n'en prend pas trop : le bois (les arbres repoussent), les poissons (ils se reproduisent), l'eau douce (la pluie la renouvelle). Non renouvelables : le pétrole, le charbon et le minerai de fer, formés en millions d'années.",
+      "selfTest": [
+        { "response": { "assign": { "r1": "renouv", "r2": "renouv", "r3": "renouv", "r4": "non", "r5": "non", "r6": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "r1": "renouv", "r2": "renouv", "r3": "renouv", "r4": "renouv", "r5": "non", "r6": "non" } }, "expect": "mc:fossile-renouvelable" },
+        { "response": { "assign": { "r1": "renouv", "r2": "non", "r3": "renouv", "r4": "non", "r5": "non", "r6": "non" } }, "expect": "mc:renouvelable-illimite" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-etang",
+      "type": "numeric",
+      "skill": "st6.ah.ressources-raisonnees",
+      "skills": ["st6.demarche.modele"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-renouvellement", "mc:ajout-peche"],
+      "expectedSeconds": 90,
+      "params": { "n": { "choice": [30, 40, 50] }, "p": { "int": [5, 25] } },
+      "prompt": "Dans le modèle de l'étang, chaque année, le nombre de poissons double (sans dépasser 100), puis on pêche. Au départ, il y a {n} poissons et on en pêche {p} par an. Combien en reste-t-il à la fin de la première année ?",
+      "answer": "2*n - p",
+      "misconceptions": [
+        { "answer": "n - p", "id": "mc:oubli-renouvellement", "error": "methode", "feedback": "Tu as oublié que les poissons se reproduisent avant la pêche : relis la règle n°1 du modèle." },
+        { "answer": "2*n + p", "id": "mc:ajout-peche", "error": "calcul", "feedback": "Pêcher, c'est retirer des poissons de l'étang, pas en ajouter." }
+      ],
+      "hints": [
+        "D'abord la reproduction : le nombre double.",
+        "Ensuite la pêche : on retire les poissons pêchés."
+      ],
+      "solution": "Reproduction : {n} × 2 = {2*n} poissons (pas plus de 100). Pêche : {2*n} − {p} = {2*n-p} poissons à la fin de la première année.",
+      "selfTest": [
+        { "response": { "value": "{2*n-p}" }, "expect": "correct" },
+        { "response": { "value": "{n-p}" }, "expect": "mc:oubli-renouvellement" },
+        { "response": { "value": "{2*n+p}" }, "expect": "mc:ajout-peche" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-tableau",
+      "type": "table",
+      "skill": "st6.ah.ressources-raisonnees",
+      "skills": ["st6.demarche.modele"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-limite"],
+      "expectedSeconds": 240,
+      "prompt": "Toujours avec le modèle de l'étang : le nombre de poissons double chaque année, **sans dépasser 100**, puis on pêche. On part de 40 poissons et on en pêche **30 par an**. Complète le tableau.",
+      "columns": ["Année", "Avant la pêche (après la reproduction)", "Après la pêche"],
+      "rows": [
+        ["1", "?r0c1", "?r0c2"],
+        ["2", "?r1c1", "?r1c2"],
+        ["3", "?r2c1", "?r2c2"]
+      ],
+      "cells": {
+        "r0c1": { "answer": "80" },
+        "r0c2": { "answer": "50" },
+        "r1c1": { "answer": "100" },
+        "r1c2": { "answer": "70" },
+        "r2c1": { "answer": "100", "misconceptions": [
+          { "answer": "140", "id": "mc:oubli-limite", "error": "methode", "feedback": "Relis la règle n°2 du modèle : l'étang peut-il nourrir autant de poissons ?" }
+        ] },
+        "r2c2": { "answer": "70", "misconceptions": [
+          { "answer": "110", "id": "mc:oubli-limite", "error": "methode", "feedback": "Relis la règle n°2 du modèle : avant la pêche, l'étang peut-il contenir autant de poissons ?" }
+        ] }
+      },
+      "hints": [
+        "Année 1 : 40 doublent, puis on retire 30.",
+        "Si le double dépasse 100, on garde 100.",
+        "Année 3 : 70 × 2 = 140… mais l'étang n'en nourrit que 100."
+      ],
+      "solution": "Année 1 : 80, puis 80 − 30 = 50. Année 2 : 100, puis 70. Année 3 : 140 dépasse 100, donc 100, puis 70. Le nombre de poissons reste stable à 70 : pêcher 30 poissons par an est encore une pêche raisonnée dans ce modèle.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "80", "r0c2": "50", "r1c1": "100", "r1c2": "70", "r2c1": "100", "r2c2": "70" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "80", "r0c2": "50", "r1c1": "100", "r1c2": "70", "r2c1": "140", "r2c2": "110" } }, "expect": "mc:oubli-limite" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-objets",
+      "type": "match",
+      "skill": "st6.ah.objets-biodiversite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:hotel-nourriture"],
+      "expectedSeconds": 180,
+      "prompt": "Associe chaque aménagement au besoin des êtres vivants auquel il répond.",
+      "leftTitle": "Aménagement",
+      "rightTitle": "Ce qu'il offre",
+      "left": [
+        { "id": "o1", "label": "Un nichoir" },
+        { "id": "o2", "label": "Un hôtel à insectes" },
+        { "id": "o3", "label": "Une mangeoire, en hiver" },
+        { "id": "o4", "label": "Une mare" },
+        { "id": "o5", "label": "Une haie d'arbustes variés" }
+      ],
+      "right": [
+        { "id": "b1", "label": "une cavité fermée où des oiseaux, comme les mésanges, font leur nid" },
+        { "id": "b2", "label": "des tiges creuses où des abeilles solitaires pondent leurs œufs" },
+        { "id": "b3", "label": "de la nourriture pour les oiseaux quand elle manque dans la nature" },
+        { "id": "b4", "label": "de l'eau où se reproduisent les grenouilles et les libellules" },
+        { "id": "b5", "label": "un abri, des baies et un passage protégé pour de nombreux animaux" }
+      ],
+      "pairs": { "o1": "b1", "o2": "b2", "o3": "b3", "o4": "b4", "o5": "b5" },
+      "misconceptions": [
+        { "pair": ["o2", "b3"], "id": "mc:hotel-nourriture", "error": "notion", "feedback": "Un hôtel n'est pas un restaurant ! Demande-toi ce que les insectes viennent y faire." }
+      ],
+      "hints": [
+        "Pense aux trois grands besoins : s'abriter, se nourrir, se reproduire.",
+        "Les grenouilles et les libellules pondent dans l'eau."
+      ],
+      "solution": "Nichoir : une cavité pour le nid. Hôtel à insectes : des tiges creuses où pondent les abeilles solitaires (un abri pour la reproduction). Mangeoire : de la nourriture en hiver. Mare : de l'eau pour la reproduction des grenouilles et des libellules. Haie : abri, baies et passage protégé.",
+      "selfTest": [
+        { "response": { "pairs": { "o1": "b1", "o2": "b2", "o3": "b3", "o4": "b4", "o5": "b5" } }, "expect": "correct" },
+        { "response": { "pairs": { "o1": "b1", "o2": "b3", "o3": "b3", "o4": "b4", "o5": "b5" } }, "expect": "mc:hotel-nourriture" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-nichoir",
+      "type": "categorize",
+      "skill": "st6.ah.objets-biodiversite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:perchoir", "mc:deranger"],
+      "expectedSeconds": 180,
+      "prompt": "Le club nature installe un nichoir pour les mésanges. Range chaque idée.",
+      "categories": [
+        { "id": "bonne", "label": "Bonne idée" },
+        { "id": "mauvaise", "label": "Mauvaise idée" }
+      ],
+      "items": [
+        { "id": "n1", "label": "Fixer le nichoir à au moins 2 mètres de haut, sur un tronc ou un mur", "category": "bonne" },
+        { "id": "n2", "label": "Tourner l'entrée vers l'est ou le sud-est, à l'abri de la pluie", "category": "bonne" },
+        { "id": "n3", "label": "Ajouter un perchoir sous le trou d'entrée", "category": "mauvaise" },
+        { "id": "n4", "label": "Utiliser du bois brut, sans peinture ni vernis à l'intérieur", "category": "bonne" },
+        { "id": "n5", "label": "Poser le nichoir au ras du sol, pour bien voir les oiseaux", "category": "mauvaise" },
+        { "id": "n6", "label": "Ouvrir le nichoir tous les jours au printemps pour compter les œufs", "category": "mauvaise" },
+        { "id": "n7", "label": "Nettoyer le nichoir en automne, quand il est vide", "category": "bonne" }
+      ],
+      "misconceptions": [
+        { "item": "n3", "category": "bonne", "id": "mc:perchoir", "error": "notion", "feedback": "Un perchoir semble pratique… mais pense aux pies et aux chats : à qui pourrait-il surtout servir ?" },
+        { "item": "n6", "category": "bonne", "id": "mc:deranger", "error": "notion", "feedback": "Imagine qu'on ouvre ta maison tous les jours pour te regarder : que pourraient faire des parents oiseaux inquiets ?" },
+        { "item": "n5", "category": "bonne", "id": "mc:deranger", "error": "notion", "feedback": "Pense aux chats et aux fouines : qui pourrait atteindre facilement un nichoir posé au ras du sol ?" }
+      ],
+      "hints": [
+        "Pour chaque idée, demande-toi : est-ce que cela protège la mésange et ses petits, ou est-ce que cela les met en danger ou les dérange ?",
+        "Les prédateurs des nichoirs : chats, fouines, pies."
+      ],
+      "solution": "Bonnes idées : à au moins 2 m de haut, entrée vers l'est ou le sud-est, bois brut, nettoyage en automne. Mauvaises idées : un perchoir (il aide les prédateurs), un nichoir au ras du sol (à portée des chats), l'ouvrir tous les jours (les parents dérangés peuvent abandonner le nid). On observe de loin, sans ouvrir.",
+      "selfTest": [
+        { "response": { "assign": { "n1": "bonne", "n2": "bonne", "n3": "mauvaise", "n4": "bonne", "n5": "mauvaise", "n6": "mauvaise", "n7": "bonne" } }, "expect": "correct" },
+        { "response": { "assign": { "n1": "bonne", "n2": "bonne", "n3": "bonne", "n4": "bonne", "n5": "mauvaise", "n6": "mauvaise", "n7": "bonne" } }, "expect": "mc:perchoir" },
+        { "response": { "assign": { "n1": "bonne", "n2": "bonne", "n3": "mauvaise", "n4": "bonne", "n5": "mauvaise", "n6": "bonne", "n7": "bonne" } }, "expect": "mc:deranger" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-projet",
+      "type": "order",
+      "skill": "st6.ah.projet-edd",
+      "skills": ["st6.ah.objets-biodiversite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [],
+      "expectedSeconds": 150,
+      "prompt": "Remets dans l'ordre les étapes du projet « un nichoir pour les mésanges de la cour ».",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        { "id": "p1", "label": "Observer la cour et recenser les êtres vivants présents" },
+        { "id": "p2", "label": "Repérer un besoin : les mésanges n'ont pas de cavité pour nicher" },
+        { "id": "p3", "label": "Concevoir le nichoir : schéma, dimensions, matériaux" },
+        { "id": "p4", "label": "Fabriquer le nichoir en classe" },
+        { "id": "p5", "label": "L'installer en hiver, avant la saison des nids" },
+        { "id": "p6", "label": "Observer au printemps s'il est occupé et noter les résultats" }
+      ],
+      "hints": [
+        "On ne peut pas concevoir un objet avant d'avoir repéré un besoin.",
+        "Un projet se termine par une évaluation : a-t-il marché ?"
+      ],
+      "solution": "1. Observer la cour. 2. Repérer un besoin. 3. Concevoir le nichoir. 4. Le fabriquer. 5. L'installer en hiver. 6. Observer s'il est occupé et noter les résultats, pour améliorer le projet l'année suivante.",
+      "selfTest": [
+        { "response": { "order": ["p1", "p2", "p3", "p4", "p5", "p6"] }, "expect": "correct" },
+        { "response": { "order": ["p6", "p5", "p4", "p3", "p2", "p1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-mangeoire",
+      "type": "qcm",
+      "skill": "st6.ah.objets-biodiversite",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:migration-tous"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide : pourquoi conseille-t-on d'arrêter de remplir la mangeoire au printemps ?",
+      "choices": [
+        { "text": "Parce que les graines coûtent trop cher.", "correct": false, "error": "raisonnement", "feedback": "Ce n'est pas une question d'argent. Pense à ce que la nature offre aux oiseaux au printemps, et à ce dont ont besoin les oisillons." },
+        { "text": "Parce qu'au printemps, la nature offre assez de nourriture, et que les petits doivent être nourris d'insectes.", "correct": true, "feedback": "Exact : on nourrit les oiseaux seulement en hiver, quand la nourriture manque." },
+        { "text": "Parce que tous les oiseaux partent en Afrique au printemps.", "correct": false, "error": "notion", "misconception": "mc:migration-tous", "feedback": "Certains oiseaux migrent, mais pas tous : les mésanges, par exemple, restent toute l'année. Et au printemps, les migrateurs reviennent plutôt chez nous ! Cherche une autre raison." }
+      ],
+      "hints": [
+        "Au printemps, les insectes et les bourgeons réapparaissent.",
+        "De quoi les oisillons ont-ils besoin pour grandir ?"
+      ],
+      "solution": "On arrête au printemps parce que la nature offre de nouveau assez de nourriture, et que les oisillons doivent être nourris d'insectes, plus riches. La mangeoire sert seulement en hiver, quand il fait froid et que la nourriture manque ; et jamais de pain.",
+      "selfTest": [
+        { "response": { "selected": [1] }, "expect": "correct" },
+        { "response": { "selected": [2] }, "expect": "mc:migration-tous" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-expliquer",
+      "type": "open",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:renouvelable-illimite"],
+      "expectedSeconds": 420,
+      "minWords": 35,
+      "prompt": "Lucas veut pêcher le plus de poissons possible dès cette année. Explique-lui pourquoi il vaut mieux pêcher moins de poissons qu'il n'en naît chaque année. Appuie-toi sur le modèle de l'étang.",
+      "criteria": [
+        { "id": "c1", "label": "J'explique que les poissons se reproduisent : la ressource se renouvelle", "keywords": [["reprodu", "renouvel", "naissent", "nait", "petits"]] },
+        { "id": "c2", "label": "Je compare ce qu'on pêche et ce qui se renouvelle", "keywords": [["moins", "plus que", "depasse", "trop"]] },
+        { "id": "c3", "label": "J'utilise un résultat du modèle (200 poissons contre 120 en 10 ans, ou l'étang vide)", "keywords": [["200", "120", "stable", "10 ans", "plus rien", "vide", "plus de poissons"]] },
+        { "id": "c4", "label": "Je pense aux années suivantes et aux autres (développement durable)", "keywords": [["futur", "plus tard", "generation", "durable", "annee prochaine", "an prochain", "toujours", "longtemps"]] }
+      ],
+      "models": [
+        "Les poissons se reproduisent chaque année : c'est une ressource renouvelable. Si on en pêche moins qu'il n'en naît, il en reste toujours assez pour l'année suivante. Dans le modèle de l'étang, en pêchant 20 poissons par an, on en pêche 200 en 10 ans et l'étang reste plein. En pêchant 50 par an, l'étang est vide au bout de 3 ans : on n'en pêche que 120, puis plus rien.",
+        "Si tu pêches trop cette année, il ne restera pas assez de poissons pour se reproduire, et l'étang sera vide. Le modèle montre qu'avec la surpêche on a 120 poissons en tout, alors qu'avec une pêche raisonnée on en a 200 en 10 ans, et on peut continuer longtemps. Pêcher moins, c'est penser aux pêcheurs de demain."
+      ],
+      "hints": [
+        "Commence par dire ce que font les poissons chaque année.",
+        "Compare les deux façons de pêcher du modèle, avec des nombres.",
+        "Termine en parlant des années suivantes."
+      ],
+      "solution": "Les poissons se reproduisent : la ressource se renouvelle. Si l'on pêche moins que ce qui naît, l'étang reste peuplé. Dans le modèle, la pêche raisonnée donne 200 poissons en 10 ans et l'étang reste plein ; la surpêche n'en donne que 120, puis plus rien. Pêcher raisonnablement, c'est penser à l'avenir.",
+      "selfTest": [
+        { "response": { "text": "Les poissons se reproduisent chaque année. Si on en pêche moins qu'il n'en naît, il en reste toujours. Dans le modèle, on pêche 200 poissons en 10 ans avec la pêche raisonnée, contre 120 avec la surpêche, puis plus rien. Il faut penser à l'année prochaine.", "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-plan",
+      "type": "composite",
+      "skill": "st6.ah.projet-edd",
+      "skills": ["st6.ah.objets-biodiversite"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:propre-biodiversite", "mc:pesticide", "mc:lumiere", "mc:division-non-entiere", "mc:oubli-hotel"],
+      "expectedSeconds": 600,
+      "prompt": "Le club nature prépare un plan biodiversité pour la cour du collège. Il dispose de 60 €.",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Quelles actions favorisent la biodiversité dans la cour ?",
+          "categories": [
+            { "id": "oui", "label": "Favorise la biodiversité" },
+            { "id": "non", "label": "Ne la favorise pas" }
+          ],
+          "items": [
+            { "id": "a1", "label": "Laisser une bande d'herbe sans la tondre jusqu'à la fin de l'été, pour les fleurs et les insectes", "category": "oui" },
+            { "id": "a2", "label": "Installer un hôtel à insectes au soleil, près de plantes à fleurs", "category": "oui" },
+            { "id": "a3", "label": "Tondre toute la pelouse très court chaque semaine", "category": "non" },
+            { "id": "a4", "label": "Désherber les allées avec un produit chimique", "category": "non" },
+            { "id": "a5", "label": "Planter une haie d'arbustes locaux qui donnent des baies", "category": "oui" },
+            { "id": "a6", "label": "Éclairer la cour toute la nuit", "category": "non" }
+          ],
+          "misconceptions": [
+            { "item": "a3", "category": "oui", "id": "mc:propre-biodiversite", "error": "notion", "feedback": "Une pelouse rase paraît « propre »… Mais qu'y trouvent les abeilles et les papillons pour se nourrir ?" },
+            { "item": "a4", "category": "oui", "id": "mc:pesticide", "error": "notion", "feedback": "Un désherbant chimique tue des plantes… et peut-il épargner les petits animaux du sol et les insectes ?" },
+            { "item": "a6", "category": "oui", "id": "mc:lumiere", "error": "notion", "feedback": "La nuit, beaucoup d'animaux sont actifs : papillons de nuit, chauves-souris, hérissons. Comment réagissent-ils à une lumière permanente ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un hôtel à insectes coûte 18 € de matériaux et un nichoir 12 €. Le club construit d'abord un hôtel à insectes. Combien de nichoirs peut-il construire avec l'argent qui reste ?",
+          "answer": 3,
+          "misconceptions": [
+            { "answer": 3.5, "id": "mc:division-non-entiere", "error": "raisonnement", "feedback": "On ne peut pas construire un morceau de nichoir : il faut un nombre entier de nichoirs complets." },
+            { "answer": 5, "id": "mc:oubli-hotel", "error": "lecture", "feedback": "Tu as oublié de payer d'abord l'hôtel à insectes : combien reste-t-il ensuite ?" }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Propose trois actions concrètes pour la biodiversité au collège. Pour chacune, dis quel être vivant elle aide, et comment vous saurez si elle marche.",
+          "minWords": 40,
+          "criteria": [
+            { "id": "c1", "label": "Je propose trois actions concrètes", "keywords": [["nichoir", "hotel", "mare", "haie", "fleur", "prairie", "compost", "mangeoire", "potager", "arbre", "tonte", "jardin"]] },
+            { "id": "c2", "label": "Pour chaque action, je dis quel être vivant elle aide", "keywords": [["oiseau", "mesange", "abeille", "insecte", "papillon", "grenouille", "herisson", "chauve", "pollinis", "ver"]] },
+            { "id": "c3", "label": "J'explique comment observer ou compter les résultats", "keywords": [["observ", "compt", "noter", "photo", "suivi", "mesur", "inventaire"]] }
+          ],
+          "models": [
+            "1. Installer deux nichoirs pour les mésanges : au printemps, on regardera de loin s'ils sont occupés. 2. Semer une prairie fleurie pour les abeilles et les papillons : on comptera les insectes pendant 10 minutes chaque mois. 3. Creuser une petite mare pour les grenouilles et les libellules : on notera les espèces observées.",
+            "Nous pourrions planter une haie de noisetiers et d'aubépines pour les oiseaux et les hérissons, poser un hôtel à insectes pour les abeilles solitaires et laisser une zone sans tonte pour les papillons. Pour savoir si cela marche, nous ferons un inventaire en photos au printemps et nous comparerons d'une année à l'autre."
+          ]
+        }
+      ],
+      "hints": [
+        "Pour chaque action, demande-toi : offre-t-elle un abri, de la nourriture ou un lieu de reproduction ?",
+        "Argent restant = 60 − 18. Combien de fois 12 € dans ce reste ?",
+        "Un bon projet prévoit aussi comment vérifier qu'il marche."
+      ],
+      "solution": "Favorisent la biodiversité : la bande d'herbe non tondue, l'hôtel à insectes au soleil près des fleurs, la haie d'arbustes locaux. Ne la favorisent pas : la tonte rase (plus de fleurs), le désherbant chimique (il tue aussi des insectes et de petits animaux ; en France, les pesticides chimiques sont interdits dans les espaces verts publics depuis 2017), l'éclairage permanent (il dérange les animaux de la nuit). Budget : 60 − 18 = 42 € ; 42 ÷ 12 = 3,5, donc 3 nichoirs. Trois actions possibles : nichoirs, prairie fleurie, mare… avec un suivi (observer, compter, noter).",
+      "selfTest": [
+        { "response": { "parts": [ { "assign": { "a1": "oui", "a2": "oui", "a3": "non", "a4": "non", "a5": "oui", "a6": "non" } }, { "value": "3" }, { "text": "1. Installer deux nichoirs pour les mésanges : au printemps, on regardera de loin s'ils sont occupés. 2. Semer une prairie fleurie pour les abeilles : on comptera les insectes. 3. Creuser une petite mare pour les grenouilles : on notera les espèces observées.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "assign": { "a1": "oui", "a2": "oui", "a3": "oui", "a4": "non", "a5": "oui", "a6": "non" } }, { "value": "3" }, { "text": "1. Installer deux nichoirs pour les mésanges : au printemps, on regardera de loin s'ils sont occupés. 2. Semer une prairie fleurie pour les abeilles : on comptera les insectes. 3. Creuser une petite mare pour les grenouilles : on notera les espèces observées.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:propre-biodiversite" },
+        { "response": { "parts": [ { "assign": { "a1": "oui", "a2": "oui", "a3": "non", "a4": "non", "a5": "oui", "a6": "non" } }, { "value": "3,5" }, { "text": "1. Installer deux nichoirs pour les mésanges : au printemps, on regardera de loin s'ils sont occupés. 2. Semer une prairie fleurie pour les abeilles : on comptera les insectes. 3. Creuser une petite mare pour les grenouilles : on notera les espèces observées.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:division-non-entiere" },
+        { "response": { "parts": [ { "assign": { "a1": "oui", "a2": "oui", "a3": "non", "a4": "non", "a5": "oui", "a6": "non" } }, { "value": "5" }, { "text": "1. Installer deux nichoirs pour les mésanges : au printemps, on regardera de loin s'ils sont occupés. 2. Semer une prairie fleurie pour les abeilles : on comptera les insectes. 3. Creuser une petite mare pour les grenouilles : on notera les espèces observées.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:oubli-hotel" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-rem-renouvelable",
+      "type": "categorize",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:renouvelable-illimite", "mc:fossile-renouvelable"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : « renouvelable » ne veut pas dire « inépuisable ». Vrai ou faux ?",
+      "categories": [
+        { "id": "vrai", "label": "Vrai" },
+        { "id": "faux", "label": "Faux" }
+      ],
+      "items": [
+        { "id": "v1", "label": "Une ressource renouvelable ne peut jamais s'épuiser.", "category": "faux" },
+        { "id": "v2", "label": "Si l'on pêche plus de poissons qu'il n'en naît, leur nombre diminue.", "category": "vrai" },
+        { "id": "v3", "label": "Le pétrole se reforme en quelques années.", "category": "faux" },
+        { "id": "v4", "label": "Une forêt reste disponible si l'on coupe moins d'arbres qu'il n'en pousse.", "category": "vrai" }
+      ],
+      "misconceptions": [
+        { "item": "v1", "category": "vrai", "id": "mc:renouvelable-illimite", "error": "notion", "feedback": "Repense au scénario de surpêche du modèle de l'étang : les poissons sont pourtant une ressource renouvelable… que s'est-il passé ?" },
+        { "item": "v3", "category": "vrai", "id": "mc:fossile-renouvelable", "error": "notion", "feedback": "Le pétrole s'est formé à partir d'êtres vivants très anciens : relis la carte sur les ressources pour retrouver le temps qu'il lui a fallu." }
+      ],
+      "hints": [
+        "Une ressource renouvelable se renouvelle… à condition de ne pas en prendre trop.",
+        "Le pétrole a mis des millions d'années à se former."
+      ],
+      "solution": "Faux : une ressource renouvelable peut s'épuiser si on la surexploite. Vrai : pêcher plus qu'il n'en naît fait baisser le nombre de poissons. Faux : le pétrole met des millions d'années à se former. Vrai : couper moins d'arbres qu'il n'en pousse garde la forêt.",
+      "selfTest": [
+        { "response": { "assign": { "v1": "faux", "v2": "vrai", "v3": "faux", "v4": "vrai" } }, "expect": "correct" },
+        { "response": { "assign": { "v1": "vrai", "v2": "vrai", "v3": "faux", "v4": "vrai" } }, "expect": "mc:renouvelable-illimite" },
+        { "response": { "assign": { "v1": "faux", "v2": "vrai", "v3": "vrai", "v4": "vrai" } }, "expect": "mc:fossile-renouvelable" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-rem-surexploitation",
+      "type": "text",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:vocab-recyclage", "mc:vocab-pollution", "mc:surpeche-specifique"],
+      "expectedSeconds": 60,
+      "prompt": "Rappel ciblé : comment appelle-t-on le fait de prélever une ressource plus vite qu'elle ne se renouvelle ? (un seul mot)",
+      "accept": ["surexploitation", "la surexploitation", "sur-exploitation", "la sur-exploitation"],
+      "misconceptions": [
+        { "answer": "recyclage", "id": "mc:vocab-recyclage", "error": "notion", "feedback": "Le recyclage, c'est réutiliser la matière d'un objet usagé. Le mot cherché désigne un prélèvement trop important." },
+        { "answer": "pollution", "id": "mc:vocab-pollution", "error": "notion", "feedback": "La pollution, c'est rejeter des substances nuisibles dans le milieu. Le mot cherché parle de prélever trop." },
+        { "answer": "surpêche", "id": "mc:surpeche-specifique", "error": "notion", "feedback": "C'est le mot juste pour les poissons ! Mais la question parle de n'importe quelle ressource : forêts, sols, poissons… Cherche le mot général." },
+        { "answer": "la surpêche", "id": "mc:surpeche-specifique", "error": "notion", "feedback": "C'est le mot juste pour les poissons ! Mais la question parle de n'importe quelle ressource : forêts, sols, poissons… Cherche le mot général." }
+      ],
+      "hints": [
+        "Le mot commence par « sur- », qui veut dire « trop ».",
+        "Il contient le verbe « exploiter »."
+      ],
+      "solution": "C'est la **surexploitation** : on prélève plus que ce qui se renouvelle, et la ressource s'épuise. Pour les poissons, on parle aussi de surpêche.",
+      "selfTest": [
+        { "response": { "value": "surexploitation" }, "expect": "correct" },
+        { "response": { "value": "recyclage" }, "expect": "mc:vocab-recyclage" },
+        { "response": { "value": "surpêche" }, "expect": "mc:surpeche-specifique" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-dix-ans",
+      "type": "composite",
+      "skill": "st6.ah.ressources-raisonnees",
+      "skills": ["st6.demarche.modele"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:sans-epuisement", "mc:modele-general"],
+      "expectedSeconds": 360,
+      "prompt": "Reprends le modèle de l'étang. Pêche raisonnée : 20 poissons chaque année, sans fin. Surpêche : 50 poissons la 1re année, 50 la 2e année, 20 la 3e année, puis plus rien, car l'étang est vide.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de poissons la surpêche rapporte-t-elle en tout ?",
+          "answer": 120,
+          "misconceptions": [
+            { "answer": 500, "id": "mc:sans-epuisement", "error": "lecture", "feedback": "Tu as compté 50 poissons par an pendant 10 ans… mais l'étang s'est vidé : relis l'énoncé." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Au bout de combien d'années la pêche raisonnée a-t-elle rapporté autant de poissons que la surpêche ?",
+          "answer": 6,
+          "misconceptions": [
+            { "answer": 3, "id": "mc:sans-epuisement", "error": "raisonnement", "feedback": "En 3 ans, la pêche raisonnée n'a rapporté que 3 fois 20 poissons. Compare avec le total de la surpêche." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que peut-on dire de ce modèle ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "m1", "label": "Dans un vrai lac, le nombre de poissons dépend aussi de la pollution, du climat et des autres espèces.", "category": "vrai" },
+            { "id": "m2", "label": "Le modèle prouve qu'il faut pêcher exactement 20 poissons par an dans n'importe quel lac.", "category": "faux" },
+            { "id": "m3", "label": "Le modèle illustre une idée vraie : prélever moins que ce qui se renouvelle permet de prélever longtemps.", "category": "vrai" }
+          ],
+          "misconceptions": [
+            { "item": "m2", "category": "vrai", "id": "mc:modele-general", "error": "raisonnement", "feedback": "Tous les lacs ont-ils 40 poissons au départ et la même règle de reproduction ? Un modèle simplifié montre une idée générale, pas un chiffre valable partout." }
+          ]
+        }
+      ],
+      "hints": [
+        "Surpêche : additionne les prises année par année.",
+        "Pêche raisonnée : 20 poissons par an. Combien d'années pour atteindre le total de la surpêche ?",
+        "Un modèle simplifie la réalité : il montre une idée, pas un chiffre exact pour tous les lacs."
+      ],
+      "solution": "Surpêche : 50 + 50 + 20 = 120 poissons, puis plus rien. Pêche raisonnée : 20 × 6 = 120 poissons au bout de 6 ans ; ensuite, elle rapporte toujours plus (200 en 10 ans). Le modèle est simplifié : il ne donne pas un chiffre valable pour tous les lacs, mais il illustre une idée vraie.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "120" }, { "value": "6" }, { "assign": { "m1": "vrai", "m2": "faux", "m3": "vrai" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "500" }, { "value": "6" }, { "assign": { "m1": "vrai", "m2": "faux", "m3": "vrai" } } ] }, "expect": "mc:sans-epuisement" },
+        { "response": { "parts": [ { "value": "120" }, { "value": "6" }, { "assign": { "m1": "vrai", "m2": "vrai", "m3": "vrai" } } ] }, "expect": "mc:modele-general" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-sol",
+      "type": "composite",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:epaisseur-duree", "mc:multiplication-inverse", "mc:sol-nu"],
+      "expectedSeconds": 360,
+      "prompt": "Le sol fertile se forme très lentement, à partir de la roche et de la matière des êtres vivants décomposés : il peut falloir jusqu'à **1 000 ans pour former 1 cm de sol** (FAO, 2015). Or un champ laissé nu sous de fortes pluies peut perdre une couche de sol en quelques années.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Un champ a perdu 3 cm de sol. Combien d'années peut-il falloir, au plus, pour reformer ce sol ?",
+          "answer": 3000,
+          "misconceptions": [
+            { "answer": 3, "id": "mc:epaisseur-duree", "error": "lecture", "feedback": "3 est une épaisseur en centimètres, pas une durée. Utilise la vitesse de formation du sol donnée dans l'énoncé." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Une génération humaine dure environ 25 ans. Combien de générations cela représente-t-il ?",
+          "answer": 120,
+          "misconceptions": [
+            { "answer": 75000, "id": "mc:multiplication-inverse", "error": "methode", "feedback": "Tu as multiplié : ton résultat est plus grand que le nombre d'années ! Cherche combien de fois 25 ans tiennent dans cette durée." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Ces pratiques protègent-elles le sol, ou l'abîment-elles ?",
+          "categories": [
+            { "id": "protege", "label": "Protège le sol" },
+            { "id": "abime", "label": "Abîme le sol" }
+          ],
+          "items": [
+            { "id": "s1", "label": "Garder des plantes ou de la paille sur le sol en hiver", "category": "protege" },
+            { "id": "s2", "label": "Planter des haies qui freinent l'eau de pluie qui ruisselle", "category": "protege" },
+            { "id": "s3", "label": "Laisser la terre nue sous les fortes pluies", "category": "abime" },
+            { "id": "s4", "label": "Recouvrir un champ de béton pour construire un parking", "category": "abime" }
+          ],
+          "misconceptions": [
+            { "item": "s3", "category": "protege", "id": "mc:sol-nu", "error": "notion", "feedback": "Sous une forte pluie, qu'arrive-t-il à une terre qu'aucune racine ne retient ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "1 cm → 1 000 ans, donc 3 cm → 3 fois plus.",
+        "Nombre de générations = nombre d'années ÷ 25.",
+        "Les racines et les plantes retiennent la terre."
+      ],
+      "solution": "3 cm de sol : jusqu'à 3 × 1 000 = 3 000 ans. Soit 3 000 ÷ 25 = 120 générations humaines ! Le sol n'est donc pas renouvelable à l'échelle d'une vie humaine. Le protéger : garder le sol couvert, planter des haies. L'abîmer : le laisser nu sous la pluie, le bétonner.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3000" }, { "value": "120" }, { "assign": { "s1": "protege", "s2": "protege", "s3": "abime", "s4": "abime" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3" }, { "value": "120" }, { "assign": { "s1": "protege", "s2": "protege", "s3": "abime", "s4": "abime" } } ] }, "expect": "mc:epaisseur-duree" },
+        { "response": { "parts": [ { "value": "3000" }, { "value": "75000" }, { "assign": { "s1": "protege", "s2": "protege", "s3": "abime", "s4": "abime" } } ] }, "expect": "mc:multiplication-inverse" },
+        { "response": { "parts": [ { "value": "3000" }, { "value": "120" }, { "assign": { "s1": "protege", "s2": "protege", "s3": "protege", "s4": "abime" } } ] }, "expect": "mc:sol-nu" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-depassement",
+      "type": "composite",
+      "skill": "st6.ah.ressources-raisonnees",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:fevrier-28", "mc:division-inverse", "mc:depassement-vide"],
+      "expectedSeconds": 480,
+      "prompt": "Chaque année, l'organisation Global Footprint Network calcule le « jour du dépassement » : la date à laquelle l'humanité a utilisé tout ce que la nature peut renouveler en un an. En 2024, ce jour est tombé le **1er août**. L'année 2024 comptait 366 jours.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de jours se sont écoulés du 1er janvier au 31 juillet 2024 inclus ? (janvier 31, février 29, mars 31, avril 30, mai 31, juin 30, juillet 31)",
+          "answer": 213,
+          "misconceptions": [
+            { "answer": 212, "id": "mc:fevrier-28", "error": "calcul", "feedback": "As-tu compté 28 jours en février ? Relis le nombre de jours donné pour février 2024." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de « Terres » faudrait-il pour renouveler, en un an, tout ce que l'humanité utilise ? (366 ÷ 213, arrondi au dixième)",
+          "answer": 1.718,
+          "tolerance": 0.06,
+          "misconceptions": [
+            { "answer": 0.582, "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as divisé dans l'autre sens : ton résultat est plus petit que 1, alors que l'humanité utilise plus que ce que la Terre renouvelle." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "d1", "label": "Après le jour du dépassement, l'humanité puise dans des réserves qui ne se renouvellent pas assez vite (forêts, poissons, sols…).", "category": "vrai" },
+            { "id": "d2", "label": "Après le jour du dépassement, il n'y a plus aucune ressource sur Terre jusqu'à la fin de l'année.", "category": "faux" },
+            { "id": "d3", "label": "Plus le jour du dépassement arrive tard dans l'année, mieux c'est pour les ressources.", "category": "vrai" }
+          ],
+          "misconceptions": [
+            { "item": "d2", "category": "vrai", "id": "mc:depassement-vide", "error": "notion", "feedback": "Relis la définition : il s'agit de ce que la nature peut renouveler en un an. Que deviennent les réserves qui existaient déjà ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Additionne les jours des sept premiers mois de 2024.",
+        "Nombre de Terres = jours de l'année ÷ jours avant le dépassement.",
+        "Dépasser ne veut pas dire « tout est fini » : on entame les réserves."
+      ],
+      "solution": "31 + 29 + 31 + 30 + 31 + 30 + 31 = 213 jours. 366 ÷ 213 ≈ 1,7 : il faudrait environ 1,7 Terre pour renouveler en un an ce que l'humanité utilise. Après le jour du dépassement, on entame des réserves (forêts coupées, poissons pêchés en trop, sols abîmés) : ce n'est pas la fin de toutes les ressources, mais une dette envers les générations futures. Reculer cette date est un objectif du développement durable.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "213" }, { "value": "1,7" }, { "assign": { "d1": "vrai", "d2": "faux", "d3": "vrai" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "212" }, { "value": "1,7" }, { "assign": { "d1": "vrai", "d2": "faux", "d3": "vrai" } } ] }, "expect": "mc:fevrier-28" },
+        { "response": { "parts": [ { "value": "213" }, { "value": "0,58" }, { "assign": { "d1": "vrai", "d2": "faux", "d3": "vrai" } } ] }, "expect": "mc:division-inverse" },
+        { "response": { "parts": [ { "value": "213" }, { "value": "1,7" }, { "assign": { "d1": "vrai", "d2": "vrai", "d3": "vrai" } } ] }, "expect": "mc:depassement-vide" }
+      ]
+    },
+    {
+      "id": "st6-developpement-durable-suivi",
+      "type": "composite",
+      "skill": "st6.ah.projet-edd",
+      "skills": ["st6.ah.objets-biodiversite"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:pourcentage-brut", "mc:generalisation", "mc:certitude"],
+      "expectedSeconds": 480,
+      "prompt": "Un collège (exemple imaginaire) a installé 6 nichoirs dans sa cour. Nichoirs occupés par des mésanges : 2 la 1re année, 4 la 2e année, 5 la 3e année.",
+      "figure": {
+        "alt": "Diagramme en barres du nombre de nichoirs occupés sur 6, pendant trois années",
+        "w": 420,
+        "h": 230,
+        "items": [
+          { "type": "bars", "unit": "nichoirs occupés", "yMax": 6, "data": [ { "label": "1re année", "value": 2 }, { "label": "2e année", "value": 4 }, { "label": "3e année", "value": 5 } ] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel pourcentage des nichoirs était occupé la 3e année ? (arrondi à l'unité)",
+          "answer": 83.33,
+          "tolerance": 0.5,
+          "misconceptions": [
+            { "answer": 5, "id": "mc:pourcentage-brut", "error": "methode", "feedback": "5 est un nombre de nichoirs, pas un pourcentage. Calcule la part des nichoirs occupés sur 6, puis multiplie par 100." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Ces phrases sont-elles des constats tirés du relevé, ou des conclusions qui vont trop loin ?",
+          "categories": [
+            { "id": "constat", "label": "Constat tiré du relevé" },
+            { "id": "trop", "label": "Va trop loin" }
+          ],
+          "items": [
+            { "id": "e1", "label": "L'occupation des nichoirs a augmenté en trois ans.", "category": "constat" },
+            { "id": "e2", "label": "La 3e année, 5 nichoirs sur 6 étaient occupés.", "category": "constat" },
+            { "id": "e3", "label": "Grâce à ces nichoirs, il y a plus d'oiseaux dans toute la ville.", "category": "trop" },
+            { "id": "e4", "label": "Le nichoir resté vide est forcément mal placé.", "category": "trop" }
+          ],
+          "misconceptions": [
+            { "item": "e3", "category": "constat", "id": "mc:generalisation", "error": "raisonnement", "feedback": "Le relevé porte sur 6 nichoirs dans une cour. A-t-on compté les oiseaux de toute la ville ?" },
+            { "item": "e4", "category": "constat", "id": "mc:certitude", "error": "raisonnement", "feedback": "Le mot « forcément » est-il prouvé par le relevé ? D'autres raisons sont-elles possibles ?" }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Propose une amélioration pour le nichoir resté vide, et justifie-la avec ce que tu sais des besoins des mésanges.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Je propose un changement précis (hauteur, orientation, emplacement plus calme, taille du trou, nettoyage…)", "keywords": [["hauteur", "haut", "orient", "est", "calme", "deplac", "trou", "nettoy", "ombre", "abri", "perchoir"]] },
+            { "id": "c2", "label": "Je le justifie par un besoin de l'oiseau (sécurité, abri de la pluie, tranquillité)", "keywords": [["chat", "predateur", "pluie", "vent", "tranquill", "derange", "securite", "proteg", "fouine", "pie"]] }
+          ],
+          "models": [
+            "Je propose de déplacer le nichoir vide dans un coin plus calme de la cour, à au moins 2 m de haut, car les mésanges ont besoin de tranquillité et d'être hors de portée des chats.",
+            "On pourrait tourner son entrée vers l'est ou le sud-est et vérifier qu'il n'a pas de perchoir : la mésange a besoin d'un nid à l'abri de la pluie et protégé des pies et des chats."
+          ]
+        }
+      ],
+      "hints": [
+        "Pourcentage = nichoirs occupés ÷ 6 × 100.",
+        "Un constat décrit les données ; une conclusion qui va trop loin parle de ce qui n'a pas été mesuré.",
+        "Relis le tableau des besoins de la mésange dans l'exemple résolu."
+      ],
+      "solution": "3e année : 5 ÷ 6 × 100 ≈ 83 % des nichoirs occupés (contre 2 ÷ 6 ≈ 33 % la 1re année). Constats : l'occupation a augmenté ; 5 nichoirs sur 6 occupés la 3e année. Trop loin : on n'a pas compté les oiseaux de la ville, et le nichoir vide n'est pas « forcément » mal placé (dérangement, prédateur, hasard…). Amélioration possible : le déplacer dans un coin calme, plus haut, entrée vers l'est ou le sud-est.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "83" }, { "assign": { "e1": "constat", "e2": "constat", "e3": "trop", "e4": "trop" } }, { "text": "Je propose de déplacer le nichoir vide dans un coin plus calme, plus haut, car les mésanges ont besoin de tranquillité et d'être hors de portée des chats.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5" }, { "assign": { "e1": "constat", "e2": "constat", "e3": "trop", "e4": "trop" } }, { "text": "Je propose de déplacer le nichoir vide dans un coin plus calme, plus haut, car les mésanges ont besoin de tranquillité et d'être hors de portée des chats.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:pourcentage-brut" },
+        { "response": { "parts": [ { "value": "83" }, { "assign": { "e1": "constat", "e2": "constat", "e3": "constat", "e4": "trop" } }, { "text": "Je propose de déplacer le nichoir vide dans un coin plus calme, plus haut, car les mésanges ont besoin de tranquillité et d'être hors de portée des chats.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:generalisation" }
+      ]
+    }
+  ]
+}

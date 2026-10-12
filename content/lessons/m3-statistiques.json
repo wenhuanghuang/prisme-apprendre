@@ -1,0 +1,559 @@
+{
+  "id": "m3-statistiques",
+  "chapter": "m3-ch-stats-probas",
+  "title": "Statistiques : histogrammes, étendue, moyenne et médiane",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.stats.histogramme", "m3.stats.indicateurs", "m3.stats.comparer"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Regrouper des données en classes de même amplitude et lire un histogramme ; calculer effectifs, fréquences, étendue, moyenne pondérée et médiane ; comparer deux séries avec un indicateur de position et un indicateur de dispersion.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le chrono du 100 m",
+      "body": "Le professeur d'EPS a chronométré les 25 élèves de 3e A au 100 m. Pour y voir clair, il a regroupé les temps par tranches d'une seconde : c'est un **histogramme**.\n\nCombien d'élèves ont couru en moins de 14 s ? Peut-on retrouver le temps exact du plus rapide ? Et la moyenne de la classe ?",
+      "figure": {
+        "alt": "Histogramme des temps au 100 mètres des 25 élèves de 3e A, par classes d'une seconde, de 12 à 18 secondes",
+        "w": 520, "h": 280,
+        "caption": "Temps au 100 m (en s), 3e A",
+        "items": [ { "type": "bars", "unit": "élèves", "data": [
+          { "label": "[12 ; 13[", "value": 2 }, { "label": "[13 ; 14[", "value": 5 }, { "label": "[14 ; 15[", "value": 8 },
+          { "label": "[15 ; 16[", "value": 6 }, { "label": "[16 ; 17[", "value": 3 }, { "label": "[17 ; 18[", "value": 1 } ] } ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📊", "title": "L'histogramme",
+          "body": "Quand les valeurs sont nombreuses et variées (tailles, temps, masses), on les regroupe en **classes de même amplitude**. La classe [14 ; 15[ contient les temps de 14 s inclus à 15 s exclu : 14 ≤ t < 15. Dans un **histogramme**, chaque classe est un rectangle, collé à ses voisins, dont la hauteur est proportionnelle à l'effectif.",
+          "figure": {
+            "alt": "Histogramme des temps au 100 mètres de la 3e A",
+            "w": 460, "h": 240,
+            "caption": "Sur ta copie, trace les rectangles collés les uns aux autres.",
+            "items": [ { "type": "bars", "unit": "élèves", "data": [
+              { "label": "[12 ; 13[", "value": 2 }, { "label": "[13 ; 14[", "value": 5 }, { "label": "[14 ; 15[", "value": 8 },
+              { "label": "[15 ; 16[", "value": 6 }, { "label": "[16 ; 17[", "value": 3 }, { "label": "[17 ; 18[", "value": 1 } ] } ]
+          },
+          "reveal": {
+            "question": "Devine : un élève qui a couru en 15 s pile est-il compté dans la classe [14 ; 15[ ?",
+            "answer": "Non ! Le crochet tourné vers l'extérieur signifie « 15 exclu ». Ce temps va dans la classe suivante, [15 ; 16[."
+          }
+        },
+        {
+          "emoji": "🔢", "title": "Effectifs et fréquences",
+          "body": "L'**effectif** d'une classe est le nombre de valeurs qu'elle contient ; l'**effectif total** N est le nombre de toutes les valeurs. La **fréquence** d'une classe vaut effectif ÷ N. Elle s'écrit en fraction, en décimal ou en pourcentage, et la somme de toutes les fréquences fait 1, c'est-à-dire 100 %.",
+          "example": "8 élèves sur 25 dans [14 ; 15[ : fréquence 8/25 = 0,32 = 32 %."
+        },
+        {
+          "emoji": "↔️", "title": "L'étendue",
+          "body": "L'**étendue** d'une série est la différence entre sa plus grande et sa plus petite valeur. Elle mesure la **dispersion** : plus elle est grande, plus les valeurs sont étalées. Avec des données regroupées en classes, on ne connaît pas l'étendue exacte, seulement un ordre de grandeur.",
+          "example": "Temps de 12,4 s à 17,3 s : étendue = 17,3 − 12,4 = 4,9 s."
+        },
+        {
+          "emoji": "⚖️", "title": "La moyenne pondérée",
+          "body": "Avec un tableau d'effectifs, on multiplie chaque valeur par son effectif, on additionne ces produits, puis on divise par l'effectif total. Pour des classes, on remplace chaque classe par son **centre** (14,5 pour [14 ; 15[) : on obtient une **valeur approchée** de la moyenne.",
+          "example": "Notes 8 (2 élèves), 12 (5 élèves) et 15 (3 élèves) : (16 + 60 + 45) ÷ 10 = 12,1."
+        },
+        {
+          "emoji": "📏", "title": "La médiane, encore",
+          "body": "La **médiane** partage la série **rangée** en deux groupes de même effectif. Avec N valeurs : rang (N + 1) ÷ 2 si N est impair ; moyenne des valeurs de rangs N ÷ 2 et N ÷ 2 + 1 si N est pair. Contrairement à la moyenne, elle ne bouge presque pas quand une valeur extrême change.",
+          "reveal": {
+            "question": "Devine : la moyenne et la médiane d'une série sont-elles toujours proches ?",
+            "answer": "Non : pour 2 ; 3 ; 4 ; 5 ; 36, la médiane vaut 4, mais la moyenne vaut 50 ÷ 5 = 10 ! Une seule valeur extrême tire la moyenne vers le haut."
+          }
+        },
+        {
+          "emoji": "🧭", "title": "En résumé : comparer deux séries",
+          "body": "Pour comparer deux séries, on utilise un indicateur de **position** (moyenne ou médiane : autour de quelle valeur se situent les données ?) et un indicateur de **dispersion** (l'étendue : sont-elles groupées ou étalées ?). On conclut par une phrase qui cite les nombres."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : les temps de la 3e A",
+      "steps": [
+        { "text": "On reprend l'histogramme du 100 m. Pour calculer, on remplace chaque classe par son centre, le milieu de la classe.",
+          "figure": { "alt": "Tableau des classes de temps, de leurs centres et de leurs effectifs", "w": 560, "h": 140,
+            "items": [ { "type": "table", "head": ["Temps (s)", "[12 ; 13[", "[13 ; 14[", "[14 ; 15[", "[15 ; 16[", "[16 ; 17[", "[17 ; 18["],
+              "rows": [["Centre", "12,5", "13,5", "14,5", "15,5", "16,5", "17,5"], ["Effectif", "2", "5", "8", "6", "3", "1"]] } ] } },
+        { "text": "Effectif total, puis fréquence de la classe [14 ; 15[ :", "math": "N = 2 + 5 + 8 + 6 + 3 + 1 = 25 ; 8 ÷ 25 = 0,32 = 32 %" },
+        { "text": "Moyenne approchée : chaque centre est multiplié par son effectif, puis on divise le total par 25.", "math": "(12,5 × 2 + 13,5 × 5 + 14,5 × 8 + 15,5 × 6 + 16,5 × 3 + 17,5 × 1) ÷ 25 = 368,5 ÷ 25 = 14,74" },
+        { "text": "Médiane : N = 25 est impair, c'est la 13e valeur. Effectifs cumulés : 2 ; 7 ; 15… Les élèves de rangs 8 à 15 sont dans la classe [14 ; 15[ : la médiane y est aussi.", "math": "(25 + 1) ÷ 2 = 13" },
+        { "text": "Conclusion : le temps moyen vaut environ 14,7 s, et au moins la moitié des élèves ont couru en moins de 15 s. Sans les temps exacts, on ne connaît ni la médiane exacte ni l'étendue exacte : seulement la classe qui contient la médiane." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m3-statistiques-classes", "m3-statistiques-lire-histo", "m3-statistiques-frequences", "m3-statistiques-etendue", "m3-statistiques-moyenne-ponderee", "m3-statistiques-buts"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Comparer et expliquer",
+      "body": "Deux groupes de coureurs à départager, puis un titre de journal à vérifier.",
+      "exercises": ["m3-statistiques-comparer", "m3-statistiques-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la journée du sport",
+      "body": "Le professeur d'EPS te confie son histogramme : à toi de préparer les annonces de la journée du sport.",
+      "exercises": ["m3-statistiques-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Fréquence = effectif ÷ effectif total. Étendue = plus grande valeur − plus petite valeur. Moyenne pondérée : (somme des valeurs × effectifs) ÷ effectif total ; avec des classes, on utilise les centres. Médiane : on RANGE, puis on prend la valeur du milieu.\n\n- **Oublier les effectifs.** La moyenne de 8, 10 et 12 n'est pas la moyenne de la classe si les notes n'ont pas le même nombre d'élèves.\n- **Mal lire les bornes.** [14 ; 15[ ne contient pas 15.\n- **Confondre effectif et fréquence**, ou rang et valeur.\n- **Confondre médiane et moyenne.** C'est la médiane qui partage la série en deux moitiés."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des histogrammes, des moyennes et des médianes dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Regrouper soi-même des données en classes, puis calculer la note qu'il faut pour atteindre une moyenne.",
+      "exercises": ["m3-statistiques-regrouper", "m3-statistiques-note-manquante"]
+    },
+    "expert": {
+      "intro": "Un relevé de températures façon brevet avec un tableur, puis une série mystère à reconstituer.",
+      "exercises": ["m3-statistiques-brevet", "m3-statistiques-defi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-statistiques-classes", "type": "categorize", "skill": "m3.stats.histogramme", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:borne-exclue"], "expectedSeconds": 120,
+      "prompt": "Le professeur veut tracer l'histogramme des temps au 100 m avec des classes de 2 secondes. Range chaque temps dans sa classe.",
+      "categories": [
+        { "id": "c1", "label": "[12 ; 14[ (12 ≤ t < 14)" },
+        { "id": "c2", "label": "[14 ; 16[ (14 ≤ t < 16)" },
+        { "id": "c3", "label": "[16 ; 18[ (16 ≤ t < 18)" }
+      ],
+      "items": [
+        { "id": "i1", "label": "12,8 s", "category": "c1" },
+        { "id": "i2", "label": "13,99 s", "category": "c1" },
+        { "id": "i3", "label": "14 s", "category": "c2" },
+        { "id": "i4", "label": "15,2 s", "category": "c2" },
+        { "id": "i5", "label": "16 s", "category": "c3" },
+        { "id": "i6", "label": "17,5 s", "category": "c3" },
+        { "id": "i7", "label": "13,5 s", "category": "c1" }
+      ],
+      "misconceptions": [
+        { "item": "i3", "category": "c1", "id": "mc:borne-exclue", "error": "lecture", "feedback": "Le crochet tourné vers l'extérieur, à droite de [12 ; 14[, signifie que 14 est EXCLU de cette classe. Dans quelle classe 14 est-il inclus ?" },
+        { "item": "i5", "category": "c2", "id": "mc:borne-exclue", "error": "lecture", "feedback": "Le crochet tourné vers l'extérieur, à droite de [14 ; 16[, signifie que 16 est EXCLU de cette classe. Dans quelle classe 16 est-il inclus ?" }
+      ],
+      "hints": ["Chaque classe contient sa borne de gauche, mais pas sa borne de droite.", "13,99 est plus petit que 14.", "14 vérifie 14 ≤ t < 16, mais pas 12 ≤ t < 14."],
+      "solution": "[12 ; 14[ : 12,8 s ; 13,99 s ; 13,5 s. [14 ; 16[ : 14 s ; 15,2 s. [16 ; 18[ : 16 s ; 17,5 s. Une valeur égale à une borne va toujours dans la classe qui COMMENCE par cette borne.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "c1", "i2": "c1", "i3": "c2", "i4": "c2", "i5": "c3", "i6": "c3", "i7": "c1" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "c1", "i2": "c1", "i3": "c1", "i4": "c2", "i5": "c3", "i6": "c3", "i7": "c1" } }, "expect": "mc:borne-exclue" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-lire-histo", "type": "composite", "skill": "m3.stats.histogramme", "skills": ["m3.stats.indicateurs"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:borne-incluse", "mc:effectif-frequence"], "expectedSeconds": 240,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [3, 7] }, "c": { "int": [5, 10] }, "d": { "int": [4, 9] }, "e": { "int": [2, 6] }, "f": { "int": [1, 3] }, "N": { "expr": "a+b+c+d+e+f" } },
+      "constraints": ["estentier(100*(a+b)/N)"],
+      "prompt": "L'infirmière du collège a mesuré les élèves de 3e. L'histogramme ci-dessous donne la répartition de leurs tailles, en cm.",
+      "figure": {
+        "alt": "Histogramme des tailles des élèves de 3e, en centimètres, par classes de 5 cm, de 150 à 180 cm",
+        "w": 520, "h": 280,
+        "items": [ { "type": "bars", "unit": "élèves", "data": [
+          { "label": "[150 ; 155[", "value": "{a}" }, { "label": "[155 ; 160[", "value": "{b}" }, { "label": "[160 ; 165[", "value": "{c}" },
+          { "label": "[165 ; 170[", "value": "{d}" }, { "label": "[170 ; 175[", "value": "{e}" }, { "label": "[175 ; 180[", "value": "{f}" } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'élèves ont été mesurés en tout ?", "answer": "N" },
+        { "type": "numeric", "prompt": "Combien d'élèves mesurent au moins 165 cm ?", "answer": "d+e+f",
+          "misconceptions": [ { "answer": "e+f", "id": "mc:borne-incluse", "error": "lecture", "feedback": "« Au moins 165 cm » inclut 165 cm : la classe qui commence à 165 compte aussi." } ] },
+        { "type": "numeric", "prompt": "Quel pourcentage des élèves mesure moins de 160 cm ? (le nombre seul)", "answer": "100*(a+b)/N",
+          "misconceptions": [ { "answer": "a+b", "id": "mc:effectif-frequence", "error": "notion", "feedback": "Ce nombre est un effectif, un nombre d'élèves. Un pourcentage compare cet effectif à l'effectif total." } ] }
+      ],
+      "hints": ["Additionne les hauteurs de tous les rectangles.", "« Au moins 165 cm » : 165 cm compris, donc les classes [165 ; 170[, [170 ; 175[ et [175 ; 180[.", "Pourcentage = effectif ÷ effectif total × 100."],
+      "solution": "Effectif total : {a} + {b} + {c} + {d} + {e} + {f} = {N}. Au moins 165 cm : {d} + {e} + {f} = {d+e+f} élèves. Moins de 160 cm : {a} + {b} = {a+b} élèves, soit $ {a+b} ÷ {N} × 100 = {100*(a+b)/N} $ % des élèves.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{N}" }, { "value": "{d+e+f}" }, { "value": "{100*(a+b)/N}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{N}" }, { "value": "{e+f}" }, { "value": "{100*(a+b)/N}" } ] }, "expect": "mc:borne-incluse" },
+        { "response": { "parts": [ { "value": "{N}" }, { "value": "{d+e+f}" }, { "value": "{a+b}" } ] }, "expect": "mc:effectif-frequence" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-frequences", "type": "table", "skill": "m3.stats.indicateurs", "skills": ["m3.stats.histogramme"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:effectif-frequence", "mc:frequence-decimale"], "expectedSeconds": 240,
+      "params": { "a": { "int": [4, 10] }, "b": { "int": [8, 14] }, "c": { "int": [6, 12] }, "d": { "expr": "40-a-b-c" } },
+      "constraints": ["d >= 2"],
+      "prompt": "Le délégué de classe a pesé les cartables des 40 élèves de 3e B. Complète la colonne des fréquences, en pourcentage.",
+      "figure": {
+        "alt": "Histogramme des masses des cartables des 40 élèves, par classes de 2 kg, de 2 à 10 kg",
+        "w": 440, "h": 240,
+        "items": [ { "type": "bars", "unit": "élèves", "data": [
+          { "label": "[2 ; 4[", "value": "{a}" }, { "label": "[4 ; 6[", "value": "{b}" }, { "label": "[6 ; 8[", "value": "{c}" }, { "label": "[8 ; 10[", "value": "{d}" } ] } ]
+      },
+      "columns": ["Masse du cartable (kg)", "Effectif", "Fréquence (%)"],
+      "rows": [["[2 ; 4[", "{a}", "?r0c2"], ["[4 ; 6[", "{b}", "?r1c2"], ["[6 ; 8[", "{c}", "?r2c2"], ["[8 ; 10[", "{d}", "?r3c2"], ["Total", "40", "?r4c2"]],
+      "cells": {
+        "r0c2": { "answer": "a*100/40", "misconceptions": [ { "answer": "a", "id": "mc:effectif-frequence", "error": "notion", "feedback": "Ce nombre est l'effectif de la classe. La fréquence compare cet effectif aux 40 élèves." } ] },
+        "r1c2": { "answer": "b*100/40", "misconceptions": [ { "answer": "b/40", "id": "mc:frequence-decimale", "error": "forme", "feedback": "Ce nombre est la fréquence en écriture décimale. Le tableau demande un pourcentage : multiplie par 100." } ] },
+        "r2c2": { "answer": "c*100/40" },
+        "r3c2": { "answer": "d*100/40" },
+        "r4c2": { "answer": "100", "misconceptions": [ { "answer": "40", "id": "mc:effectif-frequence", "error": "notion", "feedback": "40 est l'effectif total. Demande-toi plutôt quelle part de la classe représentent tous les élèves réunis." } ] }
+      },
+      "hints": ["Fréquence d'une classe = effectif ÷ effectif total.", "Pour l'avoir en pourcentage, multiplie par 100 : avec 40 élèves, un élève représente 2,5 %.", "Contrôle : la somme des fréquences fait 100 %."],
+      "solution": "Un élève représente $ 100 ÷ 40 = 2,5 $ % de la classe. [2 ; 4[ : $ {a} × 2,5 = {2.5*a} $ % ; [4 ; 6[ : {2.5*b} % ; [6 ; 8[ : {2.5*c} % ; [8 ; 10[ : {2.5*d} %. Total : 100 %, comme toujours.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{2.5*a}", "r1c2": "{2.5*b}", "r2c2": "{2.5*c}", "r3c2": "{2.5*d}", "r4c2": "100" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{a}", "r1c2": "{2.5*b}", "r2c2": "{2.5*c}", "r3c2": "{2.5*d}", "r4c2": "100" } }, "expect": "mc:effectif-frequence" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-etendue", "type": "numeric", "skill": "m3.stats.indicateurs", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:etendue-negatif", "mc:etendue-ordre"], "expectedSeconds": 90,
+      "params": { "lo": { "int": [-6, -2] }, "hi": { "int": [6, 11] }, "p": { "int": [0, 5] }, "q": { "int": [-1, 4] }, "r": { "int": [1, 5] }, "s": { "int": [0, 3] }, "u": { "int": [2, 5] } },
+      "prompt": "Voici les températures minimales relevées par la station météo du collège pendant une semaine de mars (exemple, en °C) : lundi {p} ; mardi {hi} ; mercredi {q} ; jeudi {r} ; vendredi {lo} ; samedi {s} ; dimanche {u}. Quelle est l'étendue de cette série, en °C ?",
+      "figure": {
+        "alt": "Courbe des températures minimales de la semaine, du lundi (jour 1) au dimanche (jour 7)",
+        "w": 460, "h": 260,
+        "items": [ { "type": "linechart", "xLabel": "jour (1 = lundi)", "yLabel": "température (°C)",
+          "series": [ { "label": "Température minimale", "points": [[1, "{p}"], [2, "{hi}"], [3, "{q}"], [4, "{r}"], [5, "{lo}"], [6, "{s}"], [7, "{u}"]] } ] } ]
+      },
+      "answer": "hi - lo",
+      "misconceptions": [
+        { "answer": "hi + lo", "id": "mc:etendue-negatif", "error": "signe", "feedback": "Soustraire un nombre négatif revient à ajouter son opposé : l'écart entre la plus haute et la plus basse température est plus grand que la plus haute." },
+        { "answer": "u - p", "id": "mc:etendue-ordre", "error": "methode", "feedback": "Tu as soustrait la première valeur de la dernière. L'étendue est l'écart entre la plus GRANDE et la plus PETITE valeur, où qu'elles soient dans la liste." }
+      ],
+      "hints": ["Repère la plus grande et la plus petite valeur.", "Étendue = plus grande valeur − plus petite valeur.", "Attention : soustraire un nombre négatif revient à ajouter son opposé."],
+      "solution": "Plus grande valeur : {hi} °C (mardi). Plus petite : {lo} °C (vendredi). Étendue : $ {hi} − ({lo}) = {hi} + {-lo} = {hi-lo} $ °C. Cette semaine-là, les températures minimales se sont étalées sur {hi-lo} degrés.",
+      "selfTest": [
+        { "response": { "value": "{hi-lo}" }, "expect": "correct" },
+        { "response": { "value": "{hi+lo}" }, "expect": "mc:etendue-negatif" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-moyenne-ponderee", "type": "numeric", "skill": "m3.stats.indicateurs", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:moyenne-non-ponderee", "mc:diviser-nombre-valeurs"], "expectedSeconds": 180,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [3, 7] }, "c": { "int": [4, 9] }, "d": { "int": [2, 6] }, "e": { "int": [1, 3] } },
+      "constraints": ["abs((8*a+10*b+12*c+14*d+16*e)/(a+b+c+d+e) - 12) > 0.05"],
+      "prompt": "Voici les notes (sur 20) obtenues par une classe au brevet blanc de mathématiques. Calcule la note moyenne de la classe, arrondie au centième.",
+      "figure": {
+        "alt": "Tableau des notes et des effectifs du brevet blanc",
+        "w": 420, "h": 110,
+        "items": [ { "type": "table", "head": ["Note", "8", "10", "12", "14", "16"], "rows": [["Effectif", "{a}", "{b}", "{c}", "{d}", "{e}"]] } ]
+      },
+      "answer": "(8*a+10*b+12*c+14*d+16*e)/(a+b+c+d+e)", "tolerance": 0.006, "round": 2,
+      "misconceptions": [
+        { "answer": "12", "id": "mc:moyenne-non-ponderee", "error": "methode", "feedback": "Tu as fait la moyenne des cinq notes possibles, sans tenir compte du nombre d'élèves qui ont eu chacune. Chaque note compte autant de fois que son effectif." },
+        { "answer": "(8*a+10*b+12*c+14*d+16*e)/5", "id": "mc:diviser-nombre-valeurs", "error": "methode", "feedback": "Tu as divisé par 5, le nombre de notes différentes. Il faut diviser par le nombre d'élèves, l'effectif total." }
+      ],
+      "hints": ["Multiplie chaque note par son effectif, puis additionne ces produits.", "Divise ce total par l'effectif total, c'est-à-dire le nombre d'élèves.", "Contrôle : la moyenne est forcément comprise entre 8 et 16."],
+      "solution": "Total des points : $ 8 × {a} + 10 × {b} + 12 × {c} + 14 × {d} + 16 × {e} = {8*a+10*b+12*c+14*d+16*e} $. Nombre d'élèves : {a+b+c+d+e}. Moyenne : $ {8*a+10*b+12*c+14*d+16*e} ÷ {a+b+c+d+e} ≈ {(8*a+10*b+12*c+14*d+16*e)/(a+b+c+d+e)|d2} $.",
+      "selfTest": [
+        { "response": { "value": "{(8*a+10*b+12*c+14*d+16*e)/(a+b+c+d+e)|d2}" }, "expect": "correct" },
+        { "response": { "value": "12" }, "expect": "mc:moyenne-non-ponderee" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-buts", "type": "composite", "skill": "m3.stats.indicateurs", "skills": ["m4.stats.mediane"], "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:milieu-des-valeurs", "mc:rang-valeur", "mc:mode", "mc:moyenne-non-ponderee", "mc:diviser-nombre-valeurs"], "expectedSeconds": 360,
+      "prompt": "L'équipe de football du collège a joué 21 matchs cette saison. Le diagramme donne le nombre de matchs selon le nombre de buts marqués.",
+      "figure": {
+        "alt": "Diagramme en bâtons du nombre de matchs selon le nombre de buts marqués, de 0 à 5 buts",
+        "w": 440, "h": 240,
+        "items": [ { "type": "bars", "unit": "matchs", "data": [
+          { "label": "0 but", "value": 3 }, { "label": "1 but", "value": 6 }, { "label": "2 buts", "value": 5 },
+          { "label": "3 buts", "value": 4 }, { "label": "4 buts", "value": 2 }, { "label": "5 buts", "value": 1 } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la médiane du nombre de buts par match ?", "answer": 2,
+          "misconceptions": [
+            { "answer": 2.5, "id": "mc:milieu-des-valeurs", "error": "notion", "feedback": "Ce nombre est le milieu des valeurs possibles (de 0 à 5 buts). La médiane est la valeur du milieu de la série des 21 matchs rangés." },
+            { "answer": 11, "id": "mc:rang-valeur", "error": "lecture", "feedback": "Ce nombre est un rang (une position dans la série rangée), pas un nombre de buts. Combien de buts a-t-on marqués lors du match de ce rang ?" },
+            { "answer": 1, "id": "mc:mode", "error": "notion", "feedback": "C'est la valeur la plus fréquente, pas forcément celle du milieu. Utilise les effectifs cumulés pour repérer le match du milieu." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est la moyenne du nombre de buts par match ? (arrondie au centième)", "answer": "41/21", "tolerance": 0.006, "round": 2,
+          "misconceptions": [
+            { "answer": 2.5, "id": "mc:moyenne-non-ponderee", "error": "methode", "feedback": "Tu as fait la moyenne des valeurs 0, 1, 2, 3, 4 et 5 sans tenir compte du nombre de matchs. Chaque valeur compte autant de fois que son effectif." },
+            { "answer": "41/6", "id": "mc:diviser-nombre-valeurs", "error": "methode", "feedback": "Tu as divisé par 6, le nombre de valeurs différentes. Il faut diviser par le nombre de matchs." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est l'étendue de la série ?", "answer": 5,
+          "misconceptions": [ { "answer": 6, "id": "mc:etendue-nombre-valeurs", "error": "notion", "feedback": "Tu as compté les valeurs différentes. L'étendue est la différence entre la plus grande et la plus petite valeur." } ] }
+      ],
+      "hints": ["Effectifs cumulés : 3 ; 9 ; 14 ; 18 ; 20 ; 21.", "21 matchs : la médiane est la valeur du 11e match de la série rangée.", "Moyenne : (0 × 3 + 1 × 6 + 2 × 5 + 3 × 4 + 4 × 2 + 5 × 1) ÷ 21."],
+      "solution": "Effectifs cumulés : 3 ; 9 ; 14 ; 18 ; 20 ; 21. N = 21 est impair : la médiane est la 11e valeur. Les matchs de rangs 10 à 14 comptent 2 buts, donc la médiane vaut 2. Moyenne : $ (0 + 6 + 10 + 12 + 8 + 5) ÷ 21 = 41 ÷ 21 ≈ 1,95 $ but par match. Étendue : 5 − 0 = 5.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2" }, { "value": "1,95" }, { "value": "5" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2,5" }, { "value": "1,95" }, { "value": "5" } ] }, "expect": "mc:milieu-des-valeurs" },
+        { "response": { "parts": [ { "value": "2" }, { "value": "2,5" }, { "value": "5" } ] }, "expect": "mc:moyenne-non-ponderee" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-comparer", "type": "composite", "skill": "m3.stats.comparer", "skills": ["m3.stats.indicateurs"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:mediane-sans-trier", "mc:confond-moyenne-mediane"], "expectedSeconds": 600,
+      "prompt": "Pour le relais 4 × 100 m du cross, le professeur d'EPS hésite entre deux groupes de 9 élèves. Le tableau donne leurs temps au 100 m, en secondes, dans l'ordre d'arrivée des fiches.",
+      "figure": {
+        "alt": "Tableau des temps au 100 mètres des neuf élèves du groupe Éclair et des neuf élèves du groupe Tonnerre",
+        "w": 620, "h": 140,
+        "items": [ { "type": "table", "head": ["Groupe", "1", "2", "3", "4", "5", "6", "7", "8", "9"], "rows": [
+          ["Éclair", "14,4", "15,0", "13,6", "14,8", "14,5", "13,9", "15,5", "14,2", "14,6"],
+          ["Tonnerre", "15,8", "12,3", "18,1", "13,4", "12,0", "16,2", "13,1", "17,0", "12,6"] ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule le temps moyen du groupe Tonnerre, en s.", "answer": 14.5,
+          "misconceptions": [ { "answer": 13.4, "id": "mc:confond-moyenne-mediane", "error": "notion", "feedback": "Ce nombre est la valeur du milieu de la série rangée : c'est la médiane. La moyenne se calcule avec la somme de tous les temps." } ] },
+        { "type": "numeric", "prompt": "Quelle est la médiane du groupe Tonnerre, en s ?", "answer": 13.4,
+          "misconceptions": [
+            { "answer": 12, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "Ce temps est au milieu de la liste telle qu'elle est écrite. Range d'abord les 9 temps dans l'ordre croissant." },
+            { "answer": 14.5, "id": "mc:confond-moyenne-mediane", "error": "notion", "feedback": "Ce nombre est la moyenne. La médiane partage la série RANGÉE en deux groupes de même effectif." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est l'étendue des temps du groupe Tonnerre, en s ?", "answer": 6.1 },
+        { "type": "numeric", "prompt": "Et l'étendue des temps du groupe Éclair, en s ?", "answer": 1.9 },
+        { "type": "open", "prompt": "Les deux groupes ont la même moyenne. Lequel choisirais-tu pour le relais, où seuls 4 élèves courent ? Argumente avec la médiane et l'étendue.", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je compare les médianes : 13,4 s pour Tonnerre, 14,5 s pour Éclair", "keywords": [["mediane", "13,4"]] },
+            { "id": "c2", "label": "Je compare les étendues : 6,1 s contre 1,9 s (Tonnerre est beaucoup plus dispersé)", "keywords": [["etendue", "6,1", "1,9", "homogene", "disperse", "ecart"]] },
+            { "id": "c3", "label": "Je tiens compte du relais : les 4 meilleurs de Tonnerre sont plus rapides que tous les élèves d'Éclair", "keywords": [["4 meilleurs", "quatre meilleurs", "plus rapides", "relais"]] }
+          ] }
+      ],
+      "hints": ["Range les temps de Tonnerre dans l'ordre croissant.", "Moyenne : somme des 9 temps ÷ 9. Médiane : 5e temps de la série rangée.", "Étendue : plus grand temps − plus petit temps."],
+      "solution": "Tonnerre rangé : 12,0 ; 12,3 ; 12,6 ; 13,1 ; 13,4 ; 15,8 ; 16,2 ; 17,0 ; 18,1. Somme : 130,5 s, moyenne $ 130,5 ÷ 9 = 14,5 $ s. Médiane : 13,4 s (5e valeur). Étendue : 18,1 − 12,0 = 6,1 s. Éclair rangé : 13,6 ; 13,9 ; 14,2 ; 14,4 ; 14,5 ; 14,6 ; 14,8 ; 15,0 ; 15,5 : moyenne 14,5 s aussi, médiane 14,5 s, étendue 15,5 − 13,6 = 1,9 s. Même moyenne, mais Tonnerre est bien plus dispersé : sa moitié la plus rapide court en 13,4 s ou moins, plus vite que tous les élèves d'Éclair. Pour un relais de 4 coureurs, les 4 meilleurs de Tonnerre (12,0 ; 12,3 ; 12,6 ; 13,1) sont le meilleur choix. Pour une épreuve où tout le groupe court, Éclair serait plus régulier.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "14,5" }, { "value": "13,4" }, { "value": "6,1" }, { "value": "1,9" }, { "text": "Même moyenne, mais la médiane de Tonnerre est 13,4 s contre 14,5 s et son étendue 6,1 s contre 1,9 s. Pour le relais je prends les 4 meilleurs de Tonnerre, plus rapides que tous ceux d'Éclair.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "14,5" }, { "value": "12" }, { "value": "6,1" }, { "value": "1,9" }, { "text": "Tonnerre." } ] }, "expect": "mc:mediane-sans-trier" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-expliquer", "type": "open", "skill": "m3.stats.comparer", "skills": ["m3.stats.indicateurs"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:confond-moyenne-mediane"], "expectedSeconds": 360,
+      "prompt": "Le journal du collège titre : « Les élèves de 3e passent en moyenne 3 heures par jour devant un écran : la moitié d'entre eux y passent donc plus de 3 heures. » Ce titre est-il juste ? Explique l'erreur possible, et invente un exemple de 5 élèves qui la montre.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "J'explique que c'est la médiane, et non la moyenne, qui partage les élèves en deux moitiés", "keywords": [["mediane"]] },
+        { "id": "c2", "label": "Je donne un exemple de 5 durées de moyenne 3 h où moins de la moitié dépassent 3 h (par exemple 1 ; 1 ; 2 ; 2 ; 9)", "keywords": [["exemple", "par exemple"]] },
+        { "id": "c3", "label": "J'explique qu'une valeur extrême peut tirer la moyenne vers le haut", "keywords": [["extreme", "tres grand", "tire", "gonfle", "un seul"]] }
+      ],
+      "models": [
+        "Le titre confond moyenne et médiane. Par exemple, si 5 élèves passent 1 h, 1 h, 2 h, 2 h et 9 h par jour devant un écran, la moyenne vaut 15 ÷ 5 = 3 h, mais un seul élève sur 5 dépasse 3 h. C'est la médiane (ici 2 h) qui partage les élèves en deux moitiés. La moyenne, elle, peut être tirée vers le haut par une seule valeur extrême.",
+        "Non, on ne peut pas conclure : la moitié des élèves au-dessus d'une valeur, c'est la définition de la médiane. Exemple : 0,5 h ; 1 h ; 1,5 h ; 2 h ; 10 h. Total 15 h, moyenne 3 h, mais seulement 1 élève sur 5 au-dessus de 3 h, à cause de l'élève qui passe 10 h, une valeur extrême."
+      ],
+      "hints": ["Quel indicateur partage une série en deux groupes de même effectif ?", "Cherche 5 durées dont le total vaut 15 h, avec une seule très grande durée."],
+      "solution": "Le titre confond moyenne et médiane : c'est la médiane qui partage les élèves en deux moitiés. Exemple : 1 h ; 1 h ; 2 h ; 2 h ; 9 h. Total 15 h, donc moyenne 3 h, mais un seul élève sur 5 dépasse 3 h ; la médiane vaut 2 h. Une valeur extrême (9 h) suffit à tirer la moyenne vers le haut. Pour écrire « la moitié des élèves… », il faut connaître la médiane.",
+      "selfTest": [
+        { "response": { "text": "Non, c'est la médiane qui partage en deux moitiés, pas la moyenne. Par exemple 1 ; 1 ; 2 ; 2 ; 9 heures : la moyenne vaut 3 h mais un seul élève dépasse 3 h, car la valeur extrême 9 tire la moyenne.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "Oui c'est juste." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-mission", "type": "composite", "skill": "m3.stats.indicateurs", "skills": ["m3.stats.histogramme"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:borne-incluse", "mc:effectif-frequence", "mc:moyenne-non-ponderee", "mc:etendue-classes", "mc:rang-valeur"], "expectedSeconds": 720,
+      "prompt": "Mission : pour la journée du sport, tu dois analyser les temps au 100 m de la 3e A et préparer les annonces. Voici l'histogramme du professeur (25 élèves). On connaît aussi le meilleur temps, 12,4 s, et le moins bon, 17,3 s.",
+      "figure": {
+        "alt": "Histogramme des temps au 100 mètres des 25 élèves de 3e A, par classes d'une seconde, de 12 à 18 secondes",
+        "w": 520, "h": 280,
+        "items": [ { "type": "bars", "unit": "élèves", "data": [
+          { "label": "[12 ; 13[", "value": 2 }, { "label": "[13 ; 14[", "value": 5 }, { "label": "[14 ; 15[", "value": 8 },
+          { "label": "[15 ; 16[", "value": 6 }, { "label": "[16 ; 17[", "value": 3 }, { "label": "[17 ; 18[", "value": 1 } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'élèves ont couru en moins de 15 s ?", "answer": 15,
+          "misconceptions": [
+            { "answer": 21, "id": "mc:borne-incluse", "error": "lecture", "feedback": "La limite donnée est exclue : la classe qui commence à cette valeur ne compte pas, car ses élèves ont mis au moins ce temps." },
+            { "answer": 8, "id": "mc:une-seule-classe", "error": "lecture", "feedback": "Ce nombre ne compte qu'une classe. Il faut regrouper toutes les classes situées avant la limite demandée." }
+          ] },
+        { "type": "numeric", "prompt": "Quel pourcentage des élèves a couru en 16 s ou plus ? (le nombre seul)", "answer": 16,
+          "misconceptions": [ { "answer": 4, "id": "mc:effectif-frequence", "error": "notion", "feedback": "Ce nombre est un effectif. Le pourcentage le compare aux 25 élèves de la classe." } ] },
+        { "type": "numeric", "prompt": "Calcule une valeur approchée du temps moyen, en utilisant les centres des classes (au centième).", "answer": 14.74, "tolerance": 0.005,
+          "misconceptions": [ { "answer": 15, "id": "mc:moyenne-non-ponderee", "error": "methode", "feedback": "Tu as fait la moyenne des centres sans tenir compte des effectifs. Chaque centre compte autant de fois qu'il y a d'élèves dans sa classe." } ] },
+        { "type": "numeric", "prompt": "Quelle est l'étendue des temps, en s ?", "answer": 4.9,
+          "misconceptions": [ { "answer": 6, "id": "mc:etendue-classes", "error": "lecture", "feedback": "Tu as utilisé les bornes des classes extrêmes. Ici, on connaît les vrais temps extrêmes : utilise-les." } ] },
+        { "type": "numeric", "prompt": "La médiane se trouve dans une classe de la forme [a ; a + 1[. Donne a.", "answer": 14,
+          "misconceptions": [ { "answer": 13, "id": "mc:rang-valeur", "error": "lecture", "feedback": "13 est le RANG de la médiane (la 13e valeur sur 25), pas un temps. Dans quelle classe se trouve l'élève de ce rang ?" } ] }
+      ],
+      "hints": ["Moins de 15 s : additionne les effectifs des classes situées avant 15. 16 s ou plus : classes [16 ; 17[ et [17 ; 18[, puis effectif ÷ 25 × 100.", "Moyenne : multiplie chaque centre (12,5 ; 13,5 ; …) par l'effectif de sa classe, additionne, puis divise par 25.", "Effectifs cumulés : 2 ; 7 ; 15 ; … Dans quelle classe se trouve l'élève de rang 13 ?"],
+      "solution": "Moins de 15 s : 2 + 5 + 8 = 15 élèves. 16 s ou plus : 3 + 1 = 4 élèves, soit $ 4 ÷ 25 × 100 = 16 $ %. Moyenne approchée : $ (12,5 × 2 + 13,5 × 5 + 14,5 × 8 + 15,5 × 6 + 16,5 × 3 + 17,5 × 1) ÷ 25 = 368,5 ÷ 25 = 14,74 $ s. Étendue : 17,3 − 12,4 = 4,9 s. Médiane : 13e valeur ; avec les effectifs cumulés 2 ; 7 ; 15, elle est dans la classe [14 ; 15[, donc a = 14. Annonce possible : « Plus de la moitié de la classe a couru le 100 m en moins de 15 s ! »",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "15" }, { "value": "16" }, { "value": "14,74" }, { "value": "4,9" }, { "value": "14" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "21" }, { "value": "16" }, { "value": "14,74" }, { "value": "4,9" }, { "value": "14" } ] }, "expect": "mc:borne-incluse" },
+        { "response": { "parts": [ { "value": "15" }, { "value": "16" }, { "value": "15" }, { "value": "4,9" }, { "value": "14" } ] }, "expect": "mc:moyenne-non-ponderee" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-remed-frequence", "type": "composite", "skill": "m3.stats.indicateurs", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:frequence-inverse", "mc:effectif-frequence"], "expectedSeconds": 90,
+      "params": { "N": { "choice": [20, 25, 50] }, "k": { "int": [3, 12] } },
+      "prompt": "Rappel : la fréquence d'une valeur, c'est son effectif divisé par l'effectif total. Dans un club de {N} adhérents, {k} pratiquent le judo.",
+      "figure": {
+        "alt": "Diagramme circulaire des adhérents du club : judokas et autres sports",
+        "w": 360, "h": 180,
+        "items": [ { "type": "pie", "data": [ { "label": "Judo", "value": "{k}" }, { "label": "Autres sports", "value": "{N-k}" } ] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la fréquence des judokas, en écriture décimale ?", "answer": "k/N",
+          "misconceptions": [ { "answer": "N/k", "id": "mc:frequence-inverse", "error": "methode", "feedback": "Ta fraction est à l'envers : une fréquence est toujours comprise entre 0 et 1. On divise l'effectif par l'effectif TOTAL." } ] },
+        { "type": "numeric", "prompt": "Et en pourcentage ? (le nombre seul)", "answer": "100*k/N",
+          "misconceptions": [ { "answer": "k", "id": "mc:effectif-frequence", "error": "notion", "feedback": "Ce nombre est l'effectif. Le pourcentage indique combien il y aurait de judokas pour 100 adhérents." } ] }
+      ],
+      "hints": ["Fréquence = effectif des judokas ÷ effectif total.", "Pour un pourcentage, multiplie la fréquence par 100."],
+      "solution": "Fréquence : $ {k} ÷ {N} = {k/N} $. En pourcentage : $ {k/N} × 100 = {100*k/N} $ % des adhérents pratiquent le judo.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{k/N}" }, { "value": "{100*k/N}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{N}/{k}" }, { "value": "{100*k/N}" } ] }, "expect": "mc:frequence-inverse" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-remed-moyenne", "type": "composite", "skill": "m3.stats.indicateurs", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["mc:somme-valeurs", "mc:moyenne-non-ponderee"], "expectedSeconds": 150,
+      "prompt": "Rappel : pour une moyenne avec des effectifs, chaque valeur compte autant de fois que son effectif. Voici les notes de 10 élèves à un quiz : trois ont eu 10, cinq ont eu 12 et deux ont eu 15.",
+      "parts": [
+        { "type": "table", "prompt": "Complète la dernière colonne.",
+          "columns": ["Note", "Effectif", "Note × effectif"],
+          "rows": [["10", "3", "?r0c2"], ["12", "5", "?r1c2"], ["15", "2", "?r2c2"], ["Total", "10", "?r3c2"]],
+          "cells": {
+            "r0c2": { "answer": "30" }, "r1c2": { "answer": "60" }, "r2c2": { "answer": "30" },
+            "r3c2": { "answer": "120", "misconceptions": [ { "answer": "37", "id": "mc:somme-valeurs", "error": "methode", "feedback": "Ce total additionne les notes sans tenir compte des effectifs. Additionne plutôt les nombres de la dernière colonne." } ] }
+          } },
+        { "type": "numeric", "prompt": "Quelle est la note moyenne de ces 10 élèves ?", "answer": 12,
+          "misconceptions": [ { "answer": "37/3", "id": "mc:moyenne-non-ponderee", "error": "methode", "feedback": "Tu as fait la moyenne des trois notes, comme si un seul élève avait eu chacune. Divise le total des points par le nombre d'élèves." } ] }
+      ],
+      "hints": ["10 × 3 : trois élèves ont eu 10.", "Moyenne = total des points ÷ nombre d'élèves."],
+      "solution": "10 × 3 = 30 ; 12 × 5 = 60 ; 15 × 2 = 30 ; total : 120 points pour 10 élèves. Moyenne : $ 120 ÷ 10 = 12 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c2": "30", "r1c2": "60", "r2c2": "30", "r3c2": "120" } }, { "value": "12" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c2": "30", "r1c2": "60", "r2c2": "30", "r3c2": "37" } }, { "value": "12" } ] }, "expect": "mc:somme-valeurs" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-regrouper", "type": "composite", "skill": "m3.stats.histogramme", "skills": ["m3.stats.indicateurs"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:borne-exclue", "mc:moyenne-non-ponderee"], "expectedSeconds": 600,
+      "prompt": "Au verger pédagogique, on a pesé 20 pommes. Voici leurs masses, en grammes. On veut les regrouper en classes de 10 g d'amplitude pour tracer un histogramme.",
+      "figure": {
+        "alt": "Tableau des masses des 20 pommes, en grammes",
+        "w": 560, "h": 110,
+        "items": [ { "type": "table", "rows": [
+          ["132", "145", "151", "128", "139", "147", "155", "162", "141", "136"],
+          ["149", "158", "143", "127", "153", "146", "138", "160", "144", "150"] ] } ]
+      },
+      "parts": [
+        { "type": "table", "prompt": "Complète les effectifs de chaque classe.",
+          "columns": ["Masse (g)", "[120 ; 130[", "[130 ; 140[", "[140 ; 150[", "[150 ; 160[", "[160 ; 170["],
+          "rows": [["Effectif", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"]],
+          "cells": {
+            "r0c1": { "answer": "2" }, "r0c2": { "answer": "4" },
+            "r0c3": { "answer": "7", "misconceptions": [ { "answer": "8", "id": "mc:borne-exclue", "error": "lecture", "feedback": "La classe [140 ; 150[ ne contient pas 150 : une pomme de 150 g va dans la classe suivante." } ] },
+            "r0c4": { "answer": "5" }, "r0c5": { "answer": "2" }
+          } },
+        { "type": "numeric", "prompt": "Calcule la moyenne exacte des 20 masses, en g.", "answer": 145.2 },
+        { "type": "numeric", "prompt": "Calcule une valeur approchée de la moyenne à partir des classes, en utilisant leurs centres.", "answer": 145.5,
+          "misconceptions": [ { "answer": 145, "id": "mc:moyenne-non-ponderee", "error": "methode", "feedback": "Tu as fait la moyenne des cinq centres sans tenir compte des effectifs." } ] },
+        { "type": "open", "prompt": "Pourquoi les deux moyennes sont-elles différentes ? Laquelle est la plus fiable ?", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Avec les classes, chaque masse est remplacée par le centre de sa classe : on perd de l'information", "keywords": [["centre", "perd", "approch", "regroup"]] },
+            { "id": "c2", "label": "La moyenne exacte, calculée avec les 20 masses, est la plus fiable", "keywords": [["exacte", "fiable", "vraies", "20 masses"]] }
+          ] }
+      ],
+      "hints": ["Range chaque masse dans sa classe : 150 g va dans [150 ; 160[, pas dans [140 ; 150[.", "La somme des 20 masses vaut 2 904 g.", "Les centres des classes sont 125 ; 135 ; 145 ; 155 et 165."],
+      "solution": "Effectifs : [120 ; 130[ : 2 (128, 127) ; [130 ; 140[ : 4 ; [140 ; 150[ : 7 ; [150 ; 160[ : 5 (dont 150) ; [160 ; 170[ : 2 (162, 160). Moyenne exacte : $ 2 904 ÷ 20 = 145,2 $ g. Avec les centres : $ (125 × 2 + 135 × 4 + 145 × 7 + 155 × 5 + 165 × 2) ÷ 20 = 2 910 ÷ 20 = 145,5 $ g. Les deux diffèrent car, avec les classes, chaque pomme est « déplacée » au centre de sa classe : c'est une approximation. La moyenne exacte est la plus fiable ; la moyenne par classes est utile quand on ne connaît plus les valeurs.",
+      "selfTest": [
+        { "response": { "parts": [ { "cells": { "r0c1": "2", "r0c2": "4", "r0c3": "7", "r0c4": "5", "r0c5": "2" } }, { "value": "145,2" }, { "value": "145,5" }, { "text": "Avec les classes on remplace chaque masse par le centre de sa classe, on perd de l'information. La moyenne exacte est la plus fiable.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "cells": { "r0c1": "2", "r0c2": "4", "r0c3": "8", "r0c4": "4", "r0c5": "2" } }, { "value": "145,2" }, { "value": "145,5" }, { "text": "On arrondit." } ] }, "expect": "mc:borne-exclue" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-note-manquante", "type": "composite", "skill": "m3.stats.indicateurs", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:ecart-compense", "mc:viser-moyenne", "mc:coefficient-oublie"], "expectedSeconds": 420,
+      "params": { "n": { "int": [3, 5] }, "m": { "int": [10, 13] }, "t": { "expr": "m+1" } },
+      "prompt": "Après {n} contrôles de physique-chimie, Yanis a {m} de moyenne. Il reste un dernier contrôle avant le conseil de classe, et il voudrait finir le trimestre avec {t} de moyenne.",
+      "figure": {
+        "alt": "Résumé de la situation de Yanis : sa moyenne actuelle et le dernier contrôle à venir",
+        "w": 380, "h": 110,
+        "items": [ { "type": "table", "head": ["Contrôles", "1 à {n}", "Dernier"], "rows": [["Résultat", "{m} de moyenne", "?"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de points Yanis a-t-il obtenus en tout sur ses {n} premiers contrôles ?", "answer": "n*m" },
+        { "type": "numeric", "prompt": "Quelle note doit-il obtenir au dernier contrôle ?", "answer": "(n+1)*t - n*m",
+          "misconceptions": [
+            { "answer": "t + 1", "id": "mc:ecart-compense", "error": "raisonnement", "feedback": "Viser seulement un point au-dessus de l'objectif ne suffit pas : ce dernier contrôle doit faire monter la moyenne de TOUS les contrôles. Calcule le total de points nécessaire." },
+            { "answer": "t", "id": "mc:viser-moyenne", "error": "raisonnement", "feedback": "Avoir au dernier contrôle exactement la moyenne visée ne la ferait monter que d'une fraction de point. Calcule le total de points nécessaire." }
+          ] },
+        { "type": "numeric", "prompt": "Le professeur annonce que le dernier contrôle compte double (coefficient 2). Quelle note suffit alors ?", "answer": "((n+2)*t - n*m)/2",
+          "misconceptions": [ { "answer": "(n+1)*t - n*m", "id": "mc:coefficient-oublie", "error": "methode", "feedback": "C'est la note nécessaire si le contrôle compte une seule fois. Avec un coefficient 2, ce contrôle compte comme deux notes." } ] }
+      ],
+      "hints": ["Total actuel = moyenne × nombre de contrôles.", "Pour {t} de moyenne sur {n+1} contrôles, il faut {t} × {n+1} points en tout.", "Avec un coefficient 2, tout se passe comme s'il y avait {n+2} notes, dont deux égales à la dernière."],
+      "solution": "Total actuel : $ {n} × {m} = {n*m} $ points. Pour {t} de moyenne sur {n+1} contrôles, il faut $ {t} × {n+1} = {t*(n+1)} $ points : la dernière note doit valoir $ {t*(n+1)} − {n*m} = {(n+1)*t-n*m} $. Avec un coefficient 2, il faut $ {t} × {n+2} = {t*(n+2)} $ points, donc $ 2x = {t*(n+2)-n*m} $ et $ x = {((n+2)*t-n*m)/2} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{n*m}" }, { "value": "{(n+1)*t-n*m}" }, { "value": "{((n+2)*t-n*m)/2}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{n*m}" }, { "value": "{t+1}" }, { "value": "{((n+2)*t-n*m)/2}" } ] }, "expect": "mc:ecart-compense" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-brevet", "type": "composite", "skill": "m3.stats.indicateurs", "skills": ["m4.stats.mediane", "m3.stats.comparer"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "concrete", "targets": ["mc:etendue-ordre", "mc:somme-sans-diviser", "mc:milieu-extremes", "mc:mediane-sans-trier", "mc:borne-incluse"], "expectedSeconds": 900,
+      "prompt": "Type brevet — Le tableau ci-dessous, extrait d'une feuille de tableur, donne les températures moyennes mensuelles (en °C) relevées une année dans une ville française (données d'exemple). Les mois sont dans les cellules B1 à M1, les températures dans les cellules B2 à M2.",
+      "figure": {
+        "alt": "Tableau des températures moyennes mensuelles de janvier à décembre",
+        "w": 640, "h": 120,
+        "items": [ { "type": "table", "head": ["A1 : mois", "J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"], "rows": [["A2 : T (°C)", "4", "5", "8", "11", "15", "19", "23", "22", "18", "13", "9", "6"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "1. Quelle est l'étendue de cette série, en °C ?", "answer": 19,
+          "misconceptions": [ { "answer": 2, "id": "mc:etendue-ordre", "error": "methode", "feedback": "Tu as fait la différence entre décembre et janvier. L'étendue utilise la plus grande et la plus petite valeur de toute l'année." } ] },
+        { "type": "text", "prompt": "2. Quelle formule saisir dans la cellule N2 pour calculer la température moyenne annuelle ?",
+          "accept": ["=MOYENNE(B2:M2)", "= MOYENNE(B2:M2)", "=SOMME(B2:M2)/12", "=(SOMME(B2:M2))/12", "=(B2+C2+D2+E2+F2+G2+H2+I2+J2+K2+L2+M2)/12"], "openEnded": true,
+          "misconceptions": [ { "answer": "=SOMME(B2:M2)", "id": "mc:somme-sans-diviser", "error": "methode", "feedback": "Cette formule donne le total des douze températures. Une moyenne, c'est ce total partagé entre les douze mois." } ] },
+        { "type": "numeric", "prompt": "3. Quelle est la température moyenne annuelle, en °C ?", "answer": 12.75,
+          "misconceptions": [ { "answer": 13.5, "id": "mc:milieu-extremes", "error": "methode", "feedback": "Tu as fait la moyenne de la plus grande et de la plus petite température. La moyenne utilise les douze mois." } ] },
+        { "type": "numeric", "prompt": "4. Quelle est la médiane de cette série, en °C ?", "answer": 12,
+          "misconceptions": [
+            { "answer": 21, "id": "mc:mediane-sans-trier", "error": "methode", "feedback": "Tu as pris les deux valeurs du milieu du tableau, dans l'ordre des mois. Range d'abord les douze températures dans l'ordre croissant." },
+            { "answer": 12.75, "id": "mc:confond-moyenne-mediane", "error": "notion", "feedback": "Ce nombre est la moyenne. La médiane partage la série rangée en deux groupes de même effectif." }
+          ] },
+        { "type": "numeric", "prompt": "5. Quelle proportion des mois a une température moyenne strictement supérieure à 15 °C ? (fraction ou écriture décimale)", "answer": "1/3",
+          "misconceptions": [ { "answer": "5/12", "id": "mc:borne-incluse", "error": "lecture", "feedback": "« Strictement supérieure à 15 °C » exclut un mois à 15 °C pile." } ] },
+        { "type": "open", "prompt": "6. Un journaliste affirme : « Dans cette ville, il fait en moyenne plus de 12 °C pendant la moitié des mois de l'année. » Est-ce exact ? Justifie.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "J'utilise la médiane, 12 °C : la moitié des mois sont au-dessus", "keywords": [["mediane", "moitie"]] },
+            { "id": "c2", "label": "Je vérifie en comptant les mois au-dessus de 12 °C : 6 mois sur 12", "keywords": [["6 mois", "six mois", "6 sur 12"]] }
+          ] }
+      ],
+      "hints": ["Étendue : plus grande valeur − plus petite valeur. Dans un tableur, MOYENNE(B2:M2) calcule la moyenne des cellules B2 à M2.", "Range les 12 températures : la médiane est la moyenne de la 6e et de la 7e.", "Compte les mois au-dessus de 15 °C, puis divise par 12."],
+      "solution": "1. 23 − 4 = 19 °C. 2. =MOYENNE(B2:M2) ou =SOMME(B2:M2)/12. 3. Total : 153 °C, moyenne $ 153 ÷ 12 = 12,75 $ °C. 4. Série rangée : 4 ; 5 ; 6 ; 8 ; 9 ; 11 ; 13 ; 15 ; 18 ; 19 ; 22 ; 23. Médiane : $ (11 + 13) ÷ 2 = 12 $ °C. 5. Juin, juillet, août et septembre : 4 mois sur 12, soit 1/3. 6. C'est exact : la médiane vaut 12 °C et aucun mois n'est à 12 °C pile, donc 6 mois sur 12 sont au-dessus (mai, juin, juillet, août, septembre, octobre).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "19" }, { "value": "=MOYENNE(B2:M2)" }, { "value": "12,75" }, { "value": "12" }, { "value": "1/3" }, { "text": "Oui : la médiane vaut 12 °C donc la moitié des mois sont au-dessus ; je compte 6 mois sur 12.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "19" }, { "value": "=SOMME(B2:M2)" }, { "value": "12,75" }, { "value": "12" }, { "value": "1/3" }, { "text": "Oui." } ] }, "expect": "mc:somme-sans-diviser" },
+        { "response": { "parts": [ { "value": "19" }, { "value": "=MOYENNE(B2:M2)" }, { "value": "12,75" }, { "value": "21" }, { "value": "1/3" }, { "text": "Oui." } ] }, "expect": "mc:mediane-sans-trier" }
+      ]
+    },
+    {
+      "id": "m3-statistiques-defi", "type": "composite", "skill": "m3.stats.indicateurs", "skills": ["m4.stats.mediane"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:moyenne-total", "mc:oubli-contrainte"], "expectedSeconds": 900,
+      "prompt": "Une série de 7 nombres entiers a une étendue de 10, une médiane de 12 et une moyenne de 11. On cherche à quoi elle peut ressembler.",
+      "figure": {
+        "alt": "Les sept nombres rangés, avec la médiane 12 en quatrième position",
+        "w": 480, "h": 110,
+        "items": [ { "type": "table", "head": ["Rang", "1", "2", "3", "4", "5", "6", "7"], "rows": [["Valeur", "a", "b", "c", "12", "e", "f", "g"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le total des 7 nombres ?", "answer": 77,
+          "misconceptions": [ { "answer": 18, "id": "mc:moyenne-total", "error": "notion", "feedback": "Tu as additionné l'effectif et la moyenne. La moyenne, c'est le total divisé par l'effectif : comment retrouver le total à partir d'elle ?" } ] },
+        { "type": "numeric", "prompt": "Quelle est la plus grande valeur possible du maximum de la série ?", "answer": 17,
+          "misconceptions": [ { "answer": 22, "id": "mc:oubli-contrainte", "error": "raisonnement", "feedback": "Avec un maximum aussi grand, le minimum vaudrait 12 : les sept valeurs vaudraient au moins 12, et leur total dépasserait celui que tu as trouvé." } ] },
+        { "type": "numeric", "prompt": "Quelle est la plus petite valeur possible du maximum ?", "answer": 13,
+          "misconceptions": [ { "answer": 12, "id": "mc:oubli-contrainte", "error": "raisonnement", "feedback": "Si le maximum valait 12, toutes les valeurs vaudraient au plus 12 et le minimum 2 : le total pourrait-il atteindre celui que tu as trouvé ?" } ] },
+        { "type": "open", "prompt": "Propose une série de 7 nombres qui convient, et vérifie ses trois indicateurs.", "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "Ma série, une fois rangée, a pour 4e valeur 12", "keywords": [["12"]] },
+            { "id": "c2", "label": "Son total vaut 77 (moyenne 11) et son étendue vaut 10", "keywords": [["77", "etendue"]] }
+          ] }
+      ],
+      "hints": ["Total = moyenne × effectif.", "Range les valeurs : a ≤ b ≤ c ≤ 12 ≤ e ≤ f ≤ g, avec g = a + 10.", "Pour un grand maximum, il faut un grand minimum. Les autres valeurs valent au moins a (avant la médiane) et au moins 12 (après) : le total vaut au moins 4a + 46."],
+      "solution": "Total : $ 7 × 11 = 77 $. Rangeons : a ≤ b ≤ c ≤ 12 ≤ e ≤ f ≤ g, avec g = a + 10. Le total vaut au moins $ a + a + a + 12 + 12 + 12 + (a + 10) = 4a + 46 $, donc $ 4a + 46 ≤ 77 $ et a ≤ 7 : le maximum vaut au plus 17, par exemple 7 ; 7 ; 10 ; 12 ; 12 ; 12 ; 17. Le total vaut au plus $ a + 12 + 12 + 12 + 3(a + 10) = 4a + 66 $, donc $ 4a + 66 ≥ 77 $ et a ≥ 3 : le maximum vaut au moins 13, par exemple 3 ; 11 ; 12 ; 12 ; 13 ; 13 ; 13.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "77" }, { "value": "17" }, { "value": "13" }, { "text": "7 ; 7 ; 10 ; 12 ; 12 ; 12 ; 17 : médiane 12, total 77 donc moyenne 11, étendue 17 − 7 = 10.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "77" }, { "value": "22" }, { "value": "13" }, { "text": "12 partout" } ] }, "expect": "mc:oubli-contrainte" }
+      ]
+    }
+  ]
+}

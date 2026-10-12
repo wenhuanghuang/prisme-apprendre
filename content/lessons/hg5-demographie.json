@@ -78,9 +78,9 @@
         { "type": "graph", "prompt": "Place les cinq points (année en abscisse, population en milliards en ordonnée).", "xRange": [1940, 2030], "yRange": [0, 10], "xLabel": "année", "yLabel": "milliards", "tolerance": 0.05,
           "expectedPoints": [[1950, 2.5], [1987, 5], [1999, 6], [2011, 7], [2022, 8]] },
         { "type": "numeric", "prompt": "Combien d'années a-t-il fallu pour que la population double, de 2,5 milliards (1950) à 5 milliards (1987) ?", "answer": 37,
-          "misconceptions": [ { "answer": 2.5, "id": "mc:duree-lecture", "error": "lecture", "feedback": "2,5 milliards est l'augmentation de la population. La question demande une durée : 1987 − 1950 = 37 ans." } ] },
+          "misconceptions": [ { "answer": 2.5, "id": "mc:duree-lecture", "error": "lecture", "feedback": "2,5 milliards est l'augmentation de la population. La question demande une durée : fais la différence entre les deux années." } ] },
         { "type": "numeric", "prompt": "Combien d'années pour passer de 7 à 8 milliards ?", "answer": 11,
-          "misconceptions": [ { "answer": 1, "id": "mc:duree-lecture", "error": "lecture", "feedback": "1 milliard est l'augmentation. La durée est 2022 − 2011 = 11 ans." } ] }
+          "misconceptions": [ { "answer": 1, "id": "mc:duree-lecture", "error": "lecture", "feedback": "1 milliard est l'augmentation. La question demande une durée : fais la différence entre les deux années." } ] }
       ],
       "hints": ["Chaque graduation horizontale vaut 10 ans ; on peut placer un point à l'année près.", "Une durée se calcule avec les années : date la plus récente − date la plus ancienne."],
       "solution": "Points : (1950 ; 2,5), (1987 ; 5), (1999 ; 6), (2011 ; 7), (2022 ; 8). Doublement de 1950 à 1987 : 37 ans. De 7 à 8 milliards : 11 ans. La courbe monte fortement depuis 1950 : il faut environ 12 ans pour gagner chaque milliard supplémentaire depuis 1987.",
@@ -129,15 +129,15 @@
       "prompt": "**France, année 2025 (Insee, bilan démographique publié en janvier 2026)** : 645 000 naissances ; 651 000 décès ; solde migratoire estimé à + 176 000.\n\nRéponds **en milliers** (exemple : écris 25 pour 25 000 ; n'oublie pas le signe − si le résultat est négatif).",
       "parts": [
         { "type": "numeric", "prompt": "Solde naturel (en milliers) :", "answer": -6,
-          "misconceptions": [ { "answer": 6, "id": "mc:solde-signe", "error": "signe", "feedback": "Solde naturel = naissances − décès = 645 − 651 = − 6 milliers. Il y a plus de décès que de naissances : le solde est négatif." } ] },
+          "misconceptions": [ { "answer": 6, "id": "mc:solde-signe", "error": "signe", "feedback": "Solde naturel = naissances − décès, dans cet ordre. Y a-t-il eu plus de naissances ou plus de décès ? Le signe de ton résultat doit le montrer." } ] },
         { "type": "numeric", "prompt": "Variation totale de la population (en milliers) :", "answer": 170,
           "misconceptions": [
-            { "answer": 182, "id": "mc:solde-signe", "error": "signe", "feedback": "Le solde naturel est négatif (− 6) : − 6 + 176 = 170, et non 6 + 176." },
-            { "answer": -6, "id": "mc:solde-naturel-total", "error": "notion", "feedback": "− 6 est le solde naturel seulement. La variation totale ajoute le solde migratoire : − 6 + 176 = 170 milliers." }
+            { "answer": 182, "id": "mc:solde-signe", "error": "signe", "feedback": "Tu as compté le solde naturel comme positif. Reprends-le avec son signe −, puis ajoute-lui le solde migratoire." },
+            { "answer": -6, "id": "mc:solde-naturel-total", "error": "notion", "feedback": "− 6 est le solde naturel seulement. La variation totale ajoute aussi le solde migratoire (+ 176 milliers)." }
           ] },
-        { "type": "text", "prompt": "En 2025, la population de la France a-t-elle augmenté ou diminué ?", "accept": ["augmenté", "elle a augmenté", "augmente", "elle augmente", "hausse", "en hausse"],
-          "misconceptions": [ { "answer": "diminué", "id": "mc:solde-naturel-total", "error": "notion", "feedback": "Le solde naturel est négatif, mais le solde migratoire (+ 176 000) est bien plus grand : la population a augmenté d'environ 170 000 habitants." },
-                             { "answer": "elle a diminué", "id": "mc:solde-naturel-total", "error": "notion", "feedback": "Le solde naturel est négatif, mais le solde migratoire (+ 176 000) est bien plus grand : la population a augmenté d'environ 170 000 habitants." } ] }
+        { "type": "text", "prompt": "En 2025, la population de la France a-t-elle augmenté ou diminué ?", "accept": ["augmenté", "elle a augmenté", "a augmenté", "augmente", "elle augmente", "hausse", "en hausse", "augmentation", "une augmentation"],
+          "misconceptions": [ { "answer": "diminué", "id": "mc:solde-naturel-total", "error": "notion", "feedback": "Le solde naturel est négatif, mais ce n'est qu'une partie de la variation. Regarde le signe de la variation totale que tu as calculée." },
+                             { "answer": "elle a diminué", "id": "mc:solde-naturel-total", "error": "notion", "feedback": "Le solde naturel est négatif, mais ce n'est qu'une partie de la variation. Regarde le signe de la variation totale que tu as calculée." } ] }
       ],
       "hints": ["Solde naturel = naissances − décès (dans cet ordre).", "Variation totale = solde naturel + solde migratoire.", "− 6 + 176 : c'est comme 176 − 6."],
       "solution": "Solde naturel : 645 − 651 = − 6 milliers (− 6 000), une première depuis la fin de la Seconde Guerre mondiale. Variation totale : − 6 + 176 = + 170 milliers. La population a donc augmenté, grâce au solde migratoire. (Chiffres provisoires de l'Insee.)",
@@ -160,9 +160,10 @@
             { "id": "france", "label": "France (1,56)", "category": "dessous" },
             { "id": "coree", "label": "Corée du Sud (0,72)", "category": "dessous" }
           ],
-          "misconceptions": [ { "item": "monde", "category": "dessous", "id": "mc:seuil-remplacement", "error": "lecture", "feedback": "2,25 est un peu AU-DESSUS de 2,1 : en moyenne mondiale, les générations se remplacent encore… mais de justesse." } ] },
+          "misconceptions": [ { "item": "monde", "category": "dessous", "id": "mc:seuil-remplacement", "error": "lecture", "feedback": "Compare bien les décimales : écris 2,1 sous la forme 2,10, puis compare-le à 2,25 chiffre par chiffre." } ] },
         { "type": "numeric", "prompt": "La fécondité du Niger est environ combien de fois plus élevée que celle de la France ? (arrondis à l'unité)", "answer": 4, "tolerance": 0.4,
-          "misconceptions": [ { "answer": 4.54, "id": "mc:ecart-rapport", "error": "methode", "feedback": "6,1 − 1,56 ≈ 4,5 est un écart (une soustraction). « Combien de fois » demande une division : 6,1 ÷ 1,56 ≈ 3,9, soit environ 4 fois." } ] },
+          "misconceptions": [ { "answer": 4.54, "id": "mc:ecart-rapport", "error": "methode", "feedback": "6,1 − 1,56 est un écart (une soustraction). « Combien de fois » demande une division : 6,1 ÷ 1,56, puis arrondis à l'unité." },
+                             { "answer": 5, "id": "mc:ecart-rapport", "error": "methode", "feedback": "As-tu calculé 6,1 − 1,56 ? C'est un écart (une soustraction). « Combien de fois » demande une division : 6,1 ÷ 1,56, puis arrondis à l'unité." } ] },
         { "type": "text", "prompt": "Pourquoi faut-il un peu plus de 2 enfants par femme (et non exactement 2) pour que les générations se remplacent ?", "openEnded": true,
           "accept": ["parce que certains enfants meurent avant d'avoir des enfants", "certains enfants meurent avant l'âge adulte", "à cause de la mortalité des enfants", "car il naît un peu plus de garçons que de filles", "il naît un peu plus de garçons que de filles"] }
       ],
@@ -263,11 +264,11 @@
       "prompt": "Autre représentation, avec un **village imaginaire**. Cette année : 12 bébés sont nés, 15 habitants sont morts, 8 personnes sont venues s'installer et 2 sont parties. Imagine les habitants qui entrent et qui sortent du village.",
       "parts": [
         { "type": "numeric", "prompt": "Solde naturel (naissances − décès) :", "answer": -3,
-          "misconceptions": [ { "answer": 3, "id": "mc:solde-signe", "error": "signe", "feedback": "12 naissances − 15 décès = − 3 : le village a perdu 3 habitants par le solde naturel. Le signe compte !" } ] },
+          "misconceptions": [ { "answer": 3, "id": "mc:solde-signe", "error": "signe", "feedback": "Calcule naissances − décès, dans cet ordre : 12 − 15. Il y a eu plus de décès que de naissances : le signe compte !" } ] },
         { "type": "numeric", "prompt": "Solde migratoire (arrivées − départs) :", "answer": 6 },
         { "type": "numeric", "prompt": "Variation totale du nombre d'habitants :", "answer": 3,
-          "misconceptions": [ { "answer": -3, "id": "mc:solde-naturel-total", "error": "notion", "feedback": "− 3 est seulement le solde naturel. Il faut ajouter le solde migratoire : − 3 + 6 = + 3." },
-                             { "answer": 9, "id": "mc:solde-signe", "error": "signe", "feedback": "Le solde naturel vaut − 3, pas + 3 : − 3 + 6 = + 3." } ] }
+          "misconceptions": [ { "answer": -3, "id": "mc:solde-naturel-total", "error": "notion", "feedback": "− 3 est seulement le solde naturel. Il faut lui ajouter le solde migratoire." },
+                             { "answer": 9, "id": "mc:solde-signe", "error": "signe", "feedback": "Le solde naturel est négatif : reprends-le avec son signe − avant de lui ajouter le solde migratoire." } ] }
       ],
       "hints": ["Ceux qui naissent entrent, ceux qui meurent sortent.", "Ceux qui arrivent entrent, ceux qui partent sortent."],
       "solution": "Solde naturel : 12 − 15 = − 3. Solde migratoire : 8 − 2 = + 6. Variation : − 3 + 6 = + 3 habitants. Comme la France en 2025, ce village a plus de décès que de naissances, mais gagne des habitants grâce aux arrivées.",
@@ -310,10 +311,10 @@
       "prompt": "Données de l'ONU : 5 milliards en 1987, 6 milliards en 1999, 7 milliards en 2011, 8 milliards en 2022. Pourtant, la fécondité mondiale baisse depuis des décennies. Réponds en millions d'habitants par an (arrondis à l'unité).",
       "parts": [
         { "type": "numeric", "prompt": "Augmentation moyenne par an entre 1987 et 1999 :", "answer": 83, "tolerance": 1,
-          "misconceptions": [ { "answer": 1000, "id": "mc:rythme-moyenne", "error": "methode", "feedback": "1 000 millions, c'est l'augmentation totale sur la période. Par an : 1 000 ÷ 12 ≈ 83 millions." } ] },
+          "misconceptions": [ { "answer": 1000, "id": "mc:rythme-moyenne", "error": "methode", "feedback": "1 000 millions, c'est l'augmentation totale sur la période. Pour une moyenne par an, divise-la par le nombre d'années entre 1987 et 1999." } ] },
         { "type": "numeric", "prompt": "Augmentation moyenne par an entre 2011 et 2022 :", "answer": 91, "tolerance": 1,
-          "misconceptions": [ { "answer": 1000, "id": "mc:rythme-moyenne", "error": "methode", "feedback": "1 000 millions, c'est l'augmentation totale. Par an : 1 000 ÷ 11 ≈ 91 millions." } ] },
-        { "type": "open", "prompt": "La fécondité baisse, et pourtant la population mondiale gagne toujours environ 80 à 90 millions d'habitants par an. Propose une explication.", "minWords": 25,
+          "misconceptions": [ { "answer": 1000, "id": "mc:rythme-moyenne", "error": "methode", "feedback": "1 000 millions, c'est l'augmentation totale. Pour une moyenne par an, divise-la par le nombre d'années entre 2011 et 2022." } ] },
+        { "type": "open", "prompt": "La fécondité baisse, et pourtant la population mondiale a gagné en moyenne 80 à 90 millions d'habitants par an entre 1987 et 2022. Propose une explication.", "minWords": 25,
           "criteria": [
             { "id": "c1", "label": "J'explique qu'il y a beaucoup de jeunes adultes en âge d'avoir des enfants (nés quand la fécondité était forte)", "keywords": [["jeunes", "parents", "age d avoir", "nombreux", "generation"]] },
             { "id": "c2", "label": "J'explique que l'espérance de vie augmente : on meurt plus tard", "keywords": [["esperance", "vivent plus", "plus longtemps", "mortalite"]] }
@@ -354,7 +355,7 @@
       "parts": [
         { "type": "numeric", "prompt": "Vérifie son calcul : avec 1 milliard de plus tous les 12 ans à partir de 2022, combien d'habitants en 2100 ? (en milliards, arrondi au dixième)", "answer": 14.5, "tolerance": 0.1 },
         { "type": "numeric", "prompt": "Écart entre son estimation et la projection de l'ONU pour 2100 (en milliards, arrondi au dixième) :", "answer": 4.3, "tolerance": 0.1,
-          "misconceptions": [ { "answer": 24.7, "id": "mc:ecart-addition", "error": "methode", "feedback": "Un écart se calcule par une soustraction : 14,5 − 10,2 = 4,3 milliards." } ] },
+          "misconceptions": [ { "answer": 24.7, "id": "mc:ecart-addition", "error": "methode", "feedback": "Tu as additionné. Un écart se calcule par une soustraction : retire la projection de l'ONU de l'estimation de l'internaute." } ] },
         { "type": "open", "prompt": "Explique l'erreur de raisonnement de l'internaute, et pourquoi l'ONU prévoit au contraire un plafonnement.", "minWords": 40,
           "criteria": [
             { "id": "c1", "label": "J'explique qu'il prolonge une tendance passée comme si rien ne changeait (raisonnement « en ligne droite »)", "keywords": [["prolong", "continue", "comme si", "ligne droite", "meme rythme", "toujours"]] },

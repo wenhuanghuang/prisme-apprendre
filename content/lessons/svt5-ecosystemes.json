@@ -399,7 +399,15 @@
             "focus": [
               "g",
               "bf"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis sur la courbe en pointillés (le témoin) la masse des feuilles au bout de 6 semaines.",
+              "answer": 9.9,
+              "tolerance": 0.5,
+              "unit": "g",
+              "explain": "La courbe en pointillés reste presque sur la ligne des 10 g (environ 9,9 g) : dans le témoin, les feuilles n'ont presque pas perdu de masse. Dans la terre de forêt, elles sont tombées à 6,3 g."
+            }
           },
           {
             "title": "Que va-t-il se passer ?",
@@ -448,7 +456,18 @@
               "m1",
               "m2",
               "m3"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Quelle observation montre que les êtres vivants de la terre de forêt respirent ?",
+              "choices": [
+                "L'eau de chaux s'est troublée dans leur bocal.",
+                "Les feuilles mortes ont changé de couleur.",
+                "La terre de leur bocal est restée humide."
+              ],
+              "answer": 0,
+              "explain": "L'eau de chaux se trouble en présence de dioxyde de carbone, un gaz rejeté par la respiration. Elle ne s'est troublée que dans le bocal où les décomposeurs étaient vivants."
+            }
           },
           {
             "title": "La matière circule",
@@ -472,7 +491,18 @@
             ],
             "focus": [
               "plante"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi le sol d'une forêt n'est-il pas recouvert de feuilles mortes d'année en année ?",
+              "choices": [
+                "Les décomposeurs les transforment en matière minérale, que les plantes réutilisent.",
+                "Le vent emporte toutes les feuilles hors de la forêt.",
+                "Les feuilles s'enfoncent dans la terre sans se transformer."
+              ],
+              "answer": 0,
+              "explain": "Bactéries et champignons du sol se nourrissent des feuilles mortes et les transforment peu à peu en matière minérale. Les plantes vertes réutilisent cette matière : elle circule en cycle."
+            }
           }
         ],
         "conclusion": "- Dans la terre de forêt, les feuilles mortes disparaissent peu à peu (10 g → 6,3 g en six semaines) et du **dioxyde de carbone** est rejeté.\n- Dans la terre chauffée (le **témoin**), presque rien ne change.\n- Ce sont donc des **êtres vivants du sol** qui dégradent la matière morte : les **décomposeurs** (bactéries, champignons).\n\n> Les décomposeurs transforment la matière organique en matière minérale, que les producteurs réutilisent : la matière circule en **cycle** dans l'écosystème."
@@ -483,7 +513,7 @@
       "title": "Exemple entièrement résolu",
       "steps": [
         {
-          "text": "On compare deux milieux. Prairie fleurie : 12 espèces de papillons, 9 d'abeilles et de bourdons, 22 d'autres insectes. Pelouse tondue : 2, 3 et 7.",
+          "text": "On compare deux milieux (données fictives). Prairie fleurie : 12 espèces de papillons, 9 d'abeilles et de bourdons, 22 d'autres insectes. Pelouse tondue : 2, 3 et 7.",
           "math": ""
         },
         {
@@ -1078,7 +1108,7 @@
         "mc:plante-mange-terre"
       ],
       "expectedSeconds": 360,
-      "prompt": "Une plante verte est placée dans une enceinte fermée équipée d'un capteur qui mesure la teneur en dioxygène de l'air. On l'éclaire pendant une heure, puis on la laisse une heure dans l'obscurité.",
+      "prompt": "Une plante verte est placée dans une enceinte fermée équipée d'un capteur qui mesure la teneur en dioxygène de l'air. On l'éclaire pendant une heure ; puis, après avoir renouvelé l'air de l'enceinte, on la laisse une heure dans l'obscurité.",
       "parts": [
         {
           "type": "table",
@@ -1346,7 +1376,7 @@
         },
         {
           "id": "r5",
-          "label": "Les algues prolifèrent puis, en se décomposant, consomment le dioxygène de l'eau"
+          "label": "Les algues prolifèrent puis, quand elles meurent, leur décomposition consomme le dioxygène de l'eau"
         },
         {
           "id": "r6",
@@ -1538,7 +1568,7 @@
         "mc:valeur-finale"
       ],
       "expectedSeconds": 420,
-      "prompt": "Le lac de Montrevel reçoit depuis dix ans les eaux d'un bassin agricole très fertilisé. Relevés de l'été : année 1 : nitrates 8 mg/L, dioxygène dissous au fond 9 mg/L ; année 5 : nitrates 24 mg/L, dioxygène 5 mg/L ; année 10 : nitrates 40 mg/L, dioxygène 1 mg/L, et des poissons morts sont observés.",
+      "prompt": "Le lac de Montrevel (lac imaginaire, données fictives) reçoit depuis dix ans les eaux d'un bassin agricole très fertilisé. Relevés de l'été : année 1 : nitrates 8 mg/L, dioxygène dissous au fond 9 mg/L ; année 5 : nitrates 24 mg/L, dioxygène 5 mg/L ; année 10 : nitrates 40 mg/L, dioxygène 1 mg/L, et des poissons morts sont observés.",
       "parts": [
         {
           "type": "numeric",
@@ -1681,7 +1711,7 @@
         "mc:somme-incomplete"
       ],
       "expectedSeconds": 180,
-      "prompt": "Un naturaliste a inventorié les insectes de trois milieux de même surface (100 m²) pendant un mois. La **richesse spécifique** d'un milieu est son nombre total d'espèces. Complète la dernière colonne (nombres seuls).",
+      "prompt": "Un naturaliste a inventorié les insectes de trois milieux de même surface (100 m²) pendant un mois (données fictives). La **richesse spécifique** d'un milieu est son nombre total d'espèces. Complète la dernière colonne (nombres seuls).",
       "columns": [
         "Milieu",
         "Espèces de papillons",
@@ -2497,7 +2527,7 @@
               "answer": 0,
               "id": "mc:simultane",
               "error": "lecture",
-              "feedback": "Les maxima ne sont pas simultanés : les lièvres atteignent leur maximum en année 2 (80), les lynx en année 3 (45)."
+              "feedback": "Les maxima ne sont pas simultanés : repère l'année du maximum des lièvres, puis celle du maximum des lynx, et compare-les."
             }
           ]
         },

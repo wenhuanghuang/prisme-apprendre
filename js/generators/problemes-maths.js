@@ -4,7 +4,7 @@
  * à rédiger. Chaque générateur déclare ses `tracks` et `make(rand, options, parcours)` renvoie un `problem(...)`.
  * Voir docs/GENERATEURS.md.
  */
-import { ri, pick, clean, fr, mc, numeric, text, expression, problem } from './gen-util.js';
+import { ri, pick, clean, fr, mc, numeric, text, expression, problem, roundedTo } from './gen-util.js';
 import { PRENOMS, sum, nom, round, eur, quot, yesNo, choose, cap, byTier, ALL_TRACKS } from './problemes-outils.js';
 
 
@@ -37,7 +37,7 @@ function aboClasse(rand) {
       mc(clean((F + r) * n), 'mc:carte-a-chaque-entree', 'raisonnement', `La carte (${eur(F)}) se paie une seule fois, pas à chaque ${L.unite}.`),
     ] }),
     choose(`Pour ${n} ${L.unites}, quel est le tarif le plus avantageux : les tickets ou l’abonnement ?`, carte ? TARIF_CARTE : TARIF_TICKETS, [
-      { accept: carte ? TARIF_TICKETS : TARIF_CARTE, id: 'mc:mauvaise-comparaison', feedback: `Compare les deux prix : ${eur(pT)} avec les tickets, ${eur(pA)} avec l’abonnement. Le plus avantageux est le moins cher.` },
+      { accept: carte ? TARIF_TICKETS : TARIF_CARTE, id: 'mc:mauvaise-comparaison', feedback: 'Compare les deux prix que tu as calculés : le tarif le plus avantageux est le moins cher.' },
     ]),
   ], {
     prompt: `${L.a}, une ${L.unite} coûte ${eur(t)} avec un ticket. Avec l’abonnement, on paie une carte de ${eur(F)} pour l’année, puis ${eur(r)} par ${L.unite}. ${who} prévoit d’y aller ${n} fois cette année.`,
@@ -86,9 +86,11 @@ function aboExpert(rand) {
     if (sorted[1] - sorted[0] >= 2) break;
   }
   const best = Object.keys(prices).reduce((a, b) => (prices[b] < prices[a] ? b : a));
-  const NAMES = { tickets: TARIF_TICKETS, carte: ['la carte', ...TARIF_CARTE], pass: TARIF_PASS };
+  // « la carte » figure déjà dans TARIF_CARTE : une seule fois dans la liste (#42)
+  const NAMES = { tickets: TARIF_TICKETS, carte: [...new Set(['la carte', ...TARIF_CARTE])], pass: TARIF_PASS };
   const LABEL = { tickets: 'les tickets', carte: 'la carte', pass: 'le pass illimité' };
-  const why = `Pour ${N} ${U} : tickets ${eur(prices.tickets)}, carte ${eur(prices.carte)}, pass ${eur(prices.pass)}. On choisit le prix le plus bas.`;
+  const why = `Calcule le prix de chacun des trois tarifs pour ${N} ${U}, puis choisis le moins cher.`;
+  const conclusion = `Pour ${N} ${U} : tickets ${eur(prices.tickets)}, carte ${eur(prices.carte)}, pass ${eur(prices.pass)}. On choisit le prix le plus bas.`;
   const seuil = (n) => `Pour ${n} ${U}, ce tarif n’est pas encore strictement moins cher : calcule les deux prix pour vérifier, puis prends l’entier suivant.`;
   return problem([
     numeric(n1, { prompt: `À partir de combien ${L.de} la carte est-elle strictement moins chère que les tickets ?`, misconceptions: [mc(n1 - 1, 'mc:seuil-arrondi', 'raisonnement', seuil(n1 - 1))] }),
@@ -101,7 +103,7 @@ function aboExpert(rand) {
   ], {
     prompt: `${L.a}, trois tarifs sont proposés. Tickets : ${t} € ${L.la}. Carte : ${F} € pour l’année, puis ${r} € ${L.la}. Pass illimité : ${G} € pour l’année, sans rien payer ensuite.`,
     hints: [`Écris le prix de chaque tarif pour n ${U} : ${t}n, ${F} + ${r}n et ${G}.`, `Carte moins chère que les tickets : ${F} + ${r}n < ${t}n. Résous cette inéquation, ou procède par essais.`, 'n est un nombre entier : prends le premier entier qui vérifie l’inégalité. Compare ensuite les trois prix pour le nombre prévu.'],
-    solution: `Carte < tickets : ${F} + ${r}n < ${t}n, soit ${t - r}n > ${F}, n > ${quot(F, t - r)} : à partir de ${n1} ${U}. Pass < carte : ${G} < ${F} + ${r}n, soit ${r}n > ${G - F}, n > ${quot(G - F, r)} : à partir de ${n2} ${U}. ${why} Il faut choisir ${LABEL[best]}.`,
+    solution: `Carte < tickets : ${F} + ${r}n < ${t}n, soit ${t - r}n > ${F}, n > ${quot(F, t - r)} : à partir de ${n1} ${U}. Pass < carte : ${G} < ${F} + ${r}n, soit ${r}n > ${G - F}, n > ${quot(G - F, r)} : à partir de ${n2} ${U}. ${conclusion} Il faut choisir ${LABEL[best]}.`,
     justify: { prompt: 'Explique comment tu as trouvé les deux seuils (inéquation ou essais), puis justifie ton choix.', minWords: 15, keywords: [['inéquation', 'essai', 'moins cher', '<'], 'carte', 'pass'], example: `La carte est moins chère que les tickets quand ${F} + ${r}n < ${t}n, soit ${t - r}n > ${F}, donc à partir de ${n1} ${U}. Le pass est moins cher que la carte quand ${G} < ${F} + ${r}n, donc à partir de ${n2} ${U}. Pour ${N} ${U}, je choisis ${LABEL[best]} car son prix est le plus bas.` },
     expectedSeconds: 480,
   });
@@ -137,7 +139,7 @@ function soldesClasse(rand) {
       mc(P + rem, 'mc:augmentation-au-lieu-reduction', 'raisonnement', 'Une remise fait baisser le prix : on soustrait, on n’ajoute pas.'),
     ] }),
     choose('Quel magasin propose le prix le plus bas : A ou B ?', aMoins ? MAG_A : MAG_B, [
-      { accept: aMoins ? MAG_B : MAG_A, id: 'mc:mauvaise-comparaison', feedback: `Compare les prix à payer : ${eur(prixA)} chez A et ${P} − ${D} = ${eur(prixB)} chez B.` },
+      { accept: aMoins ? MAG_B : MAG_A, id: 'mc:mauvaise-comparaison', feedback: 'Calcule le prix à payer dans chacun des deux magasins (la réduction en euros se retire directement du prix de départ), puis compare-les.' },
     ]),
   ], {
     prompt: `${who} veut acheter ${art} au prix de ${eur(P)}. Le magasin A fait une remise de ${p} % ; le magasin B fait une réduction de ${eur(D)} sur le même prix de départ.`,
@@ -157,13 +159,13 @@ function soldesPlus(rand) {
   }
   const tot = clean(p1 + p2 - (p1 * p2) / 100);
   return problem([
-    numeric(Q1, { prompt: 'Quel est le prix après la première remise ? (en €)', tolerance: 0.01, misconceptions: [
+    numeric(Q1, { prompt: 'Quel est le prix après la première remise ? (en €)', tolerance: 0.005, misconceptions: [
       mc(clean((P * p1) / 100), 'mc:remise-seule', 'raisonnement', 'Ce nombre est le montant de la remise ; le prix soldé, c’est le prix de départ moins la remise.'),
     ] }),
-    numeric(Q2, { prompt: 'Quel est le prix final, après les deux remises ? (en €)', tolerance: 0.01, misconceptions: [
+    numeric(Q2, { prompt: 'Quel est le prix final, après les deux remises ? (en €)', tolerance: 0.005, misconceptions: [
       mc(clean((P * (100 - p1 - p2)) / 100), 'mc:pourcentages-additionnes', 'raisonnement', `La remise de ${p2} % s’applique au prix déjà soldé (${eur(Q1)}), pas au prix de départ : on ne peut pas additionner les pourcentages.`),
     ] }),
-    numeric(tot, { prompt: 'Quel pourcentage du prix de départ représente la remise totale ? (en %)', tolerance: 0.01, misconceptions: [
+    numeric(tot, { prompt: 'Quel pourcentage du prix de départ représente la remise totale ? (en %)', tolerance: 0.005, misconceptions: [
       mc(p1 + p2, 'mc:pourcentages-additionnes', 'raisonnement', `Deux remises successives de ${p1} % et ${p2} % ne font pas ${p1 + p2} % : la seconde porte sur un prix plus petit.`),
       mc(clean(P - Q2), 'mc:euros-au-lieu-pourcentage', 'methode', 'Ce nombre est la remise en euros ; on demande un pourcentage du prix de départ.'),
     ] }),
@@ -192,20 +194,20 @@ function soldesExpert(rand) {
   const k = clean(((100 - p1) * (100 - p2)) / 10000);
   const Q = clean(P * k); const B = clean((P * (100 - p3)) / 100); const aMoins = Q < B;
   return problem([
-    numeric(c, { prompt: 'Chez A, quel pourcentage du prix de départ représente la remise totale ? (en %)', tolerance: 0.01, misconceptions: [
+    numeric(c, { prompt: 'Chez A, quel pourcentage du prix de départ représente la remise totale ? (en %)', tolerance: 0.005, misconceptions: [
       mc(p1 + p2, 'mc:pourcentages-additionnes', 'raisonnement', `La remise de ${p2} % porte sur un prix déjà soldé : au total, cela fait moins de ${p1 + p2} %. Multiplie les coefficients ${coef(p1)} et ${coef(p2)}.`),
     ] }),
-    numeric(P, { prompt: `Quel était le prix ${obj.du} avant les remises ? (en €)`, tolerance: 0.01, misconceptions: [
+    numeric(P, { prompt: `Quel était le prix ${obj.du} avant les remises ? (en €)`, tolerance: 0.005, misconceptions: [
       mc(clean(Q * (1 + (p1 + p2) / 100)), 'mc:remise-inverse', 'raisonnement', `Ajouter ${p1 + p2} % au prix soldé ne redonne pas le prix de départ : les remises étaient calculées sur des prix plus grands. Divise le prix final par ${fr(k)}.`),
       mc(clean(Q * (1 + c / 100)), 'mc:remise-inverse', 'raisonnement', `Ajouter ${fr(c)} % au prix soldé ne redonne pas le prix de départ : divise le prix final par ${fr(k)}.`),
       mc(clean(Q / (1 - (p1 + p2) / 100)), 'mc:pourcentages-additionnes', 'raisonnement', `La remise totale n’est pas de ${p1 + p2} % : le coefficient multiplicateur du magasin A est ${fr(k)}.`),
     ] }),
-    numeric(B, { prompt: `Quel est le prix ${obj.du} chez B ? (en €)`, tolerance: 0.01, misconceptions: [
+    numeric(B, { prompt: `Quel est le prix ${obj.du} chez B ? (en €)`, tolerance: 0.005, misconceptions: [
       mc(clean((P * p3) / 100), 'mc:remise-seule', 'raisonnement', 'Ce nombre est le montant de la remise ; le prix à payer, c’est le prix de départ moins la remise.'),
       mc(clean((Q * (100 - p3)) / 100), 'mc:mauvais-prix-de-depart', 'raisonnement', 'La remise de B s’applique au prix de départ, pas au prix déjà soldé chez A.'),
     ] }),
     choose(`Dans quel magasin le prix ${obj.du} est-il le plus bas : A ou B ?`, aMoins ? MAG_A : MAG_B, [
-      { accept: aMoins ? MAG_B : MAG_A, id: aMoins ? 'mc:mauvaise-comparaison' : 'mc:pourcentages-additionnes', feedback: `Compare les prix réels : ${eur(Q)} chez A et ${eur(B)} chez B${aMoins ? '' : ` ; additionner ${p1} % et ${p2} % surestime la remise de A`}.` },
+      { accept: aMoins ? MAG_B : MAG_A, id: aMoins ? 'mc:mauvaise-comparaison' : 'mc:pourcentages-additionnes', feedback: `Compare les prix réellement payés dans les deux magasins${aMoins ? '' : ` ; additionner ${p1} % et ${p2} % surestime la remise de A`}.` },
     ]),
   ], {
     prompt: `Deux magasins vendent ${obj.un} au même prix de départ. Le magasin A fait une remise de ${p1} %, puis une seconde remise de ${p2} % sur le prix déjà soldé : ${who} y voit le prix final de ${eur(Q)}. Le magasin B fait une remise unique de ${p3} % sur le prix de départ.`,
@@ -300,7 +302,7 @@ function recetteExpert(rand) {
       mc(laitL, 'mc:quantite-non-entiere', 'raisonnement', 'On achète des bouteilles entières : arrondis à l’entier supérieur.'),
       mc(R.lait * k, 'mc:conversion-cl-l', 'unite', `${R.lait * k} cL, c’est ${fr(laitL)} L (1 L = 100 cL).`),
     ] }),
-    numeric(cout, { prompt: 'Combien coûtent tous les achats ? (en €)', tolerance: 0.01, misconceptions: [
+    numeric(cout, { prompt: 'Combien coûtent tous les achats ? (en €)', tolerance: 0.005, misconceptions: [
       mc(exact, 'mc:sans-arrondi', 'raisonnement', 'On paie des paquets, des boîtes et des bouteilles entiers : calcule le prix avec les nombres de paquets, de boîtes et de bouteilles achetés.'),
     ] }),
   ], {
@@ -393,16 +395,16 @@ function peintureExpert(rand) {
   const ouv = clean(1.6 + w[0] * w[1]); const brut = clean(2 * (L + l) * H);
   const pots = Math.ceil(V / PL); const fl = Math.floor(V / PL); const cout = pots * prix;
   return problem([
-    numeric(S, { prompt: 'Quelle est l’aire totale des murs à peindre ? (en m²)', unit: 'm²', unitOptional: true, tolerance: 0.01, misconceptions: [
+    numeric(S, { prompt: 'Quelle est l’aire totale des murs à peindre ? (en m²)', unit: 'm²', unitOptional: true, tolerance: 0.005, misconceptions: [
       mc(clean(L * l), 'mc:aire-sol', 'notion', 'Tu as calculé l’aire du sol : on peint les quatre murs, chacun est un rectangle (côté de la pièce × hauteur).'),
       mc(brut, 'mc:ouvertures', 'raisonnement', `On ne peint ni la porte ni la fenêtre : il faut retirer ${fr(ouv)} m².`),
       mc(clean((L + l) * H - ouv), 'mc:deux-murs', 'raisonnement', 'La pièce a quatre murs : deux de chaque sorte.'),
     ] }),
-    numeric(V, { prompt: 'Combien de litres de peinture faut-il pour les deux couches ?', unit: 'L', unitOptional: true, tolerance: 0.01, misconceptions: [
+    numeric(V, { prompt: 'Combien de litres de peinture faut-il pour les deux couches ?', unit: 'L', unitOptional: true, tolerance: 0.005, misconceptions: [
       mc(clean(S / 10), 'mc:une-couche', 'raisonnement', 'Il faut deux couches : la surface est peinte deux fois.'),
       mc(clean(S * 20), 'mc:produit-au-lieu-quotient', 'methode', 'Un litre couvre 10 m² : le nombre de litres est la surface à couvrir divisée par 10.'),
     ] }),
-    numeric(cout, { prompt: `La peinture est vendue en pots de ${fr(PL)} L à ${eur(prix)} le pot. Quelle est la dépense minimale ? (en €)`, tolerance: 0.01, misconceptions: [
+    numeric(cout, { prompt: `La peinture est vendue en pots de ${fr(PL)} L à ${eur(prix)} le pot. Quelle est la dépense minimale ? (en €)`, tolerance: 0.005, misconceptions: [
       mc(clean((V / PL) * prix), 'mc:pots-non-entiers', 'raisonnement', 'On achète des pots entiers : arrondis le nombre de pots à l’entier supérieur avant de calculer le prix.'),
       mc(fl * prix, 'mc:arrondi-inferieur', 'raisonnement', `Avec ${fl} pot${fl > 1 ? 's' : ''}, il manquerait de la peinture : on arrondit au-dessus.`),
     ] }),
@@ -466,7 +468,7 @@ function ecranPlus(rand) {
       mc(w + h, 'mc:somme-longueurs', 'notion', 'La diagonale n’est pas la somme des deux côtés : c’est l’hypoténuse du triangle rectangle formé par la largeur et la hauteur.'),
       mc(c2, 'mc:racine-oubliee', 'calcul', 'Ce nombre est le carré de la diagonale : il reste à prendre sa racine carrée.'),
     ] }),
-    numeric(pouces, { prompt: 'Quelle est la longueur de cette diagonale en pouces, arrondie à l’unité ? (1 pouce = 2,54 cm)', unit: 'pouces', unitOptional: true, round: 0, misconceptions: [
+    numeric(pouces, { prompt: 'Quelle est la longueur de cette diagonale en pouces, arrondie à l’unité ? (1 pouce = 2,54 cm)', unit: 'pouces', unitOptional: true, ...roundedTo(0), misconceptions: [
       mc(Math.round(d1 * 2.54), 'mc:conversion-inverse', 'unite', '1 pouce = 2,54 cm : pour passer des centimètres aux pouces, on divise par 2,54 (on ne multiplie pas).'),
     ] }),
     yesNo(vrai, `Le vendeur annonce un écran de ${annonce} pouces. Cette annonce est-elle exacte, à l’unité près ? (oui ou non)`, 'mc:comparaison', 'raisonnement', `Compare ta mesure en pouces à l’annonce (${annonce} pouces).`),
@@ -546,10 +548,10 @@ function ombrePlus(rand) {
   const S = clean(k * s); const D = clean((k - 1) * s); const H = clean((t * k) / 100); const S2 = clean(s * j); const H2 = clean((t * j) / 100); const tm = t / 100;
   return problem([
     numeric(S, { prompt: `Quelle est la longueur de l’ombre ${o.du} ? (en m)`, unit: 'm', unitOptional: true, misconceptions: [
-      mc(D, 'mc:longueur-totale', 'lecture', `L’ombre ${o.du} va de son pied jusqu’au bout de l’ombre de ${who} : ${fr(D)} + ${fr(s)}.`),
+      mc(D, 'mc:longueur-totale', 'lecture', `L’ombre ${o.du} va de son pied jusqu’au bout de l’ombre de ${who} : ajoute la longueur de l’ombre de ${who}.`),
     ] }),
     numeric(H, { prompt: `Quelle est la hauteur ${o.du} ? (en m)`, unit: 'm', unitOptional: true, misconceptions: [
-      mc(clean((t * (k - 1)) / 100), 'mc:longueur-totale', 'lecture', `Utilise toute l’ombre ${o.du} (${fr(S)} m), pas seulement la distance de ${fr(D)} m.`),
+      mc(clean((t * (k - 1)) / 100), 'mc:longueur-totale', 'lecture', `Utilise toute l’ombre ${o.du}, pas seulement la distance entre ${who} et son pied.`),
       mc(clean((tm * s) / S), 'mc:rapport-inverse', 'raisonnement', `L’ombre ${o.du} est plus longue que celle de ${who} : la hauteur est donc plus grande, pas plus petite.`),
     ] }),
     numeric(H2, { prompt: `Au même moment, l’ombre d’un immeuble voisin mesure ${fr(S2)} m. Quelle est sa hauteur ? (en m)`, unit: 'm', unitOptional: true, misconceptions: [
@@ -597,7 +599,7 @@ function ombreExpert(rand) {
 export const PROBLEMES_MATHS = [
   {
     id: 'p-moyenne-a-atteindre', subject: 'maths', label: 'Problème : la note à obtenir pour atteindre une moyenne',
-    skill: 'm5.stats.moyenne', skills: ['m5.equations.modeliser'], levels: ['5e', '4e'],
+    skill: 'm5.stats.moyenne', skills: ['m5.equations.modeliser'], levels: ['5e', '4e', '3e'],
     tracks: ['classe', 'approfondissement', 'expert'],
     description: 'Raisonner à l’envers à partir d’une moyenne visée ; coefficient au niveau ◆ ; au niveau ✦, décider si c’est encore possible et le justifier.',
     make(rand, o, tier) {
@@ -650,42 +652,42 @@ export const PROBLEMES_MATHS = [
   },
   {
     id: 'p-abonnement-ou-tickets', subject: 'maths', label: 'Problème : abonnement ou tickets ?',
-    skill: 'm5.equations.modeliser', skills: ['m4.equations.modeliser', 'm5.litteral.expression', 'm4.equations.resoudre'], levels: ['5e', '4e'],
+    skill: 'm5.equations.modeliser', skills: ['m4.equations.modeliser', 'm5.litteral.expression', 'm4.equations.resoudre'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Comparer deux tarifs ; ◆ écrire le prix en fonction de x et trouver le seuil par une équation ; ✦ trois tarifs, deux inéquations, un choix justifié.',
     make: byTier({ classe: aboClasse, approfondissement: aboPlus, expert: aboExpert }),
   },
   {
     id: 'p-soldes-remises', subject: 'maths', label: 'Problème : soldes, remises successives ou remise unique ?',
-    skill: 'm5.pourcentages', skills: ['m4.proportionnalite.quatrieme'], levels: ['5e', '4e'],
+    skill: 'm5.pourcentages', skills: ['m4.proportionnalite.quatrieme'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Une remise en % contre une remise en € ; ◆ deux remises successives (les pourcentages ne s’additionnent pas) ; ✦ retrouver le prix de départ et comparer deux magasins, avec justification.',
     make: byTier({ classe: soldesClasse, approfondissement: soldesPlus, expert: soldesExpert }),
   },
   {
     id: 'p-recette-courses', subject: 'maths', label: 'Problème : adapter une recette et faire les courses',
-    skill: 'm5.proportionnalite', skills: ['m5.grandeurs.conversions', 'm4.proportionnalite.quatrieme'], levels: ['5e', '4e'],
+    skill: 'm5.proportionnalite', skills: ['m5.grandeurs.conversions', 'm4.proportionnalite.quatrieme'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Multiplier une recette ; ◆ passage à l’unité, litres et prix au kilo ; ✦ boîtes et bouteilles entières à acheter, coût total et justification.',
     make: byTier({ classe: recetteClasse, approfondissement: recettePlus, expert: recetteExpert }),
   },
   {
     id: 'p-peinture-carrelage', subject: 'maths', label: 'Problème : peindre ou carreler une pièce',
-    skill: 'm5.grandeurs.aires', skills: ['m5.grandeurs.conversions', 'm5.calcul.division-decimale'], levels: ['5e', '4e'],
+    skill: 'm5.grandeurs.aires', skills: ['m5.grandeurs.conversions', 'm5.calcul.division-decimale'], levels: ['5e', '4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Aire d’un mur moins une porte et nombre de pots ; ◆ sol en L, carreaux en cm, boîtes à acheter ; ✦ quatre murs, deux couches, dépense minimale et justification.',
     make: byTier({ classe: peintureClasse, approfondissement: carrelagePlus, expert: peintureExpert }),
   },
   {
     id: 'p-pythagore-echelle-ecran', subject: 'maths', label: 'Problème : l’échelle contre le mur, la diagonale d’un écran',
-    skill: 'm4.pythagore.calcul', skills: ['m4.racines.utiliser', 'm4.cosinus.angle'], levels: ['4e'],
+    skill: 'm4.pythagore.calcul', skills: ['m4.racines.utiliser', 'm4.cosinus.angle'], levels: ['4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Hauteur atteinte par une échelle (Pythagore) ; ◆ diagonale d’un écran, arrondi et conversion en pouces ; ✦ l’échelle est-elle sûre ? (Pythagore et cosinus, justification).',
     make: byTier({ classe: echelleClasse, approfondissement: ecranPlus, expert: echelleExpert }),
   },
   {
     id: 'p-hauteur-par-ombre', subject: 'maths', label: 'Problème : la hauteur d’un arbre ou d’un immeuble par son ombre',
-    skill: 'm4.thales.calcul', skills: ['m4.proportionnalite.quatrieme', 'm5.grandeurs.conversions'], levels: ['4e'],
+    skill: 'm4.thales.calcul', skills: ['m4.proportionnalite.quatrieme', 'm5.grandeurs.conversions'], levels: ['4e', '3e'],
     tracks: ALL_TRACKS,
     description: 'Ombres et hauteurs proportionnelles ; ◆ configuration de Thalès avec une personne et des cm ; ✦ où se placer, ombres qui changent, et pourquoi Thalès s’applique.',
     make: byTier({ classe: ombreClasse, approfondissement: ombrePlus, expert: ombreExpert }),

@@ -1,9 +1,9 @@
 /** Outils communs des niveaux ◆ et ✦ des générateurs de grandeurs et de physique-chimie. */
-import { pick, clean, fr, mc, numeric, text } from './gen-util.js';
+import { pick, clean, fr, mc, numeric, text, roundTo } from './gen-util.js';
 
 export const PRENOMS = ['Léa', 'Hugo', 'Inès', 'Noah', 'Jade', 'Adam', 'Sacha', 'Camille', 'Yanis', 'Lina', 'Maël', 'Zoé', 'Nina', 'Malo', 'Aya', 'Timéo', 'Lou', 'Ilyes'];
 export const prenom = (rand) => pick(rand, PRENOMS);
-export const round = (x, n = 2) => clean(Math.round(x * 10 ** n) / 10 ** n);
+export const round = (x, n = 2) => roundTo(x, n);
 export const isRound = (x, n = 2) => Math.abs(x * 10 ** n - Math.round(x * 10 ** n)) < 1e-6;
 /** Montant en euros : « 12 », « 4,50 ». */
 export const eur = (x) => (Number.isInteger(clean(x)) ? fr(x) : fr(Math.trunc(clean(x))) + clean(x).toFixed(2).slice(-3).replace('.', ','));

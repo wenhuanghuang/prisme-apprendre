@@ -109,7 +109,7 @@
       "prompt": "Ce matin, le thermomètre indiquait {a} °C à Oslo et {b} °C à Helsinki. Quelle est la plus haute de ces deux températures ?",
       "answer": "max(a;b)",
       "misconceptions": [
-        { "answer": "min(a;b)", "id": "mc:comparer-negatifs", "error": "notion", "feedback": "{min(a;b)} est plus loin de zéro que {max(a;b)}… et c'est justement pour cela qu'il est plus PETIT : sur un thermomètre, {min(a;b)} °C est plus bas, donc plus froid. Le raisonnement « {-min(a;b)} > {-max(a;b)}, donc {min(a;b)} > {max(a;b)} » compare les distances à zéro, pas les nombres." }
+        { "answer": "min(a;b)", "id": "mc:comparer-negatifs", "error": "notion", "feedback": "{min(a;b)} est le plus loin de zéro… et c'est justement pour cela qu'il est le plus PETIT des deux : sur un thermomètre, {min(a;b)} °C est plus bas, donc plus froid. Le raisonnement « {-min(a;b)} > {-max(a;b)}, donc {min(a;b)} > {max(a;b)} » compare les distances à zéro, pas les nombres." }
       ],
       "hints": ["Imagine un thermomètre : plus le liquide monte, plus il fait chaud.", "Place {a} et {b} sur une droite graduée : le plus grand est le plus à droite.", "Entre deux nombres négatifs, le plus grand est celui qui est le plus proche de zéro."],
       "solution": "{max(a;b)} est plus proche de zéro que {min(a;b)} : sur la droite graduée, il est à sa droite. Donc $ {min(a;b)} < {max(a;b)} $ et la température la plus haute est {max(a;b)} °C.",
@@ -145,7 +145,7 @@
       "start": "a - b",
       "prompt": "Calcule $ {a} − {b|p} $. Écris d'abord la soustraction sous forme d'addition.",
       "misconceptions": [
-        { "answer": "a + b", "id": "mc:moins-negatif", "error": "notion", "feedback": "soustraire {b|p}, ce n'est pas ajouter {b|p} : c'est ajouter son opposé, {-b}. Donc $ {a} − {b|p} = {a} + {-b} = {a-b} $." }
+        { "answer": "a + b", "id": "mc:moins-negatif", "error": "notion", "feedback": "soustraire {b|p}, ce n'est pas ajouter {b|p} : c'est ajouter son opposé, {-b}. Calcule donc $ {a} + {-b} $." }
       ],
       "hints": ["Soustraire un nombre, c'est ajouter son opposé.", "L'opposé de {b} est {-b}.", "Il reste à calculer $ {a} + {-b} $."],
       "solution": "$ {a} − {b|p} = {a} + {-b} = {a-b} $. Vérification par l'addition : $ {a-b} + {b|p} = {a} $.",
@@ -163,8 +163,8 @@
       "start": "a - b",
       "prompt": "Calcule $ {a} − {b} $.",
       "misconceptions": [
-        { "answer": "a + b", "id": "mc:ecart-distances", "error": "notion", "feedback": "on part de {a} et on retire ENCORE {b} : on descend de {b} sous {a}, le résultat est donc encore plus petit que {a}. $ {a} − {b} = {a} + {-b|p} = {a-b} $." },
-        { "answer": "-a - b", "id": "mc:ecart-distances", "error": "notion", "feedback": "tu as calculé $ {-a} − {b} $ en oubliant le signe de {a}. On part de {a} et on descend encore de {b} : $ {a} − {b} = {a} + {-b|p} = {a-b} $." }
+        { "answer": "a + b", "id": "mc:ecart-distances", "error": "notion", "feedback": "on part de {a} et on retire ENCORE {b} : on descend de {b} sous {a}, le résultat est donc encore plus petit que {a}. $ {a} − {b} = {a} + {-b|p} $." },
+        { "answer": "-a - b", "id": "mc:ecart-distances", "error": "notion", "feedback": "tu as calculé $ {-a} − {b} $ en oubliant le signe de {a}. On part de {a} et on descend encore de {b} : $ {a} − {b} = {a} + {-b|p} $." }
       ],
       "hints": ["Pense à une température de {a} °C qui baisse encore de {b} degrés.", "Soustraire {b}, c'est ajouter {-b} : $ {a} + {-b|p} $.", "Les deux nombres sont négatifs : on ajoute les distances à zéro et on garde le signe −."],
       "solution": "$ {a} − {b} = {a} + {-b|p} = {a-b} $ : partant de {a}, on descend encore de {b}.",
@@ -200,11 +200,11 @@
       "parts": [
         { "type": "numeric", "prompt": "Quel a été l'écart de température dans la journée, en degrés ?", "answer": "h - m",
           "misconceptions": [
-            { "answer": "h + m", "id": "mc:ecart-somme", "error": "notion", "feedback": "L'écart, c'est la plus haute moins la plus basse : $ {h} − {m|p} = {h} + {-m} = {h-m} $. En calculant $ {h} + {m|p} $, tu as oublié que la température est d'abord remontée jusqu'à zéro." },
-            { "answer": "-m - h", "id": "mc:ecart-somme", "error": "notion", "feedback": "Tu as fait la différence des distances à zéro. Mais pour aller de {m} °C à {h} °C, on monte de {-m} degrés jusqu'à zéro, PUIS de {h} degrés : {h-m} degrés en tout." }
+            { "answer": "h + m", "id": "mc:ecart-somme", "error": "notion", "feedback": "L'écart, c'est la plus haute moins la plus basse : $ {h} − {m|p} $, c'est-à-dire $ {h} + {-m} $. En calculant $ {h} + {m|p} $, tu as oublié que la température est d'abord remontée jusqu'à zéro." },
+            { "answer": "-m - h", "id": "mc:ecart-somme", "error": "notion", "feedback": "Tu as fait la différence des distances à zéro. Mais pour aller de {m} °C à {h} °C, on monte de {-m} degrés jusqu'à zéro, PUIS de {h} degrés : ces deux montées s'ajoutent." }
           ] },
         { "type": "numeric", "prompt": "Le lendemain, la température la plus basse est 3 degrés plus basse que la veille, mais l'écart dans la journée est le même. Quelle est la température la plus haute ce jour-là ?", "answer": "h - 3",
-          "misconceptions": [ { "answer": "h + 3", "id": "mc:decalage", "error": "raisonnement", "feedback": "Si la plus basse descend de 3 degrés et que l'écart ne change pas, la plus haute descend AUSSI de 3 degrés : $ {h} − 3 = {h-3} $." } ] }
+          "misconceptions": [ { "answer": "h + 3", "id": "mc:decalage", "error": "raisonnement", "feedback": "Si la plus basse descend de 3 degrés et que l'écart ne change pas, la plus haute descend AUSSI de 3 degrés : elle ne monte pas." } ] }
       ],
       "hints": ["Dessine un thermomètre et places-y les deux températures.", "De {m} à 0, il y a {-m} degrés ; de 0 à {h}, il y a {h} degrés.", "Pour la deuxième question : si les deux températures baissent de 3 degrés, l'écart entre elles ne change pas."],
       "solution": "Écart : $ {h} − {m|p} = {h} + {-m} = {h-m} $ degrés. Le lendemain, la plus basse vaut {m-3} °C ; pour garder un écart de {h-m} degrés, la plus haute vaut $ {m-3} + {h-m} = {h-3} $ °C.",
@@ -228,10 +228,10 @@
       ],
       "cells": {
         "r0c3": { "answer": "-15" },
-        "r1c2": { "answer": "-9", "misconceptions": [ { "answer": "-45", "id": "mc:moins-negatif", "error": "notion", "feedback": "Variation = (18 h) − (6 h) = $ −27 − (−18) $. Soustraire −18, c'est ajouter 18 : $ −27 + 18 = −9 $." } ] },
-        "r2c1": { "answer": "-18", "misconceptions": [ { "answer": "6", "id": "mc:operation-inverse", "error": "methode", "feedback": "Pour remonter le temps, on fait l'opération inverse : la journée a ajouté 12 degrés, donc le matin il faisait $ −6 − 12 = −18 $ °C." } ] },
+        "r1c2": { "answer": "-9", "misconceptions": [ { "answer": "-45", "id": "mc:moins-negatif", "error": "notion", "feedback": "Variation = (18 h) − (6 h) = $ −27 − (−18) $. Soustraire −18, c'est ajouter 18 : calcule $ −27 + 18 $." } ] },
+        "r2c1": { "answer": "-18", "misconceptions": [ { "answer": "6", "id": "mc:operation-inverse", "error": "methode", "feedback": "Pour remonter le temps, on fait l'opération inverse : la journée a ajouté 12 degrés, donc on retire 12 degrés à la température de 18 h : calcule $ −6 − 12 $." } ] },
         "r3c3": { "answer": "-35" },
-        "r4c1": { "answer": "-23", "misconceptions": [ { "answer": "-37", "id": "mc:operation-inverse", "error": "methode", "feedback": "La journée a ajouté −7. Pour retrouver la température du matin, on retire −7, c'est-à-dire qu'on ajoute 7 : $ −30 + 7 = −23 $." } ] }
+        "r4c1": { "answer": "-23", "misconceptions": [ { "answer": "-37", "id": "mc:operation-inverse", "error": "methode", "feedback": "La journée a ajouté −7. Pour retrouver la température du matin, on retire −7, c'est-à-dire qu'on ajoute 7 à −30." } ] }
       },
       "hints": ["Pour chaque ligne : (6 h) + variation = (18 h).", "Variation inconnue : variation = (18 h) − (6 h).", "Température de 6 h inconnue : (6 h) = (18 h) − variation."],
       "solution": "Lundi : $ −23 + 8 = −15 $. Mardi : $ −27 − (−18) = −27 + 18 = −9 $. Mercredi : $ −6 − 12 = −18 $. Jeudi : $ −31 + (−4) = −35 $. Vendredi : $ −30 − (−7) = −30 + 7 = −23 $.",
@@ -246,7 +246,7 @@
       "prompt": "Rappel avec la droite : chaque nombre relatif est un **saut** (vers la droite s'il est positif, vers la gauche s'il est négatif). **Soustraire** un nombre, c'est faire le saut **opposé**. Pars de $−4$ et calcule $ −4 − (−6) $ : quel saut fais-tu, et où arrives-tu ?",
       "activity": { "widget": "numberline-explore", "config": { "min": -12, "max": 12, "start": -4, "moves": [6, -6] } },
       "answer": 2,
-      "misconceptions": [ { "answer": -10, "id": "mc:moins-negatif", "error": "notion", "feedback": "Tu as fait le saut −6 : c'est le calcul $ −4 + (−6) $. Ici on SOUSTRAIT −6 : on fait le saut opposé, +6, et on arrive à 2." } ],
+      "misconceptions": [ { "answer": -10, "id": "mc:moins-negatif", "error": "notion", "feedback": "Tu as fait le saut −6 : c'est le calcul $ −4 + (−6) $. Ici on SOUSTRAIT −6 : on fait le saut opposé, +6." } ],
       "hints": ["Le saut « −6 » va de 6 unités vers la gauche. Toi, tu dois faire le saut opposé.", "L'opposé de −6 est +6 : fais un saut de 6 vers la droite."],
       "solution": "$ −4 − (−6) = −4 + 6 = 2 $. Vérification : $ 2 + (−6) = −4 $.",
       "selfTest": [ { "response": { "value": "2" }, "expect": "correct" }, { "response": { "value": "-10" }, "expect": "mc:moins-negatif" } ]
@@ -259,7 +259,7 @@
         { "type": "numberline", "prompt": "Place le point A d'abscisse $−7$ et le point B d'abscisse $−2$.", "min": -10, "max": 3, "step": 1,
           "points": [ { "label": "A", "value": -7 }, { "label": "B", "value": -2 } ] },
         { "type": "numeric", "prompt": "Lequel de ces deux nombres est le plus grand ? Écris-le.", "answer": -2,
-          "misconceptions": [ { "answer": -7, "id": "mc:comparer-negatifs", "error": "notion", "feedback": "B est à droite de A : $−2$ est donc le plus grand. −7 °C est plus froid que −2 °C. 7 est plus grand que 2, mais $−7$ est plus loin SOUS zéro." } ] }
+          "misconceptions": [ { "answer": -7, "id": "mc:comparer-negatifs", "error": "notion", "feedback": "Sur la droite graduée, le plus grand nombre est le plus à droite : compare les positions de A et de B. 7 est plus grand que 2, mais $−7$ est plus loin SOUS zéro." } ] }
       ],
       "hints": ["Compte les graduations à partir de 0, vers la gauche.", "Le plus grand des deux nombres est celui qui est le plus à droite."],
       "solution": "$ −7 < −2 $ : sur la droite, −2 est à droite de −7. Entre deux nombres négatifs, le plus grand est le plus proche de zéro.",
@@ -276,8 +276,8 @@
       "prompt": "Au jeu de la classe, Hugo est « dans le rouge » : il a {a} points. Il gagne {b} points. Combien de points a-t-il maintenant ?",
       "answer": "a + b",
       "misconceptions": [
-        { "answer": "a - b", "id": "mc:somme-distances", "error": "notion", "feedback": "Hugo GAGNE des points : son score doit monter, pas descendre. Les {b} points gagnés servent d'abord à effacer sa dette de {-a} points : $ {a} + {b} = {a+b} $." },
-        { "answer": "b - a", "id": "mc:somme-distances", "error": "notion", "feedback": "Les {b} points gagnés et la dette de {-a} points ne s'ajoutent pas : ils se compensent. Il faut d'abord rembourser la dette. $ {a} + {b} = {a+b} $." }
+        { "answer": "a - b", "id": "mc:somme-distances", "error": "notion", "feedback": "Hugo GAGNE des points : son score doit monter, pas descendre. Les {b} points gagnés servent d'abord à effacer sa dette de {-a} points." },
+        { "answer": "b - a", "id": "mc:somme-distances", "error": "notion", "feedback": "Les {b} points gagnés et la dette de {-a} points ne s'ajoutent pas : ils se compensent. Il faut d'abord rembourser la dette." }
       ],
       "hints": ["Les points gagnés servent d'abord à revenir à 0.", "Pour revenir à 0, il faut {-a} points.", "Compare {b} et {-a} : reste-t-il des points une fois la dette effacée, ou manque-t-il encore des points ?"],
       "solution": "$ {a} + {b} = {a+b} $ : la dette de {-a} points et le gain de {b} points se compensent en partie.",
@@ -293,6 +293,7 @@
       "params": { "c": { "int": [-9, -1] }, "d": { "int": [3, 9] } },
       "prompt": "Sur une droite graduée, quels nombres sont situés à exactement {d} unités du nombre {c} ? Donne-les tous.",
       "count": 2, "predicate": "abs(v - c) = d", "distinct": true,
+      "correctFeedback": "Exact : ce sont les deux seuls nombres à cette distance, un de chaque côté.",
       "justify": { "required": true, "minWords": 6, "prompt": "Explique pourquoi il n'y en a pas d'autre." },
       "hints": ["Fais un dessin : pars de {c} et avance de {d} unités… dans quel sens ?", "On peut aller vers la droite, mais aussi vers la gauche.", "Calcule $ {c} + {d} $ et $ {c} − {d} $."],
       "solution": "Vers la droite : $ {c} + {d} = {c+d} $. Vers la gauche : $ {c} − {d} = {c-d} $. Il n'y en a pas d'autre : depuis un point de la droite, on ne peut partir que dans deux sens.",
@@ -347,7 +348,7 @@
           "rows": [ ["1", "−6", "?r0c2"], ["?r1c0", "−2", "?r1c2"], ["?r2c0", "?r2c1", "−5"] ],
           "cells": { "r0c2": { "answer": "-1" }, "r1c0": { "answer": "-4" }, "r1c2": { "answer": "0" }, "r2c0": { "answer": "-3" }, "r2c1": { "answer": "2" } } },
         { "type": "numeric", "prompt": "On ajoute le même nombre à chacune des neuf cases et on obtient un nouveau carré magique, dont la somme magique vaut 0. Quel nombre a-t-on ajouté ?", "answer": 2,
-          "misconceptions": [ { "answer": 6, "id": "mc:ajout-somme", "error": "raisonnement", "feedback": "Ajouter un nombre à chaque case l'ajoute 3 fois à chaque somme (une ligne contient 3 cases). Pour passer de −6 à 0, chaque somme doit augmenter de 6 : il faut donc ajouter 2 à chaque case." } ],
+          "misconceptions": [ { "answer": 6, "id": "mc:ajout-somme", "error": "raisonnement", "feedback": "Ajouter un nombre à chaque case l'ajoute 3 fois à chaque somme (une ligne contient 3 cases). Pour passer de −6 à 0, chaque somme doit augmenter de 6 : combien faut-il alors ajouter à chacune des 3 cases d'une ligne ?" } ],
           "justify": { "required": true, "minWords": 8, "prompt": "Explique pourquoi ce nombre convient." } }
       ],
       "hints": ["Une des deux diagonales est entièrement connue : elle donne la somme magique.", "Somme magique : $ 1 + (−2) + (−5) = −6 $. Cherche ensuite une ligne ou une colonne où il ne manque qu'un nombre.", "Première ligne : $ 1 + (−6) + ? = −6 $."],

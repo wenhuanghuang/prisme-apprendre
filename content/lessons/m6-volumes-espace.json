@@ -1,0 +1,1170 @@
+{
+  "id": "m6-volumes-espace",
+  "chapter": "6e-m-volumes-espace",
+  "title": "Volumes et vision dans l’espace : assemblages de cubes",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.volumes.unite", "m6.volumes.comparer", "m6.espace.cubes"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Connaître le centimètre cube, déterminer le volume d'un assemblage en comptant ses cubes (y compris ceux qu'on ne voit pas), comparer des volumes, et voir un assemblage dans l'espace : plan coté, vues de face, de dessus et de côté.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "L'escalier de Sami",
+      "body": "Sami a construit cet escalier avec des cubes de 1 cm d'arête. Sa sœur compte les cubes qu'elle voit : « Il y en a 9. » Sami proteste : « J'en ai utilisé 12 ! »\n\nQui a raison ? Où se cachent les cubes qu'on ne voit pas ?",
+      "figure": {
+        "alt": "Escalier de cubes : trois marches, deux cubes de large.",
+        "w": 232,
+        "h": 281,
+        "frame": { "x": [-3.198, 2.332], "y": [-3.1, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[1.732, -1], [0.866, -1.5], [0.866, -0.5], [1.732, 0]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [0, 1], [0, 2], [-0.866, 2.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [0, -2], [0, -1], [0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-1.732, 0], [-2.598, -0.5], [-1.732, -1], [-0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0, 0], [0.866, 0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, 1], [0.866, 0.5], [0.866, 1.5], [0, 2]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [-1.732, -1], [-0.866, -1.5], [0, -1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 2.5], [0, 2], [0.866, 1.5], [1.732, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 1], [0.866, 0.5], [0.866, 1.5], [1.732, 2]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, -2], [-0.866, -2.5], [-0.866, -1.5], [0, -1]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, -2], [-0.866, -2.5], [-0.866, -1.5], [-1.732, -1]], "fill": "bleu" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧊",
+          "title": "Le centimètre cube",
+          "body": "Le **volume** d'un objet, c'est la place qu'il occupe. L'unité de volume la plus simple : le **centimètre cube**, noté **cm³**. C'est le volume d'un cube de 1 cm d'arête, à peu près la taille d'un dé à jouer.",
+          "figure": {
+            "alt": "Un cube d'arête 1 cm dessiné en perspective.",
+            "w": 313,
+            "h": 259,
+            "frame": { "x": [-2.32, 2.9], "y": [-2.42, 1.9] },
+            "items": [
+              { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0, 0], [0.866, 0.5]], "fill": "vert" },
+              { "type": "text", "x": -0.62, "y": -1.12, "text": "1 cm", "size": "s" },
+              { "type": "text", "x": 0.62, "y": -1.12, "text": "1 cm", "size": "s" },
+              { "type": "text", "x": 1.2, "y": 0, "text": "1 cm", "size": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔢",
+          "title": "Compter tous les cubes",
+          "body": "Volume d'un assemblage de cubes de 1 cm d'arête = **nombre de cubes**, en cm³. Pour n'en oublier aucun, on compte **étage par étage** (ou colonne par colonne), sans oublier les cubes cachés derrière ou en dessous.",
+          "reveal": {
+            "question": "Devine : sur un dessin, voit-on toujours tous les cubes ?",
+            "answer": "Non ! Certains sont cachés derrière ou sous d'autres. Et un cube posé en hauteur repose forcément sur un cube en dessous (ou sur la table)."
+          }
+        },
+        {
+          "emoji": "📦",
+          "title": "Le pavé : couches × nombre de couches",
+          "body": "Un pavé de 4 cubes de long, 3 de large et 2 de haut : une **couche** contient $4 × 3 = 12$ cubes. Il y a 2 couches : $12 × 2 = 24$ cubes. Son volume est 24 cm³.",
+          "figure": {
+            "alt": "Pavé de 4 cubes de long, 3 cubes de large et 2 cubes de haut.",
+            "w": 232,
+            "h": 214,
+            "frame": { "x": [-3.198, 4.064], "y": [-4.1, 2.6] },
+            "items": [
+              { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+              { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+              { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, 1], [0.866, 0.5], [1.732, 0], [2.598, 0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-1.732, 1], [-2.598, 0.5], [-1.732, 0], [-0.866, 0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-2.598, -0.5], [-1.732, -1], [-1.732, 0], [-2.598, 0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[-1.732, -2], [-0.866, -2.5], [-0.866, -1.5], [-1.732, -1]], "fill": "bleu" },
+              { "type": "polygon", "points": [[3.464, -2], [2.598, -2.5], [2.598, -1.5], [3.464, -1]], "fill": "vert" },
+              { "type": "polygon", "points": [[-0.866, 0.5], [-1.732, 0], [-0.866, -0.5], [0, 0]], "fill": "orange" },
+              { "type": "polygon", "points": [[0.866, 0.5], [0, 0], [0.866, -0.5], [1.732, 0]], "fill": "orange" },
+              { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+              { "type": "polygon", "points": [[2.598, 0.5], [1.732, 0], [2.598, -0.5], [3.464, 0]], "fill": "orange" },
+              { "type": "polygon", "points": [[3.464, -1], [2.598, -1.5], [2.598, -0.5], [3.464, 0]], "fill": "vert" },
+              { "type": "polygon", "points": [[2.598, -2.5], [1.732, -3], [1.732, -2], [2.598, -1.5]], "fill": "vert" },
+              { "type": "polygon", "points": [[-0.866, -2.5], [0, -3], [0, -2], [-0.866, -1.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [0, -1], [0.866, -0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+              { "type": "polygon", "points": [[1.732, -3], [0.866, -3.5], [0.866, -2.5], [1.732, -2]], "fill": "vert" },
+              { "type": "polygon", "points": [[0, -3], [0.866, -3.5], [0.866, -2.5], [0, -2]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0.866, -1.5], [1.732, -1]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, -2], [0.866, -2.5], [0.866, -1.5], [1.732, -1]], "fill": "vert" },
+              { "type": "polygon", "points": [[0, -2], [0.866, -2.5], [0.866, -1.5], [0, -1]], "fill": "bleu" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Comparer des volumes",
+          "body": "Deux assemblages qui ont le **même nombre de cubes** ont le **même volume**, même s'ils n'ont pas la même forme. Pour comparer des volumes, on compare des nombres de cubes, pas des longueurs.",
+          "reveal": {
+            "question": "Devine : une tour de 8 cubes et un « serpent » de 8 cubes posé à plat : lequel a le plus grand volume ?",
+            "answer": "Aucun : ils ont le même volume, 8 cm³ ! La tour est plus haute, le serpent plus long, mais ils occupent la même place."
+          }
+        },
+        {
+          "emoji": "👀",
+          "title": "Les vues",
+          "body": "**Vue de face** : ce que tu vois en te plaçant du côté de la flèche. **Vue de dessus** : ce que voit un oiseau. **Vue de droite** : ce que tu vois en te plaçant à droite. Chaque colonne de cubes visible devient un carré ; des cubes alignés l'un derrière l'autre ne font qu'un seul carré.",
+          "figure": {
+            "alt": "Assemblage de six cubes avec une flèche qui indique le côté de face.",
+            "w": 337,
+            "h": 263,
+            "frame": { "x": [-4.818, 3.198], "y": [-3.65, 2.6] },
+            "items": [
+              { "type": "polygon", "points": [[-0.866, 0.5], [0, 0], [0, 1], [-0.866, 1.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, -1], [-0.866, -1.5], [-0.866, -0.5], [0, 0]], "fill": "vert" },
+              { "type": "polygon", "points": [[-0.866, 0.5], [-1.732, 0], [-0.866, -0.5], [0, 0]], "fill": "orange" },
+              { "type": "polygon", "points": [[0, -1], [0.866, -1.5], [0.866, -0.5], [0, 0]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 0], [0.866, -0.5], [0.866, 0.5], [0, 1]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+              { "type": "polygon", "points": [[0.866, -1.5], [1.732, -2], [1.732, -1], [0.866, -0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+              { "type": "arrow", "from": [-3.118, -2.3], "to": [-1.732, -1.5], "color": "rouge" },
+              { "type": "text", "x": -3.268, "y": -2.65, "text": "face", "color": "rouge", "anchor": "end" }
+            ]
+          }
+        },
+        {
+          "emoji": "🗺️",
+          "title": "Le plan coté",
+          "body": "Le **plan coté** est la vue de dessus dans laquelle on écrit, dans chaque case, le **nombre de cubes empilés**. On retrouve le nombre total de cubes en additionnant les nombres. Voici le plan de l'assemblage de la carte précédente : $2 + 2 + 1 + 1 = 6$ cubes.",
+          "figure": {
+            "alt": "Plan coté : au fond 2, 2 et 1 cubes ; devant 1 cube à gauche, rien ailleurs.",
+            "w": 360,
+            "h": 130,
+            "items": [{ "type": "table", "head": ["", "à gauche", "au milieu", "à droite"], "rows": [["au fond", "2", "2", "1"], ["devant", "1", "0", "0"]] }]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : l'escalier de Sami",
+      "steps": [
+        {
+          "text": "On compte étage par étage, en commençant par le bas.",
+          "figure": {
+            "alt": "Escalier de cubes : trois marches, deux cubes de large.",
+            "w": 232,
+            "h": 281,
+            "frame": { "x": [-3.198, 2.332], "y": [-3.1, 3.6] },
+            "items": [
+              { "type": "polygon", "points": [[1.732, -1], [0.866, -1.5], [0.866, -0.5], [1.732, 0]], "fill": "vert" },
+              { "type": "polygon", "points": [[-0.866, 1.5], [0, 1], [0, 2], [-0.866, 2.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+              { "type": "polygon", "points": [[0.866, -1.5], [0, -2], [0, -1], [0.866, -0.5]], "fill": "vert" },
+              { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+              { "type": "polygon", "points": [[-1.732, 0], [-2.598, -0.5], [-1.732, -1], [-0.866, -0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+              { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+              { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0, 0], [0.866, 0.5]], "fill": "vert" },
+              { "type": "polygon", "points": [[0, 1], [0.866, 0.5], [0.866, 1.5], [0, 2]], "fill": "bleu" },
+              { "type": "polygon", "points": [[-0.866, -0.5], [-1.732, -1], [-0.866, -1.5], [0, -1]], "fill": "orange" },
+              { "type": "polygon", "points": [[0.866, 2.5], [0, 2], [0.866, 1.5], [1.732, 2]], "fill": "orange" },
+              { "type": "polygon", "points": [[1.732, 1], [0.866, 0.5], [0.866, 1.5], [1.732, 2]], "fill": "vert" },
+              { "type": "polygon", "points": [[0, -2], [-0.866, -2.5], [-0.866, -1.5], [0, -1]], "fill": "vert" },
+              { "type": "polygon", "points": [[-1.732, -2], [-0.866, -2.5], [-0.866, -1.5], [-1.732, -1]], "fill": "bleu" }
+            ]
+          }
+        },
+        {
+          "text": "Étage du bas : 3 rangées de 2 cubes. Certains sont cachés derrière les cubes de devant, mais ils sont bien là : ils portent les marches du dessus.",
+          "math": "3 × 2 = 6"
+        },
+        { "text": "Deuxième étage : 2 rangées de 2 cubes.", "math": "2 × 2 = 4" },
+        { "text": "Troisième étage : 1 rangée de 2 cubes.", "math": "1 × 2 = 2" },
+        {
+          "text": "Total : 12 cubes de 1 cm³, donc un volume de 12 cm³. Sami avait raison : 3 cubes sont complètement cachés.",
+          "math": "6 + 4 + 2 = 12"
+        },
+        {
+          "text": "Son plan coté le confirme : dans chaque case de la vue de dessus, le nombre de cubes empilés.",
+          "figure": {
+            "alt": "Plan coté de l'escalier : au fond 3 et 3, au milieu 2 et 2, devant 1 et 1.",
+            "w": 300,
+            "h": 150,
+            "items": [
+              {
+                "type": "table",
+                "head": ["", "à gauche", "à droite"],
+                "rows": [["au fond", "3", "3"], ["au milieu", "2", "2"], ["devant", "1", "1"]]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": [
+        "m6-volumes-espace-compter",
+        "m6-volumes-espace-caches",
+        "m6-volumes-espace-pave",
+        "m6-volumes-espace-plan",
+        "m6-volumes-espace-vues",
+        "m6-volumes-espace-comparer"
+      ]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-volumes-espace-methode"] },
+    { "kind": "reinvestissement", "title": "Problème : compléter le grand cube", "exercises": ["m6-volumes-espace-completer"] },
+    {
+      "kind": "mission",
+      "title": "Mission : le château de Lou",
+      "body": "Lou construit un château en cubes de 1 cm d'arête. Elle a dessiné son plan coté. Aide-la à préparer ses cubes et à dessiner les vues pour son carnet.",
+      "exercises": ["m6-volumes-espace-chateau"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Le centimètre cube (cm³) est le volume d'un cube de 1 cm d'arête. Le volume d'un assemblage de tels cubes est leur nombre, en cm³. On compte étage par étage ; pour un pavé : cubes d'une couche × nombre de couches. Même nombre de cubes = même volume, quelle que soit la forme.\n\n- **Oublier les cubes cachés.** Un cube en hauteur repose sur des cubes qu'on ne voit pas.\n- **Compter des faces au lieu de cubes.** Un cube montre jusqu'à trois faces.\n- **Additionner au lieu de multiplier.** Un pavé 4 × 3 × 2 contient 24 cubes, pas 9.\n- **Confondre cm, cm² et cm³.** Longueur, aire et volume sont trois grandeurs différentes.\n- **Compter les cubes sur une vue.** Des cubes alignés l'un derrière l'autre ne font qu'un carré."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des assemblages à compter et des vues à reconnaître dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Relier les centimètres cubes aux millilitres, et chercher tous les pavés que l'on peut construire avec 12 cubes.",
+      "exercises": ["m6-volumes-espace-millilitres", "m6-volumes-espace-pave-12"]
+    },
+    "expert": {
+      "intro": "Facultatif : retrouver un assemblage à partir de deux vues seulement, et le grand cube peint.",
+      "exercises": ["m6-volumes-espace-min-max", "m6-volumes-espace-peinture"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-volumes-espace-compter",
+      "type": "numeric",
+      "skill": "m6.volumes.unite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:compter-dessus", "mc:compter-faces"],
+      "expectedSeconds": 90,
+      "prompt": "Cet assemblage est fait de cubes de 1 cm d'arête. Ici, aucun cube n'est caché. Quel est son volume, en cm³ ? (le nombre seul)",
+      "figure": {
+        "alt": "Assemblage de cubes en forme de L, avec un cube posé sur un autre.",
+        "w": 269,
+        "h": 197,
+        "frame": { "x": [-3.198, 3.198], "y": [-2.6, 2.1] },
+        "items": [
+          { "type": "polygon", "points": [[0, 1], [0.866, 0.5], [0, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, -1], [-0.866, -1.5], [-0.866, -0.5], [0, 0]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, -1], [0.866, -1.5], [0.866, -0.5], [0, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 0.5], [0, 0], [0.866, -0.5], [1.732, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [-0.866, 0.5], [0, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [1.732, -2], [1.732, -1], [0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [-1.732, -2], [-1.732, -1], [-0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, 0], [-2.598, -0.5], [-1.732, -1], [-0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" }
+        ]
+      },
+      "answer": 6,
+      "misconceptions": [
+        {
+          "answer": 5,
+          "id": "mc:compter-dessus",
+          "error": "methode",
+          "feedback": "Tu as compté les faces du dessus. Quand un cube est posé sur un autre, le dessus du cube du bas est caché : compte les cubes eux-mêmes."
+        },
+        {
+          "answer": 13,
+          "id": "mc:compter-faces",
+          "error": "notion",
+          "feedback": "Tu as compté des faces (des carrés colorés). Chaque cube montre jusqu'à trois faces : compte les cubes eux-mêmes."
+        }
+      ],
+      "hints": [
+        "Compte d'abord les cubes posés sur la table.",
+        "Regarde ensuite s'il y a des cubes posés sur d'autres cubes.",
+        "Chaque cube a un volume de 1 cm³."
+      ],
+      "solution": "Sur la table : 5 cubes. Posé sur un autre : 1 cube. En tout : 6 cubes de 1 cm³, donc un volume de 6 cm³.",
+      "selfTest": [{ "response": { "value": "6" }, "expect": "correct" }, { "response": { "value": "5" }, "expect": "mc:compter-dessus" }]
+    },
+    {
+      "id": "m6-volumes-espace-caches",
+      "type": "numeric",
+      "skill": "m6.espace.cubes",
+      "skills": ["m6.volumes.unite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:cubes-caches"],
+      "expectedSeconds": 150,
+      "prompt": "Cette pyramide de cubes est posée dans le coin d'une pièce : elle s'appuie contre les deux murs du fond. Les cubes ne flottent pas : chaque cube repose sur la table ou sur un autre cube. Combien de cubes la pyramide contient-elle ?",
+      "figure": {
+        "alt": "Pyramide de cubes en escalier dans les deux directions, avec un cube au sommet.",
+        "w": 269,
+        "h": 260,
+        "frame": { "x": [-3.198, 3.198], "y": [-2.6, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [-0.866, 0.5], [0, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, 0], [0.866, -0.5], [0.866, 0.5], [0, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [0, -1], [0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [0, 1], [0, 2], [-0.866, 2.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0, 2], [0.866, 2.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [0, -2], [0, -1], [0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [1.732, -2], [1.732, -1], [0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [-1.732, -2], [-1.732, -1], [-0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, 0], [-2.598, -0.5], [-1.732, -1], [-0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" }
+        ]
+      },
+      "answer": 10,
+      "misconceptions": [
+        {
+          "answer": 6,
+          "id": "mc:cubes-caches",
+          "error": "methode",
+          "feedback": "Tu as compté seulement les cubes que tu vois. Les cubes du haut reposent sur des cubes cachés : compte étage par étage."
+        }
+      ],
+      "hints": [
+        "Compte étage par étage, en commençant par le haut.",
+        "En haut : 1 cube. Il repose sur un étage de 3 cubes, qui repose sur l'étage du bas.",
+        "L'étage du bas a la forme d'un escalier de 3 + 2 + 1 cubes."
+      ],
+      "solution": "Étage du haut : 1 cube. Étage du milieu : 2 + 1 = 3 cubes. Étage du bas : 3 + 2 + 1 = 6 cubes. Total : 1 + 3 + 6 = 10 cubes. On n'en voit que 6 : 4 sont cachés à l'intérieur.",
+      "selfTest": [{ "response": { "value": "10" }, "expect": "correct" }, { "response": { "value": "6" }, "expect": "mc:cubes-caches" }]
+    },
+    {
+      "id": "m6-volumes-espace-pave",
+      "type": "composite",
+      "skill": "m6.volumes.unite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:additionner-dimensions", "mc:une-couche"],
+      "expectedSeconds": 240,
+      "params": { "a": { "int": [3, 6] }, "b": { "int": [2, 5] }, "c": { "int": [2, 4] } },
+      "prompt": "Noé construit un pavé plein avec des cubes de 1 cm d'arête : {a} cubes en longueur, {b} cubes en largeur et {c} cubes en hauteur.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de cubes y a-t-il dans une couche ?",
+          "answer": "a*b",
+          "misconceptions": [
+            {
+              "answer": "a + b",
+              "id": "mc:additionner-dimensions",
+              "error": "notion",
+              "feedback": "Une couche est un rectangle de cubes : il y a plusieurs rangées identiques. On n'additionne pas la longueur et la largeur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de cubes y a-t-il dans le pavé ?",
+          "answer": "a*b*c",
+          "misconceptions": [
+            {
+              "answer": "a + b + c",
+              "id": "mc:additionner-dimensions",
+              "error": "notion",
+              "feedback": "Additionner les trois dimensions ne compte pas les cubes : pense aux couches identiques empilées."
+            },
+            { "answer": "a*b", "id": "mc:une-couche", "error": "methode", "feedback": "C'est une seule couche. Combien de couches sont empilées ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Noé ajoute une couche de plus sur le dessus. Quel est le nouveau volume du pavé, en cm³ ?",
+          "answer": "a*b*(c + 1)",
+          "misconceptions": [
+            {
+              "answer": "a*b*c + 1",
+              "id": "mc:une-couche",
+              "error": "methode",
+              "feedback": "Une couche, ce n'est pas un seul cube : elle contient autant de cubes que les autres couches."
+            }
+          ]
+        }
+      ],
+      "hints": ["Une couche : {b} rangées de {a} cubes.", "Le pavé : {c} couches identiques.", "Une couche de plus : le pavé a alors {c+1} couches."],
+      "solution": "Une couche : $ {a} × {b} = {a*b} $ cubes. Le pavé : $ {a*b} × {c} = {a*b*c} $ cubes, donc {a*b*c} cm³. Avec une couche de plus : $ {a*b} × {c+1} = {a*b*(c+1)} $ cm³.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{a*b}" }, { "value": "{a*b*c}" }, { "value": "{a*b*(c+1)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{a+b}" }, { "value": "{a*b*c}" }, { "value": "{a*b*(c+1)}" }] }, "expect": "mc:additionner-dimensions" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-plan",
+      "type": "table",
+      "skill": "m6.espace.cubes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:fond-devant", "mc:cubes-caches"],
+      "expectedSeconds": 240,
+      "prompt": "Cet assemblage a 2 rangées (au fond et devant, du côté de la flèche) de 3 colonnes. Chaque colonne de cubes repose sur la table. Complète son plan coté : le nombre de cubes empilés dans chaque colonne. Puis donne le nombre total de cubes.",
+      "figure": {
+        "alt": "Assemblage de cubes sur deux rangées de trois colonnes, avec une flèche qui indique le côté de face.",
+        "w": 300,
+        "h": 326,
+        "frame": { "x": [-3.952, 3.198], "y": [-4.15, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [-0.866, 0.5], [0, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, 0], [0.866, -0.5], [0.866, 0.5], [0, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [0, -1], [0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [0, 1], [0, 2], [-0.866, 2.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0, 2], [0.866, 2.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0.866, -1.5], [1.732, -1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, -2], [0.866, -2.5], [0.866, -1.5], [1.732, -1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, -2], [0.866, -2.5], [0.866, -1.5], [0, -1]], "fill": "bleu" },
+          { "type": "arrow", "from": [-2.252, -2.8], "to": [-0.866, -2], "color": "rouge" },
+          { "type": "text", "x": -2.402, "y": -3.15, "text": "face", "color": "rouge", "anchor": "end" }
+        ]
+      },
+      "columns": ["", "à gauche", "au milieu", "à droite"],
+      "rows": [["Rangée du fond", "?r0c1", "?r0c2", "?r0c3"], ["Rangée de devant", "?r1c1", "?r1c2", "?r1c3"], ["Nombre total de cubes", "?r2c1", "", ""]],
+      "cells": {
+        "r0c1": {
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:fond-devant",
+              "error": "lecture",
+              "feedback": "As-tu inversé les deux rangées ? La rangée de devant est du côté de la flèche."
+            }
+          ]
+        },
+        "r0c2": { "answer": 2 },
+        "r0c3": { "answer": 1 },
+        "r1c1": {
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:fond-devant",
+              "error": "lecture",
+              "feedback": "As-tu inversé les deux rangées ? La rangée de devant est du côté de la flèche."
+            }
+          ]
+        },
+        "r1c2": { "answer": 1 },
+        "r1c3": { "answer": 1 },
+        "r2c1": {
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 7,
+              "id": "mc:cubes-caches",
+              "error": "methode",
+              "feedback": "Tu as compté les cubes visibles. Additionne plutôt les nombres de ton plan coté : il compte aussi les cubes cachés."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Place-toi du côté de la flèche : la rangée de devant est la plus proche de toi.",
+        "Pour chaque colonne, compte les étages jusqu'à son dessus orange.",
+        "Le total est la somme des six nombres du plan."
+      ],
+      "solution": "Rangée du fond : 3, 2, 1. Rangée de devant : 2, 1, 1. Total : $3 + 2 + 1 + 2 + 1 + 1 = 10$ cubes, alors qu'on n'en voit que 7.",
+      "selfTest": [
+        {
+          "response": { "cells": { "r0c1": "3", "r0c2": "2", "r0c3": "1", "r1c1": "2", "r1c2": "1", "r1c3": "1", "r2c1": "10" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "cells": { "r0c1": "3", "r0c2": "2", "r0c3": "1", "r1c1": "2", "r1c2": "1", "r1c3": "1", "r2c1": "7" } },
+          "expect": "mc:cubes-caches"
+        }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-vues",
+      "type": "composite",
+      "skill": "m6.espace.cubes",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:gauche-droite", "mc:vue-confondue"],
+      "expectedSeconds": 240,
+      "prompt": "Observe l'assemblage. Parmi les vues numérotées, retrouve sa vue de face (côté flèche), sa vue de dessus et sa vue de droite. Attention : une des quatre vues est un piège.",
+      "figure": {
+        "alt": "À gauche, un assemblage de cubes avec une flèche qui indique le côté de face. À droite, quatre vues numérotées de 1 à 4.",
+        "w": 600,
+        "h": 300,
+        "frame": { "x": [-4.818, 11.198], "y": [-4, 3.7] },
+        "items": [
+          { "type": "polygon", "points": [[-0.866, 0.5], [0, 0], [0, 1], [-0.866, 1.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, -1], [-0.866, -1.5], [-0.866, -0.5], [0, 0]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, 0.5], [-1.732, 0], [-0.866, -0.5], [0, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, -1], [0.866, -1.5], [0.866, -0.5], [0, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [0.866, -0.5], [0.866, 0.5], [0, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [1.732, -2], [1.732, -1], [0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "arrow", "from": [-3.118, -2.3], "to": [-1.732, -1.5], "color": "rouge" },
+          { "type": "text", "x": -3.268, "y": -2.65, "text": "face", "color": "rouge", "anchor": "end" },
+          { "type": "rect", "x": 5.598, "y": 1.3, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 5.598, "y": 2.1, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 4.798, "y": 1.3, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 4.798, "y": 2.1, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 3.998, "y": 1.3, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "text", "x": 5.198, "y": 0.85, "text": "Vue 1", "size": "s", "bold": true },
+          { "type": "rect", "x": 8.198, "y": 2.1, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 8.998, "y": 2.1, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 9.798, "y": 2.1, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 8.198, "y": 1.3, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "text", "x": 9.398, "y": 0.85, "text": "Vue 2", "size": "s", "bold": true },
+          { "type": "rect", "x": 3.998, "y": -2.6, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 3.998, "y": -1.8, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 4.798, "y": -2.6, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 4.798, "y": -1.8, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 5.598, "y": -2.6, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "text", "x": 5.198, "y": -3.05, "text": "Vue 3", "size": "s", "bold": true },
+          { "type": "rect", "x": 8.198, "y": -2.6, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 8.998, "y": -2.6, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "rect", "x": 8.998, "y": -1.8, "w": 0.8, "h": 0.8, "fill": "gris" },
+          { "type": "text", "x": 9.398, "y": -3.05, "text": "Vue 4", "size": "s", "bold": true }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le numéro de la vue de face ?",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:gauche-droite",
+              "error": "lecture",
+              "feedback": "Cette vue est retournée : la gauche et la droite sont inversées. Place-toi du côté de la flèche : de quel côté sont les colonnes les plus hautes ?"
+            },
+            {
+              "answer": 4,
+              "id": "mc:vue-confondue",
+              "error": "lecture",
+              "feedback": "Cette vue correspond à un autre côté de l'assemblage. Combien de colonnes vois-tu en te plaçant du côté de la flèche ?"
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Quel est le numéro de la vue de dessus ?", "answer": 2 },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le numéro de la vue de droite ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:vue-confondue",
+              "error": "lecture",
+              "feedback": "Cette vue montre trois colonnes : c'est ce que l'on voit d'un autre côté. Combien de rangées vois-tu en te plaçant à droite ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "De face, tu vois les 3 colonnes de la rangée du fond, l'une à côté de l'autre.",
+        "De dessus, chaque colonne donne un carré, quelle que soit sa hauteur.",
+        "De droite, tu ne vois que 2 rangées : celle de devant (à ta gauche) et celle du fond (à ta droite)."
+      ],
+      "solution": "Vue de face : vue 3 (deux colonnes de 2 cubes à gauche, une de 1 cube à droite). Vue de dessus : vue 2 (la rangée du fond de 3 carrés, et 1 carré devant à gauche). Vue de droite : vue 4 (1 carré pour la rangée de devant, 2 carrés empilés pour celle du fond). La vue 1 est la vue de face retournée : c'est le piège.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3" }, { "value": "2" }, { "value": "4" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "1" }, { "value": "2" }, { "value": "4" }] }, "expect": "mc:gauche-droite" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-comparer",
+      "type": "order",
+      "skill": "m6.volumes.comparer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:longueur-volume"],
+      "expectedSeconds": 240,
+      "prompt": "Tous ces objets sont faits de cubes de 1 cm d'arête, sans trou. Range-les du plus petit volume au plus grand.",
+      "orderLabel": "Du plus petit volume au plus grand",
+      "errorType": "notion",
+      "items": [
+        { "id": "B", "label": "B : un pavé de 2 cubes de long, 2 de large et 2 de haut" },
+        { "id": "A", "label": "A : une tour de 9 cubes empilés" },
+        { "id": "C", "label": "C : une rangée de 10 cubes alignés" },
+        { "id": "D", "label": "D : un pavé de 3 cubes de long, 2 de large et 2 de haut" },
+        { "id": "E", "label": "E : un grand cube de 3 cm d'arête" }
+      ],
+      "hints": [
+        "Calcule le nombre de cubes de chaque objet.",
+        "Pour un pavé : cubes d'une couche × nombre de couches.",
+        "Un cube de 3 cm d'arête : 3 couches de 3 × 3 cubes."
+      ],
+      "solution": "B : $2 × 2 × 2 = 8$ cm³. A : 9 cm³. C : 10 cm³. D : $3 × 2 × 2 = 12$ cm³. E : $3 × 3 × 3 = 27$ cm³. Ordre : B, A, C, D, E. La rangée C est la plus longue, mais ce n'est pas elle qui a le plus grand volume !",
+      "selfTest": [
+        { "response": { "order": ["B", "A", "C", "D", "E"] }, "expect": "correct" },
+        { "response": { "order": ["B", "E", "A", "C", "D"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-methode",
+      "type": "open",
+      "skill": "m6.espace.cubes",
+      "skills": ["m6.volumes.unite"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:cubes-caches"],
+      "expectedSeconds": 360,
+      "minWords": 30,
+      "prompt": "Pour cet assemblage, Sami annonce : « 6 cubes, donc 6 cm³. » Chaque colonne de cubes repose sur la table. Explique à Sami pourquoi il se trompe, puis décris une méthode sûre pour compter tous les cubes, et donne le bon volume.",
+      "figure": {
+        "alt": "Assemblage de cubes sur deux rangées, plus haut au fond et à gauche.",
+        "w": 232,
+        "h": 218,
+        "frame": { "x": [-2.332, 3.198], "y": [-2.6, 2.6] },
+        "items": [
+          { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [-0.866, 0.5], [0, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, 0], [0.866, -0.5], [0.866, 0.5], [0, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 0], [-0.866, -0.5], [0, -1], [0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [0, -2], [0, -1], [0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [1.732, -2], [1.732, -1], [0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [1.732, -1], [2.598, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "J'explique que des cubes sont cachés (derrière ou sous d'autres cubes)",
+          "keywords": [["cache", "derriere", "en dessous", "on ne voit pas", "invisible"]]
+        },
+        {
+          "id": "c2",
+          "label": "Je décris une méthode : étage par étage, ou colonne par colonne (plan coté)",
+          "keywords": [["etage", "colonne", "plan", "couche", "rangee"]]
+        },
+        { "id": "c3", "label": "Je donne le bon volume : 8 cm³", "keywords": [["8"]] }
+      ],
+      "models": [
+        "Sami a compté seulement les cubes qu'il voit, mais certains sont cachés derrière ou en dessous. Je compte colonne par colonne : au fond, 2, 2 et 1 cubes ; devant, 2 et 1 cubes. Cela fait 2 + 2 + 1 + 2 + 1 = 8 cubes, donc 8 cm³.",
+        "Je compte étage par étage. En bas, il y a 5 cubes (3 au fond, 2 devant), même si on ne les voit pas tous. Au-dessus, 3 cubes. En tout 8 cubes, soit 8 cm³. Sami a oublié les cubes cachés."
+      ],
+      "hints": [
+        "Un cube posé en hauteur repose sur un cube en dessous : le vois-tu toujours ?",
+        "Essaie de compter colonne par colonne, comme pour un plan coté."
+      ],
+      "solution": "Sami a oublié des cubes cachés. Colonne par colonne (plan coté) : au fond 2, 2 et 1 ; devant 2 et 1. Total : 8 cubes, soit 8 cm³. Autre méthode : étage par étage, 5 cubes en bas et 3 au-dessus.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Il y a des cubes cachés derrière. Je compte colonne par colonne : 2 + 2 + 1 + 2 + 1 = 8 cubes, donc 8 cm³.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        },
+        { "response": { "text": "Il a raison." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-completer",
+      "type": "numeric",
+      "skill": "m6.espace.cubes",
+      "skills": ["m6.volumes.unite"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:cubes-caches", "mc:compte-au-lieu-manque"],
+      "expectedSeconds": 300,
+      "prompt": "Lina veut obtenir un grand cube de 3 cubes de long, 3 de large et 3 de haut. Elle a déjà posé cet escalier, qui s'appuie contre le fond. Combien de cubes doit-elle encore ajouter ?",
+      "figure": {
+        "alt": "Escalier de cubes de trois marches et de trois cubes de large.",
+        "w": 269,
+        "h": 302,
+        "frame": { "x": [-3.198, 3.198], "y": [-3.6, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[-0.866, 1.5], [0, 1], [0, 2], [-0.866, 2.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-1.732, 0], [-2.598, -0.5], [-1.732, -1], [-0.866, -0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 1], [0.866, 0.5], [0.866, 1.5], [0, 2]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [-1.732, -1], [-0.866, -1.5], [0, -1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 2.5], [0, 2], [0.866, 1.5], [1.732, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -0.5], [1.732, -1], [1.732, 0], [2.598, 0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[1.732, -2], [0.866, -2.5], [0.866, -1.5], [1.732, -1]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, -2], [-0.866, -2.5], [-0.866, -1.5], [-1.732, -1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, -1], [0.866, -1.5], [0.866, -0.5], [0, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 0.5], [0, 0], [0.866, -0.5], [1.732, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, -1], [0.866, -1.5], [0.866, -0.5], [1.732, 0]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, 0.5], [1.732, 0], [1.732, 1], [0.866, 1.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, -1], [-0.866, -1.5], [0, -2], [0.866, -1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 2], [0.866, 1.5], [1.732, 1], [2.598, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, 0.5], [1.732, 0], [1.732, 1], [2.598, 1.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -2.5], [0, -3], [0, -2], [0.866, -1.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-0.866, -2.5], [0, -3], [0, -2], [-0.866, -1.5]], "fill": "bleu" }
+        ]
+      },
+      "answer": 9,
+      "misconceptions": [
+        {
+          "answer": 18,
+          "id": "mc:compte-au-lieu-manque",
+          "error": "lecture",
+          "feedback": "C'est le nombre de cubes déjà posés. La question demande combien il en manque pour faire le grand cube."
+        },
+        {
+          "answer": 15,
+          "id": "mc:cubes-caches",
+          "error": "methode",
+          "feedback": "Tu as compté seulement les cubes visibles de l'escalier. Compte-le étage par étage : certains cubes sont cachés."
+        }
+      ],
+      "hints": [
+        "Combien de cubes contient le grand cube complet ? Pense aux couches.",
+        "Compte l'escalier étage par étage : chaque étage est fait de rangées de 3 cubes.",
+        "Il manque : cubes du grand cube − cubes déjà posés."
+      ],
+      "solution": "Grand cube : $3 × 3 × 3 = 27$ cubes. Escalier : en bas 3 rangées de 3 (9), au milieu 2 rangées de 3 (6), en haut 1 rangée de 3 (3), soit 18 cubes. Il manque $27 − 18 = 9$ cubes.",
+      "selfTest": [{ "response": { "value": "9" }, "expect": "correct" }, { "response": { "value": "18" }, "expect": "mc:compte-au-lieu-manque" }]
+    },
+    {
+      "id": "m6-volumes-espace-chateau",
+      "type": "composite",
+      "skill": "m6.espace.cubes",
+      "skills": ["m6.volumes.unite"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:cubes-au-lieu-carres", "mc:cubes-caches"],
+      "expectedSeconds": 480,
+      "params": { "a": { "int": [3, 5] }, "b": { "int": [3, 5] }, "c": { "int": [3, 5] } },
+      "prompt": "Voici le plan coté du château de Lou : dans chaque case de la vue de dessus, le nombre de cubes empilés. Le côté de face est en bas du plan (rangée « devant »). Lou a une boîte de 40 cubes.",
+      "figure": {
+        "alt": "Plan coté du château : trois rangées de trois colonnes de cubes, plus hautes au fond.",
+        "w": 360,
+        "h": 130,
+        "items": [
+          {
+            "type": "table",
+            "head": ["", "à gauche", "au milieu", "à droite"],
+            "rows": [["au fond", "{a}", "{b}", "{c}"], ["au milieu", "{a-1}", "{b-1}", "{c-1}"], ["devant", "1", "1", "1"]]
+          }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de cubes faut-il pour construire le château ?", "answer": "2*(a + b + c)" },
+        {
+          "type": "numeric",
+          "prompt": "Combien de carrés compte la vue de dessus du château ?",
+          "answer": 9,
+          "misconceptions": [
+            {
+              "answer": "2*(a + b + c)",
+              "id": "mc:cubes-au-lieu-carres",
+              "error": "notion",
+              "feedback": "Tu as compté tous les cubes. Vue de dessus, une colonne de cubes empilés ne fait qu'un seul carré."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de carrés compte la vue de face ? (dans chaque colonne, la tour la plus haute cache les autres)",
+          "answer": "a + b + c",
+          "misconceptions": [
+            {
+              "answer": "2*(a + b + c)",
+              "id": "mc:cubes-au-lieu-carres",
+              "error": "notion",
+              "feedback": "Tu as compté tous les cubes. De face, les cubes alignés l'un derrière l'autre ne font qu'un seul carré."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien de cubes restera-t-il dans la boîte de Lou ?", "answer": "40 - 2*(a + b + c)" }
+      ],
+      "hints": [
+        "Additionne les neuf nombres du plan.",
+        "Vue de dessus : un carré par case du plan qui contient au moins un cube.",
+        "Vue de face : pour chaque colonne (à gauche, au milieu, à droite), garde seulement la hauteur la plus grande."
+      ],
+      "solution": "Cubes : $ {a} + {b} + {c} + {a-1} + {b-1} + {c-1} + 1 + 1 + 1 = {2*(a+b+c)} $. Vue de dessus : 9 carrés (une case = un carré). Vue de face : dans chaque colonne, la tour du fond est la plus haute : $ {a} + {b} + {c} = {a+b+c} $ carrés. Reste dans la boîte : $ 40 − {2*(a+b+c)} = {40-2*(a+b+c)} $ cubes.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "{2*(a+b+c)}" }, { "value": "9" }, { "value": "{a+b+c}" }, { "value": "{40-2*(a+b+c)}" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{2*(a+b+c)}" }, { "value": "{2*(a+b+c)}" }, { "value": "{a+b+c}" }, { "value": "{40-2*(a+b+c)}" }] },
+          "expect": "mc:cubes-au-lieu-carres"
+        }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-remed-couches",
+      "type": "numeric",
+      "skill": "m6.volumes.unite",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:cubes-caches"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : on compte couche par couche. La couche du dessus se voit en entier : compte ses cubes. La couche du dessous a exactement la même forme. Combien de cubes ce pavé contient-il ?",
+      "figure": {
+        "alt": "Pavé de 3 cubes de long, 2 de large et 2 de haut.",
+        "w": 232,
+        "h": 239,
+        "frame": { "x": [-2.332, 3.198], "y": [-3.1, 2.6] },
+        "items": [
+          { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 1], [0.866, 0.5], [1.732, 0], [2.598, 0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -0.5], [1.732, -1], [1.732, 0], [2.598, 0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[1.732, -2], [0.866, -2.5], [0.866, -1.5], [1.732, -1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0, -2], [0.866, -2.5], [0.866, -1.5], [0, -1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, -1], [0.866, -1.5], [0.866, -0.5], [0, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, 0.5], [0, 0], [0.866, -0.5], [1.732, 0]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, -1], [0.866, -1.5], [0.866, -0.5], [1.732, 0]], "fill": "vert" }
+        ]
+      },
+      "answer": 12,
+      "misconceptions": [
+        {
+          "answer": 10,
+          "id": "mc:cubes-caches",
+          "error": "methode",
+          "feedback": "Tu as compté les cubes visibles. Compte la couche du dessus, puis multiplie par le nombre de couches."
+        }
+      ],
+      "hints": ["La couche du dessus : 2 rangées de 3 cubes.", "Il y a 2 couches identiques."],
+      "solution": "Couche du dessus : $2 × 3 = 6$ cubes. Deux couches : $6 × 2 = 12$ cubes.",
+      "selfTest": [{ "response": { "value": "12" }, "expect": "correct" }, { "response": { "value": "10" }, "expect": "mc:cubes-caches" }]
+    },
+    {
+      "id": "m6-volumes-espace-remed-unites",
+      "type": "categorize",
+      "skill": "m6.volumes.comparer",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:aire-volume"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : une **longueur** se mesure le long d'une ligne (cm), une **aire** sur une surface (cm²), un **volume** dans tout l'espace occupé (cm³). Range chaque mesure.",
+      "categories": [{ "id": "longueur", "label": "Longueur (cm)" }, { "id": "aire", "label": "Aire (cm²)" }, { "id": "volume", "label": "Volume (cm³)" }],
+      "items": [
+        { "id": "i1", "label": "La hauteur d'une boîte", "category": "longueur" },
+        { "id": "i2", "label": "La place occupée par une boîte", "category": "volume" },
+        { "id": "i3", "label": "La surface du couvercle d'une boîte", "category": "aire" },
+        { "id": "i4", "label": "Le tour d'une table", "category": "longueur" },
+        { "id": "i5", "label": "La quantité de sable pour remplir un bac", "category": "volume" },
+        { "id": "i6", "label": "La surface d'un mur à peindre", "category": "aire" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i2",
+          "category": "aire",
+          "id": "mc:aire-volume",
+          "error": "notion",
+          "feedback": "La place occupée par une boîte se mesure dans tout l'espace (longueur, largeur et hauteur), pas seulement sur une surface."
+        }
+      ],
+      "hints": ["Une ligne : longueur. Une surface plate : aire.", "Ce qui remplit un espace (une boîte, un bac) : volume."],
+      "solution": "Longueurs : la hauteur de la boîte, le tour de la table. Aires : la surface du couvercle, la surface du mur. Volumes : la place occupée par la boîte, le sable du bac.",
+      "selfTest": [
+        {
+          "response": { "assign": { "i1": "longueur", "i2": "volume", "i3": "aire", "i4": "longueur", "i5": "volume", "i6": "aire" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "i1": "longueur", "i2": "aire", "i3": "aire", "i4": "longueur", "i5": "volume", "i6": "aire" } },
+          "expect": "mc:aire-volume"
+        }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-millilitres",
+      "type": "composite",
+      "skill": "m6.volumes.unite",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:conversion-litre"],
+      "expectedSeconds": 300,
+      "params": { "a": { "choice": [20, 30, 40] }, "b": { "choice": [10, 20] }, "c": { "choice": [10, 15, 20] } },
+      "prompt": "Le savais-tu ? Un cube de 1 cm d'arête contient exactement **1 mL** d'eau. Le petit aquarium de la classe a la forme d'un pavé : à l'intérieur, il mesure {a} cm de long, {b} cm de large et {c} cm de haut.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de cubes de 1 cm d'arête faudrait-il pour remplir l'aquarium ?", "answer": "a*b*c" },
+        { "type": "numeric", "prompt": "Combien de millilitres d'eau contient l'aquarium plein ?", "answer": "a*b*c" },
+        {
+          "type": "numeric",
+          "prompt": "Combien de litres cela fait-il ? (1 L = 1 000 mL)",
+          "answer": "a*b*c/1000",
+          "misconceptions": [
+            {
+              "answer": "a*b*c/100",
+              "id": "mc:conversion-litre",
+              "error": "unite",
+              "feedback": "Vérifie la conversion : combien de millilitres y a-t-il dans un litre ?"
+            }
+          ]
+        }
+      ],
+      "hints": ["Une couche du fond : {a} × {b} cubes.", "Il y a {c} couches. Chaque cube contient 1 mL.", "Pour passer des mL aux L, on divise par 1 000."],
+      "solution": "Une couche : $ {a} × {b} = {a*b} $ cubes ; {c} couches : $ {a*b} × {c} = {a*b*c} $ cubes, soit {a*b*c} cm³. L'aquarium contient donc {a*b*c} mL, c'est-à-dire $ {a*b*c} ÷ 1 000 = {a*b*c/1000} $ L.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{a*b*c}" }, { "value": "{a*b*c}" }, { "value": "{a*b*c/1000}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{a*b*c}" }, { "value": "{a*b*c}" }, { "value": "{a*b*c/100}" }] }, "expect": "mc:conversion-litre" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-pave-12",
+      "type": "numeric",
+      "skill": "m6.volumes.comparer",
+      "skills": ["m6.volumes.unite"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-barre"],
+      "expectedSeconds": 300,
+      "prompt": "Avec exactement 12 cubes, on veut construire un pavé plein (sans trou). Combien de pavés de formes différentes peut-on construire ?\n\nDeux pavés qui ne diffèrent que par la façon dont ils sont posés (couché ou debout) comptent pour un seul.",
+      "answer": 4,
+      "misconceptions": [
+        {
+          "answer": 3,
+          "id": "mc:oubli-barre",
+          "error": "raisonnement",
+          "feedback": "Ta liste n'est pas complète. As-tu pensé aux pavés très fins, d'un seul cube de large et d'un seul cube de haut ?"
+        }
+      ],
+      "hints": [
+        "Cherche trois nombres dont le produit fait 12 : longueur × largeur × hauteur.",
+        "Range-les du plus petit au plus grand pour ne pas compter deux fois le même pavé : 1 × 1 × 12, 1 × 2 × 6…",
+        "N'oublie pas les pavés qui ont deux dimensions plus grandes que 1."
+      ],
+      "solution": "Les pavés de 12 cubes : $1 × 1 × 12$ (une barre), $1 × 2 × 6$, $1 × 3 × 4$ et $2 × 2 × 3$. Il y en a 4. Ils ont tous le même volume, 12 cm³, mais des formes différentes.",
+      "selfTest": [{ "response": { "value": "4" }, "expect": "correct" }, { "response": { "value": "3" }, "expect": "mc:oubli-barre" }]
+    },
+    {
+      "id": "m6-volumes-espace-min-max",
+      "type": "composite",
+      "skill": "m6.espace.cubes",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:max-min"],
+      "expectedSeconds": 480,
+      "prompt": "Un assemblage de cubes posés sur la table a cette vue de face et cette vue de dessus. On ne connaît pas sa vue de droite, et plusieurs assemblages sont possibles !",
+      "figure": {
+        "alt": "Vue de face : trois colonnes de hauteurs 3, 1 et 2. Vue de dessus : un rectangle de 2 rangées de 3 carrés.",
+        "w": 440,
+        "h": 220,
+        "frame": { "x": [-0.6, 8.6], "y": [-1.2, 3.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 0, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 0, "y": 2, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 1, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 5, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 6, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 7, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 5, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 6, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 7, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "text", "x": 1.5, "y": -0.6, "text": "Vue de face", "size": "s", "bold": true },
+          { "type": "text", "x": 6.5, "y": -0.6, "text": "Vue de dessus", "size": "s", "bold": true },
+          { "type": "text", "x": 6.5, "y": 2.5, "text": "(le côté de face est en bas)", "size": "s" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le plus grand nombre de cubes possible ?", "answer": 12 },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus petit nombre de cubes possible ?",
+          "answer": 9,
+          "misconceptions": [
+            {
+              "answer": 6,
+              "id": "mc:max-min",
+              "error": "raisonnement",
+              "feedback": "Avec si peu de cubes, la vue de face ne serait pas respectée : dans chaque colonne, au moins une tour doit atteindre la hauteur vue de face."
+            },
+            {
+              "answer": 12,
+              "id": "mc:max-min",
+              "error": "raisonnement",
+              "feedback": "C'est le plus grand nombre possible. Peut-on raccourcir certaines tours sans changer les deux vues ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "La vue de dessus dit que chacune des 6 cases a au moins un cube.",
+        "Dans chaque colonne (à gauche, au milieu, à droite), il y a deux tours : une au fond, une devant. La plus haute des deux a la hauteur de la vue de face.",
+        "Le maximum : les deux tours à la hauteur de la vue de face. Le minimum : une tour à cette hauteur, l'autre réduite à 1 cube."
+      ],
+      "solution": "Vue de dessus : 2 rangées de 3 cases, toutes occupées. Vue de face : colonnes de hauteurs 3, 1 et 2. Maximum : chaque tour a la hauteur de sa colonne : $2 × (3 + 1 + 2) = 12$ cubes. Minimum : dans chaque colonne, une tour à la bonne hauteur et l'autre d'un seul cube : $(3 + 1) + (1 + 1) + (2 + 1) = 9$ cubes.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "12" }, { "value": "9" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "12" }, { "value": "6" }] }, "expect": "mc:max-min" }
+      ]
+    },
+    {
+      "id": "m6-volumes-espace-peinture",
+      "type": "table",
+      "skill": "m6.espace.cubes",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:centre-oublie"],
+      "expectedSeconds": 480,
+      "prompt": "On assemble 27 petits cubes blancs pour former un grand cube de 3 cubes d'arête. On plonge le grand cube dans la peinture rouge : toutes ses faces extérieures sont peintes, y compris celle du dessous. Puis on le démonte. Complète le tableau : combien de petits cubes ont 3 faces peintes, 2 faces, 1 face, aucune face ?",
+      "figure": {
+        "alt": "Grand cube formé de 3 × 3 × 3 petits cubes.",
+        "w": 217,
+        "h": 245,
+        "frame": { "x": [-3.198, 3.198], "y": [-3.6, 3.6] },
+        "items": [
+          { "type": "polygon", "points": [[0, 3], [-0.866, 2.5], [0, 2], [0.866, 2.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -1.5], [1.732, -2], [1.732, -1], [2.598, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-2.598, -1.5], [-1.732, -2], [-1.732, -1], [-2.598, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, 2.5], [-1.732, 2], [-0.866, 1.5], [0, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 2.5], [0, 2], [0.866, 1.5], [1.732, 2]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, -0.5], [1.732, -1], [1.732, 0], [2.598, 0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[1.732, -2], [0.866, -2.5], [0.866, -1.5], [1.732, -1]], "fill": "vert" },
+          { "type": "polygon", "points": [[-2.598, -0.5], [-1.732, -1], [-1.732, 0], [-2.598, 0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-1.732, -2], [-0.866, -2.5], [-0.866, -1.5], [-1.732, -1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 2], [-0.866, 1.5], [0, 1], [0.866, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, -1], [0.866, -1.5], [0.866, -0.5], [1.732, 0]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, -1], [-0.866, -1.5], [-0.866, -0.5], [-1.732, 0]], "fill": "bleu" },
+          { "type": "polygon", "points": [[1.732, 2], [0.866, 1.5], [1.732, 1], [2.598, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[2.598, 0.5], [1.732, 0], [1.732, 1], [2.598, 1.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, 2], [-2.598, 1.5], [-1.732, 1], [-0.866, 1.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, -2.5], [0, -3], [0, -2], [0.866, -1.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-2.598, 0.5], [-1.732, 0], [-1.732, 1], [-2.598, 1.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -2.5], [0, -3], [0, -2], [-0.866, -1.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, 1.5], [-1.732, 1], [-0.866, 0.5], [0, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[0.866, 1.5], [0, 1], [0.866, 0.5], [1.732, 1]], "fill": "orange" },
+          { "type": "polygon", "points": [[1.732, 0], [0.866, -0.5], [0.866, 0.5], [1.732, 1]], "fill": "vert" },
+          { "type": "polygon", "points": [[0.866, -1.5], [0, -2], [0, -1], [0.866, -0.5]], "fill": "vert" },
+          { "type": "polygon", "points": [[-1.732, 0], [-0.866, -0.5], [-0.866, 0.5], [-1.732, 1]], "fill": "bleu" },
+          { "type": "polygon", "points": [[-0.866, -1.5], [0, -2], [0, -1], [-0.866, -0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0, 1], [-0.866, 0.5], [0, 0], [0.866, 0.5]], "fill": "orange" },
+          { "type": "polygon", "points": [[-0.866, -0.5], [0, -1], [0, 0], [-0.866, 0.5]], "fill": "bleu" },
+          { "type": "polygon", "points": [[0.866, -0.5], [0, -1], [0, 0], [0.866, 0.5]], "fill": "vert" }
+        ]
+      },
+      "columns": ["Faces peintes", "3 faces", "2 faces", "1 face", "aucune", "Total"],
+      "rows": [["Petits cubes", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"]],
+      "cells": {
+        "r0c1": { "answer": 8 },
+        "r0c2": { "answer": 12 },
+        "r0c3": { "answer": 6 },
+        "r0c4": {
+          "answer": 1,
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:centre-oublie",
+              "error": "raisonnement",
+              "feedback": "As-tu pensé au cube du centre, complètement entouré par les autres ? Vérifie avec le total."
+            }
+          ]
+        },
+        "r0c5": { "answer": 27 }
+      },
+      "hints": [
+        "Les cubes des coins ont 3 faces peintes. Combien le grand cube a-t-il de coins ?",
+        "Les cubes au milieu d'une arête ont 2 faces peintes : un par arête. Les cubes au centre d'une face ont 1 face peinte.",
+        "Le total doit faire 27 : un cube est caché au cœur du grand cube."
+      ],
+      "solution": "3 faces : les 8 coins. 2 faces : le cube du milieu de chacune des 12 arêtes. 1 face : le cube du centre de chacune des 6 faces. Aucune face : le cube du cœur, 1. Contrôle : $8 + 12 + 6 + 1 = 27$ ✓.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "8", "r0c2": "12", "r0c3": "6", "r0c4": "1", "r0c5": "27" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "8", "r0c2": "12", "r0c3": "6", "r0c4": "0", "r0c5": "27" } }, "expect": "mc:centre-oublie" }
+      ]
+    }
+  ]
+}

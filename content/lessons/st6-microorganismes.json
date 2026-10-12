@@ -1,0 +1,3411 @@
+{
+  "id": "st6-microorganismes",
+  "chapter": "6e-st-microorganismes",
+  "title": "Les microorganismes : fermentation et conservation des aliments",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": [
+    "st6.microbes.fermentation",
+    "st6.microbes.parametres",
+    "st6.microbes.conservation",
+    "st6.microbes.capteurs"
+  ],
+  "status": "programme",
+  "programmes": [
+    "sciences-techno-c3-2023"
+  ],
+  "duration": 60,
+  "summary": "Comprendre qu'une fermentation est la transformation d'un aliment par des microorganismes (yaourt, pain), en identifier des paramètres (ferments, température) avec un témoin et un capteur de pH, et relier les techniques de conservation (froid, chaleur, sel, séchage) à leur action sur les microbes et à la limitation des risques sanitaires.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Du lait qui devient yaourt",
+      "body": "Mélange une cuillerée de yaourt dans un bol de lait tiède, attends quelques heures au chaud… et tu obtiens un bol de yaourt ! Pourtant, tu n'as rien ajouté d'autre.\n\nQui a fait le travail ? Et pourquoi le même lait, oublié sur la table, devient-il au contraire dangereux à boire ?"
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : fabriquer un yaourt et suivre le pH",
+      "body": "Une fermentation suivie avec un capteur, et un témoin. Avant chaque résultat, essaie de prévoir.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 392
+          },
+          {
+            "type": "forme",
+            "id": "yaourtiere",
+            "shape": "rect",
+            "x": 20,
+            "y": 196,
+            "w": 250,
+            "h": 196,
+            "fill": "#fff7ed",
+            "stroke": "#f97316",
+            "width": 2,
+            "rx": 12
+          },
+          {
+            "type": "texte",
+            "id": "tYa",
+            "x": 145,
+            "y": 218,
+            "text": "yaourtière : 43 °C",
+            "size": 14,
+            "bold": true
+          },
+          {
+            "type": "forme",
+            "id": "frigo",
+            "shape": "rect",
+            "x": 290,
+            "y": 196,
+            "w": 130,
+            "h": 196,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7",
+            "width": 2,
+            "rx": 12
+          },
+          {
+            "type": "texte",
+            "id": "tFr",
+            "x": 355,
+            "y": 218,
+            "text": "frigo : 4 °C",
+            "size": 14,
+            "bold": true
+          },
+          {
+            "type": "becher",
+            "id": "potA",
+            "x": 85,
+            "y": 388,
+            "w": 80,
+            "h": 110,
+            "level": 0.7,
+            "liquid": "#fbfaf3",
+            "label": "A"
+          },
+          {
+            "type": "becher",
+            "id": "potB",
+            "x": 205,
+            "y": 388,
+            "w": 80,
+            "h": 110,
+            "level": 0.7,
+            "liquid": "#fbfaf3",
+            "label": "B"
+          },
+          {
+            "type": "becher",
+            "id": "potC",
+            "x": 355,
+            "y": 388,
+            "w": 80,
+            "h": 110,
+            "level": 0.7,
+            "liquid": "#fbfaf3",
+            "label": "C"
+          },
+          {
+            "type": "texte",
+            "x": 85,
+            "y": 414,
+            "text": "lait + ferments",
+            "size": 13
+          },
+          {
+            "type": "texte",
+            "x": 205,
+            "y": 414,
+            "text": "lait seul",
+            "size": 13
+          },
+          {
+            "type": "texte",
+            "x": 355,
+            "y": 414,
+            "text": "lait + ferments",
+            "size": 13
+          },
+          {
+            "type": "forme",
+            "id": "sonde",
+            "shape": "rect",
+            "x": 104,
+            "y": 232,
+            "w": 6,
+            "h": 136,
+            "fill": "#334155",
+            "rx": 3,
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "eSonde",
+            "x": 62,
+            "y": 172,
+            "text": "sonde de pH",
+            "to": [
+              107,
+              238
+            ],
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "tDuree",
+            "x": 232,
+            "y": 160,
+            "text": "durée : 0 h",
+            "size": 16,
+            "bold": true,
+            "hidden": true
+          },
+          {
+            "type": "courbe",
+            "id": "g",
+            "x": 440,
+            "y": 14,
+            "w": 350,
+            "h": 220,
+            "title": "pH du lait au cours du temps",
+            "xRange": [
+              0,
+              6
+            ],
+            "yRange": [
+              4,
+              7.5
+            ],
+            "xLabel": "durée (h)",
+            "yLabel": "pH",
+            "points": [
+              [
+                0,
+                6.6
+              ],
+              [
+                1,
+                6.5
+              ],
+              [
+                2,
+                6
+              ],
+              [
+                3,
+                5.3
+              ],
+              [
+                4,
+                4.8
+              ],
+              [
+                5,
+                4.6
+              ],
+              [
+                6,
+                4.5
+              ]
+            ],
+            "progress": 0,
+            "color": "#7c3aed",
+            "hidden": true
+          },
+          {
+            "type": "zoom",
+            "id": "z",
+            "x": 495,
+            "y": 322,
+            "r": 52,
+            "etat": 1,
+            "n": 4,
+            "color": "#7c3aed",
+            "speed": 0.6,
+            "label": "pot A au microscope",
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "tab",
+            "x": 570,
+            "y": 250,
+            "w": 220,
+            "title": "Après 6 heures",
+            "head": [
+              "pot",
+              "pH",
+              "aspect"
+            ],
+            "rows": [
+              [
+                "A",
+                "4,5",
+                "épais"
+              ],
+              [
+                "B",
+                "6,6",
+                "liquide"
+              ],
+              [
+                "C",
+                "6,5",
+                "liquide"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          },
+          {
+            "type": "etiquette",
+            "id": "ePris",
+            "x": 88,
+            "y": 172,
+            "text": "le lait a « pris »",
+            "to": [
+              70,
+              335
+            ],
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Du lait **UHT** (chauffé très fort puis emballé : il ne contient plus de microbes vivants), un yaourt nature qui contient des bactéries vivantes, les **ferments**, trois pots, une yaourtière réglée à 43 °C, un réfrigérateur à 4 °C et une **sonde de pH**, un capteur qui mesure l'acidité.",
+            "focus": [
+              "potA",
+              "potB",
+              "potC"
+            ]
+          },
+          {
+            "title": "Préparer trois pots",
+            "text": "Pot **A** : du lait et une cuillerée de yaourt (les ferments), dans la yaourtière. Pot **B** : du lait seul, dans la yaourtière : c'est le **témoin**. Pot **C** : du lait et des ferments, mais au réfrigérateur.",
+            "duration": 3.5,
+            "do": [
+              {
+                "id": "potA",
+                "set": {
+                  "spoon": true
+                },
+                "at": 0.3
+              },
+              {
+                "id": "potA",
+                "set": {
+                  "spoon": false
+                },
+                "at": 1.4
+              },
+              {
+                "id": "potC",
+                "set": {
+                  "spoon": true
+                },
+                "at": 1.8
+              },
+              {
+                "id": "potC",
+                "set": {
+                  "spoon": false
+                },
+                "at": 2.9
+              }
+            ],
+            "focus": [
+              "potB"
+            ]
+          },
+          {
+            "title": "La mesure de départ",
+            "text": "On plonge la sonde dans chaque pot : le pH vaut **6,6** dans les trois. Le pH mesure l'acidité : plus il est petit, plus le liquide est acide. On mesurera le pH toutes les heures.",
+            "duration": 2,
+            "show": [
+              "sonde",
+              "eSonde",
+              "tDuree",
+              "g"
+            ],
+            "do": [
+              {
+                "id": "g",
+                "to": {
+                  "progress": 0.01
+                },
+                "at": 0.5,
+                "dur": 0.5
+              }
+            ],
+            "focus": [
+              "sonde",
+              "g"
+            ]
+          },
+          {
+            "title": "Prédire",
+            "text": "Le pot A reste six heures dans la yaourtière, à 43 °C.",
+            "focus": [
+              "potA"
+            ],
+            "ask": {
+              "question": "Que va faire le pH du pot A ?",
+              "choices": [
+                "Il va augmenter",
+                "Il va baisser : le lait devient plus acide",
+                "Il ne va pas changer"
+              ],
+              "answer": 1,
+              "explain": "Les bactéries du yaourt se nourrissent du sucre du lait et le transforment en acide : le lait devient de plus en plus acide, son pH baisse."
+            }
+          },
+          {
+            "title": "Six heures à 43 °C",
+            "text": "Heure après heure, le pH du pot A baisse : de 6,6 à **4,5**. Au microscope, on voit que les bactéries se sont multipliées. Le lait devenu acide épaissit : il a « pris », c'est un **yaourt**.",
+            "duration": 7,
+            "show": [
+              "z"
+            ],
+            "do": [
+              {
+                "id": "g",
+                "to": {
+                  "progress": 1
+                },
+                "at": 0.2,
+                "dur": 6,
+                "ease": "lineaire"
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 1 h"
+                },
+                "at": 0.9
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 2 h"
+                },
+                "at": 1.9
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 3 h"
+                },
+                "at": 2.9
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 4 h"
+                },
+                "at": 3.9
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 5 h"
+                },
+                "at": 4.9
+              },
+              {
+                "id": "tDuree",
+                "set": {
+                  "text": "durée : 6 h"
+                },
+                "at": 5.9
+              },
+              {
+                "id": "z",
+                "to": {
+                  "n": 40
+                },
+                "at": 0.3,
+                "dur": 6
+              },
+              {
+                "id": "eSonde",
+                "set": {
+                  "hidden": true
+                }
+              },
+              {
+                "id": "potA",
+                "to": {
+                  "liquid": "#efe3c2"
+                },
+                "at": 2,
+                "dur": 4
+              },
+              {
+                "id": "ePris",
+                "set": {
+                  "hidden": false
+                },
+                "at": 6.3
+              }
+            ],
+            "focus": [
+              "g",
+              "z"
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis sur la courbe : quel est le pH du pot A au bout de 2 heures ?",
+              "answer": 6,
+              "tolerance": 0.3,
+              "explain": "Au-dessus de 2 h sur l'axe horizontal, la courbe passe sur la ligne du pH 6. En deux heures, le pH est déjà descendu de 6,6 à 6 : le lait devient acide."
+            }
+          },
+          {
+            "title": "Prédire",
+            "text": "Pendant ce temps, on a aussi mesuré le pH des pots B et C.",
+            "hide": [
+              "ePris"
+            ],
+            "focus": [
+              "potB",
+              "potC"
+            ],
+            "ask": {
+              "question": "Que sont devenus les pots B (sans ferments) et C (au froid) ?",
+              "choices": [
+                "Ce sont aussi des yaourts",
+                "Ils restent liquides : leur pH ne change presque pas",
+                "Ils sont devenus plus acides que le pot A"
+              ],
+              "answer": 1,
+              "explain": "Sans ferments, rien ne transforme le sucre du lait. Au froid, les ferments sont présents mais se multiplient très peu : la fermentation est presque arrêtée."
+            }
+          },
+          {
+            "title": "Les résultats",
+            "text": "Le pot B (témoin, sans ferments) reste à pH 6,6 : il est liquide. Le pot C (ferments, mais au froid) descend à peine, à 6,5 : il est liquide lui aussi. Seul le pot A est devenu un yaourt.",
+            "duration": 3,
+            "show": [
+              "tab"
+            ],
+            "do": [
+              {
+                "id": "g",
+                "set": {
+                  "ref": {
+                    "points": [
+                      [
+                        0,
+                        6.6
+                      ],
+                      [
+                        6,
+                        6.55
+                      ]
+                    ],
+                    "label": "B et C"
+                  }
+                },
+                "at": 0.3
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 1
+                },
+                "at": 0.8
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 2
+                },
+                "at": 1.5
+              },
+              {
+                "id": "tab",
+                "set": {
+                  "shown": 3
+                },
+                "at": 2.2
+              }
+            ],
+            "focus": [
+              "tab"
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le tableau : quel lien vois-tu entre le pH et l'aspect du lait ?",
+              "choices": [
+                "Le seul pot devenu acide (pH 4,5) est aussi le seul qui a épaissi",
+                "Les pots restés liquides sont les plus acides",
+                "Les trois pots ont le même aspect"
+              ],
+              "answer": 0,
+              "explain": "Seul le pot A a un pH bas et un aspect épais. Les pots B et C, restés vers 6,6, sont toujours liquides : c'est l'acide fabriqué par les bactéries qui fait épaissir le lait."
+            }
+          },
+          {
+            "title": "Comparer A et B",
+            "text": "Les pots A et B sont restés six heures dans la yaourtière, à 43 °C. Seul le pot A contenait des ferments.",
+            "focus": [
+              "potA",
+              "potB",
+              "tab"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Que montre la comparaison du pot A avec le témoin B ?",
+              "choices": [
+                "La chaleur de la yaourtière suffit pour faire un yaourt",
+                "Les ferments, des bactéries vivantes, sont indispensables pour faire un yaourt",
+                "Le lait devient acide tout seul en six heures"
+              ],
+              "answer": 1,
+              "explain": "A et B ont eu la même température et la même durée ; seul A a reçu des ferments, et seul A est devenu un yaourt. Ce sont donc les bactéries qui transforment le lait."
+            }
+          },
+          {
+            "title": "Interpréter",
+            "text": "A et B ne diffèrent que par les ferments : les **bactéries** sont indispensables. A et C ne diffèrent que par la température : il faut une **température douce**, vers 40-45 °C. Ce sont deux **paramètres** qui influencent la fermentation.",
+            "focus": [
+              "tab",
+              "g"
+            ]
+          }
+        ],
+        "conclusion": "Les bactéries du yaourt transforment le sucre du lait en acide : le pH baisse et le lait épaissit. C'est une **fermentation**. Le témoin B montre qu'il faut des **ferments vivants** ; le pot C montre qu'il faut une **température douce** : au froid, les bactéries se multiplient très peu."
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🦠",
+          "title": "Des êtres vivants invisibles",
+          "body": "Les **microorganismes** (ou microbes) sont des êtres vivants si petits qu'on ne les voit qu'au microscope : **bactéries**, **levures**, **moisissures**. Ils vivent partout : air, eau, sol, peau, intestin. Quand ils trouvent nourriture, eau et chaleur, ils se multiplient très vite.",
+          "reveal": {
+            "question": "Devine : tous les microbes sont-ils dangereux ?",
+            "answer": "Non ! La plupart sont inoffensifs et beaucoup sont utiles : ils fabriquent le yaourt, le pain, le fromage, et ceux de notre intestin nous aident à digérer. Seuls certains peuvent rendre malade."
+          }
+        },
+        {
+          "emoji": "🥛",
+          "title": "La fermentation",
+          "body": "Une **fermentation** est la transformation d'un aliment par des microorganismes. Les bactéries du yaourt transforment le sucre du lait en **acide** : le lait épaissit. La **levure** transforme les sucres de la pâte à pain en un **gaz** qui la fait gonfler.",
+          "example": "Fromage, choucroute, vinaigre : encore des fermentations."
+        },
+        {
+          "emoji": "🌡️",
+          "title": "Ce qui influence une fermentation",
+          "body": "Une fermentation demande des **ferments vivants** et une **température** adaptée : vers 40-45 °C pour le yaourt. Au froid, les microbes se multiplient très lentement ; trop chaud, ils meurent. Pour le prouver, on compare deux montages qui ne diffèrent que par **un seul** paramètre, dont un **témoin**."
+        },
+        {
+          "emoji": "📈",
+          "title": "Mesurer avec un capteur",
+          "body": "Une **sonde de pH** est un capteur qui mesure l'acidité ; une sonde de température mesure la température. Reliées à un ordinateur, elles enregistrent des mesures régulières, que l'on présente dans un tableau ou une courbe. Le **pH** : 7 = neutre ; plus il est petit, plus c'est acide."
+        },
+        {
+          "emoji": "🧊",
+          "title": "Conserver les aliments",
+          "body": "Conserver, c'est empêcher les microbes de se multiplier. Le **froid** les ralentit (réfrigérateur) ou les arrête (congélateur). La **chaleur** les détruit : en partie (pasteurisation), ou tous dans une boîte fermée (stérilisation des conserves). Le **séchage**, le **sel** et le **sucre** les privent d'eau.",
+          "reveal": {
+            "question": "Devine : le congélateur tue-t-il tous les microbes ?",
+            "answer": "Non : il arrête leur multiplication, mais la plupart restent vivants. Revenus au chaud, ils se multiplient de nouveau."
+          }
+        },
+        {
+          "emoji": "⚠️",
+          "title": "Limiter les risques",
+          "body": "Garder les aliments fragiles au froid, du magasin à la maison (la **chaîne du froid**) ; ne jamais recongeler un aliment décongelé ; respecter la date « **à consommer jusqu'au** » ; bien cuire la viande hachée ; se laver les mains. Un aliment peut contenir des microbes dangereux sans changer d'aspect ni d'odeur."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : le froid et les microbes",
+      "body": "Quatre boîtes de Petri, dont un témoin, à trois températures différentes.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 392
+          },
+          {
+            "type": "releve",
+            "id": "res",
+            "x": 20,
+            "y": 14,
+            "w": 760,
+            "title": "Nombre de colonies (exemple)",
+            "head": [
+              "",
+              "T : témoin",
+              "A : 22 °C",
+              "R : 4 °C",
+              "C : −18 °C"
+            ],
+            "rows": [
+              [
+                "après 7 jours",
+                "0",
+                "60",
+                "6",
+                "0"
+              ],
+              [
+                "+ 3 jours à 22 °C",
+                "—",
+                "—",
+                "—",
+                "25"
+              ]
+            ],
+            "shown": 0
+          },
+          {
+            "type": "texte",
+            "id": "tClasse",
+            "x": 170,
+            "y": 172,
+            "text": "dans la classe : 22 °C",
+            "size": 14,
+            "bold": true,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "fFrigo",
+            "shape": "rect",
+            "x": 400,
+            "y": 150,
+            "w": 180,
+            "h": 242,
+            "fill": "#e0f2fe",
+            "stroke": "#0284c7",
+            "width": 2,
+            "rx": 12,
+            "opacity": 0,
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "tFrigo",
+            "x": 490,
+            "y": 172,
+            "text": "réfrigérateur : 4 °C",
+            "size": 14,
+            "bold": true,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "fCongel",
+            "shape": "rect",
+            "x": 600,
+            "y": 150,
+            "w": 180,
+            "h": 242,
+            "fill": "#eef2ff",
+            "stroke": "#1e40af",
+            "width": 2,
+            "rx": 12,
+            "opacity": 0,
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "tCongel",
+            "x": 690,
+            "y": 172,
+            "text": "congélateur : −18 °C",
+            "size": 14,
+            "bold": true,
+            "hidden": true
+          },
+          {
+            "type": "boite-petri",
+            "id": "bT",
+            "x": 90,
+            "y": 320,
+            "r": 58,
+            "colonies": 0,
+            "color": "#4d7c0f",
+            "label": "T : jamais ouverte"
+          },
+          {
+            "type": "boite-petri",
+            "id": "bA",
+            "x": 250,
+            "y": 320,
+            "r": 58,
+            "colonies": 0,
+            "color": "#4d7c0f",
+            "label": "A"
+          },
+          {
+            "type": "boite-petri",
+            "id": "bR",
+            "x": 410,
+            "y": 320,
+            "r": 58,
+            "colonies": 0,
+            "color": "#4d7c0f",
+            "label": "R"
+          },
+          {
+            "type": "boite-petri",
+            "id": "bC",
+            "x": 570,
+            "y": 320,
+            "r": 58,
+            "colonies": 0,
+            "color": "#4d7c0f",
+            "label": "C"
+          },
+          {
+            "type": "forme",
+            "id": "coton",
+            "shape": "rect",
+            "x": 247,
+            "y": 232,
+            "w": 5,
+            "h": 68,
+            "fill": "#cbd5e1",
+            "rx": 2,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "bout",
+            "shape": "ellipse",
+            "x": 249.5,
+            "y": 303,
+            "w": 13,
+            "h": 16,
+            "fill": "#f8fafc",
+            "stroke": "#94a3b8",
+            "width": 1.5,
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Quatre **boîtes de Petri** stériles, fermées, contenant une gelée nutritive, la **gélose**. Si un microbe invisible s'y dépose et se multiplie, il forme au bout de quelques jours une tache visible : une **colonie**.",
+            "focus": [
+              "bT",
+              "bA",
+              "bR",
+              "bC"
+            ]
+          },
+          {
+            "title": "Ensemencer",
+            "text": "On frotte un coton-tige sur une table de la classe, puis on le passe sur la gélose des boîtes A, R et C, que l'on referme. La boîte T n'est jamais ouverte : c'est le **témoin**.",
+            "duration": 3.6,
+            "show": [
+              "coton",
+              "bout"
+            ],
+            "do": [
+              {
+                "id": "coton",
+                "to": {
+                  "x": 247.5
+                },
+                "at": 0.2,
+                "dur": 0.5
+              },
+              {
+                "id": "bout",
+                "to": {
+                  "x": 250
+                },
+                "at": 0.2,
+                "dur": 0.5
+              },
+              {
+                "id": "coton",
+                "to": {
+                  "x": 407.5
+                },
+                "at": 1.2,
+                "dur": 0.5
+              },
+              {
+                "id": "bout",
+                "to": {
+                  "x": 410
+                },
+                "at": 1.2,
+                "dur": 0.5
+              },
+              {
+                "id": "coton",
+                "to": {
+                  "x": 567.5
+                },
+                "at": 2.2,
+                "dur": 0.5
+              },
+              {
+                "id": "bout",
+                "to": {
+                  "x": 570
+                },
+                "at": 2.2,
+                "dur": 0.5
+              },
+              {
+                "id": "coton",
+                "set": {
+                  "hidden": true
+                },
+                "at": 3.3
+              },
+              {
+                "id": "bout",
+                "set": {
+                  "hidden": true
+                },
+                "at": 3.3
+              }
+            ],
+            "focus": [
+              "bT"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi laisse-t-on la boîte T fermée, sans y passer le coton-tige ?",
+              "choices": [
+                "Pour la garder en réserve si une boîte se casse",
+                "Pour vérifier que les colonies viendront des microbes de la table, et pas de la gélose elle-même",
+                "Pour qu'elle forme plus de colonies que les autres"
+              ],
+              "answer": 1,
+              "explain": "Si la boîte T reste sans colonie, on saura que la gélose ne contenait pas de microbes au départ : les colonies des autres boîtes viendront bien de la table."
+            }
+          },
+          {
+            "title": "Ranger les boîtes",
+            "text": "Les boîtes T et A restent dans la classe, à 22 °C. La boîte R va au réfrigérateur (4 °C), la boîte C au congélateur (−18 °C). On attend une semaine.",
+            "duration": 2.5,
+            "show": [
+              "fFrigo",
+              "fCongel",
+              "tClasse",
+              "tFrigo",
+              "tCongel"
+            ],
+            "do": [
+              {
+                "id": "fFrigo",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 0,
+                "dur": 0.8
+              },
+              {
+                "id": "fCongel",
+                "to": {
+                  "opacity": 1
+                },
+                "at": 0,
+                "dur": 0.8
+              },
+              {
+                "id": "bR",
+                "to": {
+                  "x": 490
+                },
+                "at": 0.8,
+                "dur": 1.4
+              },
+              {
+                "id": "bC",
+                "to": {
+                  "x": 690
+                },
+                "at": 0.8,
+                "dur": 1.4
+              }
+            ]
+          },
+          {
+            "title": "Prédire",
+            "text": "Une semaine plus tard, on ouvre la porte du réfrigérateur et du congélateur.",
+            "focus": [
+              "bA",
+              "bR",
+              "bC"
+            ],
+            "ask": {
+              "question": "Dans quelle boîte y aura-t-il le plus de colonies ?",
+              "choices": [
+                "A, dans la classe",
+                "R, au réfrigérateur",
+                "C, au congélateur"
+              ],
+              "answer": 0,
+              "explain": "À 22 °C, les microbes trouvent nourriture, eau et chaleur : ils se multiplient vite. Le froid ralentit ou arrête leur multiplication."
+            }
+          },
+          {
+            "title": "Une semaine plus tard",
+            "text": "Boîte A : de nombreuses colonies. Boîte R : quelques petites colonies seulement. Boîte C : aucune. Le témoin T n'en a aucune : les colonies viennent bien des microbes déposés avec le coton-tige, pas de la gélose.",
+            "duration": 4,
+            "do": [
+              {
+                "id": "bA",
+                "to": {
+                  "colonies": 60
+                },
+                "at": 0.2,
+                "dur": 3
+              },
+              {
+                "id": "bR",
+                "to": {
+                  "colonies": 6
+                },
+                "at": 0.2,
+                "dur": 3
+              },
+              {
+                "id": "res",
+                "set": {
+                  "shown": 1
+                },
+                "at": 3.3
+              }
+            ],
+            "focus": [
+              "bA",
+              "res"
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis dans le tableau : combien de colonies se sont formées dans la boîte R, au réfrigérateur ?",
+              "answer": 6,
+              "tolerance": 0,
+              "unit": "colonies",
+              "explain": "Ligne « après 7 jours », colonne « R : 4 °C » : 6 colonies, dix fois moins que dans la boîte A (60). Le froid du réfrigérateur ralentit les microbes."
+            }
+          },
+          {
+            "title": "Prédire",
+            "text": "On sort la boîte C du congélateur et on la laisse trois jours dans la classe, à 22 °C.",
+            "focus": [
+              "bC"
+            ],
+            "ask": {
+              "question": "Que va-t-il se passer dans la boîte C ?",
+              "choices": [
+                "Rien : le froid a tué tous les microbes",
+                "Des colonies apparaissent",
+                "La gélose fond et disparaît"
+              ],
+              "answer": 1,
+              "explain": "Le congélateur arrête la multiplication des microbes, mais la plupart restent vivants. Revenus au chaud, ils se multiplient à nouveau."
+            }
+          },
+          {
+            "title": "Le retour au chaud",
+            "text": "Trois jours après, des colonies sont apparues dans la boîte C : les microbes n'étaient pas morts, ils étaient seulement « endormis » par le froid.",
+            "duration": 3.5,
+            "do": [
+              {
+                "id": "fCongel",
+                "to": {
+                  "opacity": 0
+                },
+                "at": 0,
+                "dur": 0.6
+              },
+              {
+                "id": "fCongel",
+                "set": {
+                  "hidden": true
+                },
+                "at": 0.7
+              },
+              {
+                "id": "tCongel",
+                "set": {
+                  "text": "hors du congélateur : 22 °C"
+                },
+                "at": 0.2
+              },
+              {
+                "id": "bC",
+                "to": {
+                  "colonies": 25
+                },
+                "at": 0.6,
+                "dur": 2.4
+              },
+              {
+                "id": "res",
+                "set": {
+                  "shown": 2
+                },
+                "at": 3
+              }
+            ],
+            "focus": [
+              "bC",
+              "res"
+            ]
+          },
+          {
+            "title": "Comparer A, R et C",
+            "text": "Les boîtes A, R et C ont reçu les mêmes microbes de la table. Seule la température changeait.",
+            "focus": [
+              "res"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Que montrent les boîtes R et C, comparées à la boîte A ?",
+              "choices": [
+                "Le froid tue tous les microbes",
+                "Le froid ralentit ou arrête la multiplication des microbes, sans tous les tuer",
+                "Le froid n'a aucun effet sur les microbes"
+              ],
+              "answer": 1,
+              "explain": "Au réfrigérateur, 6 colonies au lieu de 60 : la multiplication est ralentie. Au congélateur, aucune ; mais revenue au chaud, la boîte C a formé des colonies : ses microbes étaient toujours vivants."
+            }
+          },
+          {
+            "title": "Interpréter",
+            "text": "Le réfrigérateur **ralentit** la multiplication des microbes ; le congélateur l'**arrête**, sans tuer tous les microbes. Voilà pourquoi on garde au froid les aliments fragiles, et pourquoi on ne recongèle jamais un aliment décongelé : pendant la décongélation, les microbes se sont remis à se multiplier.",
+            "focus": [
+              "res"
+            ]
+          }
+        ],
+        "conclusion": "Les microorganismes se multiplient vite à température ambiante. Le **froid** du réfrigérateur ralentit leur multiplication, celui du congélateur l'arrête, mais **ne les tue pas tous** : revenus au chaud, ils se multiplient de nouveau. Le **témoin** fermé prouve que les colonies viennent des microbes déposés."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : concevoir une expérience avec témoin",
+      "steps": [
+        {
+          "text": "**Question.** La levure est-elle nécessaire pour que la pâte à pain lève ? **Hypothèse** : oui, c'est la levure qui fait lever la pâte.",
+          "math": ""
+        },
+        {
+          "text": "**Deux montages.** Pâte 1 : farine, eau, sel et levure. Pâte 2 (le **témoin**) : farine, eau et sel, sans levure. Tout le reste est identique : même volume de départ (100 mL), même température (30 °C), même durée.",
+          "math": ""
+        },
+        {
+          "text": "**Pourquoi un seul paramètre change ?** Si les deux pâtes différaient aussi par la température, on ne saurait pas si une différence vient de la levure ou de la chaleur.",
+          "math": ""
+        },
+        {
+          "text": "**Résultats après une heure.**",
+          "figure": {
+            "alt": "Tableau des volumes de deux pâtes au départ et après une heure",
+            "w": 460,
+            "h": 130,
+            "items": [
+              {
+                "type": "table",
+                "head": [
+                  "Pâte",
+                  "Volume au départ",
+                  "Volume après 1 h"
+                ],
+                "rows": [
+                  [
+                    "1 : avec levure",
+                    "100 mL",
+                    "200 mL"
+                  ],
+                  [
+                    "2 : sans levure",
+                    "100 mL",
+                    "100 mL"
+                  ]
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "text": "**Conclusion.** Seule la pâte avec levure a levé : son volume a doublé. L'hypothèse est validée : la levure, un microorganisme, est nécessaire. Elle produit un gaz qui fait gonfler la pâte.",
+          "math": "200 ÷ 100 = 2"
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque erreur est expliquée. Certaines sont des idées très répandues.",
+      "exercises": [
+        "st6-microorganismes-utiles",
+        "st6-microorganismes-fermentations",
+        "st6-microorganismes-recette",
+        "st6-microorganismes-ph",
+        "st6-microorganismes-conservation"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Je réinvestis",
+      "exercises": [
+        "st6-microorganismes-pate",
+        "st6-microorganismes-erreurs"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": [
+        "st6-microorganismes-expliquer"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : ranger les courses",
+      "body": "Les courses sont arrivées : à toi de tout ranger sans risque.",
+      "exercises": [
+        "st6-microorganismes-mission"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Une **fermentation** est la transformation d'un aliment par des microorganismes (yaourt, pain, fromage) ; elle dépend des ferments et de la température. Conserver un aliment, c'est limiter la multiplication des microbes : froid, chaleur, séchage, sel, sucre.\n\n- **« Tous les microbes sont dangereux. »** Non : beaucoup sont utiles, comme les ferments du yaourt.\n- **« Le congélateur tue tous les microbes. »** Non : il arrête leur multiplication ; au chaud, elle reprend.\n- **« Plus il fait chaud, plus la fermentation va vite. »** Trop chaud, les ferments meurent.\n- **« S'il sent bon, il est sans danger. »** Certains microbes dangereux ne changent ni l'odeur ni l'aspect."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Dans quelques jours, le moteur te reproposera une expérience avec témoin et des techniques de conservation : réussir après une pause, c’est la preuve que c’est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Chercher la température idéale d'une fermentation, et retracer l'histoire de la conservation des aliments.",
+      "exercises": [
+        "st6-microorganismes-temperature",
+        "st6-microorganismes-histoire"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : calculer la multiplication des bactéries, et comprendre pourquoi une boîte de conserve bombée se jette.",
+      "exercises": [
+        "st6-microorganismes-doublement",
+        "st6-microorganismes-conserve"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-microorganismes-utiles",
+      "type": "categorize",
+      "skill": "st6.microbes.fermentation",
+      "skills": [
+        "st6.microbes.conservation"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:tous-microbes-dangereux",
+        "mc:moisissure-toujours-utile"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Range chaque microorganisme selon son effet sur nos aliments.",
+      "categories": [
+        {
+          "id": "utile",
+          "label": "Utile : il sert à fabriquer un aliment"
+        },
+        {
+          "id": "nuisible",
+          "label": "Il abîme les aliments ou peut rendre malade"
+        }
+      ],
+      "items": [
+        {
+          "id": "u1",
+          "label": "Les bactéries du yaourt",
+          "category": "utile"
+        },
+        {
+          "id": "u2",
+          "label": "La levure du boulanger",
+          "category": "utile"
+        },
+        {
+          "id": "u3",
+          "label": "La moisissure bleue du roquefort",
+          "category": "utile"
+        },
+        {
+          "id": "u4",
+          "label": "Les salmonelles, parfois présentes dans les œufs crus",
+          "category": "nuisible"
+        },
+        {
+          "id": "u5",
+          "label": "La moisissure verte sur une orange oubliée",
+          "category": "nuisible"
+        },
+        {
+          "id": "u6",
+          "label": "Les bactéries qui transforment le chou en choucroute",
+          "category": "utile"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "u1",
+          "category": "nuisible",
+          "id": "mc:tous-microbes-dangereux",
+          "error": "notion",
+          "feedback": "Tu as rangé ces bactéries avec les microbes nuisibles. Repense à l'expérience du pot A : ce que tu as obtenu était-il à jeter ? Tous les microbes sont-ils dangereux ?"
+        },
+        {
+          "item": "u2",
+          "category": "nuisible",
+          "id": "mc:tous-microbes-dangereux",
+          "error": "notion",
+          "feedback": "Tu as rangé la levure avec les microbes nuisibles. Pense à ce que fait le boulanger chaque matin : tous les microbes sont-ils dangereux ?"
+        },
+        {
+          "item": "u5",
+          "category": "utile",
+          "id": "mc:moisissure-toujours-utile",
+          "error": "notion",
+          "feedback": "Tu as pensé que, comme pour le roquefort, cette moisissure est voulue. Est-ce le cas sur un fruit oublié au fond d'une corbeille ?"
+        }
+      ],
+      "hints": [
+        "Demande-toi si le microbe a été ajouté exprès pour fabriquer l’aliment.",
+        "Une même famille de microbes peut être utile dans un fromage et nuisible sur un fruit."
+      ],
+      "solution": "Utiles : les bactéries du yaourt, la levure du boulanger, la moisissure du roquefort, les bactéries de la choucroute. Nuisibles : les salmonelles (elles peuvent rendre malade) et la moisissure d'une orange oubliée (elle abîme le fruit).",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "u1": "utile",
+              "u2": "utile",
+              "u3": "utile",
+              "u4": "nuisible",
+              "u5": "nuisible",
+              "u6": "utile"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "u1": "nuisible",
+              "u2": "utile",
+              "u3": "utile",
+              "u4": "nuisible",
+              "u5": "nuisible",
+              "u6": "utile"
+            }
+          },
+          "expect": "mc:tous-microbes-dangereux"
+        },
+        {
+          "response": {
+            "assign": {
+              "u1": "utile",
+              "u2": "utile",
+              "u3": "utile",
+              "u4": "nuisible",
+              "u5": "utile",
+              "u6": "utile"
+            }
+          },
+          "expect": "mc:moisissure-toujours-utile"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-fermentations",
+      "type": "match",
+      "skill": "st6.microbes.fermentation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:levure-bacterie",
+        "mc:roquefort-bacterie"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Associe chaque aliment au microorganisme qui le fabrique par fermentation.",
+      "leftTitle": "Aliment",
+      "rightTitle": "Microorganisme",
+      "left": [
+        {
+          "id": "yaourt",
+          "label": "Yaourt"
+        },
+        {
+          "id": "pain",
+          "label": "Pain"
+        },
+        {
+          "id": "roquefort",
+          "label": "Roquefort (ses veines bleues)"
+        },
+        {
+          "id": "vinaigre",
+          "label": "Vinaigre de vin"
+        }
+      ],
+      "right": [
+        {
+          "id": "lact",
+          "label": "Des bactéries qui transforment le sucre du lait en acide"
+        },
+        {
+          "id": "lev",
+          "label": "Une levure qui produit un gaz faisant gonfler la pâte"
+        },
+        {
+          "id": "moi",
+          "label": "Une moisissure (un champignon microscopique)"
+        },
+        {
+          "id": "acet",
+          "label": "Des bactéries qui transforment l'alcool du vin en acide"
+        }
+      ],
+      "pairs": {
+        "yaourt": "lact",
+        "pain": "lev",
+        "roquefort": "moi",
+        "vinaigre": "acet"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "yaourt",
+            "lev"
+          ],
+          "id": "mc:levure-bacterie",
+          "error": "notion",
+          "feedback": "Tu as confondu les microorganismes du yaourt et du pain. Le yaourt gonfle-t-il comme une pâte ? Que devient le lait ?"
+        },
+        {
+          "pair": [
+            "yaourt",
+            "moi"
+          ],
+          "id": "mc:roquefort-bacterie",
+          "error": "notion",
+          "feedback": "Un yaourt nature n'a pas de taches colorées comme un fromage à pâte persillée. Relis ce que fait chaque microorganisme au lait."
+        },
+        {
+          "pair": [
+            "pain",
+            "lact"
+          ],
+          "id": "mc:levure-bacterie",
+          "error": "notion",
+          "feedback": "Le pain n'est pas fait avec du lait. Observe une tranche de mie, pleine de petits trous : qu'est-ce qui a pu les creuser pendant que la pâte reposait ?"
+        },
+        {
+          "pair": [
+            "roquefort",
+            "lact"
+          ],
+          "id": "mc:roquefort-bacterie",
+          "error": "notion",
+          "feedback": "Des bactéries interviennent bien dans le fromage, mais ce ne sont pas elles qui dessinent les veines bleues. Quel microorganisme forme des taches colorées, comme sur un pain moisi ?"
+        }
+      ],
+      "hints": [
+        "Le yaourt et le roquefort sont faits avec du lait, mais les veines bleues ont une autre origine.",
+        "Le vinaigre de vin est fabriqué à partir de vin, qui contient de l’alcool."
+      ],
+      "solution": "Yaourt : des bactéries qui transforment le sucre du lait en acide. Pain : une levure dont le gaz fait gonfler la pâte. Roquefort : une moisissure (Penicillium) qui forme les veines bleues. Vinaigre : des bactéries qui transforment l'alcool du vin en acide.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "yaourt": "lact",
+              "pain": "lev",
+              "roquefort": "moi",
+              "vinaigre": "acet"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "yaourt": "lev",
+              "pain": "lact",
+              "roquefort": "moi",
+              "vinaigre": "acet"
+            }
+          },
+          "expect": "mc:levure-bacterie"
+        },
+        {
+          "response": {
+            "pairs": {
+              "yaourt": "moi",
+              "pain": "lev",
+              "roquefort": "lact",
+              "vinaigre": "acet"
+            }
+          },
+          "expect": "mc:roquefort-bacterie"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-recette",
+      "type": "order",
+      "skill": "st6.microbes.parametres",
+      "skills": [
+        "st6.microbes.fermentation"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [],
+      "expectedSeconds": 120,
+      "prompt": "Remets dans l’ordre les étapes pour fabriquer des yaourts à la maison.",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        {
+          "id": "o1",
+          "label": "Faire tiédir du lait vers 40-45 °C"
+        },
+        {
+          "id": "o2",
+          "label": "Ajouter un yaourt nature (les ferments) et bien mélanger"
+        },
+        {
+          "id": "o3",
+          "label": "Répartir le mélange dans des pots propres"
+        },
+        {
+          "id": "o4",
+          "label": "Laisser les pots quelques heures dans la yaourtière, vers 40-45 °C"
+        },
+        {
+          "id": "o5",
+          "label": "Placer les yaourts au réfrigérateur"
+        }
+      ],
+      "hints": [
+        "Les ferments doivent être ajoutés dans un lait tiède, ni froid ni bouillant.",
+        "Le froid sert à la fin, pour conserver."
+      ],
+      "solution": "Tiédir le lait → ajouter les ferments et mélanger → répartir dans les pots → laisser quelques heures vers 40-45 °C (la fermentation) → mettre au réfrigérateur (la conservation : le froid ralentit les bactéries).",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "o1",
+              "o2",
+              "o3",
+              "o4",
+              "o5"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "o2",
+              "o1",
+              "o3",
+              "o5",
+              "o4"
+            ]
+          },
+          "expect": "partiel"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-ph",
+      "type": "composite",
+      "skill": "st6.microbes.capteurs",
+      "skills": [
+        "st6.microbes.fermentation",
+        "st6.microbes.parametres"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:ph-lecture",
+        "mc:ph-sens",
+        "mc:valeur-finale"
+      ],
+      "expectedSeconds": 300,
+      "prompt": "Une sonde de pH, reliée à un ordinateur, a mesuré le pH de deux pots de lait toutes les deux heures (mesures d’une classe).",
+      "figure": {
+        "alt": "Courbes du pH de deux pots de lait pendant 8 heures : avec ferments, le pH baisse ; sans ferments, il reste constant",
+        "w": 520,
+        "h": 260,
+        "items": [
+          {
+            "type": "linechart",
+            "xLabel": "durée (h)",
+            "yLabel": "pH",
+            "xRange": [
+              0,
+              8
+            ],
+            "yRange": [
+              4,
+              7
+            ],
+            "series": [
+              {
+                "label": "Pot 1 : lait + ferments, 42 °C",
+                "points": [
+                  [
+                    0,
+                    6.6
+                  ],
+                  [
+                    2,
+                    6.2
+                  ],
+                  [
+                    4,
+                    5.2
+                  ],
+                  [
+                    6,
+                    4.6
+                  ],
+                  [
+                    8,
+                    4.4
+                  ]
+                ],
+                "color": "violet"
+              },
+              {
+                "label": "Pot 2 : lait seul, 42 °C",
+                "points": [
+                  [
+                    0,
+                    6.6
+                  ],
+                  [
+                    2,
+                    6.6
+                  ],
+                  [
+                    4,
+                    6.6
+                  ],
+                  [
+                    6,
+                    6.6
+                  ],
+                  [
+                    8,
+                    6.6
+                  ]
+                ],
+                "color": "gris"
+              }
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le pH du pot 1 après 4 heures ?",
+          "answer": 5.2,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 6.6,
+              "id": "mc:ph-lecture",
+              "error": "lecture",
+              "feedback": "Tu as lu la courbe de l’autre pot. Repère d’abord la bonne couleur dans la légende."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien le pH du pot 1 a-t-il baissé en 8 heures ?",
+          "answer": 2.2,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 4.4,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "Tu as donné la valeur finale. Une baisse se calcule entre la valeur de départ et la valeur d’arrivée."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le pot 1 est-il devenu plus acide ou moins acide ? (un mot : « plus » ou « moins »)",
+          "accept": [
+            "plus",
+            "plus acide"
+          ],
+          "misconceptions": [
+            {
+              "answer": "moins",
+              "id": "mc:ph-sens",
+              "error": "notion",
+              "feedback": "Le pH est une échelle « à l’envers » : rappelle-toi ce que signifie un pH qui diminue."
+            },
+            {
+              "answer": "moins acide",
+              "id": "mc:ph-sens",
+              "error": "notion",
+              "feedback": "Le pH est une échelle « à l’envers » : rappelle-toi ce que signifie un pH qui diminue."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Que montre la comparaison des deux pots ?",
+          "categories": [
+            {
+              "id": "oui",
+              "label": "Montré par ces mesures"
+            },
+            {
+              "id": "non",
+              "label": "Non montré"
+            }
+          ],
+          "items": [
+            {
+              "id": "c1",
+              "label": "Sans ferments, le pH du lait ne change pas.",
+              "category": "oui"
+            },
+            {
+              "id": "c2",
+              "label": "Ce sont les ferments qui rendent le lait acide.",
+              "category": "oui"
+            },
+            {
+              "id": "c3",
+              "label": "Le froid arrête la fermentation.",
+              "category": "non"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "c3",
+              "category": "oui",
+              "id": "mc:conclusion-hors-donnees",
+              "error": "raisonnement",
+              "feedback": "Regarde les températures des deux pots dans la légende : cette expérience permet-elle de tester l’effet du froid ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Repère la courbe violette (pot 1), puis l’abscisse 4 h.",
+        "Baisse = pH au départ − pH à la fin.",
+        "Plus le pH est petit, plus le liquide est acide."
+      ],
+      "solution": "Après 4 h, le pH du pot 1 vaut 5,2. Il est passé de 6,6 à 4,4 : une baisse de 2,2. Un pH qui baisse signifie que le lait devient plus acide. Le pot 2, sans ferments, garde un pH de 6,6 : ce sont les ferments qui acidifient le lait. Les deux pots sont à 42 °C : on ne peut rien conclure sur le froid.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,2"
+              },
+              {
+                "value": "2,2"
+              },
+              {
+                "value": "plus"
+              },
+              {
+                "assign": {
+                  "c1": "oui",
+                  "c2": "oui",
+                  "c3": "non"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "6,6"
+              },
+              {
+                "value": "2,2"
+              },
+              {
+                "value": "plus"
+              },
+              {
+                "assign": {
+                  "c1": "oui",
+                  "c2": "oui",
+                  "c3": "non"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ph-lecture"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,2"
+              },
+              {
+                "value": "2,2"
+              },
+              {
+                "value": "moins"
+              },
+              {
+                "assign": {
+                  "c1": "oui",
+                  "c2": "oui",
+                  "c3": "non"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ph-sens"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "5,2"
+              },
+              {
+                "value": "2,2"
+              },
+              {
+                "value": "plus"
+              },
+              {
+                "assign": {
+                  "c1": "oui",
+                  "c2": "oui",
+                  "c3": "oui"
+                }
+              }
+            ]
+          },
+          "expect": "mc:conclusion-hors-donnees"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-conservation",
+      "type": "match",
+      "skill": "st6.microbes.conservation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:congelateur-tue",
+        "mc:pasteurisation-sterilisation"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Associe chaque technique de conservation à son action sur les microorganismes. Une proposition est fausse et ne sert pas.",
+      "leftTitle": "Technique",
+      "rightTitle": "Action sur les microbes",
+      "left": [
+        {
+          "id": "refri",
+          "label": "Réfrigérateur (0 à 4 °C)"
+        },
+        {
+          "id": "congel",
+          "label": "Congélateur (−18 °C)"
+        },
+        {
+          "id": "steri",
+          "label": "Conserve stérilisée (boîte fermée chauffée au-dessus de 100 °C)"
+        },
+        {
+          "id": "pasteur",
+          "label": "Pasteurisation (chauffage modéré, sous 100 °C)"
+        },
+        {
+          "id": "sel",
+          "label": "Salaison ou séchage"
+        }
+      ],
+      "right": [
+        {
+          "id": "ralentit",
+          "label": "Ralentit leur multiplication"
+        },
+        {
+          "id": "arrete",
+          "label": "Arrête leur multiplication, sans les tuer tous"
+        },
+        {
+          "id": "detruit",
+          "label": "Les détruit tous, et la boîte fermée empêche d’autres microbes d’entrer"
+        },
+        {
+          "id": "plupart",
+          "label": "Détruit la plupart d’entre eux, mais pas tous"
+        },
+        {
+          "id": "eau",
+          "label": "Les prive de l'eau dont ils ont besoin pour se multiplier"
+        },
+        {
+          "id": "tuefroid",
+          "label": "Les tue tous grâce au froid"
+        }
+      ],
+      "pairs": {
+        "refri": "ralentit",
+        "congel": "arrete",
+        "steri": "detruit",
+        "pasteur": "plupart",
+        "sel": "eau"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "congel",
+            "tuefroid"
+          ],
+          "id": "mc:congelateur-tue",
+          "error": "notion",
+          "feedback": "Repense à la boîte de Petri sortie du congélateur et laissée trois jours dans la classe : qu'y a-t-on vu apparaître ?"
+        },
+        {
+          "pair": [
+            "refri",
+            "tuefroid"
+          ],
+          "id": "mc:congelateur-tue",
+          "error": "notion",
+          "feedback": "Repense à la boîte de Petri rangée au réfrigérateur : est-elle restée sans aucune colonie ?"
+        },
+        {
+          "pair": [
+            "steri",
+            "plupart"
+          ],
+          "id": "mc:pasteurisation-sterilisation",
+          "error": "notion",
+          "feedback": "Une conserve fermée se garde des années dans un placard, alors qu'un lait pasteurisé se garde quelques jours au froid. Qu'est-ce que cela indique sur les microbes restants dans chacun ?"
+        },
+        {
+          "pair": [
+            "pasteur",
+            "detruit"
+          ],
+          "id": "mc:pasteurisation-sterilisation",
+          "error": "notion",
+          "feedback": "Un lait pasteurisé doit être gardé au réfrigérateur et bu en quelques jours, alors qu'une conserve se garde des années dans un placard. Qu'est-ce que cela indique sur les microbes restants ?"
+        }
+      ],
+      "hints": [
+        "Repense à l’expérience des boîtes de Petri au froid.",
+        "Plus on chauffe fort, plus on détruit de microbes.",
+        "Les microbes ont besoin d’eau pour se multiplier."
+      ],
+      "solution": "Réfrigérateur : ralentit la multiplication. Congélateur : l'arrête sans tuer tous les microbes. Stérilisation : détruit tous les microbes, et la boîte fermée empêche d'autres d'entrer. Pasteurisation : détruit la plupart, mais pas tous (on garde au frais). Salaison ou séchage : prive les microbes d'eau. Aucune technique ne « tue tous les microbes grâce au froid ».",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "refri": "ralentit",
+              "congel": "arrete",
+              "steri": "detruit",
+              "pasteur": "plupart",
+              "sel": "eau"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "refri": "ralentit",
+              "congel": "tuefroid",
+              "steri": "detruit",
+              "pasteur": "plupart",
+              "sel": "eau"
+            }
+          },
+          "expect": "mc:congelateur-tue"
+        },
+        {
+          "response": {
+            "pairs": {
+              "refri": "ralentit",
+              "congel": "arrete",
+              "steri": "plupart",
+              "pasteur": "detruit",
+              "sel": "eau"
+            }
+          },
+          "expect": "mc:pasteurisation-sterilisation"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-pate",
+      "type": "composite",
+      "skill": "st6.microbes.parametres",
+      "skills": [
+        "st6.microbes.fermentation"
+      ],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:temoin-mauvais-facteur",
+        "mc:temoin-deux-facteurs",
+        "mc:chaud-toujours-mieux"
+      ],
+      "expectedSeconds": 360,
+      "prompt": "La classe prépare quatre boules de pâte à pain de **100 mL** chacune, avec la même farine, la même eau et le même sel. Elles diffèrent par la présence de levure et par la température. On mesure leur volume après une heure (résultats d'une classe).",
+      "figure": {
+        "alt": "Diagramme en barres : volume de quatre pâtes après une heure, selon la présence de levure et la température",
+        "w": 520,
+        "h": 250,
+        "items": [
+          {
+            "type": "bars",
+            "unit": "mL après 1 h",
+            "yMax": 220,
+            "data": [
+              {
+                "label": "A : levure, 30 °C",
+                "value": 200
+              },
+              {
+                "label": "B : sans levure, 30 °C",
+                "value": 100
+              },
+              {
+                "label": "C : levure, 4 °C",
+                "value": 110
+              },
+              {
+                "label": "D : levure, 60 °C",
+                "value": 100
+              }
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "match",
+          "prompt": "Pour répondre à chaque question, quelles pâtes faut-il comparer ? (Elles ne doivent différer que par un seul facteur.)",
+          "leftTitle": "Question",
+          "rightTitle": "Pâtes à comparer",
+          "left": [
+            {
+              "id": "q1",
+              "label": "La levure est-elle nécessaire pour que la pâte lève ?"
+            },
+            {
+              "id": "q2",
+              "label": "Le froid ralentit-il la levée ?"
+            },
+            {
+              "id": "q3",
+              "label": "Une forte chaleur empêche-t-elle la levée ?"
+            }
+          ],
+          "right": [
+            {
+              "id": "AB",
+              "label": "A et B"
+            },
+            {
+              "id": "AC",
+              "label": "A et C"
+            },
+            {
+              "id": "AD",
+              "label": "A et D"
+            },
+            {
+              "id": "BC",
+              "label": "B et C"
+            }
+          ],
+          "pairs": {
+            "q1": "AB",
+            "q2": "AC",
+            "q3": "AD"
+          },
+          "misconceptions": [
+            {
+              "pair": [
+                "q1",
+                "AC"
+              ],
+              "id": "mc:temoin-mauvais-facteur",
+              "error": "raisonnement",
+              "feedback": "Entre ces deux pâtes, ce n'est pas la levure qui change. Cherche deux pâtes qui ne diffèrent que par la levure."
+            },
+            {
+              "pair": [
+                "q2",
+                "BC"
+              ],
+              "id": "mc:temoin-deux-facteurs",
+              "error": "raisonnement",
+              "feedback": "Ces deux pâtes diffèrent par deux facteurs à la fois : on ne saurait pas lequel explique le résultat."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Ces conclusions sont-elles justifiées par les résultats ?",
+          "categories": [
+            {
+              "id": "oui",
+              "label": "Justifiée"
+            },
+            {
+              "id": "non",
+              "label": "Non justifiée"
+            }
+          ],
+          "items": [
+            {
+              "id": "k1",
+              "label": "Sans levure, la pâte ne lève pas.",
+              "category": "oui"
+            },
+            {
+              "id": "k2",
+              "label": "Au froid, la pâte lève très lentement.",
+              "category": "oui"
+            },
+            {
+              "id": "k3",
+              "label": "Plus il fait chaud, plus la pâte lève.",
+              "category": "non"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "k3",
+              "category": "oui",
+              "id": "mc:chaud-toujours-mieux",
+              "error": "raisonnement",
+              "feedback": "Regarde la pâte la plus chaude de toutes : a-t-elle levé plus que la pâte A ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de mL la pâte A a-t-elle augmenté en une heure ?",
+          "answer": 100,
+          "misconceptions": [
+            {
+              "answer": 200,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "Tu as donné le volume final. Relis l’énoncé : quel était le volume de chaque pâte au départ ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Deux pâtes à comparer ne diffèrent que par un facteur.",
+        "Compare la pâte D (60 °C) à la pâte A (30 °C).",
+        "Augmentation = volume après une heure − volume de départ."
+      ],
+      "solution": "Levure : on compare A et B (seule la levure change) : sans levure, pas de levée. Froid : A et C (seule la température change) : à 4 °C, la pâte lève à peine. Forte chaleur : A et D : à 60 °C, les levures sont tuées, la pâte ne lève pas. « Plus il fait chaud, plus ça lève » est donc faux. La pâte A a augmenté de 200 − 100 = 100 mL.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "q1": "AB",
+                  "q2": "AC",
+                  "q3": "AD"
+                }
+              },
+              {
+                "assign": {
+                  "k1": "oui",
+                  "k2": "oui",
+                  "k3": "non"
+                }
+              },
+              {
+                "value": "100"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "q1": "AC",
+                  "q2": "AC",
+                  "q3": "AD"
+                }
+              },
+              {
+                "assign": {
+                  "k1": "oui",
+                  "k2": "oui",
+                  "k3": "non"
+                }
+              },
+              {
+                "value": "100"
+              }
+            ]
+          },
+          "expect": "mc:temoin-mauvais-facteur"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "q1": "AB",
+                  "q2": "AC",
+                  "q3": "AD"
+                }
+              },
+              {
+                "assign": {
+                  "k1": "oui",
+                  "k2": "oui",
+                  "k3": "oui"
+                }
+              },
+              {
+                "value": "100"
+              }
+            ]
+          },
+          "expect": "mc:chaud-toujours-mieux"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "pairs": {
+                  "q1": "AB",
+                  "q2": "AC",
+                  "q3": "AD"
+                }
+              },
+              {
+                "assign": {
+                  "k1": "oui",
+                  "k2": "oui",
+                  "k3": "non"
+                }
+              },
+              {
+                "value": "200"
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-erreurs",
+      "type": "highlight",
+      "skill": "st6.microbes.conservation",
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:bonne-pratique-erreur"
+      ],
+      "expectedSeconds": 150,
+      "instruction": "Surligne les erreurs de Tom.",
+      "prompt": "Lis ce que fait Tom et surligne ses **erreurs**, celles qui augmentent le risque de tomber malade.",
+      "text": "Après la fête, Tom laisse le poulet rôti [toute la nuit sur la table]. Le lendemain, il range le lait ouvert au réfrigérateur. Il [recongèle] la glace qui a fondu pendant les courses, puis il prépare des steaks hachés bien cuits. Il goûte un yaourt dont la date limite de consommation est [dépassée depuis une semaine], car il sent bon.",
+      "misconceptions": [
+        {
+          "word": "réfrigérateur",
+          "id": "mc:bonne-pratique-erreur",
+          "error": "raisonnement",
+          "feedback": "Ranger au froid un produit ouvert : cela favorise-t-il les microbes, ou cela les ralentit-il ?"
+        },
+        {
+          "word": "cuits",
+          "id": "mc:bonne-pratique-erreur",
+          "error": "raisonnement",
+          "feedback": "Bien cuire une viande hachée : la chaleur aide-t-elle les microbes, ou les détruit-elle ?"
+        }
+      ],
+      "hints": [
+        "Cherche les situations où les microbes ont pu se multiplier.",
+        "Une odeur normale ne prouve pas qu’un aliment est sans danger."
+      ],
+      "solution": "Erreurs : laisser le poulet toute la nuit à température ambiante (les microbes s'y multiplient), recongeler une glace qui a fondu (les microbes se sont multipliés pendant qu'elle était décongelée), manger un yaourt dont la date limite de consommation est dépassée (même s'il sent bon). Bonnes pratiques : ranger le lait ouvert au réfrigérateur, bien cuire les steaks hachés.",
+      "selfTest": [
+        {
+          "response": {
+            "selected": [
+              8,
+              19,
+              47
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "selected": [
+              8,
+              19,
+              47,
+              17
+            ]
+          },
+          "expect": "mc:bonne-pratique-erreur"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-expliquer",
+      "type": "open",
+      "skill": "st6.microbes.conservation",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 420,
+      "minWords": 35,
+      "prompt": "Ta grand-mère dit : « Le congélateur tue tous les microbes. On peut donc recongeler un aliment décongelé, il n'y a aucun risque. » Explique-lui, en t'appuyant sur l'expérience des boîtes de Petri, pourquoi c'est faux.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je dis que le congélateur arrête la multiplication des microbes sans tous les tuer",
+          "keywords": [
+            [
+              "arrete",
+              "ne tue pas",
+              "endorm",
+              "pas tous",
+              "sans les tuer",
+              "bloque"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je cite l'expérience : la boîte sortie du congélateur a donné des colonies",
+          "keywords": [
+            [
+              "boite",
+              "colonie",
+              "petri",
+              "experience"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "J’explique que les microbes se multiplient pendant la décongélation",
+          "keywords": [
+            [
+              "decongel",
+              "se multiplient",
+              "au chaud",
+              "temperature"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Je conclus qu’il ne faut pas recongeler un aliment décongelé",
+          "keywords": [
+            [
+              "recongeler",
+              "ne pas",
+              "jamais",
+              "risque"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Le congélateur ne tue pas tous les microbes : il arrête seulement leur multiplication. Dans notre expérience, la boîte de Petri sortie du congélateur et laissée trois jours dans la classe s'est couverte de colonies : les microbes étaient vivants. Quand un aliment décongèle, ses microbes recommencent à se multiplier. Si on le recongèle, on garde tous ces microbes, et ils repartiront de plus belle à la décongélation suivante. Il ne faut donc jamais recongeler un aliment décongelé."
+      ],
+      "hints": [
+        "Commence par ce que fait vraiment le congélateur aux microbes.",
+        "Raconte ce qui est arrivé à la boîte C.",
+        "Explique ce qui se passe pendant que l’aliment décongèle."
+      ],
+      "solution": "Le congélateur arrête la multiplication des microbes mais ne les tue pas tous : la boîte de Petri sortie du congélateur s'est couverte de colonies à 22 °C. Pendant la décongélation, les microbes se multiplient de nouveau ; recongeler conserve ces microbes plus nombreux. C'est pourquoi on ne recongèle jamais un aliment décongelé.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Le congélateur ne tue pas tous les microbes, il arrête leur multiplication. La boîte de Petri sortie du congélateur a donné des colonies au chaud. Pendant la décongélation, les microbes se multiplient : il ne faut jamais recongeler.",
+            "selfCheck": {
+              "c1": true,
+              "c2": true,
+              "c3": true,
+              "c4": true
+            }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-mission",
+      "type": "composite",
+      "skill": "st6.microbes.conservation",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:conserve-frigo",
+        "mc:ddm-dlc",
+        "mc:jours-inclus"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Mission courses : tu ranges les achats de la famille. Sur les emballages, on trouve deux sortes de dates : « **à consommer jusqu'au** » (la date limite de consommation, DLC, pour les produits fragiles : après, il y a un risque pour la santé) et « **à consommer de préférence avant le** » (la date de durabilité minimale, DDM : après, le goût peut changer, mais sans danger).",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Où ranger chaque produit ?",
+          "categories": [
+            {
+              "id": "frigo",
+              "label": "Réfrigérateur"
+            },
+            {
+              "id": "congel",
+              "label": "Congélateur"
+            },
+            {
+              "id": "placard",
+              "label": "Placard"
+            }
+          ],
+          "items": [
+            {
+              "id": "r1",
+              "label": "Viande hachée fraîche",
+              "category": "frigo"
+            },
+            {
+              "id": "r2",
+              "label": "Brique de lait UHT encore fermée",
+              "category": "placard"
+            },
+            {
+              "id": "r3",
+              "label": "Brique de lait UHT déjà ouverte",
+              "category": "frigo"
+            },
+            {
+              "id": "r4",
+              "label": "Boîte de conserve de haricots",
+              "category": "placard"
+            },
+            {
+              "id": "r5",
+              "label": "Paquet de pâtes sèches",
+              "category": "placard"
+            },
+            {
+              "id": "r6",
+              "label": "Bac de glace",
+              "category": "congel"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "r4",
+              "category": "frigo",
+              "id": "mc:conserve-frigo",
+              "error": "notion",
+              "feedback": "Repense à ce qu'a subi l'aliment dans une boîte de conserve fermée : reste-t-il des microbes à ralentir ?"
+            },
+            {
+              "item": "r2",
+              "category": "frigo",
+              "id": "mc:conserve-frigo",
+              "error": "notion",
+              "feedback": "Un lait UHT a été chauffé très fort puis enfermé sans microbes. Tant que la brique est fermée, a-t-il besoin de froid ?"
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quelle mention trouve-t-on sur chaque produit ?",
+          "categories": [
+            {
+              "id": "dlc",
+              "label": "« À consommer jusqu'au » (DLC)"
+            },
+            {
+              "id": "ddm",
+              "label": "« À consommer de préférence avant le » (DDM)"
+            }
+          ],
+          "items": [
+            {
+              "id": "d1",
+              "label": "Viande hachée fraîche",
+              "category": "dlc"
+            },
+            {
+              "id": "d2",
+              "label": "Poisson frais emballé",
+              "category": "dlc"
+            },
+            {
+              "id": "d3",
+              "label": "Paquet de pâtes sèches",
+              "category": "ddm"
+            },
+            {
+              "id": "d4",
+              "label": "Boîte de biscuits",
+              "category": "ddm"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "d1",
+              "category": "ddm",
+              "id": "mc:ddm-dlc",
+              "error": "notion",
+              "feedback": "Relis la définition des deux dates : un produit frais et fragile peut-il devenir dangereux après la date ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La viande hachée porte « à consommer jusqu'au 12 octobre ». Nous sommes le 9 octobre au matin. Pendant combien de jours, aujourd'hui compris, peut-on encore la manger ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:jours-inclus",
+              "error": "calcul",
+              "feedback": "Écris la liste des jours, du 9 au 12 octobre, et compte-les tous : aujourd’hui et le dernier jour comptent."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les produits frais et fragiles vont au froid ; les conserves et produits secs, au placard.",
+        "La DLC concerne les produits fragiles, la DDM les produits secs ou stérilisés.",
+        "Compte les jours du 9 au 12, en incluant les deux."
+      ],
+      "solution": "Réfrigérateur : viande hachée, lait UHT ouvert. Congélateur : glace. Placard : lait UHT fermé, conserve, pâtes. DLC (« à consommer jusqu'au ») : viande hachée, poisson frais. DDM (« de préférence avant le ») : pâtes, biscuits. Du 9 au 12 octobre inclus : 9, 10, 11, 12, soit 4 jours.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "r1": "frigo",
+                  "r2": "placard",
+                  "r3": "frigo",
+                  "r4": "placard",
+                  "r5": "placard",
+                  "r6": "congel"
+                }
+              },
+              {
+                "assign": {
+                  "d1": "dlc",
+                  "d2": "dlc",
+                  "d3": "ddm",
+                  "d4": "ddm"
+                }
+              },
+              {
+                "value": "4"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "r1": "frigo",
+                  "r2": "placard",
+                  "r3": "frigo",
+                  "r4": "frigo",
+                  "r5": "placard",
+                  "r6": "congel"
+                }
+              },
+              {
+                "assign": {
+                  "d1": "dlc",
+                  "d2": "dlc",
+                  "d3": "ddm",
+                  "d4": "ddm"
+                }
+              },
+              {
+                "value": "4"
+              }
+            ]
+          },
+          "expect": "mc:conserve-frigo"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "r1": "frigo",
+                  "r2": "placard",
+                  "r3": "frigo",
+                  "r4": "placard",
+                  "r5": "placard",
+                  "r6": "congel"
+                }
+              },
+              {
+                "assign": {
+                  "d1": "ddm",
+                  "d2": "dlc",
+                  "d3": "ddm",
+                  "d4": "ddm"
+                }
+              },
+              {
+                "value": "4"
+              }
+            ]
+          },
+          "expect": "mc:ddm-dlc"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "assign": {
+                  "r1": "frigo",
+                  "r2": "placard",
+                  "r3": "frigo",
+                  "r4": "placard",
+                  "r5": "placard",
+                  "r6": "congel"
+                }
+              },
+              {
+                "assign": {
+                  "d1": "dlc",
+                  "d2": "dlc",
+                  "d3": "ddm",
+                  "d4": "ddm"
+                }
+              },
+              {
+                "value": "3"
+              }
+            ]
+          },
+          "expect": "mc:jours-inclus"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-rem-froid",
+      "type": "categorize",
+      "skill": "st6.microbes.conservation",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:congelateur-tue"
+      ],
+      "expectedSeconds": 60,
+      "prompt": "Rappel : le froid **ralentit** (réfrigérateur) ou **arrête** (congélateur) la multiplication des microbes, mais il ne les tue pas tous. Vrai ou faux ?",
+      "categories": [
+        {
+          "id": "vrai",
+          "label": "Vrai"
+        },
+        {
+          "id": "faux",
+          "label": "Faux"
+        }
+      ],
+      "items": [
+        {
+          "id": "f1",
+          "label": "Une glace sortie du congélateur ne contient plus aucun microbe.",
+          "category": "faux"
+        },
+        {
+          "id": "f2",
+          "label": "Au réfrigérateur, les microbes se multiplient plus lentement.",
+          "category": "vrai"
+        },
+        {
+          "id": "f3",
+          "label": "Un aliment décongelé ne doit pas être recongelé.",
+          "category": "vrai"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "f1",
+          "category": "vrai",
+          "id": "mc:congelateur-tue",
+          "error": "notion",
+          "feedback": "Relis la fin du rappel, puis la phrase sur la glace."
+        }
+      ],
+      "hints": [
+        "Relis le rappel mot à mot.",
+        "Le froid « endort » les microbes."
+      ],
+      "solution": "Faux : le congélateur ne tue pas tous les microbes. Vrai : le réfrigérateur ralentit leur multiplication. Vrai : on ne recongèle pas un aliment décongelé.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "f1": "faux",
+              "f2": "vrai",
+              "f3": "vrai"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "f1": "vrai",
+              "f2": "vrai",
+              "f3": "vrai"
+            }
+          },
+          "expect": "mc:congelateur-tue"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-rem-utiles",
+      "type": "numeric",
+      "skill": "st6.microbes.fermentation",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": [
+        "mc:tous-microbes-dangereux"
+      ],
+      "expectedSeconds": 60,
+      "prompt": "Rappel : la plupart des microorganismes sont inoffensifs, et beaucoup sont **utiles** pour fabriquer des aliments. Parmi ces aliments, combien sont fabriqués grâce à des microorganismes : yaourt, pain, eau minérale, fromage, sel de cuisine, choucroute ?",
+      "answer": 4,
+      "misconceptions": [
+        {
+          "answer": 0,
+          "id": "mc:tous-microbes-dangereux",
+          "error": "notion",
+          "feedback": "Relis le rappel : les microbes sont-ils tous à éviter dans nos aliments ?"
+        }
+      ],
+      "hints": [
+        "Cherche les aliments obtenus par fermentation.",
+        "L’eau et le sel ne sont pas fabriqués par des êtres vivants."
+      ],
+      "solution": "4 : le yaourt (bactéries), le pain (levure), le fromage (bactéries, parfois moisissures) et la choucroute (bactéries). L’eau minérale et le sel n’en ont pas besoin.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "4"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "0"
+          },
+          "expect": "mc:tous-microbes-dangereux"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-temperature",
+      "type": "composite",
+      "skill": "st6.microbes.parametres",
+      "skills": [
+        "st6.microbes.capteurs"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ph-sens",
+        "mc:chaud-toujours-mieux"
+      ],
+      "expectedSeconds": 360,
+      "prompt": "Trois pots de lait avec les mêmes ferments sont placés à 30 °C, 43 °C et 55 °C. On mesure leur pH après 4 heures (résultats d’une classe ; au départ, le pH vaut 6,6).",
+      "figure": {
+        "alt": "Diagramme en barres : pH de trois pots de lait avec ferments après 4 heures, à 30 °C, 43 °C et 55 °C",
+        "w": 480,
+        "h": 240,
+        "items": [
+          {
+            "type": "bars",
+            "unit": "pH après 4 h",
+            "yMax": 7,
+            "data": [
+              {
+                "label": "30 °C",
+                "value": 6
+              },
+              {
+                "label": "43 °C",
+                "value": 4.8
+              },
+              {
+                "label": "55 °C",
+                "value": 6.5
+              }
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "À quelle température la fermentation a-t-elle été la plus rapide ? (écris la température, par exemple « 20 °C »)",
+          "accept": [
+            "43 °C",
+            "43°C",
+            "43",
+            "43 degrés",
+            "43 °"
+          ],
+          "misconceptions": [
+            {
+              "answer": "55 °C",
+              "id": "mc:ph-sens",
+              "error": "notion",
+              "feedback": "Tu as choisi la plus grande barre. Mais une fermentation rapide rend le lait très acide : que fait alors le pH ?"
+            },
+            {
+              "answer": "55",
+              "id": "mc:ph-sens",
+              "error": "notion",
+              "feedback": "Tu as choisi la plus grande barre. Mais une fermentation rapide rend le lait très acide : que fait alors le pH ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien le pH du pot à 30 °C a-t-il baissé ?",
+          "answer": 0.6,
+          "tolerance": 0.05,
+          "misconceptions": [
+            {
+              "answer": 6,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "Tu as donné la valeur finale : compare-la avec la valeur de départ."
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "t1",
+              "label": "À 55 °C, il fait trop chaud pour les ferments : ils fonctionnent très mal ou meurent.",
+              "category": "vrai"
+            },
+            {
+              "id": "t2",
+              "label": "Plus il fait chaud, plus la fermentation est rapide.",
+              "category": "faux"
+            },
+            {
+              "id": "t3",
+              "label": "La température est un paramètre qui influence la fermentation.",
+              "category": "vrai"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "t2",
+              "category": "vrai",
+              "id": "mc:chaud-toujours-mieux",
+              "error": "raisonnement",
+              "feedback": "Regarde le pot le plus chaud : son pH a-t-il beaucoup baissé ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Plus la fermentation avance, plus le pH baisse.",
+        "Baisse = 6,6 − pH final.",
+        "Il existe une température idéale : ni trop froid, ni trop chaud."
+      ],
+      "solution": "Le pH le plus bas (4,8) est obtenu à 43 °C : c'est là que la fermentation est la plus rapide. À 30 °C, le pH a baissé de 6,6 − 6 = 0,6. À 55 °C, il fait trop chaud pour les ferments. Il existe donc une température idéale : « plus chaud » n'est pas toujours « plus rapide ».",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "43 °C"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "assign": {
+                  "t1": "vrai",
+                  "t2": "faux",
+                  "t3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "55 °C"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "assign": {
+                  "t1": "vrai",
+                  "t2": "faux",
+                  "t3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:ph-sens"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "43 °C"
+              },
+              {
+                "value": "0,6"
+              },
+              {
+                "assign": {
+                  "t1": "vrai",
+                  "t2": "vrai",
+                  "t3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:chaud-toujours-mieux"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-histoire",
+      "type": "composite",
+      "skill": "st6.microbes.conservation",
+      "skills": [
+        "st6.microbes.fermentation"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "verbale",
+      "targets": [
+        "mc:pasteurisation-sterilisation"
+      ],
+      "expectedSeconds": 360,
+      "prompt": "Conserver les aliments est un vieux problème. Au début du XIXe siècle, le cuisinier **Nicolas Appert** enferme des aliments dans des bocaux qu'il chauffe longuement : c'est l'ancêtre de la conserve (il publie sa méthode en 1810). En 1857, **Louis Pasteur** montre qu'une fermentation, celle qui rend le lait aigre, est due à des microorganismes. En 1865, il propose de chauffer modérément le vin pour l'empêcher de s'abîmer : c'est la **pasteurisation**. Dans la seconde moitié du XXe siècle, le **réfrigérateur** se répand dans les foyers français.",
+      "parts": [
+        {
+          "type": "order",
+          "prompt": "Range ces événements du plus ancien au plus récent.",
+          "items": [
+            {
+              "id": "h1",
+              "label": "Appert publie sa méthode de conservation en bocaux chauffés"
+            },
+            {
+              "id": "h2",
+              "label": "Pasteur montre que la fermentation lactique est due à des microorganismes"
+            },
+            {
+              "id": "h3",
+              "label": "Pasteur propose la pasteurisation du vin"
+            },
+            {
+              "id": "h4",
+              "label": "Le réfrigérateur se répand dans les foyers français"
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "p1",
+              "label": "Appert a inventé la conserve sans connaître l'existence des microbes responsables.",
+              "category": "vrai"
+            },
+            {
+              "id": "p2",
+              "label": "Un lait pasteurisé se conserve des années dans un placard, comme une conserve.",
+              "category": "faux"
+            },
+            {
+              "id": "p3",
+              "label": "Pasteur a montré que des êtres vivants microscopiques interviennent dans les fermentations.",
+              "category": "vrai"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "p2",
+              "category": "vrai",
+              "id": "mc:pasteurisation-sterilisation",
+              "error": "notion",
+              "feedback": "Un chauffage « modéré » détruit-il autant de microbes qu'un chauffage long dans un bocal fermé ? Regarde où l'on range une bouteille de lait pasteurisé."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les dates sont dans le texte : 1810, 1857, 1865, seconde moitié du XXe siècle.",
+        "Appert travaillait avant les découvertes de Pasteur.",
+        "La pasteurisation ne détruit pas tous les microbes."
+      ],
+      "solution": "Ordre : Appert (1810), Pasteur et la fermentation lactique (1857), la pasteurisation (1865), le réfrigérateur dans les foyers (seconde moitié du XXe siècle). Vrai : Appert ignorait le rôle des microbes, que Pasteur a démontré plus tard. Faux : le lait pasteurisé se garde au réfrigérateur et peu de temps, car la pasteurisation ne détruit pas tous les microbes.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "order": [
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4"
+                ]
+              },
+              {
+                "assign": {
+                  "p1": "vrai",
+                  "p2": "faux",
+                  "p3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "order": [
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4"
+                ]
+              },
+              {
+                "assign": {
+                  "p1": "vrai",
+                  "p2": "vrai",
+                  "p3": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:pasteurisation-sterilisation"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-doublement",
+      "type": "composite",
+      "skill": "st6.microbes.conservation",
+      "skills": [
+        "st6.microbes.fermentation"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:croissance-lineaire",
+        "mc:nombre-divisions"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "h": {
+          "choice": [
+            1,
+            2
+          ]
+        }
+      },
+      "prompt": "Dans de très bonnes conditions (nourriture, eau, 37 °C), certaines bactéries se divisent en deux toutes les **20 minutes** : chaque bactérie donne deux bactéries. Un plat contaminé par **une seule** bactérie reste **{h} h** sur une table chaude.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de bactéries y aura-t-il au bout de {h} h ?",
+          "answer": "2^(3*h)",
+          "misconceptions": [
+            {
+              "answer": "2*3*h",
+              "id": "mc:croissance-lineaire",
+              "error": "raisonnement",
+              "feedback": "Tu as ajouté le même nombre de bactéries à chaque fois. Mais ce sont TOUTES les bactéries présentes qui se divisent : écris le nombre de bactéries après 20 min, 40 min, 60 min…"
+            },
+            {
+              "answer": "3*h",
+              "id": "mc:nombre-divisions",
+              "error": "raisonnement",
+              "feedback": "Tu as compté le nombre de divisions, pas le nombre de bactéries. Que devient le nombre de bactéries à chaque division ?"
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "x1",
+              "label": "Quelques heures à température ambiante suffisent pour que des bactéries deviennent très nombreuses.",
+              "category": "vrai"
+            },
+            {
+              "id": "x2",
+              "label": "Au réfrigérateur, les bactéries se divisent beaucoup moins souvent.",
+              "category": "vrai"
+            },
+            {
+              "id": "x3",
+              "label": "Le nombre de bactéries augmente de la même quantité à chaque division.",
+              "category": "faux"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "x3",
+              "category": "vrai",
+              "id": "mc:croissance-lineaire",
+              "error": "raisonnement",
+              "feedback": "Reprends ta liste : de combien le nombre augmente-t-il entre 20 et 40 min, puis entre 40 et 60 min ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "En 1 h, il y a 3 périodes de 20 minutes.",
+        "À chaque période, le nombre de bactéries est multiplié par 2.",
+        "1 → 2 → 4 → 8…"
+      ],
+      "solution": "En {h} h, il y a {3*h} divisions. À chaque division, le nombre double : 1 → 2 → 4 → 8… On obtient {2^(3*h)} bactéries au bout de {h} h. Le nombre augmente de plus en plus vite : quelques heures au chaud suffisent pour qu'un plat devienne dangereux, d'où l'intérêt du réfrigérateur, qui ralentit beaucoup les divisions.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2^(3*h)}"
+              },
+              {
+                "assign": {
+                  "x1": "vrai",
+                  "x2": "vrai",
+                  "x3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*3*h}"
+              },
+              {
+                "assign": {
+                  "x1": "vrai",
+                  "x2": "vrai",
+                  "x3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:croissance-lineaire"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{3*h}"
+              },
+              {
+                "assign": {
+                  "x1": "vrai",
+                  "x2": "vrai",
+                  "x3": "faux"
+                }
+              }
+            ]
+          },
+          "expect": "mc:nombre-divisions"
+        }
+      ]
+    },
+    {
+      "id": "st6-microorganismes-conserve",
+      "type": "composite",
+      "skill": "st6.microbes.conservation",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": [
+        "mc:bombee-chaleur",
+        "mc:aspect-securite"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Une boîte de conserve est remplie, fermée hermétiquement, puis chauffée au-dessus de 100 °C : c'est la **stérilisation**. Elle se garde alors plusieurs années dans un placard. Mais si le couvercle d'une boîte est **bombé**, il ne faut surtout pas la manger : des microbes ont survécu (ou sont entrés par un défaut de la boîte), se sont multipliés et ont produit un gaz qui pousse sur le couvercle.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Qu'est-ce qui pousse le couvercle d'une boîte bombée ? (un mot)",
+          "accept": [
+            "gaz",
+            "un gaz",
+            "du gaz",
+            "le gaz",
+            "des gaz"
+          ],
+          "misconceptions": [
+            {
+              "answer": "chaleur",
+              "id": "mc:bombee-chaleur",
+              "error": "lecture",
+              "feedback": "Relis la dernière phrase du texte : qui produit ce qui pousse le couvercle, et qu'est-ce que c'est ?"
+            },
+            {
+              "answer": "la chaleur",
+              "id": "mc:bombee-chaleur",
+              "error": "lecture",
+              "feedback": "Relis la dernière phrase du texte : qui produit ce qui pousse le couvercle, et qu'est-ce que c'est ?"
+            }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            {
+              "id": "vrai",
+              "label": "Vrai"
+            },
+            {
+              "id": "faux",
+              "label": "Faux"
+            }
+          ],
+          "items": [
+            {
+              "id": "b1",
+              "label": "Une conserve bien stérilisée et bien fermée ne contient plus de microbes vivants.",
+              "category": "vrai"
+            },
+            {
+              "id": "b2",
+              "label": "Si l'aliment d'une boîte bombée sent bon, on peut le manger.",
+              "category": "faux"
+            },
+            {
+              "id": "b3",
+              "label": "Une fois ouverte, une conserve se garde au réfrigérateur et peu de temps.",
+              "category": "vrai"
+            },
+            {
+              "id": "b4",
+              "label": "Le gaz est un signe que des microbes se sont multipliés dans la boîte.",
+              "category": "vrai"
+            }
+          ],
+          "misconceptions": [
+            {
+              "item": "b2",
+              "category": "vrai",
+              "id": "mc:aspect-securite",
+              "error": "notion",
+              "feedback": "L'odeur ou l'aspect d'un aliment prouvent-ils qu'il ne contient pas de microbes dangereux ? Relis la consigne du texte sur les boîtes bombées."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les microbes qui se multiplient peuvent produire des gaz, comme la levure dans la pâte.",
+        "Certains microbes dangereux ne changent ni l’odeur ni l’aspect.",
+        "Une fois ouverte, la boîte n’est plus protégée."
+      ],
+      "solution": "Un gaz, produit par des microbes qui se sont multipliés, pousse le couvercle. Vrai : une conserve bien stérilisée et fermée ne contient plus de microbes vivants. Faux : une odeur normale ne prouve rien, une boîte bombée se jette. Vrai : ouverte, la conserve n'est plus protégée et se garde au froid peu de temps. Vrai : le gaz signale une multiplication de microbes.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "gaz"
+              },
+              {
+                "assign": {
+                  "b1": "vrai",
+                  "b2": "faux",
+                  "b3": "vrai",
+                  "b4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "chaleur"
+              },
+              {
+                "assign": {
+                  "b1": "vrai",
+                  "b2": "faux",
+                  "b3": "vrai",
+                  "b4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:bombee-chaleur"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "gaz"
+              },
+              {
+                "assign": {
+                  "b1": "vrai",
+                  "b2": "vrai",
+                  "b3": "vrai",
+                  "b4": "vrai"
+                }
+              }
+            ]
+          },
+          "expect": "mc:aspect-securite"
+        }
+      ]
+    }
+  ]
+}

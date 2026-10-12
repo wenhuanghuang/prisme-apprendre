@@ -59,6 +59,12 @@ export function checkOpen(def, params, response) {
   });
 }
 
+/** Guillemets qui entourent toute la réponse (« que », "que", “que”, 'que') : ils ne font pas partie du mot. */
+export function unquote(s) {
+  const m = String(s).match(/^\s*[«"“”„'‘’]\s*([\s\S]*?)\s*[»"”“'’‘]\s*$/);
+  return m && m[1] ? m[1] : String(s);
+}
+
 function normShort(s, { caseSensitive = false, accents = true } = {}) {
   let t = String(s || '').trim().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?;:]+$/, '').trim();
   if (!caseSensitive) t = t.toLowerCase();
@@ -67,12 +73,21 @@ function normShort(s, { caseSensitive = false, accents = true } = {}) {
 }
 
 /**
+ * Langue de la réponse attendue : `lang`, sinon celle de l'écoute quand elle lit la bonne réponse (`audio.after`).
+ * Une écoute jouée avant la réponse lit la question (« Traduis en français : … ») : elle ne dit rien de la réponse.
+ */
+export function answerLang(def) {
+  return def.lang || (def.audio && def.audio.after && def.audio.lang) || '';
+}
+
+/**
  * Réponse courte (un mot, une forme verbale, un terme) : def.accept = ["cueillies", …],
  * def.misconceptions = [{answer: "cueilli", id, error, feedback}], def.caseSensitive (défaut : non).
- * Une réponse juste à l'accent près est signalée sans être comptée fausse.
+ * Une réponse juste à l'accent près est signalée sans être comptée fausse, sauf en espagnol
+ * (hable / hablé : l'accent change le temps et la personne).
  */
 export function checkText(def, params, response) {
-  const raw = String(response.value ?? '').trim();
+  const raw = unquote(String(response.value ?? '').trim());
   if (!raw) return diagnosis({ verdict: 'vide', feedback: 'Écris ta réponse.' });
   const opts = { caseSensitive: Boolean(def.caseSensitive) };
   const given = normShort(raw, opts);
@@ -85,6 +100,9 @@ export function checkText(def, params, response) {
   }
   const noAcc = (s) => normShort(s, { ...opts, accents: false });
   if ((def.accept || []).some((a) => noAcc(a) === noAcc(raw))) {
+    if (/^es\b/i.test(answerLang(def))) {
+      return diagnosis({ verdict: 'incorrect', errorType: 'forme', feedback: "Attention : en espagnol, l'accent change le sens du verbe (temps, personne)." });
+    }
     return diagnosis({ verdict: 'partiel', score: 0.7, errorType: 'forme', feedback: 'Presque : vérifie les accents.' });
   }
   return diagnosis({ verdict: def.openEnded ? 'incertain' : 'incorrect', errorType: def.openEnded ? null : 'inconnue', needsHuman: Boolean(def.openEnded), feedback: def.openEnded ? "Réponse différente de celles que je connais : elle n'est pas forcément fausse, un adulte pourra la valider." : (def.wrongFeedback || "Ce n'est pas la réponse attendue.") });

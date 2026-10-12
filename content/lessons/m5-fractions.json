@@ -100,7 +100,7 @@
         { "answer": "a + b*k - b", "id": "mc:egalite-addition", "error": "notion", "feedback": "Tu as ajouté {b*k-b} en bas… et aussi en haut. Mais ajouter le même nombre au numérateur et au dénominateur change la fraction ($1/2$ et $2/3$ ne sont pas égales). Ici, le dénominateur a été MULTIPLIÉ par {k} : on multiplie donc aussi le numérateur par {k}." }
       ],
       "hints": ["Par combien a-t-on multiplié le dénominateur {b} pour obtenir {b*k} ?", "Chaque part coloriée a été coupée en {k} morceaux : combien de morceaux coloriés en tout ?", "Calcule $ {a} × {k} $."],
-      "solution": "$ {a}/{b} = ({a} × {k})/({b} × {k}) = {a*k}/{b*k} $ : chacune des {a} parts coloriées est coupée en {k} morceaux, ce qui fait {a*k} morceaux coloriés sur {b*k}.",
+      "solution": "$ {a}/{b} = ({a} × {k})/({b} × {k}) = {a*k}/{b*k} $ : chaque part coloriée ({a} en tout) est coupée en {k} morceaux, ce qui fait {a*k} morceaux coloriés sur {b*k}.",
       "selfTest": [
         { "response": { "value": "{a*k}" }, "expect": "correct" },
         { "response": { "value": "{a+b*k-b}" }, "expect": "mc:egalite-addition" }
@@ -114,7 +114,7 @@
       "prompt": "Simplifie la fraction $ {n}/{d} $ : écris-la sous forme irréductible.",
       "answer": "p/q",
       "misconceptions": [
-        { "answer": "(n-g)/(d-g)", "id": "mc:simplif-soustraction", "error": "notion", "feedback": "Simplifier, c'est DIVISER le numérateur et le dénominateur par un même nombre, pas soustraire : $ {n} − {g} = {n-g} $, mais $ {n} ÷ {g} = {p} $. Les fractions {n}/{d} et {n-g}/{d-g} ne sont pas égales." }
+        { "answer": "(n-g)/(d-g)", "id": "mc:simplif-soustraction", "error": "notion", "feedback": "Simplifier, c'est DIVISER le numérateur et le dénominateur par un même nombre, pas soustraire : les fractions {n}/{d} et {n-g}/{d-g} ne sont pas égales. Cherche un nombre qui divise à la fois {n} et {d}." }
       ],
       "hints": ["Cherche un nombre qui divise à la fois {n} et {d}.", "{n} et {d} sont pairs : tu peux commencer par diviser par 2… et ce n'est peut-être pas fini.", "Une fraction est irréductible quand aucun nombre (autre que 1) ne divise à la fois son numérateur et son dénominateur."],
       "solution": "$ {n} = {p} × {g} $ et $ {d} = {q} × {g} $, donc en divisant par {g} : $ {n}/{d} = {p}/{q} $. On peut aussi diviser par 2, puis encore par {g/2}.",
@@ -133,7 +133,7 @@
       "prompt": "Quelle est la plus grande de ces deux fractions : $ {a}/{b} $ ou $ {c}/{d} $ ? Écris-la.",
       "answer": "a/b",
       "misconceptions": [
-        { "answer": "c/d", "id": "mc:grand-denominateur", "error": "notion", "feedback": "{c}/{d} a un numérateur et un dénominateur plus grands, mais ses parts sont plus petites ! Pour comparer, écris les deux fractions avec le même dénominateur : $ {a}/{b} = {a*k}/{d} $, et $ {a*k}/{d} > {c}/{d} $." }
+        { "answer": "c/d", "id": "mc:grand-denominateur", "error": "notion", "feedback": "{c}/{d} a un numérateur et un dénominateur plus grands, mais ses parts sont plus petites ! Pour comparer, écris {a}/{b} avec le dénominateur {d}, puis compare les numérateurs." }
       ],
       "justify": { "required": true, "minWords": 3, "prompt": "Écris le calcul qui le prouve." },
       "hints": ["{d} est un multiple de {b} : $ {d} = {b} × {k} $.", "Écris {a}/{b} avec le dénominateur {d}.", "Avec le même dénominateur, la plus grande fraction est celle qui a le plus grand numérateur."],
@@ -245,9 +245,9 @@
         { "type": "expression", "form": "irreductible", "prompt": "Écris sous forme irréductible la fraction des tirs réussis par Léo.", "answer": "3/4" },
         { "type": "text", "prompt": "Quel joueur ou quelle joueuse a le meilleur taux de réussite ?", "accept": ["Zoé", "Zoe"],
           "misconceptions": [
-            { "answer": "Léo", "id": "mc:plus-grand-numerateur", "error": "notion", "feedback": "Léo a marqué le plus de paniers (18), mais il a aussi tiré le plus. Ce qui compte, c'est la fraction des tirs réussis : $18/24 = 3/4$, alors que Zoé réussit $14/16 = 7/8$." },
-            { "answer": "Leo", "id": "mc:plus-grand-numerateur", "error": "notion", "feedback": "Léo a marqué le plus de paniers (18), mais il a aussi tiré le plus. Ce qui compte, c'est la fraction des tirs réussis : $18/24 = 3/4$, alors que Zoé réussit $14/16 = 7/8$." },
-            { "answer": "Mia", "id": "mc:comparaison-incomplete", "error": "calcul", "feedback": "Mia réussit $10/12 = 5/6$ de ses tirs : c'est très bien, mais Zoé fait mieux. Avec le dénominateur 24 : $5/6 = 20/24$ et $7/8 = 21/24$." }
+            { "answer": "Léo", "id": "mc:plus-grand-numerateur", "error": "notion", "feedback": "Léo a marqué le plus de paniers (18), mais il a aussi tiré le plus. Ce qui compte, c'est la fraction des tirs réussis : simplifie chaque fraction, puis compare-les." },
+            { "answer": "Leo", "id": "mc:plus-grand-numerateur", "error": "notion", "feedback": "Léo a marqué le plus de paniers (18), mais il a aussi tiré le plus. Ce qui compte, c'est la fraction des tirs réussis : simplifie chaque fraction, puis compare-les." },
+            { "answer": "Mia", "id": "mc:comparaison-incomplete", "error": "calcul", "feedback": "Mia réussit $10/12 = 5/6$ de ses tirs : c'est très bien, mais quelqu'un fait mieux. Écris toutes les fractions avec le dénominateur 24 pour les comparer." }
           ] },
         { "type": "numeric", "prompt": "Combien d'autres joueurs ont exactement le même taux de réussite que Léo ?", "answer": 2 }
       ],
@@ -279,7 +279,7 @@
       "constraints": ["a + b < d"],
       "prompt": "Une pizza est coupée en {d} parts égales. Inès en mange {a}, son frère en mange {b}. Quelle fraction de la pizza ont-ils mangée à eux deux ? Écris le résultat de $ {a}/{d} + {b}/{d} $.",
       "answer": "(a+b)/d",
-      "misconceptions": [ { "answer": "(a+b)/(2*d)", "id": "mc:somme-num-den", "error": "notion", "feedback": "En additionnant aussi les dénominateurs, on trouverait {a+b}/{2*d} : des parts deux fois plus petites ! Mais la pizza n'a pas été recoupée. {a} parts + {b} parts = {a+b} parts, chacune valant toujours $1/{d}$ de pizza : {a+b}/{d}." } ],
+      "misconceptions": [ { "answer": "(a+b)/(2*d)", "id": "mc:somme-num-den", "error": "notion", "feedback": "En additionnant aussi les dénominateurs, on trouverait {a+b}/{2*d} : des parts deux fois plus petites ! Mais la pizza n'a pas été recoupée : chaque part vaut toujours $1/{d}$ de pizza. Compte simplement les parts mangées." } ],
       "hints": ["Toutes les parts ont la même taille : $1/{d}$ de pizza.", "Compte les parts mangées en tout. Leur taille change-t-elle ?"],
       "solution": "$ {a}/{d} + {b}/{d} = {a+b}/{d} $ : on additionne les parts (les numérateurs) ; leur taille (le dénominateur) ne change pas.",
       "selfTest": [ { "response": { "value": "{a+b}/{d}" }, "expect": "correct" }, { "response": { "value": "{a+b}/{2*d}" }, "expect": "mc:somme-num-den" } ]
@@ -289,7 +289,7 @@
       "representation": "symbolique", "targets": ["mc:comparer-complement"], "expectedSeconds": 240,
       "prompt": "Sans calculatrice et sans chercher de dénominateur commun : quelle est la plus grande des deux fractions $2025/2026$ et $2026/2027$ ? Écris-la.",
       "answer": "2026/2027",
-      "misconceptions": [ { "answer": "2025/2026", "id": "mc:comparer-complement", "error": "raisonnement", "feedback": "Regarde ce qui manque à chaque fraction pour faire 1 : il manque $1/2026$ à la première et $1/2027$ à la seconde. Or $1/2027 < 1/2026$ : la seconde est plus proche de 1, donc plus grande." } ],
+      "misconceptions": [ { "answer": "2025/2026", "id": "mc:comparer-complement", "error": "raisonnement", "feedback": "Regarde ce qui manque à chaque fraction pour faire 1 : il manque $1/2026$ à la première et $1/2027$ à la seconde. Lequel de ces deux morceaux manquants est le plus petit ? La fraction à laquelle il manque le moins est la plus proche de 1." } ],
       "justify": { "required": true, "minWords": 10, "keywords": [["manque", "1/2026", "1/2027", "proche de 1", "pour faire 1", "pour atteindre 1"]], "prompt": "Explique ton raisonnement." },
       "hints": ["Ces deux fractions sont très proches de 1. Que manque-t-il à chacune pour faire 1 ?", "$ 1 − 2025/2026 = 1/2026 $. Et pour l'autre ?", "Laquelle est la plus petite : $1/2026$ ou $1/2027$ ?"],
       "solution": "$ 2025/2026 = 1 − 1/2026 $ et $ 2026/2027 = 1 − 1/2027 $. Comme $ 1/2027 < 1/2026 $, il manque moins à la seconde fraction pour faire 1 : $ 2026/2027 > 2025/2026 $.",
@@ -347,7 +347,7 @@
         { "type": "numeric", "prompt": "Calcule $ 1/3 − 1/4 $, et compare avec $ 1/(3 × 4) $.", "answer": "1/12" },
         { "type": "numeric", "prompt": "Calcule $ 1/(1 × 2) + 1/(2 × 3) + 1/(3 × 4) + … + 1/(99 × 100) $.", "answer": "99/100",
           "misconceptions": [
-            { "answer": "100/101", "id": "mc:decalage-indice", "error": "raisonnement", "feedback": "Le dernier terme est $ 1/(99 × 100) = 1/99 − 1/100 $ : il reste $ 1 − 1/100 = 99/100 $. Vérifie sur les premiers cas : jusqu'à $1/(2 × 3)$, on obtient $2/3$." },
+            { "answer": "100/101", "id": "mc:decalage-indice", "error": "raisonnement", "feedback": "Le dernier terme est $ 1/(99 × 100) = 1/99 − 1/100 $ : que reste-t-il une fois les termes annulés ? Vérifie sur les premiers cas : jusqu'à $1/(2 × 3)$, on obtient $2/3$." },
             { "answer": "1/9900", "id": "mc:dernier-seul", "error": "lecture", "feedback": "$1/9900$ n'est que le dernier terme de la somme." }
           ] },
         { "type": "expression", "prompt": "Généralise : écris la somme $ 1/(1 × 2) + 1/(2 × 3) + … + 1/(n × (n + 1)) $ en fonction de $n$.", "answer": "n/(n+1)", "form": "any",

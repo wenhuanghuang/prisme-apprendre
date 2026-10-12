@@ -18,8 +18,12 @@ export function savePlay(lessonId, play) {
   try { localStorage.setItem(playKey(lessonId), JSON.stringify(play)); } catch { /* stockage indisponible */ }
 }
 
-/** Étoiles gagnées dans une leçon (pour la carte). */
-export function lessonStars(lessonId) {
+/**
+ * Étoiles gagnées dans une leçon (pour la carte et les parcours). Avec `ids`, seuls ces exercices comptent
+ * (les exercices de la classe : les défis facultatifs ne gonflent pas la médaille de la leçon).
+ */
+export function lessonStars(lessonId, ids = null) {
   const p = loadPlay(lessonId);
-  return { stars: Object.values(p.results).reduce((a, r) => a + (Number(r.stars) || 0), 0), done: p.done };
+  const kept = ids ? ids.map((id) => p.results[id]).filter(Boolean) : Object.values(p.results);
+  return { stars: kept.reduce((a, r) => a + (Number(r.stars) || 0), 0), done: p.done, results: p.results };
 }

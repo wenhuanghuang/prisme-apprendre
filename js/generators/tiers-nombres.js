@@ -2,7 +2,7 @@
  * Niveaux ◆ approfondissement et ✦ expert des générateurs : relatifs et priorités opératoires.
  * Chaque fonction reçoit (rand, options) et renvoie un exercice comme `make` (numeric, expression, steps).
  */
-import { ri, nz, pick, sample, clean, fr, par, lcm, frac, fracStr, mc, numeric } from './gen-util.js';
+import { ri, nz, pick, sample, clean, fr, par, lcm, frac, fracStr, mc, numeric, withoutCitedAnswer } from './gen-util.js';
 import { near, distinct, fdistinct, fadd, fsub, fmul, fdiv, fm, fp, numFor, isNice, decimals, VERB, signHint, fracResult, formTxt, steps, negWord, readFrac } from './tiers-nombres-outils.js';
 
 export const TIERS_NOMBRES = {
@@ -17,7 +17,7 @@ export const TIERS_NOMBRES = {
         do {
           a = draw(); b = draw(); c = draw(); d = draw(); plus = o.op === 'soustraction' ? false : rand() < 0.5;
           ans = clean(a - (b - c) + (plus ? d : -d)); wrong = clean(a - b - c + (plus ? d : -d));
-        } while (!ans || !distinct(ans, [wrong, -ans]));
+        } while (!ans || near(b, c) || !distinct(ans, [wrong, -ans]));
         const expr = `${fr(a)} − (${fr(b)} − ${par(c)}) ${plus ? '+' : '−'} ${par(d)}`;
         return numeric(ans, {
           prompt: `${pick(rand, VERB)} : $${expr}$`, expectedSeconds: 100,
@@ -43,7 +43,7 @@ export const TIERS_NOMBRES = {
       const rewritten = signed.map((t, i) => (i === 0 ? fr(t) : `+ ${par(t)}`)).join(' ');
       const mcs = [mc(-ans, 'mc:signe-somme', 'signe', 'Le calcul des distances est juste, mais pas le signe du résultat.'),
         mc(dist, 'mc:distances-ajoutees', 'notion', 'Les termes n’ont pas tous le même signe : on ajoute les positifs, on ajoute les négatifs, puis on soustrait les deux distances.')];
-      if (ops.includes('-')) mcs.unshift(mc(forgot, 'mc:soustraire-opposé', 'notion', 'Soustraire un nombre négatif, c’est ajouter son opposé : « − (−7) » devient « + 7 ».'));
+      if (ops.includes('-')) mcs.unshift(mc(forgot, 'mc:soustraire-opposé', 'notion', 'Soustraire un nombre négatif, c’est ajouter son opposé : « − (−a) » devient « + a ».'));
       return numeric(ans, {
         prompt: `${pick(rand, VERB)} : $${expr}$`, expectedSeconds: 90, misconceptions: mcs,
         hints: [ops.includes('-') ? 'Transforme d’abord chaque soustraction en addition de l’opposé.' : 'Regroupe les termes positifs d’un côté, les négatifs de l’autre.', ops.includes('-') ? `Tu obtiens : ${rewritten}.` : `Somme des positifs : ${fr(clean(signed.filter((t) => t > 0).reduce((s, t) => s + t, 0)))} ; somme des négatifs : ${fr(clean(signed.filter((t) => t < 0).reduce((s, t) => s + t, 0)))}.`, 'Le résultat prend le signe de la somme la plus éloignée de zéro.'],
@@ -63,7 +63,7 @@ export const TIERS_NOMBRES = {
         do { a = draw(); c = draw(); ans = clean(c - a); } while (!distinct(ans, [clean(c + a), clean(a - c)]));
         return numeric(ans, {
           prompt: `Trouve le nombre manquant : $${fr(a)} + ? = ${fr(c)}$`, expectedSeconds: 90,
-          misconceptions: [mc(clean(c + a), 'mc:operation-reciproque', 'raisonnement', `Pour retrouver le terme manquant, on retire le terme connu au résultat : ${fr(c)} − ${par(a)}, on n’ajoute pas.`), mc(clean(a - c), 'mc:ordre-soustraction', 'signe', `Le nombre cherché vaut ${fr(c)} − ${par(a)}, pas ${fr(a)} − ${par(c)} : vérifie en remplaçant.`)],
+          misconceptions: [mc(clean(c + a), 'mc:operation-reciproque', 'raisonnement', `Pour retrouver le terme manquant, on retire le terme connu au résultat : ${fr(c)} − ${par(a)}, on n’ajoute pas.`), mc(clean(a - c), 'mc:ordre-soustraction', 'signe', 'Le nombre cherché se calcule (résultat) − (terme connu), pas l’inverse : vérifie en remplaçant.')],
           hints: ['Quel nombre faut-il ajouter au premier terme pour obtenir le résultat ?', `Le nombre cherché vaut ${fr(c)} − ${par(a)}.`],
           solution: `? = ${fr(c)} − ${par(a)} = ${fr(ans)}. Vérification : $${fr(a)} + ${par(ans)} = ${fr(c)}$.`,
         });
@@ -71,11 +71,11 @@ export const TIERS_NOMBRES = {
       if (kind === 6) {
         // a + ? + b = c  →  ? = c − (a + b)
         let ans;
-        do { a = draw(); b = draw(); c = draw(); ans = clean(c - a - b); } while (!distinct(ans, [clean(c - a + b), clean(a + b - c)]));
+        do { a = draw(); b = draw(); c = draw(); ans = clean(c - a - b); } while (near(clean(a + b), 0) || !distinct(ans, [clean(c - a + b), clean(a + b - c)]));
         const ab = clean(a + b);
         return numeric(ans, {
           prompt: `Trouve le nombre manquant : $${fr(a)} + ? + ${par(b)} = ${fr(c)}$`, expectedSeconds: 120,
-          misconceptions: [mc(clean(c - a + b), 'mc:operation-reciproque', 'raisonnement', `On a ajouté ${par(b)} : pour revenir en arrière, il faut le retirer, pas l’ajouter une seconde fois.`), mc(clean(a + b - c), 'mc:ordre-soustraction', 'signe', `Le nombre cherché vaut ${fr(c)} − ${par(ab)}, pas ${fr(ab)} − ${par(c)} : vérifie en remplaçant.`)],
+          misconceptions: [mc(clean(c - a + b), 'mc:operation-reciproque', 'raisonnement', `On a ajouté ${par(b)} : pour revenir en arrière, il faut le retirer, pas l’ajouter une seconde fois.`), mc(clean(a + b - c), 'mc:ordre-soustraction', 'signe', 'Le nombre cherché se calcule (résultat) − (somme des termes connus), pas l’inverse : vérifie en remplaçant.')],
           hints: [`Regroupe d’abord les nombres connus : ${fr(a)} + ${par(b)} = ${fr(ab)}.`, `Il reste ${fr(ab)} + ? = ${fr(c)}.`],
           solution: `$${fr(a)} + ${par(b)} = ${fr(ab)}$, donc ? = ${fr(c)} − ${par(ab)} = ${fr(ans)}. Vérification : $${fr(a)} + ${par(ans)} + ${par(b)} = ${fr(c)}$.`,
         });
@@ -86,7 +86,7 @@ export const TIERS_NOMBRES = {
         const ans = clean(a - c);
         return numeric(ans, {
           prompt: `Trouve le nombre manquant : $${fr(a)} − ? = ${fr(c)}$`, expectedSeconds: 90,
-          misconceptions: [mc(clean(c - a), 'mc:ordre-soustraction', 'signe', `Vérifie : ${fr(a)} − (ton nombre) doit donner ${fr(c)}. Le nombre cherché est ${fr(a)} − ${par(c)}.`), mc(clean(a + c), 'mc:operation-reciproque', 'raisonnement', 'Pour retrouver le nombre soustrait, on calcule (premier terme) − (résultat), pas leur somme.')],
+          misconceptions: [mc(clean(c - a), 'mc:ordre-soustraction', 'signe', `Vérifie : ${fr(a)} − (ton nombre) doit donner ${fr(c)}.`), mc(clean(a + c), 'mc:operation-reciproque', 'raisonnement', 'Pour retrouver le nombre soustrait, on calcule (premier terme) − (résultat), pas leur somme.')],
           hints: ['Teste ta réponse en la remplaçant dans l’égalité.', `Le nombre cherché vaut ${fr(a)} − ${par(c)}.`],
           solution: `? = ${fr(a)} − ${par(c)} = ${fr(ans)}. Vérification : $${fr(a)} − ${par(ans)} = ${fr(c)}$.`,
         });
@@ -105,7 +105,7 @@ export const TIERS_NOMBRES = {
       if (kind === 3) {
         // a + ? − b = c  →  ? = c − a + b
         let ans;
-        do { a = draw(); b = draw(); c = draw(); ans = clean(c - a + b); } while (!distinct(ans, [clean(c - a - b), clean(a + b + c)]));
+        do { a = draw(); b = draw(); c = draw(); ans = clean(c - a + b); } while (near(a, b) || !distinct(ans, [clean(c - a - b), clean(a + b + c)]));
         return numeric(ans, {
           prompt: `Trouve le nombre manquant : $${fr(a)} + ? − ${par(b)} = ${fr(c)}$`, expectedSeconds: 120,
           misconceptions: [mc(clean(c - a - b), 'mc:soustraire-opposé', 'notion', `Retirer ${par(b)} puis vouloir revenir en arrière : il faut rajouter ${par(b)}, pas l’enlever une seconde fois.`), mc(clean(a + b + c), 'mc:operation-reciproque', 'raisonnement', 'Isole le nombre cherché étape par étape : enlève d’abord le premier terme, puis compense la soustraction.')],
@@ -130,12 +130,14 @@ export const TIERS_NOMBRES = {
     /** ◆ Longs produits avec décimaux, quotients de produits, décimaux, enchaînements × ÷, facteur manquant. */
     approfondissement(rand, o) {
       const kinds = o.op === 'multiplication' ? ['long', 'long', 'manquant'] : o.op === 'division' ? ['bar', 'decimal', 'manquant-div'] : ['chaine', 'chaine', 'long', 'bar', 'decimal', 'manquant', 'manquant-div'];
-      return RP_APPRO[pick(rand, kinds)](rand);
+      const f = RP_APPRO[pick(rand, kinds)];
+      return withoutCitedAnswer(() => f(rand));
     },
     /** ✦ Facteur manquant dans un produit, énigme produit/somme, quotient avec priorités, quotient égal à un produit. */
     expert(rand, o) {
       const kinds = o.op === 'multiplication' ? ['manquant3', 'enigme'] : o.op === 'division' ? ['barre', 'egalite'] : ['manquant3', 'enigme', 'barre', 'egalite'];
-      return RP_EXPERT[pick(rand, kinds)](rand);
+      const f = RP_EXPERT[pick(rand, kinds)];
+      return withoutCitedAnswer(() => f(rand));
     },
   },
 
@@ -216,7 +218,7 @@ const RP_APPRO = {
     return numeric(q, {
       prompt: `${pick(rand, VERB)} : $${fr(a)} ÷ ${par(b)}$`, expectedSeconds: 75,
       misconceptions: [mc(-q, 'mc:regle-signes', 'signe', 'Pour un quotient, la règle des signes est la même que pour un produit.'),
-        mc(clean(q / 10), 'mc:virgule-quotient', 'calcul', `Multiplie le dividende ET le diviseur par ${m} : ${fr(a)} ÷ ${par(b)} = ${fr(clean(a * m))} ÷ ${par(clean(b * m))}.`),
+        mc(clean(q / 10), 'mc:virgule-quotient', 'calcul', `Multiplie le dividende ET le diviseur par ${m} pour obtenir un diviseur entier : le quotient ne change pas.`),
         mc(clean(q * 10), 'mc:virgule-quotient', 'calcul', `Multiplie le dividende ET le diviseur par le même nombre (${m}) : le quotient ne change pas.`)],
       hints: [signHint, `Multiplie le dividende et le diviseur par ${m} : ${fr(a)} ÷ ${par(b)} = ${fr(clean(a * m))} ÷ ${par(clean(b * m))}.`],
       solution: `$${fr(a)} ÷ ${par(b)} = ${fr(clean(a * m))} ÷ ${par(clean(b * m))} = ${fr(q)}$`,
@@ -279,7 +281,7 @@ const RP_EXPERT = {
     const ans = big ? x : y;
     return numeric(ans, {
       prompt: `Deux nombres relatifs entiers ont pour produit ${fr(P)} et pour somme ${fr(S)}. Quel est le plus ${big ? 'grand' : 'petit'} des deux ?`, expectedSeconds: 180, difficulty: 4,
-      misconceptions: [mc(big ? -y : -x, 'mc:regle-signes', 'signe', `${fr(-x)} et ${fr(-y)} ont bien pour produit ${fr(P)}, mais leur somme vaut ${fr(-S)}, pas ${fr(S)} : vérifie les deux conditions.`),
+      misconceptions: [mc(big ? -y : -x, 'mc:regle-signes', 'signe', `Ton couple a bien pour produit ${fr(P)}, mais pas pour somme ${fr(S)} : vérifie les deux conditions.`),
         mc(big ? y : x, 'mc:lecture', 'lecture', `Tu as trouvé le bon couple, mais on demande le plus ${big ? 'grand' : 'petit'} des deux nombres.`)],
       hints: ['Le produit est négatif : les deux nombres sont de signes contraires.', `Écris ${fr(P)} comme produit de deux entiers de signes contraires (par exemple 1 × ${par(P)}), puis calcule la somme de chaque couple.`, 'Vérifie les deux conditions : le produit ET la somme.'],
       solution: `${fr(x)} × ${par(y)} = ${fr(P)} et ${fr(x)} + ${par(y)} = ${fr(S)}. Les deux nombres sont ${fr(x)} et ${fr(y)} ; le plus ${big ? 'grand' : 'petit'} est ${fr(ans)}. (Le couple ${fr(-x)} et ${fr(-y)} a le même produit, mais sa somme vaut ${fr(-S)}.)`,

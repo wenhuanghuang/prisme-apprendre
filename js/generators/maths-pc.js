@@ -7,7 +7,7 @@
  */
 import { rng } from '../core/template.js';
 import { tryParse, equivalent, evaluate } from '../core/expr.js';
-import { ri, nz, pick, clean, fr, par, sq, gcd, frac, fracStr, sgn, xTerm, poly, mc, numeric, expression } from './gen-util.js';
+import { ri, nz, pick, clean, fr, par, sq, gcd, frac, fracStr, sgn, xTerm, poly, mc, numeric, expression, roundTo, roundedTo, withoutCitedAnswer } from './gen-util.js';
 import { TIERS } from './tiers.js';
 import { PROBLEMES_MATHS } from './problemes-maths.js';
 import { PROBLEMES_MATHS_2 } from './problemes-maths-2.js';
@@ -24,7 +24,7 @@ const GENERATORS = [];
 const add = (g) => GENERATORS.push({ subject: 'maths', ...g });
 
 add({
-  id: 'm-relatifs-somme', label: 'Relatifs : additions et soustractions', skill: 'm5.relatifs.addition', levels: ['5e', '4e'],
+  id: 'm-relatifs-somme', label: 'Relatifs : additions et soustractions', skill: 'm5.relatifs.addition', levels: ['5e', '4e', '3e'],
   description: 'Un calcul à la fois ; les confusions de signe et l’oubli de l’opposé sont repérés.',
   options: [
     { id: 'op', label: 'Opération', values: [{ id: 'mixte', label: 'Les deux' }, { id: 'addition', label: 'Additions' }, { id: 'soustraction', label: 'Soustractions' }] },
@@ -34,7 +34,9 @@ add({
     const op = o.op === 'addition' ? '+' : o.op === 'soustraction' ? '-' : pick(rand, ['+', '-']);
     const nombres = o.nombres || (rand() < 0.3 ? 'decimaux' : 'entiers');
     const draw = () => (nombres === 'decimaux' ? nz(rand, -99, 99) / 10 : nz(rand, -20, 20));
-    const a = draw(); const b = draw();
+    // une addition de deux positifs n'est pas un calcul sur les relatifs : on retire le tirage
+    let a; let b;
+    do { a = draw(); b = draw(); } while (op === '+' && a > 0 && b > 0);
     const added = op === '+' ? b : -b;
     const ans = clean(a + added);
     const mcs = [];
@@ -90,7 +92,7 @@ add({
 });
 
 add({
-  id: 'm-priorites', label: 'Priorités opératoires', skill: 'm5.calcul.priorites', levels: ['5e', '4e'],
+  id: 'm-priorites', label: 'Priorités opératoires', skill: 'm5.calcul.priorites', levels: ['5e', '4e', '3e'],
   description: 'Calculs avec ou sans parenthèses ; le calcul « de gauche à droite » est repéré. Option : écrire chaque étape.',
   options: [{ id: 'reponse', label: 'Réponse', values: [{ id: 'resultat', label: 'Le résultat' }, { id: 'etapes', label: 'Toutes les étapes' }] }],
   make(rand, o) {
@@ -116,7 +118,7 @@ add({
 });
 
 add({
-  id: 'm-fractions-somme', label: 'Fractions : additions et soustractions', skill: 'm5.fractions.addition', levels: ['5e', '4e'],
+  id: 'm-fractions-somme', label: 'Fractions : additions et soustractions', skill: 'm5.fractions.addition', levels: ['5e', '4e', '3e'],
   description: 'Mettre au même dénominateur, puis simplifier ; l’addition des dénominateurs est diagnostiquée.',
   options: [
     { id: 'denominateurs', label: 'Dénominateurs', values: [{ id: 'multiple', label: 'L’un multiple de l’autre' }, { id: 'quelconques', label: 'Quelconques' }] },
@@ -214,7 +216,7 @@ add({
       prompt: `Écris ${fr(n)} en notation scientifique : ${fr(n)} = ${mTxt} × 10ⁿ. Quelle est la valeur de n ?`, difficulty: 3, expectedSeconds: 60,
       misconceptions: k > 0 ? [mc(zerosPos, 'mc:compter-zeros', 'notion', `Compter les zéros ne suffit pas : de combien de rangs faut-il déplacer la virgule pour passer de ${mTxt} à ${fr(n)} ?`)] : [mc(-k, 'mc:exposant-negatif', 'signe', 'Le nombre est plus petit que 1 : l’exposant est négatif.'), mc(k + 1, 'mc:compter-zeros', 'notion', 'Compte de combien de rangs la virgule se déplace pour arriver juste après le premier chiffre non nul.')],
       hints: ['En notation scientifique, il y a un seul chiffre non nul avant la virgule.', `De combien de rangs la virgule se déplace-t-elle entre ${mTxt} et ${fr(n)} ?`],
-      solution: `${fr(n)} = ${mTxt} × 10^${k} : la virgule se déplace de ${Math.abs(k)} rang${Math.abs(k) > 1 ? 's' : ''} vers la ${k > 0 ? 'droite' : 'gauche'}.`,
+      solution: `$${fr(n)} = ${mTxt} × 10^${k < 0 ? `(${fr(k)})` : k}$ : la virgule se déplace de ${Math.abs(k)} rang${Math.abs(k) > 1 ? 's' : ''} vers la ${k > 0 ? 'droite' : 'gauche'}.`,
     });
   },
 });
@@ -227,39 +229,44 @@ add({
     { id: 'reponse', label: 'Réponse', values: [{ id: 'etapes', label: 'Toutes les étapes' }, { id: 'solution', label: 'La solution seule' }] },
   ],
   make(rand, o) {
-    const s = nz(rand, -10, 10);
+    const s0 = nz(rand, -10, 10);
     const forme = o.forme || pick(rand, ['simple', 'deux-membres']);
     const reponse = o.reponse || (rand() < 0.6 ? 'etapes' : 'solution');
-    let left; let right; let lines; let mcs;
-    if (forme === 'deux-membres') {
-      const c = ri(rand, 1, 7); const a = c + ri(rand, 2, 6); const b = nz(rand, -15, 15); const d = (a - c) * s + b;
-      left = poly([b, a]); right = poly([d, c]);
-      lines = [`${poly([0, a - c])} = ${fr(d - b)}`, `x = ${fr(s)}`];
-      mcs = [mc(clean((d - b) / (a + c)), 'mc:transposer-signe', 'signe', `En faisant passer ${poly([0, c])} dans l’autre membre, on le soustrait des deux côtés : on obtient ${poly([0, a - c])}, pas ${poly([0, a + c])}.`),
-        mc(clean((d + b) / (a - c)), 'mc:transposer-signe', 'signe', `Pour éliminer ${fr(b)} du membre de gauche, on ${b > 0 ? 'soustrait' : 'ajoute'} ${fr(Math.abs(b))} des deux côtés.`)];
-    } else {
-      const a = nz(rand, -9, 9) || 2; const aa = Math.abs(a) === 1 ? a * 3 : a; const b = nz(rand, -15, 15); const c = aa * s + b;
-      left = poly([b, aa]); right = fr(c);
-      lines = [`${poly([0, aa])} = ${fr(c - b)}`, `x = ${fr(s)}`];
-      mcs = [mc(clean((c + b) / aa), 'mc:transposer-signe', 'signe', `Pour éliminer ${fr(b)}, on ${b > 0 ? 'soustrait' : 'ajoute'} ${fr(Math.abs(b))} aux deux membres : on obtient ${poly([0, aa])} = ${fr(c - b)}.`),
-        mc(c - b - aa, 'mc:isoler-x', 'notion', `${fr(aa)} multiplie x : pour isoler x, on divise par ${fr(aa)}, on ne soustrait pas ${fr(aa)}.`),
-        mc((c - b) * aa, 'mc:isoler-x', 'notion', `On divise les deux membres par ${fr(aa)} (on ne multiplie pas).`)];
-    }
-    const eq = `${left} = ${right}`;
-    const common = {
-      difficulty: forme === 'deux-membres' ? 3 : 2, expectedSeconds: 150,
-      hints: forme === 'deux-membres' ? ['Regroupe les termes en x dans un même membre en soustrayant le plus petit des deux.', `Tu dois obtenir ${lines[0]}.`] : ['Commence par éliminer le nombre ajouté à ax.', `Tu dois obtenir ${lines[0]}, puis divise.`],
-      solution: `$${eq}$ ⟶ $${lines[0]}$ ⟶ $${lines[1]}$. Vérification : en remplaçant x par ${fr(s)}, les deux membres sont égaux.`,
-    };
-    if (reponse === 'solution') return numeric(s, { prompt: `Résous l’équation $${eq}$. Quelle est la valeur de x ?`, misconceptions: mcs, ...common });
-    return { type: 'steps', mode: 'equation', start: eq, minSteps: 2, prompt: `Résous l’équation $${eq}$. Écris une étape par ligne, jusqu’à « x = … ».`, misconceptions: [], generatedAnswer: { lines }, ...common };
+    // un nouveau tirage des nombres si un message cite la solution par coïncidence (« on divise par −4 » pour x = −4)
+    let first = true;
+    return withoutCitedAnswer(() => {
+      const s = first ? s0 : nz(rand, -10, 10); first = false;
+      let left; let right; let lines; let mcs;
+      if (forme === 'deux-membres') {
+        const c = ri(rand, 1, 7); const a = c + ri(rand, 2, 6); const b = nz(rand, -15, 15); const d = (a - c) * s + b;
+        left = poly([b, a]); right = poly([d, c]);
+        lines = [`${poly([0, a - c])} = ${fr(d - b)}`, `x = ${fr(s)}`];
+        mcs = [mc(clean((d - b) / (a + c)), 'mc:transposer-signe', 'signe', `En faisant passer ${poly([0, c])} dans l’autre membre, on le soustrait des deux côtés : on obtient ${poly([0, a - c])}, pas ${poly([0, a + c])}.`),
+          mc(clean((d + b) / (a - c)), 'mc:transposer-signe', 'signe', `Pour éliminer ${fr(b)} du membre de gauche, on ${b > 0 ? 'soustrait' : 'ajoute'} ${fr(Math.abs(b))} des deux côtés.`)];
+      } else {
+        const a = nz(rand, -9, 9) || 2; const aa = Math.abs(a) === 1 ? a * 3 : a; const b = nz(rand, -15, 15); const c = aa * s + b;
+        left = poly([b, aa]); right = fr(c);
+        lines = [`${poly([0, aa])} = ${fr(c - b)}`, `x = ${fr(s)}`];
+        mcs = [mc(clean((c + b) / aa), 'mc:transposer-signe', 'signe', `Pour éliminer ${fr(b)}, on ${b > 0 ? 'soustrait' : 'ajoute'} ${fr(Math.abs(b))} aux deux membres : on obtient ${poly([0, aa])} = ${fr(c - b)}.`),
+          mc(c - b - aa, 'mc:isoler-x', 'notion', `${fr(aa)} multiplie x : pour isoler x, on divise par ${fr(aa)}, on ne soustrait pas ${fr(aa)}.`),
+          mc((c - b) * aa, 'mc:isoler-x', 'notion', `On divise les deux membres par ${fr(aa)} (on ne multiplie pas).`)];
+      }
+      const eq = `${left} = ${right}`;
+      const common = {
+        difficulty: forme === 'deux-membres' ? 3 : 2, expectedSeconds: 150,
+        hints: forme === 'deux-membres' ? ['Regroupe les termes en x dans un même membre en soustrayant le plus petit des deux.', `Tu dois obtenir ${lines[0]}.`] : ['Commence par éliminer le nombre ajouté à ax.', `Tu dois obtenir ${lines[0]}, puis divise.`],
+        solution: `$${eq}$ ⟶ $${lines[0]}$ ⟶ $${lines[1]}$. Vérification : en remplaçant x par ${fr(s)}, les deux membres sont égaux.`,
+      };
+      if (reponse === 'solution') return numeric(s, { prompt: `Résous l’équation $${eq}$. Quelle est la valeur de x ?`, misconceptions: mcs, ...common });
+      return { type: 'steps', mode: 'equation', start: eq, minSteps: 2, prompt: `Résous l’équation $${eq}$. Écris une étape par ligne, jusqu’à « x = … ».`, misconceptions: [], generatedAnswer: { lines }, ...common };
+    });
   },
 });
 
 const ITEMS = [['cahiers', 'cahier'], ['stylos', 'stylo'], ['croissants', 'croissant'], ['tickets de bus', 'ticket de bus'], ['baguettes', 'baguette'], ['classeurs', 'classeur']];
 
 add({
-  id: 'm-proportionnalite', label: 'Proportionnalité : quatrième proportionnelle', skill: 'm5.proportionnalite', levels: ['5e', '4e'],
+  id: 'm-proportionnalite', label: 'Proportionnalité : quatrième proportionnelle', skill: 'm5.proportionnalite', levels: ['6e', '5e', '4e', '3e'],
   description: 'Prix, recettes, consommation ; le raisonnement additif (« ajouter la différence ») est diagnostiqué.',
   options: [{ id: 'contexte', label: 'Contexte', values: [{ id: 'prix', label: 'Prix' }, { id: 'recette', label: 'Recette' }, { id: 'carburant', label: 'Consommation' }] }],
   make(rand, o) {
@@ -270,7 +277,7 @@ add({
       const p1 = clean(q1 * u); const ans = clean(q2 * u);
       return numeric(ans, {
         prompt: `${q1} ${pl} coûtent ${fr(p1)} €. Les prix sont proportionnels aux quantités. Combien coûtent ${q2} ${pl} ?`, representation: 'concrete', tolerance: 0.005, expectedSeconds: 75,
-        misconceptions: [mc(clean(p1 + (q2 - q1)), 'mc:modele-additif', 'raisonnement', `Ajouter ${q2 - q1} (la différence des quantités) au prix ne respecte pas la proportionnalité : il faut multiplier.`), mc(clean(p1 * q2), 'mc:oubli-unitaire', 'methode', `Tu as multiplié le prix de ${q1} ${pl} par ${q2} : cherche d’abord le prix d’un seul.`)],
+        misconceptions: [mc(clean(p1 + (q2 - q1)), 'mc:modele-additif', 'raisonnement', `${q2 > q1 ? 'Ajouter' : 'Retirer'} ${Math.abs(q2 - q1)} (la différence des quantités) ${q2 > q1 ? 'au' : 'du'} prix ne respecte pas la proportionnalité : il faut multiplier.`), mc(clean(p1 * q2), 'mc:oubli-unitaire', 'methode', `Tu as multiplié le prix de ${q1} ${pl} par ${q2} : cherche d’abord le prix d’un seul.`)],
         hints: [`Combien coûte un seul ? ${fr(p1)} ÷ ${q1}.`, `Puis multiplie par ${q2}.`],
         solution: `Prix d’un : ${fr(p1)} ÷ ${q1} = ${fr(u)} €. Prix de ${q2} : ${q2} × ${fr(u)} = ${fr(ans)} €.`,
       });
@@ -289,34 +296,37 @@ add({
     return numeric(ans, {
       prompt: `Une voiture consomme ${fr(l1)} L de carburant pour ${d1} km. La consommation est proportionnelle à la distance. Combien consomme-t-elle pour ${d2} km ?`, unit: 'L', unitOptional: true, tolerance: 0.005, representation: 'concrete', difficulty: 3, expectedSeconds: 90,
       misconceptions: [mc(clean(l1 + (d2 - d1)), 'mc:modele-additif', 'raisonnement', 'On ne peut pas ajouter des kilomètres à des litres : il faut un coefficient de proportionnalité.'), mc(clean((l1 * d1) / d2), 'mc:rapport-inverse', 'raisonnement', 'Plus la distance est grande, plus la consommation est grande : vérifie le sens du calcul.')],
-      hints: [`Calcule la consommation pour 1 km, ou pour 100 km : ${fr(l1)} ÷ ${d1} × 100.`], solution: `Pour 100 km : ${fr(cons)} L. Pour ${d2} km : ${fr(cons)} × ${d2} ÷ 100 = ${fr(ans)} L.`,
+      hints: [d1 === 100 ? `La consommation pour 100 km est donnée : combien de fois 100 km y a-t-il dans ${d2} km ?` : `Calcule la consommation pour 1 km, ou pour 100 km : ${fr(l1)} ÷ ${d1} × 100.`], solution: `Pour 100 km : ${fr(cons)} L. Pour ${d2} km : ${fr(cons)} × ${d2} ÷ 100 = ${fr(ans)} L.`,
     });
   },
 });
 
 add({
-  id: 'm-pourcentages', label: 'Pourcentages', skill: 'm5.pourcentages', levels: ['5e', '4e'],
+  id: 'm-pourcentages', label: 'Pourcentages', skill: 'm5.pourcentages', levels: ['6e', '5e', '4e', '3e'],
   description: 'Prendre un pourcentage, appliquer une réduction ou une augmentation.',
   options: [{ id: 'mode', label: 'Type', values: [{ id: 'part', label: 'Prendre p %' }, { id: 'reduction', label: 'Réduction' }, { id: 'augmentation', label: 'Augmentation' }] }],
   make(rand, o) {
     const mode = o.mode || pick(rand, ['part', 'reduction', 'augmentation']);
-    const p = pick(rand, [5, 10, 15, 20, 25, 30, 40, 50, 75]); const n = 20 * ri(rand, 1, 20);
-    const part = clean((n * p) / 100);
-    if (mode === 'part') {
-      const what = pick(rand, [['élèves d’un collège', 'élèves', 'viennent à vélo'], ['pages d’un livre', 'pages', 'sont illustrées'], ['spectateurs', 'spectateurs', 'ont moins de 18 ans']]);
-      return numeric(part, {
-        prompt: `Sur ${n} ${what[0]}, ${p} % ${what[2]}. Combien ${/^[aeiouyéèê]/i.test(what[1]) ? 'd’' : 'de '}${what[1]} cela représente-t-il ?`, representation: 'concrete', expectedSeconds: 60,
-        misconceptions: [mc(clean(n / p), 'mc:diviser-par-p', 'notion', `Prendre ${p} %, c’est multiplier par ${p}/100, pas diviser par ${p}.`), mc(n - p, 'mc:soustraire-p', 'notion', 'Un pourcentage n’est pas une quantité à retirer : c’est une proportion du total.'), mc(n * p, 'mc:oubli-cent', 'calcul', 'N’oublie pas de diviser par 100.')],
-        hints: [`${p} % de ${n}, c’est ${n} × ${p} ÷ 100.`], solution: `${n} × ${p} ÷ 100 = ${fr(part)}.`,
+    // un nouveau tirage des nombres si un message cite la réponse par coïncidence (« 25 % ne vaut pas 25 € » pour 25 €)
+    return withoutCitedAnswer(() => {
+      const p = pick(rand, [5, 10, 15, 20, 25, 30, 40, 50, 75]); const n = 20 * ri(rand, 1, 20);
+      const part = clean((n * p) / 100);
+      if (mode === 'part') {
+        const what = pick(rand, [['élèves d’un collège', 'élèves', 'viennent à vélo'], ['pages d’un livre', 'pages', 'sont illustrées'], ['spectateurs', 'spectateurs', 'ont moins de 18 ans']]);
+        return numeric(part, {
+          prompt: `Sur ${n} ${what[0]}, ${p} % ${what[2]}. Combien ${/^[aeiouyéèê]/i.test(what[1]) ? 'd’' : 'de '}${what[1]} cela représente-t-il ?`, representation: 'concrete', expectedSeconds: 60,
+          misconceptions: [mc(clean(n / p), 'mc:diviser-par-p', 'notion', `Prendre ${p} %, c’est multiplier par ${p} puis diviser par 100, et non diviser par ${p}.`), mc(n - p, 'mc:soustraire-p', 'notion', 'Un pourcentage n’est pas une quantité à retirer : c’est une proportion du total.'), mc(n * p, 'mc:oubli-cent', 'calcul', 'N’oublie pas de diviser par 100.')],
+          hints: [`${p} % de ${n}, c’est ${n} × ${p} ÷ 100.`], solution: `${n} × ${p} ÷ 100 = ${fr(part)}.`,
+        });
+      }
+      const up = mode === 'augmentation';
+      const ans = clean(up ? n + part : n - part);
+      return numeric(ans, {
+        prompt: up ? `Un abonnement coûte ${n} € et augmente de ${p} %. Quel est son nouveau prix ?` : `Un article coûte ${n} €. Il est soldé à −${p} %. Quel est son prix après réduction ?`, representation: 'concrete', tolerance: 0.005, difficulty: 3, expectedSeconds: 75,
+        misconceptions: [mc(up ? n + p : n - p, 'mc:soustraire-p', 'notion', `${p} % de ${n} € ne vaut pas ${p} € : multiplie d’abord ${n} par ${p}, puis divise par 100.`), mc(part, 'mc:reduction-seule', 'methode', `Tu as calculé ${up ? 'l’augmentation' : 'la réduction'} (${fr(part)} €) : il faut encore ${up ? 'l’ajouter au' : 'la retirer du'} prix de départ.`)],
+        hints: [`${up ? 'Augmentation' : 'Réduction'} : ${n} × ${p} ÷ 100 = ?`, up ? 'Ajoute-la au prix de départ.' : 'Retire-la du prix de départ.'],
+        solution: `${up ? 'Augmentation' : 'Réduction'} : ${n} × ${p} ÷ 100 = ${fr(part)} €. Nouveau prix : ${n} ${up ? '+' : '−'} ${fr(part)} = ${fr(ans)} €. (Autre méthode : ${n} × ${fr(1 + (up ? p : -p) / 100)}.)`,
       });
-    }
-    const up = mode === 'augmentation';
-    const ans = clean(up ? n + part : n - part);
-    return numeric(ans, {
-      prompt: up ? `Un abonnement coûte ${n} € et augmente de ${p} %. Quel est son nouveau prix ?` : `Un article coûte ${n} €. Il est soldé à −${p} %. Quel est son prix après réduction ?`, representation: 'concrete', tolerance: 0.005, difficulty: 3, expectedSeconds: 75,
-      misconceptions: [mc(up ? n + p : n - p, 'mc:soustraire-p', 'notion', `${p} % de ${n} € ne vaut pas ${p} € : calcule d’abord ${n} × ${p} ÷ 100.`), mc(part, 'mc:reduction-seule', 'methode', `Tu as calculé ${up ? 'l’augmentation' : 'la réduction'} (${fr(part)} €) : il faut encore ${up ? 'l’ajouter au' : 'la retirer du'} prix de départ.`)],
-      hints: [`${up ? 'Augmentation' : 'Réduction'} : ${n} × ${p} ÷ 100 = ?`, up ? 'Ajoute-la au prix de départ.' : 'Retire-la du prix de départ.'],
-      solution: `${up ? 'Augmentation' : 'Réduction'} : ${n} × ${p} ÷ 100 = ${fr(part)} €. Nouveau prix : ${n} ${up ? '+' : '−'} ${fr(part)} = ${fr(ans)} €. (Autre méthode : ${n} × ${fr(1 + (up ? p : -p) / 100)}.)`,
     });
   },
 });
@@ -336,10 +346,10 @@ add({
     const intro = `Le triangle ${R}${P}${Q} est rectangle en ${R}.`;
     if (mode === 'hypotenuse' || mode === 'arrondi') {
       let a = t1; let b = t2; let c = t3; let round;
-      if (mode === 'arrondi') { do { a = ri(rand, 2, 12); b = ri(rand, 2, 12); } while (Number.isInteger(Math.sqrt(a * a + b * b))); c = Math.round(Math.sqrt(a * a + b * b) * 10) / 10; round = 1; }
+      if (mode === 'arrondi') { do { a = ri(rand, 2, 12); b = ri(rand, 2, 12); } while (Number.isInteger(Math.sqrt(a * a + b * b))); c = roundTo(Math.sqrt(a * a + b * b), 1); round = 1; }
       return numeric(c, {
-        prompt: `${intro} ${R}${P} = ${fr(a)} cm et ${R}${Q} = ${fr(b)} cm. Calcule ${P}${Q}${round ? ' (arrondi au dixième)' : ''}.`, unit: 'cm', unitOptional: true, tolerance: round ? 0.051 : undefined, round, representation: 'visuelle', difficulty: round ? 3 : 2, expectedSeconds: 120,
-        misconceptions: [mc(clean(a + b), 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème porte sur les carrés des longueurs, pas sur les longueurs elles-mêmes.'), mc(clean(sq(a) + sq(b)), 'mc:oubli-racine', 'methode', `Tu as trouvé ${P}${Q}² : il reste à prendre la racine carrée.`), mc(round ? Math.round(Math.sqrt(Math.abs(sq(a) - sq(b))) * 10) / 10 : clean(Math.sqrt(Math.abs(sq(a) - sq(b)))), 'mc:pythagore-hypotenuse-soustraction', 'notion', `${P}${Q} est l’hypoténuse (le côté opposé à l’angle droit) : son carré est la SOMME des deux autres carrés.`)],
+        prompt: `${intro} ${R}${P} = ${fr(a)} cm et ${R}${Q} = ${fr(b)} cm. Calcule ${P}${Q}${round ? ' (arrondi au dixième)' : ''}.`, unit: 'cm', unitOptional: true, ...(round ? roundedTo(1) : {}), representation: 'visuelle', difficulty: round ? 3 : 2, expectedSeconds: 120,
+        misconceptions: [mc(clean(a + b), 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème porte sur les carrés des longueurs, pas sur les longueurs elles-mêmes.'), mc(clean(sq(a) + sq(b)), 'mc:oubli-racine', 'methode', `Tu as trouvé ${P}${Q}² : il reste à prendre la racine carrée.`), mc(round ? roundTo(Math.sqrt(Math.abs(sq(a) - sq(b))), 1) : clean(Math.sqrt(Math.abs(sq(a) - sq(b)))), 'mc:pythagore-hypotenuse-soustraction', 'notion', `${P}${Q} est l’hypoténuse (le côté opposé à l’angle droit) : son carré est la SOMME des deux autres carrés.`)],
         hints: [`L’hypoténuse est le côté opposé à l’angle droit : ici ${P}${Q}.`, `${P}${Q}² = ${R}${P}² + ${R}${Q}²`],
         solution: `${P}${Q}² = ${fr(a)}² + ${fr(b)}² = ${fr(sq(a))} + ${fr(sq(b))} = ${fr(sq(a) + sq(b))}, donc ${P}${Q} = √${fr(sq(a) + sq(b))} ${round ? '≈' : '='} ${fr(c)} cm.`,
       });
@@ -354,7 +364,7 @@ add({
 });
 
 add({
-  id: 'm-litteral-valeur', label: 'Calcul littéral : valeur d’une expression', skill: 'm5.litteral.expression', levels: ['5e', '4e'],
+  id: 'm-litteral-valeur', label: 'Calcul littéral : valeur d’une expression', skill: 'm5.litteral.expression', levels: ['5e', '4e', '3e'],
   description: 'Remplacer la lettre par un nombre (souvent négatif) ; les erreurs de carré et de signe sont repérées.',
   options: [],
   make(rand) {
@@ -362,7 +372,7 @@ add({
     const t = ri(rand, 1, 4);
     let expr; let ans; let mcs = []; let detail;
     if (t === 1) { expr = poly([b, a]); ans = a * x + b; mcs = [mc(a * Math.abs(x) + b, 'mc:signe-produit', 'signe', `${a} × ${par(x)} : attention au signe de x.`), mc(Number(`${a}${Math.abs(x)}`) * Math.sign(x) + b, 'mc:juxtaposition', 'notion', `${a}x signifie ${a} × x : on ne colle pas les chiffres.`)]; detail = `${a} × ${par(x)}${sgn(b)} = ${fr(a * x)}${sgn(b)} = ${fr(ans)}`; }
-    else if (t === 2) { expr = poly([b, 0, a]); ans = a * x * x + b; mcs = [mc(sq(a * x) + b, 'mc:carre-coefficient', 'notion', `${a}x² = ${a} × x² : seul x est au carré, pas ${a}x.`), mc(-a * x * x + b, 'mc:carre-negatif', 'signe', `Le carré d’un nombre négatif est positif : ${par(x)}² = ${sq(x)}.`), mc(2 * a * x + b, 'mc:carre-double', 'notion', `x² = x × x, pas 2 × x.`)]; detail = `${a} × ${par(x)}²${sgn(b)} = ${a} × ${sq(x)}${sgn(b)} = ${fr(ans)}`; }
+    else if (t === 2) { expr = poly([b, 0, a]); ans = a * x * x + b; mcs = [mc(sq(a * x) + b, 'mc:carre-coefficient', 'notion', `${a}x² = ${a} × x² : seul x est au carré, pas ${a}x.`), ...(x < 0 ? [mc(-a * x * x + b, 'mc:carre-negatif', 'signe', `Le carré d’un nombre négatif est positif : ${par(x)}² = ${sq(x)}.`)] : []), mc(2 * a * x + b, 'mc:carre-double', 'notion', `x² = x × x, pas 2 × x.`)]; detail = `${a} × ${par(x)}²${sgn(b)} = ${a} × ${sq(x)}${sgn(b)} = ${fr(ans)}`; }
     else if (t === 3) { const c = ri(rand, 2, 9); expr = `${fr(b)} − ${c}x`; ans = b - c * x; mcs = [mc(b - c * Math.abs(x), 'mc:signe-produit', 'signe', `${c} × ${par(x)} = ${fr(c * x)} : soustraire un nombre négatif revient à ajouter son opposé.`)]; detail = `${fr(b)} − ${c} × ${par(x)} = ${fr(b)} − ${par(c * x)} = ${fr(ans)}`; }
     else { expr = `${a}(x${sgn(b)})`; ans = a * (x + b); mcs = [mc(a * x + b, 'mc:distributivite-partielle', 'notion', `Le facteur ${a} multiplie toute la parenthèse.`)]; detail = `${a} × (${fr(x)}${sgn(b)}) = ${a} × ${par(x + b)} = ${fr(ans)}`; }
     return numeric(ans, {
@@ -374,7 +384,7 @@ add({
 });
 
 add({
-  id: 'm-developper', label: 'Développer : k(ax + b)', skill: 'm5.litteral.distributivite', levels: ['5e', '4e'],
+  id: 'm-developper', label: 'Développer : k(ax + b)', skill: 'm5.litteral.distributivite', levels: ['5e', '4e', '3e'],
   description: 'Simple distributivité ; l’oubli du second terme et les erreurs de signe sont repérés.',
   options: [],
   make(rand) {
@@ -416,7 +426,7 @@ const CONV = {
 const VOLUMES = [['dm³', 'L', 1], ['cm³', 'mL', 1], ['m³', 'L', 1000], ['m³', 'dm³', 1000], ['dm³', 'cm³', 1000], ['L', 'cm³', 1000], ['cm³', 'dm³', 0.001], ['mL', 'L', 0.001]];
 
 add({
-  id: 'm-conversions', label: 'Conversions d’unités', skill: 'm5.grandeurs.conversions', levels: ['5e', '4e'],
+  id: 'm-conversions', label: 'Conversions d’unités', skill: 'm5.grandeurs.conversions', levels: ['6e', '5e', '4e', '3e'],
   description: 'Longueurs, masses, contenances, volumes, durées ; la mauvaise puissance de 10 et la confusion décimal/sexagésimal sont repérées.',
   options: [{ id: 'grandeur', label: 'Grandeur', values: [{ id: 'longueur', label: 'Longueurs' }, { id: 'masse', label: 'Masses' }, { id: 'contenance', label: 'Contenances' }, { id: 'volume', label: 'Volumes' }, { id: 'duree', label: 'Durées' }] }],
   make(rand, o) {
@@ -424,7 +434,13 @@ add({
     if (g === 'duree') {
       const t = ri(rand, 1, 3);
       if (t === 1) { const h = ri(rand, 1, 4) + pick(rand, [0.25, 0.5, 0.75]); const ans = h * 60; const wrong = Math.floor(h) * 60 + Math.round((h % 1) * 100); return numeric(ans, { prompt: `Convertis : ${fr(h)} h = … min`, unit: 'min', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 45, misconceptions: [mc(wrong, 'mc:duree-decimale', 'notion', `${fr(h)} h ne veut pas dire ${Math.floor(h)} h ${Math.round((h % 1) * 100)} min : 0,${String(h).split('.')[1]} h est une fraction d’heure (${fr(h % 1)} × 60 min).`)], hints: ['1 h = 60 min : multiplie par 60.'], solution: `${fr(h)} × 60 = ${ans} min.` }); }
-      if (t === 2) { const m = pick(rand, [15, 30, 45, 75, 90, 105, 135, 150]); const ans = m / 60; const wrong = Number(`${Math.floor(m / 60)}.${String(m % 60).padStart(2, '0')}`); return numeric(ans, { prompt: `Convertis en heures (écriture décimale) : ${m} min = … h`, unit: 'h', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 45, misconceptions: [mc(wrong, 'mc:duree-decimale', 'notion', `${Math.floor(m / 60)} h ${m % 60} min ne s’écrit pas ${fr(wrong)} h : ${m % 60} min = ${fr((m % 60) / 60)} h.`)], hints: ['Divise par 60.'], solution: `${m} ÷ 60 = ${fr(ans)} h.` }); }
+      if (t === 2) {
+        const m = pick(rand, [15, 30, 45, 75, 90, 105, 135, 150]); const ans = m / 60; const wrong = Number(`${Math.floor(m / 60)}.${String(m % 60).padStart(2, '0')}`);
+        const hmTxt = m < 60 ? `${m} min` : `${Math.floor(m / 60)} h ${m % 60} min`;
+        // decimalOnly : « 1 h 30 min » vaut bien 1,5 h, mais l'exercice demande l'écriture décimale ; le correcteur
+        // (app/js/core/checkers/numeric.js) refuse alors une saisie en heures et minutes
+        return numeric(ans, { prompt: `Convertis en heures (écriture décimale) : ${m} min = … h`, unit: 'h', unitOptional: true, strictUnit: true, decimalOnly: true, representation: 'concrete', expectedSeconds: 45, misconceptions: [mc(wrong, 'mc:duree-decimale', 'notion', `${hmTxt} ne s’écrit pas ${fr(wrong)} h : 1 h = 60 min, on divise les minutes par 60 (et non par 100).`)], hints: ['Divise par 60.'], solution: `${m} ÷ 60 = ${fr(ans)} h.` });
+      }
       const h = ri(rand, 1, 5); const m = ri(rand, 5, 55); const ans = h * 60 + m;
       return numeric(ans, { prompt: `Convertis : ${h} h ${m} min = … min`, unit: 'min', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 45, misconceptions: [mc(h * 100 + m, 'mc:base-60', 'notion', 'Une heure vaut 60 minutes, pas 100.')], hints: [`${h} h = ${h} × 60 min.`], solution: `${h} × 60 + ${m} = ${ans} min.` });
     }
@@ -461,7 +477,7 @@ addPc({
     const kmh = rand() < 0.7;
     const mobile = kmh
       ? pick(rand, [['Un cycliste', [12, 15, 18, 20, 24, 30], 'roule'], ['Une voiture', [50, 60, 80, 90, 100, 120], 'roule'], ['Un train', [120, 150, 200, 240, 300], 'roule'], ['Une randonneuse', [4, 5, 6], 'marche']])
-      : pick(rand, [['Un coureur', [4, 5, 6, 8], 'court'], ['Un drone', [10, 12, 15, 20], 'vole'], ['Un nageur', [1, 2], 'nage']]);
+      : pick(rand, [['Un coureur', [3, 4, 5, 6], 'court'], ['Un drone', [10, 12, 15, 20], 'vole'], ['Un nageur', [1, 1.5], 'nage']]);
     const v = pick(rand, mobile[1]);
     const t = kmh ? pick(rand, [0.5, 1, 1.5, 2, 2.5, 3, 4]) : pick(rand, [10, 20, 25, 40, 50, 100, 120]);
     const d = clean(v * t);
@@ -503,9 +519,9 @@ addPc({
     let R; let I; let U;
     do { R = pick(rand, [10, 22, 47, 100, 150, 220, 330, 470, 1000]); I = pick(rand, [5, 10, 15, 20, 25, 30, 40, 50]); U = clean((R * I) / 1000); } while (U > 24 || U < 0.2);
     const hints = ['Loi d’Ohm : U = R × I, avec U en V, R en Ω et I en A.', `Convertis d’abord l’intensité : 1 mA = 0,001 A.`];
-    if (cherche === 'tension') return numeric(U, { prompt: `Un conducteur ohmique de résistance R = ${R} Ω est traversé par un courant d’intensité I = ${I} mA. Calcule la tension U à ses bornes.`, unit: 'V', representation: 'concrete', expectedSeconds: 90, misconceptions: [mc(clean(R / (I / 1000)), 'mc:ohm-division', 'notion', 'U = R × I : on multiplie la résistance par l’intensité.')], hints, solution: `I = ${I} mA = ${fr(I / 1000)} A ; U = R × I = ${R} × ${fr(I / 1000)} = ${fr(U)} V.` });
-    if (cherche === 'intensite') return numeric(I, { prompt: `On applique une tension U = ${fr(U)} V aux bornes d’un conducteur ohmique de résistance R = ${R} Ω. Calcule l’intensité I du courant, en mA.`, unit: 'mA', representation: 'concrete', difficulty: 3, expectedSeconds: 90, misconceptions: [mc(clean(R / U), 'mc:ohm-inverse', 'notion', 'I = U / R : on divise la tension par la résistance.'), mc(clean(U * R * 1000), 'mc:ohm-produit', 'notion', 'I = U / R (on divise).')], hints, solution: `I = U / R = ${fr(U)} / ${R} = ${fr(I / 1000)} A = ${I} mA.` });
-    return numeric(R, { prompt: `Aux bornes d’un conducteur ohmique, on mesure U = ${fr(U)} V et I = ${I} mA. Calcule sa résistance R.`, unit: 'Ω', representation: 'concrete', difficulty: 3, expectedSeconds: 90, misconceptions: [mc(clean((I / 1000) / U), 'mc:ohm-inverse', 'notion', 'R = U / I : la tension divisée par l’intensité.')], hints, solution: `I = ${fr(I / 1000)} A ; R = U / I = ${fr(U)} / ${fr(I / 1000)} = ${R} Ω.` });
+    if (cherche === 'tension') return numeric(U, { prompt: `Un conducteur ohmique de résistance R = ${R} Ω est traversé par un courant d’intensité I = ${I} mA. Calcule la tension U à ses bornes.`, unit: 'V', representation: 'concrete', expectedSeconds: 90, misconceptions: [mc(clean(R / (I / 1000)), 'mc:ohm-division', 'notion', 'U = R × I : on multiplie la résistance par l’intensité.'), mc(clean(R * I), 'mc:conversion-ma', 'unite', 'Convertis d’abord l’intensité en ampères : 1 mA = 0,001 A.')], hints, solution: `I = ${I} mA = ${fr(I / 1000)} A ; U = R × I = ${R} × ${fr(I / 1000)} = ${fr(U)} V.` });
+    if (cherche === 'intensite') return numeric(I, { prompt: `On applique une tension U = ${fr(U)} V aux bornes d’un conducteur ohmique de résistance R = ${R} Ω. Calcule l’intensité I du courant, en mA.`, unit: 'mA', representation: 'concrete', difficulty: 3, expectedSeconds: 90, misconceptions: [mc(clean(R / U), 'mc:ohm-inverse', 'notion', 'I = U / R : on divise la tension par la résistance.'), mc(clean(U * R * 1000), 'mc:ohm-produit', 'notion', 'I = U / R (on divise).'), mc(clean(I / 1000), 'mc:conversion-ma', 'unite', 'Ce résultat est en ampères : la question demande des milliampères (1 A = 1 000 mA).')], hints, solution: `I = U / R = ${fr(U)} / ${R} = ${fr(I / 1000)} A = ${I} mA.` });
+    return numeric(R, { prompt: `Aux bornes d’un conducteur ohmique, on mesure U = ${fr(U)} V et I = ${I} mA. Calcule sa résistance R.`, unit: 'Ω', representation: 'concrete', difficulty: 3, expectedSeconds: 90, misconceptions: [mc(clean((I / 1000) / U), 'mc:ohm-inverse', 'notion', 'R = U / I : la tension divisée par l’intensité.'), mc(clean(U / I), 'mc:conversion-ma', 'unite', 'Convertis d’abord l’intensité en ampères : 1 mA = 0,001 A.')], hints, solution: `I = ${fr(I / 1000)} A ; R = U / I = ${fr(U)} / ${fr(I / 1000)} = ${R} Ω.` });
   },
 });
 
@@ -520,7 +536,9 @@ addPc({
     const m = grams ? pick(rand, [200, 250, 500, 750]) / 1000 : pick(rand, [2, 5, 12, 20, 45, 60, 70, 80]);
     const P = clean(m * g);
     const mTxt = grams ? `${m * 1000} g` : `${m} kg`;
-    const hints = [`P = m × g, avec m en kg et g = ${fr(g)} N/kg sur ${astre}.`, grams ? 'Convertis d’abord la masse en kg.' : 'Le poids s’exprime en newtons (N).'];
+    const hints = cherche === 'poids'
+      ? [`P = m × g, avec m en kg et g = ${fr(g)} N/kg sur ${astre}.`, grams ? 'Convertis d’abord la masse en kg.' : 'Le poids s’exprime en newtons (N).']
+      : [`On cherche la masse : m = P / g, avec g = ${fr(g)} N/kg sur ${astre}.`, 'Divise le poids (en N) par g (en N/kg) : la masse obtenue est en kg.'];
     if (cherche === 'poids') return numeric(P, { prompt: `Sur ${astre}, l’intensité de la pesanteur vaut g = ${fr(g)} N/kg. Calcule le poids d’un objet de masse ${mTxt}.`, unit: 'N', representation: 'concrete', tolerance: 0.005, expectedSeconds: 75, misconceptions: [mc(clean(m / g), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.')], hints, solution: `${grams ? `m = ${mTxt} = ${fr(m)} kg ; ` : ''}P = m × g = ${fr(m)} × ${fr(g)} = ${fr(P)} N.` });
     return numeric(m, { prompt: `Sur ${astre} (g = ${fr(g)} N/kg), un objet a un poids de ${fr(P)} N. Quelle est sa masse en kg ?`, unit: 'kg', representation: 'concrete', difficulty: 3, tolerance: 0.005, expectedSeconds: 90, misconceptions: [mc(clean(P * g), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids par g.'), mc(P, 'mc:masse-poids', 'notion', 'La masse (en kg) et le poids (en N) sont deux grandeurs différentes : m = P / g.')], hints, solution: `m = P / g = ${fr(P)} / ${fr(g)} = ${fr(m)} kg.` });
   },

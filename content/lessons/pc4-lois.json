@@ -299,7 +299,7 @@
         {
           "emoji": "⚠️",
           "title": "La multiprise surchargée",
-          "body": "Les appareils branchés sur une multiprise sont en dérivation : leurs intensités **s'additionnent** dans le câble de la multiprise. Si la somme dépasse l'intensité maximale indiquée (souvent 16 A), le câble chauffe : risque d'incendie. Le disjoncteur coupe alors le courant pour protéger l'installation."
+          "body": "Les appareils branchés sur une multiprise sont en dérivation : leurs intensités **s'additionnent** dans le câble de la multiprise. Si la somme dépasse l'intensité maximale indiquée (souvent 16 A), le câble chauffe : risque d'incendie. Le disjoncteur peut couper le courant, mais pas toujours avant que le câble ait trop chauffé : il ne faut jamais dépasser l'intensité indiquée."
         }
       ]
     },
@@ -594,7 +594,18 @@
                   "on": 0.8
                 }
               }
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Les deux lampes sont allumées. Laquelle brille le plus ?",
+              "choices": [
+                "L1",
+                "L2",
+                "Elles brillent exactement pareil"
+              ],
+              "answer": 1,
+              "explain": "L2 brille un peu plus que L1 : les deux lampes sont différentes. Les mesures de tension vont t'aider à comprendre pourquoi."
+            }
           },
           {
             "title": "Prévois !",
@@ -651,7 +662,7 @@
           },
           {
             "title": "La loi d'additivité",
-            "text": "Le voltmètre indique 3,5 V aux bornes de L2 : 2,5 V + 3,5 V = 6,0 V. Les deux lampes se partagent la tension du générateur. L2, qui reçoit la plus grande tension, brille le plus.",
+            "text": "Le voltmètre indique 3,5 V aux bornes de L2 : 2,5 V + 3,5 V = 6,0 V. Les deux lampes se partagent la tension du générateur.",
             "duration": 2,
             "do": [
               {
@@ -667,7 +678,18 @@
             "focus": [
               "U2",
               "UG"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Le même courant (0,25 A) traverse L1 et L2. Pourquoi L2 brille-t-elle plus que L1 ?",
+              "choices": [
+                "Elle est plus près de la borne + du générateur",
+                "Elle reçoit une tension plus grande : 3,5 V contre 2,5 V",
+                "Elle reçoit plus de courant que L1"
+              ],
+              "answer": 1,
+              "explain": "L'intensité est la même dans les deux lampes, et leur place dans la boucle ne change rien. C'est la tension, plus grande aux bornes de L2, qui la fait briller davantage."
+            }
           }
         ],
         "conclusion": "Dans un circuit en série, l'intensité est **la même partout** (I = 0,25 A avant et après les lampes) et la tension du générateur est égale à la **somme** des tensions des récepteurs (6,0 V = 2,5 V + 3,5 V)."
@@ -1113,7 +1135,18 @@
                   "on": 0.6
                 }
               }
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Les deux lampes sont allumées. Brillent-elles autant l'une que l'autre ?",
+              "choices": [
+                "Oui, exactement pareil",
+                "Non : L2 brille plus que L1",
+                "Non : L1 brille plus que L2"
+              ],
+              "answer": 2,
+              "explain": "L1 brille plus que L2 : les lampes sont différentes. Les ampèremètres vont montrer que L1 est aussi traversée par un courant plus intense."
+            }
           },
           {
             "title": "Les branches dérivées",
@@ -1202,7 +1235,7 @@
           },
           {
             "title": "Une branche ouverte",
-            "text": "Sans L2, la branche de L2 est ouverte : plus de courant. L1 brille comme avant. L'ampèremètre principal n'indique plus que 0,30 A : il ne reste qu'une branche.",
+            "text": "Sans L2, la branche de L2 est ouverte : plus de courant. L1 brille comme avant. Regarde ce qu'indique maintenant l'ampèremètre principal.",
             "duration": 3,
             "do": [
               {
@@ -1288,7 +1321,33 @@
             "focus": [
               "L1",
               "I0"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Qu'indique maintenant l'ampèremètre de la branche principale ?",
+              "choices": [
+                "Toujours 0,50 A",
+                "0,30 A",
+                "0 A"
+              ],
+              "answer": 1,
+              "explain": "Il ne reste qu'une branche parcourue par un courant, celle de L1 : I = 0,30 A + 0 A = 0,30 A. La loi des nœuds s'applique toujours."
+            }
+          },
+          {
+            "title": "Et à la maison ?",
+            "text": "Dans une maison, les lampes et les appareils sont branchés en dérivation sur le secteur.",
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi branche-t-on les appareils d'une maison en dérivation ?",
+              "choices": [
+                "Pour que chaque appareil reçoive la même tension et fonctionne même si un autre est éteint",
+                "Pour que le même courant traverse tous les appareils",
+                "Pour que les appareils consomment moins d'énergie"
+              ],
+              "answer": 0,
+              "explain": "Comme L1 et L2, chaque appareil a sa propre branche : il reçoit la tension du secteur (230 V) et fonctionne même quand on éteint ou débranche les autres."
+            }
           }
         ],
         "conclusion": "Avec des dérivations, l'intensité dans la branche principale est la **somme** des intensités des branches dérivées (0,50 A = 0,30 A + 0,20 A), et les dipôles en dérivation ont **la même tension** à leurs bornes. Chaque branche fonctionne indépendamment des autres."
@@ -1685,7 +1744,7 @@
               "answer": 1.5,
               "id": "mc:tension-partage-derivation",
               "error": "notion",
-              "feedback": "En dérivation, la tension ne se partage pas : chaque lampe est reliée aux deux bornes de la pile et reçoit 4,5 V."
+              "feedback": "En dérivation, la tension ne se partage pas : chaque lampe est reliée directement aux deux bornes de la pile. Quelle tension reçoit-elle alors ?"
             }
           ]
         },
@@ -1700,7 +1759,7 @@
               "answer": 1.5,
               "id": "mc:tension-partage-derivation",
               "error": "notion",
-              "feedback": "Même réponse que pour L1 : en dérivation, la tension est la même aux bornes de chaque branche."
+              "feedback": "En dérivation, la tension ne se partage pas entre les lampes : elle est la même aux bornes de chaque branche."
             }
           ]
         },
@@ -1711,14 +1770,16 @@
             "en dérivation",
             "dérivation",
             "derivation",
-            "en derivation"
+            "en derivation",
+            "en parallèle",
+            "parallèle"
           ],
           "misconceptions": [
             {
               "answer": "en série",
               "id": "mc:maison-serie",
               "error": "notion",
-              "feedback": "En série, les appareils se partageraient les 230 V, et éteindre l'un éteindrait tous les autres. Ils sont en dérivation."
+              "feedback": "En série, les appareils se partageraient les 230 V, et éteindre l'un éteindrait tous les autres : ce n'est pas ce qui se passe à la maison."
             }
           ]
         }
@@ -1952,14 +2013,16 @@
             "en dérivation",
             "dérivation",
             "derivation",
-            "en derivation"
+            "en derivation",
+            "en parallèle",
+            "parallèle"
           ],
           "misconceptions": [
             {
               "answer": "en série",
               "id": "mc:maison-serie",
               "error": "notion",
-              "feedback": "Chaque appareil est relié aux deux bornes de la prise et fonctionne indépendamment : ils sont en dérivation."
+              "feedback": "Chaque appareil est relié aux deux bornes de la prise et fonctionne indépendamment des autres : serait-ce possible en série ?"
             }
           ]
         },
@@ -1974,7 +2037,7 @@
               "answer": "230/3",
               "id": "mc:tension-partage-derivation",
               "error": "notion",
-              "feedback": "En dérivation, chaque appareil reçoit la totalité de la tension : 230 V."
+              "feedback": "En dérivation, la tension ne se partage pas entre les appareils : chacun reçoit la totalité de la tension du secteur."
             }
           ]
         },
@@ -2004,7 +2067,7 @@
               "answer": "oui",
               "id": "mc:surcharge",
               "error": "raisonnement",
-              "feedback": "19,1 A dépasse les 16 A prévus : le câble chauffe trop, il y a un risque d'incendie (ou le disjoncteur coupe)."
+              "feedback": "Compare l'intensité dans le câble aux 16 A prévus : au-delà, le câble chauffe trop et il y a un risque d'incendie."
             }
           ]
         },
@@ -2164,7 +2227,7 @@
               "answer": 0.125,
               "id": "mc:courant-use",
               "error": "notion",
-              "feedback": "Comme les cyclistes après la côte, le courant est toujours là après la lampe : 0,25 A."
+              "feedback": "Comme les cyclistes après la côte, le courant est toujours là après la lampe : il ne se partage pas et ne s'use pas."
             },
             {
               "answer": 0,
@@ -2204,7 +2267,7 @@
               "answer": "la tension",
               "id": "mc:tension-identique-serie",
               "error": "notion",
-              "feedback": "En série, les tensions s'additionnent ; c'est l'intensité qui est la même partout."
+              "feedback": "En série, les tensions s'additionnent : elles ne sont donc pas les mêmes partout. Pense à l'autre grandeur."
             }
           ]
         }
@@ -2435,21 +2498,21 @@
           "category": "derivation",
           "id": "mc:intensite-identique-derivation",
           "error": "notion",
-          "feedback": "En dérivation, le courant se partage aux nœuds : les intensités des branches ne sont pas les mêmes partout. C'est en série que l'intensité est la même en tout point."
+          "feedback": "En dérivation, le courant se partage aux nœuds : les intensités des branches ne sont pas les mêmes partout."
         },
         {
           "item": "i3",
           "category": "serie",
           "id": "mc:tension-identique",
           "error": "notion",
-          "feedback": "En série, les dipôles se PARTAGENT la tension du générateur (loi d'additivité). C'est en dérivation qu'ils ont tous la même tension."
+          "feedback": "En série, les dipôles se PARTAGENT la tension du générateur (loi d'additivité) : ils n'ont pas forcément tous la même tension."
         },
         {
           "item": "i4",
           "category": "serie",
           "id": "mc:noeud-serie",
           "error": "notion",
-          "feedback": "Un circuit en série n'a qu'une boucle, sans nœud ni branche principale : la loi des nœuds concerne les circuits avec dérivations."
+          "feedback": "Un circuit en série n'a qu'une boucle, sans nœud ni branche principale : il n'y a donc pas de « branches » dont on additionnerait les intensités."
         }
       ],
       "hints": [
@@ -2553,7 +2616,7 @@
               "answer": "I/n",
               "id": "mc:courant-use",
               "error": "notion",
-              "feedback": "En série, l'intensité est la même en tout point : le courant ne « s'use » pas en traversant les lampes. La dernière lampe est traversée par {I} mA."
+              "feedback": "En série, l'intensité est la même en tout point : le courant ne « s'use » pas et ne se partage pas en traversant les lampes."
             }
           ]
         },
@@ -2576,25 +2639,25 @@
               "answer": "elles restent allumées",
               "id": "mc:serie-independance",
               "error": "notion",
-              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit, le courant ne circule plus nulle part et toutes les lampes s'éteignent."
+              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit. Le courant peut-il encore traverser les autres lampes ?"
             },
             {
               "answer": "restent allumées",
               "id": "mc:serie-independance",
               "error": "notion",
-              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit, le courant ne circule plus nulle part et toutes les lampes s'éteignent."
+              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit. Le courant peut-il encore traverser les autres lampes ?"
             },
             {
               "answer": "allumées",
               "id": "mc:serie-independance",
               "error": "notion",
-              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit, le courant ne circule plus nulle part et toutes les lampes s'éteignent."
+              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit. Le courant peut-il encore traverser les autres lampes ?"
             },
             {
               "answer": "elles brillent plus",
               "id": "mc:serie-independance",
               "error": "notion",
-              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit, le courant ne circule plus nulle part et toutes les lampes s'éteignent."
+              "feedback": "En série, il n'y a qu'une boucle : un filament cassé ouvre le circuit. Le courant peut-il encore traverser les autres lampes ?"
             }
           ]
         }
@@ -2697,7 +2760,7 @@
               "answer": "0.2/3",
               "id": "mc:courant-use",
               "error": "notion",
-              "feedback": "En série, l'intensité ne se partage pas : 0,20 A dans chaque lampe."
+              "feedback": "En série, l'intensité ne se partage pas entre les lampes : elle est la même dans chacune."
             }
           ]
         },
@@ -2710,7 +2773,9 @@
             "elles s'eteignent",
             "s'eteignent",
             "éteintes",
-            "elles s'éteignent toutes"
+            "elles s'éteignent toutes",
+            "elles s'éteignent aussi",
+            "s'éteignent aussi"
           ],
           "misconceptions": [
             {
@@ -2732,7 +2797,7 @@
               "answer": 0,
               "id": "mc:tension-sans-courant",
               "error": "notion",
-              "feedback": "Il n'y a plus de courant, mais il peut y avoir une tension ! Les autres lampes ont 0 V à leurs bornes : toute la tension du générateur se retrouve aux bornes de l'ouverture."
+              "feedback": "Il n'y a plus de courant, mais il peut y avoir une tension ! Sans courant, les autres lampes ont 0 V à leurs bornes : applique la loi d'additivité des tensions à toute la boucle."
             }
           ]
         }
@@ -2845,7 +2910,7 @@
               "answer": "oui",
               "id": "mc:mesure-exacte",
               "error": "raisonnement",
-              "feedback": "Aucune mesure n'est parfaite : un écart de 0,002 A est plus petit que l'erreur possible sur chaque mesure (environ 0,003 A). Les mesures sont compatibles avec la loi."
+              "feedback": "Aucune mesure n'est parfaite : compare l'écart trouvé à l'erreur possible sur chaque mesure (environ 0,003 A)."
             }
           ]
         },
@@ -2982,7 +3047,7 @@
               "answer": 2000,
               "id": "mc:ma-non-converti",
               "error": "unite",
-              "feedback": "Utilise l'intensité en ampères (0,020 A) : U₁ = 100 × 0,020."
+              "feedback": "Dans U = R × I, utilise l'intensité en ampères, pas en milliampères."
             }
           ]
         },

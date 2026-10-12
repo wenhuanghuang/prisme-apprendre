@@ -386,7 +386,18 @@
             ],
             "focus": [
               "chr"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Léa compte ses pulsations pendant 15 secondes. Pourquoi multiplie-t-on ce nombre par 4 ?",
+              "choices": [
+                "Parce qu'une minute dure 4 fois 15 secondes.",
+                "Parce que le cœur a quatre cavités.",
+                "Pour corriger les erreurs de comptage."
+              ],
+              "answer": 0,
+              "explain": "4 × 15 s = 60 s. En multipliant par 4, on obtient le nombre de battements en une minute : c'est la fréquence cardiaque."
+            }
           },
           {
             "title": "L'effort",
@@ -743,12 +754,24 @@
             "focus": [
               "fc",
               "fr"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Compare avec le repos (76 battements et 16 mouvements par minute). Que sont devenues les deux fréquences juste après l'effort ?",
+              "choices": [
+                "Elles ont plus que doublé toutes les deux.",
+                "Seule la fréquence cardiaque a augmenté.",
+                "Elles n'ont augmenté que de quelques unités."
+              ],
+              "answer": 0,
+              "explain": "Le cœur passe de 76 à 168 battements par minute, la respiration de 16 à 40 mouvements par minute : les deux fréquences ont plus que doublé."
+            }
           },
           {
             "title": "La récupération",
             "text": "Léa s'assoit. On mesure sa fréquence cardiaque après 1 minute : 126 battements par minute ; après 3 minutes : 92 ; après 5 minutes : 80. Sa fréquence respiratoire redescend aussi : 28, puis 20, puis 18 mouvements par minute. Les fréquences redescendent, mais pas instantanément : le retour au calme demande du temps.",
             "ask": {
+              "kind": "expliquer",
               "question": "Pourquoi la fréquence ne revient-elle pas à 76 immédiatement ?",
               "choices": [
                 "L'organisme doit encore évacuer le CO₂ et la chaleur et se réapprovisionner : les besoins diminuent progressivement.",
@@ -1165,7 +1188,18 @@
             "focus": [
               "coeur",
               "fc"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Après l'entraînement, le cœur de Léa bat moins vite au repos (72 au lieu de 76 par minute). Comment apporte-t-il quand même assez de sang aux organes ?",
+              "choices": [
+                "Il envoie plus de sang à chaque battement.",
+                "Ses organes n'ont plus besoin de dioxygène au repos.",
+                "Son sang circule moins dans le corps."
+              ],
+              "answer": 0,
+              "explain": "L'entraînement rend le cœur plus efficace : il éjecte plus de sang à chaque battement. Il peut donc battre un peu moins souvent tout en apportant assez de sang."
+            }
           }
         ],
         "conclusion": "À l'effort, la fréquence cardiaque et la fréquence respiratoire augmentent, puis elles redescendent progressivement pendant la récupération. Ces changements répondent aux besoins des muscles."
@@ -1551,7 +1585,7 @@
               "answer": 8,
               "id": "mc:lecture-axe",
               "error": "lecture",
-              "feedback": "8 est une valeur de l'axe horizontal (le temps, en minutes). La fréquence cardiaque se lit sur l'axe vertical : 170 bpm."
+              "feedback": "8 est une valeur de l'axe horizontal (le temps, en minutes). La fréquence cardiaque se lit sur l'axe vertical : cherche le point le plus haut de la courbe."
             }
           ]
         },
@@ -2970,7 +3004,7 @@
         "mc:moyenne-individu"
       ],
       "expectedSeconds": 420,
-      "prompt": "Pour savoir si l'entraînement abaisse la fréquence cardiaque de repos, on suit douze élèves pendant huit semaines. Six élèves s'entraînent trois fois par semaine (groupe entraîné), six gardent leurs habitudes (groupe témoin). Fréquences de repos (bpm). Groupe entraîné : avant 78, 82, 76, 80, 74, 78 ; après 72, 76, 70, 74, 68, 72. Groupe témoin : avant 80, 76, 82, 74, 78, 78 ; après 80, 76, 81, 75, 78, 78.",
+      "prompt": "Pour savoir si l'entraînement abaisse la fréquence cardiaque de repos, on suit douze élèves pendant huit semaines. Six élèves s'entraînent trois fois par semaine (groupe entraîné), six gardent leurs habitudes (groupe témoin). Fréquences de repos (bpm). Groupe entraîné : avant 78, 82, 76, 80, 74, 78 ; après 73, 74, 69, 75, 67, 74. Groupe témoin : avant 80, 76, 82, 74, 78, 78 ; après 80, 76, 81, 75, 78, 78.",
       "parts": [
         {
           "type": "table",
@@ -3024,7 +3058,7 @@
               "answer": 6,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "La fréquence a diminué (78 → 72) : la variation est négative, −6 bpm."
+              "feedback": "La fréquence a diminué : la variation (valeur après − valeur avant) est donc négative."
             }
           ]
         },
@@ -3054,12 +3088,12 @@
             },
             {
               "id": "i3",
-              "label": "Comme la baisse est la même pour tous les élèves, l'entraînement a ralenti chaque cœur de 6 bpm exactement.",
+              "label": "Comme la baisse moyenne est de 6 bpm, chaque élève entraîné a vu sa fréquence de repos baisser de 6 bpm exactement.",
               "category": "abusif"
             },
             {
               "id": "i4",
-              "label": "Pour ces douze élèves, l'entraînement est associé à une baisse moyenne de 6 bpm de la fréquence de repos.",
+              "label": "Dans cette étude, l'entraînement est associé à une baisse moyenne de 6 bpm de la fréquence de repos.",
               "category": "valide"
             }
           ],
@@ -3076,7 +3110,7 @@
               "category": "valide",
               "id": "mc:moyenne-individu",
               "error": "raisonnement",
-              "feedback": "Une moyenne décrit le groupe, pas chaque élève : la baisse individuelle varie (de 4 à 6 bpm ici)."
+              "feedback": "Une moyenne décrit le groupe, pas chaque élève : la baisse individuelle varie (de 4 à 8 bpm ici)."
             }
           ]
         }
@@ -3263,7 +3297,7 @@
               "answer": 9,
               "id": "mc:ecart-oublie",
               "error": "lecture",
-              "feedback": "9 bpm est l'écart du deuxième élève de 13 ans. Le plus grand écart concerne l'élève de 13 ans à 192 bpm : 207 − 192 = 15 bpm."
+              "feedback": "9 bpm est l'écart d'un seul élève. Calcule l'écart de chacun des cinq élèves (mesure − valeur de la formule pour son âge), puis garde le plus grand sans tenir compte du signe."
             }
           ]
         },
@@ -3308,7 +3342,7 @@
               "category": "vrai",
               "id": "mc:formule-exacte",
               "error": "raisonnement",
-              "feedback": "Les écarts entre mesures et formule vont de −15 à +3 bpm : c'est un ordre de grandeur, pas une valeur exacte."
+              "feedback": "Les écarts entre les mesures et la formule sont différents d'un élève à l'autre, parfois de plusieurs bpm : c'est un ordre de grandeur, pas une valeur exacte."
             },
             {
               "item": "i4",
@@ -3513,14 +3547,14 @@
       "parts": [
         {
           "type": "numeric",
-          "prompt": "De combien la consommation augmente-t-elle chaque fois que la vitesse augmente de 2 km/h, tant qu'elle n'a pas atteint son maximum ?",
+          "prompt": "De combien la consommation augmente-t-elle chaque fois que la vitesse augmente de 2 km/h, entre 6 et 14 km/h ?",
           "answer": 7,
           "misconceptions": [
             {
               "answer": 2,
               "id": "mc:lecture-axe",
               "error": "lecture",
-              "feedback": "2 km/h est l'augmentation de la vitesse. On demande l'augmentation de la consommation de dioxygène : 27 − 20."
+              "feedback": "2 km/h est l'augmentation de la vitesse. On demande l'augmentation de la consommation de dioxygène : compare deux valeurs consécutives de l'axe vertical."
             }
           ]
         },
@@ -3533,7 +3567,7 @@
               "answer": 48,
               "id": "mc:plateau-oublie",
               "error": "lecture",
-              "feedback": "À 14 km/h, la consommation continue encore d'augmenter (jusqu'à 52 à 16 km/h). Le maximum est la valeur du plateau : 52."
+              "feedback": "À 14 km/h, la consommation continue encore d'augmenter. Le maximum est la valeur du palier, là où la courbe devient horizontale."
             }
           ]
         },

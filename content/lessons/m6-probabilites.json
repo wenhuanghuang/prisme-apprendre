@@ -1,0 +1,961 @@
+{
+  "id": "m6-probabilites",
+  "chapter": "6e-m-probabilites",
+  "title": "Les probabilités : le hasard en nombres",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.probas.echelle", "m6.probas.calculer", "m6.probas.frequences"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 50,
+  "summary": "Savoir qu'une probabilité est un nombre entre 0 (impossible) et 1 (certain), la calculer quand tous les résultats ont la même chance (cas favorables sur cas possibles), et comparer les résultats d'une expérience répétée à la probabilité calculée.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le dé de Tom",
+      "body": "Tom a lancé son dé 12 fois. Le 6 n'est sorti qu'une seule fois ! Il s'énerve : « Ce dé est truqué, le 6 sort moins souvent que les autres ! »\n\nSa sœur Maëlle sourit : « Lance-le 1 000 fois, et on en reparle. »\n\nFais l'expérience dans le labo : lance le dé 10 fois, puis 1 000 fois. Que remarques-tu ? Qui a raison, d'après toi ?",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 1, "event": "obtenir 6" } }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🎲",
+          "title": "Une expérience aléatoire",
+          "body": "Lancer un dé, tirer une bille dans un sac, faire tourner une roue : on connaît les **résultats possibles**, mais on ne peut pas prévoir lequel va sortir. C'est une **expérience aléatoire** (« aléatoire » veut dire « dû au hasard »).",
+          "example": "Avec un dé à 6 faces, les résultats possibles sont 1, 2, 3, 4, 5 et 6."
+        },
+        {
+          "emoji": "📏",
+          "title": "Un nombre entre 0 et 1",
+          "body": "La **probabilité** d'un évènement est un nombre qui mesure ses chances de se produire. Elle est toujours **comprise entre 0 et 1**. 0 : c'est **impossible**. 1 : c'est **certain**. $1/2$ : une chance sur deux.",
+          "figure": {
+            "alt": "Ligne des probabilités graduée de 0 (impossible) à 1 (certain), avec 1/2 au milieu.",
+            "w": 440,
+            "h": 130,
+            "frame": { "x": [-1, 11], "y": [-1.8, 1.4] },
+            "items": [
+              { "type": "segment", "from": [0, 0], "to": [10, 0] },
+              { "type": "point", "id": "P0", "x": 0, "y": 0, "label": "0", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 0, "y": -0.9, "text": "impossible", "size": "s" },
+              { "type": "point", "id": "P1", "x": 5, "y": 0, "label": "1/2", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 5, "y": -0.9, "text": "une chance sur deux", "size": "s" },
+              { "type": "point", "id": "P2", "x": 10, "y": 0, "label": "1", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 10, "y": -0.9, "text": "certain", "size": "s" }
+            ]
+          },
+          "reveal": {
+            "question": "Devine : une probabilité peut-elle valoir 2 ?",
+            "answer": "Jamais ! 1, c'est déjà « à coup sûr » : on ne peut pas avoir plus de chances que certain. Une probabilité ne dépasse jamais 1."
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Calculer une probabilité",
+          "body": "Quand tous les résultats ont **la même chance** de sortir (dé équilibré, billes identiques au toucher…), on compte. Probabilité = **nombre de cas favorables ÷ nombre de cas possibles**. On l'écrit souvent avec une fraction.",
+          "example": "Obtenir un nombre pair avec un dé : 3 cas favorables (2, 4, 6) sur 6 possibles. Probabilité : $3/6$, c'est-à-dire $1/2$."
+        },
+        {
+          "emoji": "🔵",
+          "title": "Compter les billes, pas les couleurs",
+          "body": "Un sac contient 1 bille rouge et 3 bleues. Il y a 2 couleurs… mais 4 billes ! C'est chaque **bille** qui a la même chance d'être tirée. Probabilité de tirer la rouge : $1/4$, et non $1/2$.",
+          "figure": {
+            "alt": "Quatre billes : une rouge et trois bleues.",
+            "w": 300,
+            "h": 100,
+            "frame": { "x": [0, 9], "y": [0, 2.4] },
+            "items": [
+              { "type": "point", "id": "A", "x": 1.5, "y": 1.2, "hidden": true },
+              { "type": "point", "id": "B", "x": 3.5, "y": 1.2, "hidden": true },
+              { "type": "point", "id": "C", "x": 5.5, "y": 1.2, "hidden": true },
+              { "type": "point", "id": "D", "x": 7.5, "y": 1.2, "hidden": true },
+              { "type": "circle", "center": "A", "r": 0.8, "fill": "rouge", "color": "rouge" },
+              { "type": "circle", "center": "B", "r": 0.8, "fill": "bleu", "color": "bleu" },
+              { "type": "circle", "center": "C", "r": 0.8, "fill": "bleu", "color": "bleu" },
+              { "type": "circle", "center": "D", "r": 0.8, "fill": "bleu", "color": "bleu" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔁",
+          "title": "Répéter l'expérience",
+          "body": "Sur 12 lancers, tout peut arriver. Mais sur des milliers de lancers, la **fréquence** du 6 (nombre de 6 ÷ nombre de lancers) se rapproche de sa probabilité, $1/6$. C'est ce que Maëlle voulait montrer à Tom.",
+          "reveal": {
+            "question": "Devine : le 6 n'est pas sorti depuis 15 lancers. A-t-il plus de chances de sortir au prochain lancer ?",
+            "answer": "Non ! Le dé n'a pas de mémoire. À chaque lancer, le 6 a toujours une chance sur six, ni plus, ni moins."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le sac de Léa",
+      "steps": [
+        {
+          "text": "Le sac de Léa contient 3 billes rouges, 5 bleues et 2 vertes, identiques au toucher. On tire une bille au hasard : les 10 billes ont toutes la même chance.",
+          "math": "3 + 5 + 2 = 10"
+        },
+        { "text": "Tirer une bille rouge : 3 cas favorables sur 10 cas possibles.", "math": "P(rouge) = 3/10" },
+        { "text": "Tirer une bille bleue : 5 cas sur 10. C'est une chance sur deux !", "math": "P(bleue) = 5/10 = 1/2" },
+        {
+          "text": "Tirer une bille jaune : il n'y en a aucune, c'est impossible : probabilité 0. Tirer une bille rouge, bleue ou verte : 10 cas sur 10, c'est certain : probabilité 1."
+        },
+        {
+          "text": "On place tout sur la ligne des probabilités : jaune (0), rouge ($3/10$), bleue ($5/10$), « rouge, bleue ou verte » (1).",
+          "figure": {
+            "alt": "Ligne des probabilités de 0 à 1 avec quatre évènements du sac de Léa.",
+            "w": 440,
+            "h": 130,
+            "frame": { "x": [-1, 11], "y": [-1.8, 1.4] },
+            "items": [
+              { "type": "segment", "from": [0, 0], "to": [10, 0] },
+              { "type": "point", "id": "P0", "x": 0, "y": 0, "label": "jaune", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 0, "y": -0.9, "text": "0", "size": "s" },
+              { "type": "point", "id": "P1", "x": 3, "y": 0, "label": "rouge", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 3, "y": -0.9, "text": "3/10", "size": "s" },
+              { "type": "point", "id": "P2", "x": 5, "y": 0, "label": "bleue", "pos": "n", "style": "rond", "color": "maths" },
+              { "type": "text", "x": 5, "y": -0.9, "text": "5/10", "size": "s" },
+              { "type": "point", "id": "P3", "x": 10, "y": 0, "label": "toutes", "pos": "n", "style": "rond", "color": "vert" },
+              { "type": "text", "x": 10, "y": -0.9, "text": "1", "size": "s" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": [
+        "m6-probabilites-echelle",
+        "m6-probabilites-associer",
+        "m6-probabilites-de",
+        "m6-probabilites-sac",
+        "m6-probabilites-roue",
+        "m6-probabilites-verif"
+      ]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-probabilites-memoire"] },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes : la série de Yanis et le jeu de Nora",
+      "body": "Ouvre le labo : il peut lancer le dé à ta place des milliers de fois.",
+      "exercises": ["m6-probabilites-frequence", "m6-probabilites-equitable"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la loterie de la kermesse",
+      "body": "La 6e tient le stand de loterie de la kermesse. Tu prépares l'urne et tu vérifies que le jeu est honnête.",
+      "exercises": ["m6-probabilites-kermesse"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Une probabilité est un nombre **entre 0 et 1** : 0 pour un évènement impossible, 1 pour un évènement certain. Quand tous les résultats ont la même chance : probabilité = nombre de cas favorables ÷ nombre de cas possibles. En répétant une expérience un très grand nombre de fois, la fréquence se rapproche de la probabilité.\n\n- **Trouver une probabilité plus grande que 1.** Impossible : le nombre de cas possibles (en bas) est toujours le plus grand.\n- **Compter les couleurs au lieu des billes.** 1 rouge et 3 bleues : $1/4$, pas $1/2$.\n- **Croire que le dé a une mémoire.** Le 6 n'a ni plus ni moins de chances que les autres faces, même s'il n'est pas sorti depuis longtemps.\n- **Attendre exactement 10 fois le 6 sur 60 lancers.** Sur peu de lancers, le hasard fait varier les résultats."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des probabilités à calculer dans quelques jours, avec d'autres dés, d'autres sacs et d'autres roues."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Choisir le bon sac quand les deux ont des tailles différentes, et lire des probabilités sur une roue aux secteurs inégaux.",
+      "exercises": ["m6-probabilites-comparer", "m6-probabilites-roue-fractions"]
+    },
+    "expert": {
+      "intro": "Facultatif : deux pièces lancées en même temps (attention au piège !), et un sac mystère à reconstituer.",
+      "exercises": ["m6-probabilites-deux-pieces", "m6-probabilites-sac-mystere"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-probabilites-echelle",
+      "type": "numberline",
+      "skill": "m6.probas.echelle",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:proba-sup-1"],
+      "expectedSeconds": 180,
+      "prompt": "On lance un dé équilibré à 6 faces. Place chaque évènement sur la ligne des probabilités, de 0 (impossible) à 1 (certain) :\n- **A** : obtenir 7 ;\n- **B** : obtenir un nombre pair ;\n- **C** : obtenir un nombre entre 1 et 6 ;\n- **D** : obtenir 6 ;\n- **E** : obtenir un nombre plus petit que 6.\n\nLa ligne est partagée en 12 petits intervalles.",
+      "min": 0,
+      "max": 1,
+      "step": 0.0833333333,
+      "tolerance": 0.04,
+      "points": [
+        { "label": "A", "value": 0 },
+        { "label": "B", "value": "1/2" },
+        { "label": "C", "value": 1 },
+        { "label": "D", "value": "1/6" },
+        { "label": "E", "value": "5/6" }
+      ],
+      "errorType": "notion",
+      "hints": [
+        "Impossible : tout à gauche (0). Certain : tout à droite (1).",
+        "Pour B, D et E, compte les faces qui conviennent : B 3 faces sur 6, D 1 face sur 6, E 5 faces sur 6.",
+        "1/6, c'est 2 petits intervalles sur 12 ; 1/2, c'est le milieu."
+      ],
+      "solution": "A (obtenir 7) est impossible : 0. C (un nombre entre 1 et 6) est certain : 1. B : 3 faces paires sur 6, soit $3/6 = 1/2$, au milieu. D : 1 face sur 6, soit $1/6$ (2 petits intervalles sur 12). E : 5 faces sur 6 (1, 2, 3, 4, 5), soit $5/6$ (10 petits intervalles sur 12).",
+      "selfTest": [
+        { "response": { "positions": { "A": 0, "B": 0.5, "C": 1, "D": "1/6", "E": "5/6" } }, "expect": "correct" },
+        { "response": { "positions": { "A": 0, "B": 0.5, "C": 1, "D": "1/6", "E": 1 } }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-associer",
+      "type": "match",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.probas.echelle"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:numero-proba", "mc:contraire"],
+      "expectedSeconds": 180,
+      "prompt": "On lance un dé équilibré à 6 faces. Associe chaque évènement à sa probabilité.",
+      "leftTitle": "Évènement",
+      "rightTitle": "Probabilité",
+      "left": [
+        { "id": "l1", "label": "Obtenir 8" },
+        { "id": "l2", "label": "Obtenir 3" },
+        { "id": "l3", "label": "Obtenir 1 ou 2" },
+        { "id": "l4", "label": "Obtenir un nombre pair" },
+        { "id": "l5", "label": "Obtenir autre chose que 4" },
+        { "id": "l6", "label": "Obtenir un nombre entier" }
+      ],
+      "right": [
+        { "id": "r1", "label": "0" },
+        { "id": "r2", "label": "1/6" },
+        { "id": "r3", "label": "2/6" },
+        { "id": "r4", "label": "3/6" },
+        { "id": "r5", "label": "5/6" },
+        { "id": "r6", "label": "1" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" },
+      "misconceptions": [
+        {
+          "pair": ["l2", "r4"],
+          "id": "mc:numero-proba",
+          "error": "notion",
+          "feedback": "Le numéro de la face n'est pas le nombre de cas favorables. Combien de faces portent ce numéro ?"
+        },
+        {
+          "pair": ["l5", "r2"],
+          "id": "mc:contraire",
+          "error": "lecture",
+          "feedback": "Tu as compté les cas où l'on obtient 4. On demande « autre chose que 4 » : compte toutes les autres faces."
+        }
+      ],
+      "hints": [
+        "Pour chaque évènement, écris la liste des faces qui conviennent.",
+        "Probabilité = nombre de faces qui conviennent ÷ 6.",
+        "Aucune face ne convient : 0. Toutes conviennent : 1."
+      ],
+      "solution": "Obtenir 8 : aucune face, 0. Obtenir 3 : une face, $1/6$. Obtenir 1 ou 2 : deux faces, $2/6$. Nombre pair : 2, 4, 6, soit $3/6$. Autre chose que 4 : 1, 2, 3, 5, 6, soit $5/6$. Nombre entier : toutes les faces, 1.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5", "l6": "r6" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r4", "l3": "r3", "l4": "r2", "l5": "r5", "l6": "r6" } }, "expect": "mc:numero-proba" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-de",
+      "type": "numeric",
+      "skill": "m6.probas.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:borne-oubliee", "mc:contraire"],
+      "expectedSeconds": 120,
+      "params": { "k": { "choice": [2, 3, 5] } },
+      "prompt": "On lance un dé équilibré à 6 faces. Quelle est la probabilité d'obtenir un nombre **supérieur ou égal à {k}** ? (écris une fraction)",
+      "answer": "(7 - k)/6",
+      "misconceptions": [
+        {
+          "answer": "(6 - k)/6",
+          "id": "mc:borne-oubliee",
+          "error": "lecture",
+          "feedback": "Tu as oublié une face : « supérieur ou égal à {k} » compte aussi la face {k} elle-même."
+        },
+        {
+          "answer": "(k - 1)/6",
+          "id": "mc:contraire",
+          "error": "notion",
+          "feedback": "Tu as compté les faces plus petites que {k} : ce sont les cas où l'évènement ne se produit pas."
+        }
+      ],
+      "hints": [
+        "Écris la liste des faces qui conviennent.",
+        "« Supérieur ou égal à {k} » : la face {k} compte aussi.",
+        "Probabilité = nombre de faces qui conviennent ÷ 6."
+      ],
+      "solution": "Les faces qui conviennent vont de {k} à 6 : il y en a $ 7 − {k} = {7-k} $. La probabilité vaut $ {7-k}/6 $.",
+      "selfTest": [{ "response": { "value": "{7-k}/6" }, "expect": "correct" }, { "response": { "value": "{6-k}/6" }, "expect": "mc:borne-oubliee" }]
+    },
+    {
+      "id": "m6-probabilites-sac",
+      "type": "numeric",
+      "skill": "m6.probas.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:favorables-sur-defavorables", "mc:couleurs-equiprobables"],
+      "expectedSeconds": 120,
+      "params": { "r": { "int": [2, 7] }, "b": { "int": [2, 9] } },
+      "constraints": ["r != b", "2*r != b"],
+      "prompt": "Un sac contient {r} billes rouges et {b} billes bleues, identiques au toucher. On tire une bille au hasard. Quelle est la probabilité de tirer une bille rouge ? (écris une fraction)",
+      "answer": "r/(r + b)",
+      "misconceptions": [
+        {
+          "answer": "r/b",
+          "id": "mc:favorables-sur-defavorables",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre de billes bleues. En bas de la fraction, on met TOUS les cas possibles : toutes les billes du sac."
+        },
+        {
+          "answer": "1/2",
+          "id": "mc:couleurs-equiprobables",
+          "error": "notion",
+          "feedback": "Deux couleurs ne veut pas dire une chance sur deux : il n'y a pas autant de billes de chaque couleur. Ce sont les billes qui ont la même chance."
+        }
+      ],
+      "hints": [
+        "Combien y a-t-il de billes en tout ? Ce sont les cas possibles.",
+        "Combien de billes sont rouges ? Ce sont les cas favorables.",
+        "Probabilité = cas favorables ÷ cas possibles."
+      ],
+      "solution": "Il y a $ {r} + {b} = {r+b} $ billes, qui ont toutes la même chance. {r} sont rouges : la probabilité vaut $ {r}/{r+b} $.",
+      "selfTest": [{ "response": { "value": "{r}/{r+b}" }, "expect": "correct" }, { "response": { "value": "1/2" }, "expect": "mc:couleurs-equiprobables" }]
+    },
+    {
+      "id": "m6-probabilites-roue",
+      "type": "numeric",
+      "skill": "m6.probas.calculer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:couleurs-equiprobables", "mc:proba-sup-1"],
+      "expectedSeconds": 120,
+      "prompt": "La roue est partagée en 8 secteurs identiques. On la fait tourner : l'aiguille s'arrête au hasard sur un secteur. Quelle est la probabilité qu'elle s'arrête sur un secteur **bleu** ? (écris une fraction)",
+      "figure": {
+        "alt": "Roue partagée en 8 secteurs identiques de couleurs rouge, bleu et jaune.",
+        "w": 360,
+        "h": 240,
+        "items": [
+          {
+            "type": "pie",
+            "data": [
+              { "label": "Rouge", "value": 1, "color": "rouge" },
+              { "label": "Bleu", "value": 1, "color": "bleu" },
+              { "label": "Rouge", "value": 1, "color": "rouge" },
+              { "label": "Bleu", "value": 1, "color": "bleu" },
+              { "label": "Jaune", "value": 1, "color": "jaune" },
+              { "label": "Bleu", "value": 1, "color": "bleu" },
+              { "label": "Rouge", "value": 1, "color": "rouge" },
+              { "label": "Bleu", "value": 1, "color": "bleu" }
+            ]
+          }
+        ]
+      },
+      "answer": "4/8",
+      "misconceptions": [
+        {
+          "answer": "1/3",
+          "id": "mc:couleurs-equiprobables",
+          "error": "notion",
+          "feedback": "Il y a 3 couleurs, mais elles n'occupent pas autant de place sur la roue. Compte les secteurs."
+        },
+        {
+          "answer": 4,
+          "id": "mc:proba-sup-1",
+          "error": "notion",
+          "feedback": "C'est un nombre de secteurs, pas une probabilité : une probabilité ne dépasse jamais 1. Compare ce nombre au nombre total de secteurs."
+        }
+      ],
+      "hints": ["Les 8 secteurs ont tous la même chance.", "Compte les secteurs bleus.", "Probabilité = secteurs bleus ÷ 8."],
+      "solution": "La roue a 8 secteurs identiques, dont 4 bleus : la probabilité vaut $4/8$, c'est-à-dire $1/2$. Une chance sur deux !",
+      "selfTest": [
+        { "response": { "value": "4/8" }, "expect": "correct" },
+        { "response": { "value": "1/2" }, "expect": "correct" },
+        { "response": { "value": "1/3" }, "expect": "mc:couleurs-equiprobables" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-verif",
+      "type": "qcm",
+      "skill": "m6.probas.echelle",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:proba-sup-1"],
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide. Mila affirme : « J'ai beaucoup de chances de gagner : ma probabilité de gagner est 3. » Que penses-tu de cette phrase ?",
+      "choices": [
+        {
+          "text": "C'est possible : elle a beaucoup de chances.",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:proba-sup-1",
+          "feedback": "Repense à ce que veut dire une probabilité égale à 1. Peut-on avoir plus de chances que ça ?"
+        },
+        {
+          "text": "C'est impossible : une probabilité est toujours comprise entre 0 et 1.",
+          "correct": true,
+          "feedback": "Exact : 1, c'est déjà certain. Une probabilité ne dépasse jamais 1."
+        },
+        {
+          "text": "C'est possible si elle joue 3 parties.",
+          "correct": false,
+          "error": "notion",
+          "feedback": "Le nombre de parties ne change rien à la probabilité de gagner UNE partie. Repense aux valeurs que peut prendre une probabilité."
+        }
+      ],
+      "hints": ["Que vaut la probabilité d'un évènement certain ?", "Une probabilité peut-elle dépasser « certain » ?"],
+      "solution": "Une probabilité est toujours comprise entre 0 (impossible) et 1 (certain). « 3 » ne peut pas être une probabilité : Mila se trompe.",
+      "selfTest": [{ "response": { "selected": [1] }, "expect": "correct" }, { "response": { "selected": [0] }, "expect": "mc:proba-sup-1" }]
+    },
+    {
+      "id": "m6-probabilites-memoire",
+      "type": "open",
+      "skill": "m6.probas.frequences",
+      "skills": ["m6.probas.calculer"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:de-memoire"],
+      "expectedSeconds": 300,
+      "minWords": 25,
+      "prompt": "Hugo joue aux petits chevaux. Le 6 n'est pas sorti depuis 15 lancers. Il dit : « Cette fois, le 6 va forcément sortir : il a plus de chances maintenant ! » Sa cousine répond : « Au contraire, ce dé n'aime pas le 6 : il a moins de chances de sortir que les autres faces. »\n\nQui a raison ? Explique avec tes mots.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je dis qu'aucun des deux n'a raison",
+          "keywords": [["aucun", "personne", "tous les deux ont tort", "les deux ont tort", "les deux se trompent", "ni l un ni l autre"]]
+        },
+        {
+          "id": "c2",
+          "label": "J'explique que le dé n'a pas de mémoire : chaque lancer recommence à zéro",
+          "keywords": [["memoire", "se souvient", "chaque lancer", "a chaque fois", "recommence", "ne sait pas"]]
+        },
+        {
+          "id": "c3",
+          "label": "Je donne la probabilité d'obtenir 6 : une chance sur six à chaque lancer",
+          "keywords": [["1/6", "une chance sur six", "une chance sur 6", "1 sur 6", "un sur six"]]
+        }
+      ],
+      "models": [
+        "Aucun des deux n'a raison. Le dé n'a pas de mémoire : il ne sait pas que le 6 n'est pas sorti depuis 15 lancers. À chaque lancer, le 6 a une chance sur six de sortir, comme les autres faces. Sur 15 lancers, ne pas avoir de 6, c'est rare mais possible : c'est le hasard.",
+        "Les deux se trompent. Un dé équilibré a 6 faces qui ont la même chance : la probabilité d'avoir 6 est 1/6 à chaque fois, avant comme après les 15 lancers. Le 6 n'est pas « en retard » et le dé ne le « déteste » pas."
+      ],
+      "hints": ["Le dé se souvient-il des lancers précédents ?", "À chaque lancer, combien de faces sont possibles, et combien donnent 6 ?"],
+      "solution": "Aucun des deux n'a raison. Le dé n'a pas de mémoire : à chaque lancer, le 6 a exactement une chance sur six ($1/6$) de sortir, comme chaque autre face. Une longue série sans 6 est rare, mais possible : elle ne change rien au lancer suivant.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Aucun des deux n'a raison : le dé n'a pas de mémoire, à chaque lancer le 6 a une chance sur six de sortir.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        },
+        { "response": { "text": "Hugo a raison." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-frequence",
+      "type": "composite",
+      "skill": "m6.probas.frequences",
+      "skills": ["m6.probas.calculer"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:frequence-sur-faces", "mc:frequence-proba", "mc:hasard-exact"],
+      "expectedSeconds": 360,
+      "params": { "s": { "int": [5, 15] } },
+      "constraints": ["s != 10"],
+      "prompt": "Yanis a lancé un dé équilibré 60 fois. Le 6 est sorti {s} fois. Tu peux refaire l'expérience dans le labo : lance 60 fois, plusieurs fois de suite.",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 1, "event": "obtenir 6" } },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la fréquence d'apparition du 6 dans la série de Yanis ? (écris une fraction : nombre de 6 sur nombre de lancers)",
+          "answer": "s/60",
+          "misconceptions": [
+            {
+              "answer": "s/6",
+              "id": "mc:frequence-sur-faces",
+              "error": "notion",
+              "feedback": "Tu as divisé par le nombre de faces. La fréquence compare le nombre de 6 au nombre de lancers."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité d'obtenir 6 avec ce dé ? (écris une fraction)",
+          "answer": "1/6",
+          "misconceptions": [
+            {
+              "answer": "s/60",
+              "id": "mc:frequence-proba",
+              "error": "notion",
+              "feedback": "Tu as donné la fréquence observée sur 60 lancers. La probabilité se calcule sans lancer le dé, en comptant les faces."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Yanis dit : « Le dé est truqué, car le 6 n'est pas sorti exactement 10 fois sur 60. » A-t-il forcément raison ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:hasard-exact",
+              "error": "raisonnement",
+              "feedback": "Fais plusieurs séries de 60 lancers dans le labo : obtiens-tu toujours le même nombre de 6 ? Sur peu de lancers, le hasard fait varier les résultats."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Fréquence = nombre de fois où le 6 est sorti ÷ nombre de lancers.",
+        "La probabilité se calcule en comptant : 1 face favorable sur 6 faces.",
+        "Dans le labo, fais 60 lancers, puis encore 60 : compare le nombre de 6."
+      ],
+      "solution": "Fréquence : $ {s}/60 $. Probabilité : $1/6$ (une face sur six) ; cela correspondrait à environ 10 fois sur 60. Mais sur 60 lancers seulement, obtenir {s} fois le 6 n'a rien d'anormal : le hasard fait varier les résultats d'une série à l'autre. Il faudrait des milliers de lancers pour soupçonner un dé truqué.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{s}/60" }, { "value": "1/6" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{s}/60" }, { "value": "{s}/60" }, { "value": "non" }] }, "expect": "mc:frequence-proba" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-equitable",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:deux-joueurs", "mc:total-vs-ajout"],
+      "expectedSeconds": 360,
+      "params": { "k": { "choice": [1, 2] } },
+      "prompt": "Nora et Sam jouent avec un dé équilibré à 6 faces. Nora gagne si le dé tombe sur un nombre **inférieur ou égal à {k}**. Sinon, c'est Sam qui gagne.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité que Nora gagne ? (écris une fraction)", "answer": "k/6" },
+        { "type": "numeric", "prompt": "Quelle est la probabilité que Sam gagne ? (écris une fraction)", "answer": "(6 - k)/6" },
+        {
+          "type": "text",
+          "prompt": "Le jeu est-il équitable, c'est-à-dire : les deux joueurs ont-ils autant de chances de gagner ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:deux-joueurs",
+              "error": "raisonnement",
+              "feedback": "Deux joueurs ne veut pas dire une chance sur deux chacun. Compare les deux probabilités que tu viens de calculer."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de faces faut-il AJOUTER à celles qui font gagner Nora pour que le jeu devienne équitable ?",
+          "answer": "3 - k",
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:total-vs-ajout",
+              "error": "lecture",
+              "feedback": "C'est le nombre de faces gagnantes qu'il faut à Nora EN TOUT. Elle en a déjà quelques-unes : combien faut-il en ajouter ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Écris la liste des faces qui font gagner Nora, puis celles qui font gagner Sam.",
+        "Le jeu est équitable si les deux probabilités sont égales.",
+        "Pour être équitable, chaque joueur doit avoir la moitié des 6 faces."
+      ],
+      "solution": "Nora gagne avec {k} face(s) sur 6 : probabilité $ {k}/6 $. Sam gagne avec les {6-k} autres : $ {6-k}/6 $. Ce n'est pas équitable : Sam a plus de chances. Pour que ce soit équitable, chacun doit avoir 3 faces sur 6 : il faut donner $ 3 − {k} = {3-k} $ face(s) de plus à Nora.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{k}/6" }, { "value": "{6-k}/6" }, { "value": "non" }, { "value": "{3-k}" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "{k}/6" }, { "value": "{6-k}/6" }, { "value": "oui" }, { "value": "{3-k}" }] },
+          "expect": "mc:deux-joueurs"
+        }
+      ]
+    },
+    {
+      "id": "m6-probabilites-kermesse",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.probas.frequences"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:favorables-sur-defavorables", "mc:total-vs-ajout", "mc:hasard-exact"],
+      "expectedSeconds": 480,
+      "params": { "g": { "int": [2, 6] } },
+      "prompt": "L'urne de la loterie contient 20 tickets, dont {g} gagnants. Chaque joueur tire un ticket au hasard, regarde s'il a gagné, puis on remet le ticket dans l'urne.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité de tirer un ticket gagnant ? (écris une fraction)",
+          "answer": "g/20",
+          "misconceptions": [
+            {
+              "answer": "g/(20 - g)",
+              "id": "mc:favorables-sur-defavorables",
+              "error": "notion",
+              "feedback": "Tu as divisé par le nombre de tickets perdants. En bas de la fraction, on met tous les tickets de l'urne."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La directrice veut une chance sur deux de gagner, avec toujours 20 tickets. Combien de tickets perdants faut-il transformer en gagnants ?",
+          "answer": "10 - g",
+          "misconceptions": [
+            {
+              "answer": 10,
+              "id": "mc:total-vs-ajout",
+              "error": "lecture",
+              "feedback": "C'est le nombre de tickets gagnants qu'il faudrait en tout. Il y en a déjà dans l'urne : combien faut-il en transformer ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "On garde l'urne de départ ({g} gagnants sur 20). Sur 100 tirages, combien de gagnants peut-on attendre, environ ?",
+          "answer": "5*g",
+          "misconceptions": [
+            {
+              "answer": "g",
+              "id": "mc:urne-tirages",
+              "error": "raisonnement",
+              "feedback": "C'est le nombre de tickets gagnants dans l'urne. Mais on fait bien plus de tirages qu'il n'y a de tickets : combien de fois plus ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Après 100 tirages, il y a eu {5*g+3} gagnants. L'urne est-elle forcément truquée ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:hasard-exact",
+              "error": "raisonnement",
+              "feedback": "Le hasard fait varier les résultats : un petit écart avec ce qu'on attend est normal sur 100 tirages."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Probabilité = tickets gagnants ÷ tous les tickets.",
+        "Une chance sur deux avec 20 tickets : la moitié des tickets doivent être gagnants.",
+        "100 tirages, c'est 5 fois 20 : on peut attendre environ 5 fois plus de gagnants que de tickets gagnants dans l'urne."
+      ],
+      "solution": "Probabilité de gagner : $ {g}/20 $. Une chance sur deux demande 10 gagnants sur 20 : il faut transformer $ 10 − {g} = {10-g} $ tickets. Sur 100 tirages, on attend environ $ 5 × {g} = {5*g} $ gagnants, car 100 = 5 × 20. En avoir {5*g+3} est un petit écart, normal avec le hasard : l'urne n'est pas forcément truquée.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{g}/20" }, { "value": "{10-g}" }, { "value": "{5*g}" }, { "value": "non" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "{g}/20" }, { "value": "10" }, { "value": "{5*g}" }, { "value": "non" }] },
+          "expect": "mc:total-vs-ajout"
+        }
+      ]
+    },
+    {
+      "id": "m6-probabilites-remed-couleurs",
+      "type": "numeric",
+      "skill": "m6.probas.calculer",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:couleurs-equiprobables"],
+      "expectedSeconds": 60,
+      "params": { "b": { "int": [2, 6] } },
+      "prompt": "Rappel ciblé : ce sont les billes qui ont toutes la même chance, pas les couleurs. Imagine que tu numérotes chaque bille. Un sac contient 1 bille verte et {b} billes jaunes. Quelle est la probabilité de tirer la bille verte ? (écris une fraction)",
+      "answer": "1/(b + 1)",
+      "misconceptions": [
+        {
+          "answer": "1/2",
+          "id": "mc:couleurs-equiprobables",
+          "error": "notion",
+          "feedback": "Il y a 2 couleurs, mais plus de 2 billes. Compte toutes les billes : ce sont elles qui ont la même chance."
+        },
+        {
+          "answer": "1/b",
+          "id": "mc:favorables-sur-defavorables",
+          "error": "notion",
+          "feedback": "Tu as divisé par le nombre de billes jaunes. Il faut compter toutes les billes, la verte aussi."
+        }
+      ],
+      "hints": ["Combien y a-t-il de billes en tout ?", "Une seule de ces billes est verte."],
+      "solution": "Il y a $ 1 + {b} = {b+1} $ billes, et une seule est verte : la probabilité vaut $ 1/{b+1} $.",
+      "selfTest": [{ "response": { "value": "1/{b+1}" }, "expect": "correct" }, { "response": { "value": "1/2" }, "expect": "mc:couleurs-equiprobables" }]
+    },
+    {
+      "id": "m6-probabilites-remed-sup1",
+      "type": "numeric",
+      "skill": "m6.probas.echelle",
+      "skills": ["m6.probas.calculer"],
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:fraction-inversee"],
+      "expectedSeconds": 60,
+      "params": { "n": { "int": [8, 12] }, "g": { "int": [2, 5] } },
+      "prompt": "Rappel ciblé : une probabilité s'écrit « cas favorables » en haut, « cas possibles » en bas. En bas, il y a TOUS les cas : le nombre du haut ne peut pas dépasser celui du bas. Une boîte contient {n} jetons, dont {g} gagnants. Quelle est la probabilité de tirer un jeton gagnant ? (écris une fraction)",
+      "answer": "g/n",
+      "misconceptions": [
+        {
+          "answer": "n/g",
+          "id": "mc:fraction-inversee",
+          "error": "notion",
+          "feedback": "Ta fraction est plus grande que 1 : impossible pour une probabilité. Lequel des deux nombres compte tous les cas ? Il va en bas."
+        }
+      ],
+      "hints": ["Les cas possibles : tous les jetons de la boîte.", "Les cas favorables : les jetons gagnants."],
+      "solution": "{g} jetons gagnants sur {n} jetons : la probabilité vaut $ {g}/{n} $, un nombre plus petit que 1.",
+      "selfTest": [{ "response": { "value": "{g}/{n}" }, "expect": "correct" }, { "response": { "value": "{n}/{g}" }, "expect": "mc:fraction-inversee" }]
+    },
+    {
+      "id": "m6-probabilites-comparer",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.fractions.sens"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:effectif-au-lieu-proba"],
+      "expectedSeconds": 300,
+      "prompt": "Pour gagner, il faut tirer une bille rouge. Tu peux choisir ton sac.\n- **Sac A** : 3 billes rouges et 2 billes bleues.\n- **Sac B** : 5 billes rouges et 5 billes bleues.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la probabilité de tirer une rouge dans le sac A ? (écris une fraction)", "answer": "3/5" },
+        { "type": "numeric", "prompt": "Et dans le sac B ? (écris une fraction)", "answer": "5/10" },
+        {
+          "type": "text",
+          "prompt": "Quel sac donne le plus de chances de gagner ? Réponds A ou B.",
+          "accept": ["a", "sac a", "le sac a"],
+          "misconceptions": [
+            {
+              "answer": "b",
+              "id": "mc:effectif-au-lieu-proba",
+              "error": "raisonnement",
+              "feedback": "Le sac B contient plus de billes rouges, mais aussi plus de billes en tout. Compare les probabilités, pas les nombres de billes."
+            },
+            {
+              "answer": "sac b",
+              "id": "mc:effectif-au-lieu-proba",
+              "error": "raisonnement",
+              "feedback": "Le sac B contient plus de billes rouges, mais aussi plus de billes en tout. Compare les probabilités, pas les nombres de billes."
+            }
+          ]
+        }
+      ],
+      "hints": ["Compte toutes les billes de chaque sac.", "Pour comparer $3/5$ et $5/10$, écris $3/5$ avec le dénominateur 10.", "$3/5 = 6/10$."],
+      "solution": "Sac A : 3 rouges sur 5 billes, soit $3/5 = 6/10$. Sac B : 5 rouges sur 10 billes, soit $5/10$. Comme $6/10 > 5/10$, le sac A donne plus de chances, même s'il contient moins de billes rouges !",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3/5" }, { "value": "1/2" }, { "value": "A" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "3/5" }, { "value": "1/2" }, { "value": "B" }] }, "expect": "mc:effectif-au-lieu-proba" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-roue-fractions",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.probas.echelle", "m6.fractions.sens"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:couleurs-equiprobables"],
+      "expectedSeconds": 300,
+      "prompt": "Cette roue n'a pas des secteurs de même taille : le secteur bleu occupe la moitié du disque, le jaune un quart, le vert et le rouge un huitième chacun. L'aiguille s'arrête au hasard, n'importe où sur le disque.",
+      "figure": {
+        "alt": "Roue avec un secteur bleu, un secteur jaune, un secteur vert et un secteur rouge de tailles différentes.",
+        "w": 360,
+        "h": 220,
+        "items": [
+          {
+            "type": "pie",
+            "data": [
+              { "label": "Bleu", "value": 4, "color": "bleu" },
+              { "label": "Jaune", "value": 2, "color": "jaune" },
+              { "label": "Vert", "value": 1, "color": "vert" },
+              { "label": "Rouge", "value": 1, "color": "rouge" }
+            ]
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité de tomber sur le bleu ? (fraction)",
+          "answer": "1/2",
+          "misconceptions": [
+            {
+              "answer": "1/4",
+              "id": "mc:couleurs-equiprobables",
+              "error": "notion",
+              "feedback": "Les 4 couleurs n'ont pas la même chance : leurs secteurs n'ont pas la même taille. Quelle part du disque occupe le bleu ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité de tomber sur le vert ? (fraction)",
+          "answer": "1/8",
+          "misconceptions": [
+            {
+              "answer": "1/4",
+              "id": "mc:couleurs-equiprobables",
+              "error": "notion",
+              "feedback": "Les 4 couleurs n'ont pas la même chance : leurs secteurs n'ont pas la même taille. Quelle part du disque occupe le vert ?"
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de ne PAS tomber sur le bleu ? (fraction)", "answer": "1/2" },
+        { "type": "numeric", "prompt": "Quelle est la probabilité de tomber sur le jaune ou sur le rouge ? (fraction)", "answer": "3/8" }
+      ],
+      "hints": [
+        "La probabilité d'une couleur est la part du disque qu'elle occupe.",
+        "Partage le disque en 8 huitièmes : le bleu en occupe 4, le jaune 2, le vert 1, le rouge 1.",
+        "Jaune ou rouge : additionne leurs huitièmes."
+      ],
+      "solution": "En huitièmes : bleu 4, jaune 2, vert 1, rouge 1 (total 8). Bleu : $4/8 = 1/2$. Vert : $1/8$. Pas bleu : $4/8 = 1/2$. Jaune ou rouge : $2/8 + 1/8 = 3/8$.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "1/2" }, { "value": "1/8" }, { "value": "4/8" }, { "value": "3/8" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "1/4" }, { "value": "1/8" }, { "value": "1/2" }, { "value": "3/8" }] },
+          "expect": "mc:couleurs-equiprobables"
+        }
+      ]
+    },
+    {
+      "id": "m6-probabilites-deux-pieces",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.probas.frequences"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:issues-confondues"],
+      "expectedSeconds": 420,
+      "prompt": "On lance en même temps deux pièces équilibrées : une pièce de 1 € et une pièce de 2 €. Chaque pièce tombe sur Pile ou sur Face. Lou affirme : « Il y a trois résultats : deux Pile, deux Face, ou un de chaque. Donc chacun a une chance sur trois. »",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "En notant d'abord la pièce de 1 €, puis celle de 2 € (par exemple : Pile-Face), combien y a-t-il de résultats possibles ?",
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:issues-confondues",
+              "error": "raisonnement",
+              "feedback": "« Pile-Face » et « Face-Pile » sont deux résultats différents : ce n'est pas la même pièce qui tombe sur Pile."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité d'obtenir deux fois Pile ? (fraction)",
+          "answer": "1/4",
+          "misconceptions": [
+            {
+              "answer": "1/3",
+              "id": "mc:issues-confondues",
+              "error": "raisonnement",
+              "feedback": "Comme Lou, tu as compté 3 résultats. Écris la liste complète en distinguant les deux pièces."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité d'obtenir un Pile et un Face ? (fraction)",
+          "answer": "2/4",
+          "misconceptions": [
+            {
+              "answer": "1/3",
+              "id": "mc:issues-confondues",
+              "error": "raisonnement",
+              "feedback": "Comme Lou, tu as compté 3 résultats. Combien de résultats de la liste complète contiennent un Pile et un Face ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Fais un tableau : en ligne la pièce de 1 €, en colonne la pièce de 2 €.",
+        "Les 4 résultats : Pile-Pile, Pile-Face, Face-Pile, Face-Face.",
+        "Les 4 résultats ont la même chance."
+      ],
+      "solution": "Les résultats possibles sont Pile-Pile, Pile-Face, Face-Pile et Face-Face : 4 résultats qui ont la même chance. Deux fois Pile : $1/4$. Un Pile et un Face : 2 résultats sur 4, soit $2/4 = 1/2$. Lou se trompe : « un de chaque » a deux fois plus de chances que « deux Pile ». Tu peux le vérifier en lançant deux pièces 40 fois avec un camarade.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "4" }, { "value": "1/4" }, { "value": "1/2" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "3" }, { "value": "1/3" }, { "value": "1/3" }] }, "expect": "mc:issues-confondues" }
+      ]
+    },
+    {
+      "id": "m6-probabilites-sac-mystere",
+      "type": "composite",
+      "skill": "m6.probas.calculer",
+      "skills": ["m6.fractions.sens"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:couleurs-equiprobables", "mc:effectif-au-lieu-proba"],
+      "expectedSeconds": 480,
+      "params": { "N": { "choice": [12, 24, 36] } },
+      "prompt": "Un sac contient {N} billes : des rouges, des bleues et des vertes. On sait que la probabilité de tirer une bille rouge vaut $1/3$, et celle de tirer une bille bleue vaut $1/4$.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien y a-t-il de billes rouges ?", "answer": "N/3" },
+        { "type": "numeric", "prompt": "Combien y a-t-il de billes bleues ?", "answer": "N/4" },
+        { "type": "numeric", "prompt": "Combien y a-t-il de billes vertes ?", "answer": "5*N/12" },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité de tirer une bille verte ? (fraction)",
+          "answer": "5/12",
+          "misconceptions": [
+            {
+              "answer": "1/3",
+              "id": "mc:couleurs-equiprobables",
+              "error": "raisonnement",
+              "feedback": "Les trois couleurs n'ont pas forcément la même chance : utilise le nombre de billes vertes que tu as trouvé."
+            },
+            {
+              "answer": "5*N/12",
+              "id": "mc:effectif-au-lieu-proba",
+              "error": "notion",
+              "feedback": "C'est un nombre de billes, pas une probabilité. Compare-le au nombre total de billes."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "$1/3$ des {N} billes sont rouges : calcule le tiers de {N}.",
+        "Les vertes, ce sont les billes qui ne sont ni rouges ni bleues.",
+        "Probabilité = billes vertes ÷ toutes les billes."
+      ],
+      "solution": "Rouges : le tiers de {N}, soit {N/3}. Bleues : le quart de {N}, soit {N/4}. Vertes : $ {N} − {N/3} − {N/4} = {5*N/12} $. Probabilité de tirer une verte : $ {5*N/12}/{N} = 5/12 $. Contrôle : $4/12 + 3/12 + 5/12 = 12/12 = 1$ ✓.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{N/3}" }, { "value": "{N/4}" }, { "value": "{5*N/12}" }, { "value": "5/12" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "{N/3}" }, { "value": "{N/4}" }, { "value": "{5*N/12}" }, { "value": "1/3" }] },
+          "expect": "mc:couleurs-equiprobables"
+        }
+      ]
+    }
+  ]
+}

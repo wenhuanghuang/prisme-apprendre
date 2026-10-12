@@ -1,0 +1,1001 @@
+{
+  "id": "m6-comparer",
+  "chapter": "6e-m-comparer",
+  "title": "Repérer, comparer, ranger, arrondir et encadrer des décimaux",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.decimaux.reperer", "m6.decimaux.comparer", "m6.decimaux.arrondir", "m6.decimaux.encadrer"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Placer un nombre décimal sur une demi-droite graduée et lire l’abscisse d’un point, comparer et ranger des décimaux, donner une valeur arrondie à l’unité, au dixième ou au centième (même pour 1/3 ou π), encadrer un nombre et en intercaler un entre deux autres.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le podium de la piscine",
+      "body": "Au 50 m nage libre, trois amis comparent leurs temps : Lina 38,9 s, Sami 38,15 s et Jade 38,4 s.\n\nSami soupire : « 15, c’est plus que 9 et que 4. J’ai le plus grand temps… j’ai perdu ! »\n\nRappel : en natation, c’est le plus petit temps qui gagne.\n\nSami a-t-il vraiment perdu ? Qui a gagné la course ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📏",
+          "title": "Une demi-droite graduée",
+          "body": "Sur une demi-droite graduée, chaque point correspond à un nombre : son **abscisse**. L’origine a pour abscisse 0. Pour lire une abscisse, on cherche d’abord **ce que vaut une graduation**. Si l’unité est partagée en 10, une graduation vaut un dixième.",
+          "example": "Le point A est 4 graduations après 1 : son abscisse est 1,4.",
+          "figure": {
+            "alt": "Demi-droite graduée de 0 à 3, chaque unité partagée en 10 ; le point A est à 1,4 et le point B à 2,7.",
+            "w": 560,
+            "h": 130,
+            "frame": { "x": [-0.7, 11], "y": [-1, 0.75] },
+            "items": [
+              { "type": "segment", "from": [0, 0], "to": [10.7, 0], "arrows": "end" },
+              { "type": "segment", "from": [0, 0], "to": [0, -0.32] },
+              { "type": "text", "x": 0, "y": -0.64, "text": "0", "size": "s" },
+              { "type": "segment", "from": [0.3333, 0], "to": [0.3333, -0.16] },
+              { "type": "segment", "from": [0.6667, 0], "to": [0.6667, -0.16] },
+              { "type": "segment", "from": [1, 0], "to": [1, -0.16] },
+              { "type": "segment", "from": [1.3333, 0], "to": [1.3333, -0.16] },
+              { "type": "segment", "from": [1.6667, 0], "to": [1.6667, -0.16] },
+              { "type": "segment", "from": [2, 0], "to": [2, -0.16] },
+              { "type": "segment", "from": [2.3333, 0], "to": [2.3333, -0.16] },
+              { "type": "segment", "from": [2.6667, 0], "to": [2.6667, -0.16] },
+              { "type": "segment", "from": [3, 0], "to": [3, -0.16] },
+              { "type": "segment", "from": [3.3333, 0], "to": [3.3333, -0.32] },
+              { "type": "text", "x": 3.3333, "y": -0.64, "text": "1", "size": "s" },
+              { "type": "segment", "from": [3.6667, 0], "to": [3.6667, -0.16] },
+              { "type": "segment", "from": [4, 0], "to": [4, -0.16] },
+              { "type": "segment", "from": [4.3333, 0], "to": [4.3333, -0.16] },
+              { "type": "segment", "from": [4.6667, 0], "to": [4.6667, -0.16] },
+              { "type": "segment", "from": [5, 0], "to": [5, -0.16] },
+              { "type": "segment", "from": [5.3333, 0], "to": [5.3333, -0.16] },
+              { "type": "segment", "from": [5.6667, 0], "to": [5.6667, -0.16] },
+              { "type": "segment", "from": [6, 0], "to": [6, -0.16] },
+              { "type": "segment", "from": [6.3333, 0], "to": [6.3333, -0.16] },
+              { "type": "segment", "from": [6.6667, 0], "to": [6.6667, -0.32] },
+              { "type": "text", "x": 6.6667, "y": -0.64, "text": "2", "size": "s" },
+              { "type": "segment", "from": [7, 0], "to": [7, -0.16] },
+              { "type": "segment", "from": [7.3333, 0], "to": [7.3333, -0.16] },
+              { "type": "segment", "from": [7.6667, 0], "to": [7.6667, -0.16] },
+              { "type": "segment", "from": [8, 0], "to": [8, -0.16] },
+              { "type": "segment", "from": [8.3333, 0], "to": [8.3333, -0.16] },
+              { "type": "segment", "from": [8.6667, 0], "to": [8.6667, -0.16] },
+              { "type": "segment", "from": [9, 0], "to": [9, -0.16] },
+              { "type": "segment", "from": [9.3333, 0], "to": [9.3333, -0.16] },
+              { "type": "segment", "from": [9.6667, 0], "to": [9.6667, -0.16] },
+              { "type": "segment", "from": [10, 0], "to": [10, -0.32] },
+              { "type": "text", "x": 10, "y": -0.64, "text": "3", "size": "s" },
+              { "type": "point", "id": "A", "x": 4.6667, "y": 0, "style": "rond", "pos": "n" },
+              { "type": "point", "id": "B", "x": 9, "y": 0, "style": "rond", "pos": "n" }
+            ]
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Comparer deux décimaux",
+          "body": "On compare d’abord les **parties entières**. Si elles sont égales, on compare les **dixièmes**, puis les **centièmes**, rang par rang. On peut aussi écrire les deux nombres avec autant de chiffres après la virgule, en ajoutant des zéros à la fin.",
+          "example": "38,15 et 38,4 : même partie entière ; 1 dixième < 4 dixièmes, donc 38,15 < 38,4. Ou : 38,15 < 38,40.",
+          "reveal": {
+            "question": "Devine : 2,15 est-il plus grand que 2,9, parce que 15 est plus grand que 9 ?",
+            "answer": "Non ! 2,9 = 2,90. On compare 15 centièmes et 90 centièmes : 2,15 < 2,9. Le chiffre 1 de 2,15 compte des dixièmes, comme le 9 de 2,9."
+          }
+        },
+        {
+          "emoji": "📊",
+          "title": "Ranger des nombres",
+          "body": "Ranger dans l’ordre **croissant**, c’est aller du plus petit au plus grand. Dans l’ordre **décroissant**, du plus grand au plus petit. Le signe < se lit « est inférieur à », le signe > « est supérieur à ». La pointe du signe montre toujours le plus petit nombre.",
+          "example": "Ordre croissant des temps : 38,15 < 38,4 < 38,9. Sami a gagné !"
+        },
+        {
+          "emoji": "🎯",
+          "title": "Arrondir",
+          "body": "Pour arrondir à l’unité, on cherche l’entier le **plus proche**. On regarde le chiffre juste après le rang voulu : de 0 à 4, on garde ; de 5 à 9, on augmente de 1. On arrondit de la même façon au dixième ou au centième.",
+          "example": "7,46 arrondi à l’unité : 7 ; arrondi au dixième : 7,5."
+        },
+        {
+          "emoji": "♾️",
+          "title": "Des nombres qui ne s’arrêtent pas",
+          "body": "Certains nombres ont une infinité de chiffres après la virgule : $1/3$ = 0,333…, ou π = 3,14159… On ne peut pas les écrire en entier. Mais on peut donner leur **valeur arrondie**.",
+          "example": "$1/3$ arrondi au centième : 0,33. π arrondi au centième : 3,14.",
+          "reveal": {
+            "question": "Devine : combien vaut $2/3$ arrondi au dixième ? (2 ÷ 3 = 0,666…)",
+            "answer": "0,7 : le chiffre des centièmes est 6, donc on monte d’un dixième."
+          }
+        },
+        {
+          "emoji": "🥪",
+          "title": "Encadrer et intercaler",
+          "body": "**Encadrer** un nombre, c’est le placer entre deux nombres : 7 < 7,46 < 8 à l’unité, 7,4 < 7,46 < 7,5 au dixième. Entre deux décimaux différents, on peut **toujours** glisser un autre décimal : c’est **intercaler**.",
+          "example": "Entre 2,4 et 2,5, on trouve 2,45, car 2,40 < 2,45 < 2,50."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : comparer, encadrer et arrondir 12,65",
+      "steps": [
+        { "text": "On compare 12,7 et 12,65. Les parties entières sont égales : 12." },
+        {
+          "text": "On compare les dixièmes : 7 dixièmes contre 6 dixièmes. Donc 12,7 est le plus grand. (Avec des zéros : 12,70 et 12,65, et 70 centièmes > 65 centièmes.)",
+          "math": "12,65 < 12,7"
+        },
+        {
+          "text": "On encadre 12,65 au dixième : il est entre 12,6 et 12,7, exactement au milieu.",
+          "math": "12,6 < 12,65 < 12,7",
+          "figure": {
+            "alt": "Zoom sur la demi-droite entre 12,6 et 12,7 : le point M est au milieu, à 12,65.",
+            "w": 560,
+            "h": 130,
+            "frame": { "x": [-0.7, 11], "y": [-1, 0.75] },
+            "items": [
+              { "type": "segment", "from": [-0.4, 0], "to": [10.7, 0], "arrows": "end" },
+              { "type": "segment", "from": [0, 0], "to": [0, -0.32] },
+              { "type": "text", "x": 0, "y": -0.64, "text": "12,6", "size": "s" },
+              { "type": "segment", "from": [1, 0], "to": [1, -0.16] },
+              { "type": "segment", "from": [2, 0], "to": [2, -0.16] },
+              { "type": "segment", "from": [3, 0], "to": [3, -0.16] },
+              { "type": "segment", "from": [4, 0], "to": [4, -0.16] },
+              { "type": "segment", "from": [5, 0], "to": [5, -0.16] },
+              { "type": "segment", "from": [6, 0], "to": [6, -0.16] },
+              { "type": "segment", "from": [7, 0], "to": [7, -0.16] },
+              { "type": "segment", "from": [8, 0], "to": [8, -0.16] },
+              { "type": "segment", "from": [9, 0], "to": [9, -0.16] },
+              { "type": "segment", "from": [10, 0], "to": [10, -0.32] },
+              { "type": "text", "x": 10, "y": -0.64, "text": "12,7", "size": "s" },
+              { "type": "point", "id": "M", "x": 5, "y": 0, "style": "rond", "pos": "n" }
+            ]
+          }
+        },
+        { "text": "Arrondi au dixième : le chiffre des centièmes est 5, donc on monte. 12,65 arrondi au dixième donne 12,7." },
+        { "text": "Arrondi à l’unité : le chiffre des dixièmes est 6, donc on monte aussi. 12,65 arrondi à l’unité donne 13." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "exercises": ["m6-comparer-placer", "m6-comparer-lire", "m6-comparer-signes", "m6-comparer-ranger", "m6-comparer-arrondir", "m6-comparer-encadrer"]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-comparer-expliquer"] },
+    { "kind": "reinvestissement", "title": "Problèmes : des nombres sans fin et un concours de saut", "exercises": ["m6-comparer-non-decimaux", "m6-comparer-saut"] },
+    {
+      "kind": "mission",
+      "title": "Mission : la chasse au trésor",
+      "body": "Un trésor est caché le long d’un sentier balisé. Repère les lieux, lis le panneau… et trouve qui arrivera le premier !",
+      "exercises": ["m6-comparer-tresor"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.**\n> - Pour lire une abscisse, cherche d’abord ce que vaut une graduation.\n> - Pour comparer : parties entières, puis dixièmes, puis centièmes.\n> - Arrondir : on regarde le chiffre suivant ; de 5 à 9, on monte.\n> - Entre deux décimaux, il y en a toujours d’autres.\n\n- **Comparer la partie décimale comme un entier.** 2,15 < 2,9, même si 15 > 9.\n- **Croire qu’un nombre plus long est plus grand.** 3,055 < 3,5.\n- **Couper au lieu d’arrondir.** 7,46 arrondi au dixième donne 7,5, pas 7,4.\n- **Mal lire une graduation.** Dans un zoom entre 6,2 et 6,3, une graduation vaut 0,01."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des nombres à comparer, à arrondir et à placer sur une droite dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un chiffre caché à retrouver, et des nombres écrits de façons différentes à ranger.",
+      "exercises": ["m6-comparer-chiffre-cache", "m6-comparer-ecritures"]
+    },
+    "expert": {
+      "intro": "Facultatif : remonter d’un arrondi jusqu’au nombre de départ. Les questions sont posées à l’envers !",
+      "exercises": ["m6-comparer-qui-suis-je", "m6-comparer-prix-arrondi"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-comparer-placer",
+      "type": "numberline",
+      "skill": "m6.decimaux.reperer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:valeur-graduation"],
+      "expectedSeconds": 120,
+      "params": { "x": { "int": [3, 9] }, "y": { "int": [11, 19] }, "z": { "int": [21, 29] } },
+      "prompt": "Sur cette demi-droite, chaque unité est partagée en 10 graduations : une graduation vaut un **dixième**. Place les points :\n- A d’abscisse {x/10} ;\n- B d’abscisse {y/10} ;\n- C d’abscisse {z/10}.",
+      "min": 0,
+      "max": 3,
+      "step": 0.1,
+      "tolerance": 0.04,
+      "points": [{ "label": "A", "value": "x/10" }, { "label": "B", "value": "y/10" }, { "label": "C", "value": "z/10" }],
+      "hints": [
+        "Une graduation vaut un dixième : il faut 10 graduations pour aller d’un entier au suivant.",
+        "Pour {y/10}, pars de 1 et avance de {y-10} graduations.",
+        "Pour {z/10}, pars de 2 et avance de {z-20} graduations."
+      ],
+      "solution": "A est à {x} graduations après 0 ; B à {y-10} graduations après 1 ; C à {z-20} graduations après 2.",
+      "selfTest": [
+        { "response": { "positions": { "A": "{x/10}", "B": "{y/10}", "C": "{z/10}" } }, "expect": "correct" },
+        { "response": { "positions": { "A": "{x/10}", "B": "{y/10+1}", "C": "{z/10}" } }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-comparer-lire",
+      "type": "composite",
+      "skill": "m6.decimaux.reperer",
+      "skills": ["m6.decimaux.arrondir"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:valeur-graduation", "mc:origine-lecture", "mc:troncature"],
+      "expectedSeconds": 210,
+      "params": { "p": { "int": [1, 4] }, "q": { "int": [6, 9] } },
+      "prompt": "Voici un « zoom » sur une demi-droite graduée, entre 6,2 et 6,3.",
+      "figure": {
+        "alt": "Demi-droite graduée de 6,2 à 6,3, partagée en dix graduations, avec deux points P et Q.",
+        "w": 560,
+        "h": 130,
+        "frame": { "x": [-0.7, 11], "y": [-1, 0.75] },
+        "items": [
+          { "type": "segment", "from": [-0.4, 0], "to": [10.7, 0], "arrows": "end" },
+          { "type": "segment", "from": [0, 0], "to": [0, -0.32] },
+          { "type": "text", "x": 0, "y": -0.64, "text": "6,2", "size": "s" },
+          { "type": "segment", "from": [1, 0], "to": [1, -0.16] },
+          { "type": "segment", "from": [2, 0], "to": [2, -0.16] },
+          { "type": "segment", "from": [3, 0], "to": [3, -0.16] },
+          { "type": "segment", "from": [4, 0], "to": [4, -0.16] },
+          { "type": "segment", "from": [5, 0], "to": [5, -0.16] },
+          { "type": "segment", "from": [6, 0], "to": [6, -0.16] },
+          { "type": "segment", "from": [7, 0], "to": [7, -0.16] },
+          { "type": "segment", "from": [8, 0], "to": [8, -0.16] },
+          { "type": "segment", "from": [9, 0], "to": [9, -0.16] },
+          { "type": "segment", "from": [10, 0], "to": [10, -0.32] },
+          { "type": "text", "x": 10, "y": -0.64, "text": "6,3", "size": "s" },
+          { "type": "point", "id": "P", "x": "{(6.2 + p/100 - (6.2))*100}", "y": 0, "style": "rond", "pos": "n" },
+          { "type": "point", "id": "Q", "x": "{(6.2 + q/100 - (6.2))*100}", "y": 0, "style": "rond", "pos": "n" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’abscisse du point P ?",
+          "answer": "6.2 + p/100",
+          "misconceptions": [
+            {
+              "answer": "6.2 + p/10",
+              "id": "mc:valeur-graduation",
+              "error": "lecture",
+              "feedback": "Regarde ce que vaut une graduation : entre 6,2 et 6,3, l’écart d’un dixième est partagé en 10. Une graduation vaut-elle encore un dixième ?"
+            },
+            {
+              "answer": "6 + p/100",
+              "id": "mc:origine-lecture",
+              "error": "lecture",
+              "feedback": "Tu as compté les graduations à partir de 6. Le point de départ de ce zoom est 6,2."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’abscisse du point Q ?",
+          "answer": "6.2 + q/100",
+          "misconceptions": [{ "answer": "6.2 + q/10", "id": "mc:valeur-graduation", "error": "lecture", "feedback": "Une graduation vaut ici un centième, pas un dixième." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Arrondis l’abscisse de Q au dixième.",
+          "answer": 6.3,
+          "misconceptions": [
+            {
+              "answer": 6.2,
+              "id": "mc:troncature",
+              "error": "notion",
+              "feedback": "Tu as gardé le dixième de gauche sans regarder la figure. Q est-il plus près de 6,2 ou de l’autre extrémité ?"
+            }
+          ]
+        }
+      ],
+      "hints": ["Entre 6,2 et 6,3, il y a un dixième, partagé en 10 graduations.", "Une graduation vaut donc un centième : 0,01.", "Compte les graduations à partir de 6,2."],
+      "solution": "Une graduation vaut 0,01. P est à {p} graduations de 6,2 : P a pour abscisse {6.2+p/100}. Q est à {q} graduations : {6.2+q/100}. Q est plus proche de 6,3 que de 6,2 : arrondi au dixième, on obtient 6,3.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{6.2+p/100}" }, { "value": "{6.2+q/100}" }, { "value": "6,3" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{6.2+p/10}" }, { "value": "{6.2+q/100}" }, { "value": "6,3" }] }, "expect": "mc:valeur-graduation" }
+      ]
+    },
+    {
+      "id": "m6-comparer-signes",
+      "type": "categorize",
+      "skill": "m6.decimaux.comparer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:partie-decimale-entier", "mc:plus-de-chiffres"],
+      "expectedSeconds": 180,
+      "prompt": "Pour chaque paire de nombres, quel signe faut-il écrire à la place des points : <, > ou = ?",
+      "categories": [{ "id": "inf", "label": "<" }, { "id": "sup", "label": ">" }, { "id": "egal", "label": "=" }],
+      "items": [
+        { "id": "s1", "label": "2,15 … 2,9", "category": "inf" },
+        { "id": "s2", "label": "3,08 … 3,1", "category": "inf" },
+        { "id": "s3", "label": "7,5 … 7,50", "category": "egal" },
+        { "id": "s4", "label": "12,3 … 9,87", "category": "sup" },
+        { "id": "s5", "label": "0,6 … 0,59", "category": "sup" },
+        { "id": "s6", "label": "4,05 … 4,5", "category": "inf" },
+        { "id": "s7", "label": "15 … 14,999", "category": "sup" }
+      ],
+      "misconceptions": [
+        {
+          "item": "s1",
+          "category": "sup",
+          "id": "mc:partie-decimale-entier",
+          "error": "notion",
+          "feedback": "Tu as comparé 15 et 9 comme des nombres entiers. Compare d’abord le chiffre des dixièmes de chaque nombre."
+        },
+        {
+          "item": "s2",
+          "category": "sup",
+          "id": "mc:partie-decimale-entier",
+          "error": "notion",
+          "feedback": "Ne compare pas 08 et 1 comme des entiers : compare les dixièmes, rang par rang."
+        },
+        {
+          "item": "s5",
+          "category": "inf",
+          "id": "mc:partie-decimale-entier",
+          "error": "notion",
+          "feedback": "Ne compare pas 6 et 59 : compare d’abord les dixièmes de chaque nombre."
+        },
+        {
+          "item": "s3",
+          "id": "mc:plus-de-chiffres",
+          "error": "notion",
+          "feedback": "Le nombre qui a le plus de chiffres n’est pas forcément le plus grand. Que change un zéro écrit à la fin de la partie décimale ?"
+        },
+        {
+          "item": "s4",
+          "category": "inf",
+          "id": "mc:plus-de-chiffres",
+          "error": "notion",
+          "feedback": "Plus de chiffres ne veut pas dire plus grand : compare d’abord les parties entières."
+        },
+        {
+          "item": "s7",
+          "category": "inf",
+          "id": "mc:plus-de-chiffres",
+          "error": "notion",
+          "feedback": "Plus de chiffres ne veut pas dire plus grand : compare d’abord les parties entières."
+        }
+      ],
+      "hints": [
+        "Compare d’abord les parties entières.",
+        "Si elles sont égales, compare les dixièmes, puis les centièmes…",
+        "Tu peux ajouter des zéros à la fin pour avoir autant de chiffres après la virgule : 2,9 = 2,90."
+      ],
+      "solution": "2,15 < 2,9 (1 dixième < 9 dixièmes) ; 3,08 < 3,1 (0 dixième < 1 dixième) ; 7,5 = 7,50 ; 12,3 > 9,87 (12 > 9) ; 0,6 > 0,59 (6 dixièmes > 5 dixièmes) ; 4,05 < 4,5 ; 15 > 14,999.",
+      "selfTest": [
+        { "response": { "assign": { "s1": "inf", "s2": "inf", "s3": "egal", "s4": "sup", "s5": "sup", "s6": "inf", "s7": "sup" } }, "expect": "correct" },
+        {
+          "response": { "assign": { "s1": "sup", "s2": "inf", "s3": "egal", "s4": "sup", "s5": "sup", "s6": "inf", "s7": "sup" } },
+          "expect": "mc:partie-decimale-entier"
+        }
+      ]
+    },
+    {
+      "id": "m6-comparer-ranger",
+      "type": "order",
+      "skill": "m6.decimaux.comparer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:plus-de-chiffres", "mc:partie-decimale-entier"],
+      "expectedSeconds": 150,
+      "prompt": "Ces cinq nombres se ressemblent beaucoup… Range-les dans l’ordre **croissant** (du plus petit au plus grand).",
+      "orderLabel": "Du plus petit au plus grand",
+      "errorType": "notion",
+      "items": [
+        { "id": "o1", "label": "3,05" },
+        { "id": "o2", "label": "3,055" },
+        { "id": "o3", "label": "3,5" },
+        { "id": "o4", "label": "3,505" },
+        { "id": "o5", "label": "3,55" }
+      ],
+      "hints": [
+        "Tous ont la même partie entière : compare les dixièmes.",
+        "Écris-les tous avec trois chiffres après la virgule : 3,050 ; 3,055 ; 3,500…",
+        "Compare ensuite les nombres de millièmes : 3 050, 3 055, 3 500…"
+      ],
+      "solution": "Avec trois chiffres après la virgule : 3,050 < 3,055 < 3,500 < 3,505 < 3,550. Donc 3,05 < 3,055 < 3,5 < 3,505 < 3,55. Le nombre qui a le plus de chiffres n’est pas forcément le plus grand !",
+      "selfTest": [{ "response": { "order": ["o1", "o2", "o3", "o4", "o5"] }, "expect": "correct" }, { "response": { "order": ["o3", "o1", "o5", "o2", "o4"] }, "expect": "notion" }]
+    },
+    {
+      "id": "m6-comparer-arrondir",
+      "type": "table",
+      "skill": "m6.decimaux.arrondir",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:troncature", "mc:arrondi-toujours-haut"],
+      "expectedSeconds": 180,
+      "params": { "a": { "int": [3, 9] }, "b": { "int": [5, 9] }, "c": { "int": [1, 4] }, "d": { "int": [6, 9] }, "N": { "expr": "a + b/10 + c/100 + d/1000" } },
+      "prompt": "La balance du laboratoire affiche la masse d’une pièce de monnaie : {N} g. Donne ses valeurs arrondies.",
+      "columns": ["Arrondi demandé", "Valeur arrondie (en g)"],
+      "rows": [["à l’unité", "?r0c1"], ["au dixième", "?r1c1"], ["au centième", "?r2c1"]],
+      "cells": {
+        "r0c1": {
+          "answer": "a + 1",
+          "misconceptions": [
+            {
+              "answer": "a",
+              "id": "mc:troncature",
+              "error": "notion",
+              "feedback": "Tu as seulement effacé la partie décimale. Regarde le chiffre des dixièmes : à partir de 5, on passe à l’entier suivant."
+            }
+          ]
+        },
+        "r1c1": {
+          "answer": "a + b/10",
+          "misconceptions": [
+            {
+              "answer": "a + (b+1)/10",
+              "id": "mc:arrondi-toujours-haut",
+              "error": "notion",
+              "feedback": "Pour arrondir au dixième, on regarde le chiffre des centièmes. Ici, il est plus petit que 5 : faut-il vraiment monter ?"
+            }
+          ]
+        },
+        "r2c1": {
+          "answer": "a + b/10 + (c+1)/100",
+          "misconceptions": [
+            {
+              "answer": "a + b/10 + c/100",
+              "id": "mc:troncature",
+              "error": "notion",
+              "feedback": "Tu as coupé après les centièmes sans regarder le chiffre des millièmes. Est-il supérieur ou égal à 5 ?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Arrondir à l’unité : chercher l’entier le plus proche. On regarde le chiffre des dixièmes.",
+        "Au dixième, on regarde le chiffre des centièmes ; au centième, celui des millièmes.",
+        "Chiffre regardé de 0 à 4 : on garde ; de 5 à 9 : on augmente de 1 le rang demandé."
+      ],
+      "solution": "{N} : le chiffre des dixièmes est {b} (5 ou plus), donc à l’unité : {a+1} g. Le chiffre des centièmes est {c} (moins de 5), donc au dixième : {a+b/10} g. Le chiffre des millièmes est {d} (5 ou plus), donc au centième : {a+b/10+(c+1)/100} g.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{a+1}", "r1c1": "{a+b/10}", "r2c1": "{a+b/10+(c+1)/100}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{a}", "r1c1": "{a+b/10}", "r2c1": "{a+b/10+(c+1)/100}" } }, "expect": "mc:troncature" }
+      ]
+    },
+    {
+      "id": "m6-comparer-encadrer",
+      "type": "composite",
+      "skill": "m6.decimaux.encadrer",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:encadrement-large", "mc:mauvais-rang"],
+      "expectedSeconds": 270,
+      "params": { "a": { "int": [2, 30] }, "b": { "int": [1, 8] }, "c": { "int": [1, 8] }, "N": { "expr": "a + b/10 + c/100" } },
+      "prompt": "Le nombre {N} se cache entre deux voisins. Trouve-les, puis glisse d’autres nombres entre eux.",
+      "parts": [
+        {
+          "type": "table",
+          "prompt": "Complète avec les nombres les plus proches possible de {N}.",
+          "columns": ["Encadrement", "Juste en dessous", "Juste au-dessus"],
+          "rows": [["à l’unité", "?r0c1", "?r0c2"], ["au dixième", "?r1c1", "?r1c2"]],
+          "cells": {
+            "r0c1": { "answer": "a" },
+            "r0c2": { "answer": "a + 1" },
+            "r1c1": {
+              "answer": "a + b/10",
+              "misconceptions": [
+                {
+                  "answer": "a + (b-1)/10",
+                  "id": "mc:encadrement-large",
+                  "error": "notion",
+                  "feedback": "Ce nombre est bien plus petit, mais il existe un nombre à un chiffre après la virgule plus proche de {N}."
+                }
+              ]
+            },
+            "r1c2": {
+              "answer": "a + (b+1)/10",
+              "misconceptions": [
+                {
+                  "answer": "a + b/10 + (c+1)/100",
+                  "id": "mc:mauvais-rang",
+                  "error": "notion",
+                  "feedback": "Tu as encadré au centième. Au dixième, les deux nombres n’ont qu’un chiffre après la virgule."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "type": "multi",
+          "prompt": "Intercale : écris trois nombres compris entre {a+b/10} et {a+(b+1)/10}.",
+          "count": 3,
+          "predicate": "v > a + b/10 and v < a + (b+1)/10"
+        }
+      ],
+      "hints": [
+        "À l’unité : deux entiers qui se suivent.",
+        "Au dixième : deux nombres à un chiffre après la virgule qui se suivent, comme 4,6 et 4,7.",
+        "Pour intercaler, ajoute un zéro : {a+b/10} = {a+b/10}0 et {a+(b+1)/10} = {a+(b+1)/10}0. Que peux-tu glisser entre les deux ?"
+      ],
+      "solution": "$ {a} < {N} < {a+1} $ (à l’unité) et $ {a+b/10} < {N} < {a+(b+1)/10} $ (au dixième). Entre {a+b/10}0 et {a+(b+1)/10}0, on peut glisser {a+b/10+0.01}, {a+b/10+0.05}, {a+b/10+0.09}… et même {a+b/10+0.055} : il y en a une infinité !",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "cells": { "r0c1": "{a}", "r0c2": "{a+1}", "r1c1": "{a+b/10}", "r1c2": "{a+(b+1)/10}" } },
+              { "values": ["{a+b/10+0.02}", "{a+b/10+0.05}", "{a+b/10+0.08}"] }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "cells": { "r0c1": "{a}", "r0c2": "{a+1}", "r1c1": "{a+(b-1)/10}", "r1c2": "{a+(b+1)/10}" } },
+              { "values": ["{a+b/10+0.02}", "{a+b/10+0.05}", "{a+b/10+0.08}"] }
+            ]
+          },
+          "expect": "mc:encadrement-large"
+        }
+      ]
+    },
+    {
+      "id": "m6-comparer-expliquer",
+      "type": "open",
+      "skill": "m6.decimaux.comparer",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 20,
+      "prompt": "Sami affirme : « 2,15 est plus grand que 2,9, parce que 15 est plus grand que 9. »\n\nExplique-lui pourquoi il se trompe, et donne-lui une méthode pour comparer deux nombres décimaux.",
+      "criteria": [
+        { "id": "c1", "label": "Je compare les dixièmes : 1 dixième contre 9 dixièmes", "keywords": [["dixieme"]] },
+        { "id": "c2", "label": "Ou j’ajoute un zéro : 2,9 = 2,90, et 15 centièmes < 90 centièmes", "keywords": [["2,90", "zero", "90 centiemes"]] },
+        { "id": "c3", "label": "Je conclus : 2,15 < 2,9", "keywords": [["plus petit", "<", "inferieur", "2,9 est plus grand"]] }
+      ],
+      "models": [
+        "Les parties entières sont égales (2). On compare alors les dixièmes : 2,15 a 1 dixième et 2,9 en a 9. Comme 1 < 9, on a 2,15 < 2,9. Sami a comparé 15 et 9 comme des entiers, mais 15 compte des centièmes et 9 des dixièmes.",
+        "On peut écrire 2,9 = 2,90. On compare alors 15 centièmes et 90 centièmes : 15 < 90, donc 2,15 est plus petit que 2,9. Méthode : comparer les parties entières, puis les dixièmes, puis les centièmes."
+      ],
+      "hints": ["Les parties entières sont-elles égales ?", "Que vaut le chiffre 1 dans 2,15 ? Et le chiffre 9 dans 2,9 ?", "Écris 2,9 avec deux chiffres après la virgule."],
+      "solution": "Même partie entière : on compare les dixièmes. 2,15 a 1 dixième, 2,9 en a 9 : donc 2,15 < 2,9. Autre façon : 2,9 = 2,90, et 15 centièmes < 90 centièmes. Sami a comparé « 15 » et « 9 » comme des entiers, alors que ces chiffres ne sont pas au même rang.",
+      "selfTest": [
+        {
+          "response": { "text": "On compare les dixièmes : 2,15 a 1 dixième et 2,9 a 9 dixièmes. On peut aussi écrire 2,90. Donc 2,15 est plus petit que 2,9." },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m6-comparer-non-decimaux",
+      "type": "composite",
+      "skill": "m6.decimaux.arrondir",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:mauvais-rang", "mc:troncature", "mc:arrondi-toujours-haut"],
+      "expectedSeconds": 240,
+      "prompt": "Certains nombres ont une infinité de chiffres après la virgule. La calculatrice, elle, manque de place : elle n’en montre que quelques-uns. Arrondis-les !",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1 ÷ 3 = 0,333333… Arrondis ce nombre au **centième**.",
+          "answer": 0.33,
+          "misconceptions": [{ "answer": 0.3, "id": "mc:mauvais-rang", "error": "notion", "feedback": "Tu as arrondi au dixième. Au centième, on garde deux chiffres après la virgule." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2 ÷ 3 = 0,666666… Arrondis ce nombre au **dixième**.",
+          "answer": 0.7,
+          "misconceptions": [
+            {
+              "answer": 0.6,
+              "id": "mc:troncature",
+              "error": "notion",
+              "feedback": "Tu as coupé le nombre sans regarder le chiffre suivant. Le chiffre des centièmes est-il plus petit que 5 ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le nombre π (on lit « pi ») vaut 3,14159265… Arrondis-le au **centième**.",
+          "answer": 3.14,
+          "misconceptions": [{ "answer": 3.15, "id": "mc:arrondi-toujours-haut", "error": "notion", "feedback": "Regarde le chiffre des millièmes : est-il supérieur ou égal à 5 ?" }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Et π arrondi au **millième** ?",
+          "answer": 3.142,
+          "misconceptions": [
+            {
+              "answer": 3.141,
+              "id": "mc:troncature",
+              "error": "notion",
+              "feedback": "Tu as coupé après les millièmes. Regarde le chiffre qui suit : que dit la règle quand il vaut 5 ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Repère le rang demandé, puis regarde le chiffre juste à sa droite.",
+        "De 0 à 4 : on garde ; de 5 à 9 : on augmente de 1 le chiffre du rang demandé.",
+        "Pour π au millième : 3,141|59… le chiffre après le millième est 5."
+      ],
+      "solution": "0,333… ≈ 0,33 (le chiffre suivant, 3, est plus petit que 5). 0,666… ≈ 0,7 (le chiffre suivant, 6, fait monter). π ≈ 3,14 au centième (millième : 1) et π ≈ 3,142 au millième (chiffre suivant : 5). On utilise souvent 3,14 pour calculer le périmètre d’un cercle.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "0,33" }, { "value": "0,7" }, { "value": "3,14" }, { "value": "3,142" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,33" }, { "value": "0,6" }, { "value": "3,14" }, { "value": "3,142" }] }, "expect": "mc:troncature" }
+      ]
+    },
+    {
+      "id": "m6-comparer-saut",
+      "type": "composite",
+      "skill": "m6.decimaux.comparer",
+      "skills": ["m6.decimaux.arrondir"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:partie-decimale-entier", "mc:troncature"],
+      "expectedSeconds": 300,
+      "prompt": "Concours de saut en longueur en EPS ! Voici les résultats de cinq élèves.",
+      "figure": {
+        "alt": "Tableau des sauts de cinq élèves : Lou, Inès, Malo, Zoé et Noé.",
+        "w": 520,
+        "h": 110,
+        "items": [{ "type": "table", "head": ["Élève", "Lou", "Inès", "Malo", "Zoé", "Noé"], "rows": [["Saut (en m)", "3,5", "3,4", "3,28", "3,09", "3,35"]] }]
+      },
+      "parts": [
+        {
+          "type": "order",
+          "prompt": "Range les élèves du saut le plus long au saut le plus court.",
+          "orderLabel": "Du plus long au plus court",
+          "errorType": "notion",
+          "items": [
+            { "id": "lou", "label": "Lou : 3,5 m" },
+            { "id": "ines", "label": "Inès : 3,4 m" },
+            { "id": "noe", "label": "Noé : 3,35 m" },
+            { "id": "malo", "label": "Malo : 3,28 m" },
+            { "id": "zoe", "label": "Zoé : 3,09 m" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Arrondis le saut de Malo au dixième de mètre.",
+          "answer": 3.3,
+          "misconceptions": [{ "answer": 3.2, "id": "mc:troncature", "error": "notion", "feedback": "Tu as coupé sans regarder le chiffre des centièmes. Est-il plus petit que 5 ?" }]
+        },
+        {
+          "type": "text",
+          "prompt": "Qui monte sur la troisième marche du podium ?",
+          "accept": ["noé", "noe"],
+          "misconceptions": [
+            {
+              "answer": "inès",
+              "id": "mc:partie-decimale-entier",
+              "error": "notion",
+              "feedback": "As-tu comparé 3,35 et 3,4 en regardant « 35 » et « 4 » ? Compare d’abord les dixièmes."
+            },
+            {
+              "answer": "ines",
+              "id": "mc:partie-decimale-entier",
+              "error": "notion",
+              "feedback": "As-tu comparé 3,35 et 3,4 en regardant « 35 » et « 4 » ? Compare d’abord les dixièmes."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Tous les sauts ont la même partie entière : compare les dixièmes.",
+        "Écris tous les sauts avec deux chiffres après la virgule : 3,50 ; 3,40 ; 3,28…",
+        "Le podium compte trois marches : 1er, 2e, 3e."
+      ],
+      "solution": "Avec deux chiffres après la virgule : 3,50 > 3,40 > 3,35 > 3,28 > 3,09. Classement : Lou, Inès, Noé, Malo, Zoé. Noé est troisième. Le saut de Malo, 3,28 m, arrondi au dixième, donne 3,3 m (le chiffre des centièmes, 8, fait monter).",
+      "selfTest": [
+        { "response": { "parts": [{ "order": ["lou", "ines", "noe", "malo", "zoe"] }, { "value": "3,3" }, { "value": "Noé" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "order": ["lou", "ines", "noe", "malo", "zoe"] }, { "value": "3,3" }, { "value": "Inès" }] }, "expect": "mc:partie-decimale-entier" }
+      ]
+    },
+    {
+      "id": "m6-comparer-tresor",
+      "type": "composite",
+      "skill": "m6.decimaux.reperer",
+      "skills": ["m6.decimaux.arrondir", "m6.decimaux.comparer"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:troncature", "mc:ecart"],
+      "expectedSeconds": 420,
+      "params": { "c": { "int": [5, 14] }, "p": { "int": [16, 22] } },
+      "prompt": "Chasse au trésor ! Un sentier tout droit de 3 km part du parking. Une borne est plantée tous les 100 m, c’est-à-dire tous les 0,1 km.",
+      "parts": [
+        {
+          "type": "numberline",
+          "prompt": "Place la cabane C, à {c/10} km du parking, et le pont P, à {p/10} km.",
+          "min": 0,
+          "max": 3,
+          "step": 0.1,
+          "tolerance": 0.04,
+          "points": [{ "label": "C", "value": "c/10" }, { "label": "P", "value": "p/10" }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le trésor T est enterré entre la borne 2,4 km et la borne 2,5 km, exactement au milieu. À quelle distance du parking est-il, en km ?",
+          "answer": 2.45,
+          "misconceptions": [
+            {
+              "answer": 2.5,
+              "id": "mc:troncature",
+              "error": "lecture",
+              "feedback": "Le trésor n’est pas sur une borne : il est ENTRE les deux, au milieu. Pense aux centièmes."
+            },
+            {
+              "answer": 2.4,
+              "id": "mc:troncature",
+              "error": "lecture",
+              "feedback": "Le trésor n’est pas sur une borne : il est ENTRE les deux, au milieu. Pense aux centièmes."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le panneau du parking arrondit les distances au dixième de km. Quelle distance indique-t-il pour le trésor ?",
+          "answer": 2.5,
+          "misconceptions": [{ "answer": 2.4, "id": "mc:troncature", "error": "notion", "feedback": "Regarde le chiffre des centièmes : que dit la règle de l’arrondi quand il vaut 5 ?" }]
+        },
+        {
+          "type": "text",
+          "prompt": "Léo est à 2,38 km du parking ; Maé est à 2,5 km. Qui est le plus près du trésor ?",
+          "accept": ["maé", "mae"],
+          "misconceptions": [
+            { "answer": "léo", "id": "mc:ecart", "error": "raisonnement", "feedback": "Compare les écarts en centièmes : de 2,38 à 2,45, puis de 2,45 à 2,50." },
+            { "answer": "leo", "id": "mc:ecart", "error": "raisonnement", "feedback": "Compare les écarts en centièmes : de 2,38 à 2,45, puis de 2,45 à 2,50." }
+          ]
+        }
+      ],
+      "hints": [
+        "Une graduation de la droite vaut 0,1 km.",
+        "Écris les deux bornes avec deux chiffres après la virgule : 2,40 et 2,50. Quel nombre est au milieu ?",
+        "Pour comparer les distances au trésor, compte les centièmes de km qui séparent chaque enfant du trésor."
+      ],
+      "solution": "C est à {c} graduations du parking et P à {p} graduations. Le trésor est au milieu de 2,40 et 2,50 : 2,45 km. Arrondi au dixième : 2,5 km (le chiffre des centièmes est 5, on monte). Léo est à 2,45 − 2,38 = 0,07 km du trésor ; Maé à 2,50 − 2,45 = 0,05 km. C’est Maé la plus proche !",
+      "selfTest": [
+        { "response": { "parts": [{ "positions": { "C": "{c/10}", "P": "{p/10}" } }, { "value": "2,45" }, { "value": "2,5" }, { "value": "Maé" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "positions": { "C": "{c/10}", "P": "{p/10}" } }, { "value": "2,45" }, { "value": "2,4" }, { "value": "Maé" }] },
+          "expect": "mc:troncature"
+        }
+      ]
+    },
+    {
+      "id": "m6-comparer-remed-zeros",
+      "type": "composite",
+      "skill": "m6.decimaux.comparer",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:partie-decimale-entier", "mc:zero-mal-place"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : pour comparer deux décimaux, on peut leur donner le même nombre de chiffres après la virgule, en ajoutant des zéros À LA FIN.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Écris 2,9 avec deux chiffres après la virgule, sans changer sa valeur.",
+          "accept": ["2,90"],
+          "misconceptions": [
+            {
+              "answer": "2,09",
+              "id": "mc:zero-mal-place",
+              "error": "notion",
+              "feedback": "Un zéro placé juste après la virgule change le nombre : 2,09 n’est pas égal à 2,9. Relis le rappel : où peut-on ajouter un zéro sans rien changer ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Compare maintenant 2,90 et 2,15. Écris le plus grand des deux.",
+          "answer": 2.9,
+          "misconceptions": [{ "answer": 2.15, "id": "mc:partie-decimale-entier", "error": "notion", "feedback": "Compare 90 centièmes et 15 centièmes : lequel est le plus grand ?" }]
+        }
+      ],
+      "hints": ["Un zéro à la fin de la partie décimale ne change rien : 0,5 = 0,50.", "Avec le même nombre de chiffres après la virgule, on compare comme des entiers."],
+      "solution": "2,9 = 2,90. Et 90 centièmes > 15 centièmes, donc 2,90 > 2,15 : le plus grand est 2,9.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2,90" }, { "value": "2,9" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2,09" }, { "value": "2,9" }] }, "expect": "mc:zero-mal-place" }
+      ]
+    },
+    {
+      "id": "m6-comparer-remed-arrondi",
+      "type": "numeric",
+      "skill": "m6.decimaux.arrondir",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:troncature"],
+      "expectedSeconds": 60,
+      "params": { "a": { "int": [3, 20] }, "b": { "int": [6, 9] }, "c": { "int": [1, 9] } },
+      "prompt": "Rappel ciblé : arrondir à l’unité, c’est trouver l’entier le **plus proche**. Le point N a pour abscisse {a+b/10+c/100}. Quel est son arrondi à l’unité ?",
+      "figure": {
+        "alt": "Demi-droite graduée entre deux entiers consécutifs, avec un point N placé entre les deux.",
+        "w": 560,
+        "h": 130,
+        "frame": { "x": [-0.7, 11], "y": [-1, 0.75] },
+        "items": [
+          { "type": "segment", "from": [-0.4, 0], "to": [10.7, 0], "arrows": "end" },
+          { "type": "segment", "from": [0, 0], "to": [0, -0.32] },
+          { "type": "text", "x": 0, "y": -0.64, "text": "{a}", "size": "s" },
+          { "type": "segment", "from": [1, 0], "to": [1, -0.16] },
+          { "type": "segment", "from": [2, 0], "to": [2, -0.16] },
+          { "type": "segment", "from": [3, 0], "to": [3, -0.16] },
+          { "type": "segment", "from": [4, 0], "to": [4, -0.16] },
+          { "type": "segment", "from": [5, 0], "to": [5, -0.16] },
+          { "type": "segment", "from": [6, 0], "to": [6, -0.16] },
+          { "type": "segment", "from": [7, 0], "to": [7, -0.16] },
+          { "type": "segment", "from": [8, 0], "to": [8, -0.16] },
+          { "type": "segment", "from": [9, 0], "to": [9, -0.16] },
+          { "type": "segment", "from": [10, 0], "to": [10, -0.32] },
+          { "type": "text", "x": 10, "y": -0.64, "text": "{a+1}", "size": "s" },
+          { "type": "point", "id": "N", "x": "{(b/10 + c/100 - (0))*10}", "y": 0, "style": "rond", "pos": "n" }
+        ]
+      },
+      "answer": "a + 1",
+      "misconceptions": [
+        {
+          "answer": "a",
+          "id": "mc:troncature",
+          "error": "notion",
+          "feedback": "Tu as effacé la partie décimale. Regarde la droite : de quel entier le point N est-il le plus proche ?"
+        }
+      ],
+      "hints": ["Le point N est entre {a} et {a+1}.", "Regarde le chiffre des dixièmes : {b}. Est-il plus petit que 5 ?"],
+      "solution": "N est entre {a} et {a+1}, plus près de {a+1} (le chiffre des dixièmes, {b}, vaut 5 ou plus). L’arrondi à l’unité est {a+1}.",
+      "selfTest": [{ "response": { "value": "{a+1}" }, "expect": "correct" }, { "response": { "value": "{a}" }, "expect": "mc:troncature" }]
+    },
+    {
+      "id": "m6-comparer-chiffre-cache",
+      "type": "multi",
+      "skill": "m6.decimaux.comparer",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "expectedSeconds": 240,
+      "params": { "a": { "int": [1, 9] }, "d": { "int": [3, 8] }, "c": { "int": [0, 9] }, "e": { "int": [0, 9] } },
+      "constraints": ["c > e"],
+      "prompt": "Dans l’inégalité {a},★{c} < {a},{d}{e}, le chiffre des dixièmes du premier nombre est caché (★). Quels chiffres peut-on écrire à la place de ★ ? Donne trois réponses.",
+      "count": 3,
+      "predicate": "estentier(v) and v >= 0 and v <= 9 and a + v/10 + c/100 < a + d/10 + e/100",
+      "hints": [
+        "Les deux nombres ont la même partie entière : compare d’abord les dixièmes.",
+        "Si ★ est plus petit que {d}, le premier nombre est-il plus petit ?",
+        "Et si ★ vaut {d} ? Compare alors les centièmes : {c} et {e}."
+      ],
+      "solution": "Même partie entière {a}. Si ★ est plus petit que {d}, le premier nombre est plus petit : ★ peut valoir 0, 1, … jusqu’à {d-1}. Si ★ = {d}, on compare les centièmes : {c} > {e}, donc le premier nombre serait plus grand. {d} ne convient pas !",
+      "selfTest": [{ "response": { "values": ["0", "1", "2"] }, "expect": "correct" }, { "response": { "values": ["{d}", "{d+1}", "{d-1}"] }, "expect": "partiel" }]
+    },
+    {
+      "id": "m6-comparer-ecritures",
+      "type": "order",
+      "skill": "m6.decimaux.comparer",
+      "skills": ["m6.decimaux.ecritures"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:ecritures"],
+      "expectedSeconds": 240,
+      "prompt": "Ces nombres sont écrits de façons différentes : fraction, virgule, pourcentage. Range-les dans l’ordre croissant. Astuce : écris-les tous avec une virgule.",
+      "orderLabel": "Du plus petit au plus grand",
+      "errorType": "notion",
+      "items": [
+        { "id": "w1", "label": "$7/100$" },
+        { "id": "w2", "label": "0,7" },
+        { "id": "w3", "label": "0,705" },
+        { "id": "w4", "label": "72 %" },
+        { "id": "w5", "label": "$3/4$" }
+      ],
+      "hints": [
+        "$7/100$ = 7 centièmes ; 72 % = $72/100$.",
+        "$3/4$, c’est trois quarts : un quart vaut 0,25.",
+        "Écris-les avec trois chiffres après la virgule pour comparer : 0,070 ; 0,700…"
+      ],
+      "solution": "$7/100$ = 0,07 ; 0,7 = 0,700 ; 0,705 ; 72 % = 0,72 = 0,720 ; $3/4$ = 0,75 = 0,750. Ordre : $7/100$ < 0,7 < 0,705 < 72 % < $3/4$.",
+      "selfTest": [{ "response": { "order": ["w1", "w2", "w3", "w4", "w5"] }, "expect": "correct" }, { "response": { "order": ["w2", "w3", "w1", "w5", "w4"] }, "expect": "notion" }]
+    },
+    {
+      "id": "m6-comparer-qui-suis-je",
+      "type": "numeric",
+      "skill": "m6.decimaux.arrondir",
+      "skills": ["m6.decimaux.encadrer"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "verbale",
+      "targets": ["mc:arrondi-envers"],
+      "expectedSeconds": 420,
+      "prompt": "Énigme à l’envers. Je suis un nombre qui a exactement trois chiffres après la virgule.\n- Arrondi à l’unité, je vaux 7.\n- Arrondi au dixième, je vaux 7,5.\n- Arrondi au centième, je vaux 7,50.\n- Mon chiffre des millièmes est 7.\n\nQui suis-je ?",
+      "answer": 7.497,
+      "misconceptions": [
+        { "answer": 7.507, "id": "mc:arrondi-envers", "error": "raisonnement", "feedback": "Vérifie ton nombre : arrondi au centième, donne-t-il bien 7,50 ?" },
+        { "answer": 7.547, "id": "mc:arrondi-envers", "error": "raisonnement", "feedback": "Vérifie ton nombre : arrondi au centième, donne-t-il bien 7,50 ?" }
+      ],
+      "hints": [
+        "Arrondi au centième, le nombre donne 7,50 : il est donc tout près de 7,50, à moins d’un demi-centième.",
+        "Il est compris entre 7,495 (inclus) et 7,505 (exclu).",
+        "Son chiffre des millièmes est 7 : essaie 7,4…7 et 7,5…7."
+      ],
+      "solution": "Arrondi au centième, il vaut 7,50 : il est entre 7,495 et 7,505. Avec 7 millièmes, il ne reste que 7,497 (7,507 est trop grand : il s’arrondit à 7,51). Vérification : 7,497 ≈ 7 à l’unité (4 dixièmes), ≈ 7,5 au dixième (9 centièmes), ≈ 7,50 au centième (7 millièmes). C’est 7,497.",
+      "selfTest": [{ "response": { "value": "7,497" }, "expect": "correct" }, { "response": { "value": "7,507" }, "expect": "mc:arrondi-envers" }]
+    },
+    {
+      "id": "m6-comparer-prix-arrondi",
+      "type": "composite",
+      "skill": "m6.decimaux.arrondir",
+      "skills": ["m6.decimaux.encadrer"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:borne-oubliee", "mc:borne-en-trop"],
+      "expectedSeconds": 420,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [1, 8] } },
+      "prompt": "Question à l’envers. Zoé a acheté un livre. Elle a oublié son prix exact (en euros et centimes), mais elle se souvient de son prix **arrondi au dixième d’euro** : {a+b/10} €.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus petit prix possible (avec deux chiffres après la virgule) ?",
+          "answer": "a + b/10 - 0.05",
+          "misconceptions": [
+            {
+              "answer": "a + b/10 - 0.04",
+              "id": "mc:borne-oubliee",
+              "error": "raisonnement",
+              "feedback": "Il existe un prix encore plus petit : avec un 5 au rang des centièmes, comment s’arrondit-il ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le plus grand prix possible ?",
+          "answer": "a + b/10 + 0.04",
+          "misconceptions": [{ "answer": "a + b/10 + 0.05", "id": "mc:borne-en-trop", "error": "raisonnement", "feedback": "Arrondis ce prix au dixième : obtiens-tu bien {a+b/10} € ?" }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de prix différents (en euros et centimes) sont possibles en tout ?",
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 9,
+              "id": "mc:borne-oubliee",
+              "error": "raisonnement",
+              "feedback": "Compte bien tous les prix, du plus petit au plus grand, sans en oublier un au bout."
+            },
+            { "answer": 11, "id": "mc:borne-en-trop", "error": "raisonnement", "feedback": "Un des prix que tu as comptés s’arrondit au dixième supérieur." }
+          ]
+        }
+      ],
+      "hints": [
+        "Un prix s’arrondit à {a+b/10} € s’il est plus proche de {a+b/10} que des dixièmes voisins.",
+        "Teste {a+b/10-0.05} € et {a+b/10+0.05} € : comment s’arrondissent-ils ?",
+        "Liste les prix possibles, centime par centime."
+      ],
+      "solution": "Un prix s’arrondit à {a+b/10} € s’il est entre {a+b/10-0.05} € (inclus : le 5 fait monter) et {a+b/10+0.05} € (exclu : il s’arrondit à {a+(b+1)/10} €). Plus petit prix : {a+b/10-0.05} € ; plus grand : {a+b/10+0.04} €. De {a+b/10-0.05} à {a+b/10+0.04}, centime par centime, il y a 10 prix possibles.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{a+b/10-0.05}" }, { "value": "{a+b/10+0.04}" }, { "value": "10" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{a+b/10-0.05}" }, { "value": "{a+b/10+0.05}" }, { "value": "11" }] }, "expect": "mc:borne-en-trop" }
+      ]
+    }
+  ]
+}

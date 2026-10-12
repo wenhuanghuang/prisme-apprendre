@@ -1381,7 +1381,15 @@
             ],
             "focus": [
               "tA"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis dans le tableau « Attentif » la plus petite distance de chute obtenue.",
+              "answer": 12,
+              "tolerance": 0,
+              "unit": "cm",
+              "explain": "Dans le tableau « Attentif », colonne « cm », l'essai 3 donne 12 cm : c'est la plus petite valeur, donc l'essai où l'élève a réagi le plus vite."
+            }
           },
           {
             "title": "Le trajet de l'information",
@@ -1455,7 +1463,18 @@
             ],
             "focus": [
               "cerveau"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi faut-il environ 0,175 s, et pas 0 s, pour attraper la règle ?",
+              "choices": [
+                "L'information va de l'œil au cerveau, le cerveau décide, puis un message repart vers les muscles : chaque étape prend du temps.",
+                "Parce que la règle est trop lourde pour être arrêtée tout de suite.",
+                "Parce que les muscles des doigts doivent d'abord se réchauffer."
+              ],
+              "answer": 0,
+              "explain": "Le message nerveux doit parcourir les nerfs, et le cerveau met un peu de temps à analyser et à décider. La somme de ces étapes, c'est le temps de réaction."
+            }
           },
           {
             "title": "Avec une distraction",
@@ -2455,7 +2474,18 @@
             ],
             "focus": [
               "tD"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Compare les tableaux « Attentif » et « Distrait ». Que remarques-tu ?",
+              "choices": [
+                "Chaque essai « distrait » donne une chute plus longue que tous les essais « attentif ».",
+                "Certains essais « distrait » sont meilleurs que les essais « attentif ».",
+                "Les deux séries donnent à peu près les mêmes distances."
+              ],
+              "answer": 0,
+              "explain": "La plus petite chute « distrait » (19 cm) dépasse la plus grande chute « attentif » (18 cm). Ce n'est donc pas un seul essai raté : toute la série est plus lente."
+            }
           },
           {
             "title": "Un réflexe est plus rapide",
@@ -2517,7 +2547,18 @@
             ],
             "focus": [
               "moelle"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi retire-t-on la main d'une plaque brûlante plus vite qu'on n'attrape la règle ?",
+              "choices": [
+                "Le message passe par la moelle épinière, qui commande la réponse sans attendre la décision du cerveau.",
+                "La douleur rend les muscles du bras plus forts.",
+                "Les nerfs de la main transmettent les messages plus vite que ceux des yeux."
+              ],
+              "answer": 0,
+              "explain": "Dans un réflexe, la moelle épinière commande directement le muscle : il n'y a pas de décision à prendre. Le trajet est plus court, et le cerveau n'est informé qu'après."
+            }
           }
         ],
         "conclusion": "Attraper une règle, c'est un mouvement **volontaire** : le message passe par le cerveau, en environ **0,2 s**. Une distraction allonge ce temps de réaction. Un réflexe, qui ne passe pas par le cerveau, est bien plus rapide."
@@ -3805,13 +3846,13 @@
               "answer": 50,
               "id": "mc:formule-temps",
               "error": "methode",
-              "feedback": "Le temps se calcule en divisant la distance par la vitesse : t = d ÷ v = 1 ÷ 50 = 0,02 s."
+              "feedback": "Le temps se calcule en divisant la distance par la vitesse (t = d ÷ v), pas en les multipliant."
             },
             {
               "answer": 0.02,
               "id": "mc:s-ms",
               "error": "unite",
-              "feedback": "0,02 s est juste, mais la réponse est demandée en millisecondes : 0,02 s = 0,02 × 1 000 = 20 ms."
+              "feedback": "0,02 s est juste, mais la réponse est demandée en millisecondes : convertis avec 1 s = 1 000 ms."
             }
           ]
         },
@@ -3825,13 +3866,13 @@
               "answer": 875,
               "id": "mc:rapport-inverse",
               "error": "calcul",
-              "feedback": "Tu as divisé 175 par 20. La part se calcule dans l'autre sens : 20 ÷ 175 × 100 ≈ 11 %."
+              "feedback": "Tu as divisé 175 par 20. La part se calcule dans l'autre sens : divise la durée du trajet par le temps de réaction, puis multiplie par 100."
             },
             {
               "answer": 8.75,
               "id": "mc:rapport-inverse",
               "error": "calcul",
-              "feedback": "175 ÷ 20 ≈ 8,75 indique combien de fois le temps de réaction est plus long que le trajet. La part en % se calcule dans l'autre sens : 20 ÷ 175 × 100 ≈ 11 %."
+              "feedback": "175 ÷ 20 ≈ 8,75 indique combien de fois le temps de réaction est plus long que le trajet. La part en % se calcule dans l'autre sens : divise la durée du trajet par le temps de réaction, puis multiplie par 100."
             }
           ]
         },
@@ -4036,7 +4077,7 @@
               "answer": 30,
               "id": "mc:compte-paliers",
               "error": "calcul",
-              "feedback": "De 94 à 100 dB, il y a deux paliers de 3 dB (97 dB, puis 100 dB) : 60 → 30 → 15 minutes."
+              "feedback": "De 94 à 100 dB, il y a deux paliers de 3 dB (97 dB, puis 100 dB) : divise la durée par 2 à chaque palier."
             }
           ]
         }
@@ -4364,7 +4405,7 @@
           }
         ]
       },
-      "prompt": "Pour savoir si une distraction allonge le temps de réaction, on mesure la chute de la règle chez le même élève, dans deux conditions : lot A, attentif (distances : 14, 16, 12, 18, 15 cm) ; lot B, en lisant un message sur un téléphone (distances : 22, 25, 20, 24, 19 cm). Le tableau convertit la distance moyenne en temps de réaction (valeurs fictives).",
+      "prompt": "Pour savoir si une distraction allonge le temps de réaction, on mesure la chute de la règle chez le même élève, dans deux conditions : lot A, attentif (distances : 14, 16, 12, 18, 15 cm) ; lot B, en lisant un message sur un téléphone (distances : 22, 25, 20, 24, 19 cm). Le tableau convertit la distance moyenne en temps de réaction (calcul de physique) ; les distances mesurées ci-dessus sont fictives.",
       "parts": [
         {
           "type": "table",
@@ -4669,7 +4710,7 @@
               "answer": 2,
               "id": "mc:ecart-signe",
               "error": "signe",
-              "feedback": "Le volume a diminué (103 → 101) : la variation est négative, −2."
+              "feedback": "Le volume a diminué entre les deux mesures : une diminution s'écrit avec un signe négatif."
             }
           ]
         },
@@ -5058,7 +5099,7 @@
         "mc:correlation-causalite"
       ],
       "expectedSeconds": 420,
-      "prompt": "Dans six groupes de collégiens, on a relevé la durée moyenne de sommeil et la moyenne générale en classe (données fictives). Sommeil (h) : moyenne : 6,0 : 10,2 ; 6,5 : 10,9 ; 7,0 : 11,8 ; 7,5 : 12,6 ; 8,0 : 13,1 ; 8,5 : 13,4.",
+      "prompt": "Dans six groupes de collégiens, on a relevé la durée moyenne de sommeil et la moyenne générale en classe (données fictives). Couples « durée de sommeil (h) : moyenne générale » : 6,0 : 10,2 ; 6,5 : 10,9 ; 7,0 : 11,8 ; 7,5 : 12,6 ; 8,0 : 13,1 ; 8,5 : 13,4.",
       "parts": [
         {
           "type": "numeric",

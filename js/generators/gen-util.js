@@ -3,7 +3,7 @@
  * tirages, écriture des nombres à la française, fractions, idées fausses, fabrication des exercices.
  * Voir docs/GENERATEURS.md (niveaux classe / approfondissement / expert, problèmes).
  */
-import { formatNumber } from '../core/expr.js';
+import { formatNumber, tryParse, toText } from '../core/expr.js';
 
 export const ri = (rand, a, b) => a + Math.floor(rand() * (b - a + 1));
 export const nz = (rand, a, b) => { for (;;) { const x = ri(rand, a, b); if (x !== 0) return x; } };
@@ -16,6 +16,18 @@ export function sample(rand, arr, n = arr.length) {
 }
 /** 12 chiffres significatifs, et les résidus de calcul (1,7e-16) ramenés à 0. */
 export const clean = (x) => { const v = Number(Number(x).toPrecision(12)); return Math.abs(v) < 1e-9 ? 0 : v; };
+/**
+ * Arrondi au plus proche à d décimales. Le produit x × 10^d est d'abord nettoyé : 25,435 × 100 vaut
+ * 2543,4999… en binaire, et Math.round seul donnerait 25,43 au lieu de 25,44.
+ */
+// arrondi « au plus proche » symétrique : −2,25 → −2,3 comme 2,25 → 2,3
+export const roundTo = (x, d = 0) => clean((Math.sign(x) * Math.round(clean(Math.abs(x) * 10 ** d))) / 10 ** d);
+/**
+ * Réponse à arrondir à d décimales : `round` (forme exigée) et une tolérance égale à la moitié de l'unité
+ * d'arrondi (0,05 au dixième, 0,005 au centième). Avec la valeur ARRONDIE pour réponse, la valeur exacte et
+ * le bon arrondi sont acceptés, les deux arrondis voisins (64,0 ± 0,1) sont refusés.
+ */
+export const roundedTo = (d) => ({ round: d, tolerance: clean(0.5 / 10 ** d) });
 /** Nombre écrit à la française (virgule, espaces fines pour les milliers). */
 export const fr = (n) => formatNumber(clean(n));
 /** Nombre entre parenthèses s'il est négatif : « (−3) ». */
@@ -50,6 +62,59 @@ export function poly(c, v = 'x') {
 /** Idée fausse : la réponse typique, son identifiant, le type d'erreur et l'explication. */
 export const mc = (answer, id, error, feedback) => ({ answer, id, error, feedback });
 
+const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+/**
+ * Le texte cite-t-il le nombre n ? Même lecture que le garde-fou du moteur (app/js/core/reveal.js) : « −4 », « 4 cm »
+ * et « 4/9 » citent 4 (ou −4) ; « 4x », « 14 », « 4,5 », « par 4 » et « × 4 » ne le citent pas ; un chiffre seul
+ * n'est jamais compté. Sert à écarter les tirages où un message d'idée fausse donnerait la réponse par coïncidence
+ * (« on obtient −4 » dans le message d'une idée fausse quand la solution vaut justement −4).
+ */
+export function cites(text, n) {
+  const v = clean(n);
+  if (!Number.isFinite(v)) return false;
+  const raw = String(v);
+  if (/e/i.test(raw)) return false;
+  const [i, d] = raw.split('.');
+  const grouped = (i.startsWith('-') ? '-' : '') + i.replace('-', '').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const forms = new Set([raw, raw.replace('.', ','), d ? `${grouped},${d}` : grouped]);
+  const t = String(text || '').toLowerCase().replace(/[−–]/g, '-').replace(/×/g, '*').replace(/\s+/g, ' ');
+  return [...forms].some((f) => f.replace(/\s/g, '').length >= 2
+    && new RegExp(`(?<![\\p{L}\\d]|\\d[.,])(?<!(?:\\bpar|\\bfois|\\*)\\s?)${escapeRe(f)}(?![\\p{L}\\d]|[.,]\\d)`, 'u').test(t));
+}
+/** Une des idées fausses cite-t-elle la réponse dans son message ? (tirage à refaire) */
+export const mcCites = (mcs, answer) => mcs.some((m) => cites(m.feedback, answer));
+const squash = (s) => String(s || '').toLowerCase().replace(/[−–]/g, '-').replace(/×/g, '*').replace(/[\s$]/g, '');
+/**
+ * Le texte cite-t-il la réponse d'un exercice « expression » ? Comme le garde-fou du moteur : un nombre (« −9 ») est
+ * cherché comme un nombre, une écriture avec opérateur (« 2/21 », « 3x + 1 ») comme une suite de caractères
+ * (« 12/21 » cite donc « 2/21 »).
+ */
+export function citesExpression(text, answer) {
+  const p = tryParse(String(answer));
+  const a = squash(p.ok ? toText(p.node) : answer);
+  if (a.length < 2) return false;
+  if (/^-?\d+(?:[.,]\d+)?$/.test(a)) return cites(text, Number(a.replace(',', '.')));
+  return /[+\-*/=]/.test(a) && squash(text).includes(a);
+}
+/** Un exercice (ou une question d'un problème) dont un message d'idée fausse cite la réponse. */
+const citesOwnAnswer = (d) => {
+  if (d.type === 'composite') return (d.parts || []).some(citesOwnAnswer);
+  const mcs = d.misconceptions || [];
+  if (d.type === 'numeric' && typeof d.answer === 'number') return mcCites(mcs, d.answer);
+  if (d.type === 'expression' && typeof d.answer === 'string') return mcs.some((m) => citesExpression(m.feedback, d.answer));
+  return false;
+};
+/**
+ * Refait le tirage des NOMBRES d'un exercice (au plus `max` fois) tant qu'un message d'idée fausse cite la réponse
+ * par coïncidence : « tu trouves −4 en oubliant le signe » quand la solution vaut −4. À appeler une fois le type d'exercice choisi,
+ * pour ne jamais faire disparaître une variante : `withoutCitedAnswer(() => variante(rand))`.
+ */
+export function withoutCitedAnswer(make, max = 40) {
+  let d = make();
+  for (let i = 1; i < max && citesOwnAnswer(d); i++) d = make();
+  return d;
+}
+
 /** Exercice numérique ; la réponse type est écrite comme un élève la taperait. */
 export function numeric(answer, rest = {}) {
   const value = clean(answer);
@@ -64,6 +129,8 @@ export function expression(answer, rest = {}) {
  * Valeur LIMITE arrondie du côté sûr : « masse maximale » → arrondi inférieur, « résistance minimale » → arrondi
  * supérieur. Renvoie { answer, tolerance, unsafe } : la valeur exacte et l'arrondi sûr sont acceptés, l'arrondi
  * dangereux (`unsafe`, à déclarer en idée fausse) est refusé. `side` : 'max' ou 'min' ; `dec` : décimales.
+ * L'exercice porte alors `limit: side` : sa tolérance (au plus 0,9 unité, pour accepter la valeur exacte) n'est pas
+ * la moitié de l'unité d'arrondi des autres réponses arrondies (roundedTo).
  */
 export function boundAnswer(exact, side, dec = 0) {
   const f = 10 ** dec;

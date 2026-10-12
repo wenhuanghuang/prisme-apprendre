@@ -1,0 +1,1095 @@
+{
+  "id": "pc3-puissance-energie",
+  "chapter": "pc3-puissance",
+  "title": "Puissance et énergie électriques",
+  "subject": "pc",
+  "level": "3e",
+  "skills": ["pc.energie.puissance"],
+  "status": "programme",
+  "programmes": ["pc-c4-2020"],
+  "duration": 55,
+  "summary": "Calculer la puissance reçue par un appareil (P = U × I), relier énergie, puissance et durée (E = P × t), exprimer une énergie en joules, wattheures ou kilowattheures, et estimer le coût d'une consommation sur une facture d'électricité. Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 3e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La bouilloire contre la box",
+      "body": "Une bouilloire de **2 000 W** ne chauffe que 6 minutes par jour. Une box internet d'environ **10 W** reste allumée jour et nuit.\n\nIndice : la puissance ne dit pas tout. Fais ton pronostic, puis vérifie-le dans la leçon : laquelle des deux pèse le plus sur la facture d'électricité ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "⚡",
+          "title": "La puissance : P = U × I",
+          "body": "La **puissance électrique** reçue par un appareil se calcule avec $P = U × I$ : U est la tension à ses bornes (en volts, V), I l'intensité du courant qui le traverse (en ampères, A), P la puissance (en **watts, W**). Plus la puissance est grande, plus l'appareil convertit d'énergie à chaque seconde.",
+          "example": "Une lampe sous 6,0 V, traversée par 0,50 A, reçoit P = 6,0 × 0,50 = 3,0 W."
+        },
+        {
+          "emoji": "🏷️",
+          "title": "La puissance nominale",
+          "body": "Sur chaque appareil, une plaque indique sa tension d'usage et sa **puissance nominale**, par exemple « 230 V – 2 000 W » : c'est la puissance qu'il reçoit quand il fonctionne normalement. En France, la tension du secteur est de **230 V**.",
+          "reveal": {
+            "question": "Devine : quelle intensité traverse une bouilloire « 230 V – 2 000 W » ?",
+            "answer": "I = P ÷ U = 2 000 ÷ 230 ≈ 8,7 A. Une lampe LED de 5 W n'est traversée que par environ 0,02 A."
+          }
+        },
+        {
+          "emoji": "⏱️",
+          "title": "L'énergie : E = P × t",
+          "body": "L'**énergie** consommée dépend de la puissance ET de la durée : $E = P × t$. Avec P en watts et t en secondes, E est en **joules (J)**. Avec P en watts et t en heures, E est en **wattheures (Wh)**. Un appareil puissant utilisé peu de temps peut consommer moins qu'un petit appareil allumé jour et nuit."
+        },
+        {
+          "emoji": "🔁",
+          "title": "Wh, kWh et joules",
+          "body": "1 Wh = 3 600 J (une heure dure 3 600 s) et 1 kWh = 1 000 Wh = 3 600 000 J. Attention : le **watt (W)** mesure une puissance, le **wattheure (Wh)** une énergie. Et une durée en minutes se convertit en heures : 30 min = 0,5 h ; 2 h 30 min = 2,5 h.",
+          "reveal": {
+            "question": "Devine : combien de temps une bouilloire de 2 000 W met-elle pour consommer 1 kWh ?",
+            "answer": "t = E ÷ P = 1 000 Wh ÷ 2 000 W = 0,5 h, soit 30 minutes."
+          }
+        },
+        {
+          "emoji": "🧾",
+          "title": "Lire sa facture",
+          "body": "Le fournisseur facture l'énergie en **kWh** : coût = énergie (en kWh) × prix d'un kWh. Exemple : au 1er février 2025, le tarif réglementé « Base », proposé par la Commission de régulation de l'énergie (CRE), était d'environ **0,20 €** le kWh. Le prix réel dépend du contrat et change souvent ; l'abonnement s'y ajoute."
+        },
+        {
+          "emoji": "🔌",
+          "title": "Les puissances s'additionnent",
+          "body": "Quand plusieurs appareils fonctionnent en même temps, leurs puissances **s'additionnent**, comme leurs intensités. Sur une même ligne, un **disjoncteur** coupe le courant si l'intensité totale devient trop grande : c'est une protection contre la surchauffe des fils."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : une lampe et un moteur sur le même générateur",
+      "body": "On mesure U et I au multimètre, puis on calcule la puissance reçue par chaque appareil.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "releve", "id": "t", "x": 10, "y": 10, "w": 280, "title": "Mesures (générateur de 6,0 V)", "head": ["Récepteur", "U (V)", "I (A)", "P (W)"], "rows": [["lampe", "6,0", "0,50", "3,0"], ["moteur", "6,0", "0,30", "1,8"], ["les deux", "6,0", "0,80", "4,8"]], "shown": 0 },
+          { "type": "texte", "id": "formule", "x": 150, "y": 186, "text": "P = U × I", "size": 24, "bold": true },
+          { "type": "texte", "id": "calc", "x": 150, "y": 222, "text": "", "size": 15, "hidden": true },
+          { "type": "texte", "id": "calc2", "x": 150, "y": 248, "text": "", "size": 15, "hidden": true },
+          { "type": "chrono", "id": "ch", "x": 150, "y": 322, "value": 0, "hidden": true },
+          { "type": "fil", "id": "fA", "points": [[680, 372], [760, 372], [760, 110], [478, 110]] },
+          { "type": "fil", "id": "fB", "points": [[442, 110], [310, 110], [310, 200]] },
+          { "type": "fil", "id": "b1a", "points": [[310, 200], [338, 200]] },
+          { "type": "fil", "id": "b1b", "points": [[402, 200], [508, 200]] },
+          { "type": "fil", "id": "b1c", "points": [[532, 200], [600, 200]] },
+          { "type": "fil", "id": "rail", "points": [[310, 200], [310, 310]] },
+          { "type": "fil", "id": "b2a", "points": [[310, 310], [338, 310]] },
+          { "type": "fil", "id": "b2b", "points": [[402, 310], [486, 310]] },
+          { "type": "fil", "id": "b2c", "points": [[554, 310], [600, 310]] },
+          { "type": "fil", "id": "r1", "points": [[600, 200], [600, 310]] },
+          { "type": "fil", "id": "r2", "points": [[600, 310], [600, 372]] },
+          { "type": "fil", "id": "v1", "points": [[698, 272], [698, 290], [760, 290]] },
+          { "type": "fil", "id": "v2", "points": [[662, 272], [662, 290], [600, 290]] },
+          { "type": "pile", "id": "G", "x": 640, "y": 372, "label": "6,0 V" },
+          { "type": "interrupteur", "id": "K1", "x": 370, "y": 200, "closed": false },
+          { "type": "interrupteur", "id": "K2", "x": 370, "y": 310, "closed": false },
+          { "type": "texte", "x": 334, "y": 190, "text": "K1", "size": 13, "anchor": "end", "bold": true },
+          { "type": "texte", "x": 334, "y": 300, "text": "K2", "size": 13, "anchor": "end", "bold": true },
+          { "type": "lampe", "id": "L", "x": 520, "y": 166, "on": 0, "label": "lampe" },
+          { "type": "moteur", "id": "M", "x": 520, "y": 310, "speed": 0, "label": "moteur" },
+          { "type": "multimetre", "id": "MA", "x": 460, "y": 68, "mode": "A", "value": 0, "unit": "A", "decimals": 2 },
+          { "type": "texte", "x": 512, "y": 72, "text": "ampèremètre", "size": 13, "anchor": "start" },
+          { "type": "multimetre", "id": "MV", "x": 680, "y": 230, "mode": "V", "value": 6, "unit": "V", "decimals": 1, "label": "voltmètre" }
+        ],
+        "steps": [
+          {
+            "title": "Le montage",
+            "text": "Un générateur de **6,0 V** alimente deux branches en dérivation : une **lampe** (interrupteur K1) et un petit **moteur** (interrupteur K2). Un multimètre réglé en **ampèremètre** mesure l'intensité I qui sort du générateur ; un autre, réglé en **voltmètre**, mesure la tension U à ses bornes.",
+            "focus": ["G", "MA", "MV"]
+          },
+          {
+            "title": "La lampe seule",
+            "text": "On ferme K1 : la lampe s'allume. L'ampèremètre indique **0,50 A**, le voltmètre **6,0 V**. La lampe reçoit une puissance P = U × I = 6,0 × 0,50 = **3,0 W**.",
+            "duration": 4,
+            "show": ["calc"],
+            "do": [
+              { "id": "K1", "set": { "closed": true } },
+              { "id": "fA", "to": { "current": 1 }, "dur": 1 },
+              { "id": "fB", "to": { "current": 1 }, "dur": 1 },
+              { "id": "r2", "to": { "current": 1 }, "dur": 1 },
+              { "id": "b1a", "to": { "current": 1 }, "dur": 1 },
+              { "id": "b1b", "to": { "current": 1 }, "dur": 1 },
+              { "id": "b1c", "to": { "current": 1 }, "dur": 1 },
+              { "id": "r1", "to": { "current": 1 }, "dur": 1 },
+              { "id": "L", "to": { "on": 0.9 }, "dur": 1 },
+              { "id": "MA", "to": { "value": 0.5 }, "at": 1, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 1 }, "at": 2.5 },
+              { "id": "calc", "set": { "text": "Lampe : P = 6,0 V × 0,50 A = 3,0 W" }, "at": 2.5 }
+            ],
+            "focus": ["MA", "calc"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis l'ampèremètre : quelle intensité sort du générateur quand la lampe fonctionne seule ?",
+              "answer": 0.5,
+              "tolerance": 0,
+              "unit": "A",
+              "explain": "L'afficheur de l'ampèremètre, en haut du circuit, indique 0,50 A. Avec U = 6,0 V, la lampe reçoit P = 6,0 × 0,50 = 3,0 W."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On ouvre K1 et on ferme K2 : seul le moteur fonctionne. L'ampèremètre indique 0,30 A, le voltmètre toujours 6,0 V. Quelle puissance reçoit le moteur ?",
+              "choices": ["6,3 W", "1,8 W", "20 W"],
+              "answer": 1,
+              "explain": "P = U × I = 6,0 × 0,30 = 1,8 W. On multiplie la tension par l'intensité : on ne les additionne pas, et on ne les divise pas."
+            }
+          },
+          {
+            "title": "Le moteur seul",
+            "text": "Le moteur tourne : l'ampèremètre indique **0,30 A**. Le moteur reçoit P = 6,0 × 0,30 = **1,8 W** : moins que la lampe. Il convertit moins d'énergie chaque seconde.",
+            "duration": 4,
+            "do": [
+              { "id": "K1", "set": { "closed": false } },
+              { "id": "K2", "set": { "closed": true } },
+              { "id": "b1a", "to": { "current": 0 }, "dur": 1 },
+              { "id": "b1b", "to": { "current": 0 }, "dur": 1 },
+              { "id": "b1c", "to": { "current": 0 }, "dur": 1 },
+              { "id": "r1", "to": { "current": 0 }, "dur": 1 },
+              { "id": "L", "to": { "on": 0 }, "dur": 0.8 },
+              { "id": "rail", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "b2a", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "b2b", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "b2c", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "fA", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "fB", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "r2", "to": { "current": 0.6 }, "dur": 1 },
+              { "id": "M", "to": { "speed": 1.5 }, "dur": 1 },
+              { "id": "MA", "to": { "value": 0.3 }, "at": 1, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 2 }, "at": 2.5 },
+              { "id": "calc", "set": { "text": "Moteur : P = 6,0 V × 0,30 A = 1,8 W" }, "at": 2.5 }
+            ],
+            "focus": ["M", "MA"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On ferme maintenant les deux interrupteurs. Que va indiquer l'ampèremètre placé à la sortie du générateur ?",
+              "choices": ["0,30 A", "0,50 A", "0,80 A"],
+              "answer": 2,
+              "explain": "La lampe et le moteur sont en dérivation : l'intensité qui sort du générateur est la somme des intensités des deux branches, 0,50 + 0,30 = 0,80 A."
+            }
+          },
+          {
+            "title": "Les deux ensemble",
+            "text": "L'ampèremètre indique **0,80 A** : le générateur fournit P = 6,0 × 0,80 = **4,8 W**, c'est-à-dire 3,0 W + 1,8 W. Les puissances des appareils qui fonctionnent en même temps **s'additionnent**.",
+            "duration": 4,
+            "show": ["calc2"],
+            "do": [
+              { "id": "K1", "set": { "closed": true } },
+              { "id": "b1a", "to": { "current": 1 }, "dur": 1 },
+              { "id": "b1b", "to": { "current": 1 }, "dur": 1 },
+              { "id": "b1c", "to": { "current": 1 }, "dur": 1 },
+              { "id": "r1", "to": { "current": 1 }, "dur": 1 },
+              { "id": "L", "to": { "on": 0.9 }, "dur": 1 },
+              { "id": "fA", "to": { "current": 1.6 }, "dur": 1 },
+              { "id": "fB", "to": { "current": 1.6 }, "dur": 1 },
+              { "id": "r2", "to": { "current": 1.6 }, "dur": 1 },
+              { "id": "MA", "to": { "value": 0.8 }, "at": 1, "dur": 1.5 },
+              { "id": "t", "set": { "shown": 3 }, "at": 2.5 },
+              { "id": "calc", "set": { "text": "Ensemble : P = 6,0 V × 0,80 A = 4,8 W" }, "at": 2.5 },
+              { "id": "calc2", "set": { "text": "3,0 W + 1,8 W = 4,8 W" }, "at": 3 }
+            ],
+            "focus": ["t", "calc2"],
+            "ask": {
+              "kind": "observer",
+              "question": "Le moteur fonctionne en même temps que la lampe. La lampe brille-t-elle moins fort que lorsqu'elle était seule ?",
+              "choices": ["Oui : le moteur lui prend une partie du courant", "Non : elle brille autant", "Elle s'éteint"],
+              "answer": 1,
+              "explain": "En dérivation, chaque branche reçoit la tension du générateur, 6,0 V. La lampe reçoit toujours 3,0 W et brille autant : c'est le générateur qui fournit plus de courant (0,80 A)."
+            }
+          },
+          {
+            "title": "Et l'énergie ?",
+            "text": "On laisse tout fonctionner **10 minutes**, soit 600 s. L'énergie reçue vaut E = P × t = 4,8 × 600 = **2 880 J**. En wattheures : 4,8 W pendant 1/6 h donnent **0,8 Wh**. Plus la durée est longue, plus l'énergie consommée est grande.",
+            "duration": 6,
+            "show": ["ch"],
+            "do": [
+              { "id": "formule", "set": { "text": "E = P × t" } },
+              { "id": "ch", "to": { "value": 600 }, "at": 0.5, "dur": 4.5 },
+              { "id": "calc", "set": { "text": "E = 4,8 W × 600 s" }, "at": 5 },
+              { "id": "calc2", "set": { "text": "E = 2 880 J, soit 0,8 Wh" }, "at": 5 }
+            ],
+            "focus": ["ch", "calc2"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "D'après E = P × t, quelle énergie recevraient les deux appareils s'ils fonctionnaient 20 minutes au lieu de 10 ?",
+              "choices": ["Toujours 2 880 J", "Le double : 5 760 J", "La moitié : 1 440 J"],
+              "answer": 1,
+              "explain": "La puissance reste 4,8 W. Si la durée double, l'énergie double : E = 4,8 × 1 200 = 5 760 J."
+            }
+          }
+        ],
+        "conclusion": "La puissance reçue par un appareil se calcule avec **P = U × I** (en watts). Quand plusieurs appareils fonctionnent ensemble, leurs puissances **s'additionnent** (3,0 W + 1,8 W = 4,8 W). L'énergie consommée dépend de la puissance ET de la durée : **E = P × t** (2 880 J, soit 0,8 Wh, pour 4,8 W pendant 10 minutes)."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : le radiateur de la chambre",
+      "steps": [
+        { "text": "Un radiateur électrique de 1 500 W fonctionne 4 h par jour pendant 30 jours. On cherche l'énergie consommée et son coût, avec un prix de 0,20 € le kWh (exemple).", "math": "" },
+        { "text": "Durée totale, en heures :", "math": "t = 4 h × 30 = 120 h" },
+        { "text": "Énergie en wattheures, puis en kilowattheures :", "math": "E = P × t = 1 500 W × 120 h = 180 000 Wh = 180 kWh" },
+        { "text": "Coût :", "math": "180 × 0,20 = 36 €" },
+        { "text": "Contrôle avec les kilowatts : 1 500 W = 1,5 kW, et 1,5 kW × 120 h = 180 kWh. Même résultat.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Écris tes résultats **avec leur unité** (3,0 W ; 450 Wh ; 0,45 kWh) : le logiciel convertit lui-même les Wh, les kWh et les joules.",
+      "exercises": [
+        "pc3-puissance-energie-calcul",
+        "pc3-puissance-energie-unites",
+        "pc3-puissance-energie-intensite",
+        "pc3-puissance-energie-energie-wh",
+        "pc3-puissance-energie-puissance-ou-energie",
+        "pc3-puissance-energie-conversions",
+        "pc3-puissance-energie-classer"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["pc3-puissance-energie-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Le disjoncteur de la cuisine",
+      "exercises": ["pc3-puissance-energie-disjoncteur"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la facture de la famille Martin",
+      "body": "La famille Martin trouve sa facture trop élevée. Calcule ce que consomment ses appareils, puis propose des économies.",
+      "exercises": ["pc3-puissance-energie-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> $P = U × I$ (W = V × A). $E = P × t$ : en J si P est en W et t en s ; en Wh si t est en h ; en kWh si P est en kW et t en h. 1 Wh = 3 600 J ; 1 kWh = 1 000 Wh.\n\n- **Confondre W et Wh.** Le watt mesure une puissance ; le wattheure, une énergie (une puissance multipliée par une durée).\n- **Garder des minutes.** Pour des Wh, la durée doit être en heures : 30 min = 0,5 h et 2 h 30 min = 2,5 h (pas 2,30 h).\n- **« Puissant = gros consommateur. »** Un appareil peu puissant allumé jour et nuit peut consommer plus qu'un appareil puissant utilisé quelques minutes.\n- **Payer des Wh au prix du kWh.** Convertis en kWh avant de multiplier par le prix."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un calcul de puissance (P = U × I) et un calcul de consommation en kWh."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Retrouver une durée à partir d'une énergie, puis chiffrer l'économie d'une lampe LED sur un an.",
+      "exercises": ["pc3-puissance-energie-autonomie", "pc3-puissance-energie-led"]
+    },
+    "expert": {
+      "intro": "Facultatif : un sujet type brevet sur la recharge d'une voiture électrique, puis l'énergie cachée dans une batterie de smartphone.",
+      "exercises": ["pc3-puissance-energie-voiture", "pc3-puissance-energie-smartphone"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc3-puissance-energie-calcul",
+      "type": "numeric",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:p-division", "mc:p-addition"],
+      "expectedSeconds": 90,
+      "params": {
+        "U": { "choice": [3, 4.5, 6, 9, 12] },
+        "I": { "choice": [0.1, 0.2, 0.25, 0.3, 0.4, 0.5] }
+      },
+      "prompt": "Une lampe est branchée aux bornes d'un générateur. Un voltmètre indique U = {U} V à ses bornes ; un ampèremètre indique I = {I} A. Calcule la puissance électrique P reçue par la lampe (avec l'unité).",
+      "answer": "U*I",
+      "unit": "W",
+      "rel": 0.01,
+      "misconceptions": [
+        { "answer": "U/I", "id": "mc:p-division", "error": "notion", "feedback": "Tu as divisé U par I : ce calcul donne une résistance (loi d'Ohm), pas une puissance. Quelle opération relie P, U et I ?" },
+        { "answer": "U+I", "id": "mc:p-addition", "error": "notion", "feedback": "On n'additionne pas une tension (en V) et une intensité (en A) : ce sont deux grandeurs différentes. Relis la relation entre P, U et I." }
+      ],
+      "hints": [
+        "La puissance électrique se calcule à partir de la tension et de l'intensité.",
+        "P = U × I, avec U en volts et I en ampères : P est alors en watts.",
+        "P = {U} × {I}."
+      ],
+      "solution": "$P = U × I = {U} × {I} = {U*I}$ W.",
+      "selfTest": [
+        { "response": { "value": "{U*I} W" }, "expect": "correct" },
+        { "response": { "value": "{U/I} W" }, "expect": "mc:p-division" },
+        { "response": { "value": "{U+I} W" }, "expect": "mc:p-addition" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-unites",
+      "type": "match",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:w-wh", "mc:tension-intensite"],
+      "expectedSeconds": 120,
+      "prompt": "Associe chaque grandeur à l'unité qui convient.",
+      "leftTitle": "Grandeur",
+      "rightTitle": "Unité",
+      "left": [
+        { "id": "p", "label": "La puissance d'un sèche-cheveux" },
+        { "id": "efact", "label": "L'énergie consommée en un mois, sur la facture" },
+        { "id": "esi", "label": "L'énergie, dans l'unité internationale" },
+        { "id": "u", "label": "La tension du secteur" },
+        { "id": "i", "label": "L'intensité du courant dans une lampe" },
+        { "id": "t", "label": "La durée de fonctionnement d'un four" }
+      ],
+      "right": [
+        { "id": "w", "label": "watt (W)" },
+        { "id": "kwh", "label": "kilowattheure (kWh)" },
+        { "id": "j", "label": "joule (J)" },
+        { "id": "v", "label": "volt (V)" },
+        { "id": "a", "label": "ampère (A)" },
+        { "id": "h", "label": "heure (h)" }
+      ],
+      "pairs": { "p": "w", "efact": "kwh", "esi": "j", "u": "v", "i": "a", "t": "h" },
+      "misconceptions": [
+        { "pair": ["p", "kwh"], "id": "mc:w-wh", "error": "notion", "feedback": "Le kilowattheure contient « heure » : il mesure une énergie, c'est-à-dire une puissance multipliée par une durée. La puissance, elle, dit à quel rythme l'appareil convertit l'énergie." },
+        { "pair": ["efact", "w"], "id": "mc:w-wh", "error": "notion", "feedback": "Le watt mesure une puissance, pas une quantité d'énergie : il manque la durée. Quelle unité contient une durée ?" },
+        { "pair": ["u", "a"], "id": "mc:tension-intensite", "error": "notion", "feedback": "La tension et l'intensité sont deux grandeurs différentes : l'une se mesure avec un voltmètre, l'autre avec un ampèremètre." }
+      ],
+      "hints": [
+        "Le « h » de kWh signifie heure : cette unité mesure une énergie.",
+        "Le watt mesure une puissance ; le joule, une énergie."
+      ],
+      "solution": "Puissance : watt (W). Énergie sur une facture : kilowattheure (kWh). Énergie dans l'unité internationale : joule (J). Tension : volt (V). Intensité : ampère (A). Durée : heure (h), ou seconde (s).",
+      "selfTest": [
+        { "response": { "pairs": { "p": "w", "efact": "kwh", "esi": "j", "u": "v", "i": "a", "t": "h" } }, "expect": "correct" },
+        { "response": { "pairs": { "p": "kwh", "efact": "w", "esi": "j", "u": "v", "i": "a", "t": "h" } }, "expect": "mc:w-wh" },
+        { "response": { "pairs": { "p": "w", "efact": "kwh", "esi": "j", "u": "a", "i": "v", "t": "h" } }, "expect": "mc:tension-intensite" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-intensite",
+      "type": "numeric",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:i-produit", "mc:i-inverse"],
+      "expectedSeconds": 120,
+      "params": {
+        "P": { "choice": [1000, 1200, 1500, 1800, 2000, 2400] }
+      },
+      "prompt": "La plaque d'un appareil électroménager indique « 230 V – {P} W ». Calcule l'intensité du courant qui le traverse quand il fonctionne normalement. Donne le résultat en ampères, arrondi au dixième (avec l'unité).",
+      "answer": "P/230",
+      "unit": "A",
+      "tolerance": 0.05,
+      "round": 1,
+      "misconceptions": [
+        { "answer": "P*230", "id": "mc:i-produit", "error": "methode", "feedback": "Tu as multiplié la puissance par la tension. Pars de P = U × I : quelle opération permet d'isoler I ?" },
+        { "answer": "230/P", "id": "mc:i-inverse", "error": "methode", "feedback": "Ton calcul est à l'envers : tu as divisé la tension par la puissance. Vérifie avec P = U × I." }
+      ],
+      "hints": [
+        "P = U × I : ici, on connaît P et U.",
+        "Pour trouver I, on divise P par U.",
+        "I = {P} ÷ 230, puis arrondis au dixième."
+      ],
+      "solution": "$I = P ÷ U = {P} ÷ 230 ≈ {P/230|d1}$ A.",
+      "selfTest": [
+        { "response": { "value": "{P/230|d1} A" }, "expect": "correct" },
+        { "response": { "value": "{P*230} A" }, "expect": "mc:i-produit" },
+        { "response": { "value": "{230/P|d2} A" }, "expect": "mc:i-inverse" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-energie-wh",
+      "type": "numeric",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:minutes-heures"],
+      "expectedSeconds": 150,
+      "params": {
+        "P": { "choice": [1200, 1500, 1800, 2100] },
+        "m": { "choice": [6, 12, 15, 20, 30, 45] }
+      },
+      "prompt": "Un sèche-cheveux de puissance {P} W fonctionne pendant {m} minutes. Calcule l'énergie qu'il consomme, en wattheures (avec l'unité).",
+      "answer": "P*m/60",
+      "unit": "Wh",
+      "rel": 0.01,
+      "misconceptions": [
+        { "answer": "P*m", "id": "mc:minutes-heures", "error": "unite", "feedback": "Tu as multiplié la puissance par un nombre de MINUTES. Pour obtenir des wattheures, la durée doit être exprimée en heures." }
+      ],
+      "hints": [
+        "E = P × t.",
+        "Pour obtenir des wattheures, P doit être en watts et t en heures : {m} min = {m} ÷ 60 h.",
+        "E = {P} × {m} ÷ 60."
+      ],
+      "solution": "$t = {m}$ min $= {m} ÷ 60$ h. $E = P × t = {P} × {m} ÷ 60 = {P*m/60}$ Wh (soit {P*m*60} J).",
+      "selfTest": [
+        { "response": { "value": "{P*m/60} Wh" }, "expect": "correct" },
+        { "response": { "value": "{P*m*60} J" }, "expect": "correct" },
+        { "response": { "value": "{P*m} Wh" }, "expect": "mc:minutes-heures" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-puissance-ou-energie",
+      "type": "categorize",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:w-wh"],
+      "expectedSeconds": 120,
+      "prompt": "Puissance ou énergie ? Classe chaque valeur selon la grandeur qu'elle mesure.",
+      "categories": [
+        { "id": "puissance", "label": "Une puissance" },
+        { "id": "energie", "label": "Une énergie" }
+      ],
+      "items": [
+        { "id": "a", "label": "2 000 W (bouilloire)", "category": "puissance" },
+        { "id": "b", "label": "180 kWh (facture du mois)", "category": "energie" },
+        { "id": "c", "label": "3 600 J", "category": "energie" },
+        { "id": "d", "label": "2,4 kW (four)", "category": "puissance" },
+        { "id": "e", "label": "8 W (lampe LED)", "category": "puissance" },
+        { "id": "f", "label": "0,5 Wh", "category": "energie" },
+        { "id": "g", "label": "50 kJ", "category": "energie" },
+        { "id": "h", "label": "2 MW (éolienne)", "category": "puissance" }
+      ],
+      "misconceptions": [
+        { "item": "b", "category": "puissance", "id": "mc:w-wh", "error": "notion", "feedback": "Le « h » du kWh n'est pas là par hasard : cette unité contient une durée. Peut-elle alors mesurer une puissance ?" },
+        { "item": "d", "category": "energie", "id": "mc:w-wh", "error": "notion", "feedback": "Le kilowatt est un multiple du watt : il mesure la même grandeur que le watt, sans aucune durée." },
+        { "item": "f", "category": "puissance", "id": "mc:w-wh", "error": "notion", "feedback": "Le wattheure, c'est une puissance multipliée par une durée : relis ce que donne E = P × t." }
+      ],
+      "hints": [
+        "W, kW, MW : le watt et ses multiples.",
+        "Une unité qui « contient » une durée (le h de Wh), ou le joule, mesure une énergie."
+      ],
+      "solution": "Puissances : 2 000 W, 2,4 kW, 8 W et 2 MW (le watt et ses multiples). Énergies : 180 kWh, 3 600 J, 0,5 Wh et 50 kJ (le joule, le wattheure et leurs multiples).",
+      "selfTest": [
+        { "response": { "assign": { "a": "puissance", "b": "energie", "c": "energie", "d": "puissance", "e": "puissance", "f": "energie", "g": "energie", "h": "puissance" } }, "expect": "correct" },
+        { "response": { "assign": { "a": "puissance", "b": "puissance", "c": "energie", "d": "puissance", "e": "puissance", "f": "energie", "g": "energie", "h": "puissance" } }, "expect": "mc:w-wh" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-conversions",
+      "type": "table",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:heure-60", "mc:kilo"],
+      "expectedSeconds": 240,
+      "params": {
+        "a": { "choice": [0.5, 2, 2.5, 4] },
+        "b": { "choice": [5, 10, 60, 250] }
+      },
+      "prompt": "Complète le tableau de conversions (nombres seulement).",
+      "columns": ["Énergie", "en Wh", "en J"],
+      "rows": [
+        ["1 kWh", "?r0c1", "?r0c2"],
+        ["{a} kWh", "?r1c1", "?r1c2"],
+        ["{b} Wh", "{b}", "?r2c2"]
+      ],
+      "cells": {
+        "r0c1": { "answer": 1000, "misconceptions": [{ "answer": 100, "id": "mc:kilo", "error": "unite", "feedback": "Revois la valeur du préfixe « kilo » : 1 km, c'est combien de mètres ?" }] },
+        "r0c2": { "answer": 3600000, "rel": 0.001, "misconceptions": [{ "answer": 60000, "id": "mc:heure-60", "error": "unite", "feedback": "Une heure ne dure pas 60 secondes : elle compte 60 minutes, de 60 secondes chacune." }, { "answer": 3600, "id": "mc:kwh-wh", "error": "unite", "feedback": "Ce nombre convient pour 1 Wh, pas pour 1 kWh : n'oublie pas le préfixe « kilo »." }] },
+        "r1c1": { "answer": "a*1000", "rel": 0.001, "misconceptions": [{ "answer": "a*100", "id": "mc:kilo", "error": "unite", "feedback": "Revois la valeur du préfixe « kilo »." }] },
+        "r1c2": { "answer": "a*3600000", "rel": 0.001, "misconceptions": [{ "answer": "a*60000", "id": "mc:heure-60", "error": "unite", "feedback": "Une heure ne dure pas 60 secondes : elle compte 60 minutes, de 60 secondes chacune." }] },
+        "r2c2": { "answer": "b*3600", "rel": 0.001, "misconceptions": [{ "answer": "b*60", "id": "mc:heure-60", "error": "unite", "feedback": "Une heure ne dure pas 60 secondes : elle compte 60 minutes, de 60 secondes chacune." }] }
+      },
+      "hints": [
+        "1 kWh = 1 000 Wh.",
+        "1 Wh, c'est 1 W pendant 1 h, c'est-à-dire pendant 3 600 s : 1 Wh = 3 600 J.",
+        "Pour passer des Wh aux J, multiplie par 3 600."
+      ],
+      "solution": "1 kWh = 1 000 Wh = 3 600 000 J. {a} kWh = {a*1000} Wh = {a*3600000} J. {b} Wh = {b*3600} J.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "1000", "r0c2": "3600000", "r1c1": "{a*1000}", "r1c2": "{a*3600000}", "r2c2": "{b*3600}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "1000", "r0c2": "60000", "r1c1": "{a*1000}", "r1c2": "{a*60000}", "r2c2": "{b*60}" } }, "expect": "mc:heure-60" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-classer",
+      "type": "order",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:puissance-consommation"],
+      "expectedSeconds": 300,
+      "prompt": "Range ces appareils du MOINS gourmand au PLUS gourmand en énergie consommée en une journée. Calcule d'abord l'énergie de chacun.",
+      "orderLabel": "de la plus petite à la plus grande énergie consommée par jour",
+      "errorType": "methode",
+      "items": [
+        { "id": "chargeur", "label": "Chargeur de téléphone : 5 W pendant 2 h" },
+        { "id": "led", "label": "Lampe LED : 8 W pendant 5 h" },
+        { "id": "bouilloire", "label": "Bouilloire : 2 000 W pendant 6 min" },
+        { "id": "box", "label": "Box internet : 10 W pendant 24 h" },
+        { "id": "tv", "label": "Télévision : 100 W pendant 3 h" },
+        { "id": "four", "label": "Four : 2 500 W pendant 30 min" }
+      ],
+      "hints": [
+        "Pour chaque appareil, calcule E = P × t en wattheures (durée en heures).",
+        "6 min = 0,1 h ; 30 min = 0,5 h.",
+        "Ne range pas selon la puissance : la durée compte autant."
+      ],
+      "solution": "Énergies par jour : chargeur 5 × 2 = 10 Wh ; lampe LED 8 × 5 = 40 Wh ; bouilloire 2 000 × 0,1 = 200 Wh ; box 10 × 24 = 240 Wh ; télévision 100 × 3 = 300 Wh ; four 2 500 × 0,5 = 1 250 Wh. La box, peu puissante mais toujours allumée, consomme plus que la bouilloire !",
+      "selfTest": [
+        { "response": { "order": ["chargeur", "led", "bouilloire", "box", "tv", "four"] }, "expect": "correct" },
+        { "response": { "order": ["chargeur", "led", "box", "tv", "bouilloire", "four"] }, "expect": "methode" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-expliquer",
+      "type": "open",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:w-wh"],
+      "expectedSeconds": 300,
+      "prompt": "Léo affirme : « Ma lampe LED consomme 8 watts par heure. » Explique-lui ce qui ne va pas dans sa phrase, puis écris une phrase correcte.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "J'explique que le watt (W) mesure une puissance, pas une énergie consommée", "keywords": [["puissance"]] },
+        { "id": "c2", "label": "J'utilise E = P × t : en une heure, la lampe consomme 8 Wh", "keywords": [["wh", "wattheure", "e = p", "p x t", "p × t"]] },
+        { "id": "c3", "label": "J'écris une phrase correcte : « Ma lampe a une puissance de 8 W » ou « Elle consomme 8 Wh en une heure »", "keywords": [["puissance de 8", "8 wh"]] }
+      ],
+      "models": [
+        "Le watt est l'unité de la puissance, pas d'une énergie consommée : « 8 watts par heure » ne veut rien dire. L'énergie se calcule avec E = P × t. Phrase correcte : ma lampe a une puissance de 8 W ; en une heure, elle consomme 8 Wh.",
+        "Léo confond puissance et énergie. 8 W, c'est la puissance de la lampe. Ce qu'elle consomme, c'est de l'énergie : E = P × t = 8 W × 1 h = 8 Wh. Il faudrait dire : ma lampe consomme 8 Wh par heure."
+      ],
+      "hints": [
+        "Quelle grandeur se mesure en watts ? Et l'énergie consommée ?",
+        "E = P × t : que vaut E pour 8 W pendant 1 h ?"
+      ],
+      "solution": "Le watt mesure une puissance (le rythme auquel la lampe convertit l'énergie), pas une énergie consommée. L'énergie se calcule avec E = P × t : en une heure, E = 8 W × 1 h = 8 Wh. Phrase correcte : « Ma lampe a une puissance de 8 W : elle consomme 8 Wh par heure. »",
+      "selfTest": [
+        { "response": { "text": "Le watt mesure une puissance, pas une énergie. Avec E = P × t, en une heure la lampe consomme 8 Wh. Il faut dire : ma lampe a une puissance de 8 W.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-disjoncteur",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "skills": ["pc4.electricite.lois"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:puissance-max", "mc:i-produit", "mc:surcharge"],
+      "expectedSeconds": 420,
+      "prompt": "Dans une cuisine, une ligne électrique (230 V) est protégée par un disjoncteur de 16 A : il coupe le courant si l'intensité dépasse 16 A. On y fait fonctionner en même temps un four de 2 500 W, une bouilloire de 2 000 W et un grille-pain de 900 W.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Puissance totale reçue par les trois appareils (avec l'unité) :",
+          "answer": 5400,
+          "unit": "W",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 2500, "id": "mc:puissance-max", "error": "notion", "feedback": "Ce n'est que la puissance du four. Les trois appareils fonctionnent en même temps : que deviennent leurs puissances ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Intensité totale du courant dans la ligne, arrondie à l'unité (avec l'unité) :",
+          "answer": "5400/230",
+          "unit": "A",
+          "tolerance": 0.5,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "5400*230", "id": "mc:i-produit", "error": "methode", "feedback": "Tu as multiplié la puissance par la tension. Pars de P = U × I pour isoler I." },
+            { "answer": "230/5400", "id": "mc:i-inverse", "error": "methode", "feedback": "Ton calcul est à l'envers : tu as divisé la tension par la puissance." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le disjoncteur va-t-il couper le courant ? (oui ou non)",
+          "accept": ["oui"],
+          "misconceptions": [
+            { "answer": "non", "id": "mc:surcharge", "error": "raisonnement", "feedback": "Compare l'intensité totale que tu as trouvée à l'intensité maximale de la ligne." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel appareil suffit-il d'arrêter pour que les deux autres fonctionnent sans faire disjoncter ? (une réponse suffit)",
+          "accept": ["le four", "four", "la bouilloire", "bouilloire"],
+          "misconceptions": [
+            { "answer": "le grille-pain", "id": "mc:surcharge", "error": "raisonnement", "feedback": "Sans le grille-pain, il reste 4 500 W : calcule l'intensité correspondante et compare-la à 16 A." },
+            { "answer": "grille-pain", "id": "mc:surcharge", "error": "raisonnement", "feedback": "Sans le grille-pain, il reste 4 500 W : calcule l'intensité correspondante et compare-la à 16 A." }
+          ]
+        }
+      ],
+      "hints": [
+        "Les puissances des appareils qui fonctionnent ensemble s'additionnent.",
+        "I = P ÷ U.",
+        "Compare chaque intensité trouvée à 16 A."
+      ],
+      "solution": "P = 2 500 + 2 000 + 900 = 5 400 W. I = 5 400 ÷ 230 ≈ 23 A, plus que 16 A : le disjoncteur coupe le courant. Sans le four (2 900 W, environ 12,6 A) ou sans la bouilloire (3 400 W, environ 14,8 A), on reste sous 16 A ; sans le grille-pain (4 500 W, environ 19,6 A), cela ne suffit pas.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "5400 W" }, { "value": "23 A" }, { "value": "oui" }, { "value": "la bouilloire" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2500 W" }, { "value": "23 A" }, { "value": "oui" }, { "value": "le four" }] }, "expect": "mc:puissance-max" },
+        { "response": { "parts": [{ "value": "5400 W" }, { "value": "23 A" }, { "value": "oui" }, { "value": "le grille-pain" }] }, "expect": "mc:surcharge" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-mission",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:duree-decimale", "mc:jours-oublies", "mc:wh-facture"],
+      "expectedSeconds": 720,
+      "prompt": "Mission : la facture de la famille Martin. Voici trois appareils de la maison et leur utilisation moyenne par jour. Prix pris pour la mission : 0,20 € par kWh (ordre de grandeur du tarif réglementé « Base » au 1er février 2025, d'après la CRE ; l'abonnement n'est pas compté). Un mois compte 30 jours.",
+      "figure": {
+        "alt": "Tableau des appareils de la famille Martin : chauffe-eau de 2 400 W utilisé 3 h par jour, télévision de 120 W utilisée 2 h 30 min par jour, box internet de 10 W allumée 24 h sur 24.",
+        "w": 520,
+        "h": 170,
+        "items": [
+          { "type": "table", "head": ["Appareil", "Puissance", "Utilisation par jour"], "rows": [["Chauffe-eau", "2 400 W", "3 h"], ["Télévision", "120 W", "2 h 30 min"], ["Box internet", "10 W", "24 h"]] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée chaque jour par le chauffe-eau, en kWh (avec l'unité) :",
+          "answer": 7.2,
+          "unit": "kWh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 7200, "id": "mc:wh-kwh", "error": "unite", "feedback": "Ton nombre correspond à des wattheures : convertis-le en kilowattheures, ou écris la bonne unité." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée chaque jour par la télévision, en Wh (avec l'unité) :",
+          "answer": 300,
+          "unit": "Wh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 276, "id": "mc:duree-decimale", "error": "unite", "feedback": "2 h 30 min ne s'écrit pas 2,30 h : combien d'heures représentent 30 minutes ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée en un mois par la box internet, en kWh (avec l'unité) :",
+          "answer": 7.2,
+          "unit": "kWh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0.24, "id": "mc:jours-oublies", "error": "methode", "feedback": "C'est la consommation d'UNE journée : la question porte sur un mois entier." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Coût du chauffe-eau pour un mois, en euros (seulement le nombre) :",
+          "answer": 43.2,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 1.44, "id": "mc:jours-oublies", "error": "methode", "feedback": "C'est le coût d'UNE journée : la question porte sur un mois entier." },
+            { "answer": 43200, "id": "mc:wh-facture", "error": "unite", "feedback": "Le prix est donné pour un kWh : l'énergie doit être en kWh avant de la multiplier par le prix." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Propose deux gestes simples pour faire baisser la facture, et justifie-les avec la relation E = P × t.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je propose de réduire la durée d'utilisation (éteindre la box la nuit, ne pas laisser d'appareils en veille…)", "keywords": [["eteind", "duree", "moins longtemps", "nuit", "veille", "temps"]] },
+            { "id": "c2", "label": "Je propose de réduire la puissance ou la quantité d'eau chaude (douches plus courtes, appareils moins puissants…)", "keywords": [["puissance", "douche", "eau chaude", "moins puissant", "temperature"]] },
+            { "id": "c3", "label": "Je justifie avec E = P × t : si P ou t diminue, l'énergie consommée diminue", "keywords": [["e = p", "p x t", "p × t", "diminu", "baisse"]] }
+          ],
+          "models": [
+            "On peut éteindre la box la nuit : sa durée de fonctionnement diminue, donc E = P × t diminue. On peut aussi prendre des douches plus courtes : le chauffe-eau chauffe moins longtemps, et il consomme moins d'énergie."
+          ]
+        }
+      ],
+      "hints": [
+        "E = P × t avec P en kW et t en h donne des kWh : 2 400 W = 2,4 kW.",
+        "2 h 30 min = 2,5 h.",
+        "Coût = énergie en kWh × prix d'un kWh."
+      ],
+      "solution": "Chauffe-eau : 2,4 kW × 3 h = 7,2 kWh par jour. Télévision : 120 W × 2,5 h = 300 Wh par jour. Box : 10 W × 24 h = 240 Wh par jour, soit 240 × 30 = 7 200 Wh = 7,2 kWh par mois : autant que le chauffe-eau en une seule journée. Chauffe-eau sur un mois : 7,2 × 30 = 216 kWh, soit 216 × 0,20 = 43,20 €. Gestes : éteindre la box la nuit et ne pas laisser d'appareils en veille (on réduit t) ; prendre des douches plus courtes (le chauffe-eau fonctionne moins longtemps).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "7,2 kWh" }, { "value": "300 Wh" }, { "value": "7,2 kWh" }, { "value": "43,2" }, { "text": "On peut éteindre la box la nuit pour réduire la durée, et prendre des douches plus courtes. Avec E = P × t, si t diminue, l'énergie consommée diminue.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "7,2 kWh" }, { "value": "276 Wh" }, { "value": "7,2 kWh" }, { "value": "43,2" }, { "text": "Il faut éteindre la box la nuit." }] }, "expect": "mc:duree-decimale" },
+        { "response": { "parts": [{ "value": "7,2 kWh" }, { "value": "300 Wh" }, { "value": "0,24 kWh" }, { "value": "43,2" }, { "text": "Il faut éteindre la box la nuit." }] }, "expect": "mc:jours-oublies" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-remed-wh",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:w-wh", "mc:duree-oubliee"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : le watt (W) mesure une PUISSANCE ; le wattheure (Wh) mesure une ÉNERGIE, c'est une puissance multipliée par une durée en heures (E = P × t). Une lampe de 60 W reste allumée.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée en 1 heure (avec l'unité) :",
+          "answer": 60,
+          "unit": "Wh",
+          "rel": 0.01
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée en 3 heures (avec l'unité) :",
+          "answer": 180,
+          "unit": "Wh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 60, "id": "mc:duree-oubliee", "error": "notion", "feedback": "En 3 heures, la lampe fonctionne plus longtemps qu'en 1 heure : l'énergie consommée dépend de la durée." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le watt est-il une unité d'énergie ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:w-wh", "error": "notion", "feedback": "Relis le rappel : quelle grandeur le watt mesure-t-il ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "E = P × t avec P en W et t en h : le résultat est en Wh.",
+        "60 W pendant 3 h : multiplie 60 par 3."
+      ],
+      "solution": "En 1 h : 60 W × 1 h = 60 Wh. En 3 h : 60 W × 3 h = 180 Wh. Le watt mesure une puissance ; l'énergie se mesure en Wh, en kWh ou en joules.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "60 Wh" }, { "value": "180 Wh" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "60 Wh" }, { "value": "60 Wh" }, { "value": "non" }] }, "expect": "mc:duree-oubliee" },
+        { "response": { "parts": [{ "value": "60 W" }, { "value": "180 Wh" }, { "value": "non" }] }, "expect": "unite" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-remed-minutes",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:minutes-virgule", "mc:minutes-heures"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : pour obtenir des Wh, la durée doit être en HEURES. Une heure compte 60 minutes (et non 100) : pour convertir des minutes en heures, on divise par 60.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "15 min = combien d'heures ? (avec l'unité h)",
+          "answer": 0.25,
+          "unit": "h",
+          "strictUnit": true,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0.15, "id": "mc:minutes-virgule", "error": "unite", "feedback": "15 minutes ne s'écrit pas 0,15 h : une heure compte 60 minutes, pas 100." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "1 h 30 min = combien d'heures ? (avec l'unité h)",
+          "answer": 1.5,
+          "unit": "h",
+          "strictUnit": true,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 1.3, "id": "mc:minutes-virgule", "error": "unite", "feedback": "30 minutes ne font pas 0,3 h : quelle fraction d'une heure représentent 30 minutes ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un four de 2 000 W fonctionne 45 min. Énergie consommée, en Wh (avec l'unité) :",
+          "answer": 1500,
+          "unit": "Wh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 90000, "id": "mc:minutes-heures", "error": "unite", "feedback": "Tu as multiplié la puissance par des minutes : convertis d'abord 45 min en heures." },
+            { "answer": 900, "id": "mc:minutes-virgule", "error": "unite", "feedback": "45 minutes ne s'écrivent pas 0,45 h : divise 45 par 60." }
+          ]
+        }
+      ],
+      "hints": [
+        "Divise le nombre de minutes par 60.",
+        "45 min = 45 ÷ 60 h."
+      ],
+      "solution": "15 min = 15 ÷ 60 = 0,25 h. 1 h 30 min = 1 h + 30 ÷ 60 h = 1,5 h. 45 min = 0,75 h, donc E = 2 000 W × 0,75 h = 1 500 Wh.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "0,25 h" }, { "value": "1,5 h" }, { "value": "1500 Wh" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,15 h" }, { "value": "1,3 h" }, { "value": "900 Wh" }] }, "expect": "mc:minutes-virgule" },
+        { "response": { "parts": [{ "value": "0,25 h" }, { "value": "1,5 h" }, { "value": "90000 Wh" }] }, "expect": "mc:minutes-heures" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-autonomie",
+      "type": "numeric",
+      "skill": "pc.energie.puissance",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:t-produit", "mc:t-inverse"],
+      "expectedSeconds": 180,
+      "params": {
+        "E": { "choice": [400, 500, 600] },
+        "P": { "choice": [100, 200, 250] }
+      },
+      "prompt": "La batterie d'un vélo à assistance électrique stocke une énergie de {E} Wh. En montée, son moteur reçoit une puissance de {P} W. Pendant combien de temps peut-il fonctionner à cette puissance (avec l'unité) ?",
+      "answer": "E/P",
+      "unit": "h",
+      "rel": 0.01,
+      "misconceptions": [
+        { "answer": "E*P", "id": "mc:t-produit", "error": "methode", "feedback": "Multiplier une énergie par une puissance ne donne pas une durée. Pars de E = P × t et isole t." },
+        { "answer": "P/E", "id": "mc:t-inverse", "error": "methode", "feedback": "Ton calcul est à l'envers : vérifie avec les unités, des Wh divisés par des W donnent des heures." }
+      ],
+      "hints": [
+        "E = P × t : on cherche t.",
+        "t = E ÷ P.",
+        "t = {E} ÷ {P}."
+      ],
+      "solution": "$E = P × t$, donc $t = E ÷ P = {E} ÷ {P} = {E/P}$ h. Avec le Wh et le W, le résultat est directement en heures.",
+      "selfTest": [
+        { "response": { "value": "{E/P} h" }, "expect": "correct" },
+        { "response": { "value": "{E/P*60} min" }, "expect": "correct" },
+        { "response": { "value": "{P/E} h" }, "expect": "mc:t-inverse" },
+        { "response": { "value": "{E*P} h" }, "expect": "mc:t-produit" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-led",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:jours-oublies", "mc:cout-total"],
+      "expectedSeconds": 480,
+      "prompt": "Une lampe à incandescence de 75 W et une lampe LED de 10 W éclairent autant l'une que l'autre. Chacune fonctionnerait 4 h par jour pendant un an (365 jours). Prix pris pour l'exercice : 0,20 € par kWh.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée en un an par la lampe à incandescence, en kWh (avec l'unité) :",
+          "answer": 109.5,
+          "unit": "kWh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0.3, "id": "mc:jours-oublies", "error": "methode", "feedback": "C'est la consommation d'UNE journée : la question porte sur une année." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie consommée en un an par la lampe LED, en kWh (avec l'unité) :",
+          "answer": 14.6,
+          "unit": "kWh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0.04, "id": "mc:jours-oublies", "error": "methode", "feedback": "C'est la consommation d'UNE journée : la question porte sur une année." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Économie réalisée en un an grâce à la lampe LED, en euros arrondis au centime (seulement le nombre) :",
+          "answer": 18.98,
+          "tolerance": 0.02,
+          "misconceptions": [
+            { "answer": 21.9, "id": "mc:cout-total", "error": "raisonnement", "feedback": "Ce montant est le coût total de la lampe à incandescence. L'économie, c'est la DIFFÉRENCE entre les deux coûts." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Pour la même lumière, laquelle des deux lampes transforme le plus d'énergie électrique en énergie thermique, perdue ?",
+          "accept": ["la lampe à incandescence", "lampe à incandescence", "incandescence", "l'incandescence", "la lampe a incandescence", "lampe a incandescence", "celle à incandescence"],
+          "misconceptions": [
+            { "answer": "la LED", "id": "mc:led-chaleur", "error": "raisonnement", "feedback": "Les deux lampes donnent la même lumière : celle qui reçoit le plus d'énergie électrique en « perd » donc le plus. Compare leurs puissances." },
+            { "answer": "led", "id": "mc:led-chaleur", "error": "raisonnement", "feedback": "Les deux lampes donnent la même lumière : celle qui reçoit le plus d'énergie électrique en « perd » donc le plus. Compare leurs puissances." }
+          ]
+        }
+      ],
+      "hints": [
+        "Durée sur un an : 4 h × 365 = 1 460 h.",
+        "75 W = 0,075 kW ; 10 W = 0,010 kW.",
+        "Économie = (énergie de la lampe à incandescence − énergie de la LED) × 0,20."
+      ],
+      "solution": "Durée : 4 × 365 = 1 460 h. Incandescence : 0,075 kW × 1 460 h = 109,5 kWh. LED : 0,010 kW × 1 460 h = 14,6 kWh. Économie : (109,5 − 14,6) × 0,20 ≈ 18,98 € par an et par lampe. Pour la même lumière, la lampe à incandescence reçoit beaucoup plus d'énergie : le surplus devient de l'énergie thermique (elle chauffe beaucoup).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "109,5 kWh" }, { "value": "14,6 kWh" }, { "value": "18,98" }, { "value": "la lampe à incandescence" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "109,5 kWh" }, { "value": "14,6 kWh" }, { "value": "21,9" }, { "value": "la lampe à incandescence" }] }, "expect": "mc:cout-total" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-voiture",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:p-division", "mc:kw-w", "mc:wh-facture"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Recharger une voiture électrique.\n\n**Document 1.** Inès recharge sa voiture électrique sur une prise renforcée de son garage. La prise délivre une tension de 230 V et un courant d'intensité 16 A.\n\n**Document 2.** Quand elle est pleine, la batterie de la voiture stocke 52 kWh. Elle permet alors de parcourir environ 340 km.\n\n**Document 3.** Prix pris pour l'exercice : 0,20 € par kWh (ordre de grandeur du tarif réglementé « Base » au 1er février 2025, d'après la CRE). On néglige les pertes pendant la recharge.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Calcule la puissance électrique délivrée par la prise (avec l'unité).",
+          "answer": 3680,
+          "unit": "W",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": "230/16", "id": "mc:p-division", "error": "notion", "feedback": "Diviser la tension par l'intensité donne une résistance, pas une puissance. Relis la relation entre P, U et I." },
+            { "answer": 246, "id": "mc:p-addition", "error": "notion", "feedback": "On n'additionne pas des volts et des ampères. Relis la relation entre P, U et I." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Combien de temps faut-il pour recharger complètement la batterie vide ? Donne le résultat en heures, arrondi au dixième (avec l'unité).",
+          "answer": "52000/3680",
+          "unit": "h",
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            { "answer": "52/3680", "id": "mc:kw-w", "error": "unite", "feedback": "Les unités ne sont pas cohérentes : tu as divisé des kWh par des W. Convertis d'abord l'énergie en Wh, ou la puissance en kW." },
+            { "answer": "3680/52000", "id": "mc:t-inverse", "error": "methode", "feedback": "Ton calcul est à l'envers. Pars de E = P × t et isole t." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Calcule le coût d'une recharge complète, en euros (seulement le nombre).",
+          "answer": 10.4,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 10400, "id": "mc:wh-facture", "error": "unite", "feedback": "Le prix est donné pour un kWh : utilise l'énergie en kWh, pas en Wh." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Calcule le coût de l'énergie pour parcourir 100 km, en euros arrondis au centime (seulement le nombre).",
+          "answer": "10.4*100/340",
+          "tolerance": 0.01,
+          "round": 2,
+          "misconceptions": [
+            { "answer": "340/10.4", "id": "mc:proportion-inverse", "error": "raisonnement", "feedback": "Ton calcul donne un nombre de kilomètres par euro, pas un coût pour 100 km." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "5. Inès affirme : « Sur une prise ordinaire de 10 A, la recharge serait plus rapide, puisque le courant serait plus faible. » Rédige une réponse argumentée.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je calcule la nouvelle puissance : P = 230 × 10 = 2 300 W, plus faible", "keywords": [["2 300", "2300", "plus faible", "moins puissant", "puissance"]] },
+            { "id": "c2", "label": "J'en déduis avec t = E ÷ P que la recharge serait plus longue (environ 22,6 h)", "keywords": [["plus long", "22", "duree", "temps", "lent"]] }
+          ],
+          "models": [
+            "Inès se trompe. Avec 10 A, la puissance serait P = U × I = 230 × 10 = 2 300 W, plus faible que 3 680 W. Or t = E ÷ P : avec une puissance plus faible, il faut plus de temps, environ 52 000 ÷ 2 300 ≈ 22,6 h au lieu de 14,1 h."
+          ]
+        }
+      ],
+      "hints": [
+        "P = U × I.",
+        "t = E ÷ P, avec des unités cohérentes : 52 kWh = 52 000 Wh.",
+        "Pour 100 km : (coût d'une recharge) × 100 ÷ 340."
+      ],
+      "solution": "1. P = U × I = 230 × 16 = 3 680 W. 2. t = E ÷ P = 52 000 Wh ÷ 3 680 W ≈ 14,1 h. 3. Coût : 52 × 0,20 = 10,40 €. 4. Pour 100 km : 10,40 × 100 ÷ 340 ≈ 3,06 €. 5. Avec 10 A, P = 230 × 10 = 2 300 W : la puissance est plus faible, donc la recharge est plus longue (52 000 ÷ 2 300 ≈ 22,6 h).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "3680 W" }, { "value": "14,1 h" }, { "value": "10,4" }, { "value": "3,06" }, { "text": "Elle se trompe : avec 10 A la puissance est plus faible, 230 × 10 = 2 300 W, donc la durée de recharge t = E ÷ P est plus longue, environ 22,6 h.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "3680 W" }, { "value": "0,0141 h" }, { "value": "10,4" }, { "value": "3,06" }, { "text": "La recharge est plus longue." }] }, "expect": "mc:kw-w" },
+        { "response": { "parts": [{ "value": "14,375 W" }, { "value": "14,1 h" }, { "value": "10,4" }, { "value": "3,06" }, { "text": "La recharge est plus longue." }] }, "expect": "mc:p-division" }
+      ]
+    },
+    {
+      "id": "pc3-puissance-energie-smartphone",
+      "type": "composite",
+      "skill": "pc.energie.puissance",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:ma-a", "mc:heure-60"],
+      "expectedSeconds": 720,
+      "prompt": "Défi : l'énergie cachée dans un smartphone. Sur la batterie d'un smartphone, on lit « 3,85 V – 4 000 mAh ». Cela signifie qu'elle peut fournir un courant de 4 000 mA pendant 1 h, sous une tension de 3,85 V.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Puissance fournie par la batterie quand elle débite 4 000 mA (avec l'unité) :",
+          "answer": 15.4,
+          "unit": "W",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 15400, "id": "mc:ma-a", "error": "unite", "feedback": "4 000 mA ne font pas 4 000 A : convertis les milliampères en ampères avant de calculer." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Énergie stockée dans la batterie pleine, en Wh (avec l'unité) :",
+          "answer": 15.4,
+          "unit": "Wh",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 15400, "id": "mc:ma-a", "error": "unite", "feedback": "4 000 mA ne font pas 4 000 A : convertis les milliampères en ampères avant de calculer." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Cette énergie, exprimée en joules (avec l'unité J) :",
+          "answer": 55440,
+          "unit": "J",
+          "strictUnit": true,
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 924, "id": "mc:heure-60", "error": "unite", "feedback": "Une heure ne dure pas 60 secondes : elle compte 60 minutes de 60 secondes." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "On recharge ce téléphone une fois par jour pendant un an (365 jours). Énergie totale, en kWh arrondie au dixième (avec l'unité) ? On néglige les pertes du chargeur.",
+          "answer": "15.4*365/1000",
+          "unit": "kWh",
+          "tolerance": 0.06,
+          "round": 1,
+          "misconceptions": [
+            { "answer": 0.0154, "id": "mc:jours-oublies", "error": "methode", "feedback": "C'est l'énergie d'UNE recharge : la question porte sur une année." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Coût de ces recharges pour un an, au prix de 0,20 € par kWh, en euros arrondis au centime (seulement le nombre) :",
+          "answer": "15.4*365/1000*0.2",
+          "tolerance": 0.01,
+          "round": 2,
+          "misconceptions": [
+            { "answer": "15.4*365*0.2", "id": "mc:wh-facture", "error": "unite", "feedback": "Le prix est donné pour un kWh : convertis d'abord l'énergie en kWh." }
+          ]
+        }
+      ],
+      "hints": [
+        "4 000 mA = 4 A ; P = U × I.",
+        "E = P × t avec t = 1 h.",
+        "1 Wh = 3 600 J ; 1 kWh = 1 000 Wh."
+      ],
+      "solution": "P = 3,85 V × 4 A = 15,4 W. E = 15,4 W × 1 h = 15,4 Wh = 15,4 × 3 600 = 55 440 J. Sur un an : 15,4 × 365 = 5 621 Wh ≈ 5,6 kWh, soit environ 5,621 × 0,20 ≈ 1,12 €. Recharger son téléphone coûte très peu… par rapport à un chauffe-eau !",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "15,4 W" }, { "value": "15,4 Wh" }, { "value": "55440 J" }, { "value": "5,6 kWh" }, { "value": "1,12" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "15400 W" }, { "value": "15,4 Wh" }, { "value": "55440 J" }, { "value": "5,6 kWh" }, { "value": "1,12" }] }, "expect": "mc:ma-a" },
+        { "response": { "parts": [{ "value": "15,4 W" }, { "value": "15,4 Wh" }, { "value": "924 J" }, { "value": "5,6 kWh" }, { "value": "1,12" }] }, "expect": "mc:heure-60" }
+      ]
+    }
+  ]
+}

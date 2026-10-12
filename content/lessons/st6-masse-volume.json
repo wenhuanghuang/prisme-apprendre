@@ -1,0 +1,1112 @@
+{
+  "id": "st6-masse-volume",
+  "chapter": "6e-st-masse-volume",
+  "title": "Masse et volume : liquides, gaz, couches superposées",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": ["st6.matiere.masse-volume", "st6.matiere.proportionnalite", "st6.matiere.gaz", "st6.matiere.couches"],
+  "status": "programme",
+  "programmes": ["sciences-techno-c3-2023"],
+  "duration": 55,
+  "summary": "Distinguer masse et volume, convertir leurs unités, comparer les masses de liquides de même volume (et réciproquement), utiliser la proportionnalité entre masse et volume, montrer que l'air a une masse, mesurer un volume de gaz par déplacement d'eau et prévoir l'ordre de liquides non miscibles superposés. Programme de sciences et technologie du cycle 3 (version de 2023), attendus de fin de 6e.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Les devinettes de Malo",
+      "body": "Malo lance une devinette : « Qu'est-ce qui est le plus lourd, un kilo de plumes ou un kilo de plomb ? » Facile : ils ont la même masse !\n\nMais il en a une autre : « Et un litre d'huile, ou un litre d'eau ? Dans la vinaigrette, l'huile remonte toujours au-dessus… »\n\nEt l'air qui gonfle ton ballon de foot, a-t-il une masse, lui aussi ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "⚖️",
+          "title": "Masse et volume : deux grandeurs différentes",
+          "body": "La **masse** dit combien il y a de matière. On la mesure avec une **balance**, en grammes (g) ou en kilogrammes (kg). Le **volume** dit quelle place occupe la matière. On le mesure avec une **éprouvette graduée**, en litres (L), millilitres (mL) ou centimètres cubes (cm³).",
+          "example": "Un ballon gonflé a un grand volume et une petite masse ; une bille d'acier, l'inverse."
+        },
+        {
+          "emoji": "🔁",
+          "title": "Convertir les unités",
+          "body": "Masses : 1 t = 1 000 kg ; 1 kg = 1 000 g ; 1 g = 1 000 mg.\n\nVolumes : 1 L = 1 000 mL ; 1 L = 100 cL ; 1 cL = 10 mL ; **1 mL = 1 cm³** et 1 L = 1 dm³. Vers une unité plus petite, on multiplie ; vers une unité plus grande, on divise.",
+          "example": "250 mL = 0,25 L = 250 cm³ ; 1,5 kg = 1 500 g."
+        },
+        {
+          "emoji": "💧",
+          "title": "Un litre d'eau : un kilogramme",
+          "body": "**1 L d'eau a une masse d'environ 1 kg** : 1 mL d'eau pèse 1 g. Mais pour un même volume, des matières différentes n'ont pas la même masse : 1 L d'huile ≈ 920 g ; 1 L de sirop de grenadine ≈ 1,3 kg ; 1 L d'air ≈ 1,2 g seulement.",
+          "reveal": {
+            "question": "Devine : 1 L d'huile est-il plus lourd ou plus léger que 1 L d'eau ?",
+            "answer": "Plus léger : environ 920 g contre 1 000 g. C'est pour cela que l'huile flotte sur l'eau de la vinaigrette."
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Masse et volume sont proportionnels",
+          "body": "Pour un **corps homogène** (la même matière partout), si le volume double, la masse double ; si le volume est divisé par 4, la masse aussi. Pour l'eau : 2 L ont une masse de 2 kg ; 0,5 L, de 0,5 kg. Pour l'huile : 2 L ont une masse de 1 840 g.",
+          "example": "250 mL d'huile : 920 g ÷ 4 = 230 g."
+        },
+        {
+          "emoji": "🥤",
+          "title": "Des liquides en couches",
+          "body": "Deux liquides **non miscibles** ne se mélangent pas : ils forment des couches. Pour prévoir leur ordre, on compare **la masse d'un même volume** : le liquide le plus lourd, à volume égal, va **au fond**. L'huile (92 g pour 100 mL) flotte sur l'eau (100 g pour 100 mL).",
+          "reveal": {
+            "question": "Devine : le pétrole, noir et épais, coule-t-il au fond de la mer ?",
+            "answer": "Non ! 100 mL de pétrole ont une masse d'environ 85 g, moins que 100 mL d'eau de mer (103 g). Il flotte : c'est la marée noire."
+          }
+        },
+        {
+          "emoji": "🎈",
+          "title": "L'air a une masse",
+          "body": "Un gaz occupe tout l'espace qu'on lui offre et on peut le **comprimer**. L'air est de la matière : **1 L d'air a une masse d'environ 1,2 g**. Pour mesurer le volume d'un gaz, on le fait entrer dans un récipient gradué rempli d'eau et retourné : le gaz **chasse l'eau**, et on lit son volume. C'est le **déplacement d'eau**."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : même volume, même masse ?",
+      "body": "Trois liquides, la même éprouvette, la même balance. Observe bien ce qu'elle affiche.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "balance", "id": "bal", "x": 150, "y": 392, "w": 220, "value": 0, "decimals": 1, "label": "balance (tarée)" },
+          { "type": "eprouvette", "id": "ep", "x": 150, "y": 348, "w": 46, "h": 220, "value": 0, "max": 100, "step": 10, "liquid": "#a9d8f5", "label": "éprouvette graduée" },
+          { "type": "releve", "id": "tab", "x": 300, "y": 24, "w": 300, "title": "Masse de 100 mL de liquide", "head": ["liquide", "masse"], "rows": [["eau", "100 g"], ["huile", "92 g"], ["sirop de grenadine", "130 g"]], "shown": 0 },
+          { "type": "becher", "id": "bk", "x": 665, "y": 392, "w": 130, "h": 200, "level": 0, "liquid": "#be123c", "grad": false, "label": "on les superpose" },
+          { "type": "forme", "id": "lEau", "shape": "rect", "x": 603, "y": 344, "w": 124, "h": 0, "fill": "#a9d8f5", "hidden": true },
+          { "type": "forme", "id": "lHuile", "shape": "rect", "x": 603, "y": 299, "w": 124, "h": 0, "fill": "#f2c94c", "hidden": true },
+          { "type": "etiquette", "id": "eS", "x": 520, "y": 366, "text": "sirop : 130 g", "to": [612, 366], "hidden": true },
+          { "type": "etiquette", "id": "eE", "x": 520, "y": 321, "text": "eau : 100 g", "to": [612, 321], "hidden": true },
+          { "type": "etiquette", "id": "eH", "x": 520, "y": 276, "text": "huile : 92 g", "to": [612, 276], "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Une balance et une éprouvette graduée vide. On appuie sur le bouton « tare » : la balance affiche 0,0 g avec l'éprouvette vide. Elle ne mesurera donc que la masse du liquide versé. On va comparer 100 mL de trois liquides.",
+            "focus": ["bal", "ep"]
+          },
+          {
+            "title": "100 mL d'eau",
+            "text": "On verse de l'eau jusqu'à la graduation 100 mL, les yeux à la hauteur de la surface. La balance affiche 100,0 g : 100 mL d'eau ont une masse de 100 g. On note le résultat dans le tableau.",
+            "duration": 4,
+            "do": [
+              { "id": "ep", "set": { "label": "eau" } },
+              { "id": "ep", "to": { "value": 100 }, "dur": 3 },
+              { "id": "bal", "to": { "value": 100 }, "dur": 3 },
+              { "id": "tab", "set": { "shown": 1 }, "at": 3.5 }
+            ],
+            "focus": ["ep", "bal"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la balance : quelle est la masse de 100 mL d'eau ?",
+              "answer": 100,
+              "tolerance": 0,
+              "unit": "g",
+              "explain": "L'écran de la balance, sous l'éprouvette, affiche 100,0 g. Comme elle a été tarée, c'est la masse de l'eau seule."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On vide l'éprouvette, on la nettoie, on tare la balance, puis on verse 100 mL d'huile. Que va indiquer la balance ?",
+              "choices": ["Moins de 100 g", "100 g, car le volume est le même", "Plus de 100 g"],
+              "answer": 0,
+              "explain": "Même volume ne veut pas dire même masse. 100 mL d'huile ont une masse d'environ 92 g."
+            }
+          },
+          {
+            "title": "100 mL d'huile",
+            "text": "Même volume : 100 mL. Mais la balance n'affiche que 92,0 g. Pour un même volume, l'huile a une masse plus petite que l'eau.",
+            "duration": 4,
+            "do": [
+              { "id": "ep", "set": { "value": 0, "liquid": "#f2c94c", "label": "huile" } },
+              { "id": "bal", "set": { "value": 0 } },
+              { "id": "ep", "to": { "value": 100 }, "at": 0.5, "dur": 3 },
+              { "id": "bal", "to": { "value": 92 }, "at": 0.5, "dur": 3 },
+              { "id": "tab", "set": { "shown": 2 }, "at": 3.6 }
+            ],
+            "focus": ["ep", "bal"]
+          },
+          {
+            "title": "100 mL de sirop",
+            "text": "Avec 100 mL de sirop de grenadine pur, la balance affiche 130,0 g : plus que l'eau, car le sirop contient beaucoup de sucre dissous. Trois liquides, un même volume, trois masses différentes.",
+            "duration": 4,
+            "do": [
+              { "id": "ep", "set": { "value": 0, "liquid": "#be123c", "label": "sirop" } },
+              { "id": "bal", "set": { "value": 0 } },
+              { "id": "ep", "to": { "value": 100 }, "at": 0.5, "dur": 3 },
+              { "id": "bal", "to": { "value": 130 }, "at": 0.5, "dur": 3 },
+              { "id": "tab", "set": { "shown": 3 }, "at": 3.6 }
+            ],
+            "focus": ["ep", "bal", "tab"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le tableau rempli : pour 100 mL, quel liquide a la plus grande masse ?",
+              "choices": ["L'eau", "L'huile", "Le sirop de grenadine"],
+              "answer": 2,
+              "explain": "Le tableau indique 130 g pour le sirop, 100 g pour l'eau et 92 g pour l'huile : le sirop a la plus grande masse pour un même volume."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On verse doucement les trois liquides dans un même bécher. Dans quel ordre vont-ils se ranger, du bas vers le haut ?",
+              "choices": ["Sirop, eau, huile", "Huile, eau, sirop", "Eau, sirop, huile"],
+              "answer": 0,
+              "explain": "Pour un même volume, le liquide qui a la plus grande masse se place au fond : le sirop (130 g), puis l'eau (100 g), puis l'huile (92 g)."
+            }
+          },
+          {
+            "title": "Trois couches",
+            "text": "On verse d'abord le sirop, puis l'eau très doucement le long de la paroi, enfin l'huile. Trois couches se forment : le sirop au fond, l'eau au milieu, l'huile au-dessus. L'ordre suit la masse d'un même volume.",
+            "duration": 6,
+            "show": ["lEau", "lHuile", "eS", "eE", "eH"],
+            "do": [
+              { "id": "bk", "to": { "level": 0.25 }, "dur": 2 },
+              { "id": "lEau", "to": { "y": 299, "h": 45 }, "at": 2, "dur": 2 },
+              { "id": "lHuile", "to": { "y": 254, "h": 45 }, "at": 4, "dur": 2 }
+            ],
+            "focus": ["bk"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi l'huile reste-t-elle au-dessus de l'eau ?",
+              "choices": ["Parce qu'on l'a versée en dernier", "Parce que, pour un même volume, l'huile a une masse plus petite que l'eau", "Parce que l'huile est plus épaisse que l'eau"],
+              "answer": 1,
+              "explain": "100 mL d'huile (92 g) ont une masse plus petite que 100 mL d'eau (100 g). Même versée en premier, l'huile remonterait au-dessus de l'eau."
+            }
+          },
+          {
+            "title": "Qui se mélange ?",
+            "text": "L'huile ne se mélange ni à l'eau ni au sirop : ils sont **non miscibles**, elle restera toujours au-dessus. L'eau et le sirop, eux, sont **miscibles** : avec le temps, ou tout de suite si on remue, ils finissent par se mélanger.",
+            "focus": ["bk", "eH"]
+          }
+        ],
+        "conclusion": "Pour un même volume, des liquides différents n'ont pas la même masse (100 mL : sirop 130 g, eau 100 g, huile 92 g). Deux liquides **non miscibles** se superposent : celui dont **un même volume a la plus grande masse** va **au fond**."
+      }
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : l'air a une masse… et un volume",
+      "body": "On ne voit pas l'air, mais on peut le peser et mesurer la place qu'il occupe.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "becher", "id": "cuve", "x": 560, "y": 392, "w": 300, "h": 120, "level": 0.7, "liquid": "#a9d8f5", "grad": false },
+          { "type": "forme", "id": "eauV", "shape": "rect", "x": 632, "y": 102, "w": 46, "h": 243, "fill": "#a9d8f5" },
+          { "type": "forme", "id": "verre", "shape": "path", "x": 628, "y": 98, "w": 54, "h": 249, "d": "M630,345 L630,112 Q630,100 642,100 L668,100 Q680,100 680,112 L680,345", "fill": "none", "stroke": "#64748b", "width": 2.5 },
+          { "type": "forme", "shape": "line", "x": 668, "y": 155, "w": 12, "h": 0, "stroke": "#334155", "width": 1.5 },
+          { "type": "forme", "shape": "line", "x": 668, "y": 208, "w": 12, "h": 0, "stroke": "#334155", "width": 1.5 },
+          { "type": "forme", "shape": "line", "x": 668, "y": 260, "w": 12, "h": 0, "stroke": "#334155", "width": 1.5 },
+          { "type": "forme", "shape": "line", "x": 668, "y": 313, "w": 12, "h": 0, "stroke": "#334155", "width": 1.5 },
+          { "type": "texte", "x": 690, "y": 159, "text": "250 mL", "size": 12, "anchor": "start" },
+          { "type": "texte", "x": 690, "y": 212, "text": "500 mL", "size": 12, "anchor": "start" },
+          { "type": "texte", "x": 690, "y": 264, "text": "750 mL", "size": 12, "anchor": "start" },
+          { "type": "texte", "x": 690, "y": 317, "text": "1 L", "size": 12, "anchor": "start" },
+          { "type": "texte", "id": "tG", "x": 655, "y": 86, "text": "graduations : volume de gaz recueilli", "size": 12 },
+          { "type": "forme", "id": "bu1", "shape": "ellipse", "x": 655, "y": 350, "w": 8, "h": 8, "fill": "#ffffff", "stroke": "#2563eb", "width": 1.2, "hidden": true },
+          { "type": "forme", "id": "bu2", "shape": "ellipse", "x": 650, "y": 350, "w": 7, "h": 7, "fill": "#ffffff", "stroke": "#2563eb", "width": 1.2, "hidden": true },
+          { "type": "forme", "id": "bu3", "shape": "ellipse", "x": 660, "y": 350, "w": 9, "h": 9, "fill": "#ffffff", "stroke": "#2563eb", "width": 1.2, "hidden": true },
+          { "type": "forme", "id": "tu", "shape": "path", "x": 328, "y": 234, "w": 330, "h": 140, "d": "M330,262 L330,236 L450,236 L478,372 L655,372 L655,348", "fill": "none", "stroke": "#475569", "width": 4, "hidden": true },
+          { "type": "balance", "id": "bal", "x": 140, "y": 392, "w": 200, "value": 45, "decimals": 1, "label": "balance" },
+          { "type": "objet", "id": "bt", "shape": "bouteille", "x": 140, "y": 348, "size": 130, "color": "#bae6fd" },
+          { "type": "fleche", "id": "fp", "from": [300, 150], "to": [148, 214], "label": "on pompe de l'air", "color": "#2563eb", "hidden": true },
+          { "type": "etiquette", "id": "eR", "x": 470, "y": 150, "text": "récipient retourné, plein d'eau", "to": [630, 180], "hidden": true },
+          { "type": "etiquette", "id": "eV", "x": 500, "y": 150, "text": "1 L d'air recueilli", "to": [655, 200], "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Une bouteille en plastique rigide est fermée par un bouchon-valve, comme celle d'un ballon de foot. Elle contient déjà de l'air. Sur une balance précise au dixième de gramme, elle affiche 45,0 g.",
+            "focus": ["bal", "bt"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On pompe de l'air en plus dans la bouteille, sans changer sa taille. Que va indiquer la balance ?",
+              "choices": ["Moins de 45,0 g", "45,0 g : l'air ne pèse rien", "Plus de 45,0 g"],
+              "answer": 2,
+              "explain": "L'air est de la matière : il a une masse. Si on fait entrer plus d'air dans la bouteille, elle devient plus lourde."
+            }
+          },
+          {
+            "title": "On pompe",
+            "text": "Avec une pompe à vélo, on donne 20 coups de pompe. La bouteille ne grossit pas : l'air y est plus serré, il est **comprimé**. La balance affiche maintenant 46,2 g. L'air ajouté a donc une masse de 1,2 g.",
+            "duration": 5,
+            "show": ["fp"],
+            "do": [
+              { "id": "bal", "to": { "value": 46.2 }, "at": 1, "dur": 3.5 }
+            ],
+            "focus": ["bal"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la balance après les 20 coups de pompe.",
+              "answer": 46.2,
+              "tolerance": 0,
+              "unit": "g",
+              "explain": "L'écran de la balance affiche 46,2 g, soit 1,2 g de plus qu'au début (45,0 g) : c'est la masse de l'air ajouté."
+            }
+          },
+          {
+            "title": "Quel volume d'air a-t-on ajouté ?",
+            "text": "Pour le savoir, on prépare un récipient gradué rempli d'eau, retourné sur une cuve d'eau : l'eau reste dedans. Un tuyau relie la valve de la bouteille au-dessous du récipient.",
+            "duration": 3,
+            "hide": ["fp"],
+            "show": ["tu", "eR"],
+            "do": [
+              { "id": "bal", "set": { "value": 0 }, "at": 0.4 },
+              { "id": "bt", "to": { "x": 330, "y": 392 }, "dur": 2 }
+            ],
+            "focus": ["verre", "tu"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On ouvre la valve : l'air en trop sort par le tuyau. Que va faire l'eau du récipient retourné ?",
+              "choices": ["Elle reste en place", "Elle est chassée par l'air : son niveau descend", "Elle monte dans le tuyau"],
+              "answer": 1,
+              "explain": "L'air monte en haut du récipient et prend la place de l'eau, qui est repoussée vers la cuve : c'est le déplacement d'eau."
+            }
+          },
+          {
+            "title": "L'air chasse l'eau",
+            "text": "Des bulles d'air montent dans le récipient : l'air prend la place de l'eau et la repousse vers la cuve. Quand plus rien ne sort, on lit la graduation au niveau de l'eau : l'air recueilli occupe **1 L**. C'est le volume d'air ajouté par la pompe.",
+            "duration": 7,
+            "hide": ["eR"],
+            "do": [
+              { "id": "eauV", "to": { "y": 313, "h": 32 }, "dur": 6.5 },
+              { "id": "bu1", "set": { "hidden": false, "y": 350 }, "at": 0.2 },
+              { "id": "bu1", "to": { "y": 318 }, "at": 0.2, "dur": 0.8 },
+              { "id": "bu1", "set": { "hidden": true }, "at": 1 },
+              { "id": "bu2", "set": { "hidden": false, "y": 350 }, "at": 0.9 },
+              { "id": "bu2", "to": { "y": 318 }, "at": 0.9, "dur": 0.8 },
+              { "id": "bu2", "set": { "hidden": true }, "at": 1.7 },
+              { "id": "bu3", "set": { "hidden": false, "y": 350 }, "at": 1.6 },
+              { "id": "bu3", "to": { "y": 318 }, "at": 1.6, "dur": 0.8 },
+              { "id": "bu3", "set": { "hidden": true }, "at": 2.4 },
+              { "id": "bu1", "set": { "hidden": false, "y": 350 }, "at": 2.6 },
+              { "id": "bu1", "to": { "y": 318 }, "at": 2.6, "dur": 0.8 },
+              { "id": "bu1", "set": { "hidden": true }, "at": 3.4 },
+              { "id": "bu2", "set": { "hidden": false, "y": 350 }, "at": 3.5 },
+              { "id": "bu2", "to": { "y": 318 }, "at": 3.5, "dur": 0.8 },
+              { "id": "bu2", "set": { "hidden": true }, "at": 4.3 },
+              { "id": "bu3", "set": { "hidden": false, "y": 350 }, "at": 4.6 },
+              { "id": "bu3", "to": { "y": 318 }, "at": 4.6, "dur": 0.8 },
+              { "id": "bu3", "set": { "hidden": true }, "at": 5.4 }
+            ],
+            "focus": ["verre"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis la graduation au niveau de l'eau : quel volume d'air a-t-on recueilli ?",
+              "answer": 1,
+              "tolerance": 0.125,
+              "unit": "L",
+              "explain": "La surface de l'eau s'arrête sur le trait « 1 L » du récipient retourné : l'air recueilli occupe 1 L."
+            }
+          },
+          {
+            "title": "On repèse la bouteille",
+            "text": "On remet la bouteille sur la balance : 45,0 g, comme au début. En sortant, 1 L d'air a emporté 1,2 g. L'air pèse peu : 1 L d'eau a une masse de 1 000 g, environ 800 fois plus.",
+            "duration": 3,
+            "hide": ["tu"],
+            "show": ["eV"],
+            "do": [
+              { "id": "bt", "to": { "x": 140, "y": 348 }, "dur": 2 },
+              { "id": "bal", "set": { "value": 45 }, "at": 2.1 }
+            ],
+            "focus": ["bal", "eV"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "La bouteille pesait 46,2 g pleine d'air comprimé, puis 45,0 g après avoir laissé sortir 1 L d'air. Que peut-on en conclure ?",
+              "choices": ["1 L d'air a une masse d'environ 1,2 g", "L'air n'a pas de masse : la balance s'est trompée", "1 L d'air a une masse de 46,2 g"],
+              "answer": 0,
+              "explain": "La bouteille a perdu 46,2 − 45,0 = 1,2 g en laissant sortir 1 L d'air : 1 L d'air a donc une masse d'environ 1,2 g."
+            }
+          }
+        ],
+        "conclusion": "L'air a une masse : **1 L d'air pèse environ 1,2 g** (à 20 °C). Pour mesurer le volume d'un gaz, on le recueille dans un récipient gradué rempli d'eau et retourné : le gaz **chasse l'eau**, et on lit son volume sur les graduations. C'est la mesure par **déplacement d'eau**."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : la bouteille d'huile",
+      "steps": [
+        { "text": "Une petite bouteille contient 250 mL d'huile. On sait que 1 L d'huile a une masse de 920 g. Quelle est la masse de l'huile de la bouteille ?", "math": "" },
+        { "text": "On exprime les deux volumes dans la même unité.", "math": "1 L = 1 000 mL" },
+        { "text": "250 mL, c'est 4 fois moins que 1 000 mL. La masse et le volume sont proportionnels : la masse est donc aussi 4 fois plus petite.", "math": "920 g ÷ 4 = 230 g" },
+        { "text": "On compare avec l'eau : 250 mL d'eau ont une masse de 250 g. Pour un même volume, l'huile est plus légère que l'eau : c'est pour cela qu'elle flotte dessus.", "math": "230 g < 250 g" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Écris les résultats **avec leur unité** (230 g, 0,5 L) : le logiciel accepte les unités équivalentes.",
+      "exercises": [
+        "st6-masse-volume-grandeur",
+        "st6-masse-volume-convertir",
+        "st6-masse-volume-ordre",
+        "st6-masse-volume-huile",
+        "st6-masse-volume-reciproque",
+        "st6-masse-volume-flotte"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Mesurer le volume d'un gaz",
+      "exercises": ["st6-masse-volume-gaz"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["st6-masse-volume-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : l'aquarium du CDI",
+      "body": "Le CDI va accueillir des poissons. Avant d'acheter le meuble, il faut vérifier qu'il tiendra le coup !",
+      "exercises": ["st6-masse-volume-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> La **masse** (g, kg) se mesure avec une balance ; le **volume** (L, mL, cm³) avec une éprouvette graduée. 1 L d'eau a une masse de 1 kg ; 1 L d'air, environ 1,2 g. Pour un corps homogène, masse et volume sont **proportionnels**. Deux liquides non miscibles : le plus lourd à volume égal va au fond.\n\n- **« Un litre, c'est un kilo. »** Seulement pour l'eau : 1 L d'huile a une masse de 920 g.\n- **« L'air ne pèse rien. »** Si : une bouteille où l'on pompe de l'air devient plus lourde.\n- **« Épais, donc lourd. »** Le pétrole est épais, mais il flotte sur l'eau.\n- **« 1 kg = 100 g. »** Non : « kilo » veut dire mille."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours des conversions et un calcul de masse à partir d'un volume."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Tracer le graphique masse-volume de l'aluminium, puis comprendre pourquoi une marée noire flotte.",
+      "exercises": ["st6-masse-volume-alu", "st6-masse-volume-petrole"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà des attendus de 6e : identifier un métal grâce à la masse de 1 cm³ (passerelle vers la masse volumique de 4e), et peser l'air de toute une salle de classe.",
+      "exercises": ["st6-masse-volume-masse-volumique", "st6-masse-volume-air-classe"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-masse-volume-grandeur",
+      "type": "categorize",
+      "skill": "st6.matiere.masse-volume",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:masse-volume-confondus", "mc:cm3-masse", "mc:mg-volume"],
+      "expectedSeconds": 120,
+      "prompt": "Chaque étiquette indique-t-elle une masse ou un volume ? Regarde bien l'unité.",
+      "categories": [
+        { "id": "masse", "label": "Une masse" },
+        { "id": "volume", "label": "Un volume" }
+      ],
+      "items": [
+        { "id": "eau", "label": "Une bouteille d'eau : 1,5 L", "category": "volume" },
+        { "id": "beurre", "label": "Une plaquette de beurre : 250 g", "category": "masse" },
+        { "id": "de", "label": "Un dé à jouer : 1 cm³", "category": "volume" },
+        { "id": "cachet", "label": "Un cachet de vitamine C : 500 mg", "category": "masse" },
+        { "id": "canette", "label": "Une canette de jus : 33 cL", "category": "volume" },
+        { "id": "farine", "label": "Un paquet de farine : 1 kg", "category": "masse" },
+        { "id": "seringue", "label": "Une seringue : 5 mL", "category": "volume" },
+        { "id": "camion", "label": "Un camion chargé : 12 t", "category": "masse" }
+      ],
+      "misconceptions": [
+        { "item": "eau", "category": "masse", "id": "mc:masse-volume-confondus", "error": "notion", "feedback": "Le litre (L) mesure une place occupée. Il est vrai qu'un litre d'eau pèse environ un kilogramme, mais ce sont deux grandeurs différentes, avec deux unités différentes." },
+        { "item": "de", "category": "masse", "id": "mc:cm3-masse", "error": "notion", "feedback": "Le cm³ (centimètre cube) mesure une place : celle d'un petit cube de 1 cm de côté." },
+        { "item": "cachet", "category": "volume", "id": "mc:mg-volume", "error": "notion", "feedback": "« mg » se lit milligramme : c'est une unité de la même famille que le gramme et le kilogramme." }
+      ],
+      "hints": [
+        "Unités de masse : t, kg, g, mg. Unités de volume : L, cL, mL, cm³.",
+        "Ne te demande pas si c'est lourd : regarde seulement l'unité écrite."
+      ],
+      "solution": "Masses : beurre (250 g), cachet (500 mg), farine (1 kg), camion (12 t). Volumes : bouteille d'eau (1,5 L), dé (1 cm³), canette (33 cL), seringue (5 mL). Le litre est une unité de volume, même pour de l'eau.",
+      "selfTest": [
+        { "response": { "assign": { "eau": "volume", "beurre": "masse", "de": "volume", "cachet": "masse", "canette": "volume", "farine": "masse", "seringue": "volume", "camion": "masse" } }, "expect": "correct" },
+        { "response": { "assign": { "eau": "masse", "beurre": "masse", "de": "volume", "cachet": "masse", "canette": "volume", "farine": "masse", "seringue": "volume", "camion": "masse" } }, "expect": "mc:masse-volume-confondus" },
+        { "response": { "assign": { "eau": "volume", "beurre": "masse", "de": "masse", "cachet": "masse", "canette": "volume", "farine": "masse", "seringue": "volume", "camion": "masse" } }, "expect": "mc:cm3-masse" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-convertir",
+      "type": "table",
+      "skill": "st6.matiere.masse-volume",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:conversion-100", "mc:conversion-sens"],
+      "expectedSeconds": 240,
+      "params": {
+        "a": { "dec": [0.5, 4.5], "step": 0.5 },
+        "b": { "choice": [250, 750, 1200, 1500, 2500] },
+        "c": { "choice": [0.2, 0.25, 0.5, 1.5, 2] },
+        "e": { "choice": [25, 33, 50, 75] },
+        "d": { "choice": [15, 120, 250, 500] }
+      },
+      "prompt": "Complète la dernière colonne (écris seulement les nombres).",
+      "columns": ["J'ai", "Je convertis en", "Résultat"],
+      "rows": [
+        ["{a} kg", "g", "?r0c2"],
+        ["{b} g", "kg", "?r1c2"],
+        ["{c} L", "mL", "?r2c2"],
+        ["{e} cL", "mL", "?r3c2"],
+        ["{d} mL", "cm³", "?r4c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "a*1000", "misconceptions": [
+          { "answer": "a*100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as multiplié par 100. Pense au préfixe « kilo » : un kilomètre contient combien de mètres ?" },
+          { "answer": "a/1000", "id": "mc:conversion-sens", "error": "unite", "feedback": "Tu as divisé : or on passe à une unité plus petite, il en faut donc davantage." }
+        ] },
+        "r1c2": { "answer": "b/1000", "misconceptions": [
+          { "answer": "b*1000", "id": "mc:conversion-sens", "error": "unite", "feedback": "Tu as multiplié : or on passe à une unité plus grande, il en faut donc moins." },
+          { "answer": "b/100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as divisé par 100. Combien de grammes faut-il pour faire un kilogramme ?" }
+        ] },
+        "r2c2": { "answer": "c*1000", "misconceptions": [
+          { "answer": "c*100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as multiplié par 100 : c'est la relation entre litres et centilitres, pas entre litres et millilitres." }
+        ] },
+        "r3c2": { "answer": "e*10", "misconceptions": [
+          { "answer": "e*100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as multiplié par 100. Un centilitre ne contient que quelques millilitres : relis le cours." }
+        ] },
+        "r4c2": { "answer": "d", "misconceptions": [
+          { "answer": "d*1000", "id": "mc:ml-cm3", "error": "unite", "feedback": "Tu as multiplié par 1 000. Relis la carte « Convertir » : le millilitre et le centimètre cube ont une relation très simple." }
+        ] }
+      },
+      "hints": [
+        "1 kg = 1 000 g et 1 L = 1 000 mL : pour passer à une unité plus petite, on multiplie.",
+        "Pour passer à une unité plus grande (des grammes aux kilogrammes), on divise par 1 000.",
+        "1 cL = 10 mL et 1 mL = 1 cm³."
+      ],
+      "solution": "{a} kg = {a*1000} g ; {b} g = {b/1000} kg ; {c} L = {c*1000} mL ; {e} cL = {e*10} mL ; {d} mL = {d} cm³.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{a*1000}", "r1c2": "{b/1000}", "r2c2": "{c*1000}", "r3c2": "{e*10}", "r4c2": "{d}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{a*100}", "r1c2": "{b/1000}", "r2c2": "{c*1000}", "r3c2": "{e*10}", "r4c2": "{d}" } }, "expect": "mc:conversion-100" },
+        { "response": { "cells": { "r0c2": "{a*1000}", "r1c2": "{b*1000}", "r2c2": "{c*1000}", "r3c2": "{e*10}", "r4c2": "{d}" } }, "expect": "mc:conversion-sens" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-ordre",
+      "type": "order",
+      "skill": "st6.matiere.masse-volume",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["unite"],
+      "expectedSeconds": 150,
+      "prompt": "Range ces masses de la plus petite à la plus grande. Attention aux unités !",
+      "orderLabel": "de la plus petite à la plus grande masse",
+      "errorType": "unite",
+      "items": [
+        { "id": "mg", "label": "800 mg" },
+        { "id": "g75", "label": "75 g" },
+        { "id": "kg02", "label": "0,2 kg" },
+        { "id": "g1200", "label": "1 200 g" },
+        { "id": "kg15", "label": "1,5 kg" },
+        { "id": "t", "label": "0,002 t" }
+      ],
+      "hints": [
+        "Convertis toutes les masses dans la même unité, par exemple en grammes.",
+        "1 kg = 1 000 g ; 1 g = 1 000 mg ; 1 t = 1 000 kg.",
+        "0,002 t = 2 kg."
+      ],
+      "solution": "En grammes : 800 mg = 0,8 g ; 75 g ; 0,2 kg = 200 g ; 1 200 g ; 1,5 kg = 1 500 g ; 0,002 t = 2 kg = 2 000 g. L'ordre est donc : 800 mg < 75 g < 0,2 kg < 1 200 g < 1,5 kg < 0,002 t.",
+      "selfTest": [
+        { "response": { "order": ["mg", "g75", "kg02", "g1200", "kg15", "t"] }, "expect": "correct" },
+        { "response": { "order": ["t", "kg02", "kg15", "g75", "mg", "g1200"] }, "expect": "unite" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-huile",
+      "type": "numeric",
+      "skill": "st6.matiere.proportionnalite",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:huile-comme-eau", "mc:proportion-oubliee"],
+      "expectedSeconds": 150,
+      "params": { "V": { "choice": [200, 250, 400, 500, 750, 1500] } },
+      "prompt": "Un litre d'huile a une masse de 920 g. Quelle est la masse de {V} mL d'huile ? Écris le résultat avec son unité.",
+      "answer": "0.92*V",
+      "unit": "g",
+      "rel": 0.005,
+      "misconceptions": [
+        { "answer": "V", "id": "mc:huile-comme-eau", "error": "notion", "feedback": "Tu as fait comme si c'était de l'eau, dont 1 mL a une masse de 1 g. Pour l'huile, ce n'est pas vrai : utilise la masse d'un litre d'huile." },
+        { "answer": 920, "id": "mc:proportion-oubliee", "error": "raisonnement", "feedback": "C'est la masse d'un litre entier, c'est-à-dire de 1 000 mL. Ici, le volume est différent : la masse change dans la même proportion." }
+      ],
+      "hints": [
+        "1 L = 1 000 mL.",
+        "Masse et volume sont proportionnels : calcule d'abord la masse de 1 mL d'huile (920 ÷ 1 000).",
+        "Multiplie la masse de 1 mL par {V}."
+      ],
+      "solution": "1 L = 1 000 mL d'huile a une masse de 920 g, donc 1 mL a une masse de 0,92 g. Pour {V} mL : 0,92 × {V} = {0.92*V} g. C'est moins que {V} g : à volume égal, l'huile est plus légère que l'eau.",
+      "selfTest": [
+        { "response": { "value": "{0.92*V} g" }, "expect": "correct" },
+        { "response": { "value": "{0.92*V/1000} kg" }, "expect": "correct" },
+        { "response": { "value": "{V} g" }, "expect": "mc:huile-comme-eau" },
+        { "response": { "value": "920 g" }, "expect": "mc:proportion-oubliee" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-reciproque",
+      "type": "numeric",
+      "skill": "st6.matiere.masse-volume",
+      "skills": ["st6.matiere.proportionnalite"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:gramme-millilitre", "mc:operation-inverse"],
+      "expectedSeconds": 180,
+      "params": { "m": { "choice": [46, 92, 138, 184, 230, 276] } },
+      "prompt": "Même masse, même volume ? Lucie verse {m} g d'eau dans un verre : cela fait {m} mL. Puis elle verse {m} g d'huile dans un autre verre. Elle sait que 100 mL d'huile ont une masse de 92 g. Quel volume d'huile a-t-elle versé ? Écris le résultat avec son unité.",
+      "answer": "100*m/92",
+      "unit": "mL",
+      "rel": 0.005,
+      "misconceptions": [
+        { "answer": "m", "id": "mc:gramme-millilitre", "error": "notion", "feedback": "Un gramme pour un millilitre, c'est vrai pour l'eau seulement. Pour l'huile, sers-toi de la masse de 100 mL donnée dans l'énoncé." },
+        { "answer": "0.92*m", "id": "mc:operation-inverse", "error": "methode", "feedback": "Tu as multiplié, alors que tu cherches un volume à partir d'une masse. Demande-toi plutôt : combien de fois 92 g y a-t-il dans {m} g ?" }
+      ],
+      "hints": [
+        "Pour l'huile, 92 g correspondent à 100 mL.",
+        "Combien de fois 92 g y a-t-il dans {m} g ?",
+        "Multiplie ce nombre de fois par 100 mL."
+      ],
+      "solution": "{m} ÷ 92 = {m/92} : il y a {m/92} fois 92 g. Le volume d'huile est donc {m/92} × 100 = {100*m/92} mL. À masse égale, l'huile occupe plus de place que l'eau ({m} mL).",
+      "selfTest": [
+        { "response": { "value": "{100*m/92} mL" }, "expect": "correct" },
+        { "response": { "value": "{m} mL" }, "expect": "mc:gramme-millilitre" },
+        { "response": { "value": "{0.92*m} mL" }, "expect": "mc:operation-inverse" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-flotte",
+      "type": "categorize",
+      "skill": "st6.matiere.couches",
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:epais-lourd", "mc:incolore-leger"],
+      "expectedSeconds": 180,
+      "prompt": "On verse doucement chaque liquide dans un verre d'eau. Aucun ne se mélange à l'eau : ils sont non miscibles. Pour comparer, 100 mL d'eau ont une masse de 100 g. Où chaque liquide va-t-il se placer ?",
+      "categories": [
+        { "id": "dessus", "label": "Au-dessus de l'eau" },
+        { "id": "dessous", "label": "Au fond, sous l'eau" }
+      ],
+      "items": [
+        { "id": "petrole", "label": "Pétrole brut, noir et épais (100 mL : 85 g)", "category": "dessus" },
+        { "id": "dichloro", "label": "Dichlorométhane, un solvant incolore (100 mL : 133 g)", "category": "dessous" },
+        { "id": "tournesol", "label": "Huile de tournesol (100 mL : 92 g)", "category": "dessus" },
+        { "id": "vaseline", "label": "Huile de vaseline, très épaisse (100 mL : 85 g)", "category": "dessus" },
+        { "id": "mercure", "label": "Mercure, un métal liquide (100 mL : 1 353 g)", "category": "dessous" },
+        { "id": "cyclohexane", "label": "Cyclohexane, un liquide incolore (100 mL : 78 g)", "category": "dessus" }
+      ],
+      "misconceptions": [
+        { "item": "petrole", "category": "dessous", "id": "mc:epais-lourd", "error": "notion", "feedback": "Noir et épais ne veut pas dire lourd ! Compare seulement la masse de 100 mL de ce liquide avec celle de 100 mL d'eau." },
+        { "item": "dichloro", "category": "dessus", "id": "mc:incolore-leger", "error": "notion", "feedback": "Un liquide incolore comme l'eau n'a pas forcément la même masse qu'elle : compare la masse de 100 mL des deux liquides." },
+        { "item": "vaseline", "category": "dessous", "id": "mc:epais-lourd", "error": "notion", "feedback": "Un liquide très épais coule lentement, mais cela ne dit rien de sa masse. Compare la masse de 100 mL avec celle de l'eau." }
+      ],
+      "hints": [
+        "Compare la masse de 100 mL de chaque liquide avec celle de 100 mL d'eau (100 g).",
+        "À volume égal, le liquide le plus lourd va au fond.",
+        "Ne te fie ni à la couleur ni à l'épaisseur."
+      ],
+      "solution": "Au-dessus de l'eau (moins de 100 g pour 100 mL) : pétrole, huile de tournesol, huile de vaseline, cyclohexane. Au fond (plus de 100 g pour 100 mL) : dichlorométhane et mercure. Attention : ces deux derniers liquides sont dangereux, ils ne se manipulent qu'au laboratoire, par des adultes.",
+      "selfTest": [
+        { "response": { "assign": { "petrole": "dessus", "dichloro": "dessous", "tournesol": "dessus", "vaseline": "dessus", "mercure": "dessous", "cyclohexane": "dessus" } }, "expect": "correct" },
+        { "response": { "assign": { "petrole": "dessous", "dichloro": "dessous", "tournesol": "dessus", "vaseline": "dessus", "mercure": "dessous", "cyclohexane": "dessus" } }, "expect": "mc:epais-lourd" },
+        { "response": { "assign": { "petrole": "dessus", "dichloro": "dessus", "tournesol": "dessus", "vaseline": "dessus", "mercure": "dessous", "cyclohexane": "dessus" } }, "expect": "mc:incolore-leger" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-gaz",
+      "type": "composite",
+      "skill": "st6.matiere.gaz",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:lecture-eau-restante", "mc:proportion-oubliee", "mc:conversion-ml-l"],
+      "expectedSeconds": 360,
+      "params": { "R": { "choice": [150, 250, 300, 400, 550, 650] } },
+      "prompt": "Pour mesurer le volume d'air contenu dans un ballon, Yanis remplit d'eau un récipient gradué de 1 000 mL et le retourne sur une cuve d'eau. Il vide le ballon sous le récipient : l'air monte et chasse l'eau. Les graduations indiquent le volume d'eau qui reste dans le récipient : à la fin, on lit {R} mL.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume d'air recueilli ? Écris l'unité.",
+          "answer": "1000-R",
+          "unit": "mL",
+          "rel": 0.002,
+          "misconceptions": [
+            { "answer": "R", "id": "mc:lecture-eau-restante", "error": "lecture", "feedback": "Tu as donné le volume de l'eau qui reste dans le récipient. L'air, lui, occupe la place de l'eau qui est partie." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "1 L d'air a une masse d'environ 1,2 g. Quelle est la masse de l'air recueilli ? Écris l'unité.",
+          "answer": "1.2*(1000-R)/1000",
+          "unit": "g",
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": 1.2, "id": "mc:proportion-oubliee", "error": "raisonnement", "feedback": "Cette masse correspond à un litre d'air. Le volume recueilli est différent : convertis-le en litres, puis utilise la proportionnalité." },
+            { "answer": "1.2*(1000-R)", "id": "mc:conversion-ml-l", "error": "unite", "feedback": "Tu as multiplié par un nombre de millilitres, alors que la masse est donnée pour un litre : convertis d'abord le volume en litres." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment s'appelle cette méthode pour mesurer le volume d'un gaz ? (quelques mots)",
+          "accept": ["déplacement d'eau", "par déplacement d'eau", "le déplacement d'eau", "un déplacement d'eau", "déplacement de l'eau", "par déplacement de l'eau", "déplacement de liquide", "par déplacement de liquide", "déplacement du liquide", "la méthode du déplacement d'eau"],
+          "misconceptions": [
+            { "answer": "pesée", "id": "mc:methode-gaz", "error": "notion", "feedback": "Peser donne une masse, pas un volume. Ici, c'est ce qui arrive à l'eau du récipient qui permet de lire le volume du gaz." },
+            { "answer": "la pesée", "id": "mc:methode-gaz", "error": "notion", "feedback": "Peser donne une masse, pas un volume. Ici, c'est ce qui arrive à l'eau du récipient qui permet de lire le volume du gaz." }
+          ]
+        }
+      ],
+      "hints": [
+        "Au départ, le récipient contenait 1 000 mL d'eau.",
+        "Le volume d'air est égal au volume d'eau qui a été chassée.",
+        "1 000 mL = 1 L : pour un volume plus petit, la masse est plus petite dans la même proportion."
+      ],
+      "solution": "L'air a chassé 1 000 − {R} = {1000-R} mL d'eau : il occupe {1000-R} mL, soit {(1000-R)/1000} L. Sa masse : 1,2 × {(1000-R)/1000} = {1.2*(1000-R)/1000} g. On a mesuré le volume d'un gaz par déplacement d'eau.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{1000-R} mL" }, { "value": "{1.2*(1000-R)/1000} g" }, { "value": "déplacement d'eau" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{R} mL" }, { "value": "{1.2*(1000-R)/1000} g" }, { "value": "déplacement d'eau" }] }, "expect": "mc:lecture-eau-restante" },
+        { "response": { "parts": [{ "value": "{1000-R} mL" }, { "value": "1,2 g" }, { "value": "déplacement d'eau" }] }, "expect": "mc:proportion-oubliee" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-expliquer",
+      "type": "open",
+      "skill": "st6.matiere.gaz",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 420,
+      "minWords": 30,
+      "prompt": "Ton cousin affirme : « L'air, ça ne pèse rien, puisqu'on ne le voit pas et qu'on ne le sent pas ! » Explique-lui, en décrivant une expérience, que l'air a une masse.",
+      "criteria": [
+        { "id": "c1", "label": "Je décris l'expérience : peser une bouteille (ou un ballon) avant et après y avoir pompé de l'air", "keywords": [["pese", "balance", "bouteille", "ballon", "pompe"]] },
+        { "id": "c2", "label": "Je dis ce qu'on observe : la masse augmente quand on ajoute de l'air", "keywords": [["augmente", "plus lourd", "plus grande", "monte"]] },
+        { "id": "c3", "label": "Je conclus que l'air est de la matière et je donne un ordre de grandeur (1 L d'air ≈ 1,2 g)", "keywords": [["matiere", "1,2", "1.2", "masse", "leger"]] }
+      ],
+      "models": [
+        "Je pose une bouteille fermée par un bouchon-valve sur une balance : elle affiche 45,0 g. Avec une pompe à vélo, j'ajoute de l'air sans changer la taille de la bouteille. La balance affiche alors 46,2 g : la masse a augmenté. L'air est donc de la matière et il a une masse, même s'il est léger : 1 L d'air pèse environ 1,2 g.",
+        "On peut peser un ballon de foot dégonflé, puis le regonfler et le repeser : il est un peu plus lourd. La seule chose ajoutée, c'est de l'air, donc l'air a une masse. Elle est petite, environ 1,2 g par litre, c'est pour cela qu'on ne la sent pas."
+      ],
+      "hints": [
+        "Quel instrument mesure une masse ?",
+        "Que se passe-t-il sur la balance si l'on ajoute de l'air dans un objet fermé et rigide ?",
+        "Donne un ordre de grandeur : la masse d'un litre d'air."
+      ],
+      "solution": "On pèse une bouteille rigide fermée par un bouchon-valve, puis on y pompe de l'air sans changer son volume : la balance indique une masse plus grande. L'air est de la matière : il a une masse, environ 1,2 g par litre.",
+      "selfTest": [
+        { "response": { "text": "Je pèse une bouteille avec un bouchon-valve sur une balance. Puis je pompe de l'air dedans. La masse augmente : la bouteille est plus lourde. L'air est de la matière, 1 L d'air pèse environ 1,2 g.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-mission",
+      "type": "composite",
+      "skill": "st6.matiere.masse-volume",
+      "skills": ["st6.matiere.proportionnalite"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:litre-gramme", "mc:oubli-recipient", "mc:division-inverse"],
+      "expectedSeconds": 480,
+      "prompt": "Le CDI du collège va accueillir un aquarium. Rempli, il contiendra 64 L d'eau. Vide, il a une masse de 14 kg. Le meuble prévu pour le porter supporte au maximum 75 kg.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle sera la masse de l'eau de l'aquarium ? Écris l'unité.",
+          "answer": 64,
+          "unit": "kg",
+          "rel": 0.005,
+          "misconceptions": [
+            { "answer": 0.064, "id": "mc:litre-gramme", "error": "unite", "prerequisite": "st6.matiere.masse-volume", "feedback": "Tu as compté un gramme par litre. Or c'est un millilitre d'eau qui pèse un gramme : combien de millilitres dans un litre ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle sera la masse totale de l'aquarium rempli ? Écris l'unité.",
+          "answer": 78,
+          "unit": "kg",
+          "rel": 0.005,
+          "misconceptions": [
+            { "answer": 64, "id": "mc:oubli-recipient", "error": "lecture", "feedback": "Le meuble porte l'eau ET l'aquarium lui-même : n'oublie pas sa masse à vide." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le meuble peut-il porter l'aquarium rempli ? (oui ou non)",
+          "accept": ["non", "non, il est trop lourd", "non il est trop lourd"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:comparaison", "error": "raisonnement", "feedback": "Compare la masse totale de l'aquarium rempli avec la masse maximale que le meuble supporte." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour le remplir, on utilise un seau de 8 L. Combien de seaux pleins faut-il verser ?",
+          "answer": 8,
+          "tolerance": 0.01,
+          "misconceptions": [
+            { "answer": 0.125, "id": "mc:division-inverse", "error": "calcul", "feedback": "Tu as divisé dans le mauvais sens : combien de fois le volume d'un seau y a-t-il dans le volume de l'aquarium ?" },
+            { "answer": 512, "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as multiplié les deux volumes. Cherche plutôt combien de seaux il faut pour remplir l'aquarium." }
+          ]
+        }
+      ],
+      "hints": [
+        "1 L d'eau a une masse d'environ 1 kg.",
+        "Masse totale = masse de l'aquarium vide + masse de l'eau.",
+        "Nombre de seaux = volume de l'aquarium ÷ volume d'un seau."
+      ],
+      "solution": "Eau : 64 L, donc environ 64 kg. Masse totale : 14 + 64 = 78 kg. C'est plus que 75 kg : le meuble ne peut pas le porter, il faut un meuble plus solide. Pour le remplir : 64 ÷ 8 = 8 seaux.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "64 kg" }, { "value": "78 kg" }, { "value": "non" }, { "value": "8" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "64 g" }, { "value": "78 kg" }, { "value": "non" }, { "value": "8" }] }, "expect": "mc:litre-gramme" },
+        { "response": { "parts": [{ "value": "64 kg" }, { "value": "64 kg" }, { "value": "oui" }, { "value": "8" }] }, "expect": "mc:oubli-recipient" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-remed-confusion",
+      "type": "composite",
+      "skill": "st6.matiere.masse-volume",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:masse-volume-confondus"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel : la masse et le volume sont deux grandeurs différentes. Sur la table, il y a un ballon de baudruche gonflé et une bille d'acier. Le ballon occupe 3 L ; la bille, 4 cm³. Le ballon a une masse de 7 g ; la bille, de 31 g.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Lequel occupe le plus grand volume ? (le ballon ou la bille)",
+          "accept": ["le ballon", "ballon", "c'est le ballon"],
+          "misconceptions": [
+            { "answer": "la bille", "id": "mc:masse-volume-confondus", "error": "notion", "feedback": "Tu as choisi l'objet le plus lourd. Le volume, c'est la place occupée : compare 3 L et 4 cm³." },
+            { "answer": "bille", "id": "mc:masse-volume-confondus", "error": "notion", "feedback": "Tu as choisi l'objet le plus lourd. Le volume, c'est la place occupée : compare 3 L et 4 cm³." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Lequel a la plus grande masse ? (le ballon ou la bille)",
+          "accept": ["la bille", "bille", "c'est la bille"],
+          "misconceptions": [
+            { "answer": "le ballon", "id": "mc:masse-volume-confondus", "error": "notion", "feedback": "Tu as choisi l'objet qui prend le plus de place. La masse se lit sur la balance : compare 7 g et 31 g." },
+            { "answer": "ballon", "id": "mc:masse-volume-confondus", "error": "notion", "feedback": "Tu as choisi l'objet qui prend le plus de place. La masse se lit sur la balance : compare 7 g et 31 g." }
+          ]
+        }
+      ],
+      "hints": [
+        "Le volume se mesure en L, mL ou cm³ ; la masse en g ou kg.",
+        "Un grand objet n'est pas forcément lourd."
+      ],
+      "solution": "Le ballon occupe le plus grand volume (3 L, contre 4 cm³ pour la bille). La bille a la plus grande masse (31 g, contre 7 g). Grand ne veut pas dire lourd : masse et volume sont deux grandeurs différentes.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "le ballon" }, { "value": "la bille" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "la bille" }, { "value": "la bille" }] }, "expect": "mc:masse-volume-confondus" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-remed-conversion",
+      "type": "composite",
+      "skill": "st6.matiere.masse-volume",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:conversion-100"],
+      "expectedSeconds": 150,
+      "params": { "k": { "dec": [1.5, 3.5], "step": 0.5 } },
+      "prompt": "Rappel ciblé : convertir pas à pas. Écris seulement les nombres.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de grammes y a-t-il dans 1 kg ?",
+          "answer": 1000,
+          "misconceptions": [
+            { "answer": 100, "id": "mc:conversion-100", "error": "unite", "feedback": "Pense au préfixe « kilo » : un kilomètre contient combien de mètres ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Convertis {k} kg en grammes.",
+          "answer": "k*1000",
+          "misconceptions": [
+            { "answer": "k*100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as multiplié par 100 : reprends le nombre de grammes contenus dans un kilogramme." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Convertis {k} L en millilitres.",
+          "answer": "k*1000",
+          "misconceptions": [
+            { "answer": "k*100", "id": "mc:conversion-100", "error": "unite", "feedback": "Tu as multiplié par 100, ce qui donne des centilitres. « Milli » veut dire « millième »." }
+          ]
+        }
+      ],
+      "hints": [
+        "1 kg = 1 000 g et 1 L = 1 000 mL.",
+        "Pour passer à une unité 1 000 fois plus petite, on multiplie par 1 000."
+      ],
+      "solution": "1 kg = 1 000 g ; {k} kg = {k*1000} g ; {k} L = {k*1000} mL. « Kilo » veut dire mille fois plus, « milli » mille fois moins.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "1000" }, { "value": "{k*1000}" }, { "value": "{k*1000}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "100" }, { "value": "{k*100}" }, { "value": "{k*1000}" }] }, "expect": "mc:conversion-100" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-alu",
+      "type": "composite",
+      "skill": "st6.matiere.proportionnalite",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:volume-masse-egaux", "mc:operation-inverse"],
+      "expectedSeconds": 480,
+      "prompt": "On mesure le volume (par déplacement d'eau dans une éprouvette) et la masse de quatre blocs d'aluminium :\n- 10 cm³ : 27 g\n- 20 cm³ : 54 g\n- 30 cm³ : 81 g\n- 40 cm³ : 108 g",
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place les quatre points : le volume (en cm³) en abscisse, la masse (en g) en ordonnée.",
+          "xRange": [0, 50],
+          "yRange": [0, 140],
+          "xLabel": "V (cm³)",
+          "yLabel": "m (g)",
+          "tolerance": 1,
+          "expectedPoints": [[10, 27], [20, 54], [30, 81], [40, 108]]
+        },
+        {
+          "type": "text",
+          "prompt": "Les points sont-ils alignés avec l'origine du repère ? (oui ou non)",
+          "accept": ["oui", "oui, ils sont alignés"],
+          "misconceptions": [
+            { "answer": "non", "id": "mc:lecture-graphique", "error": "lecture", "feedback": "Pose une règle sur tes points : passe-t-elle aussi par le point (0 ; 0) ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la masse d'un bloc d'aluminium de 25 cm³ ? Écris l'unité.",
+          "answer": 67.5,
+          "unit": "g",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 25, "id": "mc:volume-masse-egaux", "error": "notion", "feedback": "Pour l'aluminium, le nombre de grammes n'est pas égal au nombre de cm³ : regarde la première ligne du tableau." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un objet en aluminium a une masse de 135 g. Quel est son volume ? Écris l'unité.",
+          "answer": 50,
+          "unit": "cm³",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 135, "id": "mc:volume-masse-egaux", "error": "notion", "feedback": "Le nombre de cm³ n'est pas égal au nombre de grammes pour l'aluminium : sers-toi de la masse de 1 cm³." },
+            { "answer": 364.5, "id": "mc:operation-inverse", "error": "methode", "feedback": "Tu as multiplié : or tu cherches un volume à partir d'une masse. Combien de fois la masse de 1 cm³ y a-t-il dans 135 g ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Chaque ligne donne un point (volume ; masse).",
+        "Si les points sont alignés avec l'origine, masse et volume sont proportionnels : calcule la masse de 1 cm³.",
+        "10 cm³ ont une masse de 27 g, donc 1 cm³ a une masse de 2,7 g."
+      ],
+      "solution": "Les points sont alignés avec l'origine : la masse est proportionnelle au volume. 1 cm³ d'aluminium a une masse de 27 ÷ 10 = 2,7 g. Pour 25 cm³ : 2,7 × 25 = 67,5 g. Pour 135 g : 135 ÷ 2,7 = 50 cm³.",
+      "selfTest": [
+        { "response": { "parts": [{ "points": [[10, 27], [20, 54], [30, 81], [40, 108]] }, { "value": "oui" }, { "value": "67,5 g" }, { "value": "50 cm³" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "points": [[10, 27], [20, 54], [30, 81], [40, 108]] }, { "value": "oui" }, { "value": "25 g" }, { "value": "50 cm³" }] }, "expect": "mc:volume-masse-egaux" },
+        { "response": { "parts": [{ "points": [[10, 27], [20, 54], [30, 81], [40, 108]] }, { "value": "oui" }, { "value": "67,5 g" }, { "value": "364,5 cm³" }] }, "expect": "mc:operation-inverse" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-petrole",
+      "type": "composite",
+      "skill": "st6.matiere.couches",
+      "skills": ["st6.matiere.proportionnalite"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:epais-lourd", "mc:conversion-ml-l", "mc:litre-kilo"],
+      "expectedSeconds": 480,
+      "prompt": "Après l'accident d'un navire pétrolier, du pétrole s'échappe en mer. 100 mL d'eau de mer ont une masse de 103 g ; 100 mL de ce pétrole, de 85 g. Le pétrole ne se mélange pas à l'eau.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Le pétrole va-t-il couler au fond ou flotter à la surface ? (couler ou flotter)",
+          "accept": ["flotter", "il flotte", "flotte", "il va flotter", "à la surface", "flotter à la surface"],
+          "misconceptions": [
+            { "answer": "couler", "id": "mc:epais-lourd", "error": "notion", "feedback": "Le pétrole est noir et épais, mais compare la masse de 100 mL de pétrole avec celle de 100 mL d'eau de mer." },
+            { "answer": "il coule", "id": "mc:epais-lourd", "error": "notion", "feedback": "Le pétrole est noir et épais, mais compare la masse de 100 mL de pétrole avec celle de 100 mL d'eau de mer." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la masse de 5 L de ce pétrole ? Écris l'unité.",
+          "answer": 4.25,
+          "unit": "kg",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0.425, "id": "mc:conversion-ml-l", "error": "unite", "feedback": "Combien de fois 100 mL y a-t-il dans 5 L ? Convertis d'abord 5 L en millilitres." },
+            { "answer": 5, "id": "mc:litre-kilo", "error": "notion", "feedback": "« Un litre pèse un kilo » n'est vrai que pour l'eau. Utilise la masse de 100 mL de pétrole." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Les sauveteurs installent des « barrages flottants » à la surface de la mer pour que la nappe de pétrole n'atteigne pas les plages. Explique pourquoi ces barrages sont efficaces, puis pourquoi une marée noire est dangereuse pour les oiseaux marins.",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "J'explique que le pétrole flotte : il ne se mélange pas à l'eau et, à volume égal, il est plus léger que l'eau de mer", "keywords": [["flotte", "surface", "plus leger", "non miscible", "ne se melange pas"]] },
+            { "id": "c2", "label": "Je dis que le barrage, posé à la surface, retient la couche de pétrole", "keywords": [["retient", "bloque", "arrete", "empeche"]] },
+            { "id": "c3", "label": "J'explique le danger : le pétrole colle aux plumes, les oiseaux ne peuvent plus voler ni se protéger du froid, ils s'empoisonnent", "keywords": [["plume", "colle", "voler", "froid", "toxique", "empoisonn"]] }
+          ],
+          "models": [
+            "Le pétrole ne se mélange pas à l'eau et il est plus léger que l'eau de mer à volume égal : il reste à la surface. Un barrage flottant, posé lui aussi à la surface, retient donc la couche de pétrole. Pour les oiseaux marins, c'est dangereux : le pétrole colle à leurs plumes, ils ne peuvent plus voler ni se protéger du froid, et ils s'empoisonnent en essayant de se nettoyer.",
+            "Comme 100 mL de pétrole pèsent moins que 100 mL d'eau de mer, la nappe flotte. Le barrage flotte aussi et forme un mur à la surface qui arrête le pétrole. Les oiseaux qui se posent dans la nappe ont les plumes collées : ils ne volent plus, ont froid et avalent du pétrole toxique."
+          ]
+        }
+      ],
+      "hints": [
+        "Compare la masse de 100 mL des deux liquides.",
+        "5 L = 5 000 mL, soit 50 fois 100 mL.",
+        "Où se trouve la nappe de pétrole : au fond ou à la surface ?"
+      ],
+      "solution": "Le pétrole flotte : non miscible, il est plus léger que l'eau de mer à volume égal (85 g contre 103 g pour 100 mL). 5 L = 50 × 100 mL, donc 50 × 85 = 4 250 g = 4,25 kg. Les barrages flottants retiennent la nappe en surface. Le pétrole englue les plumes des oiseaux : ils ne peuvent plus voler ni se protéger du froid, et s'empoisonnent.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "flotter" }, { "value": "4,25 kg" }, { "text": "Le pétrole flotte car il est plus léger que l'eau de mer et ne se mélange pas. Le barrage retient la couche à la surface. Le pétrole colle aux plumes des oiseaux, ils ne peuvent plus voler et ont froid.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "couler" }, { "value": "4,25 kg" }, { "text": "Le barrage retient le pétrole." }] }, "expect": "mc:epais-lourd" },
+        { "response": { "parts": [{ "value": "flotter" }, { "value": "5 kg" }, { "text": "Le barrage retient le pétrole." }] }, "expect": "mc:litre-kilo" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-masse-volumique",
+      "type": "composite",
+      "skill": "pc.matiere.masse-volumique",
+      "skills": ["st6.matiere.proportionnalite"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:lecture-niveau", "mc:rapport-inverse"],
+      "expectedSeconds": 600,
+      "prompt": "Passerelle vers la 4e : on appelle **masse volumique** d'une matière la masse de 1 cm³ de cette matière (en g/cm³).\n- Objet A : masse 79 g ; plongé dans une éprouvette, il fait passer l'eau de 50 mL à 60 mL.\n- Objet B : masse 89 g ; il fait passer l'eau de 40 mL à 50 mL.\n\nDocument : aluminium 2,7 g/cm³ ; fer 7,9 g/cm³ ; cuivre 8,9 g/cm³ ; or 19,3 g/cm³.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume de l'objet A ? Écris l'unité.",
+          "answer": 10,
+          "unit": "cm³",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 60, "id": "mc:lecture-niveau", "error": "lecture", "feedback": "C'est le niveau final de l'eau. Le volume de l'objet est la différence entre les deux niveaux." },
+            { "answer": 50, "id": "mc:lecture-niveau", "error": "lecture", "feedback": "C'est le niveau de départ. Le volume de l'objet est la différence entre les deux niveaux." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la masse volumique de la matière de l'objet A ? Écris l'unité (g/cm³).",
+          "answer": 7.9,
+          "unit": "g/cm³",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": "10/79", "id": "mc:rapport-inverse", "error": "methode", "feedback": "Tu as divisé le volume par la masse. Pour obtenir la masse de 1 cm³, on partage la masse entre les cm³." },
+            { "answer": 790, "id": "mc:produit", "error": "methode", "feedback": "Tu as multiplié la masse par le volume : un objet plus gros ne change pas la masse de chacun de ses cm³." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "En quel métal l'objet A est-il fait ? (un mot)",
+          "accept": ["fer", "le fer", "en fer", "du fer"],
+          "misconceptions": [
+            { "answer": "aluminium", "id": "mc:lecture-tableau", "error": "lecture", "feedback": "Compare la masse volumique que tu as calculée avec chaque ligne du document." },
+            { "answer": "cuivre", "id": "mc:lecture-tableau", "error": "lecture", "feedback": "Compare la masse volumique que tu as calculée avec chaque ligne du document." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Et l'objet B ? (un mot)",
+          "accept": ["cuivre", "le cuivre", "en cuivre", "du cuivre"],
+          "misconceptions": [
+            { "answer": "fer", "id": "mc:lecture-tableau", "error": "lecture", "feedback": "Les deux objets ont le même volume mais pas la même masse : calcule la masse volumique de B avant de comparer." }
+          ]
+        }
+      ],
+      "hints": [
+        "Volume de l'objet = niveau final − niveau de départ (1 mL = 1 cm³).",
+        "Masse volumique = masse ÷ volume.",
+        "Compare ensuite avec le document."
+      ],
+      "solution": "A : volume 60 − 50 = 10 mL = 10 cm³ ; masse volumique 79 ÷ 10 = 7,9 g/cm³ : c'est du fer. B : volume 50 − 40 = 10 cm³ ; 89 ÷ 10 = 8,9 g/cm³ : c'est du cuivre. Deux objets de même volume, mais de matières différentes, n'ont pas la même masse.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "10 cm³" }, { "value": "7,9 g/cm³" }, { "value": "fer" }, { "value": "cuivre" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "60 cm³" }, { "value": "7,9 g/cm³" }, { "value": "fer" }, { "value": "cuivre" }] }, "expect": "mc:lecture-niveau" },
+        { "response": { "parts": [{ "value": "10 cm³" }, { "value": "0,127 g/cm³" }, { "value": "fer" }, { "value": "cuivre" }] }, "expect": "mc:rapport-inverse" }
+      ]
+    },
+    {
+      "id": "st6-masse-volume-air-classe",
+      "type": "composite",
+      "skill": "st6.matiere.gaz",
+      "skills": ["st6.matiere.masse-volume"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:m3-litre", "mc:conversion-g-kg", "mc:air-leger-rien"],
+      "expectedSeconds": 540,
+      "prompt": "Combien pèse l'air de ta salle de classe ? La salle mesure 8 m de long, 7 m de large et 3 m de haut : elle contient 168 m³ d'air. On sait que 1 m³ = 1 000 L, et qu'un litre d'air a une masse d'environ 1,2 g.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le volume d'air de la salle, en litres ? (écris seulement le nombre)",
+          "answer": 168000,
+          "rel": 0.001,
+          "misconceptions": [
+            { "answer": 168, "id": "mc:m3-litre", "error": "unite", "feedback": "Tu n'as pas converti : utilise l'égalité donnée dans l'énoncé entre m³ et L." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la masse de cet air ? Écris l'unité (en kg).",
+          "answer": 201.6,
+          "unit": "kg",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 201600, "id": "mc:conversion-g-kg", "error": "unite", "feedback": "Ton nombre correspond à des grammes : convertis-le en kilogrammes." },
+            { "answer": 0.2016, "id": "mc:m3-litre", "error": "unite", "feedback": "Tu as utilisé le volume en m³ au lieu de litres : la masse de 1,2 g est donnée pour un litre." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Cet air a-t-il une masse plus grande ou plus petite que celle d'un élève de 6e (environ 40 kg) ? (plus grande ou plus petite)",
+          "accept": ["plus grande", "plus grande.", "elle est plus grande", "plus", "beaucoup plus grande", "plus lourd", "plus lourde"],
+          "misconceptions": [
+            { "answer": "plus petite", "id": "mc:air-leger-rien", "error": "notion", "feedback": "Un litre d'air pèse très peu, mais il y en a énormément dans une salle. Compare ta masse calculée avec 40 kg." }
+          ]
+        }
+      ],
+      "hints": [
+        "168 m³ = 168 × 1 000 L.",
+        "Masse = nombre de litres × 1,2 g ; puis 1 kg = 1 000 g.",
+        "Compare ton résultat en kg avec 40 kg."
+      ],
+      "solution": "Volume : 168 × 1 000 = 168 000 L. Masse : 168 000 × 1,2 = 201 600 g = 201,6 kg. L'air de la classe pèse environ 200 kg, autant que cinq élèves de 6e ! Chaque litre est léger, mais il y en a énormément.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "168000" }, { "value": "201,6 kg" }, { "value": "plus grande" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "168" }, { "value": "201,6 kg" }, { "value": "plus grande" }] }, "expect": "mc:m3-litre" },
+        { "response": { "parts": [{ "value": "168000" }, { "value": "201600" }, { "value": "plus grande" }] }, "expect": "mc:conversion-g-kg" }
+      ]
+    }
+  ]
+}

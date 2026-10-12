@@ -170,7 +170,15 @@
             ],
             "focus": [
               "th"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le chronomètre : au bout de combien de minutes la glace atteint-elle 0 °C ?",
+              "answer": 2,
+              "tolerance": 0,
+              "unit": "min",
+              "explain": "Le chronomètre affiche 02:00, c'est-à-dire 2 minutes. Sur la courbe aussi, la température atteint 0 °C à t = 2 min."
+            }
           },
           {
             "title": "Zoom sur la glace",
@@ -244,7 +252,18 @@
             "focus": [
               "th",
               "g"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde la courbe : comment est la partie tracée pendant la fusion, entre 2 et 8 minutes ?",
+              "choices": [
+                "Elle monte : la température augmente",
+                "Horizontale : la température ne change pas",
+                "Elle descend : la température baisse"
+              ],
+              "answer": 1,
+              "explain": "Entre 2 et 8 minutes, la courbe reste à la hauteur de 0 °C : cette partie horizontale est le palier de fusion."
+            }
           },
           {
             "title": "Toute la glace a fondu",
@@ -280,7 +299,15 @@
             ],
             "focus": [
               "th"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le thermomètre : jusqu'à quelle température l'eau liquide s'est-elle réchauffée ?",
+              "answer": 100,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre indique 100 °C : c'est la température à laquelle l'eau pure bout, à la pression atmosphérique normale."
+            }
           },
           {
             "title": "L'eau bout",
@@ -334,7 +361,18 @@
             ],
             "focus": [
               "g"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pendant l'ébullition, la plaque chauffe toujours, et pourtant la température reste à 100 °C. Pourquoi ?",
+              "choices": [
+                "La plaque chauffante ne chauffe plus assez",
+                "Le thermomètre ne peut pas afficher plus de 100 °C",
+                "L'énergie reçue sert à transformer l'eau liquide en vapeur"
+              ],
+              "answer": 2,
+              "explain": "Pendant le changement d'état d'un corps pur, l'énergie apportée sert à faire passer l'eau de l'état liquide à l'état gazeux, pas à la réchauffer : c'est le palier à 100 °C."
+            }
           }
         ],
         "conclusion": "Pour l'**eau pure**, la température reste constante pendant chaque changement d'état : un palier à **0 °C** pendant la fusion, un palier à **100 °C** pendant l'ébullition.\n\n> Un palier de température pendant un changement d'état est la « carte d'identité » d'un **corps pur**."
@@ -477,7 +515,15 @@
             "text": "Cette fois, le bécher contient de l'**eau salée** gelée : de l'eau ET du sel dissous. C'est un **mélange**, pas un corps pur.",
             "focus": [
               "b"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le thermomètre : quelle est la température de l'eau salée gelée au départ ?",
+              "answer": -20,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre indique −20 °C : au départ, l'eau salée gelée est bien plus froide que 0 °C."
+            }
           },
           {
             "title": "Prévois !",
@@ -513,13 +559,13 @@
               {
                 "id": "th",
                 "to": {
-                  "value": 0
+                  "value": -2
                 }
               },
               {
                 "id": "g",
                 "to": {
-                  "progress": 0.75
+                  "progress": 0.66
                 },
                 "ease": "lineaire"
               }
@@ -527,7 +573,18 @@
             "focus": [
               "th",
               "g"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Compare la courbe de l'eau salée (trait plein) avec celle de l'eau pure (pointillés). Que remarques-tu ?",
+              "choices": [
+                "Les deux courbes ont un palier à 0 °C",
+                "La courbe de l'eau salée descend",
+                "La courbe de l'eau salée monte, sans partie horizontale"
+              ],
+              "answer": 2,
+              "explain": "Pendant la fusion, la courbe de l'eau salée monte doucement, alors que celle de l'eau pure reste horizontale à 0 °C."
+            }
           },
           {
             "title": "Pas de palier net",
@@ -539,25 +596,39 @@
                 "to": {
                   "solid": 0,
                   "level": 0.5
-                }
+                },
+                "dur": 1
               },
               {
                 "id": "th",
                 "to": {
                   "value": 18
-                }
+                },
+                "at": 1
               },
               {
                 "id": "g",
                 "to": {
                   "progress": 1
                 },
+                "at": 1,
                 "ease": "lineaire"
               }
             ],
             "focus": [
               "g"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Qu'est-ce qui montre que l'eau salée n'est pas un corps pur ?",
+              "choices": [
+                "Elle fond à 0 °C, comme l'eau pure",
+                "Sa température change pendant la fusion : sa courbe n'a pas de palier",
+                "Elle contient des glaçons"
+              ],
+              "answer": 1,
+              "explain": "Un corps pur change d'état à température constante : sa courbe a un palier. Pendant la fusion de l'eau salée, la température monte : c'est un mélange."
+            }
           }
         ],
         "conclusion": "- **Corps pur** (eau pure) : palier net, la température reste constante pendant le changement d'état.\n- **Mélange** (eau salée) : pas de palier net, la température varie pendant le changement d'état.\n\n> Pour savoir si un liquide est pur, on peut suivre sa température pendant un changement d'état."
@@ -696,19 +767,19 @@
               "answer": "solidification",
               "id": "mc:sens-changement",
               "error": "notion",
-              "feedback": "On chauffe : le solide devient liquide. C'est une fusion ; la solidification est le passage inverse."
+              "feedback": "On chauffe : le solide devient liquide. La solidification est le passage inverse (liquide → solide)."
             },
             {
               "answer": "fonte",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "En langage courant, on dit que la glace « fond » ; le nom scientifique de ce changement d'état est la fusion."
+              "feedback": "En langage courant, on dit que la glace « fond » ; donne le nom scientifique de ce changement d'état."
             },
             {
               "answer": "vaporisation",
               "id": "mc:sens-changement",
               "error": "notion",
-              "feedback": "La vaporisation est le passage liquide → gaz. Ici, le solide devient liquide : c'est une fusion."
+              "feedback": "La vaporisation est le passage liquide → gaz. Ici, le solide devient liquide : cherche le nom de ce passage."
             }
           ]
         },
@@ -960,13 +1031,13 @@
               "answer": 12,
               "id": "mc:palier-lecture",
               "error": "lecture",
-              "feedback": "12 min est la DATE de fin du palier. Sa durée est 12 − 6 = 6 min."
+              "feedback": "12 min est la DATE de fin du palier. Sa durée est l'écart entre la date de fin et la date de début du palier."
             },
             {
               "answer": 8,
               "id": "mc:palier-lecture",
               "error": "lecture",
-              "feedback": "Il y a quatre relevés à 80 °C, mais ils vont de 6 min à 12 min : la durée est 12 − 6 = 6 min."
+              "feedback": "Il y a quatre relevés à 80 °C, mais seulement trois intervalles de 2 min entre eux : compte les intervalles, pas les relevés."
             }
           ]
         },
@@ -984,7 +1055,7 @@
               "answer": "liquide",
               "id": "mc:etat-avant-palier",
               "error": "lecture",
-              "feedback": "À 2 min, la fusion n'a pas commencé (elle commence au palier, à 80 °C) : l'échantillon est encore solide."
+              "feedback": "À 2 min, la fusion n'a pas commencé (elle commence au palier, à 80 °C) : dans quel état est un corps avant sa fusion ?"
             }
           ]
         },
@@ -1002,13 +1073,13 @@
               "answer": "gazeux",
               "id": "mc:etat-apres-palier",
               "error": "lecture",
-              "feedback": "Le palier à 80 °C est une fusion : après lui, l'échantillon est entièrement liquide. Il n'y a pas eu de second palier (ébullition)."
+              "feedback": "Le palier à 80 °C est une fusion, et il n'y a pas eu de second palier (ébullition) : dans quel état est le corps juste après sa fusion ?"
             },
             {
               "answer": "gaz",
               "id": "mc:etat-apres-palier",
               "error": "lecture",
-              "feedback": "Après la fusion, l'échantillon est liquide ; aucun palier d'ébullition n'apparaît dans les relevés."
+              "feedback": "Aucun palier d'ébullition n'apparaît dans les relevés : le corps n'est pas devenu gazeux. Dans quel état est-il après sa fusion ?"
             }
           ]
         }
@@ -1173,7 +1244,7 @@
               "answer": "fonte",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "« Fondre » est le mot courant ; le nom scientifique est fusion."
+              "feedback": "« Fondre » est le mot courant ; donne le nom scientifique de ce changement d'état."
             }
           ]
         },
@@ -1195,7 +1266,7 @@
               "answer": "congélation",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "On parle de congélation pour l'eau dans la vie courante ; le nom général du passage liquide → solide est solidification."
+              "feedback": "On parle de congélation pour l'eau dans la vie courante ; donne le nom général du passage liquide → solide, valable pour tous les corps."
             }
           ]
         },
@@ -1211,13 +1282,13 @@
               "answer": "évaporation",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "L'évaporation (lente, en surface) et l'ébullition (avec des bulles) sont deux façons de se vaporiser. Le nom général est vaporisation."
+              "feedback": "L'évaporation (lente, en surface) et l'ébullition (avec des bulles) sont deux façons de passer de l'état liquide à l'état gazeux. Donne le nom général de ce changement d'état."
             },
             {
               "answer": "ébullition",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "L'ébullition est une façon de se vaporiser ; le nom général est vaporisation."
+              "feedback": "L'ébullition (avec des bulles) est une des deux façons de passer de l'état liquide à l'état gazeux, avec l'évaporation. Donne le nom général de ce changement d'état."
             },
             {
               "answer": "liquéfaction",
@@ -1242,7 +1313,7 @@
               "answer": "condensation",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "Dans la vie courante, on parle de condensation (la buée). En physique-chimie, le passage gaz → liquide s'appelle liquéfaction (ou « condensation liquide »)."
+              "feedback": "Dans la vie courante, on parle de condensation (la buée). En physique-chimie, le passage gaz → liquide porte un nom plus précis : revois les paires de changements d'état dans le cours."
             },
             {
               "answer": "vaporisation",
@@ -1270,7 +1341,7 @@
               "answer": "évaporation",
               "id": "mc:vocabulaire",
               "error": "notion",
-              "feedback": "L'évaporation part d'un liquide. Directement du solide au gaz, c'est une sublimation."
+              "feedback": "L'évaporation part d'un liquide. Ici, on passe directement du solide au gaz : ce changement d'état a un autre nom."
             }
           ]
         },
@@ -1294,7 +1365,7 @@
               "answer": "solidification",
               "id": "mc:vocabulaire",
               "error": "forme",
-              "feedback": "La solidification part d'un liquide. Du gaz au solide : condensation (ou condensation solide)."
+              "feedback": "La solidification part d'un liquide. Du gaz au solide, c'est le passage inverse de la sublimation : cherche son nom."
             }
           ]
         }
@@ -1707,7 +1778,7 @@
               "answer": 100,
               "id": "mc:masse-volume",
               "error": "notion",
-              "feedback": "100 est le volume de la glace en cm³. La masse se conserve : 92 g de glace donnent 92 g d'eau."
+              "feedback": "100 est le volume de la glace en cm³. La masse, elle, se conserve lors de la fusion : relis la masse avant la transformation."
             }
           ]
         },
@@ -1718,7 +1789,7 @@
               "answer": 100,
               "id": "mc:volume-conserve",
               "error": "notion",
-              "feedback": "Le volume ne se conserve pas : 92 g d'eau liquide occupent 92 / 1,00 = 92 cm³."
+              "feedback": "Le volume ne se conserve pas : calcule le volume de l'eau liquide obtenue avec V = m / ρ (ρ = 1,00 g/cm³)."
             }
           ]
         },
@@ -1729,7 +1800,7 @@
               "answer": 460,
               "id": "mc:masse-change",
               "error": "notion",
-              "feedback": "La masse se conserve lors de la solidification : 500 g."
+              "feedback": "La masse se conserve lors de la solidification : 0,92 ne sert qu'à calculer le volume de la glace."
             }
           ]
         },
@@ -1817,7 +1888,7 @@
               "answer": 1380,
               "id": "mc:masse-change",
               "error": "notion",
-              "feedback": "La masse se conserve : 1 500 g d'eau donnent 1 500 g de glace."
+              "feedback": "La masse se conserve lors de la solidification : 0,92 g/cm³ ne sert qu'à calculer le volume de la glace."
             }
           ]
         },
@@ -1978,7 +2049,7 @@
               "answer": "30*0.92",
               "id": "mc:masse-change",
               "error": "notion",
-              "feedback": "Le nombre 0,92 sert à comparer les volumes de la glace et de l'eau, pas les masses : la balance indique toujours 30 g."
+              "feedback": "Le nombre 0,92 sert à comparer les volumes de la glace et de l'eau, pas les masses : rien n'est entré ni sorti du sac fermé."
             }
           ]
         },
@@ -2271,13 +2342,13 @@
               "answer": "paraffine",
               "id": "mc:melange-palier",
               "error": "notion",
-              "feedback": "La paraffine est un mélange : elle n'a pas de palier net. Ici, le palier à 69 °C montre un corps pur : l'acide stéarique."
+              "feedback": "La paraffine est un mélange : elle n'a pas de palier net. Ici, le palier montre un corps pur : compare sa température avec le tableau."
             },
             {
               "answer": "la paraffine",
               "id": "mc:melange-palier",
               "error": "notion",
-              "feedback": "Un mélange n'a pas de palier net : 69 °C correspond à l'acide stéarique."
+              "feedback": "Un mélange n'a pas de palier net : cherche dans le tableau le corps pur qui fond à la température du palier."
             },
             {
               "answer": "naphtalène",
@@ -2567,7 +2638,7 @@
               "answer": 8,
               "id": "mc:palier-lecture",
               "error": "lecture",
-              "feedback": "Quatre relevés à 0 °C, mais ils vont de t = 6 min à t = 12 min : la durée est 12 − 6 = 6 min (au moins)."
+              "feedback": "Quatre relevés à 0 °C, mais seulement trois intervalles de 2 min entre eux : compte les intervalles, pas les relevés."
             }
           ]
         },
@@ -2582,7 +2653,7 @@
               "answer": 0,
               "id": "mc:melange-zero",
               "error": "notion",
-              "feedback": "Le sel abaisse la température de début de solidification : l'eau salée commence à geler sous 0 °C (ici vers −2 °C)."
+              "feedback": "Le sel abaisse la température de début de solidification : l'eau salée commence à geler sous 0 °C. Lis la température du tube B à la date où apparaissent les premiers cristaux."
             }
           ]
         },
@@ -2597,7 +2668,7 @@
               "answer": 0,
               "id": "mc:palier-melange",
               "error": "notion",
-              "feedback": "Pas de palier pour un mélange : la température continue de baisser pendant la solidification (de −2 °C à −5,5 °C)."
+              "feedback": "Pas de palier pour un mélange : la température continue de baisser pendant la solidification. Compare les relevés du tube B à t = 6 min et à t = 12 min."
             }
           ]
         },
@@ -2767,7 +2838,11 @@
             "moins dense",
             "moins",
             "elle est moins dense",
-            "la glace est moins dense"
+            "la glace est moins dense",
+            "moins dense que l'eau",
+            "moins dense que l'eau liquide",
+            "elle est moins dense que l'eau",
+            "la glace est moins dense que l'eau"
           ],
           "misconceptions": [
             {
@@ -2815,7 +2890,7 @@
               "answer": 92,
               "id": "mc:liquide-ignore",
               "error": "lecture",
-              "feedback": "L'eau de mer est plus dense que l'eau douce (1,025 g/cm³) : l'iceberg s'enfonce un peu moins. 0,92 / 1,025 ≈ 0,90."
+              "feedback": "L'eau de mer est plus dense que l'eau douce (1,025 g/cm³) : l'iceberg s'enfonce un peu moins. Utilise ρ(eau de mer) dans le calcul."
             },
             {
               "answer": "1.025/0.92*100",

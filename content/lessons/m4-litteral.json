@@ -151,8 +151,8 @@
       "start": "k*(a*x + b)", "minSteps": 2,
       "prompt": "Développe et réduis $ {k}({a}x {b|s}) $. Écris une étape par ligne.",
       "misconceptions": [
-        { "answer": "k*a*x + b", "id": "mc:distrib-partielle", "error": "notion", "prerequisite": "m5.litteral.distributivite", "feedback": "{k} doit multiplier CHAQUE terme de la parenthèse, y compris {b} : $ {k} × {b|p} = {k*b} $." },
-        { "answer": "k*a*x - k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "attention au signe du second produit : $ {k|p} × {b|p} = {k*b} $ (règle des signes)." }
+        { "answer": "k*a*x + b", "id": "mc:distrib-partielle", "error": "notion", "prerequisite": "m5.litteral.distributivite", "feedback": "{k} doit multiplier CHAQUE terme de la parenthèse, y compris {b}." },
+        { "answer": "k*a*x - k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "attention au signe du second produit : applique la règle des signes à $ {k|p} × {b|p} $." }
       ],
       "hints": ["{k} multiplie $ {a}x $ ET {b}.", "$ {k} × {a}x = {k*a}x $.", "$ {k|p} × {b|p} = {k*b} $ : attention à la règle des signes."],
       "solution": "$ {k}({a}x {b|s}) = {k} × {a}x + {k|p} × {b|p} = {k*a}x {k*b|s} $.",
@@ -171,11 +171,11 @@
       "parts": [
         { "type": "numeric", "prompt": "Quel est le plus grand nombre entier qui divise à la fois {k*a} et {k*b} ?", "answer": "k" },
         { "type": "expression", "form": "factorisee", "prompt": "Factorise $ {k*a}x + {k*b} $.", "answer": "k*(a*x + b)",
-          "misconceptions": [ { "answer": "k*(a*x + k*b)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ {k}({a|c}x + {k*b}) = {k*a}x + {k*k*b} $, et non $ {k*a}x + {k*b} $. Le facteur {k} doit être « sorti » des deux termes : $ {k*b} = {k} × {b} $." } ] },
+          "misconceptions": [ { "answer": "k*(a*x + k*b)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ {k}({a|c}x + {k*b}) = {k*a}x + {k*k*b} $, et non $ {k*a}x + {k*b} $. Le facteur {k} doit être « sorti » des deux termes." } ] },
         { "type": "expression", "form": "factorisee", "prompt": "Factorise $ x² + {c}x $.", "answer": "x*(x + c)",
-          "misconceptions": [ { "answer": "x*(x + c*x)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ x(x + {c}x) = x² + {c}x² $. Une fois le facteur $x$ « sorti », il reste $ x + {c} $." } ] }
+          "misconceptions": [ { "answer": "x*(x + c*x)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $ x(x + {c}x) = x² + {c}x² $. Une fois le facteur $x$ « sorti » de $ {c}x $, que reste-t-il ?" } ] }
       ],
-      "hints": ["$ {k*a} = {k} × {a} $ et $ {k*b} = {k} × {b} $.", "$ {k*a}x + {k*b} = {k} × {a|c}x + {k} × {b} $.", "Dans $ x² + {c}x $, les deux termes contiennent $x$ : $ x² = x × x $ et $ {c}x = {c} × x $."],
+      "hints": ["Cherche les diviseurs communs de {k*a} et de {k*b}, puis garde le plus grand.", "$ {k*a}x + {k*b} = {k} × {a|c}x + {k} × {b} $.", "Dans $ x² + {c}x $, les deux termes contiennent $x$ : $ x² = x × x $ et $ {c}x = {c} × x $."],
       "solution": "$ {k*a}x + {k*b} = {k} × {a|c}x + {k} × {b} = {k}({a|c}x + {b}) $. Et $ x² + {c}x = x × x + {c} × x = x(x + {c}) $. Vérification : en redéveloppant, on retrouve les expressions de départ.",
       "selfTest": [
         { "response": { "parts": [ { "value": "{k}" }, { "value": "{k}({a}x + {b})" }, { "value": "x(x + {c})" } ] }, "expect": "correct" },
@@ -190,7 +190,7 @@
       "start": "a*(b*x + c) + d*(e*x + f)", "minSteps": 2,
       "prompt": "Développe et réduis $ A = {a}({b|c}x {c|s}) {d|s}({e|c}x + {f}) $. Écris une étape par ligne.",
       "misconceptions": [
-        { "answer": "a*b*x + a*c + d*e*x - d*f", "id": "mc:moins-devant-parenthese", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "le facteur {d} multiplie aussi {f} : $ {d|p} × {f} = {d*f} $. Le signe « − » devant la parenthèse change le signe de CHAQUE terme." },
+        { "answer": "a*b*x + a*c + d*e*x - d*f", "id": "mc:moins-devant-parenthese", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "le facteur {d} multiplie aussi {f}, avec son signe : applique la règle des signes à $ {d|p} × {f} $. Le signe « − » devant la parenthèse change le signe de CHAQUE terme." },
         { "answer": "a*b*x + c + d*e*x + f", "id": "mc:distrib-partielle", "error": "notion", "prerequisite": "m5.litteral.distributivite", "feedback": "dans chaque produit, le facteur devant la parenthèse multiplie TOUS les termes de la parenthèse." }
       ],
       "hints": ["Développe chaque produit séparément.", "$ {d}({e|c}x + {f}) = {d*e}x {d*f|s} $ : {d} multiplie les deux termes.", "Regroupe ensuite les termes en $x$ entre eux, et les nombres entre eux."],
@@ -207,8 +207,8 @@
       "prompt": "Vérification rapide : $ {k}(x + {b}) $ est égal à…",
       "choices": [
         { "text": "$ {k}x + {k*b} $", "correct": true, "feedback": "Oui : {k} multiplie $x$ et {b}." },
-        { "text": "$ {k}x + {b} $", "correct": false, "error": "notion", "misconception": "mc:distrib-partielle", "feedback": "{k} doit multiplier aussi {b} : $ {k}(x + {b}) = {k}x + {k*b} $. Contrôle avec $x = 2$ : $ {k}(2 + {b}) = {k*(2+b)} $, alors que $ {k} × 2 + {b} = {2*k+b} $." },
-        { "text": "$ {k*b}x $", "correct": false, "error": "notion", "misconception": "mc:regrouper-termes", "feedback": "$ {k}x $ et {k*b} ne se regroupent pas : l'un contient $x$, l'autre non. Le résultat reste une somme : $ {k}x + {k*b} $." }
+        { "text": "$ {k}x + {b} $", "correct": false, "error": "notion", "misconception": "mc:distrib-partielle", "feedback": "{k} doit multiplier aussi {b}. Contrôle avec $x = 2$ : $ {k}(2 + {b}) = {k*(2+b)} $, alors que $ {k} × 2 + {b} = {2*k+b} $." },
+        { "text": "$ {k*b}x $", "correct": false, "error": "notion", "misconception": "mc:regrouper-termes", "feedback": "Un terme en $x$ et un nombre ne se regroupent pas : l'un contient $x$, l'autre non. Le résultat reste une somme de deux termes." }
       ],
       "solution": "$ {k}(x + {b}) = {k} × x + {k} × {b} = {k}x + {k*b} $.",
       "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:distrib-partielle" } ]
@@ -223,17 +223,17 @@
           "rows": [ ["0", "?r0c1", "?r0c2", "?r0c3"], ["1", "?r1c1", "?r1c2", "?r1c3"], ["2", "?r2c1", "?r2c2", "?r2c3"], ["−3", "?r3c1", "?r3c2", "?r3c3"] ],
           "cells": {
             "r0c1": { "answer": 20 }, "r0c2": { "answer": 20 }, "r0c3": { "answer": 20 },
-            "r1c1": { "answer": 24, "misconceptions": [ { "answer": 21, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplie LE RÉSULTAT par 4 » : on calcule $(1 + 5) × 4 = 24$, et non $1 + 5 × 4$." } ] },
+            "r1c1": { "answer": 24, "misconceptions": [ { "answer": 21, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplie LE RÉSULTAT par 4 » : on calcule $(1 + 5) × 4$, et non $1 + 5 × 4$." } ] },
             "r1c2": { "answer": 24 }, "r1c3": { "answer": 24 },
             "r2c1": { "answer": 28 }, "r2c2": { "answer": 28 }, "r2c3": { "answer": 30 },
             "r3c1": { "answer": 8 }, "r3c2": { "answer": 8 },
-            "r3c3": { "answer": 20, "misconceptions": [ { "answer": 2, "id": "mc:carre-negatif", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "$(−3) × (−3) = 9$ : le produit de deux nombres négatifs est positif. Puis $9 + (−9) + 20 = 20$." } ] }
+            "r3c3": { "answer": 20, "misconceptions": [ { "answer": 2, "id": "mc:carre-negatif", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "« Multiplie le nombre par lui-même » : $(−3) × (−3)$ est le produit de deux nombres négatifs, il est positif." } ] }
           } },
         { "type": "text", "prompt": "D'après ton tableau, quel programme n'est certainement PAS équivalent au programme A ? (A, B ou C)", "accept": ["C", "le programme C", "programme C", "le C"],
           "misconceptions": [ { "answer": "B", "id": "mc:contre-exemple-lecture", "error": "lecture", "feedback": "B donne les mêmes résultats que A pour tous les nombres du tableau. Cherche une ligne où deux programmes donnent des résultats différents." } ] },
         { "type": "counterexample", "prompt": "Donne un nombre de départ pour lequel A et C donnent des résultats différents : c'est un contre-exemple.", "claim": "Les programmes A et C donnent toujours le même résultat.", "vars": ["x"], "refutes": "4*(x+5) != x^2+3*x+20", "show": "x^2+3*x+20", "showLabel": "le résultat de C", "refuteHint": "Regarde ton tableau : pour quelle ligne A et C sont-ils différents ?" },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Écris le programme B avec un nombre $x$, puis développe et réduis.", "answer": "4x + 20",
-          "misconceptions": [ { "answer": "4x + 10", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le dernier « multiplie par 2 » porte sur tout le résultat $2x + 10$ : $2(2x + 10) = 4x + 20$." } ] }
+          "misconceptions": [ { "answer": "4x + 10", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le dernier « multiplie par 2 » porte sur tout le résultat $2x + 10$ : 2 multiplie aussi 10." } ] }
       ],
       "hints": ["Programme A avec 1 : $(1 + 5) × 4$. Programme C avec 1 : $1 × 1 + 3 × 1 + 20$.", "Avec −3 : $(−3) × (−3) = 9$ et $3 × (−3) = −9$.", "Programme B avec $x$ : $(2x + 10) × 2$."],
       "solution": "A : 20, 24, 28, 8. B : 20, 24, 28, 8. C : 20, 24, 30, 20. A et C coïncident pour 0 et pour 1, mais pas pour 2 ni pour −3 : C n'est pas équivalent à A (un seul contre-exemple suffit). B semble équivalent à A, et on le démontre : $ B = 2(2x + 10) = 4x + 20 $ et $ A = 4(x + 5) = 4x + 20 $.",
@@ -289,11 +289,11 @@
       },
       "parts": [
         { "type": "expression", "form": "factorisee", "prompt": "Exprime l'aire totale du potager (en m²) sous la forme d'un **produit**.", "answer": "4*(2x + 3)",
-          "misconceptions": [ { "answer": "4*2*x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "La partie « fleurs » mesure elle aussi 4 m de large : son aire vaut $4 × 3$. L'aire totale est $4 × (2x + 3)$." } ] },
+          "misconceptions": [ { "answer": "4*2*x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "La partie « fleurs » mesure elle aussi 4 m de large : la largeur 4 multiplie toute la longueur, y compris les 3 m. Pense aux parenthèses." } ] },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Exprime la même aire comme la **somme** des aires des deux parties, réduite.", "answer": "8x + 12",
-          "misconceptions": [ { "answer": "8x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "4 multiplie aussi 3 : l'aire des fleurs vaut $4 × 3 = 12$ m²." } ] },
+          "misconceptions": [ { "answer": "8x + 3", "id": "mc:distrib-partielle", "error": "notion", "feedback": "4 multiplie aussi 3 : l'aire des fleurs n'est pas 3 m², elle mesure 4 m de large." } ] },
         { "type": "numeric", "prompt": "Calcule l'aire du potager pour $x = 2,5$ (en m²).", "answer": 32,
-          "misconceptions": [ { "answer": 23, "id": "mc:distrib-partielle", "error": "notion", "feedback": "L'aire des fleurs vaut $4 × 3 = 12$ m² : $8 × 2,5 + 12 = 32$." } ] },
+          "misconceptions": [ { "answer": 23, "id": "mc:distrib-partielle", "error": "notion", "feedback": "L'aire des fleurs n'est pas 3 m² : cette partie mesure 4 m de large. Recalcule avec la bonne expression de l'aire." } ] },
         { "type": "numeric", "prompt": "Pour quelle valeur de $x$ l'aire vaut-elle 60 m² ?", "answer": 6,
           "misconceptions": [ { "answer": 7.5, "id": "mc:oubli-constante", "error": "methode", "feedback": "L'aire vaut $8x + 12$ : il faut d'abord retirer 12, puis diviser par 8. On résout $8x + 12 = 60$." } ] }
       ],
@@ -312,16 +312,16 @@
         { "type": "numeric", "prompt": "Fais le tour avec le nombre 5. Quel résultat obtiens-tu ?", "answer": 3,
           "misconceptions": [ { "answer": 23, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Divise LE RÉSULTAT par 3 » : c'est $30 + 9 = 39$ tout entier qu'on divise par 3, pas seulement 9." } ] },
         { "type": "numeric", "prompt": "Et avec le nombre −2 ?", "answer": 3,
-          "misconceptions": [ { "answer": -5, "id": "mc:moins-negatif", "error": "signe", "prerequisite": "m5.relatifs.addition", "feedback": "Le double de −2 est −4. Soustraire −4, c'est ajouter 4 : $−1 + 4 = 3$." } ] },
+          "misconceptions": [ { "answer": -5, "id": "mc:moins-negatif", "error": "signe", "prerequisite": "m5.relatifs.addition", "feedback": "Le double de −2 est −4. Soustraire −4, c'est ajouter 4." } ] },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Avec un nombre $x$, le résultat s'écrit $ (6x + 9)/3 − 2x $. Réduis cette expression.", "answer": "3",
           "misconceptions": [
-            { "answer": "2x + 3", "id": "mc:oubli-etape", "error": "lecture", "feedback": "Tu as oublié la dernière étape : soustraire $2x$. $ 2x + 3 − 2x = 3 $." },
-            { "answer": "9", "id": "mc:division-partielle", "error": "notion", "feedback": "En divisant $6x + 9$ par 3, on divise CHAQUE terme : $ 6x ÷ 3 + 9 ÷ 3 = 2x + 3 $." }
+            { "answer": "2x + 3", "id": "mc:oubli-etape", "error": "lecture", "feedback": "Tu as oublié la dernière étape du programme : soustraire $2x$." },
+            { "answer": "9", "id": "mc:division-partielle", "error": "notion", "feedback": "En divisant $6x + 9$ par 3, on divise CHAQUE terme, y compris 9." }
           ] },
         { "type": "expression", "form": "factorisee", "prompt": "À toi : invente un programme qui commence par « ajoute 2 » et qui est équivalent au programme « multiplie par 4, puis ajoute 8 ». Écris ton programme avec une lettre $x$, sous la forme d'un produit.", "answer": "4*(x + 2)",
-          "misconceptions": [ { "answer": "x + 8", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Il faut multiplier tout le résultat $x + 2$ par 4 : on écrit $ (x + 2) × 4 $, avec des parenthèses." } ] }
+          "misconceptions": [ { "answer": "x + 8", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Sans parenthèses, la multiplication par 4 ne porte que sur 2. C'est tout le résultat $x + 2$ qui doit être multiplié : pense aux parenthèses." } ] }
       ],
-      "hints": ["Avec 5 : $5 × 6 = 30$, $30 + 9 = 39$, $39 ÷ 3 = 13$, puis on soustrait $2 × 5$.", "$ (6x + 9)/3 = 6x/3 + 9/3 = 2x + 3 $.", "Le programme « multiplie par 4, ajoute 8 » donne $4x + 8$. Factorise par 4."],
+      "hints": ["Avec 5 : $5 × 6 = 30$, puis $30 + 9 = 39$ ; continue en suivant chaque étape du programme.", "$ (6x + 9)/3 = 6x/3 + 9/3 = 2x + 3 $.", "Le programme « multiplie par 4, ajoute 8 » donne $4x + 8$. Factorise par 4."],
       "solution": "Avec 5 : $(30 + 9) ÷ 3 − 10 = 13 − 10 = 3$. Avec −2 : $(−12 + 9) ÷ 3 − (−4) = −1 + 4 = 3$. Avec $x$ : $ (6x + 9)/3 − 2x = 2x + 3 − 2x = 3 $ : le résultat vaut toujours 3, quel que soit le nombre choisi. C'est ce qui permet à Malik de « deviner ». Enfin, $ 4x + 8 = 4(x + 2) $ : le programme « ajoute 2, puis multiplie le résultat par 4 » est équivalent.",
       "selfTest": [
         { "response": { "parts": [ { "value": "3" }, { "value": "3" }, { "value": "3" }, { "value": "4(x + 2)" } ] }, "expect": "correct" },
@@ -347,7 +347,7 @@
         ]
       },
       "answer": "k*x + k*b",
-      "misconceptions": [ { "answer": "k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le rectangle de droite a lui aussi une largeur de {k} : son aire vaut $ {k} × {b} = {k*b} $, et non {b}." } ],
+      "misconceptions": [ { "answer": "k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le rectangle de droite a lui aussi une largeur de {k} : son aire n'est pas {b}." } ],
       "hints": ["Aire du rectangle de gauche : $ {k} × x $.", "Aire du rectangle de droite : $ {k} × {b} $."],
       "solution": "$ {k}(x + {b}) = {k} × x + {k} × {b} = {k}x + {k*b} $ : la largeur {k} multiplie les deux longueurs.",
       "selfTest": [
@@ -363,8 +363,8 @@
       "prompt": "Rappel ciblé : $ −{k}(x + {b}) $, c'est $ (−{k}) × x + (−{k}) × {b} $. Le nombre $−{k}$ multiplie chaque terme, **avec son signe**. Développe et réduis $ −{k}(x + {b}) $.",
       "answer": "-k*x - k*b",
       "misconceptions": [
-        { "answer": "-k*x + k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "$ (−{k}) × {b} = −{k*b} $ : un nombre négatif multiplié par un nombre positif donne un nombre négatif." },
-        { "answer": "-k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "$−{k}$ multiplie aussi {b} : $ (−{k}) × {b} = −{k*b} $." }
+        { "answer": "-k*x + k*b", "id": "mc:signe-distrib", "error": "signe", "prerequisite": "m4.relatifs.produit", "feedback": "Regarde le signe de $ (−{k}) × {b} $ : un nombre négatif multiplié par un nombre positif donne un nombre négatif." },
+        { "answer": "-k*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "$−{k}$ multiplie aussi {b}, avec son signe." }
       ],
       "hints": ["$ (−{k}) × x = −{k}x $.", "$ (−{k}) × {b} $ : quel est le signe du produit ?"],
       "solution": "$ −{k}(x + {b}) = (−{k}) × x + (−{k}) × {b} = −{k}x − {k*b} $.",
@@ -382,13 +382,13 @@
       "parts": [
         { "type": "numeric", "prompt": "Calcule la somme des 9 dates de l'exemple.", "answer": 135 },
         { "type": "expression", "prompt": "La date juste au-dessus du centre s'écrit $n − 7$ (une semaine avant). Écris, en fonction de $n$, la date en haut à gauche.", "answer": "n - 8",
-          "misconceptions": [ { "answer": "n - 6", "id": "mc:calendrier-position", "error": "lecture", "feedback": "En haut à gauche : une semaine avant ($−7$), puis un jour avant ($−1$). Cela fait $n − 8$." } ] },
+          "misconceptions": [ { "answer": "n - 6", "id": "mc:calendrier-position", "error": "lecture", "feedback": "Tu as pris la date en haut à droite. En haut à gauche : une semaine avant ($−7$), puis encore un jour avant ($−1$)." } ] },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme des 9 dates en fonction de $n$, puis réduis-la.", "answer": "9n",
           "misconceptions": [ { "answer": "9n + 44", "id": "mc:signe-constante", "error": "signe", "feedback": "Tu as additionné tous les nombres sans tenir compte de leur signe. Or $n − 8$ contient $−8$ : les nombres s'annulent deux à deux, $−8$ et $+8$, $−7$ et $+7$, $−6$ et $+6$, $−1$ et $+1$." } ] },
         { "type": "numeric", "prompt": "Léa a entouré 9 dates dont la somme vaut 162. Quelle est la date en haut à gauche ?", "answer": 10,
           "misconceptions": [ { "answer": 18, "id": "mc:mauvaise-inconnue", "error": "lecture", "feedback": "18 est la date du centre ($9n = 162$). La date en haut à gauche est $n − 8$." } ] }
       ],
-      "hints": ["Les 9 dates : $n − 8$, $n − 7$, $n − 6$, $n − 1$, $n$, $n + 1$, $n + 6$, $n + 7$, $n + 8$.", "En les additionnant, les nombres s'annulent deux à deux.", "Si $9n = 162$, alors $n = 18$."],
+      "hints": ["Une ligne plus haut, c'est 7 jours plus tôt ; une case à gauche, c'est 1 jour plus tôt.", "Les 9 dates : $n − 8$, $n − 7$, $n − 6$, $n − 1$, $n$, $n + 1$, $n + 6$, $n + 7$, $n + 8$. En les additionnant, les nombres s'annulent deux à deux.", "Si $9n = 162$, alors $n = 18$."],
       "solution": "Exemple : $ 7 + 8 + 9 + 14 + 15 + 16 + 21 + 22 + 23 = 135 = 9 × 15 $. En général, les 9 dates sont $n − 8$, $n − 7$, $n − 6$, $n − 1$, $n$, $n + 1$, $n + 6$, $n + 7$, $n + 8$ ; leur somme se réduit à $9n$ car les nombres s'annulent deux à deux. La somme vaut toujours 9 fois la date du centre ! Pour 162 : $n = 18$, et la date en haut à gauche est $18 − 8 = 10$.",
       "selfTest": [
         { "response": { "parts": [ { "value": "135" }, { "value": "n − 8" }, { "value": "9n" }, { "value": "10" } ] }, "expect": "correct" },
@@ -401,13 +401,13 @@
       "prompt": "Conjecture : « La somme de deux nombres impairs consécutifs est toujours un multiple de 4. » Par exemple $7 + 9 = 16$ et $11 + 13 = 24$. Démontrons-le. Un nombre impair s'écrit $2n + 1$, où $n$ est un entier ; l'impair suivant s'écrit $2n + 3$.",
       "parts": [
         { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme $ (2n + 1) + (2n + 3) $ sous forme réduite.", "answer": "4n + 4",
-          "misconceptions": [ { "answer": "4n + 3", "id": "mc:reduire-constantes", "error": "calcul", "feedback": "Les nombres aussi s'additionnent : $1 + 3 = 4$." } ] },
+          "misconceptions": [ { "answer": "4n + 3", "id": "mc:reduire-constantes", "error": "calcul", "feedback": "Les nombres aussi s'additionnent entre eux : regroupe 1 et 3." } ] },
         { "type": "expression", "form": "factorisee", "prompt": "Factorise cette somme par 4.", "answer": "4(n + 1)",
-          "misconceptions": [ { "answer": "4(n + 4)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $4(n + 4) = 4n + 16$. Or $4 = 4 × 1$ : on obtient $4(n + 1)$." } ] },
+          "misconceptions": [ { "answer": "4(n + 4)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe pour vérifier : $4(n + 4) = 4n + 16$. Or $4 = 4 × 1$ : que reste-t-il dans la parenthèse ?" } ] },
         { "type": "text", "prompt": "La somme de deux impairs consécutifs est-elle toujours un multiple de 4 ? (oui ou non)", "accept": ["oui"],
           "misconceptions": [ { "answer": "non", "id": "mc:preuve-lecture", "error": "raisonnement", "feedback": "$4(n + 1)$ est 4 multiplié par un entier : c'est toujours un multiple de 4." } ] },
         { "type": "numeric", "prompt": "Et la somme de trois impairs consécutifs, $ (2n + 1) + (2n + 3) + (2n + 5) $ ? Elle est toujours un multiple de quel nombre (plus grand que 1) ?", "answer": 3,
-          "misconceptions": [ { "answer": 6, "id": "mc:multiple-coefficient", "error": "raisonnement", "feedback": "La somme vaut $6n + 9$. 9 n'est pas un multiple de 6 : on ne peut pas factoriser par 6. Mais $6n + 9 = 3(2n + 3)$." } ] }
+          "misconceptions": [ { "answer": 6, "id": "mc:multiple-coefficient", "error": "raisonnement", "feedback": "La somme vaut $6n + 9$. 9 n'est pas un multiple de 6 : on ne peut pas factoriser par 6. Cherche le plus grand facteur commun à 6 et à 9." } ] }
       ],
       "hints": ["Regroupe les termes en $n$, puis les nombres.", "$4n + 4 = 4 × n + 4 × 1$.", "Pour trois impairs : $6n + 9$. Quel facteur commun à 6 et 9 ?"],
       "solution": "$ (2n + 1) + (2n + 3) = 4n + 4 = 4(n + 1) $ : c'est 4 fois un entier, donc toujours un multiple de 4. Pour trois impairs consécutifs : $ 6n + 9 = 3(2n + 3) $, toujours un multiple de 3 (et jamais de 6, car c'est un nombre impair).",
@@ -423,9 +423,9 @@
       "parts": [
         { "type": "numeric", "prompt": "Que vaut $k$ ?", "answer": 5 },
         { "type": "numeric", "prompt": "Que vaut $a$ ?", "answer": 3,
-          "misconceptions": [ { "answer": 15, "id": "mc:oubli-partage", "error": "methode", "feedback": "On doit avoir $5a − 7 = 8$, donc $5a = 15$ : il reste à diviser par 5." } ] },
+          "misconceptions": [ { "answer": 15, "id": "mc:oubli-partage", "error": "methode", "feedback": "On doit avoir $5a − 7 = 8$ : résous cette équation jusqu'au bout, 15 vaut $5a$ et non $a$." } ] },
         { "type": "numeric", "prompt": "Programme R : « multiplie par 2, ajoute 3, puis multiplie le résultat par 4 ». Programme S : « multiplie par 8, puis ajoute $c$ ». Pour quelle valeur de $c$ sont-ils équivalents ?", "answer": 12,
-          "misconceptions": [ { "answer": 3, "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le 4 multiplie aussi 3 : $4(2x + 3) = 8x + 12$." } ] },
+          "misconceptions": [ { "answer": 3, "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le 4 multiplie tout le résultat $2x + 3$, donc aussi le 3." } ] },
         { "type": "text", "prompt": "Peut-on choisir un nombre $d$ pour que « ajoute $d$, puis multiplie le résultat par 3 » soit équivalent à « multiplie par 2, puis ajoute 1 » ? (oui ou non)", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:equivalence-coefficient", "error": "raisonnement", "feedback": "$3(x + d) = 3x + 3d$ : le coefficient de $x$ vaut 3, jamais 2. Quel que soit $d$, les deux programmes donnent des résultats différents pour certains nombres." } ] }
       ],
@@ -443,9 +443,9 @@
       "parts": [
         { "type": "numeric", "prompt": "Que trouves-tu à la fin pour 274 274 ? (calculatrice autorisée)", "answer": 274 },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Si $N$ est le nombre de trois chiffres, le nombre à six chiffres vaut $ 1 000 × N + N $. Réduis cette expression.", "answer": "1001*N",
-          "misconceptions": [ { "answer": "1000*N", "id": "mc:oubli-coefficient-un", "error": "calcul", "feedback": "N'oublie pas le $N$ tout seul : $ 1 000N + N = 1 000N + 1N = 1 001N $." } ] },
+          "misconceptions": [ { "answer": "1000*N", "id": "mc:oubli-coefficient-un", "error": "calcul", "feedback": "N'oublie pas le $N$ tout seul : $N = 1N$, il compte aussi." } ] },
         { "type": "numeric", "prompt": "On sait que $ 1 001 = 7 × 11 × p $. Que vaut $p$ ?", "answer": 13,
-          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$ 1 001 = 7 × 143 $, mais on a déjà sorti 11 : $ 143 = 11 × 13 $." } ] },
+          "misconceptions": [ { "answer": 143, "id": "mc:facteur-non-premier", "error": "notion", "feedback": "$ 1 001 = 7 × 143 $, mais 11 est déjà écrit dans le produit : divise encore 143 par 11." } ] },
         { "type": "open", "prompt": "Explique pourquoi tout nombre de la forme « abcabc » (un nombre de trois chiffres écrit deux fois) est divisible par 7, par 11 et par 13.", "minWords": 15,
           "criteria": [
             { "id": "c1", "label": "J'utilise l'écriture $1 001 × N$", "keywords": [["1001", "1 001"]] },

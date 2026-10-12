@@ -18,6 +18,13 @@ const asList = (x) => (Array.isArray(x) ? x : String(x).split('|')).map((s) => S
 const du = (label) => (/^[aeiouyéèêh]/i.test(label) ? `de l’${label}` : `du ${label}`);
 const le = (label) => (/^[aeiouyéèêh]/i.test(label) ? `l’${label}` : `le ${label}`);
 const same = (a, b) => String(a).trim().toLowerCase() === String(b).trim().toLowerCase();
+/**
+ * Nom sans son article (vers le français, « la cuisine » ou « cuisine » : l'article n'est pas exigé).
+ * « les » est essayé avant « le » : sinon « les devoirs » deviendrait « s devoirs ».
+ */
+export const withoutArticle = (w) => w.replace(/^(?:les|le|la|une|un|des)\s+|^l['’]\s*/i, '');
+/** Le texte contient-il ce mot entier (« envoyais » dans « j'envoyais », pas dans « renvoyais ») ? Casse ignorée. */
+const containsWord = (text, word) => new RegExp(`(?<![\\p{L}\\d])${String(word).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\d])`, 'iu').test(String(text));
 
 function base(gen, seed, extra) {
   return {
@@ -47,17 +54,19 @@ const KINDS = {
     }
     const person = Math.floor(rand() * 6);
     const answer = asList(forms[person]);
+    // « j'envoyais » contient la bonne réponse « envoyais » (personne « tu ») : le message ne recopie pas une telle forme
+    const quoted = (v) => (answer.some((a) => containsWord(v, a)) ? 'Cette forme' : `« ${v} »`);
     const misconceptions = [];
     for (const [t, f] of Object.entries(d.verbs[verb].forms)) {
       if (t === tense) continue;
       for (const v of asList(f[person])) if (!answer.some((a) => same(a, v)) && !misconceptions.some((m) => same(m.answer, v))) {
-        misconceptions.push({ answer: v, id: 'mc:temps-confondu', error: 'notion', feedback: `« ${v} » est la forme ${du(d.tenses[t])}, pas ${du(d.tenses[tense])}.` });
+        misconceptions.push({ answer: v, id: 'mc:temps-confondu', error: 'notion', feedback: `${quoted(v)} est la forme ${du(d.tenses[t])}, pas ${du(d.tenses[tense])}.` });
       }
     }
     forms.forEach((f, p) => {
       if (p === person) return;
       for (const v of asList(f)) if (!answer.some((a) => same(a, v)) && !misconceptions.some((m) => same(m.answer, v))) {
-        misconceptions.push({ answer: v, id: 'mc:accord-sujet-verbe', error: 'notion', feedback: `« ${v} » correspond à une autre personne : le verbe s'accorde avec « ${d.pronouns[person]} ».` });
+        misconceptions.push({ answer: v, id: 'mc:accord-sujet-verbe', error: 'notion', feedback: `${quoted(v)} correspond à une autre personne : le verbe s'accorde avec « ${d.pronouns[person]} ».` });
       }
     });
     const pron = d.pronouns[person];
@@ -72,21 +81,24 @@ const KINDS = {
     });
   },
 
-  /** data : { from, to, lang (synthèse vocale de la langue étrangère), pairs: [{ q, a, theme? }] } (q dans la langue « from ») */
+  /**
+   * data : { from, to, lang (synthèse vocale de la langue étrangère), pairs: [{ q, a, theme?, hint?, hintInverse? }] }
+   * (q dans la langue « from »). `hint` sert dans le sens normal ; dans le sens inverse, il désignerait souvent la
+   * réponse (« Roman veut dire romain ») : on affiche `hintInverse` s'il existe, sinon le thème.
+   */
   vocab(gen, rand, seed, opts) {
     const d = gen.data;
     const pool = d.pairs.filter((p) => !opts.theme || opts.theme === 'tous' || p.theme === opts.theme);
     const p = pick(rand, pool);
     const reverse = opts.direction === 'inverse' || (opts.direction === 'mixte' && rand() < 0.5);
     const question = reverse ? asList(p.a)[0] : asList(p.q)[0];
-    // vers le français, « la cuisine » ou « cuisine » : l'article n'est pas exigé
-    const withoutArticle = (w) => w.replace(/^(?:le|la|les|un|une|des|l['’])\s*/i, '');
     const accept = reverse ? [...new Set(asList(p.q).flatMap((w) => [w, withoutArticle(w)]))] : asList(p.a);
+    const theme = `Thème : ${p.theme || 'vocabulaire'}.`;
     return base(gen, seed, {
       type: 'text',
       prompt: reverse ? `Traduis en ${d.fromLabel || 'français'} : **${question}**` : `Traduis en ${d.toLabel || 'langue étrangère'} : **${question}**`,
       accept,
-      hints: [p.hint || `Thème : ${p.theme || 'vocabulaire'}.`],
+      hints: [(reverse ? p.hintInverse : p.hint) || theme],
       solution: `${question} → ${accept[0]}`,
       audio: d.lang ? { text: reverse ? question : accept[0], lang: d.lang, after: !reverse } : undefined,
       representation: 'verbale',

@@ -18,6 +18,26 @@ export function niceStep(range, target = 5) {
 
 const yearLabel = (y) => (y < 0 ? `${fmt(-y)} av. J.-C.` : String(y));
 
+/**
+ * Échelle d'une frise. Années : négatives avant J.-C. ; il n'y a pas d'an 0 (on passe de 1 av. J.-C. à
+ * 1 apr. J.-C.), donc pas de graduation « 0 ». Avec `unit: "Ma"` : âges en millions d'années avant aujourd'hui,
+ * le plus ancien (le plus grand) à gauche. pos(v) : position de 0 (gauche) à 1 (droite) ; ticks : graduations.
+ */
+export function timelineScale(it) {
+  const ma = it.unit === 'Ma';
+  const t = (v) => (ma ? -v : v); // « temps » croissant vers la droite
+  const a = t(num(it.from)); const b = t(num(it.to));
+  const lo = Math.min(a, b); const hi = Math.max(a, b);
+  const asked = num(it.step);
+  const step = asked > 0 && (hi - lo) / asked <= 200 ? asked : niceStep(hi - lo, 7); // pas positif, 200 graduations au plus
+  const ticks = [];
+  for (let k = Math.ceil(lo / step - 1e-9); k * step <= hi + 1e-9; k++) {
+    const v = t(k * step) + 0; // + 0 : jamais « −0 »
+    if (ma || v !== 0) ticks.push(v);
+  }
+  return { t, lo, hi, ticks, pos: (v) => (t(v) - lo) / (hi - lo), label: ma ? (v) => `${fmt(v)} Ma` : yearLabel };
+}
+
 function bars(it, W, H) {
   const g = s('g', { class: 'fig-chart' });
   const data = it.data.map((d) => ({ ...d, value: num(d.value) }));
@@ -133,13 +153,15 @@ function pie(it, W, H) {
 
 function timeline(it, W, H, arrow) {
   const g = s('g', { class: 'fig-chart fig-timeline' });
-  const from = num(it.from); const to = num(it.to);
+  const sc = timelineScale(it);
   const left = 18; const right = 18;
-  const X = (y) => left + (y - from) / (to - from) * (W - left - right);
+  const XT = (tv) => left + (tv - sc.lo) / (sc.hi - sc.lo) * (W - left - right); // abscisse d'un « temps » sc.t(v)
+  const X = (y) => XT(sc.t(y));
+  const clip = (v) => Math.min(sc.hi, Math.max(sc.lo, sc.t(num(v)))); // période coupée aux bornes de la frise
   const axisY = Math.round(H * 0.5);
   const periods = it.periods || [];
   periods.forEach((p, i) => {
-    const x0 = X(Math.max(from, num(p.from))); const x1 = X(Math.min(to, num(p.to)));
+    const [x0, x1] = [clip(p.from), clip(p.to)].sort((u, v) => u - v).map(XT);
     const row = i % 2;
     const y = axisY - 30 - row * 22;
     const col = pick(p, i + 1);
@@ -147,19 +169,18 @@ function timeline(it, W, H, arrow) {
     g.append(s('text', { x: (x0 + x1) / 2, y: y + 12.5, 'text-anchor': 'middle', class: 'fig-period' }, p.label));
   });
   g.append(s('line', { x1: left - 6, y1: axisY, x2: W - right + 8, y2: axisY, class: 'fig-axis-strong', 'marker-end': arrow }));
-  const asked = num(it.step);
-  const step = asked > 0 && (to - from) / asked <= 200 ? asked : niceStep(to - from, 7); // pas positif, 200 graduations au plus
   // graduations dessinées après les évènements : leurs traits ne barrent pas les années
   const ticksG = s('g');
-  for (let y = Math.ceil(from / step) * step; y <= to + 1e-9; y += step) {
+  for (const y of sc.ticks) {
     ticksG.append(s('line', { x1: X(y), y1: axisY - 4, x2: X(y), y2: axisY + 4, class: 'fig-baseline' }));
-    ticksG.append(s('text', { x: X(y), y: axisY + 17, 'text-anchor': 'middle', class: 'fig-tick fig-tick--halo' }, yearLabel(y)));
+    ticksG.append(s('text', { x: X(y), y: axisY + 17, 'text-anchor': 'middle', class: 'fig-tick fig-tick--halo' }, sc.label(y)));
   }
-  const events = [...(it.events || [])].sort((a, b) => num(a.year) - num(b.year));
+  // de gauche à droite (en Ma, du plus ancien au plus récent)
+  const events = [...(it.events || [])].sort((a, b) => sc.pos(num(a.year)) - sc.pos(num(b.year)));
   const lastX = [-Infinity, -Infinity, -Infinity];
   events.forEach((e) => {
     const x = X(num(e.year));
-    const txt = `${yearLabel(num(e.year))} : ${e.label}`;
+    const txt = `${sc.label(num(e.year))} : ${e.label}`;
     const width = txt.length * 6.2;
     let row = lastX.findIndex((lx) => x - width / 2 > lx + 6);
     if (row < 0) row = lastX.indexOf(Math.min(...lastX));

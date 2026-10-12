@@ -1,5 +1,5 @@
 /** Outils communs des générateurs de problèmes de physique-chimie (prénoms, élision, arrondis, écriture scientifique…). */
-import { pick, clean, fr, mc, text, boundAnswer } from './gen-util.js';
+import { pick, clean, fr, mc, text, boundAnswer, roundTo } from './gen-util.js';
 
 export const PRENOMS = ['Sacha', 'Camille', 'Yanis', 'Zoé', 'Malo', 'Aya', 'Timéo', 'Lina', 'Nathan', 'Maëlys', 'Ilyes', 'Louise', 'Eden', 'Nour', 'Gabriel', 'Lou', 'Mathis', 'Sarah', 'Kenji', 'Awa'];
 export const TROIS = ['classe', 'approfondissement', 'expert'];
@@ -21,7 +21,7 @@ export function until(draw, ok) {
   for (let i = 0; i < 5000; i++) { const v = draw(); if (ok(v)) return v; }
   throw new Error('problemes-pc : aucun tirage ne convient');
 }
-export const round = (x, d = 0) => clean(Math.round(x * 10 ** d) / 10 ** d);
+export const round = (x, d = 0) => roundTo(x, d);
 export const isInt = (x, d = 0) => Math.abs(x * 10 ** d - Math.round(x * 10 ** d)) < 1e-6;
 /** « = 12,5 » si le résultat tombe juste à d décimales, sinon « ≈ 12,3 ». */
 export const eq = (x, d = 1) => (isInt(x, d) ? `= ${fr(x)}` : `≈ ${fr(round(x, d))}`);
@@ -39,12 +39,12 @@ export function sciParts(x) {
 }
 /** Écriture scientifique : sci(58e6) → « 5,8 × 10⁷ », sci(1.43e9) → « 1,43 × 10⁹ ». */
 export const sci = (x) => { const [a, n] = sciParts(x); return `${fr(a)} × ${pow10(n)}`; };
-/**
- * Tolérance d'une réponse arrondie à d décimales : la moitié du dernier chiffre (0,05 au dixième, 0,5 à l'unité),
- * élargie juste assez pour accepter aussi `alts`, les résultats obtenus en partant des réponses ARRONDIES
- * des questions précédentes (par exemple 2 × la durée arrondie d'un aller).
+/*
+ * Réponse arrondie à d décimales : la valeur arrondie et roundedTo(d) de gen-util.js (tolérance = moitié de l'unité
+ * d'arrondi). Quand une question part du résultat ARRONDI d'une question précédente, le tirage est choisi pour que
+ * les deux calculs donnent le même arrondi (par exemple 2 × la durée arrondie d'un aller) : la tolérance n'est
+ * jamais élargie, sinon l'arrondi voisin serait accepté.
  */
-export const tolRound = (exact, d, alts = []) => clean(Math.max(0.5 / 10 ** d, ...alts.map((a) => Math.abs(a - exact))) + 0.001 / 10 ** d);
 /** Valeur LIMITE arrondie du côté sûr (voir boundAnswer) ; `gap` : vrai si la valeur exacte a dû être arrondie. */
 export const bound = (exact, side, d = 0) => { const b = boundAnswer(exact, side, d); return { ...b, gap: Math.abs(exact - b.answer) > 1e-9 }; };
 /** Résultat qui dépasse une limite, écrit avec assez de décimales pour que le dépassement se voie : « ≈ 30,04 ». */

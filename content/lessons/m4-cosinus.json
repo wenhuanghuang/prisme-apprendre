@@ -383,7 +383,7 @@
           "answer": "arrondi(h/a;2)",
           "id": "mc:cos-inverse",
           "error": "notion",
-          "feedback": "Ton résultat est plus grand que 1 : impossible pour un cosinus ! Le quotient s’écrit côté adjacent ÷ hypoténuse : ${a}/{h}$."
+          "feedback": "Ton résultat est plus grand que 1 : impossible pour un cosinus ! Le quotient s’écrit côté adjacent ÷ hypoténuse, dans cet ordre."
         },
         {
           "answer": "arrondi(a/o;2)",
@@ -798,7 +798,7 @@
           "type": "numeric",
           "prompt": "À quelle hauteur l’échelle touche-t-elle le mur ? (en m, arrondie au centimètre)",
           "answer": "arrondi(L*cos(15);2)",
-          "tolerance": 0.01,
+          "tolerance": 0.005,
           "round": 2,
           "misconceptions": [
             {
@@ -897,7 +897,7 @@
           "type": "numeric",
           "prompt": "De quelle hauteur part-on ? (en m, arrondie au centimètre)",
           "answer": 6.88,
-          "tolerance": 0.01,
+          "tolerance": 0.005,
           "round": 2,
           "misconceptions": [
             {
@@ -913,7 +913,7 @@
           "type": "numeric",
           "prompt": "Le parc veut un toboggan moins raide : même hauteur de départ, mais un angle de 25° avec le sol. Quelle longueur doit-il avoir ? (en m, au centimètre ; indice : en haut, l’angle entre le toboggan et la verticale mesure 90° − 25° = 65°, et la hauteur est le côté adjacent à cet angle)",
           "answer": 16.29,
-          "tolerance": 0.03,
+          "tolerance": 0.01,
           "round": 2
         }
       ],
@@ -976,7 +976,7 @@
           "type": "numeric",
           "prompt": "Quelle est la hauteur de la plateforme ? (en m, au dixième ; garde la valeur exacte de la calculatrice pour le calcul)",
           "answer": 6.96,
-          "tolerance": 0.1,
+          "tolerance": 0.05,
           "round": 1,
           "misconceptions": [
             {
@@ -1019,14 +1019,17 @@
             "non, il est trop incliné",
             "non il est trop incline",
             "non car 18 > 15",
-            "non, 18° est plus grand que 15°"
+            "non, 18° est plus grand que 15°",
+            "non, il ne respecte pas la règle",
+            "il ne respecte pas la règle",
+            "non, il ne respecte pas cette règle"
           ],
           "misconceptions": [
             {
               "answer": "oui",
               "id": "mc:comparaison",
               "error": "raisonnement",
-              "feedback": "L’angle trouvé, environ 18°, dépasse 15° : le second câble est trop incliné."
+              "feedback": "Compare l’angle que tu as trouvé à la question précédente avec la limite de 15° imposée par le parc."
             }
           ]
         }
@@ -1095,7 +1098,7 @@
               "answer": "[MP]",
               "id": "mc:adjacent-hypotenuse",
               "error": "notion",
-              "feedback": "[MP] touche M̂, mais c’est l’hypoténuse. Le côté adjacent est l’autre côté de l’angle M̂ : [MN]."
+              "feedback": "[MP] touche M̂, mais c’est l’hypoténuse. Le côté adjacent est l’autre côté de l’angle M̂."
             }
           ]
         },
@@ -1110,7 +1113,7 @@
               "answer": "arrondi(5/13;2)",
               "id": "mc:cos-oppose",
               "error": "notion",
-              "feedback": "5 est la longueur du côté opposé. CAH : adjacent ($MN = 12$) ÷ hypoténuse ($MP = 13$)."
+              "feedback": "5 est la longueur du côté opposé. CAH : on divise le côté adjacent à M̂ par l’hypoténuse."
             },
             {
               "answer": "arrondi(13/12;2)",
@@ -1269,7 +1272,7 @@
           "type": "numeric",
           "prompt": "Calcule $AH$ (en cm, au centième ; théorème de Pythagore dans $ABH$).",
           "answer": 6.128,
-          "tolerance": 0.011,
+          "tolerance": 0.006,
           "round": 2
         },
         {
@@ -1342,7 +1345,7 @@
           "type": "numeric",
           "prompt": "sin Â = ?",
           "answer": 0.6,
-          "misconceptions": [{ "answer": 0.8, "id": "mc:sin-cos", "error": "notion", "feedback": "Le sinus utilise le côté **opposé** à Â, $[BC]$ : sin Â = $6/10$." }]
+          "misconceptions": [{ "answer": 0.8, "id": "mc:sin-cos", "error": "notion", "feedback": "Tu as utilisé le côté adjacent : c’est le cosinus. Le sinus utilise le côté **opposé** à Â, divisé par l’hypoténuse." }]
         },
         { "type": "numeric", "prompt": "tan Â = ?", "answer": 0.75 },
         { "type": "numeric", "prompt": "Calcule (cos Â)² + (sin Â)².", "answer": 1 },
@@ -1361,7 +1364,7 @@
           ]
         }
       ],
-      "hints": ["cos Â = $8/10$, sin Â = $6/10$, tan Â = $6/8$.", "$0,8² + 0,6² = 0,64 + 0,36$.", "(cos Â)² + (sin Â)² = $(AB² + BC²)/AC²$."],
+      "hints": ["Repère d’abord, pour l’angle Â, le côté adjacent $[AB]$, le côté opposé $[BC]$ et l’hypoténuse $[AC]$.", "$0,8² + 0,6² = 0,64 + 0,36$.", "(cos Â)² + (sin Â)² = $(AB² + BC²)/AC²$."],
       "solution": "cos Â = 0,8 ; sin Â = 0,6 ; tan Â = 0,75 ; $0,8² + 0,6² = 1$. En général : (cos Â)² + (sin Â)² = $(AB² + BC²)/AC²$, et d’après le théorème de Pythagore $AB² + BC² = AC²$, donc le quotient vaut toujours 1.",
       "selfTest": [
         {
@@ -1443,7 +1446,7 @@
               "answer": "elles sont perpendiculaires",
               "id": "mc:perp-perp",
               "error": "notion",
-              "feedback": "Deux droites perpendiculaires à une **même** droite sont parallèles entre elles (propriété de 6e)."
+              "feedback": "Elles ne se coupent pas à angle droit : souviens-toi de la propriété de 6e sur deux droites perpendiculaires à une **même** droite."
             }
           ]
         },
@@ -1467,7 +1470,7 @@
               "id": "mc:thales-inverse",
               "error": "notion",
               "prerequisite": "m4.thales.calcul",
-              "feedback": "cos Â = $4/5$ = 0,8 dans les deux triangles : $AB’ = 12,5 × 0,8$."
+              "feedback": "Ton résultat dépasse $AC’$ : impossible pour un côté de l’angle droit. Le cosinus de Â est le même dans les deux triangles : $AB’/AC’$ = $AB/AC$."
             }
           ]
         }

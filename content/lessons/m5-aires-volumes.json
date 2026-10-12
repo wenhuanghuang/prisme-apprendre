@@ -311,8 +311,8 @@
       },
       "answer": "L*p + L*t/2", "unit": "m²", "unitOptional": true,
       "misconceptions": [
-        { "answer": "L*p + L*t", "id": "mc:triangle-oubli-moitie", "error": "methode", "feedback": "Le toit est un triangle : son aire est {L} × {t} ÷ 2 = {L*t/2} m², pas {L*t} m²." },
-        { "answer": "L*(p + t)/2", "id": "mc:figure-entiere", "error": "methode", "feedback": "Le pignon n'est pas un grand triangle : découpe-le en un rectangle ({L*p} m²) et un triangle ({L*t/2} m²), puis additionne." }
+        { "answer": "L*p + L*t", "id": "mc:triangle-oubli-moitie", "error": "methode", "feedback": "Le toit est un triangle : son aire est base × hauteur ÷ 2, soit {L} × {t} ÷ 2, et non {L} × {t}." },
+        { "answer": "L*(p + t)/2", "id": "mc:figure-entiere", "error": "methode", "feedback": "Le pignon n'est pas un grand triangle : découpe-le en un rectangle et un triangle, calcule leurs aires, puis additionne." }
       ],
       "hints": ["Découpe la figure en deux figures simples.", "Rectangle : longueur × largeur. Triangle : base × hauteur ÷ 2, avec une base de {L} m.", "Additionne les deux aires."],
       "solution": "Rectangle : $ {L} × {p} = {L*p} $ m². Triangle : $ {L} × {t} ÷ 2 = {L*t/2} $ m². Total : $ {L*p} + {L*t/2} = {L*p+L*t/2} $ m².",
@@ -503,7 +503,7 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Rayon de la base (en cm) :", "answer": "d/2",
-          "misconceptions": [ { "answer": "d", "id": "mc:diametre-rayon", "error": "lecture", "feedback": "{d} cm est le diamètre. Le rayon est la moitié : {d/2} cm." } ] },
+          "misconceptions": [ { "answer": "d", "id": "mc:diametre-rayon", "error": "lecture", "feedback": "{d} cm est le diamètre. Le rayon en est la moitié." } ] },
         { "type": "numeric", "prompt": "Volume du verre, arrondi à l'unité (avec l'unité) :", "answer": "pi*d*d/4*h", "unit": "cm³", "tolerance": 1,
           "misconceptions": [
             { "answer": "pi*d*d*h", "id": "mc:diametre-rayon", "error": "notion", "feedback": "Tu as utilisé le diamètre à la place du rayon : l'aire de la base est π × {d/2} × {d/2}." },
@@ -539,15 +539,15 @@
           "misconceptions": [ { "answer": 11.4, "id": "mc:aire-perimetre", "error": "notion", "feedback": "11,4, c'est le périmètre de la pièce (son tour), en m. Pour le carrelage, il faut la surface : 3,2 × 2,5." } ] },
         { "type": "numeric", "prompt": "Aire d'un carreau (avec l'unité) :", "answer": 0.16, "unit": "m²",
           "misconceptions": [
-            { "answer": 1.6, "id": "mc:calcul-decimal", "error": "calcul", "feedback": "0,4 × 0,4 = 0,16 (et non 1,6) : 4 × 4 = 16, et il faut deux chiffres après la virgule." },
-            { "answer": 1600, "id": "mc:conversion-aire", "error": "unite", "feedback": "1 600, c'est l'aire d'un carreau en cm² (40 × 40). Écris l'unité, ou convertis : 1 600 cm² = 0,16 m²." }
+            { "answer": 1.6, "id": "mc:calcul-decimal", "error": "calcul", "feedback": "Attention à la virgule : 4 × 4 = 16, mais 0,4 × 0,4 doit avoir deux chiffres après la virgule (un pour chaque facteur)." },
+            { "answer": 1600, "id": "mc:conversion-aire", "error": "unite", "feedback": "1 600, c'est l'aire d'un carreau en cm² (40 × 40). Écris l'unité, ou convertis en m² : 1 m² = 10 000 cm²." }
           ] },
         { "type": "numeric", "prompt": "Nombre de carreaux nécessaires (sans compter les chutes) :", "answer": 50,
-          "misconceptions": [ { "answer": 20, "id": "mc:diviser-cote", "error": "methode", "feedback": "Tu as divisé l'aire du sol par le côté d'un carreau (0,4 m). Il faut diviser une aire par une aire : 8 ÷ 0,16 = 50." } ] },
+          "misconceptions": [ { "answer": 20, "id": "mc:diviser-cote", "error": "methode", "feedback": "Tu as divisé l'aire du sol par le côté d'un carreau (0,4 m). Il faut diviser une aire par une aire : celle du sol par celle d'un carreau." } ] },
         { "type": "numeric", "prompt": "Nombre de boîtes à acheter :", "answer": 5 },
         { "type": "numeric", "prompt": "Longueur de plinthe nécessaire (avec l'unité) :", "answer": 10.6, "unit": "m",
           "misconceptions": [
-            { "answer": 11.4, "id": "mc:oubli-porte", "error": "lecture", "feedback": "Le tour complet fait 11,4 m, mais il n'y a pas de plinthe devant la porte : 11,4 − 0,8 = 10,6 m." },
+            { "answer": 11.4, "id": "mc:oubli-porte", "error": "lecture", "feedback": "Le tour complet fait 11,4 m, mais il n'y a pas de plinthe devant la porte : retire la largeur de la porte." },
             { "answer": 8, "id": "mc:aire-perimetre", "error": "notion", "feedback": "La plinthe fait le tour : c'est une longueur (un périmètre), pas une aire." }
           ] }
       ],
@@ -695,9 +695,9 @@
         { "type": "numeric", "prompt": "Volume du grand cube (en cm³) :", "answer": "8*c*c*c",
           "misconceptions": [ { "answer": "2*c*c*c", "id": "mc:double-volume", "error": "notion", "feedback": "Le volume n'a pas simplement doublé : calcule {2*c} × {2*c} × {2*c}." } ] },
         { "type": "numeric", "prompt": "Par combien le volume a-t-il été multiplié ?", "answer": 8,
-          "misconceptions": [ { "answer": 2, "id": "mc:double-volume", "error": "notion", "feedback": "Les trois dimensions sont doublées : le volume est multiplié par 2 × 2 × 2 = 8. On peut ranger 8 petits cubes dans le grand !" } ] },
+          "misconceptions": [ { "answer": 2, "id": "mc:double-volume", "error": "notion", "feedback": "Ce ne sont pas une mais TROIS dimensions qui sont doublées : la longueur, la largeur et la hauteur. Combien de petits cubes peut-on ranger dans le grand ?" } ] },
         { "type": "numeric", "prompt": "Par combien l'aire d'une face a-t-elle été multipliée ?", "answer": 4,
-          "misconceptions": [ { "answer": 2, "id": "mc:double-aire", "error": "notion", "feedback": "Une face est un carré dont les deux dimensions doublent : son aire est multipliée par 2 × 2 = 4." } ] }
+          "misconceptions": [ { "answer": 2, "id": "mc:double-aire", "error": "notion", "feedback": "Une face est un carré dont les DEUX dimensions doublent : compare les aires des deux faces." } ] }
       ],
       "hints": ["Volume d'un cube : arête × arête × arête.", "Calcule les deux volumes, puis divise le grand par le petit.", "Imagine combien de petits cubes on peut empiler dans le grand."],
       "solution": "Petit cube : {c} × {c} × {c} = {c*c*c} cm³. Grand cube : {2*c} × {2*c} × {2*c} = {8*c*c*c} cm³, soit 8 fois plus. L'aire d'une face passe de {c*c} cm² à {4*c*c} cm² : 4 fois plus. Quand les longueurs sont multipliées par 2, les aires le sont par 4 et les volumes par 8 (tu le retrouveras en 4e avec les agrandissements).",
@@ -776,9 +776,9 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Pour x = 2 cm, quelle est la longueur du fond de la boîte (en cm) ?", "answer": 26,
-          "misconceptions": [ { "answer": 28, "id": "mc:une-coupe", "error": "lecture", "feedback": "On découpe un carré à CHAQUE bout de la longueur : 30 − 2 × 2 = 26 cm." } ] },
+          "misconceptions": [ { "answer": 28, "id": "mc:une-coupe", "error": "lecture", "feedback": "On découpe un carré à CHAQUE bout de la longueur : il faut retirer deux fois 2 cm." } ] },
         { "type": "numeric", "prompt": "Pour x = 2 cm, quelle est la largeur du fond (en cm) ?", "answer": 16,
-          "misconceptions": [ { "answer": 18, "id": "mc:une-coupe", "error": "lecture", "feedback": "Il y a un carré découpé à chaque bout de la largeur aussi : 20 − 2 × 2 = 16 cm." } ] },
+          "misconceptions": [ { "answer": 18, "id": "mc:une-coupe", "error": "lecture", "feedback": "Il y a un carré découpé à chaque bout de la largeur aussi : retire deux fois 2 cm." } ] },
         { "type": "numeric", "prompt": "Volume de la boîte pour x = 2 cm (en cm³) :", "answer": 832 },
         { "type": "numeric", "prompt": "En essayant les valeurs entières de x, laquelle donne le plus grand volume ?", "answer": 4 },
         { "type": "numeric", "prompt": "Quel est ce plus grand volume (en cm³) ?", "answer": 1056 }

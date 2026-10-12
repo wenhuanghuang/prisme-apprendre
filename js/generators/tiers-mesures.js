@@ -4,7 +4,7 @@
  * ◆ : conversions, plusieurs opérations, question posée à l'envers ; ✦ : plusieurs étapes, cas piège,
  * conclusion à donner (oui / non, matériau…). Toutes les idées fausses sont calculées avec les nombres tirés.
  */
-import { ri, pick, sample, clean, fr, sq, mc, text, problem } from './gen-util.js';
+import { ri, pick, sample, clean, fr, sq, mc, text, problem, roundedTo, withoutCitedAnswer } from './gen-util.js';
 import { prenom, round, isRound, choice, num, yesNo, pt, frameAround } from './tiers-outils.js';
 import { distinct } from './tiers-nombres-outils.js';
 
@@ -61,8 +61,8 @@ function pyEchelle(rand) {
   do { L = pick(rand, [2.5, 3, 3.5, 4, 4.5, 5, 6]); d = pick(rand, [0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.5]); h = Math.sqrt(L * L - d * d); } while (isRound(h, 2));
   const H = round(h, 2); const target = round(H + pick(rand, [-0.3, -0.2, -0.15, 0.1, 0.15, 0.25]), 2); const ok = H >= target;
   return problem([
-    num(H, { prompt: 'À quelle hauteur arrive le haut de l’échelle ? (en m, arrondie au centimètre)', unit: 'm', unitOptional: true, round: 2, tolerance: 0.0051, misconceptions: [mc(round(Math.sqrt(L * L + d * d), 2), 'mc:pythagore-cote-somme', 'notion', 'L’échelle est l’hypoténuse (en face de l’angle droit entre le mur et le sol) : hauteur² = échelle² − distance².'), mc(clean(L - d), 'mc:soustraire-longueurs', 'notion', 'On soustrait les carrés des longueurs, pas les longueurs.'), mc(round(L * L - d * d, 4), 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la hauteur : prends la racine carrée.')] }),
-    yesNo(ok, `Une gouttière est à ${fr(target)} m du sol. Le haut de l’échelle l’atteint-il ? (oui ou non)`, 'mc:comparaison', 'raisonnement', ok ? `${fr(H)} m ≥ ${fr(target)} m : l’échelle atteint la gouttière.` : `${fr(H)} m < ${fr(target)} m : il manque ${fr(round(target - H, 2))} m.`),
+    num(H, { prompt: 'À quelle hauteur arrive le haut de l’échelle ? (en m, arrondie au centimètre)', unit: 'm', unitOptional: true, ...roundedTo(2), misconceptions: [mc(round(Math.sqrt(L * L + d * d), 2), 'mc:pythagore-cote-somme', 'notion', 'L’échelle est l’hypoténuse (en face de l’angle droit entre le mur et le sol) : hauteur² = échelle² − distance².'), mc(clean(L - d), 'mc:soustraire-longueurs', 'notion', 'On soustrait les carrés des longueurs, pas les longueurs.'), mc(round(L * L - d * d, 4), 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la hauteur : prends la racine carrée.')] }),
+    yesNo(ok, `Une gouttière est à ${fr(target)} m du sol. Le haut de l’échelle l’atteint-il ? (oui ou non)`, 'mc:comparaison', 'raisonnement', `Compare la hauteur que tu as calculée à celle de la gouttière (${fr(target)} m).`),
   ], {
     prompt: `Une échelle de ${fr(L)} m est appuyée contre un mur vertical. Son pied est posé sur le sol horizontal, à ${fr(d)} m du mur.`,
     representation: 'concrete', expectedSeconds: 240,
@@ -77,8 +77,8 @@ function pyEcran(rand) {
   const W = round((diag * 16) / Math.sqrt(337), 1); const H = round((diag * 9) / Math.sqrt(337), 1);
   const dc = round(Math.sqrt(W * W + H * H), 1); const inch = Math.round(dc / 2.54);
   return problem([
-    num(dc, { prompt: 'Longueur de la diagonale de l’écran, en cm (arrondie au dixième) ?', unit: 'cm', unitOptional: true, round: 1, tolerance: 0.051, misconceptions: [mc(clean(W + H), 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs.'), mc(round(W * W + H * H, 2), 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
-    num(inch, { prompt: 'Taille de l’écran, en pouces (arrondie à l’unité) ? Rappel : 1 pouce = 2,54 cm.', unit: 'pouces', unitOptional: true, strictUnit: true, round: 0, misconceptions: [mc(Math.round(dc * 2.54), 'mc:conversion-sens', 'notion', 'Un pouce est plus long qu’un centimètre : le nombre de pouces est plus PETIT que le nombre de centimètres. Divise par 2,54.'), mc(Math.round((W + H) / 2.54), 'mc:pythagore-somme-longueurs', 'notion', 'Utilise la diagonale calculée avec le théorème de Pythagore, pas la somme des côtés.')] }),
+    num(dc, { prompt: 'Longueur de la diagonale de l’écran, en cm (arrondie au dixième) ?', unit: 'cm', unitOptional: true, ...roundedTo(1), misconceptions: [mc(clean(W + H), 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs.'), mc(round(W * W + H * H, 2), 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
+    num(inch, { prompt: 'Taille de l’écran, en pouces (arrondie à l’unité) ? Rappel : 1 pouce = 2,54 cm.', unit: 'pouces', unitOptional: true, strictUnit: true, ...roundedTo(0), misconceptions: [mc(Math.round(dc * 2.54), 'mc:conversion-sens', 'notion', 'Un pouce est plus long qu’un centimètre : le nombre de pouces est plus PETIT que le nombre de centimètres. Divise par 2,54.'), mc(Math.round((W + H) / 2.54), 'mc:pythagore-somme-longueurs', 'notion', 'Utilise la diagonale calculée avec le théorème de Pythagore, pas la somme des côtés.')] }),
   ], {
     prompt: `Un écran rectangulaire mesure ${fr(W)} cm de large et ${fr(H)} cm de haut. La taille d’un écran se donne par la longueur de sa diagonale, en pouces.`,
     representation: 'concrete', expectedSeconds: 240,
@@ -93,8 +93,8 @@ function pyTerrain(rand) {
   do { L = pick(rand, [25, 30, 35, 40, 45, 50, 60, 80]); l = pick(rand, [12, 15, 18, 20, 24, 28, 32]); d = Math.sqrt(L * L + l * l); } while (l >= L || isRound(d, 1));
   const D = round(d, 1); const gain = round(L + l - D, 1); const who = prenom(rand);
   return problem([
-    num(D, { prompt: 'Longueur du trajet en diagonale, en m (arrondie au décimètre) ?', unit: 'm', unitOptional: true, round: 1, tolerance: 0.051, misconceptions: [mc(L + l, 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs, pas sur les longueurs.'), mc(L * L + l * l, 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
-    num(gain, { prompt: 'Combien de mètres économise-t-on en coupant par la diagonale plutôt qu’en longeant deux côtés ? (au décimètre)', unit: 'm', unitOptional: true, round: 1, tolerance: 0.051, misconceptions: [mc(D, 'mc:question-posee', 'lecture', 'C’est la longueur de la diagonale ; la question demande la différence entre les deux trajets.'), mc(round(2 * (L + l) - D, 1), 'mc:perimetre-entier', 'lecture', `Le trajet le long des bords ne fait que deux côtés : ${L} + ${l} = ${L + l} m.`)] }),
+    num(D, { prompt: 'Longueur du trajet en diagonale, en m (arrondie au décimètre) ?', unit: 'm', unitOptional: true, ...roundedTo(1), misconceptions: [mc(L + l, 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs, pas sur les longueurs.'), mc(L * L + l * l, 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
+    num(gain, { prompt: 'Combien de mètres économise-t-on en coupant par la diagonale plutôt qu’en longeant deux côtés ? (au décimètre)', unit: 'm', unitOptional: true, ...roundedTo(1), misconceptions: [mc(D, 'mc:question-posee', 'lecture', 'C’est la longueur de la diagonale ; la question demande la différence entre les deux trajets.'), mc(round(2 * (L + l) - D, 1), 'mc:perimetre-entier', 'lecture', `Le trajet le long des bords ne fait que deux côtés : ${L} + ${l} = ${L + l} m.`)] }),
   ], {
     prompt: `Un terrain de sport rectangulaire mesure ${L} m sur ${l} m. Pour aller d’un coin au coin opposé, ${who} hésite entre longer deux côtés du terrain ou le traverser en diagonale.`,
     representation: 'concrete', expectedSeconds: 240,
@@ -118,13 +118,13 @@ function pyReciproque(rand) {
   // « proches » seulement si l'écart est faible (au plus 10 %) : 36 et 25 sont seulement différents
   const close = Math.abs(C2 - S) <= 0.1 * S;
   const notRight = close
-    ? `Les deux nombres sont proches mais différents (${fr(C2)} ≠ ${fr(S)}) : le triangle n’est pas rectangle. Un dessin peut tromper, seul le calcul permet de conclure.`
-    : `Les deux nombres sont différents (${fr(C2)} ≠ ${fr(S)}) : s’il était rectangle, ils seraient égaux d’après le théorème de Pythagore. Le triangle n’est donc pas rectangle.`;
+    ? 'Les deux nombres que tu as calculés sont proches : sont-ils égaux ? Un dessin peut tromper, seul le calcul permet de conclure.'
+    : 'Compare les deux nombres que tu as calculés : si le triangle était rectangle, ils seraient égaux d’après le théorème de Pythagore.';
   const sides = sample(rand, [`${X}${Y} = ${fr(a)} cm`, `${Y}${Z} = ${fr(b)} cm`, `${X}${Z} = ${fr(c2)} cm`]);
   const parts = [
     num(C2, { prompt: 'Calcule le carré de la longueur du plus grand côté.', misconceptions: [mc(sq(a), 'mc:plus-grand-cote', 'methode', 'Repère d’abord le plus grand côté : c’est le seul qui peut être l’hypoténuse.'), mc(sq(b), 'mc:plus-grand-cote', 'methode', 'Repère d’abord le plus grand côté : c’est le seul qui peut être l’hypoténuse.'), mc(clean(2 * c2), 'mc:carre-double', 'calcul', 'Le carré d’un nombre, c’est ce nombre multiplié par lui-même (et non par 2).')] }),
     num(S, { prompt: 'Calcule la somme des carrés des longueurs des deux autres côtés.', misconceptions: [mc(sq(a + b), 'mc:carre-somme', 'calcul', '(a + b)² n’est pas égal à a² + b² : calcule chaque carré, puis additionne.'), mc(clean(sq(a) + C2), 'mc:plus-grand-cote', 'methode', 'On additionne les carrés des deux PETITS côtés, et on compare au carré du plus grand.')] }),
-    yesNo(right, `Le triangle ${X}${Y}${Z} est-il rectangle ? (oui ou non)`, right ? 'mc:reciproque-pythagore' : 'mc:presque-egal', 'raisonnement', right ? 'Les deux nombres sont égaux : d’après la réciproque du théorème de Pythagore, le triangle est rectangle.' : notRight),
+    yesNo(right, `Le triangle ${X}${Y}${Z} est-il rectangle ? (oui ou non)`, right ? 'mc:reciproque-pythagore' : 'mc:presque-egal', 'raisonnement', right ? 'Compare les deux nombres que tu as calculés, puis applique la réciproque du théorème de Pythagore.' : notRight),
   ];
   if (right) parts.push(text([Y, `en ${Y}`], { prompt: 'En quel sommet est l’angle droit ? (une lettre)', misconceptions: [X, Z].map((L) => mc(L, 'mc:sommet-angle-droit', 'notion', `L’angle droit est en face du plus grand côté [${X}${Z}] : c’est le sommet qui n’appartient pas à ce côté.`)) }));
   const concl = right
@@ -209,11 +209,11 @@ function pyEchelleGlisse(rand) {
   do {
     L = pick(rand, [3, 3.5, 4, 4.5, 5, 6]); d1 = pick(rand, [0.6, 0.8, 1, 1.2, 1.4, 1.5]); e = pick(rand, [0.3, 0.4, 0.5, 0.6, 0.8, 1, 1.2]);
     d2 = clean(d1 + e); H1 = round(Math.sqrt(L * L - d1 * d1), 2); H2 = round(Math.sqrt(L * L - d2 * d2), 2); desc = round(H1 - H2, 2);
-  } while (d2 > L - 0.8 || Math.abs(desc - e) < 0.08);
+  } while (d2 > L - 0.8 || Math.abs(desc - e) < 0.08 || round(Math.sqrt(L * L - d1 * d1) - Math.sqrt(L * L - d2 * d2), 2) !== desc);
   return problem([
-    num(H1, { prompt: 'Hauteur atteinte au départ, en m (au centimètre près) ?', unit: 'm', unitOptional: true, round: 2, tolerance: 0.0051, misconceptions: [mc(round(Math.sqrt(L * L + d1 * d1), 2), 'mc:pythagore-cote-somme', 'notion', 'L’échelle est l’hypoténuse : hauteur² = échelle² − distance².'), mc(clean(L - d1), 'mc:soustraire-longueurs', 'notion', 'On soustrait les carrés des longueurs, pas les longueurs.')] }),
-    num(H2, { prompt: 'Hauteur atteinte après le glissement, en m (au centimètre près) ?', unit: 'm', unitOptional: true, round: 2, tolerance: 0.0051, misconceptions: [mc(round(H1 - e, 2), 'mc:glissement-egal', 'raisonnement', 'Le haut de l’échelle ne descend pas d’autant que le pied recule : refais le calcul avec la nouvelle distance au mur.'), mc(round(Math.sqrt(L * L - e * e), 2), 'mc:distance-pied', 'lecture', `Le pied est maintenant à ${fr(d1)} + ${fr(e)} = ${fr(d2)} m du mur.`)] }),
-    num(desc, { prompt: 'De combien le haut de l’échelle est-il descendu, en m ?', unit: 'm', unitOptional: true, round: 2, tolerance: 0.011, misconceptions: [mc(e, 'mc:glissement-egal', 'raisonnement', `Le pied a reculé de ${fr(e)} m, mais le haut descend de ${fr(desc)} m seulement : les deux déplacements ne sont pas égaux.`)] }),
+    num(H1, { prompt: 'Hauteur atteinte au départ, en m (au centimètre près) ?', unit: 'm', unitOptional: true, ...roundedTo(2), misconceptions: [mc(round(Math.sqrt(L * L + d1 * d1), 2), 'mc:pythagore-cote-somme', 'notion', 'L’échelle est l’hypoténuse : hauteur² = échelle² − distance².'), mc(clean(L - d1), 'mc:soustraire-longueurs', 'notion', 'On soustrait les carrés des longueurs, pas les longueurs.')] }),
+    num(H2, { prompt: 'Hauteur atteinte après le glissement, en m (au centimètre près) ?', unit: 'm', unitOptional: true, ...roundedTo(2), misconceptions: [mc(round(H1 - e, 2), 'mc:glissement-egal', 'raisonnement', 'Le haut de l’échelle ne descend pas d’autant que le pied recule : refais le calcul avec la nouvelle distance au mur.'), mc(round(Math.sqrt(L * L - e * e), 2), 'mc:distance-pied', 'lecture', `Le pied est maintenant à ${fr(d1)} + ${fr(e)} = ${fr(d2)} m du mur.`)] }),
+    num(desc, { prompt: 'De combien le haut de l’échelle est-il descendu, en m (au centimètre près) ?', unit: 'm', unitOptional: true, ...roundedTo(2), misconceptions: [mc(e, 'mc:glissement-egal', 'raisonnement', `Le pied a reculé de ${fr(e)} m, mais le haut ne descend pas d’autant : calcule la différence des deux hauteurs.`)] }),
   ], {
     prompt: `Une échelle de ${fr(L)} m est appuyée contre un mur vertical, son pied à ${fr(d1)} m du mur. Le pied de l’échelle glisse et s’éloigne du mur de ${fr(e)} m de plus.`,
     representation: 'concrete', expectedSeconds: 360,
@@ -224,17 +224,17 @@ function pyEchelleGlisse(rand) {
 
 /** ✦ Défi : la grande diagonale d’un pavé (Pythagore deux fois). */
 function pyPave(rand) {
-  let L; let l; let h; let d; let Dg; let rod; let fits;
+  let L; let l; let h; let d; let Dg; let rod; let fits; let D1; let D2;
   do {
     L = pick(rand, [40, 45, 50, 60, 80]); l = pick(rand, [20, 25, 30, 35]); h = pick(rand, [15, 20, 25, 30, 40]);
     d = Math.sqrt(L * L + l * l); Dg = Math.sqrt(L * L + l * l + h * h); fits = rand() < 0.5;
     rod = fits ? Math.floor(Dg) - ri(rand, 0, 2) : Math.ceil(Dg) + ri(rand, 1, 3);
-  } while (rod - Dg > -0.5 && rod - Dg < 0.5 || (fits && rod < d + 1.5));
-  const D1 = round(d, 1); const D2 = round(Dg, 1);
+    D1 = round(d, 1); D2 = round(Dg, 1);
+  } while (rod - Dg > -0.5 && rod - Dg < 0.5 || (fits && rod < d + 1.5) || round(Math.sqrt(D1 * D1 + h * h), 1) !== D2);
   return problem([
-    num(D1, { prompt: 'Longueur de la diagonale du fond de la boîte, en cm (arrondie au dixième) ?', unit: 'cm', unitOptional: true, round: 1, tolerance: 0.051, misconceptions: [mc(L + l, 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs.'), mc(L * L + l * l, 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
-    num(D2, { prompt: 'Longueur de la grande diagonale de la boîte (d’un coin du fond au coin opposé du couvercle), en cm (au dixième) ?', unit: 'cm', unitOptional: true, round: 1, tolerance: 0.11, misconceptions: [mc(round(d + h, 1), 'mc:pythagore-somme-longueurs', 'notion', 'Utilise encore le théorème de Pythagore, avec les carrés : grande diagonale² = diagonale du fond² + hauteur².'), mc(round(Math.sqrt(L * L + h * h), 1), 'mc:diagonale-face', 'methode', 'C’est la diagonale d’une face latérale : la grande diagonale s’appuie sur la diagonale du fond et sur la hauteur.')] }),
-    yesNo(fits, `Une baguette rigide de ${rod} cm peut-elle tenir entièrement dans la boîte fermée ? (oui ou non)`, 'mc:baguette-pave', 'raisonnement', fits ? `La baguette est plus longue que la diagonale du fond (${fr(D1)} cm), mais plus courte que la grande diagonale (${fr(D2)} cm) : placée en biais, elle tient.` : `Même la plus grande longueur disponible, la grande diagonale (${fr(D2)} cm), est plus courte que la baguette.`),
+    num(D1, { prompt: 'Longueur de la diagonale du fond de la boîte, en cm (arrondie au dixième) ?', unit: 'cm', unitOptional: true, ...roundedTo(1), misconceptions: [mc(L + l, 'mc:pythagore-somme-longueurs', 'notion', 'Le théorème de Pythagore porte sur les carrés des longueurs.'), mc(L * L + l * l, 'mc:oubli-racine', 'methode', 'Tu as trouvé le carré de la diagonale : prends la racine carrée.')] }),
+    num(D2, { prompt: 'Longueur de la grande diagonale de la boîte (d’un coin du fond au coin opposé du couvercle), en cm (au dixième) ?', unit: 'cm', unitOptional: true, ...roundedTo(1), misconceptions: [mc(round(d + h, 1), 'mc:pythagore-somme-longueurs', 'notion', 'Utilise encore le théorème de Pythagore, avec les carrés : grande diagonale² = diagonale du fond² + hauteur².'), mc(round(Math.sqrt(L * L + h * h), 1), 'mc:diagonale-face', 'methode', 'C’est la diagonale d’une face latérale : la grande diagonale s’appuie sur la diagonale du fond et sur la hauteur.')] }),
+    yesNo(fits, `Une baguette rigide de ${rod} cm peut-elle tenir entièrement dans la boîte fermée ? (oui ou non)`, 'mc:baguette-pave', 'raisonnement', 'Compare la baguette à la grande diagonale : c’est la plus grande longueur disponible dans la boîte fermée, en plaçant la baguette en biais.'),
   ], {
     prompt: `Défi (au-delà du programme : il suffit d’utiliser deux fois le théorème de Pythagore). Une boîte en forme de pavé droit mesure ${L} cm de long, ${l} cm de large et ${h} cm de haut.`,
     representation: 'visuelle', expectedSeconds: 420,
@@ -349,8 +349,9 @@ function convMasseSomme(rand) {
 
 /** ◆ Grammes → milligrammes avec une multiplication. */
 function convMasseMg(rand) {
-  const dose = pick(rand, [0.05, 0.1, 0.2, 0.25, 0.5, 1]); const n = pick(rand, [12, 16, 20, 24, 30]);
-  const ans = clean(dose * 1000 * n);
+  let dose; let n; let ans;
+  // 1 000 mg en tout serait le facteur de conversion que citent les messages (« 1 g = 1 000 mg ») : on retire ce tirage
+  do { dose = pick(rand, [0.05, 0.1, 0.2, 0.25, 0.5, 1]); n = pick(rand, [12, 16, 20, 24, 30]); ans = clean(dose * 1000 * n); } while (ans === 1000);
   return num(ans, {
     prompt: `Un comprimé contient ${fr(dose)} g de vitamine C. Quelle masse de vitamine C, en mg, contient une boîte de ${n} comprimés ?`,
     unit: 'mg', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 120,
@@ -406,10 +407,10 @@ function convDureeHoraires(rand) {
   const p2 = (x) => String(x).padStart(2, '0');
   return num(ans, {
     prompt: `Un train part à ${h1} h ${p2(m1)} et arrive à ${h2} h ${p2(m2)}. Quelle est la durée du trajet, en heures (écriture décimale) ?`,
-    unit: 'h', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 150,
+    unit: 'h', unitOptional: true, strictUnit: true, decimalOnly: true, representation: 'concrete', expectedSeconds: 150,
     misconceptions: [
       mc(clean(h2 + m2 / 100 - (h1 + m1 / 100)), 'mc:duree-decimale', 'notion', 'Les heures ne se soustraient pas comme des nombres décimaux : 1 h = 60 min, pas 100.'),
-      mc(Number(`${dh}.${p2(dm)}`), 'mc:duree-decimale', 'notion', `${dh} h ${dm} min ne s’écrit pas ${dh},${p2(dm)} h : ${dm} min = ${dm} ÷ 60 h = ${fr(dm / 60)} h.`),
+      mc(Number(`${dh}.${p2(dm)}`), 'mc:duree-decimale', 'notion', `${dh} h ${dm} min ne s’écrit pas ${dh},${p2(dm)} h : les minutes sont une fraction d’heure, on les divise par 60.`),
       mc(D, 'mc:unite-demandee', 'lecture', 'Ce nombre est la durée en minutes ; la question la demande en heures.'),
     ],
     hints: [`Compte en heures et minutes : de ${h1} h ${p2(m1)} à ${h2} h ${p2(m2)}.`, `Tu dois trouver ${dh} h ${dm} min.`, `Convertis les minutes : ${dm} min = ${dm} ÷ 60 h.`],
@@ -423,11 +424,11 @@ function convDureeHM(rand) {
   const x = clean(h + f); const mins = Math.round(f * 60); const pct = Math.round(f * 100);
   return problem([
     num(h, { prompt: 'Nombre d’heures entières ?', unit: 'h', unitOptional: true, misconceptions: [mc(Math.round(x * 60), 'mc:unite-demandee', 'lecture', 'Ce nombre est la durée totale en minutes ; écris ici seulement les heures entières.')] }),
-    num(mins, { prompt: 'Nombre de minutes en plus ?', unit: 'min', unitOptional: true, misconceptions: [mc(pct, 'mc:duree-decimale', 'notion', `${fr(f)} h n’est pas ${pct} min : c’est une fraction d’heure, ${fr(f)} × 60 = ${mins} min.`)] }),
+    num(mins, { prompt: 'Nombre de minutes en plus ?', unit: 'min', unitOptional: true, misconceptions: [mc(pct, 'mc:duree-decimale', 'notion', `${fr(f)} h n’est pas ${pct} min : c’est une fraction d’heure, multiplie-la par 60.`)] }),
   ], {
     prompt: `Une randonnée a duré ${fr(x)} h. Écris cette durée en heures et minutes.`,
     representation: 'concrete', expectedSeconds: 120,
-    hints: [`${fr(x)} h = ${h} h + ${fr(f)} h.`, `1 h = 60 min, donc ${fr(f)} h = ${fr(f)} × 60 min.`],
+    hints: ['Sépare la partie entière (les heures) de la partie décimale (une fraction d’heure).', '1 h = 60 min : multiplie la partie décimale par 60.'],
     solution: `${fr(x)} h = ${h} h + ${fr(f)} h ; ${fr(f)} × 60 = ${mins} min. Donc ${h} h ${mins} min.`,
   });
 }
@@ -453,7 +454,7 @@ function convVitesse(rand) {
     const v = pick(rand, [18, 21.6, 36, 43.2, 54, 72, 90, 108, 126, 144, 162, 30, 50, 80, 110, 130]); const ms = v / 3.6; const exact = isRound(ms, 2);
     const ans = exact ? clean(ms) : round(ms, 1);
     return num(ans, {
-      prompt: `Convertis en m/s${exact ? '' : ' (arrondi au dixième)'} : ${v} km/h = … m/s`, unit: 'm/s', unitOptional: true, strictUnit: true, round: exact ? undefined : 1, tolerance: exact ? undefined : 0.051, representation: 'symbolique', expectedSeconds: 120,
+      prompt: `Convertis en m/s${exact ? '' : ' (arrondi au dixième)'} : ${v} km/h = … m/s`, unit: 'm/s', unitOptional: true, strictUnit: true, ...(exact ? {} : roundedTo(1)), representation: 'symbolique', expectedSeconds: 120,
       misconceptions: [
         mc(round((v * 1000) / 60, 2), 'mc:heure-60', 'notion', '1 h = 3 600 s (et non 60 s) : ce résultat est en mètres par minute.'),
         mc(clean(v * 3.6), 'mc:conversion-sens', 'notion', 'Une vitesse en m/s est un nombre plus petit qu’en km/h : on divise par 3,6.'),
@@ -505,14 +506,14 @@ function convMasseVolumique(rand) {
 function convConsoDebit(rand) {
   const kind = ri(rand, 1, 4);
   if (kind <= 2) {
-    const [c, k] = pick(rand, [[2.5, 40], [3.2, 31.25], [4, 25], [5, 20], [6.25, 16], [8, 12.5], [12.5, 8]]);
+    const [c, k] = pick(rand, [[4, 25], [5, 20], [6.25, 16], [8, 12.5], [12.5, 8]]);
     const toKm = kind === 1; const ans = toKm ? k : c; const given = toKm ? c : k;
     return num(ans, {
       prompt: toKm ? `Une voiture consomme ${fr(c)} L aux 100 km. Combien de kilomètres parcourt-elle avec 1 L de carburant ?` : `Une voiture parcourt ${fr(k)} km avec 1 L de carburant. Quelle est sa consommation, en litres pour 100 km ? (écris seulement le nombre)`,
       unit: toKm ? 'km' : undefined, unitOptional: toKm ? true : undefined, representation: 'concrete', expectedSeconds: 150,
       misconceptions: [
-        mc(clean(given / 100), 'mc:rapport-inverse', 'raisonnement', toKm ? 'Ce nombre est la quantité de carburant pour 1 km ; on cherche la distance parcourue avec 1 L.' : `Tu as divisé dans le mauvais sens : la consommation aux 100 km vaut 100 ÷ ${fr(k)}.`),
-        mc(clean(given * 100), 'mc:operation-inverse', 'raisonnement', 'Vérifie l’ordre de grandeur : une voiture consomme quelques litres aux 100 km et parcourt une dizaine de kilomètres avec 1 L.'),
+        mc(clean(given / 100), 'mc:rapport-inverse', 'raisonnement', toKm ? 'Ce nombre est la quantité de carburant pour 1 km ; on cherche la distance parcourue avec 1 L.' : 'Tu as divisé dans le mauvais sens : cherche combien de litres il faut pour 100 km.'),
+        mc(clean(given * 100), 'mc:operation-inverse', 'raisonnement', 'Vérifie l’ordre de grandeur : une voiture consomme quelques litres aux 100 km et parcourt avec 1 L quelques dizaines de kilomètres au plus.'),
         mc(clean(1 / given), 'mc:oubli-cent-km', 'methode', toKm ? 'Les ' + fr(c) + ' L correspondent à 100 km, pas à 1 km.' : 'Ce nombre est la consommation pour 1 km : multiplie par 100.'),
       ],
       hints: toKm ? [`Avec ${fr(c)} L, on parcourt 100 km.`, `Avec 1 L, on parcourt ${fr(c)} fois moins : 100 ÷ ${fr(c)}.`] : [`Pour 1 km, il faut 1 ÷ ${fr(k)} L.`, `Pour 100 km : 100 ÷ ${fr(k)}.`],
@@ -532,7 +533,8 @@ function convConsoDebit(rand) {
       solution: `En 1 h : ${q} × 60 = ${q * 60} L = ${q * 60} ÷ 1 000 = ${fr(ans)} m³, soit ${fr(ans)} m³/h.`,
     });
   }
-  const Q = pick(rand, [0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 3, 3.6, 4.5]); const ans = clean((Q * 1000) / 60);
+  // pas de 3,6 m³/h : 60 L/min se lirait dans « il coule 60 fois moins »
+  const Q = pick(rand, [0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 3, 4.5]); const ans = clean((Q * 1000) / 60);
   return num(ans, {
     prompt: `Une pompe débite ${fr(Q)} m³ par heure. Combien de litres par minute cela fait-il ?`, unit: 'L/min', unitOptional: true, strictUnit: true, representation: 'concrete', expectedSeconds: 150,
     misconceptions: [
@@ -563,7 +565,7 @@ function convAquarium(rand) {
     prompt: `Un aquarium a la forme d’un pavé droit de ${txt[0]} de long, ${txt[1]} de large et ${txt[2]} de haut.`,
     representation: 'concrete', expectedSeconds: 300,
     hints: ['Convertis les trois dimensions en dm : 1 dm³ = 1 L.', `En dm : ${dims.map((d) => fr(d)).join(' × ')}.`, `Nombre de seaux : contenance ÷ ${s}, arrondi à l’entier supérieur.`],
-    solution: `En dm : ${dims.map((d) => fr(d)).join(' × ')} = ${fr(V)} dm³ = ${fr(V)} L. ${fr(V)} ÷ ${s} ≈ ${fr(round(V / s, 2))}, il faut donc ${n} seaux.`,
+    solution: `En dm : ${dims.map((d) => fr(d)).join(' × ')} = ${fr(V)} dm³ = ${fr(V)} L. ${fr(V)} ÷ ${s} ${isRound(V / s, 2) ? '=' : '≈'} ${fr(round(V / s, 2))}, il faut donc ${n} seaux.`,
   });
 }
 
@@ -578,7 +580,7 @@ function convAllure(rand) {
     const mcs = [mc(round(secs / 60, 2), 'mc:allure-vitesse', 'notion', 'Ce nombre est le temps en minutes pour 1 km (l’allure), pas la vitesse en km/h.')];
     if (s) mcs.push(mc(round(60 / (m + s / 100), 2), 'mc:duree-decimale', 'notion', `${m} min ${s} s ne font pas ${m},${s} min : ${s} s = ${fr(round(s / 60, 4))} min.`), mc(round(60 / m, 2), 'mc:secondes-oubliees', 'methode', `N’oublie pas les ${s} secondes.`));
     return num(v, {
-      prompt: `${who} court à allure régulière : un kilomètre en ${tTxt}. Quelle est sa vitesse, en km/h ?`, unit: 'km/h', unitOptional: true, tolerance: 0.01, representation: 'concrete', expectedSeconds: 180, misconceptions: mcs,
+      prompt: `${who} court à allure régulière : un kilomètre en ${tTxt}. Quelle est sa vitesse, en km/h ?`, unit: 'km/h', unitOptional: true, tolerance: 0.005, representation: 'concrete', expectedSeconds: 180, misconceptions: mcs,
       hints: [`Convertis la durée en secondes : ${tTxt} = ${secs} s.`, `En 1 h = 3 600 s, combien de fois ${secs} s ?`, 'Ce nombre de fois est aussi le nombre de kilomètres parcourus en 1 h.'],
       solution: `${tTxt} = ${secs} s. En 3 600 s : 3 600 ÷ ${secs} = ${fr(v)} km, donc ${fr(v)} km/h.`,
     });
@@ -680,7 +682,8 @@ function convChargement(rand) {
 const CONV_APPRO = {
   longueur: [convLongueurSomme, convPerimetre],
   masse: [convMasseSomme, convMasseMg],
-  contenance: [convContenanceVolume, convVerres],
+  // les messages rappellent « 1 L = 100 cL » : un nouveau tirage si la réponse vaut justement 10, 100 ou 1 000
+  contenance: [(rand) => withoutCitedAnswer(() => convContenanceVolume(rand)), (rand) => withoutCitedAnswer(() => convVerres(rand))],
   volume: [(rand) => convPuissance(rand, VOLS, 1000)],
   duree: [convDureeHoraires, convDureeHM, convSecondes],
   aire: [(rand) => convPuissance(rand, AIRES, 100), convAireRectangle],
@@ -692,7 +695,7 @@ const CONV_EXPERT = {
   volume: [convAquarium],
   duree: [convAllure],
   vitesse: [convVitesse],
-  'masse-volumique': [convMasseVolumique],
+  'masse-volumique': [(rand) => withoutCitedAnswer(() => convMasseVolumique(rand))],
 };
 const convTier = (pools) => (rand, o = {}) => pick(rand, pools[choice(rand, o.grandeur, Object.keys(pools))])(rand);
 

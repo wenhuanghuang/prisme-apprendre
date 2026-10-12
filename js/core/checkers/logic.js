@@ -5,7 +5,9 @@
 import { parse, evaluate, tryParse, formatNumber, toText, solveLinear, variables } from '../expr.js';
 import { interpolate } from '../template.js';
 import { diagnosis } from '../errors.js';
+import { sameDimension } from '../units.js';
 import { FORMS } from './expression.js';
+import { readNumber, typedUnitProblem } from './numeric.js';
 
 function predicate(src, params, extra) {
   const env = { ...params, ...extra };
@@ -46,33 +48,43 @@ export function checkCounterexample(def, params, response) {
 }
 
 /**
+ * Lit une réponse comme checkNumeric (readNumber) : « 2,9 cm », « √28 », « 5,29 ». L'unité tapée est ignorée,
+ * sauf si l'énoncé en cite une autre de la même grandeur (« 29 mm » quand on demande des cm).
+ */
+function readValue(txt, def, params) {
+  const read = readNumber(txt);
+  if (read.empty || read.error) return { error: 'illisible' };
+  const pb = typedUnitProblem(read, interpolate(def.prompt || '', params || {}));
+  if (pb === 'autre') return { error: `réponse en « ${read.ignoredUnitText} » : relis l'unité demandée` };
+  if (pb === 'ambigue') return { error: 'écris seulement le nombre, l’unité est fixée par l’énoncé' };
+  return read;
+}
+
+/** Une case d'un exercice `multi` : lecture, forme imposée, valeur déjà donnée, puis condition. */
+function multiItem(txt, def, params, seen) {
+  if (!txt) return { text: '', ok: false, reason: 'vide' };
+  const read = readValue(txt, def, params);
+  if (read.error) return { text: txt, ok: false, reason: read.error };
+  const v = read.value;
+  const form = def.form && FORMS[def.form];
+  if (form && !(read.node && form.test(read.node))) return { text: txt, ok: false, reason: `pas sous ${form.label}` };
+  if (def.distinct !== false && seen.some((s) => Math.abs(s - v) < 1e-12)) return { text: txt, ok: false, reason: 'même valeur qu’une autre réponse' };
+  const ok = Boolean(predicate(def.predicate, params, { v }));
+  if (ok) seen.push(v);
+  return { text: txt, value: v, ok, reason: ok ? '' : `${read.node ? toText(read.node) : txt} = ${formatNumber(v)} ne convient pas` };
+}
+
+/**
  * Plusieurs réponses valables. Définition :
  *   count : 3 ; predicate : "v > 1/3 and v < 1/2" ; distinct : true ; form : "irreductible" (facultatif)
+ * Chaque réponse se lit comme une réponse numérique : « 2,9 cm » vaut 2,9.
  */
 export function checkMulti(def, params, response) {
   const raw = (response.values || []).map((x) => String(x ?? '').trim());
   const filled = raw.filter(Boolean);
   if (!filled.length) return diagnosis({ verdict: 'vide', feedback: 'Propose au moins une réponse.' });
-  const items = [];
   const seen = [];
-  for (const txt of raw) {
-    if (!txt) { items.push({ text: '', ok: false, reason: 'vide' }); continue; }
-    const r = tryParse(txt);
-    if (!r.ok) { items.push({ text: txt, ok: false, reason: 'illisible' }); continue; }
-    let v;
-    try { v = evaluate(r.node); } catch { items.push({ text: txt, ok: false, reason: 'illisible' }); continue; }
-    if (def.form && FORMS[def.form] && !FORMS[def.form].test(r.node)) {
-      items.push({ text: txt, ok: false, reason: `pas sous ${FORMS[def.form].label}` });
-      continue;
-    }
-    if (def.distinct !== false && seen.some((s) => Math.abs(s - v) < 1e-12)) {
-      items.push({ text: txt, ok: false, reason: 'même valeur qu’une autre réponse' });
-      continue;
-    }
-    const ok = Boolean(predicate(def.predicate, params, { v }));
-    if (ok) seen.push(v);
-    items.push({ text: txt, value: v, ok, reason: ok ? '' : `${toText(r.node)} = ${formatNumber(v)} ne convient pas` });
-  }
+  const items = raw.map((txt) => multiItem(txt, def, params, seen));
   const good = items.filter((i) => i.ok).length;
   const count = def.count || 1;
   if (good >= count) return diagnosis({ verdict: 'correct', score: 1, details: items, feedback: def.correctFeedback || 'Toutes tes réponses conviennent. Il en existe bien d’autres !' });

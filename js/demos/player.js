@@ -8,6 +8,15 @@ import { speak, stopSpeaking, plainForSpeech } from '../ui/speech.js';
 import { photon } from '../ui/photon.js';
 import { initialState, stateAt, stepDuration, renderScene, isAnimated, DEFAULT_W, DEFAULT_H } from './scene.js';
 
+// genres de questions : prévoir (avant de voir le résultat), observer, lire une mesure et expliquer (après l'animation)
+const ASK_KIND = {
+  prevoir: { tag: 'À toi de prévoir', afterAnimation: false },
+  observer: { tag: 'Qu’observes-tu ?', afterAnimation: true },
+  mesurer: { tag: 'Lis la mesure', afterAnimation: true },
+  expliquer: { tag: 'Explique', afterAnimation: true },
+};
+export const askKind = (a) => ASK_KIND[a && a.kind] || ASK_KIND.prevoir;
+
 const SPEEDS = [0.5, 1, 2];
 let uidSeq = 0;
 const prefs = { voice: false, auto: false, speed: 1 };
@@ -15,6 +24,19 @@ try { Object.assign(prefs, JSON.parse(localStorage.getItem('prisme.demo.prefs') 
 if (!SPEEDS.includes(prefs.speed)) prefs.speed = 1;
 const savePrefs = () => { try { localStorage.setItem('prisme.demo.prefs', JSON.stringify(prefs)); } catch { /* ignoré */ } };
 const reducedMotion = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Ordre d'affichage des choix : mélangé, mais toujours le même pour une question donnée. */
+function choiceOrder(n, key) {
+  let a = 2166136261;
+  for (const c of String(key)) { a ^= c.codePointAt(0); a = Math.imul(a, 16777619); }
+  const order = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) {
+    a = Math.imul(a ^ (a >>> 15), 2246822507) >>> 0;
+    const j = a % (i + 1);
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
 
 /** Temps de lecture estimé d'un texte (secondes), pour l'enchaînement automatique. */
 const readingTime = (text) => Math.min(14, 2 + String(text || '').split(/\s+/).length / 2.6);
@@ -36,6 +58,8 @@ export function mountDemo(container, demo) {
   let k = 0; let t = 0; let clock = 0; let ambient = 0;
   let started = false; let paused = false; let finished = false;
   const answered = new Map(); // étape → instant de la réponse
+  const verdicts = new Map(); // étape → { ok, text } (pour réafficher la réponse quand on revient sur l'étape)
+  const reached = new Set(); // étapes regardées jusqu'au bout de leur animation
   let raf = 0; let last = 0; let stepStartedAt = 0; let dirty = true;
   const durations = steps.map(stepDuration);
 
@@ -81,6 +105,18 @@ export function mountDemo(container, demo) {
   /* ---------- logique ---------- */
   const stepDone = () => t >= durations[k] - 1e-6;
   const askPending = () => Boolean(steps[k].ask) && !answered.has(k);
+  // prévoir : l'animation attend la réponse (on prévoit avant de voir) ;
+  // observer, mesurer, expliquer : le texte de l'étape (qui décrit souvent le résultat) n'apparaît qu'après la réponse
+  const waitsPrediction = () => askPending() && !askKind(steps[k].ask).afterAnimation;
+  // (sauf si l'étape ne change rien à la scène : récit seul, ou étape de réflexion)
+  const changesScene = (st) => durations[k] > 0 || (st.do || []).length > 0 || (st.show || []).length > 0 || (st.hide || []).length > 0;
+  const textHidden = () => askPending() && askKind(steps[k].ask).afterAnimation && !narrationOnly && changesScene(steps[k]);
+
+  function paintText() {
+    const st = steps[k];
+    text.replaceChildren(textHidden() ? h('p', { class: 'demo-text-wait' }, '👀 Regarde bien la scène : l’explication s’affichera après ta réponse.') : richText(st.text || ''));
+    svg.setAttribute('aria-label', plainForSpeech(textHidden() ? st.title || '' : `${st.title || ''} : ${st.text || ''}`));
+  }
 
   /** Un bouton qui vient d'être désactivé ou masqué perd le focus : on le rend au lecteur (sinon les touches quittent l'expérience). */
   function keepFocus() {
@@ -94,45 +130,96 @@ export function mountDemo(container, demo) {
   function say() {
     if (!prefs.voice) return;
     const st = steps[k];
-    speak(plainForSpeech(`${st.title || ''}. ${st.text || ''} ${st.ask ? st.ask.question : ''}`), { lang: 'fr-FR' }).then((ok) => {
+    // la question est lue avec l'étape quand elle est déjà affichée (prévoir, ou étape sans animation)
+    const askShown = askPending() && (waitsPrediction() || stepDone());
+    speak(plainForSpeech(`${st.title || ''}. ${textHidden() ? '' : st.text || ''} ${askShown ? st.ask.question : ''}`), { lang: 'fr-FR' }).then((ok) => {
       if (!ok) { prefs.voice = false; paintControls(); announce('Aucune voix française n’est installée sur cet ordinateur.'); }
     });
   }
 
-  function paintAsk(st) {
+  /** Réponse donnée : on la garde, on affiche juste ou pas et l'explication, et l'expérience peut continuer. */
+  function answer(a, fb, ok, okText, koText) {
+    const revealText = textHidden();
+    // prévoir : l'explication attend la fin de l'animation (on regarde d'abord ce qui se passe)
+    const explainLater = !askKind(a).afterAnimation && !stepDone();
+    answered.set(k, clock);
+    verdicts.set(k, { ok, text: ok ? okText : koText });
+    stepStartedAt = clock; // enchaînement automatique : le temps de lire ce qui vient d'apparaître
+    fb.replaceChildren(h('p', { class: ok ? 'demo-ok' : 'demo-ko' }, ok ? okText : koText), a.explain && !explainLater ? richText(a.explain) : '');
+    if (revealText) paintText();
+    const spoken = explainLater ? '' : `${a.explain || ''} ${revealText ? steps[k].text || '' : ''}`.trim();
+    if (prefs.voice && spoken) speak(plainForSpeech(spoken), { lang: 'fr-FR' });
+    paintControls();
+    keepFocus();
+  }
+
+  /** Question à choix : prévoir, observer, expliquer. */
+  function choiceAsk(a, fb) {
+    const right = Number(a.answer);
+    const lock = (picked) => choices.querySelectorAll('button').forEach((b) => {
+      const j = Number(b.dataset.i);
+      b.disabled = true;
+      if (j === right) b.classList.add('is-right'); else if (j === picked) b.classList.add('is-wrong');
+    });
+    const list = a.choices || [];
+    const choices = h('div', { class: 'demo-choices' }, choiceOrder(list.length, a.question).map((i) => h('button', {
+      type: 'button', class: 'demo-choice', html: inlineHTML(list[i]), 'data-i': String(i),
+      onclick: () => {
+        if (answered.has(k)) return;
+        lock(i);
+        answer(a, fb, i === right, 'Bien vu !', a.kind === 'prevoir' || !a.kind ? 'Pas tout à fait… regarde la suite pour comprendre.' : 'Pas tout à fait : regarde la bonne réponse et son explication.');
+      },
+    })));
+    if (answered.has(k)) lock(-1);
+    return choices;
+  }
+
+  /** « Lis la mesure » : la valeur affichée par l'instrument, à la tolérance près. */
+  function measureAsk(a, fb) {
+    const input = h('input', { class: 'field-input demo-measure-input', type: 'text', inputmode: 'decimal', 'aria-label': `Valeur lue${a.unit ? ` (en ${a.unit})` : ''}`, autocomplete: 'off' });
+    const check = () => {
+      if (answered.has(k)) return;
+      const v = Number(String(input.value).trim().replace(/\s/g, '').replace(',', '.').replace(/[^\d.+-]+$/, ''));
+      if (!input.value.trim() || !Number.isFinite(v)) { fb.replaceChildren(h('p', { class: 'small' }, 'Écris un nombre, par exemple 3,5.')); return; }
+      input.disabled = true; btn.disabled = true;
+      const ok = Math.abs(v - Number(a.answer)) <= (Number(a.tolerance) || 0) + 1e-9;
+      answer(a, fb, ok, 'Bien lu !', `Pas tout à fait : l’instrument indiquait ${String(a.answer).replace('.', ',')}${a.unit ? ` ${a.unit}` : ''}.`);
+    };
+    const btn = h('button', { type: 'button', class: 'btn btn--small', onclick: check }, 'Valider');
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); check(); } });
+    if (answered.has(k)) { input.disabled = true; btn.disabled = true; input.value = String(a.answer).replace('.', ','); }
+    return h('div', { class: 'demo-measure' }, input, a.unit ? h('span', { class: 'demo-measure-unit' }, a.unit) : null, btn);
+  }
+
+  /** `speak` : 'question' (elle vient d'apparaître à la fin de l'animation) ou 'explain' (prévoir : animation finie). */
+  function paintAsk(st, { speak: voice = null } = {}) {
     askBox.replaceChildren();
     if (!st.ask) return;
     const a = st.ask;
-    const right = Number(a.answer);
-    const fb = h('div', { class: 'demo-ask-fb', 'aria-live': 'polite' });
-    const choices = h('div', { class: 'demo-choices' }, (a.choices || []).map((c, i) => h('button', {
-      type: 'button', class: 'demo-choice', html: inlineHTML(c),
-      onclick: () => {
-        if (answered.has(k)) return;
-        answered.set(k, clock);
-        const ok = i === right;
-        choices.querySelectorAll('button').forEach((b, j) => { b.disabled = true; if (j === right) b.classList.add('is-right'); else if (j === i) b.classList.add('is-wrong'); });
-        fb.replaceChildren(h('p', { class: ok ? 'demo-ok' : 'demo-ko' }, ok ? 'Bien vu !' : 'Pas tout à fait… regarde la suite pour comprendre.'), a.explain ? richText(a.explain) : null);
-        if (prefs.voice && a.explain) speak(plainForSpeech(a.explain), { lang: 'fr-FR' });
-        paintControls();
-        keepFocus();
-      },
-    })));
-    askBox.append(h('p', { class: 'demo-ask-q' }, h('span', { class: 'demo-ask-tag' }, 'À toi de prévoir'), ' ', h('span', { html: inlineHTML(a.question) })), choices, fb);
-    if (answered.has(k)) {
-      choices.querySelectorAll('button').forEach((b, j) => { b.disabled = true; if (j === right) b.classList.add('is-right'); });
-      if (a.explain) fb.append(richText(a.explain));
+    const kind = askKind(a);
+    // observer, lire une mesure, expliquer : on regarde d'abord l'animation de l'étape, la question vient ensuite
+    if (kind.afterAnimation && !stepDone() && !answered.has(k)) {
+      askBox.append(h('p', { class: 'demo-ask-wait' }, 'Une question arrive à la fin de cette étape.'));
+      return;
     }
+    const fb = h('div', { class: 'demo-ask-fb', 'aria-live': 'polite' });
+    const body = a.kind === 'mesurer' ? measureAsk(a, fb) : choiceAsk(a, fb);
+    askBox.append(h('p', { class: 'demo-ask-q' }, h('span', { class: `demo-ask-tag demo-ask-tag--${a.kind || 'prevoir'}` }, kind.tag), ' ', h('span', { html: inlineHTML(a.question) })), body, fb);
+    if (answered.has(k)) {
+      const v = verdicts.get(k);
+      if (v) fb.append(h('p', { class: v.ok ? 'demo-ok' : 'demo-ko' }, v.text));
+      if (a.explain && (kind.afterAnimation || stepDone())) fb.append(richText(a.explain));
+      if (voice === 'explain' && prefs.voice && a.explain) speak(plainForSpeech(a.explain), { lang: 'fr-FR' });
+    } else if (voice === 'question' && prefs.voice && started) speak(plainForSpeech(a.question), { lang: 'fr-FR' });
   }
 
   function paintPanel() {
     const st = steps[k];
     stepN.textContent = `Étape ${k + 1} sur ${steps.length}`;
     title.textContent = st.title || '';
-    text.replaceChildren(richText(st.text || ''));
+    paintText();
     paintAsk(st);
     if (narrationOnly) bigEmoji.replaceChildren(h('span', { class: 'demo-narration-emoji' }, st.emoji || demo.emoji || '🧪'), h('span', { class: 'demo-narration-title' }, st.title || ''));
-    svg.setAttribute('aria-label', plainForSpeech(`${st.title || ''} : ${st.text || ''}`));
   }
 
   function paintControls() {
@@ -153,7 +240,7 @@ export function mountDemo(container, demo) {
     const canNext = started && stepDone() && !askPending();
     nextBig.hidden = !started || finished;
     nextBig.disabled = !canNext;
-    nextBig.textContent = askPending() ? 'Réponds pour continuer' : !stepDone() ? 'Regarde…' : k < steps.length - 1 ? 'Étape suivante ▶' : 'Voir la conclusion ▶';
+    nextBig.textContent = waitsPrediction() ? 'Réponds pour voir la suite' : askPending() && stepDone() ? 'Réponds pour continuer' : !stepDone() ? 'Regarde…' : k < steps.length - 1 ? 'Étape suivante ▶' : 'Voir la conclusion ▶';
     nextBig.classList.toggle('is-pulse', canNext);
     btnNext.disabled = started && askPending();
     segs.forEach(({ b, fill }, i) => {
@@ -185,12 +272,15 @@ export function mountDemo(container, demo) {
 
   function next() {
     if (askPending()) return;
+    if (stepDone()) reached.add(k);
     if (k < steps.length - 1) goStep(k + 1);
     else finish();
   }
 
   function finish() {
     finished = true;
+    // « regardée jusqu'au bout » (progression ludique) : chaque étape vue en entier, chaque question répondue
+    if (steps.every((st, i) => reached.has(i) && (!st.ask || answered.has(i)))) container.dispatchEvent(new CustomEvent('prisme:experience-finie', { bubbles: true }));
     t = durations[k];
     panel.hidden = true;
     conclusion.hidden = false;
@@ -239,7 +329,16 @@ export function mountDemo(container, demo) {
     if (finished) { if (dirty) draw(); return; }
     clock += dt;
     let changed = dirty;
-    if (!stepDone()) { t = Math.min(durations[k], t + dt * prefs.speed); changed = true; if (stepDone()) paintControls(); }
+    if (!stepDone() && !waitsPrediction()) {
+      t = Math.min(durations[k], t + dt * prefs.speed); changed = true;
+      if (stepDone()) {
+        reached.add(k);
+        const a = steps[k].ask;
+        if (a && askKind(a).afterAnimation && !answered.has(k)) paintAsk(steps[k], { speak: 'question' });
+        else if (a && !askKind(a).afterAnimation && answered.has(k)) paintAsk(steps[k], { speak: 'explain' });
+        paintControls();
+      }
+    }
     if (changed) draw();
     if (Math.floor(now / 100) !== Math.floor((now - dt * 1000) / 100)) paintControls();
     if (autoReady()) next();
@@ -253,7 +352,7 @@ export function mountDemo(container, demo) {
   });
 
   // accès pour les tests automatiques : afficher l'étape i à la fraction f de son animation
-  root.demoSeek = (i, f = 1) => { goStep(i, { speakIt: false }); t = durations[k] * Math.max(0, Math.min(1, f)); paused = true; paintControls(); draw(); };
+  root.demoSeek = (i, f = 1) => { goStep(i, { speakIt: false }); t = durations[k] * Math.max(0, Math.min(1, f)); paused = true; paintAsk(steps[k]); paintControls(); draw(); };
 
   paintPanel(); paintControls();
   // première image : l'état initial de la scène, avant le lancement

@@ -168,7 +168,7 @@
       "id": "m5-statistiques-cdi", "type": "composite", "skill": "m5.stats.lire", "skills": ["m5.stats.moyenne", "m5.stats.effectifs"], "track": "classe", "role": "guide", "difficulty": 2,
       "representation": "visuelle", "targets": ["mc:effectif-pourcent"], "expectedSeconds": 300,
       "params": { "a": { "int": [8, 20] }, "b": { "int": [8, 20] }, "c": { "int": [22, 30] }, "d": { "int": [8, 20] }, "e": { "int": [8, 20] } },
-      "constraints": ["a + b + c + d + e != 100"],
+      "constraints": ["abs(a + b + c + d + e - 100) >= 3"],
       "prompt": "Le diagramme indique le nombre de livres empruntés au CDI chaque jour d'une semaine.",
       "figure": {
         "alt": "Diagramme en barres des livres empruntés au CDI, du lundi au vendredi.",
@@ -179,7 +179,7 @@
         { "type": "text", "prompt": "Quel jour a-t-on emprunté le plus de livres ?", "accept": ["mercredi", "le mercredi"] },
         { "type": "numeric", "prompt": "Combien de livres ont été empruntés sur toute la semaine ?", "answer": "a + b + c + d + e" },
         { "type": "numeric", "prompt": "Quelle est la moyenne de livres empruntés par jour ?", "answer": "(a + b + c + d + e)/5" },
-        { "type": "numeric", "prompt": "Quel pourcentage des emprunts de la semaine a eu lieu le mercredi ? Arrondis à l'unité.", "answer": "100*c/(a + b + c + d + e)", "tolerance": 0.5,
+        { "type": "numeric", "prompt": "Quel pourcentage des emprunts de la semaine a eu lieu le mercredi ? Arrondis à l'unité.", "answer": "100*c/(a + b + c + d + e)", "tolerance": 0.5, "round": 0,
           "misconceptions": [ { "answer": "c", "id": "mc:effectif-pourcent", "error": "notion", "feedback": "C'est l'effectif du mercredi. Le pourcentage compare cet effectif au total de la semaine : effectif ÷ total × 100." } ] }
       ],
       "hints": ["Lis la hauteur de chaque barre sur l'axe vertical.", "Moyenne par jour : le total de la semaine divisé par le nombre de jours.", "Pourcentage du mercredi : $ {c} ÷ $ total $ × 100 $."],
@@ -352,7 +352,7 @@
       "prompt": "Rappel ciblé : sur {N} élèves, {a} ont un chat. La fréquence est la part du total : {a} sur {N}, c'est-à-dire $ {a} ÷ {N} $. Écris cette fréquence en pourcentage.",
       "answer": "100*a/N",
       "misconceptions": [ { "answer": "a", "id": "mc:effectif-pourcent", "error": "notion", "feedback": "Un pourcentage, c'est « sur 100 ». Or il n'y a pas 100 élèves : calcule d'abord la fréquence décimale, puis multiplie par 100." } ],
-      "hints": ["$ {a} ÷ {N} = {a/N} $.", "Multiplie par 100 pour l'écrire en pourcentage."],
+      "hints": ["Calcule $ {a} ÷ {N} $ : c'est la fréquence en écriture décimale.", "Multiplie par 100 pour l'écrire en pourcentage."],
       "solution": "$ {a} ÷ {N} = {a/N} $, soit {100*a/N} %.",
       "selfTest": [ { "response": { "value": "{100*a/N}" }, "expect": "correct" }, { "response": { "value": "{a}" }, "expect": "mc:effectif-pourcent" } ]
     },

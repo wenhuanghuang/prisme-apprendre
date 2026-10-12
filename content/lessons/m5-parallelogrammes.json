@@ -178,7 +178,7 @@
         { "text": "On trace [AB] de 5 cm. Avec le rapporteur, on trace en B une demi-droite qui fait un angle de 120° avec [BA], et on y place C à 3 cm de B." },
         { "text": "D doit vérifier CD = AB = 5 cm et AD = BC = 3 cm (côtés opposés de même longueur). On trace un arc de centre C et de rayon 5 cm, puis un arc de centre A et de rayon 3 cm.", "math": "CD = 5 cm et AD = 3 cm" },
         {
-          "text": "D est le point d'intersection des deux arcs, du même côté que C. On trace [CD] et [DA]. ABCD a ses côtés opposés de même longueur deux à deux et n'est pas croisé : c'est bien un parallélogramme.",
+          "text": "D est le point d'intersection des deux arcs, du même côté de (AB) que C. On trace [CD] et [DA]. ABCD a ses côtés opposés de même longueur deux à deux et n'est pas croisé : c'est bien un parallélogramme.",
           "figure": {
             "alt": "Le parallélogramme ABCD construit, avec l'angle de 120° en B et les deux arcs de cercle qui se coupent en D",
             "w": 400, "h": 220,
@@ -269,11 +269,11 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Longueur CD (en cm) :", "answer": "a",
-          "misconceptions": [ { "answer": "b", "id": "mc:cote-oppose", "error": "lecture", "feedback": "Dans ABCD, on suit le tour : [CD] est le côté opposé à [AB]. Les côtés opposés ont la même longueur : CD = AB = {a} cm." } ] },
+          "misconceptions": [ { "answer": "b", "id": "mc:cote-oppose", "error": "lecture", "feedback": "Dans ABCD, on suit le tour : [CD] est le côté opposé à [AB], pas à [BC]. Les côtés opposés ont la même longueur." } ] },
         { "type": "numeric", "prompt": "Longueur AD (en cm) :", "answer": "b",
-          "misconceptions": [ { "answer": "a", "id": "mc:cote-oppose", "error": "lecture", "feedback": "[AD] est opposé à [BC] : AD = BC = {b} cm." } ] },
+          "misconceptions": [ { "answer": "a", "id": "mc:cote-oppose", "error": "lecture", "feedback": "[AD] n'est pas opposé à [AB] : cherche le côté qui lui fait face dans ABCD." } ] },
         { "type": "numeric", "prompt": "Longueur OA (en cm) :", "answer": "e/2",
-          "misconceptions": [ { "answer": "e", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "{e} cm, c'est toute la diagonale [AC]. Les diagonales se coupent en leur milieu O : OA = {e} ÷ 2 = {e/2} cm." } ] },
+          "misconceptions": [ { "answer": "e", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "{e} cm, c'est toute la diagonale [AC]. Les diagonales se coupent en leur milieu O : OA n'en est qu'une partie." } ] },
         { "type": "text", "prompt": "Peut-on connaître la longueur BD avec ces seules informations ? Réponds par oui ou par non.", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:diagonales-egales", "error": "notion", "feedback": "Dans un parallélogramme quelconque, les deux diagonales n'ont pas la même longueur : BD n'est pas forcément égale à {e} cm. Ce n'est vrai que pour un rectangle." } ] }
       ],
@@ -509,14 +509,14 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Mesure de l'angle BCD (en degrés) :", "answer": "a",
-          "misconceptions": [ { "answer": "180 - a", "id": "mc:angles-opposes", "error": "notion", "feedback": "Les angles en A et en C sont opposés : le centre de symétrie du parallélogramme envoie l'un sur l'autre. Ils sont égaux : {a}°." } ] },
+          "misconceptions": [ { "answer": "180 - a", "id": "mc:angles-opposes", "error": "notion", "feedback": "Les angles en A et en C sont opposés, pas consécutifs : le centre de symétrie du parallélogramme envoie l'un sur l'autre. Ils sont donc égaux." } ] },
         { "type": "numeric", "prompt": "Mesure de l'angle ABC (en degrés) :", "answer": "180 - a",
           "misconceptions": [
-            { "answer": "a", "id": "mc:angles-consecutifs", "error": "notion", "feedback": "Les angles en A et en B ne sont pas opposés mais consécutifs : ils sont supplémentaires. 180 − {a} = {180-a}°." },
-            { "answer": 90, "id": "mc:angle-droit", "error": "lecture", "feedback": "Un parallélogramme n'a un angle droit que s'il est rectangle. Ici, l'angle en B vaut 180 − {a} = {180-a}°." }
+            { "answer": "a", "id": "mc:angles-consecutifs", "error": "notion", "feedback": "Les angles en A et en B ne sont pas opposés mais consécutifs : ils sont supplémentaires (leur somme vaut 180°)." },
+            { "answer": 90, "id": "mc:angle-droit", "error": "lecture", "feedback": "Un parallélogramme n'a un angle droit que s'il est rectangle. Utilise plutôt l'angle en A : les angles en A et en B sont supplémentaires." }
           ] },
         { "type": "numeric", "prompt": "Somme des quatre angles du parallélogramme (en degrés) :", "answer": 360,
-          "misconceptions": [ { "answer": 180, "id": "mc:somme-quadrilatere", "error": "notion", "feedback": "180°, c'est la somme des angles d'un triangle. Ici : {a} + {180-a} + {a} + {180-a} = 360°." } ] }
+          "misconceptions": [ { "answer": 180, "id": "mc:somme-quadrilatere", "error": "notion", "feedback": "180°, c'est la somme des angles d'un triangle. Ici, il y a quatre angles : additionne-les." } ] }
       ],
       "hints": ["Le demi-tour autour du centre du parallélogramme échange A et C.", "(AD) et (BC) sont parallèles et coupées par la sécante (AB) : avec les angles correspondants et un angle plat, on montre que les angles en A et en B font 180° ensemble.", "Additionne les quatre angles."],
       "solution": "Angles opposés égaux : BCD = DAB = {a}°. Angles consécutifs supplémentaires : ABC = 180 − {a} = {180-a}°, et ADC aussi. Somme : {a} + {180-a} + {a} + {180-a} = 360°.",
@@ -550,21 +550,21 @@
       "parts": [
         { "type": "text", "prompt": "Quel quadrilatère Arthur est-il sûr d'obtenir ?", "accept": ["parallélogramme", "un parallélogramme", "parallelogramme", "un parallelogramme"],
           "misconceptions": [
-            { "answer": "rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux : c'est un parallélogramme, pas forcément un rectangle." },
-            { "answer": "un rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux : c'est un parallélogramme, pas forcément un rectangle." }
+            { "answer": "rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux, mais il n'a plus d'angle droit. Quelle famille de quadrilatères a toujours ses côtés opposés de même longueur ?" },
+            { "answer": "un rectangle", "id": "mc:cotes-rectangle", "error": "notion", "feedback": "Pas forcément ! Si le cadre est un peu penché, ses côtés opposés sont toujours égaux, mais il n'a plus d'angle droit. Quelle famille de quadrilatères a toujours ses côtés opposés de même longueur ?" }
           ] },
-        { "type": "text", "prompt": "Il mesure les deux diagonales : 92 cm et 97 cm. Le cadre est-il rectangle ? Réponds par oui ou par non.", "accept": ["non"],
-          "misconceptions": [ { "answer": "oui", "id": "mc:diagonales-rectangle", "error": "notion", "feedback": "Un parallélogramme est un rectangle quand ses diagonales ont la même longueur. Ici 92 cm ≠ 97 cm : le cadre est penché." } ] },
+        { "type": "text", "prompt": "Il mesure les deux diagonales : 86 cm et 102 cm. Le cadre est-il rectangle ? Réponds par oui ou par non.", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:diagonales-rectangle", "error": "notion", "feedback": "Un parallélogramme est un rectangle quand ses diagonales ont la même longueur. Compare les deux mesures d'Arthur." } ] },
         { "type": "text", "prompt": "Il pousse un coin jusqu'à ce que les deux diagonales mesurent la même longueur. Quelle est maintenant la nature exacte du cadre ?", "accept": ["rectangle", "un rectangle"],
           "misconceptions": [
-            { "answer": "carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. C'est un rectangle." },
-            { "answer": "un carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. C'est un rectangle." }
+            { "answer": "carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. Quel parallélogramme a des diagonales de même longueur ?" },
+            { "answer": "un carré", "id": "mc:rectangle-carre", "error": "notion", "feedback": "Les côtés mesurent 80 cm et 50 cm : ils ne sont pas tous égaux, ce n'est pas un carré. Quel parallélogramme a des diagonales de même longueur ?" }
           ] },
         { "type": "numeric", "prompt": "Quelle longueur de joint faut-il pour faire tout le tour du cadre (en cm) ?", "answer": 260,
-          "misconceptions": [ { "answer": 130, "id": "mc:moitie-perimetre", "error": "methode", "feedback": "80 + 50 = 130 cm, c'est la moitié du tour. Le cadre a quatre côtés : 2 × 80 + 2 × 50 = 260 cm." } ] }
+          "misconceptions": [ { "answer": 130, "id": "mc:moitie-perimetre", "error": "methode", "feedback": "80 + 50 = 130 cm, c'est la moitié du tour. Le cadre a quatre côtés : deux de 80 cm et deux de 50 cm." } ] }
       ],
       "hints": ["Côtés opposés de même longueur deux à deux : quelle famille de quadrilatères ?", "Quel parallélogramme particulier a des diagonales de même longueur ?", "Le tour du cadre, c'est son périmètre."],
-      "solution": "Côtés opposés égaux deux à deux : parallélogramme. Diagonales différentes (92 et 97 cm) : pas un rectangle. Diagonales égales : rectangle (pas un carré, car 80 ≠ 50). Joint : 2 × 80 + 2 × 50 = 260 cm. C'est la vraie méthode des menuisiers et des maçons : on vérifie l'équerrage en comparant les diagonales.",
+      "solution": "Côtés opposés égaux deux à deux : parallélogramme. Diagonales différentes (86 et 102 cm) : pas un rectangle. Diagonales égales : rectangle (pas un carré, car 80 ≠ 50). Joint : 2 × 80 + 2 × 50 = 260 cm. C'est la vraie méthode des menuisiers et des maçons : on vérifie l'équerrage en comparant les diagonales.",
       "selfTest": [
         { "response": { "parts": [ { "value": "parallélogramme" }, { "value": "non" }, { "value": "rectangle" }, { "value": "260" } ] }, "expect": "correct" },
         { "response": { "parts": [ { "value": "rectangle" }, { "value": "non" }, { "value": "rectangle" }, { "value": "260" } ] }, "expect": "mc:cotes-rectangle" }
@@ -631,7 +631,7 @@
         ]
       },
       "answer": "2*a",
-      "misconceptions": [ { "answer": "a/2", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "OA n'est que la moitié de la diagonale : O est au milieu de [AC]. AC = OA + OC = 2 × {a} = {2*a} cm." } ],
+      "misconceptions": [ { "answer": "a/2", "id": "mc:diagonale-entiere", "error": "notion", "feedback": "OA n'est que la moitié de la diagonale : O est au milieu de [AC]. La diagonale entière est donc plus longue que OA : AC = OA + OC." } ],
       "hints": ["O est le milieu de [AC] : que vaut OC ?", "AC = OA + OC."],
       "solution": "OC = OA = {a} cm, donc AC = {a} + {a} = {2*a} cm.",
       "selfTest": [ { "response": { "value": "{2*a}" }, "expect": "correct" }, { "response": { "value": "{a/2}" }, "expect": "mc:diagonale-entiere" } ]
@@ -686,9 +686,9 @@
       },
       "parts": [
         { "type": "numeric", "prompt": "Périmètre du losange (en cm) :", "answer": "20*k",
-          "misconceptions": [ { "answer": "28*k", "id": "mc:perimetre-diagonales", "error": "methode", "feedback": "Le périmètre est le tour du losange : ses 4 côtés de {5*k} cm, pas ses diagonales. 4 × {5*k} = {20*k} cm." } ] },
+          "misconceptions": [ { "answer": "28*k", "id": "mc:perimetre-diagonales", "error": "methode", "feedback": "Le périmètre est le tour du losange : ses 4 côtés de {5*k} cm, pas ses diagonales." } ] },
         { "type": "numeric", "prompt": "Aire du losange (en cm²) :", "answer": "24*k*k",
-          "misconceptions": [ { "answer": "48*k*k", "id": "mc:losange-oubli-moitie", "error": "methode", "feedback": "{8*k} × {6*k} = {48*k*k} cm², c'est l'aire du rectangle en pointillés. Le losange en occupe exactement la moitié (les 4 triangles blancs ont la même aire que les 4 triangles orange) : {48*k*k} ÷ 2 = {24*k*k} cm²." } ] }
+          "misconceptions": [ { "answer": "48*k*k", "id": "mc:losange-oubli-moitie", "error": "methode", "feedback": "{8*k} × {6*k} = {48*k*k} cm², c'est l'aire du rectangle en pointillés. Le losange n'en occupe qu'une partie : compare les 4 triangles blancs et les 4 triangles orange." } ] }
       ],
       "hints": ["Le périmètre ne fait intervenir que les côtés.", "Les diagonales découpent le rectangle en 4 petits rectangles : chacun est coupé en deux triangles égaux par un côté du losange.", "Aire du losange = (grande diagonale × petite diagonale) ÷ 2."],
       "solution": "Périmètre : 4 × {5*k} = {20*k} cm. Les diagonales découpent le rectangle de {8*k} cm sur {6*k} cm en quatre petits rectangles ; chaque côté du losange coupe un petit rectangle en deux triangles égaux. Le losange occupe donc la moitié du grand rectangle : ({8*k} × {6*k}) ÷ 2 = {24*k*k} cm².",
@@ -719,7 +719,7 @@
         { "type": "numeric", "prompt": "Combien de parallélogrammes, de toutes tailles, y a-t-il sur la figure ?", "answer": 18,
           "misconceptions": [ { "answer": 6, "id": "mc:seulement-petits", "error": "methode", "feedback": "6, ce sont seulement les petits parallélogrammes. Un grand parallélogramme peut être formé de plusieurs petits : choisis deux droites horizontales et deux droites obliques quelconques." } ] },
         { "type": "numeric", "prompt": "Et si 5 droites horizontales parallèles coupaient 5 droites obliques parallèles ?", "answer": 100,
-          "misconceptions": [ { "answer": 16, "id": "mc:seulement-petits", "error": "methode", "feedback": "16, ce sont les petits parallélogrammes seulement. Compte les façons de choisir 2 droites horizontales parmi 5 (10 façons), puis 2 obliques parmi 5 (10 façons)." } ] },
+          "misconceptions": [ { "answer": 16, "id": "mc:seulement-petits", "error": "methode", "feedback": "16, ce sont les petits parallélogrammes seulement. Compte les façons de choisir 2 droites horizontales parmi 5, puis 2 obliques parmi 5, et associe-les." } ] },
         { "type": "open", "prompt": "Explique ta méthode pour ne rien oublier et ne rien compter deux fois.", "minWords": 20,
           "criteria": [
             { "id": "c1", "label": "Un parallélogramme est délimité par 2 droites horizontales et 2 droites obliques", "keywords": [["deux droites", "2 droites", "paire"]] },

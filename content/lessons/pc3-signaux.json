@@ -1,0 +1,1286 @@
+{
+  "id": "pc3-signaux",
+  "chapter": "pc3-signaux",
+  "title": "Signal et information : son, lumière et ondes",
+  "subject": "pc",
+  "level": "3e",
+  "skills": ["pc.signaux.information", "pc.signaux.rayonnements"],
+  "status": "programme",
+  "programmes": ["pc-c4-2020"],
+  "duration": 55,
+  "summary": "Comprendre qu'un son ou une lumière émet et transporte un signal, donc une information ; distinguer signal analogique et signal numérique, coder et décoder un message en binaire ; situer la lumière visible, les ondes radio et les rayons X parmi les rayonnements ; connaître les risques des lasers et des sons forts (niveau sonore en décibels). Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 3e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un message venu de Mars",
+      "body": "Le 6 août 2012, le robot Curiosity s'est posé sur Mars. Sur Terre, les ingénieurs ont dû attendre environ **14 minutes** pour recevoir le signal radio annonçant l'atterrissage. Ce signal a traversé le vide de l'espace… alors qu'aucun cri n'aurait pu faire ce voyage.\n\nPourquoi les ondes radio traversent-elles le vide, et pas le son ? Et comment une photo peut-elle voyager sous forme de 0 et de 1 ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📡",
+          "title": "Signal et information",
+          "body": "Un **signal** est une grandeur physique qui varie (un son, une lumière, une tension électrique, une onde radio) et qui transporte une **information** d'un **émetteur** vers un **récepteur**. Exemples : la sirène des pompiers (son), le feu tricolore (lumière), la télécommande (infrarouge), le téléphone portable (ondes radio)."
+        },
+        {
+          "emoji": "〰️",
+          "title": "Analogique ou numérique",
+          "body": "Un signal **analogique** varie de façon continue : la tension d'un microphone suit les vibrations de la voix. Un signal **numérique** ne prend que deux valeurs, notées **0 et 1** (les **bits**) : DEL éteinte ou allumée, tension basse ou haute. Il résiste mieux aux perturbations : il suffit de distinguer deux états.",
+          "reveal": {
+            "question": "Devine : combien de codes différents peut-on former avec 3 bits ?",
+            "answer": "8 : 000, 001, 010, 011, 100, 101, 110, 111. Chaque bit ajouté double le nombre de possibilités (2 × 2 × 2 = 8)."
+          }
+        },
+        {
+          "emoji": "🔊",
+          "title": "Le son",
+          "body": "Le son est une vibration qui se propage dans un milieu **matériel** (air, eau, solide) : **jamais dans le vide**. Dans l'air, il parcourt environ 340 m/s. Son **niveau sonore** se mesure en **décibels (dB)** avec un sonomètre. Sa **fréquence**, en hertz (Hz), le rend grave ou aigu : l'oreille humaine entend environ de 20 Hz à 20 000 Hz."
+        },
+        {
+          "emoji": "🌈",
+          "title": "La lumière et les autres rayonnements",
+          "body": "La lumière visible n'est qu'une petite partie d'une grande famille de **rayonnements** : ondes radio, infrarouge, visible, ultraviolet, rayons X. Tous se propagent **même dans le vide**, à environ 300 000 km/s. Les ondes radio transportent la radio, le Wi-Fi et les appels des téléphones portables.",
+          "reveal": {
+            "question": "Devine : sur la Lune, sans air, comment deux astronautes peuvent-ils se parler ?",
+            "answer": "Par radio : les ondes radio se propagent dans le vide. Un cri, lui, ne se propage pas : le son a besoin de matière."
+          }
+        },
+        {
+          "emoji": "🩻",
+          "title": "Les rayons X",
+          "body": "Les **rayons X** traversent facilement les tissus mous du corps mais sont en grande partie arrêtés par les os : c'est le principe de la **radiographie**. À forte dose, ils peuvent abîmer les cellules : on limite le nombre d'examens, et le personnel se protège derrière des écrans de plomb."
+        },
+        {
+          "emoji": "⚠️",
+          "title": "Lasers et sons forts : danger",
+          "body": "Un **laser** concentre sa lumière en un faisceau très fin : dans l'œil, un faisceau puissant peut brûler la rétine en une fraction de seconde, de façon définitive. Ne jamais viser les yeux, une personne ou un véhicule. Côté son, d'après Santé publique France, au-delà de **85 dB** une exposition prolongée peut abîmer l'audition **définitivement** ; vers **120 dB**, le son devient douloureux."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : un message transmis par une DEL",
+      "body": "Une DEL et un capteur de lumière, un code secret… et un message à décoder.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "texte", "x": 16, "y": 26, "text": "Le code secret :", "size": 15, "anchor": "start", "bold": true },
+          { "type": "texte", "x": 16, "y": 48, "text": "chaque lettre = son rang dans", "size": 14, "anchor": "start" },
+          { "type": "texte", "x": 16, "y": 68, "text": "l'alphabet (A = 1, B = 2… Z = 26),", "size": 14, "anchor": "start" },
+          { "type": "texte", "x": 16, "y": 88, "text": "écrit en binaire sur 5 bits.", "size": 14, "anchor": "start" },
+          { "type": "texte", "x": 16, "y": 112, "text": "Valeur de chaque position :", "size": 13, "anchor": "start", "bold": true },
+          { "type": "releve", "id": "pd", "x": 16, "y": 118, "w": 260, "head": ["16", "8", "4", "2", "1"], "rows": [["0", "1", "1", "1", "1"], ["0", "8", "4", "2", "1"]], "shown": 0 },
+          { "type": "courbe", "id": "sig", "x": 290, "y": 10, "w": 490, "h": 150, "title": "Signal lumineux reçu par le capteur", "xRange": [0, 10], "yRange": [0, 1.5], "xLabel": "t (s)", "yLabel": "1 = allumée, 0 = éteinte", "points": [[0, 0], [1, 0], [1, 1], [5, 1], [5, 0], [6, 0], [6, 1], [7, 1], [7, 0], [8, 0], [8, 1], [10, 1]], "progress": 0, "color": "#e11d48" },
+          { "type": "fil", "id": "w1", "points": [[220, 360], [290, 360], [290, 250], [262, 250]] },
+          { "type": "fil", "id": "w2", "points": [[218, 250], [203, 250]] },
+          { "type": "fil", "id": "w3", "points": [[127, 250], [112, 250]] },
+          { "type": "fil", "id": "w4", "points": [[48, 250], [30, 250], [30, 360], [140, 360]] },
+          { "type": "pile", "id": "G", "x": 180, "y": 360, "label": "4,5 V" },
+          { "type": "interrupteur", "id": "K", "x": 80, "y": 250, "closed": false },
+          { "type": "resistance", "id": "R", "x": 165, "y": 250, "label": "R" },
+          { "type": "del", "id": "D", "x": 240, "y": 250, "on": 0, "color": "rouge", "label": "DEL" },
+          { "type": "rayon", "id": "beam", "from": [258, 242], "to": [564, 242], "color": "#e11d48", "width": 5, "progress": 0 },
+          { "type": "forme", "id": "cap", "shape": "rect", "x": 566, "y": 226, "w": 26, "h": 32, "fill": "noir" },
+          { "type": "forme", "shape": "ellipse", "x": 566, "y": 242, "w": 10, "h": 24, "fill": "#94a3b8" },
+          { "type": "texte", "x": 579, "y": 280, "text": "capteur de lumière", "size": 13 },
+          { "type": "texte", "id": "bits", "x": 700, "y": 252, "text": "", "size": 24, "bold": true },
+          { "type": "releve", "id": "res", "x": 330, "y": 300, "w": 450, "head": ["Bits reçus", "Nombre", "Lettre"], "rows": [["0 1 1 1 1", "15", "O"], ["0 1 0 1 1", "11", "K"]], "shown": 0 }
+        ],
+        "steps": [
+          {
+            "title": "Le principe",
+            "text": "Pour envoyer un message avec de la lumière, on choisit un **code** : DEL allumée = **1**, DEL éteinte = **0**. Chaque 0 ou 1 est un **bit**. L'émetteur actionne l'interrupteur, à raison d'un bit par seconde ; en face, un capteur de lumière reçoit le signal.",
+            "focus": ["D", "cap"]
+          },
+          {
+            "title": "Première lettre",
+            "text": "L'émetteur envoie : éteinte, allumée, allumée, allumée, allumée. Le capteur reçoit les bits **0 1 1 1 1**. Le signal ne prend que deux valeurs : c'est un signal **numérique**.",
+            "duration": 6.5,
+            "do": [
+              { "id": "bits", "set": { "text": "0" }, "at": 0.5 },
+              { "id": "sig", "to": { "progress": 0.1 }, "at": 0.5, "dur": 1 },
+              { "id": "K", "set": { "closed": true }, "at": 1.5 },
+              { "id": "D", "set": { "on": 1 }, "at": 1.5 },
+              { "id": "beam", "set": { "progress": 1 }, "at": 1.5 },
+              { "id": "w1", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w2", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w3", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w4", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "bits", "set": { "text": "0 1" }, "at": 1.5 },
+              { "id": "sig", "to": { "progress": 0.2 }, "at": 1.5, "dur": 1 },
+              { "id": "bits", "set": { "text": "0 1 1" }, "at": 2.5 },
+              { "id": "sig", "to": { "progress": 0.3 }, "at": 2.5, "dur": 1 },
+              { "id": "bits", "set": { "text": "0 1 1 1" }, "at": 3.5 },
+              { "id": "sig", "to": { "progress": 0.4 }, "at": 3.5, "dur": 1 },
+              { "id": "bits", "set": { "text": "0 1 1 1 1" }, "at": 4.5 },
+              { "id": "sig", "to": { "progress": 0.5 }, "at": 4.5, "dur": 1 },
+              { "id": "K", "set": { "closed": false }, "at": 5.5 },
+              { "id": "D", "set": { "on": 0 }, "at": 5.5 },
+              { "id": "beam", "set": { "progress": 0 }, "at": 5.5 },
+              { "id": "w1", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w2", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w3", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w4", "set": { "current": 0 }, "at": 5.5 }
+            ],
+            "focus": ["bits", "sig"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde le graphique : pendant combien de temps la DEL est-elle restée allumée pour cette lettre ?",
+              "choices": ["1 s", "4 s", "5 s"],
+              "answer": 1,
+              "explain": "Le signal vaut 1 de t = 1 s à t = 5 s : la DEL est restée allumée 4 s, une seconde pour chacun des quatre bits « 1 »."
+            }
+          },
+          {
+            "title": "On décode",
+            "text": "Chaque position a une valeur : 16, 8, 4, 2, 1. On additionne les valeurs des positions où il y a un 1 : 8 + 4 + 2 + 1 = **15**. La 15e lettre de l'alphabet est le **O**.",
+            "duration": 3,
+            "do": [
+              { "id": "pd", "to": { "shown": 2 }, "dur": 1.5 },
+              { "id": "res", "set": { "shown": 1 }, "at": 2 }
+            ],
+            "focus": ["pd", "res"]
+          },
+          {
+            "title": "Deuxième lettre",
+            "text": "Deuxième lettre : le capteur reçoit **0 1 0 1 1**. Cette fois, la DEL s'éteint et se rallume au milieu du message.",
+            "duration": 6.5,
+            "do": [
+              { "id": "bits", "set": { "text": "" } },
+              { "id": "pd", "set": { "shown": 0 } },
+              { "id": "pd", "set": { "rows": [["0", "1", "0", "1", "1"], ["0", "8", "0", "2", "1"]], "shown": 1 }, "at": 5.5 },
+              { "id": "bits", "set": { "text": "0" }, "at": 0.5 },
+              { "id": "sig", "to": { "progress": 0.6 }, "at": 0.5, "dur": 1 },
+              { "id": "K", "set": { "closed": true }, "at": 1.5 },
+              { "id": "D", "set": { "on": 1 }, "at": 1.5 },
+              { "id": "beam", "set": { "progress": 1 }, "at": 1.5 },
+              { "id": "w1", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w2", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w3", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "w4", "set": { "current": 1 }, "at": 1.5 },
+              { "id": "bits", "set": { "text": "0 1" }, "at": 1.5 },
+              { "id": "sig", "to": { "progress": 0.7 }, "at": 1.5, "dur": 1 },
+              { "id": "K", "set": { "closed": false }, "at": 2.5 },
+              { "id": "D", "set": { "on": 0 }, "at": 2.5 },
+              { "id": "beam", "set": { "progress": 0 }, "at": 2.5 },
+              { "id": "w1", "set": { "current": 0 }, "at": 2.5 },
+              { "id": "w2", "set": { "current": 0 }, "at": 2.5 },
+              { "id": "w3", "set": { "current": 0 }, "at": 2.5 },
+              { "id": "w4", "set": { "current": 0 }, "at": 2.5 },
+              { "id": "bits", "set": { "text": "0 1 0" }, "at": 2.5 },
+              { "id": "sig", "to": { "progress": 0.8 }, "at": 2.5, "dur": 1 },
+              { "id": "K", "set": { "closed": true }, "at": 3.5 },
+              { "id": "D", "set": { "on": 1 }, "at": 3.5 },
+              { "id": "beam", "set": { "progress": 1 }, "at": 3.5 },
+              { "id": "w1", "set": { "current": 1 }, "at": 3.5 },
+              { "id": "w2", "set": { "current": 1 }, "at": 3.5 },
+              { "id": "w3", "set": { "current": 1 }, "at": 3.5 },
+              { "id": "w4", "set": { "current": 1 }, "at": 3.5 },
+              { "id": "bits", "set": { "text": "0 1 0 1" }, "at": 3.5 },
+              { "id": "sig", "to": { "progress": 0.9 }, "at": 3.5, "dur": 1 },
+              { "id": "bits", "set": { "text": "0 1 0 1 1" }, "at": 4.5 },
+              { "id": "sig", "to": { "progress": 1 }, "at": 4.5, "dur": 1 },
+              { "id": "K", "set": { "closed": false }, "at": 5.5 },
+              { "id": "D", "set": { "on": 0 }, "at": 5.5 },
+              { "id": "beam", "set": { "progress": 0 }, "at": 5.5 },
+              { "id": "w1", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w2", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w3", "set": { "current": 0 }, "at": 5.5 },
+              { "id": "w4", "set": { "current": 0 }, "at": 5.5 }
+            ],
+            "focus": ["bits", "sig"],
+            "ask": {
+              "kind": "observer",
+              "question": "Pendant cette deuxième lettre, combien de fois la DEL s'est-elle allumée ?",
+              "choices": ["Une fois", "Deux fois", "Cinq fois"],
+              "answer": 1,
+              "explain": "Elle s'allume pour le 2e bit, s'éteint pour le 3e, puis se rallume pour les 4e et 5e bits : sur le graphique, le signal monte deux fois à 1."
+            }
+          },
+          {
+            "title": "À toi de décoder !",
+            "ask": {
+              "kind": "expliquer",
+              "question": "Le capteur a reçu 0 1 0 1 1 (valeurs des positions : 16, 8, 4, 2, 1). Quelle lettre a été envoyée ?",
+              "choices": ["E (5e lettre)", "K (11e lettre)", "M (13e lettre)", "On ne peut pas savoir"],
+              "answer": 1,
+              "explain": "8 + 2 + 1 = 11 : la 11e lettre de l'alphabet est le K. Le message est donc « OK »."
+            }
+          },
+          {
+            "title": "Message reçu",
+            "text": "Le message « **OK** » a voyagé grâce à la lumière, codé en **10 bits**. Avec 5 bits, on peut former 2 × 2 × 2 × 2 × 2 = **32** codes différents : assez pour les 26 lettres de l'alphabet.",
+            "duration": 2,
+            "do": [
+              { "id": "pd", "set": { "shown": 2 } },
+              { "id": "res", "set": { "shown": 2 }, "at": 0.5 }
+            ],
+            "focus": ["res"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Avec 4 bits seulement, pourrait-on coder les 26 lettres de l'alphabet ?",
+              "choices": ["Oui, 4 bits suffisent", "Non : 4 bits ne donnent que 2 × 2 × 2 × 2 = 16 codes, moins que 26", "Non, car une DEL ne peut pas clignoter 4 fois"],
+              "answer": 1,
+              "explain": "Chaque bit en plus double le nombre de codes : 4 bits en donnent 16, trop peu pour 26 lettres. Avec 5 bits, on en a 32 : cela suffit."
+            }
+          },
+          {
+            "title": "Analogique ou numérique ?",
+            "text": "Ta voix captée par un microphone donne un signal **analogique** (en pointillés) : il varie de façon continue. Pour l'envoyer par téléphone, internet ou fibre optique, on le **numérise** : il devient une suite de 0 et de 1, comme notre message.",
+            "do": [
+              { "id": "sig", "set": { "ref": { "points": [[0, 0.7], [0.5, 1.05], [1, 1.25], [1.5, 1.1], [2, 0.75], [2.5, 0.45], [3, 0.35], [3.5, 0.6], [4, 0.95], [4.5, 1.2], [5, 1.3], [5.5, 1.05], [6, 0.7], [6.5, 0.4], [7, 0.3], [7.5, 0.5], [8, 0.85], [8.5, 1.15], [9, 1.2], [9.5, 0.95], [10, 0.7]], "label": "signal analogique" } } }
+            ],
+            "focus": ["sig"],
+            "ask": {
+              "kind": "observer",
+              "question": "Compare les deux signaux du graphique. Lequel ne prend que deux valeurs, 0 ou 1 ?",
+              "choices": ["Le signal de la DEL (trait plein)", "Le signal de la voix (pointillés)", "Les deux"],
+              "answer": 0,
+              "explain": "Le signal de la DEL saute de 0 à 1 et de 1 à 0 : il est numérique. Celui de la voix passe par toutes les valeurs intermédiaires : il est analogique."
+            }
+          }
+        ],
+        "conclusion": "Un signal **lumineux** peut transporter une **information**. Codée en **binaire** (0 ou 1), l'information forme un signal **numérique**, facile à transmettre sans erreur ; un signal **analogique**, lui, varie de façon continue. Avec n bits, on forme 2 × 2 × … × 2 (n fois) codes différents."
+      }
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : un son plus ou moins fort",
+      "body": "Un haut-parleur, un sonomètre… et une échelle des risques pour nos oreilles.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "texte", "x": 20, "y": 22, "text": "Niveau sonore (dB)", "size": 13, "anchor": "start", "bold": true },
+          { "type": "texte", "x": 20, "y": 46, "text": "30", "size": 12 },
+          { "type": "texte", "x": 134.5, "y": 46, "text": "60", "size": 12 },
+          { "type": "texte", "x": 229.5, "y": 46, "text": "85", "size": 12 },
+          { "type": "texte", "x": 363.6, "y": 46, "text": "120", "size": 12 },
+          { "type": "texte", "x": 440, "y": 46, "text": "140", "size": 12 },
+          { "type": "forme", "id": "zg", "shape": "rect", "x": 20, "y": 52, "w": 209.5, "h": 20, "fill": "vert" },
+          { "type": "forme", "id": "zo", "shape": "rect", "x": 229.5, "y": 52, "w": 134.1, "h": 20, "fill": "orange" },
+          { "type": "forme", "id": "zr", "shape": "rect", "x": 363.6, "y": 52, "w": 76.4, "h": 20, "fill": "rouge" },
+          { "type": "texte", "x": 124.75, "y": 66, "text": "risque faible", "size": 11, "bold": true, "color": "#14532d" },
+          { "type": "texte", "x": 296.5, "y": 66, "text": "danger si prolongé", "size": 11, "bold": true, "color": "#431407" },
+          { "type": "texte", "x": 401.8, "y": 66, "text": "douleur", "size": 11, "bold": true, "color": "#450a0a" },
+          { "type": "fleche", "id": "cur", "from": [39.1, 118], "to": [39.1, 76], "color": "#1f2937", "width": 3 },
+          { "type": "texte", "id": "curv", "x": 39.1, "y": 136, "text": "35 dB", "size": 14, "bold": true },
+          { "type": "releve", "id": "t", "x": 480, "y": 10, "w": 300, "title": "Mesures du sonomètre", "head": ["Volume", "Distance", "Niveau"], "rows": [["faible", "1 m", "60 dB"], ["moyen", "1 m", "75 dB"], ["fort", "1 m", "90 dB"], ["fort", "2 m", "84 dB"], ["fort", "4 m", "78 dB"]], "shown": 0 },
+          { "type": "etiquette", "id": "dang", "x": 600, "y": 232, "text": "Au-delà de 85 dB : danger si l'exposition dure", "hidden": true },
+          { "type": "forme", "id": "gbf", "shape": "rect", "x": 20, "y": 300, "w": 110, "h": 76, "fill": "#e2e8f0", "stroke": "#334155", "width": 2 },
+          { "type": "texte", "x": 75, "y": 330, "text": "générateur", "size": 13, "bold": true },
+          { "type": "texte", "id": "vol", "x": 75, "y": 352, "text": "volume : 0", "size": 12 },
+          { "type": "fil", "points": [[130, 338], [172, 338]] },
+          { "type": "emoji", "id": "hp", "x": 200, "y": 338, "char": "🔊", "size": 56 },
+          { "type": "forme", "id": "o1", "shape": "path", "x": 245, "y": 312, "w": 12, "h": 52, "d": "M246.9,313.9 A40,40 0 0 1 246.9,362.1", "fill": "none", "stroke": "#3b82f6", "width": 3, "opacity": 0 },
+          { "type": "forme", "id": "o2", "shape": "path", "x": 261, "y": 300, "w": 16, "h": 76, "d": "M262.9,301.9 A60,60 0 0 1 262.9,374.1", "fill": "none", "stroke": "#3b82f6", "width": 3, "opacity": 0 },
+          { "type": "forme", "id": "o3", "shape": "path", "x": 277, "y": 288, "w": 20, "h": 100, "d": "M278.9,289.9 A80,80 0 0 1 278.9,386.1", "fill": "none", "stroke": "#3b82f6", "width": 3, "opacity": 0 },
+          { "type": "forme", "shape": "line", "x": 215, "y": 402, "w": 480, "h": 0, "stroke": "#334155", "width": 2 },
+          { "type": "forme", "shape": "line", "x": 335, "y": 396, "w": 0, "h": 12, "stroke": "#334155", "width": 2 },
+          { "type": "forme", "shape": "line", "x": 455, "y": 396, "w": 0, "h": 12, "stroke": "#334155", "width": 2 },
+          { "type": "forme", "shape": "line", "x": 695, "y": 396, "w": 0, "h": 12, "stroke": "#334155", "width": 2 },
+          { "type": "texte", "x": 215, "y": 426, "text": "0", "size": 13, "bold": true },
+          { "type": "texte", "x": 335, "y": 426, "text": "1 m", "size": 13, "bold": true },
+          { "type": "texte", "x": 455, "y": 426, "text": "2 m", "size": 13, "bold": true },
+          { "type": "texte", "x": 695, "y": 426, "text": "4 m", "size": 13, "bold": true },
+          { "type": "forme", "id": "smb", "shape": "rect", "x": 307, "y": 290, "w": 56, "h": 86, "fill": "#e2e8f0", "stroke": "#334155", "width": 2 },
+          { "type": "forme", "id": "smm", "shape": "ellipse", "x": 335, "y": 282, "w": 22, "h": 22, "fill": "#475569" },
+          { "type": "forme", "id": "smd", "shape": "rect", "x": 311, "y": 302, "w": 48, "h": 24, "fill": "#d9f99d", "stroke": "#334155", "width": 1.5 },
+          { "type": "texte", "id": "smv", "x": 335, "y": 319, "text": "35 dB", "size": 13, "bold": true },
+          { "type": "texte", "id": "sml", "x": 335, "y": 266, "text": "sonomètre", "size": 13 }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Un générateur alimente un haut-parleur. Un **sonomètre**, placé à 1 m, mesure le **niveau sonore** en **décibels (dB)**. Avant d'allumer, il indique déjà **35 dB** : c'est le bruit de fond de la salle. En haut, une échelle situe chaque mesure.",
+            "focus": ["hp", "smb"]
+          },
+          {
+            "title": "Volume faible",
+            "text": "Volume faible : le sonomètre indique **60 dB**, à peu près le niveau d'une conversation entre deux personnes. Aucun risque pour l'audition, même si cela dure longtemps.",
+            "duration": 3,
+            "do": [
+              { "id": "vol", "set": { "text": "volume : faible" } },
+              { "id": "o1", "to": { "opacity": 0.5 }, "dur": 1 },
+              { "id": "smv", "set": { "text": "60 dB" }, "at": 1 },
+              { "id": "cur", "to": { "from": [134.5, 118], "to": [134.5, 76] }, "at": 1, "dur": 1 },
+              { "id": "curv", "to": { "x": 134.5 }, "at": 1, "dur": 1 },
+              { "id": "curv", "set": { "text": "60 dB" }, "at": 1 },
+              { "id": "t", "set": { "shown": 1 }, "at": 1.5 }
+            ],
+            "focus": ["smb", "cur"]
+          },
+          {
+            "title": "Volume moyen",
+            "text": "On monte le volume : **75 dB**. Le son devient gênant si on le subit longtemps, mais il reste sous le seuil de danger.",
+            "duration": 3,
+            "do": [
+              { "id": "vol", "set": { "text": "volume : moyen" } },
+              { "id": "o1", "to": { "opacity": 0.8 }, "dur": 1 },
+              { "id": "o2", "to": { "opacity": 0.5 }, "dur": 1 },
+              { "id": "smv", "set": { "text": "75 dB" }, "at": 1 },
+              { "id": "cur", "to": { "from": [191.8, 118], "to": [191.8, 76] }, "at": 1, "dur": 1 },
+              { "id": "curv", "to": { "x": 191.8 }, "at": 1, "dur": 1 },
+              { "id": "curv", "set": { "text": "75 dB" }, "at": 1 },
+              { "id": "t", "set": { "shown": 2 }, "at": 1.5 }
+            ],
+            "focus": ["smb", "cur"],
+            "ask": {
+              "kind": "observer",
+              "question": "Regarde l'échelle en haut : à 75 dB, dans quelle zone se trouve le curseur ?",
+              "choices": ["Zone verte : risque faible", "Zone orange : danger si prolongé", "Zone rouge : douleur"],
+              "answer": 0,
+              "explain": "Le curseur est encore dans la zone verte, sous 85 dB : à ce niveau, le son peut gêner, mais il ne présente pas de danger pour l'audition."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On tourne encore le bouton : le sonomètre affiche 90 dB. Que risque-t-on si l'on écoute ce son pendant des heures ?",
+              "choices": ["Rien, tant que le son ne fait pas mal", "Des lésions de l'oreille, parfois définitives", "Seulement un mal de tête passager"],
+              "answer": 1,
+              "explain": "Au-delà de 85 dB, une exposition prolongée peut détruire des cellules de l'oreille interne, qui ne repoussent pas. La douleur n'arrive que vers 120 dB : il ne faut pas l'attendre pour se protéger."
+            }
+          },
+          {
+            "title": "Volume fort",
+            "text": "**90 dB** : le curseur entre dans la zone orange. Au-delà de **85 dB**, écouter longtemps peut abîmer l'audition **définitivement** (sifflements, surdité). C'est le niveau d'un casque audio réglé fort.",
+            "duration": 3,
+            "show": ["dang"],
+            "do": [
+              { "id": "vol", "set": { "text": "volume : fort" } },
+              { "id": "o1", "to": { "opacity": 1 }, "dur": 1 },
+              { "id": "o2", "to": { "opacity": 1 }, "dur": 1 },
+              { "id": "o3", "to": { "opacity": 0.9 }, "dur": 1 },
+              { "id": "smv", "set": { "text": "90 dB" }, "at": 1 },
+              { "id": "cur", "to": { "from": [249.1, 118], "to": [249.1, 76] }, "at": 1, "dur": 1 },
+              { "id": "curv", "to": { "x": 249.1 }, "at": 1, "dur": 1 },
+              { "id": "curv", "set": { "text": "90 dB" }, "at": 1 },
+              { "id": "t", "set": { "shown": 3 }, "at": 1.5 }
+            ],
+            "focus": ["cur", "dang"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "On éloigne le sonomètre à 2 m du haut-parleur, sans toucher au volume. Que va-t-il indiquer ?",
+              "choices": ["Toujours 90 dB", "Moins de 90 dB", "Plus de 90 dB"],
+              "answer": 1,
+              "explain": "En s'éloignant de la source, le son se répartit sur une surface plus grande : le niveau sonore diminue."
+            }
+          },
+          {
+            "title": "On s'éloigne",
+            "text": "À 2 m : **84 dB** ; à 4 m : **78 dB**. En plein air, chaque fois que la distance double, le niveau baisse d'environ 6 dB. S'éloigner des enceintes est un bon réflexe !",
+            "duration": 5.5,
+            "do": [
+              { "id": "smb", "to": { "x": 427 }, "dur": 1.5 },
+              { "id": "smm", "to": { "x": 455 }, "dur": 1.5 },
+              { "id": "smd", "to": { "x": 431 }, "dur": 1.5 },
+              { "id": "smv", "to": { "x": 455 }, "dur": 1.5 },
+              { "id": "sml", "to": { "x": 455 }, "dur": 1.5 },
+              { "id": "smv", "set": { "text": "84 dB" }, "at": 1.6 },
+              { "id": "cur", "to": { "from": [226.2, 118], "to": [226.2, 76] }, "at": 1.6, "dur": 0.8 },
+              { "id": "curv", "to": { "x": 226.2 }, "at": 1.6, "dur": 0.8 },
+              { "id": "curv", "set": { "text": "84 dB" }, "at": 1.6 },
+              { "id": "t", "set": { "shown": 4 }, "at": 1.6 },
+              { "id": "smb", "to": { "x": 667 }, "at": 2.6, "dur": 1.8 },
+              { "id": "smm", "to": { "x": 695 }, "at": 2.6, "dur": 1.8 },
+              { "id": "smd", "to": { "x": 671 }, "at": 2.6, "dur": 1.8 },
+              { "id": "smv", "to": { "x": 695 }, "at": 2.6, "dur": 1.8 },
+              { "id": "sml", "to": { "x": 695 }, "at": 2.6, "dur": 1.8 },
+              { "id": "smv", "set": { "text": "78 dB" }, "at": 4.5 },
+              { "id": "cur", "to": { "from": [203.3, 118], "to": [203.3, 76] }, "at": 4.5, "dur": 0.8 },
+              { "id": "curv", "to": { "x": 203.3 }, "at": 4.5, "dur": 0.8 },
+              { "id": "curv", "set": { "text": "78 dB" }, "at": 4.5 },
+              { "id": "t", "set": { "shown": 5 }, "at": 4.5 }
+            ],
+            "focus": ["smb", "t"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Le sonomètre est maintenant à 4 m du haut-parleur. Lis le niveau sonore qu'il affiche.",
+              "answer": 78,
+              "tolerance": 0,
+              "unit": "dB",
+              "explain": "L'écran du sonomètre, comme la dernière ligne du tableau, indique 78 dB : 12 dB de moins qu'à 1 m, sans avoir touché au volume."
+            }
+          },
+          {
+            "title": "Protéger ses oreilles",
+            "text": "Au concert, en discothèque ou avec un casque réglé fort, le niveau sonore dépasse souvent 85 dB.",
+            "ask": {
+              "kind": "expliquer",
+              "question": "D'après ces mesures, quel est le bon réflexe près d'une enceinte qui joue fort ?",
+              "choices": ["S'en éloigner et faire des pauses", "Rester tout près tant que le son ne fait pas mal", "Monter le volume de son casque pour couvrir le bruit"],
+              "answer": 0,
+              "explain": "Le niveau sonore baisse quand on s'éloigne de la source, et le risque grandit avec la durée d'écoute. Attendre la douleur, c'est trop tard : elle n'arrive que vers 120 dB."
+            }
+          }
+        ],
+        "conclusion": "Le **niveau sonore** se mesure en **décibels (dB)** avec un sonomètre. Au-delà de **85 dB**, une exposition prolongée est dangereuse pour l'audition ; vers **120 dB**, le son devient douloureux. Baisser le volume, faire des pauses et **s'éloigner** de la source protègent les oreilles."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : coder la lettre M",
+      "steps": [
+        { "text": "Avec 5 bits, les positions valent, de gauche à droite : 16, 8, 4, 2 et 1. On veut coder la lettre M, 13e lettre de l'alphabet.", "math": "" },
+        { "text": "On décompose 13 en valeurs de positions, en commençant par la plus grande qui « tient » : 16 est trop grand, 8 convient, il reste 5 ; puis 4, il reste 1 ; puis 1.", "math": "13 = 8 + 4 + 1" },
+        { "text": "On écrit 1 sous 8, 4 et 1, et 0 sous 16 et 2 :", "math": "0 1 1 0 1" },
+        { "text": "Vérification :", "math": "0 × 16 + 1 × 8 + 1 × 4 + 0 × 2 + 1 × 1 = 13" },
+        { "text": "La DEL transmet donc : éteinte, allumée, allumée, éteinte, allumée.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour le binaire, souviens-toi des valeurs des positions sur 5 bits : 16, 8, 4, 2, 1.",
+      "exercises": [
+        "pc3-signaux-decoder",
+        "pc3-signaux-coder",
+        "pc3-signaux-analogique-numerique",
+        "pc3-signaux-rayonnements",
+        "pc3-signaux-vide",
+        "pc3-signaux-risques",
+        "pc3-signaux-chaine"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["pc3-signaux-laser"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Un message secret",
+      "exercises": ["pc3-signaux-message"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le message lumineux du camp",
+      "body": "Pas de réseau au camping ! Tu dois envoyer un message à la tente voisine avec une lampe de poche et le code binaire.",
+      "exercises": ["pc3-signaux-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> Un signal (son, lumière, onde radio, tension) transporte une information. Analogique : il varie de façon continue ; numérique : une suite de 0 et de 1. Le son ne se propage pas dans le vide ; la lumière, les ondes radio et les rayons X, si. Danger au-delà de 85 dB en exposition prolongée ; jamais de laser vers les yeux.\n\n- **Lire le binaire à l'envers.** Sur 5 bits, le bit de gauche vaut 16, celui de droite vaut 1.\n- **Compter les 1.** Chaque 1 vaut la valeur de sa position.\n- **« Le son voyage dans l'espace. »** Sans matière, pas de son.\n- **« Radiographie = ondes radio. »** Elle utilise des rayons X.\n- **« Ça ne fait pas mal, donc ce n'est pas dangereux. »** L'oreille s'abîme bien avant la douleur."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un message à décoder en binaire et une question sur les rayonnements et leurs risques."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le temps de trajet d'un signal radio jusqu'à Mars, puis le poids en bits d'une chanson numérisée.",
+      "exercises": ["pc3-signaux-mars", "pc3-signaux-numerisation"]
+    },
+    "expert": {
+      "intro": "Facultatif : deux sujets type brevet, protéger son audition au concert et envoyer une image avec de la lumière.",
+      "exercises": ["pc3-signaux-concert", "pc3-signaux-image"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc3-signaux-decoder",
+      "type": "numeric",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:poids-inverses", "mc:compter-les-1"],
+      "expectedSeconds": 120,
+      "params": {
+        "n": { "int": [5, 30] }
+      },
+      "constraints": [
+        "n != 16*mod(n;2)+8*mod(floor(n/2);2)+4*mod(floor(n/4);2)+2*mod(floor(n/8);2)+floor(n/16)",
+        "n != mod(n;2)+mod(floor(n/2);2)+mod(floor(n/4);2)+mod(floor(n/8);2)+floor(n/16)",
+        "n != 18",
+        "16*mod(n;2)+8*mod(floor(n/2);2)+4*mod(floor(n/4);2)+2*mod(floor(n/8);2)+floor(n/16) != mod(n;2)+mod(floor(n/2);2)+mod(floor(n/4);2)+mod(floor(n/8);2)+floor(n/16)"
+      ],
+      "prompt": "Un nombre est transmis par une DEL, en binaire sur 5 bits (valeurs des positions : 16, 8, 4, 2, 1). Le capteur reçoit : **{floor(n/16)} {mod(floor(n/8);2)} {mod(floor(n/4);2)} {mod(floor(n/2);2)} {mod(n;2)}**. Quel nombre a été transmis ?",
+      "answer": "n",
+      "misconceptions": [
+        { "answer": "16*mod(n;2)+8*mod(floor(n/2);2)+4*mod(floor(n/4);2)+2*mod(floor(n/8);2)+floor(n/16)", "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as lu les valeurs des positions dans le mauvais sens : le bit de gauche est celui qui vaut 16." },
+        { "answer": "mod(n;2)+mod(floor(n/2);2)+mod(floor(n/4);2)+mod(floor(n/8);2)+floor(n/16)", "id": "mc:compter-les-1", "error": "notion", "feedback": "Tu as compté les 1 : chaque 1 vaut la valeur de sa position (16, 8, 4, 2 ou 1)." }
+      ],
+      "hints": [
+        "De gauche à droite, les positions valent 16, 8, 4, 2, 1.",
+        "Additionne les valeurs des positions où il y a un 1.",
+        "Exemple : 1 0 0 1 0 = 16 + 2 = 18."
+      ],
+      "solution": "On additionne les valeurs des positions où il y a un 1 : {floor(n/16)} × 16 + {mod(floor(n/8);2)} × 8 + {mod(floor(n/4);2)} × 4 + {mod(floor(n/2);2)} × 2 + {mod(n;2)} × 1 = {n}.",
+      "selfTest": [
+        { "response": { "value": "{n}" }, "expect": "correct" },
+        { "response": { "value": "{16*mod(n;2)+8*mod(floor(n/2);2)+4*mod(floor(n/4);2)+2*mod(floor(n/8);2)+floor(n/16)}" }, "expect": "mc:poids-inverses" },
+        { "response": { "value": "{mod(n;2)+mod(floor(n/2);2)+mod(floor(n/4);2)+mod(floor(n/8);2)+floor(n/16)}" }, "expect": "mc:compter-les-1" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-coder",
+      "type": "table",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:poids-inverses"],
+      "expectedSeconds": 150,
+      "params": {
+        "n": { "int": [5, 30] }
+      },
+      "constraints": ["n != 13"],
+      "prompt": "Code le nombre {n} en binaire sur 5 bits : écris 0 ou 1 sous la valeur de chaque position.",
+      "columns": ["Valeur de la position", "16", "8", "4", "2", "1"],
+      "rows": [
+        ["Bit", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"]
+      ],
+      "cells": {
+        "r0c1": { "answer": "floor(n/16)" },
+        "r0c2": { "answer": "mod(floor(n/8);2)" },
+        "r0c3": { "answer": "mod(floor(n/4);2)" },
+        "r0c4": { "answer": "mod(floor(n/2);2)" },
+        "r0c5": { "answer": "mod(n;2)" }
+      },
+      "hints": [
+        "Cherche la plus grande valeur de position qui « tient » dans {n}.",
+        "Retire-la, puis recommence avec ce qui reste.",
+        "Exemple : 13 = 8 + 4 + 1, donc 13 s'écrit 0 1 1 0 1."
+      ],
+      "solution": "{n} = {floor(n/16)} × 16 + {mod(floor(n/8);2)} × 8 + {mod(floor(n/4);2)} × 4 + {mod(floor(n/2);2)} × 2 + {mod(n;2)} × 1 : le code est {floor(n/16)} {mod(floor(n/8);2)} {mod(floor(n/4);2)} {mod(floor(n/2);2)} {mod(n;2)}.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{floor(n/16)}", "r0c2": "{mod(floor(n/8);2)}", "r0c3": "{mod(floor(n/4);2)}", "r0c4": "{mod(floor(n/2);2)}", "r0c5": "{mod(n;2)}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "2", "r0c2": "2", "r0c3": "2", "r0c4": "2", "r0c5": "2" } }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-analogique-numerique",
+      "type": "categorize",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:micro-numerique", "mc:lumiere-analogique"],
+      "expectedSeconds": 150,
+      "prompt": "Analogique ou numérique ? Classe chaque signal.",
+      "categories": [
+        { "id": "ana", "label": "Analogique (varie de façon continue)" },
+        { "id": "num", "label": "Numérique (suite de 0 et de 1)" }
+      ],
+      "items": [
+        { "id": "micro", "label": "La tension produite par un microphone quand tu parles", "category": "ana" },
+        { "id": "mp3", "label": "Un fichier de musique MP3", "category": "num" },
+        { "id": "vinyle", "label": "Le sillon gravé d'un disque vinyle", "category": "ana" },
+        { "id": "fibre", "label": "Les impulsions de lumière dans la fibre optique d'une box internet", "category": "num" },
+        { "id": "photo", "label": "Une photo enregistrée sur une carte mémoire", "category": "num" },
+        { "id": "thermo", "label": "La hauteur du liquide dans un thermomètre", "category": "ana" },
+        { "id": "qr", "label": "Un QR code (petits carrés noirs ou blancs)", "category": "num" },
+        { "id": "voix", "label": "L'onde sonore de ta voix dans l'air", "category": "ana" }
+      ],
+      "misconceptions": [
+        { "item": "micro", "category": "num", "id": "mc:micro-numerique", "error": "notion", "feedback": "La tension du microphone suit en continu les vibrations de la voix : elle peut prendre toutes les valeurs. Ce n'est qu'après une conversion qu'elle devient une suite de bits." },
+        { "item": "fibre", "category": "ana", "id": "mc:lumiere-analogique", "error": "notion", "feedback": "La lumière peut transporter des bits : dans la fibre, elle est tantôt allumée, tantôt éteinte, comme la DEL de l'expérience." }
+      ],
+      "hints": [
+        "Le signal peut-il prendre n'importe quelle valeur, ou seulement deux ?",
+        "Tout ce qui est stocké dans un ordinateur, un téléphone ou une carte mémoire est numérique."
+      ],
+      "solution": "Analogiques : la tension du microphone, le sillon du vinyle, la hauteur du liquide du thermomètre, l'onde sonore de la voix (ils varient de façon continue). Numériques : le fichier MP3, les impulsions de la fibre optique, la photo sur carte mémoire, le QR code (des 0 et des 1).",
+      "selfTest": [
+        { "response": { "assign": { "micro": "ana", "mp3": "num", "vinyle": "ana", "fibre": "num", "photo": "num", "thermo": "ana", "qr": "num", "voix": "ana" } }, "expect": "correct" },
+        { "response": { "assign": { "micro": "num", "mp3": "num", "vinyle": "ana", "fibre": "num", "photo": "num", "thermo": "ana", "qr": "num", "voix": "ana" } }, "expect": "mc:micro-numerique" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-rayonnements",
+      "type": "match",
+      "skill": "pc.signaux.rayonnements",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:radio-radiographie", "mc:uv-ir"],
+      "expectedSeconds": 150,
+      "prompt": "Associe chaque rayonnement à l'une de ses utilisations.",
+      "leftTitle": "Rayonnement",
+      "rightTitle": "Utilisation",
+      "left": [
+        { "id": "radio", "label": "Ondes radio" },
+        { "id": "ir", "label": "Infrarouge" },
+        { "id": "vis", "label": "Lumière visible" },
+        { "id": "uv", "label": "Ultraviolet" },
+        { "id": "x", "label": "Rayons X" }
+      ],
+      "right": [
+        { "id": "wifi", "label": "Wi-Fi, téléphone portable, radio FM" },
+        { "id": "telec", "label": "Télécommande de télévision, caméra thermique" },
+        { "id": "voir", "label": "Voir les objets qui nous entourent" },
+        { "id": "bronzage", "label": "Bronzage… et coups de soleil" },
+        { "id": "radiographie", "label": "Radiographie d'un os cassé" }
+      ],
+      "pairs": { "radio": "wifi", "ir": "telec", "vis": "voir", "uv": "bronzage", "x": "radiographie" },
+      "misconceptions": [
+        { "pair": ["radio", "radiographie"], "id": "mc:radio-radiographie", "error": "notion", "feedback": "Malgré son nom, la radiographie n'utilise pas les ondes radio. Quel rayonnement traverse les tissus mous mais est arrêté par les os ?" },
+        { "pair": ["uv", "telec"], "id": "mc:uv-ir", "error": "notion", "feedback": "« Ultra » veut dire « au-delà » (du violet) ; la télécommande utilise un rayonnement situé « en dessous » du rouge." },
+        { "pair": ["ir", "bronzage"], "id": "mc:uv-ir", "error": "notion", "feedback": "« Infra » veut dire « en dessous » (du rouge) : ce rayonnement chauffe, mais ce n'est pas lui qui fait bronzer." }
+      ],
+      "hints": [
+        "« Infra » veut dire « en dessous » (du rouge) ; « ultra » veut dire « au-delà » (du violet).",
+        "Les rayons X traversent les tissus mous mais sont arrêtés par les os."
+      ],
+      "solution": "Ondes radio : Wi-Fi, téléphone, radio FM. Infrarouge : télécommande, caméra thermique. Visible : voir les objets. Ultraviolet : bronzage et coups de soleil. Rayons X : radiographie.",
+      "selfTest": [
+        { "response": { "pairs": { "radio": "wifi", "ir": "telec", "vis": "voir", "uv": "bronzage", "x": "radiographie" } }, "expect": "correct" },
+        { "response": { "pairs": { "radio": "radiographie", "ir": "telec", "vis": "voir", "uv": "bronzage", "x": "wifi" } }, "expect": "mc:radio-radiographie" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-vide",
+      "type": "qcm",
+      "skill": "pc.signaux.rayonnements",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:son-vide", "mc:radio-vide"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide : sur la Lune, il n'y a pas d'air. Deux astronautes, à 10 m l'un de l'autre, veulent se parler. Que se passe-t-il ?",
+      "choices": [
+        { "text": "Ils s'entendent normalement en criant", "correct": false, "error": "notion", "misconception": "mc:son-vide", "feedback": "Le son est une vibration qui a besoin de matière pour se propager. Y a-t-il de l'air entre eux ?" },
+        { "text": "Ils ne s'entendent pas en criant, mais peuvent se parler par radio", "correct": true, "feedback": "Exact : le son ne se propage pas dans le vide, mais les ondes radio, comme la lumière, si." },
+        { "text": "Ils ne peuvent communiquer d'aucune façon", "correct": false, "error": "notion", "misconception": "mc:radio-vide", "feedback": "La lumière du Soleil arrive jusqu'à nous à travers le vide : pense aux rayonnements de la même famille." },
+        { "text": "Ils s'entendent, mais avec un retard", "correct": false, "error": "notion", "misconception": "mc:son-vide", "feedback": "Sans air, ce n'est pas une question de retard : le son a besoin de matière pour se propager." }
+      ],
+      "justify": { "required": true, "minWords": 6, "prompt": "Justifie en comparant le son et les ondes radio.", "keywords": [["vide", "matiere", "air"]] },
+      "solution": "Le son a besoin d'un milieu matériel (air, eau, solide) : il ne se propage pas dans le vide. Les ondes radio, de la même famille que la lumière, se propagent dans le vide : les astronautes communiquent par radio.",
+      "selfTest": [
+        { "response": { "selected": [1], "justification": "Le son ne se propage pas dans le vide car il lui faut de la matière, alors que les ondes radio si." }, "expect": "correct" },
+        { "response": { "selected": [0], "justification": "Ils sont proches donc ils peuvent crier fort." }, "expect": "mc:son-vide" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-risques",
+      "type": "categorize",
+      "skill": "pc.signaux.rayonnements",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:pas-de-douleur"],
+      "expectedSeconds": 150,
+      "prompt": "Classe ces situations selon le risque pour l'audition (niveaux sonores habituels, donnés à titre indicatif).",
+      "categories": [
+        { "id": "faible", "label": "Moins de 85 dB : risque faible" },
+        { "id": "danger", "label": "De 85 à 120 dB : danger, d'autant plus vite que le son est fort" },
+        { "id": "douleur", "label": "120 dB et plus : douleur, lésion possible immédiatement" }
+      ],
+      "items": [
+        { "id": "classe", "label": "Une salle de classe calme : 45 dB", "category": "faible" },
+        { "id": "conv", "label": "Une conversation : 60 dB", "category": "faible" },
+        { "id": "aspi", "label": "Un aspirateur : 70 dB", "category": "faible" },
+        { "id": "tondeuse", "label": "Une tondeuse à gazon, tout près : 90 dB", "category": "danger" },
+        { "id": "casque", "label": "Un casque audio au volume maximal : 100 dB", "category": "danger" },
+        { "id": "concert", "label": "Un concert, près des enceintes : 110 dB", "category": "danger" },
+        { "id": "sirene", "label": "Une sirène d'alarme, à 1 m : 120 dB", "category": "douleur" },
+        { "id": "avion", "label": "Un avion à réaction qui décolle, tout près : 140 dB", "category": "douleur" }
+      ],
+      "misconceptions": [
+        { "item": "tondeuse", "category": "faible", "id": "mc:pas-de-douleur", "error": "notion", "feedback": "Ce son ne fait pas mal… mais il dépasse le seuil de danger pour une exposition prolongée. La douleur n'est pas un bon signal d'alarme." },
+        { "item": "casque", "category": "faible", "id": "mc:pas-de-douleur", "error": "notion", "feedback": "Un casque ne fait pas mal, même très fort : pourtant, ce niveau dépasse largement le seuil de danger." }
+      ],
+      "hints": [
+        "Seuil de danger pour une exposition prolongée : 85 dB.",
+        "Seuil de douleur : environ 120 dB."
+      ],
+      "solution": "Risque faible : la salle de classe (45 dB), la conversation (60 dB), l'aspirateur (70 dB). Danger si l'exposition dure : la tondeuse (90 dB), le casque au maximum (100 dB), le concert près des enceintes (110 dB : quelques minutes suffisent). Douleur : la sirène (120 dB) et l'avion (140 dB).",
+      "selfTest": [
+        { "response": { "assign": { "classe": "faible", "conv": "faible", "aspi": "faible", "tondeuse": "danger", "casque": "danger", "concert": "danger", "sirene": "douleur", "avion": "douleur" } }, "expect": "correct" },
+        { "response": { "assign": { "classe": "faible", "conv": "faible", "aspi": "faible", "tondeuse": "faible", "casque": "danger", "concert": "danger", "sirene": "douleur", "avion": "douleur" } }, "expect": "mc:pas-de-douleur" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-chaine",
+      "type": "order",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:chaine-transmission"],
+      "expectedSeconds": 180,
+      "prompt": "Tu appelles un ami avec ton téléphone portable. Range les étapes du trajet de ta voix, de ta bouche jusqu'à son oreille.",
+      "orderLabel": "de ta bouche jusqu'à l'oreille de ton ami",
+      "errorType": "notion",
+      "items": [
+        { "id": "c1", "label": "Ta voix fait vibrer l'air : c'est un son" },
+        { "id": "c2", "label": "Le microphone de ton téléphone convertit le son en signal électrique analogique" },
+        { "id": "c3", "label": "Ton téléphone numérise ce signal : il devient une suite de 0 et de 1" },
+        { "id": "c4", "label": "Les bits voyagent par ondes radio jusqu'à une antenne-relais, puis dans le réseau" },
+        { "id": "c5", "label": "Le téléphone de ton ami reçoit les bits et reconstitue un signal électrique" },
+        { "id": "c6", "label": "Le haut-parleur fait vibrer l'air : ton ami entend ta voix" }
+      ],
+      "hints": [
+        "Le premier et le dernier maillon sont des sons.",
+        "Le microphone d'abord, la numérisation ensuite.",
+        "Entre les deux téléphones, ce sont les ondes radio qui transportent les bits."
+      ],
+      "solution": "Son (ta voix) → microphone : signal électrique analogique → numérisation : bits → ondes radio jusqu'à l'antenne-relais, puis réseau → téléphone de ton ami : signal électrique → haut-parleur : son. Le son se transforme plusieurs fois, mais l'information (ta voix) est conservée.",
+      "selfTest": [
+        { "response": { "order": ["c1", "c2", "c3", "c4", "c5", "c6"] }, "expect": "correct" },
+        { "response": { "order": ["c1", "c3", "c2", "c4", "c5", "c6"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-laser",
+      "type": "open",
+      "skill": "pc.signaux.rayonnements",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:laser-faible"],
+      "expectedSeconds": 300,
+      "prompt": "Pendant la récréation, un élève s'amuse à pointer un petit laser vers les yeux de ses camarades. Il dit : « Ce n'est pas grave, il n'est pas puissant. » Explique-lui pourquoi c'est dangereux.",
+      "minWords": 30,
+      "criteria": [
+        { "id": "c1", "label": "J'explique que le faisceau du laser est très concentré : toute son énergie arrive sur un point minuscule", "keywords": [["concentr", "point", "faisceau", "etroit"]] },
+        { "id": "c2", "label": "J'explique que l'œil concentre encore ce faisceau sur la rétine, qui peut être brûlée de façon définitive", "keywords": [["retine", "brul", "lesion", "aveugle", "definitiv"]] },
+        { "id": "c3", "label": "Je donne la règle : ne jamais viser les yeux, une personne, un véhicule ou un avion", "keywords": [["jamais", "ne pas viser", "interdit", "yeux"]] }
+      ],
+      "models": [
+        "Un laser est dangereux : son faisceau est très concentré, toute sa lumière arrive sur un tout petit point. Dans l'œil, le cristallin concentre encore ce point sur la rétine, qui peut être brûlée en une fraction de seconde, et cette lésion peut être définitive. On ne connaît pas toujours la vraie puissance d'un pointeur : il ne faut jamais viser les yeux, ni une personne, ni un véhicule."
+      ],
+      "hints": [
+        "Compare le faisceau d'un laser à la lumière d'une lampe de poche : comment se répartit la lumière ?",
+        "Que se passe-t-il quand on concentre la lumière du Soleil avec une loupe ?"
+      ],
+      "solution": "La lumière d'un laser n'est pas dispersée : elle reste concentrée en un faisceau très fin. Dans l'œil, elle est encore concentrée sur un point minuscule de la rétine, qui peut être brûlée en une fraction de seconde, parfois définitivement. Un pointeur « peu puissant » éblouit déjà, et beaucoup de pointeurs vendus en ligne sont plus puissants qu'annoncé. Règle : ne jamais viser les yeux, une personne, un véhicule ou un avion (l'éblouissement peut provoquer un accident).",
+      "selfTest": [
+        { "response": { "text": "Le faisceau du laser est très concentré sur un point. Dans l'œil il peut brûler la rétine de façon définitive, même s'il est peu puissant. Il ne faut jamais viser les yeux.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-message",
+      "type": "composite",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:poids-inverses", "mc:compter-les-1", "mc:bits-multiplication"],
+      "expectedSeconds": 360,
+      "prompt": "Un message secret, transmis par une DEL avec le code de l'expérience (rang de la lettre dans l'alphabet, en binaire sur 5 bits : A = 1, B = 2… Z = 26), arrive au capteur : **10011 – 01111 – 01100**.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Valeur du premier code, 10011 :",
+          "answer": 19,
+          "misconceptions": [
+            { "answer": 25, "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as lu les valeurs dans le mauvais sens : le bit de gauche vaut 16." },
+            { "answer": 3, "id": "mc:compter-les-1", "error": "notion", "feedback": "Tu as compté les 1 : chaque 1 vaut la valeur de sa position." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Valeur du deuxième code, 01111 :",
+          "answer": 15,
+          "misconceptions": [
+            { "answer": 30, "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as lu les valeurs dans le mauvais sens : le bit de gauche vaut 16." },
+            { "answer": 4, "id": "mc:compter-les-1", "error": "notion", "feedback": "Tu as compté les 1 : chaque 1 vaut la valeur de sa position." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Valeur du troisième code, 01100 :",
+          "answer": 12,
+          "misconceptions": [
+            { "answer": 6, "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as lu les valeurs dans le mauvais sens : le bit de gauche vaut 16." },
+            { "answer": 2, "id": "mc:compter-les-1", "error": "notion", "feedback": "Tu as compté les 1 : chaque 1 vaut la valeur de sa position." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel est le mot transmis ?",
+          "accept": ["sol", "le sol"]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de codes différents peut-on former avec 5 bits ?",
+          "answer": 32,
+          "misconceptions": [
+            { "answer": 10, "id": "mc:bits-multiplication", "error": "raisonnement", "feedback": "Chaque bit a 2 valeurs possibles, et chaque bit ajouté DOUBLE le nombre de codes : ce n'est pas 5 × 2." },
+            { "answer": 25, "id": "mc:puissance-inverse", "error": "raisonnement", "feedback": "Ce n'est pas 5 × 5 : chaque bit a 2 valeurs possibles ; combien de combinaisons pour 5 bits ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Valeurs des positions : 16, 8, 4, 2, 1.",
+        "10011 = 16 + 2 + 1.",
+        "La 19e lettre de l'alphabet est le S."
+      ],
+      "solution": "10011 = 16 + 2 + 1 = 19 → S ; 01111 = 8 + 4 + 2 + 1 = 15 → O ; 01100 = 8 + 4 = 12 → L. Le mot est « SOL ». Avec 5 bits : 2 × 2 × 2 × 2 × 2 = 32 codes différents.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "19" }, { "value": "15" }, { "value": "12" }, { "value": "SOL" }, { "value": "32" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "25" }, { "value": "30" }, { "value": "6" }, { "value": "YDF" }, { "value": "32" }] }, "expect": "mc:poids-inverses" },
+        { "response": { "parts": [{ "value": "19" }, { "value": "15" }, { "value": "12" }, { "value": "SOL" }, { "value": "10" }] }, "expect": "mc:bits-multiplication" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-mission",
+      "type": "composite",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:poids-inverses", "mc:bits-lettres", "mc:lumiere-obstacle"],
+      "expectedSeconds": 600,
+      "prompt": "Mission : le message lumineux du camp. Le réseau téléphonique ne passe pas. Tu veux envoyer un message à la tente voisine avec une lampe de poche, en utilisant le code de l'expérience : rang de la lettre dans l'alphabet, en binaire sur 5 bits ; lampe allumée = 1, éteinte = 0.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Code de la lettre C (3e lettre de l'alphabet), sur 5 bits, sans espaces :",
+          "accept": ["00011", "0 0 0 1 1"],
+          "misconceptions": [
+            { "answer": "11000", "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as écrit le code à l'envers : la position de droite vaut 1, celle de gauche vaut 16." },
+            { "answer": "11", "id": "mc:cinq-bits", "error": "forme", "feedback": "Le code doit compter exactement 5 bits : complète avec des 0 à gauche." },
+            { "answer": "00003", "id": "mc:chiffre-binaire", "error": "notion", "feedback": "En binaire, on n'utilise que les chiffres 0 et 1." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de bits faut-il pour envoyer le mot « CHAT » ?",
+          "answer": 20,
+          "misconceptions": [
+            { "answer": 4, "id": "mc:bits-lettres", "error": "notion", "feedback": "C'est le nombre de lettres : chaque lettre demande plusieurs bits." },
+            { "answer": 5, "id": "mc:bits-lettres", "error": "notion", "feedback": "C'est le nombre de bits d'UNE lettre : le mot en compte plusieurs." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Chaque bit dure 0,5 s. Combien de temps faut-il pour envoyer « CHAT » ? (avec l'unité)",
+          "answer": 10,
+          "unit": "s",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 40, "id": "mc:division-inverse", "error": "calcul", "feedback": "Chaque bit dure moins d'une seconde : l'envoi doit durer moins de secondes qu'il n'y a de bits." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Ton ami peut-il recevoir ce message s'il est caché derrière un gros rocher ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:lumiere-obstacle", "error": "notion", "feedback": "La lumière se propage en ligne droite : un obstacle opaque l'arrête." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "La lampe est presque déchargée : sa lumière est faible. Explique pourquoi le message codé en binaire reste lisible.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Il suffit de distinguer deux états : allumée (1) ou éteinte (0)", "keywords": [["deux", "allume", "eteint", "0", "1"]] },
+            { "id": "c2", "label": "Une lumière faible reste différente du noir : l'information n'est pas perdue (c'est l'intérêt d'un signal numérique)", "keywords": [["faible", "numerique", "difference", "distinguer"]] }
+          ],
+          "models": [
+            "Avec le code binaire, mon ami doit seulement savoir si la lampe est allumée ou éteinte. Même faible, la lumière se distingue du noir : chaque bit reste reconnaissable. C'est l'avantage d'un signal numérique : il suffit de distinguer deux états."
+          ]
+        }
+      ],
+      "hints": [
+        "C = 3 = 2 + 1.",
+        "Chaque lettre demande 5 bits.",
+        "Durée = nombre de bits × durée d'un bit."
+      ],
+      "solution": "C = 3 = 2 + 1, donc 00011. « CHAT » : 4 lettres × 5 bits = 20 bits ; 20 × 0,5 s = 10 s. Derrière un rocher, non : la lumière se propage en ligne droite et un obstacle opaque l'arrête. Même faible, la lumière se distingue du noir : avec deux états seulement (allumé, éteint), chaque bit reste reconnaissable.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "00011" }, { "value": "20" }, { "value": "10 s" }, { "value": "non" }, { "text": "Il suffit de distinguer deux états, allumée ou éteinte. Même faible la lumière se distingue du noir, c'est l'avantage du numérique.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "11000" }, { "value": "20" }, { "value": "10 s" }, { "value": "non" }, { "text": "Il y a deux états." }] }, "expect": "mc:poids-inverses" },
+        { "response": { "parts": [{ "value": "00011" }, { "value": "4" }, { "value": "10 s" }, { "value": "non" }, { "text": "Il y a deux états." }] }, "expect": "mc:bits-lettres" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-remed-bits",
+      "type": "composite",
+      "skill": "pc.signaux.information",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:compter-les-1", "mc:poids-inverses"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : sur 5 bits, les positions valent, de gauche à droite, 16, 8, 4, 2 et 1. On additionne les valeurs des positions où il y a un 1.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "00100 = ?",
+          "answer": 4,
+          "misconceptions": [
+            { "answer": 1, "id": "mc:compter-les-1", "error": "notion", "feedback": "Il n'y a qu'un seul 1, mais il vaut la valeur de sa position : regarde le rappel." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "00011 = ?",
+          "answer": 3,
+          "misconceptions": [
+            { "answer": 24, "id": "mc:poids-inverses", "error": "lecture", "feedback": "Tu as lu les valeurs dans le mauvais sens : la position de droite vaut 1." },
+            { "answer": 2, "id": "mc:compter-les-1", "error": "notion", "feedback": "Tu as compté les 1 : chaque 1 vaut la valeur de sa position." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "10000 = ?",
+          "answer": 16,
+          "misconceptions": [
+            { "answer": 1, "id": "mc:compter-les-1", "error": "notion", "feedback": "Ce 1 est tout à gauche : quelle est la valeur de cette position ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Écris 16, 8, 4, 2, 1 au-dessus des 5 bits.",
+        "Additionne seulement les valeurs placées au-dessus d'un 1."
+      ],
+      "solution": "00100 = 4 ; 00011 = 2 + 1 = 3 ; 10000 = 16.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "4" }, { "value": "3" }, { "value": "16" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "1" }, { "value": "2" }, { "value": "1" }] }, "expect": "mc:compter-les-1" },
+        { "response": { "parts": [{ "value": "4" }, { "value": "24" }, { "value": "16" }] }, "expect": "mc:poids-inverses" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-remed-vide",
+      "type": "composite",
+      "skill": "pc.signaux.rayonnements",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:son-vide", "mc:radio-vide"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : le son est une vibration de la matière (air, eau, solide) : il ne se propage PAS dans le vide. La lumière et les autres rayonnements (ondes radio, rayons X…) se propagent, eux, même dans le vide.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Le son se propage-t-il dans le vide ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:son-vide", "error": "notion", "feedback": "Relis le rappel : de quoi le son a-t-il besoin pour se propager ?" }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Les ondes radio se propagent-elles dans le vide ? (oui ou non)",
+          "accept": ["oui"],
+          "misconceptions": [
+            { "answer": "non", "id": "mc:radio-vide", "error": "notion", "feedback": "Les ondes radio sont de la même famille que la lumière : la lumière du Soleil traverse bien le vide de l'espace." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Une énorme explosion se produit à la surface du Soleil. L'entend-on sur Terre ? (oui ou non)",
+          "accept": ["non"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:son-vide", "error": "notion", "feedback": "Entre le Soleil et la Terre, l'espace est presque vide : le son peut-il le traverser ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Le son est une vibration de la matière.",
+        "Entre le Soleil et la Terre, il n'y a presque pas de matière."
+      ],
+      "solution": "Le son ne se propage pas dans le vide ; les ondes radio, si. L'espace entre le Soleil et la Terre est presque vide : on voit la lumière du Soleil, mais on n'entend aucun de ses bruits.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "non" }, { "value": "oui" }, { "value": "non" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "oui" }, { "value": "oui" }, { "value": "oui" }] }, "expect": "mc:son-vide" },
+        { "response": { "parts": [{ "value": "non" }, { "value": "non" }, { "value": "non" }] }, "expect": "mc:radio-vide" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-mars",
+      "type": "numeric",
+      "skill": "pc.signaux.rayonnements",
+      "skills": ["pc.signaux.propagation"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:vitesse-son", "mc:secondes-minutes"],
+      "expectedSeconds": 240,
+      "params": {
+        "d": { "choice": [60, 90, 150, 225, 300, 375] }
+      },
+      "prompt": "Un ingénieur envoie un ordre par ondes radio au robot Perseverance, sur Mars. Ce jour-là, Mars est à {d} millions de kilomètres de la Terre. Les ondes radio se propagent à 300 000 km/s. Combien de temps l'ordre met-il pour arriver ? Donne le résultat en minutes, arrondi au dixième (avec l'unité).",
+      "answer": "d*1000000/300000/60",
+      "unit": "min",
+      "tolerance": 0.06,
+      "round": 1,
+      "misconceptions": [
+        { "answer": "d*1000000/0.34/60", "id": "mc:vitesse-son", "error": "notion", "feedback": "Tu as utilisé la vitesse du son : peut-il se propager dans le vide entre la Terre et Mars ?" },
+        { "answer": "d*1000000/300000", "id": "mc:secondes-minutes", "error": "unite", "feedback": "Ton résultat est un nombre de secondes : convertis-le en minutes." }
+      ],
+      "hints": [
+        "t = d ÷ v.",
+        "{d} millions de km = {d} 000 000 km.",
+        "Le résultat est en secondes : divise par 60 pour avoir des minutes."
+      ],
+      "solution": "t = d ÷ v = {d} 000 000 km ÷ 300 000 km/s = {d*10/3|d1} s, soit environ {d/18|d1} min. Le robot ne peut pas être piloté « en direct » : les ingénieurs envoient leurs ordres à l'avance.",
+      "selfTest": [
+        { "response": { "value": "{d/18|d1} min" }, "expect": "correct" },
+        { "response": { "value": "{d*10/3|d1} s" }, "expect": "correct" },
+        { "response": { "value": "{d*10/3|d1} min" }, "expect": "mc:secondes-minutes" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-numerisation",
+      "type": "composite",
+      "skill": "pc.signaux.information",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:bits-multiplication", "mc:stereo-oubliee", "mc:bits-octets"],
+      "expectedSeconds": 600,
+      "prompt": "Pour numériser un son, on mesure la tension du microphone à intervalles réguliers (des « échantillons ») et on code chaque mesure sur un nombre fixe de bits. Un CD audio utilise 44 100 échantillons par seconde, codés sur 16 bits, pour chacune des 2 voies (stéréo).",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de valeurs différentes peut-on coder sur 3 bits ?",
+          "answer": 8,
+          "misconceptions": [
+            { "answer": 6, "id": "mc:bits-multiplication", "error": "raisonnement", "feedback": "Chaque bit ajouté DOUBLE le nombre de possibilités : ce n'est pas 3 × 2." },
+            { "answer": 9, "id": "mc:puissance-inverse", "error": "raisonnement", "feedback": "Ce n'est pas 3 × 3 : chaque bit n'a que 2 valeurs possibles." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Et sur 16 bits ?",
+          "answer": 65536,
+          "misconceptions": [
+            { "answer": 32, "id": "mc:bits-multiplication", "error": "raisonnement", "feedback": "Chaque bit ajouté DOUBLE le nombre de possibilités : ce n'est pas 16 × 2." },
+            { "answer": 256, "id": "mc:octet", "error": "calcul", "feedback": "256 valeurs, c'est pour 8 bits : ici, il y a deux fois plus de bits." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Nombre de bits enregistrés pour une seconde de musique sur un CD :",
+          "answer": 1411200,
+          "rel": 0.001,
+          "misconceptions": [
+            { "answer": 705600, "id": "mc:stereo-oubliee", "error": "methode", "feedback": "N'oublie pas les 2 voies de la stéréo." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Taille d'une chanson de 3 minutes, en mégaoctets (1 octet = 8 bits ; 1 Mo = 1 000 000 octets), arrondie à l'unité (avec l'unité Mo) :",
+          "answer": "1411200*180/8/1000000",
+          "unit": "Mo",
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "1411200*180/1000000", "id": "mc:bits-octets", "error": "unite", "feedback": "Tu as compté des bits, pas des octets : 1 octet = 8 bits." },
+            { "answer": "1411200*3/8/1000000", "id": "mc:minutes-secondes", "error": "unite", "feedback": "Le débit est donné par SECONDE : convertis les 3 minutes en secondes." }
+          ]
+        }
+      ],
+      "hints": [
+        "n bits → 2 × 2 × … × 2 (n fois) valeurs.",
+        "Bits par seconde = 44 100 × 16 × 2.",
+        "3 min = 180 s ; divise le nombre de bits par 8 pour obtenir des octets."
+      ],
+      "solution": "3 bits : 2 × 2 × 2 = 8 valeurs. 16 bits : 2¹⁶ = 65 536 valeurs. En une seconde : 44 100 × 16 × 2 = 1 411 200 bits. Pour 3 min = 180 s : 1 411 200 × 180 = 254 016 000 bits, soit 31 752 000 octets ≈ 32 Mo. Un fichier MP3 de la même chanson est environ dix fois plus léger : il est compressé.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "8" }, { "value": "65536" }, { "value": "1411200" }, { "value": "32 Mo" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "8" }, { "value": "65536" }, { "value": "705600" }, { "value": "32 Mo" }] }, "expect": "mc:stereo-oubliee" },
+        { "response": { "parts": [{ "value": "6" }, { "value": "65536" }, { "value": "1411200" }, { "value": "32 Mo" }] }, "expect": "mc:bits-multiplication" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-concert",
+      "type": "composite",
+      "skill": "pc.signaux.rayonnements",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:soustraction-duree", "mc:palier-oublie", "mc:distance-une-fois"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Protéger son audition au concert.\n\n**Document 1.** Règle de prévention utilisée en santé au travail : un niveau de 85 dB peut être supporté 8 heures par jour sans risque important ; chaque fois que le niveau augmente de 3 dB, la durée d'exposition sans risque important est divisée par 2.\n\n**Document 2.** En France, dans les lieux qui diffusent de la musique amplifiée, le niveau sonore moyen ne doit pas dépasser 102 dB sur 15 minutes (réglementation de 2017).\n\n**Document 3.** En plein air, le niveau sonore diminue d'environ 6 dB chaque fois que la distance à l'enceinte double.",
+      "figure": {
+        "alt": "Tableau : niveau sonore et durée d'exposition sans risque important. 85 dB : 8 h ; 88 dB : 4 h ; les durées pour 91, 94, 97 et 100 dB sont à trouver.",
+        "w": 460,
+        "h": 220,
+        "items": [
+          { "type": "table", "head": ["Niveau sonore (dB)", "Durée sans risque important"], "rows": [["85", "8 h"], ["88", "4 h"], ["91", "?"], ["94", "?"], ["97", "?"], ["100", "?"]] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Durée d'exposition sans risque important à 91 dB (avec l'unité) :",
+          "answer": 2,
+          "unit": "h",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 0, "id": "mc:soustraction-duree", "error": "raisonnement", "feedback": "Tu as retiré 4 h à chaque palier : le document 1 dit de DIVISER la durée par 2." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Durée d'exposition sans risque important à 100 dB, en minutes (avec l'unité) :",
+          "answer": 15,
+          "unit": "min",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 30, "id": "mc:palier-oublie", "error": "methode", "feedback": "Compte bien les paliers de 3 dB entre 85 dB et 100 dB." },
+            { "answer": 7.5, "id": "mc:palier-oublie", "error": "methode", "feedback": "Compte bien les paliers de 3 dB entre 85 dB et 100 dB." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Au concert, on mesure 100 dB à 4 m des enceintes. Quel est le niveau sonore à 16 m, en dB ? (seulement le nombre)",
+          "answer": 88,
+          "misconceptions": [
+            { "answer": 94, "id": "mc:distance-une-fois", "error": "raisonnement", "feedback": "De 4 m à 16 m, la distance ne double pas une seule fois : compte les doublements." },
+            { "answer": 76, "id": "mc:distance-quadruple", "error": "raisonnement", "feedback": "La distance est multipliée par 4, mais cela ne fait pas 4 doublements : compte-les (4 m → 8 m → …)." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. À 16 m des enceintes, combien de temps peut-on rester sans risque important ? (avec l'unité)",
+          "answer": 4,
+          "unit": "h",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 8, "id": "mc:palier-oublie", "error": "methode", "feedback": "Ce niveau dépasse 85 dB : la durée sans risque est plus courte que 8 h." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "5. En t'appuyant sur les documents, donne trois conseils à un ami qui va à son premier concert.",
+          "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "S'éloigner des enceintes : le niveau baisse d'environ 6 dB à chaque doublement de distance", "keywords": [["eloign", "distance", "enceinte", "loin"]] },
+            { "id": "c2", "label": "Limiter la durée d'exposition et faire des pauses au calme", "keywords": [["pause", "duree", "temps", "calme", "sortir"]] },
+            { "id": "c3", "label": "Porter des bouchons d'oreille ou un casque antibruit", "keywords": [["bouchon", "protection", "casque antibruit", "protege"]] }
+          ],
+          "models": [
+            "Reste loin des enceintes : chaque fois que tu doubles la distance, le niveau baisse d'environ 6 dB. Fais des pauses au calme, car à 100 dB l'exposition devient risquée au bout de 15 minutes seulement. Et porte des bouchons d'oreille, qui diminuent le niveau sonore qui arrive dans tes oreilles."
+          ]
+        }
+      ],
+      "hints": [
+        "85 → 88 → 91 → 94 → 97 → 100 dB : 5 paliers de 3 dB.",
+        "8 h ÷ 2 ÷ 2 ÷ 2 ÷ 2 ÷ 2.",
+        "4 m → 8 m → 16 m : deux doublements de distance."
+      ],
+      "solution": "1. 91 dB = 85 + 2 × 3 : 8 h ÷ 2 ÷ 2 = 2 h. 2. 100 dB = 85 + 5 × 3 : 8 h ÷ 2⁵ = 0,25 h = 15 min (cohérent avec la réglementation qui mesure le niveau moyen sur 15 minutes). 3. 4 m → 8 m → 16 m : deux doublements, 100 − 6 − 6 = 88 dB. 4. 88 dB : 4 h. 5. S'éloigner des enceintes, faire des pauses au calme, porter des bouchons d'oreille.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2 h" }, { "value": "15 min" }, { "value": "88" }, { "value": "4 h" }, { "text": "Reste loin des enceintes car le niveau baisse avec la distance. Fais des pauses au calme pour limiter la durée. Porte des bouchons d'oreille.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2 h" }, { "value": "15 min" }, { "value": "94" }, { "value": "4 h" }, { "text": "Il faut des bouchons." }] }, "expect": "mc:distance-une-fois" },
+        { "response": { "parts": [{ "value": "0 h" }, { "value": "15 min" }, { "value": "88" }, { "value": "4 h" }, { "text": "Il faut des bouchons." }] }, "expect": "mc:soustraction-duree" }
+      ]
+    },
+    {
+      "id": "pc3-signaux-image",
+      "type": "composite",
+      "skill": "pc.signaux.information",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:code-inverse", "mc:pixels-noirs", "mc:une-ligne"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Envoyer une image avec de la lumière.\n\n**Document 1.** Une image en noir et blanc est un quadrillage de pixels. Chaque pixel est noir (codé 1) ou blanc (codé 0). On transmet les pixels ligne par ligne, de gauche à droite, en commençant par la ligne du haut.\n\n**Document 2.** La technologie Li-Fi transmet des données grâce à une lampe à DEL qui s'allume et s'éteint très vite, des millions de fois par seconde : l'œil ne voit aucun clignotement.\n\n**Document 3.** La DEL d'une maquette de collège transmet 10 bits par seconde.",
+      "figure": {
+        "alt": "Image de 5 pixels sur 5 en noir et blanc, représentant un cœur, présentée ligne par ligne.",
+        "w": 380,
+        "h": 230,
+        "items": [
+          { "type": "table", "rows": [["ligne 1 (haut)", "⬜", "⬛", "⬜", "⬛", "⬜"], ["ligne 2", "⬛", "⬛", "⬛", "⬛", "⬛"], ["ligne 3", "⬛", "⬛", "⬛", "⬛", "⬛"], ["ligne 4", "⬜", "⬛", "⬛", "⬛", "⬜"], ["ligne 5 (bas)", "⬜", "⬜", "⬛", "⬜", "⬜"]] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "1. Écris le code de la ligne du haut de l'image (5 bits, de gauche à droite, sans espaces).",
+          "accept": ["01010", "0 1 0 1 0"],
+          "misconceptions": [
+            { "answer": "10101", "id": "mc:code-inverse", "error": "lecture", "feedback": "Tu as inversé le code : relis le document 1 pour savoir quelle couleur est codée 1." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Combien de bits faut-il pour transmettre toute l'image ?",
+          "answer": 25,
+          "misconceptions": [
+            { "answer": 5, "id": "mc:une-ligne", "error": "methode", "feedback": "C'est le nombre de bits d'UNE ligne : l'image en compte plusieurs." },
+            { "answer": 16, "id": "mc:pixels-noirs", "error": "notion", "feedback": "Les pixels blancs doivent aussi être transmis : un 0 est une information !" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Avec la DEL de la maquette, combien de temps dure l'envoi de l'image ? (avec l'unité)",
+          "answer": 2.5,
+          "unit": "s",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 250, "id": "mc:division-inverse", "error": "calcul", "feedback": "La DEL envoie 10 bits CHAQUE seconde : l'envoi dure moins de secondes qu'il n'y a de bits." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Une photo de téléphone compte 12 millions de pixels, chacun codé sur 24 bits (couleurs). Combien de bits faut-il pour la transmettre ?",
+          "answer": 288000000,
+          "rel": 0.001,
+          "misconceptions": [
+            { "answer": 36000000, "id": "mc:bits-octets", "error": "unite", "feedback": "Tu as divisé par 8 : la question demande des bits, pas des octets." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "5. À 10 bits par seconde, combien de jours durerait l'envoi de cette photo ? (arrondi à l'unité, seulement le nombre)",
+          "answer": "288000000/10/86400",
+          "tolerance": 0.6,
+          "round": 0,
+          "misconceptions": [
+            { "answer": "288000000/10/3600", "id": "mc:heures-jours", "error": "unite", "feedback": "Ton résultat est un nombre d'heures : une journée compte 24 heures." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "6. Explique pourquoi le Li-Fi doit faire clignoter sa lampe des millions de fois par seconde.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Plus il y a de bits par seconde, plus la transmission est rapide (une photo en moins d'une seconde au lieu de 333 jours)", "keywords": [["rapide", "vite", "seconde", "debit"]] },
+            { "id": "c2", "label": "Le clignotement est trop rapide pour être vu : la lampe continue d'éclairer normalement", "keywords": [["voit pas", "invisible", "eclaire", "oeil", "œil"]] }
+          ],
+          "models": [
+            "Pour transmettre beaucoup d'informations rapidement, il faut envoyer beaucoup de bits chaque seconde : à 10 bits par seconde, une photo mettrait des mois. En clignotant des millions de fois par seconde, la lampe envoie la photo en une fraction de seconde. Et ce clignotement est trop rapide pour que l'œil le voie : la lampe continue d'éclairer la pièce."
+          ]
+        }
+      ],
+      "hints": [
+        "Noir = 1, blanc = 0 ; la ligne du haut a deux pixels noirs.",
+        "L'image fait 5 × 5 pixels ; chaque pixel = 1 bit.",
+        "12 000 000 × 24 bits ; une journée = 86 400 s."
+      ],
+      "solution": "1. Ligne du haut : blanc, noir, blanc, noir, blanc → 01010. 2. 5 × 5 = 25 pixels, donc 25 bits (les blancs comptent aussi). 3. 25 ÷ 10 = 2,5 s. 4. 12 000 000 × 24 = 288 000 000 bits. 5. 288 000 000 ÷ 10 = 28 800 000 s ; ÷ 86 400 ≈ 333 jours ! 6. Il faut un très grand nombre de bits par seconde pour transmettre vite ; à des millions de clignotements par seconde, l'œil ne voit rien et la lampe éclaire normalement.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "01010" }, { "value": "25" }, { "value": "2,5 s" }, { "value": "288000000" }, { "value": "333" }, { "text": "Il faut beaucoup de bits par seconde pour transmettre vite une photo. Le clignotement est trop rapide, l'œil ne le voit pas et la lampe éclaire normalement.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "01010" }, { "value": "16" }, { "value": "2,5 s" }, { "value": "288000000" }, { "value": "333" }, { "text": "Pour aller vite." }] }, "expect": "mc:pixels-noirs" },
+        { "response": { "parts": [{ "value": "10101" }, { "value": "25" }, { "value": "2,5 s" }, { "value": "288000000" }, { "value": "333" }, { "text": "Pour aller vite." }] }, "expect": "mc:code-inverse" }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
  * Niveaux ◆ approfondissement et ✦ expert des générateurs : équations et calcul littéral.
  * Chaque fonction reçoit (rand, options) et renvoie un exercice comme `make` (numeric, expression, steps).
  */
-import { ri, nz, pick, clean, fr, par, gcd, lcm, frac, fracStr, sgn, xTerm, poly, mc, numeric, expression } from './gen-util.js';
+import { ri, nz, pick, clean, fr, par, gcd, lcm, frac, fracStr, sgn, xTerm, poly, mc, numeric, expression, withoutCitedAnswer } from './gen-util.js';
 import { near, distinct, fval, pdistinct, fm, isNice, fracResult, formTxt, steps, readFrac } from './tiers-nombres-outils.js';
 
 export const TIERS_LITTERAL = {
@@ -12,23 +12,24 @@ export const TIERS_LITTERAL = {
       const forme = o.forme || pick(rand, ['simple', 'deux-membres']);
       const etapes = (o.reponse || (rand() < 0.5 ? 'etapes' : 'solution')) === 'etapes';
       const kind = pick(rand, forme === 'simple' ? ['s1', 's2'] : ['d1', 'd2']);
-      return eqExercise(EQ_APPRO[kind](rand), etapes, 150);
+      return withoutCitedAnswer(() => eqExercise(EQ_APPRO[kind](rand), etapes, 150));
     },
     /** ✦ Parenthèses des deux côtés (« − » devant l'une), solution fractionnaire, coefficients fractionnaires, paramètre à trouver. */
     expert(rand, o) {
       const forme = o.forme || pick(rand, ['simple', 'deux-membres']);
       const etapes = (o.reponse || (rand() < 0.5 ? 'etapes' : 'solution')) === 'etapes';
       const kinds = forme === 'simple' ? ['e3', 'e4'] : ['e1', 'e2'];
-      if (!etapes && rand() < 0.3) return EQ_PARAM(rand, forme);
-      return eqExercise(EQ_EXPERT[pick(rand, kinds)](rand), etapes, 210);
+      if (!etapes && rand() < 0.3) return withoutCitedAnswer(() => EQ_PARAM(rand, forme));
+      const kind = pick(rand, kinds);
+      return withoutCitedAnswer(() => eqExercise(EQ_EXPERT[kind](rand), etapes, 210));
     },
   },
 
   'm-litteral-valeur': {
     /** ◆ Deux lettres, valeur décimale, quotient, carré d'une parenthèse. */
-    approfondissement(rand) { return LV_APPRO[pick(rand, ['deuxLettres', 'decimal', 'quotient', 'parenthese'])](rand); },
+    approfondissement(rand) { const f = LV_APPRO[pick(rand, ['deuxLettres', 'decimal', 'quotient', 'parenthese'])]; return withoutCitedAnswer(() => f(rand)); },
     /** ✦ Utiliser la structure sans chercher x, cas pièges −x² / (−x)³ / (kx)², coefficient manquant. */
-    expert(rand) { return LV_EXPERT[pick(rand, ['structure', 'piege', 'manquant'])](rand); },
+    expert(rand) { const f = LV_EXPERT[pick(rand, ['structure', 'piege', 'manquant'])]; return withoutCitedAnswer(() => f(rand)); },
   },
 
   'm-developper': {
@@ -42,7 +43,7 @@ export const TIERS_LITTERAL = {
     /** ◆ Coefficients négatifs, carré (ax + b)², double et simple distributivité réunies. */
     approfondissement(rand) { return DD_APPRO[pick(rand, ['negatif', 'carre', 'mixte'])](rand); },
     /** ✦ Différence de deux produits, nombre manquant dans un facteur, différence de carrés (cas piège). */
-    expert(rand) { return DD_EXPERT[pick(rand, ['difference', 'manquant', 'piege'])](rand); },
+    expert(rand) { const f = DD_EXPERT[pick(rand, ['difference', 'manquant', 'piege'])]; return withoutCitedAnswer(() => f(rand)); },
   },
 };
 
@@ -274,23 +275,23 @@ const LV_EXPERT = {
   },
   /** c − x² − x³ ou kx² − (kx)² : les pièges du signe et du carré */
   piege(rand) {
-    let expr; let x; let ans; let vals; let fbs;
+    let expr; let x; let ans; let vals; let fbs; let detail;
     if (rand() < 0.5) {
       let c;
       do { x = -ri(rand, 2, 4); c = nz(rand, -10, 10); ans = c - x * x - x ** 3; vals = [c + x * x - x ** 3, c - x * x - Math.abs(x) ** 3, c - 2 * x - 3 * x]; } while (!distinct(ans, vals));
-      expr = `${fr(c)} − x² − x³`;
+      expr = `${fr(c)} − x² − x³`; detail = `${fr(c)} − ${par(x)}² − ${par(x)}³ = ${fr(c)} − ${x * x} − ${par(x ** 3)}`;
       fbs = [['mc:moins-carre', 'signe', `$− x²$ = $−(x²)$ = $−${par(x)}² = ${fr(-x * x)}$ : le « − » n’est pas élevé au carré.`], ['mc:cube-negatif', 'signe', `${par(x)}³ = ${fr(x ** 3)} (trois facteurs négatifs), donc $− x³ = ${fr(-(x ** 3))}$.`], ['mc:puissance-produit', 'notion', 'x² = x × x et x³ = x × x × x : ce ne sont pas 2x et 3x.']];
     } else {
       let k;
       do { x = -ri(rand, 2, 5); k = ri(rand, 2, 4); ans = k * x * x - (k * x) ** 2; vals = [0, k * x * x + (k * x) ** 2]; } while (!distinct(ans, vals));
-      expr = `${k}x² − (${k}x)²`;
+      expr = `${k}x² − (${k}x)²`; detail = `${k} × ${par(x)}² − (${k} × ${par(x)})² = ${k} × ${x * x} − ${par(k * x)}² = ${k * x * x} − ${(k * x) ** 2}`;
       fbs = [['mc:carre-coefficient', 'notion', `$(${k}x)² = ${k}x × ${k}x = ${k * k}x²$ : le ${k} est aussi élevé au carré, contrairement à $${k}x²$.`], ['mc:carre-negatif', 'signe', `$(${k} × ${par(x)})² = ${par(k * x)}² = ${(k * x) ** 2}$ : un carré est positif.`]];
     }
     return numeric(ans, {
       prompt: valueAt(expr, `$x = ${fr(x)}$`), expectedSeconds: 150,
       misconceptions: vals.map((v, i) => mc(v, ...fbs[i])),
       hints: [`Remplace x par ${par(x)} en gardant les parenthèses.`, 'Regarde sur quoi porte chaque exposant : sur x seul, ou sur toute la parenthèse ?', 'Calcule les puissances avant les produits et les sommes.'],
-      solution: `En remplaçant x par ${par(x)} : $${expr.replace(/x/g, par(x))} = ${fr(ans)}$.`,
+      solution: `En remplaçant x par ${par(x)} : $${detail} = ${fr(ans)}$.`,
     });
   },
   /** pour x donné, kx² + bx vaut V : retrouver k */
@@ -312,6 +313,8 @@ const LV_EXPERT = {
 const DEV = ['Développe et réduis', 'Développe puis réduis', 'Écris sous forme développée et réduite'];
 const devEx = (rand, ans, expr, rest) => expression(poly(ans), { form: 'developpee-reduite', prompt: `${pick(rand, DEV)} : $${expr}$`, ...rest });
 const pmc = (c, id, err, fb) => mc(poly(c), id, err, fb);
+/** Terme kx écrit comme second facteur d'un produit : « 3x », « (−3x) ». */
+const px = (k) => (k < 0 ? `(${poly([0, k])})` : poly([0, k]));
 const pDistinct = (ans, mcs) => pdistinct(ans, mcs.map((m) => m.c));
 
 const DV_APPRO = {
@@ -356,8 +359,8 @@ const DV_APPRO = {
     const expr = `${fr(k)}x(${inner})`;
     return devEx(rand, ans, expr, {
       expectedSeconds: 90, misconceptions: list.map((x) => pmc(x.c, x.id, x.err, x.fb)),
-      hints: [`Multiplie ${fr(k)}x par chaque terme de la parenthèse.`, `$${fr(k)}x × ${poly([0, a])} = ${poly([0, 0, k * a])}$ (x × x = x²).`],
-      solution: `$${expr} = ${poly([0, 0, k * a])}${xTerm(k * b)} = ${poly(ans)}$`,
+      hints: [`Multiplie ${fr(k)}x par chaque terme de la parenthèse.`, `$${fr(k)}x × ${px(a)} = ${poly([0, 0, k * a])}$ (x × x = x²).`],
+      solution: `$${expr} = ${fr(k)}x × ${px(a)} + ${px(k)} × ${par(b)} = ${poly(ans)}$`,
     });
   },
   /** à l'envers : Ax + B = k(…) */
@@ -365,7 +368,7 @@ const DV_APPRO = {
     let k; let a; let b; let list;
     do {
       k = ri(rand, 2, 9); a = nz(rand, -9, 9); b = nz(rand, -9, 9);
-      list = [{ c: [k * b, a], id: 'mc:factor-partielle', err: 'notion', fb: `Les deux termes doivent être divisés par ${k} : $${fr(k * b)} ÷ ${k} = ${fr(b)}$.` }, { c: [k * b - k, k * a - k], id: 'mc:factoriser-soustraire', err: 'notion', fb: `Mettre ${k} en facteur, c’est diviser chaque terme par ${k}, pas lui soustraire ${k}.` }];
+      list = [{ c: [k * b, a], id: 'mc:factor-partielle', err: 'notion', fb: `Les deux termes doivent être divisés par ${k}, y compris le nombre.` }, { c: [k * b - k, k * a - k], id: 'mc:factoriser-soustraire', err: 'notion', fb: `Mettre ${k} en facteur, c’est diviser chaque terme par ${k}, pas lui soustraire ${k}.` }];
     } while (gcd(a, b) !== 1 || !pDistinct([b, a], list));
     const lhs = poly([k * b, k * a]);
     return expression(poly([b, a]), {
@@ -373,7 +376,7 @@ const DV_APPRO = {
       prompt: `Complète l’égalité : $${lhs} = ${k}(…)$. Écris l’expression qui va entre les parenthèses.`,
       misconceptions: list.map((x) => pmc(x.c, x.id, x.err, x.fb)),
       hints: [`Il faut que ${k} × (…) redonne $${lhs}$.`, `$${poly([0, k * a])} ÷ ${k} = ${poly([0, a])}$ ; et le nombre ?`, 'Vérifie en développant ta réponse.'],
-      solution: `$${lhs} = ${k}(${poly([b, a])})$ car $${k} × ${poly([0, a])} = ${poly([0, k * a])}$ et $${k} × ${par(b)} = ${fr(k * b)}$.`,
+      solution: `$${lhs} = ${k}(${poly([b, a])})$ car $${k} × ${px(a)} = ${poly([0, k * a])}$ et $${k} × ${par(b)} = ${fr(k * b)}$.`,
     });
   },
 };
@@ -410,7 +413,7 @@ const DV_EXPERT = {
       prompt: rand() < 0.5 ? `Complète l’égalité : $${lhs} = ${fr(k)}(…)$. Écris l’expression qui va entre les parenthèses.` : `Factorise $${lhs}$ en mettant ${fr(k)} en facteur : écris seulement ce qui va entre les parenthèses de $${fr(k)}(…)$.`,
       misconceptions: list.map((x) => pmc(x.c, x.id, x.err, x.fb)),
       hints: [`Il faut que ${fr(k)} × (…) redonne $${lhs}$.`, `Divise chaque terme par ${fr(k)} : $${poly([0, k * a])} ÷ ${par(k)} = ${poly([0, a])}$.`, 'Vérifie en développant ta réponse.'],
-      solution: `$${lhs} = ${fr(k)}(${poly([b, a])})$ car $${fr(k)} × ${poly([0, a])} = ${poly([0, k * a])}$ et $${fr(k)} × ${par(b)} = ${fr(k * b)}$.`,
+      solution: `$${lhs} = ${fr(k)}(${poly([b, a])})$ car $${fr(k)} × ${px(a)} = ${poly([0, k * a])}$ et $${fr(k)} × ${par(b)} = ${fr(k * b)}$.`,
     });
   },
   /** k(ax + b) − m(cx + d) avec ka = mc : il ne reste qu'un nombre (cas piège) */
@@ -421,7 +424,7 @@ const DV_EXPERT = {
     return expression(String(R), {
       form: 'developpee-reduite', expectedSeconds: 150, skills: ['m4.litteral.reduire'],
       prompt: rand() < 0.5 ? `${pick(rand, DEV)} : $${expr}$` : `Montre que l’expression $${expr}$ ne dépend pas de x : développe-la et réduis-la.`,
-      misconceptions: [mc(String(vals[0]), 'mc:moins-devant-parenthese', 'signe', `$− ${m}(${poly([d, c])}) = ${poly([-m * d, -m * c])}$ : le « − » change le signe des deux termes.`), mc(String(vals[1]), 'mc:distributivite-partielle', 'notion', 'Chaque facteur multiplie les deux termes de sa parenthèse, y compris le nombre.')],
+      misconceptions: [mc(String(vals[0]), 'mc:moins-devant-parenthese', 'signe', `Le « − » devant ${m}(…) change le signe des deux termes de la parenthèse.`), mc(String(vals[1]), 'mc:distributivite-partielle', 'notion', 'Chaque facteur multiplie les deux termes de sa parenthèse, y compris le nombre.')],
       hints: ['Développe chaque produit ; attention au « − » devant le second.', `$${k}(${poly([b, a])}) = ${poly([k * b, k * a])}$ et $− ${m}(${poly([d, c])}) = ${poly([-m * d, -m * c])}$.`, 'Regroupe les termes en x : que remarques-tu ?'],
       solution: `$${expr} = ${poly([k * b, k * a])}${xTerm(-m * c)}${sgn(-m * d)} = ${fr(R)}$ : les termes en x s’annulent.`,
     });
@@ -509,20 +512,20 @@ const DD_EXPERT = {
   },
   /** (ax + b)² − (ax − b)² ou (x + b)(x − b) − (x − b)² : presque tout s'annule */
   piege(rand) {
-    let a; let b; let ans; let expr; let list;
+    let a; let b; let ans; let expr; let list; let detail;
     if (rand() < 0.5) {
       a = ri(rand, 1, 4); b = nz(rand, -6, 6); ans = [0, 4 * a * b];
-      expr = `(${poly([b, a])})² − (${poly([-b, a])})²`;
+      expr = `(${poly([b, a])})² − (${poly([-b, a])})²`; detail = `${poly([b * b, 2 * a * b, a * a])} − (${poly([b * b, -2 * a * b, a * a])})`;
       list = [{ c: [0], id: 'mc:carre-somme', err: 'notion', fb: 'Un carré se développe en écrivant le produit : il y a aussi le double produit croisé, qui ne disparaît pas.' }, { c: [2 * b * b], id: 'mc:moins-devant-parenthese', err: 'signe', fb: 'Le « − » devant le second carré change le signe de CHAQUE terme de son développement.' }];
     } else {
       b = nz(rand, -7, 7); ans = [-2 * b * b, 2 * b];
-      expr = `(${poly([b, 1])})(${poly([-b, 1])}) − (${poly([-b, 1])})²`;
+      expr = `(${poly([b, 1])})(${poly([-b, 1])}) − (${poly([-b, 1])})²`; detail = `${poly([-b * b, 0, 1])} − (${poly([b * b, -2 * b, 1])})`;
       list = [{ c: [-2 * b * b], id: 'mc:carre-somme', err: 'notion', fb: `$(${poly([-b, 1])})² = (${poly([-b, 1])})(${poly([-b, 1])})$ : il y a aussi les produits croisés.` }, { c: [0, -2 * b], id: 'mc:moins-devant-parenthese', err: 'signe', fb: 'Le « − » devant le carré change le signe de CHAQUE terme de son développement.' }];
     }
     return devEx(rand, ans, expr, {
       expectedSeconds: 210, skills: ['m4.litteral.reduire'], misconceptions: list.map((x) => pmc(x.c, x.id, x.err, x.fb)),
       hints: ['Écris chaque carré comme un produit et développe.', 'Mets le second développement entre parenthèses : le « − » change le signe de chacun de ses termes.', 'Beaucoup de termes s’annulent : c’est normal.'],
-      solution: `$${expr} = ${poly(ans)}$ (les termes en x² et une partie des autres s’annulent).`,
+      solution: `$${expr} = ${detail} = ${poly(ans)}$ : les termes en x² et les nombres s’annulent.`,
     });
   },
 };

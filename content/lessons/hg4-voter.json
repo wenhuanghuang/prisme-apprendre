@@ -152,15 +152,15 @@
       "representation": "symbolique", "targets": ["mc:ecart-rapport", "mc:pauvres-1848"], "expectedSeconds": 420,
       "prompt": "**Ordres de grandeur** : en 1846, environ 250 000 électeurs pour environ 35 millions d'habitants ; en 1848, plus de 9 millions d'électeurs (environ 9 000 000).",
       "parts": [
-        { "type": "numeric", "prompt": "En 1846, quelle part de la population a le droit de voter ? (en %, arrondi au dixième)", "answer": "250000/35000000*100", "tolerance": 0.1,
-          "misconceptions": [ { "answer": 7.1, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "Vérifie l'ordre de grandeur : 250 000, c'est bien moins que 10 % de 35 millions (3,5 millions). 250 000 ÷ 35 000 000 × 100 ≈ 0,7 %." } ] },
+        { "type": "numeric", "percent": true, "prompt": "En 1846, quelle part de la population a le droit de voter ? (en %, arrondi au dixième)", "answer": "250000/35000000*100", "tolerance": 0.1,
+          "misconceptions": [ { "answer": 7.1, "id": "mc:pourcentage-calcul", "error": "calcul", "feedback": "Vérifie l'ordre de grandeur : 250 000, c'est bien moins que 10 % de 35 millions (3,5 millions). Refais le calcul 250 000 ÷ 35 000 000 × 100 en comptant bien les zéros." } ] },
         { "type": "numeric", "prompt": "Entre 1846 et 1848, le nombre d'électeurs est multiplié par environ combien ?", "answer": 36, "tolerance": 4,
-          "misconceptions": [ { "answer": 8750000, "id": "mc:ecart-rapport", "error": "methode", "feedback": "8 750 000 est la différence (combien d'électeurs en plus). « Multiplié par combien » demande une division : 9 000 000 ÷ 250 000 = 36." } ] },
+          "misconceptions": [ { "answer": 8750000, "id": "mc:ecart-rapport", "error": "methode", "feedback": "8 750 000 est la différence (combien d'électeurs en plus). « Multiplié par combien » demande une division : divise le nombre d'électeurs de 1848 par celui de 1846." } ] },
         { "type": "text", "prompt": "En 1848, un ouvrier pauvre de 25 ans peut-il voter ? (oui ou non)", "accept": ["oui"],
           "misconceptions": [ { "answer": "non", "id": "mc:pauvres-1848", "error": "notion", "feedback": "Si : c'est la grande nouveauté de 1848. Il n'y a plus de cens : tous les hommes de 21 ans et plus votent, riches ou pauvres." } ] },
         { "type": "text", "prompt": "Quel groupe reste entièrement exclu du vote en 1848 ?", "accept": ["les femmes", "femmes", "la moitié de la population : les femmes", "les femmes et les filles"],
-          "misconceptions": [ { "answer": "les pauvres", "id": "mc:pauvres-1848", "error": "notion", "feedback": "Les hommes pauvres votent en 1848 : le cens est supprimé. Ceux qui restent exclus, ce sont les femmes." },
-                             { "answer": "les ouvriers", "id": "mc:pauvres-1848", "error": "notion", "feedback": "Les ouvriers votent en 1848 : le cens est supprimé. Ce sont les femmes qui restent exclues." } ] }
+          "misconceptions": [ { "answer": "les pauvres", "id": "mc:pauvres-1848", "error": "notion", "feedback": "Les hommes pauvres votent en 1848 : le cens est supprimé. Relis le nom exact de ce suffrage : universel… quoi ? Qui en reste exclu ?" },
+                             { "answer": "les ouvriers", "id": "mc:pauvres-1848", "error": "notion", "feedback": "Les ouvriers votent en 1848 : le cens est supprimé. Relis le nom exact de ce suffrage : universel… quoi ? Qui en reste exclu ?" } ] }
       ],
       "hints": ["Part = électeurs ÷ habitants × 100.", "« Multiplié par » : on divise le nouveau nombre par l'ancien.", "Relis le mot « masculin »."],
       "solution": "1846 : 250 000 ÷ 35 000 000 × 100 ≈ 0,7 % de la population vote. 1848 : 9 000 000 ÷ 250 000 = 36 : environ 36 fois plus d'électeurs. Un ouvrier pauvre de 25 ans vote en 1848 ; les femmes restent exclues jusqu'en 1944.",
@@ -237,14 +237,14 @@
       "representation": "verbale", "targets": ["mc:universel-masculin", "mc:electeur-eligible", "mc:ancien-cens"], "expectedSeconds": 720,
       "prompt": "**Document** : décret du gouvernement provisoire de la République, 5 mars 1848 (extraits, texte d'origine).\n\n*Article 5.* « Le suffrage sera direct et universel. »\n*Article 6.* « Sont électeurs tous les Français âgés de vingt et un ans, résidant dans la commune depuis six mois, et non judiciairement privés ou suspendus de l'exercice des droits civiques. »\n*Article 7.* « Sont éligibles tous les Français âgés de vingt-cinq ans, et non privés ou suspendus de l'exercice des droits civiques. »\n*Article 8.* « Le scrutin sera secret. »",
       "parts": [
-        { "type": "numeric", "prompt": "À partir de quel âge peut-on voter ? (en années, nombre seul)", "answer": 21,
+        { "type": "numeric", "prompt": "À partir de quel âge peut-on voter ? (en années, nombre seul)", "answer": 21, "unit": "ans", "unitOptional": true,
           "misconceptions": [
-            { "answer": 25, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "25 ans est l'âge pour être élu (article 7, « éligibles »). Pour voter (article 6, « électeurs »), il faut 21 ans." },
-            { "answer": 30, "id": "mc:ancien-cens", "error": "notion", "feedback": "30 ans était l'âge pour voter sous la Restauration. Le décret de 1848 l'abaisse à 21 ans." }
+            { "answer": 25, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "25 ans est l'âge pour être élu (article 7, « éligibles »). Pour voter, relis l'article 6, qui parle des « électeurs »." },
+            { "answer": 30, "id": "mc:ancien-cens", "error": "notion", "feedback": "30 ans était l'âge pour voter sous la Restauration. Le décret de 1848 l'abaisse : relis l'article 6." }
           ] },
-        { "type": "text", "prompt": "Quelle somme d'impôts faut-il désormais payer pour voter ?", "accept": ["aucune", "rien", "aucun impôt", "aucune somme", "0", "0 franc", "aucune condition d'argent", "il n'y a plus de cens", "plus de cens"],
-          "misconceptions": [ { "answer": "200 francs", "id": "mc:ancien-cens", "error": "notion", "feedback": "200 francs était le cens de la monarchie de Juillet. Le décret de 1848 ne fixe aucune condition d'argent : c'est la fin du suffrage censitaire." },
-                             { "answer": "300 francs", "id": "mc:ancien-cens", "error": "notion", "feedback": "300 francs était le cens de la Restauration. Le décret de 1848 ne fixe aucune condition d'argent." } ] },
+        { "type": "text", "prompt": "Quelle somme d'impôts faut-il désormais payer pour voter ?", "accept": ["aucune", "aucun", "rien", "aucun impôt", "aucune somme", "0", "0 franc", "0 francs", "zéro", "aucune condition d'argent", "il n'y a plus de cens", "plus de cens", "aucun cens", "pas de cens", "pas d'impôt", "aucun impôt minimum"],
+          "misconceptions": [ { "answer": "200 francs", "id": "mc:ancien-cens", "error": "notion", "feedback": "200 francs était le cens de la monarchie de Juillet. Relis l'article 6 du décret : quelle somme d'argent y est indiquée ?" },
+                             { "answer": "300 francs", "id": "mc:ancien-cens", "error": "notion", "feedback": "300 francs était le cens de la Restauration. Relis l'article 6 du décret : quelle somme d'argent y est indiquée ?" } ] },
         { "type": "text", "prompt": "« Tous les Français » : les femmes sont-elles électrices d'après ce décret ? (oui ou non)", "accept": ["non"],
           "misconceptions": [ { "answer": "oui", "id": "mc:universel-masculin", "error": "lecture", "feedback": "Dans la langue et le droit de 1848, les « Français » électeurs sont les hommes : les femmes ne votent pas. Il faudra attendre l'ordonnance du 21 avril 1944." } ] },
         { "type": "open", "prompt": "Présente le document, puis explique ce qu'il change par rapport à la monarchie de Juillet, en citant le texte. Termine par une limite.", "minWords": 50,
@@ -277,10 +277,10 @@
         ["IIe République (décret de 1848)", "?r2c1", "?r2c2", "?r2c3", "0"]
       ],
       "cells": {
-        "r1c2": { "answer": 200, "misconceptions": [ { "answer": 300, "id": "mc:ancien-cens", "error": "notion", "feedback": "300 francs, c'est le cens de la Restauration. La monarchie de Juillet l'abaisse à 200 francs." } ] },
-        "r2c1": { "answer": 21, "misconceptions": [ { "answer": 25, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "25 ans est l'âge pour être élu en 1848. Pour voter : 21 ans." } ] },
-        "r2c2": { "answer": 0, "misconceptions": [ { "answer": 200, "id": "mc:ancien-cens", "error": "notion", "feedback": "En 1848, le cens est supprimé : il n'y a plus de condition d'argent (0)." } ] },
-        "r2c3": { "answer": 25, "misconceptions": [ { "answer": 21, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "21 ans est l'âge pour voter. Pour être élu, le décret exige 25 ans." } ] }
+        "r1c2": { "answer": 200, "misconceptions": [ { "answer": 300, "id": "mc:ancien-cens", "error": "notion", "feedback": "300 francs, c'est le cens de la Restauration (ligne du dessus). La monarchie de Juillet l'abaisse : retrouve le nouveau montant dans le cours." } ] },
+        "r2c1": { "answer": 21, "misconceptions": [ { "answer": 25, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "25 ans est l'âge pour être élu en 1848. L'âge pour voter est plus bas : relis l'article 6 du décret." } ] },
+        "r2c2": { "answer": 0, "misconceptions": [ { "answer": 200, "id": "mc:ancien-cens", "error": "notion", "feedback": "200 francs, c'est le cens de la monarchie de Juillet. Le décret de 1848 fixe-t-il encore une condition d'argent ? Relis la consigne pour savoir quoi écrire." } ] },
+        "r2c3": { "answer": 25, "misconceptions": [ { "answer": 21, "id": "mc:electeur-eligible", "error": "lecture", "feedback": "21 ans est l'âge pour voter. Pour être élu, le décret exige un âge plus élevé : relis l'article 7." } ] }
       },
       "hints": ["Ligne par ligne : chaque régime abaisse les conditions.", "En 1848, la condition d'argent disparaît.", "On exige toujours plus pour être élu que pour voter."],
       "solution": "Monarchie de Juillet : 25 ans et 200 francs pour voter ; 30 ans et 500 francs pour être élu. IIe République : 21 ans et aucune condition d'argent pour voter ; 25 ans pour être élu. Les conditions pour être élu sont toujours plus strictes que pour voter.",
@@ -301,8 +301,8 @@
         { "type": "text", "prompt": "Le fils de 22 ans peut-il voter ? (oui ou non)", "accept": ["oui"] },
         { "type": "numeric", "prompt": "En quelle année les femmes obtiennent-elles le droit de vote en France ?", "answer": 1944,
           "misconceptions": [
-            { "answer": 1848, "id": "mc:universel-masculin", "error": "notion", "feedback": "En 1848, seuls les hommes obtiennent le suffrage universel. Les femmes l'obtiennent par l'ordonnance du 21 avril 1944." },
-            { "answer": 1945, "id": "mc:vote-femmes-1945", "error": "precision", "feedback": "Presque : 1945 est l'année où les femmes votent pour la première fois (élections municipales d'avril 1945). Le droit leur est accordé par l'ordonnance du 21 avril 1944." }
+            { "answer": 1848, "id": "mc:universel-masculin", "error": "notion", "feedback": "En 1848, seuls les hommes obtiennent le suffrage universel. Les femmes l'obtiennent près d'un siècle plus tard, à la Libération." },
+            { "answer": 1945, "id": "mc:vote-femmes-1945", "error": "precision", "feedback": "Presque : 1945 est l'année où les femmes votent pour la première fois (élections municipales d'avril 1945). Le droit leur est accordé par une ordonnance de l'année précédente." }
           ] }
       ],
       "hints": ["Universel masculin : tous les hommes de 21 ans et plus.", "Les femmes votent pour la première fois l'année qui suit l'ordonnance qui leur donne ce droit."],

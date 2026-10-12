@@ -1,0 +1,1046 @@
+{
+  "id": "m3-algorithmique",
+  "chapter": "m3-ch-algo",
+  "title": "Algorithmique : blocs, « répéter jusqu’à », hasard et jeux",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.algo.blocs", "m3.algo.jusqua", "m3.algo.aleatoire", "m3.algo.jeu"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Niveaux 2 et 3 de l'algorithmique du cycle 4 : créer et utiliser un bloc personnalisé avec paramètres, prévoir le nombre de tours d'une boucle « répéter jusqu'à » avec un tableau d'exécution, simuler une expérience aléatoire, et lire le programme d'un jeu (évènements, messages, scripts en parallèle). Avec des exercices de type brevet.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le nombre mystère",
+      "body": "Léo programme un jeu. L'ordinateur choisit au hasard un nombre entre 1 et 100. Le joueur propose un nombre ; l'ordinateur répond « trop grand », « trop petit » ou « gagné ! », jusqu'à ce que le joueur trouve.\n\nAvec « répéter 10 fois », le jeu s'arrête parfois trop tôt, parfois trop tard. Pourquoi ? Quelle boucle utiliser quand on ne connaît pas à l'avance le nombre de tours ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧱",
+          "title": "Le bloc personnalisé",
+          "body": "Un **bloc personnalisé** regroupe des instructions sous un nom, avec des **paramètres** : on le définit une fois, puis on l'utilise autant de fois qu'on veut, avec des valeurs différentes. C'est découper un problème en sous-problèmes. En Scratch : « définir carré (côté) ». En langage tortue : « pour carre cote [ … ] », puis « carre 50 ».",
+          "example": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]   puis   carre 20 carre 40"
+        },
+        {
+          "emoji": "🔁",
+          "title": "« Répéter jusqu’à »",
+          "body": "« Répéter jusqu'à condition » répète les instructions de la boucle tant que la condition est **fausse**. La condition est testée **avant chaque tour** : dès qu'elle est vraie, on sort, sans refaire de tour. Le nombre de tours n'est pas connu à l'avance.",
+          "reveal": {
+            "question": "Devine : si la condition est déjà vraie au départ, combien de fois la boucle tourne-t-elle ?",
+            "answer": "Zéro fois ! La condition est testée avant le premier tour : on sort tout de suite."
+          }
+        },
+        {
+          "emoji": "📋",
+          "title": "Le tableau d'exécution",
+          "body": "Pour savoir ce que fait un programme sans ordinateur, on le **suit à la main** : une colonne par tour de boucle, une ligne par variable. On y note la valeur de chaque variable **à la fin** de chaque tour, puis on teste la condition."
+        },
+        {
+          "emoji": "🎲",
+          "title": "Simuler le hasard",
+          "body": "« nombre aléatoire entre 1 et 6 » imite un dé : chacun des 6 entiers sort avec la même probabilité. Pour simuler beaucoup d'expériences : une boucle, un **compteur** mis à 0 **avant** la boucle, et à la fin la **fréquence** = compteur ÷ nombre de répétitions. Sur un grand nombre de répétitions, elle se rapproche de la probabilité."
+        },
+        {
+          "emoji": "🎮",
+          "title": "Évènements, messages, parallèle",
+          "body": "Dans un jeu, chaque script commence par un **évènement** : « quand le drapeau vert est cliqué », « quand la touche espace est pressée », « quand je reçois fin ». Un script peut **envoyer un message** à tous les autres. Les scripts qui démarrent en même temps s'exécutent **en parallèle**.",
+          "reveal": {
+            "question": "Devine : le chat et la souris ont chacun un script « quand le drapeau vert est cliqué ». Lequel démarre en premier ?",
+            "answer": "Aucun des deux : ils démarrent en même temps et avancent en parallèle, chacun de son côté."
+          }
+        },
+        {
+          "emoji": "🐢",
+          "title": "Dans Prisme",
+          "body": "La tortue comprend « pour nom paramètre [ … ] » (bloc personnalisé), « mets c à 10 », « ajoute 5 à c » (variables), « si … [ … ] sinon [ … ] » et « répète 4 [ … ] ». « Répéter jusqu'à », le hasard et les messages se travaillent sur des scripts écrits comme en Scratch, que tu suis à la main."
+        }
+      ]
+    },
+    {
+      "kind": "manipulation",
+      "title": "Le laboratoire des blocs",
+      "body": "Le bloc carre est défini une fois, puis utilisé 6 fois avec une variable qui grandit. Change 15 en 10, puis 6 en 9 ; remplace « gauche 90 » par « gauche 60 » dans le bloc : que devient la figure ?",
+      "activity": {
+        "widget": "turtle",
+        "config": { "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 6 [ carre c ajoute 15 à c ]" }
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : suivre une boucle « répéter jusqu'à »",
+      "steps": [
+        {
+          "text": "Que dit ce programme ? « mettre n à 1 » ; « mettre s à 0 » ; « répéter jusqu'à s > 20 [ ajouter n à s ; ajouter 2 à n ] » ; « dire s »."
+        },
+        {
+          "text": "Avant le 1er tour, on teste la condition : s vaut 0, et « 0 > 20 » est faux. On entre dans la boucle : s devient 0 + 1 = 1, puis n devient 3.",
+          "math": "s = 1 ; n = 3"
+        },
+        {
+          "text": "On continue tour par tour, en notant les valeurs dans un tableau d'exécution.",
+          "figure": {
+            "alt": "Tableau d'exécution : valeurs de s et de n au départ, puis après chacun des cinq tours.",
+            "w": 480,
+            "h": 130,
+            "items": [
+              {
+                "type": "table",
+                "head": ["", "départ", "tour 1", "tour 2", "tour 3", "tour 4", "tour 5"],
+                "rows": [["s", "0", "1", "4", "9", "16", "25"], ["n", "1", "3", "5", "7", "9", "11"]]
+              }
+            ]
+          }
+        },
+        {
+          "text": "Avant le 6e tour, s vaut 25 : « 25 > 20 » est vrai. On sort de la boucle, sans faire ce tour. Le programme dit 25, après 5 tours."
+        },
+        {
+          "text": "Remarque : s prend les valeurs 1, 4, 9, 16, 25, les carrés des entiers. On ne savait pas au départ qu'il faudrait 5 tours : c'est exactement le rôle de « répéter jusqu'à »."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Les programmes sont écrits comme en Scratch : ce qui est entre « [ » et « ] » est dans la boucle. Pour la tortue, un dessin symétrique du modèle est accepté.",
+      "exercises": [
+        "m3-algorithmique-trace",
+        "m3-algorithmique-boites",
+        "m3-algorithmique-bloc",
+        "m3-algorithmique-simuler",
+        "m3-algorithmique-ordre",
+        "m3-algorithmique-verif"
+      ]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m3-algorithmique-expliquer"] },
+    {
+      "kind": "reinvestissement",
+      "title": "Problèmes : des carrés qui grandissent, et deux dés simulés",
+      "exercises": ["m3-algorithmique-carres", "m3-algorithmique-deux-des"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le jeu « Pluie de pièces »",
+      "body": "Ton club informatique a programmé un jeu en Scratch. Avant de le présenter à la fête du collège, tu vérifies que tu comprends exactement comment il fonctionne.",
+      "exercises": ["m3-algorithmique-pluie"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Un **bloc personnalisé** avec paramètres se définit une fois et s'utilise avec des valeurs différentes : il découpe un problème en sous-problèmes. « **Répéter jusqu'à** condition » teste la condition avant chaque tour et s'arrête dès qu'elle est vraie : le nombre de tours n'est pas connu à l'avance. Un **tableau d'exécution** permet de suivre les variables. Pour **simuler** le hasard : nombre aléatoire, compteur initialisé avant la boucle, fréquence. Sur beaucoup de répétitions, la fréquence approche la probabilité.\n\n- **Compter un tour de trop.** On sort dès que la condition devient vraie.\n- **Écrire une boucle infinie.** « jusqu'à c = 0 » ne s'arrête jamais si c saute par-dessus 0.\n- **Initialiser un compteur dans la boucle.** Il revient à 0 à chaque tour.\n- **Croire que les scripts s'exécutent l'un après l'autre.** Ceux qui démarrent au même évènement tournent en parallèle."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des boucles à suivre à la main et des scripts de type brevet dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "La boucle qui ne s'arrête jamais, et la meilleure stratégie pour le jeu du nombre mystère.",
+      "exercises": ["m3-algorithmique-infini", "m3-algorithmique-strategie"]
+    },
+    "expert": {
+      "intro": "Un exercice complet de type brevet sur un bloc personnalisé, puis une simulation : combien de lancers pour obtenir le premier 6 ?",
+      "exercises": ["m3-algorithmique-brevet", "m3-algorithmique-premier-six"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-algorithmique-trace",
+      "type": "table",
+      "skill": "m3.algo.jusqua",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:un-tour-de-trop", "mc:un-tour-de-moins", "mc:jusqua-tantque"],
+      "expectedSeconds": 300,
+      "params": { "a": { "int": [2, 9] }, "d": { "int": [3, 7] }, "r": { "int": [0, 2] }, "S": { "expr": "a + 3*d + r" } },
+      "prompt": "Suis ce programme à la main.\n1. mettre x à {a}\n2. mettre k à 0\n3. répéter jusqu'à x > {S} [\n4. ajouter {d} à x\n5. ajouter 1 à k\n6. ]\n7. dire k\n\nComplète le tableau d'exécution : la valeur de x à la fin de chaque tour, puis la valeur dite à la fin.",
+      "columns": ["", "tour 1", "tour 2", "tour 3", "tour 4"],
+      "rows": [["x à la fin du tour", "?r0c1", "?r0c2", "?r0c3", "?r0c4"], ["Valeur dite à la fin", "?r1c1", "", "", ""]],
+      "cells": {
+        "r0c1": { "answer": "a + d" },
+        "r0c2": { "answer": "a + 2*d" },
+        "r0c3": { "answer": "a + 3*d" },
+        "r0c4": { "answer": "a + 4*d" },
+        "r1c1": {
+          "answer": 4,
+          "misconceptions": [
+            {
+              "answer": 5,
+              "id": "mc:un-tour-de-trop",
+              "error": "notion",
+              "feedback": "Tu as fait un tour de trop. La condition est testée avant chaque tour : dès qu'elle est vraie, on sort sans refaire le tour."
+            },
+            {
+              "answer": 3,
+              "id": "mc:un-tour-de-moins",
+              "error": "notion",
+              "feedback": "Tu t'es arrêté trop tôt. Après le 3e tour, compare x avec {S} : « x > {S} » est-il déjà vrai ?"
+            },
+            {
+              "answer": 0,
+              "id": "mc:jusqua-tantque",
+              "error": "notion",
+              "feedback": "Tu as lu « tant que x > {S} ». « Répéter jusqu'à » répète tant que la condition est fausse : au départ, x est-il plus grand que {S} ?"
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Au départ, x vaut {a} et « {a} > {S} » est faux : on fait un premier tour.",
+        "À chaque tour, x augmente de {d} et k de 1. Après chaque tour, teste « x > {S} ».",
+        "Quand la condition devient vraie, on sort : k compte les tours effectués."
+      ],
+      "solution": "x vaut {a+d}, puis {a+2*d}, puis {a+3*d} (« {a+3*d} > {S} » est encore faux), puis {a+4*d} (« {a+4*d} > {S} » est vrai : on sort). La boucle a tourné 4 fois : le programme dit 4.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{a+d}", "r0c2": "{a+2*d}", "r0c3": "{a+3*d}", "r0c4": "{a+4*d}", "r1c1": "4" } }, "expect": "correct" },
+        {
+          "response": { "cells": { "r0c1": "{a+d}", "r0c2": "{a+2*d}", "r0c3": "{a+3*d}", "r0c4": "{a+4*d}", "r1c1": "5" } },
+          "expect": "mc:un-tour-de-trop"
+        }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-boites",
+      "type": "composite",
+      "skill": "m3.algo.jusqua",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:un-tour-de-trop", "mc:quotient-decimal"],
+      "expectedSeconds": 300,
+      "params": { "N": { "int": [40, 99] }, "p": { "choice": [6, 8, 12] } },
+      "constraints": ["mod(N;p) != 0"],
+      "prompt": "Ce programme range des billes dans des boîtes de {p}.\n1. mettre billes à {N}\n2. mettre boîtes à 0\n3. répéter jusqu'à billes < {p} [\n4. ajouter −{p} à billes\n5. ajouter 1 à boîtes\n6. ]\n7. dire boîtes",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel nombre le programme dit-il ?",
+          "answer": "ent(N/p)",
+          "misconceptions": [
+            {
+              "answer": "ent(N/p) + 1",
+              "id": "mc:un-tour-de-trop",
+              "error": "notion",
+              "feedback": "Tu as compté un tour de trop : avant chaque tour, on teste « billes < {p} » ; quand c'est vrai, on ne remplit plus de boîte."
+            },
+            {
+              "answer": "N/p",
+              "id": "mc:quotient-decimal",
+              "error": "notion",
+              "feedback": "Le programme compte des boîtes pleines : il ne peut dire qu'un nombre entier."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien vaut billes à la fin du programme ?",
+          "answer": "mod(N;p)",
+          "misconceptions": [
+            {
+              "answer": "mod(N;p) + p",
+              "id": "mc:un-tour-de-moins",
+              "error": "notion",
+              "feedback": "Il reste encore de quoi remplir une boîte : la boucle aurait continué. Refais le dernier test de la condition."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "À chaque tour, on retire {p} billes et on remplit une boîte.",
+        "On s'arrête quand il reste moins de {p} billes : on ne peut plus remplir de boîte.",
+        "Ce programme calcule le quotient et le reste d'une division que tu connais bien."
+      ],
+      "solution": "Le programme effectue la division euclidienne de {N} par {p} : $ {N} = {p} × {ent(N/p)} + {mod(N;p)} $. Il remplit {ent(N/p)} boîtes ; il reste alors {mod(N;p)} billes, moins que {p} : la condition est vraie et la boucle s'arrête. Il dit {ent(N/p)}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{ent(N/p)}" }, { "value": "{mod(N;p)}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{ent(N/p)+1}" }, { "value": "{mod(N;p)}" }] }, "expect": "mc:un-tour-de-trop" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-bloc",
+      "type": "code",
+      "skill": "m3.algo.blocs",
+      "skills": ["code.procedures"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:parametre-ignore", "mc:une-fois-de-moins"],
+      "expectedSeconds": 300,
+      "prompt": "Crée un bloc personnalisé carre avec un paramètre cote, puis utilise-le pour tracer les trois carrés emboîtés du modèle : côtés 20, 40 et 60, avec un coin commun.\n\nRappel : « pour carre cote [ … ] » définit le bloc ; « carre 20 » l'utilise avec cote = 20.",
+      "reference": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\ncarre 20\ncarre 40\ncarre 60",
+      "codeConstraints": { "mustUse": ["pour"] },
+      "misconceptions": [
+        {
+          "program": "pour carre cote [ répète 4 [ avance 40 gauche 90 ] ]\ncarre 20\ncarre 40\ncarre 60",
+          "id": "mc:parametre-ignore",
+          "error": "notion",
+          "feedback": "Tes trois carrés sont identiques : dans le bloc, tu as écrit un nombre fixe au lieu du paramètre. C'est le paramètre qui reçoit la valeur donnée à chaque appel."
+        },
+        {
+          "program": "pour carre cote [ répète 3 [ avance cote gauche 90 ] ]\ncarre 20\ncarre 40\ncarre 60",
+          "id": "mc:une-fois-de-moins",
+          "error": "methode",
+          "feedback": "Tes carrés n'ont que trois côtés, et la tortue ne revient pas dans sa direction de départ : compte les tours de la boucle de ton bloc."
+        }
+      ],
+      "hints": [
+        "Écris d'abord le bloc : « pour carre cote [ … ] », avec à l'intérieur la boucle qui trace un carré de côté cote.",
+        "Dans le bloc, écris « avance cote » (le paramètre) et non un nombre.",
+        "Ensuite, appelle le bloc trois fois avec trois valeurs différentes."
+      ],
+      "solution": "« pour carre cote [ répète 4 [ avance cote gauche 90 ] ] » puis « carre 20 », « carre 40 », « carre 60 ». Chaque carré ramène la tortue à son point de départ dans sa direction de départ : les trois carrés partagent un coin.",
+      "selfTest": [
+        { "response": { "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\ncarre 20\ncarre 40\ncarre 60" }, "expect": "correct" },
+        { "response": { "program": "pour carre c [ répète 4 [ avance c droite 90 ] ]\ncarre 60 carre 40 carre 20" }, "expect": "correct" },
+        {
+          "response": { "program": "répète 4 [ avance 20 gauche 90 ]\nrépète 4 [ avance 40 gauche 90 ]\nrépète 4 [ avance 60 gauche 90 ]" },
+          "expect": "partiel"
+        },
+        {
+          "response": { "program": "pour carre cote [ répète 4 [ avance 40 gauche 90 ] ]\ncarre 20\ncarre 40\ncarre 60" },
+          "expect": "mc:parametre-ignore"
+        }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-simuler",
+      "type": "match",
+      "skill": "m3.algo.aleatoire",
+      "skills": ["m4.probas.equiprobabilite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:couleurs-equiprobables", "mc:borne-zero"],
+      "expectedSeconds": 180,
+      "prompt": "Pour chaque expérience, choisis l'instruction qui permet de la simuler, chaque résultat ayant la bonne probabilité. Attention : une instruction de droite ne sert à rien.",
+      "leftTitle": "Expérience",
+      "rightTitle": "Instruction",
+      "left": [
+        { "id": "l1", "label": "Lancer une pièce (1 pour Pile, 2 pour Face)" },
+        { "id": "l2", "label": "Lancer un dé à 6 faces" },
+        { "id": "l3", "label": "Tirer une bille dans un sac de 3 rouges et 7 bleues (rouge si le nombre est au plus 3)" },
+        { "id": "l4", "label": "Choisir au hasard un mois de l'année" },
+        { "id": "l5", "label": "Tirer une carte dans un jeu de 32 cartes" }
+      ],
+      "right": [
+        { "id": "r1", "label": "nombre aléatoire entre 1 et 2" },
+        { "id": "r2", "label": "nombre aléatoire entre 1 et 6" },
+        { "id": "r3", "label": "nombre aléatoire entre 1 et 10" },
+        { "id": "r4", "label": "nombre aléatoire entre 1 et 12" },
+        { "id": "r5", "label": "nombre aléatoire entre 1 et 32" },
+        { "id": "r6", "label": "nombre aléatoire entre 0 et 6" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" },
+      "misconceptions": [
+        {
+          "pair": ["l3", "r1"],
+          "id": "mc:couleurs-equiprobables",
+          "error": "notion",
+          "feedback": "Deux couleurs ne veut pas dire une chance sur deux : chaque bille doit avoir la même chance d'être tirée. Combien de nombres faut-il pour numéroter toutes les billes ?"
+        },
+        {
+          "pair": ["l2", "r6"],
+          "id": "mc:borne-zero",
+          "error": "lecture",
+          "feedback": "Compte les valeurs possibles de cette instruction, bornes comprises : un dé a-t-il une face 0 ?"
+        }
+      ],
+      "hints": [
+        "« nombre aléatoire entre 1 et n » donne n valeurs possibles, toutes équiprobables.",
+        "Il faut autant de valeurs que de résultats équiprobables de l'expérience.",
+        "Pour le sac, numérote les billes : les rouges portent les premiers numéros."
+      ],
+      "solution": "Pièce : entre 1 et 2. Dé : entre 1 et 6. Sac : entre 1 et 10 (on numérote les 10 billes ; les numéros 1 à 3 sont les rouges, d'où une probabilité de 3/10). Mois : entre 1 et 12. Carte : entre 1 et 32. « Entre 0 et 6 » donne 7 valeurs : elle ne simule aucune de ces expériences.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r1", "l4": "r4", "l5": "r5" } }, "expect": "mc:couleurs-equiprobables" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-ordre",
+      "type": "order",
+      "skill": "m3.algo.aleatoire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:initialisation-dans-boucle"],
+      "expectedSeconds": 180,
+      "prompt": "Ce script doit simuler 1 000 lancers d'un dé et dire la fréquence d'apparition du 6. Ses lignes ont été mélangées : remets-les dans l'ordre.",
+      "orderLabel": "De la première à la dernière ligne",
+      "errorType": "methode",
+      "items": [
+        { "id": "s1", "label": "mettre six à 0" },
+        { "id": "s2", "label": "répéter 1 000 fois [" },
+        { "id": "s3", "label": "mettre dé à nombre aléatoire entre 1 et 6" },
+        { "id": "s4", "label": "si dé = 6 alors ajouter 1 à six" },
+        { "id": "s5", "label": "]" },
+        { "id": "s6", "label": "dire six / 1 000" }
+      ],
+      "hints": [
+        "Le compteur doit être mis à 0 une seule fois, avant de commencer à compter.",
+        "Dans la boucle : d'abord lancer le dé, ensuite regarder s'il a donné 6.",
+        "La fréquence se calcule une fois, quand tous les lancers sont faits."
+      ],
+      "solution": "mettre six à 0 ; répéter 1 000 fois [ mettre dé à nombre aléatoire entre 1 et 6 ; si dé = 6 alors ajouter 1 à six ] ; dire six / 1 000. Si « mettre six à 0 » était dans la boucle, le compteur reviendrait à 0 à chaque lancer.",
+      "selfTest": [
+        { "response": { "order": ["s1", "s2", "s3", "s4", "s5", "s6"] }, "expect": "correct" },
+        { "response": { "order": ["s2", "s1", "s3", "s4", "s5", "s6"] }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-verif",
+      "type": "qcm",
+      "skill": "m3.algo.jusqua",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:au-moins-un-tour", "mc:jusqua-tantque"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide. La variable x vaut 10. On exécute « répéter jusqu'à x > 5 [ ajouter 1 à x ] ». Combien de fois la boucle tourne-t-elle ?",
+      "choices": [
+        {
+          "text": "0 fois",
+          "correct": true,
+          "feedback": "Exact : la condition est testée avant le premier tour, et « 10 > 5 » est déjà vrai. On sort tout de suite."
+        },
+        {
+          "text": "1 fois",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:au-moins-un-tour",
+          "feedback": "La condition est testée AVANT chaque tour, y compris le premier : regarde ce qu'elle vaut au départ."
+        },
+        {
+          "text": "Une infinité de fois : x ne fait qu’augmenter",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:jusqua-tantque",
+          "feedback": "Tu as lu « tant que x > 5 ». « Répéter jusqu'à » répète tant que la condition est fausse."
+        }
+      ],
+      "hints": ["La condition est testée avant chaque tour.", "Au départ, « 10 > 5 » est-il vrai ou faux ?"],
+      "solution": "Avant le premier tour, on teste « x > 5 » : 10 > 5 est vrai, donc on sort sans faire aucun tour. La boucle tourne 0 fois.",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:au-moins-un-tour" }]
+    },
+    {
+      "id": "m3-algorithmique-expliquer",
+      "type": "open",
+      "skill": "m3.algo.jusqua",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:jusqua-tantque"],
+      "expectedSeconds": 360,
+      "minWords": 35,
+      "prompt": "Explique à un camarade de 4e la différence entre « répéter 10 fois » et « répéter jusqu'à … ». Donne un exemple de programme (un jeu, une simulation…) où l'on ne peut utiliser que « répéter jusqu'à », et dis comment éviter que la boucle ne s'arrête jamais.",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "« Répéter 10 fois » : le nombre de tours est connu à l'avance",
+          "keywords": [["a l avance", "connu", "fixe", "exactement 10", "toujours 10"]]
+        },
+        {
+          "id": "c2",
+          "label": "« Répéter jusqu'à » : on s'arrête quand la condition devient vraie (testée avant chaque tour)",
+          "keywords": [["condition", "vraie", "jusqu a ce que", "devient"]]
+        },
+        {
+          "id": "c3",
+          "label": "Je donne un exemple où le nombre de tours dépend du hasard ou du joueur",
+          "keywords": [["nombre mystere", "jeu", "hasard", "aleatoire", "joueur", "premier 6", "vies"]]
+        },
+        {
+          "id": "c4",
+          "label": "Je dis que la condition doit finir par devenir vraie (sinon boucle infinie)",
+          "keywords": [["infini", "ne s arrete jamais", "finir par", "devenir vraie", "boucle infinie"]]
+        }
+      ],
+      "models": [
+        "Avec « répéter 10 fois », on sait d'avance qu'il y aura exactement 10 tours. Avec « répéter jusqu'à », on recommence tant que la condition est fausse, et on s'arrête dès qu'elle devient vraie : on ne sait pas d'avance combien de tours il y aura. Exemple : le jeu du nombre mystère, « répéter jusqu'à réponse = nombre », car on ne sait pas en combien d'essais le joueur va trouver. Il faut vérifier que la condition finira par devenir vraie, sinon la boucle est infinie.",
+        "Répéter 10 fois, c'est un nombre fixe. Répéter jusqu'à, ça dépend d'une condition testée avant chaque tour. Par exemple pour simuler des lancers jusqu'au premier 6 : on ne sait pas combien de lancers il faudra, ça dépend du hasard. Attention : avec « jusqu'à c = 0 », si c passe de 1 à −2, on ne s'arrête jamais ; il vaut mieux écrire « jusqu'à c < 1 »."
+      ],
+      "hints": [
+        "Dans quel cas connaît-on le nombre de tours avant de lancer le programme ?",
+        "Pense au jeu du nombre mystère : sait-on à l'avance combien d'essais fera le joueur ?"
+      ],
+      "solution": "« Répéter 10 fois » fait exactement 10 tours, connus à l'avance. « Répéter jusqu'à condition » teste la condition avant chaque tour et s'arrête dès qu'elle est vraie : le nombre de tours dépend de ce qui se passe (hasard, réponses du joueur…). Exemple : le nombre mystère, « répéter jusqu'à proposition = nombre ». Il faut s'assurer que la condition finira par devenir vraie, sinon la boucle ne s'arrête jamais.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Répéter 10 fois fait un nombre de tours connu à l'avance. Répéter jusqu'à s'arrête quand la condition devient vraie, par exemple dans le jeu du nombre mystère où on ne sait pas combien d'essais il faudra. Il faut que la condition finisse par devenir vraie sinon la boucle est infinie.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true }
+          },
+          "expect": "a-valider"
+        },
+        { "response": { "text": "C'est pareil." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-carres",
+      "type": "code",
+      "skill": "m3.algo.blocs",
+      "skills": ["code.variables"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:variable-figee", "mc:ordre-mise-a-jour"],
+      "expectedSeconds": 420,
+      "prompt": "Trace la figure du modèle : 5 carrés qui partent du même coin, de côtés 10, 20, 30, 40 et 50.\n\nDéfi : utilise le bloc carre, une variable et une répétition, en **au plus 4 instructions** en plus de la définition du bloc (la ligne « pour carre … » ne compte pas).",
+      "reference": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 5 [ carre c ajoute 10 à c ]",
+      "codeConstraints": { "maxInstructions": 4, "mustUse": ["pour", "mets"] },
+      "misconceptions": [
+        {
+          "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 5 [ carre c ]",
+          "id": "mc:variable-figee",
+          "error": "methode",
+          "feedback": "Tes carrés sont superposés : la variable ne change jamais de valeur (ou elle est remise à sa valeur de départ à chaque tour)."
+        },
+        {
+          "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 5 [ ajoute 10 à c carre c ]",
+          "id": "mc:ordre-mise-a-jour",
+          "error": "methode",
+          "feedback": "Tes carrés sont décalés d'une taille : la variable est modifiée avant d'être utilisée. Dans quel ordre faut-il tracer, puis augmenter ?"
+        }
+      ],
+      "hints": [
+        "Mets la variable c à la taille du premier carré, avant la boucle.",
+        "Dans la boucle : trace un carré de côté c, puis augmente c.",
+        "« carre c » utilise la valeur actuelle de c ; « ajoute 10 à c » la prépare pour le tour suivant."
+      ],
+      "solution": "« pour carre cote [ répète 4 [ avance cote gauche 90 ] ] », puis « mets c à 10 » et « répète 5 [ carre c ajoute 10 à c ] » : 4 instructions. Aux tours successifs, c vaut 10, 20, 30, 40, 50 au moment du tracé (et 60 à la fin, sans être utilisé).",
+      "selfTest": [
+        {
+          "response": { "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 5 [ carre c ajoute 10 à c ]" },
+          "expect": "correct"
+        },
+        {
+          "response": { "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\ncarre 10 carre 20 carre 30 carre 40 carre 50" },
+          "expect": "partiel"
+        },
+        {
+          "response": { "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets c à 10\nrépète 5 [ carre c ]" },
+          "expect": "mc:variable-figee"
+        }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-deux-des",
+      "type": "composite",
+      "skill": "m3.algo.aleatoire",
+      "skills": ["m4.probas.equiprobabilite", "mx.denombrement"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:additionner-issues", "mc:sommes-equiprobables", "mc:hasard-exact"],
+      "expectedSeconds": 420,
+      "prompt": "Inès a écrit ce script :\n1. mettre gagné à 0\n2. répéter 10 000 fois [\n3. mettre d1 à nombre aléatoire entre 1 et 6\n4. mettre d2 à nombre aléatoire entre 1 et 6\n5. si d1 + d2 = 7 alors ajouter 1 à gagné\n6. ]\n7. dire gagné / 10 000\n\nElle l'a exécuté trois fois de suite et a obtenu 0,1652, puis 0,1689, puis 0,1671. Tu peux aussi lancer deux dés des milliers de fois dans le labo.",
+      "activity": { "widget": "dice-lab", "config": { "faces": 6, "dice": 2, "event": "somme égale à 7" } },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de couples (d1 ; d2) différents le programme peut-il obtenir à chaque tour ?",
+          "answer": 36,
+          "misconceptions": [
+            {
+              "answer": 12,
+              "id": "mc:additionner-issues",
+              "error": "raisonnement",
+              "feedback": "Chaque valeur de d1 peut aller avec chaque valeur de d2 : on n'additionne pas les possibilités."
+            },
+            {
+              "answer": 11,
+              "id": "mc:sommes-equiprobables",
+              "error": "notion",
+              "feedback": "Tu as compté les sommes possibles. On demande les couples (d1 ; d2) : par exemple (1 ; 6) et (6 ; 1) sont deux couples différents."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Combien de ces couples donnent une somme égale à 7 ?", "answer": 6 },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité d'obtenir une somme égale à 7 ? (fraction)",
+          "answer": "6/36",
+          "misconceptions": [
+            {
+              "answer": "1/11",
+              "id": "mc:sommes-equiprobables",
+              "error": "notion",
+              "feedback": "Les sommes de 2 à 12 n'ont pas toutes la même chance : ce sont les couples (d1 ; d2) qui sont équiprobables, pas les sommes."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Les trois résultats d'Inès sont différents. Est-ce une erreur dans son programme ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:hasard-exact",
+              "error": "raisonnement",
+              "feedback": "Chaque exécution tire de nouveaux nombres au hasard : la fréquence observée change d'une fois à l'autre. Compare plutôt les trois valeurs à la probabilité."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Fais un tableau à double entrée : 6 valeurs de d1 en ligne, 6 valeurs de d2 en colonne.",
+        "Somme 7 : (1 ; 6), (2 ; 5)… continue la liste.",
+        "Probabilité = couples favorables ÷ couples possibles."
+      ],
+      "solution": "Il y a $6 × 6 = 36$ couples équiprobables. Somme 7 : (1 ; 6), (2 ; 5), (3 ; 4), (4 ; 3), (5 ; 2), (6 ; 1), soit 6 couples. Probabilité : $6/36 = 1/6 ≈ 0,1667$. Les fréquences simulées (0,1652 ; 0,1689 ; 0,1671) sont proches de cette probabilité ; elles varient d'une exécution à l'autre à cause du hasard : ce n'est pas une erreur.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "36" }, { "value": "6" }, { "value": "1/6" }, { "value": "non" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "36" }, { "value": "6" }, { "value": "1/11" }, { "value": "non" }] },
+          "expect": "mc:sommes-equiprobables"
+        }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-pluie",
+      "type": "composite",
+      "skill": "m3.algo.jeu",
+      "skills": ["m3.algo.jusqua", "m3.algo.aleatoire"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:message-drapeau", "mc:un-tour-de-moins", "mc:vies-oubliees", "mc:sequentiel"],
+      "expectedSeconds": 600,
+      "prompt": "Voici les trois scripts du jeu « Pluie de pièces ».\n\n**Script du Panier**\n1. quand le drapeau vert est cliqué\n2. mettre score à 0\n3. mettre vies à 3\n4. répéter jusqu'à vies = 0 [ aller à x : abscisse de la souris ]\n\n**Script de la Pièce**\n1. quand le drapeau vert est cliqué\n2. répéter jusqu'à vies = 0 [\n3. aller à x : nombre aléatoire entre −200 et 200, y : 180\n4. répéter jusqu'à y < −170 [ ajouter −5 à y ]\n5. si Panier touché alors ajouter 1 à score sinon ajouter −1 à vies\n6. ]\n7. envoyer à tous « fin »\n\n**Script de la Scène**\n1. quand je reçois « fin »\n2. dire « Partie terminée ! » et le score",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de scripts démarrent quand on clique sur le drapeau vert ?",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:message-drapeau",
+              "error": "lecture",
+              "feedback": "Regarde le premier bloc (le « chapeau ») de chaque script : tous ne commencent pas par « quand le drapeau vert est cliqué »."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Chaque pièce part de y = 180. Combien de tours fait la boucle de la ligne 4 pour une pièce ?",
+          "answer": 71,
+          "misconceptions": [
+            {
+              "answer": 70,
+              "id": "mc:un-tour-de-moins",
+              "error": "notion",
+              "feedback": "Après ce nombre de tours, y vaut exactement −170. La condition « y < −170 » est-elle alors vraie ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Lina joue une partie : elle attrape 14 pièces en tout, puis la partie se termine. Combien de pièces sont tombées pendant la partie ?",
+          "answer": 17,
+          "misconceptions": [
+            {
+              "answer": 14,
+              "id": "mc:vies-oubliees",
+              "error": "raisonnement",
+              "feedback": "Attraper des pièces ne termine pas la partie. Relis la condition de la boucle de la Pièce : que faut-il pour qu'elle s'arrête ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Pendant qu'une pièce tombe, le joueur peut-il déplacer le panier ? Réponds par oui ou par non.",
+          "accept": ["oui"],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:sequentiel",
+              "error": "notion",
+              "feedback": "Tu penses que les scripts s'exécutent l'un après l'autre. Relis comment ils démarrent : que se passe-t-il pour chacun au clic sur le drapeau ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le script de la Scène ne commence pas par le drapeau vert : il attend un message.",
+        "Ligne 4 : y vaut 180, puis 175, 170… Cherche le premier tour après lequel y < −170.",
+        "La partie s'arrête quand vies = 0 : il faut avoir raté 3 pièces."
+      ],
+      "solution": "Deux scripts démarrent au drapeau (Panier et Pièce) ; celui de la Scène attend le message « fin ». Ligne 4 : après k tours, y = 180 − 5k ; il faut 180 − 5k < −170, soit 5k > 350, donc k > 70 : la boucle fait 71 tours (après 70 tours, y = −170, et « −170 < −170 » est faux). La partie s'arrête quand les 3 vies sont perdues : 14 pièces attrapées + 3 ratées = 17 pièces. Les scripts du Panier et de la Pièce tournent en parallèle : le panier suit la souris pendant que la pièce tombe.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "2" }, { "value": "71" }, { "value": "17" }, { "value": "oui" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "2" }, { "value": "70" }, { "value": "17" }, { "value": "oui" }] }, "expect": "mc:un-tour-de-moins" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-remed-jusqua",
+      "type": "numeric",
+      "skill": "m3.algo.jusqua",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:un-tour-de-trop"],
+      "expectedSeconds": 90,
+      "params": { "k": { "int": [3, 8] } },
+      "prompt": "Rappel ciblé : avec « répéter jusqu'à », la condition est testée AVANT chaque tour. Si elle est vraie, on sort sans faire le tour.\n1. mettre n à 0\n2. répéter jusqu'à n = {k} [ ajouter 1 à n ]\n\nCombien de tours la boucle fait-elle ? Aide-toi d'un tableau : avant chaque tour, note n et teste la condition.",
+      "answer": "k",
+      "misconceptions": [
+        {
+          "answer": "k + 1",
+          "id": "mc:un-tour-de-trop",
+          "error": "notion",
+          "feedback": "Tu as fait un tour de trop : quand n atteint la valeur de la condition, on la teste avant le tour suivant, et on sort."
+        },
+        {
+          "answer": "k - 1",
+          "id": "mc:un-tour-de-moins",
+          "error": "notion",
+          "feedback": "Tu t'es arrêté un tour trop tôt : à ce moment-là, la condition est-elle déjà vraie ?"
+        }
+      ],
+      "hints": ["Avant le 1er tour, n vaut 0 : « 0 = {k} » est faux, on fait le tour.", "Après chaque tour, n a augmenté de 1."],
+      "solution": "Avant chaque tour, n vaut 0, 1, 2, … Le test « n = {k} » devient vrai quand n vaut {k}, c'est-à-dire après {k} tours. La boucle tourne {k} fois.",
+      "selfTest": [{ "response": { "value": "{k}" }, "expect": "correct" }, { "response": { "value": "{k+1}" }, "expect": "mc:un-tour-de-trop" }]
+    },
+    {
+      "id": "m3-algorithmique-remed-alea",
+      "type": "numeric",
+      "skill": "m3.algo.aleatoire",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:borne-oubliee", "mc:compte-valeurs"],
+      "expectedSeconds": 60,
+      "params": { "k": { "int": [2, 7] } },
+      "prompt": "Rappel ciblé : « nombre aléatoire entre 1 et 10 » donne l'un des 10 entiers 1, 2, 3, …, 10, bornes comprises, chacun avec la même probabilité. Quelle est la probabilité que ce nombre soit inférieur ou égal à {k} ? (fraction)",
+      "answer": "k/10",
+      "misconceptions": [
+        {
+          "answer": "(k - 1)/10",
+          "id": "mc:borne-oubliee",
+          "error": "lecture",
+          "feedback": "Tu as oublié une valeur : « inférieur ou égal à {k} » compte aussi {k} lui-même."
+        },
+        { "answer": "k/9", "id": "mc:compte-valeurs", "error": "notion", "feedback": "Compte les valeurs possibles de 1 à 10, bornes comprises." }
+      ],
+      "hints": ["Écris la liste des valeurs qui conviennent : 1, 2, …", "Probabilité = valeurs favorables ÷ valeurs possibles."],
+      "solution": "Les valeurs 1, 2, …, {k} conviennent : {k} valeurs sur 10 équiprobables. La probabilité vaut $ {k}/10 $.",
+      "selfTest": [{ "response": { "value": "{k}/10" }, "expect": "correct" }, { "response": { "value": "{k-1}/10" }, "expect": "mc:borne-oubliee" }]
+    },
+    {
+      "id": "m3-algorithmique-infini",
+      "type": "composite",
+      "skill": "m3.algo.jusqua",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:un-tour-de-trop", "mc:egalite-sautee"],
+      "expectedSeconds": 420,
+      "params": { "m": { "int": [4, 9] } },
+      "prompt": "Voici un programme :\n1. mettre c à {3*m}\n2. répéter jusqu'à c = 0 [ ajouter −3 à c ]\n3. dire « fini »",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de tours fait la boucle ?",
+          "answer": "m",
+          "misconceptions": [
+            {
+              "answer": "m + 1",
+              "id": "mc:un-tour-de-trop",
+              "error": "notion",
+              "feedback": "Tu as compté un tour de trop : quand c atteint 0, la condition est testée avant le tour suivant, et on sort."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "On remplace la ligne 1 par « mettre c à {3*m+1} ». Le programme dit-il « fini » ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:egalite-sautee",
+              "error": "raisonnement",
+              "feedback": "Suis les valeurs de c : {3*m+1}, {3*m-2}, {3*m-5}… Tombe-t-elle exactement sur la valeur de la condition ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Écris une nouvelle condition d'arrêt qui fonctionne quelle que soit la valeur de départ positive de c.",
+          "accept": ["c < 0", "c <= 0", "c ≤ 0", "c < 1", "c < 3", "c <= 2", "c ≤ 2", "c<0", "c<=0", "c≤0", "c<1", "c<3"],
+          "openEnded": true,
+          "misconceptions": [
+            {
+              "answer": "c = 1",
+              "id": "mc:egalite-sautee",
+              "error": "raisonnement",
+              "feedback": "Une égalité peut encore être « sautée » par la variable. Cherche une condition avec « < »."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "c prend les valeurs {3*m}, {3*m-3}, {3*m-6}… : combien de soustractions de 3 pour arriver à 0 ?",
+        "Avec {3*m+1} au départ, c ne passe jamais par 0 : elle saute de 1 à −2.",
+        "Une condition avec « < » ne peut pas être sautée."
+      ],
+      "solution": "Départ {3*m} : il faut {m} soustractions de 3 pour atteindre 0, donc {m} tours. Départ {3*m+1} : c vaut … 4, 1, −2, −5… et ne vaut jamais 0 : la boucle ne s'arrête jamais (boucle infinie), le programme ne dit jamais « fini ». Avec « répéter jusqu'à c < 1 » (ou c ≤ 0), la boucle s'arrête dans tous les cas.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{m}" }, { "value": "non" }, { "value": "c < 1" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{m}" }, { "value": "oui" }, { "value": "c < 1" }] }, "expect": "mc:egalite-sautee" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-strategie",
+      "type": "composite",
+      "skill": "m3.algo.jeu",
+      "skills": ["m3.algo.jusqua"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:borne-incluse", "mc:essais-un-par-un", "mc:proportionnel"],
+      "expectedSeconds": 420,
+      "prompt": "Retour au jeu du nombre mystère, entre 1 et 100. Ta stratégie : proposer à chaque fois le nombre du milieu des nombres encore possibles. Tu commences par 50.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "L'ordinateur répond « trop grand ». Combien de nombres restent possibles ?",
+          "answer": 49,
+          "misconceptions": [{ "answer": 50, "id": "mc:borne-incluse", "error": "lecture", "feedback": "« Trop grand » élimine aussi le nombre proposé lui-même." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Avec cette stratégie, combien d'essais faut-il au maximum pour être sûr de trouver, dans le pire des cas ?",
+          "answer": 7,
+          "misconceptions": [
+            {
+              "answer": 100,
+              "id": "mc:essais-un-par-un",
+              "error": "raisonnement",
+              "feedback": "C'est le nombre d'essais si l'on propose les nombres un par un. Ici, chaque réponse élimine environ la moitié des nombres restants : compte combien il en reste après chaque essai."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Et pour un nombre mystère entre 1 et 1 000 ?",
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 70,
+              "id": "mc:proportionnel",
+              "error": "raisonnement",
+              "feedback": "Dix fois plus de nombres ne demandent pas dix fois plus d'essais : chaque essai divise à peu près par deux le nombre de possibilités."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "« Trop grand » : le nombre mystère est entre 1 et 49.",
+        "Dans le pire des cas, il reste environ 100, puis 50, 25, 12, 6, 3, 1 nombres : compte les essais.",
+        "Avec k essais, on peut départager au plus 1 + 2 + 4 + … + 2^(k−1) = 2^k − 1 nombres."
+      ],
+      "solution": "Après « trop grand » à 50, il reste les nombres de 1 à 49 : 49 nombres. Chaque essai coupe les possibilités en deux : avec k essais, on départage au plus $2^k − 1$ nombres. $2^6 − 1 = 63 < 100 ≤ 127 = 2^7 − 1$ : 7 essais suffisent toujours pour 100 nombres. Pour 1 000 nombres : $2^9 − 1 = 511 < 1 000 ≤ 1 023 = 2^10 − 1$, donc 10 essais.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "49" }, { "value": "7" }, { "value": "10" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "49" }, { "value": "7" }, { "value": "70" }] }, "expect": "mc:proportionnel" }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-brevet",
+      "type": "composite",
+      "skill": "m3.algo.blocs",
+      "skills": ["code.variables", "code.procedures"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:valeur-finale", "mc:oubli-deplacement"],
+      "expectedSeconds": 900,
+      "prompt": "**Type brevet** — On a programmé le script ci-dessous. Le lutin part du point de coordonnées (0 ; 0), orienté vers la droite, stylo en position d'écriture. Une unité correspond à un pas.\n\n**Bloc personnalisé**\n1. définir carré (côté)\n2. répéter 4 fois [ avancer de côté ; tourner ↺ de 90 degrés ]\n\n**Script principal**\n1. quand le drapeau vert est cliqué\n2. mettre longueur à 20\n3. répéter 4 fois [\n4. carré (longueur)\n5. avancer de longueur\n6. ajouter 10 à longueur\n7. ]",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la longueur du côté du dernier carré tracé ?",
+          "answer": 50,
+          "misconceptions": [
+            {
+              "answer": 60,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "C'est la valeur de longueur à la fin du programme. Relis l'ordre des lignes 4 à 6 : à quel moment longueur est-elle augmentée ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l'abscisse du lutin à la fin du programme ?",
+          "answer": 140,
+          "misconceptions": [
+            {
+              "answer": 200,
+              "id": "mc:valeur-finale",
+              "error": "lecture",
+              "feedback": "Tu as compté un déplacement de trop : la dernière valeur de longueur n'est jamais utilisée pour avancer."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle distance le lutin parcourt-il en tout, stylo baissé ?",
+          "answer": 700,
+          "misconceptions": [
+            {
+              "answer": 560,
+              "id": "mc:oubli-deplacement",
+              "error": "methode",
+              "feedback": "Tu as compté les côtés des carrés, mais pas les déplacements de la ligne 5 entre deux carrés."
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "prompt": "Écris ce programme en langage tortue, avec un bloc personnalisé (« pour carre cote [ … ] ») et une variable.",
+          "reference": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets longueur à 20\nrépète 4 [ carre longueur avance longueur ajoute 10 à longueur ]",
+          "codeConstraints": { "mustUse": ["pour", "mets"] },
+          "misconceptions": [
+            {
+              "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets longueur à 20\nrépète 4 [ carre longueur ajoute 10 à longueur ]",
+              "id": "mc:oubli-deplacement",
+              "error": "methode",
+              "feedback": "Tes carrés partent tous du même coin : il manque le déplacement de la ligne 5 entre deux carrés."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Fais un tableau d'exécution : à chaque tour, la valeur de longueur utilisée par le carré et par le déplacement.",
+        "Les carrés ont pour côtés 20, 30, … : chaque carré ramène le lutin à son point de départ.",
+        "Distance : les 4 côtés de chaque carré, plus chaque déplacement « avancer de longueur »."
+      ],
+      "solution": "Tours : longueur vaut 20, 30, 40, 50 au moment du tracé (et 60 à la fin, sans être utilisée). Le dernier carré a donc un côté de 50. Chaque carré ramène le lutin à son point de départ ; seuls les déplacements le font avancer : abscisse finale $20 + 30 + 40 + 50 = 140$. Distance : $4 × (20 + 30 + 40 + 50) + 140 = 560 + 140 = 700$. En tortue : « pour carre cote [ répète 4 [ avance cote gauche 90 ] ] mets longueur à 20 répète 4 [ carre longueur avance longueur ajoute 10 à longueur ] ».",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "50" },
+              { "value": "140" },
+              { "value": "700" },
+              {
+                "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets longueur à 20\nrépète 4 [ carre longueur avance longueur ajoute 10 à longueur ]"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "60" },
+              { "value": "140" },
+              { "value": "700" },
+              {
+                "program": "pour carre cote [ répète 4 [ avance cote gauche 90 ] ]\nmets longueur à 20\nrépète 4 [ carre longueur avance longueur ajoute 10 à longueur ]"
+              }
+            ]
+          },
+          "expect": "mc:valeur-finale"
+        }
+      ]
+    },
+    {
+      "id": "m3-algorithmique-premier-six",
+      "type": "composite",
+      "skill": "m3.algo.aleatoire",
+      "skills": ["m3.algo.jusqua", "mx.denombrement"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:au-moins-un-tour", "mc:deux-epreuves"],
+      "expectedSeconds": 720,
+      "prompt": "Ce programme simule des lancers de dé jusqu'au premier 6 :\n1. mettre lancers à 0\n2. mettre dé à 0\n3. répéter jusqu'à dé = 6 [\n4. mettre dé à nombre aléatoire entre 1 et 6\n5. ajouter 1 à lancers\n6. ]\n7. dire lancers",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la plus petite valeur que le programme peut dire ?",
+          "answer": 1,
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:au-moins-un-tour",
+              "error": "notion",
+              "feedback": "Au premier test, regarde la valeur de dé donnée à la ligne 2 : la condition est-elle déjà vraie ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Peut-on connaître à l'avance la plus grande valeur que le programme peut dire ? Réponds par oui ou par non.",
+          "accept": ["non"],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:maximum-hasard",
+              "error": "raisonnement",
+              "feedback": "Le dé peut-il ne pas donner 6 plusieurs fois de suite ? Existe-t-il un nombre de lancers au-delà duquel c'est impossible ?"
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Quelle est la probabilité que le programme dise 1 ? (fraction)", "answer": "1/6" },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la probabilité que le programme dise 2 ? (fraction)",
+          "answer": "5/36",
+          "misconceptions": [
+            {
+              "answer": "1/6",
+              "id": "mc:deux-epreuves",
+              "error": "raisonnement",
+              "feedback": "Pour que le programme dise 2, il faut deux choses : le premier lancer ne donne pas 6, PUIS le deuxième donne 6. Pense aux deux premiers lancers ensemble."
+            },
+            {
+              "answer": "1/36",
+              "id": "mc:deux-epreuves",
+              "error": "raisonnement",
+              "feedback": "Tu as compté le couple (6 ; 6) : mais si le premier lancer donne 6, le programme s'arrête tout de suite. Quels premiers lancers conviennent ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Ligne 2 : dé vaut 0, et « 0 = 6 » est faux : on fait au moins un tour.",
+        "Le programme dit 2 si le 1er lancer n'est pas un 6 et si le 2e est un 6.",
+        "Tableau des deux premiers lancers : 36 couples équiprobables. Compte ceux de la forme (pas 6 ; 6)."
+      ],
+      "solution": "dé vaut 0 au départ : la boucle fait au moins un tour, le programme dit au moins 1. On ne peut pas prévoir de maximum : on peut, en théorie, ne pas obtenir de 6 pendant très longtemps. Dire 1 : le 1er lancer donne 6, probabilité $1/6$. Dire 2 : parmi les 36 couples équiprobables des deux premiers lancers, ceux de la forme (pas 6 ; 6) sont 5 : probabilité $5/36$. Si l'on avait écrit « mettre dé à 6 » à la ligne 2, la boucle ne tournerait jamais et le programme dirait 0.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "1" }, { "value": "non" }, { "value": "1/6" }, { "value": "5/36" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0" }, { "value": "non" }, { "value": "1/6" }, { "value": "5/36" }] }, "expect": "mc:au-moins-un-tour" }
+      ]
+    }
+  ]
+}

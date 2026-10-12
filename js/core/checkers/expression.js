@@ -4,10 +4,31 @@
  */
 import {
   tryParse, equivalent, alignVariableCase, isDeveloped, isReduced, isFactored, isIrreducibleFraction, isNumberLiteral, variables, evaluate, toText,
+  productFactors, isPrime,
 } from '../expr.js';
 import { parseWithParams } from '../template.js';
 import { diagnosis } from '../errors.js';
 
+/** Facteur premier écrit : un nombre premier, ou une puissance entière d'un nombre premier (2³, 2^3). */
+function isPrimeFactor(f) {
+  const primeNum = (n) => n.t === 'num' && Number.isInteger(n.v) && isPrime(n.v);
+  if (f.t === 'num') return primeNum(f);
+  return f.t === '^' && primeNum(f.a) && f.b.t === 'num' && Number.isInteger(f.b.v) && f.b.v >= 0; // 7⁰ permis : tableaux d'exposants « 2^a × 3^b × 5^c × 7^d »
+}
+
+/** Produit de facteurs premiers, dans n'importe quel ordre, puissances permises (2³ × 5 × 7) ; ou un nombre premier seul. */
+export function isPrimeProduct(node) {
+  return productFactors(node).every(isPrimeFactor);
+}
+
+/** Message de la forme « premiers » : il ne donne jamais la décomposition attendue. */
+function primeProductFeedback(node) {
+  const factors = productFactors(node);
+  if (factors.length === 1 && factors[0].t === 'num') return 'Écris le nombre comme un produit de facteurs premiers.';
+  return "La valeur est juste, mais un des facteurs n'est pas un nombre premier : décompose-le encore.";
+}
+
+/** Formes demandées ; `feedback` (facultatif) remplace le message générique quand la valeur est juste mais pas la forme. */
 export const FORMS = {
   any: { label: 'toute écriture correcte', test: () => true },
   developpee: { label: 'forme développée', test: isDeveloped },
@@ -15,6 +36,7 @@ export const FORMS = {
   factorisee: { label: 'forme factorisée', test: isFactored },
   irreductible: { label: 'fraction irréductible', test: isIrreducibleFraction },
   nombre: { label: 'un nombre (calcul terminé)', test: isNumberLiteral },
+  premiers: { label: 'produit de facteurs premiers', test: isPrimeProduct, feedback: primeProductFeedback },
 };
 
 /**
@@ -86,7 +108,7 @@ export function checkExpression(def, params, response) {
     if (!form.test(student)) {
       return diagnosis({
         verdict: 'partiel', score: 0.6, errorType: 'forme',
-        feedback: `Ton expression est bien égale au résultat, mais elle n'est pas sous ${form.label}.`,
+        feedback: form.feedback ? form.feedback(student) : `Ton expression est bien égale au résultat, mais elle n'est pas sous ${form.label}.`,
       });
     }
     return diagnosis({ verdict: 'correct', score: 1, feedback: def.correctFeedback || 'Exact.' });

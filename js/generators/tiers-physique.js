@@ -4,7 +4,7 @@
  * ◆ : conversions, plusieurs opérations, question posée à l'envers ; ✦ : plusieurs étapes, cas piège,
  * conclusion à donner (oui / non, matériau…). Toutes les idées fausses sont calculées avec les nombres tirés.
  */
-import { ri, pick, sample, clean, fr, sq, mc, numeric, text, problem, boundAnswer } from './gen-util.js';
+import { ri, pick, sample, clean, fr, sq, mc, numeric, text, problem, boundAnswer, roundedTo } from './gen-util.js';
 import { PRENOMS, prenom, round, isRound, eur, cap, de, choice, hm, sane, num, yesNo, tableFig, pt, frameAround } from './tiers-outils.js';
 
 /* ======================================================================= */
@@ -21,9 +21,9 @@ function vitKmMin(rand) {
   const h = Math.floor(t / 60); const m = t % 60; const hDec = `${h},${String(m).padStart(2, '0')}`;
   const mcs = t < 60
     ? [mc(clean(d / t), 'mc:duree-minutes', 'unite', `La durée est en minutes : convertis-la en heures (${t} min ${th}) pour obtenir des km/h.`),
-      mc(clean(d / (t / 100)), 'mc:duree-decimale', 'notion', `${t} min ne font pas 0,${t} h : 1 h = 60 min, donc ${t} min = ${t} ÷ 60 h.`)]
+      mc(clean(d / (t / 100)), 'mc:duree-decimale', 'notion', `${t} min ne font pas 0,${t} h : une heure compte soixante minutes, on divise les minutes par 60.`)]
     : [mc(clean(d / t), 'mc:duree-minutes', 'unite', `Tu as divisé par ${t}, la durée comptée en minutes : pour obtenir des km/h, la durée doit être en heures (${hm(t)} ${th}).`),
-      mc(clean(d / (h + m / 100)), 'mc:duree-decimale', 'notion', `${hm(t)} ne fait pas ${hDec} h : ${m} min = ${m}/60 h ${isRound(m / 60, 2) ? '=' : '≈'} ${fr(round(m / 60, 2))} h.`)];
+      mc(clean(d / (h + m / 100)), 'mc:duree-decimale', 'notion', `${hm(t)} ne fait pas ${hDec} h : ${m} min ${isRound(m / 60, 2) ? '=' : '≈'} ${fr(round(m / 60, 2))} h (on divise les minutes par 60).`)];
   mcs.push(mc(clean(t / 60 / d), 'mc:vitesse-inverse', 'notion', 'La vitesse est la distance divisée par la durée, pas l’inverse.'));
   return num(v, {
     prompt: `${who} parcourt ${fr(d)} km ${mode} en ${hm(t)}. Calcule sa vitesse moyenne en km/h.`, unit: 'km/h', representation: 'concrete', expectedSeconds: 150, misconceptions: mcs,
@@ -58,12 +58,12 @@ function vitDistanceHM(rand) {
   return num(d, {
     prompt: `${mobile} roule à ${v} km/h de moyenne pendant ${h ? `${h} h ` : ''}${m} min. Quelle distance est parcourue ?`, unit: 'km', representation: 'concrete', expectedSeconds: 150,
     misconceptions: [
-      mc(clean(v * (h + m / 100)), 'mc:duree-decimale', 'notion', `${m} min ne font pas 0,${m} h : ${m} min = ${m} ÷ 60 h.`),
+      mc(clean(v * (h + m / 100)), 'mc:duree-decimale', 'notion', `${m} min ne font pas 0,${m} h : pour passer des minutes aux heures, on divise par 60.`),
       mc(clean(v * (h * 60 + m)), 'mc:duree-minutes', 'unite', 'Avec une vitesse en km/h, la durée doit être en heures, pas en minutes.'),
       mc(round(v / (h + m / 60), 2), 'mc:distance-division', 'notion', 'd = v × t : à vitesse constante, plus on roule longtemps, plus la distance est grande.'),
     ],
-    hints: ['d = v × t, avec t en heures.', `${m} min = ${m} ÷ 60 h = ${fr(round(m / 60, 4))} h.`, `t = ${h} + ${fr(round(m / 60, 4))} h.`],
-    solution: `t = ${h} h ${m} min = ${fr(round(h + m / 60, 4))} h. d = ${v} × ${fr(round(h + m / 60, 4))} = ${fr(d)} km.`,
+    hints: ['d = v × t, avec t en heures.', `${m} min = ${m} ÷ 60 h = ${fr(round(m / 60, 4))} h.`, h ? `t = ${h} + ${fr(round(m / 60, 4))} h.` : 'Multiplie ensuite la vitesse par cette durée.'],
+    solution: `t = ${h ? `${h} h ` : ''}${m} min = ${fr(round(h + m / 60, 4))} h. d = ${v} × ${fr(round(h + m / 60, 4))} = ${fr(d)} km.`,
   });
 }
 
@@ -71,7 +71,7 @@ function vitDistanceHM(rand) {
 function vitDistanceDrone(rand) {
   const v = pick(rand, [8, 10, 12, 15, 18, 20]); const m = ri(rand, 1, 8); const s = pick(rand, [0, 15, 20, 30, 40, 45]);
   const t = 60 * m + s; const dm = v * t; const ans = clean(dm / 1000); const tTxt = s ? `${m} min ${s} s` : `${m} min`;
-  const mcs = [mc(dm, 'mc:conversion-km', 'unite', `Ce résultat est en mètres : ${fr(dm)} m = ${fr(ans)} km.`), mc(clean((v * (m + s / 60)) / 1000), 'mc:duree-minutes', 'unite', 'Avec une vitesse en m/s, la durée doit être en secondes.')];
+  const mcs = [mc(dm, 'mc:conversion-km', 'unite', 'Ce résultat est en mètres : convertis-le en kilomètres (1 km = 1 000 m).'), mc(clean((v * (m + s / 60)) / 1000), 'mc:duree-minutes', 'unite', 'Avec une vitesse en m/s, la durée doit être en secondes.')];
   if (s) mcs.push(mc(clean((v * (m + s / 100) * 60) / 1000), 'mc:duree-decimale', 'notion', `${m} min ${s} s ne font pas ${m},${s} min : ${tTxt} = ${t} s.`));
   return num(ans, {
     prompt: `Un drone vole à ${v} m/s pendant ${tTxt}. Quelle distance parcourt-il, en km ?`, unit: 'km', strictUnit: true, representation: 'concrete', expectedSeconds: 150, misconceptions: mcs,
@@ -84,7 +84,8 @@ function vitDistanceDrone(rand) {
 function vitDureeMin(rand) {
   const [mobile, speeds] = pick(rand, [['Un bus', [30, 40, 45, 50, 60]], ['Un camion', [60, 72, 80, 90]], ['Une moto', [72, 80, 90, 120]], ['Un tracteur', [24, 30, 36, 40]]]);
   let v; let d; let t;
-  do { v = pick(rand, speeds); d = ri(rand, 4, 150); t = (d / v) * 60; } while (!Number.isInteger(round(t, 6)) || t < 10 || t > 240 || round(t, 6) % 60 === 0);
+  // pas de 100 min : le message « 1 h = 60 min (et non 100 min) » citerait la réponse
+  do { v = pick(rand, speeds); d = ri(rand, 4, 150); t = (d / v) * 60; } while (!Number.isInteger(round(t, 6)) || t < 10 || t > 240 || round(t, 6) % 60 === 0 || round(t, 6) === 100);
   t = round(t, 0);
   return num(t, {
     prompt: `${mobile} roule à ${v} km/h de moyenne. Combien de minutes lui faut-il pour parcourir ${d} km ?`, unit: 'min', tolerance: 0.01, representation: 'concrete', expectedSeconds: 150,
@@ -107,7 +108,7 @@ function vitDureeNage(rand) {
     prompt: `${who} nage à la vitesse moyenne de ${fr(v)} m/s. Combien de minutes faut-il pour nager ${fr(d)} km ?`, unit: 'min', representation: 'concrete', expectedSeconds: 150,
     misconceptions: [
       mc(clean(d / v), 'mc:unites-melangees', 'unite', `Avec une vitesse en m/s, la distance doit être en mètres : ${fr(d)} km = ${fr(d * 1000)} m.`),
-      mc(ts, 'mc:secondes-minutes', 'unite', `Ce résultat est en secondes : ${fr(ts)} s = ${fr(ts)} ÷ 60 min.`),
+      mc(ts, 'mc:secondes-minutes', 'unite', 'Ce résultat est en secondes : divise-le par 60 pour obtenir des minutes.'),
     ],
     hints: [`${fr(d)} km = ${fr(d * 1000)} m.`, 't = d / v donne des secondes.', 'Divise par 60 pour des minutes.'],
     solution: `t = ${fr(d * 1000)} ÷ ${fr(v)} = ${fr(ts)} s = ${fr(ts)} ÷ 60 = ${fr(tm)} min.`,
@@ -129,7 +130,7 @@ function vitAllerRetour(rand) {
   return problem([
     num(t1, { prompt: 'Durée de l’aller, en minutes ?', unit: 'min', tolerance: 0.01, misconceptions: [mc(clean(d / v1), 'mc:heures-minutes', 'unite', 'Ce résultat est en heures : multiplie par 60.'), mc(clean((v1 / d) * 60), 'mc:duree-inverse', 'notion', 't = d / v.')] }),
     num(t2, { prompt: 'Durée du retour, en minutes ?', unit: 'min', tolerance: 0.01, misconceptions: [mc(clean(d / v2), 'mc:heures-minutes', 'unite', 'Ce résultat est en heures : multiplie par 60.'), mc(clean((v2 / d) * 60), 'mc:duree-inverse', 'notion', 't = d / v.')] }),
-    num(avg, { prompt: 'Vitesse moyenne sur l’ensemble de l’aller-retour, en km/h ?', unit: 'km/h', tolerance: 0.05, misconceptions: [mc(mean, 'mc:moyenne-des-vitesses', 'raisonnement', `La vitesse moyenne n’est pas la moyenne des deux vitesses : on roule plus longtemps à ${slow} km/h. Calcule distance totale ÷ durée totale.`), mc(round((d * 60) / (t1 + t2), 2), 'mc:distance-aller-retour', 'lecture', `L’aller-retour mesure 2 × ${d} = ${2 * d} km.`)] }),
+    num(avg, { prompt: 'Vitesse moyenne sur l’ensemble de l’aller-retour, en km/h ?', unit: 'km/h', tolerance: 0.05, misconceptions: [mc(mean, 'mc:moyenne-des-vitesses', 'raisonnement', `La vitesse moyenne n’est pas la moyenne des deux vitesses : on roule plus longtemps à ${slow} km/h. Calcule distance totale ÷ durée totale.`), mc(round((d * 60) / (t1 + t2), 2), 'mc:distance-aller-retour', 'lecture', 'Divise la distance de l’aller ET du retour par la durée totale.')] }),
   ], {
     prompt: `${who} fait ${where[0]} l’aller-retour entre ${where[1]} de ${d} km : ${v1} km/h de moyenne à l’aller, ${v2} km/h au retour.`,
     representation: 'concrete', expectedSeconds: 360,
@@ -148,7 +149,7 @@ function vitArret(rand) {
     num(ms, { prompt: 'Vitesse de la voiture, en m/s ?', unit: 'm/s', strictUnit: true, misconceptions: [mc(clean(v / 60), 'mc:heure-60', 'notion', '1 h = 3 600 s (et non 60 s) : on divise les km/h par 3,6.'), mc(clean(v * 3.6), 'mc:conversion-sens', 'notion', 'En m/s, le nombre est plus petit qu’en km/h : on divise par 3,6.')] }),
     num(dr, { prompt: `Distance parcourue pendant le temps de réaction (${fr(tr)} s), en m ?`, unit: 'm', misconceptions: [mc(clean(v * tr), 'mc:unites-melangees', 'unite', 'Avec une durée en secondes, utilise la vitesse en m/s.'), mc(round(ms / tr, 2), 'mc:distance-division', 'notion', 'd = v × t : on multiplie la vitesse par la durée.')] }),
     num(da, { prompt: 'Distance d’arrêt totale, en m ?', unit: 'm', misconceptions: [mc(df, 'mc:oubli-reaction', 'methode', 'Pendant le temps de réaction, la voiture roule encore sans freiner : distance d’arrêt = distance de réaction + distance de freinage.'), mc(dr, 'mc:oubli-freinage', 'methode', 'Il faut ajouter la distance de freinage.')] }),
-    yesNo(stops, `Un obstacle apparaît à ${obstacle} m devant la voiture. S’arrête-t-elle avant l’obstacle ? (oui ou non)`, 'mc:comparaison-distance', 'raisonnement', stops ? `${fr(da)} m < ${obstacle} m : la voiture s’arrête avant l’obstacle.` : `${fr(da)} m > ${obstacle} m : la voiture n’a pas le temps de s’arrêter.`),
+    yesNo(stops, `Un obstacle apparaît à ${obstacle} m devant la voiture. S’arrête-t-elle avant l’obstacle ? (oui ou non)`, 'mc:comparaison-distance', 'raisonnement', `Compare la distance d’arrêt que tu as calculée à la distance de l’obstacle (${obstacle} m).`),
   ], {
     prompt: `Une voiture roule à ${v} km/h sur route sèche. Quand un obstacle apparaît, il faut ${fr(tr)} s avant de commencer à freiner (temps de réaction) ; ensuite, la voiture freine sur ${df} m.`,
     representation: 'concrete', expectedSeconds: 360,
@@ -187,7 +188,12 @@ const LIQUIDES = [['huile', 0.92, 'de l’huile', 'd’huile'], ['éthanol', 0.7
 const METAUX = [['aluminium', 2.7, 'de l’aluminium'], ['titane', 4.5, 'du titane'], ['zinc', 7.14, 'du zinc'], ['fer', 7.87, 'du fer'], ['cuivre', 8.96, 'du cuivre'], ['argent', 10.5, 'de l’argent'], ['plomb', 11.3, 'du plomb'], ['or', 19.3, 'de l’or']];
 /** [matière, ρ en g/cm³] : celles qui flottent et celles qui coulent (même du bois). */
 const MATIERES = [['du bois de chêne', 0.75], ['du bois de pin', 0.5], ['du liège', 0.24], ['de la paraffine', 0.9], ['de la glace', 0.92], ['du PVC', 1.38], ['du bois d’ébène', 1.2], ['du plexiglas', 1.18], ['du téflon', 2.2]];
-const metalNames = (n) => [n, `le ${n}`, `l’${n}`, `du ${n}`, `de l’${n}`, `en ${n}`];
+/** Écritures acceptées du nom d'un métal : « argent », « l’argent », « de l’argent », « en argent », « c’est de l’argent »… */
+function metalNames(n) {
+  const [, , du] = METAUX.find((x) => x[0] === n);
+  const le = /^[aeiouyéèêh]/i.test(n) ? `l’${n}` : `le ${n}`;
+  return [n, le, du, `en ${n}`, `c’est ${du}`, `c’est ${le}`];
+}
 
 /** ◆ Liquide : volume en L ou cL, masse en g ou kg → g/cm³ puis kg/m³. */
 function mvLiquide(rand) {
@@ -229,12 +235,12 @@ function mvLingot(rand) {
   const V = clean(a * b * c); const mg = clean(rho * V); const mk = round(mg / 1000, 2);
   return problem([
     num(V, { prompt: 'Volume du lingot, en cm³ ?', unit: 'cm³', misconceptions: [mc(clean(a + b + c), 'mc:volume-somme', 'notion', 'Le volume d’un pavé, c’est longueur × largeur × hauteur.'), mc(clean(a * b), 'mc:volume-aire', 'notion', 'Ce nombre est l’aire d’une face : multiplie encore par la troisième dimension.')] }),
-    num(mk, { prompt: 'Masse du lingot, en kg (arrondie au centième) ?', unit: 'kg', strictUnit: true, round: 2, tolerance: 0.0051, misconceptions: [mc(mg, 'mc:conversion-g-kg', 'unite', `Ce nombre est la masse en g : ${fr(mg)} g = ${fr(mg / 1000)} kg.`), mc(round(V / rho, 2), 'mc:rho-inverse', 'notion', 'm = ρ × V : on multiplie le volume par la masse volumique.')] }),
+    num(mk, { prompt: 'Masse du lingot, en kg (arrondie au centième) ?', unit: 'kg', strictUnit: true, ...roundedTo(2), misconceptions: [mc(mg, 'mc:conversion-g-kg', 'unite', 'Ce nombre est la masse en g : divise-la par 1 000, puis arrondis au centième.'), mc(round(V / rho, 2), 'mc:rho-inverse', 'notion', 'm = ρ × V : on multiplie le volume par la masse volumique.')] }),
   ], {
     prompt: `Un lingot en ${name} a la forme d’un pavé droit de ${a} cm × ${b} cm × ${fr(c)} cm. La masse volumique ${du} est ${fr(rho)} g/cm³.`,
     representation: 'concrete', expectedSeconds: 240,
     hints: ['Volume d’un pavé : longueur × largeur × hauteur.', 'm = ρ × V, en g si ρ est en g/cm³ et V en cm³.', '1 kg = 1 000 g.'],
-    solution: `V = ${a} × ${b} × ${fr(c)} = ${fr(V)} cm³. m = ${fr(rho)} × ${fr(V)} = ${fr(mg)} g ≈ ${fr(mk)} kg.`,
+    solution: `V = ${a} × ${b} × ${fr(c)} = ${fr(V)} cm³. m = ${fr(rho)} × ${fr(V)} = ${fr(mg)} g ${isRound(mg / 1000, 2) ? '=' : '≈'} ${fr(mk)} kg.`,
   });
 }
 
@@ -263,15 +269,15 @@ function mvIdentification(rand) {
   // métal « trouvé » si l'on prend le niveau final (ou initial) de l'éprouvette pour volume de l'objet
   const misread = [[m / V1, V1, 'final'], [m / V0, V0, 'initial']].map(([r, vol, lvl]) => [nearest(r)[0], vol, lvl]).find(([n]) => n !== name);
   return problem([
-    num(V, { prompt: 'Volume de l’objet, en cm³ ?', unit: 'cm³', misconceptions: [mc(V1, 'mc:volume-lecture-finale', 'methode', `${V1} mL est le volume de l’eau ET de l’objet : le volume de l’objet est la différence ${V1} − ${V0}.`), mc(V0 + V1, 'mc:volume-somme-niveaux', 'methode', 'On ne cumule pas les deux niveaux : l’objet occupe la différence entre le niveau final et le niveau initial.')] }),
-    num(rhoM, { prompt: 'Masse volumique du métal, en g/cm³ (arrondie au centième) ?', unit: 'g/cm³', round: 2, tolerance: 0.0051, misconceptions: [mc(round(m / V1, 2), 'mc:volume-lecture-finale', 'methode', 'Utilise le volume de l’objet seul, pas le niveau final de l’eau.'), mc(round(V / m, 3), 'mc:rho-inverse', 'notion', 'ρ = m / V : la masse divisée par le volume.')] }),
-    text(metalNames(name), { prompt: 'De quel métal l’objet est-il fait ? (utilise le tableau)', misconceptions: misread ? [mc(misread[0], 'mc:volume-lecture-finale', 'methode', `Ce métal correspond à une masse volumique calculée avec ${misread[1]} cm³ (le niveau ${misread[2]} de l’eau) : utilise le volume de l’objet seul (${V} cm³).`)] : [] }),
+    num(V, { prompt: 'Volume de l’objet, en cm³ ?', unit: 'cm³', misconceptions: [mc(V1, 'mc:volume-lecture-finale', 'methode', `${V1} mL est le volume de l’eau ET de l’objet : le volume de l’objet est la différence entre le niveau final et le niveau initial.`), mc(V0 + V1, 'mc:volume-somme-niveaux', 'methode', 'On ne cumule pas les deux niveaux : l’objet occupe la différence entre le niveau final et le niveau initial.')] }),
+    num(rhoM, { prompt: 'Masse volumique du métal, en g/cm³ (arrondie au centième) ?', unit: 'g/cm³', ...roundedTo(2), misconceptions: [mc(round(m / V1, 2), 'mc:volume-lecture-finale', 'methode', 'Utilise le volume de l’objet seul, pas le niveau final de l’eau.'), mc(round(V / m, 3), 'mc:rho-inverse', 'notion', 'ρ = m / V : la masse divisée par le volume.')] }),
+    text(metalNames(name), { prompt: 'De quel métal l’objet est-il fait ? (utilise le tableau)', misconceptions: misread ? [mc(misread[0], 'mc:volume-lecture-finale', 'methode', `Ce métal correspond à une masse volumique calculée avec le niveau ${misread[2]} de l’eau : utilise le volume de l’objet seul.`)] : [] }),
   ], {
     prompt: `Pour identifier le métal d’un objet, ${who} le pèse : ${fr(m)} g. L’objet est ensuite plongé dans une éprouvette graduée contenant de l’eau : le niveau passe de ${V0} mL à ${V1} mL.`,
     figure: tableFig('Tableau des masses volumiques de quelques métaux', ['Métal', 'Masse volumique (g/cm³)'], METAUX.map(([n, r]) => [n, fr(r)])),
     representation: 'concrete', expectedSeconds: 330,
     hints: ['Le volume de l’objet est l’augmentation du volume lu dans l’éprouvette (1 mL = 1 cm³).', 'ρ = m / V.', 'Cherche dans le tableau la masse volumique la plus proche de ton résultat.'],
-    solution: `V = ${V1} − ${V0} = ${V} mL = ${V} cm³. ρ = ${fr(m)} ÷ ${V} ≈ ${fr(rhoM)} g/cm³ : c’est ${METAUX.find((x) => x[0] === name)[2]} (${fr(rho)} g/cm³).`,
+    solution: `V = ${V1} − ${V0} = ${V} mL = ${V} cm³. ρ = ${fr(m)} ÷ ${V} ${isRound(m / V, 2) ? '=' : '≈'} ${fr(rhoM)} g/cm³ : c’est ${METAUX.find((x) => x[0] === name)[2]} (${fr(rho)} g/cm³).`,
   });
 }
 
@@ -285,14 +291,14 @@ function mvPoutres(rand) {
   } while (C / m < 2 || C / m > 40 || Number.isInteger(round(C / m, 6)));
   const word = steel ? 'barres' : 'poutres'; const one = steel ? 'barre' : 'poutre'; const N = Math.floor(C / m);
   return problem([
-    num(V, { prompt: `Volume d’une ${one}, en m³ ?`, unit: 'm³', misconceptions: [mc(clean(Lm * a * b), 'mc:unites-melangees', 'unite', `Mets les trois longueurs en mètres : ${a} cm = ${fr(a / 100)} m et ${b} cm = ${fr(b / 100)} m.`), mc(clean((Lm * a * b) / 100), 'mc:conversion-partielle', 'unite', 'Les deux dimensions en cm doivent être converties en m.')] }),
+    num(V, { prompt: `Volume d’une ${one}, en m³ ?`, unit: 'm³', misconceptions: [mc(clean(Lm * a * b), 'mc:unites-melangees', 'unite', 'Mets les trois longueurs en mètres (1 m = 100 cm) avant de les multiplier.'), mc(clean((Lm * a * b) / 100), 'mc:conversion-partielle', 'unite', 'Les deux dimensions en cm doivent être converties en m.')] }),
     num(m, { prompt: `Masse d’une ${one}, en kg ?`, unit: 'kg', tolerance: 0.005, misconceptions: [mc(clean(rho * Lm * a * b), 'mc:unites-melangees', 'unite', 'Avec ρ en kg/m³, le volume doit être en m³.'), mc(clean(V / rho), 'mc:rho-inverse', 'notion', 'm = ρ × V.')] }),
     num(N, { prompt: `Combien de ${word} la camionnette peut-elle transporter au maximum ?`, misconceptions: [mc(Math.ceil(C / m), 'mc:arrondi-par-exces', 'raisonnement', `Avec ${Math.ceil(C / m)} ${word}, la charge serait de ${fr(Math.ceil(C / m) * m)} kg : c’est plus que ${C} kg. On garde l’entier inférieur.`), mc(round(C / m, 2), 'mc:quotient-non-entier', 'raisonnement', `Le nombre de ${word} est un nombre entier : on ne peut pas en charger une partie.`)] }),
   ], {
     prompt: `Une camionnette peut transporter au plus ${C} kg. On veut y charger des ${word} en ${name} (masse volumique ${fr(rho)} kg/m³), longues de ${fr(Lm)} m, de section rectangulaire ${a} cm × ${b} cm.`,
     representation: 'concrete', expectedSeconds: 330,
     hints: [`Convertis en m : ${a} cm = ${fr(a / 100)} m ; ${b} cm = ${fr(b / 100)} m.`, 'Volume = longueur × largeur × hauteur ; masse = ρ × V.', `Nombre de ${word} : ${C} ÷ masse d’une ${one}, arrondi à l’entier inférieur.`],
-    solution: `V = ${fr(Lm)} × ${fr(a / 100)} × ${fr(b / 100)} = ${fr(V)} m³. m = ${fr(rho)} × ${fr(V)} = ${fr(m)} kg. ${C} ÷ ${fr(m)} ≈ ${fr(round(C / m, 2))}, donc ${N} ${word} au maximum.`,
+    solution: `V = ${fr(Lm)} × ${fr(a / 100)} × ${fr(b / 100)} = ${fr(V)} m³. m = ${fr(rho)} × ${fr(V)} = ${fr(m)} kg. ${C} ÷ ${fr(m)} ${isRound(C / m, 2) ? '=' : '≈'} ${fr(round(C / m, 2))}, donc ${N} ${word} au maximum.`,
   });
 }
 
@@ -302,14 +308,14 @@ function mvFlottaison(rand) {
   do { a = pick(rand, [4, 5, 6, 8, 10]); b = pick(rand, [2, 3, 4, 5]); cmm = pick(rand, [15, 20, 25, 30, 40, 50]); V = clean((a * b * cmm) / 10); m = round(rho * V, 1); } while (m < 1 || Math.abs(m / V - 1) < 0.05);
   const rhoM = round(m / V, 2); const floats = rhoM < 1;
   return problem([
-    num(V, { prompt: 'Volume du bloc, en cm³ ?', unit: 'cm³', misconceptions: [mc(a * b * cmm, 'mc:unites-melangees', 'unite', `Les trois dimensions doivent être dans la même unité : ${cmm} mm = ${fr(cmm / 10)} cm.`), mc(clean(a + b + cmm / 10), 'mc:volume-somme', 'notion', 'Volume d’un pavé = longueur × largeur × hauteur.')] }),
-    num(rhoM, { prompt: 'Masse volumique de la matière, en g/cm³ (arrondie au centième) ?', unit: 'g/cm³', round: 2, tolerance: 0.0051, misconceptions: [mc(round(V / m, 2), 'mc:rho-inverse', 'notion', 'ρ = m / V : la masse divisée par le volume.'), mc(round(m / (a * b * cmm), 3), 'mc:unites-melangees', 'unite', `Le volume se calcule avec ${cmm} mm = ${fr(cmm / 10)} cm.`)] }),
-    yesNo(floats, 'Ce bloc flotte-t-il sur l’eau ? (oui ou non)', 'mc:flottaison', 'notion', floats ? `${fr(rhoM)} g/cm³ est plus petit que la masse volumique de l’eau (1 g/cm³) : le bloc flotte, quelle que soit sa masse.` : `${fr(rhoM)} g/cm³ est plus grand que la masse volumique de l’eau (1 g/cm³) : le bloc coule, même s’il paraît léger.`),
+    num(V, { prompt: 'Volume du bloc, en cm³ ?', unit: 'cm³', misconceptions: [mc(a * b * cmm, 'mc:unites-melangees', 'unite', 'Les trois dimensions doivent être dans la même unité : convertis les millimètres en centimètres (1 cm = 10 mm).'), mc(clean(a + b + cmm / 10), 'mc:volume-somme', 'notion', 'Volume d’un pavé = longueur × largeur × hauteur.')] }),
+    num(rhoM, { prompt: 'Masse volumique de la matière, en g/cm³ (arrondie au centième) ?', unit: 'g/cm³', ...roundedTo(2), misconceptions: [mc(round(V / m, 2), 'mc:rho-inverse', 'notion', 'ρ = m / V : la masse divisée par le volume.'), mc(round(m / (a * b * cmm), 3), 'mc:unites-melangees', 'unite', `Le volume se calcule avec ${cmm} mm = ${fr(cmm / 10)} cm.`)] }),
+    yesNo(floats, 'Ce bloc flotte-t-il sur l’eau ? (oui ou non)', 'mc:flottaison', 'notion', 'Compare la masse volumique que tu as calculée à celle de l’eau (1 g/cm³) : un objet plein flotte si sa masse volumique est plus petite, quelle que soit sa masse.'),
   ], {
     prompt: `Un bloc de matière inconnue a la forme d’un pavé droit de ${a} cm × ${b} cm × ${cmm} mm. Sa masse est ${fr(m)} g. La masse volumique de l’eau est 1 g/cm³.`,
     representation: 'concrete', expectedSeconds: 300,
     hints: [`Convertis : ${cmm} mm = ${fr(cmm / 10)} cm.`, 'ρ = m / V.', 'Un objet plein flotte sur l’eau si sa masse volumique est plus petite que 1 g/cm³.'],
-    solution: `V = ${a} × ${b} × ${fr(cmm / 10)} = ${fr(V)} cm³. ρ = ${fr(m)} ÷ ${fr(V)} ≈ ${fr(rhoM)} g/cm³, ${floats ? 'moins' : 'plus'} que l’eau : le bloc ${floats ? 'flotte' : 'coule'} (ce pourrait être ${name}).`,
+    solution: `V = ${a} × ${b} × ${fr(cmm / 10)} = ${fr(V)} cm³. ρ = ${fr(m)} ÷ ${fr(V)} ${isRound(m / V, 2) ? '=' : '≈'} ${fr(rhoM)} g/cm³, ${floats ? 'moins' : 'plus'} que l’eau : le bloc ${floats ? 'flotte' : 'coule'} (ce pourrait être ${name}).`,
   });
 }
 
@@ -384,6 +390,7 @@ function ohmResistanceKohm(rand) {
 }
 
 /** Résistances courantes au collège et tensions usuelles des générateurs de TP. */
+const MA_EN_A = 'Convertis d’abord l’intensité en ampères (1 mA = 0,001 A).';
 const R_SERIE = [10, 22, 33, 47, 50, 68, 100, 120, 150, 200, 220, 300, 330, 470, 500, 680, 1000];
 const U_GENERATEUR = [3, 4.5, 6, 9, 12];
 
@@ -402,7 +409,7 @@ function ohmSerieTensions(rand) {
   return problem([
     num(R1 + R2, { prompt: 'Résistance totale du circuit, en Ω ?', unit: 'Ω', misconceptions: [mc(clean((R1 + R2) / 2), 'mc:moyenne-resistances', 'notion', 'En série, les résistances s’ajoutent : R = R₁ + R₂.')] }),
     num(I, { prompt: 'Intensité du courant, en mA ?', unit: 'mA', tolerance: 0.05, misconceptions: [mc(round((U / R1) * 1000, 2), 'mc:resistance-oubliee', 'methode', 'Le courant traverse les deux conducteurs l’un après l’autre : utilise la résistance totale.'), mc(clean(U / (R1 + R2)), 'mc:conversion-a-ma', 'unite', 'Ce résultat est en A : 1 A = 1 000 mA.')] }),
-    num(U1, { prompt: 'Tension aux bornes de R₁, en V ?', unit: 'V', misconceptions: [mc(U, 'mc:tension-serie-identique', 'notion', 'En série, la tension du générateur se partage entre les deux conducteurs : U₁ = R₁ × I.'), mc(clean(U / 2), 'mc:partage-egal', 'raisonnement', 'Le partage n’est égal que si les deux résistances sont égales : calcule U₁ = R₁ × I.'), mc(clean(R1 * I), 'mc:conversion-ma', 'unite', `Convertis l’intensité en A : ${I} mA = ${fr(I / 1000)} A.`)] }),
+    num(U1, { prompt: 'Tension aux bornes de R₁, en V ?', unit: 'V', misconceptions: [mc(U, 'mc:tension-serie-identique', 'notion', 'En série, la tension du générateur se partage entre les deux conducteurs : U₁ = R₁ × I.'), mc(clean(U / 2), 'mc:partage-egal', 'raisonnement', 'Le partage n’est égal que si les deux résistances sont égales : calcule U₁ = R₁ × I.'), mc(clean(R1 * I), 'mc:conversion-ma', 'unite', MA_EN_A)] }),
     num(U2, { prompt: 'Tension aux bornes de R₂, en V ?', unit: 'V', misconceptions: [mc(U, 'mc:tension-serie-identique', 'notion', 'En série, la tension du générateur se partage : U₂ = R₂ × I (ou U − U₁).'), mc(clean(U / 2), 'mc:partage-egal', 'raisonnement', 'Le partage n’est égal que si les deux résistances sont égales.'), mc(U1, 'mc:partage-egal', 'raisonnement', 'R₂ n’est pas égale à R₁ : la tension à ses bornes est différente.')] }),
   ], {
     prompt: `Un générateur de ${fr(U)} V alimente deux conducteurs ohmiques montés en série : R₁ = ${R1} Ω et R₂ = ${R2} Ω.`,
@@ -438,9 +445,9 @@ function ohmSerieIntensite(rand) {
 function ohmSerieInconnue(rand) {
   const { R1, R2, I, U, U2 } = drawSerie(rand); const Rt = R1 + R2;
   return problem([
-    num(Rt, { prompt: 'Résistance totale du circuit, en Ω ?', unit: 'Ω', misconceptions: [mc(clean(U / I), 'mc:conversion-ma', 'unite', `Convertis l’intensité en A : ${I} mA = ${fr(I / 1000)} A.`), mc(round(I / 1000 / U, 5), 'mc:ohm-inverse', 'notion', 'R = U / I.')] }),
+    num(Rt, { prompt: 'Résistance totale du circuit, en Ω ?', unit: 'Ω', misconceptions: [mc(clean(U / I), 'mc:conversion-ma', 'unite', MA_EN_A), mc(round(I / 1000 / U, 5), 'mc:ohm-inverse', 'notion', 'R = U / I.')] }),
     num(R2, { prompt: 'Résistance R₂, en Ω ?', unit: 'Ω', misconceptions: [mc(Rt, 'mc:resistance-totale', 'methode', 'Ce nombre est la résistance totale R₁ + R₂ : retire R₁.'), mc(Rt + R1, 'mc:resistance-totale', 'methode', 'R totale = R₁ + R₂, donc R₂ = R totale − R₁.')] }),
-    num(U2, { prompt: 'Tension aux bornes de R₂, en V ?', unit: 'V', misconceptions: [mc(U, 'mc:tension-serie-identique', 'notion', 'En série, la tension du générateur se partage entre R₁ et R₂.'), mc(clean(R2 * I), 'mc:conversion-ma', 'unite', `Convertis l’intensité en A : ${I} mA = ${fr(I / 1000)} A.`)] }),
+    num(U2, { prompt: 'Tension aux bornes de R₂, en V ?', unit: 'V', misconceptions: [mc(U, 'mc:tension-serie-identique', 'notion', 'En série, la tension du générateur se partage entre R₁ et R₂.'), mc(clean(R2 * I), 'mc:conversion-ma', 'unite', MA_EN_A)] }),
   ], {
     prompt: `Dans un circuit en série, un générateur de ${fr(U)} V alimente un conducteur ohmique R₁ = ${R1} Ω et un conducteur ohmique R₂ de résistance inconnue. Un ampèremètre indique ${I} mA.`,
     representation: 'concrete', expectedSeconds: 330,
@@ -462,12 +469,12 @@ function poidsDeuxAstres(rand) {
   const [astre, g] = pick(rand, ASTRES); const PT = clean(m * 9.8); const PA = clean(m * g);
   return problem([
     num(PT, { prompt: 'Poids sur Terre, en N ?', unit: 'N', tolerance: 0.005, misconceptions: [mc(clean(mg * 9.8), 'mc:conversion-g-kg', 'unite', `Dans P = m × g, la masse est en kg : ${fr(mg)} g = ${fr(m)} kg.`), mc(round(m / 9.8, 4), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.')] }),
-    num(PA, { prompt: `Poids sur ${astre}, en N ?`, unit: 'N', tolerance: 0.005, misconceptions: [mc(clean(mg * g), 'mc:conversion-g-kg', 'unite', `La masse doit être en kg : ${fr(m)} kg.`), mc(PT, 'mc:poids-constant', 'notion', 'Le poids dépend de l’astre : il est proportionnel à g.'), mc(clean(PT * g), 'mc:poids-direct', 'methode', 'On multiplie la masse (en kg) par g, pas le poids sur Terre.')] }),
-    num(m, { prompt: `Masse de l’objet sur ${astre}, en kg ?`, unit: 'kg', tolerance: 0.0005, misconceptions: [mc(mg, 'mc:conversion-g-kg', 'unite', `${fr(mg)} g = ${fr(m)} kg.`), mc(PA, 'mc:masse-poids', 'notion', 'Le poids (en N) et la masse (en kg) sont deux grandeurs différentes.'), mc(round((m * g) / 9.8, 3), 'mc:masse-change', 'notion', 'La masse ne dépend pas du lieu : c’est la quantité de matière, la même partout.')] }),
+    num(PA, { prompt: `Poids sur ${astre}, en N ?`, unit: 'N', tolerance: 0.005, misconceptions: [mc(clean(mg * g), 'mc:conversion-g-kg', 'unite', 'Dans P = m × g, la masse doit être en kg (1 kg = 1 000 g).'), mc(PT, 'mc:poids-constant', 'notion', 'Le poids dépend de l’astre : il est proportionnel à g.'), mc(clean(PT * g), 'mc:poids-direct', 'methode', 'On multiplie la masse (en kg) par g, pas le poids sur Terre.')] }),
+    num(m, { prompt: `Masse de l’objet sur ${astre}, en kg ?`, unit: 'kg', tolerance: 0.0005, misconceptions: [mc(mg, 'mc:conversion-g-kg', 'unite', 'La masse se demande ici en kg : 1 kg = 1 000 g.'), mc(PA, 'mc:masse-poids', 'notion', 'Le poids (en N) et la masse (en kg) sont deux grandeurs différentes.'), mc(round((m * g) / 9.8, 3), 'mc:masse-change', 'notion', 'La masse ne dépend pas du lieu : c’est la quantité de matière, la même partout.')] }),
   ], {
     prompt: `${obj} a une masse de ${fr(mg)} g. On compare son poids sur Terre (g = 9,8 N/kg) et sur ${astre} (g = ${fr(g)} N/kg).`,
     representation: 'concrete', expectedSeconds: 240,
-    hints: [`Convertis la masse : ${fr(mg)} g = ${fr(m)} kg.`, 'P = m × g, avec la valeur de g de chaque astre.', 'La masse est la même partout ; seul le poids change.'],
+    hints: ['Convertis la masse en kg : 1 kg = 1 000 g.', 'P = m × g, avec la valeur de g de chaque astre.', 'La masse est la même partout ; seul le poids change.'],
     solution: `m = ${fr(m)} kg. Sur Terre : P = ${fr(m)} × 9,8 = ${fr(PT)} N. Sur ${astre} : P = ${fr(m)} × ${fr(g)} = ${fr(PA)} N. La masse reste ${fr(m)} kg.`,
   });
 }
@@ -476,7 +483,7 @@ function poidsDeuxAstres(rand) {
 function poidsMasseGrammes(rand) {
   const [astre, g] = pick(rand, [['la Terre', 9.8], ['la Lune', 1.6], ['Mars', 3.7], ['Vénus', 8.9]]);
   const mg = pick(rand, [200, 250, 400, 500, 750, 800, 1250, 1500]); const m = clean(mg / 1000); const P = clean(m * g);
-  const mcs = [mc(m, 'mc:conversion-g-kg', 'unite', `m = P / g donne une masse en kg : ${fr(m)} kg = ${fr(mg)} g.`), mc(clean(P * g * 1000), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids par g.')];
+  const mcs = [mc(m, 'mc:conversion-g-kg', 'unite', 'm = P / g donne une masse en kg ; la question la demande en g (1 kg = 1 000 g).'), mc(clean(P * g * 1000), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids par g.')];
   if (g !== 9.8) mcs.push(mc(round((P / 9.8) * 1000, 1), 'mc:mauvais-astre', 'lecture', `L’objet est sur ${astre} : utilise g = ${fr(g)} N/kg, pas la valeur terrestre.`));
   return num(mg, {
     prompt: `Sur ${astre} (g = ${fr(g)} N/kg), un dynamomètre indique que le poids d’un objet est ${fr(P)} N. Quelle est la masse de l’objet, en g ?`, unit: 'g', strictUnit: true, representation: 'concrete', expectedSeconds: 150, misconceptions: mcs,
@@ -508,8 +515,8 @@ function poidsRapport(rand) {
   const m = pick(rand, [60, 75, 80, 120, 150, 240, 300, 500]); const PT = clean(m * 9.8); const PA = clean(m * g); const ratio = round(9.8 / g, 1);
   return problem([
     num(m, { prompt: 'Masse, en kg ?', unit: 'kg', tolerance: 0.005, misconceptions: [mc(PT, 'mc:masse-poids', 'notion', 'Le poids (en N) n’est pas la masse (en kg) : m = P / g.'), mc(clean(PT * 9.8), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids par g.')] }),
-    num(PA, { prompt: `Poids sur ${astre}, en N ?`, unit: 'N', tolerance: 0.05, misconceptions: [mc(round(PT / g, 2), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.'), mc(clean(PT * g), 'mc:poids-direct', 'methode', `On multiplie la masse (${m} kg), pas le poids sur Terre, par g.`), mc(PT, 'mc:poids-constant', 'notion', 'Le poids dépend de l’astre.')] }),
-    num(ratio, { prompt: `Combien de fois le poids est-il plus faible sur ${astre} que sur Terre ? (arrondi au dixième)`, round: 1, tolerance: 0.051, misconceptions: [mc(round(g / 9.8, 2), 'mc:rapport-inverse', 'raisonnement', '« Combien de fois plus faible » : divise le plus grand poids par le plus petit.'), mc(round(9.8 - g, 1), 'mc:difference-rapport', 'raisonnement', '« Combien de fois » demande un quotient, pas une différence.')] }),
+    num(PA, { prompt: `Poids sur ${astre}, en N ?`, unit: 'N', tolerance: 0.005, misconceptions: [mc(round(PT / g, 2), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.'), mc(clean(PT * g), 'mc:poids-direct', 'methode', `On multiplie la masse (${m} kg), pas le poids sur Terre, par g.`), mc(PT, 'mc:poids-constant', 'notion', 'Le poids dépend de l’astre.')] }),
+    num(ratio, { prompt: `Combien de fois le poids est-il plus faible sur ${astre} que sur Terre ? (arrondi au dixième)`, ...roundedTo(1), misconceptions: [mc(round(g / 9.8, 2), 'mc:rapport-inverse', 'raisonnement', '« Combien de fois plus faible » : divise le plus grand poids par le plus petit.'), mc(round(9.8 - g, 1), 'mc:difference-rapport', 'raisonnement', '« Combien de fois » demande un quotient, pas une différence.')] }),
   ], {
     prompt: `Sur Terre (g = 9,8 N/kg), le poids ${de(obj)} est ${fr(PT)} N. On l’envoie sur ${astre}${note}, où g = ${fr(g)} N/kg.`,
     representation: 'concrete', expectedSeconds: 330,
@@ -531,13 +538,13 @@ function poidsDynamometre(rand) {
   const approx = (x) => `${isRound(x, 4) ? '=' : '≈'} ${fr(round(x, 4))}`;
   const gapA = Math.abs(F / g - mA.answer) > 1e-9; const gapT = Math.abs(F / 9.8 - mT.answer) > 1e-9;
   const trop = (b, gg) => `${fr(b.unsafe)} kg × ${fr(gg)} N/kg = ${fr(b.unsafe * gg)} N`;
-  const arrondi = (b, gg) => mc(b.unsafe, 'mc:arrondi-par-exces', 'raisonnement', `${trop(b, gg)} : c’est plus que ${F} N, le dynamomètre ne pourrait pas mesurer ce poids. Une masse MAXIMALE s’arrondit au centième inférieur : ${fr(b.answer)} kg.`);
+  const arrondi = (b, gg) => mc(b.unsafe, 'mc:arrondi-par-exces', 'raisonnement', `${trop(b, gg)} : c’est plus que ${F} N, le dynamomètre ne pourrait pas mesurer ce poids. Une masse MAXIMALE s’arrondit au centième inférieur.`);
   const detail = (b, gg, gap) => (gap ? `, soit ${fr(b.answer)} kg au centième inférieur (${trop(b, gg)} dépasserait ${F} N)` : '');
   return problem([
     num(PA, { prompt: `Poids du sac sur ${astre}, en N ?`, unit: 'N', tolerance: 0.005, misconceptions: [mc(round(m / g, 3), 'mc:poids-division', 'notion', 'P = m × g : on multiplie.'), mc(clean(m * 9.8), 'mc:mauvais-astre', 'lecture', `Le sac est pesé sur ${astre} : g = ${fr(g)} N/kg.`)] }),
-    yesNo(can, `Peut-on peser ce sac avec ce dynamomètre sur ${astre} ? (oui ou non)`, 'mc:comparaison-poids', 'raisonnement', can ? `${fr(PA)} N ≤ ${F} N : c’est possible sur ${astre}, alors que sur Terre le poids (${fr(m * 9.8)} N) dépasserait ${F} N.` : `${fr(PA)} N > ${F} N : le poids dépasse ce que mesure le dynamomètre.`),
-    num(mA.answer, { prompt: `Masse maximale que l’on peut suspendre à ce dynamomètre sur ${astre}, en kg (arrondie au centième) ?`, unit: 'kg', round: 2, tolerance: mA.tolerance, misconceptions: [...(gapA ? [arrondi(mA, g)] : []), mc(nT, 'mc:mauvais-astre', 'lecture', `Sur ${astre}, g = ${fr(g)} N/kg.`), mc(clean(F * g), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids maximal par g.'), mc(F, 'mc:masse-poids', 'notion', `${F} N est un poids, pas une masse : m = P / g.`)] }),
-    num(mT.answer, { prompt: 'Et sur Terre (g = 9,8 N/kg), en kg (arrondie au centième) ?', unit: 'kg', round: 2, tolerance: mT.tolerance, misconceptions: [...(gapT ? [arrondi(mT, 9.8)] : []), mc(nA, 'mc:mauvais-astre', 'lecture', 'Sur Terre, g = 9,8 N/kg.'), mc(clean(F * 9.8), 'mc:poids-division', 'notion', 'm = P / g.'), mc(F, 'mc:masse-poids', 'notion', `${F} N est un poids, pas une masse.`)] }),
+    yesNo(can, `Peut-on peser ce sac avec ce dynamomètre sur ${astre} ? (oui ou non)`, 'mc:comparaison-poids', 'raisonnement', `Compare le poids du sac sur ${astre}, que tu viens de calculer, au maximum du dynamomètre (${F} N).`),
+    num(mA.answer, { prompt: `Masse maximale que l’on peut suspendre à ce dynamomètre sur ${astre}, en kg (arrondie au centième) ?`, unit: 'kg', round: 2, tolerance: mA.tolerance, limit: 'max', misconceptions: [...(gapA ? [arrondi(mA, g)] : []), mc(nT, 'mc:mauvais-astre', 'lecture', `Sur ${astre}, g = ${fr(g)} N/kg.`), mc(clean(F * g), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids maximal par g.'), mc(F, 'mc:masse-poids', 'notion', `${F} N est un poids, pas une masse : m = P / g.`)] }),
+    num(mT.answer, { prompt: 'Et sur Terre (g = 9,8 N/kg), en kg (arrondie au centième) ?', unit: 'kg', round: 2, tolerance: mT.tolerance, limit: 'max', misconceptions: [...(gapT ? [arrondi(mT, 9.8)] : []), mc(nA, 'mc:mauvais-astre', 'lecture', 'Sur Terre, g = 9,8 N/kg.'), mc(clean(F * 9.8), 'mc:poids-division', 'notion', 'm = P / g.'), mc(F, 'mc:masse-poids', 'notion', `${F} N est un poids, pas une masse.`)] }),
   ], {
     prompt: `Un dynamomètre mesure des poids jusqu’à ${F} N au maximum. Une équipe d’astronautes l’emporte sur ${astre} (g = ${fr(g)} N/kg) pour peser un sac d’échantillons de roches de ${fr(m)} kg.`,
     representation: 'concrete', expectedSeconds: 360,

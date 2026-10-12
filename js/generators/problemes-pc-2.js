@@ -2,8 +2,8 @@
  * Générateurs de PROBLÈMES de physique-chimie (2/2) : poids et masse, dissolution, combustion, lumière, chaîne d’énergie.
  * Une situation concrète, plusieurs questions qui s'enchaînent et, au niveau expert, une justification. Voir docs/GENERATEURS.md.
  */
-import { ri, pick, clean, fr, mc, numeric, text, problem } from './gen-util.js';
-import { TROIS, until, round, isInt, eq, cap, pow10, sciParts, sci, tolRound, bound, yesNo, tiered } from './problemes-pc-outils.js';
+import { ri, pick, clean, fr, mc, numeric, text, problem, roundedTo } from './gen-util.js';
+import { TROIS, until, round, isInt, eq, cap, pow10, sciParts, sci, bound, yesNo, tiered } from './problemes-pc-outils.js';
 
 
 /* ------------------------------------------------------------------ */
@@ -21,17 +21,17 @@ const ASTRONAUTE = {
     const PT = clean(M * 9.8); const PA = clean(M * g);
     return problem([
       numeric(M, { prompt: 'Quelle est la masse de l’astronaute équipé, en kg ?', unit: 'kg', misconceptions: [mc(ma, 'mc:oubli-equipement', 'lecture', 'Ajoute la masse de la combinaison et de l’équipement.')] }),
-      numeric(PT, { prompt: 'Quel est son poids, tout équipé, sur la Terre, en N (à 1 N près) ?', unit: 'N', tolerance: 1, misconceptions: [
+      numeric(round(PT), { prompt: 'Quel est son poids, tout équipé, sur la Terre, en N (arrondi à l’unité) ?', unit: 'N', ...roundedTo(0), misconceptions: [
         mc(clean(M / 9.8), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.'), mc(M, 'mc:masse-poids', 'notion', MASSE_POIDS)] }),
       numeric(M, { prompt: `Quelle est la masse de l’astronaute équipé ${SUR[A]}, en kg ?`, unit: 'kg', misconceptions: [
         mc(clean((M * g) / 9.8), 'mc:masse-change', 'notion', 'La masse mesure la quantité de matière : elle ne change pas quand on change d’astre. C’est le poids qui change.'),
         mc(PA, 'mc:masse-poids', 'notion', 'Ça, c’est le poids (en N) ; on demande la masse (en kg).')] }),
-      numeric(PA, { prompt: `Quel est son poids ${SUR[A]}, en N (à 1 N près) ?`, unit: 'N', tolerance: 1, misconceptions: [
+      numeric(round(PA), { prompt: `Quel est son poids ${SUR[A]}, en N (arrondi à l’unité) ?`, unit: 'N', ...roundedTo(0), misconceptions: [
         mc(PT, 'mc:g-terre', 'lecture', `${cap(SUR[A])}, g vaut ${fr(g)} N/kg, pas 9,8 N/kg.`), mc(clean(M / g), 'mc:poids-division', 'notion', 'P = m × g : on multiplie la masse par g.')] }),
     ], {
       prompt: `${who} est astronaute et a une masse de ${ma} kg. Pour une sortie ${SUR[A]}, la combinaison et l’équipement ajoutent ${me} kg. Intensité de la pesanteur : g = 9,8 N/kg sur la Terre et ${fr(g)} N/kg ${SUR[A]}.`,
       hints: ['La masse (en kg) se mesure avec une balance ; le poids (en N), avec un dynamomètre.', 'P = m × g, où g dépend de l’astre.', 'La masse ne change pas d’un astre à l’autre ; le poids, si.'],
-      solution: `Masse : ${ma} + ${me} = ${M} kg, la même partout. Poids sur la Terre : ${M} × 9,8 = ${fr(PT)} N. ${cap(SUR[A])} : la masse reste ${M} kg, le poids vaut ${M} × ${fr(g)} = ${fr(PA)} N.`,
+      solution: `Masse : ${ma} + ${me} = ${M} kg, la même partout. Poids sur la Terre : ${M} × 9,8 ${eq(PT, 0)} N. ${cap(SUR[A])} : la masse reste ${M} kg, le poids vaut ${M} × ${fr(g)} ${eq(PA, 0)} N.`,
       expectedSeconds: 300,
     });
   },
@@ -43,11 +43,11 @@ const ASTRONAUTE = {
       numeric(clean(m * 1000), { prompt: 'Quelle est la masse de l’échantillon, en grammes ?', unit: 'g', strictUnit: true, misconceptions: [
         mc(m, 'mc:kg-g', 'unite', 'P ÷ g donne la masse en kilogrammes : convertis-la en grammes (1 kg = 1 000 g).'),
         mc(clean(P * G[A] * 1000), 'mc:poids-division', 'notion', 'm = P / g : on divise le poids par g.'), mc(P, 'mc:masse-poids', 'notion', `${fr(P)} N est un poids, pas une masse : m = P / g.`)] }),
-      numeric(clean(m * 9.8), { prompt: 'Quel sera son poids une fois rapporté sur la Terre, en N (au dixième) ?', unit: 'N', tolerance: 0.051, misconceptions: [
+      numeric(round(m * 9.8, 1), { prompt: 'Quel sera son poids une fois rapporté sur la Terre, en N (au dixième) ?', unit: 'N', ...roundedTo(1), misconceptions: [
         mc(clean(P * 9.8), 'mc:masse-poids', 'notion', `${fr(P)} N est un poids : retrouve d’abord la masse.`), mc(P, 'mc:poids-constant', 'notion', 'Le poids dépend de l’astre : sur la Terre, g est plus grand, donc le poids aussi.')] }),
-      numeric(clean(m * G[B]), { prompt: `Et ${SUR[B]}, en N (au dixième) ?`, unit: 'N', tolerance: 0.051, misconceptions: [
+      numeric(round(m * G[B], 1), { prompt: `Et ${SUR[B]}, en N (au dixième) ?`, unit: 'N', ...roundedTo(1), misconceptions: [
         mc(clean(P * G[B]), 'mc:masse-poids', 'notion', `${fr(P)} N est un poids : utilise la masse.`), mc(clean(m * 9.8), 'mc:g-terre', 'lecture', `${cap(SUR[B])}, g vaut ${fr(G[B])} N/kg.`)] }),
-      numeric(ratio, { prompt: `Combien de fois le poids est-il plus grand sur la Terre que ${SUR[A]} ? (au dixième)`, tolerance: 0.051, misconceptions: [
+      numeric(round(ratio, 1), { prompt: `Combien de fois le poids est-il plus grand sur la Terre que ${SUR[A]} ? (au dixième)`, ...roundedTo(1), misconceptions: [
         mc(clean(G[A] / 9.8), 'mc:rapport-inverse', 'raisonnement', 'Le poids est plus grand sur la Terre : le rapport cherché est plus grand que 1.')] }),
     ], {
       prompt: `${cap(SUR[A])}, ${who} suspend un échantillon de roche à un dynamomètre, qui indique ${fr(P)} N. Données : ${G_DONNEES}.`,
@@ -64,12 +64,12 @@ const ASTRONAUTE = {
     // masse MAXIMALE : arrondi au kilogramme inférieur (un kilogramme de plus, et le poids dépasserait F)
     const lim = bound(mmax, 'max');
     const trop = `${fr(lim.unsafe)} kg × ${fr(g)} N/kg = ${fr(lim.unsafe * g)} N`;
-    const arrondiM = lim.gap ? [mc(lim.unsafe, 'mc:arrondi-par-exces', 'raisonnement', `${trop} : c’est plus que ${F} N, le treuil ne pourrait pas soulever cette charge. Une masse MAXIMALE s’arrondit au kilogramme inférieur : ${fr(lim.answer)} kg.`)] : [];
+    const arrondiM = lim.gap ? [mc(lim.unsafe, 'mc:arrondi-par-exces', 'raisonnement', `${trop} : c’est plus que ${F} N, le treuil ne pourrait pas soulever cette charge. Une masse MAXIMALE s’arrondit au kilogramme inférieur.`)] : [];
     return problem([
-      numeric(PT, { prompt: 'Quel est le poids de la charge sur la Terre, en N (à 1 N près) ?', unit: 'N', tolerance: 1, misconceptions: [mc(M, 'mc:masse-poids', 'notion', MASSE_POIDS), mc(clean(M / 9.8), 'mc:poids-division', 'notion', 'P = m × g.')] }),
-      yesNo(okT, 'Sur la Terre, le treuil peut-il soulever cette charge ? (oui ou non)', 'mc:comparer-masse-force', 'raisonnement', `Compare le poids (${fr(PT)} N) à la force maximale du treuil (${F} N) : deux forces en newtons, et non une masse en kg.`),
-      numeric(PA, { prompt: `Quel est le poids de la charge ${SUR[A]}, en N (à 1 N près) ?`, unit: 'N', tolerance: 1, misconceptions: [mc(PT, 'mc:g-terre', 'lecture', `${cap(SUR[A])}, g vaut ${fr(g)} N/kg.`), mc(clean(M / g), 'mc:poids-division', 'notion', 'P = m × g.')] }),
-      numeric(lim.answer, { prompt: `Quelle masse maximale le treuil peut-il soulever ${SUR[A]}, en kg (arrondie au kilogramme) ?`, unit: 'kg', tolerance: lim.tolerance, misconceptions: [
+      numeric(round(PT), { prompt: 'Quel est le poids de la charge sur la Terre, en N (arrondi à l’unité) ?', unit: 'N', ...roundedTo(0), misconceptions: [mc(M, 'mc:masse-poids', 'notion', MASSE_POIDS), mc(clean(M / 9.8), 'mc:poids-division', 'notion', 'P = m × g.')] }),
+      yesNo(okT, 'Sur la Terre, le treuil peut-il soulever cette charge ? (oui ou non)', 'mc:comparer-masse-force', 'raisonnement', 'Compare le poids de la charge (en N) à la force maximale du treuil : deux forces en newtons, et non une masse en kg.'),
+      numeric(round(PA), { prompt: `Quel est le poids de la charge ${SUR[A]}, en N (arrondi à l’unité) ?`, unit: 'N', ...roundedTo(0), misconceptions: [mc(PT, 'mc:g-terre', 'lecture', `${cap(SUR[A])}, g vaut ${fr(g)} N/kg.`), mc(clean(M / g), 'mc:poids-division', 'notion', 'P = m × g.')] }),
+      numeric(lim.answer, { prompt: `Quelle masse maximale le treuil peut-il soulever ${SUR[A]}, en kg (arrondie au kilogramme) ?`, unit: 'kg', round: 0, tolerance: lim.tolerance, limit: 'max', misconceptions: [
         ...arrondiM,
         mc(clean(F / 9.8), 'mc:g-terre', 'lecture', `${cap(SUR[A])}, g vaut ${fr(g)} N/kg.`), mc(clean(F * g), 'mc:poids-division', 'notion', 'm = P / g : on divise la force par g.'), mc(F, 'mc:masse-poids', 'notion', 'Une force en newtons n’est pas une masse en kg : m = F / g.')] }),
     ], {
@@ -105,7 +105,7 @@ const DISSOLUTION = {
       numeric(max, { prompt: `Quelle masse maximale ${S.de} peut-on dissoudre dans ${V} mL d’eau à 20 °C, en g ?`, unit: 'g', misconceptions: [
         mc(S.s, 'mc:solubilite-volume', 'raisonnement', `${S.s} g, c’est pour 100 mL d’eau ; ici il y a ${V} mL : la masse maximale est proportionnelle au volume d’eau.`)] }),
       yesNo(tout, `Tout le ${S.nom} peut-il se dissoudre ? (oui ou non)`, tout ? 'mc:comparaison-solubilite' : 'mc:solubilite-illimitee', 'raisonnement',
-        tout ? `${ms} g, c’est moins que la masse maximale (${fr(max)} g) : tout se dissout.` : `On ne peut pas dissoudre autant de ${S.nom} qu’on veut : au-delà de ${fr(max)} g, la solution est saturée et le reste se dépose au fond.`),
+        tout ? `Compare les ${ms} g ${S.de} versés à la masse maximale que l’eau peut dissoudre (question précédente).` : `On ne peut pas dissoudre autant de ${S.nom} qu’on veut : au-delà de la masse maximale, la solution est saturée et le reste se dépose au fond.`),
     ], {
       prompt: `${who} verse ${ms} g ${S.de} dans ${V} mL d’eau à 20 °C et mélange longtemps. À 20 °C, on peut dissoudre au maximum ${S.s} g ${S.de} dans 100 mL d’eau. ${EAU}`,
       hints: ['Quand un solide se dissout, il ne disparaît pas : la masse totale se conserve.', `La masse maximale dissoute est proportionnelle au volume d’eau : ${S.s} g pour 100 mL.`, `Compare ${ms} g à la masse maximale.`],
@@ -123,9 +123,9 @@ const DISSOLUTION = {
         mc(clean(mb + V + max), 'mc:depot-oublie', 'raisonnement', `Le ${S.nom} resté au fond est toujours dans le bécher : la balance le pèse aussi.`), mc(V + ms, 'mc:becher-oublie', 'lecture', 'La balance pèse aussi le bécher.')] }),
       numeric(reste, { prompt: `Quelle masse ${S.de} reste au fond sans se dissoudre, en g ?`, unit: 'g', misconceptions: [
         mc(max, 'mc:masse-dissoute', 'lecture', 'C’est la masse dissoute ; on demande la masse qui reste au fond.'),
-        mc(clean(ms - S.s), 'mc:solubilite-volume', 'raisonnement', `${S.s} g correspond à 100 mL ; pour ${V} mL, on peut en dissoudre ${fr(max)} g.`)] }),
+        mc(clean(ms - S.s), 'mc:solubilite-volume', 'raisonnement', `${S.s} g correspond à 100 mL d’eau ; ici il y en a ${V} mL : calcule d’abord la masse qui peut se dissoudre.`)] }),
       numeric(ajout, { prompt: `Quel volume d’eau faut-il ajouter, au minimum, pour que tout le ${S.nom} se dissolve, en mL ?`, unit: 'mL', misconceptions: [
-        mc(Vtot, 'mc:volume-total', 'lecture', `Il faut ${fr(Vtot)} mL d’eau en tout, mais il y en a déjà ${V} mL.`),
+        mc(Vtot, 'mc:volume-total', 'lecture', 'Ce volume est l’eau nécessaire en tout : une partie de l’eau est déjà dans le bécher.'),
         mc(reste, 'mc:masse-volume', 'notion', 'Une masse de solide n’est pas un volume d’eau : utilise la solubilité (proportionnalité).')] }),
     ], {
       prompt: `${who} pose un bécher vide sur une balance (${mb} g), y verse ${V} mL d’eau à 20 °C puis ${ms} g ${S.de}, et mélange longtemps. Solubilité à 20 °C : ${S.s} g ${S.de} pour 100 mL d’eau. ${EAU}`,
@@ -184,7 +184,7 @@ const COMBUSTION = {
         mc(clean(mCO2 + mC), 'mc:conservation-sens', 'raisonnement', 'm(carbone) + m(dioxygène consommé) = m(dioxyde de carbone) : on soustrait la masse de carbone.'),
         mc(mCO2, 'mc:produit-reactif', 'lecture', 'Ça, c’est la masse du produit formé, pas celle du dioxygène consommé.')] }),
       text(['produit', 'un produit', 'c’est un produit', 'le produit'], { prompt: 'Le dioxyde de carbone est-il un réactif ou un produit de la réaction ?', placeholder: 'réactif ou produit',
-        misconceptions: ['réactif', 'un réactif', 'reactif'].map((a) => mc(a, 'mc:reactif-produit', 'notion', 'Les réactifs (carbone, dioxygène) sont consommés ; le dioxyde de carbone apparaît : c’est un produit.')) }),
+        misconceptions: ['réactif', 'un réactif', 'reactif'].map((a) => mc(a, 'mc:reactif-produit', 'notion', 'Les réactifs (carbone, dioxygène) sont consommés ; le dioxyde de carbone, lui, n’existait pas au départ : il apparaît pendant la combustion.')) }),
     ], {
       prompt: `${who} fait brûler ${fr(mC)} g de carbone (du charbon de bois) dans un flacon fermé rempli de dioxygène, posé sur une balance qui indique ${fr(M)} g au départ. Équation de la réaction : carbone + dioxygène → dioxyde de carbone.`,
       hints: ['Dans un flacon fermé, rien n’entre et rien ne sort.', CONSERVATION, 'Les réactifs sont consommés, les produits apparaissent.'],
@@ -250,19 +250,21 @@ const COMBUSTION = {
 /* ------------------------------------------------------------------ */
 /** Distance moyenne au Soleil, en millions de km. */
 const PLANETES = [['Mercure', 58], ['Vénus', 108], ['la Terre', 150], ['Mars', 228], ['Jupiter', 778], ['Saturne', 1430]];
-const SONDES = [['un robot posé sur Mars', 8, [1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.6]], ['la sonde Juno, en orbite autour de Jupiter', 8, [6, 7.2, 9]], ['la sonde New Horizons, au-delà de Pluton', 9, [9]], ['la sonde Voyager 1', 10, [2.4]]];
+const SONDES = [['un robot posé sur Mars', 8, [1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.6]], ['la sonde Juno, en orbite autour de Jupiter', 8, [6, 7.2, 9]], ['la sonde New Horizons, au-delà de Pluton', 9, [9.3]], ['la sonde Voyager 1', 10, [2.4]]];
 const BASE_100 = 'Une minute compte 60 secondes (et une heure 60 minutes), pas 100.';
 const KM_S = 'La distance est en km : divise par la vitesse en km/s (3 × 10⁵ km/s), pas en m/s.';
 
 const LUMIERE = {
   classe(rand, who) {
-    const [P, D] = pick(rand, PLANETES); const d = D * 1e6; const t = clean(d / 3e5); const min = clean(t / 60);
+    // planètes dont la durée convertie à partir de la durée ARRONDIE à la seconde donne le même dixième de minute
+    const [P, D] = pick(rand, PLANETES.filter(([, x]) => round(x * 1e6 / 3e5 / 60, 1) === round(round(x * 1e6 / 3e5) / 60, 1)));
+    const d = D * 1e6; const t = clean(d / 3e5); const min = clean(t / 60);
     return problem([
       numeric(d, { prompt: `Écris la distance entre le Soleil et ${P} en kilomètres (tu peux utiliser une puissance de 10).`, unit: 'km', unitOptional: true, strictUnit: true, misconceptions: [
         mc(D * 1000, 'mc:million', 'notion', '1 million = 1 000 000 = 10⁶ : six zéros, pas trois.'), mc(D * 1e9, 'mc:million', 'notion', 'Un million = 10⁶ ; un milliard = 10⁹.')] }),
-      numeric(t, { prompt: `Combien de secondes la lumière du Soleil met-elle pour atteindre ${P} ? (arrondi à la seconde)`, unit: 's', tolerance: 0.51, misconceptions: [
+      numeric(round(t), { prompt: `Combien de secondes la lumière du Soleil met-elle pour atteindre ${P} ? (arrondi à la seconde)`, unit: 's', ...roundedTo(0), misconceptions: [
         mc(clean(d / 3e8), 'mc:unites-melangees', 'unite', KM_S), mc(clean(3e5 / d), 'mc:duree-inverse', 'notion', 't = d / v : on divise la distance par la vitesse.'), mc(clean(d * 3e5), 'mc:vitesse-produit', 'notion', 't = d / v : on divise, on ne multiplie pas.')] }),
-      numeric(min, { prompt: 'Convertis cette durée en minutes (arrondie au dixième).', unit: 'min', strictUnit: true, tolerance: tolRound(min, 1, [round(round(t) / 60, 1)]), misconceptions: [
+      numeric(round(min, 1), { prompt: 'Convertis cette durée en minutes (arrondie au dixième).', unit: 'min', strictUnit: true, ...roundedTo(1), misconceptions: [
         mc(clean(t / 100), 'mc:base-100', 'notion', BASE_100), mc(clean(t * 60), 'mc:conversion-sens', 'unite', 'Une minute est plus longue qu’une seconde : le nombre doit diminuer (on divise par 60).')] }),
     ], {
       prompt: `${who} lit que la lumière se propage dans le vide à environ 300 000 km/s, et que ${P} se trouve à environ ${fr(D)} millions de kilomètres du Soleil.`,
@@ -272,14 +274,18 @@ const LUMIERE = {
     });
   },
   approfondissement(rand, who) {
-    const [sonde, n0, as] = pick(rand, SONDES); const d = clean(pick(rand, as) * 10 ** n0); const [a, n] = sciParts(d); const t = clean(d / 3e5);
-    const enH = t >= 7200; const u = enH ? 'h' : 'min'; const mot = enH ? 'heures' : 'minutes'; const k = enH ? 3600 : 60; const tu = clean(t / k); const aller = clean((2 * t) / k);
+    const unitOf = (t) => (t >= 7200 ? 3600 : 60);
+    const [[sonde, n0], x0] = until(() => { const so = pick(rand, SONDES); return [so, pick(rand, so[2])]; },
+      ([[, p0], x]) => { const t = (x * 10 ** p0) / 3e5; const k = unitOf(t); return round((2 * t) / k, 1) === round(2 * round(t / k, 1), 1); });
+    const d = clean(x0 * 10 ** n0);
+    const [a, n] = sciParts(d); const t = clean(d / 3e5);
+    const enH = t >= 7200; const u = enH ? 'h' : 'min'; const mot = enH ? 'heures' : 'minutes'; const k = unitOf(t); const tu = clean(t / k); const aller = clean((2 * t) / k);
     return problem([
       numeric(t, { prompt: 'Combien de secondes un message radio met-il pour arriver à destination ?', unit: 's', misconceptions: [mc(clean(d / 3e8), 'mc:unites-melangees', 'unite', KM_S), mc(clean(d * 3e5), 'mc:vitesse-produit', 'notion', 't = d / v : on divise la distance par la vitesse.')] }),
-      numeric(tu, { prompt: `Convertis cette durée en ${mot} (arrondie au dixième).`, unit: u, strictUnit: true, tolerance: 0.051, misconceptions: [
+      numeric(round(tu, 1), { prompt: `Convertis cette durée en ${mot} (arrondie au dixième).`, unit: u, strictUnit: true, ...roundedTo(1), misconceptions: [
         mc(clean(t / 100), 'mc:base-100', 'notion', BASE_100), ...(enH ? [mc(clean(t / 60), 'mc:minutes-heures', 'unite', 'Tu as obtenu des minutes : une heure compte 3 600 secondes.')] : [])] }),
-      // au dixième : on accepte aussi le double de la durée arrondie de la question précédente
-      numeric(aller, { prompt: `On envoie un ordre et la réponse repart aussitôt. Au bout de combien de temps la reçoit-on, en ${mot} (au dixième) ?`, unit: u, tolerance: tolRound(aller, 1, [2 * round(tu, 1)]), misconceptions: [
+      // au dixième : le double de la durée arrondie de la question précédente donne le même dixième (tirage retenu)
+      numeric(round(aller, 1), { prompt: `On envoie un ordre et la réponse repart aussitôt. Au bout de combien de temps la reçoit-on, en ${mot} (au dixième) ?`, unit: u, ...roundedTo(1), misconceptions: [
         mc(tu, 'mc:aller-seulement', 'raisonnement', 'L’ordre fait l’aller, la réponse fait le retour : la durée est doublée.')] }),
     ], {
       prompt: `Les ondes radio se propagent à la vitesse de la lumière : 3 × 10⁵ km/s. ${who} s’intéresse aux messages échangés avec ${sonde}, à ${sci(d)} km de la Terre.`,
@@ -289,18 +295,17 @@ const LUMIERE = {
     });
   },
   expert(rand, who) {
-    const [cible, d] = pick(rand, [['la Terre', 1.5e8], ['Mars', 2.28e8]]);
-    const vp = pick(rand, [400, 500, 600, 750, 800, 1000, 1200, 1500, 2000]);
+    const [[cible, d], vp] = until(() => [pick(rand, [['la Terre', 1.5e8], ['Mars', 2.28e8]]), pick(rand, [400, 500, 600, 750, 800, 1000, 1200, 1500, 2000])],
+      // avance au dixième : la différence calculée avec les deux durées ARRONDIES des questions précédentes donne le même dixième
+      ([[, x], v]) => round((x / v - x / 3e5) / 3600, 1) === round(round(x / v / 3600, 1) - round(x / 3e5 / 60, 1) / 60, 1));
     const tl = clean(d / 3e5); const tp = clean(d / vp); const hP = clean(tp / 3600); const avance = clean((tp - tl) / 3600); const rapport = clean(3e5 / vp);
-    // avance au dixième : on accepte aussi la différence calculée avec les deux durées arrondies des questions précédentes
-    const avanceArrondie = round(round(hP, 1) - round(tl / 60, 1) / 60, 1);
     return problem([
-      numeric(clean(tl / 60), { prompt: 'Combien de minutes la lumière de l’éruption met-elle pour arriver ? (au dixième)', unit: 'min', tolerance: 0.051, misconceptions: [
+      numeric(round(tl / 60, 1), { prompt: 'Combien de minutes la lumière de l’éruption met-elle pour arriver ? (au dixième)', unit: 'min', ...roundedTo(1), misconceptions: [
         mc(clean(tl / 100), 'mc:base-100', 'notion', BASE_100), mc(0, 'mc:lumiere-instantanee', 'notion', 'La lumière est très rapide mais pas instantanée : sur une telle distance, elle met plusieurs minutes.')] }),
-      numeric(hP, { prompt: 'Combien d’heures le nuage de particules met-il pour arriver ? (au dixième)', unit: 'h', tolerance: 0.051, misconceptions: [
+      numeric(round(hP, 1), { prompt: 'Combien d’heures le nuage de particules met-il pour arriver ? (au dixième)', unit: 'h', ...roundedTo(1), misconceptions: [
         mc(clean(tp / 60), 'mc:minutes-heures', 'unite', 'Tu as obtenu des minutes : une heure compte 3 600 secondes.'), mc(clean(tp / 100), 'mc:base-100', 'notion', BASE_100)] }),
-      numeric(avance, { prompt: 'Les astronomes voient l’éruption au moment où sa lumière arrive. De combien d’heures d’avance disposent-ils avant l’arrivée du nuage ? (au dixième)', unit: 'h', tolerance: tolRound(avance, 1, [avanceArrondie]), misconceptions: [
-        mc(hP, 'mc:lumiere-instantanee', 'raisonnement', `La lumière aussi met du temps (${fr(round(tl / 60, 1))} min) : l’avance est la différence entre les deux durées.`)] }),
+      numeric(round(avance, 1), { prompt: 'Les astronomes voient l’éruption au moment où sa lumière arrive. De combien d’heures d’avance disposent-ils avant l’arrivée du nuage ? (au dixième)', unit: 'h', ...roundedTo(1), misconceptions: [
+        mc(round(hP, 1), 'mc:lumiere-instantanee', 'raisonnement', 'La lumière aussi met du temps à arriver : l’avance est la différence entre les deux durées.')] }),
       numeric(rapport, { prompt: 'Combien de fois la lumière est-elle plus rapide que le nuage ?', misconceptions: [
         mc(clean(vp / 3e5), 'mc:rapport-inverse', 'raisonnement', 'La lumière est plus rapide : le rapport est plus grand que 1. Divise la vitesse de la lumière par celle du nuage.')] }),
     ], {
@@ -345,14 +350,14 @@ const ENERGIE = {
     const [E, p] = until(() => [pick(rand, C.E), pick(rand, C.p)], ([e, q]) => isInt((e * q) / 100, 1));
     const U = clean((E * p) / 100); const perdue = clean(E - U);
     return problem([
-      text(R.accept, { prompt: `Quelle forme d’énergie entre ${C.dans} ? (un mot)`, placeholder: FORMES_PH, misconceptions: [mc(F.nom, 'mc:conversion-inversee', 'notion', `C’est l’énergie qui sort. Ce convertisseur reçoit de l’énergie ${R.nom} et la convertit en énergie ${F.nom}.`)] }),
+      text(R.accept, { prompt: `Quelle forme d’énergie entre ${C.dans} ? (un mot)`, placeholder: FORMES_PH, misconceptions: [mc(F.nom, 'mc:conversion-inversee', 'notion', `C’est l’énergie qui sort ${C.de} : quelle énergie y entre ? Pense à ce qui le fait fonctionner.`)] }),
       text(F.accept, { prompt: `Quelle forme d’énergie utile sort ${C.de} ? (un mot)`, placeholder: FORMES_PH, misconceptions: [
         mc(R.nom, 'mc:conversion-inversee', 'notion', 'C’est l’énergie reçue ; on demande l’énergie fournie, celle qui est utile.'),
         mc('thermique', 'mc:perdue-utile', 'notion', 'L’énergie thermique est ici de l’énergie perdue (le convertisseur chauffe) : ce n’est pas l’énergie utile.')] }),
       numeric(perdue, { prompt: `Quelle énergie est perdue ${C.base}, en J ?`, unit: 'J', misconceptions: [
         mc(clean(E + U), 'mc:bilan-addition', 'raisonnement', BILAN), mc(U, 'mc:utile-perdue', 'lecture', 'Ça, c’est l’énergie utile ; l’énergie perdue est ce qui manque pour arriver à l’énergie reçue.')] }),
       text(FORMES.thermique.accept, { prompt: 'Sous quelle forme cette énergie perdue part-elle surtout dans l’environnement ? (un mot)', placeholder: FORMES_PH,
-        misconceptions: ['détruite', 'aucune', 'elle disparaît', 'elle disparait', 'rien'].map((a) => mc(a, 'mc:energie-detruite', 'notion', 'L’énergie ne disparaît pas : la partie « perdue » devient surtout de l’énergie thermique (le convertisseur chauffe), qui se disperse dans l’air.')) }),
+        misconceptions: ['détruite', 'aucune', 'elle disparaît', 'elle disparait', 'rien'].map((a) => mc(a, 'mc:energie-detruite', 'notion', 'L’énergie ne disparaît pas : la partie « perdue » part dans l’environnement sous une autre forme (le convertisseur chauffe).')) }),
     ], {
       prompt: `${who} ${C.scene}. ${cap(C.base)}, ce convertisseur reçoit ${fr(E)} J d’énergie et en fournit ${fr(U)} J sous forme utile ; le reste est perdu.`,
       hints: ['Un convertisseur reçoit une forme d’énergie et en fournit une autre.', 'Énergie reçue = énergie utile + énergie perdue.', 'Un convertisseur qui fonctionne chauffe un peu.'],
@@ -418,9 +423,9 @@ export const PROBLEMES_PC_2 = [
     description: 'Poids et masse sur la Terre, la Lune et Mars. ◆ échantillon pesé au dynamomètre sur un autre astre ; ✦ le treuil peut-il soulever la charge ?', make: tiered(ASTRONAUTE) },
   { id: 'p-pc-dissolution', subject: 'pc', label: 'Problème : dissoudre du sel ou du sucre', skill: 'pc5.matiere.melanges', skills: [], levels: ['5e'], tracks: TROIS,
     description: 'Conservation de la masse lors d’une dissolution, solubilité proportionnelle au volume d’eau, solution saturée. ◆ dépôt et eau à ajouter ; ✦ le sirop qui refroidit.', make: tiered(DISSOLUTION) },
-  { id: 'p-pc-combustion', subject: 'pc', label: 'Problème : combustions et conservation de la masse', skill: 'pc4.matiere.transformations', skills: ['pc4.matiere.atomes-molecules'], levels: ['4e'], tracks: TROIS,
+  { id: 'p-pc-combustion', subject: 'pc', label: 'Problème : combustions et conservation de la masse', skill: 'pc4.matiere.transformations', skills: ['pc4.matiere.atomes-molecules'], levels: ['4e', '3e'], tracks: TROIS,
     description: 'Réactifs, produits et conservation de la masse. ◆ équation fournie, proportionnalité des masses et atomes ; ✦ la paille de fer dont la masse augmente.', make: tiered(COMBUSTION) },
-  { id: 'p-pc-lumiere-soleil', subject: 'pc', label: 'Problème : combien de temps met la lumière ?', skill: 'pc.signaux.propagation', skills: ['pc.mouvement.vitesse'], levels: ['4e'], tracks: TROIS,
+  { id: 'p-pc-lumiere-soleil', subject: 'pc', label: 'Problème : combien de temps met la lumière ?', skill: 'pc.signaux.propagation', skills: ['pc.mouvement.vitesse'], levels: ['4e', '3e'], tracks: TROIS,
     description: 'Lumière à 3 × 10⁵ km/s et distances du système solaire, puissances de 10. ◆ messages radio vers une sonde ; ✦ éruption solaire : lumière ou particules, quelle avance ?', make: tiered(LUMIERE) },
   { id: 'p-pc-chaine-energie', subject: 'pc', label: 'Problème : la chaîne d’énergie d’un vélo à dynamo ou d’une éolienne', skill: 'pc5.energie.conversions', skills: [], levels: ['5e'], tracks: TROIS,
     description: 'Formes d’énergie reçue, utile et perdue d’un convertisseur. ◆ deux convertisseurs à la suite et pourcentage utile ; ✦ remonter la chaîne et démasquer une publicité impossible.', make: tiered(ENERGIE) },

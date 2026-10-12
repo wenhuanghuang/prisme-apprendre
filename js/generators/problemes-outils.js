@@ -1,5 +1,5 @@
 /** Outils communs des générateurs de problèmes de mathématiques (prénoms, montants, heures, élision…). */
-import { pick, sample, clean, fr, frac, fracStr, numeric, text } from './gen-util.js';
+import { pick, sample, clean, fr, frac, fracStr, numeric, text, roundTo } from './gen-util.js';
 
 export const PRENOMS = ['Léa', 'Hugo', 'Inès', 'Noah', 'Jade', 'Adam', 'Chloé', 'Rayan', 'Manon', 'Lucas'];
 export const sum = (arr) => arr.reduce((a, b) => a + b, 0);
@@ -13,7 +13,7 @@ export const NOMS = ['Sacha', 'Camille', 'Inès', 'Yanis', 'Maël', 'Aya', 'Noa'
   'Mei', 'Tom', 'Fatou', 'Eden', 'Nina', 'Kenji', 'Lou', 'Samir', 'Alix', 'Jade', 'Rayan', 'Charlie'];
 export const nom = (rand) => pick(rand, NOMS);
 export const noms = (rand, n) => sample(rand, NOMS, n);
-export const round = (x, k = 0) => clean(Math.round(x * 10 ** k) / 10 ** k);
+export const round = (x, k = 0) => roundTo(x, k);
 /** Montant en euros : « 12 € », « 7,50 € ». */
 export const eur = (x) => { const v = clean(x); return `${Number.isInteger(v) ? fr(v) : fr(round(v, 2)).replace(/,(\d)$/, ',$10')} €`; };
 /** « 1 boule verte », « 3 boules vertes ». */

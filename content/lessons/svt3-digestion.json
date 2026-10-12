@@ -1,0 +1,3536 @@
+{
+ "id": "svt3-digestion",
+ "chapter": "3e-svt-digestion",
+ "title": "Digestion et microbiote : des aliments aux nutriments",
+ "subject": "svt",
+ "level": "3e",
+ "skills": [
+  "svt3.corps.enzymes-digestives",
+  "svt3.corps.conditions-enzymes",
+  "svt3.corps.microbiote",
+  "svt.corps.digestion",
+  "svt.demarche.hypothese-temoin",
+  "svt.demarche.exploiter-donnees",
+  "m5.proportionnalite",
+  "m5.pourcentages"
+ ],
+ "status": "programme",
+ "programmes": [
+  "svt-c4-2020"
+ ],
+ "duration": 60,
+ "summary": "Expliquer à l'échelle des molécules le devenir des aliments : des enzymes spécifiques (amylase, pepsine, lipase, lactase…) découpent les grosses molécules en nutriments, dans des conditions précises de température et d'acidité ; les nutriments traversent la paroi de l'intestin grêle et passent dans le sang. Découvrir le microbiote intestinal, ses rôles et l'effet des antibiotiques, dont la sélection de bactéries résistantes. Avec deux exercices de type brevet. Le programme de SVT est défini pour l'ensemble du cycle 4 : la classe indiquée est une progression éditoriale (le programme réserve à la 3e les mécanismes moléculaires de la digestion).",
+ "sections": [
+  {
+   "kind": "decouverte",
+   "title": "Le mystère du lait sans lactose",
+   "body": "Au supermarché, on trouve du lait « sans lactose ». Pour le fabriquer, on n'enlève rien au lait : on y ajoute une substance fabriquée par des êtres vivants, la **lactase**. Le lait garde tous ses nutriments… mais il devient un peu plus sucré au goût !\n\nQue fait la lactase au lactose, le sucre du lait ? Et pourquoi certaines personnes ont-elles besoin de ce lait ?"
+  },
+  {
+   "kind": "experience",
+   "title": "L'expérience : l'amylase au chaud et au froid",
+   "body": "En 4e, tu as vu que la salive transforme l'amidon. Allons plus loin : que devient l'action de l'enzyme quand on change la température ?",
+   "demo": {
+    "w": 800,
+    "h": 440,
+    "items": [
+     {
+      "type": "paillasse",
+      "y": 392
+     },
+     {
+      "type": "texte",
+      "x": 16,
+      "y": 26,
+      "text": "A : empois + amylase, à 37 °C",
+      "size": 14,
+      "anchor": "start",
+      "bold": true
+     },
+     {
+      "type": "texte",
+      "x": 16,
+      "y": 48,
+      "text": "B : empois + amylase, à 0 °C",
+      "size": 14,
+      "anchor": "start",
+      "bold": true
+     },
+     {
+      "type": "texte",
+      "x": 16,
+      "y": 70,
+      "text": "C (témoin) : empois + eau, à 37 °C",
+      "size": 14,
+      "anchor": "start",
+      "bold": true
+     },
+     {
+      "type": "plaque",
+      "id": "plaque",
+      "x": 120,
+      "y": 392,
+      "w": 210,
+      "on": true,
+      "power": 0.35
+     },
+     {
+      "type": "becher",
+      "id": "bm",
+      "x": 120,
+      "y": 356,
+      "w": 190,
+      "h": 130,
+      "level": 0.62,
+      "liquid": "#cfe8f7",
+      "grad": false
+     },
+     {
+      "type": "tube",
+      "id": "tA",
+      "x": 62,
+      "y": 352,
+      "w": 30,
+      "h": 140,
+      "level": 0.42,
+      "liquid": "#d9d2bf",
+      "cloudy": 0.3,
+      "label": "A"
+     },
+     {
+      "type": "tube",
+      "id": "tC",
+      "x": 112,
+      "y": 352,
+      "w": 30,
+      "h": 140,
+      "level": 0.42,
+      "liquid": "#d9d2bf",
+      "cloudy": 0.3,
+      "label": "C"
+     },
+     {
+      "type": "thermometre",
+      "id": "th1",
+      "x": 198,
+      "y": 350,
+      "h": 150,
+      "value": 37,
+      "min": 0,
+      "max": 100,
+      "dx": 40
+     },
+     {
+      "type": "becher",
+      "id": "glace",
+      "x": 390,
+      "y": 392,
+      "w": 150,
+      "h": 120,
+      "level": 0.6,
+      "liquid": "#e0f2fe",
+      "ice": 6,
+      "solid": 0.7,
+      "grad": false
+     },
+     {
+      "type": "tube",
+      "id": "tB",
+      "x": 372,
+      "y": 388,
+      "w": 30,
+      "h": 140,
+      "level": 0.42,
+      "liquid": "#d9d2bf",
+      "cloudy": 0.3,
+      "label": "B"
+     },
+     {
+      "type": "thermometre",
+      "id": "th2",
+      "x": 432,
+      "y": 388,
+      "h": 150,
+      "value": 0,
+      "min": -10,
+      "max": 100,
+      "display": false
+     },
+     {
+      "type": "texte",
+      "x": 120,
+      "y": 420,
+      "text": "bain-marie : 37 °C",
+      "size": 13
+     },
+     {
+      "type": "texte",
+      "x": 390,
+      "y": 420,
+      "text": "eau glacée : 0 °C",
+      "size": 13
+     },
+     {
+      "type": "chrono",
+      "id": "ch",
+      "x": 520,
+      "y": 82,
+      "value": 0,
+      "label": "temps"
+     },
+     {
+      "type": "texte",
+      "x": 678,
+      "y": 24,
+      "text": "Test à l'eau iodée (godets)",
+      "size": 13,
+      "bold": true
+     },
+     {
+      "type": "forme",
+      "id": "plaqueG",
+      "shape": "rect",
+      "x": 566,
+      "y": 34,
+      "w": 224,
+      "h": 118,
+      "rx": 8,
+      "fill": "#f8fafc",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "texte",
+      "x": 584,
+      "y": 56,
+      "text": "min",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 614,
+      "y": 56,
+      "text": "0",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 644,
+      "y": 56,
+      "text": "2",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 674,
+      "y": 56,
+      "text": "4",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 704,
+      "y": 56,
+      "text": "6",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 734,
+      "y": 56,
+      "text": "8",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 766,
+      "y": 56,
+      "text": "16",
+      "size": 12
+     },
+     {
+      "type": "texte",
+      "x": 584,
+      "y": 81,
+      "text": "A",
+      "size": 13,
+      "bold": true
+     },
+     {
+      "type": "texte",
+      "x": 584,
+      "y": 109,
+      "text": "B",
+      "size": 13,
+      "bold": true
+     },
+     {
+      "type": "texte",
+      "x": 584,
+      "y": 137,
+      "text": "C",
+      "size": 13,
+      "bold": true
+     },
+     {
+      "type": "forme",
+      "id": "gA0",
+      "shape": "ellipse",
+      "x": 614,
+      "y": 76,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gA2",
+      "shape": "ellipse",
+      "x": 644,
+      "y": 76,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gA4",
+      "shape": "ellipse",
+      "x": 674,
+      "y": 76,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gA6",
+      "shape": "ellipse",
+      "x": 704,
+      "y": 76,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gA8",
+      "shape": "ellipse",
+      "x": 734,
+      "y": 76,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB0",
+      "shape": "ellipse",
+      "x": 614,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB2",
+      "shape": "ellipse",
+      "x": 644,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB4",
+      "shape": "ellipse",
+      "x": 674,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB6",
+      "shape": "ellipse",
+      "x": 704,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB8",
+      "shape": "ellipse",
+      "x": 734,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gC0",
+      "shape": "ellipse",
+      "x": 614,
+      "y": 132,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gC2",
+      "shape": "ellipse",
+      "x": 644,
+      "y": 132,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gC4",
+      "shape": "ellipse",
+      "x": 674,
+      "y": 132,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gC6",
+      "shape": "ellipse",
+      "x": 704,
+      "y": 132,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gC8",
+      "shape": "ellipse",
+      "x": 734,
+      "y": 132,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "forme",
+      "id": "gB16",
+      "shape": "ellipse",
+      "x": 766,
+      "y": 104,
+      "w": 24,
+      "h": 14,
+      "fill": "#e2e8f0",
+      "stroke": "#94a3b8",
+      "width": 1.5
+     },
+     {
+      "type": "texte",
+      "x": 574,
+      "y": 172,
+      "text": "bleu-noir : amidon présent",
+      "size": 12,
+      "anchor": "start"
+     },
+     {
+      "type": "texte",
+      "x": 574,
+      "y": 188,
+      "text": "orange-brun : plus d'amidon",
+      "size": 12,
+      "anchor": "start"
+     },
+     {
+      "type": "courbe",
+      "id": "cAm",
+      "x": 480,
+      "y": 198,
+      "w": 310,
+      "h": 188,
+      "title": "Amidon restant (estimé)",
+      "xRange": [
+       0,
+       8
+      ],
+      "yRange": [
+       0,
+       100
+      ],
+      "xLabel": "temps (min)",
+      "yLabel": "% du départ",
+      "points": [
+       [
+        0,
+        100
+       ],
+       [
+        2,
+        90
+       ],
+       [
+        4,
+        55
+       ],
+       [
+        6,
+        20
+       ],
+       [
+        8,
+        3
+       ]
+      ],
+      "progress": 0,
+      "color": "#7c3aed"
+     }
+    ],
+    "steps": [
+     {
+      "title": "Le matériel",
+      "text": "Trois tubes contiennent la même quantité d'**empois d'amidon** (de l'amidon cuit dans l'eau). On ajoute la même quantité d'**amylase**, une enzyme, dans A et dans B, et la même quantité d'eau dans C. A et C sont au bain-marie à **37 °C**, la température du corps ; B est dans l'eau glacée, à **0 °C**.",
+      "duration": 3,
+      "do": [
+       {
+        "id": "tA",
+        "to": {
+         "level": 0.5
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "tB",
+        "to": {
+         "level": 0.5
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "tC",
+        "to": {
+         "level": 0.5
+        },
+        "at": 1,
+        "dur": 1.5
+       }
+      ],
+      "focus": [
+       "tA",
+       "tB",
+       "tC"
+      ]
+     },
+     {
+      "title": "Deux comparaisons",
+      "text": "Entre A et C, une seule différence : l'amylase. C est le **témoin** : il montre ce que devient l'amidon sans enzyme. Entre A et B, une seule différence : la température. Chaque comparaison teste un seul facteur à la fois.",
+      "focus": [
+       "tA",
+       "tC",
+       "tB"
+      ]
+     },
+     {
+      "title": "Le test à l'eau iodée",
+      "text": "L'eau iodée est orange-brun ; au contact de l'amidon, elle devient **bleu-noir**. Au départ, on dépose une goutte de chaque tube dans un godet d'eau iodée : les trois godets deviennent bleu-noir. Il y a de l'amidon dans les trois tubes.",
+      "duration": 3,
+      "do": [
+       {
+        "id": "gA0",
+        "to": {
+         "fill": "#c26a12"
+        },
+        "dur": 0.8
+       },
+       {
+        "id": "gA0",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "gB0",
+        "to": {
+         "fill": "#c26a12"
+        },
+        "dur": 0.8
+       },
+       {
+        "id": "gB0",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "gC0",
+        "to": {
+         "fill": "#c26a12"
+        },
+        "dur": 0.8
+       },
+       {
+        "id": "gC0",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 1,
+        "dur": 1.5
+       }
+      ],
+      "focus": [
+       "plaqueG"
+      ]
+     },
+     {
+      "title": "Prévois !",
+      "text": "On refait le test toutes les 2 minutes : un godet par tube, et le chronomètre tourne.",
+      "ask": {
+       "question": "Au bout de 8 minutes, dans quel(s) tube(s) l'amidon aura-t-il disparu ?",
+       "choices": [
+        "Dans A seulement",
+        "Dans A et B",
+        "Dans A, B et C",
+        "Dans aucun tube"
+       ],
+       "answer": 0,
+       "explain": "L'amylase découpe l'amidon, vite à 37 °C. À 0 °C, elle est presque inactive. Sans amylase (tube C), l'amidon ne se transforme pas, du moins pas dans un délai aussi court."
+      }
+     },
+     {
+      "title": "Huit minutes d'observation",
+      "text": "Godets de A : bleu-noir, puis violet, brun-rouge et enfin orange-brun : l'amidon disparaît peu à peu, et le tube A, trouble au départ, devient plus limpide. Godets de B et de C : toujours bleu-noir. La courbe estime l'amidon restant d'après la couleur.",
+      "duration": 9,
+      "do": [
+       {
+        "id": "ch",
+        "to": {
+         "value": 480
+        },
+        "dur": 8,
+        "ease": "lineaire"
+       },
+       {
+        "id": "cAm",
+        "to": {
+         "progress": 1
+        },
+        "dur": 8,
+        "ease": "lineaire"
+       },
+       {
+        "id": "tA",
+        "to": {
+         "cloudy": 0.04,
+         "liquid": "#e9eef0"
+        },
+        "dur": 8
+       },
+       {
+        "id": "gA2",
+        "to": {
+         "fill": "#2b2466"
+        },
+        "at": 1.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gB2",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 1.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gC2",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 1.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gA4",
+        "to": {
+         "fill": "#5b2a72"
+        },
+        "at": 3.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gB4",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 3.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gC4",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 3.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gA6",
+        "to": {
+         "fill": "#8a3b1e"
+        },
+        "at": 5.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gB6",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 5.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gC6",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 5.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gA8",
+        "to": {
+         "fill": "#c26a12"
+        },
+        "at": 7.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gB8",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 7.4,
+        "dur": 0.6
+       },
+       {
+        "id": "gC8",
+        "to": {
+         "fill": "#1e1b4b"
+        },
+        "at": 7.4,
+        "dur": 0.6
+       },
+       {
+        "id": "cAm",
+        "set": {
+         "ref": {
+          "points": [
+           [
+            0,
+            100
+           ],
+           [
+            8,
+            100
+           ]
+          ],
+          "label": "B (0 °C) et C (témoin)"
+         }
+        },
+        "at": 8
+       }
+      ],
+      "focus": [
+       "plaqueG",
+       "cAm"
+      ],
+      "ask": {
+       "kind": "mesurer",
+       "question": "Lis sur la courbe : quel pourcentage de l'amidon de départ reste-t-il dans le tube A au bout de 4 minutes ?",
+       "answer": 55,
+       "tolerance": 10,
+       "unit": "%",
+       "explain": "Au-dessus de 4 min, le point de la courbe est juste au-dessus de la ligne des 50 % : il reste environ 55 % de l'amidon. En 4 minutes, l'amylase a déjà découpé près de la moitié de l'amidon."
+      }
+     },
+     {
+      "title": "Prévois !",
+      "text": "Le tube B, resté 8 minutes à 0 °C, contient toujours son amidon. On le sort de l'eau glacée et on le place au bain-marie, à 37 °C.",
+      "focus": [
+       "tB"
+      ],
+      "ask": {
+       "question": "Huit minutes plus tard, le test du tube B à l'eau iodée sera…",
+       "choices": [
+        "bleu-noir : le froid a détruit l'amylase",
+        "orange-brun : l'amylase agit de nouveau",
+        "vert : l'amidon s'est changé en autre chose"
+       ],
+       "answer": 1,
+       "explain": "Le froid ralentit beaucoup l'enzyme sans l'abîmer : réchauffée, elle redevient active. Une forte chaleur, elle, la détruirait définitivement."
+      }
+     },
+     {
+      "title": "B passe à 37 °C",
+      "text": "Le tube B rejoint le bain-marie. Huit minutes plus tard (16 minutes depuis le début), son test à l'eau iodée reste orange-brun : l'amidon a disparu. L'amylase n'avait pas été détruite par le froid, seulement ralentie.",
+      "duration": 8,
+      "do": [
+       {
+        "id": "tB",
+        "to": {
+         "x": 154,
+         "y": 352
+        },
+        "dur": 1.5
+       },
+       {
+        "id": "ch",
+        "to": {
+         "value": 960
+        },
+        "at": 1.5,
+        "dur": 6,
+        "ease": "lineaire"
+       },
+       {
+        "id": "tB",
+        "to": {
+         "cloudy": 0.04,
+         "liquid": "#e9eef0"
+        },
+        "at": 1.5,
+        "dur": 6
+       },
+       {
+        "id": "gB16",
+        "to": {
+         "fill": "#c26a12"
+        },
+        "at": 7.2,
+        "dur": 0.8
+       }
+      ],
+      "focus": [
+       "tB",
+       "gB16"
+      ],
+      "ask": {
+       "kind": "observer",
+       "question": "Regarde le tube B lui-même, et non son godet : comment est devenu son contenu ?",
+       "choices": [
+        "Plus trouble qu'avant",
+        "Plus limpide, comme le tube A",
+        "Bleu-noir"
+       ],
+       "answer": 1,
+       "explain": "L'empois d'amidon est trouble. En découpant l'amidon en petites molécules de sucre, l'amylase rend le liquide plus limpide, comme dans le tube A après 8 minutes."
+      }
+     },
+     {
+      "title": "Le rôle du témoin",
+      "text": "Le tube C contient le même empois, à la même température que A, mais de l'eau à la place de l'amylase. Ses godets sont restés bleu-noir.",
+      "focus": [
+       "tC",
+       "plaqueG"
+      ],
+      "ask": {
+       "kind": "expliquer",
+       "question": "Que prouve ce témoin ?",
+       "choices": [
+        "Que l'eau iodée ne fonctionne pas à 37 °C",
+        "Que c'est l'amylase qui fait disparaître l'amidon, et non la chaleur du bain-marie",
+        "Que l'amidon disparaît tout seul à 37 °C"
+       ],
+       "answer": 1,
+       "explain": "A et C sont tous les deux à 37 °C ; seul A contient de l'amylase, et seul A perd son amidon. La chaleur seule ne suffit pas : c'est l'enzyme qui agit."
+      }
+     },
+     {
+      "title": "Interpréter",
+      "text": "L'amylase est une **enzyme** : une protéine qui découpe l'amidon, une très grosse molécule, en **maltose**, un sucre bien plus petit (une autre enzyme de l'intestin découpe ensuite le maltose en **glucose**). Elle agit vite à 37 °C, presque pas à 0 °C. Sans elle, l'amidon ne change pas.",
+      "focus": [
+       "cAm"
+      ]
+     }
+    ],
+    "conclusion": "L'**amylase** accélère la transformation de l'amidon en petites molécules de sucre. Son action dépend de la **température** : rapide à 37 °C, très lente à 0 °C (le froid ne la détruit pas : réchauffée, elle redevient active). Le **témoin** C montre que, sans enzyme, l'amidon ne disparaît pas dans ce délai.\n\n*Valeurs simplifiées, choisies pour l'exemple.*"
+   }
+  },
+  {
+   "kind": "cours",
+   "title": "Le cours en 6 cartes",
+   "cards": [
+    {
+     "emoji": "🍞",
+     "title": "Des aliments aux nutriments",
+     "body": "Les aliments contiennent de **grosses molécules** (amidon, protéines, lipides) trop grosses pour traverser la paroi de l'intestin. La digestion les découpe en **nutriments**, de petites molécules : **glucose**, **acides aminés**, **acides gras** et glycérol. L'eau, les minéraux et les vitamines passent sans être digérés."
+    },
+    {
+     "emoji": "✂️",
+     "title": "Les enzymes, des ciseaux spécifiques",
+     "body": "Une **enzyme** est une protéine produite par des cellules (glandes salivaires, estomac, pancréas, intestin). Chacune découpe **une seule sorte** de molécule : l'amylase l'amidon, la pepsine les protéines, la lipase les lipides, la lactase le lactose. C'est la **spécificité**. L'enzyme n'est pas consommée : elle recommence.",
+     "reveal": {
+      "question": "Devine : l'amylase peut-elle digérer un morceau de blanc d'œuf, riche en protéines ?",
+      "answer": "Non : l'amylase ne découpe que l'amidon. Les protéines sont découpées par d'autres enzymes, comme la pepsine de l'estomac."
+     }
+    },
+    {
+     "emoji": "🌡️",
+     "title": "Des conditions précises",
+     "body": "Une enzyme agit le plus vite dans des conditions précises : vers **37 °C** chez l'être humain, et dans un milieu plus ou moins acide selon l'enzyme (la pepsine dans l'estomac très acide, les enzymes du pancréas dans l'intestin, bien moins acide). Le **froid** la ralentit sans la détruire ; une **forte chaleur** la détruit."
+    },
+    {
+     "emoji": "🗺️",
+     "title": "Le long du tube digestif",
+     "body": "**Bouche** : la salive apporte l'amylase. **Estomac** : le suc gastrique, acide, apporte la pepsine. **Intestin grêle** : le suc du pancréas (amylase, lipase, enzymes des protéines), les enzymes de l'intestin et la **bile** du foie finissent le travail. Les nutriments traversent la paroi des **villosités** et passent dans le sang.",
+     "reveal": {
+      "question": "La bile contient-elle des enzymes ?",
+      "answer": "Non : la bile disperse les graisses en fines gouttelettes, ce qui facilite le travail de la lipase. Ce n'est pas une enzyme."
+     }
+    },
+    {
+     "emoji": "🦠",
+     "title": "Le microbiote intestinal",
+     "body": "Le gros intestin abrite un **microbiote** : surtout des bactéries, en immense majorité utiles ou sans danger. Une estimation publiée en 2016 en compte environ 38 000 milliards chez un adulte, à peu près autant que de cellules humaines. Elles dégradent une partie des **fibres**, produisent certaines vitamines et gênent l'installation de bactéries pathogènes."
+    },
+    {
+     "emoji": "💊",
+     "title": "Antibiotiques et résistance",
+     "body": "Un **antibiotique** tue des bactéries (jamais des virus), y compris des bactéries utiles du microbiote. Les bactéries **résistantes**, apparues au hasard par mutation, survivent et se multiplient. Selon une étude publiée en 2022 et reprise par l'OMS, la résistance aux antibiotiques a causé directement environ 1,27 million de décès dans le monde en 2019. D'où : antibiotiques seulement sur prescription."
+    }
+   ]
+  },
+  {
+   "kind": "exemple",
+   "title": "Exemple résolu : relever, interpréter, conclure",
+   "steps": [
+    {
+     "text": "Question type brevet : « L'amylase a-t-elle besoin de chaleur pour agir ? » Tu disposes des résultats de l'expérience : après 8 minutes, le test à l'eau iodée du tube A (amylase, 37 °C) est orange-brun ; celui du tube B (amylase, 0 °C) est bleu-noir."
+    },
+    {
+     "text": "**Je repère le facteur testé.** A et B contiennent la même quantité d'empois et d'amylase : seule la température change (37 °C contre 0 °C)."
+    },
+    {
+     "text": "**Je relève.** Tube A : orange-brun. Tube B : bleu-noir."
+    },
+    {
+     "text": "**J'interprète.** L'eau iodée devient bleu-noir en présence d'amidon. Dans A, il n'y a plus d'amidon : il a été découpé. Dans B, l'amidon est toujours là."
+    },
+    {
+     "text": "**Je conclus.** L'amylase découpe l'amidon à 37 °C mais presque pas à 0 °C : elle a besoin d'une température proche de celle du corps. Le tube témoin C (sans amylase) montre en plus que, sans enzyme, l'amidon ne disparaît pas."
+    }
+   ]
+  },
+  {
+   "kind": "exercices",
+   "title": "Je m'entraîne",
+   "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Pour les calculs, écris seulement le nombre.",
+   "exercises": [
+    "svt3-digestion-enzymes",
+    "svt3-digestion-lieux",
+    "svt3-digestion-trajet",
+    "svt3-digestion-nutriments",
+    "svt3-digestion-temperature",
+    "svt3-digestion-microbiote"
+   ]
+  },
+  {
+   "kind": "libre",
+   "title": "Avec tes mots",
+   "exercises": [
+    "svt3-digestion-expliquer"
+   ]
+  },
+  {
+   "kind": "mission",
+   "title": "Léa et le bol de lait",
+   "body": "Aide Léa à comprendre pourquoi le lait lui donne mal au ventre, avec des calculs et ce que tu sais des enzymes et du microbiote.",
+   "exercises": [
+    "svt3-digestion-lactose"
+   ]
+  },
+  {
+   "kind": "correction",
+   "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+   "body": "> **À retenir.** Des **enzymes spécifiques** découpent les grosses molécules des aliments en **nutriments** (glucose, acides aminés, acides gras). Chacune agit dans des conditions précises (température proche de 37 °C, acidité du milieu). Les nutriments passent dans le **sang** à travers la paroi de l'intestin grêle. Le **microbiote** du gros intestin nous rend service ; les antibiotiques le perturbent et sélectionnent des bactéries résistantes.\n\n- **« Les aliments passent tels quels dans le sang. »** Non : seuls les nutriments, de petites molécules.\n- **« Une enzyme digère tout. »** Non : chaque enzyme est spécifique.\n- **« Le froid détruit les enzymes. »** Non : il les ralentit ; c'est une forte chaleur qui les détruit.\n- **« Les antibiotiques ne tuent que les mauvaises bactéries » ou « soignent la grippe ».** Non, et non."
+  },
+  {
+   "kind": "revision",
+   "title": "Révision programmée",
+   "body": "Le moteur te reproposera dans quelques jours une question sur les enzymes et le microbiote : réussir après une pause, c'est la preuve que c'est acquis."
+  }
+ ],
+ "tracks": {
+  "approfondissement": {
+   "intro": "Lire des courbes d'activité selon l'acidité, et exploiter des données sur le microbiote après un traitement antibiotique.",
+   "exercises": [
+    "svt3-digestion-ph",
+    "svt3-digestion-diversite"
+   ]
+  },
+  "expert": {
+   "intro": "Deux sujets de type brevet : la digestion des protéines par la pepsine, puis antibiotiques, microbiote et résistance.",
+   "exercises": [
+    "svt3-digestion-brevet-pepsine",
+    "svt3-digestion-brevet-antibiotiques"
+   ]
+  }
+ },
+ "exercises": [
+  {
+   "id": "svt3-digestion-enzymes",
+   "type": "match",
+   "skill": "svt3.corps.enzymes-digestives",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:enzyme-universelle",
+    "mc:amylase-glucose",
+    "mc:nom-enzyme"
+   ],
+   "expectedSeconds": 180,
+   "prompt": "Chaque enzyme digestive découpe **une seule sorte** de molécule. Associe chaque enzyme à la transformation qu'elle réalise.",
+   "leftTitle": "Enzyme",
+   "rightTitle": "Transformation",
+   "left": [
+    {
+     "id": "l1",
+     "label": "L'amylase (salive, suc du pancréas)"
+    },
+    {
+     "id": "l2",
+     "label": "La pepsine (suc gastrique)"
+    },
+    {
+     "id": "l3",
+     "label": "La lipase (suc du pancréas)"
+    },
+    {
+     "id": "l4",
+     "label": "La lactase (intestin grêle)"
+    },
+    {
+     "id": "l5",
+     "label": "La maltase (intestin grêle)"
+    }
+   ],
+   "right": [
+    {
+     "id": "r1",
+     "label": "amidon → maltose"
+    },
+    {
+     "id": "r2",
+     "label": "protéines → fragments de protéines plus courts"
+    },
+    {
+     "id": "r3",
+     "label": "lipides → acides gras et glycérol"
+    },
+    {
+     "id": "r4",
+     "label": "lactose (sucre du lait) → glucose et galactose"
+    },
+    {
+     "id": "r5",
+     "label": "maltose → glucose"
+    }
+   ],
+   "pairs": {
+    "l1": "r1",
+    "l2": "r2",
+    "l3": "r3",
+    "l4": "r4",
+    "l5": "r5"
+   },
+   "misconceptions": [
+    {
+     "pair": [
+      "l2",
+      "r1"
+     ],
+     "id": "mc:enzyme-universelle",
+     "error": "notion",
+     "feedback": "Une enzyme ne découpe pas n'importe quelle molécule : elle est spécifique. Le suc gastrique attaque la viande, le poisson, les œufs : quelles grosses molécules y abondent ?"
+    },
+    {
+     "pair": [
+      "l1",
+      "r5"
+     ],
+     "id": "mc:amylase-glucose",
+     "error": "notion",
+     "feedback": "L'amylase agit bien sur des sucres, mais sur la très grosse molécule de départ, pas sur le petit sucre qu'elle produit elle-même. Relis le début de chaque transformation."
+    },
+    {
+     "pair": [
+      "l4",
+      "r5"
+     ],
+     "id": "mc:nom-enzyme",
+     "error": "lecture",
+     "feedback": "Le nom d'une enzyme se forme souvent à partir du nom de la molécule qu'elle découpe, suivi de « -ase ». Compare le début de chaque nom d'enzyme avec les molécules de départ."
+    }
+   ],
+   "hints": [
+    "Le nom d'une enzyme ressemble souvent au nom de la molécule qu'elle découpe.",
+    "Le suc gastrique digère les aliments riches en protéines ; la lipase agit sur les graisses.",
+    "L'amidon est découpé en deux temps : d'abord en un sucre moyen, puis en glucose, par deux enzymes différentes."
+   ],
+   "solution": "Amylase : amidon → maltose. Pepsine : protéines → fragments plus courts (d'autres enzymes de l'intestin grêle achèvent le travail jusqu'aux acides aminés). Lipase : lipides → acides gras et glycérol. Lactase : lactose → glucose et galactose. Maltase : maltose → glucose. Chaque enzyme est **spécifique** d'une sorte de molécule.",
+   "selfTest": [
+    {
+     "response": {
+      "pairs": {
+       "l1": "r1",
+       "l2": "r2",
+       "l3": "r3",
+       "l4": "r4",
+       "l5": "r5"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "pairs": {
+       "l1": "r1",
+       "l2": "r1",
+       "l3": "r3",
+       "l4": "r4",
+       "l5": "r5"
+      }
+     },
+     "expect": "mc:enzyme-universelle"
+    },
+    {
+     "response": {
+      "pairs": {
+       "l1": "r5",
+       "l2": "r2",
+       "l3": "r3",
+       "l4": "r4",
+       "l5": "r1"
+      }
+     },
+     "expect": "mc:amylase-glucose"
+    },
+    {
+     "response": {
+      "pairs": {
+       "l1": "r1",
+       "l2": "r2",
+       "l3": "r3",
+       "l4": "r5",
+       "l5": "r4"
+      }
+     },
+     "expect": "mc:nom-enzyme"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-lieux",
+   "type": "categorize",
+   "skill": "svt3.corps.enzymes-digestives",
+   "skills": [
+    "svt.corps.digestion",
+    "svt3.corps.microbiote"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:absorption-estomac",
+    "mc:fibres-enzymes"
+   ],
+   "expectedSeconds": 180,
+   "prompt": "Le long du tube digestif, chaque organe a son travail. Range chaque événement dans l'organe où il se produit.",
+   "categories": [
+    {
+     "id": "bouche",
+     "label": "Bouche"
+    },
+    {
+     "id": "estomac",
+     "label": "Estomac"
+    },
+    {
+     "id": "grele",
+     "label": "Intestin grêle"
+    },
+    {
+     "id": "gros",
+     "label": "Gros intestin"
+    }
+   ],
+   "items": [
+    {
+     "id": "i1",
+     "label": "Mastication, et début de la digestion de l'amidon par l'amylase de la salive",
+     "category": "bouche"
+    },
+    {
+     "id": "i2",
+     "label": "Brassage dans un suc très acide ; la pepsine commence la digestion des protéines",
+     "category": "estomac"
+    },
+    {
+     "id": "i3",
+     "label": "La bile disperse les graisses, la lipase du pancréas découpe les lipides",
+     "category": "grele"
+    },
+    {
+     "id": "i4",
+     "label": "Le glucose et les acides aminés traversent la paroi des villosités et passent dans le sang",
+     "category": "grele"
+    },
+    {
+     "id": "i5",
+     "label": "Des bactéries du microbiote dégradent une partie des fibres",
+     "category": "gros"
+    },
+    {
+     "id": "i6",
+     "label": "Une grande partie de l'eau restante est récupérée ; les résidus forment les selles",
+     "category": "gros"
+    },
+    {
+     "id": "i7",
+     "label": "L'acidité détruit une grande partie des microbes avalés",
+     "category": "estomac"
+    }
+   ],
+   "misconceptions": [
+    {
+     "item": "i4",
+     "category": "estomac",
+     "id": "mc:absorption-estomac",
+     "error": "notion",
+     "feedback": "L'estomac brasse et commence à digérer, mais le passage des nutriments dans le sang se fait surtout plus loin, là où la paroi est couverte de villosités. Où sont-elles ?"
+    },
+    {
+     "item": "i5",
+     "category": "grele",
+     "id": "mc:fibres-enzymes",
+     "error": "notion",
+     "feedback": "Nos propres enzymes ne savent pas découper la plupart des fibres. Ce sont des bactéries qui s'en chargent : dans quelle partie du tube digestif le microbiote est-il le plus abondant ?"
+    }
+   ],
+   "hints": [
+    "Suis le trajet des aliments : bouche, estomac, intestin grêle, gros intestin.",
+    "Les villosités tapissent l'intestin grêle.",
+    "Le microbiote est surtout abondant dans le gros intestin."
+   ],
+   "solution": "Bouche : mastication et amylase de la salive. Estomac : brassage, suc très acide, pepsine, destruction de nombreux microbes. Intestin grêle : bile et lipase, puis passage des nutriments dans le sang à travers les villosités. Gros intestin : bactéries du microbiote qui dégradent des fibres, récupération de l'eau, formation des selles.",
+   "selfTest": [
+    {
+     "response": {
+      "assign": {
+       "i1": "bouche",
+       "i2": "estomac",
+       "i3": "grele",
+       "i4": "grele",
+       "i5": "gros",
+       "i6": "gros",
+       "i7": "estomac"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "bouche",
+       "i2": "estomac",
+       "i3": "grele",
+       "i4": "estomac",
+       "i5": "gros",
+       "i6": "gros",
+       "i7": "estomac"
+      }
+     },
+     "expect": "mc:absorption-estomac"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "bouche",
+       "i2": "estomac",
+       "i3": "grele",
+       "i4": "grele",
+       "i5": "grele",
+       "i6": "gros",
+       "i7": "estomac"
+      }
+     },
+     "expect": "mc:fibres-enzymes"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-trajet",
+   "type": "order",
+   "skill": "svt3.corps.enzymes-digestives",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:aliment-sang"
+   ],
+   "expectedSeconds": 150,
+   "prompt": "Le voyage de l'amidon d'une tartine jusqu'à un muscle de ta jambe. Remets les étapes dans l'ordre.",
+   "orderLabel": "dans l'ordre du voyage",
+   "items": [
+    {
+     "id": "o1",
+     "label": "Les dents broient le pain, que la salive imbibe."
+    },
+    {
+     "id": "o2",
+     "label": "L'amylase de la salive commence à découper l'amidon."
+    },
+    {
+     "id": "o3",
+     "label": "Dans l'intestin grêle, l'amylase du suc pancréatique poursuit le découpage de l'amidon en maltose."
+    },
+    {
+     "id": "o4",
+     "label": "La maltase de l'intestin grêle découpe le maltose en glucose."
+    },
+    {
+     "id": "o5",
+     "label": "Le glucose traverse la paroi d'une villosité et passe dans le sang."
+    },
+    {
+     "id": "o6",
+     "label": "Le sang transporte le glucose jusqu'au muscle, qui l'utilise avec le dioxygène pour libérer de l'énergie."
+    }
+   ],
+   "hints": [
+    "Une molécule ne passe dans le sang qu'une fois découpée en nutriment.",
+    "L'amidon est découpé en deux temps : d'abord en maltose, puis en glucose."
+   ],
+   "solution": "Broyage et salive ; l'amylase salivaire commence le découpage ; l'amylase pancréatique le poursuit jusqu'au maltose ; la maltase donne du glucose ; le glucose passe dans le sang au niveau des villosités ; le sang l'apporte au muscle, qui l'utilise avec le dioxygène.",
+   "selfTest": [
+    {
+     "response": {
+      "order": [
+       "o1",
+       "o2",
+       "o3",
+       "o4",
+       "o5",
+       "o6"
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "order": [
+       "o1",
+       "o2",
+       "o3",
+       "o5",
+       "o4",
+       "o6"
+      ]
+     },
+     "expect": "partiel"
+    },
+    {
+     "response": {
+      "order": [
+       "o6",
+       "o5",
+       "o4",
+       "o3",
+       "o2",
+       "o1"
+      ]
+     },
+     "expect": "incorrect"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-temperature",
+   "type": "composite",
+   "skill": "svt3.corps.conditions-enzymes",
+   "skills": [
+    "svt.demarche.exploiter-donnees"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 3,
+   "representation": "visuelle",
+   "targets": [
+    "mc:lecture-axe",
+    "mc:difference-rapport",
+    "mc:toujours-plus-vite",
+    "mc:froid-detruit"
+   ],
+   "expectedSeconds": 300,
+   "figure": {
+    "alt": "Courbe de la vitesse d'action de l'amylase en fonction de la température, de 0 à 80 °C (valeurs simplifiées)",
+    "w": 560,
+    "h": 280,
+    "items": [
+     {
+      "type": "linechart",
+      "xLabel": "température (°C)",
+      "yLabel": "vitesse (u.a.)",
+      "xRange": [
+       0,
+       80
+      ],
+      "yRange": [
+       0,
+       110
+      ],
+      "series": [
+       {
+        "label": "Vitesse d'action de l'amylase",
+        "color": "bleu",
+        "points": [
+         [
+          0,
+          4
+         ],
+         [
+          10,
+          20
+         ],
+         [
+          20,
+          45
+         ],
+         [
+          30,
+          75
+         ],
+         [
+          37,
+          100
+         ],
+         [
+          45,
+          80
+         ],
+         [
+          55,
+          30
+         ],
+         [
+          65,
+          5
+         ],
+         [
+          75,
+          0
+         ]
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "prompt": "On mesure la vitesse à laquelle l'amylase découpe l'amidon, à différentes températures (valeurs simplifiées, en unités arbitraires : 100 correspond à la vitesse la plus grande mesurée).",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "À quelle température la vitesse d'action est-elle la plus grande ? (en °C)",
+     "answer": 37,
+     "tolerance": 2,
+     "misconceptions": [
+      {
+       "answer": 100,
+       "id": "mc:lecture-axe",
+       "error": "lecture",
+       "feedback": "Tu as relevé une vitesse, lue sur l'axe vertical. On demande une température : repère le sommet de la courbe, puis descends jusqu'à l'axe horizontal."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de fois l'amylase est-elle plus rapide à 37 °C qu'à 10 °C ?",
+     "answer": 5,
+     "tolerance": 0.2,
+     "misconceptions": [
+      {
+       "answer": 80,
+       "id": "mc:difference-rapport",
+       "error": "calcul",
+       "feedback": "« Combien de fois » ne se calcule pas par une soustraction : divise la vitesse à 37 °C par la vitesse à 10 °C."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "Le froid ralentit l'amylase sans la détruire : réchauffée, elle agit de nouveau (tube B de l'expérience).",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Plus la température est élevée, plus l'amylase est rapide, sans limite.",
+       "category": "faux"
+      },
+      {
+       "id": "i3",
+       "label": "Au-delà de 60 °C environ, l'amylase n'agit presque plus : la chaleur l'a abîmée.",
+       "category": "vrai"
+      },
+      {
+       "id": "i4",
+       "label": "À 0 °C, l'amylase est détruite.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i2",
+       "category": "vrai",
+       "id": "mc:toujours-plus-vite",
+       "error": "lecture",
+       "feedback": "Regarde la partie droite de la courbe : que devient la vitesse au-delà de 40 °C environ ?"
+      },
+      {
+       "item": "i4",
+       "category": "vrai",
+       "id": "mc:froid-detruit",
+       "error": "notion",
+       "feedback": "Souviens-toi du tube B de l'expérience : que s'est-il passé quand on l'a remis à 37 °C ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "La température se lit sur l'axe horizontal, la vitesse sur l'axe vertical.",
+    "« Combien de fois » : on divise une valeur par l'autre.",
+    "Une enzyme a une température où elle agit le mieux ; une forte chaleur l'abîme, le froid la ralentit."
+   ],
+   "solution": "1. La vitesse est maximale vers 37 °C, la température du corps. 2. Vitesse 100 à 37 °C et 20 à 10 °C : 100 ÷ 20 = 5 fois plus rapide. 3. Vrai ; faux (la vitesse chute au-delà d'environ 40 °C) ; vrai ; faux (le froid ralentit l'enzyme sans la détruire, comme le montre le tube B réchauffé).",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "37"
+       },
+       {
+        "value": "5"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "100"
+       },
+       {
+        "value": "5"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:lecture-axe"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "37"
+       },
+       {
+        "value": "80"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:difference-rapport"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "37"
+       },
+       {
+        "value": "5"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:toujours-plus-vite"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "37"
+       },
+       {
+        "value": "5"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:froid-detruit"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-nutriments",
+   "type": "highlight",
+   "skill": "svt3.corps.enzymes-digestives",
+   "skills": [
+    "svt.corps.digestion"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:aliment-sang",
+    "mc:lactose-sang",
+    "mc:fibres-sang"
+   ],
+   "expectedSeconds": 150,
+   "instruction": "Surligne les molécules qui peuvent passer dans le sang.",
+   "prompt": "Deux heures après le déjeuner, voici ce que contient l'intestin grêle d'Inès. Seules les **petites** molécules traversent la paroi des villosités et passent dans le sang. Surligne-les.",
+   "text": "Dans l'intestin grêle d'Inès, on trouve encore un peu d'amidon, mais aussi du [glucose]. Il y a des protéines pas encore découpées et des [acides aminés]. Les lipides sont en partie transformés en [acides gras]. On trouve aussi du lactose venu du lait, de l'[eau], du [calcium] et des fibres de légumes.",
+   "misconceptions": [
+    {
+     "word": "amidon",
+     "id": "mc:aliment-sang",
+     "error": "notion",
+     "feedback": "L'amidon est une très grosse molécule : tel quel, il ne traverse pas la paroi de l'intestin. Que doit-il lui arriver d'abord ?"
+    },
+    {
+     "word": "protéines",
+     "id": "mc:aliment-sang",
+     "error": "notion",
+     "feedback": "Des protéines pas encore découpées sont de trop grosses molécules pour traverser la paroi de l'intestin."
+    },
+    {
+     "word": "lipides",
+     "id": "mc:aliment-sang",
+     "error": "notion",
+     "feedback": "Les lipides doivent d'abord être découpés par la lipase avant de pouvoir traverser la paroi."
+    },
+    {
+     "word": "lactose",
+     "id": "mc:lactose-sang",
+     "error": "notion",
+     "feedback": "Le lactose doit d'abord être découpé par une enzyme de l'intestin : tant qu'il ne l'est pas, il ne passe pas dans le sang."
+    },
+    {
+     "word": "fibres",
+     "id": "mc:fibres-sang",
+     "error": "notion",
+     "feedback": "Nos enzymes ne découpent pas les fibres : elles ne passent pas dans le sang et poursuivent leur chemin vers le gros intestin."
+    }
+   ],
+   "hints": [
+    "Les nutriments sont de petites molécules, obtenues en découpant les grosses.",
+    "L'eau et les minéraux passent sans être digérés.",
+    "Une grosse molécule pas encore découpée ne passe pas : il y en a quatre sortes dans le texte, plus les fibres."
+   ],
+   "solution": "Passent dans le sang : le glucose, les acides aminés, les acides gras (une partie passe d'abord par la lymphe), l'eau et le calcium. Ne passent pas : l'amidon, les protéines et les lipides non découpés, le lactose non découpé, les fibres. Les aliments ne passent jamais tels quels dans le sang.",
+   "selfTest": [
+    {
+     "response": {
+      "selected": [
+       16,
+       27,
+       35,
+       46,
+       48
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "selected": [
+       16,
+       27,
+       35,
+       46,
+       48,
+       12
+      ]
+     },
+     "expect": "mc:aliment-sang"
+    },
+    {
+     "response": {
+      "selected": [
+       16,
+       27,
+       35,
+       46,
+       48,
+       40
+      ]
+     },
+     "expect": "mc:lactose-sang"
+    },
+    {
+     "response": {
+      "selected": [
+       16,
+       27,
+       35,
+       46,
+       48,
+       51
+      ]
+     },
+     "expect": "mc:fibres-sang"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-microbiote",
+   "type": "categorize",
+   "skill": "svt3.corps.microbiote",
+   "skills": [
+    "svt.corps.hygiene"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:bacteries-pathogenes",
+    "mc:antibiotique-cible",
+    "mc:antibiotique-virus"
+   ],
+   "expectedSeconds": 150,
+   "prompt": "Le microbiote intestinal : vrai ou faux ?",
+   "categories": [
+    {
+     "id": "vrai",
+     "label": "Vrai"
+    },
+    {
+     "id": "faux",
+     "label": "Faux"
+    }
+   ],
+   "items": [
+    {
+     "id": "i1",
+     "label": "Les bactéries du microbiote vivent surtout dans le gros intestin.",
+     "category": "vrai"
+    },
+    {
+     "id": "i2",
+     "label": "Toutes les bactéries de notre intestin nous rendent malades.",
+     "category": "faux"
+    },
+    {
+     "id": "i3",
+     "label": "Des bactéries du microbiote dégradent une partie des fibres que nos enzymes ne savent pas découper.",
+     "category": "vrai"
+    },
+    {
+     "id": "i4",
+     "label": "Un antibiotique ne tue que les bactéries qui nous rendent malades.",
+     "category": "faux"
+    },
+    {
+     "id": "i5",
+     "label": "Un antibiotique soigne la grippe.",
+     "category": "faux"
+    },
+    {
+     "id": "i6",
+     "label": "En occupant la place, le microbiote gêne l'installation de bactéries pathogènes.",
+     "category": "vrai"
+    }
+   ],
+   "misconceptions": [
+    {
+     "item": "i2",
+     "category": "vrai",
+     "id": "mc:bacteries-pathogenes",
+     "error": "notion",
+     "feedback": "Repense aux rôles du microbiote vus dans le cours (fibres, vitamines, place occupée) : des bactéries qui nous rendent ces services peuvent-elles toutes être dangereuses ?"
+    },
+    {
+     "item": "i4",
+     "category": "vrai",
+     "id": "mc:antibiotique-cible",
+     "error": "notion",
+     "feedback": "Un antibiotique ne « reconnaît » pas les bactéries dangereuses : il agit sur toutes celles qui y sont sensibles. Pense aux troubles digestifs qui suivent parfois un traitement."
+    },
+    {
+     "item": "i5",
+     "category": "vrai",
+     "id": "mc:antibiotique-virus",
+     "error": "notion",
+     "feedback": "La grippe est due à un virus. Sur quels êtres vivants les antibiotiques agissent-ils ?"
+    }
+   ],
+   "hints": [
+    "Le microbiote est surtout fait de bactéries utiles.",
+    "Les antibiotiques agissent sur des bactéries, jamais sur des virus.",
+    "Un antibiotique n'épargne pas les bactéries utiles qui y sont sensibles."
+   ],
+   "solution": "Vrai : le microbiote vit surtout dans le gros intestin, dégrade une partie des fibres et gêne l'installation de bactéries pathogènes. Faux : la plupart de ses bactéries sont utiles ou sans danger ; un antibiotique tue aussi des bactéries utiles ; il est sans effet sur la grippe, due à un virus.",
+   "selfTest": [
+    {
+     "response": {
+      "assign": {
+       "i1": "vrai",
+       "i2": "faux",
+       "i3": "vrai",
+       "i4": "faux",
+       "i5": "faux",
+       "i6": "vrai"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "vrai",
+       "i2": "vrai",
+       "i3": "vrai",
+       "i4": "faux",
+       "i5": "faux",
+       "i6": "vrai"
+      }
+     },
+     "expect": "mc:bacteries-pathogenes"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "vrai",
+       "i2": "faux",
+       "i3": "vrai",
+       "i4": "vrai",
+       "i5": "faux",
+       "i6": "vrai"
+      }
+     },
+     "expect": "mc:antibiotique-cible"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "vrai",
+       "i2": "faux",
+       "i3": "vrai",
+       "i4": "faux",
+       "i5": "vrai",
+       "i6": "vrai"
+      }
+     },
+     "expect": "mc:antibiotique-virus"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-expliquer",
+   "type": "open",
+   "skill": "svt3.corps.enzymes-digestives",
+   "track": "classe",
+   "role": "libre",
+   "difficulty": 3,
+   "representation": "verbale",
+   "targets": [
+    "mc:aliment-sang"
+   ],
+   "expectedSeconds": 420,
+   "minWords": 45,
+   "prompt": "Un élève de 5e affirme : « Quand je mange une tartine, le pain passe dans mon sang. » Explique-lui ce qui arrive réellement à l'amidon du pain. Utilise les mots : **enzyme**, **nutriment**, **intestin grêle**, **sang**.",
+   "criteria": [
+    {
+     "id": "c1",
+     "label": "J'explique que l'amidon est une grosse molécule qui ne passe pas telle quelle",
+     "keywords": [
+      [
+       "grosse",
+       "trop gros",
+       "tel quel",
+       "telle quelle"
+      ]
+     ]
+    },
+    {
+     "id": "c2",
+     "label": "Je cite des enzymes (amylase, maltase) qui découpent l'amidon",
+     "keywords": [
+      [
+       "enzyme",
+       "amylase",
+       "maltase"
+      ],
+      [
+       "decoup",
+       "transform",
+       "coupe"
+      ]
+     ]
+    },
+    {
+     "id": "c3",
+     "label": "Je nomme le nutriment obtenu : le glucose",
+     "keywords": [
+      [
+       "glucose"
+      ]
+     ]
+    },
+    {
+     "id": "c4",
+     "label": "J'explique le passage dans le sang à travers la paroi de l'intestin grêle",
+     "keywords": [
+      [
+       "intestin grele",
+       "villosite"
+      ],
+      [
+       "sang"
+      ]
+     ]
+    }
+   ],
+   "models": [
+    "L'amidon du pain est une très grosse molécule : il ne peut pas passer tel quel dans le sang. Dans la bouche puis dans l'intestin grêle, des enzymes, l'amylase puis la maltase, le découpent en glucose, un nutriment, c'est-à-dire une petite molécule. Le glucose traverse alors la paroi des villosités de l'intestin grêle et passe dans le sang, qui le transporte jusqu'aux organes."
+   ],
+   "hints": [
+    "Commence par dire pourquoi le pain, tel quel, ne peut pas passer.",
+    "Explique qui découpe l'amidon, et en quoi.",
+    "Termine par l'endroit où le nutriment passe dans le sang."
+   ],
+   "solution": "L'amidon du pain est une très grosse molécule : il ne peut pas passer tel quel dans le sang. Dans la bouche puis dans l'intestin grêle, des enzymes, l'amylase puis la maltase, le découpent en glucose, un nutriment, c'est-à-dire une petite molécule. Le glucose traverse alors la paroi des villosités de l'intestin grêle et passe dans le sang, qui le transporte jusqu'aux organes.",
+   "selfTest": [
+    {
+     "response": {
+      "text": "L'amidon du pain est une très grosse molécule : il ne peut pas passer tel quel dans le sang. Dans la bouche puis dans l'intestin grêle, des enzymes, l'amylase puis la maltase, le découpent en glucose, un nutriment, c'est-à-dire une petite molécule. Le glucose traverse alors la paroi des villosités de l'intestin grêle et passe dans le sang, qui le transporte jusqu'aux organes.",
+      "selfCheck": {
+       "c1": true,
+       "c2": true,
+       "c3": true,
+       "c4": true
+      }
+     },
+     "expect": "a-valider"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-lactose",
+   "type": "composite",
+   "skill": "svt3.corps.enzymes-digestives",
+   "skills": [
+    "svt3.corps.microbiote",
+    "m5.proportionnalite"
+   ],
+   "track": "classe",
+   "role": "mission",
+   "difficulty": 4,
+   "representation": "concrete",
+   "targets": [
+    "mc:proportion-base",
+    "mc:proportion-inverse",
+    "mc:aliment-sang",
+    "mc:sans-lactose-sans-sucre"
+   ],
+   "expectedSeconds": 480,
+   "prompt": "**Mission : Léa et le bol de lait.** Léa, 14 ans, a souvent mal au ventre et des gaz après un bol de lait. Son médecin lui explique que son intestin grêle produit peu de **lactase**, l'enzyme qui découpe le lactose, le sucre du lait (seul un médecin peut poser ce diagnostic).\n\n*Document 1.* Le lait contient environ 5 g de lactose pour 100 mL (valeur arrondie).\n\n*Document 2.* D'après un avis de l'Autorité européenne de sécurité des aliments (2010), la plupart des personnes qui digèrent mal le lactose en supportent jusqu'à environ 12 g en une prise.\n\n*Document 3.* Le lait « sans lactose » est du lait auquel on a ajouté de la lactase : son lactose est déjà découpé en glucose et en galactose.",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de grammes de lactose contient un bol de 300 mL de lait ? (nombre seul, en g)",
+     "answer": 15,
+     "misconceptions": [
+      {
+       "answer": 1500,
+       "id": "mc:proportion-base",
+       "error": "calcul",
+       "feedback": "Les 5 g correspondent à 100 mL, pas à 1 mL : combien de fois 100 mL y a-t-il dans 300 mL ?"
+      },
+      {
+       "answer": 60,
+       "id": "mc:proportion-inverse",
+       "error": "methode",
+       "feedback": "Tu as divisé un volume par une masse : ce calcul n'a pas de sens ici. Pars de « 5 g pour 100 mL » et cherche pour 300 mL."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Quel volume de lait (en mL) apporte 12 g de lactose ? (nombre seul)",
+     "answer": 240,
+     "misconceptions": [
+      {
+       "answer": 2.4,
+       "id": "mc:proportion-base",
+       "error": "calcul",
+       "feedback": "12 ÷ 5 te donne un nombre de « portions de 100 mL » : il reste à le convertir en millilitres."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "Chez Léa, une partie du lactose n'est pas découpée dans l'intestin grêle.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Le lactose non découpé passe tel quel dans le sang.",
+       "category": "faux"
+      },
+      {
+       "id": "i3",
+       "label": "Arrivé dans le gros intestin, ce lactose est dégradé par des bactéries du microbiote, qui produisent des gaz.",
+       "category": "vrai"
+      },
+      {
+       "id": "i4",
+       "label": "Dans le lait sans lactose, la lactase a découpé le lactose avant que Léa ne le boive.",
+       "category": "vrai"
+      },
+      {
+       "id": "i5",
+       "label": "Le lait sans lactose ne contient plus aucun sucre.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i2",
+       "category": "vrai",
+       "id": "mc:aliment-sang",
+       "error": "notion",
+       "feedback": "Une molécule non découpée peut-elle traverser la paroi de l'intestin ? Relis la carte « Des aliments aux nutriments »."
+      },
+      {
+       "item": "i5",
+       "category": "vrai",
+       "id": "mc:sans-lactose-sans-sucre",
+       "error": "lecture",
+       "feedback": "Relis le document 3 : en quoi le lactose a-t-il été découpé ? Ces molécules sont-elles des sucres ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "5 g pour 100 mL : pour 300 mL, il y a trois fois plus de lactose.",
+    "12 g, c'est combien de fois 5 g ? Multiplie ce nombre par 100 mL.",
+    "Une molécule non découpée continue son chemin jusqu'au gros intestin, où vit le microbiote."
+   ],
+   "solution": "1. 300 mL = 3 × 100 mL, donc 3 × 5 = 15 g de lactose. 2. 12 g = 2,4 × 5 g, donc 2,4 × 100 = 240 mL : le bol de 300 mL dépasse ce que Léa supporte probablement. 3. Vrai ; faux (le lactose non découpé ne traverse pas la paroi) ; vrai ; vrai ; faux (le glucose et le galactose sont des sucres : le lait sans lactose a même un goût un peu plus sucré). Du lait sans lactose, des fromages affinés (très pauvres en lactose) ou de petites quantités réparties dans la journée peuvent aider Léa, sur les conseils de son médecin.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "15"
+       },
+       {
+        "value": "240"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "1500"
+       },
+       {
+        "value": "240"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:proportion-base"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "60"
+       },
+       {
+        "value": "240"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:proportion-inverse"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "15"
+       },
+       {
+        "value": "2,4"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:proportion-base"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "15"
+       },
+       {
+        "value": "240"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:aliment-sang"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "15"
+       },
+       {
+        "value": "240"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:sans-lactose-sans-sucre"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-rem-specificite",
+   "type": "text",
+   "skill": "svt3.corps.enzymes-digestives",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 1,
+   "representation": "verbale",
+   "targets": [
+    "mc:enzyme-universelle"
+   ],
+   "expectedSeconds": 60,
+   "prompt": "Rappel ciblé : chaque enzyme découpe une seule sorte de molécule. L'amylase découpe l'amidon ; la pepsine découpe les protéines. Quelle sorte de molécules la **lipase** découpe-t-elle ? (un mot)",
+   "accept": [
+    "lipides",
+    "les lipides",
+    "lipide",
+    "des lipides",
+    "graisses",
+    "les graisses",
+    "des graisses",
+    "matières grasses",
+    "les matières grasses"
+   ],
+   "misconceptions": [
+    {
+     "answer": "amidon",
+     "id": "mc:enzyme-universelle",
+     "error": "notion",
+     "feedback": "L'amidon est le travail de l'amylase. Compare le début du mot « lipase » avec le nom des grandes familles de molécules des aliments."
+    },
+    {
+     "answer": "protéines",
+     "id": "mc:enzyme-universelle",
+     "error": "notion",
+     "feedback": "Les protéines sont le travail de la pepsine et d'autres enzymes. Compare le début du mot « lipase » avec le nom des grandes familles de molécules des aliments."
+    }
+   ],
+   "hints": [
+    "Le nom d'une enzyme ressemble souvent au nom de la molécule qu'elle découpe.",
+    "Lip-ase…"
+   ],
+   "solution": "La lipase découpe les **lipides** (les graisses) en acides gras et glycérol.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "les lipides"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "amidon"
+     },
+     "expect": "mc:enzyme-universelle"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-rem-sang",
+   "type": "qcm",
+   "skill": "svt3.corps.enzymes-digestives",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 1,
+   "representation": "verbale",
+   "targets": [
+    "mc:aliment-sang"
+   ],
+   "expectedSeconds": 60,
+   "prompt": "Rappel ciblé : après un plat de pâtes, qu'est-ce qui passe de l'intestin grêle dans le sang ?",
+   "choices": [
+    {
+     "text": "De tout petits morceaux de pâtes",
+     "correct": false,
+     "error": "notion",
+     "misconception": "mc:aliment-sang",
+     "feedback": "Même très petits, des morceaux de pâtes sont faits de très grosses molécules : ils ne traversent pas la paroi de l'intestin."
+    },
+    {
+     "text": "De l'amidon",
+     "correct": false,
+     "error": "notion",
+     "misconception": "mc:aliment-sang",
+     "feedback": "L'amidon est une très grosse molécule : il doit d'abord être découpé par des enzymes."
+    },
+    {
+     "text": "Du glucose, obtenu en découpant l'amidon",
+     "correct": true,
+     "feedback": "Exact : le glucose est un nutriment, une petite molécule qui traverse la paroi des villosités."
+    },
+    {
+     "text": "Les enzymes de la digestion",
+     "correct": false,
+     "error": "notion",
+     "misconception": "mc:enzyme-nutriment",
+     "feedback": "Les enzymes travaillent dans le tube digestif : ce ne sont pas elles qui nourrissent les organes."
+    }
+   ],
+   "hints": [
+    "Seules de petites molécules traversent la paroi de l'intestin."
+   ],
+   "solution": "Du glucose : l'amidon des pâtes est découpé par l'amylase puis la maltase en glucose, un nutriment qui passe dans le sang à travers la paroi des villosités de l'intestin grêle.",
+   "selfTest": [
+    {
+     "response": {
+      "selected": [
+       2
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "selected": [
+       0
+      ]
+     },
+     "expect": "mc:aliment-sang"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-ph",
+   "type": "composite",
+   "skill": "svt3.corps.conditions-enzymes",
+   "skills": [
+    "svt.demarche.exploiter-donnees"
+   ],
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "visuelle",
+   "targets": [
+    "mc:mauvaise-courbe",
+    "mc:milieu-amylase",
+    "mc:enzyme-tout-milieu"
+   ],
+   "expectedSeconds": 360,
+   "figure": {
+    "alt": "Vitesse d'action de la pepsine et de l'amylase du pancréas selon le pH, de 0 à 10 (valeurs simplifiées)",
+    "w": 560,
+    "h": 280,
+    "items": [
+     {
+      "type": "linechart",
+      "xLabel": "pH",
+      "yLabel": "vitesse (u.a.)",
+      "xRange": [
+       0,
+       10
+      ],
+      "yRange": [
+       0,
+       110
+      ],
+      "series": [
+       {
+        "label": "Pepsine",
+        "color": "rouge",
+        "points": [
+         [
+          0,
+          20
+         ],
+         [
+          1,
+          70
+         ],
+         [
+          2,
+          100
+         ],
+         [
+          3,
+          80
+         ],
+         [
+          4,
+          45
+         ],
+         [
+          5,
+          15
+         ],
+         [
+          6,
+          2
+         ],
+         [
+          7,
+          0
+         ],
+         [
+          10,
+          0
+         ]
+        ]
+       },
+       {
+        "label": "Amylase du pancréas",
+        "color": "bleu",
+        "points": [
+         [
+          3,
+          0
+         ],
+         [
+          4,
+          10
+         ],
+         [
+          5,
+          40
+         ],
+         [
+          6,
+          80
+         ],
+         [
+          7,
+          100
+         ],
+         [
+          8,
+          75
+         ],
+         [
+          9,
+          30
+         ],
+         [
+          10,
+          5
+         ]
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "prompt": "Le pH mesure l'acidité d'un milieu : plus il est bas, plus le milieu est acide. Dans l'estomac, le pH est d'environ 2 ; dans l'intestin grêle, il est proche de 7. On mesure la vitesse d'action de deux enzymes selon le pH (valeurs simplifiées, à 37 °C).",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Pour quel pH la pepsine agit-elle le plus vite ?",
+     "answer": 2,
+     "tolerance": 0.3,
+     "misconceptions": [
+      {
+       "answer": 7,
+       "id": "mc:mauvaise-courbe",
+       "error": "lecture",
+       "feedback": "Tu as lu la courbe de l'autre enzyme : vérifie la légende, puis cherche le sommet de la courbe de la pepsine."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Quelle est la vitesse de la pepsine au pH de l'intestin grêle, 7 ? (unités arbitraires)",
+     "answer": 0,
+     "misconceptions": [
+      {
+       "answer": 100,
+       "id": "mc:mauvaise-courbe",
+       "error": "lecture",
+       "feedback": "Tu as lu la courbe de l'amylase du pancréas. Reprends la courbe de la pepsine, au pH 7."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "La pepsine est adaptée au milieu très acide de l'estomac.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Arrivée dans l'intestin grêle, la pepsine ne digère presque plus les protéines.",
+       "category": "vrai"
+      },
+      {
+       "id": "i3",
+       "label": "L'amylase du pancréas agit le mieux dans l'estomac.",
+       "category": "faux"
+      },
+      {
+       "id": "i4",
+       "label": "Une enzyme agit de la même façon quel que soit le milieu.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i3",
+       "category": "vrai",
+       "id": "mc:milieu-amylase",
+       "error": "lecture",
+       "feedback": "Repère le pH où la courbe de l'amylase atteint son sommet, puis compare-le au pH de chaque organe."
+      },
+      {
+       "item": "i4",
+       "category": "vrai",
+       "id": "mc:enzyme-tout-milieu",
+       "error": "notion",
+       "feedback": "Compare les deux courbes : la vitesse de chaque enzyme change-t-elle avec le pH ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Repère la couleur de chaque courbe dans la légende.",
+    "Lis la vitesse de la pepsine au pH 7, sur la bonne courbe.",
+    "Compare le pH où chaque enzyme agit le mieux au pH de l'organe où elle est libérée."
+   ],
+   "solution": "1. La pepsine agit le plus vite vers pH 2, le pH de l'estomac. 2. Au pH 7, sa vitesse est nulle : arrivée dans l'intestin grêle, elle ne digère presque plus rien, et des enzymes du pancréas prennent le relais. 3. Vrai ; vrai ; faux (cette amylase agit le mieux vers pH 7, dans l'intestin grêle) ; faux (chaque enzyme a des conditions de température et d'acidité où elle agit le mieux).",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "0"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "7"
+       },
+       {
+        "value": "0"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:mauvaise-courbe"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "100"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:mauvaise-courbe"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "0"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:milieu-amylase"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "0"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:enzyme-tout-milieu"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-diversite",
+   "type": "composite",
+   "skill": "svt3.corps.microbiote",
+   "skills": [
+    "svt.demarche.exploiter-donnees",
+    "m5.pourcentages"
+   ],
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "visuelle",
+   "targets": [
+    "mc:difference-pourcentage",
+    "mc:part-restante",
+    "mc:retour-complet"
+   ],
+   "expectedSeconds": 360,
+   "figure": {
+    "alt": "Diagramme en barres : nombre de sortes de bactéries dans le microbiote avant, juste après, un mois et six mois après un traitement antibiotique (valeurs fictives)",
+    "w": 520,
+    "h": 260,
+    "items": [
+     {
+      "type": "bars",
+      "unit": "sortes de bactéries",
+      "yMax": 450,
+      "data": [
+       {
+        "label": "avant",
+        "value": 400
+       },
+       {
+        "label": "juste après",
+        "value": 240
+       },
+       {
+        "label": "1 mois après",
+        "value": 360
+       },
+       {
+        "label": "6 mois après",
+        "value": 380
+       }
+      ]
+     }
+    ]
+   },
+   "prompt": "Des chercheurs suivent le microbiote de volontaires en bonne santé qui prennent un antibiotique pendant 5 jours. Dans un échantillon de selles, ils comptent le nombre de **sortes** de bactéries différentes (moyennes, valeurs fictives).",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "De quel pourcentage le nombre de sortes de bactéries a-t-il diminué pendant le traitement ? (nombre seul, en %)",
+     "answer": 40,
+     "misconceptions": [
+      {
+       "answer": 160,
+       "id": "mc:difference-pourcentage",
+       "error": "methode",
+       "feedback": "Tu as calculé une diminution en nombre de sortes. Pour un pourcentage, rapporte cette diminution au nombre de départ."
+      },
+      {
+       "answer": 60,
+       "id": "mc:part-restante",
+       "error": "methode",
+       "feedback": "Tu as calculé la part des sortes qui restent après le traitement, pas la part qui a disparu."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Que peut-on conclure ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "L'antibiotique a fait disparaître des sortes de bactéries du microbiote, et pas seulement des bactéries pathogènes.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Six mois après, le microbiote est revenu exactement à son état de départ.",
+       "category": "faux"
+      },
+      {
+       "id": "i3",
+       "label": "Le microbiote se reconstitue en grande partie, mais lentement.",
+       "category": "vrai"
+      },
+      {
+       "id": "i4",
+       "label": "Prendre un antibiotique quand ce n'est pas nécessaire perturbe le microbiote sans rien soigner.",
+       "category": "vrai"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i2",
+       "category": "vrai",
+       "id": "mc:retour-complet",
+       "error": "lecture",
+       "feedback": "Compare précisément la barre « 6 mois après » et la barre « avant »."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Diminution = valeur de départ − valeur d'arrivée.",
+    "Pourcentage de diminution = diminution ÷ valeur de départ × 100.",
+    "Les volontaires étaient en bonne santé : ils n'avaient aucune infection à soigner."
+   ],
+   "solution": "1. Diminution : 400 − 240 = 160 sortes ; 160 ÷ 400 × 100 = 40 %. 2. Vrai : les volontaires n'avaient pas d'infection, ce sont donc des bactéries du microbiote qui ont disparu. Faux : 380 sortes à six mois contre 400 au départ. Vrai : 360 à un mois, 380 à six mois. Vrai : un antibiotique inutile n'apporte aucun bénéfice et perturbe le microbiote.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "40"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "160"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:difference-pourcentage"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "60"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:part-restante"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "40"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:retour-complet"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-brevet-pepsine",
+   "type": "composite",
+   "skill": "svt3.corps.conditions-enzymes",
+   "skills": [
+    "svt3.corps.enzymes-digestives",
+    "svt.demarche.hypothese-temoin"
+   ],
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 5,
+   "representation": "concrete",
+   "targets": [
+    "mc:facteur-teste",
+    "mc:acide-digere",
+    "mc:enzyme-universelle"
+   ],
+   "expectedSeconds": 900,
+   "figure": {
+    "alt": "Document 2 : tableau des quatre tubes contenant un cube de blanc d'œuf cuit, avec leur contenu, leur température et le résultat après 3 heures",
+    "w": 600,
+    "h": 200,
+    "items": [
+     {
+      "type": "table",
+      "head": [
+       "Tube",
+       "Contenu",
+       "Température",
+       "Cube après 3 h"
+      ],
+      "rows": [
+       [
+        "1",
+        "pepsine + acide",
+        "37 °C",
+        "disparu"
+       ],
+       [
+        "2",
+        "pepsine + eau",
+        "37 °C",
+        "intact"
+       ],
+       [
+        "3",
+        "acide + eau",
+        "37 °C",
+        "intact"
+       ],
+       [
+        "4",
+        "pepsine + acide",
+        "0 °C",
+        "intact"
+       ]
+      ]
+     }
+    ]
+   },
+   "prompt": "Type brevet — La digestion des protéines dans l'estomac.\n\n*Document 1.* Le suc gastrique, produit par la paroi de l'estomac, contient une enzyme, la **pepsine**, et de l'**acide chlorhydrique**, qui rend le milieu très acide. L'estomac est à 37 °C.\n\n*Document 2* (tableau). On place un petit cube de blanc d'œuf cuit, riche en protéines, dans quatre tubes, puis on observe le cube après 3 heures.",
+   "parts": [
+    {
+     "type": "match",
+     "prompt": "Question 1. Pour chaque comparaison, indique le seul facteur qui change.",
+     "leftTitle": "Comparaison",
+     "rightTitle": "Facteur testé",
+     "left": [
+      {
+       "id": "l1",
+       "label": "Tubes 1 et 2"
+      },
+      {
+       "id": "l2",
+       "label": "Tubes 1 et 3"
+      },
+      {
+       "id": "l3",
+       "label": "Tubes 1 et 4"
+      }
+     ],
+     "right": [
+      {
+       "id": "r1",
+       "label": "La présence d'acide"
+      },
+      {
+       "id": "r2",
+       "label": "La présence de pepsine"
+      },
+      {
+       "id": "r3",
+       "label": "La température"
+      },
+      {
+       "id": "r4",
+       "label": "La présence de blanc d'œuf"
+      }
+     ],
+     "pairs": {
+      "l1": "r1",
+      "l2": "r2",
+      "l3": "r3"
+     },
+     "misconceptions": [
+      {
+       "pair": [
+        "l1",
+        "r2"
+       ],
+       "id": "mc:facteur-teste",
+       "error": "lecture",
+       "feedback": "Compare le contenu des deux tubes mot par mot : quel ingrédient est présent dans l'un et absent de l'autre ?"
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Question 2. Ces conclusions sont-elles permises par les résultats ?",
+     "categories": [
+      {
+       "id": "valide",
+       "label": "Valide"
+      },
+      {
+       "id": "abusif",
+       "label": "Abusive"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "La pepsine digère les protéines du blanc d'œuf seulement en milieu acide.",
+       "category": "valide"
+      },
+      {
+       "id": "i2",
+       "label": "L'acide seul suffit à digérer les protéines.",
+       "category": "abusif"
+      },
+      {
+       "id": "i3",
+       "label": "À 0 °C, la pepsine ne digère pas le blanc d'œuf en 3 heures.",
+       "category": "valide"
+      },
+      {
+       "id": "i4",
+       "label": "La pepsine digère aussi l'amidon.",
+       "category": "abusif"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i2",
+       "category": "valide",
+       "id": "mc:acide-digere",
+       "error": "lecture",
+       "feedback": "Regarde le tube qui contient de l'acide mais pas de pepsine : que devient le cube ?"
+      },
+      {
+       "item": "i4",
+       "category": "valide",
+       "id": "mc:enzyme-universelle",
+       "error": "raisonnement",
+       "feedback": "Aucun tube ne contient d'amidon : peut-on conclure sur une molécule qui n'a pas été testée ?"
+      }
+     ]
+    },
+    {
+     "type": "open",
+     "prompt": "Question 3. En t'appuyant sur les deux documents, explique pourquoi les protéines peuvent être digérées dans l'estomac.",
+     "minWords": 30,
+     "criteria": [
+      {
+       "id": "c1",
+       "label": "Je relève que seul le tube 1 (pepsine + acide, 37 °C) a digéré le cube",
+       "keywords": [
+        [
+         "tube 1",
+         "seul"
+        ]
+       ]
+      },
+      {
+       "id": "c2",
+       "label": "J'en déduis que la pepsine a besoin d'un milieu acide et d'une température proche de 37 °C",
+       "keywords": [
+        [
+         "acide"
+        ],
+        [
+         "37",
+         "temperature",
+         "froid"
+        ]
+       ]
+      },
+      {
+       "id": "c3",
+       "label": "Je relie au document 1 : l'estomac réunit ces conditions grâce au suc gastrique",
+       "keywords": [
+        [
+         "suc gastrique",
+         "estomac"
+        ]
+       ]
+      },
+      {
+       "id": "c4",
+       "label": "Je conclus : la pepsine découpe les protéines en molécules plus petites",
+       "keywords": [
+        [
+         "decoup",
+         "digere",
+         "transform"
+        ]
+       ]
+      }
+     ],
+     "models": [
+      "Seul le tube 1, avec de la pepsine et de l'acide à 37 °C, a digéré le cube de blanc d'œuf. Les tubes 2, 3 et 4 montrent que la pepsine a besoin d'un milieu acide, que l'acide seul ne suffit pas et que le froid empêche la digestion. Or le suc gastrique apporte la pepsine et l'acide dans l'estomac, qui est à 37 °C : la pepsine y découpe donc les protéines en molécules plus petites."
+     ]
+    }
+   ],
+   "hints": [
+    "Pour chaque paire de tubes, cherche la seule différence.",
+    "Un seul tube a digéré le cube : quelles conditions réunit-il ?",
+    "Question 3 : je relève, puis j'interprète, puis je conclus."
+   ],
+   "solution": "1. Tubes 1 et 2 : la présence d'acide. Tubes 1 et 3 : la présence de pepsine. Tubes 1 et 4 : la température. 2. Valide ; abusive (le tube 3, sans pepsine, garde son cube) ; valide ; abusive (l'amidon n'a pas été testé). 3. Seul le tube 1 digère le cube : la pepsine digère les protéines à condition d'être en milieu acide et vers 37 °C. Le suc gastrique apporte la pepsine et l'acide, et l'estomac est à 37 °C : les protéines y sont découpées en molécules plus petites, dont la digestion se poursuit dans l'intestin grêle.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "pairs": {
+         "l1": "r1",
+         "l2": "r2",
+         "l3": "r3"
+        }
+       },
+       {
+        "assign": {
+         "i1": "valide",
+         "i2": "abusif",
+         "i3": "valide",
+         "i4": "abusif"
+        }
+       },
+       {
+        "text": "Seul le tube 1, avec de la pepsine et de l'acide à 37 °C, a digéré le cube de blanc d'œuf. Les tubes 2, 3 et 4 montrent que la pepsine a besoin d'un milieu acide, que l'acide seul ne suffit pas et que le froid empêche la digestion. Or le suc gastrique apporte la pepsine et l'acide dans l'estomac, qui est à 37 °C : la pepsine y découpe donc les protéines en molécules plus petites.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "pairs": {
+         "l1": "r2",
+         "l2": "r2",
+         "l3": "r3"
+        }
+       },
+       {
+        "assign": {
+         "i1": "valide",
+         "i2": "abusif",
+         "i3": "valide",
+         "i4": "abusif"
+        }
+       },
+       {
+        "text": "Seul le tube 1, avec de la pepsine et de l'acide à 37 °C, a digéré le cube de blanc d'œuf. Les tubes 2, 3 et 4 montrent que la pepsine a besoin d'un milieu acide, que l'acide seul ne suffit pas et que le froid empêche la digestion. Or le suc gastrique apporte la pepsine et l'acide dans l'estomac, qui est à 37 °C : la pepsine y découpe donc les protéines en molécules plus petites.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:facteur-teste"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "pairs": {
+         "l1": "r1",
+         "l2": "r2",
+         "l3": "r3"
+        }
+       },
+       {
+        "assign": {
+         "i1": "valide",
+         "i2": "valide",
+         "i3": "valide",
+         "i4": "abusif"
+        }
+       },
+       {
+        "text": "Seul le tube 1, avec de la pepsine et de l'acide à 37 °C, a digéré le cube de blanc d'œuf. Les tubes 2, 3 et 4 montrent que la pepsine a besoin d'un milieu acide, que l'acide seul ne suffit pas et que le froid empêche la digestion. Or le suc gastrique apporte la pepsine et l'acide dans l'estomac, qui est à 37 °C : la pepsine y découpe donc les protéines en molécules plus petites.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:acide-digere"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "pairs": {
+         "l1": "r1",
+         "l2": "r2",
+         "l3": "r3"
+        }
+       },
+       {
+        "assign": {
+         "i1": "valide",
+         "i2": "abusif",
+         "i3": "valide",
+         "i4": "valide"
+        }
+       },
+       {
+        "text": "Seul le tube 1, avec de la pepsine et de l'acide à 37 °C, a digéré le cube de blanc d'œuf. Les tubes 2, 3 et 4 montrent que la pepsine a besoin d'un milieu acide, que l'acide seul ne suffit pas et que le froid empêche la digestion. Or le suc gastrique apporte la pepsine et l'acide dans l'estomac, qui est à 37 °C : la pepsine y découpe donc les protéines en molécules plus petites.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:enzyme-universelle"
+    }
+   ]
+  },
+  {
+   "id": "svt3-digestion-brevet-antibiotiques",
+   "type": "composite",
+   "skill": "svt3.corps.microbiote",
+   "skills": [
+    "svt.demarche.exploiter-donnees",
+    "svt4.vivant.selection-naturelle",
+    "svt.corps.hygiene"
+   ],
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 5,
+   "representation": "concrete",
+   "targets": [
+    "mc:puissances",
+    "mc:resistance-induite",
+    "mc:antibiotique-virus"
+   ],
+   "expectedSeconds": 900,
+   "prompt": "Type brevet — Antibiotiques, microbiote et résistance.\n\n*Document 1.* Chez un patient traité par un antibiotique contre une infection bactérienne, on compte les bactéries d'un échantillon de selles : 10¹¹ bactéries par gramme avant le traitement, 10⁹ par gramme à la fin du traitement (valeurs fictives).\n\n*Document 2.* Parmi les bactéries *Escherichia coli* de son intestin, 2 % sont résistantes à cet antibiotique avant le traitement, 60 % à la fin (valeurs fictives). Les bactéries résistantes portent une mutation, apparue au hasard, qui leur permet de survivre à l'antibiotique.\n\n*Document 3.* Selon une étude publiée en 2022 dans la revue médicale *The Lancet* et reprise par l'Organisation mondiale de la santé, la résistance des bactéries aux antibiotiques a directement causé environ 1,27 million de décès dans le monde en 2019.",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Question 1. Par combien le nombre de bactéries par gramme a-t-il été divisé pendant le traitement ?",
+     "answer": 100,
+     "misconceptions": [
+      {
+       "answer": 2,
+       "id": "mc:puissances",
+       "error": "calcul",
+       "feedback": "Tu as soustrait les exposants : cela donne le nombre de zéros d'écart, pas le quotient. Écris les deux nombres en entier, puis divise."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Question 2. D'après les documents, vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "L'antibiotique a tué une grande partie des bactéries de l'intestin.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "L'antibiotique a rendu les bactéries résistantes.",
+       "category": "faux"
+      },
+      {
+       "id": "i3",
+       "label": "Les bactéries résistantes, déjà présentes, ont survécu et se sont multipliées : leur proportion a augmenté.",
+       "category": "vrai"
+      },
+      {
+       "id": "i4",
+       "label": "Prendre un antibiotique contre un rhume, dû à un virus, évite l'apparition de résistances.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i2",
+       "category": "vrai",
+       "id": "mc:resistance-induite",
+       "error": "notion",
+       "feedback": "Relis le document 2 : d'où vient la résistance, et existait-elle déjà avant le traitement ?"
+      },
+      {
+       "item": "i4",
+       "category": "vrai",
+       "id": "mc:antibiotique-virus",
+       "error": "notion",
+       "feedback": "Un antibiotique agit-il sur un virus ? Et que fait-il, au passage, aux bactéries de l'intestin ?"
+      }
+     ]
+    },
+    {
+     "type": "open",
+     "prompt": "Question 3. En t'appuyant sur les trois documents, explique pourquoi on ne doit prendre des antibiotiques que lorsqu'un médecin les prescrit.",
+     "minWords": 35,
+     "criteria": [
+      {
+       "id": "c1",
+       "label": "J'explique que l'antibiotique tue aussi des bactéries utiles du microbiote (doc. 1)",
+       "keywords": [
+        [
+         "microbiote",
+         "utile",
+         "intestin"
+        ]
+       ]
+      },
+      {
+       "id": "c2",
+       "label": "J'explique la sélection des bactéries résistantes, présentes avant le traitement (doc. 2)",
+       "keywords": [
+        [
+         "resist"
+        ],
+        [
+         "selection",
+         "selectionn",
+         "surviv",
+         "multipli",
+         "deja"
+        ]
+       ]
+      },
+      {
+       "id": "c3",
+       "label": "Je rappelle qu'un antibiotique n'agit pas contre un virus",
+       "keywords": [
+        [
+         "virus"
+        ]
+       ]
+      },
+      {
+       "id": "c4",
+       "label": "J'utilise le document 3 pour montrer l'enjeu de santé publique",
+       "keywords": [
+        [
+         "deces",
+         "mort",
+         "million",
+         "sante"
+        ]
+       ]
+      }
+     ],
+     "models": [
+      "Le document 1 montre que l'antibiotique a tué une grande partie des bactéries de l'intestin : il détruit aussi des bactéries utiles du microbiote. Le document 2 montre que la proportion de bactéries résistantes passe de 2 % à 60 % : les résistantes, déjà présentes avant, survivent et se multiplient. Un antibiotique pris sans raison, par exemple contre un virus, ne soigne rien et sélectionne des bactéries résistantes. Le document 3 montre que cette résistance cause plus d'un million de décès par an dans le monde : il faut donc ne prendre des antibiotiques que sur prescription."
+     ]
+    }
+   ],
+   "hints": [
+    "10¹¹ = 100 000 000 000 et 10⁹ = 1 000 000 000.",
+    "La résistance vient d'une mutation apparue au hasard, avant le traitement.",
+    "Question 3 : utilise un argument par document."
+   ],
+   "solution": "1. 10¹¹ ÷ 10⁹ = 10² = 100 : le nombre de bactéries a été divisé par 100. 2. Vrai ; faux (la mutation est apparue au hasard, avant le traitement) ; vrai ; faux (l'antibiotique ne soigne pas un virus et sélectionne des bactéries résistantes). 3. Un antibiotique tue aussi des bactéries utiles du microbiote ; il sélectionne les bactéries résistantes, qui se multiplient et peuvent rendre les infections futures difficiles à soigner ; il est inutile contre les virus. Avec environ 1,27 million de décès dans le monde en 2019, la résistance est un enjeu de santé majeur : les antibiotiques ne se prennent que sur prescription, en suivant exactement les consignes du médecin.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "100"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       },
+       {
+        "text": "Le document 1 montre que l'antibiotique a tué une grande partie des bactéries de l'intestin : il détruit aussi des bactéries utiles du microbiote. Le document 2 montre que la proportion de bactéries résistantes passe de 2 % à 60 % : les résistantes, déjà présentes avant, survivent et se multiplient. Un antibiotique pris sans raison, par exemple contre un virus, ne soigne rien et sélectionne des bactéries résistantes. Le document 3 montre que cette résistance cause plus d'un million de décès par an dans le monde : il faut donc ne prendre des antibiotiques que sur prescription.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       },
+       {
+        "text": "Le document 1 montre que l'antibiotique a tué une grande partie des bactéries de l'intestin : il détruit aussi des bactéries utiles du microbiote. Le document 2 montre que la proportion de bactéries résistantes passe de 2 % à 60 % : les résistantes, déjà présentes avant, survivent et se multiplient. Un antibiotique pris sans raison, par exemple contre un virus, ne soigne rien et sélectionne des bactéries résistantes. Le document 3 montre que cette résistance cause plus d'un million de décès par an dans le monde : il faut donc ne prendre des antibiotiques que sur prescription.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:puissances"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "100"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       },
+       {
+        "text": "Le document 1 montre que l'antibiotique a tué une grande partie des bactéries de l'intestin : il détruit aussi des bactéries utiles du microbiote. Le document 2 montre que la proportion de bactéries résistantes passe de 2 % à 60 % : les résistantes, déjà présentes avant, survivent et se multiplient. Un antibiotique pris sans raison, par exemple contre un virus, ne soigne rien et sélectionne des bactéries résistantes. Le document 3 montre que cette résistance cause plus d'un million de décès par an dans le monde : il faut donc ne prendre des antibiotiques que sur prescription.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:resistance-induite"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "100"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "faux",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       },
+       {
+        "text": "Le document 1 montre que l'antibiotique a tué une grande partie des bactéries de l'intestin : il détruit aussi des bactéries utiles du microbiote. Le document 2 montre que la proportion de bactéries résistantes passe de 2 % à 60 % : les résistantes, déjà présentes avant, survivent et se multiplient. Un antibiotique pris sans raison, par exemple contre un virus, ne soigne rien et sélectionne des bactéries résistantes. Le document 3 montre que cette résistance cause plus d'un million de décès par an dans le monde : il faut donc ne prendre des antibiotiques que sur prescription.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true,
+         "c4": true
+        }
+       }
+      ]
+     },
+     "expect": "mc:antibiotique-virus"
+    }
+   ]
+  }
+ ]
+}

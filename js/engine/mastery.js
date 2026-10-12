@@ -11,6 +11,7 @@
  *
  * Toutes les fonctions sont pures : elles renvoient un nouvel état sans modifier l'ancien.
  */
+import { normalizeGame } from './game.js';
 
 export const DAY = 24 * 3600 * 1000;
 
@@ -68,6 +69,8 @@ export function creditOf(attempt) {
   c -= Math.min(0.45, 0.15 * (attempt.hintsUsed || 0));
   c -= Math.min(0.3, 0.1 * Math.max(0, (attempt.tries || 1) - 1));
   if (attempt.solutionShown) c = Math.min(c, 0.1);
+  // réponse lue dans le message de correction puis recopiée : compris en lisant, pas réussi seul
+  if (attempt.answerRevealed) c = Math.min(c, 0.5);
   return Math.max(0, Math.min(1, c));
 }
 
@@ -264,5 +267,5 @@ export function normalizeStates(raw, profileId) {
   const src = raw && raw.skills && typeof raw.skills === 'object' ? raw.skills : {};
   for (const [id, st] of Object.entries(src)) if (typeof id === 'string') skills[id] = normalizeSkillState(st, id);
   const lessons = raw && raw.lessons && typeof raw.lessons === 'object' && !Array.isArray(raw.lessons) ? raw.lessons : {};
-  return { profileId, skills, lessons };
+  return { profileId, skills, lessons, game: normalizeGame(raw && raw.game) };
 }

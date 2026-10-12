@@ -1,0 +1,507 @@
+{
+  "id": "m3-factorisation",
+  "chapter": "m3-ch-litteral",
+  "title": "Factoriser : facteur commun et différence de deux carrés",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.litteral.facteur-commun", "m3.litteral.difference-carres", "m3.litteral.choisir-forme"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Transformer une somme en produit : mettre en facteur un nombre, une lettre ou une parenthèse entière, gérer l'opposé d'une expression, factoriser a² − b² en (a + b)(a − b), puis choisir la forme la plus utile pour calculer ou démontrer.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le calcul éclair de Léna",
+      "body": "Sans calculatrice, Léna calcule $57² − 43²$ en cinq secondes et annonce : 1 400. Son voisin, calculatrice en main, met bien plus longtemps… et trouve la même chose !\n\nSon secret n'est pas de la magie, c'est une **factorisation**. Saurais-tu calculer aussi vite $101² − 99²$ ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🔄", "title": "Développer ou factoriser ?",
+          "body": "**Développer**, c'est transformer un produit en somme : $3(x + 2)$ devient $3x + 6$. **Factoriser**, c'est le chemin inverse : transformer une somme en produit. Les deux écritures sont égales pour toutes les valeurs de $x$ ; elles ne servent pas aux mêmes choses.",
+          "reveal": { "question": "Devine : x² + 5x est-il une somme ou un produit ? Et x(x + 5) ?", "answer": "x² + 5x est une somme de deux termes ; x(x + 5) est un produit de deux facteurs. Ce sont deux écritures de la même expression : la seconde est sa forme factorisée." }
+        },
+        {
+          "emoji": "🧲", "title": "Le facteur commun",
+          "body": "$ka + kb = k(a + b)$. On repère ce qui est présent dans **chaque** terme : un nombre, une lettre ou une parenthèse entière, et on le « sort ». Exemples : $6x² − 9x = 3x(2x − 3)$ et $(x + 1)(x − 4) + 5(x + 1) = (x + 1)(x + 1)$.",
+          "example": "Pour vérifier, on redéveloppe : on doit retrouver l'expression de départ."
+        },
+        {
+          "emoji": "➖", "title": "L'opposé d'une parenthèse",
+          "body": "Un signe moins devant une parenthèse change le signe de **chaque** terme : $−(x − 3) = −x + 3$. Piège classique : $(x + 2)(2x − 1) − (x + 2)(x − 5) = (x + 2)[(2x − 1) − (x − 5)] = (x + 2)(x + 4)$."
+        },
+        {
+          "emoji": "🟥", "title": "La différence de deux carrés",
+          "body": "Pour tous nombres $a$ et $b$ : $a² − b² = (a + b)(a − b)$. On repère les deux carrés : $x² − 49 = (x + 7)(x − 7)$ ; $9x² − 25 = (3x + 5)(3x − 5)$. Dans l'autre sens, on développe : $102 × 98 = 100² − 2² = 9 996$.",
+          "reveal": { "question": "Devine : peut-on factoriser x² + 49 de la même façon ?", "answer": "Non ! x² + 49 est une SOMME de deux carrés. La formule ne marche que pour une différence a² − b²." },
+          "figure": {
+            "alt": "Grand carré de côté a dont on a retiré, dans un coin, un petit carré de côté b ; la partie restante, en couleur, a pour aire a² − b².",
+            "w": 260, "h": 250,
+            "frame": { "x": [-0.8, 7], "y": [-0.9, 6.8] },
+            "items": [
+              { "type": "point", "id": "O", "x": 0, "y": 0, "hidden": true },
+              { "type": "point", "id": "P", "x": 6, "y": 0, "hidden": true },
+              { "type": "point", "id": "Q", "x": 6, "y": 4, "hidden": true },
+              { "type": "point", "id": "R", "x": 4, "y": 4, "hidden": true },
+              { "type": "point", "id": "S", "x": 4, "y": 6, "hidden": true },
+              { "type": "point", "id": "T", "x": 0, "y": 6, "hidden": true },
+              { "type": "point", "id": "U", "x": 6, "y": 6, "hidden": true },
+              { "type": "polygon", "points": ["O", "P", "Q", "R", "S", "T"], "fill": "maths" },
+              { "type": "polygon", "points": ["R", "Q", "U", "S"], "dashed": true },
+              { "type": "text", "x": 3, "y": -0.55, "text": "a", "anchor": "middle" },
+              { "type": "text", "x": 5, "y": 6.35, "text": "b", "anchor": "middle" },
+              { "type": "text", "x": 6.4, "y": 5, "text": "b", "anchor": "middle" },
+              { "type": "text", "x": 2.2, "y": 2.6, "text": "a² − b²", "anchor": "middle", "bold": true }
+            ]
+          }
+        },
+        {
+          "emoji": "🎯", "title": "Choisir la bonne forme",
+          "body": "Pour calculer une valeur, on prend la forme la plus simple : avec $x = 0$, la forme développée ; quand un facteur s'annule, la forme factorisée. Pour résoudre une équation « = 0 », on factorise (règle du produit nul). Pour démontrer qu'un résultat est un multiple de 3, on fait apparaître le facteur 3."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Factoriser E = (2x + 3)² − 16",
+      "steps": [
+        { "text": "On repère la forme $a² − b²$ : le premier carré est celui de $a = 2x + 3$, et $16 = 4²$, donc $b = 4$.", "math": "E = (2x + 3)² − 4²" },
+        { "text": "On applique $a² − b² = (a + b)(a − b)$, en gardant $2x + 3$ en entier.", "math": "E = (2x + 3 + 4)(2x + 3 − 4)" },
+        { "text": "On réduit chaque facteur.", "math": "E = (2x + 7)(2x − 1)" },
+        { "text": "On vérifie en développant les deux écritures : $(2x + 7)(2x − 1) = 4x² + 12x − 7$ et $(2x + 3)² − 16 = 4x² + 12x + 9 − 16 = 4x² + 12x − 7$. Elles sont bien égales.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Avant de factoriser, demande-toi : y a-t-il un facteur commun à tous les termes ? Sinon, est-ce une différence de deux carrés ? Et vérifie toujours en redéveloppant.",
+      "exercises": ["m3-factorisation-formes", "m3-factorisation-commun", "m3-factorisation-carres", "m3-factorisation-etapes", "m3-factorisation-mental", "m3-factorisation-verif"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m3-factorisation-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m3-factorisation-programme", "m3-factorisation-aire"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission déco : le tapis carré",
+      "body": "Un tapis carré dans une chambre carrée : combien de sol reste visible ? La différence de deux carrés va répondre plus vite que la calculatrice.",
+      "exercises": ["m3-factorisation-tapis"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Factoriser, c'est transformer une somme en produit. Facteur commun : $ka + kb = k(a + b)$. Différence de deux carrés : $a² − b² = (a + b)(a − b)$. On vérifie toujours en redéveloppant.\n\n- **$x² − 9 = (x − 3)²$ ?** Non : $(x − 3)²$ contient un terme en $x$. La bonne factorisation est $(x + 3)(x − 3)$.\n- **$(x + 3)² = x² + 9$ ?** Non : il manque $6x$. Développe $(x + 3)(x + 3)$.\n- **Oublier le 1.** Dans $(x + 2)(x − 1) + (x + 2)$, le second terme vaut $(x + 2) × 1$.\n- **Le signe moins devant une parenthèse** change le signe de tous ses termes."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des factorisations dans quelques jours. Défi pour la route : calcule $1 001 × 999$ de tête."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "La différence de deux carrés quand les deux carrés sont des parenthèses, puis une preuve : tout nombre impair est la différence de deux carrés consécutifs.",
+      "exercises": ["m3-factorisation-deux-carres", "m3-factorisation-impairs"]
+    },
+    "expert": {
+      "intro": "Un exercice complet comme au brevet, puis deux autres identités remarquables, au-delà du programme.",
+      "exercises": ["m3-factorisation-brevet", "m3-factorisation-identites"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-factorisation-formes", "type": "categorize", "skill": "m3.litteral.choisir-forme", "skills": ["m4.litteral.structure"], "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:produit-dans-somme", "mc:forme-confusion"], "expectedSeconds": 180,
+      "prompt": "Pour chaque expression, cherche la **dernière opération** à effectuer. Si c'est une multiplication, l'expression est factorisée ; si c'est une addition ou une soustraction de monômes sans parenthèses, elle est développée ; sinon, elle n'est ni l'une ni l'autre.",
+      "categories": [ { "id": "fact", "label": "Factorisée (un produit)" }, { "id": "dev", "label": "Développée" }, { "id": "ni", "label": "Ni l'une ni l'autre" } ],
+      "items": [
+        { "id": "e1", "label": "$(x + 3)(x − 3)$", "category": "fact" },
+        { "id": "e2", "label": "$x² − 9$", "category": "dev" },
+        { "id": "e3", "label": "$3x(x + 2)$", "category": "fact" },
+        { "id": "e4", "label": "$(x + 1)(x + 2) + 4$", "category": "ni" },
+        { "id": "e5", "label": "$x² + 2x − 15$", "category": "dev" },
+        { "id": "e6", "label": "$(2x − 1)²$", "category": "fact" },
+        { "id": "e7", "label": "$5(x − 1) − 3x$", "category": "ni" },
+        { "id": "e8", "label": "$4x² − 1$", "category": "dev" },
+        { "id": "e9", "label": "$(x − 4)² − 1$", "category": "ni" }
+      ],
+      "misconceptions": [
+        { "item": "e4", "category": "fact", "id": "mc:produit-dans-somme", "error": "notion", "feedback": "Elle contient un produit, mais la dernière opération à effectuer est une addition : c'est une somme." },
+        { "item": "e9", "category": "fact", "id": "mc:produit-dans-somme", "error": "notion", "feedback": "Elle contient un carré, mais la dernière opération à effectuer est une soustraction : c'est une différence." },
+        { "item": "e7", "category": "fact", "id": "mc:produit-dans-somme", "error": "notion", "feedback": "Elle contient un produit, mais la dernière opération à effectuer est une soustraction." },
+        { "item": "e2", "category": "fact", "id": "mc:forme-confusion", "error": "notion", "feedback": "On POURRA la factoriser, mais telle qu'elle est écrite, la dernière opération est une soustraction : ce n'est pas un produit." }
+      ],
+      "hints": ["Cherche la dernière opération en respectant les priorités.", "Une expression développée ne contient plus aucune parenthèse.", "$(2x − 1)²$ est le produit $(2x − 1)(2x − 1)$."],
+      "solution": "Factorisées : $(x + 3)(x − 3)$, $3x(x + 2)$, $(2x − 1)²$. Développées : $x² − 9$, $x² + 2x − 15$, $4x² − 1$. Ni l'une ni l'autre (une somme ou une différence qui contient encore des parenthèses) : $(x + 1)(x + 2) + 4$, $5(x − 1) − 3x$, $(x − 4)² − 1$.",
+      "selfTest": [
+        { "response": { "assign": { "e1": "fact", "e2": "dev", "e3": "fact", "e4": "ni", "e5": "dev", "e6": "fact", "e7": "ni", "e8": "dev", "e9": "ni" } }, "expect": "correct" },
+        { "response": { "assign": { "e1": "fact", "e2": "dev", "e3": "fact", "e4": "fact", "e5": "dev", "e6": "fact", "e7": "ni", "e8": "dev", "e9": "ni" } }, "expect": "mc:produit-dans-somme" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-commun", "type": "composite", "skill": "m3.litteral.facteur-commun", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:factor-partielle", "mc:oubli-un", "mc:signe-parenthese"], "expectedSeconds": 360,
+      "params": { "k": { "int": [2, 5] }, "a": { "int": [1, 5] }, "b": { "int": [1, 7] }, "p": { "int": [1, 6] }, "q": { "int": [-7, 7], "not": [0, -1] }, "c": { "int": [1, 6] }, "m": { "int": [-6, 6], "not": [0] } },
+      "constraints": ["pgcd(a;b) = 1", "c != m"],
+      "prompt": "Factorise chaque expression en repérant le facteur commun à tous les termes.",
+      "parts": [
+        { "type": "expression", "form": "factorisee", "prompt": "$ {k*a}x² + {k*b}x $ (mets $ {k}x $ en facteur)", "answer": "k*x*(a*x + b)",
+          "misconceptions": [ { "answer": "k*x*(a*x + b*x)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Développe ton résultat pour vérifier : retrouves-tu l'expression de départ ? Le facteur $x$ doit sortir des deux termes." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "$ (x {p|s})(x {q|s}) + (x {p|s}) $", "answer": "(x + p)*(x + q + 1)",
+          "misconceptions": [ { "answer": "(x + p)*(x + q)", "id": "mc:oubli-un", "error": "methode", "feedback": "Développe ton résultat : il manque un terme. Pense que $ (x {p|s}) = (x {p|s}) × 1 $ : que reste-t-il de ce terme quand on sort le facteur ?" } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "$ (x {p|s})(2x {c|s}) − (x {p|s})(x {m|s}) $", "answer": "(x + p)*(x + c - m)",
+          "misconceptions": [ { "answer": "(x + p)*(x + c + m)", "id": "mc:signe-parenthese", "error": "signe", "feedback": "Le signe − devant le second produit change le signe de CHAQUE terme de la parenthèse qui reste." } ] }
+      ],
+      "hints": ["Dans chaque somme, cherche ce qui est commun à TOUS les termes : un nombre, $x$, ou une parenthèse entière.", "$ (x {p|s}) $ est commun aux deux termes : écris-le devant, puis ce qui reste de chaque terme dans un crochet.", "$ A × B − A × C = A(B − C) $, et pour calculer $B − C$, on change le signe de chaque terme de $C$."],
+      "solution": "$ {k*a}x² + {k*b}x = {k}x({a|c}x + {b}) $. Ensuite $ (x {p|s})(x {q|s}) + (x {p|s}) × 1 = (x {p|s})(x {q+1|s}) $. Enfin $ (x {p|s})[(2x {c|s}) − (x {m|s})] = (x {p|s})(x {c-m|s}) $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{k}x({a}x + {b})" }, { "value": "(x {p|s})(x {q+1|s})" }, { "value": "(x {p|s})(x {c-m|s})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{k}x({a}x + {b})" }, { "value": "(x {p|s})(x {q|s})" }, { "value": "(x {p|s})(x {c-m|s})" } ] }, "expect": "mc:oubli-un" },
+        { "response": { "parts": [ { "value": "{k}x({a}x + {b})" }, { "value": "(x {p|s})(x {q+1|s})" }, { "value": "(x {p|s})(x {c+m|s})" } ] }, "expect": "mc:signe-parenthese" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-carres", "type": "composite", "skill": "m3.litteral.difference-carres", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:carre-difference", "mc:b-carre", "mc:carre-coef", "mc:signe-parenthese"], "expectedSeconds": 360,
+      "params": { "n": { "int": [2, 12] }, "p": { "int": [2, 5] }, "q": { "int": [1, 9] }, "r": { "int": [2, 9] }, "s": { "int": [-6, 6], "not": [0] } },
+      "constraints": ["pgcd(p;q) = 1", "r + s != 0", "r != s"],
+      "prompt": "Factorise chaque expression avec $ a² − b² = (a + b)(a − b) $. Commence par repérer $a$ et $b$.",
+      "parts": [
+        { "type": "expression", "form": "factorisee", "prompt": "$ x² − {n^2} $", "answer": "(x + n)*(x - n)",
+          "misconceptions": [
+            { "answer": "(x - n)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "Développe ton résultat : tu obtiens un terme en $x$ qui n'existe pas dans l'expression de départ." },
+            { "answer": "(x + n^2)*(x - n^2)", "id": "mc:b-carre", "error": "notion", "feedback": "Développe ton résultat : le terme constant n'est pas le bon. Cherche le nombre dont le carré vaut {n^2}." }
+          ] },
+        { "type": "expression", "form": "factorisee", "prompt": "$ {p^2}x² − {q^2} $", "answer": "(p*x + q)*(p*x - q)",
+          "misconceptions": [
+            { "answer": "(p^2*x + q)*(p^2*x - q)", "id": "mc:carre-coef", "error": "notion", "feedback": "Développe ton résultat : le terme en x² n'est pas {p^2}x². Quel monôme, élevé au carré, donne {p^2}x² ?" },
+            { "answer": "(p*x - q)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "Développe ton résultat : tu obtiens un terme en $x$ qui n'existe pas dans l'expression de départ." }
+          ] },
+        { "type": "expression", "form": "factorisee", "prompt": "$ {r^2} − (x {s|s})² $", "answer": "(r + x + s)*(r - x - s)",
+          "misconceptions": [ { "answer": "(r + x + s)*(r - x + s)", "id": "mc:signe-parenthese", "error": "signe", "feedback": "Ici, $b$ est TOUTE la parenthèse $ (x {s|s}) $ : dans $ a − b $, le signe − porte sur chacun de ses termes." } ] }
+      ],
+      "hints": ["Repère $a$ et $b$ tels que l'expression s'écrive $ a² − b² $.", "$ {p^2}x² $ est le carré d'un monôme : lequel ? Et {q^2}, le carré de quel nombre ?", "Quand $b$ est une somme, garde-la entre parenthèses : $ a − (x {s|s}) $."],
+      "solution": "$ x² − {n^2} = x² − {n}² = (x + {n})(x − {n}) $. $ {p^2}x² − {q^2} = ({p}x)² − {q}² = ({p}x + {q})({p}x − {q}) $. $ {r^2} − (x {s|s})² = [{r} + (x {s|s})][{r} − (x {s|s})] = ({r} + x {s|s})({r} − x {-s|s}) $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "(x + {n})(x − {n})" }, { "value": "({p}x + {q})({p}x − {q})" }, { "value": "({r} + x {s|s})({r} − x {-s|s})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "(x − {n})²" }, { "value": "({p}x + {q})({p}x − {q})" }, { "value": "({r} + x {s|s})({r} − x {-s|s})" } ] }, "expect": "mc:carre-difference" },
+        { "response": { "parts": [ { "value": "(x + {n})(x − {n})" }, { "value": "({p}x + {q})({p}x − {q})" }, { "value": "({r} + x {s|s})({r} − x {s|s})" } ] }, "expect": "mc:signe-parenthese" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-etapes", "type": "steps", "mode": "expression", "final": "factorisee", "skill": "m3.litteral.difference-carres", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "symbolique", "targets": ["forme", "mc:signe-parenthese"], "expectedSeconds": 240,
+      "params": { "a": { "int": [-7, 7], "not": [0] }, "b": { "int": [1, 9] } },
+      "constraints": ["a + b != 0", "a - b != 0"],
+      "start": "(2*x + a)^2 - b^2", "minSteps": 2,
+      "prompt": "Factorise $ E = (2x {a|s})² − {b^2} $ en écrivant au moins deux étapes : d'abord sous la forme $ (A + B)(A − B) $, puis en réduisant chaque facteur.",
+      "misconceptions": [
+        { "answer": "(2*x + a + b)*(2*x - a - b)", "id": "mc:signe-parenthese", "error": "signe", "feedback": "dans le facteur $ A − B $, on soustrait seulement $B$ : la parenthèse $ (2x {a|s}) $ reste telle quelle." },
+        { "answer": "(2*x + a - b)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "un carré n'est pas une différence de deux carrés : $ a² − b² $ se factorise en un produit de deux facteurs DIFFÉRENTS." }
+      ],
+      "hints": ["Ici, $A = 2x {a|s}$ et $B$ est le nombre dont le carré vaut {b^2}.", "Écris $ E = (2x {a|s} + {b})(2x {a|s} − {b}) $.", "Réduis chaque facteur."],
+      "solution": "$ E = (2x {a|s})² − {b}² = (2x {a|s} + {b})(2x {a|s} − {b}) = (2x {a+b|s})(2x {a-b|s}) $. Vérification : en développant, on retrouve $ 4x² {4*a|s}x {a^2-b^2|s} $ dans les deux cas.",
+      "selfTest": [
+        { "response": { "lines": ["(2x {a|s} + {b})(2x {a|s} − {b})", "(2x {a+b|s})(2x {a-b|s})"] }, "expect": "correct" },
+        { "response": { "lines": ["4x² {4*a|s}x {a^2-b^2|s}"] }, "expect": "forme" },
+        { "response": { "lines": ["(2x {a|s} + {b})(2x {-a|s} − {b})"] }, "expect": "mc:signe-parenthese" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-mental", "type": "table", "skill": "m3.litteral.choisir-forme", "skills": ["m3.litteral.difference-carres"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:signe-identite", "mc:carre-difference"], "expectedSeconds": 240,
+      "params": { "t": { "int": [3, 9] }, "u": { "int": [1, 4] } },
+      "prompt": "Calcul mental express grâce à $ (a + b)(a − b) = a² − b² $ ! Complète la colonne des résultats sans calculatrice et sans poser d'opération. Pour les deux dernières lignes, trouve toi-même l'astuce.",
+      "columns": ["Calcul", "Astuce", "Résultat"],
+      "rows": [
+        ["$ {10*t+u} × {10*t-u} $", "$ ({10*t} + {u})({10*t} − {u}) $", "?r0c2"],
+        ["$ 101 × 99 $", "$ (100 + 1)(100 − 1) $", "?r1c2"],
+        ["$ 57² − 43² $", "$ (57 + 43)(57 − 43) $", "?r2c2"],
+        ["$ 1 002 × 998 $", "à toi de trouver", "?r3c2"],
+        ["$ 76² − 24² $", "à toi de trouver", "?r4c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "100*t^2 - u^2", "misconceptions": [ { "answer": "100*t^2 + u^2", "id": "mc:signe-identite", "error": "signe", "feedback": "Vérifie le signe : développe $ (a + b)(a − b) $ pour voir si $b²$ s'ajoute ou se soustrait." } ] },
+        "r1c2": { "answer": 9999, "misconceptions": [ { "answer": 10001, "id": "mc:signe-identite", "error": "signe", "feedback": "Vérifie le signe : développe $ (a + b)(a − b) $ pour voir si $b²$ s'ajoute ou se soustrait." } ] },
+        "r2c2": { "answer": 1400, "misconceptions": [ { "answer": 196, "id": "mc:carre-difference", "error": "notion", "feedback": "Tu as calculé $(57 − 43)²$ : ce n'est pas $57² − 43²$. Utilise le produit de la colonne « Astuce »." } ] },
+        "r3c2": { "answer": 999996, "misconceptions": [ { "answer": 1000004, "id": "mc:signe-identite", "error": "signe", "feedback": "Vérifie le signe : dans $ (a + b)(a − b) $, le carré de $b$ est soustrait." } ] },
+        "r4c2": { "answer": 5200, "misconceptions": [ { "answer": 2704, "id": "mc:carre-difference", "error": "notion", "feedback": "Tu as calculé $(76 − 24)²$ : ce n'est pas $76² − 24²$. Factorise avec $ (a + b)(a − b) $." } ] }
+      },
+      "hints": ["$ (a + b)(a − b) = a² − b² $ : $ (100 + 1)(100 − 1) = 100² − 1² $.", "$ 57² − 43² = (57 + 43)(57 − 43) = 100 × 14 $.", "$ 1 002 = 1 000 + 2 $ et $ 998 = 1 000 − 2 $."],
+      "solution": "$ {10*t+u} × {10*t-u} = {10*t}² − {u}² = {100*t^2} − {u^2} = {100*t^2-u^2} $. $101 × 99 = 10 000 − 1 = 9 999$. $57² − 43² = 100 × 14 = 1 400$. $1 002 × 998 = 1 000² − 2² = 999 996$. $76² − 24² = 100 × 52 = 5 200$.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{100*t^2-u^2}", "r1c2": "9 999", "r2c2": "1 400", "r3c2": "999 996", "r4c2": "5 200" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{100*t^2-u^2}", "r1c2": "9 999", "r2c2": "196", "r3c2": "999 996", "r4c2": "5 200" } }, "expect": "mc:carre-difference" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-verif", "type": "qcm", "skill": "m3.litteral.difference-carres", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:carre-difference", "mc:b-carre"], "expectedSeconds": 45,
+      "params": { "n": { "int": [3, 11] } },
+      "prompt": "Vérification rapide : une forme factorisée de $ x² − {n^2} $ est…",
+      "choices": [
+        { "text": "$ (x − {n})² $", "correct": false, "error": "notion", "misconception": "mc:carre-difference", "feedback": "Développe $ (x − {n})² $ : tu obtiens un terme en $x$ en trop." },
+        { "text": "$ (x + {n})(x − {n}) $", "correct": true, "feedback": "Exact : c'est $ a² − b² = (a + b)(a − b) $ avec $ a = x $ et $ b = {n} $." },
+        { "text": "$ (x + {n^2})(x − {n^2}) $", "correct": false, "error": "notion", "misconception": "mc:b-carre", "feedback": "Développe : le terme constant n'est pas le bon. Le nombre $b$ est celui dont le carré vaut {n^2}." },
+        { "text": "$ x(x − {n^2}) $", "correct": false, "error": "notion", "misconception": "mc:factor-x", "feedback": "Développe : tu obtiens un terme en $x$, alors que l'expression de départ n'en a pas." }
+      ],
+      "hints": ["Repère $a$ et $b$ tels que l'expression s'écrive $ a² − b² $.", "Développe chaque proposition pour vérifier."],
+      "solution": "$ x² − {n^2} = x² − {n}² = (x + {n})(x − {n}) $. Vérification : $ (x + {n})(x − {n}) = x² − {n}x + {n}x − {n^2} = x² − {n^2} $.",
+      "selfTest": [ { "response": { "selected": [1] }, "expect": "correct" }, { "response": { "selected": [0] }, "expect": "mc:carre-difference" } ]
+    },
+    {
+      "id": "m3-factorisation-expliquer", "type": "open", "skill": "m3.litteral.difference-carres", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:somme-carres", "mc:carre-coef"], "expectedSeconds": 420, "minWords": 30,
+      "prompt": "Hugo a factorisé deux expressions :\n- $x² + 25 = (x + 5)(x − 5)$ ;\n- $4x² − 9 = (4x + 3)(4x − 3)$.\nEn développant ses résultats, montre-lui que ses deux factorisations sont fausses, explique d'où viennent ses erreurs et corrige celle qui peut l'être.",
+      "criteria": [
+        { "id": "c1", "label": "Je développe $(x + 5)(x − 5)$ et je trouve $x² − 25$, pas $x² + 25$", "keywords": [["x² − 25", "x^2 - 25", "x² - 25", "x²−25", "x2 - 25", "moins 25"]] },
+        { "id": "c2", "label": "J'explique que $x² + 25$ est une somme de carrés : la formule $a² − b²$ ne s'applique pas", "keywords": [["somme", "pas une difference", "signe +", "addition"]] },
+        { "id": "c3", "label": "Je corrige : $4x² = (2x)²$, donc $4x² − 9 = (2x + 3)(2x − 3)$", "keywords": [["2x + 3", "2x+3", "(2x)²", "2x − 3", "2x-3", "2x - 3"]] }
+      ],
+      "models": [
+        "En développant, (x + 5)(x − 5) = x² − 5x + 5x − 25 = x² − 25, et non x² + 25. La formule a² − b² = (a + b)(a − b) ne marche que pour une différence ; x² + 25 est une somme de deux carrés, on ne peut pas la factoriser ainsi. Ensuite (4x + 3)(4x − 3) = 16x² − 9, pas 4x² − 9 : le carré de 4x est 16x². Comme 4x² = (2x)², la bonne factorisation est 4x² − 9 = (2x + 3)(2x − 3).",
+        "Je vérifie en développant : (x + 5)(x − 5) donne x² − 25, il y a un signe moins. x² + 25 est une somme, pas une différence de carrés. Pour la deuxième, Hugo a pris a = 4x mais (4x)² = 16x². Il fallait a = 2x : 4x² − 9 = (2x + 3)(2x − 3), et en développant on retrouve bien 4x² − 9."
+      ],
+      "hints": ["Développe $(x + 5)(x − 5)$ : quel est le signe du terme constant ?", "Développe $(4x + 3)(4x − 3)$ : quel est le terme en $x²$ ?", "Quel monôme, élevé au carré, donne $4x²$ ?"],
+      "solution": "$(x + 5)(x − 5) = x² − 25$ : la formule $a² − b² = (a + b)(a − b)$ concerne une DIFFÉRENCE, et $x² + 25$ est une somme de deux carrés (on ne peut pas la factoriser ainsi). $(4x + 3)(4x − 3) = 16x² − 9$ : Hugo a pris $a = 4x$, alors que $4x² = (2x)²$. Correction : $4x² − 9 = (2x + 3)(2x − 3)$.",
+      "selfTest": [ { "response": { "text": "(x + 5)(x − 5) = x² − 25 donc c'est faux, x² + 25 est une somme et pas une différence. (4x + 3)(4x − 3) = 16x² − 9. Il faut 4x² = (2x)², donc 4x² − 9 = (2x + 3)(2x − 3).", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m3-factorisation-programme", "type": "composite", "skill": "m3.litteral.choisir-forme", "skills": ["m3.litteral.difference-carres", "m4.equations.resoudre"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:carre-somme", "mc:oubli-constante"], "expectedSeconds": 480,
+      "params": { "k": { "int": [2, 7] }, "h": { "int": [2, 9] }, "m": { "int": [2, 15] } },
+      "prompt": "Voici un programme de calcul :\n- choisir un nombre ;\n- lui ajouter {k} ;\n- élever le résultat au carré ;\n- soustraire le carré du nombre de départ.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel résultat obtient-on en choisissant {h} ?", "answer": "(h + k)^2 - h^2",
+          "misconceptions": [ { "answer": "k^2", "id": "mc:carre-somme", "error": "notion", "feedback": "Tu as utilisé $ (a + b)² = a² + b² $, qui est faux : refais le calcul étape par étape." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "On choisit un nombre $x$. Le résultat s'écrit $ (x + {k})² − x² $. Factorise cette expression (pense à $ a² − b² $).", "answer": "(x + k + x)*(x + k - x)",
+          "misconceptions": [ { "answer": "k^2", "id": "mc:carre-somme", "error": "notion", "feedback": "$ (x + {k})² $ n'est pas égal à $ x² + {k^2} $ : factorise directement avec $ a² − b² $, sans développer." } ] },
+        { "type": "numeric", "prompt": "Quel nombre faut-il choisir pour obtenir {k*(2*m+k)} ?", "answer": "m",
+          "misconceptions": [ { "answer": "(k*(2*m + k))/(2*k)", "id": "mc:oubli-constante", "error": "methode", "feedback": "Tu as divisé trop tôt : il faut d'abord retirer le terme constant, puis diviser par le coefficient de $x$." } ] }
+      ],
+      "hints": ["Avec {h} : calcule $ ({h} + {k})² − {h}² $.", "$ a² − b² = (a + b)(a − b) $ avec $ a = x + {k} $ et $ b = x $.", "Pour la dernière question, résous l'équation « forme factorisée = {k*(2*m+k)} » : c'est une équation du premier degré."],
+      "solution": "Avec {h} : $ ({h} + {k})² − {h}² = {(h+k)^2} − {h^2} = {(h+k)^2-h^2} $. Pour tout $x$ : $ (x + {k})² − x² = (x + {k} + x)(x + {k} − x) = {k}(2x + {k}) $. Puis $ {k}(2x + {k}) = {k*(2*m+k)} $ donne $ 2x + {k} = {2*m+k} $, donc $ x = {m} $. Vérification : $ ({m} + {k})² − {m}² = {(m+k)^2} − {m^2} = {k*(2*m+k)} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{(h+k)^2-h^2}" }, { "value": "{k}(2x + {k})" }, { "value": "{m}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{k^2}" }, { "value": "{k}(2x + {k})" }, { "value": "{m}" } ] }, "expect": "mc:carre-somme" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-aire", "type": "composite", "skill": "m3.litteral.difference-carres", "skills": ["m3.litteral.choisir-forme"], "track": "classe", "role": "reinvestissement", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:aire-carre-reste", "mc:carre-difference"], "expectedSeconds": 360,
+      "params": { "b": { "int": [2, 5] }, "h": { "int": [7, 12] } },
+      "prompt": "Dans un carré de côté $x$ (en cm), on découpe un petit carré de côté {b} cm dans un coin. On s'intéresse à l'aire de la partie restante, en couleur.",
+      "figure": {
+        "alt": "Grand carré de côté x dont on a retiré un petit carré dans un coin ; la partie restante en forme de L est colorée.",
+        "w": 260, "h": 250,
+        "frame": { "x": [-0.8, 7], "y": [-0.9, 6.8] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "hidden": true },
+          { "type": "point", "id": "P", "x": 6, "y": 0, "hidden": true },
+          { "type": "point", "id": "Q", "x": 6, "y": 4, "hidden": true },
+          { "type": "point", "id": "R", "x": 4, "y": 4, "hidden": true },
+          { "type": "point", "id": "S", "x": 4, "y": 6, "hidden": true },
+          { "type": "point", "id": "T", "x": 0, "y": 6, "hidden": true },
+          { "type": "point", "id": "U", "x": 6, "y": 6, "hidden": true },
+          { "type": "polygon", "points": ["O", "P", "Q", "R", "S", "T"], "fill": "orange" },
+          { "type": "polygon", "points": ["R", "Q", "U", "S"], "dashed": true },
+          { "type": "text", "x": 3, "y": -0.55, "text": "x", "anchor": "middle" },
+          { "type": "text", "x": 5, "y": 6.35, "text": "{b} cm", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "prompt": "Exprime l'aire de la partie colorée en fonction de $x$.", "answer": "x^2 - b^2",
+          "misconceptions": [ { "answer": "(x - b)^2", "id": "mc:aire-carre-reste", "error": "notion", "feedback": "Tu as calculé l'aire d'un carré de côté $ x − {b} $ : ce n'est pas la forme de la partie colorée. Pars de l'aire du grand carré." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise cette expression.", "answer": "(x + b)*(x - b)",
+          "misconceptions": [ { "answer": "(x - b)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "Développe ton résultat : il apparaît un terme en $x$ qui n'existe pas dans l'aire." } ] },
+        { "type": "expression", "prompt": "En découpant et recollant la partie colorée, on obtient un rectangle de largeur $ x − {b} $. Quelle est sa longueur ?", "answer": "x + b",
+          "misconceptions": [ { "answer": "x - b", "id": "mc:aire-carre-reste", "error": "notion", "feedback": "Avec cette longueur, le rectangle serait un carré de côté $ x − {b} $ : son aire serait trop petite." } ] },
+        { "type": "numeric", "prompt": "Calcule l'aire colorée pour $ x = {h} $ cm, avec la forme de ton choix.", "answer": "h^2 - b^2",
+          "misconceptions": [ { "answer": "(h - b)^2", "id": "mc:aire-carre-reste", "error": "notion", "feedback": "C'est l'aire d'un carré de côté $ {h} − {b} $, pas celle de la partie colorée." } ] }
+      ],
+      "hints": ["Aire colorée = aire du grand carré − aire du petit carré.", "C'est une différence de deux carrés : $ a² − b² = (a + b)(a − b) $.", "Le rectangle a la même aire : largeur × longueur = forme factorisée."],
+      "solution": "Aire colorée : $ x² − {b^2} = x² − {b}² = (x + {b})(x − {b}) $. Le rectangle obtenu mesure $ x − {b} $ sur $ x + {b} $. Pour $ x = {h} $ : $ ({h} + {b})({h} − {b}) = {h+b} × {h-b} = {h^2-b^2} $ cm².",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "x² − {b^2}" }, { "value": "(x + {b})(x − {b})" }, { "value": "x + {b}" }, { "value": "{h^2-b^2}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "(x − {b})²" }, { "value": "(x + {b})(x − {b})" }, { "value": "x + {b}" }, { "value": "{h^2-b^2}" } ] }, "expect": "mc:aire-carre-reste" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-tapis", "type": "composite", "skill": "m3.litteral.choisir-forme", "skills": ["m3.litteral.difference-carres"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:aire-carre-reste", "mc:carre-difference", "mc:oubli-racine"], "expectedSeconds": 540,
+      "params": { "R": { "choice": [6, 8, 10] }, "s": { "int": [2, 5] }, "V": { "expr": "R^2 - s^2" } },
+      "constraints": ["s < R"],
+      "prompt": "Mission déco ! Une chambre carrée mesure {R} m de côté. On pose au milieu un tapis carré de $x$ mètres de côté. On veut connaître l'aire $A(x)$ du sol qui reste visible.",
+      "figure": {
+        "alt": "Chambre carrée vue de dessus, avec un tapis carré plus petit posé au centre.",
+        "w": 260, "h": 250,
+        "frame": { "x": [-0.8, 6.8], "y": [-0.9, 6.6] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 6, "h": 6, "fill": "gris" },
+          { "type": "rect", "x": 1.6, "y": 1.6, "w": 2.8, "h": 2.8, "fill": "violet" },
+          { "type": "text", "x": 3, "y": -0.55, "text": "{R} m", "anchor": "middle" },
+          { "type": "text", "x": 3, "y": 3, "text": "tapis : x", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "prompt": "Exprime l'aire visible $A(x)$ en fonction de $x$.", "answer": "R^2 - x^2",
+          "misconceptions": [ { "answer": "(R - x)^2", "id": "mc:aire-carre-reste", "error": "notion", "feedback": "Tu as calculé l'aire d'un carré de côté $ {R} − x $ : le sol visible n'a pas cette forme. Pars de l'aire de la chambre." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $A(x)$.", "answer": "(R - x)*(R + x)",
+          "misconceptions": [ { "answer": "(R - x)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "Développe ton résultat : il apparaît un terme en $x$ qui n'existe pas dans $A(x)$." } ] },
+        { "type": "numeric", "prompt": "Avec la forme factorisée, calcule l'aire visible pour un tapis de {R/2} m de côté (en m²).", "answer": "(R - R/2)*(R + R/2)",
+          "misconceptions": [ { "answer": "R^2/4", "id": "mc:aire-tapis", "error": "lecture", "feedback": "C'est l'aire du tapis lui-même, pas celle du sol qui reste visible." } ] },
+        { "type": "numeric", "prompt": "Le magasin propose un tapis tel qu'il reste exactement {V} m² visibles. Quelle est la longueur du côté de ce tapis, en m ?", "answer": "s",
+          "misconceptions": [
+            { "answer": "s^2", "id": "mc:oubli-racine", "error": "methode", "feedback": "Tu as trouvé l'aire du tapis : il reste à trouver la longueur de son côté." },
+            { "answer": "-s", "id": "mc:longueur-negative", "error": "raisonnement", "feedback": "Une longueur est toujours positive." }
+          ] }
+      ],
+      "hints": ["Aire visible = aire de la chambre − aire du tapis.", "$ {R^2} − x² = {R}² − x² $ : c'est une différence de deux carrés.", "Pour la dernière question : $ {R^2} − x² = {V} $, donc $x²$ vaut… ?"],
+      "solution": "$ A(x) = {R^2} − x² = ({R} − x)({R} + x) $. Pour $ x = {R/2} $ : $ A = ({R} − {R/2})({R} + {R/2}) = {R/2} × {3*R/2} = {3*R^2/4} $ m². Enfin $ {R^2} − x² = {V} $ donne $ x² = {s^2} $ ; comme $x$ est une longueur, $ x = {s} $ m.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{R}² − x²" }, { "value": "({R} − x)({R} + x)" }, { "value": "{3*R^2/4}" }, { "value": "{s}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "({R} − x)²" }, { "value": "({R} − x)({R} + x)" }, { "value": "{3*R^2/4}" }, { "value": "{s}" } ] }, "expect": "mc:aire-carre-reste" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-remed-carres", "type": "composite", "skill": "m3.litteral.difference-carres", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:carre-difference", "mc:racine-moitie"], "expectedSeconds": 150,
+      "params": { "n": { "int": [2, 12] }, "m": { "int": [3, 12] } },
+      "constraints": ["m != n"],
+      "prompt": "Rappel ciblé : $ (a + b)(a − b) = a² − b² $, et dans l'autre sens $ a² − b² = (a + b)(a − b) $. Pour factoriser, il faut d'abord trouver $a$ et $b$, les nombres qu'on élève au carré.",
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Développe et réduis $ (x + {n})(x − {n}) $.", "answer": "x^2 - n^2",
+          "misconceptions": [ { "answer": "x^2 + n^2", "id": "mc:signe-identite", "error": "signe", "feedback": "Vérifie le signe du terme constant : $ {n} × (−{n}) $ est négatif." } ] },
+        { "type": "numeric", "prompt": "Quel nombre positif, élevé au carré, donne {m^2} ?", "answer": "m",
+          "misconceptions": [ { "answer": "m^2/2", "id": "mc:racine-moitie", "error": "notion", "feedback": "Ce n'est pas la moitié : cherche le nombre qui, multiplié par lui-même, donne {m^2}." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ x² − {m^2} $.", "answer": "(x + m)*(x - m)",
+          "misconceptions": [ { "answer": "(x - m)^2", "id": "mc:carre-difference", "error": "notion", "feedback": "Développe ton résultat : tu obtiens un terme en $x$ en trop." } ] }
+      ],
+      "hints": ["Les produits croisés $ −{n}x $ et $ {n}x $ s'annulent.", "Écris $ x² − {m^2} = x² − ?² $."],
+      "solution": "$ (x + {n})(x − {n}) = x² − {n^2} $. Comme $ {m^2} = {m}² $, on a $ x² − {m^2} = (x + {m})(x − {m}) $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "x² − {n^2}" }, { "value": "{m}" }, { "value": "(x + {m})(x − {m})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "x² − {n^2}" }, { "value": "{m}" }, { "value": "(x − {m})²" } ] }, "expect": "mc:carre-difference" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-remed-signe", "type": "composite", "skill": "m3.litteral.facteur-commun", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:signe-parenthese"], "expectedSeconds": 150,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [1, 9] } },
+      "prompt": "Rappel ciblé : un signe − devant une parenthèse change le signe de **chaque** terme de la parenthèse : $ −(x − 5) = −x + 5 $.",
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Supprime les parenthèses : $ −(x − {a}) $", "answer": "-x + a",
+          "misconceptions": [ { "answer": "-x - a", "id": "mc:signe-parenthese", "error": "signe", "feedback": "Le signe − s'applique aussi au second terme de la parenthèse." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Réduis : $ (2x + {b}) − (x − {a}) $", "answer": "x + b + a",
+          "misconceptions": [ { "answer": "x + b - a", "id": "mc:signe-parenthese", "error": "signe", "feedback": "Le signe − devant $ (x − {a}) $ change aussi le signe de $ −{a} $." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise : $ (x + 1)(2x + {b}) − (x + 1)(x − {a}) $", "answer": "(x + 1)*(x + b + a)",
+          "misconceptions": [ { "answer": "(x + 1)*(x + b - a)", "id": "mc:signe-parenthese", "error": "signe", "feedback": "Dans le crochet, le signe − devant $ (x − {a}) $ change le signe de chacun de ses termes." } ] }
+      ],
+      "hints": ["$ −(x − {a}) = −x + ? $", "Utilise la question précédente pour le crochet du facteur commun."],
+      "solution": "$ −(x − {a}) = −x + {a} $. $ (2x + {b}) − (x − {a}) = 2x + {b} − x + {a} = x + {a+b} $. Donc $ (x + 1)(2x + {b}) − (x + 1)(x − {a}) = (x + 1)[(2x + {b}) − (x − {a})] = (x + 1)(x + {a+b}) $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "−x + {a}" }, { "value": "x + {a+b}" }, { "value": "(x + 1)(x + {a+b})" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "−x − {a}" }, { "value": "x + {a+b}" }, { "value": "(x + 1)(x + {a+b})" } ] }, "expect": "mc:signe-parenthese" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-deux-carres", "type": "steps", "mode": "expression", "final": "factorisee", "skill": "m3.litteral.difference-carres", "skills": ["m3.litteral.facteur-commun"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:signe-parenthese"], "expectedSeconds": 360,
+      "params": { "a": { "int": [2, 4] }, "b": { "int": [-5, 5], "not": [0] }, "c": { "int": [-5, 5], "not": [0] } },
+      "constraints": ["b + c != 0", "b - c != 0"],
+      "start": "(a*x + b)^2 - (x + c)^2", "minSteps": 2,
+      "prompt": "Factorise $ F = ({a}x {b|s})² − (x {c|s})² $. Les deux carrés sont ceux de parenthèses : garde chacune entière dans $ (A + B)(A − B) $, puis réduis chaque facteur.",
+      "misconceptions": [
+        { "answer": "(a*x + b + x + c)*(a*x + b - x + c)", "id": "mc:signe-parenthese", "error": "signe", "feedback": "dans $ A − B $, toute la parenthèse $ B = (x {c|s}) $ est soustraite : change le signe de ses DEUX termes." }
+      ],
+      "hints": ["$ A = {a}x {b|s} $ et $ B = x {c|s} $.", "$ F = [({a}x {b|s}) + (x {c|s})][({a}x {b|s}) − (x {c|s})] $.", "Dans le second crochet, $ −(x {c|s}) = −x {-c|s} $."],
+      "solution": "$ F = [({a}x {b|s}) + (x {c|s})][({a}x {b|s}) − (x {c|s})] = ({a+1}x {b+c|s})({a-1|c}x {b-c|s}) $. On vérifie en redéveloppant les deux écritures.",
+      "selfTest": [
+        { "response": { "lines": ["(({a}x {b|s}) + (x {c|s}))(({a}x {b|s}) − (x {c|s}))", "({a+1}x {b+c|s})({a-1}x {b-c|s})"] }, "expect": "correct" },
+        { "response": { "lines": ["({a+1}x {b+c|s})({a-1}x {b+c|s})"] }, "expect": "mc:signe-parenthese" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-impairs", "type": "composite", "skill": "m3.litteral.choisir-forme", "skills": ["mx.arith.preuve-entiers", "m3.litteral.difference-carres"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:carre-somme"], "expectedSeconds": 600,
+      "prompt": "Observe : $1² − 0² = 1$, $2² − 1² = 3$, $3² − 2² = 5$, $4² − 3² = 7$… La différence des carrés de deux entiers consécutifs semble toujours être un nombre impair. Peut-on obtenir ainsi TOUS les nombres impairs ?",
+      "parts": [
+        { "type": "numeric", "prompt": "Trouve l'entier $n$ tel que $ (n + 1)² − n² = 15 $.", "answer": 7,
+          "misconceptions": [ { "answer": 8, "id": "mc:mauvais-entier", "error": "calcul", "feedback": "Vérifie : calcule $ 9² − 8² $." } ] },
+        { "type": "expression", "form": "developpee-reduite", "prompt": "Factorise $ (n + 1)² − n² $ avec $ a² − b² $, puis réduis : quelle expression obtiens-tu ?", "answer": "2*n + 1",
+          "misconceptions": [ { "answer": "1", "id": "mc:carre-somme", "error": "notion", "feedback": "Tu as utilisé $ (n + 1)² = n² + 1 $, ce qui est faux. Factorise plutôt : $ [(n + 1) + n][(n + 1) − n] $." } ] },
+        { "type": "numeric", "prompt": "Quel entier $n$ donne $ (n + 1)² − n² = 2 027 $ ?", "answer": 1013,
+          "misconceptions": [ { "answer": 1013.5, "id": "mc:oubli-un", "error": "methode", "feedback": "Tu as divisé 2 027 par 2 sans retirer le 1 : résous $ 2n + 1 = 2 027 $." } ] },
+        { "type": "open", "prompt": "Explique pourquoi tout nombre impair est la différence des carrés de deux entiers consécutifs.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "J'écris un nombre impair sous la forme $2n + 1$", "keywords": [["2n + 1", "2n+1"]] },
+            { "id": "c2", "label": "Je montre que $(n + 1)² − n² = 2n + 1$", "keywords": [["(n + 1)²", "(n+1)²", "(n+1)^2", "a² − b²", "a²-b²", "factoris"]] },
+            { "id": "c3", "label": "Je conclus pour tous les nombres impairs", "keywords": [["tout", "tous", "n'importe", "chaque"]] }
+          ] }
+      ],
+      "hints": ["$ (n + 1)² − n² = [(n + 1) + n][(n + 1) − n] $.", "Le second facteur vaut 1.", "Un nombre impair s'écrit $2n + 1$, avec $n$ entier."],
+      "solution": "$ (n + 1)² − n² = [(n + 1) + n][(n + 1) − n] = (2n + 1) × 1 = 2n + 1 $. Pour 15 : $2n + 1 = 15$, donc $n = 7$ ($8² − 7² = 15$). Pour 2 027 : $n = 1 013$. Tout nombre impair s'écrit $2n + 1$ avec $n$ entier positif ou nul, donc il est égal à $(n + 1)² − n²$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "7" }, { "value": "2n + 1" }, { "value": "1013" }, { "text": "Un nombre impair s'écrit 2n + 1. Or (n + 1)² − n² = (n + 1 + n)(n + 1 − n) = 2n + 1. Donc tout nombre impair est la différence de deux carrés consécutifs.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "7" }, { "value": "1" }, { "value": "1013" }, { "text": "Un nombre impair s'écrit 2n + 1, et (n + 1)² − n² = 2n + 1 pour tout n.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:carre-somme" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-brevet", "type": "composite", "skill": "m3.litteral.choisir-forme", "skills": ["m3.litteral.difference-carres", "m4.litteral.double-distributivite"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:carre-somme", "mc:b-carre", "mc:carre-coef"], "expectedSeconds": 900,
+      "prompt": "Type brevet — On considère l'expression $ E = (3x + 1)² − 25 $.",
+      "parts": [
+        { "type": "expression", "form": "developpee-reduite", "prompt": "1. Développer et réduire $E$.", "answer": "9x^2 + 6x - 24",
+          "misconceptions": [
+            { "answer": "9x^2 - 24", "id": "mc:carre-somme", "error": "notion", "feedback": "$ (3x + 1)² $ n'est pas $ 9x² + 1 $ : écris $ (3x + 1)(3x + 1) $ et développe les quatre produits." },
+            { "answer": "3x^2 + 6x - 24", "id": "mc:carre-coef", "error": "calcul", "feedback": "$ (3x)² = 3x × 3x $ : vérifie le coefficient de $x²$." }
+          ] },
+        { "type": "expression", "form": "factorisee", "prompt": "2. Factoriser $E$.", "answer": "(3x + 6)*(3x - 4)",
+          "misconceptions": [ { "answer": "(3x + 1 + 25)*(3x + 1 - 25)", "id": "mc:b-carre", "error": "notion", "feedback": "25 est le carré $b²$, pas $b$ : quel nombre, élevé au carré, donne 25 ?" } ] },
+        { "type": "numeric", "prompt": "3. Calculer $E$ pour $ x = 0 $.", "answer": -24 },
+        { "type": "numeric", "prompt": "4. Calculer $E$ pour $ x = 2/3 $, en choisissant la forme la plus adaptée.", "answer": -16 },
+        { "type": "open", "prompt": "5. Prouver que, pour tout nombre entier $x$, $E$ est un multiple de 3.", "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "Je fais apparaître le facteur 3 : $ E = 3(x + 2)(3x − 4) $ ou $ E = 3(3x² + 2x − 8) $", "keywords": [["3(x + 2)", "3(x+2)", "3(3x", "3 ×", "facteur 3", "3x + 6 = 3"]] },
+            { "id": "c2", "label": "J'explique que l'autre facteur est un entier quand $x$ est entier", "keywords": [["entier"]] }
+          ] }
+      ],
+      "hints": ["$ (3x + 1)² = (3x + 1)(3x + 1) $.", "$ E = (3x + 1)² − 5² $ : utilise $ a² − b² = (a + b)(a − b) $.", "Pour $ x = 2/3 $, la forme factorisée donne $ (2 + 6)(2 − 4) $."],
+      "solution": "1. $ E = 9x² + 6x + 1 − 25 = 9x² + 6x − 24 $. 2. $ E = (3x + 1)² − 5² = (3x + 1 + 5)(3x + 1 − 5) = (3x + 6)(3x − 4) $. 3. Pour $ x = 0 $, la forme développée donne $ E = −24 $. 4. Pour $ x = 2/3 $, la forme factorisée donne $ E = (2 + 6)(2 − 4) = −16 $. 5. $ 3x + 6 = 3(x + 2) $, donc $ E = 3(x + 2)(3x − 4) $ : si $x$ est entier, $ (x + 2)(3x − 4) $ est un entier, et $E$ est un multiple de 3.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "9x² + 6x − 24" }, { "value": "(3x + 6)(3x − 4)" }, { "value": "−24" }, { "value": "−16" }, { "text": "3x + 6 = 3(x + 2) donc E = 3(x + 2)(3x − 4). Si x est entier, (x + 2)(3x − 4) est entier donc E est un multiple de 3.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "9x² − 24" }, { "value": "(3x + 6)(3x − 4)" }, { "value": "−24" }, { "value": "−16" }, { "text": "E = 3(x + 2)(3x − 4) et (x + 2)(3x − 4) est entier.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:carre-somme" }
+      ]
+    },
+    {
+      "id": "m3-factorisation-identites", "type": "composite", "skill": "mx.identites", "skills": ["m3.litteral.difference-carres"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:difference-au-lieu-somme", "mc:signe-identite", "mc:b-carre"], "expectedSeconds": 600,
+      "prompt": "**Au-delà du programme de 3e.** Deux autres identités remarquables servent aussi à factoriser : $ a² + 2ab + b² = (a + b)² $ et $ a² − 2ab + b² = (a − b)² $. Vérifie chaque résultat en le redéveloppant.",
+      "parts": [
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ x² + 10x + 25 $.", "answer": "(x + 5)^2",
+          "misconceptions": [ { "answer": "(x + 5)*(x - 5)", "id": "mc:difference-au-lieu-somme", "error": "notion", "feedback": "Développe ton résultat : il manque le terme en $x$." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Factorise $ 9x² − 12x + 4 $.", "answer": "(3x - 2)^2",
+          "misconceptions": [ { "answer": "(3x + 2)^2", "id": "mc:signe-identite", "error": "signe", "feedback": "Le terme en $x$ est négatif : vérifie le signe dans ta parenthèse en développant." } ] },
+        { "type": "expression", "form": "factorisee", "prompt": "Astuce de champion : $ x² + 6x + 5 = (x + 3)² − 4 $. Factorise alors $ x² + 6x + 5 $.", "answer": "(x + 1)*(x + 5)",
+          "misconceptions": [ { "answer": "(x + 3 + 4)*(x + 3 - 4)", "id": "mc:b-carre", "error": "notion", "feedback": "4 est le carré $b²$, pas $b$ : quel nombre, élevé au carré, donne 4 ?" } ] },
+        { "type": "numeric", "prompt": "Pour quelle valeur de $x$ la plus proche de 0 l'expression $ x² + 6x + 5 $ vaut-elle 0 ?", "answer": -1,
+          "misconceptions": [ { "answer": 1, "id": "mc:signe-solution", "error": "signe", "feedback": "Remplace $x$ par ta valeur dans la forme factorisée : obtiens-tu 0 ?" } ] }
+      ],
+      "hints": ["$ 25 = 5² $ et $ 10x = 2 × x × 5 $.", "$ 9x² = (3x)² $, $ 4 = 2² $ et $ 12x = 2 × 3x × 2 $.", "$ (x + 3)² − 4 = (x + 3)² − 2² $ : c'est une différence de deux carrés."],
+      "solution": "$ x² + 10x + 25 = (x + 5)² $. $ 9x² − 12x + 4 = (3x − 2)² $. $ x² + 6x + 5 = (x + 3)² − 2² = (x + 3 + 2)(x + 3 − 2) = (x + 5)(x + 1) $. Ce produit est nul pour $ x = −5 $ ou $ x = −1 $ : la valeur la plus proche de 0 est −1.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "(x + 5)²" }, { "value": "(3x − 2)²" }, { "value": "(x + 1)(x + 5)" }, { "value": "−1" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "(x + 5)²" }, { "value": "(3x + 2)²" }, { "value": "(x + 1)(x + 5)" }, { "value": "−1" } ] }, "expect": "mc:signe-identite" }
+      ]
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import { mountDemo } from '../../demos/player.js';
 import { photon } from '../photon.js';
 import { autoCards, cardDeck } from './cards.js';
 import { exerciseRunner } from './runner.js';
+import { recordGameEvent } from '../../app/store.js';
 
 export const STEP_META = {
   decouverte: { icon: '🔍', label: 'Découverte', mood: 'curieux', say: 'Une énigme pour commencer ! Lis-la et fais ta propre hypothèse avant d’avancer.' },
@@ -93,7 +94,7 @@ export function renderStep(step, ctx) {
     if (items.length) {
       let shown = 1;
       const all = h('button', { type: 'button', class: 'btn btn--quiet btn--small', onclick: () => { items.forEach((li) => { li.hidden = false; }); shown = items.length; all.hidden = true; ctx.onReadyChange(); } }, 'Tout afficher');
-      body.append(h('ol', { class: 'example-reveal' }, items), items.length > 1 ? all : null);
+      body.append(h('ol', { class: 'example-reveal' }, items), items.length > 1 ? all : ''); // append() natif : pas de null
       api.advance = () => {
         if (shown >= items.length) return false;
         items[shown].hidden = false;
@@ -110,6 +111,8 @@ export function renderStep(step, ctx) {
     if (s.demo) {
       const slot = h('div', { class: 'step-demo' });
       body.append(slot);
+      // regardée jusqu'au bout : des points, une seule fois par expérience (section de la leçon)
+      slot.addEventListener('prisme:experience-finie', () => { recordGameEvent('experience', `${ctx.lessonId}:${step.idx}`).catch(() => {}); });
       cleanups.push(mountDemo(slot, s.demo));
     }
   } else if (step.kind === 'correction') {

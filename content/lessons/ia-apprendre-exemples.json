@@ -117,19 +117,19 @@
           "answer": "poire",
           "id": "mc:k-plus-proche-seul",
           "error": "notion",
-          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. Ce n'est ni le plus proche seul (k = 1), ni les 5 (k = 5) qui décident : la majorité des 3 est « pomme »."
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids. Ce n'est ni le plus proche seul (k = 1), ni les 5 (k = 5) qui décident : compte les voix parmi les 3 premiers."
         },
         {
           "answer": "une poire",
           "id": "mc:k-plus-proche-seul",
           "error": "notion",
-          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. La majorité des 3 est « pomme »."
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : compte les voix parmi les 3 premiers."
         },
         {
           "answer": "poires",
           "id": "mc:k-plus-proche-seul",
           "error": "notion",
-          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : poire, pomme, pomme. La majorité des 3 est « pomme »."
+          "feedback": "Avec k = 3, seuls les 3 plus proches votent, avec le même poids : compte les voix parmi les 3 premiers."
         }
       ],
       "hints": [
@@ -454,7 +454,7 @@
               "answer": 15,
               "id": "mc:taux-erreur",
               "error": "lecture",
-              "feedback": "15 % est le taux d'erreur. Le taux de réussite compte les bonnes réponses : 76 + 9 = 85 sur 100."
+              "feedback": "15 % est le taux d'erreur. Le taux de réussite compte les bonnes réponses, celles du jour et celles du crépuscule."
             }
           ]
         },
@@ -565,7 +565,7 @@
           "answer": 17,
           "id": "mc:diagonale",
           "error": "lecture",
-          "feedback": "8 + 9 = 17, ce sont les bonnes réponses (la diagonale). Les erreurs : 2 chats pris pour des chiens et 1 chien pris pour un chat."
+          "feedback": "8 + 9 = 17, ce sont les bonnes réponses (la diagonale). Les erreurs sont dans les deux autres cases."
         },
         {
           "answer": 2,
@@ -599,13 +599,13 @@
           "answer": "chien",
           "id": "mc:k-plus-proche-seul",
           "error": "notion",
-          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent : 3 chats contre 2 chiens."
+          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent avec le même poids : compte les voix de chaque étiquette."
         },
         {
           "answer": "un chien",
           "id": "mc:k-plus-proche-seul",
           "error": "notion",
-          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent : 3 chats contre 2 chiens."
+          "feedback": "Le plus proche est un chien, mais avec k = 5, les 5 voisins votent avec le même poids : compte les voix de chaque étiquette."
         }
       ],
       "hints": ["Compte les « chat » et les « chien » parmi les 5.", "Chat : 3 voix ; chien : 2 voix."],
@@ -628,7 +628,7 @@
           "type": "text",
           "prompt": "Avec k = 1, quelle étiquette ?",
           "accept": ["chat", "un chat"],
-          "misconceptions": [{"answer": "chien", "id": "mc:vote-mal-compte", "error": "lecture", "feedback": "Avec k = 1, seul le plus proche décide : c'est un chat."}]
+          "misconceptions": [{"answer": "chien", "id": "mc:vote-mal-compte", "error": "lecture", "feedback": "Avec k = 1, seul le plus proche décide : regarde uniquement le premier de la liste."}]
         },
         {
           "type": "text",
@@ -639,7 +639,7 @@
               "answer": "chat",
               "id": "mc:k-plus-proche-seul",
               "error": "notion",
-              "feedback": "Le plus proche est un chat, mais avec k = 3, les 3 plus proches votent : chat, chien, chien. Le chien l'emporte."
+              "feedback": "Le plus proche est un chat, mais avec k = 3, les 3 plus proches votent avec le même poids : compte leurs voix."
             }
           ]
         },
@@ -652,7 +652,7 @@
               "answer": "chien",
               "id": "mc:vote-mal-compte",
               "error": "calcul",
-              "feedback": "Parmi les 5 plus proches : chat, chien, chien, chat, chat, soit 3 chats contre 2 chiens."
+              "feedback": "Recompte les voix parmi les 5 plus proches seulement (de 1 à 5 dans la liste)."
             }
           ]
         },

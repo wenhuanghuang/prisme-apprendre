@@ -4,8 +4,11 @@
  * Les parcours facultatifs Approfondissement / Expert se jouent de la même façon, à part.
  */
 import { h, richText, announce } from '../dom.js';
-import { store, loadLesson, markLessonSection } from '../../app/store.js';
+import { store, loadLesson, markLessonSection, gameProgress, recordGameEvent } from '../../app/store.js';
 import { TRACK_LABELS, TRACK_ICONS } from '../exercise.js';
+import { lessonEarnsXp } from '../../engine/game.js';
+import { lessonAfter } from '../../engine/path.js';
+import { courseOfLesson, pathOf, levelOfProfile } from '../parcours/data.js';
 import { buildSteps, renderStep, guide } from '../lesson-play/steps.js';
 import { exerciseRunner } from '../lesson-play/runner.js';
 import { confetti } from '../lesson-play/celebrate.js';
@@ -25,15 +28,35 @@ function setUrl(lessonId, params) {
   history.replaceState(null, '', `#/lecon/${lessonId}${q ? `?${q}` : ''}`);
 }
 
+/** Points gagnés pendant la leçon (depuis son ouverture) et avancée vers le niveau suivant. */
+function xpSummary(lessonId, openedAt) {
+  const el = h('div', { class: 'fin-xp' });
+  const paint = () => {
+    const g = gameProgress();
+    if (!g) return;
+    const won = g.items.filter((x) => x.lessonId === lessonId && x.ts >= openedAt).reduce((a, x) => a + x.xp, 0);
+    el.replaceChildren(
+      won > 0 ? h('p', { class: 'fin-xp-won' }, `+${won} points`, h('small', {}, ' gagnés pendant cette leçon'))
+        : h('p', { class: 'small' }, 'Fais les exercices de la leçon pour gagner des points et avancer vers le niveau suivant.'),
+      h('div', { class: 'prog-bar prog-bar--small', 'aria-hidden': 'true' }, h('i', { style: { width: `${Math.round(g.progress * 100)}%` } })),
+      h('p', { class: 'small' }, `Niveau ${g.level} · ${g.title} — encore ${g.xpToNext} points pour devenir ${g.nextTitle}. `, h('a', { href: '#/progression' }, 'Ma progression')));
+  };
+  return { el, paint };
+}
+
 export async function render(root, { args, params }) {
   const lessonId = args[0];
   const meta = store.index.byLesson.get(lessonId);
-  if (!meta) { root.append(h('p', {}, 'Leçon introuvable.'), h('a', { class: 'btn', href: '#/carte' }, 'Retour à la carte')); return; }
+  if (!meta) { root.append(h('p', {}, 'Leçon introuvable.'), h('a', { class: 'btn', href: '#/parcours' }, 'Mes parcours')); return; }
   const lesson = await loadLesson(lessonId);
+  const openedAt = store.now(); // points gagnés « pendant cette leçon » : depuis son ouverture
   const res = await resources();
   const track = ['approfondissement', 'expert'].includes(params.get('parcours')) ? params.get('parcours') : 'classe';
   const byId = Object.fromEntries(lesson.exercises.map((e) => [e.id, e]));
   const subj = lesson.subject;
+  // retour au parcours de la classe de la leçon (un parent peut consulter une autre classe que celle du profil)
+  const lessonLevel = String(lesson.level || '').toLowerCase();
+  const pathHref = `#/parcours/${subj}${lessonLevel && lessonLevel !== levelOfProfile() ? `?niveau=${encodeURIComponent(lessonLevel)}` : ''}`;
   root.classList.add(`subj-${subj}`, 'play-root');
   const play = loadPlay(lessonId);
   const results = play.results;
@@ -48,7 +71,7 @@ export async function render(root, { args, params }) {
   const onResult = () => { paintStars(); savePlay(lessonId, play); starsEl.classList.remove('is-pop'); void starsEl.offsetWidth; starsEl.classList.add('is-pop'); };
 
   const top = h('div', { class: `play-top subj-${subj}` },
-    h('a', { class: 'play-back', href: `#/carte/${subj}`, 'aria-label': 'Retour à la carte' }, '←'),
+    h('a', { class: 'play-back', href: pathHref, 'aria-label': 'Retour au parcours' }, '←'),
     h('div', { class: 'play-titles' }, h('p', { class: 'eyebrow' }, `${lesson.level} · ${track === 'classe' ? `${meta.counts.classe} exercices` : TRACK_LABELS[track]}`), h('h1', {}, lesson.title)),
     starsEl);
   root.append(top);
@@ -144,12 +167,14 @@ export async function render(root, { args, params }) {
     announce(`Étape ${i + 1} sur ${steps.length} : ${st.title}`);
   }
 
-  /** Référence au programme officiel (et note « programme défini par cycle »), pour les parents. */
+  /** Référence au programme officiel (et note « programme défini par cycle », relecture demandée), pour les parents. */
   function programmeNote() {
     const programmes = ((store.programmes && store.programmes.programmes) || []).filter((p) => (lesson.programmes || []).includes(p.id));
     const editorial = lesson.skills.some((sid) => (store.index.skills.get(sid) || {}).editorialLevel);
-    if (!programmes.length && !editorial) return null;
-    return h('details', { class: 'note-cycle' }, h('summary', {}, 'Référence au programme officiel'),
+    if (!programmes.length && !editorial && !lesson.needsReview) return null;
+    return h('details', { class: 'note-cycle', open: Boolean(lesson.needsReview) }, h('summary', {}, lesson.needsReview ? 'Note pour les adultes et référence au programme' : 'Référence au programme officiel'),
+      // sujet sensible (puberté, génocides…) : relecture par un enseignant demandée avant un usage en classe
+      lesson.needsReview ? h('p', { class: 'note-review' }, '⚠️ ', String(lesson.needsReview)) : null,
       ...programmes.map((p) => h('p', {}, h('strong', {}, p.title), ` — ${p.officialText || ''} `,
         ...(p.links || []).filter((l) => l.url).slice(0, 2).map((l) => h('a', { href: l.url, target: '_blank', rel: 'noopener noreferrer', style: { marginRight: '8px' } }, l.label || 'Lien officiel')))),
       editorial ? h('p', {}, 'Ce programme est défini pour l’ensemble du cycle : la classe indiquée ici est une progression proposée par Prisme, pas un ordre national obligatoire.') : null);
@@ -173,11 +198,26 @@ export async function render(root, { args, params }) {
         h('p', { class: 'eyebrow' }, `${TRACK_ICONS[t]} ${TRACK_LABELS[t]}`), richText(info.intro || ''), h('span', { class: 'btn btn--small' }, `Relever le défi (${info.exercises.length} exercices)`));
     }).filter(Boolean);
     const ratio = max ? total / max : 1;
+    const xp = xpSummary(lessonId, openedAt);
+    // comme dans les applications de langues : on enchaîne sur la leçon suivante du parcours
+    const nextSlot = h('span', { class: 'fin-next' }, h('a', { class: 'btn btn--primary', href: pathHref }, 'Retour au parcours'));
+    const fillNext = async () => {
+      const course = courseOfLesson(lessonId);
+      const data = course ? await pathOf(course.id) : null;
+      const next = data ? lessonAfter(data.path, lessonId) : null;
+      if (!next) return;
+      // l'unité vient d'être terminée : son bilan (la couronne) avant la suite
+      const step = next.kind === 'bilan'
+        ? h('a', { class: 'btn btn--primary', href: `#/parcours/${subj}/bilan/${next.unitId}?niveau=${course.level}` }, `👑 ${next.title} →`)
+        : h('a', { class: 'btn btn--primary', href: `#/lecon/${next.id}` }, `Leçon suivante : ${next.title} →`);
+      nextSlot.replaceChildren(h('a', { class: 'btn btn--ghost', href: `#/parcours/${subj}?niveau=${course.level}` }, 'Parcours'), step);
+    };
     const el = h('section', { class: 'step step--fin' },
       h('div', { class: 'fin-hero' },
         guide('bravo', ratio >= 0.7 ? 'Bravo ! Leçon terminée avec brio.' : ratio >= 0.4 ? 'Leçon terminée ! Tu as bien travaillé.' : 'Leçon terminée. Reviens sur les exercices manqués : c’est comme ça qu’on progresse.'),
         h('p', { class: 'fin-stars' }, `${total} ★`, h('small', {}, max ? ` sur ${max}` : '')),
         h('h2', { class: 'step-title' }, lesson.title)),
+      xp.el,
       h('p', { class: 'fin-revision' }, '🔁 ', revision),
       tracks.length ? h('div', {}, h('h3', {}, 'Pour aller plus loin (facultatif)'), h('div', { class: 'grid grid--2' }, tracks)) : null,
       links.length ? h('div', { class: 'fin-links' }, h('h3', {}, 'Revoir la notion ailleurs'), h('div', { class: 'resource-links' }, links.map((l) => h('a', { class: 'resource-link', href: l.url, target: '_blank', rel: 'noopener noreferrer' },
@@ -186,10 +226,13 @@ export async function render(root, { args, params }) {
       h('div', { class: 'fin-actions' },
         h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => go(0, 'back') }, '↺ Revoir la leçon depuis le début'),
         h('a', { class: 'btn btn--ghost', href: `#/exercices?lecon=${lessonId}` }, '✏️ M’entraîner encore'),
-        h('a', { class: 'btn btn--primary', href: `#/carte/${subj}` }, 'Retour à la carte')));
+        nextSlot));
     setTimeout(() => confetti(el), 250);
     // « terminée » seulement si chaque exercice de la leçon a été fait (ou passé), pas en sautant à la fin
-    if (!play.done && allIds.every((id) => results[id])) { play.done = true; savePlay(lessonId, play); }
+    if (!play.done && allIds.length > 0 && allIds.every((id) => results[id])) { play.done = true; savePlay(lessonId, play); }
+    // des points de fin une seule fois par leçon, si l'essentiel des exercices a vraiment été tenté (pas passé ni abandonné)
+    const recorded = lessonEarnsXp(results, allIds) ? recordGameEvent('lecon', lessonId) : Promise.resolve();
+    recorded.then(xp.paint, xp.paint).then(fillNext).catch(() => { /* la leçon suivante est un plus : on garde « Retour au parcours » */ });
     return { el, destroy() {}, ready: () => true };
   }
 

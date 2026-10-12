@@ -359,7 +359,18 @@
               "g1",
               "g2",
               "iode"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Quelle couleur prennent les deux godets avec l'eau iodée ?",
+              "choices": [
+                "Orange-brun tous les deux",
+                "Bleu-noir seulement pour le tube 2",
+                "Bleu-noir tous les deux"
+              ],
+              "answer": 2,
+              "explain": "Les deux godets virent au bleu-noir : au départ, les deux tubes contiennent de l'amidon."
+            }
           },
           {
             "title": "Que va-t-il se passer ?",
@@ -423,7 +434,18 @@
             "focus": [
               "g3",
               "g4"
-            ]
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Après 20 minutes, quel godet est resté bleu-noir ?",
+              "choices": [
+                "Celui du tube 1, le témoin sans salive",
+                "Celui du tube 2, avec salive",
+                "Aucun des deux"
+              ],
+              "answer": 0,
+              "explain": "Le godet du tube 1 est toujours bleu-noir : sans salive, l'amidon est resté. Celui du tube 2 reste orange-brun : son amidon a disparu."
+            }
           },
           {
             "title": "Que va-t-il se passer ?",
@@ -508,7 +530,15 @@
             "focus": [
               "t1",
               "t2"
-            ]
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le thermomètre : à quelle température est le bain-marie pendant le test à la liqueur de Fehling ?",
+              "answer": 90,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre, à droite du bain-marie, indique 90 °C. Le test à la liqueur de Fehling se fait à chaud."
+            }
           },
           {
             "title": "Interprétation",
@@ -516,7 +546,18 @@
             "focus": [
               "t2",
               "rel"
-            ]
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Qu'est-ce qui prouve que c'est la salive, et pas la chaleur ni le temps, qui a transformé l'amidon ?",
+              "choices": [
+                "Le tube 2 est devenu rouge brique avec la liqueur de Fehling",
+                "Le tube 1, resté 20 minutes à 37 °C mais sans salive, contient toujours de l'amidon",
+                "L'eau iodée est orange-brun au départ"
+              ],
+              "answer": 1,
+              "explain": "Les deux tubes ont eu la même chaleur et le même temps ; seule la salive les distingue. Comme le témoin n'a pas changé, c'est bien la salive qui a agi."
+            }
           }
         ],
         "conclusion": "- Tube 1 (**témoin**, sans salive) : l'amidon est toujours là, aucun sucre n'apparaît.\n- Tube 2 (avec salive) : l'amidon a disparu et des sucres sont apparus.\n\n> La salive contient une **enzyme**, l'**amylase**, qui transforme l'amidon en sucres à 37 °C. La digestion est une transformation **chimique**."
@@ -1222,7 +1263,7 @@
               "answer": 2,
               "id": "mc:temoin-experience",
               "error": "notion",
-              "feedback": "Le tube 2 contient la salive, le facteur testé. Le témoin est le tube 1 : mêmes conditions, mais sans salive."
+              "feedback": "Le tube 2 contient la salive, le facteur testé : ce n'est donc pas lui le témoin. Le témoin est le tube placé dans les mêmes conditions, mais sans le facteur testé."
             }
           ]
         },
@@ -1303,13 +1344,13 @@
               "answer": "bile",
               "id": "mc:salive-bile",
               "error": "notion",
-              "feedback": "La bile est fabriquée par le foie et aide à digérer les graisses. Dans la salive, c'est une enzyme, l'amylase, qui digère l'amidon."
+              "feedback": "La bile est fabriquée par le foie et aide à digérer les graisses ; elle n'agit pas sur l'amidon. Cherche dans le cours la substance de la salive qui digère l'amidon."
             },
             {
               "answer": "eau",
               "id": "mc:salive-eau",
               "error": "notion",
-              "feedback": "La salive est surtout de l'eau, mais l'eau seule (tube 1) ne transforme pas l'amidon : c'est une enzyme de la salive, l'amylase, qui agit."
+              "feedback": "La salive est surtout de l'eau, mais l'eau seule (tube 1) ne transforme pas l'amidon : c'est une substance dissoute dans la salive qui agit. Cherche son nom dans le cours."
             }
           ]
         }
@@ -1534,7 +1575,7 @@
               "answer": "non",
               "id": "mc:conclusion-comparaison",
               "error": "raisonnement",
-              "feedback": "21 % est compris entre 20 % et 25 % : la recommandation est respectée."
+              "feedback": "Compare ton pourcentage aux deux limites de la recommandation (20 % et 25 %) : est-il en dessous, entre les deux, ou au-dessus ?"
             }
           ]
         }
@@ -1742,13 +1783,13 @@
           "answer": 5,
           "id": "mc:aliment-direct-sang",
           "error": "notion",
-          "feedback": "Tout ne passe pas dans le sang : l'amidon et les protéines sont trop grosses et doivent être découpées, les fibres ne sont pas digérées. Seuls le glucose et les acides aminés traversent la paroi."
+          "feedback": "Tout ne passe pas dans le sang : l'amidon et les protéines sont trop grosses et doivent d'abord être découpées, et les fibres ne sont pas digérées. Barre ces substances de ta liste, puis compte celles qui restent."
         }
       ],
       "hints": [
-        "Le glucose est le produit de la digestion de l'amidon ; les acides aminés, de celle des protéines."
+        "Repère les grosses molécules, qui doivent d'abord être digérées, et la substance qui n'est pas digérée : elles ne peuvent pas passer directement."
       ],
-      "solution": "Deux : le glucose et les acides aminés. L'amidon et les protéines doivent d'abord être digérés ; les fibres ne sont pas digérées.",
+      "solution": "Deux (2) : le glucose et les acides aminés. L'amidon et les protéines doivent d'abord être digérés ; les fibres ne sont pas digérées.",
       "selfTest": [
         {
           "response": {
@@ -1781,7 +1822,7 @@
         "mc:lecture-reste"
       ],
       "expectedSeconds": 540,
-      "prompt": "On répète l'expérience de l'amylase en variant la température. Chaque tube contient le même empois d'amidon (100 % d'amidon au départ) et la même quantité de salive. Au bout de 20 minutes, on mesure le pourcentage d'amidon restant :\n- 0 °C : 96 %\n- 20 °C : 60 %\n- 37 °C : 5 %\n- 60 °C : 70 %\n- 100 °C : 100 %",
+      "prompt": "On répète l'expérience de l'amylase en variant la température. Chaque tube contient le même empois d'amidon (100 % d'amidon au départ) et la même quantité de salive. Au bout de 20 minutes, on mesure le pourcentage d'amidon restant (valeurs fictives, choisies pour l'exemple) :\n- 0 °C : 96 %\n- 20 °C : 60 %\n- 37 °C : 5 %\n- 60 °C : 70 %\n- 100 °C : 100 %",
       "parts": [
         {
           "type": "numeric",
@@ -1944,7 +1985,7 @@
         "mc:valeur-finale"
       ],
       "expectedSeconds": 540,
-      "prompt": "Après un repas riche en glucides, on mesure la glycémie (taux de glucose dans le sang, en g/L) d'un adolescent :\n- à jeun (0 min) : 0,90 ; 30 min : 1,25 ; 60 min : 1,35 ; 90 min : 1,10 ; 120 min : 0,95 ; 180 min : 0,90",
+      "prompt": "Après un repas riche en glucides, on mesure la glycémie (taux de glucose dans le sang, en g/L) d'un adolescent (valeurs fictives, choisies pour l'exemple) :\n- à jeun (0 min) : 0,90 ; 30 min : 1,25 ; 60 min : 1,35 ; 90 min : 1,10 ; 120 min : 0,95 ; 180 min : 0,90",
       "parts": [
         {
           "type": "numeric",
@@ -1982,7 +2023,7 @@
               "answer": 120,
               "id": "mc:retour-incomplet",
               "error": "lecture",
-              "feedback": "À 120 minutes, la glycémie vaut 0,95 g/L : elle reste un peu plus haute qu'à jeun (0,90). Elle revient à 0,90 g/L à 180 minutes."
+              "feedback": "À 120 minutes, la glycémie vaut 0,95 g/L : elle reste un peu plus haute qu'à jeun (0,90). Cherche la première mesure qui est revenue exactement à la valeur de départ."
             }
           ]
         },

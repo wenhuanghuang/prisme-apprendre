@@ -1,0 +1,4001 @@
+{
+  "id": "m6-symetrie",
+  "chapter": "6e-m-symetrie",
+  "title": "La symétrie axiale",
+  "subject": "maths",
+  "level": "6e",
+  "skills": [
+    "m6.geo.symetrie-definition",
+    "m6.geo.symetrie-construire"
+  ],
+  "status": "programme",
+  "programmes": [
+    "maths-c3-2025"
+  ],
+  "duration": 55,
+  "summary": "Plier, c'est faire une symétrie ! On définit le symétrique d'un point grâce à la médiatrice, on le construit sur quadrillage, à l'équerre et au compas, on utilise ce que la symétrie conserve, et on cherche les axes de symétrie des figures usuelles.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La tache de peinture",
+      "body": "Fais une grosse tache de peinture sur une feuille, d'un seul côté. Plie la feuille en deux, appuie bien, puis déplie-la : une deuxième tache est apparue de l'autre côté du pli !\n\nEst-elle plus loin du pli que la première, plus près, ou à la même distance ? Est-elle à l'endroit ou retournée ? Et si la tache touchait le pli, que se passerait-il ?",
+      "figure": {
+        "alt": "Une tache de peinture à gauche d’un pli vertical, sur une feuille",
+        "w": 380,
+        "h": 230,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            6
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0.2,
+            "y": 0.2,
+            "w": 9.6,
+            "h": 5.6,
+            "color": "gris"
+          },
+          {
+            "type": "line",
+            "through": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                6
+              ]
+            ],
+            "label": "pli",
+            "dashed": true,
+            "color": "gris"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                1.6,
+                3.1
+              ],
+              [
+                2.2,
+                4.4
+              ],
+              [
+                3.3,
+                4.7
+              ],
+              [
+                4,
+                3.9
+              ],
+              [
+                3.6,
+                2.6
+              ],
+              [
+                2.5,
+                2
+              ]
+            ],
+            "fill": "violet"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🦋",
+          "title": "Le symétrique d'un point",
+          "body": "Le **symétrique** du point M par rapport à la droite (d) est le point M' tel que (d) soit la **médiatrice** du segment [MM'] : (d) coupe [MM'] en son milieu, perpendiculairement. Si on plie la feuille le long de (d), M vient se poser sur M'.",
+          "reveal": {
+            "question": "Devine : quel est le symétrique d’un point situé SUR la droite (d) ?",
+            "answer": "Le point lui-même : quand on plie le long de (d), il ne bouge pas."
+          },
+          "figure": {
+            "alt": "Une droite (d), un point M et son symétrique M’ : (d) coupe [MM’] en son milieu, à angle droit",
+            "w": 360,
+            "h": 220,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    4,
+                    5
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 1.5,
+                "y": 2.6,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "M'",
+                "x": 6.5,
+                "y": 2.6,
+                "pos": "e"
+              },
+              {
+                "type": "point",
+                "id": "I",
+                "x": 4,
+                "y": 2.6,
+                "pos": "n",
+                "hidden": true
+              },
+              {
+                "type": "segment",
+                "from": "M",
+                "to": "I",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "I",
+                "to": "M'",
+                "marks": 1
+              },
+              {
+                "type": "angle",
+                "vertex": "I",
+                "from": "M'",
+                "to": [
+                  4,
+                  4
+                ],
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🔲",
+          "title": "Sur un quadrillage",
+          "body": "On compte les carreaux **perpendiculairement** à l'axe : un point et son symétrique sont à la même distance de l'axe, de part et d'autre. Avec un axe horizontal ou vertical, on suit les lignes du quadrillage ; avec un axe en diagonale, on suit les diagonales des carreaux.",
+          "example": "Axe vertical : A est à 4 carreaux à gauche de l'axe, donc A' est à 4 carreaux à droite, sur la même ligne.",
+          "figure": {
+            "alt": "Quadrillage avec un axe vertical, un triangle ABC à gauche et son symétrique A’B’C’ à droite",
+            "w": 380,
+            "h": 240,
+            "frame": {
+              "x": [
+                0,
+                10
+              ],
+              "y": [
+                0,
+                5.5
+              ],
+              "grid": true
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    5,
+                    0
+                  ],
+                  [
+                    5,
+                    5.5
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 3,
+                "y": 1,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 4,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "A'",
+                "x": 9,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "B'",
+                "x": 7,
+                "y": 1,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "C'",
+                "x": 8,
+                "y": 4,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A'",
+                  "B'",
+                  "C'"
+                ],
+                "fill": "orange"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "A'",
+                "dashed": true,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Sur papier blanc, à l'équerre",
+          "body": "Avec l'équerre, trace la **perpendiculaire** à (d) qui passe par M : elle coupe (d) en H. Avec le compas pointé sur H, reporte la longueur HM de l'autre côté de (d) : tu obtiens M', avec HM' = HM. On code l'angle droit et les deux longueurs égales.",
+          "figure": {
+            "alt": "Une droite oblique (d), un point M, la perpendiculaire à (d) passant par M qui coupe (d) en H, et le point M’ de l’autre côté",
+            "w": 330,
+            "h": 280,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.3,
+                6.3
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 2,
+                "y": 5,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "H",
+                "x": 4,
+                "y": 3,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "M'",
+                "x": 6,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "segment",
+                "from": "M",
+                "to": "H",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "H",
+                "to": "M'",
+                "marks": 1
+              },
+              {
+                "type": "angle",
+                "vertex": "H",
+                "from": "M",
+                "to": [
+                  5,
+                  4
+                ],
+                "right": true
+              },
+              {
+                "type": "arc",
+                "center": "H",
+                "r": 2.8284,
+                "start": -57,
+                "end": -33,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "Au compas seulement",
+          "body": "Choisis deux points A et B sur (d). Trace l'arc de centre A qui passe par M, puis l'arc de centre B qui passe par M : ils se recoupent en M'. Pourquoi ? Car AM = AM' et BM = BM' : A et B sont sur la médiatrice de [MM'], qui est donc (d).",
+          "figure": {
+            "alt": "Une droite (d) avec deux points A et B, un point M, et deux arcs de cercle de centres A et B qui se recoupent en M’",
+            "w": 330,
+            "h": 280,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.3,
+                6.3
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 2,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 6,
+                "y": 5,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 2,
+                "y": 5,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "M'",
+                "x": 6,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": -12,
+                "end": 12,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": 78,
+                "end": 102,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 168,
+                "end": 192,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 258,
+                "end": 282,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📏",
+          "title": "Ce que conserve la symétrie",
+          "body": "La symétrie axiale **conserve** les longueurs, les angles, les aires et l'alignement. Le symétrique d'un segment est un segment de même longueur ; celui d'une droite est une droite ; celui d'un cercle, un cercle de même rayon. La figure image est superposable à la figure de départ, mais **retournée**, comme dans un miroir.",
+          "reveal": {
+            "question": "Devine : quel est le symétrique d’un cercle de centre O et de rayon 2 cm ?",
+            "answer": "Un cercle de rayon 2 cm, dont le centre est O', le symétrique de O."
+          },
+          "figure": {
+            "alt": "Un triangle et son symétrique par rapport à un axe vertical, avec deux côtés correspondants de même longueur",
+            "w": 380,
+            "h": 220,
+            "frame": {
+              "x": [
+                0,
+                10
+              ],
+              "y": [
+                0,
+                5
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    5,
+                    0
+                  ],
+                  [
+                    5,
+                    5
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 4,
+                "y": 1.5,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 4,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "3 cm"
+              },
+              {
+                "type": "point",
+                "id": "A'",
+                "x": 9,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "B'",
+                "x": 6,
+                "y": 1.5,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "C'",
+                "x": 8,
+                "y": 4,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A'",
+                  "B'",
+                  "C'"
+                ],
+                "fill": "orange"
+              },
+              {
+                "type": "segment",
+                "from": "A'",
+                "to": "B'",
+                "label": "3 cm"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⭐",
+          "title": "L'axe de symétrie d'une figure",
+          "body": "Une droite est un **axe de symétrie** d'une figure si, en pliant le long de cette droite, les deux moitiés de la figure se superposent exactement. Un rectangle qui n'est pas un carré a **2 axes** : les droites qui passent par les milieux de ses côtés opposés. Attention : ses diagonales ne sont PAS des axes !",
+          "figure": {
+            "alt": "Un rectangle et ses deux axes de symétrie en pointillés",
+            "w": 320,
+            "h": 200,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5
+              ]
+            },
+            "items": [
+              {
+                "type": "rect",
+                "x": 1,
+                "y": 1,
+                "w": 6,
+                "h": 3,
+                "fill": "vert"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  4,
+                  0.3
+                ],
+                "to": [
+                  4,
+                  4.7
+                ],
+                "dashed": true,
+                "color": "rouge"
+              },
+              {
+                "type": "segment",
+                "from": [
+                  0.3,
+                  2.5
+                ],
+                "to": [
+                  7.7,
+                  2.5
+                ],
+                "dashed": true,
+                "color": "rouge"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : le symétrique d'un triangle sur papier blanc",
+      "steps": [
+        {
+          "text": "On veut construire A'B'C', le symétrique du triangle ABC par rapport à la droite (d).",
+          "figure": {
+            "alt": "Un triangle ABC au-dessus d’une droite oblique (d)",
+            "w": 360,
+            "h": 300,
+            "frame": {
+              "x": [
+                0,
+                8.2
+              ],
+              "y": [
+                -0.8,
+                6.6
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 4,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 3,
+                "y": 6,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 3,
+                "pos": "w"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Pour A : à l'équerre, on trace la perpendiculaire à (d) qui passe par A ; elle coupe (d) en H. Au compas, on reporte la longueur HA de l'autre côté de (d) : c'est A'.",
+          "math": "HA' = HA",
+          "figure": {
+            "alt": "La perpendiculaire à (d) passant par A coupe (d) en H ; A’ est de l’autre côté, à la même distance",
+            "w": 360,
+            "h": 300,
+            "frame": {
+              "x": [
+                0,
+                8.2
+              ],
+              "y": [
+                -0.8,
+                6.6
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 4,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 3,
+                "y": 6,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 3,
+                "pos": "w"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "H",
+                "x": 3,
+                "y": 2,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "A'",
+                "x": 5,
+                "y": 0,
+                "pos": "se"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "H",
+                "marks": 1,
+                "dashed": true
+              },
+              {
+                "type": "segment",
+                "from": "H",
+                "to": "A'",
+                "marks": 1,
+                "dashed": true
+              },
+              {
+                "type": "angle",
+                "vertex": "H",
+                "from": "A",
+                "to": [
+                  4,
+                  3
+                ],
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "text": "On fait de même pour B et pour C.",
+          "figure": {
+            "alt": "Les points A’, B’ et C’ construits de la même façon",
+            "w": 360,
+            "h": 300,
+            "frame": {
+              "x": [
+                0,
+                8.2
+              ],
+              "y": [
+                -0.8,
+                6.6
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 4,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 3,
+                "y": 6,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 3,
+                "pos": "w"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "A'",
+                "x": 5,
+                "y": 0,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "B'",
+                "x": 7,
+                "y": 2,
+                "pos": "e"
+              },
+              {
+                "type": "point",
+                "id": "C'",
+                "x": 4,
+                "y": 1,
+                "pos": "s"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "A'",
+                "dashed": true,
+                "color": "gris"
+              },
+              {
+                "type": "segment",
+                "from": "B",
+                "to": "B'",
+                "dashed": true,
+                "color": "gris"
+              },
+              {
+                "type": "segment",
+                "from": "C",
+                "to": "C'",
+                "dashed": true,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On relie A', B' et C'. Vérification : A'B' = AB, B'C' = BC et A'C' = AC. Le triangle image est retourné : de A à B puis à C, on tourne dans un sens ; de A' à B' puis à C', dans l'autre.",
+          "math": "A'B' = AB",
+          "figure": {
+            "alt": "Le triangle ABC et son symétrique A’B’C’ par rapport à (d)",
+            "w": 360,
+            "h": 300,
+            "frame": {
+              "x": [
+                0,
+                8.2
+              ],
+              "y": [
+                -0.8,
+                6.6
+              ]
+            },
+            "items": [
+              {
+                "type": "line",
+                "through": [
+                  [
+                    1,
+                    0
+                  ],
+                  [
+                    7,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 4,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 3,
+                "y": 6,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 3,
+                "pos": "w"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "A'",
+                "x": 5,
+                "y": 0,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "B'",
+                "x": 7,
+                "y": 2,
+                "pos": "e"
+              },
+              {
+                "type": "point",
+                "id": "C'",
+                "x": 4,
+                "y": 1,
+                "pos": "s"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A'",
+                  "B'",
+                  "C'"
+                ],
+                "fill": "orange"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Plie en pensée : perpendiculaire à l’axe, même distance, de l’autre côté !",
+      "exercises": [
+        "m6-symetrie-quadrillage",
+        "m6-symetrie-drapeau",
+        "m6-symetrie-proprietes",
+        "m6-symetrie-axes-figures",
+        "m6-symetrie-programme",
+        "m6-symetrie-verification"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'expliquer",
+      "exercises": [
+        "m6-symetrie-redaction"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : le masque de carnaval",
+      "exercises": [
+        "m6-symetrie-masque"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le logo du club",
+      "body": "Le club de théâtre veut un logo symétrique. À toi de le terminer et de le décrire.",
+      "exercises": [
+        "m6-symetrie-logo"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> M' est le **symétrique** de M par rapport à (d) quand (d) est la **médiatrice** de [MM'] : [MM'] est perpendiculaire à (d) et (d) passe par son milieu. Un point de (d) est son propre symétrique. La symétrie axiale **conserve** les longueurs, les angles, les aires et l'alignement ; la figure image est retournée, comme dans un miroir.\n\n- **Un symétrique « décalé ».** On se déplace perpendiculairement à l'axe, jamais en biais.\n- **Ne pas reporter la même distance.** M et M' sont à la même distance de (d).\n- **Compter à l'horizontale avec un axe en diagonale.** On suit les diagonales des carreaux.\n- **Prendre les diagonales d'un rectangle pour des axes de symétrie.**"
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des constructions de symétriques dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un axe en diagonale, et un axe effacé à retrouver.",
+      "exercises": [
+        "m6-symetrie-axe-diagonal",
+        "m6-symetrie-retrouver-axe"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : deux symétries à la suite, et le plus court chemin pour aller puiser de l’eau à la rivière.",
+      "exercises": [
+        "m6-symetrie-deux-axes",
+        "m6-symetrie-riviere"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-symetrie-quadrillage",
+      "type": "graph",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "notion"
+      ],
+      "expectedSeconds": 150,
+      "params": {
+        "a": {
+          "int": [
+            1,
+            9
+          ]
+        },
+        "b": {
+          "int": [
+            5,
+            8
+          ]
+        },
+        "c": {
+          "int": [
+            1,
+            9
+          ]
+        },
+        "e": {
+          "int": [
+            5,
+            8
+          ]
+        },
+        "f": {
+          "int": [
+            1,
+            9
+          ]
+        }
+      },
+      "constraints": [
+        "a != c",
+        "f != a",
+        "f != c"
+      ],
+      "prompt": "La droite (d) est horizontale : elle passe par les points (0 ; 4) et (10 ; 4). Place A’, B’ et C’, les symétriques de A({a} ; {b}), B({c} ; {e}) et C({f} ; 4) par rapport à (d).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec une droite horizontale (d) et trois points A, B et C",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                0,
+                4
+              ],
+              [
+                10,
+                4
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": "{b}",
+            "pos": "ne"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{c}",
+            "y": "{e}",
+            "pos": "ne"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{f}",
+            "y": 4,
+            "pos": "ne"
+          }
+        ]
+      },
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        8
+      ],
+      "gridStep": 1,
+      "expectedPoints": [
+        [
+          "a",
+          "8 - b"
+        ],
+        [
+          "c",
+          "8 - e"
+        ],
+        [
+          "f",
+          4
+        ]
+      ],
+      "hints": [
+        "Un point et son symétrique sont sur la même verticale, perpendiculaire à (d).",
+        "A est à {b-4} carreau(x) au-dessus de (d) : A’ est à {b-4} carreau(x) au-dessous.",
+        "C est sur l’axe : que devient-il quand on plie ?"
+      ],
+      "solution": "A'({a} ; {8-b}) et B'({c} ; {8-e}) : chaque point et son image sont sur une même verticale, à la même distance de (d), de part et d'autre. C est sur (d) : C' = C({f} ; 4).",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                "{a}",
+                "{8-b}"
+              ],
+              [
+                "{c}",
+                "{8-e}"
+              ],
+              [
+                "{f}",
+                4
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{a+1}",
+                "{8-b}"
+              ],
+              [
+                "{c+1}",
+                "{8-e}"
+              ],
+              [
+                "{f}",
+                4
+              ]
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{a}",
+                "{b}"
+              ],
+              [
+                "{c}",
+                "{e}"
+              ]
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-drapeau",
+      "type": "graph",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "notion"
+      ],
+      "expectedSeconds": 180,
+      "params": {
+        "t": {
+          "int": [
+            0,
+            2
+          ]
+        }
+      },
+      "prompt": "Le fanion de l’équipe est formé du quadrilatère ABCD et de son symétrique par rapport à la droite verticale (d), qui passe par (5 ; 0). Place A’, B’, C’ et D’.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec une droite verticale (d) et un quadrilatère ABCD à sa gauche",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                8
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1,
+            "y": "{1+t}",
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 4,
+            "y": "{2+t}",
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 3,
+            "y": "{5+t}",
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "D",
+            "x": 1,
+            "y": "{4+t}",
+            "pos": "nw"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ],
+            "fill": "bleu"
+          }
+        ]
+      },
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        8
+      ],
+      "gridStep": 1,
+      "expectedPoints": [
+        [
+          9,
+          "1 + t"
+        ],
+        [
+          6,
+          "2 + t"
+        ],
+        [
+          7,
+          "5 + t"
+        ],
+        [
+          9,
+          "4 + t"
+        ]
+      ],
+      "hints": [
+        "Chaque point garde sa hauteur : on se déplace à l’horizontale, perpendiculairement à (d).",
+        "A est à 4 carreaux à gauche de (d) : A’ est à 4 carreaux à droite.",
+        "Attention à ne pas recopier la figure telle quelle : elle doit être retournée, comme dans un miroir."
+      ],
+      "solution": "A'(9 ; {1+t}), B'(6 ; {2+t}), C'(7 ; {5+t}) et D'(9 ; {4+t}). Le point le plus proche de (d), B, a l'image la plus proche de (d) : la figure est retournée.",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                9,
+                "{1+t}"
+              ],
+              [
+                6,
+                "{2+t}"
+              ],
+              [
+                7,
+                "{5+t}"
+              ],
+              [
+                9,
+                "{4+t}"
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                6,
+                "{1+t}"
+              ],
+              [
+                9,
+                "{2+t}"
+              ],
+              [
+                8,
+                "{5+t}"
+              ],
+              [
+                6,
+                "{4+t}"
+              ]
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-proprietes",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:double-image",
+        "mc:angle-retourne",
+        "mc:moitie"
+      ],
+      "expectedSeconds": 180,
+      "params": {
+        "L": {
+          "dec": [
+            2.5,
+            6.5
+          ],
+          "step": 0.5
+        },
+        "g": {
+          "int": [
+            35,
+            75
+          ]
+        },
+        "k": {
+          "dec": [
+            1,
+            3
+          ],
+          "step": 0.5
+        }
+      },
+      "prompt": "Le triangle A'B'C' est le symétrique du triangle ABC par rapport à la droite (d). On sait que AB = {L} cm, que l'angle ABC mesure {g}° et que le point A est à {k} cm de la droite (d).",
+      "figure": {
+        "alt": "Figure à main levée : un triangle ABC, son symétrique A’B’C’ par rapport à une droite verticale (d), et le segment [AA’] en pointillés",
+        "w": 380,
+        "h": 240,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            5.4
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                5.4
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1.4,
+            "y": 4,
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 2.8,
+            "y": 1,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 4,
+            "y": 4.4,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "label": "{L} cm"
+          },
+          {
+            "type": "angle",
+            "vertex": "B",
+            "from": "C",
+            "to": "A",
+            "label": "{g}°"
+          },
+          {
+            "type": "point",
+            "id": "A'",
+            "x": 8.6,
+            "y": 4,
+            "pos": "ne"
+          },
+          {
+            "type": "point",
+            "id": "B'",
+            "x": 7.2,
+            "y": 1,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "C'",
+            "x": 6,
+            "y": 4.4,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A'",
+              "B'",
+              "C'"
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "A'",
+            "dashed": true,
+            "color": "gris"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Longueur A'B' (en cm) :",
+          "answer": "L",
+          "misconceptions": [
+            {
+              "answer": "2*L",
+              "id": "mc:double-image",
+              "error": "notion",
+              "feedback": "La symétrie ne change pas les longueurs : l'image d'un segment n'est ni agrandie ni rétrécie."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Mesure de l'angle A'B'C' (en °) :",
+          "answer": "g",
+          "misconceptions": [
+            {
+              "answer": "180 - g",
+              "id": "mc:angle-retourne",
+              "error": "notion",
+              "feedback": "La figure est retournée, mais ses angles ne changent pas : la symétrie conserve les mesures d'angles."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Longueur AA' (en cm) :",
+          "answer": "2*k",
+          "misconceptions": [
+            {
+              "answer": "k",
+              "id": "mc:moitie",
+              "error": "notion",
+              "feedback": "Cette distance, c'est seulement le chemin de A jusqu'à la droite (d). A' est de l'autre côté, à la même distance : il faut compter les deux trajets."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "La symétrie axiale conserve les longueurs et les angles.",
+        "L'image de [AB] est [A'B'] ; l'image de l'angle ABC est l'angle A'B'C'.",
+        "(d) est la médiatrice de [AA'] : elle passe par son milieu."
+      ],
+      "solution": "La symétrie conserve les longueurs : A'B' = AB = {L} cm. Elle conserve les angles : A'B'C' = ABC = {g}°. (d) est la médiatrice de [AA'] : A et A' sont chacun à {k} cm de (d), donc AA' = 2 × {k} = {2*k} cm.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{L}"
+              },
+              {
+                "value": "{g}"
+              },
+              {
+                "value": "{2*k}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{L}"
+              },
+              {
+                "value": "{g}"
+              },
+              {
+                "value": "{k}"
+              }
+            ]
+          },
+          "expect": "mc:moitie"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{L}"
+              },
+              {
+                "value": "{180-g}"
+              },
+              {
+                "value": "{2*k}"
+              }
+            ]
+          },
+          "expect": "mc:angle-retourne"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-axes-figures",
+      "type": "categorize",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "mc:diagonales-axes",
+        "mc:parallelogramme-axe",
+        "mc:cercle-axes"
+      ],
+      "expectedSeconds": 240,
+      "prompt": "Combien d’axes de symétrie chaque figure possède-t-elle ? Imagine que tu la plies… ou découpe-la dans du papier pour essayer !",
+      "figure": {
+        "alt": "Huit figures dessinées : un carré, un rectangle, un losange, un triangle équilatéral, un triangle isocèle, un cercle, un triangle quelconque et un parallélogramme",
+        "w": 520,
+        "h": 300,
+        "frame": {
+          "x": [
+            0,
+            16
+          ],
+          "y": [
+            0,
+            8.4
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": 0.6,
+            "y": 4.9,
+            "w": 2.6,
+            "h": 2.6,
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": 1.9,
+            "y": 4.4,
+            "text": "carré",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "rect",
+            "x": 4.4,
+            "y": 5.2,
+            "w": 3.4,
+            "h": 2,
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": 6.1,
+            "y": 4.4,
+            "text": "rectangle",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                9.9,
+                4.8
+              ],
+              [
+                11,
+                6.2
+              ],
+              [
+                9.9,
+                7.6
+              ],
+              [
+                8.8,
+                6.2
+              ]
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": 9.9,
+            "y": 4.4,
+            "text": "losange",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                12.6,
+                5
+              ],
+              [
+                15.4,
+                5
+              ],
+              [
+                14,
+                7.4249
+              ]
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "text",
+            "x": 14,
+            "y": 4.4,
+            "text": "équilatéral",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0.6,
+                1
+              ],
+              [
+                3.2,
+                1
+              ],
+              [
+                1.9,
+                3.8
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 1.9,
+            "y": 0.4,
+            "text": "isocèle",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "circle",
+            "center": [
+              6.1,
+              2.3
+            ],
+            "r": 1.4,
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 6.1,
+            "y": 0.4,
+            "text": "cercle",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                8.7,
+                1
+              ],
+              [
+                11.4,
+                1.4
+              ],
+              [
+                9.6,
+                3.6
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 9.9,
+            "y": 0.4,
+            "text": "quelconque",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                12.4,
+                1
+              ],
+              [
+                14.8,
+                1
+              ],
+              [
+                15.6,
+                3
+              ],
+              [
+                13.2,
+                3
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "text",
+            "x": 14,
+            "y": 0.4,
+            "text": "parallélogramme",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "zero",
+          "label": "Aucun"
+        },
+        {
+          "id": "un",
+          "label": "1"
+        },
+        {
+          "id": "deux",
+          "label": "2"
+        },
+        {
+          "id": "trois",
+          "label": "3"
+        },
+        {
+          "id": "quatre",
+          "label": "4"
+        },
+        {
+          "id": "infini",
+          "label": "Une infinité"
+        }
+      ],
+      "items": [
+        {
+          "id": "carre",
+          "label": "Le carré",
+          "category": "quatre"
+        },
+        {
+          "id": "rect",
+          "label": "Le rectangle (qui n'est pas un carré)",
+          "category": "deux"
+        },
+        {
+          "id": "los",
+          "label": "Le losange (qui n'est pas un carré)",
+          "category": "deux"
+        },
+        {
+          "id": "equi",
+          "label": "Le triangle équilatéral",
+          "category": "trois"
+        },
+        {
+          "id": "iso",
+          "label": "Le triangle isocèle (non équilatéral)",
+          "category": "un"
+        },
+        {
+          "id": "cercle",
+          "label": "Le cercle",
+          "category": "infini"
+        },
+        {
+          "id": "quel",
+          "label": "Le triangle quelconque",
+          "category": "zero"
+        },
+        {
+          "id": "para",
+          "label": "Le parallélogramme (ni rectangle, ni losange)",
+          "category": "zero"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "rect",
+          "category": "quatre",
+          "id": "mc:diagonales-axes",
+          "error": "notion",
+          "feedback": "Plie un rectangle de papier le long d'une diagonale : les deux moitiés se superposent-elles vraiment ? Regarde où arrivent les coins."
+        },
+        {
+          "item": "para",
+          "category": "deux",
+          "id": "mc:parallelogramme-axe",
+          "error": "notion",
+          "feedback": "Découpe un parallélogramme et essaie de le plier, par une diagonale puis par le milieu de deux côtés : les bords tombent-ils l'un sur l'autre ?"
+        },
+        {
+          "item": "cercle",
+          "category": "quatre",
+          "id": "mc:cercle-axes",
+          "error": "notion",
+          "feedback": "Un cercle se plie en deux le long de n'importe quel diamètre. Combien de diamètres différents peux-tu tracer ?"
+        },
+        {
+          "item": "equi",
+          "category": "un",
+          "id": "mc:equilateral-un",
+          "error": "notion",
+          "feedback": "Le triangle équilatéral a trois côtés égaux : essaie de le plier à partir de chacun de ses sommets."
+        }
+      ],
+      "hints": [
+        "Pour chaque figure, imagine qu’on la plie : les deux moitiés doivent se superposer exactement.",
+        "Attention : la diagonale d’un rectangle n’est pas un axe de symétrie.",
+        "Plus une figure a de côtés égaux, plus elle a d’axes de symétrie."
+      ],
+      "solution": "Carré : 4 axes (ses 2 diagonales et les 2 médiatrices de ses côtés). Rectangle : 2 axes (les médiatrices de ses côtés). Losange : 2 axes (ses diagonales). Triangle équilatéral : 3 axes. Triangle isocèle : 1 axe (la médiatrice de sa base). Cercle : une infinité (tous ses diamètres). Triangle quelconque et parallélogramme : aucun axe.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "carre": "quatre",
+              "rect": "deux",
+              "los": "deux",
+              "equi": "trois",
+              "iso": "un",
+              "cercle": "infini",
+              "quel": "zero",
+              "para": "zero"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "carre": "quatre",
+              "rect": "quatre",
+              "los": "deux",
+              "equi": "trois",
+              "iso": "un",
+              "cercle": "infini",
+              "quel": "zero",
+              "para": "zero"
+            }
+          },
+          "expect": "mc:diagonales-axes"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-programme",
+      "type": "order",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "expectedSeconds": 150,
+      "prompt": "Sur papier blanc, on construit M', le symétrique de M par rapport à la droite (d), avec l'équerre et le compas. La figure montre le résultat. Remets les étapes dans l'ordre.",
+      "figure": {
+        "alt": "Une droite oblique (d), un point M, la perpendiculaire à (d) passant par M qui coupe (d) en H, un arc de compas et le point M’",
+        "w": 330,
+        "h": 300,
+        "frame": {
+          "x": [
+            0,
+            7
+          ],
+          "y": [
+            0,
+            6.5
+          ]
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                0
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 1,
+            "y": 2,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "H",
+            "x": 2.5,
+            "y": 3.5,
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "M'",
+            "x": 4,
+            "y": 5,
+            "pos": "ne"
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "M'",
+            "color": "gris",
+            "dashed": true
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "H",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "H",
+            "to": "M'",
+            "marks": 1
+          },
+          {
+            "type": "angle",
+            "vertex": "H",
+            "from": "M'",
+            "to": [
+              3.5,
+              2.5
+            ],
+            "right": true
+          },
+          {
+            "type": "arc",
+            "center": "H",
+            "r": 2.1213,
+            "start": 33,
+            "end": 57,
+            "color": "gris"
+          }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        {
+          "id": "c1",
+          "label": "Je pose un côté de l'angle droit de l'équerre le long de (d), et je la fais glisser jusqu'à ce que l'autre côté passe par M."
+        },
+        {
+          "id": "c2",
+          "label": "Je trace la perpendiculaire à (d) qui passe par M ; elle coupe (d) en H."
+        },
+        {
+          "id": "c3",
+          "label": "Je pointe le compas sur H et je l'ouvre jusqu'à M."
+        },
+        {
+          "id": "c4",
+          "label": "Sans changer l'écartement, je trace un arc qui coupe la perpendiculaire de l'autre côté de (d)."
+        },
+        {
+          "id": "c5",
+          "label": "Je nomme M' ce point : (d) est la médiatrice de [MM']."
+        },
+        {
+          "id": "c6",
+          "label": "Je code l'angle droit et les deux longueurs égales HM et HM'."
+        }
+      ],
+      "hints": [
+        "On a besoin de la perpendiculaire avant de pouvoir y reporter une longueur.",
+        "Le compas sert à reporter la longueur HM.",
+        "On code la figure une fois qu’elle est terminée."
+      ],
+      "solution": "1. Placer l'équerre. 2. Tracer la perpendiculaire à (d) passant par M, qui coupe (d) en H. 3. Compas pointé sur H, ouvert jusqu'à M. 4. Arc de l'autre côté de (d). 5. Nommer M'. 6. Coder l'angle droit et HM = HM'.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5",
+              "c6"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c6",
+              "c5"
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "order": [
+              "c6",
+              "c5",
+              "c4",
+              "c3",
+              "c2",
+              "c1"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-verification",
+      "type": "qcm",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:decale",
+        "mc:distance"
+      ],
+      "expectedSeconds": 60,
+      "prompt": "On a voulu construire le symétrique du point M par rapport à la droite (d). Trois élèves proposent les points P, Q et R. Lequel est le bon ?",
+      "figure": {
+        "alt": "Quadrillage avec une droite verticale (d), un point M à sa gauche et trois points P, Q et R à sa droite",
+        "w": 360,
+        "h": 270,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            0,
+            6
+          ],
+          "grid": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                6
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 1,
+            "y": 3,
+            "pos": "w",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "P",
+            "x": 7,
+            "y": 5,
+            "pos": "e",
+            "style": "rond",
+            "color": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "Q",
+            "x": 7,
+            "y": 3,
+            "pos": "e",
+            "style": "rond",
+            "color": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "R",
+            "x": 5,
+            "y": 3,
+            "pos": "s",
+            "style": "rond",
+            "color": "bleu"
+          }
+        ]
+      },
+      "choices": [
+        {
+          "text": "Le point P",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:decale",
+          "feedback": "P est bien à la même distance de (d) que M, mais il est décalé : le segment [MP] n'est pas perpendiculaire à (d)."
+        },
+        {
+          "text": "Le point Q",
+          "correct": true,
+          "feedback": "(d) coupe [MQ] en son milieu, à angle droit : (d) est bien la médiatrice de [MQ]."
+        },
+        {
+          "text": "Le point R",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:distance",
+          "feedback": "R est bien sur la perpendiculaire à (d) qui passe par M, mais compare sa distance à (d) avec celle de M."
+        }
+      ],
+      "hints": [
+        "Le symétrique de M est sur la perpendiculaire à (d) qui passe par M.",
+        "Il est à la même distance de (d) que M, de l’autre côté.",
+        "Vérifie les deux conditions pour chaque point."
+      ],
+      "solution": "Le bon point est Q : [MQ] est perpendiculaire à (d) et M et Q sont tous les deux à 3 carreaux de (d). P est décalé (pas sur la perpendiculaire) ; R est sur la perpendiculaire, mais trop près de (d).",
+      "selfTest": [
+        {
+          "response": {
+            "selected": [
+              1
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "selected": [
+              0
+            ]
+          },
+          "expect": "mc:decale"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-redaction",
+      "type": "open",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 360,
+      "minWords": 25,
+      "prompt": "Sacha explique : « Pour trouver le symétrique de M, je mesure la distance de M à la droite (d), et je reporte cette distance de l'autre côté. » Il obtient parfois un point décalé, comme le point S de la figure. Qu'a-t-il oublié ? Écris une méthode complète.",
+      "figure": {
+        "alt": "Une droite verticale (d), un point M à gauche et le point S obtenu par Sacha à droite, à la même distance de (d) mais plus haut",
+        "w": 340,
+        "h": 240,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            0,
+            5.4
+          ]
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                5.4
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 1.5,
+            "y": 1.8,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "S",
+            "x": 6.5,
+            "y": 4,
+            "pos": "e",
+            "color": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": [
+              4,
+              1.8
+            ],
+            "dashed": true,
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": [
+              4,
+              4
+            ],
+            "to": "S",
+            "dashed": true,
+            "marks": 1
+          }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je dis qu'il faut se déplacer perpendiculairement à (d) (équerre)",
+          "keywords": [
+            [
+              "perpendiculaire",
+              "equerre",
+              "angle droit"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je dis que M et M’ sont à la même distance de (d)",
+          "keywords": [
+            [
+              "meme distance",
+              "meme longueur",
+              "compas",
+              "report"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "J'utilise le mot « médiatrice » ou « milieu »",
+          "keywords": [
+            [
+              "mediatrice",
+              "milieu"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "J'explique pourquoi le point S ne convient pas",
+          "keywords": [
+            [
+              "decale",
+              "en biais",
+              "pas en face",
+              "plus haut",
+              "pas perpendiculaire"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Sacha a oublié que M' doit être sur la perpendiculaire à (d) qui passe par M. Son point S est bien à la même distance de (d), mais il est décalé, plus haut. Méthode : je trace à l'équerre la perpendiculaire à (d) passant par M, elle coupe (d) en H ; puis je reporte au compas la longueur HM de l'autre côté. Ainsi (d) est la médiatrice de [MM'].",
+        "Il manque l'angle droit. Il faut aller tout droit vers (d), perpendiculairement, puis continuer de la même distance de l'autre côté. Le point S n'est pas en face de M, donc (d) n'est pas la médiatrice de [MS]."
+      ],
+      "hints": [
+        "Compare M et S : sont-ils sur une même perpendiculaire à (d) ?",
+        "Quel instrument permet de tracer une perpendiculaire ?",
+        "Utilise la définition : (d) est la médiatrice de [MM’]."
+      ],
+      "solution": "Sacha a oublié la perpendiculaire : M' doit être sur la perpendiculaire à (d) qui passe par M, et à la même distance de (d) que M. Méthode : tracer à l'équerre la perpendiculaire à (d) passant par M (elle coupe (d) en H), puis reporter au compas HM' = HM de l'autre côté. Alors (d) est la médiatrice de [MM'].",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Il a oublié de tracer la perpendiculaire à (d) avec l'équerre. Le point S est décalé. Il faut reporter la même distance sur la perpendiculaire, (d) est la médiatrice de [MM']."
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-masque",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:moitie-contour",
+        "mc:moitie",
+        "mc:conservation"
+      ],
+      "expectedSeconds": 300,
+      "params": {
+        "p": {
+          "int": [
+            14,
+            30
+          ]
+        },
+        "e": {
+          "dec": [
+            1.5,
+            4
+          ],
+          "step": 0.5
+        }
+      },
+      "prompt": "Pour le carnaval, Zoé dessine un masque dont la droite (d) est un axe de symétrie. Elle n'a dessiné que la moitié gauche. Le bord de cette moitié (sans compter le trait sur l'axe) mesure {p} cm, et le centre de l'œil gauche est à {e} cm de l'axe.",
+      "figure": {
+        "alt": "La moitié gauche d’un masque avec un œil, et la moitié droite à compléter en pointillés, de part et d’autre d’un axe vertical (d)",
+        "w": 340,
+        "h": 260,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            6.4
+          ]
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                6.4
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                5,
+                0.8
+              ],
+              [
+                3.8,
+                1.1
+              ],
+              [
+                2.3,
+                2.1
+              ],
+              [
+                1.2,
+                3.6
+              ],
+              [
+                1.1,
+                5
+              ],
+              [
+                2.4,
+                5.6
+              ],
+              [
+                3.7,
+                5.2
+              ],
+              [
+                5,
+                5.9
+              ]
+            ],
+            "fill": "violet"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                2.4,
+                3.6
+              ],
+              [
+                3.2,
+                4.1
+              ],
+              [
+                4.1,
+                3.7
+              ],
+              [
+                3.2,
+                3.3
+              ]
+            ],
+            "fill": "noir"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                5,
+                0.8
+              ],
+              [
+                6.2,
+                1.1
+              ],
+              [
+                7.7,
+                2.1
+              ],
+              [
+                8.8,
+                3.6
+              ],
+              [
+                8.9,
+                5
+              ],
+              [
+                7.6,
+                5.6
+              ],
+              [
+                6.3,
+                5.2
+              ],
+              [
+                5,
+                5.9
+              ]
+            ],
+            "dashed": true,
+            "color": "gris"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                7.6,
+                3.6
+              ],
+              [
+                6.8,
+                4.1
+              ],
+              [
+                5.9,
+                3.7
+              ],
+              [
+                6.8,
+                3.3
+              ]
+            ],
+            "dashed": true,
+            "color": "gris"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Longueur du bord du masque entier (en cm) :",
+          "answer": "2*p",
+          "misconceptions": [
+            {
+              "answer": "p",
+              "id": "mc:moitie-contour",
+              "error": "methode",
+              "feedback": "Ce nombre, c'est seulement le bord de la moitié gauche. La moitié droite est son symétrique : son bord a la même longueur."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Distance entre les centres des deux yeux (en cm) :",
+          "answer": "2*e",
+          "misconceptions": [
+            {
+              "answer": "e",
+              "id": "mc:moitie",
+              "error": "notion",
+              "feedback": "C'est la distance d'un œil à l'axe. L'autre œil est de l'autre côté, à la même distance : additionne les deux trajets."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Les deux yeux ont-ils exactement la même forme et la même taille ? Réponds par oui ou par non.",
+          "accept": [
+            "oui"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:conservation",
+              "error": "notion",
+              "feedback": "Une symétrie retourne la figure comme un miroir, mais elle conserve les longueurs, les angles et les aires. Que peut-on en déduire pour les deux yeux ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "La moitié droite est le symétrique de la moitié gauche.",
+        "La symétrie conserve les longueurs : chaque morceau du bord a une image de même longueur.",
+        "Les deux yeux sont de part et d’autre de l’axe, à la même distance de lui."
+      ],
+      "solution": "Le bord du masque entier mesure 2 × {p} = {2*p} cm (le trait sur l'axe n'est pas un bord). Les deux yeux sont chacun à {e} cm de l'axe : 2 × {e} = {2*e} cm entre leurs centres. La symétrie conserve les longueurs et les angles : les deux yeux ont la même forme et la même taille (l'un est retourné).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*p}"
+              },
+              {
+                "value": "{2*e}"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{p}"
+              },
+              {
+                "value": "{2*e}"
+              },
+              {
+                "value": "oui"
+              }
+            ]
+          },
+          "expect": "mc:moitie-contour"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-logo",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:sommets-axe",
+        "mc:aire-image",
+        "mc:autre-axe"
+      ],
+      "expectedSeconds": 480,
+      "prompt": "Le logo du club de théâtre doit avoir la droite verticale (d) comme axe de symétrie. Voici sa moitié gauche, le polygone PQRST, avec P(5 ; 7), Q(2 ; 6), R(1 ; 3), S(3 ; 2) et T(5 ; 1). Le logo complet est formé de PQRST et de son symétrique par rapport à (d).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec une droite verticale (d) et le polygone PQRST, dont deux sommets sont sur (d)",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                5,
+                0
+              ],
+              [
+                5,
+                8
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "P",
+            "x": 5,
+            "y": 7,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "Q",
+            "x": 2,
+            "y": 6,
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "R",
+            "x": 1,
+            "y": 3,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "S",
+            "x": 3,
+            "y": 2,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "T",
+            "x": 5,
+            "y": 1,
+            "pos": "s"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "P",
+              "Q",
+              "R",
+              "S",
+              "T"
+            ],
+            "fill": "maths"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place Q', R' et S', les symétriques de Q, R et S par rapport à (d).",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              8,
+              6
+            ],
+            [
+              9,
+              3
+            ],
+            [
+              7,
+              2
+            ]
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de sommets le logo complet a-t-il ?",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 10,
+              "id": "mc:sommets-axe",
+              "error": "raisonnement",
+              "feedback": "Attention aux points P et T : ils sont sur l'axe. Leur symétrique, c'est eux-mêmes : ne les compte pas deux fois."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La moitié gauche PQRST a une aire de 16 carreaux. Quelle est l’aire du logo complet (en carreaux) ?",
+          "answer": 32,
+          "misconceptions": [
+            {
+              "answer": 16,
+              "id": "mc:aire-image",
+              "error": "methode",
+              "feedback": "C'est l'aire d'une seule moitié. Son symétrique a la même aire, puisque la symétrie conserve les aires : il faut compter les deux moitiés."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le logo complet a-t-il un autre axe de symétrie que (d) ? Réponds par oui ou par non.",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:autre-axe",
+              "error": "notion",
+              "feedback": "Essaie de plier le logo le long d'une droite horizontale : le haut tombe-t-il exactement sur le bas ? Compare par exemple Q avec le point qui lui ferait face."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Chaque point garde sa hauteur et passe de l’autre côté de (d), à la même distance.",
+        "Les points situés sur l’axe ne bougent pas.",
+        "La symétrie conserve les aires."
+      ],
+      "solution": "Q'(8 ; 6), R'(9 ; 3), S'(7 ; 2). P et T sont sur l'axe : ce sont leurs propres symétriques. Le logo est l'octogone P Q R S T S' R' Q' : 8 sommets. Son aire : 16 + 16 = 32 carreaux. Il n'a pas d'autre axe : en pliant à l'horizontale, Q(2 ; 6) ne tomberait sur aucun sommet.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    8,
+                    6
+                  ],
+                  [
+                    9,
+                    3
+                  ],
+                  [
+                    7,
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "8"
+              },
+              {
+                "value": "32"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    8,
+                    6
+                  ],
+                  [
+                    9,
+                    3
+                  ],
+                  [
+                    7,
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "10"
+              },
+              {
+                "value": "32"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "mc:sommets-axe"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    8,
+                    6
+                  ],
+                  [
+                    9,
+                    3
+                  ],
+                  [
+                    7,
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "8"
+              },
+              {
+                "value": "16"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "mc:aire-image"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-remed-distance",
+      "type": "numeric",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:distance-totale"
+      ],
+      "expectedSeconds": 60,
+      "params": {
+        "d": {
+          "dec": [
+            1.5,
+            6
+          ],
+          "step": 0.5
+        }
+      },
+      "prompt": "Rappel : M et M' sont symétriques par rapport à (d) quand (d) est la médiatrice de [MM'] : elle le coupe en son milieu, à angle droit. Ici, MM' = {2*d} cm. À quelle distance de la droite (d) se trouve le point M (en cm) ?",
+      "figure": {
+        "alt": "Une droite verticale (d), un point M et son symétrique M’, avec la longueur MM’ indiquée",
+        "w": 340,
+        "h": 170,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            0,
+            3.6
+          ]
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                3.6
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 1,
+            "y": 1.8,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "M'",
+            "x": 7,
+            "y": 1.8,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "I",
+            "x": 4,
+            "y": 1.8,
+            "pos": "n",
+            "hidden": true
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "I",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "I",
+            "to": "M'",
+            "marks": 1
+          },
+          {
+            "type": "text",
+            "x": 4,
+            "y": 0.5,
+            "text": "MM' = {2*d} cm",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "answer": "d",
+      "misconceptions": [
+        {
+          "answer": "2*d",
+          "id": "mc:distance-totale",
+          "error": "notion",
+          "feedback": "C'est la longueur de tout le segment [MM']. La droite (d) le coupe en son milieu : de M jusqu'à (d), il n'y a qu'une partie du chemin."
+        }
+      ],
+      "hints": [
+        "(d) passe par le milieu de [MM’].",
+        "M et M’ sont à la même distance de (d) : partage MM’ en deux."
+      ],
+      "solution": "M est à {2*d} ÷ 2 = {d} cm de (d), et M' aussi.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{d}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{2*d}"
+          },
+          "expect": "mc:distance-totale"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-remed-angle",
+      "type": "numeric",
+      "skill": "m6.geo.symetrie-definition",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:perpendiculaire"
+      ],
+      "expectedSeconds": 45,
+      "prompt": "Rappel : quand on plie une feuille le long de (d), le pli de [MM'] tombe pile « en face » : le segment [MM'] est perpendiculaire à l'axe (d). Quelle est la mesure (en °) de l'angle formé par [MM'] et (d) ?",
+      "figure": {
+        "alt": "Une droite oblique (d), un point M et son symétrique M’ reliés par un segment qui coupe (d)",
+        "w": 300,
+        "h": 260,
+        "frame": {
+          "x": [
+            0,
+            7
+          ],
+          "y": [
+            0,
+            6.5
+          ]
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                0,
+                6
+              ],
+              [
+                6,
+                0
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 1,
+            "y": 2,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "M'",
+            "x": 4,
+            "y": 5,
+            "pos": "ne"
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "M'"
+          }
+        ]
+      },
+      "answer": 90,
+      "misconceptions": [
+        {
+          "answer": 180,
+          "id": "mc:perpendiculaire",
+          "error": "notion",
+          "feedback": "180° serait un angle plat : [MM'] serait alors couché le long de (d). Ici, il la traverse « bien droit », comme le coin d'une feuille."
+        },
+        {
+          "answer": 45,
+          "id": "mc:perpendiculaire",
+          "error": "notion",
+          "feedback": "Un angle de 45° serait penché, la moitié d'un coin de feuille. Ici, [MM'] et (d) forment un coin de feuille entier."
+        }
+      ],
+      "hints": [
+        "Perpendiculaire veut dire : qui forme un angle droit.",
+        "Combien mesure un angle droit ?"
+      ],
+      "solution": "[MM'] est perpendiculaire à (d) : ils forment un angle droit, de 90°.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "90"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "180"
+          },
+          "expect": "mc:perpendiculaire"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-axe-diagonal",
+      "type": "graph",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "notion"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "a": {
+          "int": [
+            4,
+            7
+          ]
+        },
+        "b": {
+          "int": [
+            2,
+            5
+          ]
+        },
+        "c": {
+          "int": [
+            1,
+            5
+          ]
+        }
+      },
+      "constraints": [
+        "b < a + 2",
+        "mod(a - b; 2) = 0"
+      ],
+      "prompt": "La droite (d) passe par les points (0 ; 2) et (6 ; 8) : elle suit les diagonales des carreaux. Place A', le symétrique de A({a} ; {b}), puis C', le symétrique de C({c} ; {c+2}), par rapport à (d).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 10 avec une droite (d) en diagonale, un point A sous (d) et un point C",
+        "w": 360,
+        "h": 360,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            10
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                0,
+                2
+              ],
+              [
+                6,
+                8
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": "{b}",
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{c}",
+            "y": "{c+2}",
+            "pos": "nw"
+          }
+        ]
+      },
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        10
+      ],
+      "gridStep": 1,
+      "expectedPoints": [
+        [
+          "b - 2",
+          "a + 2"
+        ],
+        [
+          "c",
+          "c + 2"
+        ]
+      ],
+      "hints": [
+        "Avec un axe en diagonale, on ne compte pas à l’horizontale : on se déplace perpendiculairement à (d), donc en suivant l’AUTRE diagonale des carreaux.",
+        "Depuis A, avance pas à pas en diagonale (un carreau vers la gauche et un vers le haut) jusqu’à (d), en comptant les pas ; puis refais le même nombre de pas de l’autre côté.",
+        "Regarde bien où se trouve C."
+      ],
+      "solution": "Depuis A, il faut {(a-b+2)/2} pas en diagonale (vers la gauche et vers le haut) pour atteindre (d), puis encore {(a-b+2)/2} pas : A'({b-2} ; {a+2}). Le point C est sur l'axe : il est son propre symétrique, C' = C({c} ; {c+2}).",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                "{b-2}",
+                "{a+2}"
+              ],
+              [
+                "{c}",
+                "{c+2}"
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{2*b-4-a}",
+                "{b}"
+              ],
+              [
+                "{c}",
+                "{c+2}"
+              ]
+            ]
+          },
+          "expect": "partiel"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-retrouver-axe",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-definition",
+      "skills": [
+        "m6.geo.mediatrice"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:demi-ecart",
+        "mc:milieu-mediatrice"
+      ],
+      "expectedSeconds": 300,
+      "params": {
+        "a": {
+          "int": [
+            1,
+            3
+          ]
+        },
+        "k": {
+          "int": [
+            2,
+            4
+          ]
+        },
+        "b": {
+          "int": [
+            1,
+            7
+          ]
+        },
+        "c": {
+          "int": [
+            1,
+            4
+          ]
+        },
+        "e": {
+          "int": [
+            1,
+            7
+          ]
+        }
+      },
+      "constraints": [
+        "2*(a + k) - c <= 10",
+        "c != a + k",
+        "e != b"
+      ],
+      "prompt": "Les points A({a} ; {b}) et A'({a+2*k} ; {b}) sont symétriques par rapport à une droite (d) qu'on a effacée. Retrouve (d), puis construis le symétrique du point B({c} ; {e}).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec les points A, A’ et B",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": "{b}",
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "A'",
+            "x": "{a+2*k}",
+            "y": "{b}",
+            "pos": "ne"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{c}",
+            "y": "{e}",
+            "pos": "nw"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "La droite (d) est verticale. Quelle est l'abscisse de tous ses points ?",
+          "answer": "a + k",
+          "misconceptions": [
+            {
+              "answer": "k",
+              "id": "mc:demi-ecart",
+              "error": "methode",
+              "feedback": "C'est la moitié de l'écart entre A et A', pas une abscisse : pars de l'abscisse de A et avance de cette moitié."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Que représente la droite (d) pour le segment [AA'] ? (un mot)",
+          "openEnded": true,
+          "accept": [
+            "médiatrice",
+            "la médiatrice",
+            "sa médiatrice",
+            "la médiatrice de [AA']",
+            "médiatrice de [AA']",
+            "la médiatrice du segment [AA']"
+          ],
+          "misconceptions": [
+            {
+              "answer": "milieu",
+              "id": "mc:milieu-mediatrice",
+              "error": "notion",
+              "feedback": "Le milieu de [AA'] est un point de (d), mais (d) est toute une droite : laquelle, par rapport au segment ?"
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "prompt": "Place B', le symétrique de B par rapport à (d).",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              "2*(a + k) - c",
+              "e"
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "(d) est la médiatrice de [AA'] : elle passe par son milieu, perpendiculairement.",
+        "Le milieu de [AA'] est à {k} carreaux de A.",
+        "B' a la même ordonnée que B, de l'autre côté de (d), à la même distance."
+      ],
+      "solution": "(d) est la médiatrice de [AA'] : la droite verticale qui passe par le milieu ({a+k} ; {b}). B est à {a+k-c} carreau(x) à gauche de (d) : B' est à {a+k-c} carreau(x) à droite, B'({2*(a+k)-c} ; {e}).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a+k}"
+              },
+              {
+                "value": "la médiatrice"
+              },
+              {
+                "points": [
+                  [
+                    "{2*(a+k)-c}",
+                    "{e}"
+                  ]
+                ]
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{k}"
+              },
+              {
+                "value": "la médiatrice"
+              },
+              {
+                "points": [
+                  [
+                    "{2*(a+k)-c}",
+                    "{e}"
+                  ]
+                ]
+              }
+            ]
+          },
+          "expect": "mc:demi-ecart"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-deux-axes",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:deplacement-simple"
+      ],
+      "expectedSeconds": 600,
+      "params": {
+        "u": {
+          "int": [
+            2,
+            4
+          ]
+        },
+        "v": {
+          "int": [
+            5,
+            7
+          ]
+        },
+        "m": {
+          "int": [
+            0,
+            1
+          ]
+        }
+      },
+      "constraints": [
+        "2*v - 2*u + m <= 12"
+      ],
+      "prompt": "Les droites verticales (d₁) et (d₂) passent par les points ({u} ; 0) et ({v} ; 0). Le point M({m} ; 2) a pour symétrique M₁ par rapport à (d₁). Puis M₁ a pour symétrique M₂ par rapport à (d₂).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 12 et de 0 à 4 avec deux droites verticales (d₁) et (d₂) et un point M",
+        "w": 480,
+        "h": 200,
+        "frame": {
+          "x": [
+            0,
+            12
+          ],
+          "y": [
+            0,
+            4
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "line",
+            "through": [
+              [
+                "{u}",
+                0
+              ],
+              [
+                "{u}",
+                4
+              ]
+            ],
+            "label": "(d₁)",
+            "color": "rouge"
+          },
+          {
+            "type": "line",
+            "through": [
+              [
+                "{v}",
+                0
+              ],
+              [
+                "{v}",
+                4
+              ]
+            ],
+            "label": "(d₂)",
+            "color": "vert"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": "{m}",
+            "y": 2,
+            "pos": "n",
+            "style": "rond"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Abscisse de M₁ :",
+          "answer": "2*u - m"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Abscisse de M₂ :",
+          "answer": "2*v - 2*u + m"
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien M s’est-il déplacé vers la droite (abscisse de M₂ moins abscisse de M) ?",
+          "answer": "2*(v - u)",
+          "misconceptions": [
+            {
+              "answer": "v - u",
+              "id": "mc:deplacement-simple",
+              "error": "raisonnement",
+              "feedback": "C'est la distance entre les deux axes. Calcule vraiment l'abscisse de M₂ moins celle de M : le déplacement est plus grand."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Recommence avec un autre point de départ (par exemple M(1 ; 3)). Que remarques-tu ? Essaie d’expliquer.",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je remarque que le déplacement est toujours le même, quel que soit le point de départ",
+              "keywords": [
+                [
+                  "toujours",
+                  "meme deplacement",
+                  "ne depend pas",
+                  "pareil"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Je relie le déplacement à la distance entre les axes (il en vaut le double)",
+              "keywords": [
+                [
+                  "double",
+                  "deux fois",
+                  "2 fois",
+                  "2 ×",
+                  "2 x"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "M₁ est de l’autre côté de (d₁), à la même distance que M.",
+        "Fais le calcul pour deux points de départ différents, et compare les déplacements.",
+        "Quel lien entre le déplacement et la distance entre (d₁) et (d₂) ?"
+      ],
+      "solution": "M est à {u-m} carreau(x) à gauche de (d₁) : M₁ a pour abscisse {u} + {u-m} = {2*u-m}. M₁ est à {v-2*u+m} carreau(x) à gauche de (d₂) : M₂ a pour abscisse {v} + {v-2*u+m} = {2*v-2*u+m}. Le déplacement vaut {2*v-2*u+m} − {m} = {2*(v-u)}, soit deux fois la distance entre les axes, quel que soit le point de départ. Deux symétries d'axes parallèles font « glisser » la figure : c'est une translation, que tu étudieras en 4e.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*u-m}"
+              },
+              {
+                "value": "{2*v-2*u+m}"
+              },
+              {
+                "value": "{2*(v-u)}"
+              },
+              {
+                "text": "Le déplacement est toujours le même, il ne dépend pas du point : c’est le double de la distance entre les axes.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{2*u-m}"
+              },
+              {
+                "value": "{2*v-2*u+m}"
+              },
+              {
+                "value": "{v-u}"
+              },
+              {
+                "text": "Je ne sais pas."
+              }
+            ]
+          },
+          "expect": "mc:deplacement-simple"
+        }
+      ]
+    },
+    {
+      "id": "m6-symetrie-riviere",
+      "type": "composite",
+      "skill": "m6.geo.symetrie-construire",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": [
+        "mc:milieu-naif"
+      ],
+      "expectedSeconds": 720,
+      "prompt": "Lina part de sa maison A(0 ; 4), va remplir un seau à la rivière (l'axe des abscisses), puis l'apporte au jardin B(9 ; 2). Où doit-elle puiser l'eau pour marcher le moins possible ?",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de −3 à 5 : la maison A, le jardin B et la rivière le long de l’axe des abscisses",
+        "w": 400,
+        "h": 330,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            -3,
+            5
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 0,
+            "y": 4,
+            "pos": "ne",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 9,
+            "y": 2,
+            "pos": "ne",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              10,
+              0
+            ],
+            "color": "bleu",
+            "width": 4
+          },
+          {
+            "type": "text",
+            "x": 8.6,
+            "y": -0.5,
+            "text": "rivière",
+            "size": "s",
+            "anchor": "middle",
+            "color": "bleu"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place B', le symétrique de B par rapport à la rivière.",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            -3,
+            5
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              9,
+              -2
+            ]
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Trace le segment [AB'] : il coupe la rivière en un point P. Quelle est l'abscisse de P ?",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 4.5,
+              "id": "mc:milieu-naif",
+              "error": "raisonnement",
+              "feedback": "Ce point est à mi-chemin, horizontalement, entre A et B : ce n'est pas lui que l'on cherche. Suis bien la droite (AB') jusqu'à la rivière : elle passe par des nœuds du quadrillage."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique pourquoi le chemin A → P → B a la même longueur que le chemin A → P → B', et pourquoi P donne le chemin le plus court.",
+          "minWords": 20,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Je dis que PB = PB' car la symétrie conserve les longueurs",
+              "keywords": [
+                [
+                  "pb = pb'",
+                  "conserve",
+                  "meme longueur",
+                  "symetri"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Je dis que le plus court chemin de A à B' est la ligne droite",
+              "keywords": [
+                [
+                  "ligne droite",
+                  "aligne",
+                  "segment",
+                  "tout droit"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le symétrique de B par rapport à l'axe des abscisses a la même abscisse ; il est sous l'axe, à la même distance.",
+        "La droite (AB') descend de 2 carreaux chaque fois qu'elle avance de 3 carreaux vers la droite.",
+        "Pour tout point P de la rivière, PB = PB' ; et le plus court chemin de A à B' est la ligne droite."
+      ],
+      "solution": "B'(9 ; −2). La droite (AB') passe par (3 ; 2), (6 ; 0) et (9 ; −2) : elle coupe la rivière en P(6 ; 0). Pour n'importe quel point P de la rivière, PB = PB', car la symétrie conserve les longueurs : le trajet A → P → B a la même longueur que A → P → B'. Ce trajet est le plus court quand A, P et B' sont alignés, c'est-à-dire pour P(6 ; 0).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    9,
+                    -2
+                  ]
+                ]
+              },
+              {
+                "value": "6"
+              },
+              {
+                "text": "PB = PB' car la symétrie conserve les longueurs, et le chemin le plus court de A à B' est la ligne droite.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    9,
+                    -2
+                  ]
+                ]
+              },
+              {
+                "value": "4,5"
+              },
+              {
+                "text": "Je ne sais pas."
+              }
+            ]
+          },
+          "expect": "mc:milieu-naif"
+        }
+      ]
+    }
+  ]
+}

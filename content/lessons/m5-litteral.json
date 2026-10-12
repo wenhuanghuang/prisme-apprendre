@@ -168,7 +168,7 @@
             { "answer": "une somme", "id": "mc:somme-produit", "error": "notion", "feedback": "La dernière opération à effectuer est la multiplication par {a} (on calcule d'abord la parenthèse) : c'est un produit, dont l'un des facteurs est la somme $ x + {b} $." }
           ] },
         { "type": "steps", "mode": "expression", "prompt": "Développe $ {a}(x + {b}) $. Écris une étape par ligne.", "start": "a*(x + b)", "minSteps": 2,
-          "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "il faut multiplier CHAQUE terme de la parenthèse par {a} : $ {a} × x + {a} × {b} = {a}x + {a*b} $." } ] },
+          "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "il faut multiplier CHAQUE terme de la parenthèse par {a} : $x$, mais aussi {b}." } ] },
         { "type": "expression", "form": "factorisee", "prompt": "Factorise $ {k}x + {k*m} $.", "answer": "k*(x + m)",
           "misconceptions": [ { "answer": "k*(x + k*m)", "id": "mc:factor-partielle", "error": "methode", "feedback": "Vérifie en développant : $ {k}(x + {k*m}) = {k}x + {k*k*m} $, et non $ {k}x + {k*m} $. Le facteur commun {k} doit être « sorti » des deux termes : $ {k*m} = {k} × {m} $." } ] }
       ],
@@ -190,7 +190,7 @@
       "prompt": "Réduis l'expression $ {a}x + {b} + {c}x − {d} $. Commence par regrouper les termes de même nature.",
       "misconceptions": [
         { "answer": "(a+b+c-d)*x", "id": "mc:regrouper-termes", "error": "notion", "feedback": "on ne peut pas regrouper des termes « en $x$ » avec des nombres seuls. $ {a}x $ et $ {c}x $ s'ajoutent ($ {a+c}x $), mais {b} et {d} sont des nombres, qu'on regroupe à part." },
-        { "answer": "(a+c)*x + b + d", "id": "mc:signe-terme", "error": "signe", "feedback": "le signe − placé devant {d} fait partie du terme : on calcule $ {b} − {d} = {b-d} $." }
+        { "answer": "(a+c)*x + b + d", "id": "mc:signe-terme", "error": "signe", "feedback": "le signe − placé devant {d} fait partie du terme : on calcule $ {b} − {d} $, et non $ {b} + {d} $." }
       ],
       "hints": ["Repère les termes « en $x$ » et les nombres seuls.", "Regroupe : $ {a}x + {c}x + {b} − {d} $.", "$ {a}x + {c}x = ({a} + {c})x = {a+c}x $ : c'est la distributivité."],
       "solution": "$ {a}x + {b} + {c}x − {d} = {a}x + {c}x + {b} − {d} = {a+c}x {b-d|s} $.",
@@ -206,7 +206,7 @@
       "prompt": "Choisis trois nombres entiers qui se suivent, par exemple 7, 8 et 9, et calcule leur somme. Recommence avec d'autres. Il semble que la somme soit toujours un multiple de 3… Mais des exemples ne suffisent pas : démontrons-le pour TOUS les entiers.",
       "parts": [
         { "type": "expression", "form": "developpee-reduite", "prompt": "On appelle $n$ le plus petit des trois nombres. Écris la somme des trois nombres en fonction de $n$, sous forme réduite.", "answer": "3n + 3",
-          "misconceptions": [ { "answer": "3n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les trois nombres sont $n$, $n + 1$ et $n + 2$ (et non trois fois $n$) : leur somme vaut $ 3n + 3 $." } ] },
+          "misconceptions": [ { "answer": "3n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les trois nombres sont $n$, $n + 1$ et $n + 2$ (et non trois fois $n$) : additionne-les, puis réduis." } ] },
         { "type": "expression", "form": "factorisee", "prompt": "Factorise cette somme pour faire apparaître le facteur 3.", "answer": "3(n + 1)" },
         { "type": "open", "prompt": "Rédige la démonstration : pourquoi la somme de trois entiers consécutifs est-elle toujours un multiple de 3 ? Que représente $n + 1$ ?", "minWords": 25,
           "criteria": [
@@ -246,14 +246,14 @@
       "prompt": "Voici un programme de calcul :\n- choisir un nombre ;\n- lui ajouter 3 ;\n- multiplier le résultat par 4 ;\n- soustraire 12 au résultat.",
       "parts": [
         { "type": "numeric", "prompt": "Applique le programme au nombre 5. Quel résultat obtiens-tu ?", "answer": 20,
-          "misconceptions": [ { "answer": 5, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplier le résultat par 4 » porte sur TOUT le résultat précédent, $5 + 3 = 8$ : on calcule $ (5 + 3) × 4 − 12 = 20 $, et non $ 5 + 3 × 4 − 12 = 5 $." } ] },
+          "misconceptions": [ { "answer": 5, "id": "mc:parentheses-programme", "error": "notion", "feedback": "« Multiplier le résultat par 4 » porte sur TOUT le résultat précédent, $5 + 3 = 8$ : il faut calculer $ (5 + 3) × 4 − 12 $, et non $ 5 + 3 × 4 − 12 $." } ] },
         { "type": "expression", "form": "any", "prompt": "Écris, en une seule expression, le résultat obtenu en partant d'un nombre $x$.", "answer": "4(x + 3) - 12",
-          "misconceptions": [ { "answer": "x + 3*4 - 12", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Il manque des parenthèses : c'est $x + 3$ tout entier qui est multiplié par 4. On écrit $ (x + 3) × 4 − 12 $." } ] },
+          "misconceptions": [ { "answer": "x + 3*4 - 12", "id": "mc:parentheses-programme", "error": "notion", "feedback": "Il manque des parenthèses : c'est $x + 3$ tout entier qui est multiplié par 4, pas seulement le 3." } ] },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Développe et réduis cette expression. Que remarques-tu ?", "answer": "4x" },
         { "type": "numeric", "prompt": "Quel nombre faut-il choisir au départ pour obtenir 100 ?", "answer": 25,
-          "misconceptions": [ { "answer": 400, "id": "mc:operation-inverse", "error": "methode", "feedback": "Le programme revient à multiplier par 4 : pour obtenir 100, il faut partir de $ 100 ÷ 4 = 25 $ (on fait l'opération inverse)." } ] }
+          "misconceptions": [ { "answer": 400, "id": "mc:operation-inverse", "error": "methode", "feedback": "Le programme revient à multiplier par 4 : pour retrouver le nombre de départ à partir de 100, on fait l'opération inverse (on ne multiplie pas une deuxième fois)." } ] }
       ],
-      "hints": ["Écris chaque étape : 5 → 8 → 32 → 20.", "« Multiplier le résultat par 4 » : il faut des parenthèses autour de $x + 3$.", "$ (x + 3) × 4 − 12 = 4x + 12 − 12 $."],
+      "hints": ["Écris chaque étape : 5 → 8 → … (ajoute 3, puis multiplie ce résultat par 4, puis soustrais 12).", "« Multiplier le résultat par 4 » : il faut des parenthèses autour de $x + 3$.", "$ (x + 3) × 4 − 12 = 4x + 12 − 12 $."],
       "solution": "Avec 5 : $5 + 3 = 8$, $8 × 4 = 32$, $32 − 12 = 20$. Avec $x$ : $ (x + 3) × 4 − 12 = 4x + 12 − 12 = 4x $. Ce programme revient donc à multiplier le nombre de départ par 4 ! Pour obtenir 100, on choisit $ 100 ÷ 4 = 25 $.",
       "selfTest": [
         { "response": { "parts": [ { "value": "20" }, { "value": "(x+3)×4-12" }, { "value": "4x" }, { "value": "25" } ] }, "expect": "correct" },
@@ -266,7 +266,7 @@
       "prompt": "Un bassin carré mesure $n$ carreaux de côté. On l'entoure d'une bordure d'une seule rangée de carreaux identiques, les quatre coins compris.",
       "parts": [
         { "type": "numeric", "prompt": "Combien faut-il de carreaux de bordure pour un bassin de 5 carreaux de côté ?", "answer": 24,
-          "misconceptions": [ { "answer": 20, "id": "mc:coins", "error": "raisonnement", "feedback": "Tu as compté 4 côtés de 5 carreaux, mais il faut aussi les 4 carreaux des coins : $ 20 + 4 = 24 $." } ] },
+          "misconceptions": [ { "answer": 20, "id": "mc:coins", "error": "raisonnement", "feedback": "Tu as compté 4 côtés de 5 carreaux, mais il faut aussi les carreaux des coins : combien y en a-t-il ?" } ] },
         { "type": "expression", "form": "any", "prompt": "Écris le nombre de carreaux de bordure en fonction de $n$.", "answer": "4n + 4",
           "misconceptions": [ { "answer": "4n", "id": "mc:coins", "error": "raisonnement", "feedback": "$4n$ oublie les 4 carreaux des coins. Teste avec $ n = 5 $ : il faut 24 carreaux, pas 20." } ] },
         { "type": "open", "prompt": "Sami a écrit $ 4(n + 1) $ et Jade a écrit $ 2n + 2(n + 2) $. Explique comment chacun a compté les carreaux, puis prouve que leurs formules sont égales à la tienne.", "minWords": 25,
@@ -290,7 +290,7 @@
       "params": { "a": { "int": [2, 9] }, "b": { "int": [2, 9] } },
       "prompt": "Autre représentation : un grand rectangle de largeur {a} est formé de deux rectangles collés, l'un de longueur $x$, l'autre de longueur {b}. Son aire vaut $ {a}(x + {b}) $. Écris-la aussi comme la somme des aires des deux petits rectangles, sous forme réduite.",
       "answer": "a*x + a*b",
-      "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le petit rectangle de droite a lui aussi une largeur de {a} : son aire vaut $ {a} × {b} = {a*b} $, et non {b}. L'aire totale est $ {a}x + {a*b} $." } ],
+      "misconceptions": [ { "answer": "a*x + b", "id": "mc:distrib-partielle", "error": "notion", "feedback": "Le petit rectangle de droite a lui aussi une largeur de {a} : son aire vaut $ {a} × {b} $, et non {b}." } ],
       "hints": ["Aire du rectangle de gauche : $ {a} × x $.", "Aire du rectangle de droite : $ {a} × {b} $.", "La largeur {a} est commune aux deux rectangles : elle multiplie les DEUX longueurs."],
       "solution": "$ {a}(x + {b}) = {a} × x + {a} × {b} = {a}x + {a*b} $ : la largeur {a} multiplie les deux longueurs.",
       "selfTest": [
@@ -345,10 +345,10 @@
       "representation": "symbolique", "targets": ["mc:consecutifs"], "expectedSeconds": 720,
       "prompt": "Tu as démontré que la somme de trois entiers consécutifs est toujours un multiple de 3. Et avec quatre entiers consécutifs ? Avec cinq ?",
       "parts": [
-        { "type": "counterexample", "claim": "La somme de quatre entiers consécutifs est toujours un multiple de 4.", "prompt": "Montre que l'affirmation « la somme de quatre entiers consécutifs est toujours un multiple de 4 » est fausse : donne le plus petit $n$ de quatre entiers consécutifs $n$, $n + 1$, $n + 2$, $n + 3$ dont la somme n'est pas un multiple de 4.",
+        { "type": "counterexample", "claim": "La somme de quatre entiers consécutifs est toujours un multiple de 4.", "prompt": "Montre que l'affirmation « la somme de quatre entiers consécutifs est toujours un multiple de 4 » est fausse : donne un entier $n$ tel que la somme des quatre entiers consécutifs $n$, $n + 1$, $n + 2$ et $n + 3$ ne soit pas un multiple de 4.",
           "vars": ["n"], "domain": "estentier(n)", "domainLabel": "n entier", "refutes": "mod(4*n + 6; 4) != 0", "show": "4*n + 6", "showLabel": "la somme" },
         { "type": "expression", "form": "developpee-reduite", "prompt": "Écris la somme de quatre entiers consécutifs en fonction du plus petit, $n$, sous forme réduite.", "answer": "4n + 6",
-          "misconceptions": [ { "answer": "4n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les quatre nombres sont $n$, $n + 1$, $n + 2$ et $n + 3$ : en plus des quatre $n$, il y a $ 1 + 2 + 3 = 6 $." } ] },
+          "misconceptions": [ { "answer": "4n", "id": "mc:consecutifs", "error": "raisonnement", "feedback": "Les quatre nombres sont $n$, $n + 1$, $n + 2$ et $n + 3$ : en plus des quatre $n$, il reste à ajouter 1, 2 et 3." } ] },
         { "type": "open", "prompt": "Explique pourquoi la somme de quatre entiers consécutifs n'est JAMAIS un multiple de 4. Cherche ensuite ce qui se passe avec cinq entiers consécutifs, et démontre-le.", "minWords": 30,
           "criteria": [
             { "id": "c1", "label": "J'écris $4n + 6 = 4(n + 1) + 2$", "keywords": [["4(n + 1) + 2", "4(n+1)+2", "4n + 4 + 2", "4n+4+2"]] },
@@ -380,7 +380,7 @@
             { "id": "c3", "label": "Je développe et je réduis jusqu'à obtenir 5", "keywords": [["= 5", "=5"]] }
           ] }
       ],
-      "hints": ["Avec 5 : $5 + 7 = 12$, $12 × 2 = 24$, $24 − 4 = 20$, $20 − 10 = 10$.", "Avec $x$ : $ (x + 7) × 2 − 4 − 2x $.", "Développe : $ 2x + 14 − 4 − 2x $. Que deviennent les termes en $x$ ?"],
+      "hints": ["Avec 5 : $5 + 7 = 12$, puis $12 × 2 = 24$… continue avec les deux dernières étapes.", "Avec $x$ : $ (x + 7) × 2 − 4 − 2x $.", "Développe : $ 2x + 14 − 4 − 2x $. Que deviennent les termes en $x$ ?"],
       "solution": "$ (x + 7) × 2 − 4 − 2x = 2x + 14 − 4 − 2x = 10 $ : les termes en $x$ s'annulent, le résultat vaut 10 quel que soit le nombre choisi. Pour un tour qui donne toujours 5 : par exemple « ajoute 4, multiplie par 3, soustrais 7, soustrais le triple du nombre de départ » : $ 3(x + 4) − 7 − 3x = 3x + 12 − 7 − 3x = 5 $.",
       "methods": ["Tester plusieurs nombres pour conjecturer, puis démontrer avec une lettre.", "Raisonner sans lettre : en multipliant par 2, on obtient le double du nombre de départ plus 14 ; ce double est retiré à la fin, il ne reste que $ 14 − 4 = 10 $."],
       "selfTest": [

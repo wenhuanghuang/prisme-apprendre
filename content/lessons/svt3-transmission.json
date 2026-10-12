@@ -1,0 +1,4383 @@
+{
+ "id": "svt3-transmission",
+ "chapter": "3e-svt-transmission",
+ "title": "Transmettre l'information génétique : division cellulaire, méiose et fécondation",
+ "subject": "svt",
+ "level": "3e",
+ "skills": [
+  "svt3.genetique.mitose",
+  "svt3.genetique.meiose-fecondation",
+  "svt3.genetique.heredite",
+  "svt3.genetique.adn-chromosomes",
+  "svt3.genetique.gene-allele",
+  "svt4.vivant.gametes-fecondation",
+  "svt.demarche.exploiter-donnees"
+ ],
+ "status": "programme",
+ "programmes": [
+  "svt-c4-2020"
+ ],
+ "duration": 60,
+ "summary": "Observer des cellules en division et expliquer la mitose (copie de l'ADN puis partage : deux cellules filles identiques), expliquer comment la méiose (un chromosome de chaque paire, au hasard) et la fécondation (23 + 23 = 46) assurent à la fois la stabilité du caryotype et l'unicité de chaque individu, et déterminer le sexe ou un groupe sanguin avec un tableau de croisement. Avec deux exercices de type brevet. Le programme de SVT est défini pour l'ensemble du cycle 4 : la classe indiquée est une progression éditoriale.",
+ "sections": [
+  {
+   "kind": "decouverte",
+   "title": "Une cellule, des milliers de milliards",
+   "body": "Tu as commencé ta vie sous la forme d'une seule cellule, plus petite que le point sur ce « i ». Aujourd'hui, ton corps compte environ 30 000 milliards de cellules, et presque toutes possèdent les mêmes 46 chromosomes.\n\nPourtant, tu ne ressembles exactement ni à ton père, ni à ta mère, ni à tes frères et sœurs. Comment l'information génétique peut-elle être à la fois si bien recopiée… et si bien mélangée ?"
+  },
+  {
+   "kind": "experience",
+   "title": "Observer : des cellules de racine qui se divisent",
+   "body": "Une observation au microscope, puis un schéma animé de ce qui se passe dans une cellule.",
+   "demo": {
+    "w": 800,
+    "h": 440,
+    "items": [
+     {
+      "type": "texte",
+      "id": "titre",
+      "x": 16,
+      "y": 30,
+      "text": "Observer des cellules qui se divisent",
+      "size": 17,
+      "bold": true,
+      "anchor": "start"
+     },
+     {
+      "type": "emoji",
+      "id": "oignon",
+      "char": "🧅",
+      "x": 120,
+      "y": 300,
+      "size": 64,
+      "label": "oignon sur un verre d'eau"
+     },
+     {
+      "type": "emoji",
+      "id": "micro",
+      "char": "🔬",
+      "x": 290,
+      "y": 300,
+      "size": 64,
+      "label": "microscope"
+     },
+     {
+      "type": "zoom",
+      "id": "champ",
+      "x": 175,
+      "y": 228,
+      "r": 148,
+      "etat": 0,
+      "n": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "parois",
+      "shape": "path",
+      "d": "M49,187.5 h36 v27 h-36 Z M49,214.5 h36 v27 h-36 Z M49,241.5 h36 v27 h-36 Z M85,133.5 h36 v27 h-36 Z M85,160.5 h36 v27 h-36 Z M85,187.5 h36 v27 h-36 Z M85,214.5 h36 v27 h-36 Z M85,241.5 h36 v27 h-36 Z M85,268.5 h36 v27 h-36 Z M85,295.5 h36 v27 h-36 Z M121,106.5 h36 v27 h-36 Z M121,133.5 h36 v27 h-36 Z M121,160.5 h36 v27 h-36 Z M121,187.5 h36 v27 h-36 Z M121,214.5 h36 v27 h-36 Z M121,241.5 h36 v27 h-36 Z M121,268.5 h36 v27 h-36 Z M121,295.5 h36 v27 h-36 Z M121,322.5 h36 v27 h-36 Z M157,106.5 h36 v27 h-36 Z M157,133.5 h36 v27 h-36 Z M157,160.5 h36 v27 h-36 Z M157,187.5 h36 v27 h-36 Z M157,214.5 h36 v27 h-36 Z M157,241.5 h36 v27 h-36 Z M157,268.5 h36 v27 h-36 Z M157,295.5 h36 v27 h-36 Z M157,322.5 h36 v27 h-36 Z M193,106.5 h36 v27 h-36 Z M193,133.5 h36 v27 h-36 Z M193,160.5 h36 v27 h-36 Z M193,187.5 h36 v27 h-36 Z M193,214.5 h36 v27 h-36 Z M193,241.5 h36 v27 h-36 Z M193,268.5 h36 v27 h-36 Z M193,295.5 h36 v27 h-36 Z M193,322.5 h36 v27 h-36 Z M229,133.5 h36 v27 h-36 Z M229,160.5 h36 v27 h-36 Z M229,187.5 h36 v27 h-36 Z M229,214.5 h36 v27 h-36 Z M229,241.5 h36 v27 h-36 Z M229,268.5 h36 v27 h-36 Z M229,295.5 h36 v27 h-36 Z M265,187.5 h36 v27 h-36 Z M265,214.5 h36 v27 h-36 Z M265,241.5 h36 v27 h-36 Z M247,268.5 v27",
+      "x": 45,
+      "y": 98,
+      "w": 260,
+      "h": 260,
+      "fill": "#fdf2f8",
+      "stroke": "#be185d",
+      "width": 1.2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "noyaux",
+      "shape": "path",
+      "d": "M62,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M62,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M62,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,147 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,282 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M98,309 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,120 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,147 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,174 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,282 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,309 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M134,336 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,120 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,147 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,174 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,309 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M170,336 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,120 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,147 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,174 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,282 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,309 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M206,336 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,147 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,174 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M242,309 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M278,201 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M278,228 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M278,255 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M231.5,282 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0 M253.5,282 a4.5,4.5 0 1,0 9,0 a4.5,4.5 0 1,0 -9,0",
+      "x": 45,
+      "y": 98,
+      "w": 260,
+      "h": 260,
+      "fill": "#be185d",
+      "opacity": 0.85,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "divisions",
+      "shape": "path",
+      "d": "M94,167 l4,6 M105,165 l-2,7 M97,177 l6,3 M110,174 l-1,8 M211,190 v6 M211,198 v6 M211,206 v6 M163,273 v7 M163,283 v7 M187,273 v7 M187,283 v7",
+      "x": 45,
+      "y": 98,
+      "w": 260,
+      "h": 260,
+      "fill": "none",
+      "stroke": "#831843",
+      "width": 3,
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "zLab",
+      "x": 175,
+      "y": 404,
+      "text": "pointe de racine au microscope (× 400)",
+      "size": 13,
+      "hidden": true
+     },
+     {
+      "type": "etiquette",
+      "id": "eAlign",
+      "x": 175,
+      "y": 60,
+      "text": "chromosomes alignés",
+      "to": [
+       211,
+       189
+      ],
+      "hidden": true
+     },
+     {
+      "type": "etiquette",
+      "id": "eSep",
+      "x": 175,
+      "y": 406,
+      "text": "copies qui se séparent",
+      "to": [
+       175,
+       292
+      ],
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "cTitre",
+      "x": 590,
+      "y": 92,
+      "text": "Schéma d'une cellule (4 chromosomes au lieu de 16)",
+      "size": 13,
+      "bold": true,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "cellule",
+      "shape": "rect",
+      "x": 420,
+      "y": 110,
+      "w": 340,
+      "h": 230,
+      "rx": 18,
+      "fill": "#fdf2f8",
+      "stroke": "#be185d",
+      "width": 3,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "noyau",
+      "shape": "ellipse",
+      "x": 590,
+      "y": 225,
+      "w": 170,
+      "h": 130,
+      "fill": "#fce7f3",
+      "stroke": "#db2777",
+      "width": 2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "noyauG",
+      "shape": "ellipse",
+      "x": 491,
+      "y": 198,
+      "w": 86,
+      "h": 96,
+      "fill": "#fce7f3",
+      "stroke": "#db2777",
+      "width": 2,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "noyauD",
+      "shape": "ellipse",
+      "x": 689,
+      "y": 198,
+      "w": 86,
+      "h": 96,
+      "fill": "#fce7f3",
+      "stroke": "#db2777",
+      "width": 2,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "paroi",
+      "shape": "line",
+      "x": 590,
+      "y": 112,
+      "w": 0,
+      "h": 226,
+      "stroke": "#be185d",
+      "width": 3,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "A1",
+      "shape": "line",
+      "x": 548,
+      "y": 180,
+      "w": 0,
+      "h": 56,
+      "stroke": "#b91c1c",
+      "width": 6,
+      "opacity": 1,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "B1",
+      "shape": "line",
+      "x": 604,
+      "y": 172,
+      "w": 0,
+      "h": 56,
+      "stroke": "#f87171",
+      "width": 6,
+      "opacity": 1,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "C1",
+      "shape": "line",
+      "x": 570,
+      "y": 244,
+      "w": 0,
+      "h": 32,
+      "stroke": "#1d4ed8",
+      "width": 6,
+      "opacity": 1,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "D1",
+      "shape": "line",
+      "x": 628,
+      "y": 240,
+      "w": 0,
+      "h": 32,
+      "stroke": "#60a5fa",
+      "width": 6,
+      "opacity": 1,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "A2",
+      "shape": "line",
+      "x": 548,
+      "y": 180,
+      "w": 0,
+      "h": 56,
+      "stroke": "#b91c1c",
+      "width": 6,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "B2",
+      "shape": "line",
+      "x": 604,
+      "y": 172,
+      "w": 0,
+      "h": 56,
+      "stroke": "#f87171",
+      "width": 6,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "C2",
+      "shape": "line",
+      "x": 570,
+      "y": 244,
+      "w": 0,
+      "h": 32,
+      "stroke": "#1d4ed8",
+      "width": 6,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "D2",
+      "shape": "line",
+      "x": 628,
+      "y": 240,
+      "w": 0,
+      "h": 32,
+      "stroke": "#60a5fa",
+      "width": 6,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "nG",
+      "x": 491,
+      "y": 318,
+      "text": "4 chromosomes",
+      "size": 13,
+      "bold": true,
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "nD",
+      "x": 689,
+      "y": 318,
+      "text": "4 chromosomes",
+      "size": 13,
+      "bold": true,
+      "hidden": true
+     }
+    ],
+    "steps": [
+     {
+      "title": "Le matériel",
+      "text": "On fait pousser des racines à un oignon posé sur un verre d'eau. On coupe l'extrémité d'une racine, là où elle grandit, on la colore pour rendre les chromosomes visibles, puis on l'écrase doucement entre deux lames de verre.",
+      "focus": [
+       "oignon",
+       "micro"
+      ]
+     },
+     {
+      "title": "Au microscope",
+      "text": "Au grossissement × 400, on voit des dizaines de petites cellules rangées en files. La plupart ont un noyau rond, bien coloré. Dans quelques cellules, on ne voit plus de noyau : à la place, des bâtonnets colorés, les chromosomes. Ces cellules sont en train de se diviser.",
+      "duration": 2,
+      "hide": [
+       "oignon",
+       "micro"
+      ],
+      "show": [
+       "champ",
+       "parois",
+       "noyaux",
+       "divisions",
+       "zLab"
+      ],
+      "focus": [
+       "champ"
+      ],
+      "ask": {
+       "kind": "observer",
+       "question": "Dans ce champ du microscope, combien de cellules sont en train de se diviser ?",
+       "choices": [
+        "Toutes : on voit des chromosomes dans chaque cellule",
+        "Quelques-unes seulement : la plupart ont un noyau rond",
+        "Aucune : on ne voit que des noyaux"
+       ],
+       "answer": 1,
+       "explain": "Une cellule passe la plus grande partie de sa vie avec un noyau ; sa division ne dure qu'une petite partie de ce temps. À un instant donné, on ne surprend donc que quelques cellules en train de se diviser."
+      }
+     },
+     {
+      "title": "Copier avant de partager",
+      "text": "Voici le schéma d'une cellule avant sa division, simplifiée à 4 chromosomes. Avant de se diviser, la cellule copie son ADN : chaque chromosome devient double, formé de deux copies identiques, collées l'une à l'autre.",
+      "duration": 4,
+      "show": [
+       "cTitre",
+       "cellule",
+       "noyau",
+       "noyauG",
+       "noyauD",
+       "paroi",
+       "A1",
+       "A2",
+       "B1",
+       "B2",
+       "C1",
+       "C2",
+       "D1",
+       "D2"
+      ],
+      "do": [
+       {
+        "id": "A2",
+        "to": {
+         "opacity": 1,
+         "x": 556
+        },
+        "at": 0.6,
+        "dur": 1.2
+       },
+       {
+        "id": "B2",
+        "to": {
+         "opacity": 1,
+         "x": 612
+        },
+        "at": 1.2,
+        "dur": 1.2
+       },
+       {
+        "id": "C2",
+        "to": {
+         "opacity": 1,
+         "x": 578
+        },
+        "at": 1.7999999999999998,
+        "dur": 1.2
+       },
+       {
+        "id": "D2",
+        "to": {
+         "opacity": 1,
+         "x": 636
+        },
+        "at": 2.4,
+        "dur": 1.2
+       }
+      ],
+      "focus": [
+       "noyau"
+      ]
+     },
+     {
+      "title": "Prévois !",
+      "text": "Les deux copies de chaque chromosome vont bientôt se séparer.",
+      "focus": [
+       "noyau"
+      ],
+      "ask": {
+       "question": "La cellule mère a 4 chromosomes, chacun devenu double. Combien de chromosomes recevra chaque cellule fille ?",
+       "choices": [
+        "2",
+        "4",
+        "8"
+       ],
+       "answer": 1,
+       "explain": "Chaque chromosome double se sépare en deux copies : chaque cellule fille reçoit une copie de chacun des 4 chromosomes. Elle en a donc 4, comme la cellule mère."
+      }
+     },
+     {
+      "title": "Les chromosomes s'alignent",
+      "text": "Le noyau disparaît. Les chromosomes, très condensés, sont maintenant bien visibles. Ils se placent tous au milieu de la cellule, l'un au-dessus de l'autre, chacun avec ses deux copies orientées vers les deux côtés de la cellule.",
+      "duration": 4,
+      "do": [
+       {
+        "id": "noyau",
+        "to": {
+         "opacity": 0
+        },
+        "dur": 1.2
+       },
+       {
+        "id": "A1",
+        "to": {
+         "x": 586,
+         "y": 120
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "A2",
+        "to": {
+         "x": 594,
+         "y": 120
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "B1",
+        "to": {
+         "x": 586,
+         "y": 184
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "B2",
+        "to": {
+         "x": 594,
+         "y": 184
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "C1",
+        "to": {
+         "x": 586,
+         "y": 252
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "C2",
+        "to": {
+         "x": 594,
+         "y": 252
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "D1",
+        "to": {
+         "x": 586,
+         "y": 294
+        },
+        "at": 0.8,
+        "dur": 2.6
+       },
+       {
+        "id": "D2",
+        "to": {
+         "x": 594,
+         "y": 294
+        },
+        "at": 0.8,
+        "dur": 2.6
+       }
+      ],
+      "focus": [
+       "cellule"
+      ]
+     },
+     {
+      "title": "Les copies se séparent",
+      "text": "Les deux copies de chaque chromosome se séparent et partent chacune vers un côté de la cellule. De chaque côté se rassemble un exemplaire de chacun des 4 chromosomes : les deux lots sont identiques.",
+      "duration": 4,
+      "do": [
+       {
+        "id": "A1",
+        "to": {
+         "x": 470,
+         "y": 170
+        },
+        "dur": 3
+       },
+       {
+        "id": "A2",
+        "to": {
+         "x": 668,
+         "y": 170
+        },
+        "dur": 3
+       },
+       {
+        "id": "B1",
+        "to": {
+         "x": 484,
+         "y": 170
+        },
+        "dur": 3
+       },
+       {
+        "id": "B2",
+        "to": {
+         "x": 682,
+         "y": 170
+        },
+        "dur": 3
+       },
+       {
+        "id": "C1",
+        "to": {
+         "x": 498,
+         "y": 182
+        },
+        "dur": 3
+       },
+       {
+        "id": "C2",
+        "to": {
+         "x": 696,
+         "y": 182
+        },
+        "dur": 3
+       },
+       {
+        "id": "D1",
+        "to": {
+         "x": 512,
+         "y": 182
+        },
+        "dur": 3
+       },
+       {
+        "id": "D2",
+        "to": {
+         "x": 710,
+         "y": 182
+        },
+        "dur": 3
+       }
+      ],
+      "focus": [
+       "cellule"
+      ],
+      "ask": {
+       "kind": "observer",
+       "question": "Regarde les couleurs et les tailles des chromosomes : que reçoit chaque côté de la cellule ?",
+       "choices": [
+        "Un exemplaire de chacun des 4 chromosomes : les deux lots sont identiques",
+        "Les 2 longs chromosomes d'un côté, les 2 courts de l'autre",
+        "Les rouges d'un côté, les bleus de l'autre"
+       ],
+       "answer": 0,
+       "explain": "Chaque chromosome double s'est partagé : une copie part d'un côté, l'autre copie de l'autre côté. Chaque lot contient donc les 4 mêmes chromosomes : deux longs (rouge foncé, rouge clair) et deux courts (bleu foncé, bleu clair)."
+      }
+     },
+     {
+      "title": "Deux cellules filles",
+      "text": "Un noyau se reforme autour de chaque lot de chromosomes, et une nouvelle paroi partage la cellule en deux. On obtient deux cellules filles qui ont le même nombre de chromosomes et la même information génétique que la cellule mère.",
+      "duration": 3,
+      "show": [
+       "nG",
+       "nD"
+      ],
+      "do": [
+       {
+        "id": "noyauG",
+        "to": {
+         "opacity": 1
+        },
+        "dur": 1.5
+       },
+       {
+        "id": "noyauD",
+        "to": {
+         "opacity": 1
+        },
+        "dur": 1.5
+       },
+       {
+        "id": "paroi",
+        "to": {
+         "opacity": 1
+        },
+        "at": 1,
+        "dur": 1.5
+       }
+      ],
+      "focus": [
+       "nG",
+       "nD"
+      ]
+     },
+     {
+      "title": "Retour au microscope",
+      "text": "On reconnaît maintenant ces étapes dans le champ du microscope : des chromosomes alignés au milieu d'une cellule, et ailleurs deux lots de chromosomes qui s'éloignent. C'est ainsi que la racine fabrique de nouvelles cellules et grandit.",
+      "duration": 2,
+      "hide": [
+       "zLab"
+      ],
+      "show": [
+       "eAlign",
+       "eSep"
+      ],
+      "focus": [
+       "eAlign",
+       "eSep"
+      ],
+      "ask": {
+       "kind": "expliquer",
+       "question": "Toutes les cellules de cette racine ont la même information génétique. Comment l'expliquer ?",
+       "choices": [
+        "Chaque cellule fabrique ses propres chromosomes, au hasard",
+        "Elles puisent leur ADN dans l'eau du verre",
+        "Elles sont issues de divisions successives, qui copient puis partagent les chromosomes à l'identique"
+       ],
+       "answer": 2,
+       "explain": "À chaque division, l'ADN est copié, puis partagé à l'identique entre les deux cellules filles. Division après division, toutes les cellules gardent la même information génétique."
+      }
+     }
+    ],
+    "conclusion": "Avant de se diviser, une cellule **copie** son ADN : chaque chromosome devient double. Pendant la **mitose**, les deux copies de chaque chromosome se séparent : les deux **cellules filles** ont le **même nombre de chromosomes** et la **même information génétique** que la cellule mère.\n\n*Schéma simplifié : une cellule d'oignon possède en réalité 16 chromosomes, et chez l'être humain 46.*"
+   }
+  },
+  {
+   "kind": "experience",
+   "title": "Modèle animé : méiose et fécondation",
+   "body": "Des chromosomes colorés pour suivre, pas à pas, ce que reçoit chaque cellule reproductrice, puis la cellule-œuf.",
+   "demo": {
+    "w": 800,
+    "h": 440,
+    "items": [
+     {
+      "type": "texte",
+      "id": "titre",
+      "x": 16,
+      "y": 30,
+      "text": "Modèle : méiose et fécondation",
+      "size": 17,
+      "bold": true,
+      "anchor": "start"
+     },
+     {
+      "type": "texte",
+      "id": "sousTitre",
+      "x": 16,
+      "y": 52,
+      "text": "2 paires de chromosomes au lieu de 23",
+      "size": 13,
+      "anchor": "start"
+     },
+     {
+      "type": "forme",
+      "id": "cPere",
+      "shape": "ellipse",
+      "x": 150,
+      "y": 140,
+      "w": 200,
+      "h": 120,
+      "fill": "#eff6ff",
+      "stroke": "#2563eb",
+      "width": 2
+     },
+     {
+      "type": "texte",
+      "id": "lPere",
+      "x": 150,
+      "y": 214,
+      "text": "cellule d'un testicule (père)",
+      "size": 13
+     },
+     {
+      "type": "forme",
+      "id": "cMere",
+      "shape": "ellipse",
+      "x": 650,
+      "y": 140,
+      "w": 200,
+      "h": 120,
+      "fill": "#fdf2f8",
+      "stroke": "#db2777",
+      "width": 2
+     },
+     {
+      "type": "texte",
+      "id": "lMere",
+      "x": 650,
+      "y": 214,
+      "text": "cellule d'un ovaire (mère)",
+      "size": 13
+     },
+     {
+      "type": "forme",
+      "id": "s1",
+      "shape": "ellipse",
+      "x": 60,
+      "y": 290,
+      "w": 56,
+      "h": 46,
+      "fill": "#eff6ff",
+      "stroke": "#2563eb",
+      "width": 2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "s2",
+      "shape": "ellipse",
+      "x": 140,
+      "y": 290,
+      "w": 56,
+      "h": 46,
+      "fill": "#eff6ff",
+      "stroke": "#2563eb",
+      "width": 2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "s3",
+      "shape": "ellipse",
+      "x": 220,
+      "y": 290,
+      "w": 56,
+      "h": 46,
+      "fill": "#eff6ff",
+      "stroke": "#2563eb",
+      "width": 2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "s4",
+      "shape": "ellipse",
+      "x": 300,
+      "y": 290,
+      "w": 56,
+      "h": 46,
+      "fill": "#eff6ff",
+      "stroke": "#2563eb",
+      "width": 2,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "q1",
+      "shape": "path",
+      "d": "M60,313 q7,9 0,18 q-7,9 0,18 q7,9 0,16",
+      "x": 52,
+      "y": 313,
+      "w": 16,
+      "h": 52,
+      "fill": "none",
+      "stroke": "#2563eb",
+      "width": 2.5,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "q2",
+      "shape": "path",
+      "d": "M140,313 q7,9 0,18 q-7,9 0,18 q7,9 0,16",
+      "x": 132,
+      "y": 313,
+      "w": 16,
+      "h": 52,
+      "fill": "none",
+      "stroke": "#2563eb",
+      "width": 2.5,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "q3",
+      "shape": "path",
+      "d": "M220,313 q7,9 0,18 q-7,9 0,18 q7,9 0,16",
+      "x": 212,
+      "y": 313,
+      "w": 16,
+      "h": 52,
+      "fill": "none",
+      "stroke": "#2563eb",
+      "width": 2.5,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "q4",
+      "shape": "path",
+      "d": "M300,313 q7,9 0,18 q-7,9 0,18 q7,9 0,16",
+      "x": 292,
+      "y": 313,
+      "w": 16,
+      "h": 52,
+      "fill": "none",
+      "stroke": "#2563eb",
+      "width": 2.5,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "ovule",
+      "shape": "ellipse",
+      "x": 650,
+      "y": 310,
+      "w": 104,
+      "h": 104,
+      "fill": "#fce7f3",
+      "stroke": "#db2777",
+      "width": 2.5,
+      "opacity": 0,
+      "hidden": true
+     },
+     {
+      "type": "forme",
+      "id": "Pa",
+      "shape": "line",
+      "x": 108,
+      "y": 112,
+      "w": 0,
+      "h": 50,
+      "stroke": "#1e3a8a",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Pb",
+      "shape": "line",
+      "x": 122,
+      "y": 112,
+      "w": 0,
+      "h": 50,
+      "stroke": "#60a5fa",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Pc",
+      "shape": "line",
+      "x": 172,
+      "y": 124,
+      "w": 0,
+      "h": 28,
+      "stroke": "#1e3a8a",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Pd",
+      "shape": "line",
+      "x": 186,
+      "y": 124,
+      "w": 0,
+      "h": 28,
+      "stroke": "#60a5fa",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Pa3",
+      "shape": "line",
+      "x": 213,
+      "y": 276,
+      "w": 0,
+      "h": 28,
+      "stroke": "#1e3a8a",
+      "width": 7,
+      "opacity": 0
+     },
+     {
+      "type": "forme",
+      "id": "Pd3",
+      "shape": "line",
+      "x": 228,
+      "y": 282,
+      "w": 0,
+      "h": 16,
+      "stroke": "#60a5fa",
+      "width": 7,
+      "opacity": 0
+     },
+     {
+      "type": "forme",
+      "id": "Pb4",
+      "shape": "line",
+      "x": 293,
+      "y": 276,
+      "w": 0,
+      "h": 28,
+      "stroke": "#60a5fa",
+      "width": 7,
+      "opacity": 0
+     },
+     {
+      "type": "forme",
+      "id": "Pc4",
+      "shape": "line",
+      "x": 308,
+      "y": 282,
+      "w": 0,
+      "h": 16,
+      "stroke": "#1e3a8a",
+      "width": 7,
+      "opacity": 0
+     },
+     {
+      "type": "forme",
+      "id": "Ma",
+      "shape": "line",
+      "x": 608,
+      "y": 112,
+      "w": 0,
+      "h": 50,
+      "stroke": "#9f1239",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Mb",
+      "shape": "line",
+      "x": 622,
+      "y": 112,
+      "w": 0,
+      "h": 50,
+      "stroke": "#fb7185",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Mc",
+      "shape": "line",
+      "x": 672,
+      "y": 124,
+      "w": 0,
+      "h": 28,
+      "stroke": "#9f1239",
+      "width": 7
+     },
+     {
+      "type": "forme",
+      "id": "Md",
+      "shape": "line",
+      "x": 686,
+      "y": 124,
+      "w": 0,
+      "h": 28,
+      "stroke": "#fb7185",
+      "width": 7
+     },
+     {
+      "type": "texte",
+      "id": "lSpz",
+      "x": 180,
+      "y": 392,
+      "text": "spermatozoïdes : 2 chromosomes chacun",
+      "size": 13,
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "lOvule",
+      "x": 650,
+      "y": 384,
+      "text": "ovule : 2 chromosomes",
+      "size": 13,
+      "hidden": true
+     },
+     {
+      "type": "releve",
+      "id": "tab",
+      "x": 304,
+      "y": 66,
+      "w": 236,
+      "title": "Cellules reproductrices possibles",
+      "head": [
+       "paires",
+       "combinaisons"
+      ],
+      "rows": [
+       [
+        "1",
+        "2"
+       ],
+       [
+        "2",
+        "2 × 2 = 4"
+       ],
+       [
+        "3",
+        "2 × 2 × 2 = 8"
+       ],
+       [
+        "23",
+        "2²³ ≈ 8,4 millions"
+       ]
+      ],
+      "shown": 0,
+      "hidden": true
+     },
+     {
+      "type": "texte",
+      "id": "hasard",
+      "x": 400,
+      "y": 252,
+      "text": "le hasard décide",
+      "size": 14,
+      "bold": true,
+      "color": "#7c3aed",
+      "hidden": true
+     }
+    ],
+    "steps": [
+     {
+      "title": "Deux cellules, deux paires",
+      "text": "Modèle simplifié : 2 paires de chromosomes au lieu de 23. À gauche, une cellule d'un testicule du père ; à droite, une cellule d'un ovaire de la mère. Dans chaque paire, la teinte foncée et la teinte claire indiquent deux origines : l'un des chromosomes vient du grand-père, l'autre de la grand-mère.",
+      "focus": [
+       "cPere",
+       "cMere"
+      ]
+     },
+     {
+      "title": "La méiose chez le père",
+      "text": "Les chromosomes de chaque paire se séparent : chaque spermatozoïde reçoit un seul chromosome de chaque paire, donc 2 chromosomes au lieu de 4. Ici, le hasard a réuni les deux chromosomes foncés d'un côté, les deux clairs de l'autre.",
+      "duration": 5,
+      "show": [
+       "s1",
+       "s2",
+       "q1",
+       "q2",
+       "lSpz",
+       "hasard"
+      ],
+      "do": [
+       {
+        "id": "Pa",
+        "to": {
+         "x": 53,
+         "y": 276,
+         "h": 28
+        },
+        "at": 0.5,
+        "dur": 2.5
+       },
+       {
+        "id": "Pc",
+        "to": {
+         "x": 68,
+         "y": 282,
+         "h": 16
+        },
+        "at": 0.5,
+        "dur": 2.5
+       },
+       {
+        "id": "Pb",
+        "to": {
+         "x": 133,
+         "y": 276,
+         "h": 28
+        },
+        "at": 0.5,
+        "dur": 2.5
+       },
+       {
+        "id": "Pd",
+        "to": {
+         "x": 148,
+         "y": 282,
+         "h": 16
+        },
+        "at": 0.5,
+        "dur": 2.5
+       },
+       {
+        "id": "cPere",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 3,
+        "dur": 1.5
+       }
+      ],
+      "focus": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "title": "Prévois !",
+      "text": "Dans le testicule, des millions de cellules font la méiose. À chaque fois, le hasard répartit à nouveau les chromosomes de chaque paire.",
+      "focus": [
+       "s1",
+       "s2"
+      ],
+      "ask": {
+       "question": "Avec 2 paires, combien de sortes de spermatozoïdes différents ce père peut-il produire ?",
+       "choices": [
+        "2",
+        "4",
+        "8"
+       ],
+       "answer": 1,
+       "explain": "Pour la paire longue, 2 possibilités ; pour la paire courte, 2 possibilités. Elles se combinent : 2 × 2 = 4 sortes de spermatozoïdes."
+      }
+     },
+     {
+      "title": "D'autres méioses, d'autres tirages",
+      "text": "Dans une autre cellule du testicule, le hasard répartit les chromosomes autrement : foncé avec clair, ou clair avec foncé. On obtient 4 sortes de spermatozoïdes, tous avec un chromosome de chaque paire, mais pas les mêmes.",
+      "duration": 3,
+      "show": [
+       "s3",
+       "s4",
+       "q3",
+       "q4"
+      ],
+      "do": [
+       {
+        "id": "Pa3",
+        "to": {
+         "opacity": 1
+        },
+        "at": 0.4,
+        "dur": 1.2
+       },
+       {
+        "id": "Pd3",
+        "to": {
+         "opacity": 1
+        },
+        "at": 0.4,
+        "dur": 1.2
+       },
+       {
+        "id": "Pb4",
+        "to": {
+         "opacity": 1
+        },
+        "at": 1.2,
+        "dur": 1.2
+       },
+       {
+        "id": "Pc4",
+        "to": {
+         "opacity": 1
+        },
+        "at": 1.2,
+        "dur": 1.2
+       }
+      ],
+      "focus": [
+       "s3",
+       "s4"
+      ],
+      "ask": {
+       "kind": "observer",
+       "question": "Compare les 4 spermatozoïdes : qu'ont-ils tous en commun ?",
+       "choices": [
+        "Chacun a 2 chromosomes, un long et un court : un de chaque paire",
+        "Ils ont tous exactement les mêmes chromosomes",
+        "Certains ont les deux longs chromosomes, d'autres les deux courts"
+       ],
+       "answer": 0,
+       "explain": "Chaque spermatozoïde reçoit un chromosome de chaque paire : un long et un court. Mais le hasard décide lequel (teinte foncée ou claire) : ils ne sont pas tous identiques."
+      }
+     },
+     {
+      "title": "La méiose chez la mère",
+      "text": "Dans l'ovaire, la méiose produit un ovule qui reçoit, lui aussi, un seul chromosome de chaque paire, choisi au hasard. Les autres chromosomes partent dans de petites cellules qui dégénèrent.",
+      "duration": 4,
+      "show": [
+       "ovule",
+       "lOvule"
+      ],
+      "do": [
+       {
+        "id": "ovule",
+        "to": {
+         "opacity": 1
+        },
+        "dur": 1
+       },
+       {
+        "id": "Mb",
+        "to": {
+         "x": 642,
+         "y": 292,
+         "h": 36
+        },
+        "at": 0.6,
+        "dur": 2.4
+       },
+       {
+        "id": "Mc",
+        "to": {
+         "x": 662,
+         "y": 300,
+         "h": 20
+        },
+        "at": 0.6,
+        "dur": 2.4
+       },
+       {
+        "id": "Ma",
+        "to": {
+         "opacity": 0
+        },
+        "at": 2.4,
+        "dur": 1.2
+       },
+       {
+        "id": "Md",
+        "to": {
+         "opacity": 0
+        },
+        "at": 2.4,
+        "dur": 1.2
+       },
+       {
+        "id": "cMere",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 2.6,
+        "dur": 1.2
+       }
+      ],
+      "focus": [
+       "ovule"
+      ]
+     },
+     {
+      "title": "Prévois !",
+      "text": "Un spermatozoïde va s'unir à l'ovule.",
+      "focus": [
+       "ovule"
+      ],
+      "ask": {
+       "question": "Combien de chromosomes aura la cellule-œuf, dans ce modèle ?",
+       "choices": [
+        "2",
+        "4",
+        "8"
+       ],
+       "answer": 1,
+       "explain": "Le spermatozoïde apporte 2 chromosomes et l'ovule 2 : la cellule-œuf en a 4, comme les cellules des parents. Chez l'être humain : 23 + 23 = 46."
+      }
+     },
+     {
+      "title": "La fécondation",
+      "text": "Un seul spermatozoïde, rencontré au hasard, entre dans l'ovule : leurs chromosomes se réunissent. La cellule-œuf retrouve 2 paires. Dans chaque paire, un chromosome vient du père (en bleu), l'autre de la mère (en rouge).",
+      "duration": 5,
+      "hide": [
+       "q3",
+       "lSpz",
+       "hasard"
+      ],
+      "do": [
+       {
+        "id": "s3",
+        "to": {
+         "x": 590,
+         "y": 300
+        },
+        "dur": 2.4
+       },
+       {
+        "id": "Pa3",
+        "to": {
+         "x": 583,
+         "y": 286
+        },
+        "dur": 2.4
+       },
+       {
+        "id": "Pd3",
+        "to": {
+         "x": 598,
+         "y": 292
+        },
+        "dur": 2.4
+       },
+       {
+        "id": "s3",
+        "to": {
+         "opacity": 0
+        },
+        "at": 2.4,
+        "dur": 0.8
+       },
+       {
+        "id": "Pa3",
+        "to": {
+         "x": 632,
+         "y": 292,
+         "h": 36
+        },
+        "at": 2.6,
+        "dur": 1.6
+       },
+       {
+        "id": "Pd3",
+        "to": {
+         "x": 672,
+         "y": 300,
+         "h": 20
+        },
+        "at": 2.6,
+        "dur": 1.6
+       },
+       {
+        "id": "lOvule",
+        "set": {
+         "text": "cellule-œuf : 4 chromosomes, en 2 paires"
+        },
+        "at": 4.2
+       },
+       {
+        "id": "s1",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "q1",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "s2",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "q2",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "s4",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "q4",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pa",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pc",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pb",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pd",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pb4",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       },
+       {
+        "id": "Pc4",
+        "to": {
+         "opacity": 0.35
+        },
+        "at": 1,
+        "dur": 1.5
+       }
+      ],
+      "focus": [
+       "ovule"
+      ],
+      "ask": {
+       "kind": "expliquer",
+       "question": "Pourquoi la méiose est-elle indispensable avant la fécondation ?",
+       "choices": [
+        "Elle permet aux cellules reproductrices de grossir",
+        "Sans elle, le nombre de chromosomes doublerait à chaque génération",
+        "Elle fait en sorte que l'enfant ne reçoive que les chromosomes de son père"
+       ],
+       "answer": 1,
+       "explain": "La méiose divise par deux le nombre de chromosomes (ici 4 → 2 ; chez l'être humain 46 → 23). La fécondation le rétablit (2 + 2 = 4 ; 23 + 23 = 46) : il reste stable d'une génération à l'autre."
+      }
+     },
+     {
+      "title": "Des milliers de milliards de possibilités",
+      "text": "Avec 23 paires, chaque parent peut produire plus de 8 millions de cellules reproductrices différentes. Un spermatozoïde et un ovule se rencontrant au hasard, un couple peut former environ 70 000 milliards de cellules-œufs différentes : chaque enfant est unique.",
+      "duration": 4,
+      "show": [
+       "tab"
+      ],
+      "do": [
+       {
+        "id": "tab",
+        "to": {
+         "shown": 4
+        },
+        "dur": 3.5
+       }
+      ],
+      "focus": [
+       "tab"
+      ],
+      "ask": {
+       "kind": "expliquer",
+       "question": "Pourquoi deux enfants des mêmes parents sont-ils différents (sauf les vrais jumeaux) ?",
+       "choices": [
+        "Chaque enfant ne reçoit les chromosomes que d'un seul parent",
+        "Le deuxième enfant reçoit plus de chromosomes que le premier",
+        "Méiose et fécondation combinent les chromosomes au hasard : chaque cellule-œuf est unique"
+       ],
+       "answer": 2,
+       "explain": "Chaque cellule reproductrice reçoit une combinaison de chromosomes tirée au hasard, et la rencontre d'un spermatozoïde et d'un ovule se fait aussi au hasard. Les vrais jumeaux, eux, viennent d'une même cellule-œuf."
+      }
+     }
+    ],
+    "conclusion": "La **méiose** produit des cellules reproductrices qui ne reçoivent qu'**un chromosome de chaque paire** (23 chez l'être humain), choisi **au hasard**. La **fécondation** réunit 23 + 23 chromosomes : la cellule-œuf retrouve **46 chromosomes en 23 paires**. Le nombre de chromosomes reste stable, mais les combinaisons sont presque infinies : chaque individu est unique.\n\n*Modèle simplifié : la méiose comporte en réalité deux divisions successives, et les chromosomes d'une même paire peuvent échanger des morceaux, ce qui augmente encore la diversité.*"
+   }
+  },
+  {
+   "kind": "cours",
+   "title": "Le cours en 6 cartes",
+   "cards": [
+    {
+     "emoji": "🔁",
+     "title": "La division cellulaire",
+     "body": "Toutes tes cellules proviennent de divisions successives de la **cellule-œuf**. À chaque division, une **cellule mère** donne deux **cellules filles**. C'est ainsi que l'on grandit, que la peau se répare après une égratignure et que la racine d'une plante s'allonge. Ton corps compte aujourd'hui environ 30 000 milliards de cellules (estimation)."
+    },
+    {
+     "emoji": "📋",
+     "title": "Copier avant de partager : la mitose",
+     "body": "Avant de se diviser, la cellule **copie son ADN** : chaque chromosome devient double, formé de deux copies identiques. Pendant la division, appelée **mitose**, les deux copies de chaque chromosome se séparent : chaque cellule fille reçoit un exemplaire de chaque chromosome. Elle a donc **46 chromosomes** et la **même information génétique** que la cellule mère.",
+     "reveal": {
+      "question": "Devine : une cellule de ta peau qui se divise donne-t-elle des cellules à 23 chromosomes ?",
+      "answer": "Non : la mitose conserve le nombre de chromosomes. Les deux cellules filles ont 46 chromosomes, avec les mêmes allèles que la cellule mère."
+     }
+    },
+    {
+     "emoji": "✂️",
+     "title": "La méiose",
+     "body": "Dans les **testicules** et les **ovaires**, une division particulière, la **méiose**, fabrique les cellules reproductrices (spermatozoïdes et ovules). Les chromosomes de chaque paire se séparent : chaque cellule reproductrice reçoit **un seul chromosome de chaque paire**, soit **23 chromosomes**. Lequel des deux ? C'est le **hasard**."
+    },
+    {
+     "emoji": "💞",
+     "title": "La fécondation",
+     "body": "La **fécondation** réunit un spermatozoïde (23 chromosomes) et un ovule (23 chromosomes) : la **cellule-œuf** retrouve **46 chromosomes en 23 paires**, un chromosome de chaque paire venant du père, l'autre de la mère. L'ovule porte toujours un X ; le spermatozoïde porte un X ou un Y : c'est lui qui détermine le sexe de l'enfant.",
+     "example": "23 + 23 = 46 : de génération en génération, le nombre de chromosomes reste stable."
+    },
+    {
+     "emoji": "🎰",
+     "title": "Chaque individu est unique",
+     "body": "Avec 23 paires, chaque parent peut produire plus de 8 millions de cellules reproductrices différentes (2²³), et même bien davantage, car les chromosomes d'une paire échangent des morceaux. La rencontre au hasard d'un spermatozoïde et d'un ovule multiplie encore les possibilités : sauf les **vrais jumeaux**, issus d'une même cellule-œuf, chaque être humain a un patrimoine génétique **unique**.",
+     "reveal": {
+      "question": "Devine : un frère et une sœur ont-ils les mêmes allèles ?",
+      "answer": "Non, sauf les vrais jumeaux. Ils ont reçu de leurs parents des combinaisons de chromosomes différentes : ils se ressemblent, car ils partagent beaucoup d'allèles, mais ne sont pas identiques."
+     }
+    },
+    {
+     "emoji": "⚖️",
+     "title": "En résumé : stabilité et diversité",
+     "body": "- **Mitose** : 46 → 46, deux cellules identiques (croissance, réparation).\n- **Méiose** : 46 → 23, des cellules reproductrices toutes différentes.\n- **Fécondation** : 23 + 23 = 46.\n\nL'espèce garde le même caryotype d'une génération à l'autre (**stabilité**), mais chaque individu reçoit une combinaison nouvelle d'allèles (**diversité**)."
+    }
+   ]
+  },
+  {
+   "kind": "exemple",
+   "title": "Exemple résolu : fille ou garçon, qui décide ?",
+   "steps": [
+    {
+     "text": "La 23e paire de chromosomes est XX chez la mère et XY chez le père. Quelle est la probabilité d'avoir une fille ?"
+    },
+    {
+     "text": "**Chez la mère** (XX), la méiose sépare les deux X : chaque ovule reçoit forcément un chromosome **X**."
+    },
+    {
+     "text": "**Chez le père** (XY), la méiose sépare X et Y : la moitié des spermatozoïdes porte un **X**, l'autre moitié un **Y**."
+    },
+    {
+     "text": "On résume la fécondation dans un **tableau de croisement** : chaque case réunit un ovule et un spermatozoïde.",
+     "figure": {
+      "alt": "Tableau de croisement : les ovules (X) en lignes, les spermatozoïdes (X ou Y) en colonnes, et la combinaison obtenue dans chaque case",
+      "w": 460,
+      "h": 140,
+      "items": [
+       {
+        "type": "table",
+        "head": [
+         "",
+         "spermatozoïde X",
+         "spermatozoïde Y"
+        ],
+        "rows": [
+         [
+          "ovule X",
+          "XX : fille",
+          "XY : garçon"
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "text": "Deux cases également probables : XX (fille) ou XY (garçon). La probabilité d'avoir une fille est donc de 1 chance sur 2.",
+     "math": "1 ÷ 2 = 50 %"
+    },
+    {
+     "text": "Conclusion : c'est le spermatozoïde, X ou Y, qui détermine le sexe. Et à chaque naissance, la probabilité reste de 50 %, quels que soient les enfants précédents."
+    }
+   ]
+  },
+  {
+   "kind": "exercices",
+   "title": "Je m'entraîne",
+   "body": "Tu peux te tromper : chaque réponse fausse est expliquée, sans te donner la solution.",
+   "exercises": [
+    "svt3-transmission-mitose-ordre",
+    "svt3-transmission-compter",
+    "svt3-transmission-tri",
+    "svt3-transmission-nombres",
+    "svt3-transmission-combinaisons",
+    "svt3-transmission-racine"
+   ]
+  },
+  {
+   "kind": "libre",
+   "title": "Avec tes mots",
+   "exercises": [
+    "svt3-transmission-erreurs",
+    "svt3-transmission-expliquer"
+   ]
+  },
+  {
+   "kind": "mission",
+   "title": "Le mystère des jumeaux",
+   "body": "Deux paires de jumeaux dans une famille imaginaire : vrais ou faux jumeaux ?",
+   "exercises": [
+    "svt3-transmission-jumeaux"
+   ]
+  },
+  {
+   "kind": "correction",
+   "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+   "body": "> **À retenir.** La **mitose** copie puis partage l'ADN : deux cellules filles identiques à 46 chromosomes. La **méiose** produit des cellules reproductrices à 23 chromosomes (un de chaque paire, au hasard). La **fécondation** rétablit 46 chromosomes en 23 paires. Le caryotype reste stable, mais chaque individu est unique.\n\n- **Confondre mitose et méiose.** La mitose conserve le nombre de chromosomes ; seule la méiose le divise par deux.\n- **« La cellule-œuf a 92 chromosomes. »** Non : 23 + 23 = 46.\n- **« C'est la mère qui décide du sexe. »** Non : l'ovule porte toujours un X ; le spermatozoïde porte X ou Y.\n- **« Frères et sœurs ont les mêmes allèles. »** Non, sauf les vrais jumeaux."
+  },
+  {
+   "kind": "revision",
+   "title": "Révision programmée",
+   "body": "Le moteur te reproposera bientôt une question sur la mitose, la méiose ou la fécondation : réussir après une pause, c'est la preuve que c'est acquis."
+  }
+ ],
+ "tracks": {
+  "approfondissement": {
+   "intro": "Prévoir les groupes sanguins des enfants d'un couple avec un tableau de croisement, et comprendre une anomalie de la méiose : la trisomie 21.",
+   "exercises": [
+    "svt3-transmission-croisement",
+    "svt3-transmission-trisomie"
+   ]
+  },
+  "expert": {
+   "intro": "Deux sujets de type brevet : la quantité d'ADN au cours des divisions, et le calcul de la diversité des enfants d'un couple.",
+   "exercises": [
+    "svt3-transmission-brevet-adn",
+    "svt3-transmission-brevet-diversite"
+   ]
+  }
+ },
+ "exercises": [
+  {
+   "id": "svt3-transmission-mitose-ordre",
+   "type": "order",
+   "skill": "svt3.genetique.mitose",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [],
+   "expectedSeconds": 150,
+   "prompt": "Remets dans l'ordre les étapes de la division d'une cellule (mitose), comme dans l'expérience de la racine d'oignon.",
+   "orderLabel": "dans l'ordre",
+   "items": [
+    {
+     "id": "o1",
+     "label": "L'ADN de chaque chromosome est copié : chaque chromosome devient double"
+    },
+    {
+     "id": "o2",
+     "label": "Les chromosomes se condensent et deviennent visibles au microscope"
+    },
+    {
+     "id": "o3",
+     "label": "Les chromosomes doubles s'alignent au milieu de la cellule"
+    },
+    {
+     "id": "o4",
+     "label": "Les deux copies de chaque chromosome se séparent vers les deux côtés de la cellule"
+    },
+    {
+     "id": "o5",
+     "label": "Deux noyaux se reforment et la cellule se partage en deux cellules filles"
+    }
+   ],
+   "hints": [
+    "La copie de l'ADN a lieu avant que les chromosomes ne deviennent visibles.",
+    "Les copies ne peuvent se séparer qu'après s'être alignées au milieu."
+   ],
+   "solution": "Copie de l'ADN (chromosomes doubles) → condensation des chromosomes → alignement au milieu de la cellule → séparation des deux copies de chaque chromosome → formation de deux cellules filles identiques.",
+   "selfTest": [
+    {
+     "response": {
+      "order": [
+       "o1",
+       "o2",
+       "o3",
+       "o4",
+       "o5"
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "order": [
+       "o2",
+       "o1",
+       "o3",
+       "o4",
+       "o5"
+      ]
+     },
+     "expect": "partiel"
+    },
+    {
+     "response": {
+      "order": [
+       "o5",
+       "o4",
+       "o3",
+       "o2",
+       "o1"
+      ]
+     },
+     "expect": "incorrect"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-compter",
+   "type": "composite",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "skills": [
+    "svt3.genetique.mitose"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "symbolique",
+   "targets": [
+    "mc:mitose-meiose",
+    "mc:mitose-double",
+    "mc:meiose-conserve",
+    "mc:fecondation-double"
+   ],
+   "expectedSeconds": 200,
+   "params": {
+    "n": {
+     "choice": [
+      16,
+      38,
+      46,
+      48,
+      64,
+      78
+     ]
+    }
+   },
+   "prompt": "Une espèce possède **{n} chromosomes** dans chacune de ses cellules, sauf dans ses cellules reproductrices.",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Une cellule de sa peau se divise par mitose. Combien de chromosomes possède chaque cellule fille ?",
+     "answer": "n",
+     "misconceptions": [
+      {
+       "answer": "n/2",
+       "id": "mc:mitose-meiose",
+       "error": "notion",
+       "feedback": "Tu as divisé par deux : c'est ce qui arrive lors de la fabrication des cellules reproductrices, pas lors d'une mitose."
+      },
+      {
+       "answer": "n*2",
+       "id": "mc:mitose-double",
+       "error": "notion",
+       "feedback": "Tu as compté les deux copies de chaque chromosome dans une même cellule : après leur séparation, chaque cellule fille n'en reçoit qu'une."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de chromosomes possède un spermatozoïde de cette espèce ?",
+     "answer": "n/2",
+     "misconceptions": [
+      {
+       "answer": "n",
+       "id": "mc:meiose-conserve",
+       "error": "notion",
+       "feedback": "Un spermatozoïde ne reçoit qu'un seul chromosome de chaque paire."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de chromosomes possède la cellule-œuf, après la fécondation ?",
+     "answer": "n",
+     "misconceptions": [
+      {
+       "answer": "n*2",
+       "id": "mc:fecondation-double",
+       "error": "notion",
+       "feedback": "Tu as additionné les chromosomes de deux cellules du corps : les cellules reproductrices n'en ont pas autant."
+      },
+      {
+       "answer": "n/2",
+       "id": "mc:fecondation-oubli",
+       "error": "notion",
+       "feedback": "La cellule-œuf réunit les chromosomes de deux cellules reproductrices."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "La mitose conserve le nombre de chromosomes.",
+    "Une cellule reproductrice reçoit un chromosome de chaque paire : la moitié.",
+    "Fécondation : on additionne les chromosomes du spermatozoïde et ceux de l'ovule."
+   ],
+   "solution": "Mitose : **{n}** chromosomes dans chaque cellule fille, comme la cellule mère. Spermatozoïde : **{n/2}** chromosomes (un de chaque paire). Cellule-œuf : {n/2} + {n/2} = **{n}** chromosomes.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{n}"
+       },
+       {
+        "value": "{n/2}"
+       },
+       {
+        "value": "{n}"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{n/2}"
+       },
+       {
+        "value": "{n/2}"
+       },
+       {
+        "value": "{n}"
+       }
+      ]
+     },
+     "expect": "mc:mitose-meiose"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{n}"
+       },
+       {
+        "value": "{n}"
+       },
+       {
+        "value": "{n}"
+       }
+      ]
+     },
+     "expect": "mc:meiose-conserve"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "{n}"
+       },
+       {
+        "value": "{n/2}"
+       },
+       {
+        "value": "{n*2}"
+       }
+      ]
+     },
+     "expect": "mc:fecondation-double"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-tri",
+   "type": "categorize",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "skills": [
+    "svt3.genetique.mitose"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "verbale",
+   "targets": [
+    "mc:mitose-meiose",
+    "mc:meiose-paires"
+   ],
+   "expectedSeconds": 200,
+   "prompt": "Mitose, méiose ou fécondation ? Range chaque phrase.",
+   "categories": [
+    {
+     "id": "mitose",
+     "label": "Mitose"
+    },
+    {
+     "id": "meiose",
+     "label": "Méiose"
+    },
+    {
+     "id": "fec",
+     "label": "Fécondation"
+    }
+   ],
+   "items": [
+    {
+     "id": "i1",
+     "label": "Fait passer de 46 à 23 chromosomes",
+     "category": "meiose"
+    },
+    {
+     "id": "i2",
+     "label": "Permet à un enfant de grandir",
+     "category": "mitose"
+    },
+    {
+     "id": "i3",
+     "label": "Réunit 23 + 23 chromosomes",
+     "category": "fec"
+    },
+    {
+     "id": "i4",
+     "label": "Donne deux cellules identiques à la cellule mère",
+     "category": "mitose"
+    },
+    {
+     "id": "i5",
+     "label": "A lieu dans les testicules et les ovaires et produit des cellules toutes différentes",
+     "category": "meiose"
+    },
+    {
+     "id": "i6",
+     "label": "Rétablit les paires de chromosomes",
+     "category": "fec"
+    },
+    {
+     "id": "i7",
+     "label": "Répare la peau après une égratignure",
+     "category": "mitose"
+    }
+   ],
+   "misconceptions": [
+    {
+     "item": "i1",
+     "category": "mitose",
+     "id": "mc:mitose-meiose",
+     "error": "notion",
+     "feedback": "La mitose conserve le nombre de chromosomes : quelle division réduit ce nombre de moitié ?"
+    },
+    {
+     "item": "i4",
+     "category": "meiose",
+     "id": "mc:mitose-meiose",
+     "error": "notion",
+     "feedback": "La division qui fabrique les cellules reproductrices donne-t-elle des cellules identiques à la cellule mère, avec autant de chromosomes ?"
+    },
+    {
+     "item": "i6",
+     "category": "meiose",
+     "id": "mc:meiose-paires",
+     "error": "notion",
+     "feedback": "La méiose sépare les paires : quel événement réunit les chromosomes venus des deux parents ?"
+    }
+   ],
+   "hints": [
+    "Mitose : 46 → 46, des cellules identiques.",
+    "Méiose : 46 → 23, des cellules reproductrices.",
+    "Fécondation : 23 + 23 = 46."
+   ],
+   "solution": "Mitose : faire grandir un enfant, donner deux cellules identiques à la cellule mère, réparer la peau. Méiose : passer de 46 à 23 chromosomes, dans les testicules et les ovaires, en produisant des cellules toutes différentes. Fécondation : réunir 23 + 23 chromosomes et rétablir les paires.",
+   "selfTest": [
+    {
+     "response": {
+      "assign": {
+       "i1": "meiose",
+       "i2": "mitose",
+       "i3": "fec",
+       "i4": "mitose",
+       "i5": "meiose",
+       "i6": "fec",
+       "i7": "mitose"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "mitose",
+       "i2": "mitose",
+       "i3": "fec",
+       "i4": "meiose",
+       "i5": "meiose",
+       "i6": "fec",
+       "i7": "mitose"
+      }
+     },
+     "expect": "mc:mitose-meiose"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "meiose",
+       "i2": "mitose",
+       "i3": "fec",
+       "i4": "mitose",
+       "i5": "meiose",
+       "i6": "meiose",
+       "i7": "mitose"
+      }
+     },
+     "expect": "mc:meiose-paires"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-nombres",
+   "type": "categorize",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "skills": [
+    "svt3.genetique.adn-chromosomes"
+   ],
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 2,
+   "representation": "concrete",
+   "targets": [
+    "mc:fecondation-oubli",
+    "mc:meiose-conserve",
+    "mc:globule-rouge"
+   ],
+   "expectedSeconds": 150,
+   "prompt": "Range chaque cellule humaine selon le nombre de chromosomes qu'elle contient.",
+   "categories": [
+    {
+     "id": "c46",
+     "label": "46 chromosomes"
+    },
+    {
+     "id": "c23",
+     "label": "23 chromosomes"
+    },
+    {
+     "id": "c0",
+     "label": "Aucun chromosome"
+    }
+   ],
+   "items": [
+    {
+     "id": "i1",
+     "label": "Une cellule de muscle",
+     "category": "c46"
+    },
+    {
+     "id": "i2",
+     "label": "Un ovule",
+     "category": "c23"
+    },
+    {
+     "id": "i3",
+     "label": "Un spermatozoïde",
+     "category": "c23"
+    },
+    {
+     "id": "i4",
+     "label": "Une cellule-œuf",
+     "category": "c46"
+    },
+    {
+     "id": "i5",
+     "label": "Un globule rouge",
+     "category": "c0"
+    },
+    {
+     "id": "i6",
+     "label": "Un neurone",
+     "category": "c46"
+    },
+    {
+     "id": "i7",
+     "label": "Une cellule de la peau d'un nouveau-né",
+     "category": "c46"
+    }
+   ],
+   "misconceptions": [
+    {
+     "item": "i2",
+     "category": "c46",
+     "id": "mc:meiose-conserve",
+     "error": "notion",
+     "feedback": "Un ovule est une cellule reproductrice : reçoit-il les deux chromosomes de chaque paire ?"
+    },
+    {
+     "item": "i4",
+     "category": "c23",
+     "id": "mc:fecondation-oubli",
+     "error": "notion",
+     "feedback": "La cellule-œuf résulte de la réunion de deux cellules : combien de chromosomes chacune apporte-t-elle ?"
+    },
+    {
+     "item": "i5",
+     "category": "c46",
+     "id": "mc:globule-rouge",
+     "error": "notion",
+     "feedback": "En se formant, le globule rouge humain perd une partie de la cellule : laquelle, et que contenait-elle ?"
+    }
+   ],
+   "hints": [
+    "Les cellules reproductrices ont un chromosome de chaque paire.",
+    "La cellule-œuf réunit deux cellules reproductrices.",
+    "Les chromosomes sont dans le noyau."
+   ],
+   "solution": "46 chromosomes : la cellule de muscle, la cellule-œuf, le neurone, la cellule de peau du nouveau-né. 23 chromosomes : l'ovule et le spermatozoïde. Aucun : le globule rouge, qui a perdu son noyau.",
+   "selfTest": [
+    {
+     "response": {
+      "assign": {
+       "i1": "c46",
+       "i2": "c23",
+       "i3": "c23",
+       "i4": "c46",
+       "i5": "c0",
+       "i6": "c46",
+       "i7": "c46"
+      }
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "c46",
+       "i2": "c46",
+       "i3": "c23",
+       "i4": "c46",
+       "i5": "c0",
+       "i6": "c46",
+       "i7": "c46"
+      }
+     },
+     "expect": "mc:meiose-conserve"
+    },
+    {
+     "response": {
+      "assign": {
+       "i1": "c46",
+       "i2": "c23",
+       "i3": "c23",
+       "i4": "c23",
+       "i5": "c0",
+       "i6": "c46",
+       "i7": "c46"
+      }
+     },
+     "expect": "mc:fecondation-oubli"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-combinaisons",
+   "type": "numeric",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "track": "classe",
+   "role": "guide",
+   "difficulty": 3,
+   "representation": "symbolique",
+   "targets": [
+    "mc:somme-produit"
+   ],
+   "expectedSeconds": 150,
+   "params": {
+    "p": {
+     "choice": [
+      3,
+      4,
+      5,
+      6
+     ]
+    },
+    "q": {
+     "expr": "2^p"
+    }
+   },
+   "prompt": "Une espèce imaginaire possède **{p} paires** de chromosomes. Lors de la méiose, chaque cellule reproductrice reçoit au hasard un chromosome de chaque paire. Combien de cellules reproductrices différentes un individu peut-il produire, par ce seul tirage au hasard ?",
+   "answer": "q",
+   "misconceptions": [
+    {
+     "answer": "2*p",
+     "id": "mc:somme-produit",
+     "error": "raisonnement",
+     "feedback": "Tu as multiplié le nombre de paires par 2. Or chaque choix se combine avec tous les choix des autres paires : avec 2 paires, on a déjà 2 × 2 possibilités."
+    }
+   ],
+   "hints": [
+    "Pour une paire : 2 possibilités.",
+    "Pour deux paires : 2 × 2 = 4 possibilités.",
+    "Pour {p} paires : on multiplie 2 par lui-même {p} fois."
+   ],
+   "solution": "Pour chaque paire, 2 possibilités, et les choix se combinent : 2 multiplié {p} fois par lui-même, soit **{q}** cellules reproductrices différentes. Chez l'être humain, avec 23 paires : 2²³ = 8 388 608.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "{q}"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "{2*p}"
+     },
+     "expect": "mc:somme-produit"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-racine",
+   "type": "composite",
+   "skill": "svt3.genetique.mitose",
+   "skills": [
+    "svt.demarche.exploiter-donnees"
+   ],
+   "track": "classe",
+   "role": "transfert",
+   "difficulty": 3,
+   "representation": "concrete",
+   "targets": [
+    "mc:effectif-pourcentage",
+    "mc:division-perte"
+   ],
+   "expectedSeconds": 300,
+   "prompt": "Au microscope, Yanis compte les cellules en division dans trois zones d'une racine d'oignon, en observant 200 cellules dans chaque zone (valeurs fictives).",
+   "figure": {
+    "alt": "Tableau : nombre de cellules en division sur 200 cellules observées, dans trois zones d'une racine situées à 1 mm, 5 mm et 20 mm de l'extrémité",
+    "w": 520,
+    "h": 170,
+    "items": [
+     {
+      "type": "table",
+      "head": [
+       "Zone",
+       "Distance à l'extrémité",
+       "Cellules en division (sur 200)"
+      ],
+      "rows": [
+       [
+        "A",
+        "1 mm",
+        "36"
+       ],
+       [
+        "B",
+        "5 mm",
+        "8"
+       ],
+       [
+        "C",
+        "20 mm",
+        "0"
+       ]
+      ]
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Quel pourcentage des cellules observées dans la zone A est en division ? (nombre seul, en %)",
+     "answer": 18,
+     "misconceptions": [
+      {
+       "answer": 36,
+       "id": "mc:effectif-pourcentage",
+       "error": "methode",
+       "feedback": "Tu as donné un nombre de cellules : rapporte-le aux 200 cellules observées."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "C'est près de l'extrémité de la racine que les cellules se divisent le plus.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Ces divisions fournissent les nouvelles cellules qui permettent à la racine de grandir.",
+       "category": "vrai"
+      },
+      {
+       "id": "i3",
+       "label": "Les cellules de la zone A ont moins de chromosomes que celles de la zone C.",
+       "category": "faux"
+      },
+      {
+       "id": "i4",
+       "label": "Chaque cellule fille reçoit la même information génétique que la cellule mère.",
+       "category": "vrai"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i3",
+       "category": "vrai",
+       "id": "mc:division-perte",
+       "error": "notion",
+       "feedback": "La mitose donne-t-elle des cellules avec moins de chromosomes que la cellule mère ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Pourcentage = (nombre de cellules en division ÷ nombre de cellules observées) × 100.",
+    "Compare les trois zones : où compte-t-on le plus de divisions ?",
+    "La mitose conserve le nombre de chromosomes."
+   ],
+   "solution": "1. 36 ÷ 200 × 100 = **18 %**. 2. Vrai : la zone A, la plus proche de l'extrémité, compte le plus de divisions. Vrai : ces nouvelles cellules permettent la croissance de la racine. Faux : la mitose conserve le nombre de chromosomes, toutes les cellules en ont 16. Vrai : les deux cellules filles reçoivent la même information génétique.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "18"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "36"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:effectif-pourcentage"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "18"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:division-perte"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-erreurs",
+   "type": "highlight",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "skills": [
+    "svt3.genetique.mitose"
+   ],
+   "track": "classe",
+   "role": "reinvestissement",
+   "difficulty": 3,
+   "representation": "verbale",
+   "targets": [
+    "mc:phrase-juste-meiose",
+    "mc:phrase-juste-jumeaux"
+   ],
+   "expectedSeconds": 200,
+   "prompt": "Voici le résumé d'Adam. Il contient des idées justes et **trois erreurs**. Surligne les trois erreurs.",
+   "instruction": "Surligne les trois erreurs.",
+   "text": "Pour grandir, notre corps fabrique de nouvelles cellules par mitose. Lors d'une mitose, [chaque cellule fille ne reçoit que la moitié des chromosomes]. Dans les testicules et les ovaires, la méiose produit des cellules reproductrices à 23 chromosomes. À la fécondation, un spermatozoïde et un ovule s'unissent : la cellule-œuf possède [92 chromosomes]. Le sexe de l'enfant est décidé par le chromosome sexuel de [la mère]. Deux vrais jumeaux proviennent d'une même cellule-œuf.",
+   "misconceptions": [
+    {
+     "word": "23",
+     "id": "mc:phrase-juste-meiose",
+     "error": "raisonnement",
+     "feedback": "Cette phrase est juste : la méiose produit bien des cellules reproductrices à 23 chromosomes."
+    },
+    {
+     "word": "méiose",
+     "id": "mc:phrase-juste-meiose",
+     "error": "raisonnement",
+     "feedback": "Cette phrase est juste : la méiose produit bien des cellules reproductrices à 23 chromosomes."
+    },
+    {
+     "word": "jumeaux",
+     "id": "mc:phrase-juste-jumeaux",
+     "error": "raisonnement",
+     "feedback": "Cette phrase est juste : de vrais jumeaux proviennent d'une même cellule-œuf, qui s'est séparée en deux."
+    }
+   ],
+   "hints": [
+    "La mitose change-t-elle le nombre de chromosomes ?",
+    "Combien de chromosomes apportent un spermatozoïde et un ovule ?",
+    "Un ovule porte toujours un X : lequel des deux parents peut apporter un X ou un Y ?"
+   ],
+   "solution": "Les trois erreurs : « chaque cellule fille ne reçoit que la moitié des chromosomes » (la mitose conserve le nombre de chromosomes) ; « 92 chromosomes » (23 + 23 = 46) ; « la mère » (l'ovule porte toujours un X : c'est le spermatozoïde du père, X ou Y, qui détermine le sexe). Les phrases sur la méiose et sur les vrais jumeaux sont justes.",
+   "selfTest": [
+    {
+     "response": {
+      "selected": [
+       14,
+       43,
+       56
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "selected": [
+       14,
+       43,
+       56,
+       28
+      ]
+     },
+     "expect": "mc:phrase-juste-meiose"
+    },
+    {
+     "response": {
+      "selected": [
+       14,
+       43,
+       56,
+       59
+      ]
+     },
+     "expect": "mc:phrase-juste-jumeaux"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-expliquer",
+   "type": "open",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "track": "classe",
+   "role": "libre",
+   "difficulty": 3,
+   "representation": "verbale",
+   "targets": [
+    "mc:meme-chromosomes"
+   ],
+   "expectedSeconds": 420,
+   "prompt": "Explique pourquoi deux enfants des mêmes parents se ressemblent sans être identiques (sauf de vrais jumeaux). Utilise les mots : **méiose**, **fécondation**, **chromosomes**, **hasard**.",
+   "minWords": 40,
+   "criteria": [
+    {
+     "id": "c1",
+     "label": "Chaque enfant reçoit la moitié de ses chromosomes de chaque parent (ressemblance)",
+     "keywords": [
+      "moitié",
+      "chaque parent",
+      "de sa mère",
+      "de son père",
+      "23"
+     ]
+    },
+    {
+     "id": "c2",
+     "label": "La méiose répartit au hasard un chromosome de chaque paire dans les cellules reproductrices",
+     "keywords": [
+      "méiose",
+      "hasard",
+      "paire"
+     ]
+    },
+    {
+     "id": "c3",
+     "label": "La fécondation réunit au hasard un spermatozoïde et un ovule",
+     "keywords": [
+      "fécondation",
+      "spermatozoïde",
+      "ovule"
+     ]
+    },
+    {
+     "id": "c4",
+     "label": "Les combinaisons de chromosomes (et donc d'allèles) sont différentes pour chaque enfant",
+     "keywords": [
+      "combinaison",
+      "différent",
+      "allèle",
+      "unique"
+     ]
+    }
+   ],
+   "models": [
+    "Chaque enfant reçoit 23 chromosomes de son père et 23 de sa mère : il a donc des allèles en commun avec ses parents et avec ses frères et sœurs, ce qui explique la ressemblance. Mais lors de la méiose, chaque cellule reproductrice reçoit au hasard un chromosome de chaque paire : les spermatozoïdes et les ovules sont tous différents. Puis, à la fécondation, un spermatozoïde et un ovule se rencontrent au hasard. Chaque enfant reçoit donc une combinaison de chromosomes différente : il est unique."
+   ],
+   "hints": [
+    "Commence par ce qui explique la ressemblance : d'où viennent les chromosomes d'un enfant ?",
+    "Puis explique le rôle du hasard dans la méiose.",
+    "Termine par le hasard de la fécondation."
+   ],
+   "solution": "Ressemblance : chaque enfant reçoit 23 chromosomes de chaque parent, donc des allèles de ses deux parents. Différence : la méiose répartit au hasard un chromosome de chaque paire dans chaque cellule reproductrice (plus de 8 millions de combinaisons), et la fécondation réunit au hasard un spermatozoïde et un ovule. Chaque enfant a donc une combinaison unique, sauf les vrais jumeaux, issus d'une même cellule-œuf.",
+   "selfTest": [
+    {
+     "response": {
+      "text": "Grâce à la méiose, chaque spermatozoïde et chaque ovule reçoit au hasard un chromosome de chaque paire. Puis la fécondation réunit au hasard un spermatozoïde et un ovule : chaque enfant a une combinaison différente de chromosomes, la moitié de sa mère et la moitié de son père.",
+      "selfCheck": {
+       "c1": true,
+       "c2": true,
+       "c3": true,
+       "c4": true
+      }
+     },
+     "expect": "a-valider"
+    },
+    {
+     "response": {
+      "text": "Parce que.",
+      "selfCheck": {}
+     },
+     "expect": "a-valider"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-jumeaux",
+   "type": "composite",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "track": "classe",
+   "role": "mission",
+   "difficulty": 3,
+   "representation": "concrete",
+   "targets": [
+    "mc:faux-jumeaux",
+    "mc:jumeaux-phenotype",
+    "mc:meme-chromosomes"
+   ],
+   "expectedSeconds": 420,
+   "prompt": "**Mission : le mystère des jumeaux** (une famille imaginaire). Léa et Noé sont nés le même jour : Léa est une fille, Noé un garçon. Leurs cousines Inès et Maëlle sont de **vraies jumelles** : elles proviennent d'une seule cellule-œuf qui s'est séparée en deux au tout début du développement.",
+   "parts": [
+    {
+     "type": "text",
+     "prompt": "Léa et Noé sont-ils de vrais jumeaux ? Réponds par oui ou par non.",
+     "accept": [
+      "non"
+     ],
+     "misconceptions": [
+      {
+       "answer": "oui",
+       "id": "mc:faux-jumeaux",
+       "error": "raisonnement",
+       "feedback": "De vrais jumeaux proviennent d'une même cellule-œuf : peuvent-ils avoir des chromosomes sexuels différents ?"
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de cellules-œufs sont à l'origine de Léa et Noé ?",
+     "answer": 2,
+     "misconceptions": [
+      {
+       "answer": 1,
+       "id": "mc:faux-jumeaux",
+       "error": "raisonnement",
+       "feedback": "Une seule cellule-œuf donnerait deux enfants avec les mêmes chromosomes, donc du même sexe."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "Inès et Maëlle ont les mêmes allèles (à de très rares mutations près).",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Inès et Maëlle sont forcément du même sexe.",
+       "category": "vrai"
+      },
+      {
+       "id": "i3",
+       "label": "Léa et Noé se ressemblent génétiquement autant qu'un frère et une sœur nés à des années d'écart.",
+       "category": "vrai"
+      },
+      {
+       "id": "i4",
+       "label": "Inès et Maëlle ont forcément les mêmes empreintes digitales.",
+       "category": "faux"
+      },
+      {
+       "id": "i5",
+       "label": "Léa a reçu de sa mère exactement les mêmes chromosomes que Noé.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i4",
+       "category": "vrai",
+       "id": "mc:jumeaux-phenotype",
+       "error": "notion",
+       "feedback": "Les empreintes digitales se forment pendant la grossesse et dépendent aussi de la position et des mouvements de chaque fœtus : le génotype décide-t-il de tout le phénotype ?"
+      },
+      {
+       "item": "i5",
+       "category": "vrai",
+       "id": "mc:meme-chromosomes",
+       "error": "notion",
+       "feedback": "Chaque ovule reçoit au hasard un chromosome de chaque paire : deux ovules différents ont-ils forcément la même combinaison ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "De vrais jumeaux proviennent d'une même cellule-œuf : mêmes chromosomes, même sexe.",
+    "De faux jumeaux proviennent de deux ovules fécondés par deux spermatozoïdes.",
+    "Le phénotype dépend aussi de l'environnement, même avant la naissance."
+   ],
+   "solution": "1. Non : une fille et un garçon n'ont pas les mêmes chromosomes sexuels ; ils ne viennent pas de la même cellule-œuf. 2. Deux cellules-œufs : deux ovules fécondés chacun par un spermatozoïde (faux jumeaux). 3. Vrai : les vraies jumelles ont le même génotype. Vrai : même cellule-œuf, mêmes chromosomes sexuels. Vrai : de faux jumeaux sont génétiquement comme un frère et une sœur. Faux : les empreintes digitales diffèrent, car elles dépendent aussi des conditions dans l'utérus. Faux : chaque ovule a sa propre combinaison de chromosomes.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "non"
+       },
+       {
+        "value": "2"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "oui"
+       },
+       {
+        "value": "1"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:faux-jumeaux"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "non"
+       },
+       {
+        "value": "2"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "vrai",
+         "i5": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:jumeaux-phenotype"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "non"
+       },
+       {
+        "value": "2"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux",
+         "i5": "vrai"
+        }
+       }
+      ]
+     },
+     "expect": "mc:meme-chromosomes"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-rem-meiose",
+   "type": "text",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 1,
+   "representation": "verbale",
+   "targets": [
+    "mc:mitose-meiose"
+   ],
+   "expectedSeconds": 60,
+   "prompt": "Rappel ciblé : comment s'appelle la division qui fabrique les cellules reproductrices, avec 23 chromosomes chez l'être humain ?",
+   "accept": [
+    "la méiose",
+    "méiose",
+    "une méiose"
+   ],
+   "misconceptions": [
+    {
+     "answer": "la mitose",
+     "id": "mc:mitose-meiose",
+     "error": "notion",
+     "feedback": "La mitose donne des cellules avec autant de chromosomes que la cellule mère : on cherche une division qui les réduit de moitié."
+    },
+    {
+     "answer": "mitose",
+     "id": "mc:mitose-meiose",
+     "error": "notion",
+     "feedback": "La mitose donne des cellules avec autant de chromosomes que la cellule mère : on cherche une division qui les réduit de moitié."
+    },
+    {
+     "answer": "la fécondation",
+     "id": "mc:meiose-fecondation",
+     "error": "notion",
+     "feedback": "La fécondation réunit deux cellules : on cherche la division qui fabrique les cellules reproductrices."
+    },
+    {
+     "answer": "fécondation",
+     "id": "mc:meiose-fecondation",
+     "error": "notion",
+     "feedback": "La fécondation réunit deux cellules : on cherche la division qui fabrique les cellules reproductrices."
+    }
+   ],
+   "hints": [
+    "Relis la carte sur les cellules reproductrices.",
+    "Le mot ressemble à « mitose », mais contient un « é »."
+   ],
+   "solution": "C'est la **méiose** : chaque cellule reproductrice reçoit un chromosome de chaque paire, soit 23 chromosomes.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "la méiose"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "mitose"
+     },
+     "expect": "mc:mitose-meiose"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-rem-mitose",
+   "type": "numeric",
+   "skill": "svt3.genetique.mitose",
+   "track": "classe",
+   "role": "remediation",
+   "difficulty": 1,
+   "representation": "symbolique",
+   "targets": [
+    "mc:mitose-meiose",
+    "mc:mitose-double"
+   ],
+   "expectedSeconds": 45,
+   "prompt": "Rappel ciblé : une cellule de ton foie, avec 46 chromosomes, se divise par mitose. Combien de chromosomes possède chacune des deux cellules filles ?",
+   "answer": 46,
+   "misconceptions": [
+    {
+     "answer": 23,
+     "id": "mc:mitose-meiose",
+     "error": "notion",
+     "feedback": "Tu as divisé par deux, comme lors de la fabrication des cellules reproductrices. La mitose, elle, copie puis partage."
+    },
+    {
+     "answer": 92,
+     "id": "mc:mitose-double",
+     "error": "notion",
+     "feedback": "Les deux copies de chaque chromosome se séparent : chaque cellule fille n'en reçoit qu'une."
+    }
+   ],
+   "hints": [
+    "Avant la division, chaque chromosome est copié.",
+    "Chaque cellule fille reçoit une copie de chaque chromosome."
+   ],
+   "solution": "**46 chromosomes** : la cellule copie ses chromosomes, puis partage les copies. Chaque cellule fille a autant de chromosomes que la cellule mère.",
+   "selfTest": [
+    {
+     "response": {
+      "value": "46"
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "value": "23"
+     },
+     "expect": "mc:mitose-meiose"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-croisement",
+   "type": "composite",
+   "skill": "svt3.genetique.heredite",
+   "skills": [
+    "svt3.genetique.gene-allele",
+    "svt3.genetique.meiose-fecondation"
+   ],
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "symbolique",
+   "targets": [
+    "mc:seulement-parents",
+    "mc:proba-moitie",
+    "mc:o-impossible",
+    "mc:codominance"
+   ],
+   "expectedSeconds": 480,
+   "prompt": "Un père de groupe [A] a pour génotype (A//O). Une mère de groupe [B] a pour génotype (B//O). On construit un **tableau de croisement** : chaque case réunit un spermatozoïde et un ovule ; les quatre cases ont la même probabilité. Rappel : A et B sont dominants sur O, et codominants entre eux.",
+   "figure": {
+    "alt": "Tableau de croisement à compléter : ovules B ou O en lignes, spermatozoïdes A ou O en colonnes, quatre cases à deviner",
+    "w": 460,
+    "h": 170,
+    "items": [
+     {
+      "type": "table",
+      "head": [
+       "",
+       "spermatozoïde A",
+       "spermatozoïde O"
+      ],
+      "rows": [
+       [
+        "ovule B",
+        "?",
+        "?"
+       ],
+       [
+        "ovule O",
+        "?",
+        "?"
+       ]
+      ]
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de groupes sanguins différents les enfants de ce couple peuvent-ils avoir ?",
+     "answer": 4,
+     "misconceptions": [
+      {
+       "answer": 2,
+       "id": "mc:seulement-parents",
+       "error": "raisonnement",
+       "feedback": "Les enfants n'ont pas forcément le groupe de l'un de leurs parents : complète d'abord les quatre cases du tableau."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Quelle est la probabilité, en %, qu'un enfant de ce couple soit du groupe O ?",
+     "answer": 25,
+     "misconceptions": [
+      {
+       "answer": 50,
+       "id": "mc:proba-moitie",
+       "error": "raisonnement",
+       "feedback": "Compte les cases qui réunissent deux allèles O, parmi les quatre cases du tableau."
+      },
+      {
+       "answer": 0,
+       "id": "mc:o-impossible",
+       "error": "raisonnement",
+       "feedback": "Les deux parents portent un allèle O caché : une case du tableau peut-elle réunir deux allèles O ?"
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Quelle est la probabilité, en %, qu'un enfant de ce couple soit du groupe AB ?",
+     "answer": 25,
+     "misconceptions": [
+      {
+       "answer": 0,
+       "id": "mc:codominance",
+       "error": "notion",
+       "feedback": "Une case réunit A et B : dans ce cas, les deux allèles s'expriment."
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Chaque parent produit deux sortes de cellules reproductrices, en quantités égales.",
+    "Complète les cases en réunissant l'allèle de la colonne et celui de la ligne.",
+    "Une case = une chance sur quatre."
+   ],
+   "solution": "Les quatre cases : (A//B) → [AB] ; (B//O) → [B] ; (A//O) → [A] ; (O//O) → [O]. 1. **4 groupes** possibles : A, B, AB et O. 2. Une case sur quatre : **25 %** pour le groupe O. 3. Une case sur quatre : **25 %** pour le groupe AB.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "25"
+       },
+       {
+        "value": "25"
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "25"
+       },
+       {
+        "value": "25"
+       }
+      ]
+     },
+     "expect": "mc:seulement-parents"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "0"
+       },
+       {
+        "value": "25"
+       }
+      ]
+     },
+     "expect": "mc:o-impossible"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "4"
+       },
+       {
+        "value": "50"
+       },
+       {
+        "value": "25"
+       }
+      ]
+     },
+     "expect": "mc:proba-moitie"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-trisomie",
+   "type": "composite",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "skills": [
+    "svt3.genetique.adn-chromosomes"
+   ],
+   "track": "approfondissement",
+   "role": "defi",
+   "difficulty": 4,
+   "representation": "visuelle",
+   "targets": [
+    "mc:compte-habituel",
+    "mc:gamete-normal",
+    "mc:trisomie-allele",
+    "mc:trisomie-contagion"
+   ],
+   "expectedSeconds": 420,
+   "prompt": "Voici le caryotype d'un enfant porteur de **trisomie 21**. Le plus souvent, la trisomie 21 vient d'une anomalie de la méiose chez l'un des parents : les deux chromosomes n° 21 d'une paire ne se séparent pas, et une cellule reproductrice les reçoit tous les deux.",
+   "figure": {
+    "alt": "Caryotype schématique : chromosomes rangés par paires numérotées, avec une particularité à observer",
+    "w": 560,
+    "h": 240,
+    "caption": "Caryotype schématique d'un enfant porteur de trisomie 21.",
+    "items": [
+     {
+      "type": "rect",
+      "x": 21.5,
+      "y": 23,
+      "w": 7,
+      "h": 72,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 31.5,
+      "y": 23,
+      "w": 7,
+      "h": 72,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 30,
+      "y": 109,
+      "text": "1",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 65.5,
+      "y": 25,
+      "w": 7,
+      "h": 70,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 75.5,
+      "y": 25,
+      "w": 7,
+      "h": 70,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 74,
+      "y": 109,
+      "text": "2",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 109.5,
+      "y": 38,
+      "w": 7,
+      "h": 57,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 119.5,
+      "y": 38,
+      "w": 7,
+      "h": 57,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 118,
+      "y": 109,
+      "text": "3",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 153.5,
+      "y": 40,
+      "w": 7,
+      "h": 55,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 163.5,
+      "y": 40,
+      "w": 7,
+      "h": 55,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 162,
+      "y": 109,
+      "text": "4",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 197.5,
+      "y": 43,
+      "w": 7,
+      "h": 52,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 207.5,
+      "y": 43,
+      "w": 7,
+      "h": 52,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 206,
+      "y": 109,
+      "text": "5",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 241.5,
+      "y": 45,
+      "w": 7,
+      "h": 50,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 251.5,
+      "y": 45,
+      "w": 7,
+      "h": 50,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 250,
+      "y": 109,
+      "text": "6",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 285.5,
+      "y": 49,
+      "w": 7,
+      "h": 46,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 295.5,
+      "y": 49,
+      "w": 7,
+      "h": 46,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 294,
+      "y": 109,
+      "text": "7",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 329.5,
+      "y": 53,
+      "w": 7,
+      "h": 42,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 339.5,
+      "y": 53,
+      "w": 7,
+      "h": 42,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 338,
+      "y": 109,
+      "text": "8",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 373.5,
+      "y": 55,
+      "w": 7,
+      "h": 40,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 383.5,
+      "y": 55,
+      "w": 7,
+      "h": 40,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 382,
+      "y": 109,
+      "text": "9",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 417.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 427.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 426,
+      "y": 109,
+      "text": "10",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 461.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 471.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 470,
+      "y": 109,
+      "text": "11",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 505.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 515.5,
+      "y": 56,
+      "w": 7,
+      "h": 39,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 514,
+      "y": 109,
+      "text": "12",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 21.5,
+      "y": 177,
+      "w": 7,
+      "h": 33,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 31.5,
+      "y": 177,
+      "w": 7,
+      "h": 33,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 30,
+      "y": 224,
+      "text": "13",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 65.5,
+      "y": 179,
+      "w": 7,
+      "h": 31,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 75.5,
+      "y": 179,
+      "w": 7,
+      "h": 31,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 74,
+      "y": 224,
+      "text": "14",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 109.5,
+      "y": 180,
+      "w": 7,
+      "h": 30,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 119.5,
+      "y": 180,
+      "w": 7,
+      "h": 30,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 118,
+      "y": 224,
+      "text": "15",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 153.5,
+      "y": 184,
+      "w": 7,
+      "h": 26,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 163.5,
+      "y": 184,
+      "w": 7,
+      "h": 26,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 162,
+      "y": 224,
+      "text": "16",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 197.5,
+      "y": 186,
+      "w": 7,
+      "h": 24,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 207.5,
+      "y": 186,
+      "w": 7,
+      "h": 24,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 206,
+      "y": 224,
+      "text": "17",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 241.5,
+      "y": 187,
+      "w": 7,
+      "h": 23,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 251.5,
+      "y": 187,
+      "w": 7,
+      "h": 23,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 250,
+      "y": 224,
+      "text": "18",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 285.5,
+      "y": 193,
+      "w": 7,
+      "h": 17,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 295.5,
+      "y": 193,
+      "w": 7,
+      "h": 17,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 294,
+      "y": 224,
+      "text": "19",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 329.5,
+      "y": 191,
+      "w": 7,
+      "h": 19,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 339.5,
+      "y": 191,
+      "w": 7,
+      "h": 19,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 338,
+      "y": 224,
+      "text": "20",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 368.5,
+      "y": 196,
+      "w": 7,
+      "h": 14,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 378.5,
+      "y": 196,
+      "w": 7,
+      "h": 14,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 388.5,
+      "y": 196,
+      "w": 7,
+      "h": 14,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 382,
+      "y": 224,
+      "text": "21",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 417.5,
+      "y": 195,
+      "w": 7,
+      "h": 15,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "rect",
+      "x": 427.5,
+      "y": 195,
+      "w": 7,
+      "h": 15,
+      "fill": "violet",
+      "color": "violet"
+     },
+     {
+      "type": "text",
+      "x": 426,
+      "y": 224,
+      "text": "22",
+      "size": "s"
+     },
+     {
+      "type": "rect",
+      "x": 505.5,
+      "y": 165,
+      "w": 7,
+      "h": 45,
+      "fill": "rouge",
+      "color": "rouge"
+     },
+     {
+      "type": "rect",
+      "x": 515.5,
+      "y": 193,
+      "w": 7,
+      "h": 17,
+      "fill": "rouge",
+      "color": "rouge"
+     },
+     {
+      "type": "text",
+      "x": 514,
+      "y": 224,
+      "text": "X Y",
+      "size": "s"
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Combien de chromosomes compte ce caryotype ?",
+     "answer": 47,
+     "misconceptions": [
+      {
+       "answer": 46,
+       "id": "mc:compte-habituel",
+       "error": "lecture",
+       "feedback": "Tu as donné le nombre habituel sans recompter : observe bien la paire n° 21."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Combien de chromosomes possédait la cellule reproductrice anormale ?",
+     "answer": 24,
+     "misconceptions": [
+      {
+       "answer": 23,
+       "id": "mc:gamete-normal",
+       "error": "raisonnement",
+       "feedback": "C'est le nombre d'une cellule reproductrice normale : celle-ci a reçu un chromosome n° 21 en trop."
+      },
+      {
+       "answer": 47,
+       "id": "mc:gamete-normal",
+       "error": "raisonnement",
+       "feedback": "C'est le nombre de la cellule-œuf : elle réunit une cellule reproductrice normale et la cellule anormale."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "La trisomie 21 résulte le plus souvent d'une mauvaise répartition des chromosomes pendant la méiose.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Dans le cas le plus fréquent, toutes les cellules de l'enfant possèdent trois chromosomes n° 21.",
+       "category": "vrai"
+      },
+      {
+       "id": "i3",
+       "label": "La trisomie 21 est due à un allèle récessif transmis par les deux parents.",
+       "category": "faux"
+      },
+      {
+       "id": "i4",
+       "label": "La trisomie 21 peut se transmettre par contact, comme une maladie infectieuse.",
+       "category": "faux"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i3",
+       "category": "vrai",
+       "id": "mc:trisomie-allele",
+       "error": "notion",
+       "feedback": "Relis le caryotype : est-ce une version d'un gène qui est en cause, ou le nombre de chromosomes ?"
+      },
+      {
+       "item": "i4",
+       "category": "vrai",
+       "id": "mc:trisomie-contagion",
+       "error": "notion",
+       "feedback": "Une anomalie du nombre de chromosomes est présente dès la cellule-œuf : peut-elle passer d'une personne à une autre ?"
+      }
+     ]
+    }
+   ],
+   "hints": [
+    "Compte les chromosomes de la paire n° 21.",
+    "La cellule-œuf réunit une cellule reproductrice normale (23) et la cellule anormale.",
+    "Si la cellule-œuf a trois chromosomes 21, toutes les cellules issues de ses mitoses aussi."
+   ],
+   "solution": "1. **47 chromosomes** : trois chromosomes n° 21 au lieu de deux. 2. La cellule reproductrice anormale avait **24 chromosomes** (23 + un n° 21 en trop) ; avec une cellule normale à 23 : 24 + 23 = 47. 3. Vrai ; vrai (les mitoses recopient le caryotype de la cellule-œuf) ; faux (ce n'est pas un allèle mais un chromosome entier en trop) ; faux (ce n'est pas une maladie infectieuse).",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "47"
+       },
+       {
+        "value": "24"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "46"
+       },
+       {
+        "value": "24"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:compte-habituel"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "47"
+       },
+       {
+        "value": "23"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:gamete-normal"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "47"
+       },
+       {
+        "value": "24"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "faux"
+        }
+       }
+      ]
+     },
+     "expect": "mc:trisomie-allele"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-brevet-adn",
+   "type": "composite",
+   "skill": "svt3.genetique.mitose",
+   "skills": [
+    "svt.demarche.exploiter-donnees"
+   ],
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 5,
+   "representation": "visuelle",
+   "targets": [
+    "mc:copie-oubliee",
+    "mc:lecture-abscisse"
+   ],
+   "expectedSeconds": 900,
+   "prompt": "Type brevet — La quantité d'ADN au cours des divisions.\n\n**Document.** On mesure la quantité d'ADN contenue dans une cellule d'une pointe de racine, puis dans l'une de ses cellules filles, pendant 34 heures. Chaque chute brutale de la courbe correspond à une division de la cellule en deux.",
+   "figure": {
+    "alt": "Graphique : quantité d'ADN dans une cellule (unités arbitraires) en fonction du temps, sur 34 heures, avec deux divisions",
+    "w": 540,
+    "h": 280,
+    "items": [
+     {
+      "type": "linechart",
+      "xLabel": "temps (heures)",
+      "yLabel": "quantité d'ADN par cellule (unités arbitraires)",
+      "xRange": [
+       0,
+       34
+      ],
+      "yRange": [
+       0,
+       2.5
+      ],
+      "series": [
+       {
+        "label": "Quantité d'ADN d'une cellule (puis de l'une de ses cellules filles)",
+        "color": "svt",
+        "points": [
+         [
+          0,
+          1
+         ],
+         [
+          6,
+          1
+         ],
+         [
+          10,
+          2
+         ],
+         [
+          16,
+          2
+         ],
+         [
+          16.1,
+          1
+         ],
+         [
+          22,
+          1
+         ],
+         [
+          26,
+          2
+         ],
+         [
+          32,
+          2
+         ],
+         [
+          32.1,
+          1
+         ],
+         [
+          34,
+          1
+         ]
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Question 1. Quelle est la quantité d'ADN de la cellule juste avant la première division (en unités arbitraires) ?",
+     "answer": 2,
+     "misconceptions": [
+      {
+       "answer": 1,
+       "id": "mc:copie-oubliee",
+       "error": "lecture",
+       "feedback": "Tu as lu la valeur du début de l'expérience : regarde la courbe juste avant la chute brutale."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Question 2. Combien de temps s'écoule entre deux divisions successives, en heures ?",
+     "answer": 16,
+     "misconceptions": [
+      {
+       "answer": 32,
+       "id": "mc:lecture-abscisse",
+       "error": "lecture",
+       "feedback": "Tu as lu l'heure de la deuxième division : calcule la durée qui sépare deux divisions."
+      }
+     ]
+    },
+    {
+     "type": "order",
+     "prompt": "Question 3. Remets dans l'ordre les événements d'un cycle, en les reliant à la courbe.",
+     "orderLabel": "dans l'ordre",
+     "items": [
+      {
+       "id": "o1",
+       "label": "La quantité d'ADN double : chaque chromosome est copié"
+      },
+      {
+       "id": "o2",
+       "label": "Les chromosomes doubles s'alignent au milieu de la cellule"
+      },
+      {
+       "id": "o3",
+       "label": "Les deux copies de chaque chromosome se séparent"
+      },
+      {
+       "id": "o4",
+       "label": "La cellule se partage en deux : la quantité d'ADN de chaque cellule fille est divisée par deux"
+      }
+     ]
+    },
+    {
+     "type": "open",
+     "prompt": "Question 4. En vous appuyant sur le document, expliquez pourquoi les deux cellules filles possèdent la même information génétique que la cellule mère.",
+     "minWords": 35,
+     "criteria": [
+      {
+       "id": "c1",
+       "label": "La quantité d'ADN double avant la division (copie de l'ADN)",
+       "keywords": [
+        "double",
+        "copie",
+        "copié",
+        "2"
+       ]
+      },
+      {
+       "id": "c2",
+       "label": "Les copies de chaque chromosome se répartissent dans les deux cellules",
+       "keywords": [
+        "sépar",
+        "répart",
+        "copie"
+       ]
+      },
+      {
+       "id": "c3",
+       "label": "Chaque cellule fille retrouve la quantité de départ (1) : même ADN que la cellule mère",
+       "keywords": [
+        "même",
+        "identique",
+        "1"
+       ]
+      }
+     ],
+     "models": [
+      "Avant la division, la quantité d'ADN passe de 1 à 2 : la cellule copie son ADN, chaque chromosome devient double. Pendant la division, les deux copies identiques de chaque chromosome se séparent et chaque cellule fille en reçoit une. La quantité d'ADN revient à 1 dans chaque cellule fille : elle possède les mêmes chromosomes, donc la même information génétique que la cellule mère."
+     ]
+    }
+   ],
+   "hints": [
+    "Repère sur la courbe les moments où la quantité d'ADN double, puis chute.",
+    "Les chutes ont lieu à 16 h et à 32 h.",
+    "Copie exacte, puis partage égal : même information génétique."
+   ],
+   "solution": "1. **2 unités** : la quantité d'ADN a doublé entre 6 h et 10 h (copie de l'ADN). 2. Divisions à 16 h et 32 h : **16 heures** entre deux divisions. 3. Copie de l'ADN ; alignement des chromosomes doubles ; séparation des copies ; partage de la cellule. 4. L'ADN est copié à l'identique (1 → 2), puis les deux copies de chaque chromosome se répartissent entre les deux cellules filles (2 → 1 dans chacune) : chacune reçoit les mêmes chromosomes, donc la même information génétique.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "16"
+       },
+       {
+        "order": [
+         "o1",
+         "o2",
+         "o3",
+         "o4"
+        ]
+       },
+       {
+        "text": "L'ADN est copié (de 1 à 2) puis les copies se séparent : chaque cellule fille reçoit le même ADN, la quantité revient à 1.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "1"
+       },
+       {
+        "value": "16"
+       },
+       {
+        "order": [
+         "o1",
+         "o2",
+         "o3",
+         "o4"
+        ]
+       },
+       {
+        "text": "Elles sont pareilles.",
+        "selfCheck": {}
+       }
+      ]
+     },
+     "expect": "mc:copie-oubliee"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "2"
+       },
+       {
+        "value": "32"
+       },
+       {
+        "order": [
+         "o1",
+         "o2",
+         "o3",
+         "o4"
+        ]
+       },
+       {
+        "text": "Elles sont pareilles.",
+        "selfCheck": {}
+       }
+      ]
+     },
+     "expect": "mc:lecture-abscisse"
+    }
+   ]
+  },
+  {
+   "id": "svt3-transmission-brevet-diversite",
+   "type": "composite",
+   "skill": "svt3.genetique.meiose-fecondation",
+   "track": "expert",
+   "role": "defi",
+   "difficulty": 5,
+   "representation": "symbolique",
+   "targets": [
+    "mc:somme-produit",
+    "mc:diversite-mutations"
+   ],
+   "expectedSeconds": 900,
+   "prompt": "Type brevet — Tous différents !\n\n**Document 1.** Lors de la méiose, chaque cellule reproductrice reçoit au hasard un chromosome de chaque paire. Chez l'être humain, avec 23 paires, cela donne 2²³, soit environ **8,4 millions** de combinaisons de chromosomes différentes, pour un même parent. De plus, les deux chromosomes d'une paire échangent souvent des morceaux pendant la méiose, ce qui multiplie encore les combinaisons.\n\n**Document 2.** À la fécondation, n'importe lequel des spermatozoïdes possibles peut rencontrer n'importe lequel des ovules possibles.\n\n**Document 3.** Population mondiale : environ 8,2 milliards d'habitants en 2025 (ONU).",
+   "parts": [
+    {
+     "type": "numeric",
+     "prompt": "Question 1. Dans un modèle à 3 paires de chromosomes, combien de cellules reproductrices différentes un parent peut-il produire ?",
+     "answer": 8,
+     "misconceptions": [
+      {
+       "answer": 6,
+       "id": "mc:somme-produit",
+       "error": "raisonnement",
+       "feedback": "Tu as multiplié le nombre de paires par 2 : chaque choix se combine avec tous les choix des autres paires."
+      }
+     ]
+    },
+    {
+     "type": "numeric",
+     "prompt": "Question 2. D'après les documents 1 et 2, combien de cellules-œufs différentes (sans compter les échanges de morceaux) un couple peut-il former ? Calcule 8,4 millions × 8,4 millions et donne le résultat en milliers de milliards (arrondi à l'unité).",
+     "answer": 71,
+     "tolerance": 1.5,
+     "misconceptions": [
+      {
+       "answer": 17,
+       "id": "mc:somme-produit",
+       "error": "raisonnement",
+       "feedback": "Tu as additionné : chaque spermatozoïde possible peut rencontrer chacun des ovules possibles, il faut donc multiplier."
+      }
+     ]
+    },
+    {
+     "type": "categorize",
+     "prompt": "Question 3. Vrai ou faux ?",
+     "categories": [
+      {
+       "id": "vrai",
+       "label": "Vrai"
+      },
+      {
+       "id": "faux",
+       "label": "Faux"
+      }
+     ],
+     "items": [
+      {
+       "id": "i1",
+       "label": "Le nombre de cellules-œufs possibles est bien plus grand que la population mondiale.",
+       "category": "vrai"
+      },
+      {
+       "id": "i2",
+       "label": "Deux frères et sœurs, non jumeaux, n'ont pratiquement aucune chance d'avoir les mêmes allèles.",
+       "category": "vrai"
+      },
+      {
+       "id": "i3",
+       "label": "La diversité des enfants d'un couple vient uniquement des mutations.",
+       "category": "faux"
+      },
+      {
+       "id": "i4",
+       "label": "Les vrais jumeaux font exception, car ils proviennent d'une même cellule-œuf.",
+       "category": "vrai"
+      }
+     ],
+     "misconceptions": [
+      {
+       "item": "i3",
+       "category": "vrai",
+       "id": "mc:diversite-mutations",
+       "error": "notion",
+       "feedback": "Relis les documents 1 et 2 : quels mécanismes, sans aucune mutation, produisent déjà des milliers de milliards de combinaisons ?"
+      }
+     ]
+    },
+    {
+     "type": "open",
+     "prompt": "Question 4. Expliquez pourquoi chaque être humain, sauf les vrais jumeaux, possède un patrimoine génétique unique.",
+     "minWords": 35,
+     "criteria": [
+      {
+       "id": "c1",
+       "label": "La méiose répartit au hasard les chromosomes de chaque paire",
+       "keywords": [
+        "méiose",
+        "hasard",
+        "paire"
+       ]
+      },
+      {
+       "id": "c2",
+       "label": "La fécondation associe au hasard un spermatozoïde et un ovule",
+       "keywords": [
+        "fécondation",
+        "hasard",
+        "rencontre"
+       ]
+      },
+      {
+       "id": "c3",
+       "label": "Le nombre de combinaisons dépasse de loin le nombre d'êtres humains",
+       "keywords": [
+        "milliards",
+        "combinaisons",
+        "population"
+       ]
+      }
+     ],
+     "models": [
+      "Lors de la méiose, chaque cellule reproductrice reçoit au hasard un chromosome de chaque paire : un parent peut produire environ 8,4 millions de combinaisons, et même davantage grâce aux échanges de morceaux. À la fécondation, un spermatozoïde et un ovule se rencontrent au hasard : un couple peut former plus de 70 000 milliards de cellules-œufs différentes, bien plus que les 8,2 milliards d'humains. Il est donc presque impossible que deux personnes aient le même patrimoine génétique, sauf les vrais jumeaux, issus d'une même cellule-œuf."
+     ]
+    }
+   ],
+   "hints": [
+    "3 paires : 2 × 2 × 2.",
+    "8,4 × 8,4 ≈ 70,6 ; un million de millions = mille milliards.",
+    "Compare ce nombre à la population mondiale."
+   ],
+   "solution": "1. 2 × 2 × 2 = **8**. 2. 8,4 millions × 8,4 millions ≈ 70,6 millions de millions, soit environ **71 milliers de milliards** (plus de 70 000 milliards). 3. Vrai, vrai, faux (la méiose et la fécondation suffisent à créer une immense diversité), vrai. 4. La méiose répartit les chromosomes au hasard et la fécondation réunit au hasard deux cellules reproductrices : le nombre de combinaisons dépasse de loin la population mondiale. Chaque individu est unique, sauf les vrais jumeaux.",
+   "selfTest": [
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "8"
+       },
+       {
+        "value": "71"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       },
+       {
+        "text": "La méiose répartit au hasard les chromosomes, la fécondation réunit au hasard un spermatozoïde et un ovule : plus de 70 000 milliards de combinaisons, bien plus que la population.",
+        "selfCheck": {
+         "c1": true,
+         "c2": true,
+         "c3": true
+        }
+       }
+      ]
+     },
+     "expect": "correct"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "6"
+       },
+       {
+        "value": "71"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       },
+       {
+        "text": "Le hasard.",
+        "selfCheck": {}
+       }
+      ]
+     },
+     "expect": "mc:somme-produit"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "8"
+       },
+       {
+        "value": "17"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "faux",
+         "i4": "vrai"
+        }
+       },
+       {
+        "text": "Le hasard.",
+        "selfCheck": {}
+       }
+      ]
+     },
+     "expect": "mc:somme-produit"
+    },
+    {
+     "response": {
+      "parts": [
+       {
+        "value": "8"
+       },
+       {
+        "value": "71"
+       },
+       {
+        "assign": {
+         "i1": "vrai",
+         "i2": "vrai",
+         "i3": "vrai",
+         "i4": "vrai"
+        }
+       },
+       {
+        "text": "Le hasard.",
+        "selfCheck": {}
+       }
+      ]
+     },
+     "expect": "mc:diversite-mutations"
+    }
+   ]
+  }
+ ]
+}

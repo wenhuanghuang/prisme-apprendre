@@ -111,7 +111,7 @@
       "prompt": "Résous l'équation $ {a}x {b|s} = {c} $. Écris une étape par ligne.",
       "hints": ["Commence par faire disparaître le nombre {b} du membre de gauche : quelle opération faut-il faire des deux côtés ?", "Tu dois obtenir $ {a}x = {c-b} $.", "{a} multiplie $x$ : divise les deux membres par {a}."],
       "solution": "$ {a}x {b|s} = {c} $ ⟶ $ {a}x = {c} {-b|s} $ ⟶ $ {a}x = {c-b} $ ⟶ $ x = {s} $. Vérification : $ {a} × {s|p} {b|s} = {c} $.",
-      "methods": ["Soustraire {b|p} aux deux membres, puis diviser par {a}.", "Diviser d'abord les deux membres par {a} : $ x + {b}/{a} = {c}/{a} $ — c'est juste, mais on obtient des fractions : moins pratique ici."],
+      "methods": ["Soustraire {b|p} aux deux membres, puis diviser par {a}.", "Diviser d'abord les deux membres par {a} : $ x {b|s}/{a} = {c}/{a} $ — c'est juste, mais on obtient des fractions : moins pratique ici."],
       "minSteps": 2,
       "selfTest": [
         { "response": { "lines": ["{a}x = {c-b}", "x = {s}"] }, "expect": "correct" },
@@ -127,8 +127,8 @@
       "constraints": ["a > c", "d != 0"],
       "start": "a*x + b = c*x + d",
       "prompt": "Résous $ {a}x {b|s} = {c|c}x {d|s} $. L'inconnue est dans les deux membres.",
-      "hints": ["Regroupe les termes en $x$ à gauche : soustrais ${c|c}x$ aux deux membres.", "Puis regroupe les nombres à droite.", "Tu dois arriver à $ {a-c}x = {d-b} $."],
-      "solution": "$ {a}x − {c|c}x = {d} − {b|p} $ ⟶ $ {a-c}x = {d-b} $ ⟶ $ x = {s} $.",
+      "hints": ["Regroupe les termes en $x$ à gauche : soustrais ${c|c}x$ aux deux membres.", "Puis regroupe les nombres à droite.", "Tu dois arriver à $ {a-c|c}x = {d-b} $."],
+      "solution": "$ {a}x − {c|c}x = {d} − {b|p} $ ⟶ $ {a-c|c}x = {d-b} $ ⟶ $ x = {s} $.",
       "selfTest": [
         { "response": { "lines": ["{a}x - {c}x = {d} - {b|p}", "{a-c}x = {d-b}", "x = {s}"] }, "expect": "correct" },
         { "response": { "lines": ["{a}x + {c}x = {d} - {b|p}", "{a+c}x = {d-b}"] }, "expect": "signe" }
@@ -193,9 +193,9 @@
         { "type": "numeric", "prompt": "Pour combien de Go les deux forfaits coûtent-ils exactement le même prix ? (résous l'équation correspondante)", "answer": 20,
           "justify": { "required": true, "minWords": 3, "prompt": "Écris l'équation que tu as résolue." } },
         { "type": "qcm", "prompt": "Pour 30 Go dans le mois, quel forfait est le moins cher ?", "choices": [
-          { "text": "Forfait A", "correct": false, "error": "calcul", "feedback": "A : 12 + 0,5 × 30 = 27 € ; B : 20 + 0,1 × 30 = 23 €." },
+          { "text": "Forfait A", "correct": false, "error": "calcul", "feedback": "Calcule le prix de chaque forfait pour 30 Go avec tes deux expressions, puis compare : A augmente plus vite que B." },
           { "text": "Forfait B", "correct": true },
-          { "text": "Ils coûtent le même prix", "correct": false, "error": "lecture", "feedback": "Ils coûtent le même prix seulement pour 20 Go." } ] }
+          { "text": "Ils coûtent le même prix", "correct": false, "error": "lecture", "feedback": "Ils ne coûtent le même prix que pour une seule consommation, celle trouvée à la question précédente, et ce n'est pas 30 Go." } ] }
       ],
       "hints": ["Pour chaque Go, A coûte 0,50 € : pour $x$ Go, cela fait $0,5x$ euros.", "Égalité des prix : $ 12 + 0,5x = 20 + 0,1x $.", "Regroupe : $ 0,4x = 8 $."],
       "solution": "A : $ 12 + 0,5x $ ; B : $ 20 + 0,1x $. Égalité : $ 12 + 0,5x = 20 + 0,1x $ ⟶ $ 0,4x = 8 $ ⟶ $ x = 20 $ Go. Au-delà de 20 Go, B est moins cher (A augmente plus vite).",
@@ -208,7 +208,7 @@
       "prompt": "Aujourd'hui, Sam a trois fois l'âge de sa petite sœur Inès. Dans 6 ans, l'âge de Sam ne sera plus que le double de celui d'Inès. On note $x$ l'âge actuel d'Inès.",
       "parts": [
         { "type": "expression", "prompt": "Exprime l'âge de Sam dans 6 ans en fonction de $x$.", "answer": "3x + 6",
-          "misconceptions": [ { "answer": "3(x + 6)", "id": "mc:ages-decalage", "error": "lecture", "feedback": "Dans 6 ans, Sam aura 6 ans de plus que maintenant : (3x) + 6, et non le triple de l'âge futur d'Inès." } ] },
+          "misconceptions": [ { "answer": "3(x + 6)", "id": "mc:ages-decalage", "error": "lecture", "feedback": "Dans 6 ans, Sam aura simplement 6 ans de plus qu'aujourd'hui : pars de son âge actuel. Ce n'est pas le triple de l'âge futur d'Inès." } ] },
         { "type": "expression", "prompt": "Exprime l'âge d'Inès dans 6 ans.", "answer": "x + 6" },
         { "type": "steps", "mode": "equation", "prompt": "Écris l'équation qui traduit l'énoncé, puis résous-la (première ligne = l'équation).", "start": "3x + 6 = 2(x + 6)", "minSteps": 2 },
         { "type": "numeric", "prompt": "Quel âge a Sam aujourd'hui ?", "answer": 18, "misconceptions": [ { "answer": 6, "id": "mc:mauvaise-inconnue", "error": "lecture", "feedback": "6 est l'âge d'Inès (c'est $x$). La question porte sur Sam." } ] }

@@ -303,7 +303,7 @@ async function seriesPanel(panel, stageCleanup, params) {
       h('div', { class: 'series-skills' },
         check('adaptee', 'Adaptée à mes besoins (notions peu maîtrisées, révisions dues, erreurs récentes en priorité)', state.adapted, (on) => { state.adapted = on; }),
         check('sans-qcm', 'Sans vérification rapide (QCM)', state.noQcm, (on) => { state.noQcm = on; render(); })),
-      fillPool.length ? check('completer', `Aucun générateur ne produit ce niveau pour ces notions : compléter avec des exercices générés du niveau de la classe`, state.fill, (on) => { state.fill = on; render(); }) : null,
+      fillPool.length ? check('completer', `Aucun générateur ne produit ce niveau pour ces notions : compléter avec des exercices générés du niveau de la classe`, state.fill, (on) => { state.fill = on; render(); }) : '', // replaceChildren() natif : jamais null
       h('div', { class: `series-preview ${short ? 'is-short' : ''}`, 'aria-live': 'polite' },
         h('p', {}, h('strong', {}, preview.length ? `Série prévue : ${preview.length} exercice${preview.length > 1 ? 's' : ''}` : 'Aucun exercice pour ce choix'), preview.length ? ` — ${describeSeries(preview)}.` : '.'),
         short && preview.length ? h('p', { class: 'small' }, `Il n’y a pas ${state.count} exercices différents pour ces notions dans ce parcours. Pour en avoir plus : cocher d’autres notions ou le parcours « Niveau de la classe »${fillPool.length && !state.fill ? ', ou cocher « Compléter avec des exercices générés »' : ''}.`) : null,

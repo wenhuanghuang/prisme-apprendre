@@ -107,7 +107,10 @@ export function renderScene(demo, st, clock, focus = [], uid = 'd') {
       console.error(`Expérience : objet « ${id} » (${p.type}) impossible à dessiner : ${e.message}`);
     }
     if (focus.includes(id) && prim.box) {
-      const [x, y, w, h] = prim.box(p);
+      // cadre remis à l'endroit : une flèche tracée vers le haut ou vers la gauche a une boîte « négative »
+      const [bx, by, bw, bh] = prim.box(p);
+      const [x, w] = bw < 0 ? [bx + bw, -bw] : [bx, bw];
+      const [y, h] = bh < 0 ? [by + bh, -bh] : [by, bh];
       const pulse = 4 + Math.sin(clock * 4) * 3;
       halo += `<rect class="d-focus" x="${x - 8 - pulse}" y="${y - 8 - pulse}" width="${w + 16 + 2 * pulse}" height="${h + 16 + 2 * pulse}" rx="14"/>`;
     }

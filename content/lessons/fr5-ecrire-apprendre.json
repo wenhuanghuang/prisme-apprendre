@@ -126,7 +126,7 @@
         { "word": "490", "id": "mc:notes-verification", "error": "lecture", "feedback": "« 490 av. J.-C. » est juste : c'est bien la date de la légende." },
         { "word": "1896", "id": "mc:notes-verification", "error": "lecture", "feedback": "« depuis 1896 » est juste : c'est l'année des premiers Jeux olympiques modernes." },
         { "word": "messager", "id": "mc:notes-verification", "error": "lecture", "feedback": "« messager » est juste ; c'est le mot qui le suit qui pose problème." },
-        { "word": "Marathon", "id": "mc:notes-verification", "error": "lecture", "feedback": "Le départ, Marathon, est juste. Vérifie plutôt la ville d'arrivée." }
+        { "word": "Marathon", "id": "mc:notes-verification", "error": "lecture", "feedback": "« Marathon » est juste : c'est le nom de la course comme celui de la ville de départ. Vérifie plutôt la ville d'arrivée." }
       ],
       "hints": [
         "Compare chaque information des notes avec le texte, une par une.",
@@ -260,14 +260,14 @@
       "representation": "verbale", "targets": ["mc:generique-specifique", "mc:generique-imprecis"], "expectedSeconds": 150,
       "prompt": "Pour **résumer**, on peut remplacer une énumération par un **mot générique**. Complète chaque phrase résumée.",
       "parts": [
-        { "type": "text", "prompt": "« Il a acheté des pommes, des poires, des cerises et des abricots. » → Il a acheté des …", "accept": ["fruits"],
-          "misconceptions": [ { "answer": "pommes", "id": "mc:generique-specifique", "error": "notion", "feedback": "« pommes » n'est qu'un élément de la liste. Le mot générique doit englober tous les éléments : des fruits." } ] },
+        { "type": "text", "prompt": "« Il a acheté des pommes, des poires, des cerises et des abricots. » → Il a acheté des …", "accept": ["fruits", "des fruits"],
+          "misconceptions": [ { "answer": "pommes", "id": "mc:generique-specifique", "error": "notion", "feedback": "« pommes » n'est qu'un élément de la liste. Le mot générique doit englober tous les éléments : les pommes, les poires, les cerises et les abricots sont tous des… ?" } ] },
         { "type": "text", "prompt": "« Elle joue du violon, du piano et de la flûte. » → Elle joue de plusieurs …", "accept": ["instruments", "instruments de musique"],
-          "misconceptions": [ { "answer": "musiques", "id": "mc:generique-imprecis", "error": "precision", "feedback": "Le violon, le piano et la flûte sont des instruments (de musique)." } ] },
-        { "type": "text", "prompt": "« Dans la pièce, il y avait des chaises, une table, un buffet et une armoire. » → Dans la pièce, il y avait des …", "accept": ["meubles"],
-          "misconceptions": [ { "answer": "objets", "id": "mc:generique-imprecis", "error": "precision", "feedback": "« objets » est trop vague : un crayon aussi est un objet ! Le générique précis est « meubles »." } ] },
+          "misconceptions": [ { "answer": "musiques", "id": "mc:generique-imprecis", "error": "precision", "feedback": "Le violon, le piano et la flûte ne sont pas des musiques : ce sont des objets qui servent à jouer de la musique. Comment appelle-t-on ces objets ?" } ] },
+        { "type": "text", "prompt": "« Dans la pièce, il y avait des chaises, une table, un buffet et une armoire. » → Dans la pièce, il y avait des …", "accept": ["meubles", "des meubles"],
+          "misconceptions": [ { "answer": "objets", "id": "mc:generique-imprecis", "error": "precision", "feedback": "« objets » est trop vague : un crayon aussi est un objet ! Cherche le mot précis qui désigne les chaises, les tables, les buffets et les armoires." } ] },
         { "type": "text", "prompt": "« Le chat, le chien, le lapin et le hamster vivent avec nous. » → Plusieurs … vivent avec nous.", "accept": ["animaux", "animaux domestiques", "animaux de compagnie"],
-          "misconceptions": [ { "answer": "chats", "id": "mc:generique-specifique", "error": "notion", "feedback": "Le générique doit englober toute la liste : des animaux (de compagnie)." } ] }
+          "misconceptions": [ { "answer": "chats", "id": "mc:generique-specifique", "error": "notion", "feedback": "Le générique doit englober toute la liste, pas un seul de ses éléments : le chat, le chien, le lapin et le hamster sont tous des… ?" } ] }
       ],
       "hints": [
         "Demande-toi : « Une pomme, une poire, une cerise sont des… ? »",
@@ -353,8 +353,8 @@
         { "type": "text", "prompt": "Quel titre écrire au centre de la carte mentale ?",
           "accept": ["le château fort", "château fort", "les châteaux forts", "châteaux forts", "le château fort au Moyen Âge", "les châteaux forts au Moyen Âge", "le château fort médiéval"],
           "misconceptions": [
-            { "answer": "le pont-levis", "id": "mc:titre-detail", "error": "notion", "feedback": "Le pont-levis n'est qu'un détail. Le centre doit englober tout le sujet : le château fort." },
-            { "answer": "pont-levis", "id": "mc:titre-detail", "error": "notion", "feedback": "Le pont-levis n'est qu'un détail. Le centre doit englober tout le sujet : le château fort." }
+            { "answer": "le pont-levis", "id": "mc:titre-detail", "error": "notion", "feedback": "Le pont-levis n'est qu'un détail. Le centre doit englober tout le sujet : de quoi parlent toutes les notes de Noah ?" },
+            { "answer": "pont-levis", "id": "mc:titre-detail", "error": "notion", "feedback": "Le pont-levis n'est qu'un détail. Le centre doit englober tout le sujet : de quoi parlent toutes les notes de Noah ?" }
           ] },
         { "type": "open", "prompt": "Écris deux questions que Noah pourra se poser demain matin pour se tester, avec leurs réponses.", "minWords": 15,
           "criteria": [
@@ -386,13 +386,13 @@
       "prompt": "Méthode pas à pas pour trouver les **mots-clés** d'une phrase : de quoi parle-t-on ? qu'en dit-on ? avec quel chiffre ou quelle date ?\n\nPhrase : *« Le Soleil est une étoile qui se trouve à environ 150 millions de kilomètres de la Terre. »*",
       "parts": [
         { "type": "text", "prompt": "De quoi parle la phrase ? (un mot)", "accept": ["Soleil", "le Soleil"],
-          "misconceptions": [ { "answer": "Terre", "id": "mc:mots-cles-theme", "error": "lecture", "feedback": "La Terre est citée, mais la phrase parle du Soleil : c'est lui le sujet." } ] },
+          "misconceptions": [ { "answer": "Terre", "id": "mc:mots-cles-theme", "error": "lecture", "feedback": "La Terre est citée, mais ce n'est pas d'elle que parle la phrase : cherche le sujet du verbe « est »." } ] },
         { "type": "text", "prompt": "Qu'est-ce que le Soleil ? (un mot)", "accept": ["étoile", "une étoile"],
-          "misconceptions": [ { "answer": "planète", "id": "mc:notes-verification", "error": "lecture", "feedback": "Relis la phrase : le Soleil est une étoile (la Terre, elle, est une planète)." } ] },
-        { "type": "text", "prompt": "Quelle distance faut-il retenir ? (avec son unité)", "accept": ["150 millions de kilomètres", "150 millions de km", "150 millions km", "environ 150 millions de kilomètres", "environ 150 millions de km"],
-          "misconceptions": [ { "answer": "150", "id": "mc:mots-cles-unite", "error": "unite", "feedback": "Un nombre sans unité ne veut rien dire : 150 millions de kilomètres." } ] },
+          "misconceptions": [ { "answer": "planète", "id": "mc:notes-verification", "error": "lecture", "feedback": "Relis la phrase : elle ne dit pas que le Soleil est une planète (c'est la Terre qui en est une). Quel mot emploie-t-elle ?" } ] },
+        { "type": "text", "prompt": "Quelle distance faut-il retenir ? (avec son unité)", "accept": ["150 millions de kilomètres", "150 millions de km", "150 millions km", "environ 150 millions de kilomètres", "environ 150 millions de km", "env. 150 millions de km", "150 000 000 km", "150 000 000 kilomètres"],
+          "misconceptions": [ { "answer": "150", "id": "mc:mots-cles-unite", "error": "unite", "feedback": "Un nombre sans unité ne veut rien dire : 150 quoi ? Recopie aussi les mots qui suivent le nombre, jusqu'à l'unité." } ] },
         { "type": "text", "prompt": "Complète les notes : « Soleil = …, à env. 150 millions de km de la Terre »", "accept": ["étoile", "une étoile"],
-          "misconceptions": [ { "answer": "planète", "id": "mc:notes-verification", "error": "lecture", "feedback": "Le Soleil est une étoile : vérifie toujours tes notes avec la phrase de départ." } ] }
+          "misconceptions": [ { "answer": "planète", "id": "mc:notes-verification", "error": "lecture", "feedback": "Ce n'est pas ce que dit la phrase de départ : vérifie toujours tes notes en les comparant à la source." } ] }
       ],
       "hints": [
         "Le sujet de la phrase est souvent le mot-clé principal.",
@@ -498,12 +498,12 @@
       "representation": "concrete", "targets": ["mc:abreviation-contexte"], "expectedSeconds": 300,
       "prompt": "**Décodeur de notes.** Une journaliste a pris ces notes en vitesse sur le lieu d'un accident :\n\n> *Collision bus + camion, carref. RN7, 8 h. 3 blessés lég. → hôp. Cause prob. : freins camion. Enquête en cours.*\n\nPour écrire son article, elle doit d'abord les décoder.",
       "parts": [
-        { "type": "text", "prompt": "Que signifie « carref. » ?", "accept": ["carrefour", "un carrefour", "au carrefour"],
-          "misconceptions": [ { "answer": "carrefours", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "Il s'agit d'un seul lieu : le carrefour de la RN7." } ] },
-        { "type": "text", "prompt": "Que signifie « lég. » ?", "accept": ["légers", "légèrement", "légèrement blessés", "blessés légers"],
-          "misconceptions": [ { "answer": "légal", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "Le contexte aide : on parle de blessés… « lég. » = légers (ce n'est pas grave)." } ] },
+        { "type": "text", "prompt": "Que signifie « carref. » ?", "accept": ["carrefour", "un carrefour", "au carrefour", "le carrefour"],
+          "misconceptions": [ { "answer": "carrefours", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "Il s'agit d'un seul lieu, sur la RN7 : le mot doit être au singulier." } ] },
+        { "type": "text", "prompt": "Que signifie « lég. » ?", "accept": ["légers", "léger", "légèrement", "légèrement blessés", "blessés légers"],
+          "misconceptions": [ { "answer": "légal", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "Le contexte aide : on parle de blessés. Quel adjectif commençant par « lég » dit que leurs blessures ne sont pas graves ?" } ] },
         { "type": "text", "prompt": "Que signifie « prob. » ?", "accept": ["probable", "probablement"],
-          "misconceptions": [ { "answer": "problème", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "« Cause prob. » : la cause n'est pas encore sûre → probable. (« problème » s'abrège plutôt « pb ».)" } ] },
+          "misconceptions": [ { "answer": "problème", "id": "mc:abreviation-contexte", "error": "lecture", "feedback": "« Cause prob. » : l'enquête est en cours, la cause n'est donc pas encore sûre. Quel mot commençant par « prob » exprime ce doute ? (« problème » s'abrège plutôt « pb ».)" } ] },
         { "type": "open", "prompt": "Rédige la première phrase de l'article, en phrases complètes, à partir des notes.", "minWords": 15,
           "criteria": [
             { "id": "c1", "label": "Les informations essentielles : véhicules, lieu, heure, blessés", "keywords": [["bus", "camion", "carrefour", "blessés"]] },
