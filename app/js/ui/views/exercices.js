@@ -17,18 +17,18 @@ const TRACKS = ['classe', 'approfondissement', 'expert'];
 const SUBJECT_ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg', 'emc', 'svt', 'techno', 'lv', 'musique', 'arts-plastiques'];
 const levelId = (x) => String(x || '').toLowerCase();
 
-function subjLabel(id) {
+export function subjLabel(id) {
   const s = store.catalog && store.catalog.subjects.find((x) => x.id === id);
   return s ? s.label : { lv: 'Langues vivantes', 'arts-plastiques': 'Arts plastiques', musique: 'Éducation musicale' }[id] || id;
 }
 
-function levelsWithContent() {
+export function levelsWithContent() {
   const set = new Set([...store.index.lessons.map((l) => levelId(l.level)), ...allGenerators(store.index).flatMap((g) => g.levels.map(levelId))]);
   const ordered = (store.catalog ? store.catalog.levels.map((l) => l.id) : []).filter((l) => set.has(l));
   return ordered.length ? ordered : [...set];
 }
 
-function subjectsAt(level) {
+export function subjectsAt(level) {
   const set = new Set([
     ...store.index.exercises.filter((e) => levelId(e.level) === level).map((e) => e.subject),
     ...allGenerators(store.index).filter((g) => g.levels.map(levelId).includes(level)).map((g) => g.subject),
@@ -116,7 +116,7 @@ export function describeSeries(items) {
   return parts.join(' + ');
 }
 
-async function materialize(item) {
+export async function materialize(item) {
   if (item.kind === 'gen') return { def: await produce(item.meta, item.seed, item.opts || {}), lessonId: null, seed: item.seed };
   const loaded = await loadExercise(item.id);
   return { def: loaded.def, lessonId: loaded.lesson.id, seed: item.seed };
@@ -423,7 +423,8 @@ export async function render(root, { params }) {
   const stageCleanup = { fn: null };
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Espace exercices'), h('h1', {}, 'S’entraîner à la demande'),
-      h('p', { class: 'muted' }, 'Compose une série sur mesure ou lance un générateur : chaque réponse est corrigée, la démarche analysée, et ta progression mise à jour.'))));
+      h('p', { class: 'muted' }, 'Compose une série sur mesure ou lance un générateur : chaque réponse est corrigée, la démarche analysée, et ta progression mise à jour.')),
+    h('a', { class: 'btn', href: '#/jeu' }, h('span', { 'aria-hidden': 'true' }, '🎲 '), 'Jouer sur le plateau')));
   root.append(tabs([{ id: 'series', label: 'Séries sur mesure', icon: '☰' }, { id: 'generateurs', label: 'Générateurs illimités', icon: '∞' }], tab,
     (id) => { location.hash = `#/exercices${id === 'generateurs' ? '?onglet=generateurs' : ''}`; }, 'Espace exercices'));
   const panel = h('div', { class: 'ex-space', role: 'tabpanel' });

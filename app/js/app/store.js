@@ -24,6 +24,7 @@ export const store = {
   states: null, // { profileId, skills: {}, lessons: {} }
   attempts: [],
   submissions: [],
+  sharedPlay: false, // jeu de plateau à plusieurs en cours : la main passe d'un profil à l'autre
   now: () => Date.now(),
 };
 
@@ -207,6 +208,9 @@ export async function recordAttempt(instance, diagnosis, meta) {
   }
   await db.put('states', store.states);
   const id = await db.put('attempts', record);
+  // jeu à plusieurs : si la main est passée à un autre joueur entre-temps, la tentative reste dans la base
+  // du bon profil, sans s'ajouter en mémoire à celui qui joue maintenant
+  if (!store.profile || store.profile.id !== record.profileId) return { record, flags, state };
   store.attempts = [...store.attempts, { ...record, id }];
   if (diagnosis.needsHuman) await saveSubmission(instance, diagnosis, meta);
   emit();
@@ -302,6 +306,36 @@ export function dueReviews() {
 
 export function recentExerciseIds(n = 15) {
   return store.attempts.slice(-n).map((a) => a.exerciseId).filter(Boolean);
+}
+
+/* ------------------------------ Jeu à plusieurs sur le même appareil ------------------------------ */
+
+/**
+ * Données d'un joueur (profil local) pour le jeu de plateau : chacun répond à son tour et ses réponses
+ * vont dans son propre profil. Le changement de main est synchrone et ne touche pas au profil choisi
+ * sur l'appareil (ni à l'en-tête) : `store.sharedPlay` le signale le temps de la partie.
+ */
+export async function playerContext(id) {
+  const d = await profileData(id);
+  return d ? { ...d, states: normalizeStates(d.states, id) } : null;
+}
+
+/** Contexte du profil actif, à reprendre à la fin de la partie. */
+export function activeContext() {
+  return { profile: store.profile, states: store.states, attempts: store.attempts, submissions: store.submissions };
+}
+
+/** Donne la main à un joueur (ses tentatives s'enregistrent dans son profil). */
+export function useContext(ctx) {
+  store.profile = ctx.profile; store.states = ctx.states; store.attempts = ctx.attempts; store.submissions = ctx.submissions;
+}
+
+/** Récupère dans le contexte d'un joueur ce que ses réponses ont changé. */
+export function keepContext(ctx) {
+  if (store.profile && ctx.profile && store.profile.id === ctx.profile.id) {
+    ctx.states = store.states; ctx.attempts = store.attempts; ctx.submissions = store.submissions;
+  }
+  return ctx;
 }
 
 /* ------------------------------ Sauvegarde ------------------------------ */

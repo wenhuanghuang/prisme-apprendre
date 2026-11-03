@@ -26,7 +26,9 @@ async function launch() {
   for (const channel of ['msedge', 'chrome']) {
     try { return await chromium.launch({ channel, headless: true }); } catch { /* essai suivant */ }
   }
-  throw new Error('Aucun navigateur Edge ou Chrome trouvé');
+  // machine sans Edge ni Chrome (intégration continue) : CHROME_PATH=/chemin/vers/chromium
+  if (process.env.CHROME_PATH) return chromium.launch({ executablePath: process.env.CHROME_PATH, headless: true });
+  throw new Error('Aucun navigateur Edge ou Chrome trouvé (ou indiquer CHROME_PATH)');
 }
 
 before(async () => {

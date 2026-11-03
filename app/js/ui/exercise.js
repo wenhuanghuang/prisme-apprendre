@@ -46,7 +46,7 @@ function difficultyDots(d = 2) {
 
 /**
  * @param {HTMLElement} container
- * @param {{ def, lessonId?, seed?, context?, why?: string[], onNext?: Function, compact?: boolean }} opts
+ * @param {{ def, lessonId?, seed?, context?, why?: string[], onNext?: Function, compact?: boolean, record?: boolean }} opts
  */
 export function mountExercise(container, opts) {
   const { def } = opts;
@@ -151,6 +151,7 @@ export function mountExercise(container, opts) {
   async function record(d) {
     if (recorded && d.verdict !== 'a-valider') return;
     recorded = true;
+    if (opts.record === false) return; // joueur invité du jeu de plateau : rien n'est enregistré
     const response = answer.getResponse();
     await recordAttempt(inst, { ...d, errorType: d.verdict === 'correct' ? null : d.errorType }, {
       tries, hintsUsed, solutionShown, durationMs: Date.now() - started, lessonId: opts.lessonId, context: opts.context || null,

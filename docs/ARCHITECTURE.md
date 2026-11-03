@@ -44,12 +44,14 @@ app/                         ← racine publiée (site statique)
     │   ├── recommend.js     recommandations expliquées
     │   ├── select.js        choix de l'exercice suivant
     │   ├── badges.js        badges liés à des compétences
+    │   ├── plateau.js       règles du jeu de plateau (plateau, dé, cartes, tours, Photon)
     │   ├── dashboard.js     synthèse pour le tableau de bord
     │   └── demo-profiles.js élèves fictifs simulés par le moteur
     ├── storage/             IndexedDB (db.js) et sauvegardes (backup.js)
     ├── app/store.js         état de l'application et actions (enregistrer une tentative…)
     ├── activities/          laboratoires interactifs (registre, chargés à la demande)
-    └── ui/                  vues (accueil, aujourd'hui, carte, leçon, séance, labo, carnet, parents, programmes)
+    └── ui/                  vues (accueil, aujourd'hui, carte, leçon, séance, exercices, jeu, labo, carnet, parents, programmes)
+        └── game/            jeu de plateau : pioche de questions par joueur, plateau SVG, dé
 tools/                       build, validation, catalogue, matrice, rapport des profils fictifs, serveur local
 tests/                       unit/ (expressions, correcteurs), scenarios/ (élèves fictifs)
 research/                    recherche documentaire sourcée (programmes, Lumni, analyse de l'app de référence)

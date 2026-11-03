@@ -1,6 +1,13 @@
-# État du projet — version 0.3 (6 octobre 2026)
+# État du projet — version 0.4 (3 novembre 2026)
 
 Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chiffres sont issus des contenus (voir [MATRICE-PROGRAMMES.md](MATRICE-PROGRAMMES.md)).
+
+## Nouveautés de la version 0.4
+- **Jeu de plateau « La traversée du Prisme »** ([JEU-DE-PLATEAU.md](JEU-DE-PLATEAU.md)) : les exercices deviennent un jeu de société. Dé, pions, plateau en serpentin aux couleurs du spectre (23, 31 ou 47 cases), cases Défi ◆ (approfondissement), Révision ↻ (notions fragiles du joueur), arcs-en-ciel, nuages avec question de rattrapage, huit cartes Lumière, éclats de lumière pour les réussites du premier coup, dernier tour équitable et classement.
+- **Tous les niveaux à la même table** : de 1 à 4 joueurs sur le même ordinateur, chacun avec la classe et la matière de ses questions ; les réponses d'un profil sont enregistrées dans **son** profil (sans changer le profil de l'appareil), celles d'un invité ne le sont pas. **Photon** joue le rôle d'un adversaire (trois niveaux) pour jouer seul.
+- Partie sauvegardée après chaque action et reprise au retour ; tout se joue au clavier, évènements annoncés aux lecteurs d'écran, animations désactivées si le système le demande, mode sombre.
+- Accès depuis le menu **Jeu**, la page *Aujourd'hui* et l'*Espace exercices*.
+- Tests : 10 tests des règles (dont une simulation de 400 parties) et 3 tests de bout en bout du jeu. `npm test` fonctionne de nouveau avec Node 22 (les dossiers de tests sont maintenant donnés sous forme de motifs) ; `CHROME_PATH` permet les tests de bout en bout sans Edge ni Chrome.
 
 ## Nouveautés de la version 0.3
 - **Cours complets en 5e et 4e** dans les cinq matières principales : français (27 chapitres sur 27), mathématiques (34 sur 34), histoire-géographie (29 sur 29), physique-chimie (13 sur 13), SVT (14 sur 16 : reproduction et puberté en 4e restent à rédiger). **141 leçons, 2 046 exercices** au total (1 463 de classe, 290 d'approfondissement, 293 experts ; 2,6 % de QCM).
@@ -70,6 +77,8 @@ Liste honnête de ce qui est terminé et de ce qui reste à développer. Les chi
 - **Accessibilité** : clavier et lecteurs d'écran pris en compte dans les manipulations et les nouvelles zones de réponse (statut texte « juste / à revoir », pas seulement la couleur) ; pas d'audit complet, pas de mode dyslexie.
 - **Liens officiels** : une partie des URL du BO et d'Éduscol n'a pas pu être ouverte par nos outils (sites protégés) ; elles sont marquées « non vérifiées » dans l'application.
 - **Paramètres du moteur** : valeurs par défaut raisonnables, non encore calibrées sur de vraies données d'élèves.
+
+- **Jeu de plateau** : les questions existent seulement pour les classes qui ont des contenus (5e, 4e, début de 3e) ; un joueur de primaire ou de lycée joue avec une de ces classes (l'écran le dit). Pas encore de mode coopératif ni de duel.
 
 ## Reste à développer
 1. SVT 4e : chapitres « Reproduction, hérédité et diversité du vivant » et « Puberté, reproduction humaine » ; chapitres « à venir » des autres matières de 5e et 4e ; puis 3e et 6e.
