@@ -16,6 +16,7 @@ import { subjLabel } from '../views/exercices.js';
 import { mountExercise } from '../exercise.js';
 import { photon } from '../photon.js';
 import { chestReveal, chestSvg, newVignettes } from './rewards-ui.js';
+import { yearCards, yearMap } from './year-view.js';
 
 const levelId = (x) => String(x || '').toLowerCase();
 const levelLabel = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;
@@ -116,10 +117,14 @@ function trackView(q) {
 
 /* ------------------------------ Partie ------------------------------ */
 
-function playQuest(stage, q, { onNew, onPause, setStopper }) {
+/**
+ * Joue une quête. Pour un chapitre de la quête de l'année : `save` enregistre la quête dans l'année, et `onFinished`
+ * remplace le grand coffre (l'année donne une médaille au chapitre).
+ */
+export function playQuest(stage, q, { onNew, onPause, setStopper, save: saveTo = null, onFinished = null, eyebrow = null }) {
   let current = null; let stopped = false;
   setStopper(() => { stopped = true; if (current) { current.destroy(); current = null; } });
-  const save = () => setSetting(saveKey(), q).catch(() => {});
+  const save = () => (saveTo ? saveTo(q) : setSetting(saveKey(), q)).catch(() => {});
   const track = trackView(q);
   const score = h('p', { class: 'quest-score', 'aria-live': 'polite' });
   const slot = h('div', { class: 'quest-slot' });
@@ -129,7 +134,7 @@ function playQuest(stage, q, { onNew, onPause, setStopper }) {
   };
   stage.replaceChildren(
     h('div', { class: 'series-head quest-head' },
-      h('div', {}, h('p', { class: 'eyebrow' }, `Quête · ${q.subject === 'tous' ? 'toutes matières' : subjLabel(q.subject)} · ${levelLabel(q.level)}`), h('h2', {}, q.title)),
+      h('div', {}, h('p', { class: 'eyebrow' }, eyebrow || `Quête · ${q.subject === 'tous' ? 'toutes matières' : subjLabel(q.subject)} · ${levelLabel(q.level)}`), h('h2', {}, q.title)),
       h('div', { class: 'btn-row' }, score, h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { if (current) { current.destroy(); current = null; } stopped = true; onPause(); } }, 'Faire une pause'))),
     track.el, slot);
 
@@ -187,7 +192,7 @@ function playQuest(stage, q, { onNew, onPause, setStopper }) {
     const after = gameProgress();
     const [vignette] = newVignettes(before, after);
     const gained = after && before ? after.totalXp - before.totalXp : XP.defi;
-    const next = h('button', { type: 'button', class: 'btn btn--primary', onclick: () => show() }, isOver(q) ? 'Vers le grand coffre →' : 'Continuer la quête →');
+    const next = h('button', { type: 'button', class: 'btn btn--primary', onclick: () => show() }, isOver(q) ? (onFinished ? 'Terminer le chapitre →' : 'Vers le grand coffre →') : 'Continuer la quête →');
     slot.replaceChildren(h('div', { class: 'card quest-chest' },
       chestReveal({ title: `Coffre de l’étape ${n.stage + 1} ouvert !`, points: gained > 0 ? gained : 0, vignette, already: gained <= 0 }),
       h('div', { class: 'btn-row quest-next' }, next)));
@@ -228,6 +233,7 @@ function playQuest(stage, q, { onNew, onPause, setStopper }) {
 
   async function finale() {
     const s = questSummary(q);
+    if (onFinished) { if (!stopped) onFinished(s, q); return; }
     setSetting(saveKey(), null).catch(() => {});
     let reveal = null;
     if (s.grandChest) {
@@ -265,21 +271,43 @@ export async function questPanel(panel, cleanup) {
   let stopper = null;
   const stop = () => { if (stopper) { stopper(); stopper = null; } };
   cleanup.fn = stop;
+  let homeLevel = null;
   const handlers = () => ({ onNew: () => { stop(); setupScreen(stage, { onStart: start }); }, onPause: () => { stop(); home(); }, setStopper: (fn) => { stopper = fn; } });
   function start(q) { stop(); setSetting(saveKey(), q).catch(() => {}); playQuest(stage, q, handlers()); }
-  /** Accueil de l'onglet : la quête en cours (s'il y en a une), sinon le choix d'une nouvelle quête. */
+  /**
+   * Accueil de l'onglet : la quête de l'année de chaque matière (le chemin principal, de septembre à juin), puis
+   * la quête libre (courte, au choix) — reprise si elle est en cours.
+   */
   async function home() {
+    stop();
     const saved = await getSetting(saveKey(), null).catch(() => null);
-    if (!(saved && saved.version === 1 && !isOver(saved) && Array.isArray(saved.steps))) { await setupScreen(stage, { onStart: start }); return; }
-    const s = questSummary(saved);
-    stage.replaceChildren(h('section', { class: 'card quest-resume' }, chestSvg({ rare: true }),
-      h('div', {},
-        h('h2', {}, 'Ta quête t’attend'),
-        h('p', {}, `${saved.subject === 'tous' ? 'Toutes matières' : subjLabel(saved.subject)} · ${levelLabel(saved.level)} · ${saved.title} — étape ${s.stage} sur ${s.challenges}, ★ ${s.stars}, ${s.passed} coffre${s.passed > 1 ? 's' : ''} ouvert${s.passed > 1 ? 's' : ''}.`),
-        h('div', { class: 'btn-row' },
-          h('button', { type: 'button', class: 'btn btn--primary', onclick: () => { stop(); playQuest(stage, saved, handlers()); } }, 'Continuer ma quête'),
-          h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => { setSetting(saveKey(), null).catch(() => {}); setupScreen(stage, { onStart: start }); } }, 'En choisir une autre')))));
-    const b = stage.querySelector('.btn--primary'); if (b) b.focus({ preventScroll: true });
+    const free = saved && saved.version === 1 && !isOver(saved) && Array.isArray(saved.steps) ? saved : null;
+    const levels = gameLevels();
+    let level = homeLevel || nearestLevel(store.profile.level);
+    const cards = h('div', { class: 'grid grid--3 year-cards' }, h('p', { class: 'muted' }, 'Je prépare ton année…'));
+    const s = free ? questSummary(free) : null;
+    stage.replaceChildren(
+      h('section', { class: 'year-home' },
+        h('div', { class: 'year-home-head' },
+          h('div', {}, h('h2', {}, 'Mon année, pas à pas'),
+            h('p', { class: 'muted' }, 'Chaque matière est un chemin de septembre à juin : les chapitres du programme dans l’ordre, avec des défis, des coffres, une médaille par chapitre et un coffre rare à la fin de chaque période.')),
+          h('label', { class: 'field year-level' }, h('span', { class: 'field-label' }, 'Classe'),
+            h('select', { class: 'field-input', dataset: { key: 'annee-classe' }, onchange: (e) => { homeLevel = e.target.value; home(); } }, levels.map((l) => h('option', { value: l, selected: l === level }, levelLabel(l)))))),
+        cards),
+      h('section', { class: 'card quest-resume quest-free' }, chestSvg({ rare: Boolean(free) }),
+        h('div', {},
+          h('h2', {}, free ? 'Ta quête libre t’attend' : 'Quête libre'),
+          h('p', {}, free
+            ? `${free.subject === 'tous' ? 'Toutes matières' : subjLabel(free.subject)} · ${levelLabel(free.level)} · ${free.title} — étape ${s.stage} sur ${s.challenges}, ★ ${s.stars}.`
+            : 'Une quête courte, au choix : une matière ou toutes, un chapitre, 12 à 32 exercices, et le grand coffre au bout.'),
+          h('div', { class: 'btn-row' },
+            free ? h('button', { type: 'button', class: 'btn btn--primary', onclick: () => { stop(); playQuest(stage, free, handlers()); } }, 'Continuer ma quête libre') : null,
+            h('button', { type: 'button', class: free ? 'btn btn--ghost' : 'btn', onclick: () => { if (free) setSetting(saveKey(), null).catch(() => {}); setupScreen(stage, { onStart: start }); } }, free ? 'En choisir une autre' : 'Choisir une quête libre')))));
+    await yearCards(cards, { level, onOpen: (subject) => openYear(level, subject) });
+  }
+  async function openYear(level, subject) {
+    stop();
+    await yearMap(stage, { level, subject, onBack: () => home(), setStopper: (fn) => { stopper = fn; } });
   }
   await home();
 }

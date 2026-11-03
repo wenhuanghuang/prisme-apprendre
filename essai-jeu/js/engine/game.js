@@ -25,6 +25,9 @@ export const XP = {
   quete: 40, // quête terminée avec au moins la moitié des étoiles : le grand coffre
   plateau: 15, // partie du jeu de plateau jouée jusqu'au bout, avec au moins trois bonnes réponses
   victoire: 20, // partie du jeu de plateau gagnée (avec au moins trois bonnes réponses)
+  chapitre: 20, // chapitre de la quête de l'année terminé : une médaille
+  periode: 50, // tous les chapitres d'une période de l'année terminés : un coffre rare
+  annee: 100, // toute la quête de l'année terminée dans une matière
 };
 
 export const TRACK_MULT = { classe: 1, approfondissement: 1.5, expert: 2 };
@@ -48,7 +51,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -101,7 +104,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -309,6 +312,9 @@ export function computeGame(attempts, gameState, now) {
     defis: game.events.filter((e) => e.type === 'defi').length,
     quetes: game.events.filter((e) => e.type === 'quete').length,
     victoires: game.events.filter((e) => e.type === 'victoire').length,
+    chapitres: game.events.filter((e) => e.type === 'chapitre').length,
+    periodes: game.events.filter((e) => e.type === 'periode').length,
+    annees: game.events.filter((e) => e.type === 'annee').length,
   };
   const album = albumOf(game.events);
   counters.album = album.owned.length;

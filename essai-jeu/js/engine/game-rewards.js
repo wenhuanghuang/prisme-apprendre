@@ -60,8 +60,12 @@ export const TROPHIES = [
   { id: 'quete-1', icon: '🗺️', label: 'Première quête', attests: 'Une quête terminée avec au moins la moitié des étoiles.', goal: 1, value: (c) => c.quetes || 0 },
   { id: 'quete-5', icon: '🧭', label: 'Grand explorateur', attests: 'Cinq quêtes réussies.', goal: 5, value: (c) => c.quetes || 0 },
   { id: 'plateau-1', icon: '🎲', label: 'Premier au Prisme', attests: 'Une partie du jeu de plateau gagnée (en répondant juste au moins trois fois).', goal: 1, value: (c) => c.victoires || 0 },
+  { id: 'chapitre-5', icon: '🥇', label: 'Cinq chapitres', attests: 'Cinq chapitres terminés dans la quête de l’année.', goal: 5, value: (c) => c.chapitres || 0 },
+  { id: 'periode-1', icon: '📅', label: 'Période accomplie', attests: 'Tous les chapitres d’une période de l’année terminés dans une matière.', goal: 1, value: (c) => c.periodes || 0 },
+  { id: 'annee-1', icon: '🎓', label: 'Année accomplie', attests: 'Toute la quête de l’année terminée dans une matière.', goal: 1, value: (c) => c.annees || 0 },
   { id: 'album-12', icon: '📒', label: 'Collectionneur', attests: 'Douze vignettes dans l’album de lumière.', goal: 12, value: (c) => c.album || 0 },
-  { id: 'album-24', icon: '🏆', label: 'Album complet', attests: 'Les vingt-quatre vignettes de l’album de lumière.', goal: 24, value: (c) => c.album || 0 },
+  { id: 'album-24', icon: '📚', label: 'Grand collectionneur', attests: 'Vingt-quatre vignettes dans l’album de lumière.', goal: 24, value: (c) => c.album || 0 },
+  { id: 'album-48', icon: '🏆', label: 'Album complet', attests: 'Les quarante-huit vignettes de l’album de lumière.', goal: 48, value: (c) => c.album || 0 },
   { id: 'niveau-5', icon: '🌟', label: 'Rayon', attests: 'Niveau 5 atteint.', goal: 5, value: (c) => c.level },
   { id: 'niveau-10', icon: '🌅', label: 'Aurore', attests: 'Niveau 10 atteint.', goal: 10, value: (c) => c.level },
 ];
@@ -99,16 +103,40 @@ export const VIGNETTES = [
   { id: 'lunettes', icon: '👓', label: 'Lunettes', fact: 'Les verres de lunettes sont des lentilles : ils corrigent la façon dont l’œil fait converger la lumière.' },
   { id: 'appareil-photo', icon: '📷', label: 'Appareil photo', fact: 'Comme dans l’œil, une lentille forme une image du paysage, à l’envers, sur le capteur.' },
   { id: 'feu-artifice', icon: '🎆', label: 'Feu d’artifice', fact: 'Les couleurs viennent de métaux : le strontium donne du rouge, le cuivre du bleu, le sodium du jaune.' },
+  { id: 'chouette', icon: '🦉', label: 'Chouette', fact: 'La chouette voit dans la pénombre grâce à de très grands yeux qui captent beaucoup de lumière.' },
+  { id: 'chat', icon: '🐱', label: 'Yeux de chat', fact: 'Au fond de l’œil du chat, une couche réfléchissante renvoie la lumière : ses yeux brillent dans le noir.' },
+  { id: 'papillon', icon: '🦋', label: 'Papillon bleu', fact: 'Le bleu de certains papillons ne vient pas d’un pigment : de minuscules structures de leurs ailes renvoient la lumière bleue.' },
+  { id: 'feuille', icon: '🍃', label: 'Feuille verte', fact: 'La chlorophylle absorbe surtout le rouge et le bleu de la lumière et renvoie le vert : les feuilles paraissent vertes.' },
+  { id: 'photosynthese', icon: '🌱', label: 'Photosynthèse', fact: 'Grâce à la lumière, les plantes fabriquent leur matière à partir d’eau et de dioxyde de carbone, et rejettent du dioxygène.' },
+  { id: 'panneau-solaire', icon: '🔆', label: 'Panneau solaire', fact: 'Un panneau solaire photovoltaïque transforme directement la lumière du Soleil en électricité.' },
+  { id: 'oeil', icon: '👁️', label: 'Pupille', fact: 'La pupille est une ouverture qui s’agrandit dans le noir et se rétrécit en pleine lumière.' },
+  { id: 'lunettes-soleil', icon: '🕶️', label: 'Lunettes de soleil', fact: 'De bons verres solaires arrêtent les rayons ultraviolets, invisibles mais dangereux pour les yeux.' },
+  { id: 'brouillard', icon: '🌫️', label: 'Brouillard', fact: 'Les gouttelettes du brouillard dispersent la lumière dans tous les sens : on ne voit plus au loin.' },
+  { id: 'neige', icon: '❄️', label: 'Neige', fact: 'La neige paraît blanche parce que ses cristaux renvoient toutes les couleurs de la lumière.' },
+  { id: 'mer', icon: '🌊', label: 'Fond de la mer', fact: 'L’eau absorbe d’abord le rouge : sous la mer, plus on descend, plus tout paraît bleu-vert.' },
+  { id: 'ecran', icon: '📺', label: 'Écran', fact: 'Chaque point d’un écran mélange trois lumières, rouge, verte et bleue : c’est la synthèse additive.' },
+  { id: 'peinture', icon: '🖍️', label: 'Mélange de peintures', fact: 'Mélanger des peintures retire des couleurs à la lumière renvoyée : c’est la synthèse soustractive.' },
+  { id: 'telescope', icon: '🔭', label: 'Télescope', fact: 'Le grand miroir d’un télescope recueille la lumière des astres : plus il est grand, plus on voit des objets pâles.' },
+  { id: 'satellite', icon: '🛰️', label: 'Satellite', fact: 'Les satellites photographient la Terre en lumière visible et en infrarouge, une lumière invisible pour nos yeux.' },
+  { id: 'terre', icon: '🌍', label: 'Planète bleue', fact: 'Vue de l’espace, la Terre paraît bleue : ses océans et son atmosphère renvoient surtout la lumière bleue.' },
+  { id: 'volcan', icon: '🌋', label: 'Lave', fact: 'La lave très chaude brille d’elle-même : plus elle est chaude, plus sa lumière passe du rouge au jaune.' },
+  { id: 'eclair', icon: '⚡', label: 'Éclair', fact: 'On voit l’éclair presque aussitôt, le tonnerre arrive plus tard : environ 3 secondes d’écart par kilomètre.' },
   { id: 'aurore', icon: '✨', label: 'Aurore polaire', rare: true, fact: 'Des particules venues du Soleil frappent la haute atmosphère près des pôles et la font briller en vert et en rose.' },
   { id: 'prisme', icon: '🔺', label: 'Prisme de Newton', rare: true, fact: 'Isaac Newton a montré qu’un prisme sépare la lumière blanche en couleurs, et qu’un second prisme peut les réunir.' },
   { id: 'laser', icon: '🔴', label: 'Laser', rare: true, fact: 'La lumière d’un laser est d’une seule couleur et reste serrée en un faisceau très fin.' },
   { id: 'supernova', icon: '💥', label: 'Supernova', rare: true, fact: 'Une étoile très massive qui explose peut briller un moment autant que toute une galaxie.' },
   { id: 'halo', icon: '🌞', label: 'Halo solaire', rare: true, fact: 'Des cristaux de glace dans les nuages très hauts dévient la lumière et dessinent un anneau autour du Soleil.' },
   { id: 'mirage', icon: '🏜️', label: 'Mirage', rare: true, fact: 'Au-dessus d’une route brûlante, l’air chaud courbe la lumière : on croit voir une flaque qui reflète le ciel.' },
+  { id: 'microscope', icon: '🔬', label: 'Microscope', rare: true, fact: 'Avec de simples lentilles, Antoni van Leeuwenhoek a vu au XVIIe siècle des êtres vivants invisibles à l’œil nu.' },
+  { id: 'andromede', icon: '🌀', label: 'Galaxie d’Andromède', rare: true, fact: 'Notre grande voisine est si loin que sa lumière a voyagé environ 2,5 millions d’années avant de nous parvenir.' },
+  { id: 'trou-noir', icon: '🕳️', label: 'Trou noir', rare: true, fact: 'Un trou noir attire si fort que même la lumière ne peut pas s’en échapper.' },
+  { id: 'diamant', icon: '💎', label: 'Diamant', rare: true, fact: 'Le diamant dévie très fortement la lumière et la décompose : c’est ce qui le fait scintiller de couleurs.' },
+  { id: 'calmar', icon: '🦑', label: 'Calmar des abysses', rare: true, fact: 'Certains calmars des grandes profondeurs fabriquent leur propre lumière pour se camoufler.' },
+  { id: 'vitesse', icon: '💫', label: 'Vitesse de la lumière', rare: true, fact: 'La lumière parcourt environ 300 000 km chaque seconde : sept fois et demie le tour de la Terre.' },
 ];
 
 /** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
-export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare' };
+export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare' };
 
 function hashId(s) {
   let x = 2166136261;

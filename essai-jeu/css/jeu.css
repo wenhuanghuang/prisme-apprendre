@@ -294,3 +294,60 @@
 @media (min-width: 700px) and (min-height: 640px) {
   .quest-track { position: sticky; top: 78px; z-index: 6; }
 }
+
+/* ============================================================================================
+   Quête de l'année : une matière = un chemin de septembre à juin, en cinq périodes
+   ============================================================================================ */
+.year-home { margin-bottom: 18px; }
+.year-home-head { display: flex; gap: 18px; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; margin-bottom: 12px; }
+.year-home-head h2 { margin-bottom: 4px; }
+.year-home-head p { margin: 0; max-width: 720px; }
+.year-level { min-width: 140px; margin: 0; }
+.year-card { display: grid; gap: 8px; align-content: start; }
+.year-card-head { display: flex; gap: 12px; align-items: center; }
+.year-card-head h3 { margin: 0; }
+.year-card-head p { margin: 0; }
+.year-card-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 3px solid color-mix(in srgb, var(--accent, var(--ink)) 35%, var(--rule)); color: var(--accent, var(--ink)); font-weight: 800; font-size: 1.2rem; flex: none; }
+.year-card p { margin: 0; }
+.year-mini { display: flex; flex-wrap: wrap; gap: 4px; }
+.year-mini i { width: 12px; height: 12px; border-radius: 50%; background: var(--paper-2); border: 1.5px solid var(--rule-2); }
+.year-mini i.is-or { background: #f5c84c; border-color: #b7791f; }
+.year-mini i.is-argent { background: #cfd6de; border-color: #7a8794; }
+.year-mini i.is-bronze { background: #d9a066; border-color: #8a5520; }
+.year-mini i.is-next { border-color: var(--ink); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ink) 20%, transparent); }
+.quest-free { margin-top: 4px; }
+
+.year-pace { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; }
+.year-pace p { margin: 0 0 8px; }
+.year-pace > div { flex: 1; min-width: 0; }
+.year-bar { position: relative; height: 12px; border-radius: 99px; background: var(--paper-2); border: 1px solid var(--rule); margin: 6px 0 10px; }
+.year-bar > i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #e5484d, #f59e0b, #2a9d5c, #3b4cca, #7a4cc2); }
+.year-bar-today { position: absolute; top: -5px; width: 4px; height: 20px; margin-left: -2px; border-radius: 2px; background: var(--ink); }
+.year-periods { display: grid; gap: 14px; }
+.year-period { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); padding: 14px 16px; box-shadow: var(--shadow-1); }
+.year-period.is-now { border-color: var(--ink); box-shadow: 0 3px 0 var(--ink); }
+.year-period-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.year-period-head > div { flex: 1; }
+.year-period-head h3 { margin: 0; }
+.year-period-head p { margin: 0; }
+.year-now { font-weight: 700; font-size: .85rem; padding: 3px 10px; border-radius: 999px; background: var(--ink); color: var(--paper); white-space: nowrap; }
+.year-period-chest .chest svg { width: 54px; height: 47px; }
+.year-period-chest:not(.is-open) .chest { opacity: .55; filter: grayscale(.4); }
+.year-chapters { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.year-chapter { display: grid; grid-template-columns: 34px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border-radius: var(--radius); border: 1.5px solid var(--rule); background: var(--paper); }
+.year-chapter.is-done { background: color-mix(in srgb, #ffcf4d 8%, var(--paper)); }
+.year-chapter.is-next { border-color: var(--ink); background: var(--card); }
+.year-medal { font-size: 1.5rem; text-align: center; color: var(--ink-3); }
+.year-chapter-text { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+.year-chapter-text strong { overflow-wrap: anywhere; }
+.year-later { margin-top: 14px; }
+.year-later summary { cursor: pointer; color: var(--ink-2); font-weight: 700; }
+.year-done { text-align: center; display: grid; justify-items: center; gap: 4px; }
+.year-done h2:focus { outline: none; }
+.year-done-medal { font-size: 4rem; line-height: 1; animation: starpop .6s var(--ease); }
+.year-done .btn-row { justify-content: center; margin-top: 10px; }
+@media (max-width: 640px) {
+  .year-chapter { grid-template-columns: 30px 1fr; }
+  .year-chapter .btn { grid-column: 2; justify-self: start; }
+  .year-pace { flex-direction: column; }
+}
