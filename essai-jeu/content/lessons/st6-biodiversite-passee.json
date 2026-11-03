@@ -1,0 +1,1042 @@
+{
+  "id": "st6-biodiversite-passee",
+  "chapter": "6e-st-biodiversite-passee",
+  "title": "La biodiversité passée : fossiles, paléoenvironnements et crises biologiques",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": [
+    "st6.bd.fossiles",
+    "st6.bd.cle-determination",
+    "st6.bd.paleoenvironnement",
+    "st6.bd.temps-geologiques",
+    "st6.bd.crises-biologiques",
+    "st6.demarche.modele"
+  ],
+  "status": "programme",
+  "programmes": ["sciences-techno-c3-2023"],
+  "duration": 55,
+  "summary": "Comprendre comment se forme un fossile, nommer des espèces actuelles ou fossiles avec une clé de détermination, reconstituer un paléoenvironnement pour comparer la biodiversité passée et actuelle, et placer les grandes crises biologiques sur une échelle des temps géologiques. Programme de sciences et technologie du cycle 3 (version de 2023), attendus de fin de 6e.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un coquillage loin de la mer",
+      "body": "En te promenant dans une carrière, très loin de la mer, tu trouves dans la roche un coquillage… en pierre ! Autour de la carrière, il n'y a que des champs et une forêt.\n\nComment un animal marin a-t-il pu se retrouver ici ? Et depuis combien de temps est-il caché dans cette roche ?"
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : modéliser la formation d'un fossile",
+      "body": "Un modèle permet de montrer en quelques secondes ce qui prend, dans la nature, des millions d'années.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "becher", "id": "bac", "x": 210, "y": 392, "w": 340, "h": 270, "level": 0.8, "liquid": "eau", "grad": false },
+          { "type": "forme", "id": "c0", "shape": "rect", "x": 44, "y": 362, "w": 332, "h": 27, "rx": 0, "fill": "#e9cf8f" },
+          { "type": "forme", "id": "c1", "shape": "rect", "x": 44, "y": 362, "w": 332, "h": 0, "rx": 0, "fill": "#a8a29e" },
+          { "type": "forme", "id": "c2", "shape": "rect", "x": 44, "y": 322, "w": 332, "h": 0, "rx": 0, "fill": "#e9cf8f" },
+          { "type": "forme", "id": "c3", "shape": "rect", "x": 44, "y": 292, "w": 332, "h": 0, "rx": 0, "fill": "#e2e0dc" },
+          { "type": "forme", "id": "c4", "shape": "rect", "x": 44, "y": 256, "w": 332, "h": 0, "rx": 0, "fill": "#efdcb3" },
+          { "type": "forme", "id": "fos1fond", "shape": "ellipse", "x": 123, "y": 345, "w": 36, "h": 32, "fill": "#8a817c", "stroke": "#44403c", "width": 1.5, "opacity": 0 },
+          { "type": "forme", "id": "fos1", "shape": "path", "x": 106, "y": 329, "w": 34, "h": 31, "d": "M120,346 A3,3 0 0 1 126,346 A6,6 0 0 1 114,346 A9,9 0 0 1 132,346 A12,12 0 0 1 108,346 A15,15 0 0 1 138,346", "fill": "none", "stroke": "#292524", "width": 2, "opacity": 0 },
+          { "type": "forme", "id": "fos2", "shape": "path", "x": 182, "y": 301, "w": 80, "h": 22, "d": "M196,312 L248,312 M204,305 L204,319 M212,304 L212,320 M220,304 L220,320 M228,304 L228,320 M236,305 L236,319 M244,306 L244,318 M248,312 L260,303 L260,321 Z M184,312 L192,305 L198,312 L192,319 Z", "fill": "none", "stroke": "#292524", "width": 2.2, "opacity": 0 },
+          { "type": "emoji", "id": "coq", "x": 120, "y": 250, "char": "🐚", "size": 34, "opacity": 1 },
+          { "type": "emoji", "id": "poisson", "x": 222, "y": 222, "char": "🐟", "size": 34, "opacity": 1 },
+          { "type": "texte", "id": "duree", "x": 595, "y": 58, "text": "⏳ Il y a très longtemps…", "size": 17, "bold": true },
+          { "type": "etiquette", "id": "eEau", "x": 595, "y": 205, "text": "eau de mer", "to": [376, 215] },
+          { "type": "etiquette", "id": "eSable", "x": 595, "y": 375, "text": "sable au fond de la mer", "to": [376, 375] },
+          { "type": "etiquette", "id": "eVase", "x": 595, "y": 335, "text": "vase (boue très fine)", "to": [376, 342], "hidden": true },
+          { "type": "etiquette", "id": "eAncienne", "x": 595, "y": 375, "text": "couche la plus ancienne", "to": [376, 375], "hidden": true },
+          { "type": "etiquette", "id": "eRecente", "x": 595, "y": 242, "text": "couche la plus récente", "to": [376, 242], "hidden": true },
+          { "type": "etiquette", "id": "eFos1", "x": 120, "y": 418, "text": "coquillage fossile", "to": [120, 358], "hidden": true },
+          { "type": "etiquette", "id": "eFos2", "x": 300, "y": 418, "text": "poisson fossile", "to": [240, 322], "hidden": true },
+          { "type": "fleche", "id": "fTemps", "from": [770, 358], "to": [770, 250], "color": "#0369a1", "progress": 0 },
+          { "type": "texte", "id": "tRecent", "x": 792, "y": 238, "text": "plus récent", "size": 14, "anchor": "end", "bold": true, "color": "#0369a1", "hidden": true },
+          { "type": "texte", "id": "tAncien", "x": 792, "y": 380, "text": "plus ancien", "size": 14, "anchor": "end", "bold": true, "color": "#0369a1", "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le modèle",
+            "text": "Ce bac représente le fond d'une mer, vu en coupe. Au fond, il y a du sable. Un coquillage et un poisson vivent dans l'eau. Chaque étape de l'animation résume des années, des milliers ou des millions d'années.",
+            "focus": ["bac"]
+          },
+          {
+            "title": "Le coquillage meurt",
+            "text": "Le coquillage meurt et tombe au fond. Sa chair, molle, est vite mangée par des animaux ou décomposée. Il ne reste que la coquille : c'est la partie dure.",
+            "duration": 3,
+            "do": [
+              { "id": "duree", "set": { "text": "⏳ Quelques jours plus tard" } },
+              { "id": "coq", "to": { "y": 348 }, "at": 0, "dur": 2.5 }
+            ],
+            "focus": ["coq"]
+          },
+          {
+            "title": "Vite recouvert",
+            "text": "Des rivières apportent de la vase, une boue très fine, qui se dépose au fond. Elle recouvre la coquille. Enfouie, la coquille est protégée : peu d'oxygène, pas d'animaux pour la casser.",
+            "duration": 4,
+            "show": ["eVase"],
+            "do": [
+              { "id": "duree", "set": { "text": "⏳ Quelques années plus tard" } },
+              { "id": "c1", "to": { "y": 322, "h": 40 }, "at": 0.3, "dur": 3 }
+            ],
+            "focus": ["c1"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi est-il important que la coquille soit vite recouverte de vase ?",
+              "choices": ["À l'abri, elle n'est ni cassée ni emportée : elle peut se conserver", "La vase la fait grossir", "La vase la transforme tout de suite en pierre"],
+              "answer": 0,
+              "explain": "Enfouie, la coquille est protégée des animaux, des courants et de l'oxygène. Sans cet enfouissement rapide, elle serait détruite et ne deviendrait pas un fossile."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "La coquille est maintenant enfouie dans la vase, au fond de la mer.",
+            "ask": {
+              "question": "Que va devenir la coquille enfouie, au bout de millions d'années ?",
+              "choices": ["Elle va disparaître sans laisser de trace.", "Elle va être conservée dans la roche : ce sera un fossile.", "Elle va redevenir un animal vivant."],
+              "answer": 1,
+              "explain": "Enfouie rapidement, la coquille est à l'abri. Avec le temps, la vase durcit et devient une roche : la coquille, ou son empreinte, y reste conservée. C'est un fossile."
+            },
+            "focus": ["coq", "c1"]
+          },
+          {
+            "title": "Les couches s'empilent",
+            "text": "Le temps passe. Le poisson meurt à son tour et se pose sur la vase. D'autres couches de sable et de vase se déposent par-dessus, l'une après l'autre. Chaque nouvelle couche se pose sur la précédente.",
+            "duration": 7,
+            "hide": ["eVase", "eSable"],
+            "do": [
+              { "id": "duree", "set": { "text": "⏳ Des milliers d'années plus tard" } },
+              { "id": "poisson", "to": { "y": 310 }, "at": 0, "dur": 1.5 },
+              { "id": "c2", "to": { "y": 292, "h": 30 }, "at": 1.5, "dur": 1.5 },
+              { "id": "c3", "to": { "y": 256, "h": 36 }, "at": 3, "dur": 1.5 },
+              { "id": "c4", "to": { "y": 228, "h": 28 }, "at": 4.5, "dur": 1.5 },
+              { "id": "eAncienne", "set": { "hidden": false }, "at": 6 },
+              { "id": "eRecente", "set": { "hidden": false }, "at": 6 }
+            ],
+            "focus": ["c4"],
+            "ask": {
+              "kind": "observer",
+              "question": "Le poisson est mort après le coquillage. Où se retrouve-t-il ?",
+              "choices": ["Sous le coquillage", "Dans une couche au-dessus de celle du coquillage", "Exactement au même niveau que le coquillage"],
+              "answer": 1,
+              "explain": "Le poisson s'est posé sur la vase qui recouvrait déjà la coquille, puis d'autres couches l'ont recouvert : il se trouve plus haut que le coquillage."
+            }
+          },
+          {
+            "title": "Les sédiments deviennent des roches",
+            "text": "En des millions d'années, les couches se tassent et durcissent : la vase devient une roche, le sable devient du grès. La coquille et les os sont transformés en pierre ou laissent leur empreinte. La mer s'est retirée : la région est devenue une terre.",
+            "duration": 6,
+            "hide": ["eEau"],
+            "do": [
+              { "id": "duree", "set": { "text": "⏳ Des millions d'années plus tard" } },
+              { "id": "bac", "to": { "level": 0 }, "at": 0, "dur": 4 },
+              { "id": "c0", "to": { "fill": "#c9a46a" }, "at": 0, "dur": 4 },
+              { "id": "c1", "to": { "fill": "#6f6863" }, "at": 0, "dur": 4 },
+              { "id": "c2", "to": { "fill": "#c49a55" }, "at": 0, "dur": 4 },
+              { "id": "c3", "to": { "fill": "#a19d97" }, "at": 0, "dur": 4 },
+              { "id": "c4", "to": { "fill": "#b98f52" }, "at": 0, "dur": 4 },
+              { "id": "coq", "to": { "opacity": 0 }, "at": 1.5, "dur": 2 },
+              { "id": "poisson", "to": { "opacity": 0 }, "at": 1.5, "dur": 2 },
+              { "id": "fos1fond", "to": { "opacity": 1 }, "at": 1.5, "dur": 2 },
+              { "id": "fos1", "to": { "opacity": 1 }, "at": 1.5, "dur": 2 },
+              { "id": "fos2", "to": { "opacity": 1 }, "at": 1.5, "dur": 2 },
+              { "id": "eFos1", "set": { "hidden": false }, "at": 4 },
+              { "id": "eFos2", "set": { "hidden": false }, "at": 4 }
+            ],
+            "focus": ["c1", "c2"]
+          },
+          {
+            "title": "Une paléontologue observe",
+            "text": "Aujourd'hui, l'érosion a entaillé ces roches. Une paléontologue, une scientifique qui étudie les fossiles, observe la coupe. Elle y trouve les deux fossiles.",
+            "do": [
+              { "id": "duree", "set": { "text": "⏳ Aujourd'hui" } }
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Lequel de ces deux fossiles est le plus ancien ?",
+              "choices": ["Le poisson, car il est plus haut.", "Le coquillage, car il est dans une couche plus basse.", "Ils ont exactement le même âge."],
+              "answer": 1,
+              "explain": "Les couches se déposent les unes sur les autres : la couche du dessous existait avant celle qui la recouvre. Le coquillage, enfoui plus bas, est donc plus ancien que le poisson."
+            },
+            "focus": ["fos1fond", "fos2"]
+          },
+          {
+            "title": "Lire les couches comme un livre",
+            "text": "Dans des couches restées à plat, chaque couche est plus récente que celle qu'elle recouvre. Les fossiles d'une couche montrent les êtres vivants de l'époque de son dépôt, et leur milieu de vie : ici, une mer.",
+            "duration": 2.5,
+            "show": ["tRecent", "tAncien"],
+            "do": [
+              { "id": "fTemps", "to": { "progress": 1 }, "at": 0, "dur": 2 }
+            ],
+            "focus": ["fTemps"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Ces fossiles d'animaux marins se trouvent aujourd'hui dans des roches, sur la terre ferme. Que nous apprennent-ils ?",
+              "choices": ["Qu'autrefois, la mer recouvrait cette région", "Que ces poissons vivaient sur la terre ferme", "Que cette région a toujours été une terre"],
+              "answer": 0,
+              "explain": "Les fossiles montrent les êtres vivants de l'époque et leur milieu de vie. Des fossiles d'animaux marins prouvent qu'il y avait une mer à cet endroit, il y a très longtemps."
+            }
+          }
+        ],
+        "conclusion": "Un **fossile** est un reste (coquille, os, dent) ou une trace (empreinte) d'un être vivant ancien, conservé dans une roche. Il se forme rarement : l'être vivant doit être **enfoui rapidement** dans des sédiments, qui durcissent en roche pendant des millions d'années. Dans des couches restées à plat, la couche du dessous est la plus **ancienne**.\n\n*Modèle simplifié : dans la réalité, chaque étape dure des milliers à des millions d'années.*"
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🦴",
+          "title": "Un fossile, c'est quoi ?",
+          "body": "Un **fossile** est un reste (coquille, os, dent, bois) ou une trace (empreinte de pas, de feuille) d'un être vivant ancien, conservé dans une roche. Les fossiles montrent des êtres vivants qui ont existé il y a des milliers, des millions, et même des milliards d'années.",
+          "reveal": {
+            "question": "Devine : la plupart des êtres vivants deviennent-ils des fossiles ?",
+            "answer": "Non, c'est très rare ! Il faut que l'être vivant soit enfoui très vite dans des sédiments, avant d'être mangé ou décomposé. Les parties dures (coquilles, os, dents) se conservent le mieux."
+          }
+        },
+        {
+          "emoji": "🔑",
+          "title": "Nommer un fossile avec une clé",
+          "body": "Une **clé de détermination** est une suite de questions à deux réponses : oui ou non. À chaque question, on observe un seul caractère (coquille, carapace, feuilles…) et on suit le chemin indiqué jusqu'au nom. Elle sert pour les êtres vivants actuels comme pour les fossiles.",
+          "example": "Coquille enroulée en spirale, avec des cloisons → une ammonite."
+        },
+        {
+          "emoji": "🏝️",
+          "title": "Les fossiles racontent les milieux du passé",
+          "body": "Un **paléoenvironnement** est un milieu de vie du passé. Pour le reconstituer, on compare les fossiles d'un lieu aux êtres vivants actuels qui leur ressemblent. Des coraux fossiles indiquent une mer chaude et peu profonde : c'est là que vivent aujourd'hui les coraux qui construisent des récifs.",
+          "example": "Le calcaire de nombreux monuments de Paris contient des coquillages marins d'environ 45 millions d'années : une mer chaude recouvrait alors la région."
+        },
+        {
+          "emoji": "🕰️",
+          "title": "Compter en millions d'années",
+          "body": "La Terre s'est formée il y a environ **4,5 milliards d'années**. Les plus anciennes traces de vie ont environ 3,5 milliards d'années. Les géologues comptent en **millions d'années (Ma)** et découpent ce temps en ères : le Paléozoïque (ère primaire), le Mésozoïque (ère secondaire), puis le Cénozoïque, l'ère dans laquelle nous vivons."
+        },
+        {
+          "emoji": "💥",
+          "title": "Les grandes crises biologiques",
+          "body": "Une **crise biologique** est la disparition d'un très grand nombre d'espèces en un temps court à l'échelle géologique. On en connaît cinq grandes. Celle d'il y a **66 millions d'années** a fait disparaître les dinosaures (sauf les oiseaux, leurs descendants) et les ammonites. Après chaque crise, d'autres groupes se diversifient.",
+          "reveal": {
+            "question": "Devine : les premiers humains ont-ils croisé des dinosaures ?",
+            "answer": "Jamais ! Les derniers dinosaures non-volants ont disparu il y a 66 millions d'années ; notre espèce n'existe que depuis environ 300 000 ans. Des dizaines de millions d'années les séparent."
+          },
+          "figure": {
+            "alt": "Frise des temps géologiques depuis 540 millions d'années, avec trois ères et les cinq grandes crises biologiques marquées en rouge",
+            "w": 700,
+            "h": 175,
+            "caption": "Les cinq grandes crises biologiques. Ma : millions d'années avant aujourd'hui.",
+            "items": [
+              { "type": "rect", "x": 30, "y": 30, "w": 341.3, "h": 30, "fill": "#93c5fd", "label": "Paléozoïque" },
+              { "type": "rect", "x": 371.3, "y": 30, "w": 220.5, "h": 30, "fill": "#86efac", "label": "Mésozoïque" },
+              { "type": "rect", "x": 591.8, "y": 30, "w": 78.2, "h": 30, "fill": "#fcd34d" },
+              { "type": "text", "x": 631, "y": 45, "text": "Cénozoïque", "anchor": "middle", "size": "s", "bold": true },
+              { "type": "arrow", "from": [30, 95], "to": [690, 95] },
+              { "type": "segment", "from": [142.6, 26], "to": [142.6, 95], "color": "rouge", "dashed": true },
+              { "type": "segment", "from": [229.1, 26], "to": [229.1, 95], "color": "rouge", "dashed": true },
+              { "type": "segment", "from": [371.3, 26], "to": [371.3, 95], "color": "rouge", "dashed": true },
+              { "type": "segment", "from": [431.8, 26], "to": [431.8, 95], "color": "rouge", "dashed": true },
+              { "type": "segment", "from": [591.8, 26], "to": [591.8, 95], "color": "rouge", "dashed": true },
+              { "type": "point", "id": "K1", "x": 142.6, "y": 95, "label": "445 Ma", "pos": "s", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "K2", "x": 229.1, "y": 95, "label": "372 Ma", "pos": "s", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "K3", "x": 371.3, "y": 95, "label": "252 Ma", "pos": "s", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "K4", "x": 431.8, "y": 95, "label": "201 Ma", "pos": "s", "style": "rond", "color": "rouge" },
+              { "type": "point", "id": "K5", "x": 591.8, "y": 95, "label": "66 Ma", "pos": "s", "style": "rond", "color": "rouge" },
+              { "type": "text", "x": 30, "y": 112, "text": "540 Ma", "anchor": "start", "size": "s" },
+              { "type": "text", "x": 690, "y": 114, "text": "aujourd'hui", "anchor": "end", "size": "s" },
+              { "type": "text", "x": 371.3, "y": 140, "text": "252 Ma : la plus grande crise (fin des trilobites)", "anchor": "middle", "size": "s" },
+              { "type": "text", "x": 690, "y": 162, "text": "66 Ma : fin des dinosaures non-volants et des ammonites", "anchor": "end", "size": "s" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : utiliser une clé de détermination",
+      "steps": [
+        {
+          "text": "Une paléontologue a trouvé ce fossile : un animal sans pattes, à la coque ronde et bombée, ornée d'un dessin en étoile à cinq branches. Voici la clé simplifiée qu'elle utilise.",
+          "figure": {
+            "alt": "Clé de détermination simplifiée de cinq fossiles, en quatre questions",
+            "w": 640,
+            "h": 200,
+            "items": [
+              { "type": "table", "head": ["Question", "Si oui", "Si non"], "rows": [
+                ["1. Est-ce un végétal (feuilles, tige) ?", "fougère", "aller en 2"],
+                ["2. A-t-il une carapace divisée en trois lobes dans la longueur ?", "trilobite", "aller en 3"],
+                ["3. A-t-il une coquille enroulée en spirale ?", "ammonite", "aller en 4"],
+                ["4. Est-ce une coque ronde ornée d'une étoile à cinq branches ?", "oursin", "dent de requin"]
+              ] }
+            ]
+          }
+        },
+        { "text": "Question 1 : est-ce un végétal ? Non, c'est un animal. La clé dit : aller à la question 2." },
+        { "text": "Question 2 : a-t-il une carapace en trois lobes ? Non. On va à la question 3." },
+        { "text": "Question 3 : a-t-il une coquille enroulée en spirale ? Non, sa coque est ronde et bombée. On va à la question 4." },
+        { "text": "Question 4 : coque ronde ornée d'une étoile à cinq branches ? Oui ! C'est un **oursin**. Les oursins vivent dans la mer : ce fossile indique donc qu'il y avait une mer à cet endroit." },
+        { "text": "La méthode : une seule question à la fois, en observant un seul caractère, et sans sauter de question." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "st6-biodiversite-passee-fossile-ou-pas",
+        "st6-biodiversite-passee-formation",
+        "st6-biodiversite-passee-cle",
+        "st6-biodiversite-passee-paleo",
+        "st6-biodiversite-passee-unites",
+        "st6-biodiversite-passee-avant-apres",
+        "st6-biodiversite-passee-ecart"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["st6-biodiversite-passee-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : tu es paléontologue",
+      "body": "Étudie une falaise couche par couche et retrouve ce qui s'est passé il y a des millions d'années.",
+      "exercises": ["st6-biodiversite-passee-falaise"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Un **fossile** est un reste ou une trace d'un être vivant ancien conservé dans une roche ; il se forme si l'être vivant est **enfoui rapidement**. Une **clé de détermination** permet de le nommer. Les fossiles d'un lieu permettent de reconstituer son **paléoenvironnement**. Dans des couches restées à plat, celles du bas sont les plus anciennes. Cinq grandes **crises biologiques** ont marqué l'histoire de la vie ; la dernière, il y a 66 millions d'années, a fait disparaître les dinosaures non-volants et les ammonites.\n\n- **« Les hommes préhistoriques chassaient les dinosaures. »** Non : des dizaines de millions d'années les séparent.\n- **« Un fossile, c'est un os de dinosaure. »** C'est aussi une coquille, une feuille, une empreinte…\n- **« La couche du haut est la plus ancienne. »** C'est l'inverse.\n- **« Après une crise, la vie s'arrête. »** Non : d'autres groupes se diversifient."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours une question sur les fossiles ou les crises biologiques : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Ranger toute l'histoire de la Terre dans une seule année, puis chercher ce que le modèle du bac montre bien… et ce qu'il ne montre pas.",
+      "exercises": ["st6-biodiversite-passee-calendrier", "st6-biodiversite-passee-modele"]
+    },
+    "expert": {
+      "intro": "Facultatif : mener l'enquête sur la crise d'il y a 66 millions d'années, puis comparer avec le déclin actuel de la biodiversité.",
+      "exercises": ["st6-biodiversite-passee-enquete", "st6-biodiversite-passee-sixieme"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-biodiversite-passee-fossile-ou-pas",
+      "type": "categorize",
+      "skill": "st6.bd.fossiles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:fossile-trace", "mc:fossile-recent", "mc:fossile-forme"],
+      "expectedSeconds": 120,
+      "prompt": "Un **fossile** est un reste ou une trace d'un être vivant ancien, conservé dans une roche. Classe chaque objet trouvé.",
+      "categories": [
+        { "id": "fossile", "label": "C'est un fossile" },
+        { "id": "non", "label": "Ce n'est pas un fossile" }
+      ],
+      "items": [
+        { "id": "i1", "label": "L'empreinte d'un pas de dinosaure dans une roche", "category": "fossile" },
+        { "id": "i2", "label": "Une coquille d'ammonite transformée en pierre", "category": "fossile" },
+        { "id": "i3", "label": "Une feuille de fougère imprimée dans une roche", "category": "fossile" },
+        { "id": "i4", "label": "Un coquillage ramassé hier sur la plage", "category": "non" },
+        { "id": "i5", "label": "Un caillou qui a la forme d'un cœur", "category": "non" },
+        { "id": "i6", "label": "Une dent de requin vieille de 20 millions d'années, prise dans une roche", "category": "fossile" }
+      ],
+      "misconceptions": [
+        { "item": "i1", "category": "non", "id": "mc:fossile-trace", "error": "notion", "feedback": "Relis la définition du fossile : parle-t-elle seulement des restes du corps (os, coquille), ou aussi d'autre chose laissé par un être vivant ?" },
+        { "item": "i4", "category": "fossile", "id": "mc:fossile-recent", "error": "notion", "feedback": "Un fossile vient d'un être vivant ancien et il est conservé dans une roche. Demande-toi depuis quand ce coquillage est là, et où il se trouve." },
+        { "item": "i5", "category": "fossile", "id": "mc:fossile-forme", "error": "notion", "feedback": "Une ressemblance de forme ne suffit pas : un fossile vient forcément d'un être vivant. Ce caillou a-t-il fait partie d'un être vivant ?" }
+      ],
+      "hints": [
+        "Pour chaque objet, pose-toi deux questions : vient-il d'un être vivant ? Est-il ancien et conservé dans une roche ?",
+        "Un fossile peut être une partie du corps, mais aussi une trace laissée par l'animal ou la plante."
+      ],
+      "solution": "Fossiles : l'empreinte de pas (une trace), la coquille d'ammonite, la feuille de fougère imprimée et la dent de requin de 20 millions d'années (des restes). Ne sont pas des fossiles : le coquillage d'hier (il n'est ni ancien ni conservé dans une roche) et le caillou en forme de cœur (il ne vient pas d'un être vivant).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "fossile", "i2": "fossile", "i3": "fossile", "i4": "non", "i5": "non", "i6": "fossile" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "non", "i2": "fossile", "i3": "fossile", "i4": "non", "i5": "non", "i6": "fossile" } }, "expect": "mc:fossile-trace" },
+        { "response": { "assign": { "i1": "fossile", "i2": "fossile", "i3": "fossile", "i4": "fossile", "i5": "non", "i6": "fossile" } }, "expect": "mc:fossile-recent" },
+        { "response": { "assign": { "i1": "fossile", "i2": "fossile", "i3": "fossile", "i4": "non", "i5": "fossile", "i6": "fossile" } }, "expect": "mc:fossile-forme" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-formation",
+      "type": "order",
+      "skill": "st6.bd.fossiles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [],
+      "expectedSeconds": 150,
+      "prompt": "Remets dans l'ordre les étapes de la formation d'un fossile de coquillage, puis de sa découverte.",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        { "id": "o1", "label": "Un animal à coquille meurt et tombe au fond de la mer." },
+        { "id": "o2", "label": "Sa chair est mangée ou décomposée : il reste la coquille." },
+        { "id": "o3", "label": "La coquille est vite recouverte de vase et de sable." },
+        { "id": "o4", "label": "D'autres couches de sédiments s'empilent par-dessus." },
+        { "id": "o5", "label": "En millions d'années, les sédiments durcissent en roche : la coquille devient un fossile." },
+        { "id": "o6", "label": "L'érosion use la roche et le fossile apparaît : on le découvre." }
+      ],
+      "hints": [
+        "Tout commence par la mort de l'animal.",
+        "L'enfouissement vient avant la transformation en roche ; la découverte vient tout à la fin."
+      ],
+      "solution": "1. L'animal meurt et tombe au fond. 2. Sa chair disparaît, la coquille reste. 3. Elle est vite recouverte de vase. 4. D'autres couches s'empilent. 5. Les sédiments durcissent en roche : c'est un fossile. 6. L'érosion fait apparaître le fossile, qu'on découvre.",
+      "selfTest": [
+        { "response": { "order": ["o1", "o2", "o3", "o4", "o5", "o6"] }, "expect": "correct" },
+        { "response": { "order": ["o6", "o5", "o4", "o3", "o2", "o1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-cle",
+      "type": "match",
+      "skill": "st6.bd.cle-determination",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:cle-forme"],
+      "expectedSeconds": 210,
+      "prompt": "Utilise la clé de détermination pour nommer chacun des cinq fossiles.",
+      "figure": {
+        "alt": "Clé de détermination simplifiée de cinq fossiles, en quatre questions",
+        "w": 640,
+        "h": 200,
+        "items": [
+          { "type": "table", "head": ["Question", "Si oui", "Si non"], "rows": [
+            ["1. Est-ce un végétal (feuilles, tige) ?", "fougère", "aller en 2"],
+            ["2. A-t-il une carapace divisée en trois lobes dans la longueur ?", "trilobite", "aller en 3"],
+            ["3. A-t-il une coquille enroulée en spirale ?", "ammonite", "aller en 4"],
+            ["4. Est-ce une coque ronde ornée d'une étoile à cinq branches ?", "oursin", "dent de requin"]
+          ] }
+        ]
+      },
+      "leftTitle": "Fossile observé",
+      "rightTitle": "Nom",
+      "left": [
+        { "id": "f1", "label": "Fossile A : empreinte de feuilles très découpées" },
+        { "id": "f2", "label": "Fossile B : carapace divisée en trois lobes dans la longueur" },
+        { "id": "f3", "label": "Fossile C : coquille enroulée à plat en spirale, avec des cloisons" },
+        { "id": "f4", "label": "Fossile D : coque ronde et bombée, ornée d'une étoile à cinq branches" },
+        { "id": "f5", "label": "Fossile E : objet triangulaire, pointu et tranchant" }
+      ],
+      "right": [
+        { "id": "fougere", "label": "Fougère" },
+        { "id": "trilobite", "label": "Trilobite" },
+        { "id": "ammonite", "label": "Ammonite" },
+        { "id": "oursin", "label": "Oursin" },
+        { "id": "requin", "label": "Dent de requin" }
+      ],
+      "pairs": { "f1": "fougere", "f2": "trilobite", "f3": "ammonite", "f4": "oursin", "f5": "requin" },
+      "misconceptions": [
+        { "pair": ["f4", "ammonite"], "id": "mc:cle-forme", "error": "methode", "feedback": "Tu t'es fié à l'allure générale du fossile (rond). Une clé ne se lit pas « à vue d'œil » : reprends la question 1 et réponds à chaque question, une par une, sans en sauter." },
+        { "pair": ["f3", "oursin"], "id": "mc:cle-forme", "error": "methode", "feedback": "Tu t'es fié à l'allure générale du fossile. Reprends la clé depuis la question 1 et vérifie chaque caractère demandé, dans l'ordre." }
+      ],
+      "hints": [
+        "Commence toujours par la question 1, pour chaque fossile.",
+        "Réponds par oui ou non en observant un seul caractère : la clé te dit alors le nom, ou la question suivante.",
+        "Le fossile E répond « non » à toutes les questions."
+      ],
+      "solution": "A : végétal → fougère. B : carapace en trois lobes → trilobite. C : coquille enroulée en spirale → ammonite. D : pas de spirale, mais une coque ronde à étoile à cinq branches → oursin. E : non à toutes les questions → dent de requin.",
+      "selfTest": [
+        { "response": { "pairs": { "f1": "fougere", "f2": "trilobite", "f3": "ammonite", "f4": "oursin", "f5": "requin" } }, "expect": "correct" },
+        { "response": { "pairs": { "f1": "fougere", "f2": "trilobite", "f3": "oursin", "f4": "ammonite", "f5": "requin" } }, "expect": "mc:cle-forme" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-paleo",
+      "type": "highlight",
+      "skill": "st6.bd.paleoenvironnement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:actuel-passe"],
+      "expectedSeconds": 120,
+      "instruction": "Surligne les êtres vivants du passé qui montrent qu'une mer recouvrait cet endroit.",
+      "prompt": "Pour reconstituer un **paléoenvironnement**, on s'appuie sur les fossiles. Dans ce texte, surligne les **trois** êtres vivants fossiles qui prouvent qu'il y avait autrefois une mer à cet endroit.",
+      "text": "Dans la carrière de Roche-Claire, un village imaginaire, le calcaire contient des [coraux], des [oursins] et des [ammonites]. Aujourd'hui, autour de la carrière, poussent du blé et des chênes, et vivent des chevreuils.",
+      "misconceptions": [
+        { "word": "blé", "id": "mc:actuel-passe", "error": "lecture", "feedback": "Le blé pousse ici aujourd'hui : il renseigne sur le milieu actuel, pas sur celui du passé. Cherche les êtres vivants conservés dans la roche." },
+        { "word": "chênes", "id": "mc:actuel-passe", "error": "lecture", "feedback": "Les chênes vivent ici aujourd'hui : ils décrivent le milieu actuel. Le milieu du passé se lit dans les fossiles de la roche." },
+        { "word": "chevreuils", "id": "mc:actuel-passe", "error": "lecture", "feedback": "Les chevreuils vivent ici aujourd'hui : ils décrivent le milieu actuel. Cherche ce que contient le calcaire." }
+      ],
+      "hints": [
+        "Les fossiles sont dans la roche (le calcaire), pas autour de la carrière.",
+        "Les êtres vivants du passé sont dans la première phrase."
+      ],
+      "solution": "Les coraux, les oursins et les ammonites sont des fossiles d'animaux marins : il y avait donc une mer, sans doute chaude et peu profonde à cause des coraux. Le blé, les chênes et les chevreuils vivent là aujourd'hui : le milieu a complètement changé, et la biodiversité aussi.",
+      "selfTest": [
+        { "response": { "selected": [12, 14, 17] }, "expect": "correct" },
+        { "response": { "selected": [12, 14, 17, 26] }, "expect": "mc:actuel-passe" },
+        { "response": { "selected": [29, 33] }, "expect": "mc:actuel-passe" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-unites",
+      "type": "table",
+      "skill": "st6.bd.temps-geologiques",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:milliard-million", "mc:pas-converti"],
+      "expectedSeconds": 210,
+      "prompt": "Pour comparer des durées, on les écrit toutes dans la même unité : le **million d'années (Ma)**. Rappel : 1 milliard = 1 000 millions, et 1 million = 1 000 000. Complète la dernière colonne (la ligne des dinosaures est un exemple).",
+      "columns": ["Événement", "Il y a…", "En millions d'années (Ma)"],
+      "rows": [
+        ["Formation de la Terre", "4,5 milliards d'années", "?r0c2"],
+        ["Plus anciennes traces de vie", "3,5 milliards d'années", "?r1c2"],
+        ["Disparition des dinosaures non-volants", "66 millions d'années", "66"],
+        ["Apparition de notre espèce", "300 000 ans", "?r3c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "4500", "misconceptions": [
+          { "answer": "45", "id": "mc:milliard-million", "error": "unite", "feedback": "Un milliard, c'est mille millions : compte bien le nombre de zéros que tu ajoutes." },
+          { "answer": "4.5", "id": "mc:pas-converti", "error": "unite", "feedback": "Tu as recopié le nombre sans changer d'unité. Des milliards ne sont pas des millions : convertis." }
+        ] },
+        "r1c2": { "answer": "3500", "misconceptions": [
+          { "answer": "35", "id": "mc:milliard-million", "error": "unite", "feedback": "Un milliard, c'est mille millions : compte bien le nombre de zéros que tu ajoutes." },
+          { "answer": "3.5", "id": "mc:pas-converti", "error": "unite", "feedback": "Tu as recopié le nombre sans changer d'unité. Des milliards ne sont pas des millions : convertis." }
+        ] },
+        "r3c2": { "answer": "0.3", "misconceptions": [
+          { "answer": "300000", "id": "mc:pas-converti", "error": "unite", "feedback": "Tu as recopié le nombre d'années. Combien de millions y a-t-il dans 300 000 ? Le résultat est plus petit que 1." },
+          { "answer": "300", "id": "mc:milliard-million", "error": "unite", "feedback": "300 000 ans, c'est moins d'un million d'années : ton résultat doit être plus petit que 1." }
+        ] }
+      },
+      "hints": [
+        "1 milliard d'années = 1 000 millions d'années : multiplie par 1 000.",
+        "300 000 ans, c'est moins d'un million d'années : le nombre cherché est inférieur à 1.",
+        "1 million = 1 000 000 : divise 300 000 par 1 000 000."
+      ],
+      "solution": "Formation de la Terre : 4,5 × 1 000 = 4 500 Ma. Plus anciennes traces de vie : 3,5 × 1 000 = 3 500 Ma. Notre espèce : 300 000 ÷ 1 000 000 = 0,3 Ma. Notre espèce est minuscule à l'échelle de l'histoire de la Terre !",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "4 500", "r1c2": "3500", "r3c2": "0,3" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "45", "r1c2": "3500", "r3c2": "0,3" } }, "expect": "mc:milliard-million" },
+        { "response": { "cells": { "r0c2": "4500", "r1c2": "3500", "r3c2": "300000" } }, "expect": "mc:pas-converti" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-avant-apres",
+      "type": "categorize",
+      "skill": "st6.bd.crises-biologiques",
+      "skills": ["st6.bd.temps-geologiques"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:mammiferes-apres", "mc:dinos-humains", "mc:trilobites"],
+      "expectedSeconds": 150,
+      "prompt": "La crise biologique d'il y a **66 millions d'années** sépare le Mésozoïque du Cénozoïque. Range chaque situation : se passe-t-elle avant ou après cette crise ? Aide-toi de la frise de la carte « Les grandes crises biologiques ».",
+      "categories": [
+        { "id": "avant", "label": "Avant la crise de 66 Ma" },
+        { "id": "apres", "label": "Après la crise de 66 Ma" }
+      ],
+      "items": [
+        { "id": "i1", "label": "Des ammonites nagent dans les mers.", "category": "avant" },
+        { "id": "i2", "label": "Le tyrannosaure chasse sur les continents.", "category": "avant" },
+        { "id": "i3", "label": "De petits mammifères, de la taille d'une souris, vivent déjà.", "category": "avant" },
+        { "id": "i4", "label": "Des mammouths vivent en Europe.", "category": "apres" },
+        { "id": "i5", "label": "Les premiers humains de notre espèce apparaissent.", "category": "apres" },
+        { "id": "i6", "label": "Des trilobites vivent dans les mers.", "category": "avant" }
+      ],
+      "misconceptions": [
+        { "item": "i3", "category": "apres", "id": "mc:mammiferes-apres", "error": "notion", "feedback": "Attention à une idée très répandue : on croit que les mammifères ont simplement « remplacé » les dinosaures. Les fossiles de ces tout petits mammifères racontent une autre histoire : relis bien la situation." },
+        { "item": "i5", "category": "avant", "id": "mc:dinos-humains", "error": "notion", "feedback": "Les films montrent parfois des humains à côté de dinosaures, mais les fossiles ne disent pas cela. Compare l'âge de notre espèce avec 66 millions d'années." },
+        { "item": "i6", "category": "apres", "id": "mc:trilobites", "error": "lecture", "feedback": "Repère sur la frise la crise qui a fait disparaître les trilobites, puis compare-la avec la crise de 66 millions d'années." }
+      ],
+      "hints": [
+        "Les dinosaures non-volants et les ammonites ont disparu lors de la crise de 66 Ma.",
+        "Sur la frise, la fin des trilobites est indiquée à 252 Ma.",
+        "Notre espèce existe depuis environ 300 000 ans seulement."
+      ],
+      "solution": "Avant 66 Ma : les ammonites, le tyrannosaure, les premiers petits mammifères (apparus il y a plus de 200 millions d'années, à côté des dinosaures) et les trilobites (disparus bien avant, il y a 252 millions d'années). Après 66 Ma : les mammouths et notre espèce, apparue il y a environ 300 000 ans.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "avant", "i2": "avant", "i3": "avant", "i4": "apres", "i5": "apres", "i6": "avant" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "avant", "i2": "avant", "i3": "apres", "i4": "apres", "i5": "apres", "i6": "avant" } }, "expect": "mc:mammiferes-apres" },
+        { "response": { "assign": { "i1": "avant", "i2": "avant", "i3": "avant", "i4": "apres", "i5": "avant", "i6": "avant" } }, "expect": "mc:dinos-humains" },
+        { "response": { "assign": { "i1": "avant", "i2": "avant", "i3": "avant", "i4": "apres", "i5": "apres", "i6": "apres" } }, "expect": "mc:trilobites" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-ecart",
+      "type": "numeric",
+      "skill": "st6.bd.temps-geologiques",
+      "skills": ["st6.bd.crises-biologiques"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": ["mc:ajout-ages", "mc:dinos-humains", "mc:unites-melangees", "mc:arrondi-trop-tot"],
+      "expectedSeconds": 150,
+      "prompt": "Les derniers dinosaures non-volants ont disparu il y a **66 millions d'années**. Notre espèce, *Homo sapiens*, est apparue il y a environ **300 000 ans**, c'est-à-dire **0,3 million d'années**. Combien de millions d'années séparent ces deux événements ?",
+      "answer": 65.7,
+      "tolerance": 0.01,
+      "misconceptions": [
+        { "answer": 66.3, "id": "mc:ajout-ages", "error": "methode", "feedback": "Tu as additionné les deux âges. Pour trouver l'écart entre deux moments du passé, on cherche une différence : l'âge le plus grand moins l'âge le plus petit." },
+        { "answer": 0, "id": "mc:dinos-humains", "error": "notion", "feedback": "Tu penses que dinosaures et humains ont vécu en même temps : c'est une idée très répandue, mais les dates disent autre chose. Compare les deux âges." },
+        { "answer": 299934, "id": "mc:unites-melangees", "error": "unite", "feedback": "Tu as mélangé des années et des millions d'années. Utilise les deux nombres écrits en millions d'années : 66 et 0,3." },
+        { "answer": 66, "id": "mc:arrondi-trop-tot", "error": "precision", "feedback": "Presque : tu as négligé l'âge de notre espèce. Fais le calcul exact avec les deux nombres." }
+      ],
+      "hints": [
+        "Écris les deux âges dans la même unité : 66 millions et 0,3 million.",
+        "L'écart entre deux dates du passé, c'est une soustraction : le plus grand âge moins le plus petit."
+      ],
+      "solution": "66 − 0,3 = 65,7 millions d'années. Des dizaines de millions d'années séparent les derniers dinosaures non-volants des premiers humains de notre espèce : ils ne se sont jamais rencontrés.",
+      "selfTest": [
+        { "response": { "value": "65,7" }, "expect": "correct" },
+        { "response": { "value": "66,3" }, "expect": "mc:ajout-ages" },
+        { "response": { "value": "0" }, "expect": "mc:dinos-humains" },
+        { "response": { "value": "299934" }, "expect": "mc:unites-melangees" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-expliquer",
+      "type": "open",
+      "skill": "st6.bd.crises-biologiques",
+      "skills": ["st6.bd.fossiles", "st6.bd.temps-geologiques"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:dinos-humains"],
+      "expectedSeconds": 420,
+      "minWords": 35,
+      "prompt": "Ton petit frère regarde un dessin animé où des hommes préhistoriques chassent un dinosaure. Il te demande : « C'est vraiment arrivé ? » Réponds-lui en utilisant des dates, puis explique comment les scientifiques le savent.",
+      "criteria": [
+        { "id": "c1", "label": "Je donne l'âge de la disparition des dinosaures non-volants (66 millions d'années)", "keywords": [["66"]] },
+        { "id": "c2", "label": "Je donne l'âge de l'apparition de notre espèce (environ 300 000 ans)", "keywords": [["300 000", "300000", "0,3", "homo sapiens"]] },
+        { "id": "c3", "label": "Je conclus qu'ils ne se sont jamais rencontrés", "keywords": [["jamais", "impossible", "pas en meme temps", "pas pu", "separ"]] },
+        { "id": "c4", "label": "J'explique comment on le sait : les fossiles, trouvés dans des couches d'âges différents", "keywords": [["fossile", "couche", "roche"]] }
+      ],
+      "models": [
+        "Non, c'est impossible. Les derniers dinosaures non-volants ont disparu il y a 66 millions d'années, lors d'une crise biologique. Notre espèce, Homo sapiens, n'est apparue qu'il y a environ 300 000 ans. Des dizaines de millions d'années les séparent : ils ne se sont jamais rencontrés. On le sait grâce aux fossiles : ceux des dinosaures sont dans des couches de roches beaucoup plus anciennes que celles où l'on trouve des fossiles humains.",
+        "Ce dessin animé invente une scène qui n'a jamais existé. Les dinosaures (sauf les oiseaux) ont disparu il y a 66 millions d'années, et les premiers humains de notre espèce datent d'environ 300 000 ans. Les paléontologues datent les couches de roches où se trouvent les fossiles : on ne trouve jamais de fossiles humains dans les couches des dinosaures."
+      ],
+      "hints": [
+        "Commence par donner les deux dates.",
+        "Compare-les : combien de temps les sépare ?",
+        "Termine en parlant des fossiles et des couches de roches."
+      ],
+      "solution": "Les dinosaures non-volants ont disparu il y a 66 millions d'années ; notre espèce existe depuis environ 300 000 ans. Ils ne se sont jamais rencontrés. Les fossiles des uns et des autres se trouvent dans des couches de roches d'âges très différents.",
+      "selfTest": [
+        { "response": { "text": "Non, c'est impossible. Les derniers dinosaures non-volants ont disparu il y a 66 millions d'années. Notre espèce n'est apparue qu'il y a environ 300 000 ans : ils ne se sont jamais rencontrés. On le sait grâce aux fossiles, trouvés dans des couches de roches d'âges différents.", "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-falaise",
+      "type": "composite",
+      "skill": "st6.bd.crises-biologiques",
+      "skills": ["st6.bd.temps-geologiques", "st6.bd.paleoenvironnement"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:haut-ancien", "mc:lecture-couche", "mc:soustraction-directe", "mc:nouvelles-especes"],
+      "expectedSeconds": 480,
+      "prompt": "Tu es paléontologue. Sur la falaise de Roche-Claire (lieu imaginaire), tu observes quatre couches de calcaire et d'argile, restées à plat. Voici tes relevés.",
+      "figure": {
+        "alt": "Coupe d'une falaise avec quatre couches empilées, notées A (en bas) à D (en haut), et les fossiles trouvés dans chaque couche",
+        "w": 620,
+        "h": 240,
+        "items": [
+          { "type": "rect", "x": 20, "y": 20, "w": 440, "h": 50, "fill": "#fde68a", "label": "D : calcaire avec des bivalves, sans ammonite" },
+          { "type": "rect", "x": 20, "y": 70, "w": 440, "h": 28, "fill": "#78716c", "label": "C : fine couche d'argile sombre, sans fossile" },
+          { "type": "rect", "x": 20, "y": 98, "w": 440, "h": 60, "fill": "#bfdbfe", "label": "B : calcaire avec des ammonites et des oursins" },
+          { "type": "rect", "x": 20, "y": 158, "w": 440, "h": 62, "fill": "#bbf7d0", "label": "A : calcaire avec des ammonites, des oursins et des coraux" },
+          { "type": "text", "x": 472, "y": 30, "text": "haut de la falaise", "anchor": "start", "size": "s" },
+          { "type": "text", "x": 472, "y": 212, "text": "bas de la falaise", "anchor": "start", "size": "s" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "order",
+          "prompt": "Range les couches de la plus ancienne à la plus récente.",
+          "orderLabel": "de la plus ancienne à la plus récente",
+          "items": [
+            { "id": "A", "label": "Couche A" },
+            { "id": "B", "label": "Couche B" },
+            { "id": "C", "label": "Couche C" },
+            { "id": "D", "label": "Couche D" }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "v1", "label": "Quand la couche A s'est déposée, il y avait ici une mer chaude.", "category": "vrai" },
+            { "id": "v2", "label": "La couche D est plus ancienne que la couche A.", "category": "faux" },
+            { "id": "v3", "label": "Ici, les ammonites ont continué à vivre après le dépôt de la couche C.", "category": "faux" },
+            { "id": "v4", "label": "Entre les couches B et D, des espèces ont disparu : c'est peut-être la trace d'une crise biologique.", "category": "vrai" }
+          ],
+          "misconceptions": [
+            { "item": "v2", "category": "vrai", "id": "mc:haut-ancien", "error": "notion", "feedback": "Pense à une pile de cahiers posés un à un : celui du dessus a-t-il été posé avant ou après ceux du dessous ?" },
+            { "item": "v3", "category": "vrai", "id": "mc:lecture-couche", "error": "lecture", "feedback": "Relis les fossiles des couches situées au-dessus de C : y trouve-t-on encore des ammonites ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans la couche B, tu as compté 12 espèces fossiles. Dans la couche D, tu en comptes 5, mais seulement 2 d'entre elles étaient déjà dans la couche B. Combien d'espèces de la couche B ne se retrouvent plus dans la couche D ?",
+          "answer": 10,
+          "misconceptions": [
+            { "answer": 7, "id": "mc:soustraction-directe", "error": "raisonnement", "feedback": "Tu as soustrait les 5 espèces de la couche D, mais certaines d'entre elles sont nouvelles : elles n'étaient pas dans la couche B. Ne compte que celles qui étaient déjà là." },
+            { "answer": 3, "id": "mc:nouvelles-especes", "error": "lecture", "feedback": "Tu as calculé le nombre d'espèces nouvelles de la couche D. La question porte sur les espèces de la couche B qui ont disparu." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment appelle-t-on la disparition d'un très grand nombre d'espèces en un temps court ? (une expression)",
+          "accept": ["crise biologique", "une crise biologique", "extinction de masse", "une extinction de masse", "extinction massive", "une extinction massive"],
+          "misconceptions": [
+            { "answer": "fossilisation", "id": "mc:vocabulaire", "error": "notion", "feedback": "La fossilisation, c'est la transformation d'un être vivant en fossile. Le mot cherché désigne un grand événement de l'histoire de la vie." }
+          ]
+        }
+      ],
+      "hints": [
+        "Dans des couches restées à plat, la plus basse s'est déposée en premier.",
+        "Des coraux indiquent une mer chaude et peu profonde.",
+        "Espèces disparues = espèces de B − espèces de B qu'on retrouve encore en D."
+      ],
+      "solution": "Ordre : A, B, C, D (de la plus ancienne à la plus récente). Les coraux de A indiquent une mer chaude. La couche D est la plus récente, et on n'y trouve plus d'ammonites. 12 − 2 = 10 espèces de la couche B ont disparu : beaucoup d'espèces disparaissent en peu de temps, c'est peut-être la trace d'une crise biologique (ou extinction de masse). Dans de nombreux endroits du monde, la crise d'il y a 66 millions d'années est marquée par une fine couche d'argile, comme la couche C.",
+      "selfTest": [
+        { "response": { "parts": [ { "order": ["A", "B", "C", "D"] }, { "assign": { "v1": "vrai", "v2": "faux", "v3": "faux", "v4": "vrai" } }, { "value": "10" }, { "value": "crise biologique" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "order": ["A", "B", "C", "D"] }, { "assign": { "v1": "vrai", "v2": "vrai", "v3": "faux", "v4": "vrai" } }, { "value": "10" }, { "value": "crise biologique" } ] }, "expect": "mc:haut-ancien" },
+        { "response": { "parts": [ { "order": ["A", "B", "C", "D"] }, { "assign": { "v1": "vrai", "v2": "faux", "v3": "faux", "v4": "vrai" } }, { "value": "7" }, { "value": "crise biologique" } ] }, "expect": "mc:soustraction-directe" },
+        { "response": { "parts": [ { "order": ["A", "B", "C", "D"] }, { "assign": { "v1": "vrai", "v2": "faux", "v3": "faux", "v4": "vrai" } }, { "value": "10" }, { "value": "fossilisation" } ] }, "expect": "mc:vocabulaire" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-rem-paleontologue",
+      "type": "text",
+      "skill": "st6.bd.fossiles",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:archeologue", "mc:geologue"],
+      "expectedSeconds": 60,
+      "prompt": "Rappel ciblé : comment appelle-t-on le ou la scientifique qui étudie les fossiles des êtres vivants anciens ?",
+      "accept": ["paléontologue", "un paléontologue", "une paléontologue", "paléontologiste", "un paléontologiste", "une paléontologiste"],
+      "misconceptions": [
+        { "answer": "archéologue", "id": "mc:archeologue", "error": "notion", "feedback": "L'archéologue étudie les traces laissées par les humains du passé (outils, poteries, bâtiments), pas les fossiles d'êtres vivants très anciens. Cherche le nom de l'autre spécialiste." },
+        { "answer": "un archéologue", "id": "mc:archeologue", "error": "notion", "feedback": "L'archéologue étudie les traces laissées par les humains du passé (outils, poteries, bâtiments), pas les fossiles d'êtres vivants très anciens. Cherche le nom de l'autre spécialiste." },
+        { "answer": "une archéologue", "id": "mc:archeologue", "error": "notion", "feedback": "L'archéologue étudie les traces laissées par les humains du passé (outils, poteries, bâtiments), pas les fossiles d'êtres vivants très anciens. Cherche le nom de l'autre spécialiste." },
+        { "answer": "géologue", "id": "mc:geologue", "error": "notion", "feedback": "Le géologue étudie les roches et l'histoire de la Terre. Il travaille souvent avec le spécialiste des fossiles, qui porte un autre nom." }
+      ],
+      "hints": [
+        "Le mot commence par « paléo- », qui veut dire « ancien ».",
+        "La fin du mot, « -logue », désigne celui qui étudie quelque chose (comme dans « géologue »)."
+      ],
+      "solution": "C'est un ou une **paléontologue** (« paléo » = ancien). L'archéologue étudie les traces des humains du passé, le géologue étudie les roches.",
+      "selfTest": [
+        { "response": { "value": "paléontologue" }, "expect": "correct" },
+        { "response": { "value": "archéologue" }, "expect": "mc:archeologue" },
+        { "response": { "value": "géologue" }, "expect": "mc:geologue" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-rem-superposition",
+      "type": "categorize",
+      "skill": "st6.bd.temps-geologiques",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:haut-ancien"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : imagine une pile de journaux. Chaque jour, on pose le nouveau journal sur la pile. Pour des couches de roches restées à plat, c'est pareil. Vrai ou faux ?",
+      "categories": [
+        { "id": "vrai", "label": "Vrai" },
+        { "id": "faux", "label": "Faux" }
+      ],
+      "items": [
+        { "id": "s1", "label": "La couche du bas s'est déposée en premier.", "category": "vrai" },
+        { "id": "s2", "label": "Un fossile de la couche du haut est plus ancien que ceux des couches du bas.", "category": "faux" },
+        { "id": "s3", "label": "Une couche est plus récente que la couche qu'elle recouvre.", "category": "vrai" },
+        { "id": "s4", "label": "La couche dans laquelle se trouve un fossile aide à savoir s'il est plus ou moins ancien.", "category": "vrai" }
+      ],
+      "misconceptions": [
+        { "item": "s2", "category": "vrai", "id": "mc:haut-ancien", "error": "notion", "feedback": "Pense à la pile de journaux : le journal du dessus a-t-il été posé avant ou après ceux du dessous ?" },
+        { "item": "s3", "category": "faux", "id": "mc:haut-ancien", "error": "notion", "feedback": "Une couche peut-elle se poser sur une autre couche qui n'existe pas encore ? Pense à la pile de journaux." },
+        { "item": "s1", "category": "faux", "id": "mc:haut-ancien", "error": "notion", "feedback": "Dans la pile de journaux, lequel a été posé le tout premier ?" }
+      ],
+      "hints": [
+        "Le journal d'aujourd'hui est sur le dessus de la pile.",
+        "Pour poser une couche, il faut que celle d'en dessous soit déjà là."
+      ],
+      "solution": "Dans des couches restées à plat, la couche du bas s'est déposée en premier : c'est la plus ancienne. Chaque couche est plus récente que celle qu'elle recouvre. Un fossile du haut est donc plus récent qu'un fossile du bas.",
+      "selfTest": [
+        { "response": { "assign": { "s1": "vrai", "s2": "faux", "s3": "vrai", "s4": "vrai" } }, "expect": "correct" },
+        { "response": { "assign": { "s1": "vrai", "s2": "vrai", "s3": "vrai", "s4": "vrai" } }, "expect": "mc:haut-ancien" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-calendrier",
+      "type": "composite",
+      "skill": "st6.bd.temps-geologiques",
+      "skills": ["st6.bd.crises-biologiques"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:division-inverse", "mc:oubli-conversion", "mc:dinos-humains"],
+      "expectedSeconds": 480,
+      "prompt": "Imagine que toute l'histoire de la Terre, environ **4 500 millions d'années**, tienne dans une seule année de 365 jours. La Terre se forme le 1er janvier à minuit, et aujourd'hui, c'est le 31 décembre à minuit.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de millions d'années représente un jour de ce calendrier ? (4 500 ÷ 365, arrondi au dixième)",
+          "answer": 12.33,
+          "tolerance": 0.06,
+          "misconceptions": [
+            { "answer": 0.081, "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as divisé 365 par 4 500 : tu as trouvé une fraction de jour, pas un nombre de millions d'années. Inverse la division." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La crise qui a fait disparaître les dinosaures a eu lieu il y a 66 millions d'années. Combien de jours avant la fin de l'année cela fait-il ? (66 ÷ 12,3, arrondi à l'unité)",
+          "answer": 5.37,
+          "tolerance": 0.45,
+          "misconceptions": [
+            { "answer": 811.8, "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as multiplié au lieu de diviser : ton résultat dépasse le nombre de jours d'une année. Combien de fois 12,3 millions d'années y a-t-il dans 66 millions d'années ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Notre espèce est apparue il y a environ 0,3 million d'années. Un jour dure 24 heures, soit 1 440 minutes. Combien de minutes avant minuit, le 31 décembre ? (0,3 ÷ 12,3 × 1 440, arrondi à l'unité)",
+          "answer": 35.12,
+          "tolerance": 1.5,
+          "misconceptions": [
+            { "answer": 0.024, "id": "mc:oubli-conversion", "error": "unite", "feedback": "Tu as trouvé une fraction de jour. La question demande des minutes : il reste une conversion à faire." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux, dans ce calendrier ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "k1", "label": "Les dinosaures non-volants disparaissent quelques jours avant la fin de l'année.", "category": "vrai" },
+            { "id": "k2", "label": "Les dinosaures et les humains se croisent le 31 décembre.", "category": "faux" },
+            { "id": "k3", "label": "Toute l'histoire de notre espèce tient dans la dernière heure de l'année.", "category": "vrai" }
+          ],
+          "misconceptions": [
+            { "item": "k2", "category": "vrai", "id": "mc:dinos-humains", "error": "notion", "feedback": "Compare tes deux résultats : la disparition des dinosaures et l'apparition de notre espèce tombent-elles le même jour ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Un jour = 4 500 millions d'années ÷ 365 jours.",
+        "Nombre de jours = âge en millions d'années ÷ durée d'un jour en millions d'années.",
+        "Une fraction de jour × 1 440 donne des minutes."
+      ],
+      "solution": "Un jour ≈ 4 500 ÷ 365 ≈ 12,3 millions d'années. La crise d'il y a 66 millions d'années tombe environ 66 ÷ 12,3 ≈ 5 jours avant la fin : vers le 26 décembre. Notre espèce apparaît 0,3 ÷ 12,3 × 1 440 ≈ 35 minutes avant minuit, le 31 décembre ! Les dinosaures et les humains ne se croisent jamais, et l'histoire de notre espèce tient dans la dernière heure de l'année.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "12,3" }, { "value": "5" }, { "value": "35" }, { "assign": { "k1": "vrai", "k2": "faux", "k3": "vrai" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,081" }, { "value": "5" }, { "value": "35" }, { "assign": { "k1": "vrai", "k2": "faux", "k3": "vrai" } } ] }, "expect": "mc:division-inverse" },
+        { "response": { "parts": [ { "value": "12,3" }, { "value": "5" }, { "value": "0,024" }, { "assign": { "k1": "vrai", "k2": "faux", "k3": "vrai" } } ] }, "expect": "mc:oubli-conversion" },
+        { "response": { "parts": [ { "value": "12,3" }, { "value": "5" }, { "value": "35" }, { "assign": { "k1": "vrai", "k2": "vrai", "k3": "vrai" } } ] }, "expect": "mc:dinos-humains" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-modele",
+      "type": "composite",
+      "skill": "st6.demarche.modele",
+      "skills": ["st6.bd.fossiles"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:modele-duree", "mc:conversion-cm-m"],
+      "expectedSeconds": 360,
+      "prompt": "Reprends le modèle du bac montré dans l'expérience : l'eau, les couches de sable et de vase, le coquillage et le poisson. Un modèle aide à comprendre, mais il ne montre pas tout.",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Range chaque idée.",
+          "categories": [
+            { "id": "bien", "label": "Le modèle le montre" },
+            { "id": "pas", "label": "Le modèle ne le montre pas" }
+          ],
+          "items": [
+            { "id": "m1", "label": "Les couches se déposent les unes sur les autres.", "category": "bien" },
+            { "id": "m2", "label": "Un animal vite recouvert de sédiments est protégé.", "category": "bien" },
+            { "id": "m3", "label": "La vraie durée : des milliers à des millions d'années.", "category": "pas" },
+            { "id": "m4", "label": "La transformation chimique, très lente, des restes en pierre.", "category": "pas" },
+            { "id": "m5", "label": "Les mouvements du sol qui peuvent plisser ou retourner les couches.", "category": "pas" }
+          ],
+          "misconceptions": [
+            { "item": "m3", "category": "bien", "id": "mc:modele-duree", "error": "raisonnement", "feedback": "Combien de temps dure l'animation ? Compare avec la durée réelle de la fossilisation donnée dans le cours." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans une mer peu profonde, on suppose que les sédiments se déposent à la vitesse moyenne de 1 cm tous les 100 ans (valeur choisie pour l'exercice). Quelle épaisseur se dépose en 1 million d'années, en **mètres** ?",
+          "answer": 100,
+          "misconceptions": [
+            { "answer": 10000, "id": "mc:conversion-cm-m", "error": "unite", "feedback": "Ton résultat est en centimètres. La question demande des mètres : il reste une conversion." }
+          ]
+        }
+      ],
+      "hints": [
+        "Un modèle simplifie : cherche ce qu'il a dû laisser de côté.",
+        "En 1 million d'années, il y a 1 000 000 ÷ 100 = 10 000 fois « 100 ans ».",
+        "1 m = 100 cm."
+      ],
+      "solution": "Le modèle montre bien l'empilement des couches et la protection par un enfouissement rapide. Il ne montre ni la vraie durée, ni la transformation chimique des restes en pierre, ni les mouvements qui peuvent plisser les couches. Épaisseur : 1 000 000 ÷ 100 = 10 000 fois 1 cm = 10 000 cm = 100 m. Une seule couche de roche peut donc représenter un temps immense.",
+      "selfTest": [
+        { "response": { "parts": [ { "assign": { "m1": "bien", "m2": "bien", "m3": "pas", "m4": "pas", "m5": "pas" } }, { "value": "100" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "assign": { "m1": "bien", "m2": "bien", "m3": "bien", "m4": "pas", "m5": "pas" } }, { "value": "100" } ] }, "expect": "mc:modele-duree" },
+        { "response": { "parts": [ { "assign": { "m1": "bien", "m2": "bien", "m3": "pas", "m4": "pas", "m5": "pas" } }, { "value": "10000" } ] }, "expect": "mc:conversion-cm-m" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-enquete",
+      "type": "composite",
+      "skill": "st6.bd.crises-biologiques",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:iridium", "mc:difference-rapport", "mc:crise-totale", "mc:crise-un-jour"],
+      "expectedSeconds": 480,
+      "prompt": "Enquête sur la crise d'il y a 66 millions d'années. Trois indices : (1) dans de nombreux pays, la limite entre les couches de cet âge est marquée par une fine couche d'argile riche en **iridium**, un métal rare dans les roches de la Terre mais plus abondant dans certaines météorites ; (2) au Mexique, un **cratère** d'environ 180 km de diamètre date de cette époque ; (3) en Inde, d'immenses **coulées de lave** empilées se sont formées pendant cette même période.",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Range chaque indice selon ce qu'il suggère.",
+          "categories": [
+            { "id": "meteorite", "label": "Indice d'une chute de météorite" },
+            { "id": "volcan", "label": "Indice d'un volcanisme intense" }
+          ],
+          "items": [
+            { "id": "x1", "label": "La fine couche d'argile riche en iridium", "category": "meteorite" },
+            { "id": "x2", "label": "Le cratère d'environ 180 km au Mexique", "category": "meteorite" },
+            { "id": "x3", "label": "Les immenses coulées de lave en Inde", "category": "volcan" }
+          ],
+          "misconceptions": [
+            { "item": "x1", "category": "volcan", "id": "mc:iridium", "error": "lecture", "feedback": "Relis l'indice 1 : dans quels objets l'iridium est-il plus abondant que dans les roches de la Terre ?" }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "La météorite mesurait environ 10 km de diamètre. Combien de fois le cratère (180 km) est-il plus large que la météorite ?",
+          "answer": 18,
+          "misconceptions": [
+            { "answer": 170, "id": "mc:difference-rapport", "error": "methode", "feedback": "Tu as calculé une différence. « Combien de fois plus large » demande une division." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "y1", "label": "La chute de la météorite et le volcanisme ont pu agir ensemble.", "category": "vrai" },
+            { "id": "y2", "label": "Cette crise a fait disparaître tous les êtres vivants.", "category": "faux" },
+            { "id": "y3", "label": "Après la crise, d'autres groupes, comme les mammifères, se sont diversifiés.", "category": "vrai" },
+            { "id": "y4", "label": "Une crise biologique se déroule en un seul jour.", "category": "faux" }
+          ],
+          "misconceptions": [
+            { "item": "y2", "category": "vrai", "id": "mc:crise-totale", "error": "notion", "feedback": "Si tous les êtres vivants avaient disparu, d'où viendraient les êtres vivants d'aujourd'hui ? Pense aux oiseaux, aux crocodiles, aux mammifères." },
+            { "item": "y4", "category": "vrai", "id": "mc:crise-un-jour", "error": "notion", "feedback": "L'impact a été brutal, mais ses effets sur le climat et sur les êtres vivants ont duré bien plus longtemps. Relis la définition : un temps « court à l'échelle géologique »." }
+          ]
+        }
+      ],
+      "hints": [
+        "L'iridium est plus abondant dans certaines météorites que dans les roches terrestres.",
+        "« Combien de fois plus grand » : on divise.",
+        "Une crise n'efface pas toute la vie : certains groupes survivent et se diversifient ensuite."
+      ],
+      "solution": "L'iridium et le cratère sont des indices d'une chute de météorite ; les coulées de lave, d'un volcanisme intense. Le cratère est 180 ÷ 10 = 18 fois plus large que la météorite. Les scientifiques pensent que ces deux catastrophes ont pu agir ensemble en bouleversant le climat. Environ les trois quarts des espèces ont disparu, pas toutes : les survivants, comme les mammifères, se sont ensuite diversifiés. Une crise est courte pour un géologue, mais elle dure bien plus d'un jour.",
+      "selfTest": [
+        { "response": { "parts": [ { "assign": { "x1": "meteorite", "x2": "meteorite", "x3": "volcan" } }, { "value": "18" }, { "assign": { "y1": "vrai", "y2": "faux", "y3": "vrai", "y4": "faux" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "assign": { "x1": "volcan", "x2": "meteorite", "x3": "volcan" } }, { "value": "18" }, { "assign": { "y1": "vrai", "y2": "faux", "y3": "vrai", "y4": "faux" } } ] }, "expect": "mc:iridium" },
+        { "response": { "parts": [ { "assign": { "x1": "meteorite", "x2": "meteorite", "x3": "volcan" } }, { "value": "170" }, { "assign": { "y1": "vrai", "y2": "faux", "y3": "vrai", "y4": "faux" } } ] }, "expect": "mc:difference-rapport" },
+        { "response": { "parts": [ { "assign": { "x1": "meteorite", "x2": "meteorite", "x3": "volcan" } }, { "value": "18" }, { "assign": { "y1": "vrai", "y2": "vrai", "y3": "vrai", "y4": "faux" } } ] }, "expect": "mc:crise-totale" }
+      ]
+    },
+    {
+      "id": "st6-biodiversite-passee-sixieme",
+      "type": "composite",
+      "skill": "st6.bd.crises-biologiques",
+      "skills": ["st6.bd.paleoenvironnement"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:oubli-100", "mc:division-inverse", "mc:menace-disparu", "mc:fatalisme"],
+      "expectedSeconds": 480,
+      "prompt": "D'après l'IPBES (le groupe d'experts de l'ONU sur la biodiversité, rapport de 2019), environ **1 million** d'espèces animales et végétales sont menacées d'extinction, sur environ **8 millions** d'espèces estimées. Lors de la crise d'il y a 66 millions d'années, environ les **trois quarts** des espèces ont disparu.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel pourcentage des espèces est aujourd'hui menacé d'extinction ? (1 ÷ 8 × 100)",
+          "answer": 12.5,
+          "misconceptions": [
+            { "answer": 0.125, "id": "mc:oubli-100", "error": "methode", "feedback": "Tu as trouvé une fraction. Pour obtenir un pourcentage, il reste une multiplication à faire." },
+            { "answer": 800, "id": "mc:division-inverse", "error": "methode", "feedback": "Tu as divisé 8 par 1 : relis l'énoncé, on cherche la part des espèces menacées parmi toutes les espèces." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "z1", "label": "La part des espèces menacées aujourd'hui (1 sur 8) est plus petite que la part des espèces disparues il y a 66 millions d'années (3 sur 4).", "category": "vrai" },
+            { "id": "z2", "label": "Selon l'IPBES, le déclin actuel est surtout dû aux activités humaines : destruction des milieux, surexploitation, changement climatique, pollutions, espèces introduites.", "category": "vrai" },
+            { "id": "z3", "label": "Une espèce menacée d'extinction a déjà disparu.", "category": "faux" },
+            { "id": "z4", "label": "On ne peut plus rien faire pour les espèces menacées.", "category": "faux" }
+          ],
+          "misconceptions": [
+            { "item": "z3", "category": "vrai", "id": "mc:menace-disparu", "error": "notion", "feedback": "Relis le mot « menacée » : est-ce la même chose qu'« éteinte » ?" },
+            { "item": "z4", "category": "vrai", "id": "mc:fatalisme", "error": "raisonnement", "feedback": "Pense aux espèces qui sont revenues dans certaines régions après avoir été protégées. Le mot « menacée » laisse-t-il une possibilité d'agir ?" }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Pourquoi certains scientifiques parlent-ils d'une possible « sixième crise » ? Qu'est-ce qui la rend différente des cinq autres ?",
+          "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Je cite le grand nombre d'espèces menacées (environ 1 million) ou la rapidité du déclin", "keywords": [["million", "rapide", "vite", "nombreuses", "beaucoup"]] },
+            { "id": "c2", "label": "J'explique que sa cause est humaine, alors que les cinq autres avaient des causes naturelles", "keywords": [["humain", "homme", "activites"]] },
+            { "id": "c3", "label": "Je dis qu'on peut encore agir pour la limiter", "keywords": [["agir", "proteger", "eviter", "limiter", "encore"]] }
+          ],
+          "models": [
+            "On parle d'une sixième crise parce qu'environ 1 million d'espèces sont menacées et que le déclin est rapide. Elle est différente des cinq autres car elle est causée par les activités humaines, et non par des volcans ou une météorite. La bonne nouvelle, c'est qu'on peut encore agir en protégeant les milieux.",
+            "Beaucoup d'espèces sont menacées en peu de temps, comme lors d'une crise. Mais cette fois, la cause est humaine : destruction des milieux, surpêche, pollution. Comme la plupart de ces espèces ne sont pas encore éteintes, nous pouvons encore éviter leur disparition."
+          ]
+        }
+      ],
+      "hints": [
+        "Pourcentage = part ÷ total × 100.",
+        "« Menacée » ne veut pas dire « disparue ».",
+        "Les cinq grandes crises avaient des causes naturelles (volcans, météorite, changements du climat et des océans)."
+      ],
+      "solution": "1 ÷ 8 × 100 = 12,5 % des espèces sont menacées, une part bien plus petite que les trois quarts disparus il y a 66 millions d'années. Mais le déclin est rapide et il est dû aux activités humaines, alors que les cinq grandes crises avaient des causes naturelles. Une espèce menacée n'a pas encore disparu : protéger les milieux permet encore d'agir.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "12,5" }, { "assign": { "z1": "vrai", "z2": "vrai", "z3": "faux", "z4": "faux" } }, { "text": "On parle d'une sixième crise parce qu'environ 1 million d'espèces sont menacées. Elle est différente car elle est causée par les activités humaines. On peut encore agir en protégeant les milieux.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,125" }, { "assign": { "z1": "vrai", "z2": "vrai", "z3": "faux", "z4": "faux" } }, { "text": "On parle d'une sixième crise parce qu'environ 1 million d'espèces sont menacées. Elle est différente car elle est causée par les activités humaines. On peut encore agir en protégeant les milieux.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:oubli-100" },
+        { "response": { "parts": [ { "value": "12,5" }, { "assign": { "z1": "vrai", "z2": "vrai", "z3": "vrai", "z4": "faux" } }, { "text": "On parle d'une sixième crise parce qu'environ 1 million d'espèces sont menacées. Elle est différente car elle est causée par les activités humaines. On peut encore agir en protégeant les milieux.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:menace-disparu" },
+        { "response": { "parts": [ { "value": "12,5" }, { "assign": { "z1": "vrai", "z2": "vrai", "z3": "faux", "z4": "vrai" } }, { "text": "On parle d'une sixième crise parce qu'environ 1 million d'espèces sont menacées. Elle est différente car elle est causée par les activités humaines. On peut encore agir en protégeant les milieux.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:fatalisme" }
+      ]
+    }
+  ]
+}

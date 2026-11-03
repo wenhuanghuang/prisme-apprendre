@@ -1,0 +1,3314 @@
+{
+  "id": "st6-signaux",
+  "chapter": "6e-st-signaux",
+  "title": "Transmettre une information : les signaux",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": [
+    "st6.signaux.identifier",
+    "st6.signaux.applications",
+    "st6.signaux.coder"
+  ],
+  "status": "programme",
+  "programmes": [
+    "sciences-techno-c3-2023"
+  ],
+  "duration": 50,
+  "summary": "Émetteur, signal, récepteur ; signaux sonores, lumineux, électriques et ondes radio ; un code convenu (morse, binaire allumé / éteint) pour que le signal transporte une information ; applications de la vie courante (feux, alarmes, télécommande, téléphone, fibre optique).",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un appel au secours sans un mot",
+      "body": "La nuit, sur un petit bateau sans radio, ton moteur tombe en panne. Un autre bateau passe au loin, à plusieurs kilomètres : personne ne peut t’entendre crier. Tu n’as qu’une lampe de poche.\n\nComment faire comprendre que tu as besoin d’aide ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "📨",
+          "title": "Émetteur, signal, récepteur",
+          "body": "Pour transmettre une information, un **émetteur** envoie un **signal** qui voyage jusqu’à un **récepteur**. L’arbitre siffle (émetteur : le sifflet), le son voyage (signal sonore), les joueurs l’entendent (récepteurs). L’information : « le jeu s’arrête »."
+        },
+        {
+          "emoji": "🔊",
+          "title": "Des signaux de toutes sortes",
+          "body": "**Sonores** : sirène, sonnerie, voix. **Lumineux** : feu tricolore, clignotant, phare. **Électriques** : courant envoyé dans un fil (sonnette, téléphone fixe). **Ondes radio**, invisibles et sans fil : téléphone portable, Wi-Fi, radio.",
+          "reveal": {
+            "question": "Devine : pendant un orage, pourquoi voit-on l’éclair avant d’entendre le tonnerre ?",
+            "answer": "Les deux naissent en même temps, mais la lumière va beaucoup plus vite (300 000 km par seconde) que le son (340 m par seconde)."
+          }
+        },
+        {
+          "emoji": "🔤",
+          "title": "Un code convenu",
+          "body": "Un signal ne transmet une information que si l’émetteur et le récepteur connaissent **le même code** : feu rouge = arrêt. En **morse**, chaque lettre est une suite d’éclats courts (•) et longs (—) : S = • • • et O = — — —.",
+          "reveal": {
+            "question": "Devine : la nuit, comment un marin sait-il quel phare il voit ?",
+            "answer": "Chaque phare a son propre rythme d’éclats, noté sur les cartes marines : c’est son code."
+          }
+        },
+        {
+          "emoji": "💡",
+          "title": "Deux états : le binaire",
+          "body": "Allumé ou éteint, courant ou pas de courant : avec seulement **deux états**, notés **1** et **0**, on peut tout coder, des lettres, des nombres, des images. C’est le **binaire**, la langue des ordinateurs."
+        },
+        {
+          "emoji": "📱",
+          "title": "Des applications partout",
+          "body": "Feux de circulation, alarme incendie, clignotant, télécommande (lumière infrarouge, invisible), téléphone portable (ondes radio), Internet par **fibre optique** (des éclats de lumière très rapides), sonnette (signal électrique, puis sonore)."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L’expérience : un SOS avec une lampe",
+      "body": "Inès, sur un rocher, veut transmettre un message à Noé, sur un bateau. Regarde le message voyager.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          {
+            "type": "forme",
+            "id": "mer",
+            "shape": "rect",
+            "x": 0,
+            "y": 330,
+            "w": 800,
+            "h": 110,
+            "fill": "#93c5fd"
+          },
+          {
+            "type": "forme",
+            "id": "rocher",
+            "shape": "polygon",
+            "x": 0,
+            "y": 0,
+            "points": [
+              [
+                0,
+                440
+              ],
+              [
+                0,
+                292
+              ],
+              [
+                300,
+                292
+              ],
+              [
+                345,
+                440
+              ]
+            ],
+            "fill": "sable",
+            "stroke": "#a16207",
+            "width": 2
+          },
+          {
+            "type": "fil",
+            "id": "wa",
+            "points": [
+              [
+                130,
+                262
+              ],
+              [
+                173,
+                262
+              ]
+            ]
+          },
+          {
+            "type": "fil",
+            "id": "wb",
+            "points": [
+              [
+                237,
+                262
+              ],
+              [
+                262,
+                262
+              ],
+              [
+                262,
+                212
+              ],
+              [
+                217,
+                212
+              ],
+              [
+                217,
+                194
+              ]
+            ]
+          },
+          {
+            "type": "fil",
+            "id": "wc",
+            "points": [
+              [
+                193,
+                194
+              ],
+              [
+                193,
+                212
+              ],
+              [
+                30,
+                212
+              ],
+              [
+                30,
+                262
+              ],
+              [
+                50,
+                262
+              ]
+            ]
+          },
+          {
+            "type": "pile",
+            "id": "P",
+            "x": 90,
+            "y": 262,
+            "label": "4,5 V"
+          },
+          {
+            "type": "interrupteur",
+            "id": "K",
+            "x": 205,
+            "y": 262,
+            "closed": false,
+            "label": "bouton"
+          },
+          {
+            "type": "lampe",
+            "id": "L",
+            "x": 205,
+            "y": 160,
+            "on": 0,
+            "label": "lampe"
+          },
+          {
+            "type": "emoji",
+            "id": "ines",
+            "x": 92,
+            "y": 150,
+            "char": "🧒",
+            "size": 44,
+            "label": "Inès"
+          },
+          {
+            "type": "emoji",
+            "id": "bateau",
+            "x": 690,
+            "y": 300,
+            "char": "⛵",
+            "size": 70
+          },
+          {
+            "type": "emoji",
+            "id": "noe",
+            "x": 690,
+            "y": 222,
+            "char": "🧑",
+            "size": 40,
+            "label": "Noé"
+          },
+          {
+            "type": "rayon",
+            "id": "ray",
+            "from": [
+              231,
+              157
+            ],
+            "to": [
+              668,
+              220
+            ],
+            "color": "#facc15",
+            "width": 4,
+            "progress": 0
+          },
+          {
+            "type": "releve",
+            "id": "code",
+            "x": 290,
+            "y": 20,
+            "w": 200,
+            "title": "Le code (morse)",
+            "head": [
+              "lettre",
+              "signal"
+            ],
+            "rows": [
+              [
+                "S",
+                "• • •"
+              ],
+              [
+                "O",
+                "— — —"
+              ]
+            ],
+            "highlight": false,
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "recu",
+            "x": 545,
+            "y": 20,
+            "w": 230,
+            "title": "Noé note",
+            "head": [
+              "éclats reçus",
+              "lettre"
+            ],
+            "rows": [
+              [
+                "• • •",
+                "S"
+              ],
+              [
+                "— — —",
+                "O"
+              ],
+              [
+                "• • •",
+                "S"
+              ]
+            ],
+            "shown": 0,
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "msg",
+            "x": 470,
+            "y": 312,
+            "text": "",
+            "size": 24,
+            "bold": true
+          },
+          {
+            "type": "etiquette",
+            "id": "bin",
+            "x": 420,
+            "y": 262,
+            "text": "allumé = 1 ; éteint = 0",
+            "hidden": true
+          }
+        ],
+        "steps": [
+          {
+            "title": "L’émetteur et le récepteur",
+            "text": "Inès est sur un rocher, avec une lampe : une pile, un bouton et une ampoule. Noé est sur un bateau, bien trop loin pour l’entendre. Inès sera l’émettrice, Noé le récepteur, et le signal sera lumineux.",
+            "focus": [
+              "L",
+              "noe"
+            ]
+          },
+          {
+            "title": "Le code convenu",
+            "text": "Avant de partir, ils ont choisi un code : le morse. Chaque lettre est une suite d’éclats courts (des points) et longs (des traits). La lettre S, ce sont trois éclats courts ; la lettre O, trois éclats longs.",
+            "show": [
+              "code"
+            ],
+            "focus": [
+              "code"
+            ]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Inès envoie trois éclats courts, puis trois longs, puis trois courts. Que va lire Noé ?",
+              "choices": [
+                "SOS",
+                "OSO",
+                "SSS"
+              ],
+              "answer": 0,
+              "explain": "Trois courts = S, trois longs = O, trois courts = S : SOS, le signal de détresse connu dans le monde entier."
+            }
+          },
+          {
+            "title": "Le message voyage",
+            "text": "Inès appuie sur le bouton : la lampe s’allume, brièvement ou longuement. La lumière voyage jusqu’à Noé presque instantanément. Noé note chaque groupe d’éclats et le traduit grâce au code.",
+            "duration": 10,
+            "show": [
+              "recu"
+            ],
+            "do": [
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 0
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 0.35
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 0.35
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 0.35
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 0.35
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 0.35
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 0.35
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 0.7
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 0.7
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 0.7
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 0.7
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 0.7
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 0.7
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 1.05
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 1.05
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 1.05
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.05
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.05
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.05
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 1.4
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 1.4
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 1.4
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 1.4
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 1.4
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 1.4
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 1.75
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 1.75
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 1.75
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.75
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.75
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 1.75
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 2.8
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 2.8
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 2.8
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 2.8
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 2.8
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 2.8
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 3.85
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 3.85
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 3.85
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 3.85
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 3.85
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 3.85
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 4.2
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 4.2
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 4.2
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 4.2
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 4.2
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 4.2
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 5.25
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 5.25
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 5.25
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 5.25
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 5.25
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 5.25
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 5.6
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 5.6
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 5.6
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 5.6
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 5.6
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 5.6
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 6.65
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 6.65
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 6.65
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 6.65
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 6.65
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 6.65
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 7.7
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 7.7
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 7.7
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 7.7
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 7.7
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 7.7
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 8.05
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 8.05
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 8.05
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.05
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.05
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.05
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 8.4
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 8.4
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 8.4
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 8.4
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 8.4
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 8.4
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 8.75
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 8.75
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 8.75
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.75
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.75
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 8.75
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 9.1
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 9.1
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 9.1
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 9.1
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 9.1
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 9.1
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 9.45
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 9.45
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 9.45
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 9.45
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 9.45
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 9.45
+              },
+              {
+                "id": "recu",
+                "set": {
+                  "shown": 1
+                },
+                "at": 1.75
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Message : S"
+                },
+                "at": 1.75
+              },
+              {
+                "id": "recu",
+                "set": {
+                  "shown": 2
+                },
+                "at": 6.65
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Message : SO"
+                },
+                "at": 6.65
+              },
+              {
+                "id": "recu",
+                "set": {
+                  "shown": 3
+                },
+                "at": 9.45
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Message : SOS"
+                },
+                "at": 9.45
+              }
+            ],
+            "focus": [
+              "ray"
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Pendant le message, qu’est-ce qui distingue les éclats d’un S de ceux d’un O ?",
+              "choices": [
+                "Leur couleur",
+                "Leur durée : courts pour S, longs pour O",
+                "Le nombre d’éclats : plus nombreux pour O"
+              ],
+              "answer": 1,
+              "explain": "Les éclats ont tous la même couleur et il y en a trois par lettre ; seule leur durée change : brefs pour S, longs pour O."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Nouveau code : pendant chaque seconde, lampe allumée = 1, lampe éteinte = 0. Inès allume une seconde, éteint une seconde, puis rallume une seconde. Noé écrit…",
+              "choices": [
+                "101",
+                "010",
+                "111"
+              ],
+              "answer": 0,
+              "explain": "Allumé, éteint, allumé : 1, puis 0, puis 1. Avec seulement deux états, on écrit en binaire."
+            }
+          },
+          {
+            "title": "Deux états : le binaire",
+            "text": "Chaque seconde, la lampe est soit allumée (1), soit éteinte (0). Noé écrit 1, puis 0, puis 1. Avec seulement deux états, on peut tout coder : c’est le binaire, la langue des ordinateurs.",
+            "duration": 3.6,
+            "hide": [
+              "code",
+              "recu"
+            ],
+            "show": [
+              "bin"
+            ],
+            "do": [
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Noé écrit :"
+                },
+                "at": 0
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 0
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 0
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 1
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 1
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 1
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 1
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 1
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 1
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Noé écrit : 1"
+                },
+                "at": 1
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Noé écrit : 10"
+                },
+                "at": 2
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": true
+                },
+                "at": 2
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 1
+                },
+                "at": 2
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 1
+                },
+                "at": 2
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 1
+                },
+                "at": 2
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 1
+                },
+                "at": 2
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 1
+                },
+                "at": 2
+              },
+              {
+                "id": "K",
+                "set": {
+                  "closed": false
+                },
+                "at": 3
+              },
+              {
+                "id": "L",
+                "set": {
+                  "on": 0
+                },
+                "at": 3
+              },
+              {
+                "id": "ray",
+                "set": {
+                  "progress": 0
+                },
+                "at": 3
+              },
+              {
+                "id": "wa",
+                "set": {
+                  "current": 0
+                },
+                "at": 3
+              },
+              {
+                "id": "wb",
+                "set": {
+                  "current": 0
+                },
+                "at": 3
+              },
+              {
+                "id": "wc",
+                "set": {
+                  "current": 0
+                },
+                "at": 3
+              },
+              {
+                "id": "msg",
+                "set": {
+                  "text": "Noé écrit : 101"
+                },
+                "at": 3
+              }
+            ],
+            "focus": [
+              "bin"
+            ]
+          },
+          {
+            "title": "Partout autour de toi",
+            "text": "Ce principe sert tous les jours. La fibre optique transporte Internet sous forme d’éclats de lumière, des milliards chaque seconde. Ta télécommande envoie des éclats de lumière infrarouge, invisible pour nos yeux. Sans code commun, ce ne seraient que des clignotements !",
+            "ask": {
+              "kind": "expliquer",
+              "question": "Un promeneur sur la plage voit aussi les éclats d’Inès, mais il ne connaît pas le morse. Que reçoit-il ?",
+              "choices": [
+                "Le message SOS, comme Noé",
+                "Rien : la lumière n’est envoyée qu’à Noé",
+                "Le signal lumineux, mais pas le message : il ne peut pas le décoder"
+              ],
+              "answer": 2,
+              "explain": "La lumière arrive à tous ceux qui voient la lampe : c’est le signal. Mais seuls ceux qui connaissent le code convenu peuvent en tirer l’information « SOS »."
+            }
+          }
+        ],
+        "conclusion": "Un **émetteur** (la lampe d’Inès) envoie un **signal lumineux** à un **récepteur** (les yeux de Noé). Le signal ne transporte l’**information** que grâce à un **code convenu** : le morse (S = • • •, O = — — —), ou le binaire (allumé = 1, éteint = 0)."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : analyser un feu tricolore",
+      "steps": [
+        {
+          "text": "La situation : au carrefour, le feu passe au rouge, et la conductrice arrête sa voiture."
+        },
+        {
+          "text": "L’émetteur, c’est l’appareil qui envoie le signal : le feu tricolore."
+        },
+        {
+          "text": "Le signal, c’est ce qui voyage : de la lumière rouge. C’est un signal lumineux."
+        },
+        {
+          "text": "Le récepteur, c’est ce qui reçoit le signal : les yeux de la conductrice.",
+          "figure": {
+            "alt": "Schéma de la transmission : l’émetteur envoie un signal au récepteur.",
+            "w": 600,
+            "h": 120,
+            "items": [
+              {
+                "type": "rect",
+                "x": 10,
+                "y": 30,
+                "w": 150,
+                "h": 60,
+                "label": "Émetteur : le feu",
+                "fill": "orange"
+              },
+              {
+                "type": "arrow",
+                "from": [
+                  160,
+                  60
+                ],
+                "to": [
+                  400,
+                  60
+                ],
+                "label": "signal lumineux (rouge)"
+              },
+              {
+                "type": "rect",
+                "x": 400,
+                "y": 30,
+                "w": 190,
+                "h": 60,
+                "label": "Récepteur : les yeux",
+                "fill": "pc"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Le code convenu (le code de la route) dit : rouge = arrêt. L’information transmise est donc « arrêtez-vous »."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "exercises": [
+        "st6-signaux-types",
+        "st6-signaux-chaine",
+        "st6-signaux-morse",
+        "st6-signaux-applications",
+        "st6-signaux-mots",
+        "st6-signaux-orage",
+        "st6-signaux-telephone"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Je code et je décode",
+      "exercises": [
+        "st6-signaux-code-convenu",
+        "st6-signaux-inventer"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : une alarme pour Léna",
+      "body": "Une élève sourde doit, elle aussi, être prévenue en cas d’incendie. À ta classe de proposer une solution !",
+      "exercises": [
+        "st6-signaux-mission"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> Un **émetteur** envoie un **signal** (sonore, lumineux, électrique, ondes radio) à un **récepteur**. Le signal ne transporte une information que si tous deux connaissent le même **code**.\n\n- **Confondre l’appareil et le signal.** Le réveil est l’émetteur ; le signal, c’est le son qu’il produit.\n- **Oublier le code.** Sans code connu, on voit ou on entend le signal sans comprendre l’information.\n- **Croire que la télécommande envoie un son ou des ondes radio.** Elle envoie de la lumière infrarouge, invisible pour nos yeux.\n- **Croire que l’éclair et le tonnerre ne sont pas simultanés.** Ils naissent ensemble ; la lumière arrive bien avant le son."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Dans quelques jours, le moteur te reproposera un message à décoder et une question sur les types de signaux."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Combien de messages avec plusieurs lampes, et le code secret des phares.",
+      "exercises": [
+        "st6-signaux-combien",
+        "st6-signaux-phares"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : comparer la vitesse de la lumière et celle du son, et coder tout l’alphabet en binaire.",
+      "exercises": [
+        "st6-signaux-lumiere-son",
+        "st6-signaux-alphabet"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-signaux-types",
+      "type": "categorize",
+      "skill": "st6.signaux.identifier",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [
+        "mc:telecommande",
+        "mc:objet-signal"
+      ],
+      "expectedSeconds": 200,
+      "prompt": "Range chaque situation selon le type de signal qui transporte l’information.",
+      "categories": [
+        {
+          "id": "son",
+          "label": "Signal sonore"
+        },
+        {
+          "id": "lum",
+          "label": "Signal lumineux"
+        },
+        {
+          "id": "elec",
+          "label": "Signal électrique (dans un fil)"
+        },
+        {
+          "id": "radio",
+          "label": "Ondes radio (invisibles, sans fil)"
+        }
+      ],
+      "items": [
+        {
+          "id": "sifflet",
+          "label": "Le coup de sifflet de l’arbitre",
+          "category": "son"
+        },
+        {
+          "id": "feu",
+          "label": "Le feu tricolore qui passe au rouge",
+          "category": "lum"
+        },
+        {
+          "id": "clignotant",
+          "label": "Le clignotant d’une voiture",
+          "category": "lum"
+        },
+        {
+          "id": "sirene",
+          "label": "La sirène des pompiers",
+          "category": "son"
+        },
+        {
+          "id": "sonnette",
+          "label": "Le courant envoyé dans le fil, du bouton de la sonnette jusqu’à la sonnerie",
+          "category": "elec"
+        },
+        {
+          "id": "portable",
+          "label": "Un appel entre un téléphone portable et l’antenne-relais",
+          "category": "radio"
+        },
+        {
+          "id": "telecommande",
+          "label": "La télécommande de la télévision",
+          "category": "lum"
+        },
+        {
+          "id": "wifi",
+          "label": "Le Wi-Fi de la box Internet",
+          "category": "radio"
+        },
+        {
+          "id": "phare",
+          "label": "Un phare en mer, la nuit",
+          "category": "lum"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "telecommande",
+          "category": "radio",
+          "id": "mc:telecommande",
+          "error": "notion",
+          "feedback": "Filme le bout de la télécommande avec l’appareil photo d’un téléphone en appuyant sur un bouton : que vois-tu clignoter à l’écran ? Nos yeux ne le voient pas, la caméra si."
+        },
+        {
+          "item": "telecommande",
+          "category": "son",
+          "id": "mc:telecommande",
+          "error": "notion",
+          "feedback": "Entends-tu quelque chose quand tu appuies sur la télécommande ? Filme son bout avec l’appareil photo d’un téléphone : que vois-tu ?"
+        },
+        {
+          "item": "sonnette",
+          "category": "son",
+          "id": "mc:objet-signal",
+          "error": "notion",
+          "feedback": "La sonnerie produira bien un son, mais regarde ce qui est décrit : ce qui voyage dans le fil, entre le bouton et la sonnerie."
+        }
+      ],
+      "hints": [
+        "Sonore : on l’entend. Lumineux : on le voit (ou une caméra le voit).",
+        "Électrique : un courant qui circule dans un fil.",
+        "Ondes radio : invisibles, elles traversent l’air sans fil (téléphone portable, Wi-Fi)."
+      ],
+      "solution": "Sonores : le sifflet, la sirène. Lumineux : le feu tricolore, le clignotant, le phare, et la télécommande (lumière infrarouge, invisible pour nos yeux). Électrique : le courant dans le fil de la sonnette. Ondes radio : le téléphone portable et le Wi-Fi.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "sifflet": "son",
+              "feu": "lum",
+              "clignotant": "lum",
+              "sirene": "son",
+              "sonnette": "elec",
+              "portable": "radio",
+              "telecommande": "lum",
+              "wifi": "radio",
+              "phare": "lum"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "sifflet": "son",
+              "feu": "lum",
+              "clignotant": "lum",
+              "sirene": "son",
+              "sonnette": "elec",
+              "portable": "radio",
+              "telecommande": "radio",
+              "wifi": "radio",
+              "phare": "lum"
+            }
+          },
+          "expect": "mc:telecommande"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-chaine",
+      "type": "match",
+      "skill": "st6.signaux.identifier",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:emetteur-signal"
+      ],
+      "expectedSeconds": 180,
+      "skills": [
+        "st6.signaux.coder"
+      ],
+      "prompt": "Au collège, la sonnerie retentit : le cours est fini. Associe chaque élément à son rôle dans la transmission de l’information.",
+      "leftTitle": "Élément",
+      "rightTitle": "Rôle",
+      "left": [
+        {
+          "id": "sonnerie",
+          "label": "La sonnerie du collège"
+        },
+        {
+          "id": "son",
+          "label": "Le son qui traverse les couloirs"
+        },
+        {
+          "id": "oreilles",
+          "label": "Les oreilles des élèves"
+        },
+        {
+          "id": "code",
+          "label": "« Une sonnerie = fin du cours »"
+        },
+        {
+          "id": "info",
+          "label": "« Le cours est terminé »"
+        }
+      ],
+      "right": [
+        {
+          "id": "emetteur",
+          "label": "l’émetteur"
+        },
+        {
+          "id": "signal",
+          "label": "le signal"
+        },
+        {
+          "id": "recepteur",
+          "label": "le récepteur"
+        },
+        {
+          "id": "codeR",
+          "label": "le code convenu"
+        },
+        {
+          "id": "infoR",
+          "label": "l’information transmise"
+        }
+      ],
+      "pairs": {
+        "sonnerie": "emetteur",
+        "son": "signal",
+        "oreilles": "recepteur",
+        "code": "codeR",
+        "info": "infoR"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "sonnerie",
+            "signal"
+          ],
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "La sonnerie est un appareil accroché au mur. Est-ce elle qui voyage jusqu’aux élèves, ou ce qu’elle produit ?"
+        },
+        {
+          "pair": [
+            "son",
+            "emetteur"
+          ],
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "Le son ne se produit pas tout seul : il est fabriqué par un appareil, puis il voyage. Lequel des deux rôles correspond à ce qui voyage ?"
+        },
+        {
+          "pair": [
+            "code",
+            "infoR"
+          ],
+          "id": "mc:code-info",
+          "error": "notion",
+          "feedback": "Cette phrase est une règle connue de tous, qui permet de comprendre le signal. Ce n’est pas le message d’aujourd’hui lui-même."
+        }
+      ],
+      "hints": [
+        "L’émetteur produit le signal ; le récepteur le reçoit.",
+        "Le signal, c’est ce qui voyage de l’un à l’autre.",
+        "Le code est la règle ; l’information est ce que l’on comprend grâce à elle."
+      ],
+      "solution": "La sonnerie : l’émetteur. Le son : le signal (sonore). Les oreilles des élèves : le récepteur. « Une sonnerie = fin du cours » : le code convenu. « Le cours est terminé » : l’information transmise.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "sonnerie": "emetteur",
+              "son": "signal",
+              "oreilles": "recepteur",
+              "code": "codeR",
+              "info": "infoR"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "sonnerie": "signal",
+              "son": "emetteur",
+              "oreilles": "recepteur",
+              "code": "codeR",
+              "info": "infoR"
+            }
+          },
+          "expect": "mc:emetteur-signal"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-morse",
+      "type": "text",
+      "skill": "st6.signaux.coder",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:morse-lecture"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Noé reçoit ce message en morse (chaque groupe d’éclats est séparé par un espace) :\n\n**• • •   • —   • — • •   • • —   —**\n\nAvec le tableau du code, décode le mot.",
+      "figure": {
+        "alt": "Tableau du code morse de quelques lettres.",
+        "w": 620,
+        "h": 110,
+        "items": [
+          {
+            "type": "table",
+            "head": [
+              "Lettre",
+              "A",
+              "E",
+              "I",
+              "L",
+              "O",
+              "S",
+              "T",
+              "U"
+            ],
+            "rows": [
+              [
+                "Code",
+                "• —",
+                "•",
+                "• •",
+                "• — • •",
+                "— — —",
+                "• • •",
+                "—",
+                "• • —"
+              ]
+            ]
+          }
+        ]
+      },
+      "accept": [
+        "SALUT",
+        "salut",
+        "Salut"
+      ],
+      "misconceptions": [
+        {
+          "answer": "SALIT",
+          "id": "mc:morse-lecture",
+          "error": "lecture",
+          "feedback": "Regarde bien la quatrième lettre : compte ses éclats courts, et vérifie s’il y a un trait à la fin."
+        },
+        {
+          "answer": "SAEUT",
+          "id": "mc:morse-lecture",
+          "error": "lecture",
+          "feedback": "La troisième lettre contient quatre éclats : cherche dans le tableau le code complet, sans le couper."
+        },
+        {
+          "answer": "IALUT",
+          "id": "mc:morse-lecture",
+          "error": "lecture",
+          "feedback": "Compte les éclats de la première lettre : deux, ou trois ?"
+        }
+      ],
+      "hints": [
+        "Décode une lettre à la fois, groupe par groupe.",
+        "Trois courts : regarde dans le tableau.",
+        "La troisième lettre a quatre éclats : court, long, court, court."
+      ],
+      "solution": "• • • = S ; • — = A ; • — • • = L ; • • — = U ; — = T. Le mot est SALUT.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "SALUT"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "SALIT"
+          },
+          "expect": "mc:morse-lecture"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-applications",
+      "type": "match",
+      "skill": "st6.signaux.applications",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [
+        "mc:information-confondue"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Associe chaque signal à l’information qu’il transmet.",
+      "leftTitle": "Signal",
+      "rightTitle": "Information transmise",
+      "left": [
+        {
+          "id": "clignotant",
+          "label": "Le clignotant droit d’une voiture"
+        },
+        {
+          "id": "sirene",
+          "label": "La sirène et le gyrophare bleu d’une ambulance"
+        },
+        {
+          "id": "rouge",
+          "label": "Le feu rouge d’un carrefour"
+        },
+        {
+          "id": "alarme",
+          "label": "L’alarme incendie du collège"
+        },
+        {
+          "id": "voyant",
+          "label": "Le petit voyant rouge d’une télévision éteinte"
+        },
+        {
+          "id": "sifflet",
+          "label": "Le long coup de sifflet de l’arbitre à la 90e minute"
+        }
+      ],
+      "right": [
+        {
+          "id": "tourner",
+          "label": "« Je vais tourner à droite »"
+        },
+        {
+          "id": "passer",
+          "label": "« Laissez passer un véhicule d’urgence »"
+        },
+        {
+          "id": "arret",
+          "label": "« Arrêtez-vous »"
+        },
+        {
+          "id": "sortir",
+          "label": "« Sortez du bâtiment dans le calme »"
+        },
+        {
+          "id": "veille",
+          "label": "« L’appareil est en veille : il consomme encore un peu d’électricité »"
+        },
+        {
+          "id": "fin",
+          "label": "« Le match est terminé »"
+        },
+        {
+          "id": "pluie",
+          "label": "« Il va pleuvoir »"
+        }
+      ],
+      "pairs": {
+        "clignotant": "tourner",
+        "sirene": "passer",
+        "rouge": "arret",
+        "alarme": "sortir",
+        "voyant": "veille",
+        "sifflet": "fin"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "sirene",
+            "arret"
+          ],
+          "id": "mc:information-confondue",
+          "error": "notion",
+          "feedback": "Quand une ambulance arrive toutes sirènes hurlantes, que doivent faire les voitures devant elle : rester bloquées, ou lui libérer la route ?"
+        },
+        {
+          "pair": [
+            "voyant",
+            "pluie"
+          ],
+          "id": "mc:information-confondue",
+          "error": "notion",
+          "feedback": "Ce voyant appartient à la télévision : il renseigne sur l’état de l’appareil lui-même, pas sur le temps qu’il fait."
+        }
+      ],
+      "hints": [
+        "Chaque signal a un code connu de ceux qui le reçoivent.",
+        "Pense à ce que tu fais, ou à ce que font les autres, quand ce signal apparaît."
+      ],
+      "solution": "Clignotant : « je vais tourner ». Sirène et gyrophare : « laissez passer un véhicule d’urgence ». Feu rouge : « arrêtez-vous ». Alarme incendie : « sortez du bâtiment ». Voyant de veille : « l’appareil est en veille ». Sifflet final : « le match est terminé ».",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "clignotant": "tourner",
+              "sirene": "passer",
+              "rouge": "arret",
+              "alarme": "sortir",
+              "voyant": "veille",
+              "sifflet": "fin"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "clignotant": "tourner",
+              "sirene": "arret",
+              "rouge": "passer",
+              "alarme": "sortir",
+              "voyant": "veille",
+              "sifflet": "fin"
+            }
+          },
+          "expect": "mc:information-confondue"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-mots",
+      "type": "highlight",
+      "skill": "st6.signaux.identifier",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:emetteur-signal"
+      ],
+      "expectedSeconds": 200,
+      "prompt": "Dans ce récit de la journée de Sacha, plusieurs signaux transportent une information. Attention : un appareil qui produit ou reçoit un signal n’est pas le signal lui-même.",
+      "instruction": "Clique sur les quatre signaux (sons ou lumières qui voyagent), et seulement sur eux.",
+      "text": "À 7 h, la [sonnerie] du réveil me tire du lit. Sur le chemin du collège, le feu passe au rouge : sa [lumière rouge] me dit de m’arrêter. Une voiture lance un [coup de klaxon]. À la cantine, une [voix] annonce au micro que le dessert est une surprise. Le soir, mon téléphone affiche un message de ma cousine.",
+      "misconceptions": [
+        {
+          "word": "réveil",
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "Le réveil est l’objet posé sur la table de nuit. Qu’est-ce qui voyage de lui jusqu’à tes oreilles ?"
+        },
+        {
+          "word": "feu",
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "Le feu est un appareil fixé au carrefour. Qu’est-ce qui voyage de lui jusqu’à tes yeux ?"
+        },
+        {
+          "word": "téléphone",
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "Le téléphone est l’appareil qui reçoit et affiche le message : il ne voyage pas jusqu’à toi."
+        },
+        {
+          "word": "micro",
+          "id": "mc:emetteur-signal",
+          "error": "notion",
+          "feedback": "Le micro est un appareil qui capte le son. Cherche plutôt ce qui voyage jusqu’aux élèves."
+        }
+      ],
+      "hints": [
+        "Un signal voyage d’un émetteur à un récepteur.",
+        "Demande-toi : est-ce un objet, ou quelque chose qui se propage (son, lumière) ?",
+        "Il y a quatre signaux en tout : trois sons et une lumière."
+      ],
+      "solution": "Les quatre signaux : la sonnerie (son), la lumière rouge du feu, le coup de klaxon (son), la voix (son). Le réveil, le feu, le micro et le téléphone sont des appareils : ils produisent, captent ou reçoivent les signaux.",
+      "selfTest": [
+        {
+          "response": {
+            "selected": [
+              4,
+              22,
+              32,
+              37
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "selected": [
+              4,
+              22,
+              32,
+              37,
+              6
+            ]
+          },
+          "expect": "mc:emetteur-signal"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-orage",
+      "type": "numeric",
+      "skill": "st6.signaux.identifier",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:division-inversee",
+        "mc:addition"
+      ],
+      "expectedSeconds": 180,
+      "skills": [
+        "st6.mouvement.vitesse"
+      ],
+      "params": {
+        "t": {
+          "int": [
+            2,
+            9
+          ]
+        }
+      },
+      "prompt": "Pendant un orage, tu vois l’éclair, puis tu comptes **{t} secondes** avant d’entendre le tonnerre. La lumière de l’éclair t’arrive presque instantanément ; le son, lui, parcourt environ **340 m par seconde**. À quelle distance de toi est tombé l’éclair ? (écris l’unité)",
+      "answer": "340*t",
+      "unit": "m",
+      "misconceptions": [
+        {
+          "answer": "340/t",
+          "id": "mc:division-inversee",
+          "error": "methode",
+          "feedback": "Tu as divisé. Le son parcourt 340 m pendant CHAQUE seconde : pendant plusieurs secondes, va-t-il plus loin ou moins loin ?"
+        },
+        {
+          "answer": "340+t",
+          "id": "mc:addition",
+          "error": "methode",
+          "feedback": "Tu as ajouté des secondes à des mètres. Pendant chaque seconde, le son parcourt 340 m : combien de fois cette distance ?"
+        }
+      ],
+      "hints": [
+        "Pendant 1 s, le son parcourt 340 m.",
+        "distance = vitesse × durée.",
+        "Calcule 340 × {t}."
+      ],
+      "solution": "distance = 340 m/s × {t} s = {340*t} m, soit environ {340*t/1000} km. Astuce : environ 3 secondes de décalage par kilomètre.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{340*t} m"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{340*t/1000} km"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{340+t} m"
+          },
+          "expect": "mc:addition"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-telephone",
+      "type": "order",
+      "skill": "st6.signaux.applications",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:ordre-transmission"
+      ],
+      "expectedSeconds": 200,
+      "skills": [
+        "st6.signaux.identifier"
+      ],
+      "prompt": "Tu appelles ta cousine avec un téléphone portable. Remets dans l’ordre le voyage de ta voix, de ta bouche jusqu’à son oreille.",
+      "orderLabel": "de ta bouche à son oreille",
+      "errorType": "notion",
+      "items": [
+        {
+          "id": "voix",
+          "label": "Tu parles : ta voix est un signal sonore"
+        },
+        {
+          "id": "micro",
+          "label": "Le micro de ton téléphone transforme le son en signal électrique"
+        },
+        {
+          "id": "antenne",
+          "label": "L’antenne de ton téléphone envoie des ondes radio vers l’antenne-relais"
+        },
+        {
+          "id": "reseau",
+          "label": "Le réseau achemine le signal jusqu’au téléphone de ta cousine"
+        },
+        {
+          "id": "hp",
+          "label": "Le haut-parleur de son téléphone retransforme le signal en son"
+        }
+      ],
+      "hints": [
+        "Tout commence par un son, tout finit par un son.",
+        "Le micro capte ; le haut-parleur restitue.",
+        "Les ondes radio voyagent entre les antennes."
+      ],
+      "solution": "Voix (sonore) → micro (le son devient un signal électrique) → antenne (ondes radio) → réseau → haut-parleur (le signal redevient un son). Un même message change plusieurs fois de type de signal pendant son voyage !",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "voix",
+              "micro",
+              "antenne",
+              "reseau",
+              "hp"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "voix",
+              "antenne",
+              "micro",
+              "reseau",
+              "hp"
+            ]
+          },
+          "expect": "notion"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-code-convenu",
+      "type": "composite",
+      "skill": "st6.signaux.coder",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [
+        "mc:code-inconnu",
+        "mc:type-signal"
+      ],
+      "expectedSeconds": 240,
+      "skills": [
+        "st6.signaux.identifier"
+      ],
+      "prompt": "Le soir, Lou et Max, voisins, s’envoient des messages avec une lampe de poche, d’une fenêtre à l’autre. Leur code : **1 éclat = « oui »**, **2 éclats = « non »**, **3 éclats = « viens jouer »**.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Max voit 3 éclats. Que lui dit Lou ?",
+          "accept": [
+            "viens jouer",
+            "« viens jouer »",
+            "viens jouer !",
+            "de venir jouer",
+            "venir jouer"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:code-lecture",
+              "error": "lecture",
+              "feedback": "Recompte les éclats, puis relis le code ligne par ligne."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Max veut répondre « non ». Combien d’éclats envoie-t-il ?",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 1,
+              "id": "mc:code-lecture",
+              "error": "lecture",
+              "feedback": "Relis le code : un seul éclat, que veut-il dire ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Une voisine voit les éclats, mais ne comprend rien au message. Pourquoi ?",
+          "openEnded": true,
+          "accept": [
+            "elle ne connaît pas le code",
+            "elle ne connait pas le code",
+            "elle n’a pas le code",
+            "elle n'a pas le code",
+            "elle ne connaît pas leur code",
+            "elle ne connait pas leur code",
+            "parce qu’elle ne connaît pas le code",
+            "parce qu'elle ne connaît pas le code"
+          ],
+          "misconceptions": [
+            {
+              "answer": "elle est trop loin",
+              "id": "mc:code-inconnu",
+              "error": "notion",
+              "feedback": "Elle voit très bien les éclats ! Ce qui lui manque n’est pas la vue. Qu’est-ce que Lou et Max ont convenu entre eux, et qu’elle ignore ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel type de signal Lou et Max utilisent-ils ?",
+          "accept": [
+            "lumineux",
+            "un signal lumineux",
+            "signal lumineux",
+            "de la lumière",
+            "la lumière",
+            "lumière"
+          ],
+          "misconceptions": [
+            {
+              "answer": "sonore",
+              "id": "mc:type-signal",
+              "error": "notion",
+              "feedback": "Les messages passent d’une fenêtre à l’autre sans un bruit. Avec quel objet Lou les envoie-t-elle ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Relis le code dans l’énoncé.",
+        "Pour comprendre un signal, il faut connaître le code.",
+        "Une lampe de poche produit…"
+      ],
+      "solution": "3 éclats : « viens jouer ». Pour « non » : 2 éclats. La voisine voit les éclats, mais elle ne connaît pas le code convenu entre Lou et Max : le signal lui arrive, mais pas l’information. C’est un signal lumineux.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "viens jouer"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "value": "elle ne connaît pas le code"
+              },
+              {
+                "value": "lumineux"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "viens jouer"
+              },
+              {
+                "value": "2"
+              },
+              {
+                "value": "elle est trop loin"
+              },
+              {
+                "value": "lumineux"
+              }
+            ]
+          },
+          "expect": "mc:code-inconnu"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-inventer",
+      "type": "open",
+      "skill": "st6.signaux.coder",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [
+        "mc:code-inconnu"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "Invente un code avec une lampe de poche (ou un sifflet) pour dire à un ami, de loin, trois messages : « viens », « attends-moi », « j’ai faim ». Écris ton code, puis explique ce que ton ami doit savoir pour le comprendre.",
+      "minWords": 30,
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Un signal différent pour chacun des trois messages (nombre d’éclats, durée, rythme…)",
+          "keywords": [
+            [
+              "eclat",
+              "coup",
+              "court",
+              "long",
+              "fois"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Le type de signal est nommé (lumineux ou sonore)",
+          "keywords": [
+            [
+              "lumineux",
+              "lumiere",
+              "sonore",
+              "son"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "L’ami doit connaître le même code à l’avance",
+          "keywords": [
+            [
+              "connaitre",
+              "meme code",
+              "avant",
+              "apprendre",
+              "convenu"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Mon code lumineux : 1 éclat long = « viens » ; 2 éclats courts = « attends-moi » ; 3 éclats courts = « j’ai faim ». Mon ami doit connaître ce code avant : je le lui écris sur un papier. Sinon, il verrait seulement une lampe qui clignote sans comprendre le message."
+      ],
+      "hints": [
+        "Tu peux jouer sur le nombre d’éclats, leur durée ou leur rythme.",
+        "Chaque message doit avoir un signal différent.",
+        "Que doit faire ton ami avant de pouvoir lire tes messages ?"
+      ],
+      "solution": "Toute proposition est juste si chaque message a un signal différent, si le type de signal est clair et si l’ami connaît le code à l’avance. Exemple : 1 éclat long = « viens », 2 courts = « attends-moi », 3 courts = « j’ai faim ».",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Avec ma lampe, signal lumineux : 1 éclat long veut dire viens, 2 éclats courts attends-moi, 3 éclats courts j’ai faim. Mon ami doit connaître le même code avant, sinon il ne comprend pas.",
+            "selfCheck": {
+              "c1": true,
+              "c2": true,
+              "c3": true
+            }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-mission",
+      "type": "composite",
+      "skill": "st6.signaux.applications",
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:type-signal",
+        "mc:minute-100"
+      ],
+      "expectedSeconds": 600,
+      "skills": [
+        "st6.signaux.identifier"
+      ],
+      "params": {
+        "f": {
+          "choice": [
+            1,
+            2,
+            3
+          ]
+        }
+      },
+      "prompt": "Léna, une élève de ta classe, est sourde. Au collège, l’alarme incendie est une sirène. La principale demande à ta classe une proposition pour que Léna soit, elle aussi, prévenue en cas d’incendie.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quel type de signal Léna ne peut-elle pas percevoir ?",
+          "accept": [
+            "sonore",
+            "le signal sonore",
+            "un signal sonore",
+            "le son",
+            "les sons",
+            "signal sonore"
+          ],
+          "misconceptions": [
+            {
+              "answer": "lumineux",
+              "id": "mc:type-signal",
+              "error": "notion",
+              "feedback": "Léna voit parfaitement. Avec quel sens perçoit-on une sirène ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel type de signal proposer, en plus de la sirène ?",
+          "openEnded": true,
+          "accept": [
+            "lumineux",
+            "un signal lumineux",
+            "signal lumineux",
+            "une lumière qui clignote",
+            "un flash lumineux",
+            "des flashs lumineux",
+            "une lampe clignotante",
+            "des lumières clignotantes",
+            "un gyrophare"
+          ],
+          "misconceptions": [
+            {
+              "answer": "sonore",
+              "id": "mc:type-signal",
+              "error": "notion",
+              "feedback": "C’est justement le signal que Léna ne peut pas percevoir. Avec quel autre sens pourrait-elle être prévenue ?"
+            },
+            {
+              "answer": "un signal sonore",
+              "id": "mc:type-signal",
+              "error": "notion",
+              "feedback": "C’est justement le signal que Léna ne peut pas percevoir. Avec quel autre sens pourrait-elle être prévenue ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le flash d’alarme clignote {f} fois par seconde. Combien d’éclats envoie-t-il en une minute ?",
+          "answer": "f*60",
+          "misconceptions": [
+            {
+              "answer": "f*100",
+              "id": "mc:minute-100",
+              "error": "unite",
+              "feedback": "Une minute ne compte pas 100 secondes. Combien de secondes y a-t-il dans une minute ?"
+            },
+            {
+              "answer": "f*3600",
+              "id": "mc:minute-heure",
+              "error": "unite",
+              "feedback": "Tu as compté les secondes d’une heure entière. On demande une seule minute."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Rédige ta proposition à la principale : quel signal, à quels endroits du collège, et pourquoi il sera utile aussi à d’autres élèves.",
+          "minWords": 30,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "Un signal lumineux (flash) en plus de la sirène",
+              "keywords": [
+                [
+                  "lumineux",
+                  "flash",
+                  "clignot",
+                  "lumiere"
+                ]
+              ]
+            },
+            {
+              "id": "c2",
+              "label": "Des endroits précis (salles, couloirs, toilettes, cantine…)",
+              "keywords": [
+                [
+                  "toilettes",
+                  "couloir",
+                  "salle",
+                  "cantine",
+                  "cour",
+                  "gymnase"
+                ]
+              ]
+            },
+            {
+              "id": "c3",
+              "label": "Une utilité pour d’autres (endroits bruyants, élève qui porte un casque…)",
+              "keywords": [
+                [
+                  "bruit",
+                  "casque",
+                  "tout le monde",
+                  "autres",
+                  "aussi"
+                ]
+              ]
+            }
+          ],
+          "models": [
+            "Nous proposons d’ajouter des flashs lumineux qui clignotent en même temps que la sirène, dans les salles de classe, les couloirs, la cantine et les toilettes, pour que Léna voie l’alerte même quand elle est seule. C’est utile aussi pour tous les élèves dans les endroits bruyants, comme la cantine ou le gymnase."
+          ]
+        }
+      ],
+      "hints": [
+        "Une sirène s’entend ; il faut un signal qui se voit.",
+        "Une minute = 60 secondes.",
+        "Pense aux endroits où Léna peut se trouver seule."
+      ],
+      "solution": "Léna ne perçoit pas le signal sonore : on ajoute un signal lumineux (des flashs). En une minute, un flash qui clignote {f} fois par seconde envoie {f} × 60 = {f*60} éclats. On place les flashs dans les salles, les couloirs, la cantine et les toilettes. Les vrais systèmes d’alarme des établissements recevant du public prévoient d’ailleurs ces flashs lumineux.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "sonore"
+              },
+              {
+                "value": "lumineux"
+              },
+              {
+                "value": "{f*60}"
+              },
+              {
+                "text": "Nous proposons des flashs lumineux dans les couloirs, les salles et les toilettes, en même temps que la sirène. C’est utile aussi pour les autres élèves quand il y a du bruit.",
+                "selfCheck": {
+                  "c1": true,
+                  "c2": true,
+                  "c3": true
+                }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "sonore"
+              },
+              {
+                "value": "lumineux"
+              },
+              {
+                "value": "{f*100}"
+              },
+              {
+                "text": "Des flashs."
+              }
+            ]
+          },
+          "expect": "mc:minute-100"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-remed-emetteur",
+      "type": "composite",
+      "skill": "st6.signaux.identifier",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:emetteur-signal"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : l’**émetteur** est l’appareil qui produit le signal ; le **signal** est ce qui voyage (un son, une lumière, un courant, des ondes) ; le **récepteur** est ce qui le reçoit. Le facteur (émetteur) apporte une lettre (signal) à ta boîte aux lettres (récepteur).",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quelqu’un sonne à la porte. Quel appareil produit le son ?",
+          "accept": [
+            "la sonnette",
+            "sonnette",
+            "la sonnerie",
+            "sonnerie",
+            "le carillon"
+          ],
+          "misconceptions": [
+            {
+              "answer": "le son",
+              "id": "mc:emetteur-signal",
+              "error": "notion",
+              "feedback": "Le son est produit par un appareil fixé dans la maison. Lequel ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Le son est-il l’émetteur ou le signal ?",
+          "accept": [
+            "le signal",
+            "signal"
+          ],
+          "misconceptions": [
+            {
+              "answer": "l’émetteur",
+              "id": "mc:emetteur-signal",
+              "error": "notion",
+              "feedback": "L’émetteur, c’est l’appareil qui produit. Le son, lui, quitte la sonnette et traverse la maison : quel rôle joue ce qui voyage ?"
+            },
+            {
+              "answer": "l'émetteur",
+              "id": "mc:emetteur-signal",
+              "error": "notion",
+              "feedback": "L’émetteur, c’est l’appareil qui produit. Le son, lui, quitte la sonnette et traverse la maison : quel rôle joue ce qui voyage ?"
+            },
+            {
+              "answer": "émetteur",
+              "id": "mc:emetteur-signal",
+              "error": "notion",
+              "feedback": "L’émetteur, c’est l’appareil qui produit. Le son, lui, quitte la sonnette et traverse la maison : quel rôle joue ce qui voyage ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Qu’est-ce qui joue le rôle de récepteur ?",
+          "openEnded": true,
+          "accept": [
+            "les oreilles",
+            "nos oreilles",
+            "les oreilles des habitants",
+            "les oreilles de la personne",
+            "l’oreille",
+            "l'oreille",
+            "la personne dans la maison",
+            "les habitants"
+          ],
+          "misconceptions": [
+            {
+              "answer": "la sonnette",
+              "id": "mc:emetteur-signal",
+              "error": "notion",
+              "feedback": "La sonnette produit le son. Qui, ou quoi, le reçoit dans la maison ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Facteur → lettre → boîte aux lettres.",
+        "Ce qui voyage, c’est le signal."
+      ],
+      "solution": "La sonnette est l’émetteur, le son est le signal, les oreilles des habitants sont le récepteur.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "la sonnette"
+              },
+              {
+                "value": "le signal"
+              },
+              {
+                "value": "les oreilles"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "la sonnette"
+              },
+              {
+                "value": "l’émetteur"
+              },
+              {
+                "value": "les oreilles"
+              }
+            ]
+          },
+          "expect": "mc:emetteur-signal"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-remed-code",
+      "type": "composite",
+      "skill": "st6.signaux.coder",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": [
+        "mc:code-inconnu"
+      ],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : un signal n’apporte une information qu’à celui qui connaît **le code**. Sur les plages surveillées, un drapeau hissé au poste de secours suit un code : **vert** = baignade surveillée sans danger particulier ; **jaune** = baignade dangereuse mais surveillée ; **rouge** = baignade interdite.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Le drapeau rouge est hissé. Que signifie-t-il ?",
+          "openEnded": true,
+          "accept": [
+            "baignade interdite",
+            "la baignade est interdite",
+            "interdit de se baigner",
+            "il est interdit de se baigner",
+            "on ne peut pas se baigner",
+            "on n’a pas le droit de se baigner",
+            "on n'a pas le droit de se baigner",
+            "interdiction de se baigner"
+          ],
+          "misconceptions": [
+            {
+              "answer": "baignade surveillée",
+              "id": "mc:code-lecture",
+              "error": "lecture",
+              "feedback": "Relis le code ligne par ligne : à quelle couleur correspond cette information ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un touriste qui ne connaît pas ce code comprend-il l’information ? (oui ou non)",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:code-inconnu",
+              "error": "notion",
+              "feedback": "Il voit bien le drapeau… mais sait-il ce que veut dire sa couleur, s’il n’a jamais appris la règle ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quand le danger arrive, les sauveteurs donnent aussi de grands coups de sifflet. Quel type de signal est-ce ?",
+          "accept": [
+            "sonore",
+            "un signal sonore",
+            "signal sonore",
+            "le son",
+            "un son"
+          ],
+          "misconceptions": [
+            {
+              "answer": "lumineux",
+              "id": "mc:type-signal",
+              "error": "notion",
+              "feedback": "Un sifflet se voit-il, ou s’entend-il ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Relis le code donné dans le rappel.",
+        "Sans le code, on voit le signal sans comprendre l’information."
+      ],
+      "solution": "Drapeau rouge : baignade interdite. Sans connaître le code, le touriste voit le drapeau mais ne comprend pas l’information : c’est pour cela que le code est affiché au poste de secours. Le sifflet est un signal sonore.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "baignade interdite"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "sonore"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "baignade interdite"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "sonore"
+              }
+            ]
+          },
+          "expect": "mc:code-inconnu"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-combien",
+      "type": "table",
+      "skill": "st6.signaux.coder",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ajoute-2"
+      ],
+      "expectedSeconds": 300,
+      "prompt": "Avec **une** lampe, allumée (1) ou éteinte (0), on peut envoyer **2** messages différents. Avec **deux** lampes : 00, 01, 10, 11, soit **4** messages. Complète le tableau (écris seulement les nombres).",
+      "columns": [
+        "Nombre de lampes",
+        "Nombre de messages différents"
+      ],
+      "rows": [
+        [
+          "1",
+          "2"
+        ],
+        [
+          "2",
+          "4"
+        ],
+        [
+          "3",
+          "?r2c1"
+        ],
+        [
+          "4",
+          "?r3c1"
+        ],
+        [
+          "5",
+          "?r4c1"
+        ]
+      ],
+      "cells": {
+        "r2c1": {
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 6,
+              "id": "mc:ajoute-2",
+              "error": "raisonnement",
+              "feedback": "Tu as ajouté 2 à chaque lampe. Écris tous les messages de deux lampes, puis ajoute une troisième lampe allumée ou éteinte devant chacun : combien en obtiens-tu ?"
+            }
+          ]
+        },
+        "r3c1": {
+          "answer": 16,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:ajoute-2",
+              "error": "raisonnement",
+              "feedback": "Chaque lampe ajoutée ne donne pas seulement 2 messages de plus : elle double les possibilités, car chaque message existant peut se faire avec la nouvelle lampe allumée ou éteinte."
+            }
+          ]
+        },
+        "r4c1": {
+          "answer": 32,
+          "misconceptions": [
+            {
+              "answer": 10,
+              "id": "mc:ajoute-2",
+              "error": "raisonnement",
+              "feedback": "Chaque lampe ajoutée ne donne pas seulement 2 messages de plus : elle double les possibilités."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Avec 3 lampes : chaque message de 2 lampes peut être suivi de 0 ou de 1.",
+        "À chaque lampe ajoutée, le nombre de messages double.",
+        "2, 4, 8, …"
+      ],
+      "solution": "3 lampes : 2 × 4 = 8 messages ; 4 lampes : 2 × 8 = 16 ; 5 lampes : 2 × 16 = 32. Chaque lampe ajoutée double le nombre de messages possibles.",
+      "selfTest": [
+        {
+          "response": {
+            "cells": {
+              "r2c1": "8",
+              "r3c1": "16",
+              "r4c1": "32"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "cells": {
+              "r2c1": "6",
+              "r3c1": "8",
+              "r4c1": "10"
+            }
+          },
+          "expect": "mc:ajoute-2"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-phares",
+      "type": "composite",
+      "skill": "st6.signaux.coder",
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:multiplie",
+        "mc:code-rythme"
+      ],
+      "expectedSeconds": 300,
+      "skills": [
+        "st6.signaux.applications"
+      ],
+      "prompt": "La nuit, deux phares éclairent la côte. Le phare A émet **1 éclat toutes les 5 secondes**. Le phare B émet **2 éclats rapprochés toutes les 10 secondes**.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien d’éclats le phare A émet-il en une minute ?",
+          "answer": 12,
+          "misconceptions": [
+            {
+              "answer": 300,
+              "id": "mc:multiplie",
+              "error": "methode",
+              "feedback": "Tu as multiplié 60 par 5. Un éclat toutes les 5 secondes : combien de fois 5 secondes dans une minute ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien d’éclats le phare B émet-il en une minute ?",
+          "answer": 12,
+          "misconceptions": [
+            {
+              "answer": 6,
+              "id": "mc:oubli-groupe",
+              "error": "raisonnement",
+              "feedback": "Tu as compté les groupes. Chaque groupe contient plusieurs éclats : relis l’énoncé."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Les deux phares envoient autant d’éclats par minute. Comment un marin sait-il lequel il voit ?",
+          "openEnded": true,
+          "accept": [
+            "au rythme",
+            "à leur rythme",
+            "grâce au rythme",
+            "par le rythme",
+            "le rythme des éclats",
+            "les éclats vont par deux",
+            "les éclats groupés par deux",
+            "au rythme des éclats"
+          ],
+          "misconceptions": [
+            {
+              "answer": "il ne peut pas",
+              "id": "mc:code-rythme",
+              "error": "notion",
+              "feedback": "Le nombre d’éclats est le même, mais regarde comment ils sont répartis dans le temps : seul ou par groupes ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Une minute = 60 secondes.",
+        "60 ÷ 5 = ? et 60 ÷ 10 = ? groupes de 2 éclats.",
+        "Compare la façon dont les éclats se suivent."
+      ],
+      "solution": "Phare A : 60 ÷ 5 = 12 éclats par minute. Phare B : 60 ÷ 10 = 6 groupes de 2, soit 12 éclats. Le nombre est le même, mais le rythme diffère (éclats isolés ou groupés par deux) : chaque phare a son propre code, inscrit sur les cartes marines, ce qui permet au marin de savoir où il est.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "12"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "au rythme"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "300"
+              },
+              {
+                "value": "12"
+              },
+              {
+                "value": "au rythme"
+              }
+            ]
+          },
+          "expect": "mc:multiplie"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-lumiere-son",
+      "type": "composite",
+      "skill": "st6.signaux.identifier",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:km-m",
+        "mc:difference-rapport"
+      ],
+      "expectedSeconds": 420,
+      "skills": [
+        "st6.mouvement.conversions"
+      ],
+      "prompt": "La lumière parcourt environ **300 000 km par seconde**. Le son, dans l’air, environ **340 m par seconde**.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de mètres la lumière parcourt-elle en une seconde ?",
+          "answer": 300000000,
+          "misconceptions": [
+            {
+              "answer": 300000,
+              "id": "mc:km-m",
+              "error": "unite",
+              "feedback": "Ce nombre est en kilomètres. Combien de mètres y a-t-il dans un kilomètre ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois la lumière va-t-elle plus vite que le son ? (arrondis au millier)",
+          "answer": "300000000/340",
+          "rel": 0.01,
+          "misconceptions": [
+            {
+              "answer": "300000000-340",
+              "id": "mc:difference-rapport",
+              "error": "methode",
+              "feedback": "Tu as calculé une différence. « Combien de fois plus » demande une division."
+            },
+            {
+              "answer": "300000/340",
+              "id": "mc:km-m",
+              "error": "unite",
+              "feedback": "Avant de diviser, les deux vitesses doivent être dans la même unité : des mètres par seconde."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Un éclair tombe à 3 km. Combien de secondes le tonnerre met-il pour arriver jusqu’à toi ? (arrondis à l’unité)",
+          "answer": 9,
+          "tolerance": 0.5,
+          "misconceptions": [
+            {
+              "answer": 0,
+              "id": "mc:son-instantane",
+              "error": "notion",
+              "feedback": "C’est la lumière qui arrive presque instantanément. Le son va beaucoup moins vite : 3 km, c’est combien de fois 340 m ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "1 km = 1 000 m.",
+        "« Combien de fois » : divise 300 000 000 par 340.",
+        "Pour le tonnerre : 3 000 m ÷ 340 m par seconde."
+      ],
+      "solution": "300 000 km/s = 300 000 000 m/s. 300 000 000 ÷ 340 ≈ 882 000 : la lumière va environ 882 000 fois plus vite que le son. Le tonnerre d’un éclair à 3 km met 3 000 ÷ 340 ≈ 9 s ; sa lumière, seulement un centième de milliseconde.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "300000000"
+              },
+              {
+                "value": "882000"
+              },
+              {
+                "value": "9"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "300000"
+              },
+              {
+                "value": "882000"
+              },
+              {
+                "value": "9"
+              }
+            ]
+          },
+          "expect": "mc:km-m"
+        }
+      ]
+    },
+    {
+      "id": "st6-signaux-alphabet",
+      "type": "composite",
+      "skill": "st6.signaux.coder",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": [
+        "mc:ajoute-2",
+        "mc:une-par-lettre"
+      ],
+      "expectedSeconds": 420,
+      "prompt": "On veut coder les **26 lettres** de l’alphabet avec une rangée de lampes, chacune allumée (1) ou éteinte (0) : un code différent pour chaque lettre.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Avec 4 lampes, combien de codes différents peut-on former ?",
+          "answer": 16,
+          "misconceptions": [
+            {
+              "answer": 8,
+              "id": "mc:ajoute-2",
+              "error": "raisonnement",
+              "feedback": "Tu as ajouté 2 codes par lampe. Chaque lampe ajoutée double le nombre de codes : repars de 2 codes pour une lampe."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Est-ce suffisant pour les 26 lettres ? (oui ou non)",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:ajoute-2",
+              "error": "raisonnement",
+              "feedback": "Compare le nombre de codes obtenus au nombre de lettres à coder."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de lampes faut-il au minimum ?",
+          "answer": 5,
+          "misconceptions": [
+            {
+              "answer": 26,
+              "id": "mc:une-par-lettre",
+              "error": "raisonnement",
+              "feedback": "Une lampe par lettre fonctionnerait, mais c’est beaucoup trop ! En combinant les lampes, chacune allumée ou éteinte, il en faut bien moins."
+            },
+            {
+              "answer": 13,
+              "id": "mc:une-par-lettre",
+              "error": "raisonnement",
+              "feedback": "Chaque lampe ajoutée double le nombre de codes : 2, 4, 8, … À partir de combien de lampes dépasse-t-on 26 ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "1 lampe : 2 codes ; 2 lampes : 4 ; 3 lampes : 8…",
+        "Continue à doubler jusqu’à dépasser 26.",
+        "Les ordinateurs utilisent ce principe avec des 0 et des 1."
+      ],
+      "solution": "4 lampes : 2 × 2 × 2 × 2 = 16 codes, moins que 26. 5 lampes : 32 codes, c’est suffisant. Il faut donc au minimum 5 lampes. Les ordinateurs codent ainsi les lettres avec des suites de 0 et de 1.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "16"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "5"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "16"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "26"
+              }
+            ]
+          },
+          "expect": "mc:une-par-lettre"
+        }
+      ]
+    }
+  ]
+}

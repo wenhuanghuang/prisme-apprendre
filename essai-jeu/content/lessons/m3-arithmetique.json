@@ -1,0 +1,494 @@
+{
+  "id": "m3-arithmetique",
+  "chapter": "m3-ch-nombres",
+  "title": "Facteurs premiers, fractions irréductibles et calcul avec les rationnels",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.arith.decomposer", "m3.arith.irreductible", "m3.arith.problemes", "m3.rationnels.problemes"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Décomposer des entiers de plusieurs chiffres en facteurs premiers, s'en servir pour rendre une fraction irréductible et pour résoudre des problèmes de partage, et calculer avec les nombres rationnels dans des problèmes (priorités, fraction d'un reste).",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le mystère des cigales",
+      "body": "En Amérique du Nord, certaines cigales vivent **13 ou 17 ans** sous terre, puis sortent toutes ensemble. 13 et 17 : deux nombres premiers ! Selon une hypothèse des biologistes, ce n'est pas un hasard.\n\nImagine un prédateur qui revient tous les 4 ans. Avec un cycle de 12 ans, les cigales le croiseraient à chaque sortie. Avec un cycle de 17 ans, tous les combien d'années le croiseraient-elles ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🌳", "title": "Décomposer en facteurs premiers",
+          "body": "Tout entier supérieur ou égal à 2 s'écrit comme un **produit de nombres premiers**, d'une seule façon (à l'ordre près). Méthode : diviser par 2 tant qu'on peut, puis par 3, 5, 7, 11, 13… On regroupe les facteurs égaux avec des puissances : $2 940 = 2² × 3 × 5 × 7²$.",
+          "example": "Par 2 : dernier chiffre pair. Par 3 : somme des chiffres divisible par 3. Par 5 : dernier chiffre 0 ou 5.",
+          "reveal": { "question": "Devine : 2 027, l'année de ton brevet, est-il un nombre premier ?", "answer": "Oui ! Aucun des nombres premiers 2, 3, 5, 7, …, 43 ne divise 2 027, et 47 × 47 = 2 209 dépasse déjà 2 027 : inutile de chercher plus loin." }
+        },
+        {
+          "emoji": "✂️", "title": "Rendre une fraction irréductible",
+          "body": "On décompose le numérateur et le dénominateur, puis on simplifie par **tous** les facteurs premiers communs. $180/252 = (2² × 3² × 5)/(2² × 3² × 7) = 5/7$. Une fraction est **irréductible** quand il ne reste aucun facteur premier commun."
+        },
+        {
+          "emoji": "➗", "title": "Calculer avec les rationnels",
+          "body": "Les priorités restent les mêmes : multiplications et divisions avant additions et soustractions. Pour additionner, on prend un **dénominateur commun**. Pour multiplier, numérateurs entre eux et dénominateurs entre eux. Pour diviser, on multiplie par l'inverse. On donne le résultat **irréductible**.",
+          "example": "$2/3 + 1/6 × (4/5) = 2/3 + 2/15 = 10/15 + 2/15 = 4/5$",
+          "reveal": { "question": "Devine : 1/2 + 1/3 est-il égal à 2/5 ?", "answer": "Non ! 1/2 + 1/3 = 3/6 + 2/6 = 5/6. D'ailleurs 2/5 est plus petit que 1/2 : impossible en ajoutant un nombre positif." }
+        },
+        {
+          "emoji": "🍰", "title": "Fraction d'un reste",
+          "body": "« Il mange 1/4 du gâteau, puis les 2/3 **du reste**. » Le reste vaut $1 − 1/4 = 3/4$ du gâteau, et les 2/3 du reste valent $2/3 × (3/4) = 1/2$ du gâteau. Prendre une fraction d'une quantité, c'est **multiplier**. Piège classique : prendre les 2/3 du gâteau entier."
+        },
+        {
+          "emoji": "🧮", "title": "Diviseurs communs et partages",
+          "body": "Pour faire le plus grand nombre de lots identiques, on cherche le **plus grand diviseur commun** : le produit des facteurs premiers communs, chacun avec le **plus petit** exposant. Pour que deux cycles se retrouvent, on cherche le **plus petit multiple commun**.",
+          "example": "$84 = 2² × 3 × 7$ et $120 = 2³ × 3 × 5$ : plus grand diviseur commun $2² × 3 = 12$."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Rendre 1 386/1 575 irréductible",
+      "steps": [
+        { "text": "On décompose 1 386 : il est pair, puis la somme de ses chiffres est divisible par 3, deux fois ; il reste 77 = 7 × 11.", "math": "1 386 = 2 × 3² × 7 × 11" },
+        { "text": "On décompose 1 575 : il se termine par 5, la somme de ses chiffres (18) est divisible par 9.", "math": "1 575 = 3² × 5² × 7" },
+        { "text": "On écrit la fraction avec ces produits et on repère les facteurs communs : $3²$ et 7.", "math": "1 386/1 575 = (2 × 3² × 7 × 11)/(3² × 5² × 7)" },
+        { "text": "On simplifie par $3² × 7 = 63$ : il reste 2 × 11 en haut et $5²$ en bas.", "math": "1 386/1 575 = 22/25" },
+        { "text": "22 = 2 × 11 et 25 = 5² n'ont plus aucun facteur premier commun : la fraction est irréductible. Contrôle à la calculatrice : les deux fractions valent 0,88.", "math": "" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Garde sous les yeux les nombres premiers : 2, 3, 5, 7, 11, 13, 17, 19, 23… et les critères de divisibilité par 2, 3, 5 et 9.",
+      "exercises": ["m3-arithmetique-associer", "m3-arithmetique-arbre", "m3-arithmetique-irreductibles", "m3-arithmetique-simplifier", "m3-arithmetique-priorites", "m3-arithmetique-verif"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m3-arithmetique-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m3-arithmetique-colis", "m3-arithmetique-reste"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : carreler le mur sans rien découper",
+      "body": "Yanis refait sa salle de bains. Les carreaux doivent couvrir le mur exactement, sans une seule découpe : les facteurs premiers vont trouver la bonne taille.",
+      "exercises": ["m3-arithmetique-mur"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** Tout entier supérieur ou égal à 2 se décompose, de façon unique, en produit de facteurs premiers. Pour rendre une fraction irréductible, on simplifie par tous les facteurs premiers communs au numérateur et au dénominateur. Avec les fractions : priorités, dénominateur commun pour additionner, résultat irréductible.\n\n- **Simplifier en soustrayant.** $(N − 3)/(D − 3)$ n'est pas égale à $N/D$ : simplifier, c'est diviser.\n- **S'arrêter trop tôt.** $91/130$ a l'air irréductible, mais $91 = 7 × 13$ et $130 = 2 × 5 × 13$.\n- **« Du reste » ou « du total » ?** Les 2/3 du reste, ce n'est pas les 2/3 de la quantité de départ.\n- **Additionner numérateurs et dénominateurs.** $1/2 + 1/3$ ne vaut pas $2/5$."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des décompositions et des fractions à simplifier dans quelques jours. Défi pour la route : décompose 2 028 en produit de facteurs premiers."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Le calendrier des cigales et de leurs prédateurs, puis le secret des zéros à la fin de 1 × 2 × 3 × … × 100.",
+      "exercises": ["m3-arithmetique-cigales", "m3-arithmetique-zeros"]
+    },
+    "expert": {
+      "intro": "Un problème complet comme au brevet, puis une règle surprenante : quelles fractions ont une écriture décimale qui s'arrête ?",
+      "exercises": ["m3-arithmetique-brevet", "m3-arithmetique-decimaux"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-arithmetique-associer", "type": "match", "skill": "m3.arith.decomposer", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:exposants-inverses", "mc:facteur-en-trop"], "expectedSeconds": 180,
+      "prompt": "Associe chaque nombre à sa décomposition en produit de facteurs premiers. Deux décompositions ne servent à rien : calcule les produits pour ne pas te faire piéger !",
+      "leftTitle": "Nombre", "rightTitle": "Décomposition",
+      "left": [
+        { "id": "n360", "label": "360" }, { "id": "n540", "label": "540" }, { "id": "n378", "label": "378" },
+        { "id": "n252", "label": "252" }, { "id": "n420", "label": "420" }, { "id": "n294", "label": "294" }
+      ],
+      "right": [
+        { "id": "d1", "label": "2³ × 3² × 5" }, { "id": "d2", "label": "2² × 3³ × 5" }, { "id": "d3", "label": "2 × 3³ × 7" },
+        { "id": "d4", "label": "2² × 3² × 7" }, { "id": "d5", "label": "2² × 3 × 5 × 7" }, { "id": "d6", "label": "2 × 3 × 7²" },
+        { "id": "d7", "label": "2³ × 3² × 7" }, { "id": "d8", "label": "2 × 3² × 7" }
+      ],
+      "pairs": { "n360": "d1", "n540": "d2", "n378": "d3", "n252": "d4", "n420": "d5", "n294": "d6" },
+      "misconceptions": [
+        { "pair": ["n360", "d2"], "id": "mc:exposants-inverses", "error": "calcul", "feedback": "Calcule 2² × 3³ × 5 = 4 × 27 × 5 : ce produit ne vaut pas 360. On ne peut pas échanger les exposants." },
+        { "pair": ["n540", "d1"], "id": "mc:exposants-inverses", "error": "calcul", "feedback": "Calcule 2³ × 3² × 5 = 8 × 9 × 5 : ce produit ne vaut pas 540. On ne peut pas échanger les exposants." },
+        { "pair": ["n252", "d7"], "id": "mc:facteur-en-trop", "error": "calcul", "feedback": "Calcule 2³ × 3² × 7 : tu obtiens le double de 252. Il y a un facteur 2 en trop." },
+        { "pair": ["n252", "d8"], "id": "mc:facteur-oublie", "error": "calcul", "feedback": "Calcule 2 × 3² × 7 : tu obtiens la moitié de 252. Il manque un facteur 2." }
+      ],
+      "hints": ["Commence par les nombres faciles : 294 est le seul qui contient deux facteurs 7.", "Calcule les produits : $2³ × 3² × 5 = 8 × 9 × 5$.", "Pour départager 360 et 540, divise-les par 2 autant de fois que possible."],
+      "solution": "$360 = 2³ × 3² × 5$ ; $540 = 2² × 3³ × 5$ ; $378 = 2 × 3³ × 7$ ; $252 = 2² × 3² × 7$ ; $420 = 2² × 3 × 5 × 7$ ; $294 = 2 × 3 × 7²$. Les décompositions $2³ × 3² × 7 = 504$ et $2 × 3² × 7 = 126$ ne correspondent à aucun nombre de la liste.",
+      "selfTest": [
+        { "response": { "pairs": { "n360": "d1", "n540": "d2", "n378": "d3", "n252": "d4", "n420": "d5", "n294": "d6" } }, "expect": "correct" },
+        { "response": { "pairs": { "n360": "d2", "n540": "d1", "n378": "d3", "n252": "d4", "n420": "d5", "n294": "d6" } }, "expect": "mc:exposants-inverses" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-arbre", "type": "steps", "mode": "calcul", "final": "premiers", "skill": "m3.arith.decomposer", "skills": ["m4.puissances"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["forme", "mc:facteur-oublie"], "expectedSeconds": 240,
+      "params": { "a": { "int": [1, 4] }, "b": { "int": [0, 3] }, "c": { "int": [0, 2] }, "d": { "int": [0, 1] }, "e": { "int": [0, 1] }, "n": { "expr": "2^a*3^b*5^c*7^d*11^e" } },
+      "constraints": ["b + c + d + e >= 2", "n >= 500", "n <= 6000"],
+      "start": "n", "minSteps": 2,
+      "prompt": "Décompose {n} en produit de facteurs premiers. Divise par 2 tant que c'est possible, puis par 3, 5, 7, 11… Écris une étape par ligne, par exemple « {n} = 2 × {n/2} », et termine par un produit de facteurs premiers (les puissances sont permises).",
+      "misconceptions": [
+        { "answer": "n/2", "id": "mc:facteur-oublie", "error": "calcul", "feedback": "ta ligne ne vaut plus {n} : un facteur a disparu en route. Multiplie tes facteurs pour vérifier que tu retrouves bien {n}." }
+      ],
+      "hints": ["{n} est pair : commence par $ {n} = 2 × {n/2} $.", "Continue avec {n/2} : encore pair ? Sinon, teste 3 (somme des chiffres), 5 (dernier chiffre), puis 7 et 11.", "Regroupe les facteurs égaux avec des puissances : $2 × 2 × 2 = 2³$."],
+      "solution": "En divisant successivement par 2, 3, 5, 7 et 11, on trouve que, dans la décomposition de {n}, le facteur 2 apparaît {a} fois, le facteur 3 apparaît {b} fois, le facteur 5 {c} fois, le facteur 7 {d} fois et le facteur 11 {e} fois (0 fois : il n'apparaît pas). Vérification : en multipliant tous ces facteurs, on retrouve {n}.",
+      "selfTest": [
+        { "response": { "lines": ["{n} = 2 × {n/2}", "2^{a} × 3^{b} × 5^{c} × 7^{d} × 11^{e}"] }, "expect": "correct" },
+        { "response": { "lines": ["{n} = 2 × {n/2}"] }, "expect": "forme" },
+        { "response": { "lines": ["{n/2}"] }, "expect": "mc:facteur-oublie" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-irreductibles", "type": "categorize", "skill": "m3.arith.irreductible", "skills": ["m3.arith.decomposer"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:facteur-cache", "mc:non-premiers-reductible"], "expectedSeconds": 240,
+      "prompt": "Ces fractions sont-elles irréductibles ? Pour chacune, décompose le numérateur et le dénominateur en facteurs premiers, puis cherche un facteur premier commun.",
+      "categories": [ { "id": "irr", "label": "Irréductible" }, { "id": "non", "label": "On peut encore simplifier" } ],
+      "items": [
+        { "id": "f1", "label": "$35/48$", "category": "irr" },
+        { "id": "f2", "label": "$51/85$", "category": "non" },
+        { "id": "f3", "label": "$91/130$", "category": "non" },
+        { "id": "f4", "label": "$77/120$", "category": "irr" },
+        { "id": "f5", "label": "$64/81$", "category": "irr" },
+        { "id": "f6", "label": "$121/143$", "category": "non" },
+        { "id": "f7", "label": "$49/90$", "category": "irr" },
+        { "id": "f8", "label": "$57/95$", "category": "non" }
+      ],
+      "misconceptions": [
+        { "item": "f2", "category": "irr", "id": "mc:facteur-cache", "error": "methode", "feedback": "51 et 85 ne sont divisibles ni par 2 ni par 5… mais as-tu décomposé 51 ? La somme de ses chiffres est divisible par 3 : trouve son autre facteur, puis teste-le sur 85." },
+        { "item": "f3", "category": "irr", "id": "mc:facteur-cache", "error": "methode", "feedback": "91 n'est pas premier : décompose-le (pense à 7), puis teste chacun de ses facteurs sur 130." },
+        { "item": "f6", "category": "irr", "id": "mc:facteur-cache", "error": "methode", "feedback": "121 n'est pas premier : c'est un carré. Teste ensuite son facteur premier sur 143." },
+        { "item": "f8", "category": "irr", "id": "mc:facteur-cache", "error": "methode", "feedback": "57 n'est pas premier (5 + 7 = 12) : décompose-le, puis teste ses facteurs sur 95." },
+        { "item": "f5", "category": "non", "id": "mc:non-premiers-reductible", "error": "notion", "feedback": "64 et 81 ne sont pas premiers, mais ce n'est pas la question : une fraction se simplifie seulement s'il existe un facteur premier COMMUN. Compare leurs décompositions." },
+        { "item": "f7", "category": "non", "id": "mc:non-premiers-reductible", "error": "notion", "feedback": "49 et 90 ne sont pas premiers, mais une fraction se simplifie seulement s'il existe un facteur premier COMMUN. Décompose les deux." }
+      ],
+      "hints": ["Décompose chaque nombre : divise par 2, 3, 5, 7, 11, 13…", "Méfie-toi des nombres impairs qui ont l'air premiers : 51, 57, 91, 121 ne le sont pas.", "Une fraction est irréductible quand le numérateur et le dénominateur n'ont aucun facteur premier commun."],
+      "solution": "Irréductibles : $35/48$ ($5 × 7$ et $2⁴ × 3$), $77/120$ ($7 × 11$ et $2³ × 3 × 5$), $64/81$ ($2⁶$ et $3⁴$), $49/90$ ($7²$ et $2 × 3² × 5$). On peut simplifier : $51/85$ par 17 ($3 × 17$ et $5 × 17$), $91/130$ par 13 ($7 × 13$ et $2 × 5 × 13$), $121/143$ par 11 ($11²$ et $11 × 13$), $57/95$ par 19 ($3 × 19$ et $5 × 19$).",
+      "selfTest": [
+        { "response": { "assign": { "f1": "irr", "f2": "non", "f3": "non", "f4": "irr", "f5": "irr", "f6": "non", "f7": "irr", "f8": "non" } }, "expect": "correct" },
+        { "response": { "assign": { "f1": "irr", "f2": "non", "f3": "irr", "f4": "irr", "f5": "irr", "f6": "non", "f7": "irr", "f8": "non" } }, "expect": "mc:facteur-cache" },
+        { "response": { "assign": { "f1": "irr", "f2": "non", "f3": "non", "f4": "irr", "f5": "non", "f6": "non", "f7": "irr", "f8": "non" } }, "expect": "mc:non-premiers-reductible" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-simplifier", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m3.arith.irreductible", "skills": ["m3.arith.decomposer"], "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "symbolique", "targets": ["forme", "mc:simplif-soustraction"], "expectedSeconds": 300,
+      "params": { "x": { "int": [0, 2] }, "y": { "int": [1, 2] }, "w": { "choice": [1, 5, 7] }, "u": { "choice": [5, 7, 11, 13, 17] }, "v": { "choice": [2, 4, 8, 9, 16, 25, 27] }, "g": { "expr": "2^x*3^y*w" }, "N": { "expr": "g*u" }, "D": { "expr": "g*v" } },
+      "constraints": ["pgcd(u;v) = 1", "g >= 6", "N >= 100", "N <= 3000", "D <= 3000"],
+      "start": "N/D", "minSteps": 2,
+      "prompt": "Rends la fraction $ {N}/{D} $ irréductible en décomposant le numérateur et le dénominateur en produits de facteurs premiers. Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "(N-g)/(D-g)", "id": "mc:simplif-soustraction", "error": "notion", "prerequisite": "m5.fractions.egalite", "feedback": "simplifier, c'est DIVISER le numérateur et le dénominateur par un même nombre, pas soustraire." }
+      ],
+      "hints": ["Décompose {N} : divise par 2, 3, 5, 7… tant que c'est possible.", "Décompose {D} de la même façon, puis repère les facteurs premiers présents en haut ET en bas.", "Le produit des facteurs communs vaut {g} : divise le numérateur et le dénominateur par {g}."],
+      "solution": "Les facteurs premiers communs à {N} et à {D} ont pour produit {g}. On simplifie par {g} : $ {N}/{D} = ({g} × {u})/({g} × {v}) = {u}/{v} $. Cette fraction est irréductible : {u} et {v} n'ont aucun facteur premier commun.",
+      "selfTest": [
+        { "response": { "lines": ["({g} × {u})/({g} × {v})", "{u}/{v}"] }, "expect": "correct" },
+        { "response": { "lines": ["{N/3}/{D/3}"] }, "expect": "forme" },
+        { "response": { "lines": ["{N-g}/{D-g}"] }, "expect": "mc:simplif-soustraction" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-priorites", "type": "steps", "mode": "calcul", "final": "irreductible", "skill": "m3.rationnels.problemes", "skills": ["m4.fractions.calcul", "m3.arith.irreductible"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:priorites", "mc:addition-num-den"], "expectedSeconds": 300,
+      "params": { "p": { "int": [1, 5] }, "q": { "choice": [2, 3, 4, 5, 6] }, "r": { "int": [1, 5] }, "s": { "choice": [3, 4, 5, 7] }, "t": { "int": [1, 7] }, "u": { "choice": [2, 3, 4, 6, 9] }, "m": { "expr": "p*s*u + q*r*t" }, "k": { "expr": "q*s*u" }, "g": { "expr": "pgcd(m;k)" } },
+      "constraints": ["pgcd(p;q) = 1", "pgcd(r;s) = 1", "pgcd(t;u) = 1", "t != u", "not estentier(m/k)", "k <= 600"],
+      "start": "p/q + r/s*(t/u)", "minSteps": 2,
+      "prompt": "Calcule $ A = {p}/{q} + {r}/{s} × ({t}/{u}) $ et donne le résultat sous forme d'une fraction irréductible. Attention aux priorités ! Écris une étape par ligne.",
+      "misconceptions": [
+        { "answer": "(p/q + r/s)*(t/u)", "id": "mc:priorites", "error": "methode", "prerequisite": "m5.calcul.priorites", "feedback": "la multiplication est prioritaire sur l'addition : tu as additionné avant de multiplier." },
+        { "answer": "(p + r*t)/(q + s*u)", "id": "mc:addition-num-den", "error": "notion", "prerequisite": "m5.fractions.addition", "feedback": "on n'additionne pas les numérateurs entre eux et les dénominateurs entre eux : il faut d'abord un dénominateur commun." }
+      ],
+      "hints": ["Commence par la multiplication : $ {r}/{s} × ({t}/{u}) = {r*t}/{s*u} $.", "Mets ensuite les deux fractions au même dénominateur, puis additionne.", "Simplifie le résultat : cherche les facteurs premiers communs au numérateur et au dénominateur."],
+      "solution": "On effectue d'abord le produit : $ {r}/{s} × ({t}/{u}) = {r*t}/{s*u} $. Puis on additionne avec le dénominateur commun {k} : $ A = {p}/{q} + {r*t}/{s*u} = {m}/{k} $. Enfin on simplifie par {g} : $ A = {m/g}/{k/g} $.",
+      "selfTest": [
+        { "response": { "lines": ["{p}/{q} + {r*t}/{s*u}", "{m}/{k}", "{m/g}/{k/g}"] }, "expect": "correct" },
+        { "response": { "lines": ["{(p*s+q*r)*t}/{q*s*u}"] }, "expect": "mc:priorites" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-verif", "type": "qcm", "skill": "m3.arith.irreductible", "track": "classe", "role": "verification", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:exposant-max", "mc:tous-facteurs"], "expectedSeconds": 60,
+      "prompt": "Vérification rapide : pour rendre irréductible la fraction $ (2³ × 3² × 5)/(2 × 3³ × 7) $, par quel nombre faut-il simplifier ?",
+      "choices": [
+        { "text": "$ 2 × 3² = 18 $", "correct": true, "feedback": "Exact : 2 est commun une fois, 3 est commun deux fois. On obtient $ (2² × 5)/(3 × 7) = 20/21 $." },
+        { "text": "$ 2³ × 3³ $", "correct": false, "error": "notion", "misconception": "mc:exposant-max", "feedback": "On ne peut simplifier que par ce qui est présent EN HAUT ET EN BAS : pour chaque facteur commun, on garde le plus petit exposant." },
+        { "text": "$ 2 × 3 = 6 $", "correct": false, "error": "calcul", "misconception": "mc:exposant-oublie", "feedback": "Le facteur 3 apparaît au moins deux fois en haut et en bas : on peut simplifier davantage." },
+        { "text": "$ 2 × 3 × 5 × 7 $", "correct": false, "error": "notion", "misconception": "mc:tous-facteurs", "feedback": "5 n'est qu'au numérateur et 7 qu'au dénominateur : ce ne sont pas des facteurs communs." }
+      ],
+      "hints": ["Un facteur commun doit être présent en haut ET en bas.", "Pour chaque facteur commun, garde le plus petit nombre de fois où il apparaît."],
+      "solution": "Facteurs communs : 2 (présent une seule fois en bas, donc une fois) et 3 (présent deux fois en haut) : on simplifie par $ 2 × 3² = 18 $. On obtient $ (2² × 5)/(3 × 7) = 20/21 $.",
+      "selfTest": [ { "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [1] }, "expect": "mc:exposant-max" } ]
+    },
+    {
+      "id": "m3-arithmetique-expliquer", "type": "open", "skill": "m3.arith.irreductible", "skills": ["m3.arith.decomposer"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:facteur-cache"], "expectedSeconds": 420, "minWords": 25,
+      "prompt": "Inès affirme : « La fraction $1 001/1 309$ est irréductible, car 1 001 et 1 309 sont impairs et ne sont divisibles ni par 3 ni par 5. » Explique-lui pourquoi son raisonnement ne suffit pas, puis rends la fraction irréductible en montrant ta démarche.",
+      "criteria": [
+        { "id": "c1", "label": "Je décompose 1 001 et 1 309, ou je trouve un diviseur commun (7, 11 ou 77)", "keywords": [["7 × 11", "7 x 11", "7x11", "77", "par 7", "par 11", "11 × 13", "11 × 17"]] },
+        { "id": "c2", "label": "J'explique qu'il faut aussi tester 7, 11, 13… : ne pas être divisible par 2, 3 et 5 ne suffit pas", "keywords": [["ne suffit pas", "pas suffisant", "insuffisant", "aussi tester", "tester 7", "autres nombres premiers", "d'autres facteurs"]] },
+        { "id": "c3", "label": "Je trouve la fraction irréductible 13/17", "keywords": [["13/17", "13 / 17", "13 sur 17"]] }
+      ],
+      "models": [
+        "Inès n'a testé que 2, 3 et 5, mais il faut aussi tester 7, 11, 13… En décomposant : 1 001 = 7 × 11 × 13 et 1 309 = 7 × 11 × 17. Les facteurs 7 et 11 sont communs, on simplifie par 77 : 1 001/1 309 = 13/17. Cette fraction est irréductible car 13 et 17 sont deux nombres premiers différents.",
+        "Ne pas être divisible par 2, 3 ni 5 ne prouve rien : 1 001 et 1 309 sont tous les deux divisibles par 7 (1 001 = 7 × 143 et 1 309 = 7 × 187), puis par 11 (143 = 11 × 13 et 187 = 11 × 17). Donc 1 001/1 309 = 13/17."
+      ],
+      "hints": ["Essaie de diviser 1 001 par 7.", "$1 001 = 7 × 143$ : et 143, peut-on le décomposer ?", "Teste aussi 7 et 11 sur 1 309."],
+      "solution": "$1 001 = 7 × 11 × 13$ et $1 309 = 7 × 11 × 17$ : 7 et 11 sont des facteurs communs. Inès n'a testé que 2, 3 et 5, c'est insuffisant. On simplifie par $7 × 11 = 77$ : $ 1 001/1 309 = 13/17 $, fraction irréductible (13 et 17 sont deux nombres premiers différents).",
+      "selfTest": [ { "response": { "text": "Il ne suffit pas de tester 2, 3 et 5, il faut aussi tester 7 et 11. 1 001 = 7 × 11 × 13 et 1 309 = 7 × 11 × 17, on simplifie par 77 et on obtient 13/17.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m3-arithmetique-colis", "type": "composite", "skill": "m3.arith.problemes", "skills": ["m3.arith.decomposer"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diviseur-pas-plus-grand", "mc:pgcd-ppcm"], "expectedSeconds": 480,
+      "params": { "i": { "int": [1, 3] }, "j": { "int": [1, 2] }, "g": { "expr": "2^i*3^j" }, "u": { "choice": [5, 7, 11] }, "v": { "choice": [7, 11, 13, 17] } },
+      "constraints": ["u < v", "g*u >= 60", "g*v <= 600"],
+      "prompt": "Un libraire a reçu {g*u} romans et {g*v} bandes dessinées. Il veut préparer **le plus grand nombre possible** de colis **identiques** pour des écoles, en utilisant tous les livres.",
+      "parts": [
+        { "type": "expression", "form": "premiers", "prompt": "Décompose {g*u} en produit de facteurs premiers.", "answer": "g*u" },
+        { "type": "expression", "form": "premiers", "prompt": "Décompose {g*v} en produit de facteurs premiers.", "answer": "g*v" },
+        { "type": "numeric", "prompt": "Combien de colis peut-il préparer, au maximum ?", "answer": "g",
+          "misconceptions": [
+            { "answer": "g/2", "id": "mc:diviseur-pas-plus-grand", "error": "methode", "feedback": "Ce nombre divise bien {g*u} et {g*v}, mais ce n'est pas le PLUS GRAND diviseur commun : il reste un facteur commun que tu n'as pas utilisé." },
+            { "answer": "ppcm(g*u;g*v)", "id": "mc:pgcd-ppcm", "error": "notion", "feedback": "Ce nombre est un multiple commun de {g*u} et {g*v}. Ici, le nombre de colis doit DIVISER le nombre de romans et le nombre de BD." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de livres (romans et BD) chaque colis contient-il ?", "answer": "u+v",
+          "misconceptions": [ { "answer": "g*u+g*v", "id": "mc:total-livres", "error": "lecture", "feedback": "C'est le nombre total de livres : il faut le répartir entre tous les colis." } ] }
+      ],
+      "hints": ["Le nombre de colis doit diviser {g*u} ET {g*v}.", "Repère les facteurs premiers communs aux deux décompositions.", "Le plus grand diviseur commun est le produit des facteurs communs, chacun avec le plus petit exposant."],
+      "solution": "$ {g*u} = 2^{i} × 3^{j} × {u} $ et $ {g*v} = 2^{i} × 3^{j} × {v} $. Facteurs communs : $ 2^{i} × 3^{j} = {g} $. Le libraire prépare {g} colis, chacun avec {u} romans et {v} BD, soit {u+v} livres par colis.",
+      "methods": ["Décomposer les deux nombres et garder les facteurs premiers communs.", "Lister les diviseurs de {g*u} et ceux de {g*v}, puis prendre le plus grand diviseur commun."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2^{i} × 3^{j} × {u}" }, { "value": "2^{i} × 3^{j} × {v}" }, { "value": "{g}" }, { "value": "{u+v}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2^{i} × 3^{j} × {u}" }, { "value": "2^{i} × 3^{j} × {v}" }, { "value": "{ppcm(g*u;g*v)}" }, { "value": "{u+v}" } ] }, "expect": "mc:pgcd-ppcm" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-reste", "type": "composite", "skill": "m3.rationnels.problemes", "skills": ["m4.fractions.problemes"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:fraction-du-total"], "expectedSeconds": 420,
+      "params": { "a": { "int": [1, 2] }, "b": { "choice": [3, 4, 5] }, "c": { "int": [1, 3] }, "d": { "choice": [3, 4, 5] }, "k": { "int": [2, 5] }, "T": { "expr": "2*b*d*k" } },
+      "constraints": ["a < b", "c < d", "pgcd(a;b) = 1", "pgcd(c;d) = 1"],
+      "prompt": "Pour la fête de la classe, Malik gère le budget. Il dépense $ {a}/{b} $ du budget pour la nourriture, puis $ {c}/{d} $ **du reste** pour la décoration.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle fraction du budget total la décoration représente-t-elle ? (écris une fraction)", "answer": "(1 - a/b)*(c/d)",
+          "misconceptions": [
+            { "answer": "c/d", "id": "mc:fraction-du-total", "error": "lecture", "feedback": "Les $ {c}/{d} $ portent sur le RESTE, pas sur le budget de départ : calcule d'abord la fraction qui reste après la nourriture." },
+            { "answer": "(a/b)*(c/d)", "id": "mc:fraction-de-la-depense", "error": "lecture", "feedback": "Tu as pris $ {c}/{d} $ de la part dépensée pour la nourriture, et non de ce qui reste." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle fraction du budget lui reste-t-il à la fin ?", "answer": "(1 - a/b)*(1 - c/d)",
+          "misconceptions": [ { "answer": "1 - a/b - c/d", "id": "mc:fraction-du-total", "error": "lecture", "feedback": "Tu as soustrait les deux fractions comme si elles portaient toutes les deux sur le budget de départ." } ] },
+        { "type": "numeric", "prompt": "Le budget est de {T} €. Combien d'euros reste-t-il à la fin ?", "answer": "T*(1 - a/b)*(1 - c/d)",
+          "misconceptions": [ { "answer": "T*(1 - a/b - c/d)", "id": "mc:fraction-du-total", "error": "lecture", "feedback": "Les $ {c}/{d} $ se calculent sur le reste, pas sur les {T} € de départ." } ] }
+      ],
+      "hints": ["Après la nourriture, il reste $ 1 − {a}/{b} = {b-a}/{b} $ du budget.", "La décoration représente $ {c}/{d} $ de ce reste : $ {b-a}/{b} × ({c}/{d}) $.", "Ce qui reste à la fin : $ {b-a}/{b} × (1 − {c}/{d}) $ du budget."],
+      "solution": "Reste après la nourriture : $ 1 − {a}/{b} = {b-a}/{b} $. Décoration : $ {b-a}/{b} × ({c}/{d}) = {(b-a)*c}/{b*d} $ du budget. Reste final : $ {b-a}/{b} × ({d-c}/{d}) = {(b-a)*(d-c)}/{b*d} $ du budget, soit $ {T} × {(b-a)*(d-c)}/{b*d} = {T*(b-a)*(d-c)/(b*d)} $ €.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{(b-a)*c}/{b*d}" }, { "value": "{(b-a)*(d-c)}/{b*d}" }, { "value": "{T*(b-a)*(d-c)/(b*d)}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{c}/{d}" }, { "value": "{(b-a)*(d-c)}/{b*d}" }, { "value": "{T*(b-a)*(d-c)/(b*d)}" } ] }, "expect": "mc:fraction-du-total" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-mur", "type": "composite", "skill": "m3.arith.problemes", "skills": ["m3.arith.decomposer", "m3.rationnels.problemes"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:diviseur-pas-plus-grand", "mc:pgcd-ppcm", "mc:arrondi-inferieur"], "expectedSeconds": 600,
+      "prompt": "Mission carrelage ! Le mur de la salle de bains de Yanis mesure 3,15 m de long et 2,40 m de haut. Il veut le couvrir de carreaux **carrés identiques**, les plus grands possible, dont le côté est un nombre entier de centimètres, **sans aucune découpe**.",
+      "figure": {
+        "alt": "Mur rectangulaire de 3,15 m de long et 2,40 m de haut, encore vide.",
+        "w": 360, "h": 240,
+        "frame": { "x": [-0.8, 7.2], "y": [-0.9, 5.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 6.3, "h": 4.8, "fill": "gris" },
+          { "type": "segment", "from": [0, -0.35], "to": [6.3, -0.35], "arrows": "both", "label": "3,15 m" },
+          { "type": "segment", "from": [6.65, 0], "to": [6.65, 4.8], "arrows": "both", "label": "2,40 m" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est la longueur du côté d'un carreau, en cm ?", "answer": 15,
+          "misconceptions": [
+            { "answer": 5, "id": "mc:diviseur-pas-plus-grand", "error": "methode", "feedback": "Des carreaux de 5 cm conviennent… mais on peut en prendre de plus grands : cherche le PLUS GRAND diviseur commun de 315 et 240." },
+            { "answer": 3, "id": "mc:diviseur-pas-plus-grand", "error": "methode", "feedback": "Des carreaux de 3 cm conviennent… mais on peut en prendre de plus grands : cherche le PLUS GRAND diviseur commun de 315 et 240." },
+            { "answer": 5040, "id": "mc:pgcd-ppcm", "error": "notion", "feedback": "Ce nombre est un multiple commun de 315 et 240. Ici, le côté du carreau doit tenir un nombre entier de fois dans la longueur ET dans la hauteur : il doit les diviser." }
+          ] },
+        { "type": "numeric", "prompt": "Combien de carreaux faut-il pour couvrir tout le mur ?", "answer": 336,
+          "misconceptions": [ { "answer": 37, "id": "mc:somme-au-lieu-produit", "error": "methode", "feedback": "Tu as additionné le nombre de carreaux en longueur et en hauteur : il faut compter toutes les rangées." } ] },
+        { "type": "numeric", "prompt": "Les carreaux sont vendus par boîtes de 25. Combien de boîtes doit-il acheter ?", "answer": 14,
+          "misconceptions": [
+            { "answer": 13, "id": "mc:arrondi-inferieur", "error": "raisonnement", "feedback": "Le nombre de carreaux divisé par 25 n'est pas un nombre entier : avec ce nombre de boîtes, aurait-il assez de carreaux ?" },
+            { "answer": 13.44, "id": "mc:pas-entier", "error": "raisonnement", "feedback": "On achète un nombre entier de boîtes." }
+          ] },
+        { "type": "numeric", "prompt": "Il veut que $2/7$ des carreaux soient bleus. Combien de carreaux bleus lui faut-il ?", "answer": 96,
+          "misconceptions": [ { "answer": 48, "id": "mc:fraction-numerateur", "error": "calcul", "feedback": "Tu as calculé un septième des carreaux : il en faut deux septièmes." } ] }
+      ],
+      "hints": ["Convertis en cm : 315 cm et 240 cm. Le côté du carreau doit diviser 315 ET 240.", "$315 = 3² × 5 × 7$ et $240 = 2⁴ × 3 × 5$ : quels facteurs sont communs ?", "Nombre de carreaux = (carreaux sur la longueur) × (carreaux sur la hauteur)."],
+      "solution": "$315 = 3² × 5 × 7$ et $240 = 2⁴ × 3 × 5$ : le plus grand diviseur commun est $3 × 5 = 15$. Carreaux de 15 cm : $315 ÷ 15 = 21$ en longueur et $240 ÷ 15 = 16$ en hauteur, soit $21 × 16 = 336$ carreaux. $336 ÷ 25 = 13,44$ : il faut 14 boîtes. Carreaux bleus : $2/7 × 336 = 96$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "15" }, { "value": "336" }, { "value": "14" }, { "value": "96" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "15" }, { "value": "336" }, { "value": "13" }, { "value": "96" } ] }, "expect": "mc:arrondi-inferieur" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-remed-diviser", "type": "composite", "skill": "m3.arith.irreductible", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:simplif-soustraction"], "expectedSeconds": 120,
+      "params": { "k": { "choice": [2, 3, 5, 7] }, "u": { "int": [2, 9] }, "v": { "int": [3, 11] } },
+      "constraints": ["u < v", "pgcd(u;v) = 1", "k*u - k != u", "k*v - k != v"],
+      "prompt": "Rappel ciblé : simplifier une fraction, c'est **diviser** le numérateur et le dénominateur par un même nombre, jamais soustraire. Observe la fraction $ {k*u}/{k*v} $.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quel nombre premier divise à la fois {k*u} et {k*v} ?", "answer": "k" },
+        { "type": "numeric", "prompt": "Numérateur après simplification :", "answer": "u",
+          "misconceptions": [ { "answer": "k*u - k", "id": "mc:simplif-soustraction", "error": "notion", "feedback": "On ne soustrait pas : on DIVISE {k*u} par le nombre trouvé." } ] },
+        { "type": "numeric", "prompt": "Dénominateur après simplification :", "answer": "v",
+          "misconceptions": [ { "answer": "k*v - k", "id": "mc:simplif-soustraction", "error": "notion", "feedback": "On ne soustrait pas : on DIVISE {k*v} par le nombre trouvé." } ] }
+      ],
+      "hints": ["Teste 2, 3, 5 et 7 sur les deux nombres.", "{k*u} ÷ {k} = ? et {k*v} ÷ {k} = ?"],
+      "solution": "{k*u} et {k*v} sont tous les deux divisibles par {k} : $ {k*u}/{k*v} = ({k} × {u})/({k} × {v}) = {u}/{v} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{k}" }, { "value": "{u}" }, { "value": "{v}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{k}" }, { "value": "{k*u-k}" }, { "value": "{v}" } ] }, "expect": "mc:simplif-soustraction" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-remed-reste", "type": "composite", "skill": "m3.rationnels.problemes", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:fraction-du-total"], "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : « les 2/3 **du reste** », ce n'est pas « les 2/3 du total ». Lou a 60 €. Elle dépense d'abord $1/4$ de son argent, puis les $2/3$ de ce qui lui reste. La bande ci-dessous représente les 60 €.",
+      "figure": {
+        "alt": "Une bande représente 60 euros. Le premier quart est colorié ; le reste de la bande est partagé en trois parts égales.",
+        "w": 420, "h": 120,
+        "frame": { "x": [-0.3, 12.3], "y": [-0.8, 2.2] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 1.5, "fill": "orange" },
+          { "type": "rect", "x": 3, "y": 0, "w": 9, "h": 1.5 },
+          { "type": "segment", "from": [6, 0], "to": [6, 1.5], "dashed": true },
+          { "type": "segment", "from": [9, 0], "to": [9, 1.5], "dashed": true },
+          { "type": "text", "x": 1.5, "y": -0.5, "text": "1/4", "anchor": "middle" },
+          { "type": "text", "x": 7.5, "y": -0.5, "text": "le reste, en 3 parts égales", "anchor": "middle" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Combien dépense-t-elle d'abord ?", "answer": 15 },
+        { "type": "numeric", "prompt": "Combien lui reste-t-il alors ?", "answer": 45 },
+        { "type": "numeric", "prompt": "Combien valent les $2/3$ de ce reste ?", "answer": 30,
+          "misconceptions": [ { "answer": 40, "id": "mc:fraction-du-total", "error": "lecture", "feedback": "Tu as calculé les 2/3 des 60 € de départ. Les 2/3 portent sur ce qui reste." } ] }
+      ],
+      "hints": ["Un quart de 60 : $60 ÷ 4$.", "Partage le reste en 3 parts égales, puis prends-en 2."],
+      "solution": "$1/4 × 60 = 15$ € ; il reste $60 − 15 = 45$ €. Les $2/3$ du reste : $45 ÷ 3 × 2 = 30$ €. En fraction du total : $2/3 × (3/4) = 1/2$, et la moitié de 60 € fait bien 30 €.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "15" }, { "value": "45" }, { "value": "30" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "15" }, { "value": "45" }, { "value": "40" } ] }, "expect": "mc:fraction-du-total" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-cigales", "type": "table", "skill": "m3.arith.problemes", "skills": ["m3.arith.decomposer"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:ppcm-produit"], "expectedSeconds": 420,
+      "prompt": "Retour aux cigales du début ! Une cigale qui sort tous les $c$ ans et un prédateur qui revient tous les $p$ ans se retrouvent ensemble tous les… (plus petit multiple commun de $c$ et $p$) ans. Complète le tableau, en années. Que remarques-tu pour la cigale de 17 ans ?",
+      "columns": ["Cycle du prédateur", "Cigale de 12 ans", "Cigale de 17 ans"],
+      "rows": [ ["2 ans", "?r0c1", "?r0c2"], ["3 ans", "?r1c1", "?r1c2"], ["4 ans", "?r2c1", "?r2c2"], ["5 ans", "?r3c1", "?r3c2"], ["6 ans", "?r4c1", "?r4c2"] ],
+      "cells": {
+        "r0c1": { "answer": 12 }, "r0c2": { "answer": 34 },
+        "r1c1": { "answer": 12 }, "r1c2": { "answer": 51 },
+        "r2c1": { "answer": 12, "misconceptions": [ { "answer": 48, "id": "mc:ppcm-produit", "error": "methode", "feedback": "48 est bien un multiple commun des deux cycles, mais il y en a un plus petit." } ] },
+        "r2c2": { "answer": 68 },
+        "r3c1": { "answer": 60 }, "r3c2": { "answer": 85 },
+        "r4c1": { "answer": 12, "misconceptions": [ { "answer": 72, "id": "mc:ppcm-produit", "error": "methode", "feedback": "72 est bien un multiple commun des deux cycles, mais il y en a un plus petit." } ] },
+        "r4c2": { "answer": 102 }
+      },
+      "hints": ["Pour la cigale de 12 ans : si le cycle du prédateur divise 12, ils se retrouvent tous les 12 ans.", "17 est premier : il n'a aucun facteur commun avec 2, 3, 4, 5 ou 6. Le plus petit multiple commun est alors le produit.", "$12 = 2² × 3$ et $5$ n'ont aucun facteur commun."],
+      "solution": "Cigale de 12 ans : 12, 12, 12, 60 et 12 ans. Cigale de 17 ans : 34, 51, 68, 85 et 102 ans. Comme 17 est premier, le plus petit multiple commun avec un cycle plus court est toujours le produit : la cigale de 17 ans ne croise un prédateur donné qu'au bout de plusieurs décennies, alors que celle de 12 ans croise presque tous les prédateurs à chaque sortie.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "12", "r0c2": "34", "r1c1": "12", "r1c2": "51", "r2c1": "12", "r2c2": "68", "r3c1": "60", "r3c2": "85", "r4c1": "12", "r4c2": "102" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "12", "r0c2": "34", "r1c1": "12", "r1c2": "51", "r2c1": "48", "r2c2": "68", "r3c1": "60", "r3c2": "85", "r4c1": "12", "r4c2": "102" } }, "expect": "mc:ppcm-produit" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-zeros", "type": "composite", "skill": "m3.arith.decomposer", "skills": ["mx.arith.premiers"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:puissances-oubliees", "mc:facteur-rare"], "expectedSeconds": 540,
+      "prompt": "On note $N$ le produit de tous les entiers de 1 à 20 : $N = 1 × 2 × 3 × … × 20$. Ce nombre est énorme : 2 432 902 008 176 640 000. Pourquoi se termine-t-il par des zéros ? Sans calculatrice, grâce aux facteurs premiers !",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de fois le facteur premier 5 apparaît-il dans la décomposition de $N$ ?", "answer": 4,
+          "misconceptions": [ { "answer": 2, "id": "mc:multiples-oublies", "error": "methode", "feedback": "N'oublie pas les multiples de 5 qui ne finissent pas par 0." } ] },
+        { "type": "numeric", "prompt": "Et le facteur premier 2 ?", "answer": 18,
+          "misconceptions": [ { "answer": 10, "id": "mc:puissances-oubliees", "error": "methode", "feedback": "Certains nombres apportent plusieurs facteurs 2 : 4 = 2², 8 = 2³, 16 = 2⁴…" } ] },
+        { "type": "numeric", "prompt": "Chaque zéro final vient d'un facteur $10 = 2 × 5$. Par combien de zéros $N$ se termine-t-il ?", "answer": 4,
+          "misconceptions": [ { "answer": 18, "id": "mc:facteur-rare", "error": "raisonnement", "feedback": "Pour former un 10, il faut un 2 ET un 5 : c'est le facteur le plus rare qui décide." } ] },
+        { "type": "numeric", "prompt": "Par combien de zéros se termine le produit $1 × 2 × 3 × … × 100$ ?", "answer": 24,
+          "misconceptions": [ { "answer": 20, "id": "mc:puissances-oubliees", "error": "methode", "feedback": "Certains nombres apportent deux facteurs 5 : pense à 25 = 5², 50, 75 et 100." } ] }
+      ],
+      "hints": ["Les multiples de 5 jusqu'à 20 : 5, 10, 15, 20.", "Pour les facteurs 2 : 10 nombres pairs, dont 5 multiples de 4, 2 multiples de 8 et 1 multiple de 16.", "Jusqu'à 100 : compte les multiples de 5, puis ajoute les multiples de 25, qui apportent un facteur 5 de plus."],
+      "solution": "Jusqu'à 20, les multiples de 5 sont 5, 10, 15 et 20 : 4 facteurs 5. Facteurs 2 : $10 + 5 + 2 + 1 = 18$. Un zéro final demande un 2 et un 5 : il y a 4 facteurs 5, donc 4 zéros (on le voit sur le nombre). Jusqu'à 100 : 20 multiples de 5, plus 4 multiples de 25 (25, 50, 75, 100) qui apportent chacun un 5 de plus : $20 + 4 = 24$ zéros.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4" }, { "value": "18" }, { "value": "4" }, { "value": "24" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4" }, { "value": "18" }, { "value": "4" }, { "value": "20" } ] }, "expect": "mc:puissances-oubliees" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-brevet", "type": "composite", "skill": "m3.arith.problemes", "skills": ["m3.arith.decomposer", "m3.arith.irreductible", "m3.rationnels.problemes"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:exposant-commun-min", "mc:pgcd-ppcm", "mc:inverse"], "expectedSeconds": 900,
+      "prompt": "Type brevet — Une association prépare des colis pour une banque alimentaire. Elle a reçu 1 960 bouteilles d'eau et 2 744 paquets de biscuits. Tous les colis doivent être identiques, et toutes les bouteilles et tous les paquets doivent être utilisés.",
+      "parts": [
+        { "type": "expression", "form": "premiers", "prompt": "1. Décomposer 1 960 en produit de facteurs premiers.", "answer": "1960" },
+        { "type": "expression", "form": "premiers", "prompt": "2. Décomposer 2 744 en produit de facteurs premiers.", "answer": "2744" },
+        { "type": "expression", "form": "irreductible", "prompt": "3. En déduire l'écriture irréductible de la fraction $1 960/2 744$.", "answer": "5/7",
+          "misconceptions": [ { "answer": "7/5", "id": "mc:inverse", "error": "lecture", "feedback": "Tu as inversé le numérateur et le dénominateur." } ] },
+        { "type": "numeric", "prompt": "4. Quel est le nombre maximal de colis que l'association peut préparer ?", "answer": 392,
+          "misconceptions": [
+            { "answer": 56, "id": "mc:exposant-commun-min", "error": "methode", "feedback": "Le facteur 7 apparaît plusieurs fois dans les deux décompositions : prends chaque facteur commun avec le plus petit exposant." },
+            { "answer": 13720, "id": "mc:pgcd-ppcm", "error": "notion", "feedback": "Ce nombre est un multiple commun : le nombre de colis doit DIVISER 1 960 et 2 744." }
+          ] },
+        { "type": "numeric", "prompt": "5. Combien de paquets de biscuits chaque colis contient-il ?", "answer": 7,
+          "misconceptions": [ { "answer": 5, "id": "mc:lecture-objet", "error": "lecture", "feedback": "Ce nombre correspond aux bouteilles d'eau : relis la question." } ] },
+        { "type": "numeric", "prompt": "6. Les $3/8$ des colis partent dans une école. Combien de colis reste-t-il pour la banque alimentaire ?", "answer": 245,
+          "misconceptions": [ { "answer": 147, "id": "mc:part-donnee", "error": "lecture", "feedback": "Tu as calculé le nombre de colis donnés à l'école, pas ceux qui restent." } ] }
+      ],
+      "hints": ["$2 744 = 2³ × 343$ et $343 = 7 × 49$.", "$1 960 = 2³ × 245$ et $245 = 5 × 49$.", "Plus grand diviseur commun : $2³ × 7²$."],
+      "solution": "1. $1 960 = 2³ × 5 × 7²$. 2. $2 744 = 2³ × 7³$. 3. On simplifie par $2³ × 7² = 392$ : $1 960/2 744 = 5/7$. 4. Le nombre maximal de colis est le plus grand diviseur commun : 392. 5. Chaque colis contient $1 960 ÷ 392 = 5$ bouteilles et $2 744 ÷ 392 = 7$ paquets. 6. Il reste $5/8$ des colis : $5/8 × 392 = 245$ colis.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2^3 × 5 × 7^2" }, { "value": "2³ × 7³" }, { "value": "5/7" }, { "value": "392" }, { "value": "7" }, { "value": "245" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2^3 × 5 × 7^2" }, { "value": "2³ × 7³" }, { "value": "5/7" }, { "value": "56" }, { "value": "7" }, { "value": "245" } ] }, "expect": "mc:exposant-commun-min" }
+      ]
+    },
+    {
+      "id": "m3-arithmetique-decimaux", "type": "composite", "skill": "mx.arith.premiers", "skills": ["m3.arith.irreductible", "m4.raisonner.preuve"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:simplifier-dabord"], "expectedSeconds": 900,
+      "prompt": "Pourquoi $3/8 = 0,375$ « s'arrête », alors que l'écriture décimale de $1/3 = 0,333…$ ne s'arrête jamais ? Les facteurs premiers du dénominateur vont tout expliquer.",
+      "parts": [
+        { "type": "categorize", "prompt": "Range ces fractions selon leur écriture décimale (tu peux faire les divisions à la calculatrice).",
+          "categories": [ { "id": "fin", "label": "L'écriture décimale s'arrête" }, { "id": "infini", "label": "Elle ne s'arrête jamais" } ],
+          "items": [
+            { "id": "q1", "label": "$7/40$", "category": "fin" },
+            { "id": "q2", "label": "$3/14$", "category": "infini" },
+            { "id": "q3", "label": "$11/125$", "category": "fin" },
+            { "id": "q4", "label": "$5/12$", "category": "infini" },
+            { "id": "q5", "label": "$9/30$", "category": "fin" },
+            { "id": "q6", "label": "$21/56$", "category": "fin" },
+            { "id": "q7", "label": "$2/15$", "category": "infini" }
+          ],
+          "misconceptions": [
+            { "item": "q5", "category": "infini", "id": "mc:simplifier-dabord", "error": "methode", "feedback": "30 contient le facteur 3… mais $9/30$ n'est pas irréductible ! Simplifie d'abord : que devient le dénominateur ?" },
+            { "item": "q6", "category": "infini", "id": "mc:simplifier-dabord", "error": "methode", "feedback": "56 contient le facteur 7… mais 21 aussi ! Simplifie d'abord : que devient le dénominateur ?" }
+          ] },
+        { "type": "counterexample", "prompt": "Léo affirme : « Si le dénominateur d'une fraction contient le facteur premier 3, son écriture décimale ne s'arrête jamais. » Trouve une fraction $n/d$ (avec $n$ et $d$ entiers positifs) qui prouve qu'il a tort.",
+          "claim": "Si le dénominateur $d$ d'une fraction $n/d$ est un multiple de 3, l'écriture décimale de $n/d$ ne s'arrête jamais.",
+          "vars": ["n", "d"], "domain": "estentier(n) and estentier(d) and n > 0 and d > 0 and mod(d;3) = 0", "domainLabel": "n et d entiers positifs, d multiple de 3",
+          "refutes": "estentier(n*10^9/d)", "show": "n/d", "showLabel": "n/d",
+          "refuteHint": "Pense à une fraction qui n'est pas irréductible : le 3 du dénominateur peut disparaître en simplifiant." },
+        { "type": "open", "prompt": "Énonce une règle : à quelle condition une fraction a-t-elle une écriture décimale qui s'arrête ? Explique pourquoi.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Je rends d'abord la fraction irréductible", "keywords": [["irreductible", "simplifi"]] },
+            { "id": "c2", "label": "Le dénominateur ne doit avoir que 2 et 5 comme facteurs premiers", "keywords": [["2 et 5", "2 ou 5", "que des 2", "seulement 2", "uniquement 2"]] },
+            { "id": "c3", "label": "J'explique qu'on peut alors obtenir une puissance de 10 au dénominateur", "keywords": [["puissance de 10", "10, 100", "100", "1 000", "1000"]] }
+          ] }
+      ],
+      "hints": ["Décompose chaque dénominateur… après avoir simplifié la fraction.", "Pour Léo : essaie une fraction comme $3/30$.", "$10 = 2 × 5$, $100 = 2² × 5²$ : seules les puissances de 2 et de 5 se « complètent » en puissance de 10."],
+      "solution": "S'arrêtent : $7/40 = 0,175$, $11/125 = 0,088$, $9/30 = 3/10 = 0,3$, $21/56 = 3/8 = 0,375$. Ne s'arrêtent pas : $3/14$, $5/12$, $2/15$. Contre-exemple pour Léo : $3/30 = 1/10 = 0,1$. Règle : une fraction **irréductible** a une écriture décimale qui s'arrête si et seulement si son dénominateur n'a pas d'autres facteurs premiers que 2 et 5 ; on peut alors compléter le dénominateur en une puissance de 10 (par exemple $3/8 = 375/1 000$).",
+      "selfTest": [
+        { "response": { "parts": [ { "assign": { "q1": "fin", "q2": "infini", "q3": "fin", "q4": "infini", "q5": "fin", "q6": "fin", "q7": "infini" } }, { "values": { "n": "3", "d": "30" } }, { "text": "On rend d'abord la fraction irréductible. Son écriture s'arrête si le dénominateur n'a que 2 et 5 comme facteurs premiers, car on peut alors obtenir une puissance de 10 au dénominateur.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "assign": { "q1": "fin", "q2": "infini", "q3": "fin", "q4": "infini", "q5": "infini", "q6": "fin", "q7": "infini" } }, { "values": { "n": "3", "d": "30" } }, { "text": "On simplifie et le dénominateur ne doit avoir que 2 et 5, pour obtenir une puissance de 10.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:simplifier-dabord" }
+      ]
+    }
+  ]
+}

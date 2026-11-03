@@ -1,0 +1,213 @@
+/* Prisme — activités de mathématiques : droite graduée (.nlx-), barres de fractions (.fbar-), Pythagore (.py-),
+   triangles (.tri-), dés (.dice-). Uniquement les variables de thème d'app.css : clair et sombre sans retouche.
+   Le préfixe .fbar- (et non .fb-) évite la collision avec .fb-title / .fb-msg des retours d'exercice. */
+
+/* Les cases à cocher restent en ligne dans les colonnes de commandes (.lab-controls label est en grille). */
+.py .lab-controls .check-inline, .dice .lab-controls .check-inline, .tri .lab-controls .check-inline { display: flex; font-weight: 400; }
+
+/* ---------- Sauts sur la droite graduée ---------- */
+.nlx { display: grid; gap: 12px; }
+.nlx-stage { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-s); padding: 4px 2px 0; }
+.nlx-svg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.nlx-start { fill: var(--card); stroke: var(--ink-2); stroke-width: 2; }
+.nlx-pawn circle { fill: var(--maths); stroke: var(--card); stroke-width: 3; }
+.nlx-pawn .nlx-pawn-core { fill: var(--card); stroke: none; }
+.nlx-arc { --arc: var(--maths); }
+.nlx-arc.is-minus { --arc: var(--francais); }
+.nlx-arc-path { fill: none; stroke: var(--arc); stroke-width: 2.5; stroke-linecap: round; }
+.nlx-arc-head { fill: var(--arc); }
+.nlx-arc-label { font-size: 15px; font-weight: 700; fill: var(--arc); paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.nlx-arc.is-old { opacity: .3; }
+.nlx-pred-line { stroke: var(--ink-2); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.nlx-pred-label { font-size: 12px; font-weight: 700; fill: var(--ink-2); }
+.nlx-readout { white-space: pre-wrap; }
+.nlx-title { font-weight: 700; font-size: .9rem; margin: 0 0 6px; }
+.nlx-block { display: grid; gap: 6px; }
+.nlx-block > p { margin: 0; }
+.nlx-block > .btn { justify-self: start; }
+.nlx-move { font-family: var(--font-mono); min-width: 3.4em; justify-content: center; }
+.nlx-move.is-plus { border-color: var(--maths); color: var(--maths); box-shadow: 0 2px 0 var(--maths); }
+.nlx-move.is-minus { border-color: var(--francais); color: var(--francais); box-shadow: 0 2px 0 var(--francais); }
+.nlx-free { display: flex; gap: 8px; align-items: flex-end; flex-wrap: wrap; }
+.nlx-free-label { flex: 1 1 140px; }
+.nlx-free-input, .nlx-pred-input { font-family: var(--font-mono); }
+.nlx-pred-panel { border-left: 3px solid var(--maths); padding: 4px 0 4px 12px; display: grid; gap: 8px; }
+.nlx-pred-form { display: grid; gap: 8px; justify-items: start; }
+.nlx-pred-form label { width: 100%; }
+.nlx-pred-note { margin: 0; }
+.nlx-pred-note.is-ok { color: var(--ok); font-weight: 700; }
+.nlx-status { min-height: 1.4em; color: var(--ink-2); margin: 0; }
+.nlx-journal .log { margin: 0 0 10px; padding-left: 2.2em; min-height: 110px; max-height: 240px; }
+.nlx-log-sum { font-weight: 700; border-top: 1px dashed var(--rule-2); padding-top: 3px; }
+
+/* ---------- Barres de fractions ---------- */
+.fbar { display: grid; gap: 14px; }
+.fbar-bars { display: grid; gap: 14px; }
+.fbar-row { display: grid; gap: 6px; }
+.fbar-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+.fbar-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: var(--c); }
+.fbar-target { display: inline-flex; align-items: center; gap: 4px; color: var(--ink-2); font-size: .95rem; }
+.fbar-stepper { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; }
+.fbar-stepper .btn--icon { min-width: 38px; min-height: 38px; font-size: 1.2rem; }
+.fbar-num { width: 4.4em; padding: 5px 6px; text-align: center; font-size: 1rem; }
+.fbar-track {
+  position: relative; display: grid; grid-template-columns: repeat(var(--n, 1), minmax(0, 1fr));
+  height: 54px; margin-bottom: 12px; border: 2px solid var(--ink); border-radius: 4px; background: var(--card);
+}
+.fbar-part {
+  appearance: none; min-width: 0; margin: 0; padding: 0; border: 0; border-left: 1.5px solid var(--ink-2);
+  background: transparent; cursor: pointer; touch-action: manipulation; transition: background-color .15s;
+}
+.fbar-part:first-child { border-left: 0; }
+.fbar-part:hover { background: color-mix(in srgb, var(--c) 16%, transparent); }
+.fbar-part[aria-pressed="true"] { background: color-mix(in srgb, var(--c) 70%, var(--card)); }
+.fbar-part:focus-visible { position: relative; z-index: 1; outline: 3px solid var(--focus); outline-offset: -3px; border-radius: 0; }
+.fbar-marks { position: absolute; inset: -9px 0; pointer-events: none; z-index: 2; }
+.fbar-mark { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--c); transform: translateX(-1px); }
+.fbar-mark.is-own { border-left: 3px solid var(--c); transform: translateX(-1.5px); }
+.fbar-mark-label { position: absolute; bottom: -3px; left: 0; transform: translate(-50%, 100%); font-size: .72rem; font-weight: 700; line-height: 1; color: var(--c); }
+.fbar-foot { display: flex; align-items: center; gap: 6px; min-height: 2.4em; }
+.fbar-frac { font-size: 1.1rem; }
+.fbar-tools { display: grid; gap: 10px; }
+.fbar-verdict { margin: 0; padding: 10px 14px; border-left: 4px solid var(--pending); border-radius: 0 var(--radius-s) var(--radius-s) 0; background: var(--pending-bg); font-weight: 700; }
+.fbar-status { margin: 0; min-height: 1.4em; color: var(--ink-2); }
+.fbar-recut { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: flex-end; margin: 0; padding: 10px 12px 12px; border: 1px solid var(--rule); border-radius: var(--radius-s); }
+.fbar-recut legend { padding: 0 4px; font-weight: 700; font-size: .9rem; }
+.fbar-inline { display: grid; gap: 4px; font-weight: 700; font-size: .9rem; }
+.fbar-select { width: auto; padding: 5px 8px; font-size: 1rem; }
+.fbar-log { margin: 0; padding-left: 2.2em; }
+
+/* ---------- Pythagore ---------- */
+.py { display: grid; gap: 12px; }
+.py-stage { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-s); }
+.py-svg { display: block; font-family: var(--font-body); }
+.py-sq { --sq: var(--approfondissement); }
+.py-sq--a { --sq: var(--maths); }
+.py-sq--b { --sq: var(--pc); }
+.py-sq polygon { fill: color-mix(in srgb, var(--sq) 20%, var(--card)); stroke: var(--sq); stroke-width: 2; stroke-linejoin: round; }
+.py-grid { fill: none; stroke: color-mix(in srgb, var(--sq) 40%, transparent); stroke-width: 1; }
+.py-area { fill: var(--ink); font-family: var(--font-display); font-weight: 700; }
+.py-tri { fill: var(--card); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.py-side { fill: var(--ink); font-family: var(--font-display); font-style: italic; font-weight: 700; font-size: 16px; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.py-right { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.py-angle { fill: none; stroke: var(--numerique); stroke-width: 2.5; }
+.py-angle-label { fill: var(--numerique); font-weight: 700; font-size: 15px; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.py-scale path { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
+.py-scale text { fill: var(--ink-2); font-size: 12px; }
+.py-readout { white-space: pre-wrap; line-height: 1.6; }
+.py-slider-head { display: flex; justify-content: space-between; gap: 8px; }
+.py-out { font-family: var(--font-mono); font-weight: 700; }
+.py-title { margin: 0; font-weight: 700; font-size: .9rem; }
+.py-lengths { display: grid; gap: 8px; }
+.py-len-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.py-len { padding: 6px 8px; font-size: 1rem; }
+.py-msg { margin: 0; color: var(--ko); }
+.py-msg:empty { display: none; }
+.py-demo { padding-top: 12px; border-top: 1px dashed var(--rule-2); }
+.py-demo-grid { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 18px; align-items: start; }
+.py-demo-svg { display: block; max-width: 360px; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-s); font-family: var(--font-body); }
+.py-demo-big { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2; }
+.py-demo-label { fill: var(--ink); font-family: var(--font-display); font-weight: 800; font-size: 18px; }
+.py-demo-tri polygon { fill: color-mix(in srgb, var(--ink-3) 28%, var(--card)); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; }
+.py-demo-tri text { fill: var(--ink-2); font-size: 13px; font-weight: 700; }
+.py-demo-edge path { fill: none; stroke: var(--ink-2); stroke-width: 1.2; }
+.py-demo-edge text { fill: var(--ink-2); font-family: var(--font-display); font-style: italic; font-size: 14px; }
+.py-demo-text { margin: 0 0 10px; }
+.py-demo .btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.py-demo-concl { margin: 12px 0 0; padding: 10px 14px; border: 2px solid var(--ink); border-radius: var(--radius-s); background: var(--card); font-weight: 700; }
+
+/* ---------- Triangles ---------- */
+.tri { display: grid; gap: 12px; }
+.tri-stage { background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-s); }
+.tri-svg { display: block; font-family: var(--font-body); }
+.tri-svg--angles { touch-action: pan-y pinch-zoom; }
+.tri-grid { fill: none; stroke: var(--rule); stroke-width: .6; }
+.tri-arc { fill: none; stroke-width: 2; stroke-dasharray: 7 5; }
+.tri-arc--a { stroke: var(--maths); }
+.tri-arc--b { stroke: var(--pc); }
+.tri-fill { fill: color-mix(in srgb, var(--maths) 10%, transparent); stroke: none; }
+.tri-seg { stroke-width: 4; stroke-linecap: round; }
+.tri-seg--a { stroke: var(--maths); }
+.tri-seg--b { stroke: var(--pc); }
+.tri-seg--c { stroke: var(--ink); }
+.tri-len { font-size: 14px; font-weight: 700; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.tri-len--a { fill: var(--maths); }
+.tri-len--b { fill: var(--pc); }
+.tri-len--c { fill: var(--ink); }
+.tri-pt { fill: var(--ink); stroke: var(--card); stroke-width: 1.5; }
+.tri-name { fill: var(--ink); font-family: var(--font-display); font-weight: 800; font-size: 17px; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.tri-compare { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+.tri-plate { display: grid; gap: 2px; padding: 8px 12px; border: 1.5px solid var(--rule-2); border-radius: var(--radius-s); background: var(--paper-2); font-family: var(--font-mono); font-size: 1.02rem; }
+.tri-plate small { color: var(--ink-2); font-family: var(--font-body); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+.tri-sign { display: grid; place-items: center; min-width: 2em; font-family: var(--font-display); font-size: 1.9rem; font-weight: 800; color: var(--ink); }
+.tri-status { margin: 10px 0 0; min-height: 1.4em; font-weight: 700; }
+.tri-slider-head { display: flex; justify-content: space-between; gap: 8px; color: var(--c); }
+.tri-slider input[type="range"] { accent-color: var(--c); }
+.tri-out { font-family: var(--font-mono); font-weight: 700; }
+.tri-table-wrap { overflow-x: auto; margin-top: 10px; }
+.tri-table th, .tri-table td { text-align: center; }
+.tri-fill--angles { fill: color-mix(in srgb, var(--ink) 6%, transparent); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; transition: opacity .3s; }
+.tri-fill--angles.is-faded { opacity: .35; }
+.tri-angle-arc { fill: none; stroke: var(--c); stroke-width: 2.5; }
+.tri-angle-val { fill: var(--c); font-size: 15px; font-weight: 700; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.tri-vertex { cursor: grab; outline: none; touch-action: none; }
+.tri-vertex:active { cursor: grabbing; }
+.tri-vertex-hit { fill: transparent; stroke: none; }
+.tri-vertex-dot { fill: var(--card); stroke: var(--c); stroke-width: 3; }
+.tri-vertex:hover .tri-vertex-dot { fill: color-mix(in srgb, var(--c) 25%, var(--card)); }
+.tri-vertex:focus-visible .tri-vertex-hit { stroke: var(--focus); stroke-width: 3; }
+.tri-wedge { fill: color-mix(in srgb, var(--c) 45%, var(--card)); stroke: var(--c); stroke-width: 1.5; stroke-linejoin: round; }
+.tri-sep { stroke: var(--rule-2); stroke-dasharray: 4 6; }
+.tri-flat-line { stroke: var(--ink); stroke-width: 2.5; }
+.tri-flat-txt { fill: var(--ink-2); font-size: 14px; font-weight: 700; }
+.tri-readout { white-space: pre-wrap; }
+
+/* ---------- Dés ---------- */
+.dice { display: grid; gap: 12px; }
+.dice-event { margin: 0; font-weight: 700; }
+.dice-main { display: grid; gap: 6px; min-width: 0; }
+.dice-title { margin: 6px 0 0; font-weight: 700; font-size: .92rem; }
+.dice-hist, .dice-curve { display: block; background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-s); font-family: var(--font-body); }
+.dice-axis { stroke: var(--ink-2); stroke-width: 1.2; }
+.dice-gridline { stroke: var(--rule); stroke-width: 1; }
+.dice-tick { fill: var(--ink-2); font-size: 11px; }
+.dice-tick.is-tracked { fill: var(--approfondissement); font-weight: 700; }
+.dice-axis-title { fill: var(--ink-3); font-size: 12px; }
+.dice-bar { fill: var(--maths); cursor: pointer; }
+.dice-bar:hover { opacity: .8; }
+.dice-bar.is-tracked { fill: var(--approfondissement); }
+.dice-prob { stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 4; }
+.dice-prob-label { fill: var(--ink); font-size: 12px; font-weight: 700; paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.dice-line { fill: none; stroke: var(--approfondissement); stroke-width: 2; stroke-linejoin: round; }
+.dice-throw { display: flex; flex-wrap: wrap; gap: 6px; }
+.dice-last { display: flex; align-items: center; gap: 8px; min-height: 46px; }
+.dice-face {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border: 2px solid var(--ink); border-radius: 9px;
+  background: var(--card); box-shadow: 0 2px 0 var(--ink); font-family: var(--font-display); font-size: 1.2rem; font-weight: 800;
+}
+.dice-face.is-rolling { animation: dice-roll .45s var(--ease); }
+.dice-op { color: var(--ink-2); font-weight: 700; }
+.dice-readout { white-space: pre-wrap; }
+.dice-select { width: auto; }
+.dice-details summary { cursor: pointer; font-weight: 700; }
+.dice-table-wrap { max-height: 320px; overflow: auto; margin-top: 8px; }
+.dice-table tr.is-tracked { background: color-mix(in srgb, var(--approfondissement) 14%, transparent); }
+.dice-table tbody th, .dice-table tfoot th { text-align: right; }
+@keyframes dice-roll { from { opacity: 0; transform: rotate(-90deg) scale(.6); } to { opacity: 1; transform: none; } }
+
+/* ---------- Écrans étroits (tablette en portrait, téléphone) ---------- */
+/* Les grandes figures restent à l'écran avec leurs commandes (le viewBox garde les proportions). */
+.py-svg, .tri-svg--angles { max-height: 66vh; }
+@media (max-width: 1000px) {
+  /* Une seule colonne : les commandes passent avant les graphiques qu'elles pilotent. */
+  .dice .lab-controls, .py .lab-controls { order: -1; }
+}
+@media (max-width: 700px) {
+  .py-demo-grid { grid-template-columns: 1fr; }
+  .fbar-stepper { margin-left: 0; }
+  .tri-sign { min-width: 1.4em; font-size: 1.5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dice-face.is-rolling { animation: none; }
+  .fbar-part, .tri-fill--angles { transition: none; }
+}

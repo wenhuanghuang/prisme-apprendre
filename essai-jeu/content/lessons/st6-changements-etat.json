@@ -1,0 +1,1133 @@
+{
+  "id": "st6-changements-etat",
+  "chapter": "6e-st-changements-etat",
+  "title": "Les changements d'état : températures et paliers",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": ["st6.matiere.etats", "st6.matiere.paliers"],
+  "status": "programme",
+  "programmes": ["sciences-techno-c3-2023"],
+  "duration": 55,
+  "summary": "Reconnaître les trois états de la matière et nommer les changements d'état ; mesurer une température de changement d'état et repérer un palier quand on chauffe ou qu'on refroidit de l'eau ; savoir que la masse se conserve. Programme de sciences et technologie du cycle 3 (version de 2023), attendus de fin de 6e.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le thermomètre est-il en panne ?",
+      "body": "Inès pose une casserole de glace pilée sur une plaque chauffante, avec un thermomètre dedans. La plaque chauffe fort. Pourtant, pendant cinq longues minutes, le thermomètre reste bloqué sur **0 °C** !\n\nInès est sûre qu'il est cassé. Son grand frère sourit : « Regarde bien ce qui arrive à la glace pendant ce temps. »\n\nÀ ton avis, où passe la chaleur de la plaque ?"
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🧊",
+          "title": "Trois états de la matière",
+          "body": "Un **solide** a une forme propre : un caillou garde sa forme. Un **liquide** coule et prend la forme du récipient ; au repos, sa surface est plane et horizontale. Un **gaz** occupe tout l'espace qu'on lui offre. L'eau existe sous les trois états : glace, eau liquide, vapeur d'eau.",
+          "example": "Le sable coule, mais chaque grain garde sa forme : c'est un solide en grains."
+        },
+        {
+          "emoji": "🔁",
+          "title": "Les changements d'état",
+          "body": "- **Fusion** : solide → liquide (la glace fond).\n- **Solidification** : liquide → solide (l'eau gèle).\n- **Vaporisation** : liquide → gaz, lente (évaporation) ou avec de grosses bulles (ébullition).\n- **Liquéfaction** : gaz → liquide (on dit souvent « condensation »).",
+          "reveal": {
+            "question": "Devine : la buée sur le miroir de la salle de bains, c'est quel changement d'état ?",
+            "answer": "Une liquéfaction : la vapeur d'eau invisible de l'air touche le miroir froid et redevient de l'eau liquide, en petites gouttes."
+          }
+        },
+        {
+          "emoji": "🌡️",
+          "title": "Des températures repères",
+          "body": "L'**eau pure** fond et gèle à **0 °C**. Elle bout à **100 °C** (au niveau de la mer). Chaque corps pur a ses propres températures de changement d'état : l'alcool bout à 78 °C, le fer fond vers 1 540 °C. On les mesure avec un thermomètre.",
+          "example": "L'eau gèle à 0 °C et la glace fond à 0 °C : c'est la même température."
+        },
+        {
+          "emoji": "📈",
+          "title": "Le palier",
+          "body": "Pendant le changement d'état d'un **corps pur**, la température **ne change pas**, même si on continue de chauffer ou de refroidir. Sur la courbe de la température en fonction du temps, on voit un trait horizontal : c'est un **palier**. L'énergie reçue sert à changer d'état.",
+          "reveal": {
+            "question": "Devine : si on chauffe la glace plus fort, le palier de fusion se fait-il à une température plus haute ?",
+            "answer": "Non, toujours à 0 °C. Le palier est seulement plus court, car la glace fond plus vite."
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Rien ne disparaît",
+          "body": "Lors d'un changement d'état, la **masse se conserve** : 100 g de glace donnent 100 g d'eau liquide. Le **volume**, lui, peut changer : en gelant, l'eau prend environ un dixième de place en plus. C'est pour cela qu'une bouteille pleine oubliée au congélateur peut éclater.",
+          "example": "La glace qui fond ne disparaît pas : elle devient de l'eau liquide."
+        },
+        {
+          "emoji": "💨",
+          "title": "La vapeur d'eau est invisible",
+          "body": "La **vapeur d'eau** est un gaz **invisible**. Le petit nuage blanc au-dessus d'une casserole n'est pas de la vapeur : ce sont de minuscules gouttes d'eau liquide, formées quand la vapeur se refroidit dans l'air. L'**évaporation** se fait à toute température (le linge sèche) ; l'**ébullition**, à 100 °C pour l'eau."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : chauffer de la glace jusqu'à l'ébullition",
+      "body": "Regarde la courbe se tracer pendant qu'on chauffe. Tu peux mettre en pause à tout moment.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "chrono", "id": "chr", "x": 56, "y": 80, "value": 0, "label": "temps" },
+          { "type": "plaque", "id": "pl", "x": 200, "y": 392, "w": 170, "on": false, "label": "plaque chauffante" },
+          { "type": "becher", "id": "b", "x": 200, "y": 356, "w": 130, "h": 150, "level": 0, "ice": 9, "solid": 1, "liquid": "#a9d8f5", "bubbles": 0, "steam": 0 },
+          { "type": "thermometre", "id": "th", "x": 226, "y": 344, "h": 240, "value": -10, "min": -20, "max": 110, "dx": 60 },
+          { "type": "courbe", "id": "g", "x": 450, "y": 18, "w": 330, "h": 225, "title": "Température au cours du temps", "xRange": [0, 20], "yRange": [-20, 110], "xLabel": "t (min)", "yLabel": "θ (°C)", "points": [[0, -10], [1, 0], [6, 0], [12, 100], [20, 100]], "progress": 0, "color": "#e11d48" },
+          { "type": "forme", "id": "assiette", "shape": "rect", "x": 106, "y": 126, "w": 110, "h": 8, "fill": "#cbd5e1", "stroke": "#64748b", "width": 1.5, "hidden": true },
+          { "type": "objet", "id": "g1", "shape": "goutte", "x": 122, "y": 148, "size": 11, "color": "eau", "hidden": true },
+          { "type": "objet", "id": "g2", "shape": "goutte", "x": 158, "y": 150, "size": 13, "color": "eau", "hidden": true },
+          { "type": "objet", "id": "g3", "shape": "goutte", "x": 194, "y": 147, "size": 10, "color": "eau", "hidden": true },
+          { "type": "texte", "id": "tA", "x": 160, "y": 116, "text": "assiette froide", "size": 13, "hidden": true },
+          { "type": "etiquette", "id": "eVap", "x": 360, "y": 200, "text": "vapeur : invisible", "to": [175, 262], "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Dans le bécher : de la glace pilée qui sort du congélateur, à −10 °C. Le bécher est posé sur une plaque chauffante. Un thermomètre mesure la température ; on la relève chaque minute pour tracer une courbe. Lunettes de protection : on va faire bouillir de l'eau.",
+            "focus": ["b", "th", "pl"]
+          },
+          {
+            "title": "On chauffe la glace",
+            "text": "La plaque chauffe régulièrement. La glace reste solide, mais sa température monte vite : de −10 °C jusqu'à 0 °C en une minute environ. La courbe commence à se tracer.",
+            "duration": 3,
+            "do": [
+              { "id": "pl", "set": { "on": true } },
+              { "id": "th", "to": { "value": 0 } },
+              { "id": "g", "to": { "progress": 0.05 } },
+              { "id": "chr", "to": { "value": 60 } }
+            ],
+            "focus": ["th"]
+          },
+          {
+            "title": "Prévois !",
+            "text": "La glace a atteint 0 °C. La plaque chauffe toujours.",
+            "ask": {
+              "kind": "prevoir",
+              "question": "Pendant que la glace fond, que va faire la température ?",
+              "choices": ["Elle continue de monter", "Elle reste à 0 °C", "Elle redescend"],
+              "answer": 1,
+              "explain": "Tant qu'il reste de la glace, l'énergie reçue sert à la faire fondre : la température reste à 0 °C. Regarde le thermomètre et la courbe."
+            }
+          },
+          {
+            "title": "La glace fond : premier palier",
+            "text": "À 0 °C, la glace commence à fondre : c'est la **fusion**. Le bécher contient de la glace ET de l'eau liquide. Pendant 5 minutes, la température reste à 0 °C, alors que la plaque chauffe toujours. Sur la courbe, c'est un **palier**.",
+            "duration": 7,
+            "do": [
+              { "id": "b", "to": { "solid": 0, "level": 0.5 } },
+              { "id": "g", "to": { "progress": 0.3 } },
+              { "id": "chr", "to": { "value": 360 } },
+              { "id": "g", "set": { "zones": [{ "from": 1, "to": 6, "label": "fusion" }] }, "at": 6 }
+            ],
+            "focus": ["b", "g"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Toute la glace a fondu. Lis le chronomètre : depuis combien de minutes chauffe-t-on ?",
+              "answer": 6,
+              "tolerance": 0,
+              "unit": "min",
+              "explain": "Le chronomètre, en haut à gauche, affiche 06:00, soit 6 minutes. La fusion elle-même a duré 5 minutes, de la 1re à la 6e minute."
+            }
+          },
+          {
+            "title": "L'eau liquide se réchauffe",
+            "text": "Toute la glace a fondu. L'énergie apportée par la plaque fait de nouveau monter la température de l'eau liquide : 20 °C, 50 °C, 80 °C… jusqu'à 100 °C. Un peu d'eau s'évapore déjà.",
+            "duration": 5,
+            "do": [
+              { "id": "th", "to": { "value": 100 } },
+              { "id": "g", "to": { "progress": 0.6 } },
+              { "id": "chr", "to": { "value": 720 } },
+              { "id": "b", "to": { "steam": 0.3 } }
+            ],
+            "focus": ["th", "g"]
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "L'eau atteint 100 °C et de grosses bulles apparaissent. Si on continue de chauffer, que va faire la température ?",
+              "choices": ["Elle continue de monter", "Elle reste à 100 °C pendant l'ébullition", "Elle redescend vers 0 °C"],
+              "answer": 1,
+              "explain": "L'ébullition est un changement d'état de l'eau pure : la température reste constante. Ce sera un deuxième palier."
+            }
+          },
+          {
+            "title": "L'eau bout : deuxième palier",
+            "text": "De grosses bulles de vapeur naissent dans tout le liquide : c'est l'**ébullition**. Le thermomètre reste bloqué à 100 °C pendant 8 minutes. Le niveau baisse : l'eau part dans l'air sous forme de vapeur. Elle ne disparaît pas, elle change d'état.",
+            "duration": 8,
+            "do": [
+              { "id": "b", "to": { "bubbles": 1, "steam": 0.9, "level": 0.4 } },
+              { "id": "g", "to": { "progress": 1 } },
+              { "id": "chr", "to": { "value": 1200 } },
+              { "id": "g", "set": { "zones": [{ "from": 1, "to": 6, "label": "fusion" }, { "from": 12, "to": 20, "label": "ébullition" }] }, "at": 7 }
+            ],
+            "focus": ["b", "g"],
+            "ask": {
+              "kind": "observer",
+              "question": "Pendant l'ébullition, qu'arrive-t-il au niveau de l'eau dans le bécher ?",
+              "choices": ["Il monte", "Il baisse", "Il ne change pas"],
+              "answer": 1,
+              "explain": "Le niveau baisse : une partie de l'eau liquide devient de la vapeur et part dans l'air. L'eau ne disparaît pas, elle change d'état."
+            }
+          },
+          {
+            "title": "Où est la vapeur ?",
+            "text": "Juste au-dessus de l'eau, on ne voit rien : la vapeur d'eau est un gaz invisible. Le petit nuage blanc, plus haut, est fait de minuscules gouttes d'eau liquide. Sous une assiette froide, la vapeur redevient liquide : c'est la **liquéfaction**.",
+            "show": ["eVap", "assiette", "tA", "g1", "g2", "g3"],
+            "focus": ["eVap", "assiette"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi des gouttes d'eau apparaissent-elles sous l'assiette froide ?",
+              "choices": ["L'assiette fabrique de l'eau", "La vapeur d'eau, invisible, se refroidit au contact de l'assiette et redevient liquide", "L'eau du bécher saute jusqu'à l'assiette"],
+              "answer": 1,
+              "explain": "La vapeur d'eau, un gaz invisible, rencontre l'assiette froide : elle se refroidit et redevient liquide. C'est la liquéfaction."
+            }
+          },
+          {
+            "title": "Attention, ça brûle !",
+            "text": "La vapeur et l'eau bouillante provoquent de graves brûlures. Au laboratoire, on porte des lunettes, on ne se penche jamais au-dessus du bécher et on attend que la verrerie refroidisse avant de la toucher.",
+            "focus": ["b"]
+          }
+        ],
+        "conclusion": "Pour l'eau pure, la température reste constante pendant chaque changement d'état : **palier de fusion à 0 °C**, **palier d'ébullition à 100 °C**. La vapeur d'eau est **invisible** ; le « nuage » blanc est déjà de l'eau liquide."
+      }
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : l'eau qui gèle dans un tube",
+      "body": "Cette fois, on refroidit de l'eau liquide. Le palier va-t-il apparaître aussi ?",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "chrono", "id": "chr", "x": 70, "y": 90, "value": 0, "label": "temps" },
+          { "type": "becher", "id": "b", "x": 200, "y": 392, "w": 150, "h": 170, "level": 0.6, "liquid": "#dbeafe", "ice": 10, "solid": 0.55, "grad": false },
+          { "type": "tube", "id": "t", "x": 200, "y": 380, "w": 36, "h": 150, "level": 0.5, "liquid": "#a9d8f5", "cloudy": 0 },
+          { "type": "thermometre", "id": "th", "x": 200, "y": 372, "h": 220, "value": 20, "min": -20, "max": 30, "dx": 85 },
+          { "type": "texte", "id": "tb", "x": 200, "y": 420, "text": "glace pilée + gros sel : environ −15 °C", "size": 13 },
+          { "type": "courbe", "id": "g", "x": 440, "y": 18, "w": 340, "h": 215, "title": "Température de l'eau du tube", "xRange": [0, 16], "yRange": [-15, 25], "xLabel": "t (min)", "yLabel": "θ (°C)", "points": [[0, 20], [4, 0], [12, 0], [16, -10]], "progress": 0, "color": "#2563eb" },
+          { "type": "zoom", "id": "z", "x": 640, "y": 330, "r": 56, "etat": 1, "n": 25, "color": "#3b82f6", "hidden": true, "label": "les particules d'eau (vue imaginée)" },
+          { "type": "etiquette", "id": "eNiv", "x": 330, "y": 150, "text": "le niveau monte un peu", "to": [212, 302], "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Un tube contient de l'eau distillée, c'est-à-dire de l'eau pure, à 20 °C. On le plonge dans un bécher rempli de glace pilée et de gros sel : ce mélange descend vers −15 °C. Il peut brûler la peau par le froid : on le manipule avec des gants.",
+            "focus": ["t", "b", "th"]
+          },
+          {
+            "title": "L'eau refroidit",
+            "text": "L'eau du tube cède sa chaleur au mélange très froid. On relève sa température chaque minute : 20 °C, 15 °C, 10 °C… En 4 minutes, elle descend jusqu'à 0 °C. L'eau est encore liquide.",
+            "duration": 5,
+            "do": [
+              { "id": "th", "to": { "value": 0 } },
+              { "id": "g", "to": { "progress": 0.25 } },
+              { "id": "chr", "to": { "value": 240 } }
+            ],
+            "focus": ["th", "g"]
+          },
+          {
+            "title": "Zoom sur l'eau liquide",
+            "text": "Imagine que l'on puisse voir les particules d'eau. Dans le liquide, elles sont serrées mais en désordre : elles glissent les unes sur les autres. C'est pour cela qu'un liquide coule.",
+            "show": ["z"],
+            "focus": ["z"],
+            "ask": {
+              "kind": "observer",
+              "question": "Dans la loupe, comment sont les particules d'eau liquide ?",
+              "choices": ["Très éloignées les unes des autres", "Serrées, mais en désordre", "Serrées et bien rangées"],
+              "answer": 1,
+              "explain": "Dans un liquide, les particules sont proches les unes des autres, mais pas rangées : elles glissent les unes sur les autres."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Les premiers cristaux de glace apparaissent dans le tube. Pendant que l'eau gèle, que va faire la température ?",
+              "choices": ["Elle continue de baisser", "Elle reste à 0 °C tant qu'il reste de l'eau liquide", "Elle remonte"],
+              "answer": 1,
+              "explain": "Pendant le changement d'état d'un corps pur, la température ne change pas. Regarde la courbe : elle va devenir horizontale."
+            }
+          },
+          {
+            "title": "L'eau gèle : un palier",
+            "text": "Peu à peu, l'eau devient de la glace : c'est la **solidification**. Le tube contient de l'eau ET de la glace. Pendant 8 minutes, le thermomètre reste à 0 °C, alors que le mélange autour est bien plus froid. Dans la glace, les particules se rangent.",
+            "duration": 8,
+            "do": [
+              { "id": "t", "to": { "liquid": "#e0f2fe", "cloudy": 0.6, "level": 0.545 } },
+              { "id": "g", "to": { "progress": 0.75 } },
+              { "id": "chr", "to": { "value": 720 } },
+              { "id": "z", "to": { "etat": 0 } },
+              { "id": "g", "set": { "zones": [{ "from": 4, "to": 12, "label": "palier à 0 °C" }] }, "at": 7 }
+            ],
+            "focus": ["th", "g"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Le mélange autour du tube est bien plus froid. Pourquoi l'eau du tube reste-t-elle à 0 °C pendant 8 minutes ?",
+              "choices": ["Le thermomètre est bloqué", "Elle change d'état : tant qu'elle gèle, sa température reste à 0 °C", "Le mélange froid ne la refroidit plus"],
+              "answer": 1,
+              "explain": "Pendant un changement d'état, la température d'un corps pur ne varie pas. L'eau perd toujours de l'énergie, mais en se transformant en glace, pas en refroidissant. Tant qu'il reste de l'eau liquide, elle reste à 0 °C."
+            }
+          },
+          {
+            "title": "Prévois !",
+            "ask": {
+              "question": "Avant l'expérience, le tube d'eau avait une masse de 52 g. Quelle est la masse du tube rempli de glace ?",
+              "choices": ["Moins de 52 g", "52 g", "Plus de 52 g, car la glace prend plus de place"],
+              "answer": 1,
+              "explain": "Aucune particule d'eau n'est entrée ni sortie du tube : la masse se conserve. La glace prend un peu plus de place, mais elle n'est pas plus lourde."
+            }
+          },
+          {
+            "title": "Toute l'eau a gelé",
+            "text": "Il n'y a plus que de la glace : sa température baisse de nouveau, vers celle du mélange froid. Regarde le haut du tube : le niveau est un peu monté. La glace occupe plus de place que l'eau liquide, mais sa masse n'a pas changé.",
+            "duration": 4,
+            "do": [
+              { "id": "th", "to": { "value": -10 } },
+              { "id": "g", "to": { "progress": 1 } },
+              { "id": "chr", "to": { "value": 960 } }
+            ],
+            "show": ["eNiv"],
+            "focus": ["t", "eNiv"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Il n'y a plus que de la glace. Lis le thermomètre à la fin de l'expérience.",
+              "answer": -10,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre indique −10 °C. Une fois toute l'eau gelée, la température de la glace descend sous 0 °C, vers celle du mélange froid."
+            }
+          }
+        ],
+        "conclusion": "Quand l'eau pure se **solidifie**, sa température reste à **0 °C** pendant tout le changement d'état : c'est un **palier**, comme pour la fusion. La masse se conserve ; le volume augmente d'environ un dixième.\n\n> L'eau gèle à 0 °C et la glace fond à 0 °C : c'est la même température."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : identifier une cire",
+      "steps": [
+        {
+          "text": "Léa fait refroidir un tube de cire fondue dont elle ne connaît pas le nom. Elle relève la température chaque minute.",
+          "math": "",
+          "figure": {
+            "alt": "Tableau des températures relevées chaque minute pendant le refroidissement de la cire",
+            "w": 620,
+            "h": 110,
+            "items": [
+              { "type": "table", "head": ["t (min)", "0", "1", "2", "3", "4", "5", "6", "7", "8"], "rows": [["θ (°C)", "82", "76", "71", "69", "69", "69", "69", "69", "64"]] }
+            ]
+          }
+        },
+        {
+          "text": "Elle trace la courbe de la température en fonction du temps.",
+          "math": "",
+          "figure": {
+            "alt": "Courbe de refroidissement de la cire : elle descend, devient horizontale entre 3 et 7 minutes, puis redescend",
+            "w": 480,
+            "h": 280,
+            "items": [
+              { "type": "linechart", "series": [{ "label": "cire inconnue", "points": [[0, 82], [1, 76], [2, 71], [3, 69], [4, 69], [5, 69], [6, 69], [7, 69], [8, 64]] }], "xLabel": "t (min)", "yLabel": "θ (°C)", "xRange": [0, 8], "yRange": [60, 85] }
+            ]
+          }
+        },
+        {
+          "text": "De 3 à 7 minutes, la température ne change pas : la courbe est horizontale. C'est un palier. Pendant ce temps, la cire liquide se solidifie.",
+          "math": "palier : θ = 69 °C"
+        },
+        {
+          "text": "Léa compare avec des températures connues : eau, 0 °C ; acide stéarique, 69 °C ; paraffine, pas de palier (c'est un mélange). Sa cire est donc de l'acide stéarique, un corps pur.",
+          "math": "69 °C → acide stéarique"
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour les températures, écris l'unité : **100 °C**.",
+      "exercises": [
+        "st6-changements-etat-noms",
+        "st6-changements-etat-etats",
+        "st6-changements-etat-reperer",
+        "st6-changements-etat-masse",
+        "st6-changements-etat-ordre",
+        "st6-changements-etat-courbe"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "body": "Explique comme si tu parlais à quelqu'un qui n'a pas suivi le cours.",
+      "exercises": ["st6-changements-etat-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Le grand thermomètre",
+      "exercises": ["st6-changements-etat-thermometre"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : des glaçons pour la fête de la classe",
+      "body": "La fête de fin d'année approche : c'est toi qui t'occupes des glaçons. Calcule, explique, et ne gâche pas les bacs !",
+      "exercises": ["st6-changements-etat-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> Trois états : solide, liquide, gaz. Pour un **corps pur**, la température reste constante pendant un changement d'état : c'est un **palier** (eau : 0 °C pour la fusion et la solidification, 100 °C pour l'ébullition). La masse se conserve.\n\n- **« La glace qui fond disparaît. »** Non : elle devient de l'eau liquide, de même masse.\n- **« Le thermomètre est en panne pendant le palier. »** Non : l'énergie reçue sert à changer d'état.\n- **« La fumée blanche, c'est de la vapeur. »** La vapeur d'eau est invisible ; le nuage blanc est fait de gouttelettes liquides.\n- **« Plus de place, donc plus lourd. »** La glace occupe plus de volume que l'eau liquide, mais sa masse est la même."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours la lecture d'une courbe avec un palier et un calcul sur la conservation de la masse."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Reconnaître une substance grâce à sa température de fusion, puis comprendre pourquoi on sème du sel sur les routes en hiver.",
+      "exercises": ["st6-changements-etat-identifier", "st6-changements-etat-routes"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà des attendus de 6e : la durée des paliers et l'énergie, puis l'ébullition en montagne (passerelle vers le cycle 4).",
+      "exercises": ["st6-changements-etat-energie", "st6-changements-etat-altitude"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-changements-etat-noms",
+      "type": "match",
+      "skill": "st6.matiere.etats",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:buee-vapeur", "mc:fondre-evaporer"],
+      "expectedSeconds": 120,
+      "prompt": "Associe chaque situation de la vie courante au changement d'état qu'elle montre.",
+      "leftTitle": "Situation",
+      "rightTitle": "Changement d'état",
+      "left": [
+        { "id": "s1", "label": "Un glaçon devient de l'eau dans un verre de jus." },
+        { "id": "s2", "label": "L'eau d'un bac à glaçons gèle au congélateur." },
+        { "id": "s3", "label": "Une flaque d'eau disparaît peu à peu au soleil." },
+        { "id": "s4", "label": "De la buée se forme sur le miroir de la salle de bains." }
+      ],
+      "right": [
+        { "id": "fusion", "label": "fusion (solide → liquide)" },
+        { "id": "solid", "label": "solidification (liquide → solide)" },
+        { "id": "vapo", "label": "vaporisation (liquide → gaz)" },
+        { "id": "liq", "label": "liquéfaction (gaz → liquide)" }
+      ],
+      "pairs": { "s1": "fusion", "s2": "solid", "s3": "vapo", "s4": "liq" },
+      "misconceptions": [
+        { "pair": ["s3", "fusion"], "id": "mc:fondre-evaporer", "error": "notion", "feedback": "Dans la flaque, l'eau est déjà liquide : elle ne peut pas fondre. Elle s'en va dans l'air : demande-toi dans quel état elle s'y trouve." },
+        { "pair": ["s4", "vapo"], "id": "mc:buee-vapeur", "error": "notion", "feedback": "La buée est faite de petites gouttes d'eau liquide. Avant de toucher le miroir froid, l'eau était dans l'air, invisible : dans quel sens se fait le changement d'état ?" },
+        { "pair": ["s1", "solid"], "id": "mc:sens-changement", "error": "notion", "feedback": "Tu as inversé le sens du changement. Compare l'état du glaçon au début et à la fin de la situation." }
+      ],
+      "hints": [
+        "Pour chaque situation, demande-toi : dans quel état est l'eau au début ? Et à la fin ?",
+        "Fusion et solidification sont inverses l'une de l'autre, comme vaporisation et liquéfaction.",
+        "La buée et la rosée sont de l'eau liquide qui vient de la vapeur d'eau de l'air."
+      ],
+      "solution": "Glaçon qui devient eau : fusion. Eau qui gèle : solidification. Flaque qui disparaît : vaporisation (ici une évaporation lente, sans bulles). Buée sur le miroir : liquéfaction de la vapeur d'eau de l'air sur la surface froide.",
+      "selfTest": [
+        { "response": { "pairs": { "s1": "fusion", "s2": "solid", "s3": "vapo", "s4": "liq" } }, "expect": "correct" },
+        { "response": { "pairs": { "s1": "fusion", "s2": "solid", "s3": "vapo", "s4": "vapo" } }, "expect": "mc:buee-vapeur" },
+        { "response": { "pairs": { "s1": "fusion", "s2": "solid", "s3": "fusion", "s4": "liq" } }, "expect": "mc:fondre-evaporer" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-etats",
+      "type": "categorize",
+      "skill": "st6.matiere.etats",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:poudre-liquide", "mc:vapeur-visible"],
+      "expectedSeconds": 150,
+      "prompt": "Dans la classe, il fait environ 20 °C. Dans quel état se trouve chaque matière ?",
+      "categories": [
+        { "id": "solide", "label": "Solide" },
+        { "id": "liquide", "label": "Liquide" },
+        { "id": "gaz", "label": "Gaz" }
+      ],
+      "items": [
+        { "id": "sable", "label": "Le sable d'un sablier", "category": "solide" },
+        { "id": "lait", "label": "Le lait d'un bol", "category": "liquide" },
+        { "id": "vapeur", "label": "La vapeur d'eau contenue dans l'air", "category": "gaz" },
+        { "id": "caillou", "label": "Un caillou", "category": "solide" },
+        { "id": "farine", "label": "La farine d'un paquet", "category": "solide" },
+        { "id": "huile", "label": "L'huile d'une bouteille", "category": "liquide" },
+        { "id": "air", "label": "L'air d'un ballon", "category": "gaz" },
+        { "id": "eau", "label": "L'eau du robinet", "category": "liquide" }
+      ],
+      "misconceptions": [
+        { "item": "sable", "category": "liquide", "id": "mc:poudre-liquide", "error": "notion", "feedback": "Le sable coule comme un liquide, mais regarde un seul grain à la loupe : il garde sa forme. Une poudre est faite de tout petits morceaux qui ont chacun une forme propre." },
+        { "item": "vapeur", "category": "liquide", "id": "mc:vapeur-visible", "error": "notion", "feedback": "La vapeur d'eau de l'air ne forme ni gouttes ni flaque : elle est invisible et occupe tout l'espace, comme l'air. Ce n'est pas la buée." },
+        { "item": "farine", "category": "liquide", "id": "mc:poudre-liquide", "error": "notion", "feedback": "La farine se verse, mais chaque minuscule grain garde sa forme. Un tas de farine ne s'étale pas en surface plane comme un liquide." }
+      ],
+      "hints": [
+        "Un solide a une forme propre : il garde sa forme quand on le pose.",
+        "Un liquide coule et prend la forme du récipient ; au repos, sa surface est plane et horizontale.",
+        "Un gaz occupe tout l'espace disponible ; beaucoup de gaz sont invisibles."
+      ],
+      "solution": "Solides : le sable, le caillou, la farine (chaque grain garde sa forme). Liquides : le lait, l'huile, l'eau du robinet. Gaz : l'air et la vapeur d'eau qu'il contient, invisible.",
+      "selfTest": [
+        { "response": { "assign": { "sable": "solide", "lait": "liquide", "vapeur": "gaz", "caillou": "solide", "farine": "solide", "huile": "liquide", "air": "gaz", "eau": "liquide" } }, "expect": "correct" },
+        { "response": { "assign": { "sable": "liquide", "lait": "liquide", "vapeur": "gaz", "caillou": "solide", "farine": "solide", "huile": "liquide", "air": "gaz", "eau": "liquide" } }, "expect": "mc:poudre-liquide" },
+        { "response": { "assign": { "sable": "solide", "lait": "liquide", "vapeur": "liquide", "caillou": "solide", "farine": "solide", "huile": "liquide", "air": "gaz", "eau": "liquide" } }, "expect": "mc:vapeur-visible" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-reperer",
+      "type": "highlight",
+      "skill": "st6.matiere.etats",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:temperature-etat"],
+      "expectedSeconds": 120,
+      "instruction": "Surligne seulement les mots qui décrivent un changement d'état.",
+      "prompt": "Lis l'histoire de la mare, puis surligne les mots qui décrivent un **changement d'état**.",
+      "text": "En hiver, l'eau de la mare [gèle]. Au printemps, le soleil réchauffe la glace, qui [fond] peu à peu. En été, l'eau de la mare [s'évapore] lentement. Le soir, l'air refroidit et la vapeur d'eau [se liquéfie] en gouttes de rosée sur les herbes.",
+      "misconceptions": [
+        { "word": "réchauffe", "id": "mc:temperature-etat", "error": "notion", "feedback": "« Réchauffer », c'est faire monter la température. Tant que la glace reste de la glace, son état ne change pas : ce n'est pas un changement d'état." },
+        { "word": "refroidit", "id": "mc:temperature-etat", "error": "notion", "feedback": "L'air qui refroidit reste de l'air, à l'état gazeux : sa température baisse, mais son état ne change pas." }
+      ],
+      "hints": [
+        "Il y a quatre changements d'état dans le texte, un par saison ou presque.",
+        "Changer de température n'est pas changer d'état : on cherche un passage solide, liquide ou gaz vers un autre état."
+      ],
+      "solution": "Les changements d'état sont : « gèle » (solidification), « fond » (fusion), « s'évapore » (vaporisation) et « se liquéfie » (liquéfaction). « Réchauffe » et « refroidit » décrivent seulement des changements de température.",
+      "selfTest": [
+        { "response": { "selected": [7, 16, 27, 39] }, "expect": "correct" },
+        { "response": { "selected": [7, 12, 16, 27, 39] }, "expect": "mc:temperature-etat" },
+        { "response": { "selected": [7, 16, 27, 33, 39] }, "expect": "mc:temperature-etat" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-masse",
+      "type": "numeric",
+      "skill": "st6.matiere.etats",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:volume-masse-confondus", "mc:glace-plus-legere", "mc:glace-disparait"],
+      "expectedSeconds": 120,
+      "params": { "m": { "int": [120, 480] }, "b": { "int": [35, 90] } },
+      "prompt": "Un bac à glaçons vide a une masse de {b} g. Tom y verse {m} g d'eau, puis le met au congélateur. Le lendemain, l'eau a gelé et le niveau est un peu monté. Tom pose le bac rempli de glace sur une balance. Quelle masse lit-il ? Écris le résultat avec son unité.",
+      "answer": "b+m",
+      "unit": "g",
+      "rel": 0.002,
+      "misconceptions": [
+        { "answer": "b+1.1*m", "id": "mc:volume-masse-confondus", "error": "notion", "feedback": "La glace prend plus de place que l'eau liquide, mais une plus grande place ne veut pas dire une plus grande masse : aucune goutte d'eau n'a été ajoutée dans le bac." },
+        { "answer": "b+0.9*m", "id": "mc:glace-plus-legere", "error": "notion", "feedback": "La glace flotte sur l'eau, mais le bac n'a perdu aucune particule d'eau en gelant : sa masse ne peut pas avoir diminué." },
+        { "answer": "b", "id": "mc:glace-disparait", "error": "notion", "feedback": "L'eau n'a pas disparu : elle a seulement changé d'état. Sa masse compte toujours." },
+        { "answer": "m", "id": "mc:oubli-recipient", "error": "lecture", "feedback": "Relis l'énoncé : la balance pèse le bac ET ce qu'il contient." }
+      ],
+      "hints": [
+        "Pendant la congélation, de l'eau est-elle entrée dans le bac, ou en est-elle sortie ?",
+        "Lors d'un changement d'état, la masse se conserve, même si le volume change.",
+        "Additionne la masse du bac et la masse de l'eau."
+      ],
+      "solution": "Aucune particule d'eau n'est entrée ni sortie : la masse se conserve lors de la solidification. La balance indique {b} + {m} = {b+m} g. Seul le volume a changé : il a augmenté d'environ un dixième.",
+      "selfTest": [
+        { "response": { "value": "{b+m} g" }, "expect": "correct" },
+        { "response": { "value": "{(b+m)/1000} kg" }, "expect": "correct" },
+        { "response": { "value": "{b+1.1*m} g" }, "expect": "mc:volume-masse-confondus" },
+        { "response": { "value": "{b} g" }, "expect": "mc:glace-disparait" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-ordre",
+      "type": "order",
+      "skill": "st6.matiere.paliers",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["raisonnement"],
+      "expectedSeconds": 150,
+      "prompt": "Un glaçon sort du congélateur à −18 °C. On le chauffe dans une casserole jusqu'à ce qu'il ne reste plus d'eau. Range les observations dans l'ordre où elles se produisent.",
+      "orderLabel": "de la première à la dernière observation",
+      "errorType": "raisonnement",
+      "items": [
+        { "id": "o1", "label": "La glace se réchauffe, de −18 °C jusqu'à 0 °C" },
+        { "id": "o2", "label": "La glace fond : la température reste à 0 °C" },
+        { "id": "o3", "label": "L'eau liquide se réchauffe, de 0 °C jusqu'à 100 °C" },
+        { "id": "o4", "label": "L'eau bout : la température reste à 100 °C" },
+        { "id": "o5", "label": "La casserole est vide : l'eau est partie dans l'air sous forme de vapeur" }
+      ],
+      "hints": [
+        "La glace doit d'abord atteindre sa température de fusion avant de fondre.",
+        "Il y a deux paliers : un pour chaque changement d'état.",
+        "L'eau ne peut bouillir que lorsqu'elle est liquide."
+      ],
+      "solution": "1. La glace se réchauffe jusqu'à 0 °C. 2. Elle fond à 0 °C (premier palier). 3. L'eau liquide se réchauffe jusqu'à 100 °C. 4. Elle bout à 100 °C (deuxième palier). 5. Toute l'eau est partie dans l'air sous forme de vapeur : elle n'a pas disparu, elle a changé d'état.",
+      "selfTest": [
+        { "response": { "order": ["o1", "o2", "o3", "o4", "o5"] }, "expect": "correct" },
+        { "response": { "order": ["o2", "o1", "o3", "o4", "o5"] }, "expect": "raisonnement" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-courbe",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:duree-palier", "mc:evaporation-ebullition", "mc:lecture-depart"],
+      "expectedSeconds": 360,
+      "prompt": "Sami chauffe de l'eau dans une casserole. Il relève la température toutes les 2 minutes :\n- 0 min : 20 °C\n- 2 min : 60 °C\n- 4 min : 100 °C\n- 6 min : 100 °C\n- 8 min : 100 °C\n- 10 min : 100 °C",
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place les six points : le temps (en min) en abscisse, la température (en °C) en ordonnée.",
+          "xRange": [0, 12],
+          "yRange": [0, 120],
+          "xLabel": "t (min)",
+          "yLabel": "θ (°C)",
+          "tolerance": 1,
+          "expectedPoints": [[0, 20], [2, 60], [4, 100], [6, 100], [8, 100], [10, 100]]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle température se trouve le palier ? Écris l'unité.",
+          "answer": 100,
+          "unit": "°C",
+          "tolerance": 0.5,
+          "misconceptions": [
+            { "answer": 20, "id": "mc:lecture-depart", "error": "lecture", "feedback": "Tu as lu la température du départ. Cherche la partie de la courbe qui est horizontale." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pendant combien de minutes le palier dure-t-il sur ces relevés ? Écris l'unité.",
+          "answer": 6,
+          "unit": "min",
+          "tolerance": 0.1,
+          "misconceptions": [
+            { "answer": 10, "id": "mc:duree-palier", "error": "lecture", "feedback": "Tu as donné l'heure de la fin du relevé, pas une durée. Repère quand le palier commence et quand il finit, puis fais la différence." },
+            { "answer": 4, "id": "mc:duree-palier", "error": "lecture", "feedback": "Tu as donné le moment où le palier commence. La durée, c'est le temps qui s'écoule entre son début et sa fin." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quel changement d'état se produit pendant ce palier ? (un mot)",
+          "accept": ["ébullition", "l'ébullition", "une ébullition", "vaporisation", "la vaporisation", "une vaporisation"],
+          "misconceptions": [
+            { "answer": "évaporation", "id": "mc:evaporation-ebullition", "error": "notion", "feedback": "L'évaporation est lente et se fait à la surface, à toute température. Ici, de grosses bulles se forment dans tout le liquide, à une température fixe : cherche le mot exact du cours." },
+            { "answer": "fusion", "id": "mc:sens-changement", "error": "notion", "feedback": "La fusion fait passer de l'état solide à l'état liquide. Or ici, l'eau est liquide dès le départ." }
+          ]
+        }
+      ],
+      "hints": [
+        "Chaque relevé donne un point : (temps ; température).",
+        "Un palier est une partie horizontale de la courbe : la température ne change pas.",
+        "Durée du palier = moment de la fin du palier − moment de son début."
+      ],
+      "solution": "Les points montent jusqu'à (4 ; 100) puis restent à 100 °C : la courbe devient horizontale. Le palier est à 100 °C ; sur ces relevés, il va de la 4e à la 10e minute, soit 10 − 4 = 6 min. Pendant ce palier, l'eau bout : c'est l'ébullition, une vaporisation.",
+      "selfTest": [
+        { "response": { "parts": [{ "points": [[0, 20], [2, 60], [4, 100], [6, 100], [8, 100], [10, 100]] }, { "value": "100 °C" }, { "value": "6 min" }, { "value": "ébullition" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "points": [[0, 20], [2, 60], [4, 100], [6, 100], [8, 100], [10, 100]] }, { "value": "100 °C" }, { "value": "10 min" }, { "value": "ébullition" }] }, "expect": "mc:duree-palier" },
+        { "response": { "parts": [{ "points": [[0, 20], [2, 60], [4, 100], [6, 100], [8, 100], [10, 100]] }, { "value": "100 °C" }, { "value": "6 min" }, { "value": "évaporation" }] }, "expect": "mc:evaporation-ebullition" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-expliquer",
+      "type": "open",
+      "skill": "st6.matiere.paliers",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": [],
+      "expectedSeconds": 420,
+      "minWords": 30,
+      "prompt": "Inès chauffe de la glace pilée sur une plaque. Pendant 5 minutes, son thermomètre reste bloqué à 0 °C. Elle pense qu'il est en panne. Explique-lui ce qui se passe, avec le vocabulaire du cours.",
+      "criteria": [
+        { "id": "c1", "label": "Je dis que la glace est en train de fondre (c'est la fusion)", "keywords": [["fond", "fusion"]] },
+        { "id": "c2", "label": "J'explique que, pendant le changement d'état d'un corps pur, la température reste constante : c'est un palier", "keywords": [["palier", "constante", "ne change pas", "reste a 0"]] },
+        { "id": "c3", "label": "J'explique que l'énergie de la plaque sert à faire fondre la glace", "keywords": [["energie", "chaleur", "sert a"]] },
+        { "id": "c4", "label": "Je dis que la température remontera quand toute la glace aura fondu", "keywords": [["remonte", "augmente", "toute la glace", "plus de glace"]] }
+      ],
+      "models": [
+        "Ton thermomètre marche ! Pendant ces 5 minutes, la glace est en train de fondre : c'est la fusion. Pendant le changement d'état de l'eau pure, la température reste constante, à 0 °C : c'est un palier. L'énergie de la plaque sert à faire fondre la glace au lieu de la réchauffer. Quand toute la glace aura fondu, la température de l'eau liquide remontera.",
+        "Le thermomètre n'est pas en panne. La chaleur de la plaque est utilisée pour transformer la glace solide en eau liquide. Tant qu'il reste de la glace, la température ne change pas : on voit un palier à 0 °C sur la courbe. Ensuite, il n'y a plus que de l'eau liquide et la température augmente de nouveau."
+      ],
+      "hints": [
+        "Que devient la glace pendant ces 5 minutes ?",
+        "Comment s'appelle le trait horizontal sur une courbe de température ?",
+        "À quoi sert l'énergie de la plaque pendant ce temps ?"
+      ],
+      "solution": "La glace fond : c'est la fusion. Pendant le changement d'état de l'eau pure, la température reste constante, à 0 °C : c'est un palier. L'énergie de la plaque sert à faire fondre la glace. Quand il n'y aura plus de glace, la température de l'eau remontera.",
+      "selfTest": [
+        { "response": { "text": "Ton thermomètre marche. La glace est en train de fondre : c'est la fusion. Pendant le changement d'état, la température reste constante à 0 °C, c'est un palier. L'énergie de la plaque sert à faire fondre la glace. Quand toute la glace aura fondu, la température remontera.", "selfCheck": { "c1": true, "c2": true, "c3": true, "c4": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-thermometre",
+      "type": "numberline",
+      "skill": "st6.matiere.paliers",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["signe"],
+      "expectedSeconds": 150,
+      "prompt": "Voici un grand thermomètre couché, gradué de −30 °C à 110 °C. Place chaque température repère.",
+      "min": -30,
+      "max": 110,
+      "step": 5,
+      "tolerance": 3,
+      "points": [
+        { "label": "congélateur", "value": -18 },
+        { "label": "fusion de la glace", "value": 0 },
+        { "label": "corps humain", "value": 37 },
+        { "label": "ébullition de l'eau", "value": 100 }
+      ],
+      "hints": [
+        "Les températures au-dessous de 0 °C sont à gauche de 0 : on les écrit avec le signe −.",
+        "La glace fond à la même température que celle où l'eau gèle.",
+        "Au niveau de la mer, l'eau pure bout à 100 °C ; notre corps est à environ 37 °C."
+      ],
+      "solution": "Congélateur : −18 °C (à gauche de 0). Fusion de la glace : 0 °C. Corps humain : environ 37 °C. Ébullition de l'eau pure : 100 °C (au niveau de la mer).",
+      "selfTest": [
+        { "response": { "positions": { "congélateur": -20, "fusion de la glace": 0, "corps humain": 35, "ébullition de l'eau": 100 } }, "expect": "correct" },
+        { "response": { "positions": { "congélateur": 20, "fusion de la glace": 0, "corps humain": 35, "ébullition de l'eau": 100 } }, "expect": "signe" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-mission",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "skills": ["st6.matiere.etats"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:conversion-kg", "mc:temperature-glacon", "mc:fondre-dissoudre"],
+      "expectedSeconds": 540,
+      "prompt": "Pour la fête de la classe, il faut des glaçons. Un bac à glaçons rempli contient 250 g d'eau. Le congélateur est réglé à −18 °C.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de bacs faut-il remplir pour obtenir 2 kg de glace ?",
+          "answer": 8,
+          "tolerance": 0.01,
+          "misconceptions": [
+            { "answer": 0.008, "id": "mc:conversion-kg", "error": "unite", "prerequisite": "st6.matiere.masse-volume", "feedback": "Les deux masses ne sont pas dans la même unité : convertis d'abord les kilogrammes en grammes, puis divise." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Pourquoi ne faut-il pas remplir les bacs à ras bord avant de les mettre au congélateur ?",
+          "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "Je dis qu'en gelant, l'eau prend plus de place (son volume augmente) et peut déborder", "keywords": [["volume", "place", "gonfle", "deborde", "augmente"]] }
+          ],
+          "models": [
+            "En gelant, l'eau prend plus de place : son volume augmente d'environ un dixième. Si le bac est plein à ras bord, la glace déborde.",
+            "La glace occupe plus de volume que l'eau liquide, même si sa masse ne change pas : il faut laisser un peu de place, sinon ça déborde."
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Tu mets des glaçons dans un grand verre d'eau. Tant qu'il reste de la glace, quelle température indique un thermomètre plongé dans l'eau du verre ? Écris l'unité.",
+          "answer": 0,
+          "unit": "°C",
+          "tolerance": 0.5,
+          "misconceptions": [
+            { "answer": -18, "id": "mc:temperature-glacon", "error": "notion", "feedback": "C'est la température du congélateur. Dans le verre, les glaçons sont en train de fondre : pense au palier de fusion." },
+            { "answer": 10, "id": "mc:moyenne-temperatures", "error": "raisonnement", "feedback": "On ne fait pas une moyenne des températures : tant que de la glace fond dans l'eau, le mélange reste à la température du changement d'état." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment s'appelle le changement d'état des glaçons dans le verre ? (un mot)",
+          "accept": ["fusion", "la fusion", "une fusion", "fonte", "la fonte"],
+          "misconceptions": [
+            { "answer": "dissolution", "id": "mc:fondre-dissoudre", "error": "notion", "feedback": "Se dissoudre, c'est se disperser dans un liquide, comme le sucre dans l'eau. Ici, la glace change d'état : de solide, elle devient liquide. Cherche le nom de ce changement." },
+            { "answer": "solidification", "id": "mc:sens-changement", "error": "notion", "feedback": "La solidification fait passer de l'état liquide à l'état solide : c'est l'inverse de ce qui arrive aux glaçons." }
+          ]
+        }
+      ],
+      "hints": [
+        "La masse se conserve quand l'eau gèle : la glace d'un bac a la même masse que l'eau versée.",
+        "En gelant, l'eau prend environ un dixième de place en plus.",
+        "Pendant la fusion de l'eau pure, la température reste constante."
+      ],
+      "solution": "2 kg = 2 000 g, et 2 000 ÷ 250 = 8 bacs (la masse se conserve en gelant). On ne remplit pas à ras bord : en gelant, l'eau augmente de volume (d'environ un dixième) et déborderait. Dans le verre, tant qu'il reste de la glace, l'eau est à 0 °C : c'est le palier de fusion.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "8" }, { "text": "En gelant, l'eau prend plus de place, son volume augmente : le bac déborderait.", "selfCheck": { "c1": true } }, { "value": "0 °C" }, { "value": "fusion" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,008" }, { "text": "En gelant, l'eau prend plus de place, son volume augmente : le bac déborderait." }, { "value": "0 °C" }, { "value": "fusion" }] }, "expect": "mc:conversion-kg" },
+        { "response": { "parts": [{ "value": "8" }, { "text": "En gelant, l'eau prend plus de place, son volume augmente : le bac déborderait." }, { "value": "-18 °C" }, { "value": "fusion" }] }, "expect": "mc:temperature-glacon" },
+        { "response": { "parts": [{ "value": "8" }, { "text": "En gelant, l'eau prend plus de place, son volume augmente : le bac déborderait." }, { "value": "0 °C" }, { "value": "dissolution" }] }, "expect": "mc:fondre-dissoudre" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-remed-masse",
+      "type": "composite",
+      "skill": "st6.matiere.etats",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:glace-disparait"],
+      "expectedSeconds": 120,
+      "params": { "m": { "int": [10, 40] }, "b": { "int": [50, 120] } },
+      "prompt": "Rappel : quand la glace fond, rien ne disparaît. Un glaçon de {m} g est enfermé dans une boîte transparente bien fermée, posée sur une balance. La boîte vide a une masse de {b} g.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Que lit-on sur la balance au début (avec l'unité) ?",
+          "answer": "b+m",
+          "unit": "g",
+          "rel": 0.002,
+          "misconceptions": [
+            { "answer": "m", "id": "mc:oubli-recipient", "error": "lecture", "feedback": "La balance pèse la boîte ET le glaçon." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Une heure plus tard, le glaçon a fondu : il reste une petite flaque dans la boîte fermée. Que lit-on maintenant (avec l'unité) ?",
+          "answer": "b+m",
+          "unit": "g",
+          "rel": 0.002,
+          "misconceptions": [
+            { "answer": "b", "id": "mc:glace-disparait", "error": "notion", "feedback": "Le glaçon n'a pas disparu : il est devenu de l'eau liquide, toujours dans la boîte fermée. Rien n'est sorti." },
+            { "answer": "b+m-1", "id": "mc:glace-disparait", "error": "notion", "feedback": "La boîte est fermée : aucune goutte n'a pu s'échapper. La masse ne diminue pas pendant la fusion." }
+          ]
+        }
+      ],
+      "hints": [
+        "La boîte est fermée : rien ne peut entrer ni sortir.",
+        "Lors d'un changement d'état, la masse se conserve."
+      ],
+      "solution": "Au début : {b} + {m} = {b+m} g. Après la fusion, l'eau liquide est toujours dans la boîte fermée : la balance indique encore {b+m} g. La glace qui fond ne disparaît pas.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{b+m} g" }, { "value": "{b+m} g" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{b+m} g" }, { "value": "{b} g" }] }, "expect": "mc:glace-disparait" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-remed-palier",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:lecture-depart", "mc:palier-maximum"],
+      "expectedSeconds": 150,
+      "prompt": "Rappel ciblé : on cherche, dans un tableau de relevés, les températures qui ne changent pas. Voici les relevés d'une cire qui refroidit.",
+      "figure": {
+        "alt": "Tableau des températures relevées chaque minute pendant le refroidissement d'une cire",
+        "w": 520,
+        "h": 110,
+        "items": [
+          { "type": "table", "head": ["t (min)", "0", "1", "2", "3", "4", "5", "6"], "rows": [["θ (°C)", "90", "80", "71", "69", "69", "69", "60"]] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "À quelle température la température reste-t-elle la même pendant plusieurs minutes ? Écris l'unité.",
+          "answer": 69,
+          "unit": "°C",
+          "tolerance": 0.5,
+          "misconceptions": [
+            { "answer": 90, "id": "mc:lecture-depart", "error": "lecture", "feedback": "C'est la température du départ. Cherche plusieurs valeurs identiques qui se suivent dans le tableau." },
+            { "answer": 60, "id": "mc:lecture-depart", "error": "lecture", "feedback": "C'est la dernière valeur relevée. Cherche plusieurs valeurs identiques qui se suivent." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment appelle-t-on la partie de la courbe où la température ne change pas ? (un mot)",
+          "accept": ["palier", "un palier", "le palier", "plateau", "un plateau"],
+          "misconceptions": [
+            { "answer": "maximum", "id": "mc:palier-maximum", "error": "notion", "feedback": "Un maximum serait le point le plus haut de la courbe. Ici, la courbe est horizontale pendant un moment : cherche le mot du cours." }
+          ]
+        }
+      ],
+      "hints": [
+        "Lis les températures une à une : lesquelles se répètent ?",
+        "Une courbe horizontale montre une température qui ne change pas."
+      ],
+      "solution": "La température reste à 69 °C de la 3e à la 5e minute : c'est un palier. Pendant ce palier, la cire se solidifie.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "69 °C" }, { "value": "palier" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "90 °C" }, { "value": "palier" }] }, "expect": "mc:lecture-depart" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-identifier",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:melange-palier", "mc:lecture-tableau"],
+      "expectedSeconds": 480,
+      "prompt": "Trois flacons sans étiquette contiennent des solides blancs qui ressemblent à de la cire. On fait fondre un peu de chacun en relevant la température :\n- flacon A : un palier à 63 °C ;\n- flacon B : la température monte doucement, sans palier, de 50 °C à 60 °C pendant que le solide fond ;\n- flacon C : un palier à 69 °C.\n\nDocument : acide palmitique, fusion à 63 °C ; acide stéarique, fusion à 69 °C ; paraffine (un mélange), fond peu à peu, sans température fixe.",
+      "parts": [
+        {
+          "type": "match",
+          "prompt": "Associe chaque flacon à la substance qu'il contient.",
+          "leftTitle": "Flacon",
+          "rightTitle": "Substance",
+          "left": [
+            { "id": "A", "label": "Flacon A" },
+            { "id": "B", "label": "Flacon B" },
+            { "id": "C", "label": "Flacon C" }
+          ],
+          "right": [
+            { "id": "palmitique", "label": "acide palmitique" },
+            { "id": "paraffine", "label": "paraffine" },
+            { "id": "stearique", "label": "acide stéarique" }
+          ],
+          "pairs": { "A": "palmitique", "B": "paraffine", "C": "stearique" },
+          "misconceptions": [
+            { "pair": ["A", "stearique"], "id": "mc:lecture-tableau", "error": "lecture", "feedback": "Compare la température du palier du flacon A avec chaque température de fusion du document : une seule est identique." },
+            { "pair": ["B", "stearique"], "id": "mc:melange-palier", "error": "notion", "feedback": "Le flacon B n'a pas de palier. Une substance qui fond sans température fixe n'est pas un corps pur." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Range chaque flacon : corps pur ou mélange ?",
+          "categories": [
+            { "id": "pur", "label": "Corps pur" },
+            { "id": "melange", "label": "Mélange" }
+          ],
+          "items": [
+            { "id": "A", "label": "Flacon A", "category": "pur" },
+            { "id": "B", "label": "Flacon B", "category": "melange" },
+            { "id": "C", "label": "Flacon C", "category": "pur" }
+          ],
+          "misconceptions": [
+            { "item": "B", "category": "pur", "id": "mc:melange-palier", "error": "notion", "feedback": "Pendant sa fusion, la température du flacon B continue de monter : il n'y a pas de palier. Que montre l'absence de palier ?" }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique comment un relevé de température permet de savoir si une substance est un corps pur.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Je dis qu'un corps pur présente un palier : sa température reste constante pendant le changement d'état", "keywords": [["palier", "constante", "ne change pas"]] },
+            { "id": "c2", "label": "Je dis qu'un mélange n'a pas de palier net : sa température varie pendant le changement d'état", "keywords": [["melange", "varie", "monte", "pas de palier"]] },
+            { "id": "c3", "label": "J'explique que la température du palier permet d'identifier la substance", "keywords": [["identifier", "reconnaitre", "comparer", "temperature de fusion"]] }
+          ],
+          "models": [
+            "Pendant le changement d'état d'un corps pur, la température reste constante : on voit un palier. Un mélange n'a pas de palier net : sa température continue de varier. En plus, la température du palier permet de reconnaître la substance en la comparant à un tableau.",
+            "Si la courbe présente un palier, la substance est un corps pur, et la température du palier est sa température de fusion : on la compare au document pour l'identifier. Si la température monte pendant la fusion, c'est un mélange."
+          ]
+        }
+      ],
+      "hints": [
+        "Compare chaque température de palier avec le document.",
+        "Un corps pur change d'état à température fixe ; un mélange, non.",
+        "Le flacon B n'a pas de palier."
+      ],
+      "solution": "A : palier à 63 °C, c'est l'acide palmitique (corps pur). C : palier à 69 °C, c'est l'acide stéarique (corps pur). B : pas de palier, la température monte pendant la fusion : c'est la paraffine, un mélange. Un palier signale un corps pur, et sa température permet de l'identifier.",
+      "selfTest": [
+        { "response": { "parts": [{ "pairs": { "A": "palmitique", "B": "paraffine", "C": "stearique" } }, { "assign": { "A": "pur", "B": "melange", "C": "pur" } }, { "text": "Un corps pur a un palier : sa température reste constante pendant la fusion. Un mélange n'a pas de palier, sa température monte. La température du palier permet de comparer avec le tableau pour identifier.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "pairs": { "A": "palmitique", "B": "paraffine", "C": "stearique" } }, { "assign": { "A": "pur", "B": "pur", "C": "pur" } }, { "text": "Un corps pur a un palier, un mélange non." }] }, "expect": "mc:melange-palier" },
+        { "response": { "parts": [{ "pairs": { "A": "stearique", "B": "paraffine", "C": "palmitique" } }, { "assign": { "A": "pur", "B": "melange", "C": "pur" } }, { "text": "Un corps pur a un palier, un mélange non." }] }, "expect": "mc:lecture-tableau" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-routes",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "skills": ["st6.matiere.etats"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:sel-fait-fondre-tout", "mc:melange-palier"],
+      "expectedSeconds": 480,
+      "prompt": "En hiver, on sème du sel sur les routes. Document : l'eau pure gèle à 0 °C. Une eau aussi salée que l'eau de mer commence à geler vers −2 °C. Plus l'eau contient de sel, plus elle gèle à basse température, jusqu'à environ −21 °C pour une eau très salée. La figure montre le refroidissement de l'eau pure et de l'eau de mer.",
+      "figure": {
+        "alt": "Courbes de refroidissement de l'eau pure et de l'eau de mer en fonction du temps",
+        "w": 480,
+        "h": 280,
+        "items": [
+          { "type": "linechart", "series": [{ "label": "eau pure", "points": [[0, 6], [2, 0], [8, 0], [10, -4]] }, { "label": "eau de mer", "points": [[0, 6], [2.5, -2], [5, -3.5], [8, -5], [10, -8]], "color": "orange" }], "xLabel": "t (min)", "yLabel": "θ (°C)", "xRange": [0, 10], "yRange": [-10, 8] }
+        ]
+      },
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "D'après le document, l'eau gèle-t-elle dans chaque cas ?",
+          "categories": [
+            { "id": "gele", "label": "Elle gèle" },
+            { "id": "liquide", "label": "Elle reste liquide" }
+          ],
+          "items": [
+            { "id": "pure-moins1", "label": "Eau pure, à −1 °C", "category": "gele" },
+            { "id": "mer-moins1", "label": "Eau de mer, à −1 °C", "category": "liquide" },
+            { "id": "mer-moins5", "label": "Eau de mer, à −5 °C", "category": "gele" },
+            { "id": "tres-moins10", "label": "Eau très salée, à −10 °C", "category": "liquide" },
+            { "id": "pure-plus2", "label": "Eau pure, à +2 °C", "category": "liquide" }
+          ],
+          "misconceptions": [
+            { "item": "mer-moins1", "category": "gele", "id": "mc:sel-fait-fondre-tout", "error": "lecture", "feedback": "Compare −1 °C avec la température où l'eau de mer commence à geler, dans le document." },
+            { "item": "pure-moins1", "category": "liquide", "id": "mc:lecture-tableau", "error": "lecture", "feedback": "L'eau pure gèle dès que sa température descend sous 0 °C : compare −1 °C et 0 °C." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Sur la figure, la courbe de l'eau de mer présente-t-elle un palier net pendant qu'elle gèle ? (oui ou non)",
+          "accept": ["non", "non, pas de palier", "il n'y a pas de palier"],
+          "misconceptions": [
+            { "answer": "oui", "id": "mc:melange-palier", "error": "lecture", "feedback": "Regarde la courbe orange : devient-elle horizontale pendant plusieurs minutes, comme celle de l'eau pure ? L'eau de mer est un mélange d'eau et de sels." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Explique pourquoi les services des routes sèment du sel quand il risque de geler. Utilise le document.",
+          "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "Je dis que le sel se dissout dans l'eau de la route : on obtient de l'eau salée", "keywords": [["dissout", "eau salee", "melange"]] },
+            { "id": "c2", "label": "J'explique que l'eau salée gèle à une température plus basse que 0 °C", "keywords": [["plus basse", "sous 0", "moins de 0", "-2", "−2", "en dessous"]] },
+            { "id": "c3", "label": "Je conclus que la route reste mouillée au lieu de verglacer, tant qu'il ne fait pas trop froid", "keywords": [["verglas", "glisse", "reste liquide", "pas trop froid", "-21", "−21"]] }
+          ],
+          "models": [
+            "Le sel se dissout dans l'eau qui est sur la route : on obtient de l'eau salée. Or l'eau salée gèle à une température plus basse que l'eau pure, sous 0 °C. À −1 °C ou −2 °C, la route reste donc mouillée au lieu de se couvrir de verglas. Mais s'il fait très froid, l'eau salée finit aussi par geler.",
+            "L'eau pure gèle à 0 °C, mais l'eau salée seulement en dessous. Avec le sel, la flaque devient un mélange qui reste liquide quand il fait un peu moins de 0 °C : il n'y a pas de verglas et les voitures ne glissent pas."
+          ]
+        }
+      ],
+      "hints": [
+        "Repère dans le document la température à laquelle chaque eau commence à geler.",
+        "Une courbe avec un palier devient horizontale pendant un moment.",
+        "Que devient le sel posé sur une route mouillée ?"
+      ],
+      "solution": "Eau pure à −1 °C : elle gèle. Eau de mer à −1 °C : elle reste liquide (elle ne gèle que vers −2 °C) ; à −5 °C, elle gèle. Eau très salée à −10 °C : liquide. Eau pure à +2 °C : liquide. La courbe de l'eau de mer n'a pas de palier net : c'est un mélange. Le sel se dissout dans l'eau de la route : l'eau salée gèle plus bas que 0 °C, donc il n'y a pas de verglas tant qu'il ne fait pas trop froid.",
+      "selfTest": [
+        { "response": { "parts": [{ "assign": { "pure-moins1": "gele", "mer-moins1": "liquide", "mer-moins5": "gele", "tres-moins10": "liquide", "pure-plus2": "liquide" } }, { "value": "non" }, { "text": "Le sel se dissout dans l'eau de la route, on obtient de l'eau salée qui gèle à une température plus basse que 0 °C. La route reste mouillée, sans verglas, s'il ne fait pas trop froid.", "selfCheck": { "c1": true, "c2": true, "c3": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "assign": { "pure-moins1": "gele", "mer-moins1": "gele", "mer-moins5": "gele", "tres-moins10": "liquide", "pure-plus2": "liquide" } }, { "value": "non" }, { "text": "Le sel empêche le verglas." }] }, "expect": "mc:sel-fait-fondre-tout" },
+        { "response": { "parts": [{ "assign": { "pure-moins1": "gele", "mer-moins1": "liquide", "mer-moins5": "gele", "tres-moins10": "liquide", "pure-plus2": "liquide" } }, { "value": "oui" }, { "text": "Le sel empêche le verglas." }] }, "expect": "mc:melange-palier" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-energie",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "skills": ["pc.matiere.etats"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:duree-fixe", "mc:rapport-inverse"],
+      "expectedSeconds": 540,
+      "params": { "m": { "choice": [50, 150, 200, 250, 300] } },
+      "prompt": "Avec une même plaque chauffante, qui fournit toujours la même énergie chaque minute, on chauffe 100 g de glace à 0 °C. Durées mesurées :\n- fusion de toute la glace : 4 min ;\n- échauffement de l'eau liquide de 0 °C à 100 °C : 5 min ;\n- ébullition, jusqu'à ce que toute l'eau soit partie : 27 min.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Avec la même plaque, combien de temps durerait la fusion de {m} g de glace à 0 °C ? Écris l'unité.",
+          "answer": "4*m/100",
+          "unit": "min",
+          "rel": 0.01,
+          "misconceptions": [
+            { "answer": 4, "id": "mc:duree-fixe", "error": "raisonnement", "feedback": "Cette durée correspond à 100 g de glace. Avec une autre masse, il faut plus ou moins d'énergie pour tout faire fondre : la durée change dans la même proportion." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois l'ébullition complète dure-t-elle plus longtemps que la fusion complète ?",
+          "answer": 6.75,
+          "rel": 0.02,
+          "misconceptions": [
+            { "answer": "4/27", "id": "mc:rapport-inverse", "error": "calcul", "feedback": "Ton nombre est plus petit que 1, alors que l'ébullition dure plus longtemps : tu as divisé dans le mauvais sens." },
+            { "answer": 23, "id": "mc:difference-rapport", "error": "methode", "feedback": "Tu as calculé une différence. « Combien de fois plus » demande une division." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "La plaque fournit la même énergie chaque minute. Que peux-tu en conclure sur l'énergie nécessaire pour vaporiser l'eau, comparée à celle qu'il faut pour la faire fondre ?",
+          "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je dis qu'il faut beaucoup plus d'énergie pour vaporiser l'eau que pour la faire fondre", "keywords": [["plus d'energie", "beaucoup plus", "davantage"]] },
+            { "id": "c2", "label": "Je relie la durée du palier à l'énergie reçue (même énergie chaque minute)", "keywords": [["chaque minute", "duree", "plus longtemps", "proportionnel"]] }
+          ],
+          "models": [
+            "Comme la plaque donne la même énergie chaque minute, un palier plus long demande plus d'énergie. L'ébullition dure presque 7 fois plus longtemps que la fusion : il faut donc environ 7 fois plus d'énergie pour vaporiser l'eau que pour la faire fondre.",
+            "L'énergie reçue est proportionnelle à la durée de chauffage. Vaporiser 100 g d'eau prend 27 minutes contre 4 pour les faire fondre : la vaporisation demande beaucoup plus d'énergie."
+          ]
+        }
+      ],
+      "hints": [
+        "La plaque donne la même énergie chaque minute : deux fois plus de glace demande deux fois plus de temps.",
+        "Pour {m} g : 4 × {m} ÷ 100.",
+        "« Combien de fois plus » : on divise la grande durée par la petite."
+      ],
+      "solution": "La durée est proportionnelle à la masse : 4 × {m} ÷ 100 = {4*m/100} min. L'ébullition dure 27 ÷ 4 = 6,75 fois plus longtemps que la fusion. Comme la plaque fournit la même énergie chaque minute, vaporiser l'eau demande presque 7 fois plus d'énergie que la faire fondre.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{4*m/100} min" }, { "value": "6,75" }, { "text": "La plaque donne la même énergie chaque minute, donc il faut beaucoup plus d'énergie pour vaporiser l'eau : la durée est presque 7 fois plus longue.", "selfCheck": { "c1": true, "c2": true } }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "4 min" }, { "value": "6,75" }, { "text": "Il faut plus d'énergie." }] }, "expect": "mc:duree-fixe" },
+        { "response": { "parts": [{ "value": "{4*m/100} min" }, { "value": "0,148" }, { "text": "Il faut plus d'énergie." }] }, "expect": "mc:rapport-inverse" }
+      ]
+    },
+    {
+      "id": "st6-changements-etat-altitude",
+      "type": "composite",
+      "skill": "st6.matiere.paliers",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:ebullition-toujours-100", "mc:bouillir-cuire"],
+      "expectedSeconds": 540,
+      "prompt": "Passerelle vers le cycle 4. Plus on monte en altitude, plus l'air pèse peu sur l'eau, et plus l'eau bout à basse température. Température d'ébullition de l'eau pure :\n- 0 m (niveau de la mer) : 100 °C\n- 1 000 m : 97 °C\n- 2 000 m : 93 °C\n- 3 000 m : 90 °C\n- 4 000 m : 87 °C",
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place les cinq points : l'altitude (en km) en abscisse, la température d'ébullition (en °C) en ordonnée.",
+          "xRange": [0, 5],
+          "yRange": [80, 102],
+          "xLabel": "altitude (km)",
+          "yLabel": "θ (°C)",
+          "tolerance": 0.3,
+          "expectedPoints": [[0, 100], [1, 97], [2, 93], [3, 90], [4, 87]]
+        },
+        {
+          "type": "numeric",
+          "prompt": "D'après ton graphique, vers quelle température l'eau bout-elle à 1 500 m d'altitude ? Écris l'unité.",
+          "answer": 95,
+          "unit": "°C",
+          "tolerance": 1,
+          "misconceptions": [
+            { "answer": 100, "id": "mc:ebullition-toujours-100", "error": "notion", "feedback": "Cette valeur n'est vraie qu'au niveau de la mer. Lis la courbe à l'abscisse 1,5 km." }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Au sommet du mont Blanc (4 809 m), l'eau bout vers 84 °C. Les pâtes y cuisent-elles plus vite ou moins vite qu'au bord de la mer ?",
+          "accept": ["moins vite", "moins vite.", "plus lentement", "elles cuisent moins vite", "moins rapidement", "plus doucement"],
+          "misconceptions": [
+            { "answer": "plus vite", "id": "mc:bouillir-cuire", "error": "raisonnement", "feedback": "Bouillir plus tôt ne veut pas dire cuire plus vite : compare la température de l'eau bouillante au sommet et au bord de la mer." }
+          ]
+        }
+      ],
+      "hints": [
+        "Chaque ligne du tableau donne un point (altitude en km ; température).",
+        "1 500 m = 1,5 km : lis la température entre celles de 1 km et de 2 km.",
+        "La cuisson dépend de la température de l'eau."
+      ],
+      "solution": "Les points descendent régulièrement d'environ 3 °C par kilomètre. À 1,5 km, l'eau bout vers 95 °C. Au sommet du mont Blanc, l'eau bouillante n'est qu'à 84 °C environ : les pâtes y cuisent moins vite. La température d'ébullition dépend de l'air au-dessus de l'eau (de sa pression, que tu étudieras au cycle 4).",
+      "selfTest": [
+        { "response": { "parts": [{ "points": [[0, 100], [1, 97], [2, 93], [3, 90], [4, 87]] }, { "value": "95 °C" }, { "value": "moins vite" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "points": [[0, 100], [1, 97], [2, 93], [3, 90], [4, 87]] }, { "value": "100 °C" }, { "value": "moins vite" }] }, "expect": "mc:ebullition-toujours-100" },
+        { "response": { "parts": [{ "points": [[0, 100], [1, 97], [2, 93], [3, 90], [4, 87]] }, { "value": "95 °C" }, { "value": "plus vite" }] }, "expect": "mc:bouillir-cuire" }
+      ]
+    }
+  ]
+}

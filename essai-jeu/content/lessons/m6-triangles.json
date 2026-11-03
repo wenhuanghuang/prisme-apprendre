@@ -1,0 +1,4130 @@
+{
+  "id": "m6-triangles",
+  "chapter": "6e-m-triangles",
+  "title": "Les triangles : constructions, angles, cercle circonscrit",
+  "subject": "maths",
+  "level": "6e",
+  "skills": [
+    "m6.geo.triangles-construire",
+    "m6.geo.triangles-angles",
+    "m6.geo.cercle-circonscrit"
+  ],
+  "status": "programme",
+  "programmes": [
+    "maths-c3-2025"
+  ],
+  "duration": 60,
+  "summary": "Construire un triangle à la règle, au compas et au rapporteur ; découvrir que ses trois angles font toujours 180° et s'en servir pour calculer ; connaître les angles des triangles rectangle, isocèle et équilatéral ; enfin, tracer les trois médiatrices, qui se coupent au centre du cercle circonscrit.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Trois coins qui font une ligne droite",
+      "body": "Dessine un triangle sur une feuille et découpe-le. Déchire ses trois coins, puis place-les côte à côte, pointes réunies. Quelle figure obtiens-tu ?\n\nRecommence avec un triangle tout différent : très pointu, ou très aplati. Dans le labo ci-dessous, déforme le triangle : ses angles changent… mais que devient leur somme ?",
+      "activity": {
+        "widget": "triangle-lab",
+        "config": {
+          "mode": "angles"
+        }
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🔺",
+          "title": "Les triangles particuliers",
+          "body": "Un triangle a 3 sommets, 3 côtés et 3 angles. Il est **isocèle en A** si AB = AC : A est son sommet principal et [BC] sa base. Il est **équilatéral** si ses trois côtés sont égaux. Il est **rectangle en A** s'il a un angle droit en A : le côté opposé, [BC], est l'**hypoténuse**.",
+          "figure": {
+            "alt": "Trois triangles codés : un triangle isocèle en A, un triangle équilatéral et un triangle rectangle en G",
+            "w": 520,
+            "h": 190,
+            "frame": {
+              "x": [
+                0,
+                15.4
+              ],
+              "y": [
+                -0.9,
+                4.6
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 2,
+                "y": 4.1,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 0.6,
+                "y": 0.6,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 3.4,
+                "y": 0.6,
+                "pos": "se"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "marks": 1
+              },
+              {
+                "type": "text",
+                "x": 2,
+                "y": -0.4,
+                "text": "isocèle en A",
+                "size": "s",
+                "anchor": "middle"
+              },
+              {
+                "type": "point",
+                "id": "D",
+                "x": 5.4,
+                "y": 0.6,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "E",
+                "x": 8.6,
+                "y": 0.6,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "F",
+                "x": 7,
+                "y": 3.3713,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "fill": "vert"
+              },
+              {
+                "type": "segment",
+                "from": "D",
+                "to": "E",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "E",
+                "to": "F",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "F",
+                "to": "D",
+                "marks": 1
+              },
+              {
+                "type": "text",
+                "x": 7,
+                "y": -0.4,
+                "text": "équilatéral",
+                "size": "s",
+                "anchor": "middle"
+              },
+              {
+                "type": "point",
+                "id": "G",
+                "x": 10.6,
+                "y": 0.6,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "H",
+                "x": 14.8,
+                "y": 0.6,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "I",
+                "x": 10.6,
+                "y": 3.6,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "G",
+                  "H",
+                  "I"
+                ],
+                "fill": "orange"
+              },
+              {
+                "type": "angle",
+                "vertex": "G",
+                "from": "H",
+                "to": "I",
+                "right": true
+              },
+              {
+                "type": "text",
+                "x": 12.7,
+                "y": -0.4,
+                "text": "rectangle en G",
+                "size": "s",
+                "anchor": "middle"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "Construire avec trois longueurs",
+          "body": "Pour construire ABC avec AB = 6 cm, AC = 5 cm et BC = 4 cm : trace [AB] à la règle. Trace l'arc de centre A et de rayon 5 cm, puis l'arc de centre B et de rayon 4 cm. Ils se coupent en C : C est à 5 cm de A et à 4 cm de B.",
+          "reveal": {
+            "question": "Devine : peut-on construire un triangle dont les côtés mesurent 2 cm, 3 cm et 6 cm ?",
+            "answer": "Non ! Essaie au compas : 2 + 3 = 5, c'est moins que 6. Les deux arcs sont trop courts et ne se rencontrent pas."
+          },
+          "figure": {
+            "alt": "Un segment [AB] et deux arcs de cercle de centres A et B qui se coupent en C",
+            "w": 360,
+            "h": 250,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 4.75,
+                "y": 4.3072,
+                "pos": "n"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6 cm"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 5,
+                "start": 30,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 113,
+                "end": 135,
+                "color": "gris"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "5 cm",
+                "dashed": true
+              },
+              {
+                "type": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "4 cm",
+                "dashed": true
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Construire avec un angle",
+          "body": "**Deux côtés et l'angle entre eux** : trace [AB], construis l'angle en A au rapporteur, puis reporte la longueur AC sur le côté de cet angle. **Un côté et deux angles** : trace [AB], construis un angle en A et un angle en B ; les deux demi-droites se coupent au troisième sommet C.",
+          "figure": {
+            "alt": "Un triangle ABC construit avec AB = 5 cm, AC = 4 cm et un angle de 50° en A",
+            "w": 340,
+            "h": 230,
+            "frame": {
+              "x": [
+                0,
+                7
+              ],
+              "y": [
+                0,
+                5
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 6,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 3.5712,
+                "y": 4.0642,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "5 cm"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "4 cm"
+              },
+              {
+                "type": "angle",
+                "vertex": "A",
+                "from": "B",
+                "to": "C",
+                "label": "50°"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "➕",
+          "title": "La somme des angles : 180°",
+          "body": "Dans **tout** triangle, la somme des mesures des trois angles est égale à **180°**, comme un angle plat. On s'en sert pour calculer un angle : si on connaît deux angles, le troisième vaut 180° moins leur somme.",
+          "example": "Angles de 50° et 70° : le troisième mesure 180 − (50 + 70) = 60°.",
+          "figure": {
+            "alt": "Un triangle dont les angles mesurent 50°, 70° et 60°",
+            "w": 340,
+            "h": 290,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                7
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 0.5,
+                "y": 0.5,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7.5,
+                "y": 0.5,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 5.3823,
+                "y": 6.3184,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "vert"
+              },
+              {
+                "type": "angle",
+                "vertex": "A",
+                "from": "B",
+                "to": "C",
+                "label": "50°"
+              },
+              {
+                "type": "angle",
+                "vertex": "B",
+                "from": "C",
+                "to": "A",
+                "label": "70°"
+              },
+              {
+                "type": "angle",
+                "vertex": "C",
+                "from": "A",
+                "to": "B",
+                "label": "60°"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⭐",
+          "title": "Les angles des triangles particuliers",
+          "body": "Dans un triangle **isocèle**, les deux angles à la base sont égaux. Dans un triangle **équilatéral**, les trois angles mesurent **60°** (180 ÷ 3). Dans un triangle **rectangle**, il y a un angle de 90° : les deux autres font ensemble 90°.",
+          "reveal": {
+            "question": "Devine : un triangle peut-il avoir deux angles droits ?",
+            "answer": "Non : 90 + 90 = 180. Il ne resterait rien pour le troisième angle !"
+          },
+          "figure": {
+            "alt": "Un triangle isocèle dont les deux angles à la base sont codés égaux, et un triangle équilatéral avec trois angles de 60°",
+            "w": 420,
+            "h": 200,
+            "frame": {
+              "x": [
+                0,
+                12
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "B",
+                "x": 0.5,
+                "y": 0.5,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 5.5,
+                "y": 0.5,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 3,
+                "y": 4.4,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "marks": 1
+              },
+              {
+                "type": "angle",
+                "vertex": "B",
+                "from": "C",
+                "to": "A",
+                "marks": 1
+              },
+              {
+                "type": "angle",
+                "vertex": "C",
+                "from": "A",
+                "to": "B",
+                "marks": 1
+              },
+              {
+                "type": "point",
+                "id": "D",
+                "x": 6.5,
+                "y": 0.5,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "E",
+                "x": 11.5,
+                "y": 0.5,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "F",
+                "x": 9,
+                "y": 4.8301,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "D",
+                  "E",
+                  "F"
+                ],
+                "fill": "vert"
+              },
+              {
+                "type": "angle",
+                "vertex": "D",
+                "from": "E",
+                "to": "F",
+                "label": "60°"
+              },
+              {
+                "type": "angle",
+                "vertex": "E",
+                "from": "F",
+                "to": "D",
+                "label": "60°"
+              },
+              {
+                "type": "angle",
+                "vertex": "F",
+                "from": "D",
+                "to": "E",
+                "label": "60°"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⭕",
+          "title": "Le cercle circonscrit",
+          "body": "Les trois **médiatrices** d'un triangle se coupent en un même point O : on dit qu'elles sont **concourantes**. O est à la même distance des trois sommets. Le cercle de centre O qui passe par A passe donc aussi par B et par C : c'est le **cercle circonscrit** au triangle.",
+          "example": "Pour trouver O, il suffit de tracer deux médiatrices : la troisième passe forcément par leur point commun.",
+          "figure": {
+            "alt": "Un triangle ABC, ses trois médiatrices qui se coupent en O, et le cercle de centre O qui passe par A, B et C",
+            "w": 330,
+            "h": 320,
+            "frame": {
+              "x": [
+                -0.3,
+                8.3
+              ],
+              "y": [
+                -1,
+                7.2
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2,
+                "y": 6,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "O",
+                "x": 4,
+                "y": 3,
+                "pos": "e",
+                "style": "rond"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "line",
+                "through": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    4,
+                    6
+                  ]
+                ],
+                "dashed": true,
+                "color": "rouge"
+              },
+              {
+                "type": "line",
+                "through": [
+                  [
+                    4,
+                    3
+                  ],
+                  [
+                    5,
+                    4
+                  ]
+                ],
+                "dashed": true,
+                "color": "rouge"
+              },
+              {
+                "type": "line",
+                "through": [
+                  [
+                    4,
+                    3
+                  ],
+                  [
+                    9,
+                    2
+                  ]
+                ],
+                "dashed": true,
+                "color": "rouge"
+              },
+              {
+                "type": "circle",
+                "center": "O",
+                "r": 3.6056,
+                "color": "vert"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : construire un triangle avec trois longueurs",
+      "steps": [
+        {
+          "text": "On veut construire le triangle ABC tel que AB = 6 cm, AC = 5 cm et BC = 4 cm. On commence par le plus grand côté : on trace [AB], de 6 cm.",
+          "figure": {
+            "alt": "Un segment [AB] de 6 cm",
+            "w": 360,
+            "h": 250,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6 cm"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On ouvre le compas de 5 cm, on le pointe en A et on trace un arc au-dessus de [AB] : tous ses points sont à 5 cm de A.",
+          "math": "AC = 5 cm",
+          "figure": {
+            "alt": "Le segment [AB] et un arc de centre A",
+            "w": 360,
+            "h": 250,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 5,
+                "start": 30,
+                "end": 52,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On ouvre le compas de 4 cm, on le pointe en B et on trace un arc qui coupe le premier. Le point d'intersection est C : il est à 5 cm de A ET à 4 cm de B.",
+          "math": "BC = 4 cm",
+          "figure": {
+            "alt": "Les deux arcs se coupent en C",
+            "w": 360,
+            "h": 250,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 5,
+                "start": 30,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 113,
+                "end": 135,
+                "color": "gris"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 4.75,
+                "y": 4.3072,
+                "pos": "n"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On trace [AC] et [BC], puis on vérifie à la règle. Contrôle des angles au rapporteur : environ 41°, 83° et 56° ; la somme fait bien 180°.",
+          "math": "41 + 83 + 56 = 180",
+          "figure": {
+            "alt": "Le triangle ABC terminé, avec les longueurs de ses trois côtés",
+            "w": 360,
+            "h": 250,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 4.75,
+                "y": 4.3072,
+                "pos": "n"
+              },
+              {
+                "type": "polygon",
+                "points": [
+                  "A",
+                  "B",
+                  "C"
+                ],
+                "fill": "bleu"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6 cm"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "label": "5 cm"
+              },
+              {
+                "type": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "4 cm"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 5,
+                "start": 30,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 113,
+                "end": 135,
+                "color": "gris"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Calcule les angles, construis, et cherche le centre du cercle circonscrit.",
+      "exercises": [
+        "m6-triangles-troisieme-angle",
+        "m6-triangles-particuliers",
+        "m6-triangles-programme",
+        "m6-triangles-classer",
+        "m6-triangles-methodes",
+        "m6-triangles-circonscrit"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'expliquer",
+      "exercises": [
+        "m6-triangles-redaction"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : la charpente du toit",
+      "exercises": [
+        "m6-triangles-toit"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : la fontaine du village",
+      "body": "Trois maisons, une seule fontaine, et personne ne doit être avantagé !",
+      "exercises": [
+        "m6-triangles-fontaine"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Dans tout triangle, la **somme des angles vaut 180°**. **Isocèle** : deux angles à la base égaux. **Équilatéral** : trois angles de 60°. **Rectangle** : un angle de 90°, les deux autres font ensemble 90°. Les trois **médiatrices** d'un triangle sont **concourantes** : leur point commun est le centre du **cercle circonscrit**, qui passe par les trois sommets.\n\n- **Utiliser 360° au lieu de 180°.** 360°, c'est un tour complet ; un triangle, c'est un demi-tour.\n- **Oublier de partager en deux** les angles à la base d'un triangle isocèle.\n- **Oublier l'angle droit** dans un triangle rectangle.\n- **Tracer les arcs avec le mauvais rayon** : l'arc de centre A a pour rayon AC."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des calculs d’angles et des constructions de triangles dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Un angle à l'extérieur d'un triangle isocèle, et la place du centre du cercle circonscrit selon les angles du triangle.",
+      "exercises": [
+        "m6-triangles-exterieur",
+        "m6-triangles-position-centre"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : la somme des angles des polygones, et un triangle inscrit dans un demi-cercle qui réserve une surprise.",
+      "exercises": [
+        "m6-triangles-polygones",
+        "m6-triangles-demi-cercle"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-triangles-troisieme-angle",
+      "type": "numeric",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:somme-360",
+        "mc:somme-deux"
+      ],
+      "expectedSeconds": 90,
+      "params": {
+        "a": {
+          "int": [
+            30,
+            80
+          ]
+        },
+        "b": {
+          "int": [
+            30,
+            80
+          ]
+        }
+      },
+      "constraints": [
+        "a + b <= 150",
+        "a + b != 90"
+      ],
+      "prompt": "Dans le triangle ABC, l'angle en A mesure {a}° et l'angle en B mesure {b}°. Combien mesure l'angle en C (en degrés) ?",
+      "figure": {
+        "alt": "Figure à main levée : un triangle ABC avec la mesure de deux de ses angles",
+        "w": 340,
+        "h": 220,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            -0.2,
+            5.2
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 0.5,
+            "y": 0.5,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 7.5,
+            "y": 0.5,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 3,
+            "y": 4.5,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "{a}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "B",
+            "from": "C",
+            "to": "A",
+            "label": "{b}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "C",
+            "from": "A",
+            "to": "B",
+            "label": "?",
+            "color": "orange"
+          }
+        ]
+      },
+      "answer": "180 - a - b",
+      "misconceptions": [
+        {
+          "answer": "360 - a - b",
+          "id": "mc:somme-360",
+          "error": "notion",
+          "feedback": "Tu as complété jusqu'à 360°, un tour complet. Les trois angles d'un triangle, mis côte à côte, ne forment qu'un demi-tour."
+        },
+        {
+          "answer": "a + b",
+          "id": "mc:somme-deux",
+          "error": "methode",
+          "feedback": "Tu as additionné les deux angles connus : c'est ce qu'ils occupent déjà. Il faut ensuite chercher ce qui manque pour arriver au total des trois angles."
+        }
+      ],
+      "hints": [
+        "Les trois angles d’un triangle font 180° en tout.",
+        "Additionne d’abord les deux angles connus.",
+        "Le troisième angle, c’est ce qui manque pour arriver à 180°."
+      ],
+      "solution": "{a} + {b} = {a+b}, puis 180 − {a+b} = {180-a-b}. L’angle en C mesure {180-a-b}°.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{180-a-b}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{360-a-b}°"
+          },
+          "expect": "mc:somme-360"
+        },
+        {
+          "response": {
+            "value": "{a+b}"
+          },
+          "expect": "mc:somme-deux"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-particuliers",
+      "type": "composite",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "mc:isocele-moitie",
+        "mc:isocele-sommet",
+        "mc:equilateral",
+        "mc:rectangle-oubli-droit"
+      ],
+      "expectedSeconds": 240,
+      "params": {
+        "s": {
+          "int": [
+            20,
+            140
+          ]
+        },
+        "r": {
+          "int": [
+            20,
+            70
+          ]
+        }
+      },
+      "constraints": [
+        "mod(s; 2) = 0",
+        "s != 60",
+        "r != 45"
+      ],
+      "prompt": "Calcule les angles demandés dans ces trois triangles particuliers (figures à main levée).",
+      "figure": {
+        "alt": "Figures à main levée : un triangle ABC isocèle en A, un triangle DEF équilatéral et un triangle GHI rectangle en G",
+        "w": 520,
+        "h": 200,
+        "frame": {
+          "x": [
+            0,
+            16
+          ],
+          "y": [
+            -0.4,
+            5.2
+          ]
+        },
+        "caption": "Figures à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 2.5,
+            "y": 4.5,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 0.5,
+            "y": 0.6,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 4.5,
+            "y": 0.6,
+            "pos": "se"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "C",
+            "marks": 1
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "{s}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "B",
+            "from": "C",
+            "to": "A",
+            "label": "?",
+            "color": "orange"
+          },
+          {
+            "type": "point",
+            "id": "D",
+            "x": 5.8,
+            "y": 0.6,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "E",
+            "x": 9.8,
+            "y": 0.6,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "F",
+            "x": 7.8,
+            "y": 4.0641,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "D",
+              "E",
+              "F"
+            ],
+            "fill": "vert"
+          },
+          {
+            "type": "segment",
+            "from": "D",
+            "to": "E",
+            "marks": 2
+          },
+          {
+            "type": "segment",
+            "from": "E",
+            "to": "F",
+            "marks": 2
+          },
+          {
+            "type": "segment",
+            "from": "F",
+            "to": "D",
+            "marks": 2
+          },
+          {
+            "type": "angle",
+            "vertex": "D",
+            "from": "E",
+            "to": "F",
+            "label": "?",
+            "color": "orange"
+          },
+          {
+            "type": "point",
+            "id": "G",
+            "x": 11.2,
+            "y": 0.6,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "H",
+            "x": 15.5,
+            "y": 0.6,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "I",
+            "x": 11.2,
+            "y": 4.2,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "G",
+              "H",
+              "I"
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "angle",
+            "vertex": "G",
+            "from": "H",
+            "to": "I",
+            "right": true
+          },
+          {
+            "type": "angle",
+            "vertex": "H",
+            "from": "I",
+            "to": "G",
+            "label": "{r}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "I",
+            "from": "G",
+            "to": "H",
+            "label": "?",
+            "color": "orange"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "ABC est isocèle en A et l’angle BAC mesure {s}°. Combien mesure l’angle ABC (en °) ?",
+          "answer": "(180 - s)/2",
+          "misconceptions": [
+            {
+              "answer": "180 - s",
+              "id": "mc:isocele-moitie",
+              "error": "methode",
+              "feedback": "Ce nombre, c'est ce que mesurent ENSEMBLE les deux angles à la base. Ils sont égaux : il reste une étape."
+            },
+            {
+              "answer": "s",
+              "id": "mc:isocele-sommet",
+              "error": "notion",
+              "feedback": "Dans un triangle isocèle en A, ce sont les deux angles à la base (en B et en C) qui sont égaux, pas l'angle au sommet A."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "DEF est équilatéral. Combien mesure l’angle EDF (en °) ?",
+          "answer": 60,
+          "misconceptions": [
+            {
+              "answer": 180,
+              "id": "mc:equilateral",
+              "error": "notion",
+              "feedback": "180°, c'est la somme des TROIS angles. Dans un triangle équilatéral, ils sont tous égaux : partage."
+            },
+            {
+              "answer": 90,
+              "id": "mc:equilateral",
+              "error": "notion",
+              "feedback": "Un triangle équilatéral n'a pas d'angle droit. Ses trois angles sont égaux et font 180° en tout."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "GHI est rectangle en G et l’angle GHI mesure {r}°. Combien mesure l’angle GIH (en °) ?",
+          "answer": "90 - r",
+          "misconceptions": [
+            {
+              "answer": "180 - r",
+              "id": "mc:rectangle-oubli-droit",
+              "error": "methode",
+              "feedback": "Tu as oublié l'angle droit en G ! Les trois angles du triangle sont : l'angle droit, l'angle de {r}° et celui que tu cherches."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les trois angles d’un triangle font 180°.",
+        "Isocèle en A : les angles en B et en C sont égaux. Équilatéral : les trois angles sont égaux.",
+        "Rectangle en G : l’angle en G mesure 90°."
+      ],
+      "solution": "ABC : 180 − {s} = {180-s}, partagés en deux angles égaux : ABC = {(180-s)/2}°. DEF : 180 ÷ 3 = 60°. GHI : 180 − 90 − {r} = {90-r}°.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(180-s)/2}"
+              },
+              {
+                "value": "60"
+              },
+              {
+                "value": "{90-r}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{180-s}"
+              },
+              {
+                "value": "60"
+              },
+              {
+                "value": "{90-r}"
+              }
+            ]
+          },
+          "expect": "mc:isocele-moitie"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(180-s)/2}"
+              },
+              {
+                "value": "60"
+              },
+              {
+                "value": "{180-r}"
+              }
+            ]
+          },
+          "expect": "mc:rectangle-oubli-droit"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-programme",
+      "type": "order",
+      "skill": "m6.geo.triangles-construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "expectedSeconds": 150,
+      "prompt": "Voici le triangle RST construit avec RS = 7 cm, RT = 5 cm et ST = 4 cm. Remets les étapes du programme de construction dans l’ordre.",
+      "figure": {
+        "alt": "Un triangle RST avec ses trois longueurs, et deux arcs de cercle qui se coupent en T",
+        "w": 360,
+        "h": 230,
+        "frame": {
+          "x": [
+            0,
+            9
+          ],
+          "y": [
+            0,
+            5
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "R",
+            "x": 1,
+            "y": 1,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "S",
+            "x": 8,
+            "y": 1,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "T",
+            "x": 5.1429,
+            "y": 3.7994,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "R",
+              "S",
+              "T"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "R",
+            "to": "S",
+            "label": "7 cm"
+          },
+          {
+            "type": "segment",
+            "from": "R",
+            "to": "T",
+            "label": "5 cm"
+          },
+          {
+            "type": "segment",
+            "from": "S",
+            "to": "T",
+            "label": "4 cm"
+          },
+          {
+            "type": "arc",
+            "center": "R",
+            "r": 5,
+            "start": 22,
+            "end": 46,
+            "color": "gris"
+          },
+          {
+            "type": "arc",
+            "center": "S",
+            "r": 4,
+            "start": 124,
+            "end": 148,
+            "color": "gris"
+          }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        {
+          "id": "c1",
+          "label": "Je trace un segment [RS] de 7 cm."
+        },
+        {
+          "id": "c2",
+          "label": "J'ouvre le compas de 5 cm, je le pointe en R et je trace un arc de cercle."
+        },
+        {
+          "id": "c3",
+          "label": "J'ouvre le compas de 4 cm, je le pointe en S et je trace un arc qui coupe le premier arc."
+        },
+        {
+          "id": "c4",
+          "label": "Je nomme T le point d'intersection des deux arcs."
+        },
+        {
+          "id": "c5",
+          "label": "Je trace les segments [RT] et [ST]."
+        },
+        {
+          "id": "c6",
+          "label": "Je vérifie à la règle que RT = 5 cm et ST = 4 cm."
+        }
+      ],
+      "hints": [
+        "On commence par le côté qui relie les deux centres des arcs.",
+        "Le deuxième arc doit couper le premier : il vient après.",
+        "On ne peut tracer [RT] qu’une fois T placé."
+      ],
+      "solution": "1. Tracer [RS] = 7 cm. 2. Arc de centre R, de rayon 5 cm. 3. Arc de centre S, de rayon 4 cm, qui coupe le premier. 4. Nommer T. 5. Tracer [RT] et [ST]. 6. Vérifier les longueurs.",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5",
+              "c6"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c5",
+              "c4",
+              "c6"
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "order": [
+              "c6",
+              "c5",
+              "c4",
+              "c3",
+              "c2",
+              "c1"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-classer",
+      "type": "categorize",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:troisieme-oubli",
+        "mc:equilateral-isocele"
+      ],
+      "expectedSeconds": 240,
+      "prompt": "On connaît les angles de huit triangles (parfois seulement deux d'entre eux). Range chaque triangle dans la bonne catégorie.",
+      "figure": {
+        "alt": "Rappel des codages : un triangle isocèle avec deux angles égaux, un triangle équilatéral et un triangle rectangle",
+        "w": 420,
+        "h": 160,
+        "frame": {
+          "x": [
+            0,
+            15
+          ],
+          "y": [
+            -0.9,
+            4.2
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 2,
+            "y": 3.6,
+            "pos": "n",
+            "label": ""
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0.5,
+                0.5
+              ],
+              [
+                3.5,
+                0.5
+              ],
+              [
+                2,
+                3.6
+              ]
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "angle",
+            "vertex": [
+              0.5,
+              0.5
+            ],
+            "from": [
+              3.5,
+              0.5
+            ],
+            "to": [
+              2,
+              3.6
+            ],
+            "marks": 1
+          },
+          {
+            "type": "angle",
+            "vertex": [
+              3.5,
+              0.5
+            ],
+            "from": [
+              2,
+              3.6
+            ],
+            "to": [
+              0.5,
+              0.5
+            ],
+            "marks": 1
+          },
+          {
+            "type": "text",
+            "x": 2,
+            "y": -0.4,
+            "text": "isocèle",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                5.7,
+                0.5
+              ],
+              [
+                9.3,
+                0.5
+              ],
+              [
+                7.5,
+                3.6177
+              ]
+            ],
+            "fill": "vert"
+          },
+          {
+            "type": "text",
+            "x": 7.5,
+            "y": -0.4,
+            "text": "équilatéral",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                11,
+                0.5
+              ],
+              [
+                14.5,
+                0.5
+              ],
+              [
+                11,
+                3.4
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "angle",
+            "vertex": [
+              11,
+              0.5
+            ],
+            "from": [
+              14.5,
+              0.5
+            ],
+            "to": [
+              11,
+              3.4
+            ],
+            "right": true
+          },
+          {
+            "type": "text",
+            "x": 12.7,
+            "y": -0.4,
+            "text": "rectangle",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "equi",
+          "label": "Équilatéral"
+        },
+        {
+          "id": "iso",
+          "label": "Isocèle (pas équilatéral)"
+        },
+        {
+          "id": "rect",
+          "label": "Rectangle (pas isocèle)"
+        },
+        {
+          "id": "quel",
+          "label": "Ni isocèle, ni rectangle"
+        }
+      ],
+      "items": [
+        {
+          "id": "t1",
+          "label": "Angles de 60°, 60° et 60°",
+          "category": "equi"
+        },
+        {
+          "id": "t2",
+          "label": "Angles de 90°, 30° et 60°",
+          "category": "rect"
+        },
+        {
+          "id": "t3",
+          "label": "Angles de 40°, 70° et 70°",
+          "category": "iso"
+        },
+        {
+          "id": "t4",
+          "label": "Angles de 50°, 60° et 70°",
+          "category": "quel"
+        },
+        {
+          "id": "t5",
+          "label": "Deux angles de 35° et 55° (le troisième est inconnu)",
+          "category": "rect"
+        },
+        {
+          "id": "t6",
+          "label": "Deux angles de 50° et 80° (le troisième est inconnu)",
+          "category": "iso"
+        },
+        {
+          "id": "t7",
+          "label": "Deux angles de 60° et 60° (le troisième est inconnu)",
+          "category": "equi"
+        },
+        {
+          "id": "t8",
+          "label": "Deux angles de 45° et 75° (le troisième est inconnu)",
+          "category": "quel"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "t5",
+          "category": "quel",
+          "id": "mc:troisieme-oubli",
+          "error": "methode",
+          "feedback": "Calcule d'abord le troisième angle avec la somme des angles : il peut changer la nature du triangle."
+        },
+        {
+          "item": "t6",
+          "category": "quel",
+          "id": "mc:troisieme-oubli",
+          "error": "methode",
+          "feedback": "Calcule d'abord le troisième angle avec la somme des angles : compare-le ensuite aux deux autres."
+        },
+        {
+          "item": "t7",
+          "category": "iso",
+          "id": "mc:equilateral-isocele",
+          "error": "notion",
+          "feedback": "Calcule le troisième angle, puis compare les trois : sont-ils seulement deux à être égaux ?"
+        }
+      ],
+      "hints": [
+        "Quand un angle manque, calcule-le : 180° moins la somme des deux autres.",
+        "Deux angles égaux : isocèle. Trois angles de 60° : équilatéral. Un angle de 90° : rectangle.",
+        "Vérifie chaque triangle après avoir trouvé ses trois angles."
+      ],
+      "solution": "Équilatéraux : 60-60-60, et 60-60 (le troisième vaut 60°). Isocèles : 40-70-70, et 50-80 (le troisième vaut 50°). Rectangles : 90-30-60, et 35-55 (le troisième vaut 90°). Ni l'un ni l'autre : 50-60-70, et 45-75 (le troisième vaut 60°).",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "t1": "equi",
+              "t2": "rect",
+              "t3": "iso",
+              "t4": "quel",
+              "t5": "rect",
+              "t6": "iso",
+              "t7": "equi",
+              "t8": "quel"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "t1": "equi",
+              "t2": "rect",
+              "t3": "iso",
+              "t4": "quel",
+              "t5": "quel",
+              "t6": "iso",
+              "t7": "equi",
+              "t8": "quel"
+            }
+          },
+          "expect": "mc:troisieme-oubli"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-methodes",
+      "type": "match",
+      "skill": "m6.geo.triangles-construire",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": [
+        "mc:instrument"
+      ],
+      "expectedSeconds": 180,
+      "prompt": "Pour chaque triangle à construire, choisis la bonne méthode de construction.",
+      "figure": {
+        "alt": "Quatre triangles esquissés numérotés de 1 à 4, avec les informations connues : trois longueurs ; deux longueurs et un angle ; une longueur et deux angles ; un angle droit et deux longueurs",
+        "w": 560,
+        "h": 190,
+        "frame": {
+          "x": [
+            0,
+            20.4
+          ],
+          "y": [
+            -0.9,
+            4.4
+          ]
+        },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0.4,
+                0.5
+              ],
+              [
+                4.4,
+                0.5
+              ],
+              [
+                2.8,
+                3.5
+              ]
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0.4,
+              0.5
+            ],
+            "to": [
+              4.4,
+              0.5
+            ],
+            "label": "6 cm"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0.4,
+              0.5
+            ],
+            "to": [
+              2.8,
+              3.5
+            ],
+            "label": "5 cm"
+          },
+          {
+            "type": "segment",
+            "from": [
+              4.4,
+              0.5
+            ],
+            "to": [
+              2.8,
+              3.5
+            ],
+            "label": "4 cm"
+          },
+          {
+            "type": "text",
+            "x": 2.4,
+            "y": -0.5,
+            "text": "①",
+            "size": "m",
+            "anchor": "middle",
+            "bold": true
+          },
+          {
+            "type": "point",
+            "id": "V2",
+            "x": 5.4,
+            "y": 0.5,
+            "pos": "s",
+            "label": ""
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "V2",
+              [
+                9.4,
+                0.5
+              ],
+              [
+                7.2,
+                3.4
+              ]
+            ],
+            "fill": "vert"
+          },
+          {
+            "type": "segment",
+            "from": "V2",
+            "to": [
+              9.4,
+              0.5
+            ],
+            "label": "5 cm"
+          },
+          {
+            "type": "segment",
+            "from": "V2",
+            "to": [
+              7.2,
+              3.4
+            ],
+            "label": "4 cm"
+          },
+          {
+            "type": "angle",
+            "vertex": "V2",
+            "from": [
+              9.4,
+              0.5
+            ],
+            "to": [
+              7.2,
+              3.4
+            ],
+            "label": "50°"
+          },
+          {
+            "type": "text",
+            "x": 7.4,
+            "y": -0.5,
+            "text": "②",
+            "size": "m",
+            "anchor": "middle",
+            "bold": true
+          },
+          {
+            "type": "point",
+            "id": "V3",
+            "x": 10.4,
+            "y": 0.5,
+            "pos": "s",
+            "label": ""
+          },
+          {
+            "type": "point",
+            "id": "W3",
+            "x": 14.4,
+            "y": 0.5,
+            "pos": "s",
+            "label": ""
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "V3",
+              "W3",
+              [
+                12.6,
+                3.2
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "V3",
+            "to": "W3",
+            "label": "6 cm"
+          },
+          {
+            "type": "angle",
+            "vertex": "V3",
+            "from": "W3",
+            "to": [
+              12.6,
+              3.2
+            ],
+            "label": "45°"
+          },
+          {
+            "type": "angle",
+            "vertex": "W3",
+            "from": [
+              12.6,
+              3.2
+            ],
+            "to": "V3",
+            "label": "60°"
+          },
+          {
+            "type": "text",
+            "x": 12.4,
+            "y": -0.5,
+            "text": "③",
+            "size": "m",
+            "anchor": "middle",
+            "bold": true
+          },
+          {
+            "type": "point",
+            "id": "V4",
+            "x": 15.6,
+            "y": 0.5,
+            "pos": "s",
+            "label": ""
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "V4",
+              [
+                19.6,
+                0.5
+              ],
+              [
+                15.6,
+                3.5
+              ]
+            ],
+            "fill": "violet"
+          },
+          {
+            "type": "segment",
+            "from": "V4",
+            "to": [
+              19.6,
+              0.5
+            ],
+            "label": "4 cm"
+          },
+          {
+            "type": "segment",
+            "from": "V4",
+            "to": [
+              15.6,
+              3.5
+            ],
+            "label": "3 cm"
+          },
+          {
+            "type": "angle",
+            "vertex": "V4",
+            "from": [
+              19.6,
+              0.5
+            ],
+            "to": [
+              15.6,
+              3.5
+            ],
+            "right": true
+          },
+          {
+            "type": "text",
+            "x": 17.6,
+            "y": -0.5,
+            "text": "④",
+            "size": "m",
+            "anchor": "middle",
+            "bold": true
+          }
+        ]
+      },
+      "leftTitle": "Ce que je connais",
+      "rightTitle": "Ma méthode",
+      "left": [
+        {
+          "id": "l1",
+          "label": "① Les trois longueurs"
+        },
+        {
+          "id": "l2",
+          "label": "② Deux longueurs et l'angle entre ces deux côtés"
+        },
+        {
+          "id": "l3",
+          "label": "③ Une longueur et les deux angles à ses extrémités"
+        },
+        {
+          "id": "l4",
+          "label": "④ Un angle droit et les deux côtés de l'angle droit"
+        }
+      ],
+      "right": [
+        {
+          "id": "r1",
+          "label": "Un côté à la règle, puis deux arcs de cercle au compas"
+        },
+        {
+          "id": "r2",
+          "label": "Un côté, l'angle au rapporteur, puis la deuxième longueur reportée sur le côté de l'angle"
+        },
+        {
+          "id": "r3",
+          "label": "Un côté, puis un angle au rapporteur à chaque extrémité"
+        },
+        {
+          "id": "r4",
+          "label": "Un côté, la perpendiculaire à une extrémité avec l'équerre, puis la deuxième longueur"
+        }
+      ],
+      "pairs": {
+        "l1": "r1",
+        "l2": "r2",
+        "l3": "r3",
+        "l4": "r4"
+      },
+      "misconceptions": [
+        {
+          "pair": [
+            "l1",
+            "r3"
+          ],
+          "id": "mc:instrument",
+          "error": "methode",
+          "feedback": "Dans le cas ①, on ne connaît aucun angle : le rapporteur ne sert à rien. Comment placer un point à une distance donnée de deux autres points ?"
+        },
+        {
+          "pair": [
+            "l3",
+            "r2"
+          ],
+          "id": "mc:instrument",
+          "error": "methode",
+          "feedback": "Dans le cas ③, on ne connaît qu'une seule longueur : on ne peut rien reporter d'autre. Que faire des deux angles connus ?"
+        }
+      ],
+      "hints": [
+        "Regarde quels instruments sont utiles : connaît-on des longueurs, des angles, un angle droit ?",
+        "Le compas sert à placer un point à une distance donnée d’un autre point.",
+        "L’équerre suffit pour un angle droit."
+      ],
+      "solution": "① Trois longueurs : règle et compas (deux arcs). ② Deux longueurs et l’angle entre elles : rapporteur pour l’angle, puis on reporte la longueur. ③ Un côté et deux angles : un angle à chaque extrémité, les côtés se coupent au troisième sommet. ④ Triangle rectangle : équerre pour l’angle droit, puis on reporte la longueur.",
+      "selfTest": [
+        {
+          "response": {
+            "pairs": {
+              "l1": "r1",
+              "l2": "r2",
+              "l3": "r3",
+              "l4": "r4"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "pairs": {
+              "l1": "r3",
+              "l2": "r2",
+              "l3": "r1",
+              "l4": "r4"
+            }
+          },
+          "expect": "mc:instrument"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-circonscrit",
+      "type": "composite",
+      "skill": "m6.geo.cercle-circonscrit",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:trois-mediatrices",
+        "mc:nom-incomplet"
+      ],
+      "expectedSeconds": 300,
+      "params": {
+        "s": {
+          "int": [
+            0,
+            2
+          ]
+        }
+      },
+      "prompt": "Sur le quadrillage, le triangle ABC a pour sommets A({1+s} ; 1), B({7+s} ; 1) et C({2+s} ; 6). On cherche le centre O de son cercle circonscrit.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec le triangle ABC",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{1+s}",
+            "y": 1,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{7+s}",
+            "y": 1,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{2+s}",
+            "y": 6,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de médiatrices faut-il tracer, au minimum, pour trouver O ?",
+          "answer": 2,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:trois-mediatrices",
+              "error": "notion",
+              "feedback": "Les trois médiatrices d'un triangle sont concourantes : elles passent toutes par le même point. Faut-il vraiment tracer la dernière pour le trouver ?"
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "prompt": "Place O. Aide : la médiatrice de [AB] est verticale ; celle de [BC] suit les diagonales des carreaux.",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              "4 + s",
+              3
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment s’appelle le cercle de centre O qui passe par A, B et C ?",
+          "accept": [
+            "cercle circonscrit",
+            "le cercle circonscrit",
+            "cercle circonscrit au triangle",
+            "le cercle circonscrit au triangle",
+            "le cercle circonscrit au triangle ABC",
+            "cercle circonscrit au triangle ABC",
+            "circonscrit"
+          ],
+          "misconceptions": [
+            {
+              "answer": "cercle",
+              "id": "mc:nom-incomplet",
+              "error": "notion",
+              "feedback": "C'est bien un cercle, mais il porte un nom particulier, parce qu'il passe par les trois sommets du triangle."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le milieu de [AB] est ({4+s} ; 1) : la médiatrice de [AB] est la droite verticale qui passe par ce point.",
+        "Le milieu de [BC] est ({4.5+s} ; 3,5). [BC] descend en diagonale : sa médiatrice suit l’autre diagonale.",
+        "O est le point commun aux deux médiatrices."
+      ],
+      "solution": "Il suffit de deux médiatrices, puisque les trois sont concourantes. La médiatrice de [AB] est la verticale qui passe par ({4+s} ; 1). La médiatrice de [BC] passe par son milieu ({4.5+s} ; 3,5) et suit l'autre diagonale des carreaux : elle passe par ({4+s} ; 3). Donc O({4+s} ; 3). Le cercle de centre O passant par A, B et C est le cercle circonscrit au triangle ABC.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "2"
+              },
+              {
+                "points": [
+                  [
+                    "{4+s}",
+                    3
+                  ]
+                ]
+              },
+              {
+                "value": "cercle circonscrit"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "3"
+              },
+              {
+                "points": [
+                  [
+                    "{4+s}",
+                    3
+                  ]
+                ]
+              },
+              {
+                "value": "cercle circonscrit"
+              }
+            ]
+          },
+          "expect": "mc:trois-mediatrices"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-redaction",
+      "type": "open",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 360,
+      "minWords": 20,
+      "prompt": "Le triangle de la figure a un angle obtus. Nour affirme qu’on peut dessiner un triangle avec DEUX angles obtus. A-t-elle raison ? Explique pourquoi.",
+      "figure": {
+        "alt": "Un triangle ABC dont l’angle en A est obtus",
+        "w": 340,
+        "h": 180,
+        "frame": {
+          "x": [
+            0,
+            8.4
+          ],
+          "y": [
+            0,
+            3.6
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 2.6,
+            "y": 2.6,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 0.5,
+            "y": 0.5,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 7.9,
+            "y": 0.5,
+            "pos": "se"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "obtus"
+          }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je réponds que c'est impossible",
+          "keywords": [
+            [
+              "impossible",
+              "tort",
+              "pas possible",
+              "non",
+              "ne peut pas"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je rappelle qu’un angle obtus mesure plus de 90°",
+          "keywords": [
+            [
+              "plus de 90",
+              "superieur a 90",
+              "> 90",
+              "plus grand que 90",
+              "plus qu un angle droit"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Je dis que deux angles obtus feraient déjà plus de 180°, la somme des angles d’un triangle",
+          "keywords": [
+            [
+              "180"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Nour a tort. Un angle obtus mesure plus de 90°. Avec deux angles obtus, on aurait déjà plus de 90 + 90 = 180°. Or la somme des trois angles d'un triangle est égale à 180° : il ne resterait rien pour le troisième angle. C'est impossible.",
+        "Non, c'est impossible : deux angles de plus de 90° font ensemble plus de 180°, alors que les trois angles d'un triangle font exactement 180°."
+      ],
+      "hints": [
+        "Combien mesure, au minimum, un angle obtus ?",
+        "Que vaut la somme des trois angles d’un triangle ?",
+        "Additionne deux angles obtus et compare avec cette somme."
+      ],
+      "solution": "C'est impossible. Un angle obtus mesure plus de 90°. Deux angles obtus mesureraient ensemble plus de 180°, alors que les trois angles d'un triangle font exactement 180°.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Non c'est impossible : un angle obtus fait plus de 90°, donc deux angles obtus font plus de 180°, et la somme des angles d'un triangle est 180°."
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-toit",
+      "type": "composite",
+      "skill": "m6.geo.triangles-angles",
+      "skills": [
+        "m6.geo.mediatrice"
+      ],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:isocele-moitie",
+        "mc:base-entiere",
+        "mc:bissectrice-oubli"
+      ],
+      "expectedSeconds": 360,
+      "params": {
+        "t": {
+          "int": [
+            80,
+            140
+          ]
+        },
+        "L": {
+          "choice": [
+            6,
+            8,
+            10,
+            12
+          ]
+        }
+      },
+      "constraints": [
+        "mod(t; 2) = 0",
+        "t != 90"
+      ],
+      "prompt": "La charpente d'un toit est un triangle ABC isocèle en A : AB = AC. L'angle au sommet BAC mesure {t}° et la poutre [BC] mesure {L} m. Un poteau part de A et tombe perpendiculairement sur [BC], au point H.",
+      "figure": {
+        "alt": "Figure à main levée : une charpente en triangle isocèle ABC avec un poteau vertical [AH] perpendiculaire à la base [BC]",
+        "w": 380,
+        "h": 220,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            -0.6,
+            5
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 5,
+            "y": 4.2,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 0.5,
+            "y": 0.5,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 9.5,
+            "y": 0.5,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "H",
+            "x": 5,
+            "y": 0.5,
+            "pos": "s"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "C",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "H",
+            "dashed": true
+          },
+          {
+            "type": "angle",
+            "vertex": "H",
+            "from": "C",
+            "to": "A",
+            "right": true
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "{t}°"
+          },
+          {
+            "type": "text",
+            "x": 5,
+            "y": -0.35,
+            "text": "BC = {L} m",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure l'angle ABC (en °) ?",
+          "answer": "(180 - t)/2",
+          "misconceptions": [
+            {
+              "answer": "180 - t",
+              "id": "mc:isocele-moitie",
+              "error": "methode",
+              "feedback": "Ce nombre est la mesure des deux angles à la base réunis. Ils sont égaux : il reste une étape."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Comme le triangle est isocèle, le poteau [AH] est sur la médiatrice de [BC]. À quelle distance de B le point H se trouve-t-il (en m) ?",
+          "answer": "L/2",
+          "misconceptions": [
+            {
+              "answer": "L",
+              "id": "mc:base-entiere",
+              "error": "notion",
+              "feedback": "La médiatrice coupe [BC] en son milieu : H n'est pas au bout de la poutre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le poteau [AH] partage aussi l'angle au sommet en deux angles égaux. Combien mesure l'angle BAH (en °) ?",
+          "answer": "t/2",
+          "misconceptions": [
+            {
+              "answer": "t",
+              "id": "mc:bissectrice-oubli",
+              "error": "notion",
+              "feedback": "C'est la mesure de l'angle BAC entier. [AH] le partage en deux : c'est sa bissectrice."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Isocèle en A : les angles en B et en C sont égaux, et les trois angles font 180°.",
+        "La médiatrice de [BC] passe par le milieu de [BC].",
+        "La droite (AH) est un axe de symétrie du triangle isocèle : elle partage l’angle en A en deux."
+      ],
+      "solution": "ABC = (180 − {t}) ÷ 2 = {(180-t)/2}°. A est à égale distance de B et de C, donc il est sur la médiatrice de [BC] ; cette médiatrice est perpendiculaire à [BC] et passe par A : c'est (AH). H est donc le milieu de [BC] : BH = {L} ÷ 2 = {L/2} m. (AH) est l'axe de symétrie du triangle : BAH = {t} ÷ 2 = {t/2}°.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{(180-t)/2}"
+              },
+              {
+                "value": "{L/2}"
+              },
+              {
+                "value": "{t/2}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{180-t}"
+              },
+              {
+                "value": "{L/2}"
+              },
+              {
+                "value": "{t/2}"
+              }
+            ]
+          },
+          "expect": "mc:isocele-moitie"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-fontaine",
+      "type": "composite",
+      "skill": "m6.geo.cercle-circonscrit",
+      "skills": [
+        "m6.geo.mediatrice",
+        "m6.geo.cercle"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:ordonnee",
+        "mc:echelle-oubli",
+        "mc:nom-incomplet"
+      ],
+      "expectedSeconds": 540,
+      "params": {
+        "s": {
+          "int": [
+            0,
+            1
+          ]
+        },
+        "e": {
+          "choice": [
+            20,
+            50,
+            100
+          ]
+        }
+      },
+      "prompt": "Trois maisons A, B et C veulent une fontaine F commune, à la même distance des trois maisons. Sur le plan, un carreau représente {e} m.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 10 avec les trois maisons A, B et C",
+        "w": 380,
+        "h": 380,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            10
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{1+s}",
+            "y": 2,
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{9+s}",
+            "y": 2,
+            "pos": "se",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{5+s}",
+            "y": 10,
+            "pos": "e",
+            "style": "rond"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "vert",
+            "dashed": true
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place la fontaine F, à égale distance des trois maisons. Aide : la médiatrice de [BC] passe par les nœuds ({7+s} ; 6) et ({9+s} ; 7).",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            10
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              "5 + s",
+              5
+            ]
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À combien de carreaux de la maison C se trouve la fontaine ?",
+          "answer": 5,
+          "misconceptions": [
+            {
+              "answer": 10,
+              "id": "mc:ordonnee",
+              "error": "lecture",
+              "feedback": "Tu as lu l'ordonnée de C. La distance de F à C, c'est le nombre de carreaux entre ces deux points."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la distance réelle entre la fontaine et chaque maison (en m) ?",
+          "answer": "5*e",
+          "misconceptions": [
+            {
+              "answer": 5,
+              "id": "mc:echelle-oubli",
+              "error": "unite",
+              "feedback": "Ce nombre est la distance sur le plan, en carreaux. Utilise l'échelle : combien de mètres représente un carreau ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment s’appelle le cercle de centre F qui passe par les trois maisons ?",
+          "accept": [
+            "cercle circonscrit",
+            "le cercle circonscrit",
+            "cercle circonscrit au triangle",
+            "le cercle circonscrit au triangle",
+            "le cercle circonscrit au triangle ABC",
+            "cercle circonscrit au triangle ABC",
+            "circonscrit"
+          ],
+          "misconceptions": [
+            {
+              "answer": "cercle",
+              "id": "mc:nom-incomplet",
+              "error": "notion",
+              "feedback": "C'est bien un cercle, mais il porte un nom particulier, car il passe par les trois sommets du triangle ABC."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "F est à égale distance de A et de B : il est sur la médiatrice de [AB], qui est verticale.",
+        "F est aussi sur la médiatrice de [BC].",
+        "Une fois F placé, compte les carreaux de F à C, puis utilise l’échelle."
+      ],
+      "solution": "La médiatrice de [AB] est la verticale qui passe par ({5+s} ; 2) ; elle passe aussi par C. La médiatrice de [BC] passe par son milieu ({7+s} ; 6) et par ({5+s} ; 5). Donc F({5+s} ; 5). FC = 10 − 5 = 5 carreaux, soit 5 × {e} = {5*e} m. Les trois maisons sont à {5*e} m de la fontaine : elles sont sur le cercle circonscrit au triangle ABC, de centre F.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    "{5+s}",
+                    5
+                  ]
+                ]
+              },
+              {
+                "value": "5"
+              },
+              {
+                "value": "{5*e}"
+              },
+              {
+                "value": "cercle circonscrit"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    "{5+s}",
+                    5
+                  ]
+                ]
+              },
+              {
+                "value": "5"
+              },
+              {
+                "value": "5"
+              },
+              {
+                "value": "cercle circonscrit"
+              }
+            ]
+          },
+          "expect": "mc:echelle-oubli"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-remed-somme",
+      "type": "numeric",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:somme-360"
+      ],
+      "expectedSeconds": 60,
+      "params": {
+        "s": {
+          "int": [
+            70,
+            160
+          ]
+        }
+      },
+      "prompt": "Rappel : si on découpe les trois coins d'un triangle et qu'on les place côte à côte, ils forment un angle plat, de 180°. Ici, deux coins mis ensemble mesurent déjà {s}°. Combien mesure le troisième coin (en °) ?",
+      "figure": {
+        "alt": "Un angle plat formé par deux coins réunis, dont la mesure est indiquée, et le troisième coin à trouver",
+        "w": 360,
+        "h": 180,
+        "frame": {
+          "x": [
+            -4.6,
+            4.6
+          ],
+          "y": [
+            -0.6,
+            4
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "X",
+            "x": 4.2,
+            "y": 0,
+            "pos": "s",
+            "hidden": true
+          },
+          {
+            "type": "point",
+            "id": "Z",
+            "x": -4.2,
+            "y": 0,
+            "pos": "s",
+            "hidden": true
+          },
+          {
+            "type": "point",
+            "id": "Y",
+            "x": "{3.6*cos(s)}",
+            "y": "{3.6*sin(s)}",
+            "pos": "n",
+            "hidden": true
+          },
+          {
+            "type": "segment",
+            "from": "X",
+            "to": "Z"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": "Y",
+            "color": "maths"
+          },
+          {
+            "type": "angle",
+            "vertex": "O",
+            "from": "X",
+            "to": "Y",
+            "label": "{s}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "O",
+            "from": "Y",
+            "to": "Z",
+            "label": "?",
+            "color": "orange"
+          }
+        ]
+      },
+      "answer": "180 - s",
+      "misconceptions": [
+        {
+          "answer": "360 - s",
+          "id": "mc:somme-360",
+          "error": "notion",
+          "feedback": "Tu as complété jusqu'à un tour complet. Les trois coins réunis ne forment qu'un angle plat, un demi-tour."
+        }
+      ],
+      "hints": [
+        "Les trois coins réunis font 180°.",
+        "Calcule ce qu’il manque à {s}° pour arriver à 180°."
+      ],
+      "solution": "180 − {s} = {180-s}°.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{180-s}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{360-s}"
+          },
+          "expect": "mc:somme-360"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-remed-isocele",
+      "type": "numeric",
+      "skill": "m6.geo.triangles-angles",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:un-seul-angle-base"
+      ],
+      "expectedSeconds": 60,
+      "params": {
+        "b": {
+          "int": [
+            30,
+            80
+          ]
+        }
+      },
+      "prompt": "Rappel : dans un triangle isocèle, les deux angles à la base sont égaux. Ici, chacun mesure {b}°. Combien mesure le troisième angle, l'angle au sommet (en °) ?",
+      "figure": {
+        "alt": "Un triangle isocèle dont les deux angles à la base portent la même mesure",
+        "w": 320,
+        "h": 200,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            0,
+            5
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "B",
+            "x": 0.5,
+            "y": 0.5,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 7.5,
+            "y": 0.5,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 4,
+            "y": 4.4,
+            "pos": "n"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "C",
+            "marks": 1
+          },
+          {
+            "type": "angle",
+            "vertex": "B",
+            "from": "C",
+            "to": "A",
+            "label": "{b}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "C",
+            "from": "A",
+            "to": "B",
+            "label": "{b}°"
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "?",
+            "color": "orange"
+          }
+        ]
+      },
+      "answer": "180 - 2*b",
+      "misconceptions": [
+        {
+          "answer": "180 - b",
+          "id": "mc:un-seul-angle-base",
+          "error": "methode",
+          "feedback": "Tu n'as retiré qu'un seul angle à la base. Il y en a deux, et ils mesurent la même chose."
+        }
+      ],
+      "hints": [
+        "Les deux angles à la base mesurent ensemble 2 × {b}°.",
+        "Le troisième angle, c’est 180° moins les deux angles à la base."
+      ],
+      "solution": "2 × {b} = {2*b} ; 180 − {2*b} = {180-2*b}°.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{180-2*b}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{180-b}"
+          },
+          "expect": "mc:un-seul-angle-base"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-exterieur",
+      "type": "composite",
+      "skill": "m6.geo.triangles-angles",
+      "skills": [
+        "m6.geo.angles-vocabulaire"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "symbolique",
+      "targets": [
+        "mc:adjacent-egal",
+        "mc:un-seul-angle-base"
+      ],
+      "expectedSeconds": 420,
+      "params": {
+        "e": {
+          "choice": [
+            100,
+            105,
+            110,
+            115,
+            120,
+            125,
+            130,
+            135,
+            140,
+            145,
+            150
+          ]
+        }
+      },
+      "prompt": "Le triangle ABC est isocèle en A. Les points B, C et D sont alignés, et l'angle ACD mesure {e}°.",
+      "figure": {
+        "alt": "Figure à main levée : un triangle ABC isocèle en A, et le côté [BC] prolongé jusqu’au point D ; l’angle ACD est indiqué",
+        "w": 400,
+        "h": 200,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            5
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 3,
+            "y": 4.4,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 0.5,
+            "y": 0.5,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 5.5,
+            "y": 0.5,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "D",
+            "x": 9.5,
+            "y": 0.5,
+            "pos": "se"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "C",
+            "to": "D"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "C",
+            "marks": 1
+          },
+          {
+            "type": "angle",
+            "vertex": "C",
+            "from": "D",
+            "to": "A",
+            "label": "{e}°"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Angle ACB (en °) :",
+          "answer": "180 - e",
+          "misconceptions": [
+            {
+              "answer": "e",
+              "id": "mc:adjacent-egal",
+              "error": "notion",
+              "feedback": "ACB et ACD sont côte à côte et forment ensemble l'angle plat BCD : ils ne sont pas égaux."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle ABC (en °) :",
+          "answer": "180 - e"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle BAC (en °) :",
+          "answer": "2*e - 180",
+          "misconceptions": [
+            {
+              "answer": "e",
+              "id": "mc:un-seul-angle-base",
+              "error": "methode",
+              "feedback": "Tu n'as retiré qu'un seul des deux angles à la base. Le triangle en a deux, égaux."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "B, C et D sont alignés : l’angle BCD est plat.",
+        "Isocèle en A : les angles en B et en C sont égaux.",
+        "Puis la somme des angles du triangle."
+      ],
+      "solution": "BCD est plat : ACB = 180 − {e} = {180-e}°. Le triangle est isocèle en A : ABC = ACB = {180-e}°. BAC = 180 − 2 × {180-e} = {2*e-180}°. Remarque : {e} = {180-e} + {2*e-180} : l'angle ACD est égal à la somme des deux angles du triangle qui ne sont pas collés à lui.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{180-e}"
+              },
+              {
+                "value": "{180-e}"
+              },
+              {
+                "value": "{2*e-180}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{e}"
+              },
+              {
+                "value": "{e}"
+              },
+              {
+                "value": "{2*e-180}"
+              }
+            ]
+          },
+          "expect": "mc:adjacent-egal"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-position-centre",
+      "type": "categorize",
+      "skill": "m6.geo.cercle-circonscrit",
+      "skills": [
+        "m6.geo.triangles-angles"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:toujours-interieur"
+      ],
+      "expectedSeconds": 300,
+      "prompt": "Observe les trois exemples : le centre O du cercle circonscrit est à l'intérieur du premier triangle, sur un côté du deuxième, à l'extérieur du troisième. Cela dépend des angles du triangle. Range chaque triangle selon la place de O.",
+      "figure": {
+        "alt": "Trois triangles et leurs cercles circonscrits : un triangle aux trois angles aigus, un triangle rectangle et un triangle avec un angle obtus ; le centre de chaque cercle est marqué",
+        "w": 520,
+        "h": 270,
+        "frame": {
+          "x": [
+            -0.6,
+            16.6
+          ],
+          "y": [
+            -2.5,
+            5.2
+          ]
+        },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0,
+                1
+              ],
+              [
+                4,
+                1
+              ],
+              [
+                1.5,
+                4
+              ]
+            ],
+            "fill": "bleu"
+          },
+          {
+            "type": "circle",
+            "center": [
+              2,
+              1.875
+            ],
+            "r": 2.183,
+            "color": "gris",
+            "dashed": true
+          },
+          {
+            "type": "point",
+            "id": "Oa",
+            "x": 2,
+            "y": 1.875,
+            "pos": "s",
+            "style": "rond",
+            "label": "O"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                6,
+                1
+              ],
+              [
+                10,
+                1
+              ],
+              [
+                6,
+                4
+              ]
+            ],
+            "fill": "vert"
+          },
+          {
+            "type": "circle",
+            "center": [
+              8,
+              2.5
+            ],
+            "r": 2.5,
+            "color": "gris",
+            "dashed": true
+          },
+          {
+            "type": "point",
+            "id": "Ob",
+            "x": 8,
+            "y": 2.5,
+            "pos": "s",
+            "style": "rond",
+            "label": "O"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [
+                12,
+                1
+              ],
+              [
+                16,
+                1
+              ],
+              [
+                13,
+                2
+              ]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "circle",
+            "center": [
+              14,
+              0
+            ],
+            "r": 2.2361,
+            "color": "gris",
+            "dashed": true
+          },
+          {
+            "type": "point",
+            "id": "Oc",
+            "x": 14,
+            "y": 0,
+            "pos": "s",
+            "style": "rond",
+            "label": "O"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "dedans",
+          "label": "À l'intérieur du triangle"
+        },
+        {
+          "id": "cote",
+          "label": "Sur un côté"
+        },
+        {
+          "id": "dehors",
+          "label": "À l'extérieur du triangle"
+        }
+      ],
+      "items": [
+        {
+          "id": "p1",
+          "label": "Angles de 50°, 60° et 70°",
+          "category": "dedans"
+        },
+        {
+          "id": "p2",
+          "label": "Angles de 90°, 30° et 60°",
+          "category": "cote"
+        },
+        {
+          "id": "p3",
+          "label": "Angles de 120°, 30° et 30°",
+          "category": "dehors"
+        },
+        {
+          "id": "p4",
+          "label": "Triangle équilatéral",
+          "category": "dedans"
+        },
+        {
+          "id": "p5",
+          "label": "Angles de 100°, 40° et 40°",
+          "category": "dehors"
+        },
+        {
+          "id": "p6",
+          "label": "Angles de 90°, 45° et 45°",
+          "category": "cote"
+        },
+        {
+          "id": "p7",
+          "label": "Angles de 80°, 80° et 20°",
+          "category": "dedans"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "p3",
+          "category": "dedans",
+          "id": "mc:toujours-interieur",
+          "error": "notion",
+          "feedback": "Regarde le troisième exemple : quel genre d'angle a ce triangle ? Où est son centre ?"
+        },
+        {
+          "item": "p5",
+          "category": "dedans",
+          "id": "mc:toujours-interieur",
+          "error": "notion",
+          "feedback": "Ce triangle a-t-il un angle obtus ? Compare avec le troisième exemple."
+        },
+        {
+          "item": "p2",
+          "category": "dedans",
+          "id": "mc:rectangle-centre",
+          "error": "notion",
+          "feedback": "Ce triangle a un angle droit. Regarde le deuxième exemple : où se trouve le centre ?"
+        }
+      ],
+      "hints": [
+        "Dans chaque exemple, regarde le plus grand angle du triangle : aigu, droit ou obtus ?",
+        "Tous les angles aigus : centre à l’intérieur.",
+        "Un angle droit ou un angle obtus : regarde les deux autres exemples."
+      ],
+      "solution": "Si les trois angles sont aigus (50-60-70, équilatéral, 80-80-20), O est à l'intérieur. Si le triangle est rectangle (90-30-60, 90-45-45), O est sur un côté : c'est le milieu de l'hypoténuse. Si le triangle a un angle obtus (120-30-30, 100-40-40), O est à l'extérieur.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "p1": "dedans",
+              "p2": "cote",
+              "p3": "dehors",
+              "p4": "dedans",
+              "p5": "dehors",
+              "p6": "cote",
+              "p7": "dedans"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "p1": "dedans",
+              "p2": "cote",
+              "p3": "dedans",
+              "p4": "dedans",
+              "p5": "dehors",
+              "p6": "cote",
+              "p7": "dedans"
+            }
+          },
+          "expect": "mc:toujours-interieur"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-polygones",
+      "type": "composite",
+      "skill": "m6.geo.triangles-angles",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": [
+        "mc:triangles-centre",
+        "mc:angle-centre"
+      ],
+      "expectedSeconds": 600,
+      "prompt": "On découpe un polygone en triangles avec les diagonales qui partent d'un même sommet (voir le pentagone). Chaque triangle apporte 180°. Calcule la somme des angles de chaque polygone.",
+      "figure": {
+        "alt": "Un pentagone découpé en trois triangles par les deux diagonales issues d’un même sommet",
+        "w": 300,
+        "h": 280,
+        "frame": {
+          "x": [
+            -3.2,
+            3.2
+          ],
+          "y": [
+            -2.9,
+            3.3
+          ]
+        },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [
+                0,
+                2.8
+              ],
+              [
+                -2.663,
+                0.8652
+              ],
+              [
+                -1.6458,
+                -2.2652
+              ],
+              [
+                1.6458,
+                -2.2652
+              ],
+              [
+                2.663,
+                0.8652
+              ]
+            ],
+            "fill": "violet"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              2.8
+            ],
+            "to": [
+              -1.6458,
+              -2.2652
+            ],
+            "dashed": true
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              2.8
+            ],
+            "to": [
+              1.6458,
+              -2.2652
+            ],
+            "dashed": true
+          },
+          {
+            "type": "text",
+            "x": -1.6,
+            "y": 0,
+            "text": "1",
+            "size": "m",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 0,
+            "y": -1.3,
+            "text": "2",
+            "size": "m",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 1.6,
+            "y": 0,
+            "text": "3",
+            "size": "m",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Somme des angles d’un quadrilatère (en °) :",
+          "answer": 360,
+          "misconceptions": [
+            {
+              "answer": 720,
+              "id": "mc:triangles-centre",
+              "error": "raisonnement",
+              "feedback": "En partant du centre, on obtient 4 triangles, mais leurs angles au centre font un tour complet qui n'appartient pas au quadrilatère. Découpe plutôt à partir d'un sommet."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Somme des angles d’un pentagone (5 côtés) (en °) :",
+          "answer": 540,
+          "misconceptions": [
+            {
+              "answer": 900,
+              "id": "mc:triangles-centre",
+              "error": "raisonnement",
+              "feedback": "Tu as compté un triangle par côté, à partir du centre. Les angles autour du centre ne sont pas des angles du pentagone : compte les triangles de la figure."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Somme des angles d’un hexagone (6 côtés) (en °) :",
+          "answer": 720,
+          "misconceptions": [
+            {
+              "answer": 1080,
+              "id": "mc:triangles-centre",
+              "error": "raisonnement",
+              "feedback": "Découpe l'hexagone à partir d'un sommet : combien de triangles obtiens-tu vraiment ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans un hexagone régulier, les six angles sont égaux. Combien mesure chacun (en °) ?",
+          "answer": 120,
+          "misconceptions": [
+            {
+              "answer": 60,
+              "id": "mc:angle-centre",
+              "error": "notion",
+              "feedback": "60°, c'est l'angle de chaque triangle équilatéral au centre de l'hexagone. On demande l'angle à un sommet de l'hexagone."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Un quadrilatère se découpe en 2 triangles par une diagonale.",
+        "Un pentagone : 3 triangles. À chaque côté de plus, un triangle de plus.",
+        "Un polygone à n côtés se découpe en (n − 2) triangles."
+      ],
+      "solution": "Quadrilatère : 2 triangles, 2 × 180 = 360°. Pentagone : 3 triangles, 540°. Hexagone : 4 triangles, 720°. Hexagone régulier : 720 ÷ 6 = 120° par angle. En général, un polygone à n côtés a des angles dont la somme vaut (n − 2) × 180°.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "360"
+              },
+              {
+                "value": "540"
+              },
+              {
+                "value": "720"
+              },
+              {
+                "value": "120"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "360"
+              },
+              {
+                "value": "900"
+              },
+              {
+                "value": "720"
+              },
+              {
+                "value": "120"
+              }
+            ]
+          },
+          "expect": "mc:triangles-centre"
+        }
+      ]
+    },
+    {
+      "id": "m6-triangles-demi-cercle",
+      "type": "composite",
+      "skill": "m6.geo.triangles-angles",
+      "skills": [
+        "m6.geo.cercle"
+      ],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": [
+        "mc:sommet-base",
+        "mc:isocele-moitie"
+      ],
+      "expectedSeconds": 720,
+      "params": {
+        "a": {
+          "choice": [
+            20,
+            25,
+            35,
+            40,
+            50,
+            55,
+            65,
+            70
+          ]
+        }
+      },
+      "prompt": "[AB] est un diamètre du cercle de centre O, et C est un autre point du cercle. L'angle OAC mesure {a}°. Comme OA = OC = OB (ce sont des rayons), les triangles OAC et OBC sont isocèles en O.",
+      "figure": {
+        "alt": "Un cercle de centre O, un diamètre [AB] et un point C du cercle relié à A, à B et à O",
+        "w": 320,
+        "h": 300,
+        "frame": {
+          "x": [
+            -3.6,
+            3.6
+          ],
+          "y": [
+            -3.4,
+            3.4
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 3
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": -3,
+            "y": 0,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 3,
+            "y": 0,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{3*cos(2*a)}",
+            "y": "{3*sin(2*a)}",
+            "pos": "n"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "C",
+            "color": "maths"
+          },
+          {
+            "type": "segment",
+            "from": "B",
+            "to": "C",
+            "color": "maths"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": "C",
+            "dashed": true
+          },
+          {
+            "type": "angle",
+            "vertex": "A",
+            "from": "B",
+            "to": "C",
+            "label": "{a}°"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Angle OCA (en °) :",
+          "answer": "a",
+          "misconceptions": [
+            {
+              "answer": "180 - 2*a",
+              "id": "mc:sommet-base",
+              "error": "notion",
+              "feedback": "Le triangle OAC est isocèle en O : les angles égaux sont ceux de la base [AC], en A et en C."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle AOC (en °) :",
+          "answer": "180 - 2*a"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle BOC (en °) :",
+          "answer": "2*a"
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle OCB (en °) :",
+          "answer": "90 - a",
+          "misconceptions": [
+            {
+              "answer": "180 - 2*a",
+              "id": "mc:isocele-moitie",
+              "error": "methode",
+              "feedback": "Ce nombre est la somme des deux angles à la base du triangle isocèle OBC. Ils sont égaux : il reste une étape."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Angle ACB (en °) :",
+          "answer": 90
+        }
+      ],
+      "hints": [
+        "OAC est isocèle en O : ses angles en A et en C sont égaux.",
+        "A, O et B sont alignés : AOC et BOC sont supplémentaires.",
+        "ACB = OCA + OCB."
+      ],
+      "solution": "OCA = OAC = {a}° (triangle isocèle en O). AOC = 180 − 2 × {a} = {180-2*a}°. BOC = 180 − {180-2*a} = {2*a}° (angle plat AOB). OBC est isocèle en O : OCB = (180 − {2*a}) ÷ 2 = {90-a}°. ACB = {a} + {90-a} = 90° : l'angle est droit ! Quel que soit C sur le cercle, le triangle ABC est rectangle en C.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a}"
+              },
+              {
+                "value": "{180-2*a}"
+              },
+              {
+                "value": "{2*a}"
+              },
+              {
+                "value": "{90-a}"
+              },
+              {
+                "value": "90"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a}"
+              },
+              {
+                "value": "{180-2*a}"
+              },
+              {
+                "value": "{2*a}"
+              },
+              {
+                "value": "{180-2*a}"
+              },
+              {
+                "value": "90"
+              }
+            ]
+          },
+          "expect": "mc:isocele-moitie"
+        }
+      ]
+    }
+  ]
+}

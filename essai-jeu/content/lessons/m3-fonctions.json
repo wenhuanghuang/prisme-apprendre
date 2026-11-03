@@ -1,0 +1,643 @@
+{
+  "id": "m3-fonctions",
+  "chapter": "m3-ch-fonctions",
+  "title": "Fonctions : image, antécédent et représentations",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.fonctions.notations", "m3.fonctions.representations"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Voir une fonction comme une machine qui associe à chaque nombre une seule image ; utiliser les notations f(x) et x ⟼ …, calculer des images, chercher des antécédents, et passer d'une formule à un tableau de valeurs puis à une courbe (et inversement).",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "La fusée à eau d'Inès",
+      "body": "Au club sciences, Inès lance une fusée à eau. Sa hauteur, en mètres, dépend du temps t écoulé, en secondes : $h(t) = 20t − 5t²$. Au bout d'une seconde, la fusée est à 15 m. Elle monte encore, redescend… et repasse à 15 m !\n\nObserve la courbe avant de calculer : à quel instant la fusée repasse-t-elle à 15 m ? Et atteint-elle 25 m ?",
+      "figure": {
+        "alt": "Courbe de la hauteur de la fusée en fonction du temps, de 0 à 4 secondes",
+        "w": 520, "h": 300,
+        "items": [
+          { "type": "linechart", "xLabel": "temps t (s)", "yLabel": "hauteur (m)",
+            "series": [ { "label": "Hauteur de la fusée", "points": [[0, 0], [0.5, 8.75], [1, 15], [1.5, 18.75], [2, 20], [2.5, 18.75], [3, 15], [3.5, 8.75], [4, 0]] } ] }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🎰", "title": "Une fonction, une machine à nombres",
+          "body": "Une **fonction** f associe à chaque nombre x **un seul** nombre, noté f(x) et lu « f de x ». On écrit $f : x ⟼ 3x − 1$ ou $f(x) = 3x − 1$. Pour calculer, on remplace x par le nombre choisi.",
+          "example": "Avec f(x) = 3x − 1 : f(4) = 3 × 4 − 1 = 11.",
+          "reveal": {
+            "question": "Devine : f(4), est-ce « f multiplié par 4 » ?",
+            "answer": "Non ! f(4) n'est pas un produit : c'est le nombre que la machine f fabrique quand on lui donne 4. Les parenthèses contiennent le nombre de départ."
+          }
+        },
+        {
+          "emoji": "🎯", "title": "Image et antécédent",
+          "body": "Si f(4) = 11, on dit que **11 est l'image de 4** par f, et que **4 est un antécédent de 11**. Un nombre a **une seule image**, mais il peut avoir zéro, un ou plusieurs antécédents. L'image se **calcule** ; un antécédent se **cherche**, souvent en résolvant une équation f(x) = … .",
+          "example": "La fusée : h(1) = 15 et h(3) = 15. Le nombre 15 a deux antécédents, 1 et 3."
+        },
+        {
+          "emoji": "📋", "title": "Le tableau de valeurs",
+          "body": "Un **tableau de valeurs** place les nombres x sur la première ligne et leurs images f(x) sur la seconde. Pour une **image**, on part de la ligne des x ; pour un **antécédent**, on part de la ligne des f(x). Un tableur le remplit en un clin d'œil.",
+          "figure": {
+            "alt": "Tableau de valeurs de la fonction g définie par g(x) = x² − 2, pour x allant de −2 à 3",
+            "w": 460, "h": 110,
+            "items": [ { "type": "table", "head": ["x", "−2", "−1", "0", "1", "2", "3"], "rows": [["g(x) = x² − 2", "2", "−1", "−2", "−1", "2", "7"]] } ]
+          },
+          "reveal": {
+            "question": "Devine : dans ce tableau, quels sont les antécédents de 2 par g ?",
+            "answer": "−2 et 2 : on cherche 2 sur la DEUXIÈME ligne, puis on lit les x au-dessus. Deux nombres différents peuvent avoir la même image."
+          }
+        },
+        {
+          "emoji": "📈", "title": "La courbe représentative",
+          "body": "La **courbe** de f est formée des points de coordonnées (x ; f(x)). **Image** : on part de x sur l'axe des abscisses, on va verticalement jusqu'à la courbe, on lit l'ordonnée (en vert). **Antécédents** : on part du nombre sur l'axe des ordonnées, on va horizontalement jusqu'à la courbe, on lit les abscisses (en orange).",
+          "figure": {
+            "alt": "Courbe de la fonction g définie par g(x) = x² − 2 dans un repère quadrillé, avec des pointillés de lecture d'une image et de deux antécédents",
+            "w": 340, "h": 440,
+            "frame": { "x": [-3.5, 3.5], "y": [-2.5, 7.5], "grid": true, "axes": true },
+            "items": [
+              { "type": "segment", "from": [-3, 7], "to": [-2.5, 4.25], "color": "maths" },
+              { "type": "segment", "from": [-2.5, 4.25], "to": [-2, 2], "color": "maths" },
+              { "type": "segment", "from": [-2, 2], "to": [-1.5, 0.25], "color": "maths" },
+              { "type": "segment", "from": [-1.5, 0.25], "to": [-1, -1], "color": "maths" },
+              { "type": "segment", "from": [-1, -1], "to": [-0.5, -1.75], "color": "maths" },
+              { "type": "segment", "from": [-0.5, -1.75], "to": [0, -2], "color": "maths" },
+              { "type": "segment", "from": [0, -2], "to": [0.5, -1.75], "color": "maths" },
+              { "type": "segment", "from": [0.5, -1.75], "to": [1, -1], "color": "maths" },
+              { "type": "segment", "from": [1, -1], "to": [1.5, 0.25], "color": "maths" },
+              { "type": "segment", "from": [1.5, 0.25], "to": [2, 2], "color": "maths" },
+              { "type": "segment", "from": [2, 2], "to": [2.5, 4.25], "color": "maths" },
+              { "type": "segment", "from": [2.5, 4.25], "to": [3, 7], "color": "maths" },
+              { "type": "segment", "from": [1, 0], "to": [1, -1], "color": "vert", "dashed": true },
+              { "type": "segment", "from": [1, -1], "to": [0, -1], "color": "vert", "dashed": true },
+              { "type": "segment", "from": [-2, 2], "to": [2, 2], "color": "orange", "dashed": true },
+              { "type": "segment", "from": [-2, 2], "to": [-2, 0], "color": "orange", "dashed": true },
+              { "type": "segment", "from": [2, 2], "to": [2, 0], "color": "orange", "dashed": true },
+              { "type": "text", "x": 0.4, "y": 6.5, "text": "courbe de g", "anchor": "start", "color": "maths" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔁", "title": "En résumé : d'une représentation à l'autre",
+          "body": "**Formule → tableau** : on calcule des images. **Tableau → courbe** : on place les points (x ; f(x)) et on les relie à main levée, sans règle (sauf si l'on sait que c'est une droite). **Courbe → nombres** : on lit, mais une lecture graphique donne souvent des **valeurs approchées** ; seule la formule donne des valeurs exactes."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : la fonction de la fusée",
+      "steps": [
+        { "text": "La hauteur de la fusée est $h(t) = 20t − 5t²$. Pour l'image de 1,5, on remplace t par 1,5, en calculant le carré AVANT de multiplier par 5.", "math": "h(1,5) = 20 × 1,5 − 5 × 1,5² = 30 − 11,25 = 18,75" },
+        { "text": "On calcule d'autres images et on range les résultats dans un tableau de valeurs.",
+          "figure": { "alt": "Tableau de valeurs de la hauteur de la fusée pour t allant de 0 à 4 secondes, de demi-seconde en demi-seconde", "w": 560, "h": 110,
+            "items": [ { "type": "table", "head": ["t (s)", "0", "0,5", "1", "1,5", "2", "2,5", "3", "3,5", "4"], "rows": [["h(t) (m)", "0", "8,75", "15", "18,75", "20", "18,75", "15", "8,75", "0"]] } ] } },
+        { "text": "Antécédents de 15 : on cherche 15 sur la DEUXIÈME ligne, et on lit t = 1 et t = 3. On le vérifie par le calcul :", "math": "h(3) = 20 × 3 − 5 × 3² = 60 − 45 = 15" },
+        { "text": "Le nombre 20 n'a qu'un antécédent, 2 : c'est le sommet de la courbe. Le nombre 25 n'en a aucun : la courbe ne monte jamais jusqu'à 25." },
+        { "text": "Conclusion : la fusée passe deux fois à 15 m, à la montée (1 s) et à la descente (3 s). Sa hauteur maximale est 20 m, atteinte au bout de 2 s : elle n'atteint jamais 25 m." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m3-fonctions-vocabulaire", "m3-fonctions-image", "m3-fonctions-tableau-valeurs", "m3-fonctions-placer", "m3-fonctions-courbe", "m3-fonctions-antecedent"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Expliquer et réinvestir",
+      "body": "Le retour de la fusée, puis deux erreurs de Tom à corriger.",
+      "exercises": ["m3-fonctions-fusee", "m3-fonctions-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le potager du club jardin",
+      "body": "40 m de grillage, un potager rectangulaire, et une question : quelle forme donne la plus grande surface à cultiver ?",
+      "exercises": ["m3-fonctions-potager"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> f(x) se lit « f de x » : c'est l'image de x par f. Une image se CALCULE (ou se lit en partant de l'axe des abscisses). Un antécédent se CHERCHE : on résout f(x) = … (ou on part de l'axe des ordonnées).\n\n- **Inverser image et antécédent.** Si f(3) = 7, alors 7 est l'image de 3, et 3 est un antécédent de 7.\n- **Lire f(x) comme un produit.** f(4) n'est pas « f × 4 » : c'est le nombre associé à 4.\n- **Croire à un antécédent unique.** Pour x ⟼ x², 9 en a deux (3 et −3), et −4 n'en a aucun.\n- **Mal calculer un carré.** (−3)² = 9 : un carré n'est jamais négatif, et x² ne veut pas dire 2x."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des images, des antécédents et des lectures de courbes dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une fonction étudiée au tableur jusqu'à l'équation x² = a, puis un tri : qu'est-ce qui est vraiment une fonction ?",
+      "exercises": ["m3-fonctions-carre-tableur", "m3-fonctions-fonction-ou-pas"]
+    },
+    "expert": {
+      "intro": "Un programme de calcul façon brevet, puis une courbe et une droite à comparer.",
+      "exercises": ["m3-fonctions-brevet", "m3-fonctions-deux-courbes"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-fonctions-vocabulaire", "type": "match", "skill": "m3.fonctions.notations", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:image-antecedent-inverses", "mc:coordonnees-inversees"], "expectedSeconds": 150,
+      "prompt": "Chaque égalité de gauche se traduit par une phrase de droite. Associe-les. Attention : trois phrases de droite sont des pièges.",
+      "figure": {
+        "alt": "Schéma de la machine f avec l'exemple du cours : 4 entre, 11 sort, donc f(4) = 11",
+        "w": 460, "h": 110,
+        "caption": "Exemple du cours : f(4) = 11.",
+        "items": [ { "type": "table", "head": ["Nombre de départ : un antécédent", "Machine", "Résultat : son image"], "rows": [["4", "→ f →", "11"]] } ]
+      },
+      "leftTitle": "Égalité", "rightTitle": "Traduction",
+      "left": [
+        { "id": "l1", "label": "f(5) = 2" },
+        { "id": "l2", "label": "f(3) = 7" },
+        { "id": "l3", "label": "f(0) = 4" },
+        { "id": "l4", "label": "f(−1) = 6" }
+      ],
+      "right": [
+        { "id": "r1", "label": "2 est l'image de 5 par f" },
+        { "id": "r2", "label": "3 est un antécédent de 7 par f" },
+        { "id": "r3", "label": "La courbe de f passe par le point (0 ; 4)" },
+        { "id": "r4", "label": "Dans le tableau de valeurs de f, sous le nombre −1, on lit 6" },
+        { "id": "r5", "label": "5 est l'image de 2 par f" },
+        { "id": "r6", "label": "La courbe de f passe par le point (4 ; 0)" },
+        { "id": "r7", "label": "7 est un antécédent de 3 par f" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l1", "r5"], "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Dans f(5) = 2, le nombre de départ est celui entre parenthèses, et le résultat est écrit après le signe =. Le résultat est l'image du nombre de départ, pas l'inverse." },
+        { "pair": ["l2", "r7"], "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "L'antécédent est le nombre de DÉPART, celui qu'on écrit entre les parenthèses de f( ). Relis f(3) = 7 : lequel des deux nombres est le départ ?" },
+        { "pair": ["l3", "r6"], "id": "mc:coordonnees-inversees", "error": "lecture", "feedback": "Un point de la courbe a pour coordonnées (x ; f(x)) : l'abscisse d'abord, c'est le nombre de départ ; l'ordonnée ensuite, c'est son image." }
+      ],
+      "hints": ["Dans f(a) = b, a est le nombre de départ et b le résultat.", "Le résultat est l'IMAGE du nombre de départ ; le nombre de départ est un ANTÉCÉDENT du résultat.", "Sur la courbe, le point s'écrit (nombre de départ ; image)."],
+      "solution": "f(5) = 2 : 2 est l'image de 5. f(3) = 7 : 3 est un antécédent de 7. f(0) = 4 : la courbe passe par (0 ; 4). f(−1) = 6 : dans le tableau, sous −1, on lit 6. Les trois pièges inversent le nombre de départ et le résultat.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r5", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "mc:image-antecedent-inverses" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r6", "l4": "r4" } }, "expect": "mc:coordonnees-inversees" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-image", "type": "numeric", "skill": "m3.fonctions.notations", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:priorite-carre", "mc:carre-negatif"], "expectedSeconds": 120,
+      "params": { "a": { "int": [2, 4] }, "b": { "int": [1, 9] }, "k": { "int": [-6, -3] } },
+      "prompt": "On considère la fonction f définie par $f(x) = {a}x² − {b}$. Calcule l'image de {k} par f, c'est-à-dire $f({k})$.",
+      "figure": {
+        "alt": "Schéma de la machine f : le nombre {k} entre, il est élevé au carré, multiplié par {a}, puis on soustrait {b}",
+        "w": 460, "h": 110,
+        "items": [ { "type": "table", "head": ["Entrée", "1. Carré", "2. × {a}", "3. − {b}", "Sortie"], "rows": [["{k}", "…", "…", "…", "f({k}) = ?"]] } ]
+      },
+      "answer": "a*k^2 - b",
+      "misconceptions": [
+        { "answer": "a*2*k - b", "id": "mc:carre-double", "error": "calcul", "feedback": "Tu as multiplié par 2 au lieu d'élever au carré. x² veut dire x × x, et non 2 × x : remplace x par ({k}) et multiplie ce nombre par lui-même." },
+        { "answer": "(a*k)^2 - b", "id": "mc:priorite-carre", "error": "methode", "feedback": "Tu as élevé au carré le produit {a} × ({k}). Priorité des opérations : le carré porte seulement sur x, on le calcule AVANT de multiplier par {a}." },
+        { "answer": "-a*k^2 - b", "id": "mc:carre-negatif", "error": "signe", "feedback": "Le carré d'un nombre négatif est positif : ({k}) × ({k}), c'est « moins par moins ». Reprends le signe du premier terme." }
+      ],
+      "hints": ["Remplace x par ({k}) : $f({k}) = {a} × ({k})² − {b}$.", "Calcule d'abord le carré : un nombre négatif multiplié par lui-même donne un nombre positif.", "Multiplie ensuite par {a}, puis soustrais {b}."],
+      "solution": "$f({k}) = {a} × ({k})² − {b} = {a} × {k*k} − {b} = {a*k*k} − {b} = {a*k*k-b}$. L'image de {k} par f est {a*k*k-b}.",
+      "selfTest": [
+        { "response": { "value": "{a*k*k-b}" }, "expect": "correct" },
+        { "response": { "value": "{2*a*k-b}" }, "expect": "mc:carre-double" },
+        { "response": { "value": "{-a*k*k-b}" }, "expect": "mc:carre-negatif" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-tableau-valeurs", "type": "table", "skill": "m3.fonctions.representations", "skills": ["m3.fonctions.notations"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:carre-negatif", "mc:signe-produit"], "expectedSeconds": 240,
+      "params": { "a": { "int": [1, 5] } },
+      "prompt": "Dans un tableur, Lina a écrit des valeurs de x sur la ligne 1. En B2, elle a saisi la formule =B1^2-{a}*B1, puis l'a recopiée vers la droite : la ligne 2 contient les images par la fonction $f(x) = x² − {a}x$. Complète ce que le tableur affiche.",
+      "columns": ["x", "−3", "−1", "0", "2", "5"],
+      "rows": [["f(x)", "?r0c1", "?r0c2", "?r0c3", "?r0c4", "?r0c5"]],
+      "cells": {
+        "r0c1": { "answer": "9 + 3*a", "misconceptions": [
+          { "answer": "-9 + 3*a", "id": "mc:carre-negatif", "error": "signe", "feedback": "(−3)² = (−3) × (−3) : un carré n'est jamais négatif. Reprends le premier terme." },
+          { "answer": "9 - 3*a", "id": "mc:signe-produit", "error": "signe", "feedback": "Le second terme est −{a} × (−3) : le produit de deux nombres négatifs est positif." }
+        ] },
+        "r0c2": { "answer": "1 + a", "misconceptions": [ { "answer": "-1 + a", "id": "mc:carre-negatif", "error": "signe", "feedback": "(−1)² = (−1) × (−1) : un carré n'est jamais négatif." } ] },
+        "r0c3": { "answer": "0" },
+        "r0c4": { "answer": "4 - 2*a" },
+        "r0c5": { "answer": "25 - 5*a" }
+      },
+      "hints": ["Remplace x par chaque nombre de la ligne 1 dans $x² − {a}x$.", "Pour x = −3 : $(−3)² − {a} × (−3)$. Attention aux deux signes « moins » !", "Pour x = 0, les deux termes sont nuls."],
+      "solution": "$f(−3) = 9 + {3*a} = {9+3*a}$ ; $f(−1) = 1 + {a} = {1+a}$ ; $f(0) = 0$ ; $f(2) = 4 − {2*a} = {4-2*a}$ ; $f(5) = 25 − {5*a} = {25-5*a}$. Le tableur fait exactement ce calcul : il remplace B1 par le nombre de la ligne 1.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{9+3*a}", "r0c2": "{1+a}", "r0c3": "0", "r0c4": "{4-2*a}", "r0c5": "{25-5*a}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{-9+3*a}", "r0c2": "{1+a}", "r0c3": "0", "r0c4": "{4-2*a}", "r0c5": "{25-5*a}" } }, "expect": "mc:carre-negatif" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-placer", "type": "graph", "skill": "m3.fonctions.representations", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["lecture"], "expectedSeconds": 180,
+      "params": { "b": { "choice": [-4, -3, -1, 1] } },
+      "prompt": "On considère la fonction $f : x ⟼ x² {b|s}$. Calcule mentalement les images de −2, −1, 0, 1 et 2, puis place dans le repère les cinq points de la courbe de f qui ont ces abscisses.",
+      "xRange": [-3, 3], "yRange": [-5, 6], "xStep": 1, "yStep": 1, "xLabel": "x", "yLabel": "f(x)", "maxPoints": 6,
+      "expectedPoints": [[-2, "4+b"], [-1, "1+b"], [0, "b"], [1, "1+b"], [2, "4+b"]],
+      "hints": ["Un point de la courbe a pour coordonnées (x ; f(x)) : l'abscisse est le nombre de départ, l'ordonnée est son image.", "Pour x = −2 : $(−2)² {b|s}$. Le carré de −2 est positif.", "Les points d'abscisses −2 et 2 ont la même ordonnée : un carré efface le signe."],
+      "solution": "$f(−2) = f(2) = {4+b}$, $f(−1) = f(1) = {1+b}$ et $f(0) = {b}$. On place (−2 ; {4+b}), (−1 ; {1+b}), (0 ; {b}), (1 ; {1+b}) et (2 ; {4+b}). Ces points ne sont pas alignés : en les reliant à main levée, on obtient une courbe en « U », symétrique par rapport à l'axe des ordonnées.",
+      "selfTest": [
+        { "response": { "points": [[-2, "{4+b}"], [-1, "{1+b}"], [0, "{b}"], [1, "{1+b}"], [2, "{4+b}"]] }, "expect": "correct" },
+        { "response": { "points": [["{4+b}", -2], ["{1+b}", -1], ["{b}", 0], ["{1+b}", 1], ["{4+b}", 2]] }, "expect": "lecture" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-courbe", "type": "composite", "skill": "m3.fonctions.representations", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:image-antecedent-inverses"], "expectedSeconds": 300,
+      "prompt": "La courbe ci-dessous représente une fonction f, définie pour les nombres x compris entre −2 et 4. Réponds en lisant le graphique (le quadrillage a un pas de 1).",
+      "figure": {
+        "alt": "Courbe en U d'une fonction f dans un repère quadrillé, pour x allant de −2 à 4",
+        "w": 360, "h": 460,
+        "frame": { "x": [-2.5, 4.5], "y": [-4.5, 5.5], "grid": true, "axes": true },
+        "items": [
+          { "type": "segment", "from": [-2, 5], "to": [-1.5, 2.25], "color": "maths" },
+          { "type": "segment", "from": [-1.5, 2.25], "to": [-1, 0], "color": "maths" },
+          { "type": "segment", "from": [-1, 0], "to": [-0.5, -1.75], "color": "maths" },
+          { "type": "segment", "from": [-0.5, -1.75], "to": [0, -3], "color": "maths" },
+          { "type": "segment", "from": [0, -3], "to": [0.5, -3.75], "color": "maths" },
+          { "type": "segment", "from": [0.5, -3.75], "to": [1, -4], "color": "maths" },
+          { "type": "segment", "from": [1, -4], "to": [1.5, -3.75], "color": "maths" },
+          { "type": "segment", "from": [1.5, -3.75], "to": [2, -3], "color": "maths" },
+          { "type": "segment", "from": [2, -3], "to": [2.5, -1.75], "color": "maths" },
+          { "type": "segment", "from": [2.5, -1.75], "to": [3, 0], "color": "maths" },
+          { "type": "segment", "from": [3, 0], "to": [3.5, 2.25], "color": "maths" },
+          { "type": "segment", "from": [3.5, 2.25], "to": [4, 5], "color": "maths" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est l'image de 0 par f ?", "answer": -3,
+          "misconceptions": [
+            { "answer": -1, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as lu un nombre dont l'image est 0 (là où la courbe coupe l'axe horizontal). L'image de 0 se lit en partant de 0 sur l'axe des ABSCISSES, puis en allant verticalement jusqu'à la courbe." },
+            { "answer": 3, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as lu un nombre dont l'image est 0 (là où la courbe coupe l'axe horizontal). L'image de 0 se lit en partant de 0 sur l'axe des ABSCISSES, puis en allant verticalement jusqu'à la courbe." }
+          ] },
+        { "type": "multi", "prompt": "Lis tous les antécédents de −3 par f (un nombre par case).", "count": 2, "predicate": "v = 0 or v = 2", "distinct": true },
+        { "type": "numeric", "prompt": "Un seul nombre a exactement un antécédent par f. Quel est ce nombre ?", "answer": -4,
+          "misconceptions": [ { "answer": 1, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as donné l'abscisse du point le plus bas : c'est l'antécédent. La question demande le nombre dont il est l'antécédent, à lire sur l'axe des ordonnées." } ] }
+      ],
+      "hints": ["Image de 0 : pars de 0 sur l'axe horizontal, monte ou descends jusqu'à la courbe, puis lis l'ordonnée.", "Antécédents de −3 : imagine la droite horizontale à la hauteur −3 et repère TOUS les points où elle coupe la courbe.", "Une horizontale qui ne touche la courbe qu'en un seul point passe par le point le plus bas."],
+      "solution": "La courbe passe par (0 ; −3) : l'image de 0 est −3, on écrit f(0) = −3. L'horizontale de hauteur −3 coupe la courbe en deux points, d'abscisses 0 et 2 : −3 a deux antécédents. Le point le plus bas est (1 ; −4) : −4 a un seul antécédent, 1. Les nombres plus petits que −4 n'ont aucun antécédent ; ceux qui sont compris entre −4 (exclu) et 5 en ont deux.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "-3" }, { "values": ["0", "2"] }, { "value": "-4" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3" }, { "values": ["0", "2"] }, { "value": "-4" } ] }, "expect": "mc:image-antecedent-inverses" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-antecedent", "type": "steps", "mode": "equation", "skill": "m3.fonctions.notations", "skills": ["m4.equations.resoudre"], "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:image-au-lieu-antecedent", "signe"], "expectedSeconds": 180,
+      "params": { "a": { "int": [2, 7] }, "s": { "int": [-6, 6], "not": [0] }, "b": { "int": [-9, 9], "not": [0] }, "c": { "expr": "a*s+b" } },
+      "constraints": ["a*c+b != s", "c != s"],
+      "start": "a*x + b = c",
+      "minSteps": 2,
+      "prompt": "On considère la fonction g définie par $g(x) = {a}x {b|s}$. On cherche l'antécédent de {c} par g, c'est-à-dire le nombre x tel que $g(x) = {c}$. Résous l'équation de départ, une étape par ligne.",
+      "figure": {
+        "alt": "Schéma de la machine g : on connaît le nombre qui sort, {c}, et on cherche le nombre qui entre",
+        "w": 420, "h": 110,
+        "items": [ { "type": "table", "head": ["Entrée", "Machine g", "Sortie"], "rows": [["x = ?", "× {a}, puis {b|s}", "{c}"]] } ]
+      },
+      "misconceptions": [
+        { "answer": "x = a*c + b", "id": "mc:image-au-lieu-antecedent", "error": "notion", "feedback": "Tu as calculé g({c}), c'est-à-dire l'IMAGE de {c}. On cherche l'inverse : le nombre de départ x dont l'image vaut {c}. Il faut résoudre l'équation." }
+      ],
+      "hints": ["L'équation à résoudre est $ {a}x {b|s} = {c} $.", "Commence par isoler {a}x : ajoute ou soustrais le même nombre aux deux membres.", "Divise ensuite les deux membres par {a}, puis vérifie en calculant g(x)."],
+      "solution": "$ {a}x {b|s} = {c} $ ⟶ $ {a}x = {c-b} $ ⟶ $ x = {c-b} ÷ {a} = {s} $. Vérification : $ g({s}) = {a} × {s|p} {b|s} = {c} $. L'antécédent de {c} par g est {s}.",
+      "selfTest": [
+        { "response": { "lines": ["{a}x = {c-b}", "x = {s}"] }, "expect": "correct" },
+        { "response": { "lines": ["x = {a*c+b}"] }, "expect": "mc:image-au-lieu-antecedent" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-fusee", "type": "composite", "skill": "m3.fonctions.representations", "skills": ["m3.fonctions.notations"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "visuelle", "targets": ["mc:carre-double", "mc:priorite-carre", "mc:image-antecedent-inverses", "mc:antecedent-oublie"], "expectedSeconds": 420,
+      "prompt": "Retour à la fusée d'Inès : sa hauteur, en mètres, au bout de t secondes est $h(t) = 20t − 5t²$, pour t compris entre 0 et 4.",
+      "figure": {
+        "alt": "Courbe de la hauteur de la fusée en fonction du temps, de 0 à 4 secondes",
+        "w": 480, "h": 280,
+        "items": [
+          { "type": "linechart", "xLabel": "temps t (s)", "yLabel": "hauteur (m)",
+            "series": [ { "label": "Hauteur de la fusée", "points": [[0, 0], [0.5, 8.75], [1, 15], [1.5, 18.75], [2, 20], [2.5, 18.75], [3, 15], [3.5, 8.75], [4, 0]] } ] }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Calcule h(0,5), la hauteur au bout d'une demi-seconde, en m.", "answer": 8.75,
+          "misconceptions": [
+            { "answer": 5, "id": "mc:carre-double", "error": "calcul", "feedback": "0,5² ne vaut pas 2 × 0,5 : c'est 0,5 × 0,5. Recalcule le terme 5 × 0,5²." },
+            { "answer": 3.75, "id": "mc:priorite-carre", "error": "methode", "feedback": "Tu as calculé (5 × 0,5)² : le carré porte seulement sur t. Calcule d'abord 0,5², puis multiplie par 5." }
+          ] },
+        { "type": "multi", "prompt": "Lis sur la courbe les deux instants (en s) où la fusée est à 18,75 m de hauteur.", "count": 2, "predicate": "v = 1.5 or v = 2.5", "distinct": true },
+        { "type": "numeric", "prompt": "Quelle est la hauteur maximale atteinte par la fusée, en m ?", "answer": 20,
+          "misconceptions": [ { "answer": 2, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Ce nombre est l'instant, en secondes, où la fusée est au plus haut : c'est un antécédent. On demande la hauteur elle-même, lue sur l'axe vertical." } ] },
+        { "type": "numeric", "prompt": "Au bout de combien de secondes la fusée retombe-t-elle au sol ?", "answer": 4,
+          "misconceptions": [ { "answer": 0, "id": "mc:antecedent-oublie", "error": "lecture", "feedback": "À cet instant, la fusée est au sol, mais elle n'est pas encore partie ! Le nombre 0 a deux antécédents par h : cherche l'autre." } ] }
+      ],
+      "hints": ["Remplace t par 0,5 : $20 × 0,5 − 5 × 0,5²$, et calcule le carré en premier.", "Sur la courbe, imagine l'horizontale à la hauteur 18,75 : elle coupe la courbe deux fois.", "Le sol correspond à une hauteur nulle : cherche les antécédents de 0."],
+      "solution": "$h(0,5) = 20 × 0,5 − 5 × 0,25 = 10 − 1,25 = 8,75$ m. L'horizontale de hauteur 18,75 coupe la courbe en t = 1,5 et t = 2,5 (on vérifie : h(1,5) = 30 − 11,25 = 18,75). Le sommet de la courbe est le point (2 ; 20) : la hauteur maximale est 20 m, atteinte au bout de 2 s. Enfin, 0 a deux antécédents, 0 et 4 : la fusée retombe au sol au bout de 4 s.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "8,75" }, { "values": ["1,5", "2,5"] }, { "value": "20" }, { "value": "4" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5" }, { "values": ["1,5", "2,5"] }, { "value": "20" }, { "value": "4" } ] }, "expect": "mc:carre-double" },
+        { "response": { "parts": [ { "value": "8,75" }, { "values": ["1,5", "2,5"] }, { "value": "2" }, { "value": "4" } ] }, "expect": "mc:image-antecedent-inverses" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-expliquer", "type": "open", "skill": "m3.fonctions.notations", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:antecedent-unique", "mc:carre-negatif"], "expectedSeconds": 360,
+      "prompt": "Tom affirme : « Pour la fonction carré, $f(x) = x²$, l'antécédent de 9 est 3. Et comme tout nombre a un antécédent, −4 en a un aussi. » Explique-lui ses deux erreurs, avec des calculs.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "Je montre que 9 a deux antécédents, 3 et −3, car (−3)² = 9", "keywords": [["-3", "−3", "moins 3", "deux antecedents"]] },
+        { "id": "c2", "label": "J'explique que −4 n'a aucun antécédent, car un carré n'est jamais négatif", "keywords": [["jamais negatif", "toujours positif", "positif ou nul", "aucun antecedent", "pas d antecedent", "pas negatif"]] },
+        { "id": "c3", "label": "Je distingue : un nombre a une seule image, mais zéro, un ou plusieurs antécédents", "keywords": [["une seule image", "plusieurs antecedents", "zero", "aucun"]] }
+      ],
+      "models": [
+        "9 a deux antécédents : 3, car 3² = 9, mais aussi −3, car (−3)² = (−3) × (−3) = 9. Ensuite, un carré n'est jamais négatif : x × x est positif ou nul, que x soit positif ou négatif. Donc aucun nombre n'a pour carré −4 : −4 n'a aucun antécédent. Un nombre a toujours une seule image, mais il peut avoir zéro, un ou plusieurs antécédents.",
+        "Tom oublie −3 : (−3)² = 9, donc 9 a deux antécédents, 3 et −3. Pour −4 : le produit d'un nombre par lui-même est toujours positif ou nul (plus par plus, moins par moins), donc x² = −4 n'a pas de solution. Ce n'est pas vrai que tout nombre a un antécédent."
+      ],
+      "hints": ["Calcule (−3)².", "Un carré peut-il être négatif ? Essaie avec 2, puis avec −2."],
+      "solution": "Premier oubli : (−3)² = 9, donc 9 a deux antécédents, 3 et −3. Deuxième erreur : un carré est toujours positif ou nul (« plus par plus » ou « moins par moins » donne plus), donc aucun nombre n'a pour carré −4 : −4 n'a aucun antécédent par la fonction carré. Retiens : un nombre a toujours UNE image, mais il peut avoir zéro, un ou plusieurs antécédents.",
+      "selfTest": [
+        { "response": { "text": "9 a deux antécédents, 3 et −3, car (−3)² = 9. Et −4 n'a aucun antécédent car un carré n'est jamais négatif. Un nombre a une seule image mais peut avoir plusieurs antécédents ou aucun.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "Tom a raison." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-potager", "type": "composite", "skill": "m3.fonctions.representations", "skills": ["m3.fonctions.notations"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:perimetre-moitie", "mc:aire-perimetre", "mc:image-antecedent-inverses"], "expectedSeconds": 600,
+      "prompt": "Mission : avec 40 m de grillage, tu dois clôturer un potager rectangulaire pour le club jardin du collège, et tu veux la plus grande surface possible. On note x la largeur du potager, en mètres. Le graphique donne l'aire du potager en fonction de x.",
+      "figure": {
+        "alt": "Courbe de l'aire du potager en mètres carrés en fonction de sa largeur x, de 0 à 20 mètres",
+        "w": 480, "h": 300,
+        "items": [
+          { "type": "linechart", "xLabel": "largeur x (m)", "yLabel": "aire (m²)",
+            "series": [ { "label": "Aire du potager", "points": [[0, 0], [2, 36], [4, 64], [6, 84], [8, 96], [10, 100], [12, 96], [14, 84], [16, 64], [18, 36], [20, 0]] } ] }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "prompt": "Exprime la longueur du potager en fonction de x (sans écrire « = »).", "answer": "20 - x", "variable": "x",
+          "misconceptions": [ { "answer": "40 - x", "id": "mc:perimetre-moitie", "error": "raisonnement", "feedback": "Les 40 m font le tour complet du potager : deux largeurs ET deux longueurs. Une largeur et une longueur ne représentent donc que la moitié du grillage." } ] },
+        { "type": "expression", "prompt": "Exprime l'aire A(x) du potager en fonction de x.", "answer": "x*(20 - x)", "variable": "x",
+          "misconceptions": [
+            { "answer": "x*(40 - x)", "id": "mc:perimetre-moitie", "error": "raisonnement", "feedback": "Vérifie ta longueur : avec 40 m de grillage, longueur + largeur ne vaut pas 40 m, puisque le grillage fait tout le tour." },
+            { "answer": "2*x + 2*(20 - x)", "id": "mc:aire-perimetre", "error": "notion", "feedback": "Tu as écrit le périmètre (il vaut toujours 40 m). L'aire d'un rectangle, c'est largeur × longueur." }
+          ] },
+        { "type": "numeric", "prompt": "Calcule A(5), en m².", "answer": 75,
+          "misconceptions": [ { "answer": 175, "id": "mc:perimetre-moitie", "error": "raisonnement", "feedback": "Avec une largeur de 5 m, la longueur n'est pas 35 m : il ne resterait pas de grillage pour le deuxième côté. Reprends la longueur trouvée à la première question." } ] },
+        { "type": "multi", "prompt": "Lis sur le graphique les deux largeurs (en m) qui donnent une aire de 96 m².", "count": 2, "predicate": "v = 8 or v = 12", "distinct": true },
+        { "type": "numeric", "prompt": "Quelle est l'aire maximale du potager, en m² ?", "answer": 100,
+          "misconceptions": [ { "answer": 10, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Ce nombre est la largeur qui donne l'aire maximale : c'est un antécédent. On te demande l'aire elle-même, à lire sur l'axe vertical." } ] }
+      ],
+      "hints": ["Le grillage fait le tour : 2 largeurs + 2 longueurs = 40 m, donc largeur + longueur = 20 m.", "Aire = largeur × longueur.", "L'aire maximale correspond au point le plus haut de la courbe."],
+      "solution": "Largeur + longueur = 40 ÷ 2 = 20 m, donc la longueur vaut 20 − x et $A(x) = x(20 − x)$. $A(5) = 5 × 15 = 75$ m². Sur le graphique, l'aire vaut 96 m² pour x = 8 et x = 12 (8 × 12 = 12 × 8 = 96 : on échange largeur et longueur). L'aire maximale est 100 m², pour x = 10 : le meilleur potager est un carré de 10 m de côté.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "20 - x" }, { "value": "x*(20 - x)" }, { "value": "75" }, { "values": ["8", "12"] }, { "value": "100" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "40 - x" }, { "value": "x*(40 - x)" }, { "value": "175" }, { "values": ["8", "12"] }, { "value": "100" } ] }, "expect": "mc:perimetre-moitie" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-remed-image", "type": "composite", "skill": "m3.fonctions.notations", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:image-antecedent-inverses", "mc:image-au-lieu-antecedent"], "expectedSeconds": 150,
+      "params": { "a": { "int": [2, 5] }, "b": { "int": [1, 9] }, "k": { "int": [3, 8] }, "j": { "int": [2, 7] } },
+      "constraints": ["j != k"],
+      "prompt": "Rappel avec une machine à nombres : la machine f multiplie le nombre qu'on lui donne par {a}, puis ajoute {b}. Autrement dit, $f(x) = {a}x + {b}$.",
+      "figure": {
+        "alt": "Schéma de la machine f : le nombre 2 entre, il est multiplié par {a}, puis on ajoute {b}",
+        "w": 420, "h": 110,
+        "items": [ { "type": "table", "head": ["Ce qui ENTRE", "Machine f", "Ce qui SORT"], "rows": [["2", "× {a}, puis + {b}", "{2*a+b}"]] } ]
+      },
+      "parts": [
+        { "type": "text", "prompt": "On a calculé f(2) = {2*a+b}. Le nombre {2*a+b} est-il l'image de 2, ou un antécédent de 2 ? (écris « image » ou « antécédent »)",
+          "accept": ["image", "l'image", "son image", "c'est l'image", "une image", "l'image de 2"],
+          "misconceptions": [
+            { "answer": "antécédent", "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "L'antécédent, c'est le nombre qu'on donne à la machine (ici 2). Le nombre qui en sort porte l'autre nom." },
+            { "answer": "antecedent", "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "L'antécédent, c'est le nombre qu'on donne à la machine (ici 2). Le nombre qui en sort porte l'autre nom." },
+            { "answer": "un antécédent", "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "L'antécédent, c'est le nombre qu'on donne à la machine (ici 2). Le nombre qui en sort porte l'autre nom." },
+            { "answer": "l'antécédent", "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "L'antécédent, c'est le nombre qu'on donne à la machine (ici 2). Le nombre qui en sort porte l'autre nom." }
+          ] },
+        { "type": "numeric", "prompt": "Calcule l'image de {k} par f.", "answer": "a*k + b",
+          "misconceptions": [ { "answer": "(k - b)/a", "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as cherché le nombre dont l'image est {k}. Ici, {k} est le nombre de DÉPART : remplace x par {k}." } ] },
+        { "type": "numeric", "prompt": "Quel nombre a pour image {a*j+b} ? (c'est un antécédent de {a*j+b})", "answer": "j",
+          "misconceptions": [ { "answer": "a*(a*j + b) + b", "id": "mc:image-au-lieu-antecedent", "error": "notion", "feedback": "Tu as calculé l'image de {a*j+b}. On cherche le nombre de départ x tel que {a}x + {b} = {a*j+b}." } ] }
+      ],
+      "hints": ["L'image est ce qui SORT de la machine ; l'antécédent est ce qu'on y fait ENTRER.", "Image de {k} : remplace x par {k} dans {a}x + {b}.", "Antécédent : quel nombre, multiplié par {a} puis augmenté de {b}, donne {a*j+b} ?"],
+      "solution": "f(2) = {2*a+b} : {2*a+b} est l'image de 2, et 2 est un antécédent de {2*a+b}. $f({k}) = {a} × {k} + {b} = {a*k+b}$. Pour {a*j+b}, on résout $ {a}x + {b} = {a*j+b} $ : $ {a}x = {a*j} $, donc $ x = {j} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "image" }, { "value": "{a*k+b}" }, { "value": "{j}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "antécédent" }, { "value": "{a*k+b}" }, { "value": "{j}" } ] }, "expect": "mc:image-antecedent-inverses" },
+        { "response": { "parts": [ { "value": "image" }, { "value": "{a*k+b}" }, { "value": "{a*(a*j+b)+b}" } ] }, "expect": "mc:image-au-lieu-antecedent" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-remed-tableau", "type": "composite", "skill": "m3.fonctions.representations", "skills": ["m3.fonctions.notations"], "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:image-antecedent-inverses"], "expectedSeconds": 150,
+      "prompt": "Rappel : une fonction k est donnée par son tableau de valeurs. Pour une IMAGE, on part de la ligne des x ; pour un ANTÉCÉDENT, on part de la ligne des k(x).",
+      "figure": {
+        "alt": "Tableau de valeurs d'une fonction k pour x allant de −2 à 5",
+        "w": 520, "h": 110,
+        "items": [ { "type": "table", "head": ["x", "−2", "−1", "0", "1", "2", "3", "4", "5"], "rows": [["k(x)", "3", "0", "−1", "5", "2", "5", "1", "−2"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle est l'image de 1 par k ?", "answer": 5,
+          "misconceptions": [ { "answer": 4, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as donné le nombre dont l'image vaut 1 : c'est un antécédent de 1. Pour l'image de 1, pars de 1 sur la ligne des x." } ] },
+        { "type": "multi", "prompt": "Donne les deux antécédents de 5 par k.", "count": 2, "predicate": "v = 1 or v = 3", "distinct": true },
+        { "type": "numeric", "prompt": "Quel nombre a pour image −2 par k ?", "answer": 5,
+          "misconceptions": [ { "answer": 3, "id": "mc:image-antecedent-inverses", "error": "notion", "feedback": "Tu as donné l'image de −2. Ici, −2 est une image : cherche-le sur la ligne des k(x), puis lis le nombre x au-dessus." } ] }
+      ],
+      "hints": ["Image de 1 : trouve 1 sur la PREMIÈRE ligne, et lis le nombre en dessous.", "Antécédents de 5 : trouve 5 sur la DEUXIÈME ligne (il y est deux fois !), et lis les nombres au-dessus.", "« A pour image −2 » : −2 est sur la deuxième ligne."],
+      "solution": "k(1) = 5 : l'image de 1 est 5. Le nombre 5 apparaît deux fois sur la deuxième ligne, sous 1 et sous 3 : ses antécédents sont 1 et 3. Le nombre −2 apparaît sous 5 : k(5) = −2, donc 5 a pour image −2.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "5" }, { "values": ["1", "3"] }, { "value": "5" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4" }, { "values": ["1", "3"] }, { "value": "3" } ] }, "expect": "mc:image-antecedent-inverses" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-remed-lecture", "type": "order", "skill": "m3.fonctions.representations", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "manipulation", "targets": ["methode"], "expectedSeconds": 120,
+      "prompt": "Rappel : pour lire graphiquement les antécédents d'un nombre, les gestes se font dans un ordre précis. Sur la courbe ci-dessous, on a lu en orange les antécédents de 2. Remets les étapes dans l'ordre.",
+      "figure": {
+        "alt": "Courbe de la fonction g définie par g(x) = x² − 2, avec en pointillés orange la lecture des antécédents de 2",
+        "w": 300, "h": 390,
+        "frame": { "x": [-3.5, 3.5], "y": [-2.5, 7.5], "grid": true, "axes": true },
+        "items": [
+          { "type": "segment", "from": [-3, 7], "to": [-2.5, 4.25], "color": "maths" },
+          { "type": "segment", "from": [-2.5, 4.25], "to": [-2, 2], "color": "maths" },
+          { "type": "segment", "from": [-2, 2], "to": [-1.5, 0.25], "color": "maths" },
+          { "type": "segment", "from": [-1.5, 0.25], "to": [-1, -1], "color": "maths" },
+          { "type": "segment", "from": [-1, -1], "to": [-0.5, -1.75], "color": "maths" },
+          { "type": "segment", "from": [-0.5, -1.75], "to": [0, -2], "color": "maths" },
+          { "type": "segment", "from": [0, -2], "to": [0.5, -1.75], "color": "maths" },
+          { "type": "segment", "from": [0.5, -1.75], "to": [1, -1], "color": "maths" },
+          { "type": "segment", "from": [1, -1], "to": [1.5, 0.25], "color": "maths" },
+          { "type": "segment", "from": [1.5, 0.25], "to": [2, 2], "color": "maths" },
+          { "type": "segment", "from": [2, 2], "to": [2.5, 4.25], "color": "maths" },
+          { "type": "segment", "from": [2.5, 4.25], "to": [3, 7], "color": "maths" },
+          { "type": "segment", "from": [-2, 2], "to": [2, 2], "color": "orange", "dashed": true },
+          { "type": "segment", "from": [-2, 2], "to": [-2, 0], "color": "orange", "dashed": true },
+          { "type": "segment", "from": [2, 2], "to": [2, 0], "color": "orange", "dashed": true }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        { "id": "e1", "label": "Repérer le nombre sur l'axe des ordonnées (l'axe vertical)" },
+        { "id": "e2", "label": "Tracer la droite horizontale qui passe par ce point" },
+        { "id": "e3", "label": "Marquer TOUS les points où cette droite coupe la courbe" },
+        { "id": "e4", "label": "Depuis chacun de ces points, aller verticalement jusqu'à l'axe des abscisses" },
+        { "id": "e5", "label": "Lire les abscisses obtenues : ce sont les antécédents cherchés" }
+      ],
+      "hints": ["Un antécédent est un nombre de départ : il se lit à la fin, sur l'axe horizontal.", "On commence donc par l'axe vertical, où se trouve le nombre dont on cherche les antécédents."],
+      "solution": "On repère le nombre sur l'axe des ordonnées, on trace l'horizontale, on marque tous les points d'intersection avec la courbe, on rejoint verticalement l'axe des abscisses, puis on lit les abscisses : sur la figure, les antécédents de 2 sont −2 et 2. Pour une image, c'est le chemin inverse : on part de l'axe des abscisses.",
+      "selfTest": [
+        { "response": { "order": ["e1", "e2", "e3", "e4", "e5"] }, "expect": "correct" },
+        { "response": { "order": ["e5", "e4", "e3", "e2", "e1"] }, "expect": "methode" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-carre-tableur", "type": "composite", "skill": "m3.fonctions.representations", "skills": ["m3.fonctions.notations"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:priorite-carre", "mc:carre-negatif", "mc:toujours-deux"], "expectedSeconds": 480,
+      "prompt": "On étudie la fonction $f(x) = 3x² − 5$ avec un tableur : les nombres x sont dans la colonne A, leurs images dans la colonne B.",
+      "figure": {
+        "alt": "Feuille de tableur : colonne A pour x, colonne B pour f(x), la cellule B2 est à compléter",
+        "w": 300, "h": 170,
+        "items": [ { "type": "table", "head": ["", "A", "B"], "rows": [["1", "x", "f(x)"], ["2", "−4", "?"], ["3", "−3", "…"], ["4", "−2", "…"]] } ]
+      },
+      "parts": [
+        { "type": "text", "prompt": "Quelle formule faut-il saisir dans la cellule B2 pour obtenir l'image du nombre écrit en A2 ?",
+          "accept": ["=3*A2^2-5", "=3*A2*A2-5", "= 3*A2^2-5", "=3*A2^2 - 5", "=3*(A2^2)-5", "=3*A2²-5", "=3*(A2*A2)-5", "=3*A2^2+(-5)"], "openEnded": true,
+          "misconceptions": [
+            { "answer": "=3*A2*2-5", "id": "mc:carre-double", "error": "calcul", "feedback": "A2*2 calcule le double du nombre, pas son carré. Le carré s'obtient avec ^2 ou en multipliant le nombre par lui-même." },
+            { "answer": "=(3*A2)^2-5", "id": "mc:priorite-carre", "error": "methode", "feedback": "Avec ces parenthèses, le tableur élève au carré le produit 3 × x. Dans f(x), le carré porte seulement sur x." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle valeur le tableur affiche-t-il en B2 ?", "answer": 43,
+          "misconceptions": [
+            { "answer": -29, "id": "mc:carre-double", "error": "calcul", "feedback": "Tu as calculé 3 × 2 × (−4) : x² n'est pas 2x." },
+            { "answer": -53, "id": "mc:carre-negatif", "error": "signe", "feedback": "(−4)² = (−4) × (−4) : un carré n'est jamais négatif." },
+            { "answer": 139, "id": "mc:priorite-carre", "error": "methode", "feedback": "Tu as élevé au carré 3 × (−4). Le carré porte seulement sur x : calcule (−4)² d'abord." }
+          ] },
+        { "type": "multi", "prompt": "En prolongeant le tableau, Lina cherche les antécédents de 22. Donne-les tous.", "count": 2, "predicate": "v = 3 or v = -3", "distinct": true },
+        { "type": "numeric", "prompt": "Combien d'antécédents le nombre −8 a-t-il par f ?", "answer": 0,
+          "misconceptions": [ { "answer": 2, "id": "mc:toujours-deux", "error": "raisonnement", "feedback": "Écris l'équation 3x² − 5 = −8 et isole x² : peut-on trouver un nombre dont le carré est négatif ?" } ] }
+      ],
+      "hints": ["Dans un tableur, la multiplication s'écrit * et le carré ^2.", "Antécédents de 22 : résous $3x² − 5 = 22$, c'est-à-dire $x² = 9$.", "L'équation x² = a a deux solutions si a est positif, une seule si a = 0, aucune si a est négatif."],
+      "solution": "En B2 : =3*A2^2-5 (ou =3*A2*A2-5). Le tableur affiche $3 × (−4)² − 5 = 3 × 16 − 5 = 43$. Antécédents de 22 : $3x² − 5 = 22$ ⟶ $3x² = 27$ ⟶ $x² = 9$ ⟶ x = 3 ou x = −3. Pour −8 : $3x² − 5 = −8$ donne $x² = −1$, impossible car un carré n'est jamais négatif : −8 n'a aucun antécédent.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "=3*A2^2-5" }, { "value": "43" }, { "values": ["3", "-3"] }, { "value": "0" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "=3*A2*2-5" }, { "value": "-29" }, { "values": ["3", "-3"] }, { "value": "0" } ] }, "expect": "mc:carre-double" },
+        { "response": { "parts": [ { "value": "=3*A2^2-5" }, { "value": "43" }, { "values": ["3", "-3"] }, { "value": "2" } ] }, "expect": "mc:toujours-deux" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-fonction-ou-pas", "type": "categorize", "skill": "m3.fonctions.notations", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "verbale", "targets": ["mc:constante-pas-fonction", "mc:deux-images"], "expectedSeconds": 240,
+      "prompt": "Une fonction associe à chaque nombre x UNE SEULE image. Chacun de ces procédés définit-il une fonction ?",
+      "figure": {
+        "alt": "Les deux tableaux du classement : le tableau T1 et le tableau T2",
+        "w": 420, "h": 170,
+        "items": [ { "type": "table", "head": ["Tableau", "x", "résultat", "x", "résultat", "x", "résultat"], "rows": [["T1", "1", "4", "2", "4", "3", "4"], ["T2", "1", "3", "1", "5", "2", "6"]] } ]
+      },
+      "categories": [
+        { "id": "oui", "label": "C'est une fonction" },
+        { "id": "non", "label": "Ce n'est pas une fonction" }
+      ],
+      "items": [
+        { "id": "i1", "label": "Le tableau T1 : les nombres 1, 2 et 3 ont tous pour résultat 4", "category": "oui" },
+        { "id": "i2", "label": "Le tableau T2 : le nombre 1 a pour résultats 3 et 5, le nombre 2 a pour résultat 6", "category": "non" },
+        { "id": "i3", "label": "À chaque nombre, on associe son carré", "category": "oui" },
+        { "id": "i4", "label": "À chaque nombre positif, on associe les nombres dont il est le carré (par exemple 9 ⟶ 3 et −3)", "category": "non" },
+        { "id": "i5", "label": "À chaque durée t, on associe la hauteur de la fusée d'Inès", "category": "oui" },
+        { "id": "i6", "label": "Un cercle tracé dans un repère : à chaque abscisse, on associe les ordonnées de ses points", "category": "non" },
+        { "id": "i7", "label": "À chaque nombre de photos, on associe le prix à payer chez un imprimeur", "category": "oui" }
+      ],
+      "misconceptions": [
+        { "item": "i1", "category": "non", "id": "mc:constante-pas-fonction", "error": "notion", "feedback": "Plusieurs nombres peuvent avoir la même image : ce qui est interdit, c'est qu'UN nombre ait deux images. Regarde à nouveau chaque nombre de départ de T1 et compte ses résultats." },
+        { "item": "i2", "category": "oui", "id": "mc:deux-images", "error": "notion", "feedback": "Dans T2, le nombre 1 a deux résultats différents. Une fonction ne peut pas donner deux images à un même nombre." },
+        { "item": "i4", "category": "oui", "id": "mc:deux-images", "error": "notion", "feedback": "Avec ce procédé, 9 donne deux nombres, 3 et −3. Une fonction donne un seul résultat pour chaque nombre de départ." }
+      ],
+      "hints": ["Pour chaque procédé, demande-toi : un même nombre de départ peut-il donner deux résultats différents ?", "Deux nombres de départ qui donnent le même résultat, ce n'est pas gênant.", "Pour le cercle, une verticale coupe-t-elle le cercle en un ou en deux points ?"],
+      "solution": "Fonctions : T1 (chaque nombre a une seule image, même si c'est toujours 4 : fonction constante), le carré, la hauteur de la fusée, le prix des photos. Pas des fonctions : T2 (1 a deux résultats), « les nombres dont il est le carré » (9 donne 3 et −3) et le cercle (une verticale le coupe en deux points, donc une abscisse a deux ordonnées).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "oui", "i2": "non", "i3": "oui", "i4": "non", "i5": "oui", "i6": "non", "i7": "oui" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "non", "i2": "non", "i3": "oui", "i4": "non", "i5": "oui", "i6": "non", "i7": "oui" } }, "expect": "mc:constante-pas-fonction" },
+        { "response": { "assign": { "i1": "oui", "i2": "oui", "i3": "oui", "i4": "non", "i5": "oui", "i6": "non", "i7": "oui" } }, "expect": "mc:deux-images" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-brevet", "type": "composite", "skill": "m3.fonctions.notations", "skills": ["m4.litteral.double-distributivite", "m3.fonctions.representations"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:carre-double", "mc:moins-negatif", "mc:double-produit-oublie"], "expectedSeconds": 900,
+      "prompt": "Type brevet — On considère le programme de calcul ci-dessous. On note f la fonction qui, à un nombre de départ x, associe le résultat du programme.",
+      "figure": {
+        "alt": "Programme de calcul en quatre étapes",
+        "w": 360, "h": 190,
+        "items": [ { "type": "table", "head": ["Programme de calcul"], "rows": [["• Choisir un nombre"], ["• Le multiplier par lui-même"], ["• Soustraire au résultat le double du nombre de départ"], ["• Ajouter 1"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "1. Quel résultat obtient-on en choisissant 3 ?", "answer": 4,
+          "misconceptions": [ { "answer": 1, "id": "mc:carre-double", "error": "calcul", "feedback": "Multiplier un nombre par lui-même, c'est le multiplier par… lui-même, pas par 2." } ] },
+        { "type": "numeric", "prompt": "2. Quel résultat obtient-on en choisissant −2 ?", "answer": 9,
+          "misconceptions": [ { "answer": 1, "id": "mc:moins-negatif", "error": "signe", "feedback": "Le double de −2 est −4, et soustraire un nombre négatif revient à ajouter son opposé." } ] },
+        { "type": "expression", "prompt": "3. Exprime f(x) en fonction de x (sans écrire « f(x) = »).", "answer": "x^2 - 2*x + 1", "variable": "x",
+          "misconceptions": [ { "answer": "2*x - 2*x + 1", "id": "mc:carre-double", "error": "calcul", "feedback": "x multiplié par lui-même s'écrit x × x, c'est-à-dire x², et non 2x." } ] },
+        { "type": "expression", "prompt": "4. Développe et réduis (x − 1)(x − 1). Que remarques-tu en comparant avec la question 3 ?", "answer": "x^2 - 2*x + 1", "variable": "x", "form": "developpee-reduite",
+          "misconceptions": [
+            { "answer": "x^2 + 1", "id": "mc:double-produit-oublie", "error": "calcul", "feedback": "La double distributivité donne quatre produits : x × x, x × (−1), (−1) × x et (−1) × (−1). Tu en as oublié deux." },
+            { "answer": "x^2 - 1", "id": "mc:double-produit-oublie", "error": "calcul", "feedback": "La double distributivité donne quatre produits : x × x, x × (−1), (−1) × x et (−1) × (−1). Vérifie chacun d'eux, signes compris." }
+          ] },
+        { "type": "multi", "prompt": "5. Quels nombres de départ donnent 16 comme résultat ? Donne-les tous.", "count": 2, "predicate": "v = 5 or v = -3", "distinct": true },
+        { "type": "open", "prompt": "6. Léo affirme : « Quel que soit le nombre choisi, le résultat n'est jamais négatif. » A-t-il raison ? Justifie.", "minWords": 12,
+          "criteria": [
+            { "id": "c1", "label": "Je m'appuie sur l'égalité f(x) = (x − 1)²", "keywords": [["(x - 1)", "(x-1)", "(x − 1)", "x - 1", "x − 1", "carre"]] },
+            { "id": "c2", "label": "J'explique qu'un carré est toujours positif ou nul : Léo a raison", "keywords": [["positif", "jamais negatif", "nul", "raison"]] }
+          ] }
+      ],
+      "hints": ["Applique le programme pas à pas : 3 × 3, puis soustrais 2 × 3, puis ajoute 1. Avec x : x × x − 2 × x + 1.", "Questions 3 et 4 : f(x) = (x − 1)². Pour la question 5, (x − 1)² = 16 signifie que x − 1 vaut 4 ou −4.", "Question 6 : un carré est toujours positif ou nul."],
+      "solution": "1. 3 × 3 = 9, 9 − 6 = 3, 3 + 1 = 4. 2. (−2) × (−2) = 4 ; le double de −2 est −4 ; 4 − (−4) = 8 ; 8 + 1 = 9. 3. $f(x) = x² − 2x + 1$. 4. $(x − 1)(x − 1) = x² − x − x + 1 = x² − 2x + 1$ : on retrouve f(x), donc $f(x) = (x − 1)²$. 5. $(x − 1)² = 16$ ⟶ x − 1 = 4 ou x − 1 = −4 ⟶ x = 5 ou x = −3. 6. Léo a raison : le résultat est le carré du nombre x − 1, et un carré est toujours positif ou nul (il vaut 0 seulement pour x = 1).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4" }, { "value": "9" }, { "value": "x^2 - 2x + 1" }, { "value": "x^2 - 2x + 1" }, { "values": ["5", "-3"] }, { "text": "Léo a raison car f(x) = (x − 1)² et un carré est toujours positif ou nul.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1" }, { "value": "9" }, { "value": "x^2 - 2x + 1" }, { "value": "x^2 - 2x + 1" }, { "values": ["5", "-3"] }, { "text": "Oui." } ] }, "expect": "mc:carre-double" },
+        { "response": { "parts": [ { "value": "4" }, { "value": "9" }, { "value": "x^2 - 2x + 1" }, { "value": "x^2 + 1" }, { "values": ["5", "-3"] }, { "text": "Oui." } ] }, "expect": "mc:double-produit-oublie" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-deux-courbes", "type": "composite", "skill": "m3.fonctions.representations", "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "visuelle", "targets": ["mc:carre-negatif", "mc:inegalite-large"], "expectedSeconds": 600,
+      "prompt": "Dans le repère ci-dessous, on a tracé la courbe (C) de la fonction $f(x) = x²$ et la droite (d) qui représente la fonction $g(x) = x + 2$, pour x compris entre −2 et 3.",
+      "figure": {
+        "alt": "Repère quadrillé avec la courbe en U de la fonction carré et une droite qui la coupe en deux points",
+        "w": 320, "h": 480,
+        "frame": { "x": [-2.5, 3.5], "y": [-1, 9.5], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "G", "x": 0, "y": 2, "hidden": true },
+          { "type": "point", "id": "H", "x": 1, "y": 3, "hidden": true },
+          { "type": "line", "through": ["G", "H"], "color": "orange" },
+          { "type": "text", "x": 3.2, "y": 4.4, "text": "(d)", "color": "orange" },
+          { "type": "segment", "from": [-2, 4], "to": [-1.5, 2.25], "color": "maths" },
+          { "type": "segment", "from": [-1.5, 2.25], "to": [-1, 1], "color": "maths" },
+          { "type": "segment", "from": [-1, 1], "to": [-0.5, 0.25], "color": "maths" },
+          { "type": "segment", "from": [-0.5, 0.25], "to": [0, 0], "color": "maths" },
+          { "type": "segment", "from": [0, 0], "to": [0.5, 0.25], "color": "maths" },
+          { "type": "segment", "from": [0.5, 0.25], "to": [1, 1], "color": "maths" },
+          { "type": "segment", "from": [1, 1], "to": [1.5, 2.25], "color": "maths" },
+          { "type": "segment", "from": [1.5, 2.25], "to": [2, 4], "color": "maths" },
+          { "type": "segment", "from": [2, 4], "to": [2.5, 6.25], "color": "maths" },
+          { "type": "segment", "from": [2.5, 6.25], "to": [3, 9], "color": "maths" },
+          { "type": "text", "x": -1.2, "y": 3.2, "text": "(C)", "color": "maths" }
+        ]
+      },
+      "parts": [
+        { "type": "multi", "prompt": "Lis les abscisses des deux points d'intersection de (C) et de (d).", "count": 2, "predicate": "v = -1 or v = 2", "distinct": true },
+        { "type": "numeric", "prompt": "Vérifie ta lecture par le calcul : que vaut f(−1) − g(−1) ?", "answer": 0,
+          "misconceptions": [ { "answer": -2, "id": "mc:carre-negatif", "error": "signe", "feedback": "(−1)² = (−1) × (−1) : un carré n'est jamais négatif. Recalcule f(−1)." } ] },
+        { "type": "multi", "prompt": "Donne les nombres ENTIERS x, compris entre −2 et 3, pour lesquels f(x) est strictement plus petit que g(x).", "count": 2, "predicate": "v = 0 or v = 1", "distinct": true },
+        { "type": "open", "prompt": "Explique comment le graphique permet de trouver ces nombres entiers.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Entre les deux points d'intersection, la courbe (C) est en dessous de la droite (d)", "keywords": [["en dessous", "sous la droite", "plus bas", "au-dessous"]] },
+            { "id": "c2", "label": "En −1 et en 2, f(x) = g(x) : ces nombres ne conviennent pas, car l'inégalité est stricte", "keywords": [["strict", "egal", "egaux", "-1", "−1"]] }
+          ] }
+      ],
+      "hints": ["Les points d'intersection sont les points communs à la courbe et à la droite.", "f(−1) = (−1)² et g(−1) = −1 + 2.", "f(x) < g(x) quand la courbe est SOUS la droite. Attention : aux points d'intersection, il y a égalité."],
+      "solution": "La courbe et la droite se coupent aux points (−1 ; 1) et (2 ; 4) : abscisses −1 et 2. Vérification : f(−1) = 1 et g(−1) = 1, donc f(−1) − g(−1) = 0 ; de même f(2) = g(2) = 4. Entre ces deux points, la courbe est sous la droite : f(x) < g(x). Les entiers strictement compris entre −1 et 2 sont 0 et 1 (f(0) = 0 < 2 = g(0) ; f(1) = 1 < 3 = g(1)). En −1 et 2, il y a égalité : ils ne conviennent pas.",
+      "selfTest": [
+        { "response": { "parts": [ { "values": ["-1", "2"] }, { "value": "0" }, { "values": ["0", "1"] }, { "text": "Entre les points d'intersection la courbe est en dessous de la droite ; en −1 et 2 il y a égalité donc ils ne conviennent pas.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "values": ["-1", "2"] }, { "value": "-2" }, { "values": ["0", "1"] }, { "text": "On regarde." } ] }, "expect": "mc:carre-negatif" }
+      ]
+    }
+  ]
+}

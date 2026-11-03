@@ -1,0 +1,1085 @@
+{
+  "id": "st6-climat",
+  "chapter": "6e-st-climat",
+  "title": "La Terre, planète habitable ; le réchauffement climatique",
+  "subject": "sciences-techno",
+  "level": "6e",
+  "skills": [
+    "st6.te.conditions-vie",
+    "st6.te.effet-serre",
+    "st6.te.rechauffement",
+    "st6.te.consequences-peuplement",
+    "st6.te.attenuation-adaptation",
+    "st6.demarche.modele"
+  ],
+  "status": "programme",
+  "programmes": ["sciences-techno-c3-2023"],
+  "duration": 60,
+  "summary": "Relier la présence de la vie sur Terre à l'eau liquide, à l'atmosphère et à la place de la Terre dans le système solaire ; comprendre l'effet de serre avec un modèle ; argumenter à partir de données sur le réchauffement climatique récent et son lien avec les gaz à effet de serre émis par les activités humaines ; décrire des conséquences sur les êtres vivants et distinguer atténuation et adaptation. Programme de sciences et technologie du cycle 3 (version de 2023), attendus de fin de 6e.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Pourquoi pas Vénus ?",
+      "body": "Vénus est presque aussi grande que la Terre, et plus proche du Soleil. Pourtant, à sa surface, il fait plus de 450 °C : pas une goutte d'eau liquide, aucune vie connue. Mars, plus loin, est un désert glacé.\n\nLa Terre, elle, est couverte d'océans et de vie. Qu'a-t-elle de si particulier ? Et pourquoi dit-on aujourd'hui qu'elle se réchauffe ?"
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : modéliser l'effet de serre avec deux bocaux",
+      "body": "Une lampe joue le rôle du Soleil. Observe bien les deux thermomètres.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "forme", "id": "terreA", "shape": "rect", "x": 73, "y": 364, "w": 114, "h": 25, "rx": 2, "fill": "#5b4636" },
+          { "type": "forme", "id": "terreB", "shape": "rect", "x": 343, "y": 364, "w": 114, "h": 25, "rx": 2, "fill": "#5b4636" },
+          { "type": "becher", "id": "bocalA", "x": 130, "y": 392, "w": 120, "h": 150, "level": 0, "grad": false },
+          { "type": "becher", "id": "bocalB", "x": 400, "y": 392, "w": 120, "h": 150, "level": 0, "grad": false },
+          { "type": "forme", "id": "film", "shape": "rect", "x": 334, "y": 234, "w": 132, "h": 8, "rx": 3, "fill": "#bfdbfe", "stroke": "#3b82f6", "width": 1.5, "hidden": true },
+          { "type": "thermometre", "id": "thA", "x": 150, "y": 352, "h": 150, "min": 0, "max": 50, "value": 20, "dx": 50 },
+          { "type": "thermometre", "id": "thB", "x": 420, "y": 352, "h": 150, "min": 0, "max": 50, "value": 20, "dx": 50 },
+          { "type": "lampe", "id": "lampe", "x": 265, "y": 92, "on": 0, "label": "lampe (le « Soleil »)" },
+          { "type": "rayon", "id": "lumA", "from": [252, 114], "to": [140, 362], "progress": 0 },
+          { "type": "rayon", "id": "lumB", "from": [278, 114], "to": [390, 362], "progress": 0 },
+          { "type": "fleche", "id": "irA", "from": [112, 356], "to": [104, 180], "color": "#e11d48", "progress": 0, "label": "s'échappe" },
+          { "type": "fleche", "id": "irB", "from": [384, 356], "to": [384, 250], "color": "#e11d48", "progress": 0 },
+          { "type": "fleche", "id": "irBretour", "from": [369, 250], "to": [369, 352], "color": "#e11d48", "progress": 0, "label": "retenue" },
+          { "type": "chrono", "id": "chrono", "x": 60, "y": 80, "value": 0 },
+          { "type": "etiquette", "id": "eSol", "x": 265, "y": 345, "text": "le sol (terre)", "to": [187, 376] },
+          { "type": "etiquette", "id": "eA", "x": 130, "y": 418, "text": "A : ouvert (témoin)", "hidden": true },
+          { "type": "etiquette", "id": "eB", "x": 400, "y": 418, "text": "B : couvert d'un film", "hidden": true },
+          { "type": "courbe", "id": "g", "x": 480, "y": 8, "w": 310, "h": 190, "title": "Température du bocal B (en rouge)", "xRange": [0, 20], "yRange": [15, 35], "xLabel": "temps (min)", "yLabel": "°C", "points": [[0, 20], [2, 22.5], [4, 24.5], [6, 26.2], [8, 27.5], [10, 28.6], [12, 29.4], [14, 30], [16, 30.5], [18, 30.8], [20, 31]], "progress": 0, "color": "#e11d48", "hidden": true },
+          { "type": "releve", "id": "tab", "x": 572, "y": 214, "w": 218, "title": "Température (°C)", "head": ["bocal", "0 min", "20 min"], "rows": [["A", "20", "26"], ["B", "20", "31"]], "shown": 0, "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Le matériel",
+            "text": "Deux bocaux identiques, avec au fond la même terre sombre : elle représente le sol. Dans chacun, un thermomètre indique 20 °C. Au-dessus, une lampe joue le rôle du Soleil.",
+            "focus": ["bocalA", "bocalB"]
+          },
+          {
+            "title": "Un seul changement",
+            "text": "On couvre le bocal B d'un film transparent : il représente l'atmosphère, qui retient une partie de la chaleur. Le bocal A reste ouvert : c'est le témoin. Tout le reste est identique : un seul facteur change.",
+            "show": ["film", "eA", "eB"],
+            "focus": ["film"]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "On va allumer la lampe pendant 20 minutes.",
+            "ask": {
+              "question": "Après 20 minutes sous la lampe, que montreront les thermomètres ?",
+              "choices": ["Les deux bocaux auront la même température.", "Le bocal B, couvert, sera plus chaud que le bocal A.", "Le bocal A, ouvert, sera plus chaud que le bocal B."],
+              "answer": 1,
+              "explain": "Les deux bocaux reçoivent la même lumière. Mais dans le bocal B, le film empêche l'air chauffé de s'échapper : la chaleur s'accumule et la température monte davantage."
+            },
+            "focus": ["thA", "thB"]
+          },
+          {
+            "title": "On allume la lampe",
+            "text": "La lumière traverse le verre et chauffe la terre sombre. Les deux thermomètres montent. La courbe rouge montre la température du bocal B ; les pointillés, celle du bocal A.",
+            "duration": 8,
+            "show": ["g"],
+            "do": [
+              { "id": "lampe", "set": { "on": 1 } },
+              { "id": "lumA", "to": { "progress": 1 }, "at": 0, "dur": 0.8 },
+              { "id": "lumB", "to": { "progress": 1 }, "at": 0, "dur": 0.8 },
+              { "id": "chrono", "to": { "value": 1200 }, "at": 0.5, "dur": 7, "ease": "lineaire" },
+              { "id": "thA", "to": { "value": 26 }, "at": 0.5, "dur": 7 },
+              { "id": "thB", "to": { "value": 31 }, "at": 0.5, "dur": 7 },
+              { "id": "g", "to": { "progress": 1 }, "at": 0.5, "dur": 7, "ease": "lineaire" },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4]], "label": "bocal A (ouvert)" } }, "at": 1.2 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5]], "label": "bocal A (ouvert)" } }, "at": 1.9 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4]], "label": "bocal A (ouvert)" } }, "at": 2.6 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1]], "label": "bocal A (ouvert)" } }, "at": 3.3 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7]], "label": "bocal A (ouvert)" } }, "at": 4 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7], [12, 25.1]], "label": "bocal A (ouvert)" } }, "at": 4.7 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7], [12, 25.1], [14, 25.5]], "label": "bocal A (ouvert)" } }, "at": 5.4 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7], [12, 25.1], [14, 25.5], [16, 25.7]], "label": "bocal A (ouvert)" } }, "at": 6.1 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7], [12, 25.1], [14, 25.5], [16, 25.7], [18, 25.9]], "label": "bocal A (ouvert)" } }, "at": 6.8 },
+              { "id": "g", "set": { "ref": { "points": [[0, 20], [2, 21.4], [4, 22.5], [6, 23.4], [8, 24.1], [10, 24.7], [12, 25.1], [14, 25.5], [16, 25.7], [18, 25.9], [20, 26]], "label": "bocal A (ouvert)" } }, "at": 7.5 }
+            ],
+            "focus": ["thA", "thB"],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le thermomètre du bocal B, celui qui est couvert, après 20 minutes.",
+              "answer": 31,
+              "tolerance": 0,
+              "unit": "°C",
+              "explain": "L'afficheur du thermomètre de droite, dans le bocal B, indique 31 °C. Celui du bocal A n'indique que 26 °C."
+            }
+          },
+          {
+            "title": "Le résultat",
+            "text": "Après 20 minutes, le bocal A est à 26 °C et le bocal B à 31 °C. Le bocal couvert a gagné 11 °C, le bocal ouvert seulement 6 °C. Ce sont des valeurs typiques de cette expérience.",
+            "duration": 2,
+            "show": ["tab"],
+            "do": [
+              { "id": "tab", "set": { "shown": 1 }, "at": 0.4 },
+              { "id": "tab", "set": { "shown": 2 }, "at": 1.4 }
+            ],
+            "focus": ["tab"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Le bocal A s'est réchauffé, lui aussi. À quoi sert-il donc ?",
+              "choices": ["À rien : on aurait pu n'utiliser que le bocal B", "À montrer que le film refroidit le bocal", "C'est le témoin : la différence entre A et B montre l'effet du film seul"],
+              "answer": 2,
+              "explain": "La lampe réchauffe les deux bocaux. Grâce au témoin A, on sait quelle part est due au film : 31 − 26 = 5 °C de plus dans le bocal B."
+            }
+          },
+          {
+            "title": "Comprendre",
+            "text": "La terre chauffée réchauffe l'air au-dessus d'elle et émet un rayonnement invisible, les infrarouges. Dans le bocal A, l'air chaud s'échappe par le haut. Dans le bocal B, le film le retient : la chaleur reste dans le bocal.",
+            "duration": 3,
+            "hide": ["eSol"],
+            "do": [
+              { "id": "irA", "to": { "progress": 1 }, "at": 0, "dur": 1.5 },
+              { "id": "irB", "to": { "progress": 1 }, "at": 0, "dur": 1.2 },
+              { "id": "irBretour", "to": { "progress": 1 }, "at": 1.2, "dur": 1.3 }
+            ],
+            "focus": ["irA", "irB"]
+          },
+          {
+            "title": "Les limites du modèle",
+            "text": "Attention : un modèle simplifie. Dans le bocal, le film retient surtout l'air chaud. Autour de la Terre, il n'y a pas de couvercle.",
+            "ask": {
+              "question": "Dans la vraie atmosphère, qu'est-ce qui joue le rôle du film ?",
+              "choices": ["Une couche de nuages solides tout autour de la Terre.", "Des gaz de l'air, comme la vapeur d'eau, le dioxyde de carbone (CO₂) et le méthane.", "La couche d'ozone."],
+              "answer": 1,
+              "explain": "Ce sont des gaz à effet de serre : ils absorbent une partie des infrarouges émis par le sol et en renvoient vers lui. La couche d'ozone, elle, arrête une partie des ultraviolets du Soleil : c'est un autre phénomène."
+            },
+            "focus": ["film"]
+          },
+          {
+            "title": "Plus de gaz, plus de chaleur",
+            "text": "Sans effet de serre, la température moyenne de la Terre serait d'environ −18 °C au lieu de +15 °C : l'effet de serre naturel rend la Terre habitable. Mais en brûlant du charbon, du pétrole et du gaz, nous ajoutons du CO₂ : l'effet de serre se renforce et la Terre se réchauffe.",
+            "focus": ["thB"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi brûler du charbon, du pétrole et du gaz réchauffe-t-il la Terre ?",
+              "choices": ["Cela ajoute du CO₂ dans l'air, ce qui renforce l'effet de serre", "La chaleur des flammes réchauffe directement toute la planète", "Cela fait un trou dans la couche d'ozone"],
+              "answer": 0,
+              "explain": "En brûlant, ces combustibles libèrent du CO₂, un gaz à effet de serre : l'atmosphère retient plus de chaleur. Le trou de la couche d'ozone est un autre problème."
+            }
+          }
+        ],
+        "conclusion": "Le bocal couvert garde mieux la chaleur : c'est un **modèle** de l'**effet de serre**. Dans l'atmosphère, ce ne sont pas des couvercles mais des **gaz à effet de serre** (vapeur d'eau, CO₂, méthane) qui retiennent une partie de la chaleur émise par le sol. Plus il y en a, plus la Terre se réchauffe.\n\n*Valeurs typiques d'une expérience de classe. Un modèle a des limites : le film retient surtout l'air chaud.*"
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🌍",
+          "title": "Une planète à la bonne distance",
+          "body": "La Terre est à environ **150 millions de km** du Soleil. À cette distance, la température permet à l'eau d'être **liquide** à sa surface. Sur Vénus, plus proche, il fait bien trop chaud ; sur Mars, plus loin, l'eau est surtout gelée. Or l'eau liquide est indispensable à tous les êtres vivants connus."
+        },
+        {
+          "emoji": "🌫️",
+          "title": "Une atmosphère protectrice",
+          "body": "L'**atmosphère** est la couche de gaz qui entoure la Terre : environ 78 % de diazote et 21 % de dioxygène, avec un peu de vapeur d'eau et de dioxyde de carbone (CO₂). Elle contient le dioxygène que nous respirons, arrête une partie des rayons dangereux du Soleil et garde une partie de la chaleur."
+        },
+        {
+          "emoji": "🌡️",
+          "title": "L'effet de serre naturel",
+          "body": "Le sol chauffé par le Soleil émet des **infrarouges**, un rayonnement invisible. Des gaz de l'atmosphère (vapeur d'eau, CO₂, méthane) en absorbent une partie et en renvoient vers le sol : c'est l'**effet de serre**. Sans lui, il ferait en moyenne −18 °C sur Terre au lieu de +15 °C.",
+          "reveal": {
+            "question": "Devine : l'effet de serre et le trou de la couche d'ozone, est-ce la même chose ?",
+            "answer": "Non ! La couche d'ozone arrête une partie des ultraviolets du Soleil. L'effet de serre concerne les infrarouges émis par le sol. Ce sont deux phénomènes différents."
+          }
+        },
+        {
+          "emoji": "📈",
+          "title": "Un réchauffement mesuré",
+          "body": "Depuis la révolution industrielle, nous brûlons du charbon, du pétrole et du gaz, et nous détruisons des forêts : le CO₂ de l'air est passé d'environ 278 ppm vers 1750 à environ 424 ppm en 2024 (OMM). L'effet de serre se renforce : la Terre s'est réchauffée d'environ **1,1 °C** entre 1850-1900 et 2011-2020 (GIEC).",
+          "example": "2024 est l'année la plus chaude jamais mesurée : environ 1,55 °C au-dessus de 1850-1900 (OMM)."
+        },
+        {
+          "emoji": "🌦️",
+          "title": "Météo n'est pas climat",
+          "body": "La **météo**, c'est le temps qu'il fait un jour donné, à un endroit. Le **climat**, c'est le temps moyen d'une région, calculé sur au moins **30 ans**. Le réchauffement se lit donc dans des moyennes sur des dizaines d'années, pas dans la météo d'un jour.",
+          "reveal": {
+            "question": "Devine : il a neigé en avril dans ta ville. Le réchauffement climatique est-il annulé ?",
+            "answer": "Non : une journée froide, c'est de la météo. Le réchauffement se mesure sur la moyenne des températures de toute la planète, pendant des dizaines d'années."
+          }
+        },
+        {
+          "emoji": "🐟",
+          "title": "Conséquences et solutions",
+          "body": "Avec le réchauffement, des espèces se déplacent vers le nord ou en altitude, d'autres régressent, comme les coraux qui blanchissent. Pour agir : **atténuer**, c'est réduire nos émissions de gaz à effet de serre (vélo, isolation, électricité sans charbon) ; **s'adapter**, c'est se protéger des effets (ombre en ville, digues)."
+        }
+      ]
+    },
+    {
+      "kind": "experience",
+      "title": "Observer : glace de mer ou glace sur un continent ?",
+      "body": "Quelle glace fait monter le niveau de l'eau en fondant ? Fais d'abord ta prédiction.",
+      "demo": {
+        "w": 800,
+        "h": 440,
+        "items": [
+          { "type": "paillasse", "y": 392 },
+          { "type": "becher", "id": "bA", "x": 170, "y": 392, "w": 150, "h": 170, "level": 0.45, "liquid": "eau", "grad": false },
+          { "type": "forme", "id": "g1", "shape": "rect", "x": 106, "y": 317, "w": 26, "h": 26, "rx": 5, "fill": "#eef8ff", "stroke": "#7dd3fc", "width": 2, "opacity": 0.9 },
+          { "type": "forme", "id": "g2", "shape": "rect", "x": 140, "y": 317, "w": 26, "h": 26, "rx": 5, "fill": "#eef8ff", "stroke": "#7dd3fc", "width": 2, "opacity": 0.9 },
+          { "type": "forme", "id": "g3", "shape": "rect", "x": 174, "y": 317, "w": 26, "h": 26, "rx": 5, "fill": "#eef8ff", "stroke": "#7dd3fc", "width": 2, "opacity": 0.9 },
+          { "type": "forme", "id": "g4", "shape": "rect", "x": 208, "y": 317, "w": 26, "h": 26, "rx": 5, "fill": "#eef8ff", "stroke": "#7dd3fc", "width": 2, "opacity": 0.9 },
+          { "type": "becher", "id": "bB", "x": 450, "y": 392, "w": 150, "h": 170, "level": 0.45, "liquid": "eau", "grad": false },
+          { "type": "objet", "id": "rocher", "shape": "caillou", "x": 450, "y": 389, "size": 110, "color": "#78716c" },
+          { "type": "forme", "id": "glaceB", "shape": "rect", "x": 418, "y": 268, "w": 56, "h": 28, "rx": 6, "fill": "#e3f4ff", "stroke": "#7dd3fc", "width": 2 },
+          { "type": "forme", "id": "d1", "shape": "ellipse", "x": 486, "y": 300, "w": 7, "h": 10, "fill": "#60a5fa", "opacity": 0 },
+          { "type": "forme", "id": "d2", "shape": "ellipse", "x": 408, "y": 300, "w": 7, "h": 10, "fill": "#60a5fa", "opacity": 0 },
+          { "type": "forme", "id": "d3", "shape": "ellipse", "x": 490, "y": 300, "w": 7, "h": 10, "fill": "#60a5fa", "opacity": 0 },
+          { "type": "forme", "id": "d4", "shape": "ellipse", "x": 404, "y": 300, "w": 7, "h": 10, "fill": "#60a5fa", "opacity": 0 },
+          { "type": "forme", "id": "rA", "shape": "line", "x": 98, "y": 320, "w": 144, "h": 0, "stroke": "#e11d48", "width": 2 },
+          { "type": "forme", "id": "rB", "shape": "line", "x": 378, "y": 320, "w": 144, "h": 0, "stroke": "#e11d48", "width": 2 },
+          { "type": "chrono", "id": "chrono2", "x": 310, "y": 80, "value": 0 },
+          { "type": "etiquette", "id": "eA2", "x": 170, "y": 200, "text": "A : glace de mer, qui flotte", "to": [170, 322] },
+          { "type": "etiquette", "id": "eB2", "x": 450, "y": 200, "text": "B : glace posée sur la terre", "to": [446, 270] },
+          { "type": "etiquette", "id": "eRep", "x": 310, "y": 420, "text": "trait rouge : niveau de départ", "to": [242, 320] },
+          { "type": "releve", "id": "tab2", "x": 580, "y": 30, "w": 210, "title": "Niveau de l'eau", "head": ["", "avant", "après"], "rows": [["A", "au trait", "au trait"], ["B", "au trait", "au-dessus"]], "shown": 0, "hidden": true }
+        ],
+        "steps": [
+          {
+            "title": "Deux situations",
+            "text": "Deux béchers contiennent la même quantité d'eau, marquée d'un trait rouge. Dans A, des glaçons flottent : c'est un modèle de la banquise, la glace de mer. Dans B, la glace est posée sur un rocher qui dépasse : c'est un modèle d'un glacier ou d'une calotte de glace posée sur un continent.",
+            "focus": ["bA", "bB"]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "On attend que toute la glace fonde.",
+            "ask": {
+              "question": "Quand toute la glace aura fondu, dans quel bécher le niveau de l'eau sera-t-il monté au-dessus du trait ?",
+              "choices": ["Dans les deux béchers.", "Seulement dans le bécher B.", "Seulement dans le bécher A.", "Dans aucun des deux."],
+              "answer": 1,
+              "explain": "La glace qui flotte occupe déjà, sous l'eau, la place de l'eau qu'elle donnera en fondant : le niveau ne change pas. La glace posée sur le rocher n'était pas dans l'eau : en fondant, elle en ajoute."
+            },
+            "focus": ["rA", "rB"]
+          },
+          {
+            "title": "La glace fond",
+            "text": "Le temps passe. Les glaçons de A rapetissent puis disparaissent. La glace du rocher B fond aussi : l'eau de fonte coule le long du rocher et tombe dans le bécher.",
+            "duration": 7,
+            "do": [
+              { "id": "chrono2", "to": { "value": 2400 }, "at": 0, "dur": 6.5, "ease": "lineaire" },
+              { "id": "g1", "to": { "x": 119, "y": 330, "w": 0, "h": 0 }, "at": 0, "dur": 6 },
+              { "id": "g2", "to": { "x": 153, "y": 330, "w": 0, "h": 0 }, "at": 0, "dur": 6 },
+              { "id": "g3", "to": { "x": 187, "y": 330, "w": 0, "h": 0 }, "at": 0, "dur": 6 },
+              { "id": "g4", "to": { "x": 221, "y": 330, "w": 0, "h": 0 }, "at": 0, "dur": 6 },
+              { "id": "eA2", "set": { "text": "A : les glaçons ont fondu", "to": [170, 335] }, "at": 6.2 },
+              { "id": "eB2", "set": { "text": "B : la glace a fondu", "to": [446, 300] }, "at": 6.2 },
+              { "id": "glaceB", "to": { "h": 0, "y": 296 }, "at": 0, "dur": 6 },
+              { "id": "bB", "to": { "level": 0.53 }, "at": 1, "dur": 5.5 },
+              { "id": "d1", "set": { "opacity": 1 }, "at": 0.6 },
+              { "id": "d1", "to": { "y": 322 }, "at": 0.6, "dur": 1.2 },
+              { "id": "d1", "set": { "opacity": 0 }, "at": 1.9 },
+              { "id": "d2", "set": { "opacity": 1 }, "at": 1.6 },
+              { "id": "d2", "to": { "y": 322 }, "at": 1.6, "dur": 1.2 },
+              { "id": "d2", "set": { "opacity": 0 }, "at": 2.9 },
+              { "id": "d3", "set": { "opacity": 1 }, "at": 3 },
+              { "id": "d3", "to": { "y": 318 }, "at": 3, "dur": 1.2 },
+              { "id": "d3", "set": { "opacity": 0 }, "at": 4.3 },
+              { "id": "d4", "set": { "opacity": 1 }, "at": 4.2 },
+              { "id": "d4", "to": { "y": 318 }, "at": 4.2, "dur": 1.2 },
+              { "id": "d4", "set": { "opacity": 0 }, "at": 5.5 }
+            ],
+            "focus": ["bA", "bB"],
+            "ask": {
+              "kind": "observer",
+              "question": "Les glaçons du bécher A ont fondu. Où se trouve maintenant le niveau de l'eau dans le bécher A ?",
+              "choices": ["Au-dessus du trait rouge", "Au-dessous du trait rouge", "Toujours au trait rouge"],
+              "answer": 2,
+              "explain": "Dans le bécher A, l'eau est restée au trait rouge : la fonte des glaçons qui flottaient n'a pas fait monter le niveau."
+            }
+          },
+          {
+            "title": "Le résultat",
+            "text": "Toute la glace a fondu. Dans le bécher A, l'eau est restée au trait rouge. Dans le bécher B, elle est montée au-dessus du trait.",
+            "duration": 2,
+            "show": ["tab2"],
+            "do": [
+              { "id": "tab2", "set": { "shown": 1 }, "at": 0.4 },
+              { "id": "tab2", "set": { "shown": 2 }, "at": 1.4 }
+            ],
+            "focus": ["rA", "rB"]
+          },
+          {
+            "title": "Pourquoi ?",
+            "text": "Un glaçon qui flotte a déjà une grande partie de son volume sous l'eau. En fondant, il devient de l'eau qui prend à peu près cette place-là. La glace du rocher, elle, était hors de l'eau : toute son eau de fonte s'ajoute.",
+            "focus": ["bA"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi le niveau de l'eau du bécher A n'a-t-il pas monté ?",
+              "choices": ["Le glaçon qui flottait occupait déjà, sous l'eau, la place de son eau de fonte", "L'eau des glaçons s'est évaporée", "Les glaçons étaient trop petits pour compter"],
+              "answer": 0,
+              "explain": "La partie immergée d'un glaçon qui flotte prend à peu près la place de l'eau qu'il donnera en fondant : le niveau ne change pas."
+            }
+          },
+          {
+            "title": "Dans la réalité",
+            "text": "La banquise de l'Arctique flotte : sa fonte ne fait presque pas monter la mer, mais elle prive les ours polaires de leur terrain de chasse. Les glaciers et les calottes du Groenland et de l'Antarctique sont posés sur des continents : leur fonte fait monter la mer. L'eau des océans, en se réchauffant, se dilate aussi.",
+            "focus": ["bB"],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Laquelle de ces fontes fait monter le niveau des mers ?",
+              "choices": ["Celle de la banquise de l'Arctique, qui flotte", "Celle de la calotte du Groenland, posée sur un continent", "Aucune des deux"],
+              "answer": 1,
+              "explain": "Comme dans le bécher B, la glace posée sur un continent ajoute son eau de fonte à la mer. La banquise, elle, flottait déjà, comme les glaçons du bécher A."
+            }
+          }
+        ],
+        "conclusion": "La fonte de la **glace de mer** (banquise, icebergs) ne fait presque pas monter le niveau des mers : elle flottait déjà. La fonte de la **glace posée sur les continents** (glaciers, calottes du Groenland et de l'Antarctique) le fait monter, tout comme la **dilatation** de l'eau des océans qui se réchauffe. Le niveau moyen des mers est monté d'environ 20 cm entre 1901 et 2018 (GIEC)."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu : construire un argument à partir de données",
+      "steps": [
+        {
+          "text": "La question : le réchauffement récent est-il lié aux gaz à effet de serre émis par les humains ? On dispose de deux données.",
+          "figure": {
+            "alt": "Tableau comparant la teneur en CO₂ de l'air et la température moyenne mondiale avant la révolution industrielle et aujourd'hui",
+            "w": 620,
+            "h": 150,
+            "items": [
+              { "type": "table", "head": ["Donnée", "Avant", "Aujourd'hui"], "rows": [
+                ["CO₂ dans l'air (OMM)", "278 ppm (vers 1750)", "424 ppm (2024)"],
+                ["Température moyenne mondiale (GIEC)", "référence : 1850-1900", "+ 1,1 °C (2011-2020)"]
+              ] }
+            ]
+          }
+        },
+        { "text": "1. Je décris les données : le CO₂ a augmenté, et la température moyenne aussi.", "math": "424 − 278 = 146 ppm de plus" },
+        { "text": "2. Je relie : les deux augmentent en même temps. Attention, cela ne suffit pas : deux choses peuvent augmenter ensemble par hasard." },
+        { "text": "3. J'explique le mécanisme : le CO₂ est un gaz à effet de serre. Il absorbe une partie des infrarouges émis par le sol et en renvoie vers lui. Plus de CO₂, c'est un effet de serre plus fort, donc une Terre plus chaude." },
+        { "text": "4. Je donne l'origine : ce CO₂ en plus vient surtout du charbon, du pétrole et du gaz que l'on brûle, et des forêts détruites." },
+        { "text": "Conclusion : le réchauffement récent est dû aux activités humaines, comme l'affirme le GIEC. Un bon argument scientifique = une donnée + un mécanisme + une origine." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Tu peux te tromper : chaque réponse fausse est expliquée. Certaines idées sont des erreurs très répandues.",
+      "exercises": [
+        "st6-climat-planetes",
+        "st6-climat-serre",
+        "st6-climat-meteo",
+        "st6-climat-co2",
+        "st6-climat-peuplement",
+        "st6-climat-agir",
+        "st6-climat-banquise"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["st6-climat-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le plan climat du collège",
+      "body": "Les éco-délégués préparent le plan climat du collège : aide-les à calculer et à classer leurs idées.",
+      "exercises": ["st6-climat-plan"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** La Terre est habitable grâce à sa **distance au Soleil**, qui permet l'**eau liquide**, et à son **atmosphère**, dont l'**effet de serre naturel** maintient une température moyenne d'environ 15 °C. Les activités humaines ajoutent des gaz à effet de serre, surtout du CO₂ : l'effet de serre se renforce et la Terre s'est réchauffée d'environ 1,1 °C (GIEC). Des espèces se déplacent ou régressent. On **atténue** (moins d'émissions) et on **s'adapte**.\n\n- **« Il a neigé, donc le climat ne se réchauffe pas. »** Météo n'est pas climat.\n- **« L'effet de serre, c'est le trou de la couche d'ozone. »** Ce sont deux phénomènes différents.\n- **« La fonte de la banquise fait monter la mer. »** Non : elle flotte déjà.\n- **« L'effet de serre est mauvais. »** Sans lui, il ferait −18 °C."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours une question sur l'effet de serre ou le climat : réussir après une pause, c'est la preuve que c'est acquis."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Comprendre pourquoi Vénus est plus chaude que Mercure, puis exploiter les mesures de l'expérience des bocaux et en discuter les limites.",
+      "exercises": ["st6-climat-venus", "st6-climat-bocaux"]
+    },
+    "expert": {
+      "intro": "Facultatif : distinguer une coïncidence d'une cause et construire un argument complet, puis étudier la montée du niveau des mers avec les données du GIEC.",
+      "exercises": ["st6-climat-argument", "st6-climat-mers"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "st6-climat-planetes",
+      "type": "categorize",
+      "skill": "st6.te.conditions-vie",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:co2-seul", "mc:lecture-temperature"],
+      "expectedSeconds": 180,
+      "prompt": "Compare les trois planètes voisines grâce au tableau. Range chaque phrase sous la planète qu'elle décrit.",
+      "figure": {
+        "alt": "Tableau comparant Vénus, la Terre et Mars : distance au Soleil, température moyenne en surface et atmosphère",
+        "w": 640,
+        "h": 180,
+        "caption": "Valeurs arrondies (NASA).",
+        "items": [
+          { "type": "table", "head": ["Planète", "Distance au Soleil", "Température moyenne en surface", "Atmosphère"], "rows": [
+            ["Vénus", "108 millions de km", "plus de 450 °C", "très épaisse, surtout du CO₂"],
+            ["Terre", "150 millions de km", "environ 15 °C", "surtout diazote et dioxygène"],
+            ["Mars", "228 millions de km", "environ −60 °C", "très mince, surtout du CO₂"]
+          ] }
+        ]
+      },
+      "categories": [
+        { "id": "venus", "label": "Vénus" },
+        { "id": "terre", "label": "Terre" },
+        { "id": "mars", "label": "Mars" }
+      ],
+      "items": [
+        { "id": "p1", "label": "L'eau peut y rester liquide à la surface.", "category": "terre" },
+        { "id": "p2", "label": "Il y fait bien trop chaud pour que l'eau reste liquide.", "category": "venus" },
+        { "id": "p3", "label": "On y trouve de l'eau, mais surtout sous forme de glace.", "category": "mars" },
+        { "id": "p4", "label": "Son atmosphère très épaisse retient énormément de chaleur.", "category": "venus" },
+        { "id": "p5", "label": "Son atmosphère très mince retient peu la chaleur.", "category": "mars" },
+        { "id": "p6", "label": "C'est la seule planète où l'on connaît des êtres vivants.", "category": "terre" }
+      ],
+      "misconceptions": [
+        { "item": "p4", "category": "mars", "id": "mc:co2-seul", "error": "lecture", "feedback": "Les deux atmosphères contiennent surtout du CO₂. Regarde aussi leur épaisseur dans la dernière colonne du tableau." },
+        { "item": "p2", "category": "mars", "id": "mc:lecture-temperature", "error": "lecture", "feedback": "Relis la colonne des températures : sur quelle planète fait-il « trop chaud » ?" },
+        { "item": "p3", "category": "venus", "id": "mc:lecture-temperature", "error": "lecture", "feedback": "Pour que l'eau soit sous forme de glace, il faut qu'il fasse moins de 0 °C. Relis la colonne des températures." }
+      ],
+      "hints": [
+        "L'eau est liquide entre 0 °C et 100 °C (à la pression habituelle).",
+        "Compare la température de chaque planète à ces deux valeurs.",
+        "Pour l'atmosphère, lis bien les mots « très épaisse » et « très mince »."
+      ],
+      "solution": "Terre : eau liquide en surface et êtres vivants connus. Vénus : beaucoup trop chaud (plus de 450 °C) à cause de son atmosphère très épaisse, qui retient énormément de chaleur. Mars : environ −60 °C, eau surtout gelée, atmosphère très mince qui retient peu la chaleur.",
+      "selfTest": [
+        { "response": { "assign": { "p1": "terre", "p2": "venus", "p3": "mars", "p4": "venus", "p5": "mars", "p6": "terre" } }, "expect": "correct" },
+        { "response": { "assign": { "p1": "terre", "p2": "venus", "p3": "mars", "p4": "mars", "p5": "mars", "p6": "terre" } }, "expect": "mc:co2-seul" },
+        { "response": { "assign": { "p1": "terre", "p2": "mars", "p3": "mars", "p4": "venus", "p5": "mars", "p6": "terre" } }, "expect": "mc:lecture-temperature" }
+      ]
+    },
+    {
+      "id": "st6-climat-serre",
+      "type": "order",
+      "skill": "st6.te.effet-serre",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [],
+      "expectedSeconds": 150,
+      "prompt": "Remets dans l'ordre les étapes de l'effet de serre.",
+      "orderLabel": "de la première à la dernière étape",
+      "items": [
+        { "id": "o1", "label": "La lumière du Soleil traverse l'atmosphère." },
+        { "id": "o2", "label": "Elle chauffe le sol et les océans." },
+        { "id": "o3", "label": "Le sol chauffé émet des infrarouges, un rayonnement invisible." },
+        { "id": "o4", "label": "Des gaz à effet de serre absorbent une partie de ces infrarouges." },
+        { "id": "o5", "label": "Ils en renvoient une partie vers le sol, qui reste plus chaud." }
+      ],
+      "hints": [
+        "Tout commence avec le Soleil.",
+        "Le sol doit d'abord être chauffé avant d'émettre des infrarouges."
+      ],
+      "solution": "1. La lumière du Soleil traverse l'atmosphère. 2. Elle chauffe le sol et les océans. 3. Le sol chauffé émet des infrarouges. 4. Les gaz à effet de serre en absorbent une partie. 5. Ils en renvoient une partie vers le sol, qui reste plus chaud.",
+      "selfTest": [
+        { "response": { "order": ["o1", "o2", "o3", "o4", "o5"] }, "expect": "correct" },
+        { "response": { "order": ["o5", "o4", "o3", "o2", "o1"] }, "expect": "incorrect" }
+      ]
+    },
+    {
+      "id": "st6-climat-meteo",
+      "type": "highlight",
+      "skill": "st6.te.rechauffement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:meteo-climat"],
+      "expectedSeconds": 150,
+      "instruction": "Surligne les trois informations qui parlent du climat.",
+      "prompt": "La **météo**, c'est le temps qu'il fait à un endroit pendant quelques heures ou quelques jours. Le **climat**, c'est le temps moyen d'une région, calculé sur au moins 30 ans. Dans ce texte, surligne les **trois** informations qui concernent le **climat**.",
+      "text": "Ce matin, il a gelé dans mon jardin. Pourtant, en France, [les hivers sont en moyenne plus doux] qu'il y a cinquante ans. Hier soir, un violent orage a éclaté. Dans le monde, [la température moyenne a augmenté d'environ 1,1 °C] entre 1850-1900 et 2011-2020. Depuis plusieurs dizaines d'années, [les vagues de chaleur sont plus fréquentes] en France.",
+      "misconceptions": [
+        { "word": "gelé", "id": "mc:meteo-climat", "error": "notion", "feedback": "Une nuit de gel dans un jardin, c'est la météo d'un jour, à un endroit. Le climat se lit dans des moyennes et des évolutions sur des dizaines d'années." },
+        { "word": "orage", "id": "mc:meteo-climat", "error": "notion", "feedback": "Un orage, même violent, dure quelques heures : c'est de la météo. Cherche les informations qui parlent de moyennes ou d'évolutions sur de longues durées." }
+      ],
+      "hints": [
+        "Cherche les informations qui parlent d'une moyenne ou d'une évolution sur de nombreuses années.",
+        "Un gel d'un matin ou un orage d'un soir, c'est de la météo."
+      ],
+      "solution": "Climat : « les hivers sont en moyenne plus doux » (sur cinquante ans), « la température moyenne a augmenté d'environ 1,1 °C » (GIEC, entre 1850-1900 et 2011-2020) et « les vagues de chaleur sont plus fréquentes » (depuis plusieurs dizaines d'années). Le gel de ce matin et l'orage d'hier soir sont de la météo.",
+      "selfTest": [
+        { "response": { "selected": [11, 28, 38] }, "expect": "correct" },
+        { "response": { "selected": [4, 11, 28, 38] }, "expect": "mc:meteo-climat" },
+        { "response": { "selected": [11, 22] }, "expect": "mc:meteo-climat" }
+      ]
+    },
+    {
+      "id": "st6-climat-co2",
+      "type": "numeric",
+      "skill": "st6.te.rechauffement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:addition-valeurs", "mc:ordre-soustraction"],
+      "expectedSeconds": 120,
+      "prompt": "Le diagramme donne la quantité de CO₂ dans l'air, en ppm (parties par million), d'après l'Organisation météorologique mondiale. De combien de ppm la teneur en CO₂ a-t-elle augmenté entre 1750 et 2024 ?",
+      "figure": {
+        "alt": "Diagramme en barres de la teneur en CO₂ de l'air vers 1750 et en 2024, en ppm",
+        "w": 420,
+        "h": 240,
+        "items": [
+          { "type": "bars", "unit": "ppm", "yMax": 450, "data": [ { "label": "vers 1750", "value": 278 }, { "label": "2024", "value": 424, "color": "rouge" } ] }
+        ]
+      },
+      "answer": 146,
+      "misconceptions": [
+        { "answer": 702, "id": "mc:addition-valeurs", "error": "methode", "feedback": "Tu as additionné les deux valeurs. Une augmentation, c'est l'écart entre la valeur d'arrivée et la valeur de départ." },
+        { "answer": -146, "id": "mc:ordre-soustraction", "error": "signe", "feedback": "Tu as soustrait dans le mauvais ordre : la teneur a augmenté, le résultat doit être positif." }
+      ],
+      "hints": [
+        "Une augmentation = valeur d'arrivée − valeur de départ.",
+        "Valeur d'arrivée : 2024. Valeur de départ : 1750."
+      ],
+      "solution": "424 − 278 = 146 ppm. La teneur en CO₂ a augmenté de plus de moitié depuis 1750, à cause surtout du charbon, du pétrole et du gaz brûlés.",
+      "selfTest": [
+        { "response": { "value": "146" }, "expect": "correct" },
+        { "response": { "value": "702" }, "expect": "mc:addition-valeurs" },
+        { "response": { "value": "-146" }, "expect": "mc:ordre-soustraction" }
+      ]
+    },
+    {
+      "id": "st6-climat-peuplement",
+      "type": "match",
+      "skill": "st6.te.consequences-peuplement",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:fuir-nord", "mc:altitude-latitude"],
+      "expectedSeconds": 180,
+      "prompt": "Le réchauffement climatique change la vie de nombreux êtres vivants. Associe chaque être vivant à ce que les scientifiques observent.",
+      "leftTitle": "Être vivant",
+      "rightTitle": "Ce qu'on observe",
+      "left": [
+        { "id": "l1", "label": "La chenille processionnaire du pin, qui ne supporte pas les hivers très froids" },
+        { "id": "l2", "label": "Des plantes de montagne, adaptées au froid" },
+        { "id": "l3", "label": "Les coraux des mers tropicales" },
+        { "id": "l4", "label": "L'ours polaire" },
+        { "id": "l5", "label": "La vigne" }
+      ],
+      "right": [
+        { "id": "r1", "label": "s'installe de plus en plus au nord de la France" },
+        { "id": "r2", "label": "poussent de plus en plus haut sur les pentes" },
+        { "id": "r3", "label": "blanchissent et peuvent mourir quand l'eau devient trop chaude" },
+        { "id": "r4", "label": "perd une partie de la banquise sur laquelle il chasse les phoques" },
+        { "id": "r5", "label": "donne des raisins mûrs plus tôt : les vendanges commencent plus tôt qu'il y a 50 ans" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" },
+      "misconceptions": [
+        { "pair": ["l4", "r1"], "id": "mc:fuir-nord", "error": "notion", "feedback": "L'ours polaire vit déjà dans l'Arctique, tout au nord : il ne peut guère aller plus loin. Relis ce qui arrive à son terrain de chasse." },
+        { "pair": ["l2", "r1"], "id": "mc:altitude-latitude", "error": "notion", "feedback": "Une plante de montagne peut trouver plus de fraîcheur sans changer de région : pense au relief." }
+      ],
+      "hints": [
+        "Quand il fait plus chaud, beaucoup d'espèces cherchent des endroits plus frais : plus au nord, ou plus haut en montagne.",
+        "L'ours polaire dépend de la glace de mer pour chasser."
+      ],
+      "solution": "Processionnaire du pin : elle s'installe plus au nord, car les hivers sont plus doux. Plantes de montagne : elles poussent plus haut, là où il fait plus frais. Coraux : ils blanchissent quand l'eau est trop chaude. Ours polaire : il perd la banquise sur laquelle il chasse. Vigne : vendanges plus précoces.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4", "l5": "r5" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r1", "l5": "r5" } }, "expect": "mc:fuir-nord" },
+        { "response": { "pairs": { "l1": "r1", "l2": "r1", "l3": "r3", "l4": "r4", "l5": "r5" } }, "expect": "mc:altitude-latitude" }
+      ]
+    },
+    {
+      "id": "st6-climat-agir",
+      "type": "categorize",
+      "skill": "st6.te.attenuation-adaptation",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "targets": ["mc:attenuer-adapter"],
+      "expectedSeconds": 150,
+      "prompt": "**Atténuer**, c'est agir sur la cause : réduire nos émissions de gaz à effet de serre. **S'adapter**, c'est se protéger des effets du réchauffement. Range chaque action.",
+      "categories": [
+        { "id": "att", "label": "Atténuation" },
+        { "id": "ada", "label": "Adaptation" }
+      ],
+      "items": [
+        { "id": "a1", "label": "Venir au collège à vélo ou en bus plutôt qu'en voiture", "category": "att" },
+        { "id": "a2", "label": "Isoler les bâtiments pour moins les chauffer", "category": "att" },
+        { "id": "a3", "label": "Installer des voiles d'ombrage et des fontaines dans la cour pour les canicules", "category": "ada" },
+        { "id": "a4", "label": "Construire une digue contre la montée de la mer", "category": "ada" },
+        { "id": "a5", "label": "Produire l'électricité avec le soleil et le vent plutôt qu'avec du charbon", "category": "att" },
+        { "id": "a6", "label": "Cultiver des plantes qui résistent mieux à la sécheresse", "category": "ada" }
+      ],
+      "misconceptions": [
+        { "item": "a4", "category": "att", "id": "mc:attenuer-adapter", "error": "notion", "feedback": "Une digue change-t-elle la quantité de gaz à effet de serre dans l'air ? Demande-toi si elle agit sur la cause ou sur les conséquences." },
+        { "item": "a1", "category": "ada", "id": "mc:attenuer-adapter", "error": "notion", "feedback": "Demande-toi si le vélo agit sur la cause du réchauffement (les émissions) ou s'il protège de ses effets." },
+        { "item": "a3", "category": "att", "id": "mc:attenuer-adapter", "error": "notion", "feedback": "L'ombre et les fontaines réduisent-elles nos émissions de gaz à effet de serre, ou aident-elles à supporter la chaleur ?" }
+      ],
+      "hints": [
+        "Pose-toi la question : cette action fait-elle baisser les émissions de CO₂ ?",
+        "Si elle ne baisse pas les émissions mais protège des effets (chaleur, sécheresse, mer qui monte), c'est de l'adaptation."
+      ],
+      "solution": "Atténuation : vélo ou bus, isolation des bâtiments, électricité solaire et éolienne (moins de CO₂ émis). Adaptation : ombre et fontaines contre les canicules, digue contre la montée de la mer, plantes résistantes à la sécheresse (on se protège des effets).",
+      "selfTest": [
+        { "response": { "assign": { "a1": "att", "a2": "att", "a3": "ada", "a4": "ada", "a5": "att", "a6": "ada" } }, "expect": "correct" },
+        { "response": { "assign": { "a1": "att", "a2": "att", "a3": "ada", "a4": "att", "a5": "att", "a6": "ada" } }, "expect": "mc:attenuer-adapter" },
+        { "response": { "assign": { "a1": "ada", "a2": "att", "a3": "ada", "a4": "ada", "a5": "att", "a6": "ada" } }, "expect": "mc:attenuer-adapter" }
+      ]
+    },
+    {
+      "id": "st6-climat-banquise",
+      "type": "qcm",
+      "skill": "st6.te.rechauffement",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:banquise-niveau"],
+      "expectedSeconds": 60,
+      "prompt": "Vérification rapide : si toute la banquise de l'océan Arctique fondait, le niveau des mers…",
+      "choices": [
+        { "text": "monterait de plusieurs mètres.", "correct": false, "error": "notion", "misconception": "mc:banquise-niveau", "feedback": "C'est une idée très répandue. Repense à l'expérience des deux béchers : dans lequel l'eau a-t-elle monté, et où se trouvait la glace ?" },
+        { "text": "ne monterait presque pas, car la banquise flotte déjà sur la mer.", "correct": true, "feedback": "Exact : la glace qui flotte occupe déjà, sous l'eau, à peu près la place de l'eau qu'elle donnera en fondant." },
+        { "text": "baisserait, car la glace prend plus de place que l'eau.", "correct": false, "error": "raisonnement", "feedback": "La glace prend en effet un peu plus de place que l'eau liquide, mais une partie de la banquise dépasse de la surface. Repense à l'expérience des deux béchers." }
+      ],
+      "hints": [
+        "La banquise, c'est de la glace de mer : elle flotte.",
+        "Souviens-toi du bécher A, avec les glaçons qui flottent."
+      ],
+      "solution": "La banquise flotte déjà : en fondant, elle ne fait presque pas monter le niveau des mers. Ce sont la fonte des glaces posées sur les continents et la dilatation de l'eau qui se réchauffe qui font monter la mer. La fonte de la banquise a d'autres conséquences : les ours polaires perdent leur terrain de chasse.",
+      "selfTest": [
+        { "response": { "selected": [1] }, "expect": "correct" },
+        { "response": { "selected": [0] }, "expect": "mc:banquise-niveau" }
+      ]
+    },
+    {
+      "id": "st6-climat-expliquer",
+      "type": "open",
+      "skill": "st6.te.rechauffement",
+      "skills": ["st6.te.effet-serre"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "targets": ["mc:meteo-climat"],
+      "expectedSeconds": 420,
+      "minWords": 35,
+      "prompt": "Ton oncle dit : « Avec toute la neige qu'on a eue cet hiver, le réchauffement climatique, c'est n'importe quoi ! » Réponds-lui calmement, avec des arguments scientifiques.",
+      "criteria": [
+        { "id": "c1", "label": "Je distingue la météo (un hiver, un jour) et le climat (une moyenne sur au moins 30 ans)", "keywords": [["meteo", "climat", "30 ans", "trente", "moyenne"]] },
+        { "id": "c2", "label": "Je cite une donnée : environ +1,1 °C entre 1850-1900 et 2011-2020 (GIEC)", "keywords": [["1,1", "giec", "degre"]] },
+        { "id": "c3", "label": "J'explique la cause : les gaz à effet de serre émis par les activités humaines", "keywords": [["gaz a effet de serre", "co2", "dioxyde", "activites humaines", "charbon", "petrole"]] }
+      ],
+      "models": [
+        "Un hiver neigeux, c'est de la météo : le temps qu'il fait à un endroit, pendant quelques jours. Le climat, lui, se calcule sur au moins 30 ans et sur toute la planète. D'après le GIEC, la température moyenne de la Terre a augmenté d'environ 1,1 °C entre 1850-1900 et 2011-2020. Ce réchauffement vient des gaz à effet de serre, comme le CO₂, que nous ajoutons en brûlant du charbon, du pétrole et du gaz.",
+        "Il peut encore neiger même si le climat se réchauffe : une saison froide ne change pas une moyenne calculée sur des dizaines d'années. Les mesures du GIEC montrent environ 1,1 °C de plus depuis la fin du XIXe siècle. La cause, ce sont les activités humaines qui renforcent l'effet de serre."
+      ],
+      "hints": [
+        "Commence par expliquer la différence entre météo et climat.",
+        "Donne un chiffre et sa source.",
+        "Termine par la cause du réchauffement."
+      ],
+      "solution": "Un hiver neigeux est un événement météo. Le climat se mesure sur des moyennes d'au moins 30 ans : la température moyenne mondiale a augmenté d'environ 1,1 °C entre 1850-1900 et 2011-2020 (GIEC), à cause des gaz à effet de serre émis par les activités humaines.",
+      "selfTest": [
+        { "response": { "text": "Un hiver neigeux, c'est de la météo. Le climat se calcule sur au moins 30 ans. D'après le GIEC, la température moyenne de la Terre a augmenté d'environ 1,1 °C. Ce réchauffement vient des gaz à effet de serre comme le CO₂, que nous ajoutons en brûlant du pétrole.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "st6-climat-plan",
+      "type": "composite",
+      "skill": "st6.te.attenuation-adaptation",
+      "skills": ["st6.te.rechauffement"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:aller-seul", "mc:conversion-g-kg", "mc:attenuer-adapter"],
+      "expectedSeconds": 480,
+      "prompt": "Les éco-délégués préparent le plan climat du collège. Léa habite à 3 km. Chaque matin, ses parents l'emmènent en voiture puis rentrent chez eux : la voiture parcourt donc 6 km. On prend 200 g de CO₂ émis par kilomètre (ordre de grandeur pour une voiture, valeur arrondie choisie pour l'exercice).",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de grammes de CO₂ ce trajet émet-il chaque matin ?",
+          "answer": 1200,
+          "misconceptions": [
+            { "answer": 600, "id": "mc:aller-seul", "error": "lecture", "feedback": "Tu n'as compté que l'aller. Relis combien de kilomètres la voiture parcourt en tout chaque matin." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Léa décide de venir à vélo pendant 150 matins d'école. Combien de **kilogrammes** de CO₂ évite-t-elle ? (1 kg = 1 000 g)",
+          "answer": 180,
+          "misconceptions": [
+            { "answer": 180000, "id": "mc:conversion-g-kg", "error": "unite", "feedback": "Ton résultat est en grammes. La question demande des kilogrammes : il reste une conversion." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Les éco-délégués ont d'autres idées. Range-les.",
+          "categories": [
+            { "id": "att", "label": "Atténuation" },
+            { "id": "ada", "label": "Adaptation" }
+          ],
+          "items": [
+            { "id": "b1", "label": "Baisser le chauffage de 1 °C en hiver", "category": "att" },
+            { "id": "b2", "label": "Organiser un « pédibus » pour venir à pied en groupe", "category": "att" },
+            { "id": "b3", "label": "Fermer les volets la journée pendant les canicules", "category": "ada" },
+            { "id": "b4", "label": "Prévoir de l'eau fraîche et des horaires aménagés lors des fortes chaleurs", "category": "ada" }
+          ],
+          "misconceptions": [
+            { "item": "b3", "category": "att", "id": "mc:attenuer-adapter", "error": "notion", "feedback": "Fermer les volets réduit-il les émissions de gaz à effet de serre, ou aide-t-il à supporter la chaleur ? Demande-toi s'il agit sur la cause ou sur les effets." },
+            { "item": "b1", "category": "ada", "id": "mc:attenuer-adapter", "error": "notion", "feedback": "Moins chauffer, c'est consommer moins d'énergie. Demande-toi si cela agit sur la cause du réchauffement ou sur ses effets." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Propose une autre action d'atténuation pour ton collège, et explique pourquoi elle réduit les émissions de gaz à effet de serre.",
+          "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je propose une action concrète, réalisable au collège", "keywords": [["eteindre", "lumiere", "chauffage", "velo", "pied", "bus", "cantine", "local", "gaspill", "recycl", "panneau", "solaire", "isol"]] },
+            { "id": "c2", "label": "J'explique qu'elle fait baisser la consommation d'énergie ou les émissions de CO₂", "keywords": [["energie", "co2", "emission", "carburant", "electricite", "consomm"]] }
+          ],
+          "models": [
+            "Éteindre les lumières et les ordinateurs des salles vides : on consomme moins d'électricité, donc moins d'énergie produite et moins d'émissions de CO₂.",
+            "Servir plus souvent à la cantine des légumes de saison produits près du collège : moins de transport en camion, donc moins de carburant brûlé et moins de CO₂."
+          ]
+        }
+      ],
+      "hints": [
+        "Émissions = nombre de kilomètres × 200 g.",
+        "Pour 150 matins, multiplie, puis divise par 1 000 pour passer des grammes aux kilogrammes.",
+        "Atténuer = moins d'émissions ; s'adapter = se protéger des effets."
+      ],
+      "solution": "Chaque matin : 6 × 200 = 1 200 g de CO₂. Sur 150 matins : 1 200 × 150 = 180 000 g, soit 180 kg évités. Atténuation : baisser le chauffage, le pédibus. Adaptation : volets fermés pendant les canicules, eau fraîche et horaires aménagés. Une autre action d'atténuation : éteindre les appareils inutiles, manger local et de saison…",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1200" }, { "value": "180" }, { "assign": { "b1": "att", "b2": "att", "b3": "ada", "b4": "ada" } }, { "text": "Éteindre les lumières des salles vides : on consomme moins d'électricité, donc moins d'émissions de CO₂.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "600" }, { "value": "180" }, { "assign": { "b1": "att", "b2": "att", "b3": "ada", "b4": "ada" } }, { "text": "Éteindre les lumières des salles vides : on consomme moins d'électricité, donc moins d'émissions de CO₂.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:aller-seul" },
+        { "response": { "parts": [ { "value": "1200" }, { "value": "180000" }, { "assign": { "b1": "att", "b2": "att", "b3": "ada", "b4": "ada" } }, { "text": "Éteindre les lumières des salles vides : on consomme moins d'électricité, donc moins d'émissions de CO₂.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:conversion-g-kg" },
+        { "response": { "parts": [ { "value": "1200" }, { "value": "180" }, { "assign": { "b1": "att", "b2": "att", "b3": "att", "b4": "ada" } }, { "text": "Éteindre les lumières des salles vides : on consomme moins d'électricité, donc moins d'émissions de CO₂.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "mc:attenuer-adapter" }
+      ]
+    },
+    {
+      "id": "st6-climat-rem-ozone",
+      "type": "categorize",
+      "skill": "st6.te.effet-serre",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:serre-ozone"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : l'**effet de serre** et la **couche d'ozone** sont deux choses différentes. Range chaque phrase.",
+      "categories": [
+        { "id": "serre", "label": "Effet de serre" },
+        { "id": "ozone", "label": "Couche d'ozone" }
+      ],
+      "items": [
+        { "id": "r1", "label": "Des gaz retiennent une partie des infrarouges émis par le sol.", "category": "serre" },
+        { "id": "r2", "label": "Elle arrête une partie des rayons ultraviolets du Soleil, dangereux pour la peau.", "category": "ozone" },
+        { "id": "r3", "label": "Il est renforcé par le CO₂ que nous rejetons.", "category": "serre" },
+        { "id": "r4", "label": "Elle a été abîmée par des gaz appelés CFC, autrefois utilisés dans les bombes aérosols et les réfrigérateurs.", "category": "ozone" }
+      ],
+      "misconceptions": [
+        { "item": "r2", "category": "serre", "id": "mc:serre-ozone", "error": "notion", "feedback": "Les ultraviolets et les infrarouges sont deux rayonnements différents. Relis la carte sur l'effet de serre : de quel rayonnement parle-t-elle ?" },
+        { "item": "r3", "category": "ozone", "id": "mc:serre-ozone", "error": "notion", "feedback": "Le CO₂ absorbe des infrarouges. Demande-toi lequel des deux phénomènes concerne les infrarouges." },
+        { "item": "r4", "category": "serre", "id": "mc:serre-ozone", "error": "notion", "feedback": "Les CFC sont surtout connus pour un autre problème que le réchauffement. Relis la phrase : de quelle « elle » parle-t-on ?" }
+      ],
+      "hints": [
+        "Effet de serre → infrarouges → température.",
+        "Couche d'ozone → ultraviolets → protection de la peau et des yeux."
+      ],
+      "solution": "Effet de serre : des gaz (comme le CO₂) retiennent une partie des infrarouges ; il est renforcé par nos émissions. Couche d'ozone : elle arrête une partie des ultraviolets ; elle a été abîmée par les CFC, aujourd'hui interdits.",
+      "selfTest": [
+        { "response": { "assign": { "r1": "serre", "r2": "ozone", "r3": "serre", "r4": "ozone" } }, "expect": "correct" },
+        { "response": { "assign": { "r1": "serre", "r2": "serre", "r3": "serre", "r4": "ozone" } }, "expect": "mc:serre-ozone" }
+      ]
+    },
+    {
+      "id": "st6-climat-rem-meteo",
+      "type": "categorize",
+      "skill": "st6.te.rechauffement",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:meteo-climat"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : la **météo** décrit quelques heures ou quelques jours ; le **climat** décrit des moyennes sur au moins 30 ans. Range chaque phrase.",
+      "categories": [
+        { "id": "meteo", "label": "Météo" },
+        { "id": "climat", "label": "Climat" }
+      ],
+      "items": [
+        { "id": "m1", "label": "Il pleut aujourd'hui à Lille.", "category": "meteo" },
+        { "id": "m2", "label": "Demain, il fera 30 °C à Marseille.", "category": "meteo" },
+        { "id": "m3", "label": "À Marseille, les étés sont chauds et secs, d'après 30 ans de relevés.", "category": "climat" },
+        { "id": "m4", "label": "Un orage a éclaté hier soir.", "category": "meteo" },
+        { "id": "m5", "label": "En France, les hivers sont en moyenne plus doux qu'il y a 50 ans.", "category": "climat" }
+      ],
+      "misconceptions": [
+        { "item": "m4", "category": "climat", "id": "mc:meteo-climat", "error": "notion", "feedback": "Combien de temps dure un orage ? Compare avec la durée qu'il faut pour parler de climat." },
+        { "item": "m2", "category": "climat", "id": "mc:meteo-climat", "error": "notion", "feedback": "Une prévision pour demain porte sur un seul jour. Le climat, lui, demande des dizaines d'années de relevés." },
+        { "item": "m5", "category": "meteo", "id": "mc:meteo-climat", "error": "notion", "feedback": "Cette phrase parle d'une moyenne sur une très longue durée. Relis la définition des deux mots." }
+      ],
+      "hints": [
+        "Cherche les indices de durée : aujourd'hui, demain, hier… ou 30 ans, 50 ans, en moyenne.",
+        "Un seul jour = météo ; des dizaines d'années = climat."
+      ],
+      "solution": "Météo : la pluie d'aujourd'hui à Lille, la prévision de demain à Marseille, l'orage d'hier soir. Climat : les étés chauds et secs de Marseille sur 30 ans, les hivers en moyenne plus doux en France depuis 50 ans.",
+      "selfTest": [
+        { "response": { "assign": { "m1": "meteo", "m2": "meteo", "m3": "climat", "m4": "meteo", "m5": "climat" } }, "expect": "correct" },
+        { "response": { "assign": { "m1": "meteo", "m2": "meteo", "m3": "climat", "m4": "climat", "m5": "climat" } }, "expect": "mc:meteo-climat" }
+      ]
+    },
+    {
+      "id": "st6-climat-venus",
+      "type": "composite",
+      "skill": "st6.te.conditions-vie",
+      "skills": ["st6.te.effet-serre"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:ecart-temperatures", "mc:distance-seule", "mc:serre-humain"],
+      "expectedSeconds": 360,
+      "prompt": "Sans effet de serre, la température moyenne à la surface de la Terre serait d'environ −18 °C ; avec l'effet de serre naturel, elle est d'environ +15 °C. Mercure, la planète la plus proche du Soleil (58 millions de km), n'a presque pas d'atmosphère : sa température moyenne est d'environ 170 °C. Vénus, plus loin (108 millions de km), a une atmosphère très épaisse de CO₂ : plus de 450 °C.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien de degrés l'effet de serre naturel réchauffe-t-il la Terre ?",
+          "answer": 33,
+          "misconceptions": [
+            { "answer": -3, "id": "mc:ecart-temperatures", "error": "signe", "feedback": "Tu as additionné −18 et 15. Pour trouver l'écart entre deux températures, compte les degrés pour aller de −18 °C jusqu'à 0 °C, puis de 0 °C jusqu'à +15 °C." },
+            { "answer": 3, "id": "mc:ecart-temperatures", "error": "signe", "feedback": "Tu as fait 18 − 15. Mais −18 °C est sous zéro : compte les degrés pour aller de −18 °C jusqu'à 0 °C, puis de 0 °C jusqu'à +15 °C." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Vrai ou faux ?",
+          "categories": [
+            { "id": "vrai", "label": "Vrai" },
+            { "id": "faux", "label": "Faux" }
+          ],
+          "items": [
+            { "id": "f1", "label": "La planète la plus proche du Soleil est forcément la plus chaude.", "category": "faux" },
+            { "id": "f2", "label": "L'atmosphère épaisse de Vénus provoque un effet de serre énorme.", "category": "vrai" },
+            { "id": "f3", "label": "Presque sans atmosphère, Mercure garde mal sa chaleur : ses nuits sont glaciales.", "category": "vrai" },
+            { "id": "f4", "label": "L'effet de serre n'existe qu'à cause des humains.", "category": "faux" }
+          ],
+          "misconceptions": [
+            { "item": "f1", "category": "vrai", "id": "mc:distance-seule", "error": "raisonnement", "feedback": "Compare Mercure et Vénus dans l'énoncé : laquelle est la plus proche du Soleil, et laquelle est la plus chaude ?" },
+            { "item": "f4", "category": "vrai", "id": "mc:serre-humain", "error": "notion", "feedback": "Relis l'énoncé : la Terre avait-elle un effet de serre avant les activités humaines ? Et Vénus, où personne ne vit ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "De −18 °C à 0 °C, il y a 18 degrés ; de 0 °C à +15 °C, il y en a 15.",
+        "La distance au Soleil compte, mais l'atmosphère aussi.",
+        "L'effet de serre existe aussi sur d'autres planètes."
+      ],
+      "solution": "Écart : 18 + 15 = 33 degrés. Vénus est plus loin du Soleil que Mercure mais beaucoup plus chaude, à cause de l'effet de serre énorme de son atmosphère très épaisse de CO₂. Mercure, presque sans atmosphère, perd sa chaleur : ses nuits sont glaciales. La distance n'est donc pas le seul facteur. L'effet de serre est d'abord naturel ; les humains le renforcent.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "33" }, { "assign": { "f1": "faux", "f2": "vrai", "f3": "vrai", "f4": "faux" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "-3" }, { "assign": { "f1": "faux", "f2": "vrai", "f3": "vrai", "f4": "faux" } } ] }, "expect": "mc:ecart-temperatures" },
+        { "response": { "parts": [ { "value": "33" }, { "assign": { "f1": "vrai", "f2": "vrai", "f3": "vrai", "f4": "faux" } } ] }, "expect": "mc:distance-seule" },
+        { "response": { "parts": [ { "value": "33" }, { "assign": { "f1": "faux", "f2": "vrai", "f3": "vrai", "f4": "vrai" } } ] }, "expect": "mc:serre-humain" }
+      ]
+    },
+    {
+      "id": "st6-climat-bocaux",
+      "type": "composite",
+      "skill": "st6.demarche.modele",
+      "skills": ["st6.te.effet-serre"],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "concrete",
+      "targets": ["mc:valeur-finale", "mc:modele-preuve", "mc:couvercle"],
+      "expectedSeconds": 360,
+      "prompt": "Reprends les résultats de l'expérience des deux bocaux : au départ, les deux sont à 20 °C. Après 20 minutes sous la lampe, le bocal A (ouvert) est à 26 °C et le bocal B (couvert d'un film) à 31 °C.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De combien de degrés le bocal B s'est-il réchauffé ?",
+          "answer": 11,
+          "misconceptions": [
+            { "answer": 31, "id": "mc:valeur-finale", "error": "lecture", "feedback": "C'est la température finale. Un réchauffement, c'est une différence entre la fin et le début." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Après 20 minutes, combien de degrés de plus le bocal B a-t-il par rapport au bocal A ?",
+          "answer": 5,
+          "misconceptions": [
+            { "answer": 57, "id": "mc:valeur-finale", "error": "methode", "feedback": "Tu as additionné les deux températures. Pour comparer, on cherche l'écart entre elles." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Ces conclusions sont-elles valides, ou vont-elles trop loin ?",
+          "categories": [
+            { "id": "valide", "label": "Valide" },
+            { "id": "abusif", "label": "Va trop loin" }
+          ],
+          "items": [
+            { "id": "v1", "label": "Le film fait monter davantage la température du bocal.", "category": "valide" },
+            { "id": "v2", "label": "Il fallait deux bocaux identiques, sauf le film, pour pouvoir comparer.", "category": "valide" },
+            { "id": "v3", "label": "Cette expérience prouve, à elle seule, que le CO₂ réchauffe la Terre.", "category": "abusif" },
+            { "id": "v4", "label": "Autour de la Terre, il y a un couvercle, comme le film du bocal.", "category": "abusif" }
+          ],
+          "misconceptions": [
+            { "item": "v3", "category": "valide", "id": "mc:modele-preuve", "error": "raisonnement", "feedback": "Y avait-il du CO₂ ajouté dans le bocal B ? Une expérience ne peut conclure que sur ce qu'elle a vraiment testé." },
+            { "item": "v4", "category": "valide", "id": "mc:couvercle", "error": "notion", "feedback": "Un modèle représente la réalité de façon simplifiée. Relis les limites du modèle : qu'est-ce qui joue vraiment le rôle du film autour de la Terre ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "Réchauffement = température finale − température de départ.",
+        "Pour comparer deux températures, fais une soustraction.",
+        "Une conclusion valide ne parle que de ce que l'expérience a vraiment testé."
+      ],
+      "solution": "Bocal B : 31 − 20 = 11 °C de réchauffement (le bocal A : 6 °C). Après 20 minutes, B a 31 − 26 = 5 °C de plus que A. Valide : le film fait monter davantage la température, et il fallait deux bocaux identiques sauf un facteur. Trop loin : l'expérience ne teste pas le CO₂, et il n'y a pas de couvercle autour de la Terre : ce sont des gaz à effet de serre qui retiennent une partie de la chaleur.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "11" }, { "value": "5" }, { "assign": { "v1": "valide", "v2": "valide", "v3": "abusif", "v4": "abusif" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "31" }, { "value": "5" }, { "assign": { "v1": "valide", "v2": "valide", "v3": "abusif", "v4": "abusif" } } ] }, "expect": "mc:valeur-finale" },
+        { "response": { "parts": [ { "value": "11" }, { "value": "5" }, { "assign": { "v1": "valide", "v2": "valide", "v3": "valide", "v4": "abusif" } } ] }, "expect": "mc:modele-preuve" },
+        { "response": { "parts": [ { "value": "11" }, { "value": "5" }, { "assign": { "v1": "valide", "v2": "valide", "v3": "abusif", "v4": "valide" } } ] }, "expect": "mc:couvercle" }
+      ]
+    },
+    {
+      "id": "st6-climat-argument",
+      "type": "composite",
+      "skill": "st6.te.rechauffement",
+      "skills": ["st6.te.effet-serre"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "verbale",
+      "targets": ["mc:correlation-causalite", "mc:valeur-pourcentage"],
+      "expectedSeconds": 480,
+      "prompt": "Deux choses qui augmentent en même temps ne sont pas forcément liées par une cause. Pour prouver une cause, il faut un **mécanisme** qui explique le lien. D'après le GIEC (2021-2023), la température mondiale a augmenté d'environ 1,1 °C entre 1850-1900 et 2010-2019 ; les facteurs naturels (variations du Soleil, volcans) ne l'ont modifiée que de −0,1 à +0,1 °C.",
+      "parts": [
+        {
+          "type": "categorize",
+          "prompt": "Pour chaque paire, y a-t-il un lien de cause à effet expliqué par un mécanisme ?",
+          "categories": [
+            { "id": "cause", "label": "Cause expliquée par un mécanisme" },
+            { "id": "hasard", "label": "Coïncidence, ou cause commune" }
+          ],
+          "items": [
+            { "id": "k1", "label": "En été, on vend plus de glaces et on attrape plus de coups de soleil.", "category": "hasard" },
+            { "id": "k2", "label": "Plus il y a de CO₂ dans l'air, plus il retient d'infrarouges près du sol.", "category": "cause" },
+            { "id": "k3", "label": "Le nombre de chats domestiques et la température mondiale ont tous deux augmenté depuis 1950.", "category": "hasard" },
+            { "id": "k4", "label": "Plus on brûle de charbon, de pétrole et de gaz, plus il y a de CO₂ dans l'air.", "category": "cause" }
+          ],
+          "misconceptions": [
+            { "item": "k3", "category": "cause", "id": "mc:correlation-causalite", "error": "raisonnement", "feedback": "Deux choses qui augmentent ensemble ne sont pas forcément liées. Quel mécanisme pourrait relier les chats à la température de la planète ?" },
+            { "item": "k1", "category": "cause", "id": "mc:correlation-causalite", "error": "raisonnement", "feedback": "Est-ce la glace qui donne des coups de soleil ? Cherche plutôt ce qui, en été, provoque les deux à la fois." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Au plus, quel pourcentage de la hausse (1,1 °C) les facteurs naturels peuvent-ils expliquer ? (0,1 ÷ 1,1 × 100, arrondi à l'unité)",
+          "answer": 9.09,
+          "tolerance": 0.6,
+          "misconceptions": [
+            { "answer": 0.1, "id": "mc:valeur-pourcentage", "error": "methode", "feedback": "0,1 °C est une contribution en degrés. La question demande un pourcentage de la hausse totale : fais le calcul indiqué." }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Rédige un argument en trois phrases pour montrer que le réchauffement récent est dû aux activités humaines : une donnée, un mécanisme, une origine.",
+          "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "Je cite une donnée chiffrée et sa source (CO₂ ou température)", "keywords": [["1,1", "424", "278", "ppm", "giec", "omm"]] },
+            { "id": "c2", "label": "J'explique le mécanisme de l'effet de serre (infrarouges retenus)", "keywords": [["infrarouge", "effet de serre", "retien", "absorb"]] },
+            { "id": "c3", "label": "Je donne l'origine humaine du CO₂ en plus", "keywords": [["charbon", "petrole", "gaz", "humain", "activites", "forets"]] }
+          ],
+          "models": [
+            "Depuis 1750, le CO₂ de l'air est passé de 278 à 424 ppm, et la Terre s'est réchauffée d'environ 1,1 °C (GIEC). Le CO₂ est un gaz à effet de serre : il retient une partie des infrarouges émis par le sol, ce qui réchauffe la planète. Ce CO₂ en plus vient du charbon, du pétrole et du gaz que les humains brûlent.",
+            "La température mondiale a augmenté d'environ 1,1 °C, alors que le Soleil et les volcans n'expliquent au plus que 0,1 °C (GIEC). Les gaz à effet de serre absorbent des infrarouges et en renvoient vers le sol. Leur quantité augmente parce que les activités humaines brûlent des combustibles fossiles et détruisent des forêts."
+          ]
+        }
+      ],
+      "hints": [
+        "Une coïncidence n'a pas de mécanisme ; une cause commune explique deux choses à la fois.",
+        "Pourcentage = part ÷ total × 100.",
+        "Un bon argument : une donnée chiffrée, un mécanisme, une origine."
+      ],
+      "solution": "Cause expliquée par un mécanisme : CO₂ et infrarouges retenus ; combustibles fossiles et CO₂. Coïncidence ou cause commune : les glaces et les coups de soleil (cause commune : le soleil d'été) ; les chats et la température (aucun mécanisme). Les facteurs naturels expliquent au plus 0,1 ÷ 1,1 × 100 ≈ 9 % de la hausse : l'essentiel vient des gaz à effet de serre émis par les activités humaines.",
+      "selfTest": [
+        { "response": { "parts": [ { "assign": { "k1": "hasard", "k2": "cause", "k3": "hasard", "k4": "cause" } }, { "value": "9" }, { "text": "Depuis 1750, le CO₂ est passé de 278 à 424 ppm, et la Terre s'est réchauffée de 1,1 °C. Le CO₂ retient une partie des infrarouges émis par le sol. Ce CO₂ vient du charbon et du pétrole brûlés par les humains.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "assign": { "k1": "hasard", "k2": "cause", "k3": "cause", "k4": "cause" } }, { "value": "9" }, { "text": "Depuis 1750, le CO₂ est passé de 278 à 424 ppm, et la Terre s'est réchauffée de 1,1 °C. Le CO₂ retient une partie des infrarouges émis par le sol. Ce CO₂ vient du charbon et du pétrole brûlés par les humains.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:correlation-causalite" },
+        { "response": { "parts": [ { "assign": { "k1": "hasard", "k2": "cause", "k3": "hasard", "k4": "cause" } }, { "value": "0,1" }, { "text": "Depuis 1750, le CO₂ est passé de 278 à 424 ppm, et la Terre s'est réchauffée de 1,1 °C. Le CO₂ retient une partie des infrarouges émis par le sol. Ce CO₂ vient du charbon et du pétrole brûlés par les humains.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "mc:valeur-pourcentage" }
+      ]
+    },
+    {
+      "id": "st6-climat-mers",
+      "type": "composite",
+      "skill": "st6.te.consequences-peuplement",
+      "skills": ["st6.te.rechauffement"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "symbolique",
+      "targets": ["mc:difference-rapport", "mc:conversion-mm-cm", "mc:banquise-niveau"],
+      "expectedSeconds": 420,
+      "prompt": "D'après le GIEC (2021), le niveau moyen des mers est monté d'environ 20 cm entre 1901 et 2018, et cette montée s'accélère : environ 1,3 mm par an de 1901 à 1971, environ 3,7 mm par an de 2006 à 2018.",
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien de fois la montée était-elle plus rapide en 2006-2018 qu'en 1901-1971 ? (3,7 ÷ 1,3, arrondi au dixième)",
+          "answer": 2.85,
+          "tolerance": 0.06,
+          "misconceptions": [
+            { "answer": 2.4, "id": "mc:difference-rapport", "error": "methode", "feedback": "Tu as calculé une différence. « Combien de fois plus rapide » demande une division." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À 3,7 mm par an, de combien de **centimètres** le niveau monte-t-il en 10 ans ? (1 cm = 10 mm)",
+          "answer": 3.7,
+          "tolerance": 0.01,
+          "misconceptions": [
+            { "answer": 37, "id": "mc:conversion-mm-cm", "error": "unite", "feedback": "Ton résultat est en millimètres. La question demande des centimètres : il reste une conversion." }
+          ]
+        },
+        {
+          "type": "categorize",
+          "prompt": "Quelles causes font monter le niveau moyen des mers ?",
+          "categories": [
+            { "id": "oui", "label": "Fait monter la mer" },
+            { "id": "non", "label": "Ne la fait (presque) pas monter" }
+          ],
+          "items": [
+            { "id": "c1", "label": "L'eau des océans qui se réchauffe et se dilate", "category": "oui" },
+            { "id": "c2", "label": "La fonte des glaciers de montagne", "category": "oui" },
+            { "id": "c3", "label": "La fonte des calottes du Groenland et de l'Antarctique, posées sur des continents", "category": "oui" },
+            { "id": "c4", "label": "La fonte de la banquise arctique, qui flotte sur la mer", "category": "non" }
+          ],
+          "misconceptions": [
+            { "item": "c4", "category": "oui", "id": "mc:banquise-niveau", "error": "notion", "feedback": "Repense à l'expérience des deux béchers : où était la glace dans celui où l'eau n'a pas monté ?" },
+            { "item": "c1", "category": "non", "id": "mc:dilatation", "error": "notion", "feedback": "Relis la dernière étape de l'expérience sur la glace : que fait l'eau des océans quand elle se réchauffe ?" }
+          ]
+        }
+      ],
+      "hints": [
+        "« Combien de fois plus » : on divise.",
+        "En 10 ans : 3,7 × 10 mm, puis on convertit en centimètres.",
+        "Seule la glace qui n'est pas déjà dans l'eau ajoute de l'eau à l'océan."
+      ],
+      "solution": "3,7 ÷ 1,3 ≈ 2,8 : la montée est presque trois fois plus rapide. En 10 ans : 3,7 × 10 = 37 mm, soit 3,7 cm. La mer monte à cause de la dilatation de l'eau qui se réchauffe et de la fonte des glaces posées sur les continents (glaciers, calottes). La banquise flotte déjà : sa fonte ne fait presque pas monter la mer. Pour les êtres vivants des côtes (marais salés, oiseaux qui y nichent), l'espace se réduit.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "2,8" }, { "value": "3,7" }, { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "non" } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "2,4" }, { "value": "3,7" }, { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "non" } } ] }, "expect": "mc:difference-rapport" },
+        { "response": { "parts": [ { "value": "2,8" }, { "value": "37" }, { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "non" } } ] }, "expect": "mc:conversion-mm-cm" },
+        { "response": { "parts": [ { "value": "2,8" }, { "value": "3,7" }, { "assign": { "c1": "oui", "c2": "oui", "c3": "oui", "c4": "oui" } } ] }, "expect": "mc:banquise-niveau" }
+      ]
+    }
+  ]
+}

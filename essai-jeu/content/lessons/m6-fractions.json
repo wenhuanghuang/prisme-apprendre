@@ -1,0 +1,505 @@
+{
+  "id": "m6-fractions",
+  "chapter": "6e-m-fractions",
+  "title": "Les fractions : partager, diviser, comparer",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.fractions.sens", "m6.fractions.quotient", "m6.fractions.operateur", "m6.fractions.egalites", "m6.fractions.comparer"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Une fraction est un partage, mais aussi le résultat exact d'une division. On apprend à la placer sur une demi-droite graduée, à prendre une fraction d'une quantité, à écrire des fractions égales et à comparer des fractions et des nombres mixtes.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Trois pizzas pour quatre",
+      "body": "Trois pizzas pour quatre amis affamés, et personne ne doit en avoir plus que les autres !\n\nLéo coupe chaque pizza en 4 parts égales : chacun prend une part de chaque pizza (en orange, la part de Léo).\n\nInès, elle, écrit simplement la division $3 ÷ 4$.\n\nQuelle part de pizza chacun reçoit-il ? Peut-on l'écrire avec une seule fraction ?",
+      "figure": {
+        "alt": "Trois pizzas, chacune coupée en 4 parts égales ; dans chaque pizza, une part est colorée en orange.",
+        "w": 440, "h": 200,
+        "frame": { "x": [0, 7.8], "y": [-0.55, 2.6] },
+        "items": [
+          { "type": "polygon", "points": [[1.3, 1.3], [2.4, 1.3], [2.3625, 1.5847], [2.2526, 1.85], [2.0778, 2.0778], [1.85, 2.2526], [1.5847, 2.3625], [1.3, 2.4]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[3.9, 1.3], [5.0, 1.3], [4.9625, 1.5847], [4.8526, 1.85], [4.6778, 2.0778], [4.45, 2.2526], [4.1847, 2.3625], [3.9, 2.4]], "fill": "orange", "color": "orange" },
+          { "type": "polygon", "points": [[6.5, 1.3], [7.6, 1.3], [7.5625, 1.5847], [7.4526, 1.85], [7.2778, 2.0778], [7.05, 2.2526], [6.7847, 2.3625], [6.5, 2.4]], "fill": "orange", "color": "orange" },
+          { "type": "circle", "center": [1.3, 1.3], "r": 1.1 },
+          { "type": "circle", "center": [3.9, 1.3], "r": 1.1 },
+          { "type": "circle", "center": [6.5, 1.3], "r": 1.1 },
+          { "type": "segment", "from": [0.2, 1.3], "to": [2.4, 1.3] },
+          { "type": "segment", "from": [1.3, 0.2], "to": [1.3, 2.4] },
+          { "type": "segment", "from": [2.8, 1.3], "to": [5.0, 1.3] },
+          { "type": "segment", "from": [3.9, 0.2], "to": [3.9, 2.4] },
+          { "type": "segment", "from": [5.4, 1.3], "to": [7.6, 1.3] },
+          { "type": "segment", "from": [6.5, 0.2], "to": [6.5, 2.4] },
+          { "type": "text", "x": 1.3, "y": -0.25, "text": "pizza 1", "size": "s" },
+          { "type": "text", "x": 3.9, "y": -0.25, "text": "pizza 2", "size": "s" },
+          { "type": "text", "x": 6.5, "y": -0.25, "text": "pizza 3", "size": "s" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🍕",
+          "title": "Une fraction, c'est un partage",
+          "body": "Dans $3/4$, le **dénominateur** 4 dit en combien de parts **égales** on partage l'unité ; le **numérateur** 3 dit combien de parts on prend. Sur une demi-droite, on partage chaque unité en 4 et on compte les petits intervalles depuis 0 : $5/4$ (cinq quarts) se place un peu après 1.",
+          "example": "Graduer en quarts une unité de 8 cm : on trace un trait tous les 2 cm.",
+          "figure": {
+            "alt": "Demi-droite graduée de 0 à 2 ; chaque unité est partagée en 4 ; un point est placé à la cinquième graduation.",
+            "w": 440, "h": 120,
+            "frame": { "x": [-0.4, 8.8], "y": [-1, 1.1] },
+            "items": [
+              { "type": "segment", "from": [0, 0], "to": [8.6, 0], "arrows": "end" },
+              { "type": "segment", "from": [0, -0.3], "to": [0, 0.3] },
+              { "type": "segment", "from": [1, -0.15], "to": [1, 0.15] },
+              { "type": "segment", "from": [2, -0.15], "to": [2, 0.15] },
+              { "type": "segment", "from": [3, -0.15], "to": [3, 0.15] },
+              { "type": "segment", "from": [4, -0.3], "to": [4, 0.3] },
+              { "type": "segment", "from": [5, -0.15], "to": [5, 0.15] },
+              { "type": "segment", "from": [6, -0.15], "to": [6, 0.15] },
+              { "type": "segment", "from": [7, -0.15], "to": [7, 0.15] },
+              { "type": "segment", "from": [8, -0.3], "to": [8, 0.3] },
+              { "type": "text", "x": 0, "y": -0.65, "text": "0" },
+              { "type": "text", "x": 4, "y": -0.65, "text": "1" },
+              { "type": "text", "x": 8, "y": -0.65, "text": "2" },
+              { "type": "point", "id": "A", "x": 5, "y": 0, "label": "5/4", "pos": "n", "style": "rond", "color": "orange" }
+            ]
+          }
+        },
+        {
+          "emoji": "➗",
+          "title": "Une fraction, c'est aussi un quotient",
+          "body": "$a/b$ est le nombre qui, multiplié par $b$, donne $a$ : $4 × (3/4) = 3$. C'est le résultat **exact** de la division $a ÷ b$. Ce nombre peut être un **entier** ($12/4 = 3$), un **décimal** ($3/4 = 0,75$) ou un nombre **non décimal** : $1/3$, car 1 ÷ 3 = 0,333… ne s'arrête jamais.",
+          "example": "Pour compléter 7 × … = 3, le nombre manquant est $3/7$.",
+          "reveal": {
+            "question": "Devine : quel nombre, multiplié par 3, donne 2 ?",
+            "answer": "C'est $2/3$, car $3 × (2/3) = 2$. Aucun nombre décimal ne convient : 2 ÷ 3 = 0,666… ne s'arrête jamais."
+          }
+        },
+        {
+          "emoji": "🧮",
+          "title": "Prendre une fraction d'une quantité",
+          "body": "Prendre les $2/3$ de 12, c'est calculer $(2/3) × 12$. On partage 12 en 3 parts égales : $12 ÷ 3 = 4$. Puis on prend 2 parts : $4 × 2 = 8$. Si la fraction est plus petite que 1, le résultat est plus petit que la quantité de départ.",
+          "example": "Les $3/4$ de 20 € : $20 ÷ 4 = 5$, puis $5 × 3 = 15$ €."
+        },
+        {
+          "emoji": "🟰",
+          "title": "Des fractions égales",
+          "body": "On ne change pas une fraction en **multipliant** (ou en **divisant**) son numérateur ET son dénominateur par le même nombre : $3/4 = 6/8 = 9/12$. Attention : **ajouter** le même nombre en haut et en bas change la fraction. $1/2$ n'est pas égal à $2/3$ !",
+          "example": "$10/15 = 2/3$ : on divise 10 et 15 par 5."
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Comparer et encadrer",
+          "body": "Même dénominateur : la plus grande fraction a le plus grand numérateur. Même numérateur : plus le dénominateur est **grand**, plus les parts sont **petites**. Sinon, on écrit les fractions avec le même dénominateur. Un **nombre mixte** aide à encadrer : $7/4 = 1 + 3/4$, donc $7/4$ est entre 1 et 2.",
+          "reveal": {
+            "question": "Devine : qui est le plus grand, $1/3$ ou $1/4$ ?",
+            "answer": "$1/3$ ! Une pizza partagée en 3 donne des parts plus grosses qu'une pizza partagée en 4. Le plus grand dénominateur ne donne pas la plus grande fraction."
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : les bonbons de Sami",
+      "steps": [
+        { "text": "Énoncé : un paquet contient 40 bonbons. Sami en mange les $3/5$. Combien de bonbons mange-t-il ? Est-ce plus ou moins que la moitié du paquet ?" },
+        {
+          "text": "Prendre les $3/5$ de 40, c'est calculer $(3/5) × 40$. On partage d'abord les 40 bonbons en 5 parts égales :",
+          "math": "40 ÷ 5 = 8",
+          "figure": {
+            "alt": "Une barre de 40 bonbons partagée en 5 parts égales de 8 bonbons ; 3 parts sont colorées.",
+            "w": 400, "h": 120,
+            "frame": { "x": [-0.2, 8.2], "y": [-0.2, 1.9] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 1.6, "h": 1.2, "fill": "maths", "label": "8" },
+              { "type": "rect", "x": 1.6, "y": 0, "w": 1.6, "h": 1.2, "fill": "maths", "label": "8" },
+              { "type": "rect", "x": 3.2, "y": 0, "w": 1.6, "h": 1.2, "fill": "maths", "label": "8" },
+              { "type": "rect", "x": 4.8, "y": 0, "w": 1.6, "h": 1.2, "label": "8" },
+              { "type": "rect", "x": 6.4, "y": 0, "w": 1.6, "h": 1.2, "label": "8" },
+              { "type": "text", "x": 4, "y": 1.6, "text": "40 bonbons" }
+            ]
+          }
+        },
+        { "text": "Sami prend 3 de ces 5 parts :", "math": "3 × 8 = 24" },
+        { "text": "Autre chemin, aussi juste : multiplier d'abord, puis diviser.", "math": "(3 × 40) ÷ 5 = 24" },
+        { "text": "Contrôle : $3/5 = 6/10$, c'est plus que $5/10$, la moitié. Et 24 est bien plus que 20, la moitié de 40 : le résultat est cohérent. Sami a mangé 24 bonbons." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Un réflexe avant chaque réponse : la fraction est-elle plus petite ou plus grande que 1 ?",
+      "exercises": ["m6-fractions-colorier", "m6-fractions-quotient", "m6-fractions-nature", "m6-fractions-droite", "m6-fractions-operateur", "m6-fractions-egalites"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["m6-fractions-expliquer"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Réfléchir et résoudre",
+      "exercises": ["m6-fractions-comparer", "m6-fractions-crepes"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le cross du collège",
+      "body": "C'est toi qui installes les stands le long du parcours du cross : ravitaillement, photographe… et tu suis la course de tes camarades.",
+      "exercises": ["m6-fractions-cross"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **À retenir.** $a/b$ est le nombre qui, multiplié par $b$, donne $a$ : c'est le quotient exact de $a$ par $b$. Prendre les $a/b$ d'une quantité : diviser par $b$, puis multiplier par $a$. Une fraction ne change pas si l'on multiplie (ou divise) son numérateur et son dénominateur par le même nombre.\n\n- **« $1/3 < 1/4$ car 3 < 4 » ?** Non : partager en 3 donne des parts plus grosses qu'en 4, donc $1/3 > 1/4$.\n- **Ajouter le même nombre en haut et en bas.** $1/2$ et $2/3$ ne sont pas égales : on multiplie ou on divise, on n'ajoute jamais.\n- **Inverser numérateur et dénominateur.** 3 pizzas pour 4 amis : $3/4$ de pizza chacun, pas $4/3$.\n- **Croire que $2/3 = 0,67$.** 0,67 n'est qu'une valeur approchée : $2/3$ n'est pas un nombre décimal."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des fractions à placer, à comparer et à appliquer dans quelques jours, avec d'autres nombres."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Deux défis : encadrer et intercaler des fractions grâce aux nombres mixtes, puis graduer toi-même une demi-droite.",
+      "exercises": ["m6-fractions-encadrer", "m6-fractions-graduer"]
+    },
+    "expert": {
+      "intro": "Facultatif : une question à l'envers (retrouver le tout à partir d'une partie) et une fraction mystère coincée entre deux autres.",
+      "exercises": ["m6-fractions-envers", "m6-fractions-mystere"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-fractions-colorier", "type": "numeric", "skill": "m6.fractions.sens", "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:part-sur-reste", "mc:fraction-inversee"], "expectedSeconds": 60,
+      "params": { "b": { "choice": [4, 5, 6, 8] }, "a": { "int": [1, 7] } },
+      "constraints": ["a < b"],
+      "prompt": "La barre est partagée en parts égales. Quelle fraction de la barre est coloriée ? Écris-la sous la forme $a/b$ (par exemple 2/7).",
+      "figure": {
+        "alt": "Une barre partagée en parts égales ; certaines parts, à gauche, sont colorées.",
+        "w": 420, "h": 110,
+        "frame": { "x": [-0.2, 8.2], "y": [-0.2, 1.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": "{8*a/b}", "h": 1.2, "fill": "maths" },
+          { "type": "rect", "x": 0, "y": 0, "w": 8, "h": 1.2 },
+          { "type": "segment", "from": ["{min(8*1/b;8)}", 0], "to": ["{min(8*1/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*2/b;8)}", 0], "to": ["{min(8*2/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*3/b;8)}", 0], "to": ["{min(8*3/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*4/b;8)}", 0], "to": ["{min(8*4/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*5/b;8)}", 0], "to": ["{min(8*5/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*6/b;8)}", 0], "to": ["{min(8*6/b;8)}", 1.2] },
+          { "type": "segment", "from": ["{min(8*7/b;8)}", 0], "to": ["{min(8*7/b;8)}", 1.2] }
+        ]
+      },
+      "answer": "a/b",
+      "misconceptions": [
+        { "answer": "a/(b-a)", "id": "mc:part-sur-reste", "error": "lecture", "feedback": "Tu as comparé les parts coloriées aux parts NON coloriées. Le dénominateur compte TOUTES les parts de la barre, coloriées ou non." },
+        { "answer": "b/a", "id": "mc:fraction-inversee", "error": "notion", "feedback": "Tu as inversé le haut et le bas. Le numérateur (en haut) compte les parts coloriées ; le dénominateur (en bas) compte toutes les parts de la barre." }
+      ],
+      "hints": ["Compte toutes les parts de la barre : c'est le dénominateur.", "Compte les parts coloriées : c'est le numérateur.", "La fraction s'écrit : parts coloriées / nombre total de parts."],
+      "solution": "La barre est partagée en {b} parts égales et {a} parts sont coloriées : la fraction coloriée est $ {a}/{b} $.",
+      "selfTest": [
+        { "response": { "value": "{a}/{b}" }, "expect": "correct" },
+        { "response": { "value": "{b}/{a}" }, "expect": "mc:fraction-inversee" }
+      ]
+    },
+    {
+      "id": "m6-fractions-quotient", "type": "composite", "skill": "m6.fractions.quotient", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:quotient-inverse", "mc:multiplie-haut-bas", "mc:trou-soustraction"], "expectedSeconds": 150,
+      "params": { "a": { "int": [1, 9] }, "b": { "int": [2, 9] }, "c": { "int": [3, 9] }, "k": { "int": [2, 9] } },
+      "constraints": ["a != b", "mod(a;b) != 0", "c != k"],
+      "prompt": "Rappel : $a/b$ est le nombre qui, multiplié par $b$, donne $a$. Complète chaque égalité à trous.",
+      "parts": [
+        { "type": "numeric", "prompt": "$ {b} × … = {a} $ : écris le nombre manquant sous forme de fraction.", "answer": "a/b",
+          "misconceptions": [ { "answer": "b/a", "id": "mc:quotient-inverse", "error": "notion", "feedback": "Tu as inversé les deux nombres. Vérifie en multipliant ta réponse par {b} : tu ne retrouves pas {a}. Le nombre que l'on doit obtenir s'écrit en haut de la fraction." } ] },
+        { "type": "numeric", "prompt": "$ {b} × ({a}/{b}) = … $", "answer": "a",
+          "misconceptions": [ { "answer": "a/b", "id": "mc:multiplie-haut-bas", "error": "notion", "feedback": "Multiplier une fraction par {b}, ce n'est pas multiplier le haut ET le bas (cela redonne une fraction égale à celle du départ). Relis le rappel en haut de l'exercice." } ] },
+        { "type": "numeric", "prompt": "$ … × {c} = {c*k} $", "answer": "k",
+          "misconceptions": [ { "answer": "c*k - c", "id": "mc:trou-soustraction", "error": "methode", "feedback": "C'est une égalité MULTIPLICATIVE : on cherche le nombre qui, multiplié par {c}, donne {c*k}. Une soustraction ne convient pas : cherche dans la table de {c}." } ] }
+      ],
+      "hints": ["Le nombre manquant, multiplié par {b}, doit donner {a} : c'est le quotient de {a} par {b}.", "Le quotient de $a$ par $b$ s'écrit $a/b$ : le nombre à partager en haut, le diviseur en bas.", "Pour la dernière égalité, récite la table de {c}."],
+      "solution": "Le nombre qui, multiplié par {b}, donne {a} est le quotient $ {a}/{b} $ : $ {b} × ({a}/{b}) = {a} $. C'est la définition même de la fraction, d'où la deuxième égalité : $ {b} × ({a}/{b}) = {a} $. Enfin $ {k} × {c} = {c*k} $ : le nombre manquant est {k}. Une fraction peut donc être un nombre entier : $ {c*k}/{c} = {k} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}/{b}" }, { "value": "{a}" }, { "value": "{k}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{b}/{a}" }, { "value": "{a}" }, { "value": "{k}" } ] }, "expect": "mc:quotient-inverse" }
+      ]
+    },
+    {
+      "id": "m6-fractions-nature", "type": "categorize", "skill": "m6.fractions.quotient", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:arrondi-decimal", "mc:fraction-pas-entier"], "expectedSeconds": 180,
+      "prompt": "Une fraction peut être un nombre entier, un nombre décimal non entier ou un nombre non décimal. Pour chacune, effectue la division du numérateur par le dénominateur, puis range-la.",
+      "categories": [ { "id": "entier", "label": "Nombre entier" }, { "id": "decimal", "label": "Décimal non entier" }, { "id": "nondecimal", "label": "Non décimal" } ],
+      "items": [
+        { "id": "n1", "label": "$12/4$", "category": "entier" },
+        { "id": "n2", "label": "$3/4$", "category": "decimal" },
+        { "id": "n3", "label": "$1/3$", "category": "nondecimal" },
+        { "id": "n4", "label": "$7/2$", "category": "decimal" },
+        { "id": "n5", "label": "$20/5$", "category": "entier" },
+        { "id": "n6", "label": "$2/3$", "category": "nondecimal" },
+        { "id": "n7", "label": "$9/10$", "category": "decimal" },
+        { "id": "n8", "label": "$15/3$", "category": "entier" }
+      ],
+      "misconceptions": [
+        { "item": "n6", "category": "decimal", "id": "mc:arrondi-decimal", "error": "notion", "feedback": "Pose la division 2 ÷ 3 : les chiffres après la virgule s'arrêtent-ils un jour ? Une valeur approchée comme 0,67 ne suffit pas pour dire qu'un nombre est décimal." },
+        { "item": "n3", "category": "decimal", "id": "mc:arrondi-decimal", "error": "notion", "feedback": "Pose la division 1 ÷ 3 : les chiffres après la virgule s'arrêtent-ils un jour ? Une valeur approchée comme 0,33 ne suffit pas pour dire qu'un nombre est décimal." },
+        { "item": "n1", "id": "mc:fraction-pas-entier", "error": "notion", "feedback": "Effectue vraiment la division 12 ÷ 4 avant de choisir : reste-t-il des chiffres après la virgule ?" }
+      ],
+      "hints": ["Pour chaque fraction, divise le numérateur par le dénominateur.", "La division tombe juste, sans virgule : nombre entier. Elle s'arrête après la virgule : nombre décimal.", "Si les chiffres après la virgule se répètent sans jamais s'arrêter (0,333…), le nombre n'est pas décimal."],
+      "solution": "Nombres entiers : $12/4 = 3$, $20/5 = 4$, $15/3 = 5$. Décimaux non entiers : $3/4 = 0,75$, $7/2 = 3,5$, $9/10 = 0,9$. Non décimaux : $1/3$ (0,333…) et $2/3$ (0,666…), car la division ne s'arrête jamais : on les écrit sous forme de fraction, c'est leur valeur exacte.",
+      "selfTest": [
+        { "response": { "assign": { "n1": "entier", "n2": "decimal", "n3": "nondecimal", "n4": "decimal", "n5": "entier", "n6": "nondecimal", "n7": "decimal", "n8": "entier" } }, "expect": "correct" },
+        { "response": { "assign": { "n1": "entier", "n2": "decimal", "n3": "nondecimal", "n4": "decimal", "n5": "entier", "n6": "decimal", "n7": "decimal", "n8": "entier" } }, "expect": "mc:arrondi-decimal" }
+      ]
+    },
+    {
+      "id": "m6-fractions-droite", "type": "numberline", "skill": "m6.fractions.sens", "skills": ["m6.fractions.egalites"], "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:graduation-unite"], "expectedSeconds": 150,
+      "params": { "a": { "int": [1, 3] }, "b": { "choice": [1, 3, 5] }, "c": { "int": [5, 11] } },
+      "constraints": ["a != 2*b", "c != 2*b", "mod(c;4) != 0"],
+      "prompt": "La demi-droite est graduée en quarts : chaque unité est partagée en 4 parts égales. Place les points :\n- $ A = {a}/4 $ ;\n- $ B = {b}/2 $ ;\n- $ C = {c}/4 $.",
+      "min": 0, "max": 3, "step": 0.25, "tolerance": 0.1,
+      "points": [ { "label": "A", "value": "a/4" }, { "label": "B", "value": "b/2" }, { "label": "C", "value": "c/4" } ],
+      "hints": ["Entre 0 et 1, il y a 4 petits intervalles : chacun vaut $1/4$.", "$ {c}/4 $ : compte {c} petits intervalles depuis 0. Tu dépasses 1, car {c} est plus grand que 4.", "Un demi, c'est deux quarts : écris $ {b}/2 $ en quarts avant de le placer."],
+      "solution": "A est à {a} petit(s) intervalle(s) de 0. $ {b}/2 = {2*b}/4 $ : B est à {2*b} petits intervalles de 0. C est à {c} petits intervalles de 0, entre {floor(c/4)} et {floor(c/4)+1}, car $ {c}/4 = {floor(c/4)} + {mod(c;4)}/4 $.",
+      "selfTest": [
+        { "response": { "positions": { "A": "{a/4}", "B": "{b/2}", "C": "{c/4}" } }, "expect": "correct" },
+        { "response": { "positions": { "A": "{a}", "B": "{b/2}", "C": "{c/4}" } }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-fractions-operateur", "type": "table", "skill": "m6.fractions.operateur", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:oubli-division", "mc:oubli-numerateur", "mc:operateur-inverse"], "expectedSeconds": 180,
+      "params": { "b": { "choice": [3, 4, 5, 6] }, "a": { "int": [2, 5] }, "m": { "int": [2, 9] }, "n": { "int": [2, 9] } },
+      "constraints": ["a < b", "pgcd(a;b) = 1"],
+      "prompt": "Prendre une fraction d'un nombre, c'est multiplier : les $ {a}/{b} $ de {b*m}, c'est $ ({a}/{b}) × {b*m} $. Astuce : divise d'abord par le dénominateur, puis multiplie par le numérateur. Complète le tableau.",
+      "columns": ["Calcul", "Résultat"],
+      "rows": [ ["$ 1/{b} $ de {b*m}", "?r0c1"], ["$ {a}/{b} $ de {b*m}", "?r1c1"], ["$ 3/4 $ de {4*n}", "?r2c1"], ["$ 5/2 $ de {2*n}", "?r3c1"] ],
+      "cells": {
+        "r0c1": { "answer": "m", "misconceptions": [ { "answer": "b*b*m", "id": "mc:operateur-multiplie", "error": "notion", "feedback": "Prendre une fraction de numérateur 1, c'est partager la quantité en parts égales : on divise par le dénominateur, on ne multiplie pas." } ] },
+        "r1c1": { "answer": "a*m", "misconceptions": [
+          { "answer": "a*b*m", "id": "mc:oubli-division", "error": "methode", "feedback": "Tu as multiplié par {a} mais oublié de diviser par {b} : ton résultat est plus grand que {b*m}, alors qu'on n'en prend qu'une partie." },
+          { "answer": "m", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Ce nombre n'est que $ 1/{b} $ de {b*m}. Les $ {a}/{b} $, c'est {a} parts de cette taille." } ] },
+        "r2c1": { "answer": "3*n", "misconceptions": [ { "answer": "16*n/3", "id": "mc:operateur-inverse", "error": "notion", "feedback": "Tu as divisé par 3 et multiplié par 4 : c'est l'inverse. On divise par le dénominateur, puis on multiplie par le numérateur." } ] },
+        "r3c1": { "answer": "5*n", "misconceptions": [ { "answer": "4*n/5", "id": "mc:operateur-inverse", "error": "notion", "feedback": "Tu as divisé par 5 et multiplié par 2 : c'est l'inverse. Comme $5/2$ est plus grand que 1, le résultat doit dépasser {2*n}." } ] }
+      },
+      "hints": ["$ 1/{b} $ de {b*m} : partage {b*m} en {b} parts égales.", "Les $ {a}/{b} $ de {b*m}, c'est {a} fois $ 1/{b} $ de {b*m}.", "$5/2$ est plus grand que 1 : son résultat sera plus grand que {2*n}."],
+      "solution": "$ 1/{b} $ de {b*m} : $ {b*m} ÷ {b} = {m} $. Les $ {a}/{b} $ de {b*m} : $ {m} × {a} = {a*m} $. Les $3/4$ de {4*n} : $ ({4*n} ÷ 4) × 3 = {3*n} $. Les $5/2$ de {2*n} : $ ({2*n} ÷ 2) × 5 = {5*n} $, plus que {2*n}, car $5/2$ est plus grand que 1.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "{m}", "r1c1": "{a*m}", "r2c1": "{3*n}", "r3c1": "{5*n}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "{m}", "r1c1": "{a*b*m}", "r2c1": "{3*n}", "r3c1": "{5*n}" } }, "expect": "mc:oubli-division" }
+      ]
+    },
+    {
+      "id": "m6-fractions-egalites", "type": "composite", "skill": "m6.fractions.egalites", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "manipulation", "targets": ["mc:egalite-addition"], "expectedSeconds": 180,
+      "params": { "a": { "int": [1, 5] }, "b": { "choice": [2, 3, 4, 5, 6] }, "k": { "int": [2, 4] }, "c": { "int": [1, 6] }, "d": { "choice": [3, 4, 5, 7] }, "j": { "int": [2, 5] }, "e": { "int": [1, 8] }, "f": { "choice": [5, 7, 9] }, "g": { "int": [2, 5] } },
+      "constraints": ["a < b", "b*k <= 24", "c < d", "pgcd(c;d) = 1", "e < f"],
+      "prompt": "Fractions égales : on multiplie (ou on divise) le numérateur ET le dénominateur par le même nombre. Avec les barres, colorie $ {a}/{b} $ d'une barre, puis coupe chaque part en {k} morceaux. Complète ensuite les égalités.",
+      "activity": { "widget": "fraction-bars", "config": { "fractions": ["{a}/{b}"], "maxDen": 24 } },
+      "parts": [
+        { "type": "numeric", "prompt": "$ {a}/{b} = … /{b*k} $ : quel est le numérateur manquant ?", "answer": "a*k",
+          "misconceptions": [ { "answer": "a + b*k - b", "id": "mc:egalite-addition", "error": "notion", "feedback": "Tu as ajouté le même nombre en haut et en bas. Mais ajouter change la fraction : $1/2$ et $2/3$ ne sont pas égales. Le dénominateur a été MULTIPLIÉ : fais la même multiplication en haut." } ] },
+        { "type": "numeric", "prompt": "$ {c*j}/{d*j} = … /{d} $ : quel est le numérateur manquant ?", "answer": "c",
+          "misconceptions": [ { "answer": "c*j - d*j + d", "id": "mc:egalite-addition", "error": "notion", "feedback": "Tu as soustrait le même nombre en haut et en bas : cela change la fraction. Le dénominateur a été DIVISÉ : fais la même division en haut." } ] },
+        { "type": "numeric", "prompt": "$ {e}/{f} = {e*g}/… $ : quel est le dénominateur manquant ?", "answer": "f*g",
+          "misconceptions": [ { "answer": "f + e*g - e", "id": "mc:egalite-addition", "error": "notion", "feedback": "Tu as ajouté au lieu de multiplier. Par combien le numérateur a-t-il été multiplié ? Multiplie le dénominateur par le même nombre." } ] }
+      ],
+      "hints": ["Par combien a-t-on multiplié {b} pour obtenir {b*k} ?", "Fais toujours la même opération en haut et en bas : multiplier, ou diviser, par le même nombre.", "Pour la deuxième égalité : par combien a-t-on divisé {d*j} pour obtenir {d} ?"],
+      "solution": "$ {a}/{b} = ({a} × {k})/({b} × {k}) = {a*k}/{b*k} $ : chacune des {a} parts coloriées est coupée en {k} morceaux. $ {c*j}/{d*j} = ({c*j} ÷ {j})/({d*j} ÷ {j}) = {c}/{d} $. $ {e}/{f} = ({e} × {g})/({f} × {g}) = {e*g}/{f*g} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a*k}" }, { "value": "{c}" }, { "value": "{f*g}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a+b*k-b}" }, { "value": "{c}" }, { "value": "{f*g}" } ] }, "expect": "mc:egalite-addition" }
+      ]
+    },
+    {
+      "id": "m6-fractions-expliquer", "type": "open", "skill": "m6.fractions.comparer", "track": "classe", "role": "libre", "difficulty": 2,
+      "representation": "verbale", "targets": ["mc:grand-denominateur"], "expectedSeconds": 300, "minWords": 20,
+      "prompt": "Hugo affirme : « $1/3$ est plus petit que $1/4$, car 3 est plus petit que 4. »\n\nExplique-lui son erreur. Appuie-toi sur un partage (pizza, tablette, barre…), puis conclus en comparant $1/3$ et $1/4$.",
+      "criteria": [
+        { "id": "c1", "label": "J'explique qu'en partageant en 3, les parts sont plus grosses qu'en partageant en 4", "keywords": [["plus grosse", "plus grande", "plus gros", "plus grand", "moins de parts"]] },
+        { "id": "c2", "label": "Je conclus : 1/3 est plus grand que 1/4", "keywords": [["1/3 est plus grand", "1/3 > 1/4", "1/4 est plus petit", "1/4 < 1/3", "plus grand que 1/4"]] },
+        { "id": "c3", "label": "Je m'appuie sur un exemple concret (pizza, tablette, barre) ou sur des douzièmes (4/12 et 3/12)", "keywords": [["pizza", "tablette", "gateau", "barre", "4/12", "3/12", "douzieme"]] }
+      ],
+      "models": [
+        "Hugo se trompe. Si on partage une pizza en 3 parts égales, chaque part est plus grosse que si on la partage en 4 parts égales : moins il y a de parts, plus elles sont grandes. Donc 1/3 est plus grand que 1/4.",
+        "On peut écrire les deux fractions en douzièmes : 1/3 = 4/12 et 1/4 = 3/12. Comme 4/12 est plus grand que 3/12, 1/3 est plus grand que 1/4. Le dénominateur indique la taille des parts, pas leur valeur."
+      ],
+      "hints": ["Dessine deux pizzas identiques : partage la première en 3, la seconde en 4. Quelle part est la plus grosse ?", "Tu peux aussi écrire $1/3$ et $1/4$ avec le dénominateur 12."],
+      "solution": "Hugo a comparé les dénominateurs comme des nombres entiers. Mais le dénominateur dit en combien de parts on partage : plus il est grand, plus les parts sont petites. Une pizza coupée en 3 donne des parts plus grosses qu'une pizza coupée en 4, donc $1/3$ est plus grand que $1/4$. En douzièmes : $1/3 = 4/12$ et $1/4 = 3/12$.",
+      "selfTest": [ { "response": { "text": "Si on partage une pizza en 3, les parts sont plus grosses que si on la partage en 4. Donc 1/3 est plus grand que 1/4 : Hugo se trompe.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" } ]
+    },
+    {
+      "id": "m6-fractions-comparer", "type": "order", "skill": "m6.fractions.comparer", "skills": ["m6.fractions.egalites"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:grand-denominateur"], "expectedSeconds": 180, "errorType": "notion",
+      "prompt": "Range ces nombres du plus petit au plus grand. Astuce : écris-les tous en sixièmes, et repère ceux qui dépassent 1.",
+      "orderLabel": "Du plus petit au plus grand",
+      "items": [
+        { "id": "f1", "label": "$1/6$" },
+        { "id": "f2", "label": "$1/3$" },
+        { "id": "f3", "label": "$1/2$" },
+        { "id": "f4", "label": "$5/6$" },
+        { "id": "f5", "label": "$7/6$" },
+        { "id": "f6", "label": "$1 + 1/2$" }
+      ],
+      "hints": ["$1/3 = 2/6$ et $1/2 = 3/6$ : multiplie le haut et le bas par le même nombre.", "$7/6$ dépasse 1, car $6/6 = 1$.", "$1 + 1/2 = 6/6 + 3/6$."],
+      "solution": "En sixièmes : $1/6$ ; $1/3 = 2/6$ ; $1/2 = 3/6$ ; $5/6$ ; $7/6$ ; $1 + 1/2 = 9/6$. L'ordre est donc : $1/6$, $1/3$, $1/2$, $5/6$, $7/6$, $1 + 1/2$. Attention : $1/6$ est plus petit que $1/3$, même si 6 est plus grand que 3, car un sixième est une part plus petite qu'un tiers.",
+      "selfTest": [
+        { "response": { "order": ["f1", "f2", "f3", "f4", "f5", "f6"] }, "expect": "correct" },
+        { "response": { "order": ["f2", "f1", "f3", "f4", "f5", "f6"] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m6-fractions-crepes", "type": "composite", "skill": "m6.fractions.quotient", "skills": ["m6.fractions.operateur", "m6.fractions.comparer"], "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:quotient-inverse", "mc:oubli-numerateur", "mc:operateur-inverse"], "expectedSeconds": 300,
+      "params": { "p": { "int": [4, 8] }, "q": { "int": [3, 5] }, "n": { "choice": [24, 28, 32] } },
+      "constraints": ["p > q", "mod(p;q) != 0"],
+      "prompt": "Goûter de fin d'année ! {p} crêpes identiques sont partagées équitablement entre {q} amis.",
+      "parts": [
+        { "type": "numeric", "prompt": "Quelle quantité de crêpe chacun reçoit-il ? Écris une fraction.", "answer": "p/q",
+          "misconceptions": [ { "answer": "q/p", "id": "mc:quotient-inverse", "error": "notion", "feedback": "Tu as inversé les deux nombres : en haut, ce que l'on partage ; en bas, le nombre de parts égales." } ] },
+        { "type": "text", "prompt": "Chacun reçoit-il plus ou moins d'une crêpe entière ? Réponds par « plus » ou par « moins ».", "accept": ["plus", "plus d'une crêpe", "plus d'une", "plus d'une crepe"],
+          "misconceptions": [ { "answer": "moins", "id": "mc:comparer-a-un", "error": "raisonnement", "feedback": "Compare le nombre de crêpes au nombre d'amis. Si chacun avait exactement une crêpe entière, combien de crêpes faudrait-il ?" } ] },
+        { "type": "numeric", "prompt": "La classe de {n} élèves arrive : les $3/4$ des élèves veulent du chocolat sur leur crêpe. Combien d'élèves veulent du chocolat ?", "answer": "3*n/4",
+          "misconceptions": [
+            { "answer": "n/4", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Ce nombre ne représente qu'un quart des élèves. Il en faut trois quarts." },
+            { "answer": "4*n/3", "id": "mc:operateur-inverse", "error": "notion", "feedback": "Ton résultat dépasse le nombre d'élèves de la classe ! Divise par le dénominateur, puis multiplie par le numérateur." }
+          ] }
+      ],
+      "hints": ["Partager {p} crêpes entre {q} amis, c'est diviser {p} par {q}.", "Compare la fraction obtenue à $ {q}/{q} $, qui vaut 1.", "Les $3/4$ de {n} : commence par $ {n} ÷ 4 $."],
+      "solution": "Chacun reçoit $ {p} ÷ {q} = {p}/{q} $ de crêpe. Comme {p} est plus grand que {q}, $ {p}/{q} $ est plus grand que $ {q}/{q} = 1 $ : chacun a plus d'une crêpe ({floor(p/q)} crêpe(s) entière(s) et $ {mod(p;q)}/{q} $ de crêpe). Les $3/4$ de {n} élèves : $ ({n} ÷ 4) × 3 = {3*n/4} $ élèves.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{p}/{q}" }, { "value": "plus" }, { "value": "{3*n/4}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{q}/{p}" }, { "value": "moins" }, { "value": "{3*n/4}" } ] }, "expect": "mc:quotient-inverse" }
+      ]
+    },
+    {
+      "id": "m6-fractions-cross", "type": "composite", "skill": "m6.fractions.operateur", "skills": ["m6.fractions.sens", "m6.fractions.comparer"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:operateur-inverse", "mc:oubli-numerateur", "mc:partie-reste", "mc:comparer-numerateurs"], "expectedSeconds": 480,
+      "params": { "L": { "choice": [1200, 2400, 3000, 3600] } },
+      "prompt": "Le parcours du cross mesure {L} m, du départ (0) à l'arrivée.",
+      "parts": [
+        { "type": "numeric", "prompt": "Le ravitaillement est installé aux $2/3$ du parcours. À combien de mètres du départ se trouve-t-il ?", "answer": "2*L/3",
+          "misconceptions": [
+            { "answer": "3*L/2", "id": "mc:operateur-inverse", "error": "notion", "feedback": "Ton résultat dépasse la longueur du parcours ! Divise par le dénominateur, puis multiplie par le numérateur." },
+            { "answer": "L/3", "id": "mc:oubli-numerateur", "error": "methode", "feedback": "Ce n'est qu'un tiers du parcours : il en faut deux tiers." }
+          ] },
+        { "type": "numberline", "prompt": "Sur cette demi-droite, 0 est le départ et 1 représente le parcours entier (l'unité est partagée en 12). Place R, le ravitaillement (aux $2/3$ du parcours), et P, le photographe (au $1/4$ du parcours).",
+          "min": 0, "max": 1, "step": 0.08333333333333333, "tolerance": 0.04,
+          "points": [ { "label": "R", "value": "2/3" }, { "label": "P", "value": "1/4" } ] },
+        { "type": "numeric", "prompt": "Lucas a déjà couru les $5/6$ du parcours. Combien de mètres lui reste-t-il à courir ?", "answer": "L/6",
+          "misconceptions": [ { "answer": "5*L/6", "id": "mc:partie-reste", "error": "lecture", "feedback": "Ça, c'est la distance déjà courue. La question demande ce qu'il RESTE : quelle fraction du parcours manque encore ?" } ] },
+        { "type": "text", "prompt": "Nora, elle, a couru les $3/4$ du parcours. Qui est le plus loin du départ : Lucas ou Nora ?", "accept": ["lucas", "c'est lucas"],
+          "misconceptions": [ { "answer": "nora", "id": "mc:comparer-numerateurs", "error": "raisonnement", "feedback": "Les dénominateurs sont différents : écris les deux fractions avec le même dénominateur (12) avant de les comparer." } ] }
+      ],
+      "hints": ["Les $2/3$ de {L} m : commence par $ {L} ÷ 3 $.", "Sur la demi-droite, chaque petit intervalle vaut $1/12$ : écris $2/3$ et $1/4$ en douzièmes.", "Il reste à Lucas $1/6$ du parcours. Pour comparer : $5/6 = 10/12$ et $3/4 = 9/12$."],
+      "solution": "Ravitaillement : $ ({L} ÷ 3) × 2 = {2*L/3} $ m. Sur la demi-droite : $2/3 = 8/12$ (8e graduation) et $1/4 = 3/12$ (3e graduation). Il reste à Lucas $1/6$ du parcours : $ {L} ÷ 6 = {L/6} $ m. Enfin $5/6 = 10/12$ et $3/4 = 9/12$ : Lucas est un peu plus loin que Nora.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{2*L/3}" }, { "positions": { "R": "2/3", "P": "1/4" } }, { "value": "{L/6}" }, { "value": "Lucas" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{3*L/2}" }, { "positions": { "R": "2/3", "P": "1/4" } }, { "value": "{L/6}" }, { "value": "Lucas" } ] }, "expect": "mc:operateur-inverse" }
+      ]
+    },
+    {
+      "id": "m6-fractions-remed-parts", "type": "numeric", "skill": "m6.fractions.sens", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "concrete", "targets": ["mc:grand-denominateur"], "expectedSeconds": 60,
+      "params": { "b": { "int": [3, 6] }, "c": { "int": [7, 12] } },
+      "prompt": "Rappel ciblé : deux tablettes de chocolat identiques. La première est partagée en {b} parts égales, la seconde en {c} parts égales. Dans quelle tablette les parts sont-elles les plus grosses ? Donne le nombre de parts de cette tablette.",
+      "answer": "b",
+      "misconceptions": [ { "answer": "c", "id": "mc:grand-denominateur", "error": "notion", "feedback": "Plus on partage une tablette en un grand nombre de parts, plus chaque part est petite ! Imagine la tablette partagée entre beaucoup d'amis." } ],
+      "hints": ["Imagine la même tablette partagée entre {b} amis, puis entre {c} amis.", "Quand il y a plus de parts, chaque part est-elle plus grosse ou plus petite ?"],
+      "solution": "La tablette partagée en {b} parts a les plus grosses parts : moins il y a de parts, plus elles sont grandes. Donc $ 1/{b} $ est plus grand que $ 1/{c} $.",
+      "selfTest": [ { "response": { "value": "{b}" }, "expect": "correct" }, { "response": { "value": "{c}" }, "expect": "mc:grand-denominateur" } ]
+    },
+    {
+      "id": "m6-fractions-encadrer", "type": "composite", "skill": "m6.fractions.comparer", "skills": ["m6.fractions.egalites"], "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:mixte-oubli-division", "mc:egal-pas-entre"], "expectedSeconds": 300,
+      "params": { "d": { "choice": [3, 4, 5, 6] }, "q": { "int": [1, 5] }, "r": { "int": [1, 5] }, "n": { "expr": "q*d + r" } },
+      "constraints": ["r < d"],
+      "prompt": "Un nombre mixte, c'est un entier plus une fraction plus petite que 1. Exemple : $7/4 = 4/4 + 3/4 = 1 + 3/4$. À toi avec $ {n}/{d} $.",
+      "parts": [
+        { "type": "numeric", "prompt": "Complète : $ {n}/{d} = … + {r}/{d} $ (écris le nombre entier manquant).", "answer": "q",
+          "misconceptions": [ { "answer": "q*d", "id": "mc:mixte-oubli-division", "error": "methode", "feedback": "Tu as gardé un numérateur à la place d'un nombre d'unités. Une fraction de dénominateur {d} n'est pas égale à son numérateur : regroupe les parts par {d} pour former des unités entières." } ] },
+        { "type": "numeric", "prompt": "Encadre $ {n}/{d} $ entre deux entiers qui se suivent : $ {q} < {n}/{d} < … $", "answer": "q+1" },
+        { "type": "numeric", "prompt": "Intercale : trouve une fraction de dénominateur {2*d} strictement comprise entre $ {n}/{d} $ et $ {n+1}/{d} $. Écris seulement son numérateur.", "answer": "2*n+1",
+          "misconceptions": [
+            { "answer": "2*n", "id": "mc:egal-pas-entre", "error": "raisonnement", "feedback": "Cette fraction est ÉGALE à l'une des deux bornes : elle n'est pas strictement entre elles." },
+            { "answer": "2*n+2", "id": "mc:egal-pas-entre", "error": "raisonnement", "feedback": "Cette fraction est ÉGALE à l'une des deux bornes : elle n'est pas strictement entre elles." }
+          ] }
+      ],
+      "hints": ["Combien de fois {d} dans {n} ? Cherche dans la table de {d}.", "$ {n}/{d} = {q*d}/{d} + {r}/{d} $, et $ {q*d}/{d} $ est un nombre entier.", "Écris les deux fractions avec le dénominateur {2*d} : multiplie le haut et le bas par 2."],
+      "solution": "$ {n}/{d} = {q*d}/{d} + {r}/{d} = {q} + {r}/{d} $. Donc $ {n}/{d} $ est compris entre {q} et {q+1}. Avec le dénominateur {2*d} : $ {n}/{d} = {2*n}/{2*d} $ et $ {n+1}/{d} = {2*n+2}/{2*d} $ ; la fraction $ {2*n+1}/{2*d} $ est strictement entre les deux.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{q}" }, { "value": "{q+1}" }, { "value": "{2*n+1}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{q*d}" }, { "value": "{q+1}" }, { "value": "{2*n+1}" } ] }, "expect": "mc:mixte-oubli-division" }
+      ]
+    },
+    {
+      "id": "m6-fractions-graduer", "type": "composite", "skill": "m6.fractions.sens", "track": "approfondissement", "role": "defi", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:abscisse-cm", "mc:tiers-trois-cm"], "expectedSeconds": 300,
+      "params": { "u": { "choice": [12, 24] }, "k": { "int": [1, 7] } },
+      "constraints": ["k != 4"],
+      "prompt": "Tu gradues une demi-droite sur ton cahier : l'unité (de 0 à 1) mesure {u} cm.",
+      "parts": [
+        { "type": "numeric", "prompt": "Pour graduer en tiers, tous les combien de centimètres traces-tu une graduation ?", "answer": "u/3",
+          "misconceptions": [ { "answer": "3", "id": "mc:tiers-trois-cm", "error": "notion", "feedback": "Graduer en tiers, c'est partager l'unité en 3 parts égales : c'est la longueur de l'unité qu'il faut partager." } ] },
+        { "type": "numeric", "prompt": "À quelle distance de 0, en cm, places-tu le point d'abscisse $5/3$ ?", "answer": "5*u/3",
+          "misconceptions": [ { "answer": "5", "id": "mc:abscisse-cm", "error": "unite", "feedback": "$5/3$ signifie 5 tiers d'unité, pas 5 cm. Commence par chercher la longueur d'un tiers d'unité." } ] },
+        { "type": "numeric", "prompt": "Tu gradues maintenant en quarts. Le point M est à {k*u/4} cm de 0. Quelle est son abscisse ? Écris une fraction.", "answer": "k/4",
+          "misconceptions": [ { "answer": "k*u/4", "id": "mc:abscisse-cm", "error": "unite", "feedback": "Tu as donné une distance en cm. L'abscisse se compte en unités : combien de quarts d'unité tiennent dans cette distance ?" } ] }
+      ],
+      "hints": ["Un tiers d'unité : partage {u} cm en 3.", "$5/3$, c'est 5 fois un tiers d'unité.", "Un quart d'unité mesure $ {u} ÷ 4 = {u/4} $ cm : combien de fois {u/4} cm dans {k*u/4} cm ?"],
+      "solution": "Un tiers d'unité mesure $ {u} ÷ 3 = {u/3} $ cm. Le point d'abscisse $5/3$ est à $ 5 × {u/3} = {5*u/3} $ cm de 0 (après la graduation 1, qui est à {u} cm). Un quart d'unité mesure {u/4} cm, et {k*u/4} cm, c'est {k} fois {u/4} cm : l'abscisse de M est $ {k}/4 $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{u/3}" }, { "value": "{5*u/3}" }, { "value": "{k}/4" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{u/3}" }, { "value": "5" }, { "value": "{k}/4" } ] }, "expect": "mc:abscisse-cm" }
+      ]
+    },
+    {
+      "id": "m6-fractions-envers", "type": "composite", "skill": "m6.fractions.operateur", "skills": ["m6.fractions.problemes"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:fraction-de-la-partie", "mc:partie-reste"], "expectedSeconds": 360,
+      "params": { "a": { "int": [2, 4] }, "b": { "choice": [5, 7, 8] }, "m": { "int": [3, 9] } },
+      "constraints": ["a < b"],
+      "prompt": "Question à l'envers ! Mila a collé dans son album les $ {a}/{b} $ de sa collection d'autocollants, soit {a*m} autocollants. Combien en a-t-elle en tout ?",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien d'autocollants représente $ 1/{b} $ de la collection ?", "answer": "m",
+          "misconceptions": [ { "answer": "a*m/b", "id": "mc:fraction-de-la-partie", "error": "raisonnement", "feedback": "Tu as pris une fraction de {a*m}. Mais {a*m} représente déjà plusieurs parts de la collection : regarde le numérateur pour savoir en combien de parts égales le partager." } ] },
+        { "type": "numeric", "prompt": "Combien d'autocollants compte toute la collection ?", "answer": "b*m",
+          "misconceptions": [ { "answer": "a*m*a/b", "id": "mc:fraction-de-la-partie", "error": "raisonnement", "feedback": "Tu as appliqué la fraction à {a*m}. Mais {a*m} est une PARTIE de la collection : le tout est forcément plus grand." } ] },
+        { "type": "numeric", "prompt": "Combien d'autocollants ne sont pas encore collés ?", "answer": "(b-a)*m",
+          "misconceptions": [ { "answer": "b*m", "id": "mc:partie-reste", "error": "lecture", "feedback": "Ce nombre, c'est toute la collection. Enlève les autocollants déjà collés." } ] }
+      ],
+      "hints": ["Dessine une barre partagée en {b} parts égales : {a} parts font {a*m} autocollants.", "Une part : partage {a*m} en {a}.", "Toute la collection, ce sont les {b} parts."],
+      "solution": "{a} parts sur {b} font {a*m} autocollants, donc une part ($ 1/{b} $) en fait $ {a*m} ÷ {a} = {m} $. La collection entière : $ {b} × {m} = {b*m} $ autocollants. Pas encore collés : $ {b*m} − {a*m} = {(b-a)*m} $. Vérification : les $ {a}/{b} $ de {b*m}, c'est $ ({b*m} ÷ {b}) × {a} = {a*m} $.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{m}" }, { "value": "{b*m}" }, { "value": "{(b-a)*m}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a*m}/{b}" }, { "value": "{b*m}" }, { "value": "{(b-a)*m}" } ] }, "expect": "mc:fraction-de-la-partie" }
+      ]
+    },
+    {
+      "id": "m6-fractions-mystere", "type": "composite", "skill": "m6.fractions.comparer", "skills": ["m6.fractions.egalites"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:egalite-addition", "mc:entre-consecutifs", "mc:egal-pas-entre"], "expectedSeconds": 420,
+      "prompt": "Fraction mystère : « Je suis plus grande que $2/3$ et plus petite que $3/4$. Qui suis-je ? » Mène l'enquête en plusieurs étapes.",
+      "parts": [
+        { "type": "numeric", "prompt": "Écris $2/3$ avec le dénominateur 12 : quel est le numérateur ?", "answer": 8,
+          "misconceptions": [ { "answer": 11, "id": "mc:egalite-addition", "error": "notion", "feedback": "On ne passe pas de 3 à 12 en ajoutant : on multiplie. Fais la même multiplication en haut." } ] },
+        { "type": "numeric", "prompt": "Écris $3/4$ avec le dénominateur 12 : quel est le numérateur ?", "answer": 9,
+          "misconceptions": [ { "answer": 11, "id": "mc:egalite-addition", "error": "notion", "feedback": "On ne passe pas de 4 à 12 en ajoutant : on multiplie. Fais la même multiplication en haut." } ] },
+        { "type": "text", "prompt": "Existe-t-il une fraction de dénominateur 12 strictement comprise entre $2/3$ et $3/4$ ? Réponds par oui ou par non.", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:entre-consecutifs", "error": "raisonnement", "feedback": "Regarde les deux numérateurs que tu as trouvés : existe-t-il un nombre entier strictement entre eux ?" } ] },
+        { "type": "numeric", "prompt": "Trouve une fraction de dénominateur 24 strictement comprise entre $2/3$ et $3/4$. Écris seulement son numérateur.", "answer": 17,
+          "misconceptions": [
+            { "answer": 16, "id": "mc:egal-pas-entre", "error": "raisonnement", "feedback": "Cette fraction est ÉGALE à l'une des deux bornes : elle n'est pas strictement entre elles." },
+            { "answer": 18, "id": "mc:egal-pas-entre", "error": "raisonnement", "feedback": "Cette fraction est ÉGALE à l'une des deux bornes : elle n'est pas strictement entre elles." }
+          ] }
+      ],
+      "hints": ["Pour passer de 3 à 12, on multiplie par 4 ; pour passer de 4 à 12, on multiplie par 3.", "S'il n'y a pas de place entre deux douzièmes, prends des parts deux fois plus petites : des vingt-quatrièmes.", "Écris $2/3$ et $3/4$ avec le dénominateur 24, puis regarde les numérateurs."],
+      "solution": "$2/3 = 8/12$ et $3/4 = 9/12$ : 8 et 9 se suivent, aucun douzième n'est entre les deux. Avec des parts deux fois plus petites : $2/3 = 16/24$ et $3/4 = 18/24$, donc $17/24$ convient. Entre deux fractions différentes, on peut toujours en intercaler une autre, en prenant des parts plus petites !",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "8" }, { "value": "9" }, { "value": "non" }, { "value": "17" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "8" }, { "value": "9" }, { "value": "non" }, { "value": "16" } ] }, "expect": "mc:egal-pas-entre" }
+      ]
+    }
+  ]
+}

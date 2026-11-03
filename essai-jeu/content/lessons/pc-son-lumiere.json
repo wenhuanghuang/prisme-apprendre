@@ -1,0 +1,1184 @@
+{
+  "id": "pc-son-lumiere",
+  "title": "Propagation du son et de la lumière",
+  "subject": "pc",
+  "level": "4e",
+  "skills": ["pc.signaux.propagation"],
+  "status": "programme",
+  "programmes": ["pc-c4-2020"],
+  "duration": 55,
+  "summary": "Utiliser les vitesses de propagation du son (environ 340 m/s dans l'air) et de la lumière (environ 300 000 km/s) : distance d'un orage, écho, sondeur ; savoir que le son ne se propage pas dans le vide. Le programme de physique-chimie est défini pour l'ensemble du cycle 4 (5e-4e-3e) : la classe de 4e indiquée ici est une progression éditoriale proposée par l'application.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Un, deux, trois… boum !",
+      "body": "Pendant un orage, on voit l'éclair, puis on entend le tonnerre quelques secondes plus tard. Pourtant, les deux sont produits **au même instant, au même endroit**.\n\nQue peut-on en conclure sur la vitesse du son et celle de la lumière ? Et comment utiliser ce retard pour savoir à quelle distance se trouve l'orage ?"
+    },
+    {
+      "kind": "ressource",
+      "title": "Pour revoir la notion sur une ressource officielle",
+      "body": "Ces ressources restent hébergées sur leur site d'origine.",
+      "links": []
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : à quelle distance est l'orage ?",
+      "body": "Un orage gronde au loin. Avec un simple chronomètre, tu vas mesurer sa distance.",
+      "demo": {
+        "items": [
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 800,
+            "h": 440,
+            "rx": 0,
+            "fill": "#c3d0de"
+          },
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 0,
+            "y": 360,
+            "w": 800,
+            "h": 80,
+            "rx": 0,
+            "fill": "#7da05a"
+          },
+          {
+            "type": "forme",
+            "id": "onde",
+            "shape": "ellipse",
+            "x": 165,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 4,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "nuage",
+            "x": 150,
+            "y": 78,
+            "char": "☁️",
+            "size": 130
+          },
+          {
+            "type": "forme",
+            "id": "eclair",
+            "shape": "polygon",
+            "x": 0,
+            "y": 0,
+            "points": [
+              [
+                152,
+                120
+              ],
+              [
+                180,
+                120
+              ],
+              [
+                166,
+                200
+              ],
+              [
+                192,
+                200
+              ],
+              [
+                150,
+                360
+              ],
+              [
+                160,
+                236
+              ],
+              [
+                134,
+                236
+              ]
+            ],
+            "fill": "#fde047",
+            "stroke": "#ca8a04",
+            "width": 2,
+            "hidden": true
+          },
+          {
+            "type": "rayon",
+            "id": "lum",
+            "from": [
+              176,
+              236
+            ],
+            "to": [
+              676,
+              296
+            ],
+            "color": "#facc15",
+            "progress": 0,
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "toi",
+            "x": 700,
+            "y": 318,
+            "char": "🧍",
+            "size": 72,
+            "label": "toi"
+          },
+          {
+            "type": "chrono",
+            "id": "ch",
+            "x": 720,
+            "y": 110,
+            "value": 0,
+            "format": "s",
+            "label": "chronomètre"
+          },
+          {
+            "type": "texte",
+            "id": "boum",
+            "x": 640,
+            "y": 226,
+            "text": "BOUM !",
+            "size": 18,
+            "bold": true,
+            "color": "#7c3aed",
+            "hidden": true
+          },
+          {
+            "type": "emoji",
+            "id": "boum2",
+            "x": 640,
+            "y": 262,
+            "char": "💥",
+            "size": 44,
+            "hidden": true
+          },
+          {
+            "type": "fleche",
+            "id": "dist",
+            "from": [
+              190,
+              385
+            ],
+            "to": [
+              660,
+              385
+            ],
+            "label": "d = 1 700 m",
+            "color": "#1e293b",
+            "hidden": true
+          },
+          {
+            "type": "releve",
+            "id": "calc",
+            "x": 300,
+            "y": 16,
+            "w": 320,
+            "title": "Le calcul",
+            "head": [
+              "grandeur",
+              "valeur"
+            ],
+            "rows": [
+              [
+                "durée Δt",
+                "5,0 s"
+              ],
+              [
+                "vitesse du son",
+                "340 m/s"
+              ],
+              [
+                "distance d",
+                "340 × 5 = 1 700 m"
+              ]
+            ],
+            "shown": 0
+          }
+        ],
+        "steps": [
+          {
+            "title": "La situation",
+            "text": "Un orage gronde au loin. L'éclair et le tonnerre sont produits **au même instant, au même endroit**. Ton plan : déclencher le chronomètre quand tu vois l'éclair, l'arrêter quand tu entends le tonnerre.",
+            "focus": [
+              "nuage",
+              "ch"
+            ]
+          },
+          {
+            "title": "L'éclair",
+            "text": "L'éclair jaillit. Sa lumière se propage à environ **300 000 km par seconde** : elle te parvient presque instantanément, en quelques millionièmes de seconde. Tu déclenches le chronomètre.",
+            "duration": 2,
+            "show": [
+              "eclair",
+              "lum"
+            ],
+            "do": [
+              {
+                "id": "lum",
+                "to": {
+                  "progress": 1
+                },
+                "ease": "lineaire",
+                "dur": 0.3
+              }
+            ],
+            "focus": [
+              "ch"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Pourquoi déclenches-tu le chronomètre au moment où tu vois l'éclair ?",
+              "choices": [
+                "C'est à ce moment que le tonnerre arrive",
+                "Sa lumière arrive presque tout de suite : c'est l'instant où le tonnerre est parti",
+                "Pour mesurer la vitesse de la lumière"
+              ],
+              "answer": 1,
+              "explain": "La lumière met quelques millionièmes de seconde à t'arriver : voir l'éclair, c'est savoir quand le tonnerre a été produit. Le chronomètre mesurera ensuite le temps de trajet du son."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Le tonnerre est parti en même temps que l'éclair. Quand vas-tu l'entendre ?",
+              "choices": [
+                "En même temps que je vois l'éclair",
+                "Quelques secondes plus tard",
+                "Jamais : le son ne va pas si loin"
+              ],
+              "answer": 1,
+              "explain": "Le son va environ un million de fois moins vite que la lumière : il lui faut plusieurs secondes pour parcourir quelques kilomètres."
+            }
+          },
+          {
+            "title": "Le son voyage",
+            "text": "Le son du tonnerre se propage dans l'air à environ **340 m/s**. Regarde le chronomètre : à chaque seconde, le son avance de 340 m. Cette étape se déroule en temps réel.",
+            "duration": 5,
+            "hide": [
+              "eclair",
+              "lum"
+            ],
+            "show": [
+              "onde"
+            ],
+            "do": [
+              {
+                "id": "onde",
+                "to": {
+                  "w": 1076,
+                  "h": 1076
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "ch",
+                "to": {
+                  "value": 5
+                },
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "ch"
+            ]
+          },
+          {
+            "title": "Boum !",
+            "text": "Le tonnerre arrive enfin : tu arrêtes le chronomètre à **5,0 s**. Ce retard, c'est le temps mis par le son pour venir jusqu'à toi. La lumière, elle, est arrivée presque tout de suite.",
+            "show": [
+              "boum",
+              "boum2"
+            ],
+            "hide": [
+              "onde"
+            ],
+            "focus": [
+              "ch",
+              "toi"
+            ],
+            "ask": {
+              "kind": "mesurer",
+              "question": "Lis le chronomètre : quel retard Δt y a-t-il entre l'éclair et le tonnerre ?",
+              "answer": 5,
+              "tolerance": 0,
+              "unit": "s",
+              "explain": "Le chronomètre, arrêté quand le tonnerre arrive, affiche 5,0 s."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "Le son a mis 5 s pour venir jusqu'à toi, à 340 m/s. À quelle distance est l'orage ?",
+              "choices": [
+                "340 m",
+                "1 700 m",
+                "68 m",
+                "1 700 km"
+              ],
+              "answer": 1,
+              "explain": "Distance = vitesse × durée : 340 × 5 = 1 700 m, soit 1,7 km."
+            }
+          },
+          {
+            "title": "Le calcul",
+            "text": "d = v × Δt = 340 × 5 = **1 700 m**, soit 1,7 km. La règle pratique « 3 secondes ≈ 1 km » donne 5 ÷ 3 ≈ 1,7 km. Si le retard diminue d'un éclair à l'autre, l'orage se rapproche.",
+            "duration": 4,
+            "hide": [
+              "boum",
+              "boum2"
+            ],
+            "show": [
+              "dist"
+            ],
+            "do": [
+              {
+                "id": "calc",
+                "to": {
+                  "shown": 3
+                },
+                "dur": 3
+              }
+            ],
+            "focus": [
+              "calc",
+              "dist"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Au prochain éclair, tu ne comptes plus que 3 s avant d'entendre le tonnerre. Que peux-tu en conclure ?",
+              "choices": [
+                "L'orage s'est éloigné",
+                "Le son va plus vite qu'avant",
+                "L'orage s'est rapproché : il est à environ 1 km"
+              ],
+              "answer": 2,
+              "explain": "Moins de retard, c'est moins de chemin pour le son : 340 × 3 = 1 020 m, soit environ 1 km au lieu de 1,7 km. L'orage se rapproche."
+            }
+          }
+        ],
+        "conclusion": "- La lumière de l'éclair arrive presque instantanément (environ 300 000 km/s).\n- Le son du tonnerre arrive avec un retard Δt, car il ne va qu'à environ 340 m/s.\n- Distance de l'orage : d = 340 × Δt (ici 340 × 5 = 1 700 m).\n\n> Règle pratique : environ **3 secondes par kilomètre**."
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours",
+      "body": "**Le son** est une vibration qui se transmet de proche en proche dans un **milieu matériel** (air, eau, solide). Il **ne se propage pas dans le vide**.\n- dans l'air : environ **340 m/s** (la valeur augmente un peu avec la température) ;\n- dans l'eau : environ 1 500 m/s ;\n- dans l'acier : environ 5 000 m/s.\n\n**La lumière** se propage dans le vide et dans les milieux transparents. Dans le vide (et pratiquement dans l'air), sa vitesse vaut environ **300 000 km/s**, soit $3 × 10^8$ m/s : près d'un million de fois plus que le son dans l'air.\n\n> Pour un signal qui se propage à la vitesse $v$ : $d = v × t$ et $t = d / v$.\n> Toujours vérifier que les unités sont cohérentes (m et m/s, ou km et km/s).\n\n**Distance d'un orage.** La lumière de l'éclair arrive presque instantanément ; le tonnerre arrive avec un retard $Δt$ : $d ≈ 340 × Δt$. Règle pratique : 3 secondes ≈ 1 km.\n\n**Écho.** Le son va jusqu'à l'obstacle et **revient** : il parcourt deux fois la distance. $2d = v × t$, donc $d = v × t / 2$. C'est le principe du sondeur des bateaux.\n\n**Année-lumière.** C'est une **distance** : celle que parcourt la lumière en un an, environ $9,5 × 10^12$ km."
+    },
+    {
+      "kind": "experience",
+      "title": "L'expérience : un réveil sous une cloche à vide",
+      "body": "Le son peut-il traverser le vide ? Pour le savoir, on enferme un réveil qui sonne sous une cloche en verre, puis on retire l'air.",
+      "demo": {
+        "items": [
+          {
+            "type": "paillasse",
+            "y": 392
+          },
+          {
+            "type": "forme",
+            "id": "o1",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 322,
+            "w": 96,
+            "h": 96,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 3,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "o2",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 322,
+            "w": 136,
+            "h": 136,
+            "fill": "none",
+            "stroke": "#7c3aed",
+            "width": 3,
+            "opacity": 0.6,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "shape": "rect",
+            "x": 180,
+            "y": 372,
+            "w": 240,
+            "h": 20,
+            "rx": 4,
+            "fill": "#64748b"
+          },
+          {
+            "type": "forme",
+            "id": "mousse",
+            "shape": "rect",
+            "x": 262,
+            "y": 352,
+            "w": 76,
+            "h": 20,
+            "rx": 5,
+            "fill": "#fde68a",
+            "stroke": "#d4a017",
+            "width": 1.5
+          },
+          {
+            "type": "emoji",
+            "id": "reveil",
+            "x": 300,
+            "y": 322,
+            "char": "⏰",
+            "size": 56
+          },
+          {
+            "type": "fil",
+            "id": "tuyau",
+            "points": [
+              [
+                420,
+                382
+              ],
+              [
+                446,
+                382
+              ],
+              [
+                446,
+                368
+              ],
+              [
+                470,
+                368
+              ]
+            ],
+            "color": "#475569"
+          },
+          {
+            "type": "forme",
+            "id": "pompe",
+            "shape": "rect",
+            "x": 470,
+            "y": 316,
+            "w": 112,
+            "h": 76,
+            "rx": 10,
+            "fill": "#cbd5e1",
+            "stroke": "#475569",
+            "width": 2
+          },
+          {
+            "type": "texte",
+            "x": 526,
+            "y": 359,
+            "text": "pompe à vide",
+            "size": 13,
+            "bold": true
+          },
+          {
+            "type": "zoom",
+            "id": "air",
+            "x": 105,
+            "y": 215,
+            "r": 56,
+            "etat": 2,
+            "n": 30,
+            "color": "#60a5fa",
+            "hidden": true
+          },
+          {
+            "type": "texte",
+            "id": "air-t",
+            "x": 105,
+            "y": 134,
+            "text": "l'air de la cloche",
+            "size": 13,
+            "hidden": true
+          },
+          {
+            "type": "forme",
+            "id": "cloche",
+            "shape": "path",
+            "x": 0,
+            "y": 0,
+            "d": "M210,372 L210,215 Q210,150 300,150 Q390,150 390,215 L390,372",
+            "fill": "#e0f2fe",
+            "stroke": "#5b6b82",
+            "width": 3,
+            "opacity": 0.55
+          },
+          {
+            "type": "forme",
+            "shape": "ellipse",
+            "x": 300,
+            "y": 146,
+            "w": 30,
+            "h": 12,
+            "fill": "#5b6b82"
+          },
+          {
+            "type": "etiquette",
+            "id": "etq-mousse",
+            "x": 150,
+            "y": 345,
+            "text": "mousse",
+            "to": [
+              262,
+              362
+            ]
+          },
+          {
+            "type": "courbe",
+            "id": "son",
+            "x": 470,
+            "y": 14,
+            "w": 315,
+            "h": 200,
+            "title": "Niveau sonore en dB (sonomètre)",
+            "xRange": [
+              0,
+              5
+            ],
+            "yRange": [
+              30,
+              80
+            ],
+            "xLabel": "t (min)",
+            "yLabel": "",
+            "color": "#7c3aed",
+            "progress": 0,
+            "points": [
+              [
+                0,
+                68
+              ],
+              [
+                0.4,
+                68
+              ],
+              [
+                1,
+                62
+              ],
+              [
+                1.5,
+                55
+              ],
+              [
+                2,
+                49
+              ],
+              [
+                2.5,
+                45
+              ],
+              [
+                3,
+                42.5
+              ],
+              [
+                3.5,
+                41.5
+              ],
+              [
+                4,
+                41
+              ],
+              [
+                4.2,
+                52
+              ],
+              [
+                4.4,
+                64
+              ],
+              [
+                4.6,
+                68
+              ],
+              [
+                5,
+                68
+              ]
+            ]
+          }
+        ],
+        "steps": [
+          {
+            "title": "Le montage",
+            "text": "Un réveil est posé sur de la **mousse**, sous une cloche en verre fermée. La mousse empêche les vibrations de passer par la table. Une **pompe à vide** peut aspirer l'air de la cloche, et un **sonomètre** mesure le niveau sonore à côté.",
+            "focus": [
+              "reveil",
+              "cloche",
+              "pompe"
+            ]
+          },
+          {
+            "title": "Le réveil sonne",
+            "text": "Le réveil sonne : on l'entend bien à travers le verre, environ 68 décibels. Son marteau vibre et fait vibrer l'air autour de lui. Ces vibrations se transmettent de proche en proche dans l'air, puis au verre, puis à l'air de la salle, jusqu'à nos oreilles.",
+            "duration": 3,
+            "show": [
+              "o1",
+              "o2",
+              "air",
+              "air-t"
+            ],
+            "hide": [
+              "etq-mousse"
+            ],
+            "do": [
+              {
+                "id": "son",
+                "to": {
+                  "progress": 0.08
+                },
+                "ease": "lineaire"
+              }
+            ],
+            "focus": [
+              "reveil",
+              "air"
+            ]
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "ask": {
+              "question": "On aspire peu à peu l'air de la cloche. Le son du réveil va…",
+              "choices": [
+                "devenir de plus en plus faible",
+                "rester le même : le verre laisse passer le son",
+                "devenir plus fort, car plus rien ne le freine"
+              ],
+              "answer": 0,
+              "explain": "Le son a besoin de matière pour se propager : moins il y a d'air autour du réveil, moins le son passe."
+            }
+          },
+          {
+            "title": "On fait le vide",
+            "text": "La pompe aspire l'air : il reste de moins en moins de particules dans la cloche. Le niveau sonore baisse jusqu'à environ 41 dB, presque le bruit de fond de la salle. Pourtant, on voit toujours le marteau du réveil s'agiter !",
+            "duration": 8,
+            "do": [
+              {
+                "id": "tuyau",
+                "set": {
+                  "current": 1
+                }
+              },
+              {
+                "id": "air",
+                "to": {
+                  "n": 3
+                },
+                "at": 0.3,
+                "dur": 7
+              },
+              {
+                "id": "o1",
+                "to": {
+                  "opacity": 0.12
+                },
+                "at": 0.5,
+                "dur": 7
+              },
+              {
+                "id": "o2",
+                "to": {
+                  "opacity": 0.08
+                },
+                "at": 0.5,
+                "dur": 7
+              },
+              {
+                "id": "son",
+                "to": {
+                  "progress": 0.8
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "son",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 0.4,
+                      "to": 4,
+                      "label": "pompage"
+                    }
+                  ]
+                }
+              }
+            ],
+            "focus": [
+              "air",
+              "son"
+            ],
+            "ask": {
+              "kind": "observer",
+              "question": "Pendant que la pompe aspire l'air, que se passe-t-il ?",
+              "choices": [
+                "Le réveil s'arrête de sonner",
+                "Le niveau sonore ne change pas",
+                "Le son baisse, mais on voit toujours le marteau du réveil s'agiter"
+              ],
+              "answer": 2,
+              "explain": "La courbe du sonomètre descend jusqu'à environ 41 dB, alors que le marteau continue de s'agiter : le réveil sonne toujours, mais le son nous parvient de moins en moins."
+            }
+          },
+          {
+            "title": "Pourquoi le voit-on encore ?",
+            "text": "La **lumière**, elle, se propage même dans le vide : c'est ainsi que la lumière du Soleil traverse l'espace jusqu'à nous. On continue donc de voir le réveil. Le **son**, au contraire, a besoin d'un **milieu matériel** (air, eau, solide) pour se propager.",
+            "focus": [
+              "reveil"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "Dans l'espace, entre les planètes, il n'y a presque pas de matière. Un astronaute verrait-il une explosion lointaine ? L'entendrait-il ?",
+              "choices": [
+                "Il la verrait, mais ne l'entendrait pas",
+                "Il l'entendrait, mais ne la verrait pas",
+                "Il la verrait et l'entendrait"
+              ],
+              "answer": 0,
+              "explain": "La lumière se propage dans le vide : il verrait l'explosion. Le son, lui, a besoin d'un milieu matériel : sans matière pour le transporter, il ne lui parviendrait pas."
+            }
+          },
+          {
+            "title": "Que va-t-il se passer ?",
+            "text": "On arrête la pompe. On va ouvrir le robinet pour laisser l'air rentrer dans la cloche.",
+            "ask": {
+              "question": "Quand l'air sera revenu dans la cloche, que deviendra le son du réveil ?",
+              "choices": [
+                "Il restera faible : le réveil a été abîmé",
+                "Il redeviendra aussi fort qu'au début",
+                "On ne l'entendra plus du tout"
+              ],
+              "answer": 1,
+              "explain": "Regarde la suite : si c'est bien l'air qui transporte le son, le son doit revenir avec l'air."
+            }
+          },
+          {
+            "title": "On fait rentrer l'air",
+            "text": "On ouvre le robinet : l'air rentre dans la cloche, et le son revient à son niveau de départ. C'est la **contre-épreuve** : c'est bien l'air qui transportait le son. Le son n'avait pas tout à fait disparu, car une pompe ne fait jamais un vide parfait.",
+            "duration": 4,
+            "do": [
+              {
+                "id": "tuyau",
+                "set": {
+                  "current": 0
+                }
+              },
+              {
+                "id": "air",
+                "to": {
+                  "n": 30
+                },
+                "dur": 3
+              },
+              {
+                "id": "o1",
+                "to": {
+                  "opacity": 1
+                },
+                "dur": 3
+              },
+              {
+                "id": "o2",
+                "to": {
+                  "opacity": 0.6
+                },
+                "dur": 3
+              },
+              {
+                "id": "son",
+                "to": {
+                  "progress": 1
+                },
+                "ease": "lineaire"
+              },
+              {
+                "id": "son",
+                "set": {
+                  "zones": [
+                    {
+                      "from": 0.4,
+                      "to": 4,
+                      "label": "pompage"
+                    },
+                    {
+                      "from": 4,
+                      "to": 5,
+                      "label": "air"
+                    }
+                  ]
+                }
+              }
+            ],
+            "focus": [
+              "son"
+            ],
+            "ask": {
+              "kind": "expliquer",
+              "question": "À quoi sert cette dernière étape, où l'on fait rentrer l'air ?",
+              "choices": [
+                "À montrer que le verre de la cloche arrête le son",
+                "À rendre le son plus fort qu'au début",
+                "À vérifier que c'est bien le manque d'air qui affaiblissait le son"
+              ],
+              "answer": 2,
+              "explain": "C'est la contre-épreuve : le réveil, la mousse et la cloche n'ont pas changé ; seul l'air est revenu, et le son avec lui. C'est donc bien l'air qui transportait le son."
+            }
+          }
+        ],
+        "conclusion": "- Quand on retire l'air, on entend de moins en moins le réveil, mais on le voit toujours.\n- Quand l'air revient, le son revient.\n\n> Le **son** a besoin d'un milieu matériel (air, eau, solide) pour se propager : il **ne se propage pas dans le vide**. La **lumière**, elle, se propage dans le vide."
+      }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple entièrement résolu",
+      "steps": [
+        { "text": "On compte 6 s entre l'éclair et le tonnerre. La lumière arrive quasi instantanément : ces 6 s sont la durée de trajet du son.", "math": "Δt = 6 s" },
+        { "text": "Distance de l'orage :", "math": "d = v × Δt = 340 × 6 = 2 040 m ≈ 2 km" },
+        { "text": "La règle « 3 s par km » donne :", "math": "6 / 3 = 2 km" },
+        { "text": "Écho : face à une falaise, l'écho revient après 1,2 s. Le son a fait l'aller ET le retour :", "math": "2d = 340 × 1,2 = 408 m" },
+        { "text": "Distance de la falaise :", "math": "d = 408 / 2 = 204 m" }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Exercices guidés",
+      "body": "Écris tes résultats **avec leur unité** (2 040 m, 4,5 s, 2,7 µs, 1,5 × 10^3 m/s…) : le logiciel accepte les unités équivalentes et l'écriture avec puissance de 10.",
+      "exercises": ["pc-son-lumiere-orage", "pc-son-lumiere-echo", "pc-son-lumiere-comparer", "pc-son-lumiere-qcm"]
+    },
+    {
+      "kind": "libre",
+      "title": "Avec tes mots",
+      "exercises": ["pc-son-lumiere-libre"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Le sondeur du bateau",
+      "exercises": ["pc-son-lumiere-sonar"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : l'orage approche-t-il ?",
+      "body": "Tu campes en montagne et un orage gronde. Avec une simple montre, détermine où il se trouve, s'il approche, et à quelle vitesse.",
+      "exercises": ["pc-son-lumiere-mission"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu'il faut retenir, et les erreurs fréquentes",
+      "body": "- **Utiliser la vitesse de la lumière pour le tonnerre.** C'est le SON qui arrive en retard : $d = 340 × Δt$.\n- **Oublier l'aller-retour de l'écho.** Le son parcourt deux fois la distance : on divise par 2. Pour un orage, en revanche, le son ne fait le trajet qu'une fois.\n- **Mélanger km et m.** 300 000 km/s = $3 × 10^8$ m/s : on ne divise pas des mètres par des km/s.\n- **Croire que le son traverse le vide.** Dans l'espace, aucun son ne se propage ; la lumière, si.\n- **Croire que l'année-lumière est une durée.** C'est une distance."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera dans quelques jours un calcul de distance (orage ou écho) et une conversion avec la vitesse de la lumière."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Mesurer soi-même la vitesse du son à partir de données expérimentales, et comparer la propagation dans l'air et dans un solide.",
+      "exercises": ["pc-son-lumiere-mesure-v", "pc-son-lumiere-rail"]
+    },
+    "expert": {
+      "intro": "Facultatif, au-delà des attendus de 4e (passerelle vers la seconde) : l'année-lumière par les puissances de 10, et la précision réelle de la règle « 3 secondes par kilomètre ».",
+      "exercises": ["pc-son-lumiere-annee-lumiere", "pc-son-lumiere-regle-3s"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "pc-son-lumiere-orage", "type": "numeric", "skill": "pc.signaux.propagation", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:lumiere-retard", "mc:echo-orage"], "expectedSeconds": 120,
+      "params": { "t": { "choice": [3, 4.5, 6, 9, 12] } },
+      "prompt": "Tu vois un éclair, puis tu entends le tonnerre {t} s plus tard. Le son se propage dans l'air à 340 m/s. À quelle distance se trouve l'orage ? (avec l'unité)",
+      "answer": "340*t", "unit": "m", "rel": 0.02,
+      "misconceptions": [
+        { "answer": "3*10^8*t", "id": "mc:lumiere-retard", "error": "notion", "feedback": "La lumière de l'éclair arrive presque instantanément. Ce sont les {t} s du SON qui mesurent la distance : d = 340 × {t}." },
+        { "answer": "340*t/2", "id": "mc:echo-orage", "error": "notion", "feedback": "Il n'y a pas d'aller-retour : le son va de l'éclair jusqu'à toi une seule fois. On ne divise pas par 2." },
+        { "answer": "t/340", "id": "mc:v-inverse", "error": "notion", "feedback": "d = v × t : on multiplie la vitesse par la durée." }
+      ],
+      "hints": ["Lequel des deux signaux met un temps mesurable pour arriver ?", "Le son a mis {t} s pour venir de l'orage.", "d = 340 × {t}."],
+      "solution": "$d = v × t = 340 × {t} = {340*t}$ m, soit environ {340*t/1000|d1} km. La règle « 3 s par km » donne {t/3|d1} km.",
+      "selfTest": [
+        { "response": { "value": "{340*t} m" }, "expect": "correct" },
+        { "response": { "value": "{0.34*t} km" }, "expect": "correct" },
+        { "response": { "value": "{170*t} m" }, "expect": "mc:echo-orage" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-echo", "type": "numeric", "skill": "pc.signaux.propagation", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:echo-aller-retour"], "expectedSeconds": 120,
+      "params": { "t": { "choice": [0.5, 1, 1.5, 2] } },
+      "prompt": "Face à une falaise, tu cries « Ohé ! ». L'écho te revient {t} s plus tard. À quelle distance se trouve la falaise ? (son dans l'air : 340 m/s ; écris l'unité)",
+      "answer": "340*t/2", "unit": "m", "rel": 0.01,
+      "misconceptions": [
+        { "answer": "340*t", "id": "mc:echo-aller-retour", "error": "notion", "feedback": "En {t} s, le son est allé jusqu'à la falaise ET il est revenu : il a parcouru deux fois la distance. On divise par 2." }
+      ],
+      "hints": ["Quel trajet le son a-t-il fait pendant ces {t} s ?", "Distance totale parcourue par le son : 340 × {t} m.", "C'est un aller-retour : divise par 2."],
+      "solution": "Le son parcourt $340 × {t} = {340*t}$ m pendant l'aller-retour. La falaise est à ${340*t} / 2 = {170*t}$ m.",
+      "selfTest": [
+        { "response": { "value": "{170*t} m" }, "expect": "correct" },
+        { "response": { "value": "{340*t} m" }, "expect": "mc:echo-aller-retour" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-comparer", "type": "table", "skill": "pc.signaux.propagation", "track": "classe", "role": "guide", "difficulty": 3,
+      "representation": "symbolique", "targets": ["mc:km-m-melange", "mc:t-inverse", "unite"], "expectedSeconds": 360,
+      "prompt": "Calcule la durée de trajet du son (340 m/s dans l'air) et de la lumière (300 000 km/s) sur ces distances. Écris chaque durée avec son unité (par exemple 4,5 s ; 2,7 µs ; 2,7 × 10^-6 s ; 6,5 min).",
+      "columns": ["Distance", "Durée pour le son", "Durée pour la lumière"],
+      "rows": [["1 km", "?r0c1", "?r0c2"], ["10 km", "?r1c1", "?r1c2"], ["Du Soleil à la Terre (150 millions de km)", "Le son ne s'y propage pas : entre le Soleil et la Terre, c'est le vide.", "?r2c2"]],
+      "cells": {
+        "r0c1": { "answer": "1000/340", "unit": "s", "rel": 0.02, "misconceptions": [ { "answer": "340/1000", "id": "mc:t-inverse", "error": "notion", "feedback": "t = d / v = 1 000 m / 340 m/s." } ] },
+        "r0c2": { "answer": "1/300000", "unit": "s", "rel": 0.02, "misconceptions": [ { "answer": "1000/300000", "id": "mc:km-m-melange", "error": "unite", "feedback": "La vitesse est en km/s : prends la distance en km (1 km), ou bien convertis la vitesse en m/s (3 × 10^8 m/s)." } ] },
+        "r1c1": { "answer": "10000/340", "unit": "s", "rel": 0.02, "misconceptions": [ { "answer": "340/10000", "id": "mc:t-inverse", "error": "notion", "feedback": "t = d / v." } ] },
+        "r1c2": { "answer": "10/300000", "unit": "s", "rel": 0.02, "misconceptions": [ { "answer": "10000/300000", "id": "mc:km-m-melange", "error": "unite", "feedback": "Distance en km avec une vitesse en km/s : 10 / 300 000." } ] },
+        "r2c2": { "answer": "150*10^6/300000", "unit": "s", "rel": 0.02, "misconceptions": [ { "answer": "150*10^6/(3*10^8)", "id": "mc:km-m-melange", "error": "unite", "feedback": "Distance en km (1,5 × 10^8 km) et vitesse en m/s (3 × 10^8 m/s) : unités incohérentes. Exprime la distance et la vitesse avec la même unité de longueur (km et km/s, ou m et m/s)." } ] }
+      },
+      "hints": ["t = d / v, avec des unités cohérentes.", "Pour le son : distance en m. Pour la lumière : distance en km (vitesse en km/s).", "1 km / 300 000 km/s ≈ 0,000 003 3 s = 3,3 µs."],
+      "solution": "Son : 1 000 / 340 ≈ 2,9 s ; 10 000 / 340 ≈ 29 s. Lumière : 1 / 300 000 ≈ 3,3 × 10^-6 s ; 10 / 300 000 ≈ 3,3 × 10^-5 s ; Soleil-Terre : 1,5 × 10^8 / 3 × 10^5 = 500 s, soit 8 min 20 s. La lumière du Soleil que l'on voit est partie il y a plus de 8 minutes.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "2,94 s", "r0c2": "3,3 µs", "r1c1": "29,4 s", "r1c2": "3,33 × 10^-5 s", "r2c2": "500 s" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "2,94 s", "r0c2": "3,3 µs", "r1c1": "29,4 s", "r1c2": "3,33 × 10^-5 s", "r2c2": "8,33 min" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "0,34 s", "r0c2": "3,3 µs", "r1c1": "29,4 s", "r1c2": "3,33 × 10^-5 s", "r2c2": "500 s" } }, "expect": "mc:t-inverse" },
+        { "response": { "cells": { "r0c1": "2,94 s", "r0c2": "0,0033 s", "r1c1": "29,4 s", "r1c2": "3,33 × 10^-5 s", "r2c2": "500 s" } }, "expect": "mc:km-m-melange" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-qcm", "type": "qcm", "skill": "pc.signaux.propagation", "track": "classe", "role": "verification", "difficulty": 1,
+      "representation": "verbale", "targets": ["mc:son-vide", "mc:lumiere-milieu"], "expectedSeconds": 60,
+      "prompt": "Vérification rapide : on place un réveil qui sonne sous une cloche en verre, puis on aspire l'air de la cloche avec une pompe. Qu'observe-t-on ?",
+      "choices": [
+        { "text": "On entend de moins en moins le réveil, mais on le voit toujours.", "correct": true, "feedback": "Exact : le son a besoin d'un milieu matériel pour se propager, la lumière non." },
+        { "text": "On ne l'entend plus et on ne le voit plus.", "correct": false, "error": "notion", "misconception": "mc:lumiere-milieu", "feedback": "La lumière se propage dans le vide : celle du Soleil traverse l'espace pour nous parvenir. On voit toujours le réveil." },
+        { "text": "On l'entend toujours aussi fort : le son traverse le verre.", "correct": false, "error": "notion", "misconception": "mc:son-vide", "feedback": "Le son est une vibration qui se transmet de proche en proche dans la matière. Sans air autour du réveil, il ne se transmet presque plus jusqu'à la cloche." },
+        { "text": "On l'entend plus fort, car plus rien ne freine le son.", "correct": false, "error": "notion", "misconception": "mc:son-vide", "feedback": "L'air ne « freine » pas le son : c'est lui qui le transporte. Sans air, le son ne se propage plus." }
+      ],
+      "justify": { "required": true, "minWords": 6, "prompt": "Justifie en parlant du milieu de propagation.", "keywords": [["milieu", "matiere", "air", "vide", "vibration"]] },
+      "solution": "Le son est une vibration qui a besoin d'un milieu matériel (ici l'air) : quand on retire l'air, on n'entend presque plus rien (un peu d'air reste toujours, et le support transmet encore un peu de vibration). La lumière se propage dans le vide : on voit toujours le réveil.",
+      "selfTest": [
+        { "response": { "selected": [0], "justification": "Le son a besoin d'un milieu comme l'air pour se propager, alors que la lumière passe dans le vide." }, "expect": "correct" },
+        { "response": { "selected": [2], "justification": "Le son passe à travers le verre donc on l'entend toujours." }, "expect": "mc:son-vide" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-libre", "type": "composite", "skill": "pc.signaux.propagation", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:lumiere-retard", "mc:km-m-melange"], "expectedSeconds": 420,
+      "prompt": "L'éclair et le tonnerre sont produits au même instant, au même endroit. Un orage se trouve à 3,0 km.",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de temps la lumière de l'éclair met-elle pour te parvenir (avec l'unité) ?", "answer": "3/300000", "unit": "s", "rel": 0.02,
+          "misconceptions": [ { "answer": "3000/300000", "id": "mc:km-m-melange", "error": "unite", "feedback": "Avec une vitesse en km/s, garde la distance en km : 3,0 / 300 000." } ] },
+        { "type": "numeric", "prompt": "Et le son du tonnerre (avec l'unité) ?", "answer": "3000/340", "unit": "s", "rel": 0.02,
+          "misconceptions": [ { "answer": "3/340", "id": "mc:km-m-melange", "error": "unite", "feedback": "340 m/s : la distance doit être en mètres, 3 000 m." } ] },
+        { "type": "open", "prompt": "Explique pourquoi on voit l'éclair avant d'entendre le tonnerre, et pourquoi on peut considérer que l'éclair est vu « instantanément ».", "minWords": 30,
+          "criteria": [
+            { "id": "c1", "label": "Les deux signaux partent en même temps du même endroit", "keywords": [["meme temps", "meme instant", "en meme temps", "simultan"]] },
+            { "id": "c2", "label": "La lumière est près d'un million de fois plus rapide que le son (300 000 km/s contre 340 m/s)", "keywords": [["300 000", "plus rapide", "plus vite", "million"]] },
+            { "id": "c3", "label": "Le trajet de la lumière (un cent-millième de seconde) est négligeable devant celui du son (près de 9 s)", "keywords": [["neglige", "instantan", "0,00001", "10^-5", "9 s", "8,8"]] }
+          ] }
+      ],
+      "hints": ["t = d / v pour chaque signal, avec des unités cohérentes.", "Lumière : 3,0 km / 300 000 km/s. Son : 3 000 m / 340 m/s.", "Compare les deux durées."],
+      "solution": "Lumière : 3,0 / 300 000 = 1 × 10^-5 s (un cent-millième de seconde). Son : 3 000 / 340 ≈ 8,8 s. Les deux partent ensemble, mais la lumière est presque un million de fois plus rapide : son retard est négligeable, ce qui justifie la méthode « compter les secondes ».",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1 × 10^-5 s" }, { "value": "8,8 s" }, { "text": "L'éclair et le tonnerre partent en même temps mais la lumière va beaucoup plus vite que le son, 300 000 km/s contre 340 m/s. La lumière met 0,00001 s, c'est négligeable devant les 8,8 s du son.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,01 s" }, { "value": "8,8 s" }, { "text": "La lumière va plus vite que le son." } ] }, "expect": "mc:km-m-melange" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-sonar", "type": "composite", "skill": "pc.signaux.propagation", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:echo-aller-retour", "mc:vitesse-milieu", "mc:son-vide"], "expectedSeconds": 360,
+      "prompt": "Un bateau mesure la profondeur avec un sondeur : il émet un bref signal sonore vers le fond et capte son écho. Dans l'eau de mer, le son se propage à environ 1 500 m/s.",
+      "parts": [
+        { "type": "numeric", "prompt": "L'écho revient 0,40 s après l'émission. Quelle est la profondeur (avec l'unité) ?", "answer": 300, "unit": "m", "rel": 0.01,
+          "misconceptions": [
+            { "answer": 600, "id": "mc:echo-aller-retour", "error": "notion", "feedback": "Le signal descend PUIS remonte : 1 500 × 0,40 = 600 m est la distance aller-retour : la profondeur n'en est que la moitié." },
+            { "answer": 68, "id": "mc:vitesse-milieu", "error": "notion", "feedback": "340 m/s est la vitesse du son dans l'AIR. Dans l'eau, le son va environ quatre fois plus vite : 1 500 m/s." }
+          ] },
+        { "type": "numeric", "prompt": "Au-dessus d'une fosse profonde de 4 500 m, au bout de combien de temps l'écho revient-il (avec l'unité) ?", "answer": 6, "unit": "s", "rel": 0.01,
+          "misconceptions": [ { "answer": 3, "id": "mc:echo-aller-retour", "error": "notion", "feedback": "3 s, c'est la durée de la descente seule. L'écho doit aussi remonter : calcule la durée pour la distance aller-retour." } ] },
+        { "type": "text", "prompt": "Un tel sondeur pourrait-il mesurer la distance Terre-Lune ? (oui ou non)", "accept": ["non"],
+          "misconceptions": [ { "answer": "oui", "id": "mc:son-vide", "error": "notion", "feedback": "Entre la Terre et la Lune, c'est le vide : le son ne s'y propage pas. On mesure cette distance avec des impulsions laser (de la lumière) renvoyées par des réflecteurs déposés sur la Lune." } ] }
+      ],
+      "hints": ["Le son fait l'aller (vers le fond) et le retour (vers le bateau).", "Distance aller-retour = 1 500 × 0,40.", "Pour 4 500 m de profondeur, le son parcourt 9 000 m."],
+      "solution": "1 500 × 0,40 = 600 m aller-retour, donc 300 m de profondeur. Pour 4 500 m : 9 000 / 1 500 = 6 s. Le sondeur ne fonctionnerait pas vers la Lune : le son ne traverse pas le vide (on utilise des lasers).",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "300 m" }, { "value": "6 s" }, { "value": "non" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "600 m" }, { "value": "6 s" }, { "value": "non" } ] }, "expect": "mc:echo-aller-retour" },
+        { "response": { "parts": [ { "value": "68 m" }, { "value": "6 s" }, { "value": "non" } ] }, "expect": "mc:vitesse-milieu" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-mission", "type": "composite", "skill": "pc.signaux.propagation", "skills": ["pc.mouvement.vitesse"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:lecture-delai", "mc:min-non-converties"], "expectedSeconds": 600,
+      "prompt": "En camping, tu comptes les secondes entre un éclair et le tonnerre qui suit. À 14 h 00, tu comptes 12 s. À 14 h 10, tu comptes 6 s. Le son se propage à 340 m/s.",
+      "parts": [
+        { "type": "numeric", "prompt": "Distance de l'orage à 14 h 00 (avec l'unité) :", "answer": 4080, "unit": "m", "rel": 0.02,
+          "misconceptions": [ { "answer": 2040, "id": "mc:echo-orage", "error": "notion", "feedback": "Pas d'aller-retour pour le tonnerre : d = 340 × 12." } ] },
+        { "type": "numeric", "prompt": "Distance de l'orage à 14 h 10 (avec l'unité) :", "answer": 2040, "unit": "m", "rel": 0.02 },
+        { "type": "text", "prompt": "L'orage se rapproche-t-il ou s'éloigne-t-il ?", "accept": ["il se rapproche", "se rapproche", "rapproche", "il approche", "approche", "il se rapproche de nous", "il se rapproche de moi", "l'orage se rapproche", "il se rapproche de toi"],
+          "misconceptions": [ { "answer": "il s'éloigne", "id": "mc:lecture-delai", "error": "raisonnement", "feedback": "Le délai diminue : le son a moins de chemin à faire, l'orage est donc plus près." }, { "answer": "s'éloigne", "id": "mc:lecture-delai", "error": "raisonnement", "feedback": "Le délai diminue : l'orage est plus près." } ] },
+        { "type": "numeric", "prompt": "À quelle vitesse l'orage se rapproche-t-il (avec l'unité km/h) ?", "answer": "2.04/(10/60)", "unit": "km/h", "rel": 0.03,
+          "misconceptions": [ { "answer": 204, "id": "mc:min-non-converties", "error": "unite", "feedback": "2 040 m en 10 min, c'est 204 m par MINUTE. Pour des km/h, exprime la distance en km et la durée en heures (10 min = 10/60 h)." } ] },
+        { "type": "numeric", "prompt": "Les consignes de sécurité recommandent souvent de se mettre à l'abri dès que le délai éclair-tonnerre est inférieur à 30 s. À quelle distance de l'orage cela correspond-il (avec l'unité) ?", "answer": 10200, "unit": "m", "rel": 0.03 }
+      ],
+      "hints": ["d = 340 × délai, pour chaque mesure.", "En 10 min, l'orage s'est rapproché de 4 080 − 2 040 m.", "10 min = 1/6 h."],
+      "solution": "14 h 00 : 340 × 12 = 4 080 m ; 14 h 10 : 340 × 6 = 2 040 m. L'orage s'est rapproché de 2,04 km en 10 min = 1/6 h : v ≈ 12 km/h. À ce rythme, il sera au-dessus de toi dans 10 min environ. Un délai de 30 s correspond à 340 × 30 ≈ 10 km : il fallait déjà être à l'abri à 14 h 00 !",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4080 m" }, { "value": "2040 m" }, { "value": "il se rapproche" }, { "value": "12,2 km/h" }, { "value": "10,2 km" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "4080 m" }, { "value": "2040 m" }, { "value": "il s'éloigne" }, { "value": "12,2 km/h" }, { "value": "10,2 km" } ] }, "expect": "mc:lecture-delai" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-remed-aller-retour", "type": "composite", "skill": "pc.signaux.propagation", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "visuelle", "targets": ["mc:echo-aller-retour", "mc:echo-orage"], "expectedSeconds": 120,
+      "prompt": "Autre représentation : trace le chemin du son avec des flèches.\n- Écho : bateau → fond, puis fond → bateau. Deux flèches : le son parcourt la profondeur DEUX fois.\n- Orage : éclair → toi. Une seule flèche : le son parcourt la distance UNE fois.",
+      "parts": [
+        { "type": "numeric", "prompt": "Écho : le son a parcouru 900 m au total entre l'émission et le retour. Quelle est la profondeur (avec l'unité) ?", "answer": 450, "unit": "m",
+          "misconceptions": [ { "answer": 900, "id": "mc:echo-aller-retour", "error": "notion", "feedback": "900 m correspond aux deux flèches (aller + retour). La profondeur est la longueur d'une seule flèche." } ] },
+        { "type": "numeric", "prompt": "Orage : le son du tonnerre a parcouru 900 m entre l'éclair et toi. À quelle distance est l'orage (avec l'unité) ?", "answer": 900, "unit": "m",
+          "misconceptions": [ { "answer": 450, "id": "mc:echo-orage", "error": "notion", "feedback": "Une seule flèche ici : le son ne revient pas vers l'orage, donc on ne divise pas par 2." } ] }
+      ],
+      "hints": ["Compte les flèches dans chaque situation.", "Longueur d'une flèche = distance totale ÷ nombre de flèches."],
+      "solution": "Écho : 2 flèches pour 900 m, donc 450 m de profondeur. Orage : 1 flèche, donc 900 m. On ne divise par 2 que s'il y a aller ET retour.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "450 m" }, { "value": "900 m" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "900 m" }, { "value": "900 m" } ] }, "expect": "mc:echo-aller-retour" },
+        { "response": { "parts": [ { "value": "450 m" }, { "value": "450 m" } ] }, "expect": "mc:echo-orage" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-remed-vitesses", "type": "composite", "skill": "pc.signaux.propagation", "skills": ["m4.puissances"], "track": "classe", "role": "remediation", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:km-m-melange", "mc:lumiere-retard"], "expectedSeconds": 180,
+      "prompt": "Rappel ciblé : pour comparer deux vitesses ou calculer une durée, il faut la même unité partout. Lumière : 300 000 km/s. Son dans l'air : 340 m/s. Pour les grands nombres, écris sans espace ou avec une puissance de 10 (par exemple 3 × 10^8).",
+      "parts": [
+        { "type": "numeric", "prompt": "Combien de mètres la lumière parcourt-elle en une seconde ?", "answer": "3*10^8", "rel": 0.01,
+          "misconceptions": [ { "answer": 300000, "id": "mc:km-m-melange", "error": "unite", "feedback": "300 000 est le nombre de KILOMÈTRES. Convertis en mètres : 1 km = 1 000 m." } ] },
+        { "type": "numeric", "prompt": "Combien de fois la lumière est-elle plus rapide que le son dans l'air ?", "answer": "3*10^8/340", "rel": 0.05,
+          "misconceptions": [ { "answer": "300000/340", "id": "mc:km-m-melange", "error": "unite", "feedback": "Tu as divisé des km/s par des m/s. Exprime d'abord les deux vitesses dans la même unité (en m/s), puis divise." } ] },
+        { "type": "numeric", "prompt": "Combien de temps la lumière met-elle pour parcourir 1 km (avec l'unité) ?", "answer": "1000/(3*10^8)", "unit": "s", "rel": 0.02 }
+      ],
+      "hints": ["1 km = 1 000 m.", "Divise deux vitesses exprimées dans la même unité.", "t = d / v = 1 000 m / (3 × 10^8 m/s)."],
+      "solution": "300 000 km/s = 3 × 10^8 m/s. Rapport : 3 × 10^8 / 340 ≈ 8,8 × 10^5 : la lumière est près d'un million de fois plus rapide. Sur 1 km, elle met 1 000 / 3 × 10^8 ≈ 3,3 × 10^-6 s : pour un orage, son trajet est négligeable.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3 × 10^8" }, { "value": "8,8 × 10^5" }, { "value": "3,3 µs" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "300000" }, { "value": "882" }, { "value": "3,3 µs" } ] }, "expect": "mc:km-m-melange" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-mesure-v", "type": "composite", "skill": "pc.mesure.donnees", "skills": ["pc.signaux.propagation"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "visuelle", "targets": ["mc:ms-non-converties"], "expectedSeconds": 600,
+      "prompt": "Pour mesurer la vitesse du son, on aligne un claquoir et deux micros séparés d'une distance d, et on mesure le décalage Δt entre les deux enregistrements (lu à ± 0,1 ms près) :\n- d = 0,50 m : Δt = 1,5 ms\n- d = 1,00 m : Δt = 2,9 ms\n- d = 1,50 m : Δt = 4,4 ms\n- d = 2,00 m : Δt = 5,9 ms",
+      "parts": [
+        { "type": "graph", "prompt": "Place les points : Δt (ms) en abscisse, d (m) en ordonnée.", "xRange": [0, 7], "yRange": [0, 2.5], "xLabel": "Δt (ms)", "yLabel": "d (m)", "tolerance": 0.1,
+          "expectedPoints": [[1.5, 0.5], [2.9, 1], [4.4, 1.5], [5.9, 2]] },
+        { "type": "numeric", "prompt": "Vitesse du son déduite de la droite passant par l'origine et au plus près des points (avec l'unité) :", "answer": 340, "unit": "m/s", "rel": 0.03,
+          "misconceptions": [
+            { "answer": 0.34, "id": "mc:ms-non-converties", "error": "unite", "feedback": "Δt est en millisecondes : convertis-le en secondes (1 ms = 0,001 s) avant de diviser." },
+            { "answer": "1/340", "id": "mc:v-inverse", "error": "notion", "feedback": "v = d / Δt, et non Δt / d." }
+          ] },
+        { "type": "numeric", "prompt": "Écart entre la plus grande et la plus petite valeur de d / Δt calculées point par point (avec l'unité) :", "answer": "1/0.0029-0.5/0.0015", "unit": "m/s", "tolerance": 1.5 },
+        { "type": "open", "prompt": "Quel point est le moins précis ? Pourquoi est-il utile de mesurer à plusieurs distances ?", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Le premier point (Δt le plus petit) : ± 0,1 ms sur 1,5 ms, c'est environ 7 %, contre moins de 2 % pour 5,9 ms", "keywords": [["premier", "1,5 ms", "0,50 m", "plus petit", "7"]] },
+            { "id": "c2", "label": "Plusieurs distances permettent de tracer une droite et de compenser les erreurs de chaque mesure", "keywords": [["droite", "compens", "moyenne", "plusieurs"]] }
+          ] }
+      ],
+      "hints": ["Convertis Δt en secondes : 5,9 ms = 0,0059 s.", "La pente de la droite d = f(Δt) est la vitesse.", "Une même erreur de 0,1 ms pèse davantage sur un petit Δt."],
+      "solution": "Les points sont presque alignés avec l'origine ; la pente vaut environ 2,00 / 0,0059 ≈ 340 m/s. Point par point, d / Δt varie de 333 à 345 m/s (écart ≈ 12 m/s). Le premier point est le moins précis (± 0,1 ms sur 1,5 ms ≈ 7 %) ; la droite tient compte de toutes les mesures.",
+      "selfTest": [
+        { "response": { "parts": [ { "points": [[1.5, 0.5], [2.9, 1], [4.4, 1.5], [5.9, 2]] }, { "value": "340 m/s" }, { "value": "11,5 m/s" }, { "text": "Le premier point est le moins précis car 0,1 ms sur 1,5 ms fait 7 %. Plusieurs distances permettent de tracer une droite qui compense les erreurs.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "points": [[1.5, 0.5], [2.9, 1], [4.4, 1.5], [5.9, 2]] }, { "value": "0,34 m/s" }, { "value": "11,5 m/s" }, { "text": "Le premier point est le moins précis." } ] }, "expect": "mc:ms-non-converties" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-rail", "type": "composite", "skill": "pc.signaux.propagation", "skills": ["m4.equations.modeliser"], "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "concrete", "targets": ["mc:vitesse-milieu", "mc:decalage-air"], "expectedSeconds": 600,
+      "prompt": "Dans l'acier d'un rail, le son se propage à environ 5 000 m/s. Une élève colle son oreille contre un rail ; à 1 000 m de là, on frappe le rail avec un marteau. Elle entend deux bruits : l'un arrive par le rail, l'autre par l'air (340 m/s).",
+      "parts": [
+        { "type": "numeric", "prompt": "Durée du trajet par le rail (avec l'unité) :", "answer": 0.2, "unit": "s", "rel": 0.01,
+          "misconceptions": [ { "answer": "1000/340", "id": "mc:vitesse-milieu", "error": "notion", "feedback": "Dans l'acier, le son ne va pas à 340 m/s mais à environ 5 000 m/s." } ] },
+        { "type": "numeric", "prompt": "Durée du trajet par l'air (avec l'unité) :", "answer": "1000/340", "unit": "s", "rel": 0.01 },
+        { "type": "numeric", "prompt": "Décalage entre les deux bruits (avec l'unité) :", "answer": "1000/340-0.2", "unit": "s", "rel": 0.02 },
+        { "type": "numeric", "prompt": "Sur un autre rail, le décalage mesuré est 0,73 s. Quelle est la distance entre le marteau et l'élève (avec l'unité) ?", "answer": "0.73/(1/340-1/5000)", "unit": "m", "rel": 0.02,
+          "misconceptions": [ { "answer": "0.73*340", "id": "mc:decalage-air", "error": "raisonnement", "feedback": "Ce calcul suppose que le bruit du rail arrive instantanément. Il met lui aussi un peu de temps : L / 340 − L / 5 000 = 0,73." } ] }
+      ],
+      "hints": ["t = d / v pour chaque trajet.", "Décalage = durée par l'air − durée par le rail.", "Avec L la distance : L / 340 − L / 5 000 = 0,73."],
+      "solution": "Rail : 1 000 / 5 000 = 0,20 s ; air : 1 000 / 340 ≈ 2,94 s ; décalage ≈ 2,74 s. Pour 0,73 s : L × (1/340 − 1/5 000) = 0,73, donc L ≈ 0,73 / 0,002 741 ≈ 266 m. Négliger la durée dans le rail donnerait 248 m : 7 % d'erreur.",
+      "methods": ["Équation : L / 340 − L / 5 000 = 0,73.", "Proportionnalité : 1 000 m donnent 2,741 s de décalage ; le décalage est proportionnel à L, donc L = 1 000 × 0,73 / 2,741 ≈ 266 m."],
+      "selfTest": [
+        { "response": { "parts": [ { "value": "0,2 s" }, { "value": "2,94 s" }, { "value": "2,74 s" }, { "value": "266 m" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "0,2 s" }, { "value": "2,94 s" }, { "value": "2,74 s" }, { "value": "248 m" } ] }, "expect": "mc:decalage-air" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-annee-lumiere", "type": "composite", "skill": "pc.signaux.propagation", "skills": ["pc.mesure.incertitudes", "m4.puissances"], "track": "expert", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:ordre-grandeur", "mc:al-duree"], "expectedSeconds": 720,
+      "prompt": "L'année-lumière (a.l.) est la distance parcourue par la lumière en une année. On prend c = 300 000 km/s et 1 an = 365,25 jours. Écris les grands nombres avec une puissance de 10 (par exemple 4,7 × 10^5 s).",
+      "parts": [
+        { "type": "numeric", "prompt": "Nombre de secondes dans une année (avec l'unité) :", "answer": "365.25*24*3600", "unit": "s", "rel": 0.01 },
+        { "type": "numeric", "prompt": "Valeur d'une année-lumière en kilomètres (avec l'unité) :", "answer": "300000*365.25*24*3600", "unit": "km", "rel": 0.01,
+          "misconceptions": [ { "answer": "300000*365.25*24", "id": "mc:unite-duree", "error": "unite", "feedback": "La vitesse est en km par SECONDE : la durée doit être en secondes (3,16 × 10^7 s), pas en heures." } ] },
+        { "type": "numeric", "prompt": "Ordre de grandeur : 1 a.l. ≈ $10^n$ km. Quelle est la valeur de l'entier n ?", "answer": 13,
+          "misconceptions": [ { "answer": 12, "id": "mc:ordre-grandeur", "error": "raisonnement", "prerequisite": "m4.puissances", "feedback": "Écris 10^13 sous la forme 10 × 10^12, puis compare : ta valeur est-elle plus proche de 1 × 10^12 ou de 10 × 10^12 ?" } ] },
+        { "type": "numeric", "prompt": "Proxima du Centaure, l'étoile la plus proche du Soleil, est à 4,2 a.l. Distance en km (avec l'unité) :", "answer": "4.2*300000*365.25*24*3600", "unit": "km", "rel": 0.02 },
+        { "type": "text", "prompt": "L'année-lumière est-elle une durée ou une distance ?", "accept": ["une distance", "distance", "c'est une distance"],
+          "misconceptions": [ { "answer": "une durée", "id": "mc:al-duree", "error": "notion", "feedback": "Malgré son nom, relis la définition : l'année-lumière est ce que PARCOURT la lumière pendant un an. Ce que l'on parcourt, est-ce un temps ou une longueur ?" }, { "answer": "durée", "id": "mc:al-duree", "error": "notion", "feedback": "Malgré son nom, relis la définition : l'année-lumière est ce que PARCOURT la lumière pendant un an. Ce que l'on parcourt, est-ce un temps ou une longueur ?" } ] },
+        { "type": "open", "prompt": "On dit qu'on voit Proxima du Centaure « telle qu'elle était il y a 4,2 ans ». Explique cette phrase.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "La lumière met 4,2 ans à nous parvenir", "keywords": [["4,2 ans", "met", "voyage", "parcourir"]] },
+            { "id": "c2", "label": "Ce que l'on voit aujourd'hui est la lumière partie il y a 4,2 ans : on voit le passé de l'étoile", "keywords": [["passe", "partie", "il y a", "avant"]] }
+          ] }
+      ],
+      "hints": ["1 an = 365,25 × 24 × 3 600 s.", "d = c × t avec c en km/s et t en s.", "Compare 9,5 × 10^12 avec 10^12 et 10^13."],
+      "solution": "1 an ≈ 3,16 × 10^7 s ; 1 a.l. = 3 × 10^5 × 3,16 × 10^7 ≈ 9,5 × 10^12 km, ordre de grandeur 10^13 km. Proxima : 4,2 × 9,5 × 10^12 ≈ 4,0 × 10^13 km. Sa lumière voyage 4,2 ans : on la voit telle qu'elle était au moment où cette lumière est partie.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3,16 × 10^7 s" }, { "value": "9,47 × 10^12 km" }, { "value": "13" }, { "value": "4 × 10^13 km" }, { "value": "une distance" }, { "text": "La lumière de l'étoile met 4,2 ans pour arriver jusqu'à nous, donc on voit la lumière partie il y a 4,2 ans : on voit le passé.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3,16 × 10^7 s" }, { "value": "9,47 × 10^12 km" }, { "value": "12" }, { "value": "4 × 10^13 km" }, { "value": "une distance" }, { "text": "La lumière met 4,2 ans pour arriver." } ] }, "expect": "mc:ordre-grandeur" },
+        { "response": { "parts": [ { "value": "3,16 × 10^7 s" }, { "value": "9,47 × 10^12 km" }, { "value": "13" }, { "value": "4 × 10^13 km" }, { "value": "une durée" }, { "text": "La lumière met 4,2 ans pour arriver." } ] }, "expect": "mc:al-duree" }
+      ]
+    },
+    {
+      "id": "pc-son-lumiere-regle-3s", "type": "composite", "skill": "pc.mesure.incertitudes", "skills": ["pc.signaux.propagation"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:source-incertitude"], "expectedSeconds": 900,
+      "prompt": "La règle « 3 secondes = 1 kilomètre » sert à estimer la distance d'un orage. On l'examine de près pour un délai compté de 9 s.",
+      "parts": [
+        { "type": "numeric", "prompt": "Distance donnée par la règle (avec l'unité) :", "answer": 3, "unit": "km" },
+        { "type": "numeric", "prompt": "Distance calculée avec v = 340 m/s (avec l'unité) :", "answer": 3060, "unit": "m", "rel": 0.005 },
+        { "type": "numeric", "prompt": "Écart relatif entre ces deux résultats, en pourcentage (seulement le nombre) :", "answer": "60/3060*100", "rel": 0.1 },
+        { "type": "numeric", "prompt": "La vitesse du son dépend de la température : environ 331 m/s à 0 °C et 349 m/s à 30 °C. Pour 9 s, quel écart cela fait-il entre les distances calculées à 0 °C et à 30 °C (avec l'unité) ?", "answer": "9*(349-331)", "unit": "m", "rel": 0.02 },
+        { "type": "numeric", "prompt": "Si le comptage des secondes est fait à ± 0,5 s près, de combien la distance peut-elle être fausse, au plus (avec l'unité) ?", "answer": 170, "unit": "m", "rel": 0.02,
+          "misconceptions": [ { "answer": 340, "id": "mc:demi-erreur", "error": "calcul", "feedback": "340 m correspond à une erreur d'une seconde entière. Ici, le comptage n'est faux que d'une demi-seconde au plus." } ] },
+        { "type": "order", "prompt": "Range ces sources d'erreur, de celle qui a le plus d'effet à celle qui en a le moins, pour un délai de 9 s.", "orderLabel": "de l'effet le plus grand au plus petit", "errorType": "raisonnement",
+          "items": [
+            { "id": "comptage", "label": "Imprécision du comptage des secondes (± 0,5 s)" },
+            { "id": "temperature", "label": "Température de l'air inconnue (entre 0 °C et 30 °C)" },
+            { "id": "regle", "label": "Approximation de la règle « 3 s = 1 km »" },
+            { "id": "lumiere", "label": "Durée du trajet de la lumière de l'éclair" }
+          ] },
+        { "type": "open", "prompt": "Conclus : avec quelle précision peut-on annoncer la distance de l'orage ? La règle « 3 s = 1 km » est-elle suffisante ?", "minWords": 25,
+          "criteria": [
+            { "id": "c1", "label": "Le comptage domine (± 170 m), devant la température (environ ± 80 m) et la règle (60 m)", "keywords": [["comptage", "170"]] },
+            { "id": "c2", "label": "La durée de trajet de la lumière est négligeable (quelques millimètres de distance)", "keywords": [["lumiere", "neglige"]] },
+            { "id": "c3", "label": "Conclusion : distance connue à environ 0,2 km près ; la règle est largement suffisante", "keywords": [["suffis", "0,2", "200 m", "precision"]] }
+          ] }
+      ],
+      "hints": ["Distance = vitesse du son × délai, avec v = 340 m/s et un délai de 9 s.","Températures : 331 × 9 et 349 × 9.", "La lumière met environ 10^-5 s : à 340 m/s, cela représente 340 × 10^-5 m."],
+      "solution": "Règle : 3 km ; calcul : 3 060 m, écart ≈ 2 % (60 m). Température : 9 × 18 = 162 m d'écart entre 0 °C et 30 °C (environ ± 80 m). Comptage : ± 0,5 s × 340 m/s = ± 170 m. Lumière : environ 10^-5 s, soit quelques millimètres : négligeable. Ordre : comptage > température > règle > lumière. On peut annoncer « environ 3,0 km à 0,2 km près » : la règle suffit largement, car l'erreur humaine domine.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "3 km" }, { "value": "3060 m" }, { "value": "2" }, { "value": "162 m" }, { "value": "170 m" }, { "order": ["comptage", "temperature", "regle", "lumiere"] }, { "text": "Le comptage domine avec 170 m d'erreur, puis la température et la règle. La lumière est négligeable. On connaît la distance à 0,2 km près, la règle suffit.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "3 km" }, { "value": "3060 m" }, { "value": "2" }, { "value": "162 m" }, { "value": "170 m" }, { "order": ["lumiere", "regle", "temperature", "comptage"] }, { "text": "La lumière fausse tout, la règle est trop approximative." } ] }, "expect": "raisonnement" },
+        { "response": { "parts": [ { "value": "3 km" }, { "value": "3060 m" }, { "value": "2" }, { "value": "162 m" }, { "value": "340 m" }, { "order": ["comptage", "temperature", "regle", "lumiere"] }, { "text": "Le comptage domine." } ] }, "expect": "mc:demi-erreur" }
+      ]
+    }
+  ]
+}

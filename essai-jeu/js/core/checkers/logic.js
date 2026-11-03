@@ -1,0 +1,141 @@
+/**
+ * Raisonnement : contre-exemples et exercices à plusieurs réponses valables.
+ * Ces deux types demandent de la réflexion mais restent vérifiables avec certitude.
+ */
+import { parse, evaluate, tryParse, formatNumber, toText, solveLinear, variables } from '../expr.js';
+import { interpolate } from '../template.js';
+import { diagnosis } from '../errors.js';
+import { sameDimension } from '../units.js';
+import { FORMS } from './expression.js';
+import { readNumber, typedUnitProblem } from './numeric.js';
+
+function predicate(src, params, extra) {
+  const env = { ...params, ...extra };
+  const names = new Set(Object.keys(env));
+  return evaluate(parse(src, { names }), env);
+}
+
+/**
+ * Contre-exemple. Définition :
+ *   claim : énoncé ; vars : ["n"] ; domain : "n >= 0 and estentier(n)" ;
+ *   refutes : "not estpremier(n^2+n+41)" ; show : "n^2+n+41" (valeur à montrer dans le retour) ;
+ *   claimIsTrue : false (si l'énoncé est vrai, l'élève doit le reconnaître et le justifier).
+ */
+export function checkCounterexample(def, params, response) {
+  if (response.claimTrue) {
+    if (def.claimIsTrue) {
+      return diagnosis({ verdict: 'a-valider', needsHuman: true, score: 0.5, feedback: "Tu affirmes que l'énoncé est vrai : c'est le cas. Ta justification sera relue (un exemple ne suffit pas, il faut une preuve)." });
+    }
+    return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: "Cet énoncé est en réalité faux : cherche encore, un contre-exemple existe (parfois loin des premiers essais)." });
+  }
+  const values = {};
+  for (const name of def.vars || []) {
+    const raw = response.values ? response.values[name] : undefined;
+    const r = tryParse(String(raw ?? '').trim());
+    if (!r.ok) return diagnosis({ verdict: 'illisible', feedback: `Donne une valeur pour ${name}.` });
+    try { values[name] = evaluate(r.node); } catch { return diagnosis({ verdict: 'illisible', feedback: `Valeur de ${name} illisible.` }); }
+  }
+  const shown = def.show ? ` (${interpolate(def.showLabel || def.show, params)} = ${formatNumber(predicate(def.show, params, values))})` : '';
+  const valuesTxt = Object.entries(values).map(([k, v]) => `${k} = ${formatNumber(v)}`).join(', ');
+  if (def.domain && !predicate(def.domain, params, values)) {
+    return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: `Avec ${valuesTxt}, on sort des conditions de l'énoncé (${def.domainLabel || def.domain}).` });
+  }
+  if (predicate(def.refutes, params, values)) {
+    if (def.claimIsTrue) throw new Error('Contenu incohérent : un énoncé vrai a été réfuté');
+    return diagnosis({ verdict: 'correct', score: 1, feedback: `Bravo : avec ${valuesTxt}${shown}, l'énoncé est faux. Un seul contre-exemple suffit pour réfuter un « pour tout ».` });
+  }
+  return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: `Avec ${valuesTxt}${shown}, l'énoncé est vérifié : ce n'est pas un contre-exemple. ${def.refuteHint || 'Essaie des valeurs moins « ordinaires ».'}` });
+}
+
+/**
+ * Lit une réponse comme checkNumeric (readNumber) : « 2,9 cm », « √28 », « 5,29 ». L'unité tapée est ignorée,
+ * sauf si l'énoncé en cite une autre de la même grandeur (« 29 mm » quand on demande des cm).
+ */
+function readValue(txt, def, params) {
+  const read = readNumber(txt);
+  if (read.empty || read.error) return { error: 'illisible' };
+  const pb = typedUnitProblem(read, interpolate(def.prompt || '', params || {}));
+  if (pb === 'autre') return { error: `réponse en « ${read.ignoredUnitText} » : relis l'unité demandée` };
+  if (pb === 'ambigue') return { error: 'écris seulement le nombre, l’unité est fixée par l’énoncé' };
+  return read;
+}
+
+/** Une case d'un exercice `multi` : lecture, forme imposée, valeur déjà donnée, puis condition. */
+function multiItem(txt, def, params, seen) {
+  if (!txt) return { text: '', ok: false, reason: 'vide' };
+  const read = readValue(txt, def, params);
+  if (read.error) return { text: txt, ok: false, reason: read.error };
+  const v = read.value;
+  const form = def.form && FORMS[def.form];
+  if (form && !(read.node && form.test(read.node))) return { text: txt, ok: false, reason: `pas sous ${form.label}` };
+  if (def.distinct !== false && seen.some((s) => Math.abs(s - v) < 1e-12)) return { text: txt, ok: false, reason: 'même valeur qu’une autre réponse' };
+  const ok = Boolean(predicate(def.predicate, params, { v }));
+  if (ok) seen.push(v);
+  return { text: txt, value: v, ok, reason: ok ? '' : `${read.node ? toText(read.node) : txt} = ${formatNumber(v)} ne convient pas` };
+}
+
+/**
+ * Plusieurs réponses valables. Définition :
+ *   count : 3 ; predicate : "v > 1/3 and v < 1/2" ; distinct : true ; form : "irreductible" (facultatif)
+ * Chaque réponse se lit comme une réponse numérique : « 2,9 cm » vaut 2,9.
+ */
+export function checkMulti(def, params, response) {
+  const raw = (response.values || []).map((x) => String(x ?? '').trim());
+  const filled = raw.filter(Boolean);
+  if (!filled.length) return diagnosis({ verdict: 'vide', feedback: 'Propose au moins une réponse.' });
+  const seen = [];
+  const items = raw.map((txt) => multiItem(txt, def, params, seen));
+  const good = items.filter((i) => i.ok).length;
+  const count = def.count || 1;
+  if (good >= count) return diagnosis({ verdict: 'correct', score: 1, details: items, feedback: def.correctFeedback || 'Toutes tes réponses conviennent. Il en existe bien d’autres !' });
+  const firstBad = items.find((i) => !i.ok && i.reason !== 'vide');
+  return diagnosis({
+    verdict: good > 0 ? 'partiel' : 'incorrect',
+    score: good / count * 0.8,
+    errorType: firstBad ? 'inconnue' : null,
+    details: items,
+    feedback: firstBad ? `${good}/${count} réponse(s) valable(s). ${firstBad.reason}.` : `${good}/${count} : complète les cases restantes.`,
+  });
+}
+
+/**
+ * Équation à inventer : l'élève écrit une équation qui doit avoir une propriété donnée.
+ *   expectKind : "unique" | "none" | "all" ; expectSolution : "-2/3" (si unique) ;
+ *   varBothSides : true (l'inconnue doit apparaître dans les deux membres)
+ */
+export function checkEquation(def, params, response) {
+  const raw = String(response.value ?? '').trim();
+  if (!raw) return diagnosis({ verdict: 'vide', feedback: 'Écris ton équation.' });
+  const r = tryParse(raw);
+  if (!r.ok) return diagnosis({ verdict: 'illisible', feedback: `Je n'arrive pas à lire cette équation (${r.error}).` });
+  const eq = r.node;
+  const v = def.variable || 'x';
+  if (eq.t !== 'cmp' || eq.op !== '=') return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: 'Une équation contient un signe « = ».' });
+  if (!variables(eq).has(v)) return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: `L'inconnue ${v} doit apparaître dans ton équation.` });
+  if (def.varBothSides && (!variables(eq.a).has(v) || !variables(eq.b).has(v))) {
+    return diagnosis({ verdict: 'partiel', score: 0.5, errorType: 'lecture', feedback: `Consigne : ${v} doit apparaître dans les deux membres.` });
+  }
+  const sol = solveLinear(eq, v);
+  if (sol.kind === 'nonlinear') {
+    if (def.expectKind === 'all') {
+      // une « identité » fausse : on montre une valeur qui la met en défaut (ex. √(x²) = x pour x = −3)
+      for (const x of [-3, -1, 0.5, 2, -7.5]) {
+        let l; let r;
+        try { l = evaluate(eq.a, { [v]: x }); r = evaluate(eq.b, { [v]: x }); } catch { continue; }
+        if (!Number.isFinite(l) || !Number.isFinite(r) || Math.abs(l - r) > 1e-9 * Math.max(1, Math.abs(l))) {
+          return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: `Pour ${v} = ${formatNumber(x)}, les deux membres ne sont pas égaux : ton égalité n'est pas vraie pour tout ${v}.` });
+        }
+      }
+    }
+    return diagnosis({ verdict: 'incorrect', errorType: 'lecture', feedback: "Cette équation n'est pas du premier degré." });
+  }
+  const kindLabel = { unique: 'une seule solution', none: 'aucune solution', all: 'une infinité de solutions' };
+  if (sol.kind !== def.expectKind) {
+    return diagnosis({ verdict: 'incorrect', errorType: 'raisonnement', feedback: `Ton équation a ${kindLabel[sol.kind]}${sol.kind === 'unique' ? ` (${v} = ${formatNumber(sol.x)})` : ''} : ce n'est pas ce qui est demandé.` });
+  }
+  if (sol.kind === 'unique' && def.expectSolution !== undefined) {
+    const target = evaluate(parse(String(def.expectSolution), { names: new Set(Object.keys(params)) }), params);
+    if (Math.abs(sol.x - target) > 1e-9) return diagnosis({ verdict: 'incorrect', errorType: 'calcul', feedback: `La solution de ton équation est ${v} = ${formatNumber(sol.x)}, pas ${formatNumber(target)}.` });
+  }
+  return diagnosis({ verdict: 'correct', score: 1, feedback: def.correctFeedback || 'Ton équation a exactement la propriété demandée.' });
+}

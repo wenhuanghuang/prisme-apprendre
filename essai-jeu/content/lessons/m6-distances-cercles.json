@@ -1,0 +1,4084 @@
+{
+  "id": "m6-distances-cercles",
+  "chapter": "6e-m-distances-cercles",
+  "title": "Distance, milieu, cercle et médiatrice",
+  "subject": "maths",
+  "level": "6e",
+  "skills": [
+    "m6.geo.distance-milieu",
+    "m6.geo.cercle",
+    "m6.geo.mediatrice"
+  ],
+  "status": "programme",
+  "programmes": [
+    "maths-c3-2025"
+  ],
+  "duration": 55,
+  "summary": "Mesurer une distance, trouver le milieu d'un segment, reconnaître rayon, diamètre et corde, distinguer cercle et disque, puis découvrir la médiatrice : la droite de tous les points situés à égale distance de deux points. Avec un trésor de pirate à retrouver !",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le trésor du pirate",
+      "body": "Sur une vieille carte, on lit : « Mon trésor est enterré à 3 pas du palmier. » Tu creuses à 3 pas du palmier… rien. Ton amie creuse ailleurs, à 3 pas aussi… rien non plus ! Combien d'endroits sont à 3 pas du palmier ?\n\nDeuxième indice : « Il est aussi à la même distance du puits et du rocher. » Où faut-il creuser maintenant ?",
+      "figure": {
+        "alt": "Carte d'une île avec un palmier P, un puits W et un rocher R",
+        "w": 400,
+        "h": 250,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            6
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "P",
+            "x": 3,
+            "y": 3.4,
+            "pos": "n",
+            "style": "rond",
+            "color": "vert"
+          },
+          {
+            "type": "point",
+            "id": "W",
+            "x": 6.5,
+            "y": 1.3,
+            "pos": "s",
+            "style": "rond",
+            "color": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "R",
+            "x": 8.3,
+            "y": 4.6,
+            "pos": "n",
+            "style": "rond",
+            "color": "gris"
+          },
+          {
+            "type": "text",
+            "x": 3,
+            "y": 2.7,
+            "text": "palmier",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 6.5,
+            "y": 2,
+            "text": "puits",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "text",
+            "x": 8.3,
+            "y": 3.9,
+            "text": "rocher",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📏",
+          "title": "La distance entre deux points",
+          "body": "La **distance** entre A et B est la longueur du segment [AB] : c'est le plus court chemin pour aller de A à B. On la note **AB**, sans crochets. Attention aux notations : [AB] est le segment, (AB) est la droite, AB est une longueur.",
+          "example": "AB = 5 cm se lit « la distance de A à B est égale à 5 cm ».",
+          "figure": {
+            "alt": "Deux points A et B reliés par un segment, et un autre chemin en pointillés qui passe par un point C",
+            "w": 360,
+            "h": 230,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                5
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1,
+                "pos": "sw"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 2.5,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 3,
+                "y": 4.4,
+                "pos": "n"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "le plus court",
+                "color": "maths"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "C",
+                "dashed": true,
+                "color": "gris"
+              },
+              {
+                "type": "segment",
+                "from": "C",
+                "to": "B",
+                "dashed": true,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⚖️",
+          "title": "Le milieu d'un segment",
+          "body": "Le **milieu** I du segment [AB] est le point **de [AB]** situé à la même distance de A et de B. Il partage le segment en deux longueurs égales : IA = IB = AB ÷ 2. Sur une figure, on code les longueurs égales par le même petit trait.",
+          "example": "Si AB = 7 cm, alors IA = IB = 3,5 cm.",
+          "reveal": {
+            "question": "Devine : un point situé à la même distance de A et de B est-il toujours le milieu de [AB] ?",
+            "answer": "Non ! Il faut aussi qu'il soit SUR le segment [AB]. Un point placé au-dessus du segment peut être à égale distance de A et de B sans être le milieu."
+          },
+          "figure": {
+            "alt": "Un segment [AB] et son milieu I, les deux moitiés codées par un petit trait",
+            "w": 360,
+            "h": 120,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0.4,
+                2.4
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1.2,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "I",
+                "x": 4,
+                "y": 1.2,
+                "pos": "s"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1.2,
+                "pos": "s"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "I",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "I",
+                "to": "B",
+                "marks": 1
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "⭕",
+          "title": "Le cercle : rayon, diamètre, corde",
+          "body": "Le **cercle** de centre O et de rayon r est formé de **tous les points situés à la distance r de O**. Un **rayon** relie O à un point du cercle. Une **corde** relie deux points du cercle. Un **diamètre** est une corde qui passe par O : il mesure deux rayons, d = 2 × r.",
+          "example": "Un cercle de rayon 3 cm a un diamètre de 6 cm.",
+          "figure": {
+            "alt": "Un cercle de centre O avec un rayon, un diamètre et une corde tracés",
+            "w": 330,
+            "h": 270,
+            "frame": {
+              "x": [
+                -4.6,
+                4.6
+              ],
+              "y": [
+                -3.7,
+                3.7
+              ]
+            },
+            "items": [
+              {
+                "type": "circle",
+                "center": [
+                  0,
+                  0
+                ],
+                "r": 3,
+                "fill": "bleu"
+              },
+              {
+                "type": "point",
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "pos": "sw",
+                "style": "rond"
+              },
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1.9284,
+                "y": 2.2981,
+                "pos": "ne"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": -2.8191,
+                "y": 1.0261,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "C",
+                "x": 2.8191,
+                "y": -1.0261,
+                "pos": "e"
+              },
+              {
+                "type": "point",
+                "id": "D",
+                "x": -2.8191,
+                "y": -1.0261,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "E",
+                "x": 0.5209,
+                "y": -2.9544,
+                "pos": "s"
+              },
+              {
+                "type": "segment",
+                "from": "O",
+                "to": "A",
+                "label": "rayon",
+                "color": "rouge"
+              },
+              {
+                "type": "segment",
+                "from": "B",
+                "to": "C",
+                "label": "diamètre",
+                "color": "vert"
+              },
+              {
+                "type": "segment",
+                "from": "D",
+                "to": "E",
+                "label": "corde",
+                "color": "orange"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🍕",
+          "title": "Cercle ou disque ?",
+          "body": "Le **disque** de centre O et de rayon r est formé de tous les points situés à une distance de O **inférieure ou égale** à r : c'est le cercle et tout son intérieur. Le cercle est une ligne (le bord de la pizza), le disque est une surface (la pizza entière).",
+          "example": "Rayon 3 cm et OM = 2 cm : M est dans le disque, mais pas sur le cercle.",
+          "figure": {
+            "alt": "Un disque de centre O avec un point M à l’intérieur, un point N sur le cercle et un point Q à l’extérieur",
+            "w": 300,
+            "h": 250,
+            "frame": {
+              "x": [
+                -4,
+                4.4
+              ],
+              "y": [
+                -3.4,
+                3.4
+              ]
+            },
+            "caption": "M est dans le disque, N est sur le cercle, Q est en dehors du disque.",
+            "items": [
+              {
+                "type": "circle",
+                "center": [
+                  0,
+                  0
+                ],
+                "r": 3,
+                "fill": "orange"
+              },
+              {
+                "type": "point",
+                "id": "O",
+                "x": 0,
+                "y": 0,
+                "pos": "sw",
+                "style": "rond"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 1.1,
+                "y": 0.9,
+                "pos": "ne"
+              },
+              {
+                "type": "point",
+                "id": "N",
+                "x": -1.7207,
+                "y": 2.4575,
+                "pos": "nw"
+              },
+              {
+                "type": "point",
+                "id": "Q",
+                "x": 3.7,
+                "y": -1.6,
+                "pos": "e"
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "✂️",
+          "title": "La médiatrice d'un segment",
+          "body": "La **médiatrice** du segment [AB] est la droite **perpendiculaire** à [AB] qui passe par son **milieu**. Propriété : un point de la médiatrice est à la même distance de A et de B. Et dans l'autre sens : si MA = MB, alors M est sur la médiatrice de [AB].",
+          "reveal": {
+            "question": "Devine : le milieu de [AB] est-il sur la médiatrice de [AB] ?",
+            "answer": "Oui : il est à la même distance de A et de B, et la médiatrice passe justement par lui."
+          },
+          "figure": {
+            "alt": "Un segment [AB], sa médiatrice (d) perpendiculaire en son milieu I, et un point M de (d) relié à A et à B",
+            "w": 360,
+            "h": 260,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                0,
+                6
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 1.5,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 1.5,
+                "pos": "e"
+              },
+              {
+                "type": "point",
+                "id": "I",
+                "x": 4,
+                "y": 1.5,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 4,
+                "y": 5,
+                "pos": "ne"
+              },
+              {
+                "type": "line",
+                "through": [
+                  [
+                    4,
+                    0
+                  ],
+                  [
+                    4,
+                    6
+                  ]
+                ],
+                "label": "(d)",
+                "color": "rouge"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "I",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "I",
+                "to": "B",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "M",
+                "to": "A",
+                "dashed": true,
+                "marks": 2
+              },
+              {
+                "type": "segment",
+                "from": "M",
+                "to": "B",
+                "dashed": true,
+                "marks": 2
+              },
+              {
+                "type": "angle",
+                "vertex": "I",
+                "from": "B",
+                "to": "M",
+                "right": true
+              }
+            ]
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "En résumé : « à la même distance »",
+          "body": "Trois phrases à ne pas mélanger. **OM = r** : M est sur le cercle de centre O et de rayon r (et **OM ≤ r** : M est dans le disque). **MA = MB** : M est sur la médiatrice de [AB]. **MA = MB et M sur [AB]** : M est le milieu de [AB]."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : tracer une médiatrice au compas",
+      "steps": [
+        {
+          "text": "On veut tracer la médiatrice du segment [AB], long de 6 cm, avec une règle et un compas.",
+          "figure": {
+            "alt": "Un segment [AB] de 6 cm",
+            "w": 400,
+            "h": 340,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.9,
+                5.9
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 2.5,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 2.5,
+                "pos": "e"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B",
+                "label": "6 cm"
+              }
+            ]
+          }
+        },
+        {
+          "text": "On pointe le compas en A et on l'ouvre de 4 cm, un peu plus que la moitié de AB. On trace un arc au-dessus de [AB] et un arc au-dessous.",
+          "math": "4 > 6 ÷ 2",
+          "figure": {
+            "alt": "Le segment [AB] et deux arcs de centre A, au-dessus et au-dessous du segment",
+            "w": 400,
+            "h": 340,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.9,
+                5.9
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 2.5,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 2.5,
+                "pos": "e"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": 31,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": -52,
+                "end": -31,
+                "color": "gris"
+              }
+            ]
+          }
+        },
+        {
+          "text": "Sans changer l'écartement, on pointe le compas en B et on trace deux arcs. Ils coupent les premiers en M et en N.",
+          "math": "MA = MB = 4 cm et NA = NB = 4 cm",
+          "figure": {
+            "alt": "Les arcs de centre A et de centre B se coupent en deux points M et N, de part et d’autre de [AB]",
+            "w": 400,
+            "h": 340,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.9,
+                5.9
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 2.5,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 2.5,
+                "pos": "e"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "B"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": 31,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": -52,
+                "end": -31,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 128,
+                "end": 149,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 211,
+                "end": 232,
+                "color": "gris"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 4,
+                "y": 5.1458,
+                "pos": "n"
+              },
+              {
+                "type": "point",
+                "id": "N",
+                "x": 4,
+                "y": -0.1458,
+                "pos": "s"
+              }
+            ]
+          }
+        },
+        {
+          "text": "M et N sont chacun à égale distance de A et de B : ils sont sur la médiatrice. La droite (MN) est donc la médiatrice de [AB]. Elle coupe [AB] en son milieu I, à angle droit.",
+          "math": "IA = IB = 3 cm",
+          "figure": {
+            "alt": "La droite (MN) coupe [AB] en son milieu I à angle droit ; les longueurs IA et IB sont codées égales",
+            "w": 400,
+            "h": 340,
+            "frame": {
+              "x": [
+                0,
+                8
+              ],
+              "y": [
+                -0.9,
+                5.9
+              ]
+            },
+            "items": [
+              {
+                "type": "point",
+                "id": "A",
+                "x": 1,
+                "y": 2.5,
+                "pos": "w"
+              },
+              {
+                "type": "point",
+                "id": "B",
+                "x": 7,
+                "y": 2.5,
+                "pos": "e"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": 31,
+                "end": 52,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "A",
+                "r": 4,
+                "start": -52,
+                "end": -31,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 128,
+                "end": 149,
+                "color": "gris"
+              },
+              {
+                "type": "arc",
+                "center": "B",
+                "r": 4,
+                "start": 211,
+                "end": 232,
+                "color": "gris"
+              },
+              {
+                "type": "point",
+                "id": "M",
+                "x": 4,
+                "y": 5.1458,
+                "pos": "ne"
+              },
+              {
+                "type": "point",
+                "id": "N",
+                "x": 4,
+                "y": -0.1458,
+                "pos": "se"
+              },
+              {
+                "type": "point",
+                "id": "I",
+                "x": 4,
+                "y": 2.5,
+                "pos": "se"
+              },
+              {
+                "type": "line",
+                "through": [
+                  "M",
+                  "N"
+                ],
+                "color": "rouge"
+              },
+              {
+                "type": "segment",
+                "from": "A",
+                "to": "I",
+                "marks": 1
+              },
+              {
+                "type": "segment",
+                "from": "I",
+                "to": "B",
+                "marks": 1
+              },
+              {
+                "type": "angle",
+                "vertex": "I",
+                "from": "B",
+                "to": "M",
+                "right": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Règle, compas, quadrillage : mesure, compare, construis !",
+      "exercises": [
+        "m6-distances-cercles-regle",
+        "m6-distances-cercles-vocabulaire",
+        "m6-distances-cercles-disque",
+        "m6-distances-cercles-mediatrice",
+        "m6-distances-cercles-construction",
+        "m6-distances-cercles-quadrillage"
+      ]
+    },
+    {
+      "kind": "libre",
+      "title": "À toi d'expliquer",
+      "exercises": [
+        "m6-distances-cercles-redaction"
+      ]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Problème : le chien et sa corde",
+      "exercises": [
+        "m6-distances-cercles-chien"
+      ]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le trésor du pirate",
+      "body": "Retrouve le trésor de la découverte avec les deux indices du pirate.",
+      "exercises": [
+        "m6-distances-cercles-tresor"
+      ]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> **Distance** : AB est la longueur du segment [AB]. **Milieu** I de [AB] : I est sur [AB] et IA = IB. **Cercle** de centre O et de rayon r : tous les points à la distance r de O ; **disque** : les points à une distance inférieure ou égale à r. Diamètre = 2 × rayon. **Médiatrice** de [AB] : la perpendiculaire à [AB] en son milieu ; ses points sont exactement ceux qui sont à égale distance de A et de B.\n\n- **Confondre rayon et diamètre.** Le diamètre traverse le cercle en passant par le centre : il vaut deux rayons.\n- **Confondre cercle et disque.** Le cercle est le bord ; le disque, le bord et l'intérieur.\n- **Oublier que le milieu est sur le segment.**\n- **Lire la graduation de B** quand la règle n'est pas posée au zéro."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des exercices sur le cercle et la médiatrice dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Trouver le point à égale distance de trois villages, et partager une allée entre deux arroseurs.",
+      "exercises": [
+        "m6-distances-cercles-trois-villages",
+        "m6-distances-cercles-arroseurs"
+      ]
+    },
+    "expert": {
+      "intro": "Facultatif : combien de points communs à deux cercles ? Et une médiatrice qui suit les diagonales du quadrillage.",
+      "exercises": [
+        "m6-distances-cercles-deux-cercles",
+        "m6-distances-cercles-mediatrice-oblique"
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-distances-cercles-regle",
+      "type": "composite",
+      "skill": "m6.geo.distance-milieu",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:lire-graduation",
+        "mc:milieu-demi-longueur"
+      ],
+      "expectedSeconds": 150,
+      "params": {
+        "a": {
+          "int": [
+            1,
+            4
+          ]
+        },
+        "b": {
+          "int": [
+            7,
+            11
+          ]
+        }
+      },
+      "constraints": [
+        "mod(a + b; 2) = 0"
+      ],
+      "prompt": "Lou mesure le segment [AB] avec une règle graduée en centimètres… mais elle n'a pas posé le zéro sur A ! A est en face de la graduation {a} et B en face de la graduation {b}.",
+      "figure": {
+        "alt": "Un segment [AB] posé au-dessus d’une règle graduée de 0 à 12 cm ; A et B ne sont pas en face du zéro",
+        "w": 520,
+        "h": 170,
+        "frame": {
+          "x": [
+            -0.5,
+            12.5
+          ],
+          "y": [
+            -1.5,
+            1.7
+          ]
+        },
+        "items": [
+          {
+            "type": "rect",
+            "x": -0.3,
+            "y": -1.25,
+            "w": 12.6,
+            "h": 1.25,
+            "fill": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0,
+              0
+            ],
+            "to": [
+              0,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 0,
+            "y": -0.85,
+            "text": "0",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              0.5,
+              0
+            ],
+            "to": [
+              0.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              1,
+              0
+            ],
+            "to": [
+              1,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 1,
+            "y": -0.85,
+            "text": "1",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              1.5,
+              0
+            ],
+            "to": [
+              1.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              2,
+              0
+            ],
+            "to": [
+              2,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 2,
+            "y": -0.85,
+            "text": "2",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              2.5,
+              0
+            ],
+            "to": [
+              2.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              3,
+              0
+            ],
+            "to": [
+              3,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 3,
+            "y": -0.85,
+            "text": "3",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              3.5,
+              0
+            ],
+            "to": [
+              3.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              4,
+              0
+            ],
+            "to": [
+              4,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 4,
+            "y": -0.85,
+            "text": "4",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              4.5,
+              0
+            ],
+            "to": [
+              4.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              5,
+              0
+            ],
+            "to": [
+              5,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 5,
+            "y": -0.85,
+            "text": "5",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              5.5,
+              0
+            ],
+            "to": [
+              5.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              6,
+              0
+            ],
+            "to": [
+              6,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 6,
+            "y": -0.85,
+            "text": "6",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              6.5,
+              0
+            ],
+            "to": [
+              6.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              7,
+              0
+            ],
+            "to": [
+              7,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 7,
+            "y": -0.85,
+            "text": "7",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              7.5,
+              0
+            ],
+            "to": [
+              7.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              8,
+              0
+            ],
+            "to": [
+              8,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 8,
+            "y": -0.85,
+            "text": "8",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              8.5,
+              0
+            ],
+            "to": [
+              8.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              9,
+              0
+            ],
+            "to": [
+              9,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 9,
+            "y": -0.85,
+            "text": "9",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              9.5,
+              0
+            ],
+            "to": [
+              9.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              10,
+              0
+            ],
+            "to": [
+              10,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 10,
+            "y": -0.85,
+            "text": "10",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              10.5,
+              0
+            ],
+            "to": [
+              10.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              11,
+              0
+            ],
+            "to": [
+              11,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 11,
+            "y": -0.85,
+            "text": "11",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "segment",
+            "from": [
+              11.5,
+              0
+            ],
+            "to": [
+              11.5,
+              -0.25
+            ]
+          },
+          {
+            "type": "segment",
+            "from": [
+              12,
+              0
+            ],
+            "to": [
+              12,
+              -0.45
+            ]
+          },
+          {
+            "type": "text",
+            "x": 12,
+            "y": -0.85,
+            "text": "12",
+            "size": "s",
+            "anchor": "middle"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": 0.9,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{b}",
+            "y": 0.9,
+            "pos": "n"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "color": "maths"
+          },
+          {
+            "type": "segment",
+            "from": [
+              "{a}",
+              0.9
+            ],
+            "to": [
+              "{a}",
+              0
+            ],
+            "dashed": true,
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": [
+              "{b}",
+              0.9
+            ],
+            "to": [
+              "{b}",
+              0
+            ],
+            "dashed": true,
+            "color": "gris"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la distance AB, en cm ?",
+          "answer": "b - a",
+          "misconceptions": [
+            {
+              "answer": "b",
+              "id": "mc:lire-graduation",
+              "error": "lecture",
+              "feedback": "Tu as lu la graduation qui est en face de B. Mais A n'est pas en face du zéro : la longueur, c'est l'écart entre les deux graduations, pas le nombre lu sous B."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Le milieu I de [AB] est en face de quelle graduation ?",
+          "answer": "(a + b)/2",
+          "misconceptions": [
+            {
+              "answer": "(b - a)/2",
+              "id": "mc:milieu-demi-longueur",
+              "error": "methode",
+              "feedback": "Ce nombre est la moitié de la longueur AB, c'est-à-dire la distance de A à I. Mais la règle ne commence pas en A : pars de la graduation de A et avance de cette distance."
+            },
+            {
+              "answer": "b/2",
+              "id": "mc:milieu-zero",
+              "error": "methode",
+              "feedback": "Tu as pris la moitié de la graduation de B, comme si A était au zéro. Le milieu est entre les graduations de A et de B, à égale distance des deux."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Si A était au zéro, on lirait directement la longueur sous B. Ici, il faut compter les centimètres entre A et B.",
+        "Calcule l’écart entre les deux graduations : {b} − {a}.",
+        "Le milieu est à la moitié de ce chemin, en partant de A."
+      ],
+      "solution": "AB = {b} − {a} = {b-a} cm. La moitié de AB vaut {(b-a)/2} cm : en partant de A, le milieu I est en face de la graduation {a} + {(b-a)/2} = {(a+b)/2}.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{b-a}"
+              },
+              {
+                "value": "{(a+b)/2}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{b}"
+              },
+              {
+                "value": "{(a+b)/2}"
+              }
+            ]
+          },
+          "expect": "mc:lire-graduation"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{b-a}"
+              },
+              {
+                "value": "{(b-a)/2}"
+              }
+            ]
+          },
+          "expect": "mc:milieu-demi-longueur"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-vocabulaire",
+      "type": "categorize",
+      "skill": "m6.geo.cercle",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:rayon-hors-cercle",
+        "mc:rayon-diametre"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Le cercle de la figure a pour centre O. Range chacun des six segments tracés : est-ce un rayon, un diamètre, une corde qui n'est pas un diamètre, ou rien de tout cela ?",
+      "figure": {
+        "alt": "Un cercle de centre O, cinq points A, C, D, E et F sur le cercle, un point M, et six segments tracés entre ces points",
+        "w": 340,
+        "h": 290,
+        "frame": {
+          "x": [
+            -4.2,
+            4.2
+          ],
+          "y": [
+            -3.6,
+            3.6
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 3
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "n",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1.5,
+            "y": 2.5981,
+            "pos": "ne"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": -2.8191,
+            "y": 1.0261,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "D",
+            "x": 2.8191,
+            "y": -1.0261,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "E",
+            "x": -2.4575,
+            "y": -1.7207,
+            "pos": "sw"
+          },
+          {
+            "type": "point",
+            "id": "F",
+            "x": 1.5,
+            "y": -2.5981,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": -1.3,
+            "y": -0.6,
+            "pos": "w"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": "A",
+            "color": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": "F",
+            "color": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "C",
+            "to": "D",
+            "color": "vert"
+          },
+          {
+            "type": "segment",
+            "from": "E",
+            "to": "F",
+            "color": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "D",
+            "color": "orange"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": "M",
+            "color": "violet"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "rayon",
+          "label": "Un rayon"
+        },
+        {
+          "id": "diametre",
+          "label": "Un diamètre"
+        },
+        {
+          "id": "corde",
+          "label": "Une corde qui n'est pas un diamètre"
+        },
+        {
+          "id": "aucun",
+          "label": "Rien de tout cela"
+        }
+      ],
+      "items": [
+        {
+          "id": "i1",
+          "label": "[OA]",
+          "category": "rayon"
+        },
+        {
+          "id": "i2",
+          "label": "[CD]",
+          "category": "diametre"
+        },
+        {
+          "id": "i3",
+          "label": "[EF]",
+          "category": "corde"
+        },
+        {
+          "id": "i4",
+          "label": "[OM]",
+          "category": "aucun"
+        },
+        {
+          "id": "i5",
+          "label": "[AD]",
+          "category": "corde"
+        },
+        {
+          "id": "i6",
+          "label": "[OF]",
+          "category": "rayon"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "i4",
+          "category": "rayon",
+          "id": "mc:rayon-hors-cercle",
+          "error": "notion",
+          "feedback": "Regarde où se trouve M : est-il sur le cercle ? Un rayon relie le centre à un point DU CERCLE, pas à n'importe quel point."
+        },
+        {
+          "item": "i2",
+          "category": "corde",
+          "id": "mc:diametre-corde",
+          "error": "notion",
+          "feedback": "Est-ce que [CD] passe par le centre O ? Une corde qui passe par le centre porte un nom particulier."
+        },
+        {
+          "item": "i1",
+          "category": "diametre",
+          "id": "mc:rayon-diametre",
+          "error": "notion",
+          "feedback": "Un diamètre va d'un bord du cercle à l'autre en passant par le centre. [OA] part du centre : regarde jusqu'où il va."
+        }
+      ],
+      "hints": [
+        "Un rayon relie le centre O à un point du cercle.",
+        "Une corde relie deux points du cercle ; si elle passe par O, c’est un diamètre.",
+        "Pour chaque extrémité, demande-toi : est-elle sur le cercle, au centre, ou ailleurs ?"
+      ],
+      "solution": "Rayons : [OA] et [OF] (de O à un point du cercle). Diamètre : [CD] (une corde qui passe par O). Cordes : [EF] et [AD]. [OM] n'est rien de tout cela : M est à l'intérieur du disque, pas sur le cercle.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "i1": "rayon",
+              "i2": "diametre",
+              "i3": "corde",
+              "i4": "aucun",
+              "i5": "corde",
+              "i6": "rayon"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "i1": "rayon",
+              "i2": "diametre",
+              "i3": "corde",
+              "i4": "rayon",
+              "i5": "corde",
+              "i6": "rayon"
+            }
+          },
+          "expect": "mc:rayon-hors-cercle"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-disque",
+      "type": "categorize",
+      "skill": "m6.geo.cercle",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": [
+        "mc:rayon-diametre",
+        "mc:cercle-disque"
+      ],
+      "expectedSeconds": 150,
+      "prompt": "Le disque de la figure a pour centre O et pour rayon 3 cm. On connaît la distance de chaque point au centre O. Range chaque point.",
+      "figure": {
+        "alt": "Un disque de centre O dont le rayon mesure 3 cm",
+        "w": 260,
+        "h": 240,
+        "frame": {
+          "x": [
+            -3.8,
+            3.8
+          ],
+          "y": [
+            -3.5,
+            3.5
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 3,
+            "fill": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": "O",
+            "to": [
+              3,
+              0
+            ],
+            "label": "3 cm"
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "sur",
+          "label": "Sur le cercle"
+        },
+        {
+          "id": "dedans",
+          "label": "Dans le disque, mais pas sur le cercle"
+        },
+        {
+          "id": "dehors",
+          "label": "En dehors du disque"
+        }
+      ],
+      "items": [
+        {
+          "id": "a",
+          "label": "A, avec OA = 3 cm",
+          "category": "sur"
+        },
+        {
+          "id": "b",
+          "label": "B, avec OB = 2 cm",
+          "category": "dedans"
+        },
+        {
+          "id": "c",
+          "label": "C, avec OC = 6 cm",
+          "category": "dehors"
+        },
+        {
+          "id": "d",
+          "label": "D, avec OD = 2,9 cm",
+          "category": "dedans"
+        },
+        {
+          "id": "e",
+          "label": "E, avec OE = 3,5 cm",
+          "category": "dehors"
+        },
+        {
+          "id": "f",
+          "label": "F, confondu avec le centre O",
+          "category": "dedans"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "b",
+          "category": "dehors",
+          "id": "mc:cercle-disque",
+          "error": "notion",
+          "feedback": "Le disque, ce n'est pas seulement le bord : c'est aussi tout l'intérieur. Compare la distance OB au rayon."
+        },
+        {
+          "item": "c",
+          "category": "sur",
+          "id": "mc:rayon-diametre",
+          "error": "notion",
+          "feedback": "6 cm, c'est la longueur d'un diamètre, pas celle du rayon. Un point du cercle est à la distance d'UN rayon du centre : compare OC à 3 cm."
+        },
+        {
+          "item": "f",
+          "category": "dehors",
+          "id": "mc:centre-disque",
+          "error": "notion",
+          "feedback": "Le centre est au cœur du disque ! Sa distance à O est 0 cm : compare-la au rayon."
+        }
+      ],
+      "hints": [
+        "Compare chaque distance au rayon, 3 cm.",
+        "Distance égale au rayon : sur le cercle. Plus petite : à l’intérieur. Plus grande : à l’extérieur.",
+        "Attention : 6 cm, c’est la longueur d’un diamètre."
+      ],
+      "solution": "Sur le cercle : A (OA = 3 cm, le rayon). Dans le disque mais pas sur le cercle : B, D et F (distance au centre inférieure à 3 cm ; F est le centre lui-même). En dehors du disque : C et E (distance supérieure à 3 cm).",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "a": "sur",
+              "b": "dedans",
+              "c": "dehors",
+              "d": "dedans",
+              "e": "dehors",
+              "f": "dedans"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "a": "sur",
+              "b": "dedans",
+              "c": "sur",
+              "d": "dedans",
+              "e": "dehors",
+              "f": "dedans"
+            }
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-mediatrice",
+      "type": "composite",
+      "skill": "m6.geo.mediatrice",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": [
+        "mc:moitie-segment",
+        "mc:reciproque",
+        "mc:presque-egal"
+      ],
+      "expectedSeconds": 180,
+      "params": {
+        "a": {
+          "dec": [
+            2.5,
+            6
+          ],
+          "step": 0.5
+        },
+        "L": {
+          "int": [
+            4,
+            8
+          ]
+        },
+        "p": {
+          "int": [
+            3,
+            7
+          ]
+        }
+      },
+      "constraints": [
+        "a > L/2",
+        "2*p + 1 > L"
+      ],
+      "prompt": "La droite (d) est la médiatrice du segment [AB], qui mesure {L} cm. Le point M est sur (d), et MA = {a} cm.",
+      "figure": {
+        "alt": "Figure à main levée : un segment [AB], sa médiatrice (d) et un point M de (d) relié à A et à B",
+        "w": 360,
+        "h": 250,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            -0.5,
+            5.5
+          ]
+        },
+        "caption": "Figure à main levée",
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1,
+            "y": 1,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 7,
+            "y": 1,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "I",
+            "x": 4,
+            "y": 1,
+            "pos": "se"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 4,
+            "y": 4.5,
+            "pos": "ne"
+          },
+          {
+            "type": "line",
+            "through": [
+              [
+                4,
+                -0.5
+              ],
+              [
+                4,
+                5.5
+              ]
+            ],
+            "label": "(d)",
+            "color": "rouge"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "I",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "I",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "A",
+            "label": "{a} cm"
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "B"
+          },
+          {
+            "type": "angle",
+            "vertex": "I",
+            "from": "B",
+            "to": "M",
+            "right": true
+          },
+          {
+            "type": "text",
+            "x": 4,
+            "y": -0.15,
+            "text": "AB = {L} cm",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure MB (en cm) ?",
+          "answer": "a",
+          "misconceptions": [
+            {
+              "answer": "L/2",
+              "id": "mc:moitie-segment",
+              "error": "notion",
+              "feedback": "Tu as pris la moitié de [AB] : c'est la distance de I à B. Ici on demande la distance de M à B. Que sait-on d'un point situé sur la médiatrice ?"
+            },
+            {
+              "answer": "2*a",
+              "id": "mc:double",
+              "error": "notion",
+              "feedback": "Un point de la médiatrice est à la même distance des deux extrémités : il n'y a rien à doubler."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un point P vérifie PA = {p} cm et PB = {p} cm. Est-il sur la médiatrice (d) ? Réponds par oui ou par non.",
+          "accept": [
+            "oui"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:reciproque",
+              "error": "notion",
+              "feedback": "Relis la propriété dans l'autre sens : quand un point est à la même distance de A et de B, où se trouve-t-il forcément ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un point N vérifie NA = {p} cm et NB = {p+1} cm. Est-il sur la médiatrice (d) ? Réponds par oui ou par non.",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:presque-egal",
+              "error": "notion",
+              "feedback": "Compare bien NA et NB : sont-elles exactement égales ? Pour être sur la médiatrice, il faut la même distance aux deux extrémités, pas une distance « presque pareille »."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Propriété : un point de la médiatrice de [AB] est à la même distance de A et de B.",
+        "Elle marche aussi dans l’autre sens : un point à la même distance de A et de B est sur la médiatrice.",
+        "Pour N, compare les deux distances NA et NB."
+      ],
+      "solution": "M est sur la médiatrice de [AB], donc MB = MA = {a} cm (la longueur AB ne sert pas ici). P est à la même distance de A et de B ({p} cm) : il est sur (d). N n'est pas à la même distance de A ({p} cm) et de B ({p+1} cm) : il n'est pas sur (d).",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a}"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{L/2}"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "mc:moitie-segment"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a}"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "mc:reciproque"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-construction",
+      "type": "order",
+      "skill": "m6.geo.mediatrice",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "concrete",
+      "expectedSeconds": 150,
+      "prompt": "Voici la médiatrice d’un segment [AB] construite au compas. Remets dans l’ordre les étapes du programme de construction.",
+      "figure": {
+        "alt": "Un segment [AB], quatre arcs de cercle qui se coupent en M et N, et la droite (MN)",
+        "w": 360,
+        "h": 300,
+        "frame": {
+          "x": [
+            0,
+            7
+          ],
+          "y": [
+            -1.1,
+            5.1
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1,
+            "y": 2,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 6,
+            "y": 2,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 3.5,
+            "y": 4.4495,
+            "pos": "n"
+          },
+          {
+            "type": "point",
+            "id": "N",
+            "x": 3.5,
+            "y": -0.4495,
+            "pos": "s"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B"
+          },
+          {
+            "type": "arc",
+            "center": "A",
+            "r": 3.5,
+            "start": 34,
+            "end": 54,
+            "color": "gris"
+          },
+          {
+            "type": "arc",
+            "center": "A",
+            "r": 3.5,
+            "start": -54,
+            "end": -34,
+            "color": "gris"
+          },
+          {
+            "type": "arc",
+            "center": "B",
+            "r": 3.5,
+            "start": 126,
+            "end": 146,
+            "color": "gris"
+          },
+          {
+            "type": "arc",
+            "center": "B",
+            "r": 3.5,
+            "start": 214,
+            "end": 234,
+            "color": "gris"
+          },
+          {
+            "type": "line",
+            "through": [
+              "M",
+              "N"
+            ],
+            "color": "rouge"
+          }
+        ]
+      },
+      "orderLabel": "De la première à la dernière étape",
+      "errorType": "methode",
+      "items": [
+        {
+          "id": "c1",
+          "label": "Je trace le segment [AB]."
+        },
+        {
+          "id": "c2",
+          "label": "J'ouvre le compas d'un peu plus de la moitié de la longueur AB."
+        },
+        {
+          "id": "c3",
+          "label": "Je pointe le compas en A et je trace un arc au-dessus et un arc au-dessous de [AB]."
+        },
+        {
+          "id": "c4",
+          "label": "Sans changer l'écartement, je pointe le compas en B et je trace deux arcs qui coupent les premiers."
+        },
+        {
+          "id": "c5",
+          "label": "Je nomme M et N les deux points où les arcs se coupent."
+        },
+        {
+          "id": "c6",
+          "label": "Je trace la droite (MN) : c’est la médiatrice de [AB]."
+        }
+      ],
+      "hints": [
+        "On ne peut pas tracer d’arcs autour de A et de B si le segment n’existe pas encore.",
+        "L’écartement du compas se règle avant le premier arc, puis il ne change plus.",
+        "Une droite se trace quand on a ses deux points."
+      ],
+      "solution": "1. Tracer [AB]. 2. Ouvrir le compas d'un peu plus de AB ÷ 2. 3. Deux arcs de centre A. 4. Même écartement : deux arcs de centre B. 5. Nommer M et N les intersections : MA = MB et NA = NB. 6. Tracer (MN), la médiatrice de [AB].",
+      "selfTest": [
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c5",
+              "c6"
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "order": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c6",
+              "c5"
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "order": [
+              "c6",
+              "c5",
+              "c4",
+              "c3",
+              "c2",
+              "c1"
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-quadrillage",
+      "type": "graph",
+      "skill": "m6.geo.distance-milieu",
+      "skills": [
+        "m6.geo.cercle"
+      ],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": [
+        "notion"
+      ],
+      "expectedSeconds": 180,
+      "params": {
+        "a": {
+          "int": [
+            0,
+            2
+          ]
+        },
+        "b": {
+          "int": [
+            0,
+            2
+          ]
+        },
+        "p": {
+          "int": [
+            1,
+            3
+          ]
+        },
+        "q": {
+          "int": [
+            1,
+            2
+          ]
+        },
+        "c": {
+          "int": [
+            4,
+            6
+          ]
+        },
+        "e": {
+          "int": [
+            6,
+            8
+          ]
+        }
+      },
+      "prompt": "Dans le quadrillage, place I, le milieu du segment [AB], puis O, le centre du cercle de diamètre [CD].",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8, avec un segment [AB] et un segment [CD]",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": "{b}",
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{a+2*p}",
+            "y": "{b+2*q}",
+            "pos": "ne"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "color": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{c}",
+            "y": "{e}",
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "D",
+            "x": "{c+4}",
+            "y": "{e-2}",
+            "pos": "se"
+          },
+          {
+            "type": "segment",
+            "from": "C",
+            "to": "D",
+            "color": "vert"
+          }
+        ]
+      },
+      "xRange": [
+        0,
+        10
+      ],
+      "yRange": [
+        0,
+        8
+      ],
+      "gridStep": 1,
+      "expectedPoints": [
+        [
+          "a+p",
+          "b+q"
+        ],
+        [
+          "c+2",
+          "e-1"
+        ]
+      ],
+      "hints": [
+        "Le milieu est sur le segment, à la même distance des deux extrémités.",
+        "Compte les carreaux de A à B vers la droite et vers le haut, puis prends la moitié de chaque nombre.",
+        "Le centre d’un cercle est le milieu de chacun de ses diamètres."
+      ],
+      "solution": "De A à B : {2*p} carreaux vers la droite et {2*q} vers le haut. La moitié : {p} et {q}, donc I({a+p} ; {b+q}). Le centre O est le milieu du diamètre [CD] : de C à D, 4 carreaux vers la droite et 2 vers le bas, donc O({c+2} ; {e-1}).",
+      "selfTest": [
+        {
+          "response": {
+            "points": [
+              [
+                "{a+p}",
+                "{b+q}"
+              ],
+              [
+                "{c+2}",
+                "{e-1}"
+              ]
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{a+p}",
+                "{b+q}"
+              ],
+              [
+                "{c}",
+                "{e}"
+              ]
+            ]
+          },
+          "expect": "partiel"
+        },
+        {
+          "response": {
+            "points": [
+              [
+                "{a}",
+                "{b}"
+              ],
+              [
+                "{c}",
+                "{e}"
+              ]
+            ]
+          },
+          "expect": "incorrect"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-redaction",
+      "type": "open",
+      "skill": "m6.geo.mediatrice",
+      "skills": [
+        "m6.geo.distance-milieu"
+      ],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 360,
+      "minWords": 25,
+      "prompt": "Hugo affirme : « Le milieu de [AB], c'est n'importe quel point situé à la même distance de A et de B. » Observe la figure : a-t-il raison ? Explique-lui avec tes mots, en parlant de la médiatrice.",
+      "figure": {
+        "alt": "Un segment [AB], son milieu I, une droite (d) en pointillés et un point M de (d) relié à A et à B",
+        "w": 360,
+        "h": 240,
+        "frame": {
+          "x": [
+            0,
+            8
+          ],
+          "y": [
+            0,
+            5.2
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 1,
+            "y": 1,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 7,
+            "y": 1,
+            "pos": "e"
+          },
+          {
+            "type": "point",
+            "id": "I",
+            "x": 4,
+            "y": 1,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "M",
+            "x": 4,
+            "y": 4.2,
+            "pos": "ne"
+          },
+          {
+            "type": "line",
+            "through": [
+              [
+                4,
+                0
+              ],
+              [
+                4,
+                5.2
+              ]
+            ],
+            "label": "(d)",
+            "dashed": true,
+            "color": "gris"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "I",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "I",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "A",
+            "marks": 2,
+            "color": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "M",
+            "to": "B",
+            "marks": 2,
+            "color": "bleu"
+          }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je dis qu'Hugo se trompe (ou n'a raison qu'en partie)",
+          "keywords": [
+            [
+              "tort",
+              "faux",
+              "pas raison",
+              "se trompe",
+              "pas tout a fait",
+              "en partie",
+              "pas forcement"
+            ]
+          ]
+        },
+        {
+          "id": "c2",
+          "label": "Je dis que le milieu doit être SUR le segment [AB]",
+          "keywords": [
+            [
+              "sur le segment",
+              "sur [ab]",
+              "sur ab",
+              "entre a et b",
+              "aligne"
+            ]
+          ]
+        },
+        {
+          "id": "c3",
+          "label": "Je dis que les points à égale distance de A et de B forment la médiatrice",
+          "keywords": [
+            [
+              "mediatrice"
+            ]
+          ]
+        },
+        {
+          "id": "c4",
+          "label": "Je donne un exemple, comme le point M de la figure",
+          "keywords": [
+            [
+              "exemple",
+              "le point m",
+              "point m",
+              "m est"
+            ]
+          ]
+        }
+      ],
+      "models": [
+        "Hugo se trompe : le point M de la figure est à la même distance de A et de B, mais ce n'est pas le milieu de [AB], car il n'est pas sur le segment. Tous les points à égale distance de A et de B forment une droite, la médiatrice de [AB]. Le milieu, c'est le seul point de cette médiatrice qui est sur le segment [AB].",
+        "Il n'a raison qu'en partie. Le milieu est bien à la même distance de A et de B, mais il doit aussi être sur [AB]. Par exemple M est à égale distance de A et de B et il est au-dessus du segment : il est sur la médiatrice, pas au milieu."
+      ],
+      "hints": [
+        "Le point M de la figure est-il à la même distance de A et de B ? Est-il le milieu de [AB] ?",
+        "Où doit se trouver le milieu, par rapport au segment ?",
+        "Comment s’appelle la droite formée par tous les points à égale distance de A et de B ?"
+      ],
+      "solution": "Hugo a tort : M est à la même distance de A et de B, mais ce n'est pas le milieu de [AB], car il n'est pas sur le segment. Les points à égale distance de A et de B forment la médiatrice de [AB] ; un seul d'entre eux est sur [AB] : le milieu I.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Hugo se trompe : M est à la même distance de A et de B mais il n'est pas sur le segment, donc ce n'est pas le milieu. Ces points forment la médiatrice."
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-chien",
+      "type": "composite",
+      "skill": "m6.geo.cercle",
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:cercle-disque",
+        "mc:rayon-diametre",
+        "mc:distance-corde"
+      ],
+      "expectedSeconds": 300,
+      "params": {
+        "c": {
+          "int": [
+            3,
+            6
+          ]
+        },
+        "n": {
+          "int": [
+            2,
+            5
+          ]
+        },
+        "g": {
+          "int": [
+            5,
+            9
+          ]
+        }
+      },
+      "constraints": [
+        "n < c",
+        "g > c"
+      ],
+      "prompt": "Le chien Rex est attaché à un piquet P par une corde de {c} m. Il peut aller partout où la corde le permet, même en ne la tendant pas. Sa niche N est à {n} m du piquet, et sa gamelle G est à {g} m du piquet.",
+      "figure": {
+        "alt": "Le piquet P, la niche N et la gamelle G, avec leurs distances au piquet",
+        "w": 420,
+        "h": 240,
+        "frame": {
+          "x": [
+            -9.5,
+            9.5
+          ],
+          "y": [
+            -5,
+            5.5
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "P",
+            "x": 0,
+            "y": 0,
+            "pos": "s",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "N",
+            "x": "{n*cos(200)}",
+            "y": "{n*sin(200)}",
+            "pos": "w",
+            "label": "N (niche)"
+          },
+          {
+            "type": "point",
+            "id": "G",
+            "x": "{g*cos(30)}",
+            "y": "{g*sin(30)}",
+            "pos": "n",
+            "label": "G (gamelle)"
+          },
+          {
+            "type": "segment",
+            "from": "P",
+            "to": "N",
+            "dashed": true,
+            "label": "{n} m"
+          },
+          {
+            "type": "segment",
+            "from": "P",
+            "to": "G",
+            "dashed": true,
+            "label": "{g} m"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Quelle est la forme de la zone où Rex peut aller ? Réponds par un mot : cercle ou disque.",
+          "accept": [
+            "disque",
+            "un disque",
+            "le disque"
+          ],
+          "misconceptions": [
+            {
+              "answer": "cercle",
+              "id": "mc:cercle-disque",
+              "error": "notion",
+              "feedback": "Corde bien tendue, Rex reste sur une ligne autour du piquet. Mais il peut aussi s'approcher du piquet ! Cherche la figure qui comprend le bord ET l'intérieur."
+            },
+            {
+              "answer": "un cercle",
+              "id": "mc:cercle-disque",
+              "error": "notion",
+              "feedback": "Corde bien tendue, Rex reste sur une ligne autour du piquet. Mais il peut aussi s'approcher du piquet ! Cherche la figure qui comprend le bord ET l'intérieur."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Peut-il atteindre sa niche ? Réponds par oui ou par non.",
+          "accept": [
+            "oui"
+          ],
+          "misconceptions": [
+            {
+              "answer": "non",
+              "id": "mc:distance-corde",
+              "error": "raisonnement",
+              "feedback": "Compare la distance de la niche au piquet avec la longueur de la corde : laquelle est la plus petite ?"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Peut-il atteindre sa gamelle ? Réponds par oui ou par non.",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:distance-corde",
+              "error": "raisonnement",
+              "feedback": "Compare la distance de la gamelle au piquet avec la longueur de la corde. Rex peut-il aller plus loin que sa corde ?"
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la plus grande distance possible entre deux points de la zone (en m) ?",
+          "answer": "2*c",
+          "misconceptions": [
+            {
+              "answer": "c",
+              "id": "mc:rayon-diametre",
+              "error": "notion",
+              "feedback": "La longueur de la corde, c'est le rayon de la zone. Les deux points les plus éloignés sont aux deux bouts d'un diamètre."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Rex peut être à {c} m du piquet, ou moins : à quelle figure cela correspond-il ?",
+        "Un point est dans la zone si sa distance au piquet est inférieure ou égale à {c} m.",
+        "Dans un disque, la plus grande distance entre deux points est le diamètre."
+      ],
+      "solution": "Rex peut aller partout à {c} m du piquet ou moins : la zone est le disque de centre P et de rayon {c} m. La niche est à {n} m, moins que {c} m : il l'atteint. La gamelle est à {g} m, plus que {c} m : il ne l'atteint pas. La plus grande distance dans la zone est le diamètre : 2 × {c} = {2*c} m.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "disque"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "{2*c}"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "cercle"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "{2*c}"
+              }
+            ]
+          },
+          "expect": "mc:cercle-disque"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "disque"
+              },
+              {
+                "value": "oui"
+              },
+              {
+                "value": "non"
+              },
+              {
+                "value": "{c}"
+              }
+            ]
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-tresor",
+      "type": "composite",
+      "skill": "m6.geo.mediatrice",
+      "skills": [
+        "m6.geo.cercle"
+      ],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:cercle-disque",
+        "mc:milieu-mediatrice",
+        "mc:rayon-diametre"
+      ],
+      "expectedSeconds": 480,
+      "params": {
+        "m": {
+          "int": [
+            4,
+            6
+          ]
+        },
+        "k": {
+          "int": [
+            2,
+            4
+          ]
+        }
+      },
+      "prompt": "Sur la carte, un carreau représente un pas. Le message du pirate dit : « Mon trésor est à 3 pas du palmier P. Il est aussi à la même distance du puits W et du rocher R. »",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 9 avec le palmier P, le puits W et le rocher R",
+        "w": 400,
+        "h": 360,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            9
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "caption": "P : palmier ; W : puits ; R : rocher",
+        "items": [
+          {
+            "type": "point",
+            "id": "P",
+            "x": "{m}",
+            "y": 5,
+            "pos": "ne",
+            "style": "rond",
+            "color": "vert"
+          },
+          {
+            "type": "point",
+            "id": "W",
+            "x": "{m-k}",
+            "y": 1,
+            "pos": "n",
+            "style": "rond",
+            "color": "bleu"
+          },
+          {
+            "type": "point",
+            "id": "R",
+            "x": "{m+k}",
+            "y": 1,
+            "pos": "n",
+            "style": "rond",
+            "color": "gris"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Tous les points situés à exactement 3 pas du palmier forment une figure. Laquelle ? (un mot)",
+          "accept": [
+            "cercle",
+            "un cercle",
+            "le cercle",
+            "cercle de centre P",
+            "un cercle de centre P",
+            "le cercle de centre P"
+          ],
+          "misconceptions": [
+            {
+              "answer": "disque",
+              "id": "mc:cercle-disque",
+              "error": "notion",
+              "feedback": "Le disque contient aussi tous les points à MOINS de 3 pas. Ici, c'est « exactement 3 pas » : seulement les points du bord."
+            },
+            {
+              "answer": "un disque",
+              "id": "mc:cercle-disque",
+              "error": "notion",
+              "feedback": "Le disque contient aussi tous les points à MOINS de 3 pas. Ici, c'est « exactement 3 pas » : seulement les points du bord."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Tous les points à égale distance du puits et du rocher forment une droite. Comment s’appelle-t-elle ?",
+          "openEnded": true,
+          "accept": [
+            "médiatrice",
+            "la médiatrice",
+            "une médiatrice",
+            "médiatrice de [WR]",
+            "la médiatrice de [WR]",
+            "médiatrice du segment [WR]",
+            "la médiatrice du segment [WR]",
+            "médiatrice de WR",
+            "la médiatrice de WR"
+          ],
+          "misconceptions": [
+            {
+              "answer": "milieu",
+              "id": "mc:milieu-mediatrice",
+              "error": "notion",
+              "feedback": "Le milieu de [WR] est UN seul point. Ici, on cherche toute une droite de points à égale distance de W et de R."
+            },
+            {
+              "answer": "le milieu",
+              "id": "mc:milieu-mediatrice",
+              "error": "notion",
+              "feedback": "Le milieu de [WR] est UN seul point. Ici, on cherche toute une droite de points à égale distance de W et de R."
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "prompt": "Place les deux endroits possibles du trésor.",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            9
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              "m",
+              8
+            ],
+            [
+              "m",
+              2
+            ]
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien de pas séparent ces deux endroits ?",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:rayon-diametre",
+              "error": "notion",
+              "feedback": "3 pas, c'est la distance de chaque endroit au palmier. Les deux endroits sont de part et d'autre du palmier : ajoute les deux trajets."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Les endroits à 3 pas de P sont sur le cercle de centre P et de rayon 3.",
+        "W et R sont à la même hauteur : leur médiatrice est la droite verticale qui passe par le milieu de [WR].",
+        "Le trésor est là où le cercle et la médiatrice se croisent."
+      ],
+      "solution": "Les points à 3 pas de P forment le cercle de centre P et de rayon 3. Les points à égale distance de W et de R forment la médiatrice de [WR] : la droite verticale qui passe par le milieu ({m} ; 1) de [WR]… et aussi par P ! Elle coupe le cercle en ({m} ; 8) et en ({m} ; 2). Ces deux points sont les extrémités d'un diamètre : ils sont à 6 pas l'un de l'autre.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "cercle"
+              },
+              {
+                "value": "la médiatrice"
+              },
+              {
+                "points": [
+                  [
+                    "{m}",
+                    8
+                  ],
+                  [
+                    "{m}",
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "6"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "disque"
+              },
+              {
+                "value": "la médiatrice"
+              },
+              {
+                "points": [
+                  [
+                    "{m}",
+                    8
+                  ],
+                  [
+                    "{m}",
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "6"
+              }
+            ]
+          },
+          "expect": "mc:cercle-disque"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "cercle"
+              },
+              {
+                "value": "la médiatrice"
+              },
+              {
+                "points": [
+                  [
+                    "{m}",
+                    8
+                  ],
+                  [
+                    "{m}",
+                    2
+                  ]
+                ]
+              },
+              {
+                "value": "3"
+              }
+            ]
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-remed-rayon",
+      "type": "numeric",
+      "skill": "m6.geo.cercle",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:rayon-diametre"
+      ],
+      "expectedSeconds": 60,
+      "params": {
+        "r": {
+          "int": [
+            2,
+            7
+          ]
+        }
+      },
+      "prompt": "Rappel : un diamètre traverse le cercle en passant par le centre ; il est fait de deux rayons mis bout à bout. Un cercle a un diamètre de {2*r} cm. Quel est son rayon (en cm) ?",
+      "figure": {
+        "alt": "Un cercle de centre O et un diamètre dont la longueur est indiquée",
+        "w": 230,
+        "h": 210,
+        "frame": {
+          "x": [
+            -2.8,
+            2.8
+          ],
+          "y": [
+            -2.5,
+            2.6
+          ]
+        },
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 2
+          },
+          {
+            "type": "point",
+            "id": "O",
+            "x": 0,
+            "y": 0,
+            "pos": "n",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": -2,
+            "y": 0,
+            "pos": "w"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": 2,
+            "y": 0,
+            "pos": "e"
+          },
+          {
+            "type": "segment",
+            "from": "B",
+            "to": "C",
+            "label": "{2*r} cm",
+            "color": "vert"
+          }
+        ]
+      },
+      "answer": "r",
+      "misconceptions": [
+        {
+          "answer": "4*r",
+          "id": "mc:rayon-diametre",
+          "error": "notion",
+          "feedback": "Le rayon est plus court que le diamètre : il va seulement du centre jusqu'au bord. Il ne faut pas doubler, mais partager en deux."
+        }
+      ],
+      "hints": [
+        "Le rayon va du centre O jusqu’au cercle.",
+        "Le diamètre est fait de deux rayons : partage sa longueur en deux."
+      ],
+      "solution": "Rayon = {2*r} ÷ 2 = {r} cm.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{r}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{4*r}"
+          },
+          "expect": "mc:rayon-diametre"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-remed-milieu",
+      "type": "numeric",
+      "skill": "m6.geo.distance-milieu",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": [
+        "mc:milieu-double"
+      ],
+      "expectedSeconds": 60,
+      "params": {
+        "L": {
+          "int": [
+            3,
+            13
+          ]
+        }
+      },
+      "prompt": "Rappel : le milieu I de [AB] partage le segment en deux longueurs égales. AB = {L} cm. Combien mesure AI (en cm) ?",
+      "figure": {
+        "alt": "Un segment [AB] et son milieu I, avec les deux moitiés codées",
+        "w": 360,
+        "h": 130,
+        "frame": {
+          "x": [
+            -0.5,
+            6.5
+          ],
+          "y": [
+            -0.8,
+            1.4
+          ]
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "I",
+            "x": 3,
+            "y": 0,
+            "pos": "s"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 6,
+            "y": 0,
+            "pos": "s"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "I",
+            "marks": 1
+          },
+          {
+            "type": "segment",
+            "from": "I",
+            "to": "B",
+            "marks": 1
+          },
+          {
+            "type": "text",
+            "x": 3,
+            "y": 0.9,
+            "text": "AB = {L} cm",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "answer": "L/2",
+      "misconceptions": [
+        {
+          "answer": "2*L",
+          "id": "mc:milieu-double",
+          "error": "notion",
+          "feedback": "AI n'est qu'une partie du segment [AB] : elle doit être plus courte que AB. Le milieu coupe le segment en deux parts égales."
+        }
+      ],
+      "hints": [
+        "AI et IB ont la même longueur.",
+        "AI + IB = AB : partage {L} en deux parts égales."
+      ],
+      "solution": "AI = {L} ÷ 2 = {L/2} cm.",
+      "selfTest": [
+        {
+          "response": {
+            "value": "{L/2}"
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "value": "{2*L}"
+          },
+          "expect": "mc:milieu-double"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-trois-villages",
+      "type": "composite",
+      "skill": "m6.geo.mediatrice",
+      "skills": [
+        "m6.geo.cercle"
+      ],
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": [
+        "mc:demi-ecart"
+      ],
+      "expectedSeconds": 360,
+      "params": {
+        "m": {
+          "int": [
+            3,
+            7
+          ]
+        },
+        "n": {
+          "int": [
+            3,
+            5
+          ]
+        },
+        "k": {
+          "int": [
+            2,
+            3
+          ]
+        },
+        "j": {
+          "int": [
+            1,
+            2
+          ]
+        }
+      },
+      "constraints": [
+        "m != k"
+      ],
+      "prompt": "Trois villages A, B et C veulent installer une antenne O à la même distance des trois villages. Trouve où la placer sur le quadrillage.",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec les trois villages A, B et C",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{m-k}",
+            "y": "{n-j}",
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{m+k}",
+            "y": "{n-j}",
+            "pos": "se",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "C",
+            "x": "{m+k}",
+            "y": "{n+j}",
+            "pos": "ne",
+            "style": "rond"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              "A",
+              "B",
+              "C"
+            ],
+            "fill": "vert",
+            "dashed": true
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Les points à égale distance de A et de B forment la médiatrice de [AB] : ici, une droite verticale. Quelle est l’abscisse de tous ses points ?",
+          "answer": "m",
+          "misconceptions": [
+            {
+              "answer": "k",
+              "id": "mc:demi-ecart",
+              "error": "methode",
+              "feedback": "Ce nombre est la moitié de l'écart entre A et B, pas une abscisse. Pars de l'abscisse de A et avance de cette moitié."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Les points à égale distance de B et de C forment la médiatrice de [BC] : ici, une droite horizontale. Quelle est l’ordonnée de tous ses points ?",
+          "answer": "n",
+          "misconceptions": [
+            {
+              "answer": "j",
+              "id": "mc:demi-ecart",
+              "error": "methode",
+              "feedback": "C'est la moitié de l'écart entre B et C, pas une ordonnée. Pars de l'ordonnée de B et monte de cette moitié."
+            }
+          ]
+        },
+        {
+          "type": "graph",
+          "prompt": "Place l’antenne O, à égale distance des trois villages.",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "gridStep": 1,
+          "expectedPoints": [
+            [
+              "m",
+              "n"
+            ]
+          ]
+        }
+      ],
+      "hints": [
+        "L’antenne doit être sur la médiatrice de [AB] ET sur la médiatrice de [BC].",
+        "Une médiatrice passe par le milieu du segment, perpendiculairement à lui.",
+        "O est le point où les deux médiatrices se croisent."
+      ],
+      "solution": "Médiatrice de [AB] : la droite verticale d'abscisse {m}, qui passe par le milieu de [AB]. Médiatrice de [BC] : la droite horizontale d'ordonnée {n}. Elles se coupent en O({m} ; {n}). OA = OB car O est sur la première, OB = OC car O est sur la seconde : donc OA = OB = OC. Le cercle de centre O qui passe par A passe aussi par B et par C.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{m}"
+              },
+              {
+                "value": "{n}"
+              },
+              {
+                "points": [
+                  [
+                    "{m}",
+                    "{n}"
+                  ]
+                ]
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{k}"
+              },
+              {
+                "value": "{n}"
+              },
+              {
+                "points": [
+                  [
+                    "{m}",
+                    "{n}"
+                  ]
+                ]
+              }
+            ]
+          },
+          "expect": "mc:demi-ecart"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-arroseurs",
+      "type": "composite",
+      "skill": "m6.geo.cercle",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": [
+        "mc:somme-rayons",
+        "mc:mauvais-arroseur"
+      ],
+      "expectedSeconds": 360,
+      "params": {
+        "d": {
+          "int": [
+            8,
+            12
+          ]
+        },
+        "a": {
+          "int": [
+            4,
+            7
+          ]
+        },
+        "b": {
+          "int": [
+            4,
+            7
+          ]
+        },
+        "r": {
+          "int": [
+            1,
+            4
+          ]
+        }
+      },
+      "constraints": [
+        "a + b > d",
+        "a < d",
+        "b < d",
+        "r < d - b",
+        "r <= a"
+      ],
+      "prompt": "Deux arroseurs A et B sont posés sur une allée droite, à {d} m l’un de l’autre. A arrose tout autour de lui jusqu’à {a} m ; B arrose tout autour de lui jusqu’à {b} m.",
+      "figure": {
+        "alt": "Deux disques arrosés, de centres A et B, qui se chevauchent sur une allée droite",
+        "w": 520,
+        "h": 290,
+        "frame": {
+          "x": [
+            -7.5,
+            19.5
+          ],
+          "y": [
+            -7.5,
+            7.5
+          ]
+        },
+        "items": [
+          {
+            "type": "segment",
+            "from": [
+              -7.5,
+              0
+            ],
+            "to": [
+              19.5,
+              0
+            ],
+            "color": "gris"
+          },
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": "{a}",
+            "fill": "bleu",
+            "dashed": true
+          },
+          {
+            "type": "circle",
+            "center": [
+              "{d}",
+              0
+            ],
+            "r": "{b}",
+            "fill": "vert",
+            "dashed": true
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "pos": "sw",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{d}",
+            "y": 0,
+            "pos": "se",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": [
+              0,
+              "{a}"
+            ],
+            "label": "{a} m",
+            "color": "bleu"
+          },
+          {
+            "type": "segment",
+            "from": "B",
+            "to": [
+              "{d}",
+              "{b}"
+            ],
+            "label": "{b} m",
+            "color": "vert"
+          },
+          {
+            "type": "text",
+            "x": "{d/2}",
+            "y": -1.2,
+            "text": "AB = {d} m",
+            "size": "s",
+            "anchor": "middle"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Sur l’allée, sur quelle longueur (en m) le sol est-il arrosé par les deux arroseurs à la fois ?",
+          "answer": "a + b - d",
+          "misconceptions": [
+            {
+              "answer": "a + b",
+              "id": "mc:somme-rayons",
+              "error": "methode",
+              "feedback": "Tu as additionné les deux portées : c'est plus long que l'allée entre A et B ! La partie arrosée deux fois, c'est seulement là où les deux disques se chevauchent."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Un robinet R est sur l’allée, entre A et B, à {r} m de A. Est-il arrosé par B ? Réponds par oui ou par non.",
+          "accept": [
+            "non"
+          ],
+          "misconceptions": [
+            {
+              "answer": "oui",
+              "id": "mc:mauvais-arroseur",
+              "error": "raisonnement",
+              "feedback": "R est arrosé par A, mais la question porte sur B. Calcule la distance de R à B et compare-la à la portée de B."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le sol arrosé par A est un disque de centre A et de rayon {a} m.",
+        "Sur l’allée, en partant de A : A arrose jusqu’à {a} m ; B arrose à partir de {d-b} m.",
+        "La partie arrosée deux fois commence là où B commence et s’arrête là où A s’arrête."
+      ],
+      "solution": "En partant de A : A arrose l'allée jusqu'à {a} m ; B arrose à partir de {d} − {b} = {d-b} m. Les deux arrosent entre {d-b} m et {a} m, soit {a} − {d-b} = {a+b-d} m. R est à {d} − {r} = {d-r} m de B, plus que {b} m : B ne l'arrose pas.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a+b-d}"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "value": "{a+b}"
+              },
+              {
+                "value": "non"
+              }
+            ]
+          },
+          "expect": "mc:somme-rayons"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-deux-cercles",
+      "type": "categorize",
+      "skill": "m6.geo.cercle",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": [
+        "mc:tangent-interieur",
+        "mc:tangent",
+        "mc:cercle-interieur"
+      ],
+      "expectedSeconds": 480,
+      "prompt": "On cherche les points situés à 2 cm de A ET à 3 cm de B : ce sont les points communs au cercle de centre A de rayon 2 cm et au cercle de centre B de rayon 3 cm. Leur nombre dépend de la distance AB. Range chaque cas (fais des essais au compas !).",
+      "figure": {
+        "alt": "Un cercle de centre A de rayon 2 et un cercle de centre B de rayon 3 qui se coupent en deux points, pour AB = 4 cm",
+        "w": 360,
+        "h": 230,
+        "frame": {
+          "x": [
+            -2.6,
+            7.4
+          ],
+          "y": [
+            -3.4,
+            3.4
+          ]
+        },
+        "caption": "Exemple : avec AB = 4 cm, il y a deux points communs.",
+        "items": [
+          {
+            "type": "circle",
+            "center": [
+              0,
+              0
+            ],
+            "r": 2,
+            "color": "bleu"
+          },
+          {
+            "type": "circle",
+            "center": [
+              4,
+              0
+            ],
+            "r": 3,
+            "color": "vert"
+          },
+          {
+            "type": "point",
+            "id": "A",
+            "x": 0,
+            "y": 0,
+            "pos": "s",
+            "style": "rond"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": 4,
+            "y": 0,
+            "pos": "s",
+            "style": "rond"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "label": "4 cm",
+            "dashed": true
+          }
+        ]
+      },
+      "categories": [
+        {
+          "id": "deux",
+          "label": "2 points"
+        },
+        {
+          "id": "un",
+          "label": "1 seul point"
+        },
+        {
+          "id": "zero",
+          "label": "Aucun point"
+        }
+      ],
+      "items": [
+        {
+          "id": "d3",
+          "label": "AB = 3 cm",
+          "category": "deux"
+        },
+        {
+          "id": "d5",
+          "label": "AB = 5 cm",
+          "category": "un"
+        },
+        {
+          "id": "d6",
+          "label": "AB = 6 cm",
+          "category": "zero"
+        },
+        {
+          "id": "d1",
+          "label": "AB = 1 cm",
+          "category": "un"
+        },
+        {
+          "id": "d05",
+          "label": "AB = 0,5 cm",
+          "category": "zero"
+        },
+        {
+          "id": "d45",
+          "label": "AB = 4,5 cm",
+          "category": "deux"
+        },
+        {
+          "id": "d2",
+          "label": "AB = 2 cm",
+          "category": "deux"
+        }
+      ],
+      "misconceptions": [
+        {
+          "item": "d1",
+          "category": "zero",
+          "id": "mc:tangent-interieur",
+          "error": "raisonnement",
+          "feedback": "Dessine-le : le cercle de A est presque caché dans celui de B. Mais regarde le point du cercle de A le plus éloigné de B : à quelle distance de B est-il ?"
+        },
+        {
+          "item": "d5",
+          "category": "deux",
+          "id": "mc:tangent",
+          "error": "raisonnement",
+          "feedback": "Calcule 2 + 3 et compare avec AB. Où se trouve le point du cercle de A le plus proche de B ? Est-il aussi sur le cercle de B ?"
+        },
+        {
+          "item": "d05",
+          "category": "deux",
+          "id": "mc:cercle-interieur",
+          "error": "raisonnement",
+          "feedback": "Trace-le : le petit cercle est-il entièrement à l'intérieur du grand ? Son point le plus éloigné de B n'est qu'à 2,5 cm de B."
+        }
+      ],
+      "hints": [
+        "Fais un dessin au compas pour chaque cas.",
+        "Compare AB avec 2 + 3 = 5 : si AB est plus grand, les cercles sont trop loin l’un de l’autre.",
+        "Compare aussi AB avec 3 − 2 = 1 : si AB est plus petit, le petit cercle est caché dans le grand."
+      ],
+      "solution": "Si AB est strictement entre 1 cm et 5 cm, il y a 2 points : AB = 2 cm, 3 cm et 4,5 cm. Si AB = 5 cm, les cercles se touchent en un seul point, sur [AB] ; si AB = 1 cm, le petit cercle touche le grand de l'intérieur : 1 seul point aussi. Si AB est plus grand que 5 cm (6 cm) ou plus petit que 1 cm (0,5 cm), il n'y a aucun point.",
+      "selfTest": [
+        {
+          "response": {
+            "assign": {
+              "d3": "deux",
+              "d5": "un",
+              "d6": "zero",
+              "d1": "un",
+              "d05": "zero",
+              "d45": "deux",
+              "d2": "deux"
+            }
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "assign": {
+              "d3": "deux",
+              "d5": "un",
+              "d6": "zero",
+              "d1": "zero",
+              "d05": "zero",
+              "d45": "deux",
+              "d2": "deux"
+            }
+          },
+          "expect": "mc:tangent-interieur"
+        }
+      ]
+    },
+    {
+      "id": "m6-distances-cercles-mediatrice-oblique",
+      "type": "composite",
+      "skill": "m6.geo.mediatrice",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": [
+        "mc:milieu-mediatrice"
+      ],
+      "expectedSeconds": 600,
+      "params": {
+        "a": {
+          "int": [
+            1,
+            3
+          ]
+        },
+        "b": {
+          "int": [
+            1,
+            2
+          ]
+        },
+        "k": {
+          "int": [
+            1,
+            2
+          ]
+        }
+      },
+      "prompt": "Le segment [AB] suit une diagonale des carreaux : A({a} ; {b}) et B({a+2*k} ; {b+2*k}).",
+      "figure": {
+        "alt": "Quadrillage gradué de 0 à 10 et de 0 à 8 avec un segment [AB] en diagonale",
+        "w": 400,
+        "h": 320,
+        "frame": {
+          "x": [
+            0,
+            10
+          ],
+          "y": [
+            0,
+            8
+          ],
+          "grid": true,
+          "axes": true
+        },
+        "items": [
+          {
+            "type": "point",
+            "id": "A",
+            "x": "{a}",
+            "y": "{b}",
+            "pos": "nw"
+          },
+          {
+            "type": "point",
+            "id": "B",
+            "x": "{a+2*k}",
+            "y": "{b+2*k}",
+            "pos": "nw"
+          },
+          {
+            "type": "segment",
+            "from": "A",
+            "to": "B",
+            "color": "bleu"
+          }
+        ]
+      },
+      "parts": [
+        {
+          "type": "graph",
+          "prompt": "Place 4 points du quadrillage situés à égale distance de A et de B.",
+          "xRange": [
+            0,
+            10
+          ],
+          "yRange": [
+            0,
+            8
+          ],
+          "gridStep": 1,
+          "predicate": "(x - a)^2 + (y - b)^2 = (x - a - 2*k)^2 + (y - b - 2*k)^2",
+          "predicateLabel": "« à égale distance de A et de B »",
+          "count": 4
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour chacun de ces points, calcule abscisse + ordonnée. Quel nombre trouves-tu toujours ?",
+          "answer": "a + b + 2*k",
+          "misconceptions": [
+            {
+              "answer": "a + b",
+              "id": "mc:point-a",
+              "error": "lecture",
+              "feedback": "Ce nombre correspond au point A, qui n'est pas à égale distance de A et de B. Fais le calcul avec les points que tu as placés."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Comment s’appelle la droite formée par tous ces points ?",
+          "openEnded": true,
+          "accept": [
+            "médiatrice",
+            "la médiatrice",
+            "la médiatrice de [AB]",
+            "médiatrice de [AB]",
+            "la médiatrice du segment [AB]",
+            "médiatrice du segment [AB]",
+            "la médiatrice de AB"
+          ],
+          "misconceptions": [
+            {
+              "answer": "milieu",
+              "id": "mc:milieu-mediatrice",
+              "error": "notion",
+              "feedback": "Le milieu est un seul de ces points. Cherche le nom de la droite entière."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Le milieu de [AB] est à égale distance de A et de B : commence par lui.",
+        "La médiatrice est perpendiculaire à [AB]. [AB] suit une diagonale des carreaux : la médiatrice suit l’autre diagonale.",
+        "Depuis le milieu, avance d’un carreau vers la droite et d’un carreau vers le bas : tu restes sur la médiatrice."
+      ],
+      "solution": "Le milieu de [AB] est ({a+k} ; {b+k}). La médiatrice passe par ce point et suit l'autre diagonale des carreaux : ({a+k-1} ; {b+k+1}), ({a+k+1} ; {b+k-1}), ({a+k+2} ; {b+k-2})… Pour chacun de ces points, abscisse + ordonnée = {a+b+2*k}. On peut le vérifier en pliant : le long de cette droite, A vient se poser sur B.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    "{a+k}",
+                    "{b+k}"
+                  ],
+                  [
+                    "{a+k-1}",
+                    "{b+k+1}"
+                  ],
+                  [
+                    "{a+k+1}",
+                    "{b+k-1}"
+                  ],
+                  [
+                    "{a+k+2}",
+                    "{b+k-2}"
+                  ]
+                ]
+              },
+              {
+                "value": "{a+b+2*k}"
+              },
+              {
+                "value": "la médiatrice"
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              {
+                "points": [
+                  [
+                    "{a+k}",
+                    "{b+k}"
+                  ],
+                  [
+                    "{a+k-1}",
+                    "{b+k+1}"
+                  ],
+                  [
+                    "{a+k+1}",
+                    "{b+k-1}"
+                  ],
+                  [
+                    "{a+k+2}",
+                    "{b+k-2}"
+                  ]
+                ]
+              },
+              {
+                "value": "{a+b+2*k}"
+              },
+              {
+                "value": "milieu"
+              }
+            ]
+          },
+          "expect": "mc:milieu-mediatrice"
+        }
+      ]
+    }
+  ]
+}

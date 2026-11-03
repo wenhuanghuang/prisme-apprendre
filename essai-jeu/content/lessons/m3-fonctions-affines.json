@@ -1,0 +1,576 @@
+{
+  "id": "m3-fonctions-affines",
+  "chapter": "m3-ch-fonctions",
+  "title": "Fonctions linéaires et affines, pourcentages d'évolution",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.fonctions.lineaire", "m3.fonctions.affine", "m3.fonctions.modeliser", "m3.pourcentages.evolution"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 60,
+  "summary": "Reconnaître et représenter les fonctions linéaires (proportionnalité) et affines, lire leur coefficient et leur ordonnée à l'origine, modéliser des tarifs pour les comparer, et calculer avec les pourcentages d'évolution grâce au coefficient multiplicateur.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le duel des tarifs d'escalade",
+      "body": "La salle d'escalade propose trois tarifs. **Tarif A** : 9 € la séance. **Tarif B** : une carte à 30 € pour l'année, puis 5 € la séance. **Tarif C** : un abonnement annuel de 180 €, séances illimitées.\n\nTu comptes grimper environ une fois par semaine, soit 30 séances dans l'année. Quel tarif choisir ? Et pour 5 séances seulement ? Les trois droites du graphique peuvent-elles te répondre d'un coup d'œil ?",
+      "figure": {
+        "alt": "Prix payé en euros en fonction du nombre de séances, de 0 à 30 séances, pour les tarifs A, B et C",
+        "w": 520, "h": 300,
+        "items": [
+          { "type": "linechart", "xLabel": "nombre de séances", "yLabel": "prix (€)",
+            "series": [
+              { "label": "Tarif A", "points": [[0, 0], [10, 90], [20, 180], [30, 270]] },
+              { "label": "Tarif B", "points": [[0, 30], [10, 80], [20, 130], [30, 180]] },
+              { "label": "Tarif C", "points": [[0, 180], [10, 180], [20, 180], [30, 180]] }
+            ] }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "📏", "title": "La fonction linéaire",
+          "body": "Une fonction **linéaire** s'écrit $f(x) = ax$, avec a un nombre fixé. Elle traduit une situation de **proportionnalité** : a est le coefficient de proportionnalité. Sa représentation graphique est une **droite qui passe par l'origine** du repère.",
+          "example": "Tarif A : prix = 9 × nombre de séances, donc A(n) = 9n."
+        },
+        {
+          "emoji": "📐", "title": "La fonction affine",
+          "body": "Une fonction **affine** s'écrit $f(x) = ax + b$. Le nombre a est le **coefficient directeur**, b est l'**ordonnée à l'origine** : f(0) = b. Sa représentation est une **droite** qui coupe l'axe des ordonnées au point (0 ; b). Si b = 0, la fonction est linéaire ; si a = 0, elle est constante.",
+          "example": "Tarif B : B(n) = 5n + 30, avec a = 5 et b = 30.",
+          "reveal": {
+            "question": "Devine : g(x) = 5 − 2x est-elle affine ? Quels sont son coefficient et son ordonnée à l'origine ?",
+            "answer": "Oui : g(x) = −2x + 5. Le coefficient est −2 (le nombre qui multiplie x, avec son signe) et l'ordonnée à l'origine est 5. Le premier nombre écrit n'est pas forcément le coefficient !"
+          }
+        },
+        {
+          "emoji": "📈", "title": "Lire a et b sur la droite",
+          "body": "b se lit là où la droite coupe l'**axe des ordonnées**. Pour a : quand x augmente de 1, f(x) augmente de a (ou diminue, si a est négatif). Plus généralement, les variations de f(x) sont proportionnelles à celles de x : $a = (f(x₂) − f(x₁)) ÷ (x₂ − x₁)$.",
+          "figure": {
+            "alt": "Droite représentant la fonction x ⟼ 2x − 1 : elle coupe l'axe des ordonnées en −1 et monte de 2 quand x augmente de 1",
+            "w": 320, "h": 400,
+            "frame": { "x": [-1.5, 3.5], "y": [-2.5, 4.5], "grid": true, "axes": true },
+            "items": [
+              { "type": "point", "id": "B", "x": 0, "y": -1, "style": "rond", "label": "b = −1", "pos": "e" },
+              { "type": "point", "id": "Q", "x": 2, "y": 3, "hidden": true },
+              { "type": "line", "through": ["B", "Q"], "color": "maths" },
+              { "type": "segment", "from": [1, 1], "to": [2, 1], "color": "orange", "dashed": true, "label": "+1" },
+              { "type": "segment", "from": [2, 1], "to": [2, 3], "color": "orange", "dashed": true, "label": "+2" },
+              { "type": "text", "x": 2.9, "y": 1.9, "text": "a = 2", "color": "orange" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧩", "title": "Retrouver une fonction affine",
+          "body": "Si l'on connaît deux images, on retrouve f(x) = ax + b en deux temps : d'abord le coefficient, avec la formule des variations ; ensuite b, en remplaçant x par l'un des deux nombres connus.",
+          "example": "f(2) = 7 et f(5) = 16 : a = (16 − 7) ÷ (5 − 2) = 3, puis 7 = 3 × 2 + b donne b = 1. Donc f(x) = 3x + 1."
+        },
+        {
+          "emoji": "🏷️", "title": "Pourcentage d'évolution et coefficient multiplicateur",
+          "body": "Augmenter de t %, c'est **multiplier par $1 + t/100$** ; diminuer de t %, c'est **multiplier par $1 − t/100$**. Ce nombre est le **coefficient multiplicateur**. Ainsi, une hausse de 20 % est la fonction linéaire x ⟼ 1,2x.",
+          "example": "Un jean à 50 € soldé à − 30 % : 50 × 0,7 = 35 €.",
+          "reveal": {
+            "question": "Devine : un prix augmente de 20 %, puis baisse de 20 %. Revient-il à sa valeur de départ ?",
+            "answer": "Non ! 100 € × 1,2 = 120 €, puis 120 € × 0,8 = 96 €. Les coefficients se multiplient : 1,2 × 0,8 = 0,96, soit une baisse de 4 %. La baisse porte sur un prix plus grand que celui de départ."
+          }
+        },
+        {
+          "emoji": "🧭", "title": "En résumé : modéliser pour comparer",
+          "body": "Pour comparer deux tarifs, on écrit chaque prix comme une fonction de la quantité, on trace les droites, puis on résout l'équation f(x) = g(x) : la solution est l'abscisse du point où les droites se coupent. D'un côté de ce point, un tarif est moins cher ; de l'autre côté, c'est l'autre."
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : tarif A ou tarif B ?",
+      "steps": [
+        { "text": "Tarif B : 30 € de carte, puis 5 € par séance. Pour n séances, le prix est une fonction affine, de coefficient 5 (le prix d'une séance) et d'ordonnée à l'origine 30 (le prix de la carte).", "math": "B(n) = 5n + 30" },
+        { "text": "Tarif A : le prix est proportionnel au nombre de séances. C'est une fonction linéaire.", "math": "A(n) = 9n" },
+        { "text": "Les deux tarifs coûtent autant quand A(n) = B(n). On résout l'équation :", "math": "9n = 5n + 30 ⟶ 4n = 30 ⟶ n = 7,5" },
+        { "text": "Or n est un nombre entier de séances : on compare juste avant et juste après 7,5.", "math": "A(7) = 63 et B(7) = 65 ; A(8) = 72 et B(8) = 70" },
+        { "text": "Conclusion : jusqu'à 7 séances, le tarif A est le moins cher ; à partir de 8 séances, c'est le tarif B. Sur le graphique, c'est là que les droites A et B se croisent. Et pour 30 séances, B et C coûtent tous les deux 180 €." }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "exercises": ["m3-fonctions-affines-reconnaitre", "m3-fonctions-affines-coefficients", "m3-fonctions-affines-tracer", "m3-fonctions-affines-lire-droite", "m3-fonctions-affines-evolution", "m3-fonctions-affines-soldes"]
+    },
+    {
+      "kind": "reinvestissement",
+      "title": "Raisonner et expliquer",
+      "body": "Retrouver un prix d'avant les soldes, puis démonter une idée reçue sur les pourcentages.",
+      "exercises": ["m3-fonctions-affines-avant-solde", "m3-fonctions-affines-expliquer"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : le bon forfait de téléphone",
+      "body": "Ta grande sœur hésite entre trois forfaits. Formules, équation, graphique : à toi de la conseiller.",
+      "exercises": ["m3-fonctions-affines-forfait"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir et erreurs fréquentes",
+      "body": "> Linéaire : f(x) = ax, droite passant par l'origine (proportionnalité). Affine : f(x) = ax + b, droite qui coupe l'axe des ordonnées en b. Hausse de t % : × (1 + t/100) ; baisse de t % : × (1 − t/100).\n\n- **Confondre a et b.** Dans 5 − 2x, le coefficient est −2 et l'ordonnée à l'origine 5 : a est le nombre qui multiplie x.\n- **Croire qu'une droite est toujours linéaire.** Elle doit aussi passer par l'origine.\n- **+ 20 % puis − 20 % ne ramène pas au départ :** 1,2 × 0,8 = 0,96.\n- **Additionner les pourcentages successifs.** + 10 % puis + 20 %, c'est × 1,32, soit + 32 %.\n- **Retrouver un prix d'avant soldes en ajoutant le pourcentage.** On divise par le coefficient."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des fonctions affines, des droites à lire et des pourcentages d'évolution dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Retrouver une fonction affine à partir de deux images, puis enchaîner des évolutions successives.",
+      "exercises": ["m3-fonctions-affines-deux-points", "m3-fonctions-affines-successives"]
+    },
+    "expert": {
+      "intro": "Un problème de location façon brevet, puis le mystère des degrés Fahrenheit.",
+      "exercises": ["m3-fonctions-affines-brevet", "m3-fonctions-affines-celsius"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-fonctions-affines-reconnaitre", "type": "categorize", "skill": "m3.fonctions.lineaire", "skills": ["m3.fonctions.affine"], "track": "classe", "role": "guide", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:constante", "mc:quotient-lineaire", "mc:quart", "mc:ordre-ecriture"], "expectedSeconds": 180,
+      "prompt": "Range chaque fonction dans la bonne catégorie. Rappel : une fonction linéaire est aussi affine (avec b = 0) ; ici, on la range dans la catégorie « linéaire ».",
+      "categories": [
+        { "id": "lin", "label": "Linéaire : f(x) = ax" },
+        { "id": "aff", "label": "Affine, mais pas linéaire" },
+        { "id": "ni", "label": "Ni linéaire, ni affine" }
+      ],
+      "items": [
+        { "id": "i1", "label": "f(x) = 4x", "category": "lin" },
+        { "id": "i2", "label": "g(x) = 3x − 2", "category": "aff" },
+        { "id": "i3", "label": "h(x) = x² + 1", "category": "ni" },
+        { "id": "i4", "label": "k(x) = 7 − x", "category": "aff" },
+        { "id": "i5", "label": "m(x) = −0,5x", "category": "lin" },
+        { "id": "i6", "label": "p(x) = 5", "category": "aff" },
+        { "id": "i7", "label": "q(x) = 2 ÷ x", "category": "ni" },
+        { "id": "i8", "label": "r(x) = 3(x + 1)", "category": "aff" },
+        { "id": "i9", "label": "s(x) = x ÷ 4", "category": "lin" }
+      ],
+      "misconceptions": [
+        { "item": "i4", "category": "ni", "id": "mc:ordre-ecriture", "error": "notion", "feedback": "L'ordre d'écriture ne compte pas : réécris 7 − x en commençant par le terme en x, puis compare avec la forme ax + b." },
+        { "item": "i6", "category": "ni", "id": "mc:constante", "error": "notion", "feedback": "p(x) = 5 peut s'écrire 0 × x + 5. Compare avec la forme ax + b : que valent a et b ?" },
+        { "item": "i7", "category": "lin", "id": "mc:quotient-lineaire", "error": "notion", "feedback": "Ici, x est au dénominateur : 2 ÷ x ne s'écrit pas « un nombre fixe × x ». Teste : quand x double, que devient 2 ÷ x ?" },
+        { "item": "i9", "category": "ni", "id": "mc:quart", "error": "notion", "feedback": "Diviser par 4 revient à multiplier par un nombre fixe : réécris x ÷ 4 sous la forme « nombre × x »." }
+      ],
+      "hints": ["Essaie d'écrire chaque fonction sous la forme ax + b, en développant si besoin.", "Si b = 0, la fonction est linéaire. Un nombre seul, c'est ax + b avec a = 0.", "x² et x au dénominateur ne s'écrivent pas sous la forme ax + b."],
+      "solution": "Linéaires : 4x, −0,5x et x ÷ 4 = 0,25x. Affines non linéaires : 3x − 2 ; 7 − x = −x + 7 ; 5 = 0x + 5 (fonction constante) ; 3(x + 1) = 3x + 3. Ni l'un ni l'autre : x² + 1 (x est élevé au carré) et 2 ÷ x (x au dénominateur).",
+      "selfTest": [
+        { "response": { "assign": { "i1": "lin", "i2": "aff", "i3": "ni", "i4": "aff", "i5": "lin", "i6": "aff", "i7": "ni", "i8": "aff", "i9": "lin" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "lin", "i2": "aff", "i3": "ni", "i4": "aff", "i5": "lin", "i6": "ni", "i7": "ni", "i8": "aff", "i9": "lin" } }, "expect": "mc:constante" },
+        { "response": { "assign": { "i1": "lin", "i2": "aff", "i3": "ni", "i4": "aff", "i5": "lin", "i6": "aff", "i7": "lin", "i8": "aff", "i9": "lin" } }, "expect": "mc:quotient-lineaire" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-coefficients", "type": "composite", "skill": "m3.fonctions.affine", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:coef-ordonnee", "mc:signe-coef", "mc:priorite"], "expectedSeconds": 180,
+      "params": { "a": { "int": [2, 6] }, "b": { "int": [1, 9] }, "k": { "int": [2, 5] } },
+      "constraints": ["b != a"],
+      "prompt": "On considère la fonction affine f définie par $f(x) = {b} − {a}x$. Attention à l'ordre d'écriture !",
+      "figure": {
+        "alt": "Rappel de la forme d'une fonction affine : f(x) = ax + b",
+        "w": 360, "h": 110,
+        "items": [ { "type": "table", "head": ["f(x) =", "a", "× x", "+", "b"], "rows": [["", "coefficient", "", "", "ordonnée à l'origine"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel est le coefficient a de f (le nombre qui multiplie x) ?", "answer": "-a",
+          "misconceptions": [
+            { "answer": "b", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Ce nombre est le terme seul : c'est f(0), l'ordonnée à l'origine. Le coefficient est le nombre qui multiplie x, avec son signe." },
+            { "answer": "a", "id": "mc:signe-coef", "error": "signe", "feedback": "Regarde le signe placé devant le terme en x : il fait partie du coefficient." }
+          ] },
+        { "type": "numeric", "prompt": "Quelle est son ordonnée à l'origine b, c'est-à-dire f(0) ?", "answer": "b",
+          "misconceptions": [ { "answer": "-a", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Ce nombre multiplie x : c'est le coefficient. L'ordonnée à l'origine est la valeur de f(0), quand x vaut 0." } ] },
+        { "type": "numeric", "prompt": "Calcule f({k}).", "answer": "b - a*k",
+          "misconceptions": [ { "answer": "(b - a)*k", "id": "mc:priorite", "error": "methode", "feedback": "Tu as calculé ({b} − {a}) × {k}. Priorité : la multiplication {a} × {k} se fait avant la soustraction." } ] }
+      ],
+      "hints": ["Réécris f(x) dans l'ordre habituel : $f(x) = −{a}x + {b}$.", "Le coefficient est le nombre qui multiplie x, AVEC son signe ; l'ordonnée à l'origine est f(0).", "Pour f({k}), calcule d'abord {a} × {k}."],
+      "solution": "$f(x) = {b} − {a}x = −{a}x + {b}$ : le coefficient est a = −{a}, l'ordonnée à l'origine est b = {b} (en effet, f(0) = {b}). $f({k}) = {b} − {a} × {k} = {b} − {a*k} = {b-a*k}$. Comme le coefficient est négatif, la droite qui représente f « descend » quand on la parcourt de gauche à droite.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "-{a}" }, { "value": "{b}" }, { "value": "{b-a*k}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{b}" }, { "value": "{b}" }, { "value": "{b-a*k}" } ] }, "expect": "mc:coef-ordonnee" },
+        { "response": { "parts": [ { "value": "-{a}" }, { "value": "{b}" }, { "value": "{(b-a)*k}" } ] }, "expect": "mc:priorite" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-tracer", "type": "graph", "skill": "m3.fonctions.affine", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:coef-ordonnee"], "expectedSeconds": 180,
+      "params": { "a": { "choice": [-3, -2, -1, 1, 2, 3] }, "b": { "int": [-4, 4], "not": [0] } },
+      "constraints": ["a != b"],
+      "prompt": "Place trois points de la droite qui représente la fonction affine $f(x) = {a|c}x {b|s}$.",
+      "xRange": [-5, 5], "yRange": [-10, 10], "xStep": 1, "yStep": 1, "xLabel": "x", "yLabel": "f(x)", "maxPoints": 4,
+      "predicate": "y = a*x + b", "predicateLabel": "y = {a|c}x {b|s}", "count": 3,
+      "hints": ["Choisis trois valeurs simples de x, par exemple 0, 1 et 2, et calcule leurs images.", "Le point d'abscisse 0 a pour ordonnée l'ordonnée à l'origine, {b}.", "Quand x augmente de 1, f(x) varie du coefficient, {a}."],
+      "solution": "Par exemple : f(0) = {b}, f(1) = {a+b}, f(2) = {2*a+b}. Les points (0 ; {b}), (1 ; {a+b}) et (2 ; {2*a+b}) sont alignés sur la droite qui coupe l'axe des ordonnées en {b}. Tout autre point de coordonnées (x ; {a|c}x {b|s}) convient aussi : deux points suffisent pour tracer la droite, le troisième sert de vérification.",
+      "selfTest": [
+        { "response": { "points": [[0, "{b}"], [1, "{a+b}"], [2, "{2*a+b}"]] }, "expect": "correct" },
+        { "response": { "points": [[0, "{a}"], [1, "{a+b}"], [2, "{a+2*b}"]] }, "expect": "notion" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-lire-droite", "type": "composite", "skill": "m3.fonctions.affine", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "visuelle", "targets": ["mc:coef-ordonnee", "mc:accroissement-non-divise", "mc:signe-coef"], "expectedSeconds": 240,
+      "params": { "a": { "choice": [-2, -1, 1, 2] }, "b": { "int": [-3, 3], "not": [0] } },
+      "constraints": ["a != b"],
+      "prompt": "La droite (d) ci-dessous représente une fonction affine f. Elle passe par les points A et B, placés sur des nœuds du quadrillage.",
+      "figure": {
+        "alt": "Droite (d) dans un repère quadrillé, passant par deux points A et B ; A est sur l'axe des ordonnées",
+        "w": 300, "h": 520,
+        "frame": { "x": [-4, 4], "y": [-8, 8], "grid": true, "axes": true },
+        "items": [
+          { "type": "point", "id": "A", "x": 0, "y": "{b}", "style": "rond", "pos": "nw" },
+          { "type": "point", "id": "B", "x": 2, "y": "{2*a+b}", "style": "rond", "pos": "e" },
+          { "type": "line", "through": ["A", "B"], "color": "maths", "label": "(d)" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Lis l'ordonnée à l'origine b de f.", "answer": "b",
+          "misconceptions": [ { "answer": "a", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Ce nombre décrit l'inclinaison de la droite : c'est le coefficient. L'ordonnée à l'origine se lit là où la droite coupe l'axe des ordonnées." } ] },
+        { "type": "numeric", "prompt": "Lis le coefficient directeur a de f.", "answer": "a",
+          "misconceptions": [
+            { "answer": "2*a", "id": "mc:accroissement-non-divise", "error": "methode", "feedback": "Entre A et B, l'abscisse augmente de 2, pas de 1 : divise la variation des ordonnées par la variation des abscisses." },
+            { "answer": "-a", "id": "mc:signe-coef", "error": "signe", "feedback": "Regarde le sens de la droite : de gauche à droite, monte-t-elle ou descend-elle ? Le signe du coefficient en dépend." }
+          ] },
+        { "type": "expression", "prompt": "Donne l'expression de f(x) (sans écrire « f(x) = »).", "answer": "a*x + b", "variable": "x",
+          "misconceptions": [ { "answer": "b*x + a", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Tu as échangé les rôles : le coefficient multiplie x, l'ordonnée à l'origine est le terme seul." } ] }
+      ],
+      "hints": ["L'ordonnée à l'origine est l'ordonnée du point où la droite coupe l'axe vertical : c'est le point A.", "De A à B, l'abscisse augmente de 2. De combien l'ordonnée change-t-elle ?", "Coefficient = variation des ordonnées ÷ variation des abscisses."],
+      "solution": "La droite coupe l'axe des ordonnées en A(0 ; {b}) : b = {b}. De A à B(2 ; {2*a+b}), x augmente de 2 et f(x) varie de {2*a}, donc $a = {2*a} ÷ 2 = {a}$. Ainsi $f(x) = {a|c}x {b|s}$.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{b}" }, { "value": "{a}" }, { "value": "{a}*x {b|s}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{a}" }, { "value": "{a}*x {b|s}" } ] }, "expect": "mc:coef-ordonnee" },
+        { "response": { "parts": [ { "value": "{b}" }, { "value": "{2*a}" }, { "value": "{a}*x {b|s}" } ] }, "expect": "mc:accroissement-non-divise" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-evolution", "type": "table", "skill": "m3.pourcentages.evolution", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "symbolique", "targets": ["mc:coef-taux", "mc:coef-en-pourcentage", "mc:hausse-baisse", "mc:signe-evolution"], "expectedSeconds": 240,
+      "params": { "t": { "choice": [3, 12, 25, 60] }, "s": { "choice": [5, 30, 45, 70] } },
+      "prompt": "Complète le tableau : à chaque évolution, son coefficient multiplicateur, et inversement. Pour une évolution, écris le pourcentage avec son signe (− pour une baisse).",
+      "columns": ["Évolution (en %)", "Coefficient multiplicateur"],
+      "rows": [["+ 20 %", "?r0c1"], ["− 15 %", "?r1c1"], ["+ {t} %", "?r2c1"], ["− {s} %", "?r3c1"], ["?r4c0", "1,35"], ["?r5c0", "0,92"]],
+      "cells": {
+        "r0c1": { "answer": "1.2", "misconceptions": [
+          { "answer": "0.2", "id": "mc:coef-taux", "error": "notion", "feedback": "0,2 correspond seulement à l'augmentation. Le nouveau prix, c'est l'ancien PLUS l'augmentation : 100 % du prix, plus 20 %." },
+          { "answer": "20", "id": "mc:coef-en-pourcentage", "error": "notion", "feedback": "Le coefficient multiplicateur n'est pas un pourcentage : c'est le nombre par lequel on multiplie le prix de départ." }
+        ] },
+        "r1c1": { "answer": "0.85", "misconceptions": [
+          { "answer": "0.15", "id": "mc:coef-taux", "error": "notion", "feedback": "0,15 est la part qui disparaît. Après une baisse, il reste 100 % du prix MOINS 15 %." },
+          { "answer": "1.15", "id": "mc:hausse-baisse", "error": "signe", "feedback": "Multiplier par ce nombre ferait AUGMENTER le prix. Une baisse donne un coefficient plus petit que 1." }
+        ] },
+        "r2c1": { "answer": "1 + t/100" },
+        "r3c1": { "answer": "1 - s/100" },
+        "r4c0": { "answer": "35", "misconceptions": [
+          { "answer": "1.35", "id": "mc:coef-en-pourcentage", "error": "notion", "feedback": "On demande ici le pourcentage d'évolution, pas le coefficient : multiplier par 1,35, c'est garder 100 % du prix et en ajouter une part." },
+          { "answer": "135", "id": "mc:coef-en-pourcentage", "error": "notion", "feedback": "Ce pourcentage compare le nouveau prix à l'ancien. L'évolution, c'est seulement ce qui s'ajoute aux 100 % de départ." }
+        ] },
+        "r5c0": { "answer": "-8", "misconceptions": [
+          { "answer": "92", "id": "mc:coef-en-pourcentage", "error": "notion", "feedback": "Ce pourcentage est ce qui RESTE du prix. L'évolution est la part perdue, écrite avec un signe −." },
+          { "answer": "8", "id": "mc:signe-evolution", "error": "signe", "feedback": "Multiplier par 0,92 fait baisser le prix : l'évolution est négative, écris-la avec le signe −." }
+        ] }
+      },
+      "hints": ["Hausse de t % : on multiplie par 1 + t/100. Baisse de t % : on multiplie par 1 − t/100.", "Exemple : + 10 % donne × 1,1 ; − 10 % donne × 0,9.", "Dans l'autre sens : × 1,35 = × (1 + 0,35)."],
+      "solution": "+ 20 % : × 1,2. − 15 % : × 0,85. + {t} % : × {1+t/100}. − {s} % : × {1-s/100}. × 1,35 = × (1 + 0,35) : + 35 %. × 0,92 = × (1 − 0,08) : − 8 %. Un coefficient plus grand que 1 traduit une hausse, un coefficient plus petit que 1 une baisse.",
+      "selfTest": [
+        { "response": { "cells": { "r0c1": "1,2", "r1c1": "0,85", "r2c1": "{1+t/100}", "r3c1": "{1-s/100}", "r4c0": "35", "r5c0": "-8" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c1": "0,2", "r1c1": "0,85", "r2c1": "{1+t/100}", "r3c1": "{1-s/100}", "r4c0": "35", "r5c0": "-8" } }, "expect": "mc:coef-taux" },
+        { "response": { "cells": { "r0c1": "1,2", "r1c1": "0,85", "r2c1": "{1+t/100}", "r3c1": "{1-s/100}", "r4c0": "35", "r5c0": "8" } }, "expect": "mc:signe-evolution" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-soldes", "type": "numeric", "skill": "m3.pourcentages.evolution", "track": "classe", "role": "guide", "difficulty": 2,
+      "representation": "concrete", "targets": ["mc:hausse-baisse-annulent", "mc:une-seule-etape"], "expectedSeconds": 150,
+      "params": { "p": { "choice": [40, 60, 80, 120, 200] }, "t": { "choice": [10, 20, 25, 50] } },
+      "prompt": "Un sweat coûte {p} €. En octobre, son prix augmente de {t} %. En janvier, pendant les soldes, il baisse de {t} %. Quel est son prix après les soldes, en € ?",
+      "figure": {
+        "alt": "Les deux évolutions successives du prix du sweat",
+        "w": 420, "h": 110,
+        "items": [ { "type": "table", "head": ["Septembre", "Octobre", "Janvier (soldes)"], "rows": [["{p} €", "+ {t} %", "− {t} %"]] } ]
+      },
+      "answer": "p*(1 + t/100)*(1 - t/100)",
+      "misconceptions": [
+        { "answer": "p", "id": "mc:hausse-baisse-annulent", "error": "raisonnement", "feedback": "Les deux pourcentages sont égaux, mais ils ne s'appliquent pas au même prix : la baisse porte sur le prix déjà augmenté. Calcule les deux étapes." },
+        { "answer": "p*(1 + t/100)", "id": "mc:une-seule-etape", "error": "lecture", "feedback": "C'est le prix d'octobre. Il reste à appliquer la baisse des soldes." }
+      ],
+      "hints": ["Hausse de {t} % : on multiplie par {1+t/100}.", "Baisse de {t} % : on multiplie par {1-t/100}, en partant du prix d'octobre.", "Contrôle : le prix final est-il égal, supérieur ou inférieur à {p} € ?"],
+      "solution": "Octobre : $ {p} × {1+t/100} = {p*(1+t/100)} $ €. Janvier : $ {p*(1+t/100)} × {1-t/100} = {p*(1+t/100)*(1-t/100)} $ €. Le sweat coûte MOINS cher qu'au départ : les coefficients se multiplient, $ {1+t/100} × {1-t/100} = {(1+t/100)*(1-t/100)} $, ce qui correspond à une baisse de {t*t/100} %.",
+      "selfTest": [
+        { "response": { "value": "{p*(1+t/100)*(1-t/100)}" }, "expect": "correct" },
+        { "response": { "value": "{p}" }, "expect": "mc:hausse-baisse-annulent" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-avant-solde", "type": "numeric", "skill": "m3.pourcentages.evolution", "track": "classe", "role": "reinvestissement", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:pourcentage-inverse", "mc:pourcentage-euros"], "expectedSeconds": 180,
+      "params": { "P": { "choice": [200, 300, 400, 500, 600] }, "s": { "choice": [10, 20, 25, 40] }, "q": { "expr": "P*(1 - s/100)" } },
+      "prompt": "Après une baisse de {s} %, un vélo coûte {q} €. Quel était son prix avant la baisse, en € ?",
+      "figure": {
+        "alt": "Le prix du vélo avant et après la baisse",
+        "w": 360, "h": 110,
+        "items": [ { "type": "table", "head": ["Avant", "Évolution", "Après"], "rows": [["? €", "− {s} %", "{q} €"]] } ]
+      },
+      "answer": "P",
+      "misconceptions": [
+        { "answer": "q*(1 + s/100)", "id": "mc:pourcentage-inverse", "error": "raisonnement", "feedback": "Ajouter {s} % au prix soldé ne redonne pas le prix de départ : les {s} % de la baisse étaient calculés sur l'ancien prix, plus grand. Cherche le prix qui, multiplié par {1-s/100}, donne {q}." },
+        { "answer": "q + s", "id": "mc:pourcentage-euros", "error": "notion", "feedback": "{s} % n'est pas {s} € : un pourcentage se calcule toujours sur une quantité." }
+      ],
+      "hints": ["Une baisse de {s} %, c'est une multiplication par {1-s/100}.", "Prix avant × {1-s/100} = {q}.", "Pour retrouver le nombre de départ, on DIVISE par le coefficient."],
+      "solution": "Le prix x avant la baisse vérifie $ x × {1-s/100} = {q} $, donc $ x = {q} ÷ {1-s/100} = {P} $ €. Vérification : {s} % de {P} €, c'est {P*s/100} €, et $ {P} − {P*s/100} = {q} $. Attention : le prix soldé augmenté de {s} % ne donnerait que {q*(1+s/100)} €.",
+      "selfTest": [
+        { "response": { "value": "{P}" }, "expect": "correct" },
+        { "response": { "value": "{q*(1+s/100)}" }, "expect": "mc:pourcentage-inverse" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-expliquer", "type": "open", "skill": "m3.pourcentages.evolution", "track": "classe", "role": "libre", "difficulty": 3,
+      "representation": "verbale", "targets": ["mc:hausse-baisse-annulent"], "expectedSeconds": 360,
+      "prompt": "Sacha affirme : « Le prix de mon jeu vidéo a augmenté de 20 %, puis il a baissé de 20 %. Il est donc revenu à son prix de départ. » Explique-lui pourquoi il se trompe, avec un exemple chiffré et les coefficients multiplicateurs.",
+      "minWords": 25,
+      "criteria": [
+        { "id": "c1", "label": "Je donne un exemple chiffré (par exemple 50 € → 60 € → 48 €)", "keywords": [["exemple", "€", "euros"]] },
+        { "id": "c2", "label": "J'explique que la baisse de 20 % porte sur un prix plus grand que le prix de départ", "keywords": [["plus grand", "nouveau prix", "prix augmente", "60", "120", "pas sur le meme"]] },
+        { "id": "c3", "label": "J'utilise les coefficients : 1,2 × 0,8 = 0,96, soit une baisse de 4 %", "keywords": [["0,96", "1,2", "0,8", "4 %", "4%"]] }
+      ],
+      "models": [
+        "Par exemple, avec un jeu à 50 € : + 20 %, c'est × 1,2, donc 60 €. Puis − 20 %, c'est × 0,8, donc 48 €, et non 50 €. La baisse de 20 % est calculée sur 60 €, un prix plus grand que 50 €, donc elle enlève 12 € alors que la hausse n'avait ajouté que 10 €. Avec les coefficients : 1,2 × 0,8 = 0,96, le prix final est 96 % du prix de départ, soit une baisse de 4 %.",
+        "Prenons 100 € : après + 20 %, le jeu coûte 120 €. 20 % de 120 €, c'est 24 €, donc après la baisse il coûte 96 €. Les pourcentages ne portent pas sur le même prix. En coefficients : 1,2 × 0,8 = 0,96 : le prix a baissé de 4 % en tout."
+      ],
+      "hints": ["Teste avec un prix de 100 €.", "Calcule 1,2 × 0,8 : est-ce égal à 1 ?"],
+      "solution": "Avec 100 € : + 20 % donne 120 € ; − 20 % de 120 €, c'est 24 € de moins, soit 96 €. La baisse s'applique à un prix plus grand que celui de départ, donc elle enlève davantage que ce que la hausse avait ajouté. Avec les coefficients : 1,2 × 0,8 = 0,96 : le prix final vaut 96 % du prix de départ, c'est une baisse de 4 %.",
+      "selfTest": [
+        { "response": { "text": "Par exemple 100 € devient 120 € puis 96 € : la baisse est calculée sur un prix plus grand. 1,2 × 0,8 = 0,96 donc une baisse de 4 %.", "selfCheck": { "c1": true, "c2": true, "c3": true } }, "expect": "a-valider" },
+        { "response": { "text": "Il a raison." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-forfait", "type": "composite", "skill": "m3.fonctions.modeliser", "skills": ["m3.fonctions.affine", "m4.equations.modeliser"], "track": "classe", "role": "mission", "difficulty": 3,
+      "representation": "concrete", "targets": ["mc:frais-multiplies", "mc:oubli-fixe", "mc:signe-transposition", "mc:mauvais-forfait"], "expectedSeconds": 720,
+      "prompt": "Mission : ta grande sœur hésite entre trois forfaits de téléphone (tarifs inventés pour l'exercice). **Éco** : 4 € par mois, plus 1,50 € par Go de données consommé. **Plus** : 10 € par mois, plus 0,50 € par Go. **Illimité** : 20 € par mois, quelle que soit la consommation. On note x le nombre de Go consommés dans le mois.",
+      "figure": {
+        "alt": "Prix mensuel en euros des forfaits Éco, Plus et Illimité en fonction du nombre de Go consommés, de 0 à 30 Go",
+        "w": 520, "h": 300,
+        "items": [
+          { "type": "linechart", "xLabel": "données consommées (Go)", "yLabel": "prix (€)",
+            "series": [
+              { "label": "Éco", "points": [[0, 4], [10, 19], [20, 34], [30, 49]] },
+              { "label": "Plus", "points": [[0, 10], [10, 15], [20, 20], [30, 25]] },
+              { "label": "Illimité", "points": [[0, 20], [10, 20], [20, 20], [30, 20]] }
+            ] }
+        ]
+      },
+      "parts": [
+        { "type": "expression", "prompt": "Écris le prix du forfait Éco en fonction de x (sans « = »).", "answer": "4 + 1.5*x", "variable": "x",
+          "misconceptions": [
+            { "answer": "5.5*x", "id": "mc:frais-multiplies", "error": "notion", "feedback": "Les 4 € sont payés une seule fois par mois, quelle que soit la consommation : ils ne sont pas multipliés par x." },
+            { "answer": "1.5*x", "id": "mc:oubli-fixe", "error": "lecture", "feedback": "Tu as oublié la partie fixe payée chaque mois." }
+          ] },
+        { "type": "expression", "prompt": "Écris le prix du forfait Plus en fonction de x.", "answer": "10 + 0.5*x", "variable": "x",
+          "misconceptions": [ { "answer": "10.5*x", "id": "mc:frais-multiplies", "error": "notion", "feedback": "Les 10 € sont payés une seule fois par mois : ils ne sont pas multipliés par x." } ] },
+        { "type": "numeric", "prompt": "Pour combien de Go les forfaits Éco et Plus coûtent-ils exactement le même prix ?", "answer": 6,
+          "misconceptions": [ { "answer": 7, "id": "mc:signe-transposition", "error": "signe", "feedback": "Pour regrouper les termes en x dans un seul membre, il faut SOUSTRAIRE 0,5x aux deux membres, pas l'ajouter." } ] },
+        { "type": "numeric", "prompt": "Ta sœur consomme environ 15 Go par mois. Combien paierait-elle avec le forfait le moins cher pour elle, en € ?", "answer": 17.5,
+          "misconceptions": [
+            { "answer": 26.5, "id": "mc:mauvais-forfait", "error": "raisonnement", "feedback": "C'est le prix du forfait Éco pour 15 Go. Compare avec les deux autres forfaits avant de choisir." },
+            { "answer": 20, "id": "mc:mauvais-forfait", "error": "raisonnement", "feedback": "L'Illimité n'est pas forcément le moins cher : calcule aussi le prix du forfait Plus pour 15 Go." }
+          ] },
+        { "type": "numeric", "prompt": "Au-delà de combien de Go le forfait Illimité devient-il le moins cher des trois ?", "answer": 20, "rel": 0.005,
+          "misconceptions": [ { "answer": "16/1.5", "id": "mc:mauvais-forfait", "error": "raisonnement", "feedback": "Au-delà de ce nombre de Go, l'Illimité bat le forfait Éco, mais pas encore le forfait Plus. Les deux comparaisons comptent." } ] }
+      ],
+      "hints": ["Prix = partie fixe + prix d'un Go × nombre de Go.", "Résous l'équation 4 + 1,5x = 10 + 0,5x ; pour 15 Go, calcule le prix des trois forfaits.", "Illimité contre Plus : résous 10 + 0,5x = 20."],
+      "solution": "Éco : 4 + 1,5x ; Plus : 10 + 0,5x ; Illimité : 20 (fonction constante). Éco = Plus : $4 + 1,5x = 10 + 0,5x$ ⟶ $x = 6$ Go (13 € dans les deux cas). Pour 15 Go : Éco 26,50 €, Plus 17,50 €, Illimité 20 € : le forfait Plus est le moins cher. Plus = Illimité : $10 + 0,5x = 20$ ⟶ $x = 20$. Bilan : en dessous de 6 Go, Éco est le moins cher ; entre 6 et 20 Go, c'est Plus ; au-delà de 20 Go, c'est l'Illimité. Sur le graphique, ces seuils sont les abscisses des croisements des droites.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "4 + 1,5x" }, { "value": "10 + 0,5x" }, { "value": "6" }, { "value": "17,5" }, { "value": "20" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "5,5x" }, { "value": "10,5x" }, { "value": "6" }, { "value": "17,5" }, { "value": "20" } ] }, "expect": "mc:frais-multiplies" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-remed-coef", "type": "composite", "skill": "m3.fonctions.affine", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:coef-ordonnee"], "expectedSeconds": 120,
+      "params": { "a": { "int": [2, 9] }, "b": { "int": [1, 9] } },
+      "constraints": ["a != b"],
+      "prompt": "Rappel : dans $f(x) = ax + b$, le coefficient a multiplie x, et b est le terme seul. On considère $f(x) = {a}x + {b}$.",
+      "figure": {
+        "alt": "Rappel de la forme générale d'une fonction affine : f(x) = ax + b",
+        "w": 420, "h": 110,
+        "items": [ { "type": "table", "head": ["f(x) =", "a", "× x", "+", "b"], "rows": [["", "coefficient", "", "", "ordonnée à l'origine"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Quel nombre multiplie x ?", "answer": "a",
+          "misconceptions": [ { "answer": "b", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Ce nombre est seul, il ne multiplie pas x : c'est l'ordonnée à l'origine." } ] },
+        { "type": "numeric", "prompt": "Calcule f(0).", "answer": "b",
+          "misconceptions": [ { "answer": "a", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Pour x = 0, le terme {a}x vaut {a} × 0 : il disparaît. Que reste-t-il ?" } ] },
+        { "type": "numeric", "prompt": "Calcule f(1) − f(0).", "answer": "a",
+          "misconceptions": [ { "answer": "a + b", "id": "mc:oubli-soustraction", "error": "lecture", "feedback": "Ce nombre est f(1). Il faut encore lui soustraire f(0)." } ] }
+      ],
+      "hints": ["Le coefficient est collé à x.", "f(0) : remplace x par 0.", "f(1) = {a} × 1 + {b}."],
+      "solution": "{a} multiplie x : c'est le coefficient. $f(0) = {a} × 0 + {b} = {b}$ : c'est l'ordonnée à l'origine. $f(1) − f(0) = {a+b} − {b} = {a}$ : quand x augmente de 1, f(x) augmente exactement du coefficient.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "{a}" }, { "value": "{b}" }, { "value": "{a}" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "{b}" }, { "value": "{b}" }, { "value": "{a}" } ] }, "expect": "mc:coef-ordonnee" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-remed-coefmult", "type": "match", "skill": "m3.pourcentages.evolution", "track": "classe", "role": "remediation", "difficulty": 1,
+      "representation": "symbolique", "targets": ["mc:coef-taux", "mc:virgule"], "expectedSeconds": 120,
+      "prompt": "Rappel : une évolution en pourcentage revient à multiplier par un nombre. Associe chaque évolution à son coefficient multiplicateur. Attention : deux coefficients sont des pièges.",
+      "leftTitle": "Évolution", "rightTitle": "Coefficient",
+      "left": [
+        { "id": "l1", "label": "Hausse de 10 %" },
+        { "id": "l2", "label": "Baisse de 10 %" },
+        { "id": "l3", "label": "Hausse de 100 % (le prix double)" },
+        { "id": "l4", "label": "Baisse de 50 % (le prix est divisé par 2)" }
+      ],
+      "right": [
+        { "id": "r1", "label": "× 1,1" },
+        { "id": "r2", "label": "× 0,9" },
+        { "id": "r3", "label": "× 2" },
+        { "id": "r4", "label": "× 0,5" },
+        { "id": "r5", "label": "× 0,1" },
+        { "id": "r6", "label": "× 1,01" }
+      ],
+      "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" },
+      "misconceptions": [
+        { "pair": ["l1", "r5"], "id": "mc:coef-taux", "error": "notion", "feedback": "Multiplier par 0,1, c'est garder seulement 10 % du prix : il s'effondrerait ! Pour une hausse, on garde les 100 % et on ajoute 10 %." },
+        { "pair": ["l1", "r6"], "id": "mc:virgule", "error": "calcul", "feedback": "Multiplier par 1,01, c'est ajouter 1 %, pas 10 %." },
+        { "pair": ["l2", "r5"], "id": "mc:coef-taux", "error": "notion", "feedback": "Multiplier par 0,1 garde seulement 10 % du prix : ce serait une baisse de 90 %." }
+      ],
+      "hints": ["Hausse : coefficient plus grand que 1. Baisse : coefficient plus petit que 1.", "+ 10 % : 100 % + 10 % = 110 % = 1,10."],
+      "solution": "+ 10 % : × 1,1 ; − 10 % : × 0,9 ; + 100 % : × 2 ; − 50 % : × 0,5. Pièges : × 0,1 correspond à une baisse de 90 %, et × 1,01 à une hausse de 1 %.",
+      "selfTest": [
+        { "response": { "pairs": { "l1": "r1", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "correct" },
+        { "response": { "pairs": { "l1": "r5", "l2": "r2", "l3": "r3", "l4": "r4" } }, "expect": "mc:coef-taux" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-deux-points", "type": "expression", "skill": "m3.fonctions.affine", "track": "approfondissement", "role": "defi", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:quotient-inverse", "mc:oubli-ordonnee"], "expectedSeconds": 300,
+      "params": { "a": { "choice": [-3, -2, 2, 3, 4] }, "b": { "int": [-5, 5], "not": [0] }, "p": { "int": [-2, 1] }, "d": { "int": [2, 4] }, "q": { "expr": "p + d" }, "u": { "expr": "a*p + b" }, "v": { "expr": "a*q + b" } },
+      "prompt": "f est une fonction affine telle que $f({p}) = {u}$ et $f({q}) = {v}$. Détermine l'expression de f(x) (sans écrire « f(x) = »).",
+      "figure": {
+        "alt": "Tableau des deux valeurs connues de la fonction f",
+        "w": 300, "h": 110,
+        "items": [ { "type": "table", "head": ["x", "{p}", "{q}"], "rows": [["f(x)", "{u}", "{v}"]] } ]
+      },
+      "answer": "a*x + b", "variable": "x",
+      "misconceptions": [
+        { "answer": "(q - p)/(v - u)*x + u - (q - p)/(v - u)*p", "id": "mc:quotient-inverse", "error": "methode", "feedback": "Ton coefficient est inversé : on divise la variation des IMAGES par la variation des x, pas l'inverse." },
+        { "answer": "a*x", "id": "mc:oubli-ordonnee", "error": "notion", "feedback": "Ta fonction est linéaire : sa droite passe par l'origine. Vérifie : donne-t-elle bien f({p}) = {u} ?" }
+      ],
+      "hints": ["Le coefficient : a = (f({q}) − f({p|p})) ÷ ({q} − {p|p}).", "Une fois le coefficient trouvé, utilise f({p}) = {u} pour calculer b.", "Vérifie ton expression avec f({q}) = {v}."],
+      "solution": "$a = ({v} − {u|p}) ÷ ({q} − {p|p}) = {v-u} ÷ {d} = {a}$. Puis $f({p}) = {a} × {p|p} + b = {u}$, donc $b = {u} − {a*p|p} = {b}$. Ainsi $f(x) = {a}x {b|s}$. Vérification : $f({q}) = {a} × {q|p} {b|s} = {v}$.",
+      "selfTest": [
+        { "response": { "value": "{a}x {b|s}" }, "expect": "correct" },
+        { "response": { "value": "{a}x" }, "expect": "mc:oubli-ordonnee" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-successives", "type": "composite", "skill": "m3.pourcentages.evolution", "track": "approfondissement", "role": "transfert", "difficulty": 4,
+      "representation": "symbolique", "targets": ["mc:taux-additionnes", "mc:hausse-baisse-annulent"], "expectedSeconds": 420,
+      "prompt": "Le prix d'un casque audio augmente de 10 % en mars, puis de 20 % en septembre.",
+      "figure": {
+        "alt": "Les deux hausses successives du prix du casque",
+        "w": 360, "h": 110,
+        "items": [ { "type": "table", "head": ["", "Mars", "Septembre"], "rows": [["Évolution", "+ 10 %", "+ 20 %"]] } ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Par quel nombre le prix de départ a-t-il été multiplié en tout ?", "answer": 1.32,
+          "misconceptions": [ { "answer": 1.3, "id": "mc:taux-additionnes", "error": "raisonnement", "feedback": "Les pourcentages ne s'additionnent pas : la hausse de septembre porte sur le prix de mars, déjà augmenté. Multiplie les deux coefficients." } ] },
+        { "type": "numeric", "prompt": "Quel est le pourcentage d'augmentation global ? (le nombre seul)", "answer": 32,
+          "misconceptions": [ { "answer": 30, "id": "mc:taux-additionnes", "error": "raisonnement", "feedback": "Additionner les deux pourcentages oublie que la deuxième hausse s'applique aussi à l'augmentation de mars." } ] },
+        { "type": "numeric", "prompt": "Un autre casque a augmenté de 25 %. De quel pourcentage doit-il baisser pour revenir à son prix de départ ? (le nombre seul)", "answer": 20,
+          "misconceptions": [ { "answer": 25, "id": "mc:hausse-baisse-annulent", "error": "raisonnement", "feedback": "La baisse se calcule sur le prix augmenté, qui est plus grand : le même pourcentage enlèverait trop." } ] },
+        { "type": "numeric", "prompt": "Le prix d'une console baisse de 10 % chaque année pendant 2 ans. De quel pourcentage a-t-il baissé en tout ? (le nombre seul)", "answer": 19,
+          "misconceptions": [ { "answer": 20, "id": "mc:taux-additionnes", "error": "raisonnement", "feedback": "La deuxième baisse porte sur un prix déjà diminué : elle enlève moins que la première." } ] }
+      ],
+      "hints": ["+ 10 % : × 1,1 ; + 20 % : × 1,2. On enchaîne : on multiplie les coefficients.", "Un coefficient global de 1,32, c'est × (1 + 0,32).", "Après × 1,25, pour revenir au départ, il faut multiplier par 1 ÷ 1,25."],
+      "solution": "$1,1 × 1,2 = 1,32$ : le prix est multiplié par 1,32, soit une hausse globale de 32 % (et non de 30 %). Après une hausse de 25 %, il faut multiplier par $1 ÷ 1,25 = 0,8$ pour revenir au départ : c'est une baisse de 20 %. Deux baisses de 10 % : $0,9 × 0,9 = 0,81$, soit une baisse globale de 19 %.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "1,32" }, { "value": "32" }, { "value": "20" }, { "value": "19" } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "1,3" }, { "value": "30" }, { "value": "25" }, { "value": "20" } ] }, "expect": "mc:taux-additionnes" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-brevet", "type": "composite", "skill": "m3.fonctions.modeliser", "skills": ["m3.fonctions.lineaire", "m3.pourcentages.evolution"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "concrete", "targets": ["mc:frais-multiplies", "mc:affine-lineaire", "mc:coef-ordonnee", "mc:signe-transposition", "mc:pourcentage-euros"], "expectedSeconds": 900,
+      "prompt": "Type brevet — Au bord du lac, deux loueurs de kayaks proposent ces tarifs. **Loueur A** : 12 € par heure. **Loueur B** : 18 € d'adhésion pour la journée, puis 6 € par heure. On note x la durée de location en heures, f(x) le prix payé chez A et g(x) le prix payé chez B. Les représentations de f et de g sont tracées ci-dessous.",
+      "figure": {
+        "alt": "Prix payé en euros chez les loueurs A et B en fonction de la durée de location, de 0 à 5 heures",
+        "w": 480, "h": 300,
+        "items": [
+          { "type": "linechart", "xLabel": "durée (h)", "yLabel": "prix (€)",
+            "series": [
+              { "label": "Loueur A", "points": [[0, 0], [1, 12], [2, 24], [3, 36], [4, 48], [5, 60]] },
+              { "label": "Loueur B", "points": [[0, 18], [1, 24], [2, 30], [3, 36], [4, 42], [5, 48]] }
+            ] }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "1. Combien paie-t-on chez le loueur B pour 2 heures de location, en € ?", "answer": 30,
+          "misconceptions": [ { "answer": 48, "id": "mc:frais-multiplies", "error": "notion", "feedback": "L'adhésion est payée une seule fois pour la journée, pas à chaque heure." } ] },
+        { "type": "text", "prompt": "2. Laquelle des deux fonctions est linéaire ? (écris f ou g)", "accept": ["f", "la fonction f", "f est linéaire", "c'est f"],
+          "misconceptions": [
+            { "answer": "g", "id": "mc:affine-lineaire", "error": "notion", "feedback": "La droite de cette fonction ne passe pas par l'origine : pour 0 heure, on paie déjà l'adhésion. Une fonction linéaire est représentée par une droite qui passe par l'origine." },
+            { "answer": "la fonction g", "id": "mc:affine-lineaire", "error": "notion", "feedback": "La droite de cette fonction ne passe pas par l'origine : pour 0 heure, on paie déjà l'adhésion. Une fonction linéaire est représentée par une droite qui passe par l'origine." }
+          ] },
+        { "type": "expression", "prompt": "3. Exprime g(x) en fonction de x.", "answer": "6*x + 18", "variable": "x",
+          "misconceptions": [
+            { "answer": "18*x + 6", "id": "mc:coef-ordonnee", "error": "notion", "feedback": "Le coefficient est le prix qui se répète à chaque heure ; le terme seul est ce qu'on paie une seule fois." },
+            { "answer": "24*x", "id": "mc:frais-multiplies", "error": "notion", "feedback": "L'adhésion ne se paie qu'une fois : elle ne doit pas être multipliée par x." }
+          ] },
+        { "type": "numeric", "prompt": "4. Résous l'équation f(x) = g(x). Pour quelle durée, en heures, les deux loueurs coûtent-ils le même prix ?", "answer": 3,
+          "misconceptions": [ { "answer": 1, "id": "mc:signe-transposition", "error": "signe", "feedback": "Pour regrouper les termes en x, soustrais 6x aux deux membres (ne l'ajoute pas)." } ] },
+        { "type": "numeric", "prompt": "5. Le loueur A augmente son prix horaire de 5 %. Quel est son nouveau prix pour une heure, en € ?", "answer": 12.6,
+          "misconceptions": [ { "answer": 17, "id": "mc:pourcentage-euros", "error": "notion", "feedback": "5 % n'est pas 5 € : calcule 5 % de 12 €, ou multiplie par le coefficient 1,05." } ] },
+        { "type": "open", "prompt": "6. Avec ce nouveau tarif chez A, Lucas veut louer un kayak pendant 4 heures. Quel loueur lui conseilles-tu ? Justifie par des calculs.", "minWords": 15,
+          "criteria": [
+            { "id": "c1", "label": "Je calcule le prix chez A : 4 × 12,60 = 50,40 €", "keywords": [["50,4", "50.4"]] },
+            { "id": "c2", "label": "Je calcule le prix chez B : 18 + 4 × 6 = 42 €", "keywords": [["42"]] },
+            { "id": "c3", "label": "Je conclus : le loueur B est le moins cher pour 4 heures", "keywords": [["loueur b", "chez b", "le b"]] }
+          ] }
+      ],
+      "hints": ["Chez B : 18 € une seule fois, plus 6 € par heure. Une fonction linéaire s'écrit x ⟼ ax : sa droite passe par l'origine.", "f(x) = 12x et g(x) = 6x + 18 : résous 12x = 6x + 18.", "Hausse de 5 % : on multiplie par 1,05."],
+      "solution": "1. 18 + 2 × 6 = 30 €. 2. f(x) = 12x est linéaire (le prix est proportionnel à la durée : droite passant par l'origine) ; g est affine. 3. g(x) = 6x + 18. 4. $12x = 6x + 18$ ⟶ $6x = 18$ ⟶ $x = 3$ : pour 3 h, les deux loueurs coûtent 36 € (les droites se coupent au point (3 ; 36)). 5. $12 × 1,05 = 12,60$ €. 6. Pour 4 h : chez A, $4 × 12,60 = 50,40$ € ; chez B, $18 + 4 × 6 = 42$ €. Je conseille le loueur B.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "30" }, { "value": "f" }, { "value": "6x + 18" }, { "value": "3" }, { "value": "12,6" }, { "text": "Chez A : 4 × 12,60 = 50,40 €. Chez B : 18 + 24 = 42 €. Je conseille le loueur B.", "selfCheck": { "c1": true, "c2": true, "c3": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "48" }, { "value": "f" }, { "value": "6x + 18" }, { "value": "3" }, { "value": "12,6" }, { "text": "B." } ] }, "expect": "mc:frais-multiplies" },
+        { "response": { "parts": [ { "value": "30" }, { "value": "g" }, { "value": "6x + 18" }, { "value": "3" }, { "value": "12,6" }, { "text": "B." } ] }, "expect": "mc:affine-lineaire" }
+      ]
+    },
+    {
+      "id": "m3-fonctions-affines-celsius", "type": "composite", "skill": "m3.fonctions.modeliser", "skills": ["m3.fonctions.affine", "m4.equations.resoudre"], "track": "expert", "role": "defi", "difficulty": 5,
+      "representation": "symbolique", "targets": ["mc:oubli-ordonnee", "mc:image-au-lieu-antecedent", "mc:signe"], "expectedSeconds": 600,
+      "prompt": "Aux États-Unis, les températures s'expriment en degrés Fahrenheit (°F). Pour convertir une température C, donnée en degrés Celsius, on utilise la fonction affine $F(C) = 1,8C + 32$.",
+      "figure": {
+        "alt": "Température en degrés Fahrenheit en fonction de la température en degrés Celsius, de −20 à 40 degrés Celsius",
+        "w": 460, "h": 280,
+        "items": [
+          { "type": "linechart", "xLabel": "température (°C)", "yLabel": "température (°F)",
+            "series": [ { "label": "Conversion", "points": [[-20, -4], [0, 32], [20, 68], [40, 104]] } ] }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "À quelle température en °F l'eau bout-elle (100 °C) ?", "answer": 212,
+          "misconceptions": [ { "answer": 180, "id": "mc:oubli-ordonnee", "error": "lecture", "feedback": "Tu as seulement multiplié par 1,8 : il manque le terme constant de la fonction." } ] },
+        { "type": "numeric", "prompt": "Une température de 50 °F correspond à combien de °C ? (c'est un antécédent)", "answer": 10,
+          "misconceptions": [ { "answer": 122, "id": "mc:image-au-lieu-antecedent", "error": "notion", "feedback": "Tu as converti 50 °C en °F. Ici, 50 est la température en °F : cherche C tel que 1,8C + 32 = 50." } ] },
+        { "type": "numeric", "prompt": "Pour quelle température les deux échelles affichent-elles le même nombre ?", "answer": -40,
+          "misconceptions": [ { "answer": 40, "id": "mc:signe", "error": "signe", "feedback": "Vérifie : 1,8 × 40 + 32 n'est pas égal à 40. Résous 1,8C + 32 = C en surveillant les signes." } ] },
+        { "type": "open", "prompt": "La température en °F est-elle proportionnelle à la température en °C ? Justifie de deux façons différentes.", "minWords": 20,
+          "criteria": [
+            { "id": "c1", "label": "F(0) = 32 : la droite ne passe pas par l'origine", "keywords": [["origine", "32", "0 °c", "0°c"]] },
+            { "id": "c2", "label": "Doubler la température en °C ne double pas celle en °F (10 °C = 50 °F mais 20 °C = 68 °F)", "keywords": [["double", "50", "68", "pas proportionnel", "affine"]] }
+          ] }
+      ],
+      "hints": ["Remplace C par 100.", "Résous l'équation 1,8C + 32 = 50.", "Même nombre sur les deux échelles : résous 1,8C + 32 = C."],
+      "solution": "F(100) = 180 + 32 = 212 °F. $1,8C + 32 = 50$ ⟶ $1,8C = 18$ ⟶ $C = 10$ °C. $1,8C + 32 = C$ ⟶ $0,8C = −32$ ⟶ $C = −40$ : −40 °C = −40 °F. Pas de proportionnalité : F est affine mais pas linéaire, car F(0) = 32 (la droite ne passe pas par l'origine) ; d'ailleurs 10 °C = 50 °F mais 20 °C = 68 °F, et non 100 °F.",
+      "selfTest": [
+        { "response": { "parts": [ { "value": "212" }, { "value": "10" }, { "value": "-40" }, { "text": "Non : F(0) = 32 donc la droite ne passe pas par l'origine. Et 10 °C = 50 °F mais 20 °C = 68 °F, ce n'est pas le double.", "selfCheck": { "c1": true, "c2": true } } ] }, "expect": "correct" },
+        { "response": { "parts": [ { "value": "212" }, { "value": "122" }, { "value": "-40" }, { "text": "Oui." } ] }, "expect": "mc:image-au-lieu-antecedent" }
+      ]
+    }
+  ]
+}

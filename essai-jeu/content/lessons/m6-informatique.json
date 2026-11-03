@@ -1,0 +1,1053 @@
+{
+  "id": "m6-informatique",
+  "chapter": "6e-m-informatique",
+  "title": "Pensée informatique : instructions, séquences, répétitions",
+  "subject": "maths",
+  "level": "6e",
+  "skills": ["m6.algo.instructions", "m6.algo.chemin", "m6.algo.repeter"],
+  "status": "programme",
+  "programmes": ["maths-c3-2025"],
+  "duration": 55,
+  "summary": "Reconnaître une instruction précise, exécuter une séquence à la main, programmer un chemin pour un robot sur un quadrillage et pour la tortue, et utiliser une répétition quand un motif revient.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le robot Zap",
+      "body": "Zap, le robot du collège, doit apporter un livre au CDI. Problème : il ne comprend que trois ordres. « avance » : il avance d'une case. « tourne à gauche » et « tourne à droite » : il pivote sur place d'un quart de tour. Il ne doit pas passer sur les cases grises.\n\nQuels ordres lui donnerais-tu, et dans quel ordre ?",
+      "figure": {
+        "alt": "Quadrillage de 6 colonnes et 4 lignes. Zap est en bas à gauche (colonne 1, ligne 1), tourné vers la droite. Deux cases grises (colonne 3, lignes 1 et 2) sont des murs. Le CDI est en colonne 5, ligne 3.",
+        "w": 317,
+        "h": 229,
+        "frame": { "x": [-1, 6.2], "y": [-1, 4.2] },
+        "items": [
+          { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 4, "y": 2, "w": 1, "h": 1, "fill": "vert", "label": "CDI" },
+          { "type": "segment", "from": [0, 0], "to": [0, 4], "color": "gris" },
+          { "type": "segment", "from": [1, 0], "to": [1, 4], "color": "gris" },
+          { "type": "segment", "from": [2, 0], "to": [2, 4], "color": "gris" },
+          { "type": "segment", "from": [3, 0], "to": [3, 4], "color": "gris" },
+          { "type": "segment", "from": [4, 0], "to": [4, 4], "color": "gris" },
+          { "type": "segment", "from": [5, 0], "to": [5, 4], "color": "gris" },
+          { "type": "segment", "from": [6, 0], "to": [6, 4], "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": [6, 0], "color": "gris" },
+          { "type": "segment", "from": [0, 1], "to": [6, 1], "color": "gris" },
+          { "type": "segment", "from": [0, 2], "to": [6, 2], "color": "gris" },
+          { "type": "segment", "from": [0, 3], "to": [6, 3], "color": "gris" },
+          { "type": "segment", "from": [0, 4], "to": [6, 4], "color": "gris" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+          { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+          { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+          { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+          { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+          { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+          { "type": "polygon", "points": [[0.22, 0.2], [0.22, 0.8], [0.82, 0.5]], "fill": "orange", "color": "orange" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 5 cartes",
+      "cards": [
+        {
+          "emoji": "🤖",
+          "title": "Une instruction",
+          "body": "Une **instruction** est un ordre simple et précis qu'une machine sait exécuter : « avance », « tourne à droite », « lève le crayon ». « Va au CDI » n'en est pas une : Zap ne sait pas comment faire ! Une machine fait exactement ce qu'on lui dit, ni plus, ni moins.",
+          "example": "« avance 3 » : Zap avance de 3 cases."
+        },
+        {
+          "emoji": "📜",
+          "title": "Une séquence",
+          "body": "Une **séquence** est une suite d'instructions exécutées **dans l'ordre**, une par une. La machine les suit exactement comme elles sont écrites, sans en sauter aucune. Si on change l'ordre, le résultat change.",
+          "reveal": {
+            "question": "Devine : « avance, tourne à droite » et « tourne à droite, avance » mènent-ils Zap au même endroit ?",
+            "answer": "Non ! Dans le premier cas, Zap avance tout droit puis tourne sur place. Dans le second, il tourne d'abord, puis avance dans une autre direction."
+          }
+        },
+        {
+          "emoji": "🧭",
+          "title": "Tourner sur place",
+          "body": "« Tourne à droite » fait pivoter Zap sur place d'un quart de tour : il ne change pas de case. C'est l'instruction « avance » suivante qui le fait partir dans sa nouvelle direction. Pour ne pas te tromper, mets-toi à sa place !",
+          "figure": {
+            "alt": "Zap regarde vers le haut. Une flèche vers la gauche indique « tourne à gauche », une flèche vers la droite « tourne à droite ».",
+            "w": 300,
+            "h": 170,
+            "frame": { "x": [-0.2, 5.2], "y": [-0.2, 2.8] },
+            "items": [
+              { "type": "polygon", "points": [[2.2, 0.8], [2.8, 0.8], [2.5, 1.5]], "fill": "orange", "color": "orange" },
+              { "type": "arrow", "from": [2.15, 1.1], "to": [0.9, 1.1], "color": "rouge" },
+              { "type": "arrow", "from": [2.85, 1.1], "to": [4.1, 1.1], "color": "rouge" },
+              { "type": "text", "x": 0.9, "y": 1.55, "text": "tourne à gauche", "size": "s" },
+              { "type": "text", "x": 4.1, "y": 1.55, "text": "tourne à droite", "size": "s" },
+              { "type": "text", "x": 2.5, "y": 2.3, "text": "Zap regarde vers le haut", "size": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "🔁",
+          "title": "Répéter",
+          "body": "Quand un motif revient plusieurs fois, on utilise une **répétition** : « répète 4 [ avance, tourne à droite ] » exécute 4 fois les instructions **entre les crochets**. Le programme est plus court, et on fait moins d'erreurs.",
+          "reveal": {
+            "question": "Devine : « répète 3 [ avance 2 ] », de combien de cases Zap avance-t-il en tout ?",
+            "answer": "De 6 cases : il fait 3 fois « avance 2 »."
+          }
+        },
+        {
+          "emoji": "🐢",
+          "title": "La tortue qui dessine",
+          "body": "À l'écran, la **tortue** trace son chemin. « avance 50 » : elle avance de 50 pas. « droite 90 » : elle tourne d'un quart de tour (90°) vers la droite ; « gauche 90 » vers la gauche. Elle part au centre, tournée vers la droite. « répète 4 [ avance 50 droite 90 ] » trace un carré."
+        }
+      ]
+    },
+    {
+      "kind": "manipulation",
+      "title": "Le bac à sable de la tortue",
+      "body": "Exécute le programme, puis modifie un nombre à la fois : 100 devient 60, gauche devient droite… Observe ce qui change. Essaie ensuite d'écrire « répète 4 [ avance 50 droite 90 ] ».",
+      "activity": { "widget": "turtle", "config": { "program": "avance 100\ngauche 90\navance 60\ndroite 90\navance 80" } }
+    },
+    {
+      "kind": "exemple",
+      "title": "Exemple résolu : Zap va au CDI",
+      "steps": [
+        {
+          "text": "Zap est en colonne 1, ligne 1, tourné vers la droite. Le mur l'empêche d'aller tout droit jusqu'au CDI.",
+          "figure": {
+            "alt": "Quadrillage de 6 colonnes et 4 lignes. Zap est en bas à gauche (colonne 1, ligne 1), tourné vers la droite. Deux cases grises (colonne 3, lignes 1 et 2) sont des murs. Le CDI est en colonne 5, ligne 3.",
+            "w": 317,
+            "h": 229,
+            "frame": { "x": [-1, 6.2], "y": [-1, 4.2] },
+            "items": [
+              { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+              { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+              { "type": "rect", "x": 4, "y": 2, "w": 1, "h": 1, "fill": "vert", "label": "CDI" },
+              { "type": "segment", "from": [0, 0], "to": [0, 4], "color": "gris" },
+              { "type": "segment", "from": [1, 0], "to": [1, 4], "color": "gris" },
+              { "type": "segment", "from": [2, 0], "to": [2, 4], "color": "gris" },
+              { "type": "segment", "from": [3, 0], "to": [3, 4], "color": "gris" },
+              { "type": "segment", "from": [4, 0], "to": [4, 4], "color": "gris" },
+              { "type": "segment", "from": [5, 0], "to": [5, 4], "color": "gris" },
+              { "type": "segment", "from": [6, 0], "to": [6, 4], "color": "gris" },
+              { "type": "segment", "from": [0, 0], "to": [6, 0], "color": "gris" },
+              { "type": "segment", "from": [0, 1], "to": [6, 1], "color": "gris" },
+              { "type": "segment", "from": [0, 2], "to": [6, 2], "color": "gris" },
+              { "type": "segment", "from": [0, 3], "to": [6, 3], "color": "gris" },
+              { "type": "segment", "from": [0, 4], "to": [6, 4], "color": "gris" },
+              { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+              { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+              { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+              { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+              { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+              { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+              { "type": "polygon", "points": [[0.22, 0.2], [0.22, 0.8], [0.82, 0.5]], "fill": "orange", "color": "orange" }
+            ]
+          }
+        },
+        { "text": "« avance » : il passe en colonne 2. « tourne à gauche » : il ne bouge pas, mais il regarde maintenant vers le haut." },
+        { "text": "« avance », « avance » : il monte de 2 cases et arrive en ligne 3." },
+        {
+          "text": "« tourne à droite » : il regarde de nouveau vers la droite. « avance » trois fois : il arrive au CDI, en colonne 5.",
+          "figure": {
+            "alt": "Quadrillage de 6 colonnes et 4 lignes. Zap est en bas à gauche (colonne 1, ligne 1), tourné vers la droite. Deux cases grises (colonne 3, lignes 1 et 2) sont des murs. Le CDI est en colonne 5, ligne 3.",
+            "w": 317,
+            "h": 229,
+            "frame": { "x": [-1, 6.2], "y": [-1, 4.2] },
+            "items": [
+              { "type": "rect", "x": 2, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+              { "type": "rect", "x": 2, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+              { "type": "rect", "x": 4, "y": 2, "w": 1, "h": 1, "fill": "vert", "label": "CDI" },
+              { "type": "segment", "from": [0, 0], "to": [0, 4], "color": "gris" },
+              { "type": "segment", "from": [1, 0], "to": [1, 4], "color": "gris" },
+              { "type": "segment", "from": [2, 0], "to": [2, 4], "color": "gris" },
+              { "type": "segment", "from": [3, 0], "to": [3, 4], "color": "gris" },
+              { "type": "segment", "from": [4, 0], "to": [4, 4], "color": "gris" },
+              { "type": "segment", "from": [5, 0], "to": [5, 4], "color": "gris" },
+              { "type": "segment", "from": [6, 0], "to": [6, 4], "color": "gris" },
+              { "type": "segment", "from": [0, 0], "to": [6, 0], "color": "gris" },
+              { "type": "segment", "from": [0, 1], "to": [6, 1], "color": "gris" },
+              { "type": "segment", "from": [0, 2], "to": [6, 2], "color": "gris" },
+              { "type": "segment", "from": [0, 3], "to": [6, 3], "color": "gris" },
+              { "type": "segment", "from": [0, 4], "to": [6, 4], "color": "gris" },
+              { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+              { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+              { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+              { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+              { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+              { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+              { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+              { "type": "polygon", "points": [[0.22, 0.2], [0.22, 0.8], [0.82, 0.5]], "fill": "orange", "color": "orange" },
+              { "type": "arrow", "from": [0.5, 0.5], "to": [1.5, 0.5], "color": "rouge" },
+              { "type": "arrow", "from": [1.5, 0.5], "to": [1.5, 2.5], "color": "rouge" },
+              { "type": "arrow", "from": [1.5, 2.5], "to": [4.5, 2.5], "color": "rouge" }
+            ]
+          }
+        },
+        {
+          "text": "La séquence complète compte 8 instructions : avance, tourne à gauche, avance, avance, tourne à droite, avance, avance, avance. Avec des répétitions, elle est plus courte à écrire : avance, tourne à gauche, répète 2 [ avance ], tourne à droite, répète 3 [ avance ]."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m'entraîne",
+      "body": "Pour les exercices de tortue, l'éditeur affiche le dessin modèle à côté du tien. Un dessin symétrique (si tu tournes partout à gauche au lieu de tourner à droite) est accepté.",
+      "exercises": [
+        "m6-informatique-instruction",
+        "m6-informatique-executer",
+        "m6-informatique-ordre",
+        "m6-informatique-chemin",
+        "m6-informatique-compter",
+        "m6-informatique-repete"
+      ]
+    },
+    { "kind": "libre", "title": "Avec tes mots", "exercises": ["m6-informatique-crochets"] },
+    {
+      "kind": "reinvestissement",
+      "title": "Chasse au bug",
+      "body": "Un programme fourni ne fait pas ce qu'on attendait. Exécute-le, compare avec le modèle, puis corrige en changeant le moins de choses possible.",
+      "exercises": ["m6-informatique-bug"]
+    },
+    {
+      "kind": "mission",
+      "title": "Mission : les fanions de la fête",
+      "body": "Pour la fête du collège, on imprime des fanions dessinés par la tortue. Tu programmes le premier, puis tu prépares la suite.",
+      "exercises": ["m6-informatique-fanion"]
+    },
+    {
+      "kind": "correction",
+      "title": "À retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Une instruction est un ordre précis qu'une machine sait exécuter. Une séquence est une suite d'instructions exécutées dans l'ordre. « Tourne » fait pivoter sur place, « avance » fait changer de case. Une répétition exécute plusieurs fois les instructions placées entre ses crochets.\n\n- **Tourner du mauvais côté.** Mets-toi à la place du robot : sa droite n'est pas forcément ta droite.\n- **Croire que « tourne » fait avancer.** Le robot pivote sur place.\n- **Répéter une fois de trop (ou de moins).** Compte les motifs du dessin avant d'écrire le nombre.\n- **Oublier ce qui est hors des crochets.** « avance 2, répète 3 [ avance 1 ] » : 2 + 3 = 5 cases."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te reproposera des chemins à programmer et des programmes à exécuter à la main dans quelques jours."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Une répétition dans une répétition, et le plus court chemin dans un labyrinthe.",
+      "exercises": ["m6-informatique-carres", "m6-informatique-labyrinthe"]
+    },
+    "expert": {
+      "intro": "Facultatif : le triangle qui ne se ferme pas, et prédire où s'arrête Zap après de nombreuses répétitions.",
+      "exercises": ["m6-informatique-triangle", "m6-informatique-predire"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m6-informatique-instruction",
+      "type": "categorize",
+      "skill": "m6.algo.instructions",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 1,
+      "representation": "verbale",
+      "targets": ["mc:ordre-vague"],
+      "expectedSeconds": 120,
+      "prompt": "Range chaque ordre : est-ce une instruction précise, qu'un robot ou la tortue peut exécuter, ou un ordre trop vague ?",
+      "categories": [{ "id": "precise", "label": "Instruction précise" }, { "id": "vague", "label": "Ordre trop vague" }],
+      "items": [
+        { "id": "i1", "label": "Avance de 2 cases", "category": "precise" },
+        { "id": "i2", "label": "Va au CDI", "category": "vague" },
+        { "id": "i3", "label": "Tourne à droite d'un quart de tour", "category": "precise" },
+        { "id": "i4", "label": "Fais attention aux obstacles", "category": "vague" },
+        { "id": "i5", "label": "Lève le crayon", "category": "precise" },
+        { "id": "i6", "label": "Dessine une jolie maison", "category": "vague" },
+        { "id": "i7", "label": "Avance de 50 pas", "category": "precise" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i2",
+          "category": "precise",
+          "id": "mc:ordre-vague",
+          "error": "notion",
+          "feedback": "Pour un humain, c'est clair. Mais un robot ne sait pas par où passer : il faut lui dire chaque pas et chaque virage."
+        },
+        {
+          "item": "i6",
+          "category": "precise",
+          "id": "mc:ordre-vague",
+          "error": "notion",
+          "feedback": "« Jolie » ne veut rien dire pour une machine, et « maison » non plus : il faut lui donner chaque trait à tracer."
+        }
+      ],
+      "hints": [
+        "Une instruction précise dit exactement quoi faire, sans rien laisser à deviner.",
+        "Le robot saurait-il exécuter cet ordre sans réfléchir ni choisir ?"
+      ],
+      "solution": "Instructions précises : avance de 2 cases, tourne à droite d'un quart de tour, lève le crayon, avance de 50 pas. Ordres trop vagues : va au CDI (par où ?), fais attention aux obstacles (comment ?), dessine une jolie maison (quels traits ?).",
+      "selfTest": [
+        {
+          "response": { "assign": { "i1": "precise", "i2": "vague", "i3": "precise", "i4": "vague", "i5": "precise", "i6": "vague", "i7": "precise" } },
+          "expect": "correct"
+        },
+        {
+          "response": { "assign": { "i1": "precise", "i2": "precise", "i3": "precise", "i4": "vague", "i5": "precise", "i6": "vague", "i7": "precise" } },
+          "expect": "mc:ordre-vague"
+        }
+      ]
+    },
+    {
+      "id": "m6-informatique-executer",
+      "type": "composite",
+      "skill": "m6.algo.instructions",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:sens-rotation", "mc:depart-oublie"],
+      "expectedSeconds": 180,
+      "params": { "a": { "int": [1, 3] }, "b": { "int": [1, 2] }, "c": { "int": [1, 3] } },
+      "prompt": "Zap part de la colonne 1, ligne 3, tourné vers la droite. Exécute le programme à la main :\n1. avance {a}\n2. tourne à gauche\n3. avance {b}\n4. tourne à droite\n5. avance {c}\n\n(« avance 2 » : Zap avance de 2 cases.)",
+      "figure": {
+        "alt": "Quadrillage de 8 colonnes et 5 lignes. Zap est en colonne 1, ligne 3, tourné vers la droite.",
+        "w": 405,
+        "h": 273,
+        "frame": { "x": [-1, 8.2], "y": [-1, 5.2] },
+        "items": [
+          { "type": "segment", "from": [0, 0], "to": [0, 5], "color": "gris" },
+          { "type": "segment", "from": [1, 0], "to": [1, 5], "color": "gris" },
+          { "type": "segment", "from": [2, 0], "to": [2, 5], "color": "gris" },
+          { "type": "segment", "from": [3, 0], "to": [3, 5], "color": "gris" },
+          { "type": "segment", "from": [4, 0], "to": [4, 5], "color": "gris" },
+          { "type": "segment", "from": [5, 0], "to": [5, 5], "color": "gris" },
+          { "type": "segment", "from": [6, 0], "to": [6, 5], "color": "gris" },
+          { "type": "segment", "from": [7, 0], "to": [7, 5], "color": "gris" },
+          { "type": "segment", "from": [8, 0], "to": [8, 5], "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": [8, 0], "color": "gris" },
+          { "type": "segment", "from": [0, 1], "to": [8, 1], "color": "gris" },
+          { "type": "segment", "from": [0, 2], "to": [8, 2], "color": "gris" },
+          { "type": "segment", "from": [0, 3], "to": [8, 3], "color": "gris" },
+          { "type": "segment", "from": [0, 4], "to": [8, 4], "color": "gris" },
+          { "type": "segment", "from": [0, 5], "to": [8, 5], "color": "gris" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+          { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+          { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+          { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+          { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+          { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+          { "type": "text", "x": 6.5, "y": -0.45, "text": "7", "size": "s" },
+          { "type": "text", "x": 7.5, "y": -0.45, "text": "8", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 4.5, "text": "5", "size": "s" },
+          { "type": "polygon", "points": [[0.22, 2.2], [0.22, 2.8], [0.82, 2.5]], "fill": "orange", "color": "orange" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Dans quelle colonne Zap arrive-t-il ?",
+          "answer": "1 + a + c",
+          "misconceptions": [
+            {
+              "answer": "a + c",
+              "id": "mc:depart-oublie",
+              "error": "calcul",
+              "feedback": "Tu as compté les cases parcourues vers la droite, mais Zap ne part pas de la colonne 0 : pars de sa colonne de départ."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Dans quelle ligne arrive-t-il ?",
+          "answer": "3 + b",
+          "misconceptions": [
+            {
+              "answer": "3 - b",
+              "id": "mc:sens-rotation",
+              "error": "lecture",
+              "feedback": "Zap est parti vers le bas : as-tu bien tourné à gauche ? Quand il regarde vers la droite, sa gauche est vers le haut du quadrillage."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pose ton doigt sur Zap et déplace-le instruction par instruction.",
+        "Zap regarde vers la droite : s'il tourne à gauche, il regarde vers le haut.",
+        "« tourne » ne fait pas changer de case : seul « avance » le fait."
+      ],
+      "solution": "Avance {a} : colonne {1+a}, ligne 3. Tourne à gauche : il regarde vers le haut. Avance {b} : ligne {3+b}. Tourne à droite : il regarde de nouveau vers la droite. Avance {c} : colonne {1+a+c}. Zap arrive en colonne {1+a+c}, ligne {3+b}.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "{1+a+c}" }, { "value": "{3+b}" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "{1+a+c}" }, { "value": "{3-b}" }] }, "expect": "mc:sens-rotation" }
+      ]
+    },
+    {
+      "id": "m6-informatique-ordre",
+      "type": "order",
+      "skill": "m6.algo.chemin",
+      "skills": ["m6.algo.instructions"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:ordre-sequence"],
+      "expectedSeconds": 240,
+      "prompt": "Zap doit ramasser la clé, puis ouvrir la porte. Il ne peut ramasser la clé que s'il est sur sa case, et ouvrir la porte que s'il est sur la case de la porte avec la clé. Il ne sort jamais du quadrillage. Remets son programme dans l'ordre.",
+      "figure": {
+        "alt": "Quadrillage de 6 colonnes et 3 lignes. Zap est en colonne 1, ligne 1, tourné vers la droite. La clé est en colonne 4, ligne 1 ; la porte en colonne 5, ligne 3.",
+        "w": 317,
+        "h": 185,
+        "frame": { "x": [-1, 6.2], "y": [-1, 3.2] },
+        "items": [
+          { "type": "rect", "x": 3, "y": 0, "w": 1, "h": 1, "fill": "jaune", "label": "clé" },
+          { "type": "rect", "x": 4, "y": 2, "w": 1, "h": 1, "fill": "vert", "label": "porte" },
+          { "type": "segment", "from": [0, 0], "to": [0, 3], "color": "gris" },
+          { "type": "segment", "from": [1, 0], "to": [1, 3], "color": "gris" },
+          { "type": "segment", "from": [2, 0], "to": [2, 3], "color": "gris" },
+          { "type": "segment", "from": [3, 0], "to": [3, 3], "color": "gris" },
+          { "type": "segment", "from": [4, 0], "to": [4, 3], "color": "gris" },
+          { "type": "segment", "from": [5, 0], "to": [5, 3], "color": "gris" },
+          { "type": "segment", "from": [6, 0], "to": [6, 3], "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": [6, 0], "color": "gris" },
+          { "type": "segment", "from": [0, 1], "to": [6, 1], "color": "gris" },
+          { "type": "segment", "from": [0, 2], "to": [6, 2], "color": "gris" },
+          { "type": "segment", "from": [0, 3], "to": [6, 3], "color": "gris" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+          { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+          { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+          { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+          { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+          { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+          { "type": "polygon", "points": [[0.22, 0.2], [0.22, 0.8], [0.82, 0.5]], "fill": "orange", "color": "orange" }
+        ]
+      },
+      "orderLabel": "De la première à la dernière instruction",
+      "errorType": "methode",
+      "items": [
+        { "id": "o1", "label": "avance 3" },
+        { "id": "o2", "label": "ramasse la clé" },
+        { "id": "o3", "label": "avance 1" },
+        { "id": "o4", "label": "tourne à gauche" },
+        { "id": "o5", "label": "avance 2" },
+        { "id": "o6", "label": "ouvre la porte" }
+      ],
+      "hints": [
+        "De combien de cases Zap doit-il avancer pour arriver sur la clé ?",
+        "Après la clé, la porte est plus haut : il faut d'abord atteindre sa colonne.",
+        "Quand Zap regarde vers la droite et tourne à gauche, il regarde vers le haut."
+      ],
+      "solution": "avance 3 (Zap est sur la clé, colonne 4) ; ramasse la clé ; avance 1 (colonne 5) ; tourne à gauche (il regarde vers le haut) ; avance 2 (ligne 3, sur la porte) ; ouvre la porte. C'est le seul ordre possible.",
+      "selfTest": [
+        { "response": { "order": ["o1", "o2", "o3", "o4", "o5", "o6"] }, "expect": "correct" },
+        { "response": { "order": ["o1", "o3", "o2", "o4", "o5", "o6"] }, "expect": "partiel" }
+      ]
+    },
+    {
+      "id": "m6-informatique-chemin",
+      "type": "code",
+      "skill": "m6.algo.chemin",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:sens-rotation", "mc:oubli-rotation"],
+      "expectedSeconds": 240,
+      "prompt": "Programme la tortue pour qu'elle trace le chemin du modèle : 100 pas tout droit, puis un virage vers le haut, 60 pas, puis un virage pour repartir vers la droite, et 80 pas.\n\nLa tortue part tournée vers la droite.",
+      "reference": "avance 100 gauche 90 avance 60 droite 90 avance 80",
+      "misconceptions": [
+        {
+          "program": "avance 100 gauche 90 avance 60 gauche 90 avance 80",
+          "id": "mc:sens-rotation",
+          "error": "lecture",
+          "feedback": "Au deuxième virage, ta tortue repart vers la gauche. Mets-toi à sa place : elle monte, et elle doit repartir vers la droite de l'écran."
+        },
+        {
+          "program": "avance 100 gauche 90 avance 60 avance 80",
+          "id": "mc:oubli-rotation",
+          "error": "methode",
+          "feedback": "Ta tortue continue tout droit vers le haut : il manque un virage entre les deux derniers « avance »."
+        }
+      ],
+      "hints": [
+        "Écris une instruction par geste de la tortue : avancer, ou tourner.",
+        "Pour monter, la tortue tourne de 90° vers la gauche.",
+        "Quand elle monte, sa droite est vers la droite de l'écran : « droite 90 » la fait repartir dans la bonne direction."
+      ],
+      "solution": "« avance 100 », « gauche 90 », « avance 60 », « droite 90 », « avance 80 ». Le premier virage la fait monter ; le second la remet dans sa direction de départ.",
+      "selfTest": [
+        { "response": { "program": "avance 100\ngauche 90\navance 60\ndroite 90\navance 80" }, "expect": "correct" },
+        { "response": { "program": "avance 100 gauche 90 avance 60 gauche 90 avance 80" }, "expect": "mc:sens-rotation" },
+        { "response": { "program": "avance 100 gauche 90 avance 60 avance 80" }, "expect": "mc:oubli-rotation" }
+      ]
+    },
+    {
+      "id": "m6-informatique-compter",
+      "type": "numeric",
+      "skill": "m6.algo.repeter",
+      "skills": ["m6.algo.instructions"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:repetition-ignoree", "mc:tout-repete", "mc:hors-boucle-oublie"],
+      "expectedSeconds": 120,
+      "params": { "a": { "int": [1, 4] }, "n": { "int": [2, 5] }, "b": { "int": [2, 3] }, "c": { "int": [1, 4] } },
+      "constraints": ["a + b + c != n*b", "n*(a + b + c) != n*b + a + c"],
+      "prompt": "Zap avance tout droit dans un long couloir. Il exécute :\n1. avance {a}\n2. répète {n} [ avance {b} ]\n3. avance {c}\n\nDe combien de cases a-t-il avancé en tout ?",
+      "answer": "a + n*b + c",
+      "misconceptions": [
+        {
+          "answer": "a + b + c",
+          "id": "mc:repetition-ignoree",
+          "error": "notion",
+          "feedback": "Tu as compté « avance {b} » une seule fois. Il est entre les crochets d'une répétition : combien de fois est-il exécuté ?"
+        },
+        {
+          "answer": "n*(a + b + c)",
+          "id": "mc:tout-repete",
+          "error": "notion",
+          "feedback": "Tu as tout répété. Seules les instructions entre les crochets sont répétées : les lignes 1 et 3 ne sont faites qu'une fois."
+        },
+        {
+          "answer": "n*b",
+          "id": "mc:hors-boucle-oublie",
+          "error": "methode",
+          "feedback": "Tu as compté la répétition, mais oublié les instructions placées avant et après."
+        }
+      ],
+      "hints": ["Ligne 1 : une seule fois. Ligne 3 : une seule fois.", "Ligne 2 : « avance {b} » est fait {n} fois.", "Additionne les trois déplacements."],
+      "solution": "Ligne 1 : {a} case(s). Ligne 2 : $ {n} × {b} = {n*b} $ cases. Ligne 3 : {c} case(s). En tout : $ {a} + {n*b} + {c} = {a+n*b+c} $ cases.",
+      "selfTest": [{ "response": { "value": "{a+n*b+c}" }, "expect": "correct" }, { "response": { "value": "{a+b+c}" }, "expect": "mc:repetition-ignoree" }]
+    },
+    {
+      "id": "m6-informatique-repete",
+      "type": "code",
+      "skill": "m6.algo.repeter",
+      "skills": ["m6.algo.chemin"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:une-fois-de-trop", "mc:une-fois-de-moins"],
+      "expectedSeconds": 300,
+      "prompt": "Trace l'escalier du modèle : 4 marches de 30 pas de haut et 30 pas de profondeur. Défi : **au plus 5 instructions**.\n\nComment on compte : « répète 4 [ … ] » compte pour 1 instruction, plus chaque instruction écrite entre les crochets.",
+      "reference": "répète 4 [ avance 30 gauche 90 avance 30 droite 90 ]",
+      "codeConstraints": { "maxInstructions": 5 },
+      "misconceptions": [
+        {
+          "program": "répète 5 [ avance 30 gauche 90 avance 30 droite 90 ]",
+          "id": "mc:une-fois-de-trop",
+          "error": "methode",
+          "feedback": "Ton escalier a une marche de trop. Compte les marches du modèle, puis le nombre de tours de ta répétition."
+        },
+        {
+          "program": "répète 3 [ avance 30 gauche 90 avance 30 droite 90 ]",
+          "id": "mc:une-fois-de-moins",
+          "error": "methode",
+          "feedback": "Il manque une marche à ton escalier. Compte les marches du modèle, puis le nombre de tours de ta répétition."
+        }
+      ],
+      "hints": [
+        "Écris d'abord UNE marche : la tortue avance, tourne pour monter, monte, puis tourne pour repartir.",
+        "Une marche : « avance 30 gauche 90 avance 30 droite 90 ».",
+        "Ce motif revient pour chaque marche : place-le entre les crochets d'une répétition."
+      ],
+      "solution": "« répète 4 [ avance 30 gauche 90 avance 30 droite 90 ] » : 5 instructions (la répétition et les 4 instructions de la marche). Écrit sans répétition, le même escalier demanderait 16 instructions.",
+      "selfTest": [
+        { "response": { "program": "répète 4 [ avance 30 gauche 90 avance 30 droite 90 ]" }, "expect": "correct" },
+        { "response": { "program": "répète 5 [ avance 30 gauche 90 avance 30 droite 90 ]" }, "expect": "mc:une-fois-de-trop" },
+        {
+          "response": {
+            "program": "avance 30 gauche 90 avance 30 droite 90\navance 30 gauche 90 avance 30 droite 90\navance 30 gauche 90 avance 30 droite 90\navance 30 gauche 90 avance 30 droite 90"
+          },
+          "expect": "partiel"
+        }
+      ]
+    },
+    {
+      "id": "m6-informatique-crochets",
+      "type": "open",
+      "skill": "m6.algo.repeter",
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 2,
+      "representation": "verbale",
+      "targets": ["mc:portee-repetition"],
+      "expectedSeconds": 300,
+      "minWords": 25,
+      "prompt": "Lisa a écrit deux programmes pour Zap, qui part tourné vers la droite au milieu d'une grande salle :\n- **Programme 1** : répète 4 [ avance 2, tourne à droite ]\n- **Programme 2** : répète 4 [ avance 2 ], tourne à droite\n\nExplique ce que fait Zap avec chaque programme. Lequel le ramène à son point de départ ?",
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Programme 1 : Zap fait le tour d'un carré et revient à son point de départ",
+          "keywords": [["carre", "tour", "revient", "point de depart"]]
+        },
+        {
+          "id": "c2",
+          "label": "Programme 2 : Zap avance de 8 cases tout droit, puis tourne une seule fois",
+          "keywords": [["8", "huit", "tout droit", "une seule fois", "une fois"]]
+        },
+        {
+          "id": "c3",
+          "label": "J'explique que seules les instructions entre les crochets sont répétées",
+          "keywords": [["crochet", "dedans", "a l interieur", "repete seulement", "pas repete"]]
+        }
+      ],
+      "models": [
+        "Avec le programme 1, Zap fait 4 fois « avance 2 puis tourne à droite » : il parcourt les 4 côtés d'un carré et revient à son point de départ. Avec le programme 2, seul « avance 2 » est entre les crochets : il avance 4 fois de 2 cases, donc 8 cases tout droit, puis il tourne une seule fois à la fin. C'est le programme 1 qui le ramène au départ.",
+        "Dans le programme 2, « tourne à droite » est en dehors des crochets, donc il n'est pas répété : Zap va tout droit sur 8 cases et tourne à la fin. Dans le programme 1, il tourne après chaque côté : ça fait un carré et il revient là où il était."
+      ],
+      "hints": [
+        "Dans chaque programme, regarde ce qui est entre les crochets : c'est cela qui est répété.",
+        "Simule le programme 1 sur une feuille quadrillée : où est Zap après 4 tours ?"
+      ],
+      "solution": "Programme 1 : « avance 2, tourne à droite » est répété 4 fois : Zap parcourt un carré de côté 2 et revient à son point de départ (tourné vers la droite). Programme 2 : seul « avance 2 » est répété : Zap avance de 8 cases tout droit, puis tourne une seule fois. Seules les instructions entre les crochets sont répétées.",
+      "selfTest": [
+        {
+          "response": {
+            "text": "Le programme 1 fait un carré et Zap revient au point de départ. Dans le programme 2 seul avance 2 est entre les crochets, donc il avance 8 cases tout droit et tourne une seule fois.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        },
+        { "response": { "text": "Les deux font pareil." }, "expect": "a-valider" }
+      ]
+    },
+    {
+      "id": "m6-informatique-bug",
+      "type": "code",
+      "skill": "m6.algo.chemin",
+      "skills": ["m6.algo.instructions"],
+      "track": "classe",
+      "role": "debug",
+      "difficulty": 2,
+      "representation": "manipulation",
+      "targets": ["mc:bug-non-corrige", "mc:rectangle-carre"],
+      "expectedSeconds": 240,
+      "prompt": "Ce programme devait tracer un rectangle de 120 pas de long et 60 pas de large. Mais le dessin ne se referme pas ! Exécute-le, trouve l'instruction fautive et corrige-la.",
+      "start": "avance 120\ndroite 90\navance 60\ndroite 90\navance 60\ndroite 90\navance 60",
+      "reference": "avance 120 droite 90 avance 60 droite 90 avance 120 droite 90 avance 60",
+      "misconceptions": [
+        {
+          "program": "avance 120 droite 90 avance 60 droite 90 avance 60 droite 90 avance 60",
+          "id": "mc:bug-non-corrige",
+          "error": "methode",
+          "feedback": "Le dessin n'a pas changé. Compare la longueur de chaque côté avec celle du modèle : deux côtés opposés d'un rectangle ont la même longueur."
+        },
+        {
+          "program": "répète 4 [ avance 120 droite 90 ]",
+          "id": "mc:rectangle-carre",
+          "error": "lecture",
+          "feedback": "Tu as tracé un carré. Dans un rectangle, deux côtés qui se suivent n'ont pas la même longueur."
+        }
+      ],
+      "hints": [
+        "Exécute le programme pas à pas et regarde à quel côté le dessin s'écarte du modèle.",
+        "Dans un rectangle, les côtés opposés ont la même longueur : 120, 60, puis… ?",
+        "Le 3e côté est faux : il doit être aussi long que le 1er."
+      ],
+      "solution": "Le 3e côté mesure 60 au lieu de 120. Programme corrigé : avance 120, droite 90, avance 60, droite 90, avance 120, droite 90, avance 60. On n'a changé qu'un seul nombre.",
+      "selfTest": [
+        { "response": { "program": "avance 120\ndroite 90\navance 60\ndroite 90\navance 120\ndroite 90\navance 60" }, "expect": "correct" },
+        { "response": { "program": "avance 120\ndroite 90\navance 60\ndroite 90\navance 60\ndroite 90\navance 60" }, "expect": "mc:bug-non-corrige" }
+      ]
+    },
+    {
+      "id": "m6-informatique-fanion",
+      "type": "composite",
+      "skill": "m6.algo.repeter",
+      "skills": ["m6.algo.chemin"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:orientation", "mc:instructions-ecrites", "mc:un-cote"],
+      "expectedSeconds": 480,
+      "prompt": "Un fanion, c'est un mât vertical de 100 pas, avec en haut un drapeau carré de 40 pas de côté, accroché à droite du mât (voir le modèle). La tortue part en bas du mât, tournée vers la droite.",
+      "parts": [
+        {
+          "type": "code",
+          "prompt": "Programme la tortue pour tracer le fanion. Utilise une répétition pour le drapeau.",
+          "reference": "gauche 90 avance 100 droite 90 répète 4 [ avance 40 droite 90 ]",
+          "misconceptions": [
+            {
+              "program": "gauche 90 avance 100 répète 4 [ avance 40 droite 90 ]",
+              "id": "mc:orientation",
+              "error": "methode",
+              "feedback": "Ton drapeau n'est pas au bon endroit : en haut du mât, la tortue regarde vers le haut. Oriente-la avant de tracer le drapeau."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pendant « répète 4 [ avance 40 droite 90 ] », combien d'instructions la tortue exécute-t-elle en tout ?",
+          "answer": 8,
+          "misconceptions": [
+            {
+              "answer": 3,
+              "id": "mc:instructions-ecrites",
+              "error": "notion",
+              "feedback": "Tu as compté les instructions écrites. Pendant l'exécution, celles entre crochets sont faites plusieurs fois."
+            },
+            {
+              "answer": 4,
+              "id": "mc:instructions-ecrites",
+              "error": "notion",
+              "feedback": "Tu as compté les tours de la répétition. À chaque tour, la tortue exécute plusieurs instructions."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Pour tracer un fanion complet (mât et drapeau), combien de pas la tortue parcourt-elle ?",
+          "answer": 260,
+          "misconceptions": [
+            {
+              "answer": 140,
+              "id": "mc:un-cote",
+              "error": "lecture",
+              "feedback": "Tu as compté un seul côté du drapeau. Combien de côtés a un carré ?"
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Pour tracer le mât, la tortue doit d'abord se tourner vers le haut.",
+        "En haut du mât, elle regarde vers le haut : « droite 90 » la tourne vers la droite, côté drapeau.",
+        "Le drapeau : « répète 4 [ avance 40 droite 90 ] » ; chaque tour exécute 2 instructions."
+      ],
+      "solution": "Programme : « gauche 90 avance 100 droite 90 répète 4 [ avance 40 droite 90 ] ». La répétition exécute 4 × 2 = 8 instructions. Pas parcourus : 100 pour le mât et $4 × 40 = 160$ pour le drapeau, soit 260 pas.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "program": "gauche 90\navance 100\ndroite 90\nrépète 4 [ avance 40 droite 90 ]" }, { "value": "8" }, { "value": "260" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "program": "gauche 90\navance 100\ndroite 90\nrépète 4 [ avance 40 droite 90 ]" }, { "value": "3" }, { "value": "260" }] },
+          "expect": "mc:instructions-ecrites"
+        }
+      ]
+    },
+    {
+      "id": "m6-informatique-remed-sens",
+      "type": "composite",
+      "skill": "m6.algo.instructions",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "concrete",
+      "targets": ["mc:sens-rotation"],
+      "expectedSeconds": 90,
+      "prompt": "Rappel ciblé : tourner, c'est pivoter sur place, d'un quart de tour. Pour savoir de quel côté, mets-toi à la place du robot : lève-toi, regarde dans sa direction, et tourne comme lui !\n\nZap regarde vers le haut du quadrillage.",
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Il tourne à droite. Vers où regarde-t-il maintenant ? (haut, bas, gauche ou droite)",
+          "accept": ["droite", "vers la droite", "à droite", "a droite", "la droite"],
+          "misconceptions": [
+            {
+              "answer": "gauche",
+              "id": "mc:sens-rotation",
+              "error": "lecture",
+              "feedback": "Tu as tourné dans l'autre sens. Mets-toi debout, face au haut de la feuille, et fais un quart de tour dans le sens des aiguilles d'une montre."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Il tourne encore une fois à droite. Vers où regarde-t-il maintenant ?",
+          "accept": ["bas", "vers le bas", "en bas", "le bas"],
+          "misconceptions": [
+            {
+              "answer": "haut",
+              "id": "mc:sens-rotation",
+              "error": "lecture",
+              "feedback": "Tu es revenu à la direction de départ. Or deux quarts de tour dans le même sens ne ramènent pas au départ : mime-le, debout."
+            }
+          ]
+        }
+      ],
+      "hints": ["Un quart de tour à droite, c'est comme les aiguilles d'une montre.", "Deux quarts de tour à droite font un demi-tour."],
+      "solution": "Zap regarde vers le haut ; un quart de tour à droite le tourne vers la droite ; un deuxième quart de tour à droite le tourne vers le bas (demi-tour par rapport au départ).",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "droite" }, { "value": "bas" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "gauche" }, { "value": "bas" }] }, "expect": "mc:sens-rotation" }
+      ]
+    },
+    {
+      "id": "m6-informatique-remed-boucle",
+      "type": "numeric",
+      "skill": "m6.algo.repeter",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "targets": ["mc:repetition-ignoree"],
+      "expectedSeconds": 60,
+      "params": { "n": { "int": [3, 6] }, "b": { "int": [2, 4] } },
+      "constraints": ["n*b != n + b"],
+      "prompt": "Rappel ciblé : dans « répète 3 [ avance 2 ] », l'instruction entre crochets est exécutée 3 fois : avance 2, avance 2, avance 2. Zap exécute « répète {n} [ avance {b} ] ». De combien de cases avance-t-il ?",
+      "answer": "n*b",
+      "misconceptions": [
+        {
+          "answer": "n + b",
+          "id": "mc:repetition-ignoree",
+          "error": "notion",
+          "feedback": "Tu as additionné les deux nombres. Écris la liste des instructions vraiment exécutées : « avance {b} », combien de fois ?"
+        },
+        {
+          "answer": "b",
+          "id": "mc:repetition-ignoree",
+          "error": "notion",
+          "feedback": "Tu as compté « avance {b} » une seule fois : elle est répétée."
+        }
+      ],
+      "hints": ["Écris en entier ce que fait Zap : avance {b}, avance {b}…", "{n} fois {b} cases."],
+      "solution": "Zap exécute {n} fois « avance {b} » : $ {n} × {b} = {n*b} $ cases.",
+      "selfTest": [{ "response": { "value": "{n*b}" }, "expect": "correct" }, { "response": { "value": "{n+b}" }, "expect": "mc:repetition-ignoree" }]
+    },
+    {
+      "id": "m6-informatique-carres",
+      "type": "code",
+      "skill": "m6.algo.repeter",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "manipulation",
+      "targets": ["mc:oubli-deplacement", "mc:une-fois-de-moins"],
+      "expectedSeconds": 360,
+      "prompt": "Trace la frise du modèle : 3 carrés de 40 pas de côté, côte à côte. Défi : **au plus 5 instructions**. Il faudra une répétition… à l'intérieur d'une répétition !",
+      "reference": "répète 3 [ répète 4 [ avance 40 gauche 90 ] avance 40 ]",
+      "codeConstraints": { "maxInstructions": 5 },
+      "misconceptions": [
+        {
+          "program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] ]",
+          "id": "mc:oubli-deplacement",
+          "error": "methode",
+          "feedback": "Tes carrés sont tous dessinés au même endroit : entre deux carrés, la tortue doit se déplacer jusqu'au début du suivant."
+        },
+        {
+          "program": "répète 3 [ répète 3 [ avance 40 gauche 90 ] avance 40 ]",
+          "id": "mc:une-fois-de-moins",
+          "error": "methode",
+          "feedback": "Ton premier carré n'a pas fini son tour : la tortue ne regarde plus dans sa direction de départ, et la suite part de travers. Combien de virages fait-on pour un tour complet ?"
+        }
+      ],
+      "hints": [
+        "Écris d'abord UN carré : « répète 4 [ avance 40 gauche 90 ] ». Où est la tortue à la fin, et vers où regarde-t-elle ?",
+        "Elle est revenue à son point de départ, tournée vers la droite : il suffit d'avancer de 40 pour commencer le carré suivant.",
+        "Le motif « un carré, puis avance 40 » se répète 3 fois."
+      ],
+      "solution": "« répète 3 [ répète 4 [ avance 40 gauche 90 ] avance 40 ] » : la répétition intérieure trace un carré et ramène la tortue à son point de départ ; « avance 40 » la place au début du carré suivant ; la répétition extérieure fait tout cela 3 fois. Total : 5 instructions.",
+      "selfTest": [
+        { "response": { "program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] avance 40 ]" }, "expect": "correct" },
+        { "response": { "program": "répète 3 [ répète 4 [ avance 40 gauche 90 ] ]" }, "expect": "mc:oubli-deplacement" }
+      ]
+    },
+    {
+      "id": "m6-informatique-labyrinthe",
+      "type": "numeric",
+      "skill": "m6.algo.chemin",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:murs-ignores"],
+      "expectedSeconds": 300,
+      "prompt": "Zap doit aller de sa case de départ à l'arrivée A sans passer sur les murs gris. Il se déplace d'une case à la fois, horizontalement ou verticalement. Combien de cases parcourt-il, au minimum ?",
+      "figure": {
+        "alt": "Labyrinthe de 7 colonnes et 5 lignes avec trois murs gris verticaux. Zap part de la colonne 1, ligne 1 ; l'arrivée A est en colonne 7, ligne 5.",
+        "w": 361,
+        "h": 273,
+        "frame": { "x": [-1, 7.2], "y": [-1, 5.2] },
+        "items": [
+          { "type": "rect", "x": 1, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 1, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 1, "y": 2, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 3, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 3, "y": 2, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 3, "y": 3, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 3, "y": 4, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 5, "y": 0, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 5, "y": 1, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 5, "y": 2, "w": 1, "h": 1, "fill": "gris" },
+          { "type": "rect", "x": 6, "y": 4, "w": 1, "h": 1, "fill": "vert", "label": "A" },
+          { "type": "segment", "from": [0, 0], "to": [0, 5], "color": "gris" },
+          { "type": "segment", "from": [1, 0], "to": [1, 5], "color": "gris" },
+          { "type": "segment", "from": [2, 0], "to": [2, 5], "color": "gris" },
+          { "type": "segment", "from": [3, 0], "to": [3, 5], "color": "gris" },
+          { "type": "segment", "from": [4, 0], "to": [4, 5], "color": "gris" },
+          { "type": "segment", "from": [5, 0], "to": [5, 5], "color": "gris" },
+          { "type": "segment", "from": [6, 0], "to": [6, 5], "color": "gris" },
+          { "type": "segment", "from": [7, 0], "to": [7, 5], "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": [7, 0], "color": "gris" },
+          { "type": "segment", "from": [0, 1], "to": [7, 1], "color": "gris" },
+          { "type": "segment", "from": [0, 2], "to": [7, 2], "color": "gris" },
+          { "type": "segment", "from": [0, 3], "to": [7, 3], "color": "gris" },
+          { "type": "segment", "from": [0, 4], "to": [7, 4], "color": "gris" },
+          { "type": "segment", "from": [0, 5], "to": [7, 5], "color": "gris" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+          { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+          { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+          { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+          { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+          { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+          { "type": "text", "x": 6.5, "y": -0.45, "text": "7", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 4.5, "text": "5", "size": "s" },
+          { "type": "polygon", "points": [[0.22, 0.2], [0.22, 0.8], [0.82, 0.5]], "fill": "orange", "color": "orange" }
+        ]
+      },
+      "answer": 16,
+      "misconceptions": [
+        {
+          "answer": 10,
+          "id": "mc:murs-ignores",
+          "error": "lecture",
+          "feedback": "Ce serait le trajet si les murs n'existaient pas. Zap doit les contourner : suis un chemin possible du doigt."
+        }
+      ],
+      "hints": [
+        "Zap doit contourner chaque mur par son ouverture : en haut ou en bas.",
+        "Le premier mur s'ouvre en haut (lignes 4 et 5), le deuxième en bas (ligne 1), le troisième en haut.",
+        "Compte les cases du chemin en zigzag : monter, avancer, descendre, avancer, monter…"
+      ],
+      "solution": "Un plus court chemin : monter jusqu'à la ligne 4 (3 cases), aller en colonne 3 (2 cases), descendre en ligne 1 (3 cases), aller en colonne 5 (2 cases), remonter en ligne 4 (3 cases), aller en colonne 7 (2 cases), monter en ligne 5 (1 case). Total : $3 + 2 + 3 + 2 + 3 + 2 + 1 = 16$ cases.",
+      "selfTest": [{ "response": { "value": "16" }, "expect": "correct" }, { "response": { "value": "10" }, "expect": "mc:murs-ignores" }]
+    },
+    {
+      "id": "m6-informatique-triangle",
+      "type": "code",
+      "skill": "m6.algo.repeter",
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "manipulation",
+      "targets": ["mc:angle-interieur"],
+      "expectedSeconds": 420,
+      "prompt": "Trace le triangle équilatéral du modèle (3 côtés de 100 pas) avec **au plus 3 instructions**.\n\nAttention au piège : chaque angle du triangle mesure 60°… mais la tortue, elle, de combien doit-elle tourner ?",
+      "reference": "répète 3 [ avance 100 gauche 120 ]",
+      "codeConstraints": { "maxInstructions": 3 },
+      "misconceptions": [
+        {
+          "program": "répète 3 [ avance 100 gauche 60 ]",
+          "id": "mc:angle-interieur",
+          "error": "notion",
+          "feedback": "Avec 60°, la figure ne se ferme pas. 60° est l'angle entre deux côtés ; la tortue, elle, tourne de l'écart entre sa direction et le côté suivant. Mime-le en marchant sur un triangle tracé au sol !"
+        }
+      ],
+      "hints": [
+        "Essaie avec 60° et observe : la figure se ferme-t-elle ?",
+        "Quand la tortue a fini le triangle, elle a fait un tour complet sur elle-même : 360°, en 3 virages égaux.",
+        "360 ÷ 3 = ?"
+      ],
+      "solution": "« répète 3 [ avance 100 gauche 120 ] ». En faisant le tour du triangle, la tortue fait un tour complet (360°) en 3 virages égaux : $360 ÷ 3 = 120$°. L'angle du triangle (60°) et le virage de la tortue (120°) font ensemble un demi-tour : $60 + 120 = 180$.",
+      "selfTest": [
+        { "response": { "program": "répète 3 [ avance 100 gauche 120 ]" }, "expect": "correct" },
+        { "response": { "program": "répète 3 [ avance 100 droite 120 ]" }, "expect": "correct" },
+        { "response": { "program": "répète 3 [ avance 100 gauche 60 ]" }, "expect": "mc:angle-interieur" }
+      ]
+    },
+    {
+      "id": "m6-informatique-predire",
+      "type": "composite",
+      "skill": "m6.algo.repeter",
+      "skills": ["m6.algo.instructions"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:repetition-ignoree", "mc:position-cycle"],
+      "expectedSeconds": 480,
+      "params": { "n": { "choice": [5, 6, 7, 9, 10, 11] } },
+      "prompt": "Zap part de la colonne 3, ligne 3, tourné vers la droite. Il exécute « répète {n} [ avance 2, tourne à droite ] ». Prédis le résultat **sans tout dessiner** : cherche d'abord quand Zap revient à son point de départ.",
+      "figure": {
+        "alt": "Quadrillage de 6 colonnes et 4 lignes. Zap est en colonne 3, ligne 3, tourné vers la droite.",
+        "w": 317,
+        "h": 229,
+        "frame": { "x": [-1, 6.2], "y": [-1, 4.2] },
+        "items": [
+          { "type": "segment", "from": [0, 0], "to": [0, 4], "color": "gris" },
+          { "type": "segment", "from": [1, 0], "to": [1, 4], "color": "gris" },
+          { "type": "segment", "from": [2, 0], "to": [2, 4], "color": "gris" },
+          { "type": "segment", "from": [3, 0], "to": [3, 4], "color": "gris" },
+          { "type": "segment", "from": [4, 0], "to": [4, 4], "color": "gris" },
+          { "type": "segment", "from": [5, 0], "to": [5, 4], "color": "gris" },
+          { "type": "segment", "from": [6, 0], "to": [6, 4], "color": "gris" },
+          { "type": "segment", "from": [0, 0], "to": [6, 0], "color": "gris" },
+          { "type": "segment", "from": [0, 1], "to": [6, 1], "color": "gris" },
+          { "type": "segment", "from": [0, 2], "to": [6, 2], "color": "gris" },
+          { "type": "segment", "from": [0, 3], "to": [6, 3], "color": "gris" },
+          { "type": "segment", "from": [0, 4], "to": [6, 4], "color": "gris" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "1", "size": "s" },
+          { "type": "text", "x": 1.5, "y": -0.45, "text": "2", "size": "s" },
+          { "type": "text", "x": 2.5, "y": -0.45, "text": "3", "size": "s" },
+          { "type": "text", "x": 3.5, "y": -0.45, "text": "4", "size": "s" },
+          { "type": "text", "x": 4.5, "y": -0.45, "text": "5", "size": "s" },
+          { "type": "text", "x": 5.5, "y": -0.45, "text": "6", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 0.5, "text": "1", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 1.5, "text": "2", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 2.5, "text": "3", "size": "s" },
+          { "type": "text", "x": -0.45, "y": 3.5, "text": "4", "size": "s" },
+          { "type": "polygon", "points": [[2.22, 2.2], [2.22, 2.8], [2.82, 2.5]], "fill": "orange", "color": "orange" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Après combien de tours de la répétition Zap revient-il pour la première fois à son point de départ, tourné vers la droite ?",
+          "answer": 4
+        },
+        {
+          "type": "numeric",
+          "prompt": "De combien de cases a-t-il avancé en tout à la fin du programme ?",
+          "answer": "2*n",
+          "misconceptions": [{ "answer": "n", "id": "mc:repetition-ignoree", "error": "notion", "feedback": "À chaque tour, Zap avance de plus d'une case." }]
+        },
+        { "type": "numeric", "prompt": "Dans quelle colonne finit-il ?", "answer": "3 + 2*((mod(n;4) = 1) + (mod(n;4) = 2))" },
+        { "type": "numeric", "prompt": "Dans quelle ligne finit-il ?", "answer": "3 - 2*((mod(n;4) = 2) + (mod(n;4) = 3))" }
+      ],
+      "hints": [
+        "Dessine les 4 premiers tours : Zap parcourt un carré.",
+        "Tous les 4 tours, il revient au départ, tourné vers la droite : il recommence le même carré.",
+        "Enlève de {n} autant de fois 4 que possible : il reste le nombre de tours à simuler à partir du départ."
+      ],
+      "solution": "Tour 1 : colonne 5, ligne 3 ; tour 2 : colonne 5, ligne 1 ; tour 3 : colonne 3, ligne 1 ; tour 4 : retour en colonne 3, ligne 3, tourné vers la droite. Le trajet se répète tous les 4 tours. Zap avance de $ 2 × {n} = {2*n} $ cases. Avec {n} tours, après les groupes de 4 tours complets, il reste {mod(n;4)} tour(s) : Zap finit en colonne {3+2*((mod(n;4) = 1) + (mod(n;4) = 2))}, ligne {3-2*((mod(n;4) = 2) + (mod(n;4) = 3))}.",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "4" },
+              { "value": "{2*n}" },
+              { "value": "{3+2*((mod(n;4) = 1) + (mod(n;4) = 2))}" },
+              { "value": "{3-2*((mod(n;4) = 2) + (mod(n;4) = 3))}" }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "4" },
+              { "value": "{n}" },
+              { "value": "{3+2*((mod(n;4) = 1) + (mod(n;4) = 2))}" },
+              { "value": "{3-2*((mod(n;4) = 2) + (mod(n;4) = 3))}" }
+            ]
+          },
+          "expect": "mc:repetition-ignoree"
+        }
+      ]
+    }
+  ]
+}

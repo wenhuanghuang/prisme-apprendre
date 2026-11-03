@@ -1,0 +1,1704 @@
+{
+  "id": "m3-transformations",
+  "chapter": "m3-ch-geometrie",
+  "title": "Triangles semblables, rotation et homothétie",
+  "subject": "maths",
+  "level": "3e",
+  "skills": ["m3.triangles.semblables", "m3.transfo.rotation-homothetie", "m3.transfo.effets"],
+  "status": "programme",
+  "programmes": ["maths-c4-2020"],
+  "duration": 55,
+  "summary": "Deux triangles qui ont les mêmes angles sont semblables : l’un est un agrandissement ou une réduction de l’autre. La rotation fait tourner une figure sans la déformer ; l’homothétie l’agrandit ou la réduit depuis un centre. Et quand les longueurs sont multipliées par k, les aires le sont par k² et les volumes par k³.",
+  "sections": [
+    {
+      "kind": "decouverte",
+      "title": "Le poster de Léo",
+      "body": "Léo veut transformer sa photo de 10 cm × 15 cm en poster de 40 cm × 60 cm. « Les côtés sont 4 fois plus longs, donc il me faudra 4 fois plus de papier », annonce-t-il.\n\nCombien de photos comme la sienne faudrait-il pour recouvrir exactement le poster ? Léo a-t-il raison ?",
+      "figure": {
+        "alt": "À gauche, une photo de 10 cm sur 15 cm ; à droite, le poster de 40 cm sur 60 cm, dessinés à la même échelle.",
+        "w": 346,
+        "h": 300,
+        "frame": { "x": [-1.3, 7.3], "y": [-0.9, 6.4] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1.5, "fill": "maths", "color": "maths", "label": "photo" },
+          { "type": "rect", "x": 2, "y": 0, "w": 4, "h": 6, "fill": "orange", "color": "orange", "label": "poster" },
+          { "type": "text", "x": 0.5, "y": -0.45, "text": "10 cm", "size": "s" },
+          { "type": "text", "x": -0.15, "y": 0.75, "text": "15 cm", "size": "s", "anchor": "end" },
+          { "type": "text", "x": 4, "y": -0.45, "text": "40 cm", "size": "s" },
+          { "type": "text", "x": 6.15, "y": 3, "text": "60 cm", "size": "s", "anchor": "start" }
+        ]
+      }
+    },
+    {
+      "kind": "cours",
+      "title": "Le cours en 6 cartes",
+      "cards": [
+        {
+          "emoji": "🔺",
+          "title": "Des triangles semblables",
+          "body": "Deux triangles sont **semblables** quand leurs angles sont égaux deux à deux. Leurs côtés **correspondants** (opposés aux angles égaux) sont alors **proportionnels** : l’un est un agrandissement ou une réduction de l’autre. Réciproquement, si les longueurs sont proportionnelles, les angles sont égaux.",
+          "figure": {
+            "alt": "Deux triangles ABC et DEF de tailles différentes ; les angles égaux sont codés par le même nombre de traits.",
+            "w": 420,
+            "h": 237,
+            "frame": { "x": [-0.7, 11.6], "y": [-1, 5.3] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange" },
+              { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+              { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+              { "type": "point", "id": "C", "x": 1.2, "y": 2.6, "pos": "n" },
+              { "type": "point", "id": "D", "x": 5.6, "y": -0.4, "pos": "sw" },
+              { "type": "point", "id": "E", "x": 11.24, "y": 1.65, "pos": "e" },
+              { "type": "point", "id": "F", "x": 5.96, "y": 3.88, "pos": "n" },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+              { "type": "angle", "vertex": "D", "from": "E", "to": "F", "marks": 1 },
+              { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+              { "type": "angle", "vertex": "E", "from": "F", "to": "D", "marks": 2 },
+              { "type": "angle", "vertex": "C", "from": "A", "to": "B", "marks": 3, "r": 16 },
+              { "type": "angle", "vertex": "F", "from": "D", "to": "E", "marks": 3, "r": 16 }
+            ]
+          }
+        },
+        {
+          "emoji": "🔎",
+          "title": "Les reconnaître",
+          "body": "Il suffit de **deux** paires d’angles égaux : la troisième suit, car la somme des angles d’un triangle vaut 180°. Avec les longueurs : on range les côtés de chaque triangle du plus petit au plus grand, puis on vérifie que les trois quotients sont égaux.",
+          "example": "3 ; 4 ; 5 et 4,5 ; 6 ; 7,5 : $4,5/3$ = $6/4$ = $7,5/5$ = 1,5. Ils sont semblables !",
+          "reveal": {
+            "question": "Devine : deux triangles équilatéraux de tailles différentes sont-ils toujours semblables ?",
+            "answer": "Oui : leurs angles mesurent tous 60°. Deux triangles rectangles isocèles aussi (90°, 45°, 45°)."
+          }
+        },
+        {
+          "emoji": "🌀",
+          "title": "La rotation",
+          "body": "La **rotation** de centre $O$ et d’angle α (dans un sens donné) fait tourner chaque point autour de $O$ : $OM' = OM$ et l’angle $MOM'$ mesure α. Elle conserve les longueurs, les angles, les aires et l’alignement : la figure tourne sans se déformer.",
+          "figure": {
+            "alt": "Le triangle ABC et son image A'B'C' par la rotation de centre O, d'angle 90°, dans le sens inverse des aiguilles d'une montre ; un arc en pointillés va de A à A'.",
+            "w": 360,
+            "h": 275,
+            "frame": { "x": [-3, 4.8], "y": [-0.9, 4.8] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw", "style": "rond" },
+              { "type": "point", "id": "A", "x": 2, "y": 0.5, "pos": "s" },
+              { "type": "point", "id": "B", "x": 4, "y": 0.5, "pos": "se" },
+              { "type": "point", "id": "C", "x": 3, "y": 2, "pos": "ne" },
+              { "type": "point", "id": "Ap", "x": -0.5, "y": 2, "pos": "e", "label": "A’" },
+              { "type": "point", "id": "Bp", "x": -0.5, "y": 4, "pos": "ne", "label": "B’" },
+              { "type": "point", "id": "Cp", "x": -2, "y": 3, "pos": "w", "label": "C’" },
+              { "type": "segment", "from": "O", "to": "A", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "O", "to": "Ap", "dashed": true, "color": "gris" },
+              { "type": "arc", "center": "O", "r": 2.06, "start": 14.04, "end": 104.04, "dashed": true, "color": "rouge" },
+              { "type": "angle", "vertex": "O", "from": "A", "to": "Ap", "label": "90°", "r": 16 }
+            ]
+          }
+        },
+        {
+          "emoji": "🔦",
+          "title": "L’homothétie",
+          "body": "L’**homothétie** de centre $O$ et de rapport $k$ envoie $M$ sur $M'$, sur la droite $(OM)$, avec $OM' = |k| × OM$. Si $k > 0$, $M'$ est du même côté de $O$ que $M$ ; si $k < 0$, de l’autre côté. Si $|k| > 1$, c’est un agrandissement ; si $|k| < 1$, une réduction.",
+          "reveal": {
+            "question": "Devine : quelle transformation, vue en 5e, est l’homothétie de rapport −1 ?",
+            "answer": "La symétrie centrale de centre $O$ (le demi-tour) : $OM' = OM$, de l’autre côté de $O$."
+          },
+          "figure": {
+            "alt": "Le triangle ABC et son image A'B'C' par l'homothétie de centre O et de rapport 2 ; des demi-droites issues de O passent par A et A', B et B', C et C'.",
+            "w": 338,
+            "h": 260,
+            "frame": { "x": [-0.6, 4.7], "y": [-0.6, 3.3] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw", "style": "rond" },
+              { "type": "point", "id": "A", "x": 1, "y": 0.5, "pos": "n" },
+              { "type": "point", "id": "B", "x": 2, "y": 0.3, "pos": "s" },
+              { "type": "point", "id": "C", "x": 1.6, "y": 1.4, "pos": "nw" },
+              { "type": "point", "id": "Ap", "x": 2, "y": 1, "pos": "n", "label": "A’" },
+              { "type": "point", "id": "Bp", "x": 4, "y": 0.6, "pos": "se", "label": "B’" },
+              { "type": "point", "id": "Cp", "x": 3.2, "y": 2.8, "pos": "ne", "label": "C’" },
+              { "type": "segment", "from": "O", "to": "Ap", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "O", "to": "Bp", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "O", "to": "Cp", "dashed": true, "color": "gris" }
+            ]
+          }
+        },
+        {
+          "emoji": "📐",
+          "title": "Longueurs × k, aires × k², volumes × k³",
+          "body": "Quand une figure est agrandie ou réduite avec le rapport $k$ (par exemple par une homothétie de rapport $k$ ou $−k$) : les **longueurs** sont multipliées par $k$, les **aires** par $k²$ et les **volumes** par $k³$. Les **angles**, eux, ne changent pas.",
+          "example": "Un cube de 2 cm agrandi avec $k = 3$ : arête de 6 cm, aire de chaque face multipliée par 9, volume multiplié par 27 (de 8 cm³ à 216 cm³).",
+          "reveal": {
+            "question": "Devine : si l’on double l’arête d’un cube, combien de cubes de départ faut-il pour le remplir ?",
+            "answer": "8 = 2³ ! Deux dans la longueur, deux dans la largeur et deux dans la hauteur."
+          },
+          "figure": {
+            "alt": "Un carré de côté 1 et son agrandissement de rapport 3, partagé en 9 carrés identiques au premier.",
+            "w": 317,
+            "h": 240,
+            "frame": { "x": [-0.5, 5.5], "y": [-0.9, 3.4] },
+            "items": [
+              { "type": "rect", "x": 0, "y": 0, "w": 1, "h": 1, "fill": "maths", "color": "maths" },
+              { "type": "rect", "x": 2, "y": 0, "w": 3, "h": 3, "fill": "orange", "color": "orange" },
+              { "type": "segment", "from": [3, 0], "to": [3, 3], "dashed": true, "color": "gris" },
+              { "type": "segment", "from": [4, 0], "to": [4, 3], "dashed": true, "color": "gris" },
+              { "type": "segment", "from": [2, 1], "to": [5, 1], "dashed": true, "color": "gris" },
+              { "type": "segment", "from": [2, 2], "to": [5, 2], "dashed": true, "color": "gris" },
+              { "type": "text", "x": 0.5, "y": -0.4, "text": "k = 1", "size": "s" },
+              { "type": "text", "x": 3.5, "y": -0.4, "text": "k = 3 : aire × 9", "size": "s" }
+            ]
+          }
+        },
+        {
+          "emoji": "🧩",
+          "title": "Qui conserve quoi ?",
+          "body": "Symétrie axiale, symétrie centrale, translation et rotation déplacent une figure **sans la déformer** : longueurs, angles et aires sont conservés. L’homothétie conserve la **forme** (angles, parallélisme, alignement) mais change la **taille**.",
+          "figure": {
+            "alt": "Tableau : symétries, translation et rotation conservent longueurs, angles et aires ; l’homothétie de rapport k conserve les angles, multiplie les longueurs par |k| et les aires par k².",
+            "w": 440,
+            "h": 120,
+            "items": [
+              {
+                "type": "table",
+                "head": ["Transformation", "Longueurs", "Angles", "Aires"],
+                "rows": [
+                  ["Symétries, translation, rotation", "conservées", "conservés", "conservées"],
+                  ["Homothétie de rapport k", "× |k|", "conservés", "× k²"]
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "kind": "exemple",
+      "title": "Un exemple résolu : une homothétie et ses effets",
+      "steps": [
+        {
+          "text": "Le triangle $A'B'C'$ est l’image du triangle $ABC$ par l’homothétie de centre $O$ et de rapport −2. On sait que $AB = 3$ cm, que l’angle Â mesure 50° et que l’aire de $ABC$ vaut 4,5 cm².",
+          "figure": {
+            "alt": "Le triangle ABC et son image A'B'C' par l'homothétie de centre O et de rapport −2 : A' est sur la droite (OA), de l'autre côté de O.",
+            "w": 329,
+            "h": 320,
+            "frame": { "x": [-8.4, 4.8], "y": [-8.2, 4.6] },
+            "items": [
+              { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+              { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+              { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "e", "style": "rond" },
+              { "type": "point", "id": "A", "x": 0.8, "y": 1.2, "pos": "w" },
+              { "type": "point", "id": "B", "x": 3.75, "y": 0.68, "pos": "se" },
+              { "type": "point", "id": "C", "x": 3.8, "y": 3.72, "pos": "ne" },
+              { "type": "point", "id": "Ap", "x": -1.6, "y": -2.4, "pos": "e", "label": "A’" },
+              { "type": "point", "id": "Bp", "x": -7.51, "y": -1.36, "pos": "w", "label": "B’" },
+              { "type": "point", "id": "Cp", "x": -7.6, "y": -7.43, "pos": "sw", "label": "C’" },
+              { "type": "segment", "from": "A", "to": "Ap", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "B", "to": "Bp", "dashed": true, "color": "gris" },
+              { "type": "segment", "from": "C", "to": "Cp", "dashed": true, "color": "gris" },
+              { "type": "angle", "vertex": "A", "from": "B", "to": "C", "label": "50°", "r": 24 }
+            ]
+          }
+        },
+        {
+          "text": "**Où est l’image ?** Le rapport est négatif : $A'$ est sur la droite $(OA)$, **de l’autre côté** de $O$, avec $OA' = 2 × OA$. Même chose pour $B'$ et $C'$."
+        },
+        { "text": "**Les longueurs** sont multipliées par 2 (la valeur du rapport sans son signe) :", "math": "A'B' = 2 × 3 = 6 cm" },
+        {
+          "text": "**Les angles** sont conservés : l’angle en $A'$ mesure encore 50°. **L’aire** est multipliée par $(−2)² = 4$ :",
+          "math": "4 × 4,5 = 18 cm²"
+        },
+        {
+          "text": "Contrôle : les triangles $ABC$ et $A'B'C'$ ont les mêmes angles, ils sont **semblables** ; le second est un agrandissement de rapport 2 du premier, retourné par un demi-tour."
+        }
+      ]
+    },
+    {
+      "kind": "exercices",
+      "title": "Je m’entraîne",
+      "body": "Pour des triangles semblables, repère d’abord les angles égaux : les côtés correspondants leur sont opposés. Pour une homothétie, regarde de quel côté du centre se trouve l’image. Et n’oublie pas : aires × k², volumes × k³.",
+      "exercises": ["m3-transfo-semblables", "m3-transfo-tableau", "m3-transfo-rotation", "m3-transfo-homothetie", "m3-transfo-effets", "m3-transfo-verif"]
+    },
+    { "kind": "libre", "title": "Expliquer avec ses mots", "exercises": ["m3-transfo-explique"] },
+    { "kind": "reinvestissement", "title": "Agrandir et réduire dans la vraie vie", "exercises": ["m3-transfo-tour-eiffel", "m3-transfo-ombres"] },
+    {
+      "kind": "mission",
+      "title": "Mission : le logo du club",
+      "body": "Le club de handball veut un logo qui tourne… puis une immense bannière pour le gymnase. À toi de calculer angles, longueurs et quantité de peinture !",
+      "exercises": ["m3-transfo-logo"]
+    },
+    {
+      "kind": "correction",
+      "title": "Ce qu’il faut retenir, et les erreurs fréquentes",
+      "body": "> **À retenir.** Deux triangles sont semblables quand leurs angles sont égaux deux à deux ; leurs côtés correspondants sont alors proportionnels (et réciproquement). Rotation (centre, angle, sens) : la figure tourne sans se déformer. Homothétie de centre $O$ et de rapport $k$ : $OM' = |k| × OM$, du même côté de $O$ si $k > 0$, de l’autre côté si $k < 0$. Longueurs × $|k|$, aires × $k²$, volumes × $|k|³$, angles inchangés.\n\n- **Côtés correspondants** : ceux qui sont opposés aux angles égaux.\n- **Aire × k ?** Non : × $k²$ (et volume × $k³$).\n- **Le sens de rotation** compte.\n- **Le signe de k** indique de quel côté du centre est l’image."
+    },
+    {
+      "kind": "revision",
+      "title": "Révision programmée",
+      "body": "Le moteur te proposera de nouveau des triangles semblables, des rotations, des homothéties et des calculs d’aires et de volumes agrandis dans quelques jours, puis dans quelques semaines."
+    }
+  ],
+  "tracks": {
+    "approfondissement": {
+      "intro": "Des triangles semblables cachés dans un triangle rectangle, puis deux homothéties enchaînées.",
+      "exercises": ["m3-transfo-hauteur", "m3-transfo-composer"]
+    },
+    "expert": {
+      "intro": "Un problème complet de type brevet sur un verre conique à moitié plein, puis le triangle de Sierpiński, une figure qui se réduit à l’infini.",
+      "exercises": ["m3-transfo-brevet", "m3-transfo-sierpinski"]
+    }
+  },
+  "exercises": [
+    {
+      "id": "m3-transfo-semblables",
+      "type": "categorize",
+      "skill": "m3.triangles.semblables",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:un-angle", "mc:modele-additif", "mc:ordre-cotes"],
+      "expectedSeconds": 240,
+      "prompt": "Dans chaque cas, les triangles $ABC$ et $DEF$ sont-ils semblables ? (angles en degrés, longueurs en cm)",
+      "figure": {
+        "alt": "Deux triangles ABC et DEF semblables ; les angles égaux sont codés par le même nombre de traits.",
+        "w": 400,
+        "h": 226,
+        "frame": { "x": [-0.7, 11.6], "y": [-1, 5.3] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 1.2, "y": 2.6, "pos": "n" },
+          { "type": "point", "id": "D", "x": 5.6, "y": -0.4, "pos": "sw" },
+          { "type": "point", "id": "E", "x": 11.24, "y": 1.65, "pos": "e" },
+          { "type": "point", "id": "F", "x": 5.96, "y": 3.88, "pos": "n" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+          { "type": "angle", "vertex": "D", "from": "E", "to": "F", "marks": 1 },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+          { "type": "angle", "vertex": "E", "from": "F", "to": "D", "marks": 2 },
+          { "type": "angle", "vertex": "C", "from": "A", "to": "B", "marks": 3, "r": 16 },
+          { "type": "angle", "vertex": "F", "from": "D", "to": "E", "marks": 3, "r": 16 }
+        ]
+      },
+      "categories": [{ "id": "sem", "label": "Semblables" }, { "id": "non", "label": "Pas semblables" }],
+      "items": [
+        { "id": "i1", "label": "Â = 40°, B̂ = 75° ; D̂ = 75°, Ê = 65°", "category": "sem" },
+        { "id": "i2", "label": "Â = 50°, B̂ = 60° ; D̂ = 50°, Ê = 80°", "category": "non" },
+        { "id": "i3", "label": "$AB = 4$, $BC = 6$, $AC = 8$ ; $DE = 6$, $EF = 9$, $DF = 12$", "category": "sem" },
+        { "id": "i4", "label": "$AB = 3$, $BC = 5$, $AC = 6$ ; $DE = 5$, $EF = 7$, $DF = 8$", "category": "non" },
+        { "id": "i5", "label": "Deux triangles rectangles isocèles de tailles différentes", "category": "sem" },
+        { "id": "i6", "label": "$AB = 2$, $BC = 3$, $AC = 4$ ; $DE = 8$, $EF = 4$, $DF = 6$", "category": "sem" }
+      ],
+      "misconceptions": [
+        {
+          "item": "i2",
+          "category": "sem",
+          "id": "mc:un-angle",
+          "error": "raisonnement",
+          "feedback": "Une seule paire d’angles égaux ne suffit pas : calcule le troisième angle de chaque triangle, puis compare."
+        },
+        {
+          "item": "i4",
+          "category": "sem",
+          "id": "mc:modele-additif",
+          "error": "notion",
+          "feedback": "Chaque côté a augmenté de 2 : ce n’est pas un agrandissement. Compare plutôt les quotients $5/3$, $7/5$ et $8/6$."
+        },
+        {
+          "item": "i6",
+          "category": "non",
+          "id": "mc:ordre-cotes",
+          "error": "methode",
+          "feedback": "Range d’abord les côtés de chaque triangle du plus petit au plus grand, puis compare les quotients."
+        },
+        {
+          "item": "i1",
+          "category": "non",
+          "id": "mc:troisieme-angle",
+          "error": "methode",
+          "feedback": "Calcule le troisième angle de chaque triangle (la somme vaut 180°) avant de comparer."
+        }
+      ],
+      "hints": [
+        "Avec des angles : calcule le troisième angle de chaque triangle (180° au total).",
+        "Avec des longueurs : range les côtés dans l’ordre croissant, puis calcule les trois quotients.",
+        "Ajouter le même nombre à chaque côté ne donne pas un agrandissement."
+      ],
+      "solution": "1) Angles 40°, 75°, 65° dans les deux : semblables. 2) 50°, 60°, 70° contre 50°, 80°, 50° : non. 3) Quotients 1,5 : semblables. 4) $5/3$ ≠ $7/5$ : non. 5) 90°, 45°, 45° dans les deux : semblables. 6) Rangés : 2, 3, 4 et 4, 6, 8, quotient 2 : semblables.",
+      "selfTest": [
+        { "response": { "assign": { "i1": "sem", "i2": "non", "i3": "sem", "i4": "non", "i5": "sem", "i6": "sem" } }, "expect": "correct" },
+        { "response": { "assign": { "i1": "sem", "i2": "sem", "i3": "sem", "i4": "non", "i5": "sem", "i6": "sem" } }, "expect": "mc:un-angle" },
+        { "response": { "assign": { "i1": "sem", "i2": "non", "i3": "sem", "i4": "sem", "i5": "sem", "i6": "sem" } }, "expect": "mc:modele-additif" }
+      ]
+    },
+    {
+      "id": "m3-transfo-tableau",
+      "type": "table",
+      "skill": "m3.triangles.semblables",
+      "skills": ["m5.proportionnalite"],
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:correspondance", "mc:modele-additif", "mc:rapport-inverse"],
+      "expectedSeconds": 240,
+      "params": { "k": { "choice": [1.5, 2, 2.5, 3] } },
+      "prompt": "Les triangles $ABC$ et $DEF$ sont semblables : les angles codés de la même façon sont égaux. Complète le tableau (longueurs en cm, nombres seuls).",
+      "figure": {
+        "alt": "Le triangle ABC (AB = 4, BC = 5, AC = 6) et le triangle DEF, plus grand et retourné ; Â = D̂ (un trait) et B̂ = Ê (deux traits) ; DE est indiquée.",
+        "w": 420,
+        "h": 280,
+        "frame": { "x": [-0.8, "{6.5+4*k+0.8}"], "y": [-0.9, "{4.961*k+0.8}"] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["D", "E", "F"], "fill": "orange" },
+          { "type": "point", "id": "A", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "B", "x": 4, "y": 0, "pos": "se" },
+          { "type": "point", "id": "C", "x": 3.375, "y": 4.961, "pos": "n" },
+          { "type": "point", "id": "E", "x": 6.5, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "D", "x": "{6.5+4*k}", "y": 0, "pos": "se" },
+          { "type": "point", "id": "F", "x": "{6.5+0.625*k}", "y": "{4.961*k}", "pos": "n" },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "marks": 1 },
+          { "type": "angle", "vertex": "D", "from": "F", "to": "E", "marks": 1 },
+          { "type": "angle", "vertex": "B", "from": "C", "to": "A", "marks": 2 },
+          { "type": "angle", "vertex": "E", "from": "D", "to": "F", "marks": 2 },
+          { "type": "segment", "from": "A", "to": "B", "label": "4" },
+          { "type": "segment", "from": "B", "to": "C", "label": "5" },
+          { "type": "segment", "from": "A", "to": "C", "label": "6" },
+          { "type": "segment", "from": "D", "to": "E", "label": "{4*k}" }
+        ]
+      },
+      "columns": ["", "Triangle $ABC$", "Triangle $DEF$"],
+      "rows": [
+        ["Côté opposé à l’angle sans codage", "$AB = 4$", "$DE = {4*k}$"],
+        ["Côté opposé à l’angle à un trait", "$BC = 5$", "?r1c2"],
+        ["Côté opposé à l’angle à deux traits", "$AC = 6$", "?r2c2"],
+        ["Rapport d’agrandissement $DE ÷ AB$", "—", "?r3c2"]
+      ],
+      "cells": {
+        "r1c2": {
+          "answer": "5*k",
+          "misconceptions": [
+            {
+              "answer": "5 + 4*k - 4",
+              "id": "mc:modele-additif",
+              "error": "notion",
+              "feedback": "Tu as ajouté le même nombre de centimètres. Dans des triangles semblables, les longueurs sont proportionnelles : on multiplie par le rapport."
+            },
+            {
+              "answer": "6*k",
+              "id": "mc:correspondance",
+              "error": "lecture",
+              "feedback": "Ce n’est pas le bon côté correspondant : un côté correspond à celui qui est opposé à l’angle **égal**. Regarde le codage des angles."
+            }
+          ]
+        },
+        "r2c2": {
+          "answer": "6*k",
+          "misconceptions": [
+            {
+              "answer": "5*k",
+              "id": "mc:correspondance",
+              "error": "lecture",
+              "feedback": "Ce n’est pas le bon côté correspondant : regarde à quel angle codé chaque côté est opposé."
+            }
+          ]
+        },
+        "r3c2": {
+          "answer": "k",
+          "allowExpression": true,
+          "misconceptions": [
+            {
+              "answer": "1/k",
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "Le rapport demandé est $DE ÷ AB$ : le triangle $DEF$ est le plus grand, ce rapport est donc plus grand que 1."
+            }
+          ]
+        }
+      },
+      "hints": [
+        "Le rapport d’agrandissement est $DE ÷ AB$.",
+        "Dans $DEF$, l’angle à un trait est en $D$ : le côté opposé est $[EF]$.",
+        "Chaque longueur de $DEF$ = longueur correspondante de $ABC$ × {k}."
+      ],
+      "solution": "Rapport : $DE ÷ AB$ = {4*k} ÷ 4 = {k}. Le côté opposé à l’angle à un trait est $[BC]$ dans $ABC$ et $[EF]$ dans $DEF$ : $EF = 5 × {k} = {5*k}$. Le côté opposé à l’angle à deux traits : $DF = 6 × {k} = {6*k}$.",
+      "selfTest": [
+        { "response": { "cells": { "r1c2": "{5*k}", "r2c2": "{6*k}", "r3c2": "{k}" } }, "expect": "correct" },
+        { "response": { "cells": { "r1c2": "{6*k}", "r2c2": "{5*k}", "r3c2": "{k}" } }, "expect": "mc:correspondance" },
+        { "response": { "cells": { "r1c2": "{5+4*k-4}", "r2c2": "{6*k}", "r3c2": "{k}" } }, "expect": "mc:modele-additif" }
+      ]
+    },
+    {
+      "id": "m3-transfo-rotation",
+      "type": "match",
+      "skill": "m3.transfo.rotation-homothetie",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "visuelle",
+      "targets": ["mc:rotation-sens", "mc:rotation-demi-tour"],
+      "expectedSeconds": 180,
+      "prompt": "Le triangle $ABC$ tourne autour du point $O$ d’un quart de tour (90°), dans le **sens inverse des aiguilles d’une montre**. Sur le quadrillage, associe chaque sommet à son image.",
+      "figure": {
+        "alt": "Quadrillage avec le point O, le triangle ABC et huit points gris nommés D, E, F, G, H, K, L, M.",
+        "w": 330,
+        "h": 330,
+        "frame": { "x": [-6, 6], "y": [-6, 6], "grid": true },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "A", "x": 2, "y": 1, "pos": "s" },
+          { "type": "point", "id": "B", "x": 5, "y": 1, "pos": "se" },
+          { "type": "point", "id": "C", "x": 5, "y": 3, "pos": "ne" },
+          { "type": "point", "id": "D", "x": 1, "y": -2, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "E", "x": -1, "y": 2, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "F", "x": -5, "y": -3, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "G", "x": -1, "y": 5, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "H", "x": 3, "y": -5, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "K", "x": -3, "y": 5, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "L", "x": -2, "y": -1, "pos": "ne", "style": "rond", "color": "gris" },
+          { "type": "point", "id": "M", "x": 1, "y": -5, "pos": "ne", "style": "rond", "color": "gris" }
+        ]
+      },
+      "leftTitle": "Sommet",
+      "rightTitle": "Image",
+      "left": [{ "id": "a", "label": "A" }, { "id": "b", "label": "B" }, { "id": "c", "label": "C" }],
+      "right": [
+        { "id": "D", "label": "D" },
+        { "id": "E", "label": "E" },
+        { "id": "F", "label": "F" },
+        { "id": "G", "label": "G" },
+        { "id": "H", "label": "H" },
+        { "id": "K", "label": "K" },
+        { "id": "L", "label": "L" },
+        { "id": "M", "label": "M" }
+      ],
+      "pairs": { "a": "E", "b": "G", "c": "K" },
+      "misconceptions": [
+        {
+          "pair": ["a", "D"],
+          "id": "mc:rotation-sens",
+          "error": "lecture",
+          "feedback": "Tu as tourné dans le sens des aiguilles d’une montre. Ici, on tourne dans l’autre sens."
+        },
+        {
+          "pair": ["a", "L"],
+          "id": "mc:rotation-demi-tour",
+          "error": "notion",
+          "feedback": "Tu as fait un demi-tour (180°). Un quart de tour, c’est 90° : l’angle entre $[OA]$ et $[OA’]$ doit être droit."
+        },
+        {
+          "pair": ["b", "M"],
+          "id": "mc:rotation-sens",
+          "error": "lecture",
+          "feedback": "Tu as tourné dans le sens des aiguilles d’une montre. Ici, on tourne dans l’autre sens."
+        },
+        {
+          "pair": ["c", "H"],
+          "id": "mc:rotation-sens",
+          "error": "lecture",
+          "feedback": "Tu as tourné dans le sens des aiguilles d’une montre. Ici, on tourne dans l’autre sens."
+        },
+        {
+          "pair": ["c", "F"],
+          "id": "mc:rotation-demi-tour",
+          "error": "notion",
+          "feedback": "Tu as fait un demi-tour (180°). Un quart de tour, c’est 90°."
+        }
+      ],
+      "hints": [
+        "L’image d’un point est à la même distance de $O$, et l’angle entre $[OA]$ et $[OA']$ est droit.",
+        "Pour aller de $A$ (2 carreaux à droite, 1 en haut) à son image : on obtient 2 carreaux en haut et 1 à gauche.",
+        "Sens inverse des aiguilles d’une montre : ce qui est à droite de $O$ passe au-dessus."
+      ],
+      "solution": "Un quart de tour dans le sens inverse des aiguilles d’une montre transforme « $x$ carreaux à droite, $y$ en haut » en « $x$ carreaux en haut, $y$ à gauche ». A(2 ; 1) → E(−1 ; 2), B(5 ; 1) → G(−1 ; 5), C(5 ; 3) → K(−3 ; 5).",
+      "selfTest": [
+        { "response": { "pairs": { "a": "E", "b": "G", "c": "K" } }, "expect": "correct" },
+        { "response": { "pairs": { "a": "D", "b": "G", "c": "K" } }, "expect": "mc:rotation-sens" },
+        { "response": { "pairs": { "a": "L", "b": "G", "c": "K" } }, "expect": "mc:rotation-demi-tour" }
+      ]
+    },
+    {
+      "id": "m3-transfo-homothetie",
+      "type": "numeric",
+      "skill": "m3.transfo.rotation-homothetie",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 3,
+      "representation": "visuelle",
+      "targets": ["mc:rapport-inverse", "signe"],
+      "expectedSeconds": 150,
+      "params": { "k": { "choice": [-2, -1.5, -0.5, 0.5, 1.5, 2, 2.5] } },
+      "prompt": "Le triangle $A'B'C'$ est l’image du triangle $ABC$ par une homothétie de centre $O$. On mesure $OA = 2$ cm et $OA' = {2*abs(k)}$ cm. Quel est le rapport $k$ de cette homothétie ? (Attention au signe.)",
+      "figure": {
+        "alt": "Le point O, le triangle ABC et son image A'B'C' par une homothétie de centre O ; des pointillés relient O à A et à A'.",
+        "w": 380,
+        "h": 300,
+        "frame": {
+          "x": ["{min(0;k*1.732;k*2.4;k*2.25;1.732;2.4;2.25)-1}", "{max(0;k*1.732;k*2.4;k*2.25;1.732;2.4;2.25)+1}"],
+          "y": ["{min(0;k*1;k*0.55;k*1.6;1;0.55;1.6)-1}", "{max(0;k*1;k*0.55;k*1.6;1;0.55;1.6)+1}"]
+        },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "A", "x": 1.732, "y": 1, "pos": "n" },
+          { "type": "point", "id": "B", "x": 2.4, "y": 0.55, "pos": "n" },
+          { "type": "point", "id": "C", "x": 2.25, "y": 1.6, "pos": "n" },
+          { "type": "point", "id": "Ap", "x": "{k*1.732}", "y": "{k*1}", "pos": "s", "label": "A’" },
+          { "type": "point", "id": "Bp", "x": "{k*2.4}", "y": "{k*0.55}", "pos": "s", "label": "B’" },
+          { "type": "point", "id": "Cp", "x": "{k*2.25}", "y": "{k*1.6}", "pos": "s", "label": "C’" },
+          { "type": "segment", "from": "O", "to": "A", "dashed": true, "color": "gris" },
+          { "type": "segment", "from": "O", "to": "Ap", "dashed": true, "color": "gris" }
+        ]
+      },
+      "answer": "k",
+      "tolerance": 0.01,
+      "misconceptions": [
+        {
+          "answer": "1/k",
+          "id": "mc:rapport-inverse",
+          "error": "notion",
+          "feedback": "Tu as divisé dans le mauvais sens : la valeur du rapport se calcule image ÷ figure de départ, $OA'/OA$."
+        }
+      ],
+      "hints": [
+        "Regarde de quel côté de $O$ se trouve $A'$ : du même côté que $A$ → $k > 0$ ; de l’autre côté → $k < 0$.",
+        "Sans le signe, le rapport vaut $OA'/OA$ = {2*abs(k)} ÷ 2.",
+        "Ajoute ensuite le signe trouvé à la première étape."
+      ],
+      "solution": "Sans son signe, le rapport vaut $OA'/OA$ = {2*abs(k)} ÷ 2 = {abs(k)}. Il est négatif si $A'$ est de l’autre côté de $O$ par rapport à $A$, positif sinon : ici $k$ = {k}.",
+      "selfTest": [{ "response": { "value": "{k}" }, "expect": "correct" }, { "response": { "value": "{1/k}" }, "expect": "mc:rapport-inverse" }]
+    },
+    {
+      "id": "m3-transfo-effets",
+      "type": "table",
+      "skill": "m3.transfo.effets",
+      "track": "classe",
+      "role": "guide",
+      "difficulty": 2,
+      "representation": "symbolique",
+      "targets": ["mc:aire-k", "mc:volume-k", "mc:volume-k2", "mc:angle-agrandi"],
+      "expectedSeconds": 180,
+      "params": { "k": { "choice": [0.5, 1.5, 2, 3, 4] } },
+      "prompt": "Un solide est agrandi (ou réduit) avec le rapport $k = {k}$. Complète le tableau pour l’image (nombres seuls).",
+      "figure": {
+        "alt": "Un petit cube et un cube agrandi, en perspective cavalière.",
+        "w": 340,
+        "h": 230,
+        "frame": { "x": [-0.5, 5.4], "y": [-0.5, 3.2] },
+        "items": [
+          { "type": "segment", "from": [0, 0], "to": [1, 0], "color": "maths" },
+          { "type": "segment", "from": [1, 0], "to": [1, 1], "color": "maths" },
+          { "type": "segment", "from": [1, 1], "to": [0, 1], "color": "maths" },
+          { "type": "segment", "from": [0, 1], "to": [0, 0], "color": "maths" },
+          { "type": "segment", "from": [0, 1], "to": [0.35, 1.35], "color": "maths" },
+          { "type": "segment", "from": [0.35, 1.35], "to": [1.35, 1.35], "color": "maths" },
+          { "type": "segment", "from": [1.35, 1.35], "to": [1, 1], "color": "maths" },
+          { "type": "segment", "from": [1, 0], "to": [1.35, 0.35], "color": "maths" },
+          { "type": "segment", "from": [1.35, 0.35], "to": [1.35, 1.35], "color": "maths" },
+          { "type": "segment", "from": [0, 0], "to": [0.35, 0.35], "color": "maths", "dashed": true },
+          { "type": "segment", "from": [0.35, 0.35], "to": [1.35, 0.35], "color": "maths", "dashed": true },
+          { "type": "segment", "from": [0.35, 0.35], "to": [0.35, 1.35], "color": "maths", "dashed": true },
+          { "type": "segment", "from": [2.2, 0], "to": [4.2, 0], "color": "orange" },
+          { "type": "segment", "from": [4.2, 0], "to": [4.2, 2], "color": "orange" },
+          { "type": "segment", "from": [4.2, 2], "to": [2.2, 2], "color": "orange" },
+          { "type": "segment", "from": [2.2, 2], "to": [2.2, 0], "color": "orange" },
+          { "type": "segment", "from": [2.2, 2], "to": [2.91, 2.71], "color": "orange" },
+          { "type": "segment", "from": [2.91, 2.71], "to": [4.91, 2.71], "color": "orange" },
+          { "type": "segment", "from": [4.91, 2.71], "to": [4.2, 2], "color": "orange" },
+          { "type": "segment", "from": [4.2, 0], "to": [4.91, 0.71], "color": "orange" },
+          { "type": "segment", "from": [4.91, 0.71], "to": [4.91, 2.71], "color": "orange" },
+          { "type": "segment", "from": [2.2, 0], "to": [2.91, 0.71], "color": "orange", "dashed": true },
+          { "type": "segment", "from": [2.91, 0.71], "to": [4.91, 0.71], "color": "orange", "dashed": true },
+          { "type": "segment", "from": [2.91, 0.71], "to": [2.91, 2.71], "color": "orange", "dashed": true }
+        ]
+      },
+      "columns": ["Grandeur", "Solide de départ", "Image"],
+      "rows": [
+        ["Longueur d’une arête (cm)", "6", "?r0c2"],
+        ["Mesure d’un angle (°)", "40", "?r1c2"],
+        ["Aire d’une face (cm²)", "12", "?r2c2"],
+        ["Volume (cm³)", "16", "?r3c2"]
+      ],
+      "cells": {
+        "r0c2": { "answer": "6*k" },
+        "r1c2": {
+          "answer": 40,
+          "misconceptions": [
+            {
+              "answer": "40*k",
+              "id": "mc:angle-agrandi",
+              "error": "notion",
+              "feedback": "Un agrandissement ou une réduction ne change pas la forme : les angles gardent leur mesure."
+            }
+          ]
+        },
+        "r2c2": {
+          "answer": "12*k^2",
+          "misconceptions": [
+            {
+              "answer": "12*k",
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Une aire est le produit de deux longueurs : chacune est multipliée par $k$, donc l’aire est multipliée par $k × k$."
+            }
+          ]
+        },
+        "r3c2": {
+          "answer": "16*k^3",
+          "misconceptions": [
+            {
+              "answer": "16*k",
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "Un volume fait intervenir trois longueurs, chacune multipliée par $k$."
+            },
+            {
+              "answer": "16*k^2",
+              "id": "mc:volume-k2",
+              "error": "notion",
+              "feedback": "$k²$ convient pour les aires. Un volume fait intervenir **trois** longueurs."
+            }
+          ]
+        }
+      },
+      "hints": ["Longueurs × $k$.", "Angles : inchangés.", "Aires × $k²$ ; volumes × $k³$."],
+      "solution": "Arête : $6 × {k} = {6*k}$ cm. Angle : 40° (inchangé). Aire : $12 × {k}²$ = {12*k^2} cm². Volume : $16 × {k}³$ = {16*k^3} cm³.",
+      "selfTest": [
+        { "response": { "cells": { "r0c2": "{6*k}", "r1c2": "40", "r2c2": "{12*k^2}", "r3c2": "{16*k^3}" } }, "expect": "correct" },
+        { "response": { "cells": { "r0c2": "{6*k}", "r1c2": "40", "r2c2": "{12*k}", "r3c2": "{16*k^3}" } }, "expect": "mc:aire-k" },
+        { "response": { "cells": { "r0c2": "{6*k}", "r1c2": "40", "r2c2": "{12*k^2}", "r3c2": "{16*k^2}" } }, "expect": "mc:volume-k2" }
+      ]
+    },
+    {
+      "id": "m3-transfo-verif",
+      "type": "qcm",
+      "skill": "m3.transfo.effets",
+      "track": "classe",
+      "role": "verification",
+      "difficulty": 1,
+      "representation": "symbolique",
+      "expectedSeconds": 45,
+      "prompt": "Vérification rapide : laquelle de ces transformations **ne conserve pas** les longueurs ?",
+      "figure": {
+        "alt": "Un triangle ABC et son image A'B'C' par une rotation de centre O d'angle 60°.",
+        "w": 300,
+        "h": 253,
+        "frame": { "x": [-1.3, 3.6], "y": [-0.6, 3.4] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["Ap", "Bp", "Cp"], "fill": "orange" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "sw", "style": "rond" },
+          { "type": "point", "id": "A", "x": 1.5, "y": 0.3, "pos": "s" },
+          { "type": "point", "id": "B", "x": 3, "y": 0.6, "pos": "e" },
+          { "type": "point", "id": "C", "x": 2, "y": 1.6, "pos": "ne" },
+          { "type": "point", "id": "Ap", "x": 0.49, "y": 1.45, "pos": "e", "label": "A’" },
+          { "type": "point", "id": "Bp", "x": 0.98, "y": 2.9, "pos": "ne", "label": "B’" },
+          { "type": "point", "id": "Cp", "x": -0.39, "y": 2.53, "pos": "w", "label": "C’" }
+        ]
+      },
+      "choices": [
+        { "text": "L’homothétie de centre $O$ et de rapport 3", "correct": true, "feedback": "Oui : elle multiplie toutes les longueurs par 3." },
+        {
+          "text": "La rotation de centre $O$ et d’angle 60°",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:rotation-deforme",
+          "feedback": "Une rotation fait tourner la figure sans la déformer : regarde la figure, chaque côté garde sa longueur."
+        },
+        {
+          "text": "La translation qui transforme $A$ en $B$",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:translation-deforme",
+          "feedback": "Une translation fait glisser la figure sans la déformer."
+        },
+        {
+          "text": "L’homothétie de centre $O$ et de rapport −1",
+          "correct": false,
+          "error": "notion",
+          "misconception": "mc:homothetie-moins-un",
+          "feedback": "Avec le rapport −1, $OM' = OM$ : c’est la symétrie centrale, qui conserve les longueurs."
+        }
+      ],
+      "hints": [
+        "Une transformation qui déplace une figure sans la déformer conserve les longueurs.",
+        "Une homothétie multiplie les longueurs par la valeur de son rapport, prise sans le signe."
+      ],
+      "solution": "Symétries, translations et rotations conservent les longueurs. L’homothétie de rapport $k$ les multiplie par $|k|$ : seule celle de rapport 3 les change (celle de rapport −1 est la symétrie centrale).",
+      "selfTest": [{ "response": { "selected": [0] }, "expect": "correct" }, { "response": { "selected": [3] }, "expect": "mc:homothetie-moins-un" }]
+    },
+    {
+      "id": "m3-transfo-explique",
+      "type": "open",
+      "skill": "m3.transfo.effets",
+      "skills": ["m5.grandeurs.disque"],
+      "track": "classe",
+      "role": "libre",
+      "difficulty": 3,
+      "representation": "verbale",
+      "expectedSeconds": 300,
+      "minWords": 25,
+      "prompt": "Léo affirme : « Une pizza de 30 cm de diamètre, c’est deux fois plus à manger qu’une pizza de 15 cm. » Explique-lui, avec le vocabulaire de l’agrandissement, pourquoi il se trompe, et dis combien de fois plus de pizza il y a vraiment (on compare les aires, l’épaisseur étant la même).",
+      "figure": {
+        "alt": "Deux pizzas vues de dessus : un disque de 15 cm de diamètre et un disque de 30 cm de diamètre.",
+        "w": 368,
+        "h": 260,
+        "frame": { "x": [-0.5, 10], "y": [-0.5, 6.5] },
+        "items": [
+          { "type": "circle", "center": [1.5, 1.5], "r": 1.5, "fill": "orange", "color": "orange" },
+          { "type": "circle", "center": [6.5, 3], "r": 3, "fill": "orange", "color": "orange" },
+          { "type": "segment", "from": [0, 1.5], "to": [3, 1.5], "arrows": "both", "label": "15 cm" },
+          { "type": "segment", "from": [3.5, 3], "to": [9.5, 3], "arrows": "both", "label": "30 cm" }
+        ]
+      },
+      "criteria": [
+        {
+          "id": "c1",
+          "label": "Je dis que la grande pizza est un agrandissement de rapport $k = 2$",
+          "keywords": [["k = 2", "k=2", "rapport 2", "double", "deux fois plus grand", "multiplie par 2"]]
+        },
+        {
+          "id": "c2",
+          "label": "J’explique que l’aire est multipliée par $k² = 4$",
+          "keywords": [["k²", "k2", "au carre", "2²", "2 × 2", "2x2", "k × k"]]
+        },
+        { "id": "c3", "label": "Je conclus : 4 fois plus de pizza", "keywords": [["4 fois", "quatre fois", "× 4", "fois 4"]] }
+      ],
+      "models": [
+        "Le diamètre est multiplié par 2 : la grande pizza est un agrandissement de rapport k = 2 de la petite. Mais une aire est multipliée par k² = 2 × 2 = 4. Il y a donc 4 fois plus de pizza, pas 2 fois plus : π × 15² ≈ 707 cm² contre π × 7,5² ≈ 177 cm²."
+      ],
+      "hints": [
+        "Par combien le diamètre est-il multiplié ?",
+        "Quand les longueurs sont multipliées par $k$, par combien les aires sont-elles multipliées ?",
+        "Vérifie avec l’aire d’un disque : π × rayon²."
+      ],
+      "solution": "Le rapport d’agrandissement est $k = 30 ÷ 15 = 2$. Les aires sont multipliées par $k² = 4$ : la grande pizza contient 4 fois plus à manger (environ 707 cm² contre 177 cm²).",
+      "selfTest": [
+        {
+          "response": {
+            "text": "La grande pizza est un agrandissement de rapport k = 2. Les aires sont multipliées par k² = 2 × 2 = 4, donc il y a 4 fois plus de pizza et pas deux fois plus.",
+            "selfCheck": { "c1": true, "c2": true, "c3": true }
+          },
+          "expect": "a-valider"
+        }
+      ]
+    },
+    {
+      "id": "m3-transfo-tour-eiffel",
+      "type": "composite",
+      "skill": "m3.transfo.effets",
+      "skills": ["m5.grandeurs.conversions"],
+      "track": "classe",
+      "role": "reinvestissement",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:conversion-m-cm", "mc:aire-k", "mc:volume-k2"],
+      "expectedSeconds": 480,
+      "prompt": "La tour Eiffel mesure 330 m de haut. Sa charpente métallique pèse environ 7 300 tonnes, et environ 250 000 m² de surface sont repeints tous les sept ans. Un artisan fabrique une maquette de 33 cm de haut, exactement à l’échelle, dans le même métal.",
+      "figure": {
+        "alt": "Silhouette de la tour Eiffel (330 m) et, à côté, sa maquette (33 cm), dessinées sans respecter l'échelle.",
+        "w": 313,
+        "h": 300,
+        "frame": { "x": [-3, 9], "y": [-0.8, 10.6] },
+        "caption": "La maquette n’est pas dessinée à l’échelle.",
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [-2.4, 0],
+              [-1.5, 0],
+              [-1, 0.9],
+              [1, 0.9],
+              [1.5, 0],
+              [2.4, 0],
+              [1.15, 3.5],
+              [0.45, 6.5],
+              [0.12, 9.6],
+              [0, 10],
+              [-0.12, 9.6],
+              [-0.45, 6.5],
+              [-1.15, 3.5]
+            ],
+            "fill": "orange"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [5.88, 0],
+              [6.15, 0],
+              [6.3, 0.27],
+              [6.9, 0.27],
+              [7.05, 0],
+              [7.32, 0],
+              [6.94, 1.05],
+              [6.74, 1.95],
+              [6.64, 2.88],
+              [6.6, 3],
+              [6.56, 2.88],
+              [6.47, 1.95],
+              [6.26, 1.05]
+            ],
+            "fill": "maths"
+          },
+          { "type": "segment", "from": [3, 0], "to": [3, 10], "arrows": "both", "label": "330 m", "color": "gris" },
+          { "type": "segment", "from": [7.6, 0], "to": [7.6, 3], "arrows": "both", "label": "33 cm", "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le rapport de réduction $k$ ? (nombre décimal ou fraction)",
+          "answer": 0.001,
+          "misconceptions": [
+            {
+              "answer": 0.1,
+              "id": "mc:conversion-m-cm",
+              "error": "unite",
+              "feedback": "Convertis d’abord les deux hauteurs dans la même unité : 330 m, c’est combien de centimètres ?"
+            },
+            {
+              "answer": 1000,
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "La maquette est plus petite : le rapport de réduction est plus petit que 1 (maquette ÷ réalité)."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle surface faudrait-il peindre sur la maquette ? (en cm²)",
+          "answer": 2500,
+          "misconceptions": [
+            {
+              "answer": 2500000,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Une aire est multipliée par $k²$, pas par $k$. Puis convertis : 1 m² = 10 000 cm²."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle serait la masse de la maquette en métal ? (en g)",
+          "answer": 7.3,
+          "misconceptions": [
+            {
+              "answer": 7300,
+              "id": "mc:volume-k2",
+              "error": "notion",
+              "feedback": "La masse est proportionnelle au volume, et un volume est multiplié par $k³$ (trois longueurs), pas par $k²$."
+            },
+            {
+              "answer": 7300000,
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "La masse est proportionnelle au volume, qui est multiplié par $k³$, pas par $k$."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "330 m = 33 000 cm, donc $k = 33 ÷ 33 000$.",
+        "Aire de la maquette = 250 000 m² × $k²$, puis 1 m² = 10 000 cm².",
+        "Masse × $k³$ ; 1 t = 1 000 000 g."
+      ],
+      "solution": "1) $k = 33 ÷ 33 000 = 0,001$ (soit $1/1000$).\n2) $250 000 × 0,001² = 0,25$ m², soit 2 500 cm² : à peu près une feuille de 50 cm × 50 cm !\n3) La masse est multipliée par $k³ = 10^{−9}$ : 7 300 t = 7 300 000 000 g, donc la maquette pèse environ 7,3 g, à peine plus qu’une pièce de 2 €.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "0,001" }, { "value": "2500" }, { "value": "7,3" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "0,001" }, { "value": "2500" }, { "value": "7300" }] }, "expect": "mc:volume-k2" },
+        { "response": { "parts": [{ "value": "0,1" }, { "value": "2500" }, { "value": "7,3" }] }, "expect": "mc:conversion-m-cm" }
+      ]
+    },
+    {
+      "id": "m3-transfo-ombres",
+      "type": "composite",
+      "skill": "m3.transfo.effets",
+      "skills": ["m3.transfo.rotation-homothetie"],
+      "track": "classe",
+      "role": "transfert",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:rapport-inverse", "mc:modele-additif", "mc:aire-k"],
+      "expectedSeconds": 420,
+      "params": { "b": { "choice": [100, 120, 160, 200] } },
+      "prompt": "Ombres chinoises : une petite lampe $O$ éclaire une silhouette en carton, plane, de 12 cm de haut et de 60 cm² d’aire, placée parallèlement à l’écran à 40 cm de la lampe. L’écran est à {b} cm de la lampe. L’ombre sur l’écran est l’image de la silhouette par une homothétie de centre $O$.",
+      "figure": {
+        "alt": "Vue de côté : la lampe O, la silhouette à 40 cm de la lampe et l'écran plus loin ; les rayons issus de O passent par les bords de la silhouette et dessinent son ombre agrandie sur l'écran.",
+        "w": 440,
+        "h": 230,
+        "frame": { "x": [-1, "{b/10+1.2}"], "y": ["{-0.015*b-2.8}", "{0.015*b+1.2}"] },
+        "items": [
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "w", "style": "rond", "color": "orange" },
+          { "type": "segment", "from": ["{b/10}", "{-0.015*b-0.8}"], "to": ["{b/10}", "{0.015*b+0.8}"], "color": "gris", "width": 3 },
+          { "type": "segment", "from": ["{b/10}", "{-0.015*b}"], "to": ["{b/10}", "{0.015*b}"], "color": "violet", "width": 5 },
+          { "type": "segment", "from": [4, -0.6], "to": [4, 0.6], "color": "maths", "width": 5 },
+          { "type": "segment", "from": "O", "to": ["{b/10}", "{0.015*b}"], "dashed": true, "color": "orange" },
+          { "type": "segment", "from": "O", "to": ["{b/10}", "{-0.015*b}"], "dashed": true, "color": "orange" },
+          { "type": "segment", "from": [0, "{-0.015*b-1}"], "to": [4, "{-0.015*b-1}"], "arrows": "both", "label": "40 cm", "color": "gris" },
+          { "type": "segment", "from": [0, "{-0.015*b-2}"], "to": ["{b/10}", "{-0.015*b-2}"], "arrows": "both", "label": "{b} cm", "color": "gris" },
+          { "type": "text", "x": 4.3, "y": 0.9, "text": "silhouette", "size": "s", "anchor": "start" },
+          { "type": "text", "x": "{b/10-0.3}", "y": "{0.015*b+0.5}", "text": "ombre", "size": "s", "anchor": "end" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quel est le rapport $k$ de cette homothétie ?",
+          "answer": "b/40",
+          "misconceptions": [
+            {
+              "answer": "40/b",
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "L’ombre est plus grande que la silhouette : le rapport est plus grand que 1. Divise la distance à l’écran par la distance à la silhouette."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est la hauteur de l’ombre ? (en cm)",
+          "answer": "12*b/40",
+          "misconceptions": [
+            {
+              "answer": "12 + b - 40",
+              "id": "mc:modele-additif",
+              "error": "notion",
+              "feedback": "On n’ajoute pas un écart : les longueurs sont multipliées par le rapport $k$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’aire de l’ombre ? (en cm²)",
+          "answer": "60*(b/40)^2",
+          "misconceptions": [
+            {
+              "answer": "60*b/40",
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Les longueurs sont multipliées par $k$… et les aires par $k²$."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "À quelle distance de la lampe faut-il placer la silhouette pour que son ombre soit exactement 2 fois plus haute qu’elle ? (en cm)",
+          "answer": "b/2",
+          "misconceptions": [
+            {
+              "answer": "2*b",
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "La silhouette est entre la lampe et l’écran : il faut que (distance à l’écran) ÷ (distance à la silhouette) = 2."
+            }
+          ]
+        }
+      ],
+      "hints": ["$k$ = (distance lampe–écran) ÷ (distance lampe–silhouette).", "Hauteur × $k$ ; aire × $k²$.", "Pour $k = 2$ : {b} ÷ $d$ = 2."],
+      "solution": "1) $k = {b} ÷ 40 = {b/40}$.\n2) $12 × {b/40} = {12*b/40}$ cm.\n3) $60 × {b/40}²$ = {60*(b/40)^2} cm².\n4) Il faut {b} ÷ $d$ = 2, donc $d$ = {b/2} cm.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "{b/40}" }, { "value": "{12*b/40}" }, { "value": "{60*(b/40)^2}" }, { "value": "{b/2}" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "{b/40}" }, { "value": "{12*b/40}" }, { "value": "{60*b/40}" }, { "value": "{b/2}" }] },
+          "expect": "mc:aire-k"
+        }
+      ]
+    },
+    {
+      "id": "m3-transfo-logo",
+      "type": "composite",
+      "skill": "m3.transfo.rotation-homothetie",
+      "skills": ["m3.transfo.effets"],
+      "track": "classe",
+      "role": "mission",
+      "difficulty": 3,
+      "representation": "concrete",
+      "targets": ["mc:modele-additif", "mc:aire-k", "mc:angle-agrandi"],
+      "expectedSeconds": 600,
+      "prompt": "Le logo du club de handball est formé de 3 pales triangulaires identiques, obtenues en faisant tourner la pale $OAB$ autour du point $O$ ; elles sont régulièrement réparties autour de $O$. Une pale a une aire de 6 cm², $OA = 4$ cm et l’angle $AOB$ mesure 40°. Pour la bannière du gymnase, on agrandit le logo par l’homothétie de centre $O$ et de rapport 2,5.",
+      "figure": {
+        "alt": "Trois pales triangulaires identiques réparties autour du point O ; la première pale est OAB ; un arc en pointillés montre la rotation de A vers la pale suivante.",
+        "w": 330,
+        "h": 306,
+        "frame": { "x": [-5.4, 5.4], "y": [-4.9, 5] },
+        "items": [
+          { "type": "polygon", "points": ["O", "A", "B"], "fill": "maths" },
+          { "type": "polygon", "points": ["O", "A2", "B2"], "fill": "orange" },
+          { "type": "polygon", "points": ["O", "A3", "B3"], "fill": "vert" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "se", "style": "rond" },
+          { "type": "point", "id": "A", "x": 0, "y": 4, "pos": "n" },
+          { "type": "point", "id": "B", "x": -3, "y": 3.58, "pos": "nw" },
+          { "type": "point", "id": "A2", "x": -3.46, "y": -2, "pos": "w", "label": "" },
+          { "type": "point", "id": "B2", "x": -1.6, "y": -4.39, "pos": "s", "label": "" },
+          { "type": "point", "id": "A3", "x": 3.46, "y": -2, "pos": "se", "label": "" },
+          { "type": "point", "id": "B3", "x": 4.6, "y": 0.81, "pos": "e", "label": "" },
+          { "type": "angle", "vertex": "O", "from": "A", "to": "B", "label": "40°", "r": 22 },
+          { "type": "segment", "from": "O", "to": "A", "label": "4 cm" },
+          { "type": "arc", "center": "O", "r": 4, "start": 90, "end": 210, "dashed": true, "color": "rouge" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "De quel angle faut-il faire tourner une pale autour de $O$ pour obtenir la suivante ? (en degrés)",
+          "answer": 120,
+          "misconceptions": [
+            {
+              "answer": 90,
+              "id": "mc:rotation-angle",
+              "error": "notion",
+              "feedback": "Les 3 pales se partagent le tour complet de 360° de façon régulière."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Sur la bannière, combien mesure la longueur $OA$ ? (en cm)",
+          "answer": 10,
+          "misconceptions": [
+            {
+              "answer": 6.5,
+              "id": "mc:modele-additif",
+              "error": "notion",
+              "feedback": "Une homothétie de rapport 2,5 **multiplie** les longueurs par 2,5 : on n’ajoute pas 2,5 cm."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle aire de peinture faut-il pour les 3 pales de la bannière ? (en cm²)",
+          "answer": 112.5,
+          "misconceptions": [{ "answer": 45, "id": "mc:aire-k", "error": "notion", "feedback": "Les longueurs sont multipliées par 2,5, mais les aires par $2,5²$." }]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure l’angle $AOB$ d’une pale sur la bannière ? (en degrés)",
+          "answer": 40,
+          "misconceptions": [
+            {
+              "answer": 100,
+              "id": "mc:angle-agrandi",
+              "error": "notion",
+              "feedback": "Une homothétie conserve les angles : la forme de la pale ne change pas."
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "3 pales régulièrement réparties : 360° ÷ 3.",
+        "Une rotation conserve les aires ; une homothétie de rapport 2,5 multiplie les longueurs par 2,5 et les aires par $2,5² = 6,25$.",
+        "Les angles sont conservés par toutes ces transformations."
+      ],
+      "solution": "1) 360° ÷ 3 = 120°.\n2) $4 × 2,5 = 10$ cm.\n3) Une rotation conserve les aires : le logo mesure 3 × 6 = 18 cm². L’homothétie multiplie les aires par $2,5² = 6,25$ : $18 × 6,25 = 112,5$ cm².\n4) Les angles sont conservés : 40°.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "120" }, { "value": "10" }, { "value": "112,5" }, { "value": "40" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "120" }, { "value": "10" }, { "value": "45" }, { "value": "40" }] }, "expect": "mc:aire-k" },
+        { "response": { "parts": [{ "value": "120" }, { "value": "6,5" }, { "value": "112,5" }, { "value": "40" }] }, "expect": "mc:modele-additif" }
+      ]
+    },
+    {
+      "id": "m3-transfo-remed-k2",
+      "type": "composite",
+      "skill": "m3.transfo.effets",
+      "track": "classe",
+      "role": "remediation",
+      "difficulty": 1,
+      "representation": "visuelle",
+      "targets": ["mc:aire-k"],
+      "expectedSeconds": 120,
+      "prompt": "Rappel ciblé : quand les longueurs sont multipliées par $k$, les aires sont multipliées par $k × k = k²$. Un carré de 3 cm de côté est agrandi avec le rapport $k = 2$.",
+      "figure": {
+        "alt": "Un carré de 3 cm de côté et son agrandissement de 6 cm de côté, partagé en 4 carrés identiques au premier.",
+        "w": 380,
+        "h": 279,
+        "frame": { "x": [-0.5, 10.5], "y": [-1.2, 6.5] },
+        "items": [
+          { "type": "rect", "x": 0, "y": 0, "w": 3, "h": 3, "fill": "maths", "color": "maths" },
+          { "type": "rect", "x": 4, "y": 0, "w": 6, "h": 6, "fill": "orange", "color": "orange" },
+          { "type": "segment", "from": [7, 0], "to": [7, 6], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [4, 3], "to": [10, 3], "dashed": true, "color": "gris" },
+          { "type": "text", "x": 1.5, "y": -0.6, "text": "3 cm", "size": "s" },
+          { "type": "text", "x": 7, "y": -0.6, "text": "6 cm", "size": "s" }
+        ]
+      },
+      "parts": [
+        { "type": "numeric", "prompt": "Aire du carré de départ (en cm²) :", "answer": 9 },
+        {
+          "type": "numeric",
+          "prompt": "Aire du carré agrandi (en cm²) :",
+          "answer": 36,
+          "misconceptions": [
+            {
+              "answer": 18,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Le côté est doublé dans les **deux** directions : compte combien de petits carrés tiennent dans le grand."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Par combien l’aire a-t-elle été multipliée ?",
+          "answer": 4,
+          "misconceptions": [{ "answer": 2, "id": "mc:aire-k", "error": "notion", "feedback": "2 est le rapport des longueurs. Pour les aires, c’est $2 × 2$." }]
+        }
+      ],
+      "hints": ["Aire d’un carré = côté × côté.", "Le grand carré a pour côté $3 × 2 = 6$ cm.", "Sur la figure, 4 petits carrés remplissent le grand."],
+      "solution": "$3 × 3 = 9$ cm² ; $6 × 6 = 36$ cm² ; $36 ÷ 9 = 4 = 2²$.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "9" }, { "value": "36" }, { "value": "4" }] }, "expect": "correct" },
+        { "response": { "parts": [{ "value": "9" }, { "value": "18" }, { "value": "2" }] }, "expect": "mc:aire-k" }
+      ]
+    },
+    {
+      "id": "m3-transfo-hauteur",
+      "type": "composite",
+      "skill": "m3.triangles.semblables",
+      "skills": ["m4.pythagore.calcul"],
+      "track": "approfondissement",
+      "role": "transfert",
+      "difficulty": 4,
+      "representation": "visuelle",
+      "targets": ["mc:semblables-egaux", "mc:oubli-racine"],
+      "expectedSeconds": 480,
+      "prompt": "Le triangle $ABC$ est rectangle en $A$, et $[AH]$ est sa hauteur issue de $A$. On donne $BH = 3,6$ cm et $BC = 10$ cm.",
+      "figure": {
+        "alt": "Triangle ABC rectangle en A, de hauteur [AH] ; BH = 3,6 cm et BC = 10 cm.",
+        "w": 400,
+        "h": 290,
+        "frame": { "x": [-0.8, 10.8], "y": [-2.4, 5.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A", "B", "H"], "fill": "orange" },
+          { "type": "point", "id": "A", "x": 3.6, "y": 4.8, "pos": "n" },
+          { "type": "point", "id": "B", "x": 0, "y": 0, "pos": "sw" },
+          { "type": "point", "id": "C", "x": 10, "y": 0, "pos": "se" },
+          { "type": "point", "id": "H", "x": 3.6, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "A", "to": "H", "dashed": true },
+          { "type": "angle", "vertex": "A", "from": "B", "to": "C", "right": true },
+          { "type": "angle", "vertex": "H", "from": "C", "to": "A", "right": true },
+          { "type": "segment", "from": "B", "to": "H", "label": "3,6 cm" },
+          { "type": "segment", "from": [0, -1.3], "to": [10, -1.3], "arrows": "both", "label": "10 cm", "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "text",
+          "prompt": "Les triangles $ABH$ et $CBA$ ont l’angle B̂ en commun, et chacun a un angle droit. Que peut-on en déduire pour ces deux triangles ?",
+          "accept": [
+            "ils sont semblables",
+            "semblables",
+            "ils sont semblables (mêmes angles)",
+            "les triangles sont semblables",
+            "abh et cba sont semblables",
+            "les triangles abh et cba sont semblables",
+            "ils sont semblables car ils ont les mêmes angles",
+            "ils ont les mêmes angles",
+            "ils ont les memes angles",
+            "ils ont les mêmes angles donc ils sont semblables",
+            "ce sont des triangles semblables",
+            "ils sont semblables, car ils ont deux angles égaux"
+          ],
+          "misconceptions": [
+            {
+              "answer": "ils sont égaux",
+              "id": "mc:semblables-egaux",
+              "error": "notion",
+              "feedback": "Avoir les mêmes angles ne veut pas dire avoir les mêmes longueurs : regarde la figure, l’un est plus petit que l’autre."
+            },
+            {
+              "answer": "égaux",
+              "id": "mc:semblables-egaux",
+              "error": "notion",
+              "feedback": "Avoir les mêmes angles ne veut pas dire avoir les mêmes longueurs : regarde la figure, l’un est plus petit que l’autre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Les côtés correspondants sont donc proportionnels : $BH/BA$ = $BA/BC$. Calcule $AB$ (en cm).",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 36,
+              "id": "mc:oubli-racine",
+              "error": "methode",
+              "feedback": "Le produit en croix donne $AB²$ = 36 : il reste à trouver la longueur $AB$ elle-même."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Calcule $AH$ (en cm), avec le théorème de Pythagore dans le triangle $ABH$.",
+          "answer": 4.8,
+          "misconceptions": [
+            {
+              "answer": 2.4,
+              "id": "mc:difference-cotes",
+              "error": "notion",
+              "prerequisite": "m4.pythagore.calcul",
+              "feedback": "On ne soustrait pas les longueurs : $AH² = AB² − BH²$."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Calcule $AC$ (en cm).", "answer": 8 }
+      ],
+      "hints": [
+        "Deux angles égaux deux à deux suffisent pour que deux triangles soient semblables.",
+        "$BH/BA$ = $BA/BC$ donne $BA² = BH × BC$.",
+        "$AH² = 6² − 3,6²$ ; $AC² = 10² − 6²$."
+      ],
+      "solution": "1) Ils ont deux angles égaux (B̂ et l’angle droit) : ils sont semblables.\n2) $BH/BA$ = $BA/BC$, donc $BA² = 3,6 × 10 = 36$ et $AB = 6$ cm.\n3) $AH² = 36 − 12,96 = 23,04$, donc $AH = 4,8$ cm.\n4) $AC² = 100 − 36 = 64$, donc $AC = 8$ cm.",
+      "selfTest": [
+        { "response": { "parts": [{ "value": "ils sont semblables" }, { "value": "6" }, { "value": "4,8" }, { "value": "8" }] }, "expect": "correct" },
+        {
+          "response": { "parts": [{ "value": "ils sont semblables" }, { "value": "36" }, { "value": "4,8" }, { "value": "8" }] },
+          "expect": "mc:oubli-racine"
+        }
+      ]
+    },
+    {
+      "id": "m3-transfo-composer",
+      "type": "composite",
+      "skill": "m3.transfo.rotation-homothetie",
+      "track": "approfondissement",
+      "role": "defi",
+      "difficulty": 4,
+      "representation": "symbolique",
+      "targets": ["mc:rapports-additionnes", "mc:symetrie-axiale"],
+      "expectedSeconds": 420,
+      "prompt": "On applique au triangle $ABC$ l’homothétie de centre $O$ et de rapport 2 : on obtient $A_1B_1C_1$. Puis on applique à $A_1B_1C_1$ l’homothétie de même centre $O$ et de rapport −0,5 : on obtient $A_2B_2C_2$. On sait que $OA = 3$ cm.",
+      "figure": {
+        "alt": "Le triangle ABC, son image A1B1C1 par l'homothétie de centre O et de rapport 2, puis l'image A2B2C2 de A1B1C1 par l'homothétie de centre O et de rapport −0,5.",
+        "w": 400,
+        "h": 267,
+        "frame": { "x": [-4.2, 7.6], "y": [-2.8, 4.6] },
+        "items": [
+          { "type": "polygon", "points": ["A", "B", "C"], "fill": "maths" },
+          { "type": "polygon", "points": ["A1", "B1", "C1"], "fill": "orange" },
+          { "type": "polygon", "points": ["A2", "B2", "C2"], "fill": "vert" },
+          { "type": "point", "id": "O", "x": 0, "y": 0, "pos": "se", "style": "rond" },
+          { "type": "point", "id": "A", "x": 2.9, "y": 0.78, "pos": "s" },
+          { "type": "point", "id": "B", "x": 3.29, "y": 1.9, "pos": "e" },
+          { "type": "point", "id": "C", "x": 2.22, "y": 1.86, "pos": "n" },
+          { "type": "point", "id": "A1", "x": 5.8, "y": 1.55, "pos": "s", "label": "A₁" },
+          { "type": "point", "id": "B1", "x": 6.58, "y": 3.8, "pos": "e", "label": "B₁" },
+          { "type": "point", "id": "C1", "x": 4.44, "y": 3.73, "pos": "n", "label": "C₁" },
+          { "type": "point", "id": "A2", "x": -2.9, "y": -0.78, "pos": "n", "label": "A₂" },
+          { "type": "point", "id": "B2", "x": -3.29, "y": -1.9, "pos": "w", "label": "B₂" },
+          { "type": "point", "id": "C2", "x": -2.22, "y": -1.86, "pos": "s", "label": "C₂" },
+          { "type": "segment", "from": "A2", "to": "A1", "dashed": true, "color": "gris" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure $OA_1$ ? (en cm)",
+          "answer": 6,
+          "misconceptions": [
+            {
+              "answer": 1.5,
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "Une homothétie de rapport 2 multiplie les distances au centre par 2."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Combien mesure $OA_2$ ? (en cm)",
+          "answer": 3,
+          "misconceptions": [
+            {
+              "answer": 12,
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "Le rapport −0,5 multiplie les distances au centre par 0,5 : on prend la moitié."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quel est le rapport de l’homothétie de centre $O$ qui transforme directement $ABC$ en $A_2B_2C_2$ ?",
+          "answer": -1,
+          "misconceptions": [
+            {
+              "answer": 1.5,
+              "id": "mc:rapports-additionnes",
+              "error": "notion",
+              "feedback": "On n’additionne pas les rapports : la première homothétie multiplie par 2, la seconde par −0,5. Enchaîne les deux multiplications."
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "prompt": "Quelle transformation, déjà connue, transforme $ABC$ en $A_2B_2C_2$ ?",
+          "accept": [
+            "la symétrie centrale de centre O",
+            "symétrie centrale",
+            "une symétrie centrale",
+            "la symétrie centrale",
+            "la symétrie de centre O",
+            "symetrie centrale",
+            "un demi-tour",
+            "le demi-tour de centre O",
+            "la rotation de 180°",
+            "une rotation de 180°",
+            "rotation de 180°",
+            "demi-tour",
+            "le demi-tour",
+            "la symétrie centrale de centre o",
+            "une symétrie de centre O"
+          ],
+          "misconceptions": [
+            {
+              "answer": "la symétrie axiale",
+              "id": "mc:symetrie-axiale",
+              "error": "notion",
+              "feedback": "Une symétrie axiale se fait par rapport à une droite ; ici, chaque point est envoyé de l’autre côté d’un **point**, à la même distance."
+            },
+            {
+              "answer": "symétrie axiale",
+              "id": "mc:symetrie-axiale",
+              "error": "notion",
+              "feedback": "Une symétrie axiale se fait par rapport à une droite ; ici, chaque point est envoyé de l’autre côté d’un **point**, à la même distance."
+            }
+          ]
+        }
+      ],
+      "hints": ["$OA_1 = 2 × OA$.", "$OA_2 = 0,5 × OA_1$, et $A_2$ est de l’autre côté de $O$.", "Rapport global : $2 × (−0,5)$."],
+      "solution": "1) $OA_1 = 2 × 3 = 6$ cm.\n2) $OA_2 = 0,5 × 6 = 3$ cm, de l’autre côté de $O$.\n3) Les rapports se multiplient : $2 × (−0,5) = −1$.\n4) L’homothétie de rapport −1 est la symétrie centrale de centre $O$ (un demi-tour).",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "6" }, { "value": "3" }, { "value": "-1" }, { "value": "la symétrie centrale de centre O" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "6" }, { "value": "3" }, { "value": "1,5" }, { "value": "la symétrie centrale de centre O" }] },
+          "expect": "mc:rapports-additionnes"
+        }
+      ]
+    },
+    {
+      "id": "m3-transfo-brevet",
+      "type": "composite",
+      "skill": "m3.transfo.effets",
+      "skills": ["m4.grandeurs.volume-pyramide-cone", "m3.grandeurs.conversions"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "concrete",
+      "targets": ["mc:oubli-tiers", "mc:volume-k", "mc:volume-k2"],
+      "expectedSeconds": 900,
+      "prompt": "Type brevet — Un verre a la forme d’un cône de révolution, pointe en bas, de rayon 4 cm et de hauteur 12 cm. On y verse du sirop jusqu’à mi-hauteur : le liquide forme un petit cône, qui est une réduction du verre.",
+      "figure": {
+        "alt": "Un verre conique pointe en bas, de rayon 4 cm et de hauteur 12 cm, rempli de sirop jusqu'à 6 cm de hauteur.",
+        "w": 300,
+        "h": 310,
+        "frame": { "x": [-7.6, 7.6], "y": [-1.2, 14.6] },
+        "items": [
+          {
+            "type": "polygon",
+            "points": [
+              [2, 6],
+              [1.93, 6.14],
+              [1.73, 6.28],
+              [1.41, 6.39],
+              [1, 6.48],
+              [0.52, 6.53],
+              [0, 6.55],
+              [-0.52, 6.53],
+              [-1, 6.48],
+              [-1.41, 6.39],
+              [-1.73, 6.28],
+              [-1.93, 6.14],
+              [-2, 6],
+              [-1.93, 5.86],
+              [-1.73, 5.73],
+              [-1.41, 5.61],
+              [-1, 5.52],
+              [-0.52, 5.47],
+              [0, 5.45],
+              [0.52, 5.47],
+              [1, 5.52],
+              [1.41, 5.61],
+              [1.73, 5.73],
+              [1.93, 5.86],
+              [2, 6]
+            ],
+            "fill": "orange",
+            "color": "orange"
+          },
+          {
+            "type": "polygon",
+            "points": [
+              [4, 12],
+              [3.86, 12.28],
+              [3.46, 12.55],
+              [2.83, 12.78],
+              [2, 12.95],
+              [1.04, 13.06],
+              [0, 13.1],
+              [-1.04, 13.06],
+              [-2, 12.95],
+              [-2.83, 12.78],
+              [-3.46, 12.55],
+              [-3.86, 12.28],
+              [-4, 12],
+              [-3.86, 11.72],
+              [-3.46, 11.45],
+              [-2.83, 11.22],
+              [-2, 11.05],
+              [-1.04, 10.94],
+              [0, 10.9],
+              [1.04, 10.94],
+              [2, 11.05],
+              [2.83, 11.22],
+              [3.46, 11.45],
+              [3.86, 11.72],
+              [4, 12]
+            ]
+          },
+          { "type": "point", "id": "S", "x": 0, "y": 0, "pos": "s" },
+          { "type": "segment", "from": "S", "to": [-4, 12] },
+          { "type": "segment", "from": "S", "to": [4, 12] },
+          { "type": "segment", "from": "S", "to": [0, 12], "dashed": true, "color": "gris" },
+          { "type": "segment", "from": [0, 12], "to": [4, 12], "color": "rouge" },
+          { "type": "text", "x": 2, "y": 13.8, "text": "4 cm", "size": "s", "color": "rouge" },
+          { "type": "segment", "from": [5.6, 0], "to": [5.6, 12], "arrows": "both", "label": "12 cm", "color": "gris" },
+          { "type": "segment", "from": [-5.6, 0], "to": [-5.6, 6], "arrows": "both", "label": "6 cm", "color": "orange" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "1. Calcule le volume du verre (en cm³, au dixième).",
+          "answer": 201.0619,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 603.1858,
+              "id": "mc:oubli-tiers",
+              "error": "notion",
+              "prerequisite": "m4.grandeurs.volume-pyramide-cone",
+              "feedback": "Le volume d’un cône, c’est le tiers de celui du cylindre de même base et de même hauteur."
+            },
+            {
+              "answer": 804.2477,
+              "id": "mc:rayon-diametre",
+              "error": "lecture",
+              "feedback": "La formule utilise le **rayon** de la base, pas le diamètre."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "2. Quel est le coefficient de réduction $k$ qui transforme le verre en cône de sirop ?",
+          "answer": 0.5,
+          "misconceptions": [
+            {
+              "answer": 2,
+              "id": "mc:rapport-inverse",
+              "error": "notion",
+              "feedback": "Le cône de sirop est plus petit : le coefficient de réduction est plus petit que 1."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "3. Calcule le volume de sirop (en cm³, au dixième).",
+          "answer": 25.1327,
+          "tolerance": 0.05,
+          "round": 1,
+          "misconceptions": [
+            {
+              "answer": 100.531,
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "Un volume est multiplié par $k³$, pas par $k$ : il fait intervenir trois longueurs."
+            },
+            { "answer": 50.2655, "id": "mc:volume-k2", "error": "notion", "feedback": "$k²$ convient pour une aire. Pour un volume, c’est $k³$." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "4. Quel pourcentage du volume du verre le sirop occupe-t-il ? (en %)",
+          "answer": 12.5,
+          "misconceptions": [
+            {
+              "answer": 50,
+              "id": "mc:volume-k",
+              "error": "notion",
+              "feedback": "À mi-hauteur, le verre n’est pas à moitié plein ! Le volume est multiplié par $k³$."
+            },
+            { "answer": 25, "id": "mc:volume-k2", "error": "notion", "feedback": "Pour un volume, c’est $k³$, pas $k²$." }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "5. Combien de centilitres le verre plein contient-il ? (1 L = 1 000 cm³ ; au centilitre près)",
+          "answer": 20.1062,
+          "tolerance": 0.5,
+          "round": 0
+        }
+      ],
+      "hints": ["$V = (1/3) × π × r² × h$.", "Le sirop monte à 6 cm sur 12 cm : $k = 6 ÷ 12$.", "Volume du sirop = volume du verre × $k³$ ; 1 cL = 10 cm³."],
+      "solution": "1) $V = (1/3) × π × 4² × 12 = 64π$ ≈ 201,1 cm³.\n2) $k = 6 ÷ 12 = 0,5$.\n3) le volume de sirop vaut $64π × 0,5³ = 8π$ ≈ 25,1 cm³.\n4) $0,5³ = 0,125$ : le sirop occupe 12,5 % du verre seulement, alors qu’il monte à mi-hauteur !\n5) 201,1 cm³ = 0,2011 L ≈ 20 cL.",
+      "selfTest": [
+        {
+          "response": { "parts": [{ "value": "201,1" }, { "value": "0,5" }, { "value": "25,1" }, { "value": "12,5" }, { "value": "20" }] },
+          "expect": "correct"
+        },
+        {
+          "response": { "parts": [{ "value": "201,1" }, { "value": "0,5" }, { "value": "100,5" }, { "value": "12,5" }, { "value": "20" }] },
+          "expect": "mc:volume-k"
+        },
+        {
+          "response": { "parts": [{ "value": "603,2" }, { "value": "0,5" }, { "value": "25,1" }, { "value": "12,5" }, { "value": "20" }] },
+          "expect": "mc:oubli-tiers"
+        }
+      ]
+    },
+    {
+      "id": "m3-transfo-sierpinski",
+      "type": "composite",
+      "skill": "m3.transfo.effets",
+      "skills": ["m4.puissances"],
+      "track": "expert",
+      "role": "defi",
+      "difficulty": 5,
+      "representation": "visuelle",
+      "targets": ["mc:aire-k"],
+      "expectedSeconds": 720,
+      "prompt": "**Le triangle de Sierpiński.** On part d’un triangle équilatéral plein, d’aire 64 cm² (étape 0). À chaque étape, chaque triangle plein est remplacé par 3 triangles pleins, réductions de rapport $1/2$ placées dans ses trois coins : on retire le triangle du milieu.",
+      "figure": {
+        "alt": "Trois étapes de construction : un triangle plein (étape 0), puis 3 triangles (étape 1), puis 9 triangles (étape 2).",
+        "w": 460,
+        "h": 188,
+        "frame": { "x": [-0.6, 26.6], "y": [-1.8, 7.6] },
+        "items": [
+          { "type": "polygon", "points": [[0, 0], [8, 0], [4, 6.93]], "fill": "maths" },
+          { "type": "polygon", "points": [[9, 0], [13, 0], [11, 3.46]], "fill": "maths" },
+          { "type": "polygon", "points": [[13, 0], [17, 0], [15, 3.46]], "fill": "maths" },
+          { "type": "polygon", "points": [[11, 3.46], [15, 3.46], [13, 6.93]], "fill": "maths" },
+          { "type": "polygon", "points": [[18, 0], [20, 0], [19, 1.73]], "fill": "maths" },
+          { "type": "polygon", "points": [[20, 0], [22, 0], [21, 1.73]], "fill": "maths" },
+          { "type": "polygon", "points": [[19, 1.73], [21, 1.73], [20, 3.46]], "fill": "maths" },
+          { "type": "polygon", "points": [[22, 0], [24, 0], [23, 1.73]], "fill": "maths" },
+          { "type": "polygon", "points": [[24, 0], [26, 0], [25, 1.73]], "fill": "maths" },
+          { "type": "polygon", "points": [[23, 1.73], [25, 1.73], [24, 3.46]], "fill": "maths" },
+          { "type": "polygon", "points": [[20, 3.46], [22, 3.46], [21, 5.2]], "fill": "maths" },
+          { "type": "polygon", "points": [[22, 3.46], [24, 3.46], [23, 5.2]], "fill": "maths" },
+          { "type": "polygon", "points": [[21, 5.2], [23, 5.2], [22, 6.93]], "fill": "maths" },
+          { "type": "text", "x": 4, "y": -1, "text": "étape 0", "size": "s" },
+          { "type": "text", "x": 13, "y": -1, "text": "étape 1", "size": "s" },
+          { "type": "text", "x": 22, "y": -1, "text": "étape 2", "size": "s" }
+        ]
+      },
+      "parts": [
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’aire d’un des 3 petits triangles de l’étape 1 ? (en cm²)",
+          "answer": 16,
+          "misconceptions": [
+            {
+              "answer": 32,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Les longueurs sont divisées par 2… et les aires multipliées par $(1/2)²$."
+            }
+          ]
+        },
+        { "type": "numeric", "prompt": "Quelle est l’aire totale coloriée à l’étape 1 ? (en cm²)", "answer": 48 },
+        {
+          "type": "numeric",
+          "prompt": "Par quel nombre l’aire coloriée est-elle multipliée à chaque étape ? (nombre décimal)",
+          "answer": 0.75,
+          "misconceptions": [
+            {
+              "answer": 1.5,
+              "id": "mc:aire-k",
+              "error": "notion",
+              "feedback": "Chaque petit triangle a une aire multipliée par $(1/2)²$, pas par $1/2$ ; et il y en a 3."
+            }
+          ]
+        },
+        {
+          "type": "numeric",
+          "prompt": "Quelle est l’aire coloriée à l’étape 3 ? (en cm²)",
+          "answer": 27,
+          "misconceptions": [
+            {
+              "answer": 36,
+              "id": "mc:etape-oubliee",
+              "error": "calcul",
+              "feedback": "Compte bien les étapes : de l’étape 0 à l’étape 3, on multiplie trois fois par le même nombre."
+            }
+          ]
+        },
+        {
+          "type": "open",
+          "prompt": "Que devient l’aire coloriée si l’on continue indéfiniment ? Explique.",
+          "minWords": 15,
+          "criteria": [
+            {
+              "id": "c1",
+              "label": "J’explique qu’on multiplie à chaque étape par 0,75, un nombre plus petit que 1",
+              "keywords": [["0,75", "3/4", "multipli"]]
+            },
+            {
+              "id": "c2",
+              "label": "Je conclus que l’aire devient aussi petite qu’on veut (elle se rapproche de 0)",
+              "keywords": [["zero", "de plus en plus petit", "tend vers", "se rapproche", "diminue", "presque rien"]]
+            }
+          ]
+        }
+      ],
+      "hints": [
+        "Rapport $1/2$ pour les longueurs : aire × $1/4$.",
+        "À chaque étape : 3 fois plus de triangles, chacun 4 fois plus petit en aire.",
+        "Étape 3 : $64 × 0,75 × 0,75 × 0,75$."
+      ],
+      "solution": "1) $64 × (1/2)² = 16$ cm².\n2) $3 × 16 = 48$ cm².\n3) À chaque étape, l’aire est multipliée par $3 × 1/4 = 0,75$.\n4) $64 × 0,75³ = 27$ cm².\n5) On multiplie sans cesse par 0,75 < 1 : l’aire coloriée devient aussi petite qu’on veut, elle se rapproche de 0… alors que la figure garde la même taille !",
+      "selfTest": [
+        {
+          "response": {
+            "parts": [
+              { "value": "16" },
+              { "value": "48" },
+              { "value": "0,75" },
+              { "value": "27" },
+              {
+                "text": "On multiplie à chaque fois par 0,75 qui est plus petit que 1, donc l’aire devient de plus en plus petite, elle se rapproche de zéro.",
+                "selfCheck": { "c1": true, "c2": true }
+              }
+            ]
+          },
+          "expect": "correct"
+        },
+        {
+          "response": {
+            "parts": [
+              { "value": "32" },
+              { "value": "48" },
+              { "value": "0,75" },
+              { "value": "27" },
+              { "text": "Je ne sais pas.", "selfCheck": { "c1": false, "c2": false } }
+            ]
+          },
+          "expect": "mc:aire-k"
+        }
+      ]
+    }
+  ]
+}
