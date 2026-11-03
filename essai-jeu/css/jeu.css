@@ -189,3 +189,108 @@
 .podium-1 .podium-rank { color: #b7791f; font-size: 1.6rem; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .podium-1 { background: #33280f; } }
 @media (max-width: 640px) { .jeu-podium li { grid-template-columns: 40px auto 1fr; } .podium-stats { grid-column: 2 / -1; } }
+
+/* ============================================================================================
+   Quête (chemin linéaire de l'Espace exercices), coffres, vignettes et album de lumière
+   ============================================================================================ */
+
+/* l'Espace exercices est une grille : sans min-width, le chemin (défilant) élargirait toute la page */
+.quest-stage { min-width: 0; }
+.quest-setup-head, .quest-resume { display: flex; gap: 18px; align-items: center; }
+.quest-setup-head h2 { margin-bottom: 4px; }
+.quest-setup-head .chest, .quest-resume .chest { flex: none; }
+.quest-setup .series-grid { margin: 14px 0; }
+.quest-head { align-items: center; }
+.quest-score { display: inline-flex; gap: 12px; margin: 0; padding: 4px 12px; border-radius: 999px; background: var(--paper-2); border: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+.quest-score b { color: #b7791f; }
+.quest-score small { color: var(--ink-3); }
+
+/* le chemin : une rangée de pas, un coffre toutes les quatre étapes, le grand coffre au bout */
+.quest-track { list-style: none; margin: 8px 0 16px; padding: 30px 8px 12px; display: flex; align-items: center; gap: 0; overflow-x: auto; scrollbar-width: thin; position: relative;
+  background: var(--card); border: 1px solid var(--rule); border-radius: var(--radius-l); box-shadow: var(--shadow-1); }
+.qnode { position: relative; flex: none; display: grid; justify-items: center; padding: 0 4px; }
+.qnode + .qnode::before { content: ''; position: absolute; left: -10px; top: 50%; width: 20px; height: 4px; margin-top: -2px; background: var(--rule-2); border-radius: 2px; }
+.qnode.is-done + .qnode::before, .qnode.is-done.qnode::before { background: var(--glow, #f59e0b); }
+.qnode--pas { margin: 0 6px; }
+.qnode-dot { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 2.5px solid var(--rule-2); background: var(--paper); font-weight: 700; font-size: .9rem; color: var(--ink-3); transition: transform .2s var(--ease); }
+.qnode.is-done .qnode-dot { border-color: #e7b53c; background: #fff6d6; color: #b7791f; }
+.qnode.is-current .qnode-dot { border-color: var(--ink); background: var(--ink); color: var(--paper); transform: scale(1.18); box-shadow: 0 0 0 5px color-mix(in srgb, var(--ink) 16%, transparent); animation: qpulse 1.6s ease-in-out infinite; }
+@keyframes qpulse { 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--ink) 6%, transparent); } }
+.qnode-stars { position: absolute; top: 38px; font-size: .62rem; letter-spacing: -1px; color: #d39b1f; white-space: nowrap; }
+.qnode-stage { position: absolute; top: -24px; left: 0; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); white-space: nowrap; }
+.qnode--defi, .qnode--final { margin: 0 10px; }
+.qnode--defi .chest svg { width: 50px; height: 44px; }
+.qnode--final .chest svg { width: 62px; height: 54px; }
+.qnode--defi.is-current .chest { animation: chest-wiggle 1.4s ease-in-out infinite; }
+.qnode--defi.is-skipped .chest, .qnode--final.is-skipped .chest { filter: grayscale(1); opacity: .45; }
+.qnode:not(.is-done):not(.is-current):not(.is-open) .chest { opacity: .8; }
+
+.quest-intro { display: flex; gap: 14px; align-items: center; margin-bottom: 12px; }
+.quest-intro p { margin: 0; }
+.quest-intro .chest svg { width: 64px; height: 56px; }
+.quest-kind { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; }
+.quest-intro--defi { border-color: #f5c84c; background: color-mix(in srgb, #ffcf4d 10%, var(--card)); }
+.quest-failed { display: flex; gap: 16px; align-items: center; }
+.quest-failed h3:focus, .quest-end h3:focus, .chest-reveal h3:focus { outline: none; }
+.quest-chest { text-align: center; }
+.quest-next { justify-content: center; margin-top: 10px; }
+.quest-end .chest-reveal { margin: 10px 0 14px; }
+
+/* coffre */
+.chest { display: inline-grid; place-items: center; }
+.chest-body { fill: #b8742a; stroke: #6b3f12; stroke-width: 3; }
+.chest-lid-shape { fill: #c98234; stroke: #6b3f12; stroke-width: 3; }
+.chest-band { fill: #8a5520; }
+.chest-lock { fill: #f5c84c; stroke: #6b3f12; stroke-width: 2.5; }
+.chest-hole { fill: #6b3f12; }
+.chest--rare .chest-body { fill: #e8b730; } .chest--rare .chest-lid-shape { fill: #f5cd4a; } .chest--rare .chest-band { fill: #b8860b; } .chest--rare .chest-lock { fill: #fff3c4; }
+.chest-rays line { stroke: #ffcf4d; stroke-width: 5; stroke-linecap: round; opacity: 0; transition: opacity .4s; }
+.chest-lid { transform-box: view-box; transform-origin: 16px 46px; transition: transform .45s cubic-bezier(.3, 1.6, .5, 1); }
+.chest.is-open .chest-lid { transform: rotate(-24deg) translate(-4px, -8px); }
+.chest.is-open .chest-rays line { opacity: .85; }
+.chest.is-shaking { animation: chest-shake .16s linear infinite; }
+@keyframes chest-shake { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-5deg); } 75% { transform: rotate(5deg); } }
+@keyframes chest-wiggle { 0%, 80%, 100% { transform: rotate(0); } 85% { transform: rotate(-7deg); } 90% { transform: rotate(6deg); } 95% { transform: rotate(-3deg); } }
+.chest-reveal { position: relative; display: grid; justify-items: center; gap: 6px; padding: 8px 0; overflow: hidden; }
+.chest-reveal h3 { margin: 0; }
+.chest-reveal .chest svg { width: 130px; height: 112px; }
+.chest-points { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: #b7791f; margin: 0; animation: enterfwd .4s var(--ease) both; }
+.chest-prize { display: grid; justify-items: center; gap: 8px; }
+
+/* vignettes */
+.vignette { position: relative; display: grid; justify-items: center; text-align: center; gap: 4px; max-width: 300px; padding: 14px 16px 16px; border-radius: 16px; background: var(--card); border: 2.5px solid var(--rule-2); box-shadow: var(--shadow-2); animation: card-flip .6s var(--ease) both; }
+.vignette--rare { border: 3px solid transparent; background-image: linear-gradient(var(--card), var(--card)), linear-gradient(135deg, #f5c84c, #e5484d, #7a4cc2, #3b4cca, #2a9d5c); background-origin: border-box; background-clip: padding-box, border-box; }
+.vignette-icon { font-size: 2.6rem; line-height: 1.1; }
+.vignette strong { font-family: var(--font-display); font-size: 1.2rem; }
+.vignette-fact { font-size: .95rem; color: var(--ink-2); }
+.vignette-tag { font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #b7791f; }
+.jeu-rewards { margin: 4px 0 12px; padding: 12px 14px; border-radius: var(--radius); background: color-mix(in srgb, #ffcf4d 10%, var(--paper)); border: 1px solid #f5c84c; }
+.jeu-rewards h3 { margin: 0 0 6px; font-size: 1.05rem; }
+.jeu-rewards ul { margin: 0; padding-left: 1.1em; }
+.jeu-reward-cards { display: flex; flex-wrap: wrap; gap: 10px; margin: 8px 0; }
+
+/* album de lumière (Ma progression) */
+.prog-album { margin-top: 16px; }
+.album-grid { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; }
+.album-slot { border: 1.5px solid var(--rule); border-radius: var(--radius); background: var(--paper); min-height: 96px; display: grid; }
+.album-slot.is-rare { border-color: #f5c84c; }
+.album-slot.is-empty { place-items: center; align-content: center; color: var(--ink-3); border-style: dashed; }
+.album-slot.is-empty .vignette-icon { font-size: 1.6rem; opacity: .5; }
+.album-slot details { padding: 10px; }
+.album-slot summary { list-style: none; cursor: pointer; display: grid; justify-items: center; text-align: center; gap: 2px; }
+.album-slot summary::-webkit-details-marker { display: none; }
+.album-slot summary strong { font-size: .9rem; line-height: 1.2; }
+.album-slot details[open] { background: var(--card); border-radius: var(--radius); }
+.album-slot details p { margin: 6px 0 0; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .qnode.is-done .qnode-dot { background: #33280f; }
+  :root:not([data-theme="light"]) .quest-intro--defi, :root:not([data-theme="light"]) .jeu-rewards { background: #2a2210; }
+}
+@media (max-width: 640px) {
+  .quest-setup-head, .quest-resume, .quest-failed { flex-direction: column; align-items: flex-start; }
+}
+/* le chemin reste visible pendant l'exercice (sous la barre du haut) quand l'écran est assez grand */
+@media (min-width: 700px) and (min-height: 640px) {
+  .quest-track { position: sticky; top: 78px; z-index: 6; }
+}

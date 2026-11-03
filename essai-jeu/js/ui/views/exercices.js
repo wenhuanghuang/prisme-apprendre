@@ -12,6 +12,7 @@ import { mountExercise, TRACK_LABELS, TRACK_ICONS } from '../exercise.js';
 import { allGenerators, produce, newSeed, coversSkills } from '../../generators/registry.js';
 import { rng } from '../../core/template.js';
 import { printSheet, printable } from '../print-sheet.js';
+import { questPanel } from '../game/quest-view.js';
 
 const TRACKS = ['classe', 'approfondissement', 'expert'];
 const SUBJECT_ORDER = ['maths', 'pc', 'numerique', 'francais', 'hg', 'emc', 'svt', 'techno', 'lv', 'musique', 'arts-plastiques'];
@@ -419,17 +420,20 @@ function generatorsPanel(panel, stageCleanup) {
 }
 
 export async function render(root, { params }) {
-  const tab = params.get('onglet') === 'generateurs' ? 'generateurs' : 'series';
+  // la quête (chemin linéaire) est l'onglet par défaut ; un lien « S'entraîner » sur des notions ouvre une série
+  const asked = params.get('onglet');
+  const tab = ['quete', 'series', 'generateurs'].includes(asked) ? asked : (params.get('notions') || params.get('matiere') || params.get('lecon') ? 'series' : 'quete');
   const stageCleanup = { fn: null };
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Espace exercices'), h('h1', {}, 'S’entraîner à la demande'),
-      h('p', { class: 'muted' }, 'Compose une série sur mesure ou lance un générateur : chaque réponse est corrigée, la démarche analysée, et ta progression mise à jour.')),
+      h('p', { class: 'muted' }, 'Pars en quête pas à pas, compose une série sur mesure ou lance un générateur : chaque réponse est corrigée, la démarche analysée, et ta progression mise à jour.')),
     h('a', { class: 'btn', href: '#/jeu' }, h('span', { 'aria-hidden': 'true' }, '🎲 '), 'Jouer sur le plateau')));
-  root.append(tabs([{ id: 'series', label: 'Séries sur mesure', icon: '☰' }, { id: 'generateurs', label: 'Générateurs illimités', icon: '∞' }], tab,
-    (id) => { location.hash = `#/exercices${id === 'generateurs' ? '?onglet=generateurs' : ''}`; }, 'Espace exercices'));
+  root.append(tabs([{ id: 'quete', label: 'Quête', icon: '🗺️' }, { id: 'series', label: 'Séries sur mesure', icon: '☰' }, { id: 'generateurs', label: 'Générateurs illimités', icon: '∞' }], tab,
+    (id) => { location.hash = `#/exercices${id === 'quete' ? '' : `?onglet=${id}`}`; }, 'Espace exercices'));
   const panel = h('div', { class: 'ex-space', role: 'tabpanel' });
   root.append(panel);
-  if (tab === 'series') await seriesPanel(panel, stageCleanup, params);
+  if (tab === 'quete') await questPanel(panel, stageCleanup);
+  else if (tab === 'series') await seriesPanel(panel, stageCleanup, params);
   else generatorsPanel(panel, stageCleanup);
   return () => { if (stageCleanup.fn) stageCleanup.fn(); };
 }

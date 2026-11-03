@@ -7,7 +7,7 @@
  * Les points récompensent la réussite autonome, le niveau choisi et la régularité, jamais le simple clic :
  * une solution affichée ne rapporte qu'un point d'effort, refaire le même exercice le même jour rapporte de moins en moins.
  */
-import { titleFor, unlockedAt, computeTrophies, ACCESSORIES, TINTS } from './game-rewards.js';
+import { titleFor, unlockedAt, computeTrophies, albumOf, ACCESSORIES, TINTS } from './game-rewards.js';
 
 export const XP = {
   correct: 10, // réussi du premier coup sans indice (niveau de la classe)
@@ -21,6 +21,10 @@ export const XP = {
   lesson: 30, // leçon terminée (au moins 70 % des exercices vraiment faits), une fois par leçon
   experience: 15, // expérience regardée jusqu'au bout, une fois par expérience
   bilan: 40, // bilan d'unité réussi (au moins 70 % des étoiles), une fois par unité : une couronne
+  defi: 15, // défi d'une quête relevé (réussi sans la correction, au plus un indice) : un coffre
+  quete: 40, // quête terminée avec au moins la moitié des étoiles : le grand coffre
+  plateau: 15, // partie du jeu de plateau jouée jusqu'au bout, avec au moins trois bonnes réponses
+  victoire: 20, // partie du jeu de plateau gagnée (avec au moins trois bonnes réponses)
 };
 
 export const TRACK_MULT = { classe: 1, approfondissement: 1.5, expert: 2 };
@@ -44,7 +48,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -97,7 +101,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -302,7 +306,12 @@ export function computeGame(attempts, gameState, now) {
     crowns: game.events.filter((e) => e.type === 'bilan').length,
     bestPerfectRun: bestPerfectRun(attempts),
     reviews: (attempts || []).filter((a) => a.delayed && a.verdict === 'correct').length,
+    defis: game.events.filter((e) => e.type === 'defi').length,
+    quetes: game.events.filter((e) => e.type === 'quete').length,
+    victoires: game.events.filter((e) => e.type === 'victoire').length,
   };
+  const album = albumOf(game.events);
+  counters.album = album.owned.length;
   const unlocked = unlockedAt(level);
   return {
     totalXp, level, title: titleFor(level), nextTitle: titleFor(level + 1),
@@ -315,6 +324,7 @@ export function computeGame(attempts, gameState, now) {
       tint: unlocked.tints.includes(game.equipped.tint) ? game.equipped.tint : 'soleil',
     },
     seenLevel: game.seenLevel,
+    album,
     items,
   };
 }

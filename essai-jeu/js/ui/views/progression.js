@@ -9,6 +9,7 @@ import { XP, TRACK_MULT, GOALS, MAX_JOKERS, JOKER_EVERY } from '../../engine/gam
 import { ACCESSORIES, TINTS } from '../../engine/game-rewards.js';
 import { photon } from '../photon.js';
 import { goalRing, streakLabel } from '../game/hud.js';
+import { albumSection } from '../game/rewards-ui.js';
 
 function hero(g) {
   return h('section', { class: 'prog-hero card' },
@@ -102,6 +103,10 @@ function rules() {
       row('Leçon terminée, au moins 7 exercices sur 10 faits (une fois par leçon)', `${XP.lesson} points`),
       row('Expérience regardée jusqu’au bout (une fois)', `${XP.experience} points`),
       row('Bilan d’unité réussi dans un parcours (une couronne, une fois)', `${XP.bilan} points`),
+      row('Défi de quête relevé : un coffre et une vignette (une fois par coffre)', `${XP.defi} points`),
+      row('Quête terminée avec au moins la moitié des étoiles : le grand coffre et une vignette rare', `${XP.quete} points`),
+      row('Partie du jeu de plateau jouée jusqu’au bout, au moins 3 bonnes réponses', `${XP.plateau} points`),
+      row('Victoire au jeu de plateau (au moins 3 bonnes réponses) : une vignette rare', `+ ${XP.victoire} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),
     h('p', { class: 'small muted' }, 'Refaire le même exercice le même jour rapporte de moins en moins : on progresse en variant. Les points ne remplacent pas la maîtrise des notions, suivie dans le carnet.'));
 }
@@ -118,6 +123,7 @@ export function render(root, { params }) {
       hero(g),
       h('div', { class: 'prog-grid' }, goalCard(g), streakCard(g), weekCard(g)),
       wardrobe(g),
+      albumSection(g),
       trophies(g),
       rules());
     if (rulesOpen) root.querySelector('.prog-rules').open = true;
@@ -125,6 +131,7 @@ export function render(root, { params }) {
     if (again) again.focus({ preventScroll: true });
   };
   paint();
-  if (params && params.get('voir') === 'garde-robe') setTimeout(() => { const w = root.querySelector('#garde-robe'); if (w) w.scrollIntoView({ block: 'start' }); }, 50);
+  const voir = params && params.get('voir');
+  if (voir === 'garde-robe' || voir === 'album') setTimeout(() => { const w = root.querySelector(`#${voir}`); if (w) w.scrollIntoView({ block: 'start' }); }, 50);
   return subscribe(() => { if (root.isConnected) paint(); });
 }

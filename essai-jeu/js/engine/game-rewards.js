@@ -55,6 +55,13 @@ export const TROPHIES = [
   { id: 'experience-5', icon: '🧪', label: 'Œil de scientifique', attests: 'Cinq expériences regardées jusqu’au bout.', goal: 5, value: (c) => c.experiences },
   { id: 'sans-faute', icon: '🎖️', label: 'Sans faute', attests: 'Dix exercices de suite réussis du premier coup, sans indice.', goal: 10, value: (c) => c.bestPerfectRun },
   { id: 'revisions', icon: '🔁', label: 'Bonne mémoire', attests: 'Dix révisions réussies plusieurs jours après.', goal: 10, value: (c) => c.reviews },
+  { id: 'defi-1', icon: '🗝️', label: 'Premier coffre', attests: 'Un défi de quête relevé : son coffre est ouvert.', goal: 1, value: (c) => c.defis || 0 },
+  { id: 'defi-10', icon: '💎', label: 'Chasseur de trésors', attests: 'Dix défis de quête relevés.', goal: 10, value: (c) => c.defis || 0 },
+  { id: 'quete-1', icon: '🗺️', label: 'Première quête', attests: 'Une quête terminée avec au moins la moitié des étoiles.', goal: 1, value: (c) => c.quetes || 0 },
+  { id: 'quete-5', icon: '🧭', label: 'Grand explorateur', attests: 'Cinq quêtes réussies.', goal: 5, value: (c) => c.quetes || 0 },
+  { id: 'plateau-1', icon: '🎲', label: 'Premier au Prisme', attests: 'Une partie du jeu de plateau gagnée (en répondant juste au moins trois fois).', goal: 1, value: (c) => c.victoires || 0 },
+  { id: 'album-12', icon: '📒', label: 'Collectionneur', attests: 'Douze vignettes dans l’album de lumière.', goal: 12, value: (c) => c.album || 0 },
+  { id: 'album-24', icon: '🏆', label: 'Album complet', attests: 'Les vingt-quatre vignettes de l’album de lumière.', goal: 24, value: (c) => c.album || 0 },
   { id: 'niveau-5', icon: '🌟', label: 'Rayon', attests: 'Niveau 5 atteint.', goal: 5, value: (c) => c.level },
   { id: 'niveau-10', icon: '🌅', label: 'Aurore', attests: 'Niveau 10 atteint.', goal: 10, value: (c) => c.level },
 ];
@@ -64,4 +71,69 @@ export function computeTrophies(counters) {
     const v = Math.max(0, Number(t.value(counters)) || 0);
     return { id: t.id, icon: t.icon, label: t.label, attests: t.attests, goal: t.goal, value: Math.min(v, t.goal), earned: v >= t.goal };
   });
+}
+
+/* ------------------------------ Album de lumière ------------------------------ */
+
+/**
+ * Vignettes à collectionner, gagnées dans les coffres des jeux : chaque défi de quête relevé donne une vignette
+ * ordinaire, une quête réussie ou une victoire au jeu de plateau une vignette rare. Chacune explique un phénomène
+ * de lumière (la récompense apprend aussi quelque chose). Les icônes sont des émojis anciens, présents partout.
+ */
+export const VIGNETTES = [
+  { id: 'arc-en-ciel', icon: '🌈', label: 'Arc-en-ciel', fact: 'Les gouttes de pluie dévient et décomposent la lumière du Soleil, comme un prisme : on voit l’arc en tournant le dos au Soleil.' },
+  { id: 'coucher', icon: '🌅', label: 'Coucher de soleil', fact: 'Le soir, la lumière traverse beaucoup plus d’air : le bleu est diffusé en chemin, il reste surtout l’orange et le rouge.' },
+  { id: 'ciel-bleu', icon: '🌤️', label: 'Ciel bleu', fact: 'L’air diffuse bien plus la lumière bleue que la rouge : c’est pour cela que le ciel paraît bleu le jour.' },
+  { id: 'pleine-lune', icon: '🌕', label: 'Pleine lune', fact: 'La Lune ne produit pas de lumière : elle renvoie celle du Soleil vers nous.' },
+  { id: 'croissant', icon: '🌙', label: 'Croissant de lune', fact: 'Les phases de la Lune viennent de la part de sa face éclairée par le Soleil que l’on voit depuis la Terre.' },
+  { id: 'eclipse', icon: '🌑', label: 'Éclipse de Soleil', fact: 'La Lune passe entre la Terre et le Soleil et le cache quelques minutes : son ombre se déplace sur la Terre.' },
+  { id: 'soleil', icon: '☀️', label: 'Soleil', fact: 'La lumière du Soleil met environ 8 minutes pour arriver jusqu’à la Terre.' },
+  { id: 'etoile', icon: '⭐', label: 'Étoile', fact: 'La lumière des étoiles a voyagé pendant des années : on les voit telles qu’elles étaient dans le passé.' },
+  { id: 'voie-lactee', icon: '🌌', label: 'Voie lactée', fact: 'La bande pâle du ciel nocturne, ce sont des milliards d’étoiles de notre galaxie, vues par la tranche.' },
+  { id: 'comete', icon: '☄️', label: 'Comète', fact: 'Près du Soleil, la glace d’une comète se change en gaz : sa queue s’allonge à l’opposé du Soleil.' },
+  { id: 'etoile-filante', icon: '🌠', label: 'Étoile filante', fact: 'Ce n’est pas une étoile : c’est une poussière venue de l’espace qui chauffe et brille en entrant dans l’atmosphère.' },
+  { id: 'lampe', icon: '🔦', label: 'Lampe de poche', fact: 'La lumière se propage en ligne droite : dans le brouillard, le faisceau d’une lampe dessine un cône bien net.' },
+  { id: 'led', icon: '💡', label: 'Ampoule LED', fact: 'Une LED change l’énergie électrique en lumière en chauffant bien moins qu’une ampoule à filament.' },
+  { id: 'bougie', icon: '🕯️', label: 'Bougie', fact: 'La flamme brille parce que de minuscules grains de suie, très chauds, émettent de la lumière.' },
+  { id: 'loupe', icon: '🔍', label: 'Loupe', fact: 'Une loupe est une lentille convergente : elle dévie les rayons et fait paraître les objets plus grands.' },
+  { id: 'lunettes', icon: '👓', label: 'Lunettes', fact: 'Les verres de lunettes sont des lentilles : ils corrigent la façon dont l’œil fait converger la lumière.' },
+  { id: 'appareil-photo', icon: '📷', label: 'Appareil photo', fact: 'Comme dans l’œil, une lentille forme une image du paysage, à l’envers, sur le capteur.' },
+  { id: 'feu-artifice', icon: '🎆', label: 'Feu d’artifice', fact: 'Les couleurs viennent de métaux : le strontium donne du rouge, le cuivre du bleu, le sodium du jaune.' },
+  { id: 'aurore', icon: '✨', label: 'Aurore polaire', rare: true, fact: 'Des particules venues du Soleil frappent la haute atmosphère près des pôles et la font briller en vert et en rose.' },
+  { id: 'prisme', icon: '🔺', label: 'Prisme de Newton', rare: true, fact: 'Isaac Newton a montré qu’un prisme sépare la lumière blanche en couleurs, et qu’un second prisme peut les réunir.' },
+  { id: 'laser', icon: '🔴', label: 'Laser', rare: true, fact: 'La lumière d’un laser est d’une seule couleur et reste serrée en un faisceau très fin.' },
+  { id: 'supernova', icon: '💥', label: 'Supernova', rare: true, fact: 'Une étoile très massive qui explose peut briller un moment autant que toute une galaxie.' },
+  { id: 'halo', icon: '🌞', label: 'Halo solaire', rare: true, fact: 'Des cristaux de glace dans les nuages très hauts dévient la lumière et dessinent un anneau autour du Soleil.' },
+  { id: 'mirage', icon: '🏜️', label: 'Mirage', rare: true, fact: 'Au-dessus d’une route brûlante, l’air chaud courbe la lumière : on croit voir une flaque qui reflète le ciel.' },
+];
+
+/** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
+export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare' };
+
+function hashId(s) {
+  let x = 2166136261;
+  for (const c of String(s)) { x ^= c.codePointAt(0); x = Math.imul(x, 16777619) >>> 0; }
+  return x >>> 0;
+}
+
+/**
+ * Album recalculé à partir des évènements, dans l’ordre : chaque coffre donne une vignette pas encore obtenue de sa
+ * sorte (sinon de l’autre), tirée d’après l’identifiant de l’évènement. Rien à enregistrer en plus, et une sauvegarde
+ * restaurée redonne exactement le même album.
+ * @returns {{ owned: Array<{ vignette, event }>, byEvent: Map<string, object> }} byEvent : « type:id » → vignette
+ */
+export function albumOf(events) {
+  const owned = []; const have = new Set(); const byEvent = new Map();
+  const chests = (events || []).filter((e) => CHEST_EVENTS[e.type]).slice().sort((a, b) => a.ts - b.ts);
+  for (const e of chests) {
+    const rare = CHEST_EVENTS[e.type] === 'rare';
+    let pool = VIGNETTES.filter((v) => Boolean(v.rare) === rare && !have.has(v.id));
+    if (!pool.length) pool = VIGNETTES.filter((v) => !have.has(v.id));
+    if (!pool.length) break; // album complet
+    const v = pool[hashId(`${e.type}:${e.id}`) % pool.length];
+    have.add(v.id);
+    owned.push({ vignette: v, event: e });
+    byEvent.set(`${e.type}:${e.id}`, v);
+  }
+  return { owned, byEvent };
 }

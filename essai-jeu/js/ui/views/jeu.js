@@ -6,7 +6,8 @@
  * La partie est sauvegardée après chaque action et peut être reprise.
  */
 import { h, announce } from '../dom.js';
-import { store, getSetting, setSetting, playerContext, activeContext, useContext, keepContext, refreshViews } from '../../app/store.js';
+import { store, getSetting, setSetting, playerContext, activeContext, useContext, keepContext, refreshViews, gameProgress, recordGameEvent } from '../../app/store.js';
+import { vignetteCard, newVignettes } from '../game/rewards-ui.js';
 import { normalizeStates } from '../../engine/mastery.js';
 import {
   BOARD_SIZES, CASE_TYPES, CARDS, PHOTON_LEVELS, QUESTION_LABELS,
@@ -407,13 +408,35 @@ async function play(stage, game, { host, onReplay, onNew, setStopper }) {
     finishTurn(log);
   }
 
-  function finale() {
+  /**
+   * Récompenses de la partie, une fois : chaque profil qui a répondu juste au moins 3 fois gagne les points de la
+   * partie ; le premier du classement (s'il y avait un adversaire) gagne aussi une victoire et une vignette rare.
+   */
+  async function rewardPlayers(rk) {
+    const out = [];
+    if (game.rewarded) return out;
+    game.rewarded = true;
+    const id = String(game.startedAt || 'partie');
+    for (const p of game.players.filter((x) => x.kind === 'profil' && x.stats.ok >= 3)) {
+      takeHand(p);
+      const before = gameProgress();
+      await recordGameEvent('plateau', `${id}:${p.profileId}`).catch(() => {});
+      if (rk[0] === p && game.players.length > 1) await recordGameEvent('victoire', `${id}:${p.profileId}`).catch(() => {});
+      const after = gameProgress();
+      out.push({ p, points: before && after ? after.totalXp - before.totalXp : 0, vignettes: newVignettes(before, after), won: rk[0] === p && game.players.length > 1 });
+      release();
+    }
+    return out;
+  }
+
+  async function finale() {
+    const rk = ranking(game);
+    const rewards = await rewardPlayers(rk);
     release();
     store.sharedPlay = false;
     useContext(host);
     setSetting(SAVE_KEY, null).catch(() => {});
     board.target(null); refresh();
-    const rk = ranking(game);
     const recorded = game.players.filter((p) => p.kind === 'profil').map((p) => p.name);
     const winner = rk[0];
     turnBox.replaceChildren(h('section', { class: 'card jeu-finale enter-fwd' },
@@ -424,6 +447,10 @@ async function play(stage, game, { host, onReplay, onNew, setStopper }) {
         h('span', { class: 'avatar', style: { background: p.color }, 'aria-hidden': 'true' }, p.symbol),
         h('span', { class: 'podium-name' }, h('strong', {}, p.name), h('span', { class: 'small muted' }, p.finished ? 'dans le Prisme' : `case ${p.pos}`)),
         h('span', { class: 'podium-stats small' }, `✦ ${p.eclats} éclat${p.eclats > 1 ? 's' : ''} · réussies : ${p.stats.ok}/${p.stats.questions}${p.stats.perfect ? ` · ${p.stats.perfect} du premier coup` : ''}`)))),
+      rewards.length ? h('div', { class: 'jeu-rewards' }, h('h3', {}, '🎁 Récompenses'),
+        h('ul', {}, rewards.map((r) => h('li', {}, h('strong', {}, r.p.name), ` : +${r.points} points${r.won ? ' (victoire)' : ''}`,
+          r.vignettes.length ? h('div', { class: 'jeu-reward-cards' }, r.vignettes.map((v) => vignetteCard(v, { isNew: true }))) : null)))) : null,
+      game.players.some((p) => p.kind === 'profil' && p.stats.ok < 3) ? h('p', { class: 'small muted' }, 'Les points de la partie se gagnent avec au moins trois bonnes réponses.') : null,
       recorded.length ? h('p', { class: 'small muted' }, `Les réponses de ${recorded.join(', ')} sont enregistrées dans ${recorded.length > 1 ? 'leurs profils' : 'son profil'} : elles comptent dans la carte et le carnet.`) : null,
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onReplay(game.setup) }, 'Rejouer (nouveau plateau)'),
