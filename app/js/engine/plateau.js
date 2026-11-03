@@ -145,10 +145,11 @@ export function startTurn(g, rand) {
 }
 
 /** Étoiles comptées dans le jeu : la carte Loupe rend le premier indice gratuit. */
-export function gameStars({ verdict, tries = 1, hintsUsed = 0, solutionShown = false }, { loupe = false } = {}) {
+export function gameStars({ verdict, tries = 1, hintsUsed = 0, solutionShown = false, answerRevealed = false }, { loupe = false } = {}) {
   if (!verdict || solutionShown) return 0;
   if (verdict === 'a-valider' || verdict === 'incertain') return 2;
   if (verdict !== 'correct') return 0;
+  if (answerRevealed) return 1; // réponse lue dans le message de correction : réussi, mais sans éclat
   const hints = Math.max(0, hintsUsed - (loupe ? 1 : 0));
   if (tries <= 1 && hints === 0) return 3;
   if (tries <= 2 && hints <= 1) return 2;

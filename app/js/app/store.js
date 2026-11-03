@@ -330,6 +330,9 @@ export function useContext(ctx) {
   store.profile = ctx.profile; store.states = ctx.states; store.attempts = ctx.attempts; store.submissions = ctx.submissions;
 }
 
+/** Prévient les vues abonnées qu'un autre joueur a la main. */
+export function refreshViews() { emit(); }
+
 /** Récupère dans le contexte d'un joueur ce que ses réponses ont changé. */
 export function keepContext(ctx) {
   if (store.profile && ctx.profile && store.profile.id === ctx.profile.id) {

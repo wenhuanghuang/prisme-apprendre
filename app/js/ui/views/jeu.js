@@ -6,7 +6,8 @@
  * La partie est sauvegardée après chaque action et peut être reprise.
  */
 import { h, announce } from '../dom.js';
-import { store, getSetting, setSetting, playerContext, activeContext, useContext, keepContext } from '../../app/store.js';
+import { store, getSetting, setSetting, playerContext, activeContext, useContext, keepContext, refreshViews } from '../../app/store.js';
+import { normalizeStates } from '../../engine/mastery.js';
 import {
   BOARD_SIZES, CASE_TYPES, CARDS, PHOTON_LEVELS, QUESTION_LABELS,
   newGame, startTurn, answer, endTurn, currentPlayer, photonResult, ranking, gameStars, caseAt,
@@ -204,7 +205,8 @@ async function play(stage, game, { host, onReplay, onNew, setStopper }) {
   const contexts = new Map();
   const decks = new Map();
   const save = () => setSetting(SAVE_KEY, game).catch(() => { /* sauvegarde impossible : la partie continue */ });
-  const release = () => { if (activeCtx) { keepContext(activeCtx); useContext(host); activeCtx = null; } };
+  // en rendant la main, le bandeau de progression (s'il existe) revient au profil de l'appareil
+  const release = () => { if (activeCtx) { keepContext(activeCtx); useContext(host); activeCtx = null; refreshViews(); } };
   setStopper(() => { stopped = true; if (current) { current.destroy(); current = null; } release(); });
 
   store.sharedPlay = true;
@@ -215,11 +217,12 @@ async function play(stage, game, { host, onReplay, onNew, setStopper }) {
       if (ctx) contexts.set(p.id, ctx); else { p.kind = 'invite'; p.name = `${p.name} (profil supprimé)`.slice(0, 40); }
     }
     // un invité a un contexte vide : ses questions ne dépendent pas de l'historique du propriétaire de l'appareil
-    if (!contexts.has(p.id)) contexts.set(p.id, { profile: host.profile, states: { profileId: host.profile.id, skills: {}, lessons: {} }, attempts: [], submissions: [], guest: true });
+    if (!contexts.has(p.id)) contexts.set(p.id, { profile: host.profile, states: normalizeStates(null, host.profile.id), attempts: [], submissions: [], guest: true });
     decks.set(p.id, createDeck({ level: p.level, subject: p.subject }));
   }
   if (stopped) return;
-  const takeHand = (p) => { release(); const ctx = contexts.get(p.id); if (ctx) { useContext(ctx); activeCtx = ctx; } };
+  // un profil qui prend la main : le bandeau de progression montre la sienne (un invité n'en a pas)
+  const takeHand = (p) => { release(); const ctx = contexts.get(p.id); if (ctx) { useContext(ctx); activeCtx = ctx; if (!ctx.guest) refreshViews(); } };
 
   const board = boardView(game);
   const playersList = h('ol', { class: 'jeu-players', 'aria-label': 'Joueurs' });
@@ -332,7 +335,7 @@ async function play(stage, game, { host, onReplay, onNew, setStopper }) {
     current = mountExercise(exSlot, {
       def: q.def, seed: q.seed, lessonId: q.lessonId, context: 'jeu:plateau', record: p.kind === 'profil',
       nextLabel: 'Déplacer mon pion →',
-      onNext: (diag, out) => resolve(p, { stars: gameStars({ verdict: diag ? diag.verdict : null, tries: out.tries, hintsUsed: out.hintsUsed, solutionShown: out.solutionShown }, { loupe }) }),
+      onNext: (diag, out) => resolve(p, { stars: gameStars({ verdict: diag ? diag.verdict : null, tries: out.tries, hintsUsed: out.hintsUsed, solutionShown: out.solutionShown, answerRevealed: out.answerRevealed }, { loupe }) }),
     });
     // au clavier : on peut répondre tout de suite après avoir lancé le dé
     const first = exSlot.querySelector('.ex-answer input, .ex-answer textarea, .ex-answer select, .ex-answer [tabindex="0"], .ex-answer button');

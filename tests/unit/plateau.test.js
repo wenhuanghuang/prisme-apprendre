@@ -53,6 +53,7 @@ test('étoiles du jeu : premier coup sans indice = 3, la loupe rend le premier i
   assert.equal(gameStars({ verdict: 'incorrect', tries: 1 }), 0);
   assert.equal(gameStars({ verdict: 'correct', tries: 1, solutionShown: true }), 0);
   assert.equal(gameStars({ verdict: 'a-valider', tries: 1 }), 2, 'une réponse à relire par un adulte n’est pas comptée fausse');
+  assert.equal(gameStars({ verdict: 'correct', tries: 2, answerRevealed: true }), 1, 'réponse lue dans la correction : réussi, sans éclat');
 });
 
 test('tour : réussi, le pion va sur la case visée ; raté, il avance d’une case ; le dé ne se relance pas', () => {
