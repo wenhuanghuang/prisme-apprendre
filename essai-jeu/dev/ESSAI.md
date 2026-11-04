@@ -7,6 +7,14 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   indicatif). Chaque chapitre est une quête de 1 à 3 étapes ; terminé avec au moins 30 % des étoiles, il reçoit une
   médaille (bronze, argent ≥ 60 %, or ≥ 85 %) ; une période terminée ouvre un coffre rare ; l'année entière, un dernier
   coffre. Le jour indique la période en cours et le rythme conseillé (étapes par semaine), sans rien verrouiller.
+- **Lycée : la physique-chimie de première et de terminale** (`js/generators/lycee-pc-1t.js`,
+  `content/skills/lycee-pc-1t.json`) : 14 générateurs. Première : concentration molaire, dilution, Beer-Lambert,
+  avancement maximal et réactif limitant, titrage colorimétrique, oxydoréduction, géométrie et polarité, chimie
+  organique et spectres IR, rendement, combustions, pression et loi de Mariotte, statique des fluides, champs,
+  énergies cinétique et potentielle, travail, puissance et effet Joule, rendement, ondes, conjugaison, photons.
+  Terminale : pH et acides forts, prédominance, titrages (stœchiométrie 1:2), cinétique, Qr et K, décroissance
+  radioactive et datation, piles, capacité en mAh, Newton, chute libre, satellites, chaleur Q = m c ΔT, Archimède,
+  gaz parfait, décibels, diffraction, lunette, effet Doppler, circuit RC.
 - **Technologie au collège** (`js/generators/college-techno.js`, `content/skills/college-techno.json`) : 8 générateurs
   pour tous les chapitres de 5e, 4e et 3e (avant : 2/12, 3/12 et 0/4 chapitres jouables ; maintenant 12/12, 12/12, 4/4) —
   familles de matériaux et procédés, sources et conversions d'énergie, énergie consommée en kWh, capteurs et
@@ -100,13 +108,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,college-techno}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,college-techno}.json`.
+`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (300 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (330 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
