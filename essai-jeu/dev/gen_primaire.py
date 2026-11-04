@@ -469,6 +469,210 @@ add({'id': 'emc-p-symboles', 'label': 'Les symboles de la République', 'subject
      'description': 'Associer les symboles et les principes de la République : devise, hymne, fête nationale, drapeau, Marianne, laïcité…',
      'data': {'prompt': 'Associe chaque élément à ce qui lui correspond.', 'count': 5, 'leftTitle': 'Question', 'rightTitle': 'Réponse', 'pairs': [{'left': a, 'right': b} for a, b in SYM]}})
 
+# ---------------- Encore des savoirs du primaire (catégories, associations) ----------------
+def pairs_gen(gid, subject, levels, sid, slabel, label, desc, chapters, prompt, pairs, left, right, count=5):
+    if sid not in {s['id'] for s in skills}: skill(sid, subject, slabel, levels[0])
+    add({'id': gid, 'label': label, 'subject': subject, 'levels': levels, 'skill': sid, 'kind': 'match', 'chapters': chapters, 'description': desc,
+         'data': {'prompt': prompt, 'count': count, 'leftTitle': left, 'rightTitle': right, 'pairs': [{'left': a, 'right': b} for a, b in pairs]}})
+def cat2(gid, subject, levels, sid, slabel, label, desc, chapters, prompt, categories, items, count=8):
+    if sid in {s['id'] for s in skills}:
+        add({'id': gid, 'label': label, 'subject': subject, 'levels': levels, 'skill': sid, 'kind': 'categorize', 'chapters': chapters, 'description': desc,
+             'data': {'prompt': prompt, 'count': count, 'categories': [{'id': i, 'label': l} for i, l in categories], 'items': [{'label': a, 'category': c, **({'feedback': f} if f else {})} for a, c, f in items]}})
+    else:
+        cat(gid, subject, levels, sid, slabel, label, desc, chapters, prompt, categories, items, count)
+
+# Météo
+INSTR = [('Le thermomètre', 'la température de l’air'), ('Le pluviomètre', 'la quantité de pluie tombée'), ('L’anémomètre', 'la vitesse du vent'),
+         ('La girouette', 'la direction d’où vient le vent'), ('Le baromètre', 'la pression de l’air'), ('L’hygromètre', 'l’humidité de l’air')]
+pairs_gen('st-p-meteo', 'sciences-techno', ['cm1', 'cm2'], 'sciences-techno.p.meteo', 'Mesurer le temps qu’il fait : instruments de la météorologie', 'Les instruments de la météo',
+          'Associer chaque instrument à ce qu’il mesure.', ['cm1-st-meteo', 'cm2-st-meteo-climat'], 'Associe chaque instrument à ce qu’il mesure.', INSTR, 'Instrument', 'Il mesure', 4)
+MC = [('Demain, il pleuvra à Lille.', 'meteo', None), ('Ce matin, il fait 3 °C.', 'meteo', None), ('Un orage est annoncé ce soir.', 'meteo', None), ('Cette semaine, le vent soufflera fort.', 'meteo', None), ('Il a neigé hier en montagne.', 'meteo', None),
+      ('À Marseille, les étés sont en général chauds et secs.', 'climat', 'on parle de ce qui se passe d’habitude, sur de nombreuses années'), ('Dans les régions polaires, il fait froid toute l’année.', 'climat', None),
+      ('En Bretagne, il pleut souvent, mais les hivers sont doux.', 'climat', None), ('Dans le désert du Sahara, il pleut très rarement.', 'climat', None), ('Près de l’équateur, il fait chaud et humide toute l’année.', 'climat', None)]
+cat2('st-p-meteo-climat', 'sciences-techno', ['cm2'], 'sciences-techno.p.meteo', '', 'Météo ou climat ?', 'Distinguer le temps qu’il fait un jour donné (météo) du temps habituel d’une région (climat).',
+     ['cm2-st-meteo-climat'], 'La phrase parle-t-elle de la météo (le temps d’un jour) ou du climat (le temps habituel, sur des années) ?', [('meteo', 'Météo'), ('climat', 'Climat')], MC, 6)
+
+# Planète active
+TERRE = [('Un séisme', 'un tremblement de terre : le sol se met à trembler'), ('L’épicentre', 'l’endroit de la surface où le séisme est le plus fort'), ('Le magma', 'la roche fondue, très chaude, sous la surface'),
+         ('La lave', 'le magma qui sort d’un volcan et s’écoule'), ('Le cratère', 'l’ouverture au sommet du volcan'), ('Une éruption', 'la sortie de lave, de cendres et de gaz par un volcan'),
+         ('Un tsunami', 'une vague géante provoquée par un séisme sous la mer'), ('Un sismographe', 'l’appareil qui enregistre les secousses du sol')]
+pairs_gen('st-p-terre-active', 'sciences-techno', ['cm2'], 'sciences-techno.p.terre-active', 'Connaître le vocabulaire des séismes et des volcans', 'Séismes et volcans',
+          'Associer chaque mot à sa définition : séisme, épicentre, magma, lave, cratère, éruption, tsunami.', ['cm2-st-terre-active'], 'Associe chaque mot à sa définition.', TERRE, 'Mot', 'Définition', 4)
+
+# Groupes d'aliments (CM2)
+GROUPES = [('Les pâtes', 'feculents', None), ('Le riz', 'feculents', None), ('Le pain', 'feculents', None), ('Les lentilles', 'feculents', 'les légumes secs sont rangés avec les féculents'), ('Les pommes de terre', 'feculents', None),
+           ('Une pomme', 'fruits-legumes', None), ('Les carottes', 'fruits-legumes', None), ('Les haricots verts', 'fruits-legumes', 'frais et verts, ce sont des légumes ; secs, des féculents'), ('Une banane', 'fruits-legumes', None),
+           ('Le yaourt', 'laitiers', None), ('Le fromage', 'laitiers', None), ('Le lait', 'laitiers', None),
+           ('Le poulet', 'vpo', None), ('La sardine', 'vpo', None), ('Un œuf', 'vpo', None),
+           ('Le beurre', 'gras', None), ('L’huile d’olive', 'gras', None),
+           ('Les bonbons', 'sucres', None), ('La confiture', 'sucres', None), ('Un soda', 'sucres', 'à boire seulement de temps en temps : il contient beaucoup de sucre')]
+cat2('st-p-groupes-aliments', 'sciences-techno', ['cm2'], 'sciences-techno.p.digestion', '', 'Les familles d’aliments',
+     'Ranger les aliments dans leur famille : féculents, fruits et légumes, produits laitiers, viandes-poissons-œufs, matières grasses, produits sucrés.', ['cm2-st-nutrition'],
+     'Range chaque aliment dans sa famille.', [('feculents', 'Féculents'), ('fruits-legumes', 'Fruits et légumes'), ('laitiers', 'Produits laitiers'), ('vpo', 'Viandes, poissons, œufs'), ('gras', 'Matières grasses'), ('sucres', 'Produits sucrés')], GROUPES, 7)
+
+# Producteurs, consommateurs, décomposeurs
+ROLES = [('L’herbe', 'producteur', 'un végétal : il fabrique sa matière grâce à la lumière'), ('Le chêne', 'producteur', None), ('Les algues', 'producteur', None), ('Le blé', 'producteur', None),
+         ('Le lapin', 'herbivore', None), ('La vache', 'herbivore', None), ('La chenille', 'herbivore', None), ('Le criquet', 'herbivore', None), ('Le cerf', 'herbivore', None),
+         ('Le loup', 'carnivore', None), ('La chouette', 'carnivore', None), ('La coccinelle', 'carnivore', 'elle mange des pucerons'), ('L’araignée', 'carnivore', None),
+         ('Le sanglier', 'omnivore', None), ('L’ours brun', 'omnivore', 'il mange des baies, des racines, du miel, mais aussi des poissons'), ('L’être humain', 'omnivore', None),
+         ('Le ver de terre', 'decomposeur', 'il se nourrit des feuilles mortes et enrichit le sol'), ('Les champignons du sol', 'decomposeur', None), ('Le cloporte', 'decomposeur', None)]
+cat2('st-p-roles-ecosysteme', 'sciences-techno', ['cm1', 'cm2'], 'sciences-techno.p.chaines', '', 'Qui mange quoi ? Producteurs, consommateurs, décomposeurs',
+     'Ranger les êtres vivants selon leur rôle dans un écosystème.', ['cm1-st-ecosysteme', 'cm2-st-ecosystemes'], 'Range chaque être vivant selon ce qu’il fait dans l’écosystème.',
+     [('producteur', 'Producteur (végétal)'), ('herbivore', 'Mange des végétaux'), ('carnivore', 'Mange des animaux'), ('omnivore', 'Mange de tout'), ('decomposeur', 'Décomposeur')], ROLES, 7)
+
+# Trajectoires
+TRAJ = [('Une voiture sur une route toute droite', 'rectiligne', None), ('Une pomme qui tombe d’un arbre', 'rectiligne', 'elle tombe tout droit vers le sol'), ('Un ascenseur', 'rectiligne', None),
+        ('Un enfant sur un toboggan droit', 'rectiligne', None), ('Une boule de bowling lancée tout droit', 'rectiligne', None), ('Un tapis roulant', 'rectiligne', None),
+        ('Une nacelle de grande roue', 'circulaire', None), ('Le bout de l’aiguille d’une horloge', 'circulaire', None), ('Un cheval de manège', 'circulaire', None),
+        ('Le bout d’une pale d’éolienne', 'circulaire', None), ('Un satellite autour de la Terre', 'circulaire', 'presque un cercle'), ('La Terre autour du Soleil', 'circulaire', 'presque un cercle')]
+cat2('st-p-trajectoires', 'sciences-techno', ['cm1', 'cm2'], 'sciences-techno.p.vitesse', '', 'Mouvement rectiligne ou circulaire ?', 'Reconnaître une trajectoire en ligne droite ou en cercle.',
+     ['cm1-st-mouvement', 'cm2-st-mouvements'], 'Le mouvement suit-il une ligne droite ou un cercle ?', [('rectiligne', 'Rectiligne (ligne droite)'), ('circulaire', 'Circulaire (cercle)')], TRAJ, 6)
+
+# Objets techniques
+OBJ = [('Une chaise', 'fabrique', None), ('Une paire de ciseaux', 'fabrique', None), ('Un vélo', 'fabrique', None), ('Une tasse', 'fabrique', None), ('Un crayon', 'fabrique', 'fabriqué avec du bois et du graphite'), ('Une lampe', 'fabrique', None), ('Un ballon', 'fabrique', None),
+       ('Un caillou', 'naturel', None), ('Une feuille d’arbre', 'naturel', None), ('Un coquillage', 'naturel', None), ('Une plume d’oiseau', 'naturel', None), ('Une pomme de pin', 'naturel', None), ('Du sable', 'naturel', None), ('Une branche', 'naturel', None)]
+for gid, subject, levels, chapters in [('st-p-objets-cp', 'sciences-techno', ['cp'], ['cp-st-objets']), ('qlm-p-objets', 'qlm', ['ce1'], ['ce1-qlm-objets', 'ce1-qlm-fabriquer'])]:
+    cat2(gid, subject, levels, f'{subject}.p.objets', 'Distinguer un objet fabriqué par l’être humain d’un élément naturel', 'Objet fabriqué ou élément naturel ?',
+         'Les objets techniques sont fabriqués par les êtres humains pour répondre à un besoin.', chapters, 'Range : objet fabriqué par l’être humain, ou élément de la nature ?',
+         [('fabrique', 'Fabriqué par l’être humain'), ('naturel', 'Naturel')], OBJ, 6)
+BESOINS = [('Un parapluie', 'se protéger de la pluie'), ('Une lampe', 's’éclairer'), ('Un réfrigérateur', 'garder les aliments au frais'), ('Un vélo', 'se déplacer'), ('Une montre', 'savoir l’heure'),
+           ('Un téléphone', 'communiquer à distance'), ('Une échelle', 'atteindre un endroit en hauteur'), ('Une loupe', 'voir les petits détails en plus grand'), ('Un thermomètre', 'mesurer la température'), ('Un sac à dos', 'transporter ses affaires')]
+for gid, subject, levels, chapters in [('qlm-p-besoins', 'qlm', ['ce1', 'ce2'], ['ce1-qlm-objets', 'ce2-qlm-objets']), ('st-p-besoins', 'sciences-techno', ['cm1', 'cm2'], ['cm1-st-objets-besoins', 'cm1-st-fonctionnement', 'cm2-st-objets-besoins', 'cm2-st-fonctionnement'])]:
+    pairs_gen(gid, subject, levels, f'{subject}.p.besoins', 'Associer un objet technique au besoin auquel il répond', 'À quoi sert cet objet ?', 'Associer chaque objet technique au besoin auquel il répond.',
+              chapters, 'Associe chaque objet au besoin auquel il répond.', BESOINS, 'Objet', 'Il sert à…', 5)
+HIER = [('La lampe à huile', 'L’ampoule électrique'), ('La plume et l’encrier', 'Le stylo à bille'), ('Le lavoir', 'La machine à laver'), ('Le téléphone à cadran', 'Le smartphone'),
+        ('La diligence tirée par des chevaux', 'La voiture'), ('La glacière à pain de glace', 'Le réfrigérateur'), ('La machine à écrire', 'L’ordinateur'), ('L’appareil photo à pellicule', 'L’appareil photo numérique'), ('Le fer à repasser chauffé sur le poêle', 'Le fer à repasser électrique')]
+for gid, subject, levels, chapters in [('qlm-p-hier', 'qlm', ['ce2'], ['ce2-qlm-objets']), ('st-p-hier', 'sciences-techno', ['cm1', 'cm2'], ['cm1-st-objets-besoins', 'cm2-st-objets-besoins'])]:
+    pairs_gen(gid, subject, levels, f'{subject}.p.hier', 'Relier un objet d’autrefois à l’objet qui répond au même besoin aujourd’hui', 'Objets d’hier et d’aujourd’hui',
+              'Retrouver, pour chaque objet d’autrefois, l’objet d’aujourd’hui qui répond au même besoin.', chapters, 'Associe chaque objet d’autrefois à celui qui le remplace aujourd’hui.', HIER, 'Autrefois', 'Aujourd’hui', 5)
+
+# Le corps en mouvement
+ARTIC = [('Je plie le bras grâce au…', 'coude'), ('Je plie la jambe grâce au…', 'genou'), ('Je tourne la main grâce au…', 'poignet'), ('Je tourne le pied grâce à la…', 'cheville'),
+         ('Je lève le bras grâce à l’…', 'épaule'), ('Je tourne la tête grâce au…', 'cou')]
+for gid, subject, levels, chapters in [('st-p-corps-cp', 'sciences-techno', ['cp'], ['cp-st-corps']), ('qlm-p-corps', 'qlm', ['ce1'], ['ce1-qlm-mouvement'])]:
+    pairs_gen(gid, subject, levels, f'{subject}.p.corps', 'Nommer les articulations qui permettent les mouvements', 'Mon corps bouge : les articulations',
+              'Associer chaque mouvement à l’articulation qui le permet.', chapters, 'Associe chaque mouvement à son articulation.', ARTIC, 'Mouvement', 'Articulation', 4)
+OSM = [('Le crâne', 'os', 'il protège le cerveau'), ('Les côtes', 'os', 'elles protègent le cœur et les poumons'), ('Le fémur, dans la cuisse', 'os', 'le plus long os du corps'), ('La colonne vertébrale', 'os', None),
+       ('Le genou', 'articulation', None), ('Le coude', 'articulation', None), ('L’épaule', 'articulation', None), ('La cheville', 'articulation', None), ('Le poignet', 'articulation', None),
+       ('Le biceps, dans le bras', 'muscle', 'il se contracte pour plier le bras'), ('Le mollet', 'muscle', None), ('Les abdominaux', 'muscle', None), ('Le cœur', 'muscle', 'un muscle qui ne s’arrête jamais')]
+cat2('qlm-p-os-muscles', 'qlm', ['ce1'], 'qlm.p.corps', '', 'Os, articulations et muscles', 'Les os forment le squelette, les articulations permettent de plier, les muscles font bouger les os.',
+     ['ce1-qlm-mouvement'], 'Range : est-ce un os, une articulation ou un muscle ?', [('os', 'Os'), ('articulation', 'Articulation'), ('muscle', 'Muscle')], OSM, 7)
+
+# Les cinq sens
+SENS = [('La vue', 'les yeux'), ('L’ouïe', 'les oreilles'), ('L’odorat', 'le nez'), ('Le goût', 'la langue'), ('Le toucher', 'la peau')]
+pairs_gen('st-p-sens', 'sciences-techno', ['cm1'], 'sciences-techno.p.cerveau', '', 'Les cinq sens', 'Associer chaque sens à son organe.', ['cm1-st-cerveau'], 'Associe chaque sens à son organe.', SENS, 'Sens', 'Organe', 5)
+
+# Santé : bouger, dormir
+SANTE = [('Dormir environ dix heures par nuit', 'bon', None), ('Jouer dehors et bouger chaque jour', 'bon', None), ('Boire de l’eau quand on a soif', 'bon', None), ('Se laver les mains avant de manger', 'bon', None),
+         ('Prendre un petit-déjeuner', 'bon', None), ('Porter un casque à vélo', 'bon', None), ('Se brosser les dents matin et soir', 'bon', None),
+         ('Regarder un écran juste avant de dormir', 'mauvais', 'la lumière des écrans retarde l’endormissement'), ('Grignoter des bonbons toute la journée', 'mauvais', None), ('Rester assis toute la journée sans bouger', 'mauvais', None),
+         ('Se coucher très tard un jour d’école', 'mauvais', None), ('Sauter le petit-déjeuner', 'mauvais', None)]
+cat2('qlm-p-sante', 'qlm', ['ce2'], 'qlm.p.sante', 'Adopter des habitudes bonnes pour la santé : bouger, dormir, manger', 'Bon pour ma santé ?', 'Activité physique, sommeil, hygiène : ce qui aide le corps et le cerveau.',
+     ['ce2-qlm-activite'], 'Range : est-ce bon pour ta santé, ou pas ?', [('bon', 'Bon pour ma santé'), ('mauvais', 'À éviter')], SANTE, 6)
+
+# Environnement : tri, gestes
+TRI = [('Une bouteille en plastique', 'tri', None), ('Un journal', 'tri', None), ('Une boîte de conserve', 'tri', None), ('Une brique de lait', 'tri', None), ('Un carton de céréales', 'tri', None),
+       ('Une bouteille en verre', 'verre', None), ('Un pot de confiture en verre', 'verre', 'sans son couvercle, qui va dans le bac de tri'),
+       ('Des épluchures de carottes', 'compost', None), ('Un trognon de pomme', 'compost', None), ('Du marc de café', 'compost', None), ('Des coquilles d’œufs', 'compost', None),
+       ('Une pile usagée', 'collecte', 'les piles contiennent des métaux polluants : on les rapporte en magasin'), ('Une vieille ampoule', 'collecte', None), ('Un vieux téléphone', 'collecte', None)]
+GESTES = [('Éteindre la lumière en sortant d’une pièce', 'bon', None), ('Prendre une gourde plutôt qu’une bouteille jetable', 'bon', None), ('Aller à l’école à pied ou à vélo', 'bon', None), ('Écrire au recto et au verso des feuilles', 'bon', None),
+          ('Fermer le robinet pendant qu’on se brosse les dents', 'bon', None), ('Trier ses déchets', 'bon', None),
+          ('Laisser couler l’eau en se brossant les dents', 'mauvais', None), ('Jeter ses papiers par terre', 'mauvais', None), ('Laisser la télévision en veille toute la nuit', 'mauvais', None), ('Jeter le pain dur', 'mauvais', 'on peut en faire du pain perdu ou de la chapelure'), ('Chauffer avec les fenêtres ouvertes', 'mauvais', None)]
+for gid, subject, levels, chapters in [('st-p-tri', 'sciences-techno', ['cp', 'cm2'], ['cp-st-proteger', 'cm2-st-environnement']), ('qlm-p-tri', 'qlm', ['ce2'], ['ce2-qlm-ecole']), ('hg-p-tri', 'hg', ['cm2'], ['cm2-hg-mieux-habiter'])]:
+    cat2(gid, subject, levels, f'{subject}.p.tri', 'Trier ses déchets pour qu’ils soient recyclés', 'Où va ce déchet ?', 'Bac de tri, conteneur à verre, compost ou point de collecte (les consignes peuvent varier un peu selon la commune).',
+         chapters, 'Où jettes-tu ce déchet ? (Les consignes peuvent varier un peu selon ta commune.)', [('tri', 'Bac de tri (emballages, papiers)'), ('verre', 'Conteneur à verre'), ('compost', 'Compost'), ('collecte', 'À rapporter en magasin ou en déchèterie')], TRI, 7)
+    cat2(gid.replace('-tri', '-gestes'), subject, levels, f'{subject}.p.tri', '', 'Les bons gestes pour la planète', 'Ce qui économise l’eau, l’énergie et les ressources, et ce qui les gaspille.',
+         chapters, 'Ce geste aide-t-il à protéger la planète ?', [('bon', 'Il protège la planète'), ('mauvais', 'Il gaspille ou pollue')], GESTES, 6)
+
+# Histoire-géographie : paysages, milieux, ville, transports, Internet, industrie, cultures
+PAYS = [('Une plage', 'littoral', None), ('Une falaise au bord de la mer', 'littoral', None), ('Un port de pêche', 'littoral', None), ('Un phare', 'littoral', None),
+        ('Un sommet enneigé', 'montagne', None), ('Un téléphérique', 'montagne', None), ('Un glacier', 'montagne', None), ('Une station de ski', 'montagne', None),
+        ('Un champ de blé', 'campagne', None), ('Une ferme', 'campagne', None), ('Un tracteur dans un pré', 'campagne', None), ('Un petit village entouré de champs', 'campagne', None),
+        ('Des immeubles', 'ville', None), ('Une station de métro', 'ville', None), ('Des rues pleines de magasins', 'ville', None), ('Une grande gare', 'ville', None)]
+cat2('hg-p-paysages', 'hg', ['ce1', 'ce2'], 'hg.p.paysages', 'Reconnaître les grands types de paysages de France', 'Les paysages de France', 'Littoral, montagne, campagne, ville : à quel paysage appartient chaque élément ?',
+     ['ce1-hg-paysages', 'ce1-hg-habiter-circuler', 'ce2-hg-paysages-hier'], 'Dans quel paysage trouve-t-on surtout cela ?', [('littoral', 'Littoral'), ('montagne', 'Montagne'), ('campagne', 'Campagne'), ('ville', 'Ville')], PAYS, 8)
+MILIEUX = [('Des dunes de sable à perte de vue', 'desert', None), ('Le dromadaire', 'desert', None), ('Une oasis avec des palmiers', 'desert', None), ('Presque jamais de pluie', 'desert', None),
+           ('La banquise', 'polaire', None), ('L’ours blanc', 'polaire', None), ('Des nuits de plusieurs semaines en hiver', 'polaire', None), ('Le manchot empereur', 'polaire', 'il vit en Antarctique, au pôle Sud'),
+           ('Des arbres immenses toujours verts', 'equatorial', None), ('Des pluies presque tous les jours', 'equatorial', None), ('Des singes dans les arbres', 'equatorial', None), ('Une pirogue sur un grand fleuve', 'equatorial', None),
+           ('Des sommets très hauts et enneigés', 'montagne', None), ('Le yack', 'montagne', 'il vit dans les hautes montagnes d’Asie, comme l’Himalaya'), ('Des cultures en terrasses sur les pentes', 'montagne', None), ('Un air froid et léger en altitude', 'montagne', None)]
+cat2('hg-p-milieux', 'hg', ['ce2'], 'hg.p.milieux', 'Caractériser quelques grands milieux de la planète', 'Les grands milieux de la planète',
+     'Désert chaud, milieu polaire, forêt équatoriale, haute montagne : leurs paysages, leurs animaux, la vie des habitants.', ['ce2-hg-milieux', 'ce2-hg-vivre-ailleurs'],
+     'À quel milieu appartient chaque élément ?', [('desert', 'Désert chaud'), ('polaire', 'Milieu polaire'), ('equatorial', 'Forêt équatoriale'), ('montagne', 'Haute montagne')], MILIEUX, 8)
+LIEUX = [('La mairie', 'on s’y marie, on y déclare les naissances ; le maire y travaille'), ('L’hôpital', 'on y soigne les malades et les blessés'), ('La caserne des pompiers', 'on y part secourir les gens et éteindre les incendies'),
+         ('La médiathèque', 'on y emprunte des livres, des films, de la musique'), ('La gare', 'on y prend le train'), ('La poste', 'on y envoie des lettres et des colis'), ('Le stade', 'on y fait du sport et on y regarde des matchs'),
+         ('L’école', 'on y apprend à lire, écrire, compter'), ('La boulangerie', 'on y achète du pain'), ('Le commissariat', 'la police y travaille')]
+for gid, levels, chapters in [('hg-p-lieux', ['cp', 'ce1', 'ce2'], ['cp-hg-quartier', 'ce1-hg-quartier', 'ce2-hg-ville']), ('hg-p-lieux-cm', ['cm2'], ['cm2-hg-mieux-habiter'])]:
+    pairs_gen(gid, 'hg', levels, 'hg.p.lieux', 'Connaître les lieux et les services d’une commune', 'Les lieux de ma commune', 'Associer chaque lieu au service qu’il rend aux habitants.',
+              chapters, 'Associe chaque lieu à ce qu’on y fait.', LIEUX, 'Lieu', 'On y…', 5)
+TRANS = [('Le train', 'la gare'), ('L’avion', 'l’aéroport'), ('Le bateau', 'le port'), ('Le métro', 'la station de métro'), ('Le vélo', 'la piste cyclable'), ('Le bus', 'l’arrêt de bus'), ('La voiture', 'le parking')]
+pairs_gen('hg-p-transports', 'hg', ['cm1', 'cm2'], 'hg.p.deplacer', 'Se déplacer : moyens de transport et infrastructures', 'Moyens de transport et lieux pour les prendre',
+          'Associer chaque moyen de transport au lieu où on le prend ou à la voie qu’il utilise.', ['cm1-hg-se-deplacer', 'cm2-hg-deplacer-quotidien', 'cm2-hg-ville-a-ville'], 'Associe chaque moyen de transport à son lieu.', TRANS, 'Transport', 'Lieu', 5)
+MODES = [('Marcher', 'doux', None), ('Le vélo', 'doux', None), ('La trottinette', 'doux', None), ('Le bus', 'commun', None), ('Le tramway', 'commun', None), ('Le métro', 'commun', None), ('Le train', 'commun', None),
+         ('La voiture', 'individuel', 'souvent une seule personne à bord : beaucoup de pollution par voyageur'), ('La moto', 'individuel', None), ('Le scooter', 'individuel', None)]
+cat2('hg-p-modes', 'hg', ['cm1', 'cm2'], 'hg.p.deplacer', '', 'Modes de déplacement', 'Déplacements doux, transports en commun, véhicules individuels à moteur : pour comparer leur effet sur l’environnement.',
+     ['cm1-hg-se-deplacer', 'cm2-hg-deplacer-quotidien', 'cm2-hg-ville-a-ville'], 'Range chaque façon de se déplacer.', [('doux', 'Déplacement doux (sans moteur)'), ('commun', 'Transport en commun'), ('individuel', 'Véhicule individuel à moteur')], MODES, 6)
+NET = [('Garder son mot de passe secret', 'bon', None), ('Demander à un adulte quand un message paraît bizarre', 'bon', None), ('Vérifier une information sur plusieurs sites', 'bon', None),
+       ('Se déconnecter d’un ordinateur partagé', 'bon', None), ('Parler à un adulte de confiance en cas de moquerie en ligne', 'bon', None), ('Demander avant de publier la photo de quelqu’un', 'bon', None),
+       ('Donner son adresse à un inconnu rencontré en ligne', 'eviter', None), ('Cliquer sur toutes les publicités', 'eviter', None), ('Utiliser le même mot de passe partout', 'eviter', None), ('Croire tout ce qu’on lit sur Internet', 'eviter', None), ('Publier la photo d’un camarade sans lui demander', 'eviter', None)]
+cat2('hg-p-internet', 'hg', ['cm1', 'cm2'], 'hg.p.internet', 'Utiliser Internet de façon sûre et responsable', 'Bien se servir d’Internet', 'Les bons réflexes pour se protéger et respecter les autres en ligne.',
+     ['cm1-hg-internet', 'cm2-hg-internet'], 'Est-ce un bon réflexe sur Internet ?', [('bon', 'Bon réflexe'), ('eviter', 'À éviter')], NET, 6)
+NETV = [('Un navigateur', 'le logiciel qui permet d’aller sur les sites'), ('Un moteur de recherche', 'l’outil qui aide à trouver des pages sur un sujet'), ('Un courriel', 'un message envoyé par Internet'),
+        ('Un mot de passe', 'le code secret qui protège un compte'), ('Une adresse de site (URL)', 'ce qu’on tape pour aller sur un site précis'), ('Une pièce jointe', 'un fichier envoyé avec un courriel'), ('Un réseau', 'des ordinateurs reliés entre eux')]
+pairs_gen('hg-p-internet-mots', 'hg', ['cm1', 'cm2'], 'hg.p.internet', '', 'Les mots d’Internet', 'Associer chaque mot d’Internet à sa définition.', ['cm1-hg-internet', 'cm2-hg-internet'],
+          'Associe chaque mot à sa définition.', NETV, 'Mot', 'Définition', 4)
+INDUS = [('La machine à vapeur', 'elle fait tourner les machines des usines et avancer les locomotives'), ('La mine', 'on y extrait le charbon, sous la terre'), ('Le mineur', 'il travaille au fond de la mine'),
+         ('L’usine', 'de nombreux ouvriers y fabriquent des objets en grande quantité avec des machines'), ('Le grand magasin', 'un magasin sur plusieurs étages qui vend de tout'), ('L’exode rural', 'le départ des habitants des campagnes vers les villes'),
+         ('Le chemin de fer', 'le réseau de voies ferrées qui relie les villes')]
+pairs_gen('hg-p-industrie', 'hg', ['cm2'], 'hg.p.industrie', 'Connaître le vocabulaire de l’âge industriel', 'Travailler et vivre à l’âge industriel', 'Machines à vapeur, mines, usines, grands magasins, exode rural : associer chaque mot à son explication.',
+          ['cm2-hg-travail-industriel', 'cm2-hg-energies-machines'], 'Associe chaque mot à son explication.', INDUS, 'Mot', 'Explication', 4)
+CULT = [('Le blé', 'tempere', None), ('La betterave à sucre', 'tempere', None), ('La pomme', 'tempere', None), ('La vigne', 'tempere', None), ('Le colza', 'tempere', None),
+        ('Le cacao', 'tropical', 'la Côte d’Ivoire en est le premier producteur mondial'), ('Le café', 'tropical', None), ('La banane', 'tropical', None), ('La canne à sucre', 'tropical', None), ('L’ananas', 'tropical', None)]
+cat2('hg-p-cultures', 'hg', ['cm1'], 'hg.p.nourrir', 'Se nourrir dans le monde : cultures des régions tempérées et tropicales', 'Où pousse ce que je mange ?',
+     'Des cultures des régions tempérées, comme la France, et des cultures des régions tropicales, chaudes toute l’année.', ['cm1-hg-se-nourrir'], 'Où pousse surtout cette culture ?',
+     [('tempere', 'Régions tempérées (comme la France)'), ('tropical', 'Régions tropicales (chaudes toute l’année)')], CULT, 6)
+
+# Français : contes, fables, héros, phrase simple ou complexe
+CONTES = [('Une pantoufle de verre', 'Cendrillon'), ('Une pomme empoisonnée', 'Blanche-Neige'), ('Des petits cailloux blancs', 'Le Petit Poucet'), ('Une maison en pain d’épices', 'Hansel et Gretel'),
+          ('Un fuseau qui pique le doigt', 'La Belle au bois dormant'), ('Une galette et un petit pot de beurre', 'Le Petit Chaperon rouge'), ('Un chat malin chaussé de bottes', 'Le Chat botté'),
+          ('Un haricot qui pousse jusqu’au ciel', 'Jack et le haricot magique'), ('Un petit pois sous vingt matelas', 'La Princesse au petit pois'), ('Une lampe d’où sort un génie', 'Aladin'),
+          ('Des maisons de paille, de bois et de briques', 'Les Trois Petits Cochons'), ('Une très longue chevelure pour grimper dans la tour', 'Raiponce')]
+pairs_gen('fr-p-contes', 'francais', ['ce2', 'cm1', 'cm2'], 'fp.litterature', 'Connaître des contes, des fables et des héros de la littérature', 'Les contes merveilleux',
+          'Retrouver le conte de chaque objet magique ou de chaque détail célèbre.', ['ce2-f-lecteur', 'cm1-f-merveilleux', 'cm2-f-merveilleux'], 'Associe chaque détail au conte d’où il vient.', CONTES, 'Détail', 'Conte', 5)
+FABLES = [('Le Corbeau et le Renard', '« Tout flatteur vit aux dépens de celui qui l’écoute. »'), ('Le Lièvre et la Tortue', '« Rien ne sert de courir ; il faut partir à point. »'),
+          ('Le Lion et le Rat', '« On a souvent besoin d’un plus petit que soi. »'), ('Le Loup et l’Agneau', '« La raison du plus fort est toujours la meilleure. »'),
+          ('Le Renard et la Cigogne', '« Trompeurs, c’est pour vous que j’écris : attendez-vous à la pareille. »'), ('Le Rat de ville et le Rat des champs', '« Fi du plaisir que la crainte peut corrompre. »'),
+          ('Le Laboureur et ses Enfants', '« Travaillez, prenez de la peine : c’est le fonds qui manque le moins. »')]
+pairs_gen('fr-p-fables', 'francais', ['cm1', 'cm2'], 'fp.litterature', '', 'Les fables de La Fontaine et leur morale', 'Associer des fables de Jean de La Fontaine à leur morale.',
+          ['cm1-f-morale', 'cm2-f-morale'], 'Associe chaque fable de La Fontaine à sa morale.', FABLES, 'Fable', 'Morale', 4)
+HEROS = [('Hercule', 'accomplit douze travaux'), ('Ulysse', 'met dix ans à rentrer chez lui, à Ithaque, après la guerre de Troie'), ('Thésée', 'affronte le Minotaure dans le labyrinthe'),
+         ('Persée', 'coupe la tête de Méduse sans la regarder'), ('Jason', 'part chercher la Toison d’or'), ('Robin des Bois', 'vole aux riches pour donner aux pauvres'),
+         ('Pinocchio', 'est une marionnette de bois dont le nez s’allonge quand il ment'), ('Peter Pan', 'ne veut pas grandir et vit au Pays imaginaire')]
+pairs_gen('fr-p-heros', 'francais', ['cm1', 'cm2'], 'fp.litterature', '', 'Héroïnes et héros', 'Des héros des mythes et des livres, et leurs exploits.', ['cm1-f-heros', 'cm2-f-heros', 'cm1-f-autres-vies', 'cm2-f-autres-vies'],
+          'Associe chaque héros à son aventure.', HEROS, 'Héros', 'Aventure', 4)
+AUTEURS = [('Le Petit Prince', 'Antoine de Saint-Exupéry'), ('Alice au pays des merveilles', 'Lewis Carroll'), ('Le Livre de la jungle', 'Rudyard Kipling'), ('Fifi Brindacier', 'Astrid Lindgren'),
+           ('Charlie et la chocolaterie', 'Roald Dahl'), ('Le Petit Nicolas', 'René Goscinny et Jean-Jacques Sempé'), ('Les Aventures de Tom Sawyer', 'Mark Twain'), ('Pinocchio', 'Carlo Collodi'),
+           ('Robinson Crusoé', 'Daniel Defoe'), ('Les contes de Cendrillon et du Petit Poucet', 'Charles Perrault'), ('Le Corbeau et le Renard', 'Jean de La Fontaine'), ('L’Odyssée', 'Homère')]
+pairs_gen('fr-p-auteurs', 'francais', ['cm1', 'cm2'], 'fp.litterature', '', 'Des livres et leurs auteurs', 'Associer des œuvres célèbres de la littérature de jeunesse à leur auteur.',
+          ['cm1-f-heros', 'cm2-f-heros', 'cm1-f-soi', 'cm2-f-soi'], 'Associe chaque livre à son auteur.', AUTEURS, 'Livre', 'Auteur', 4)
+COMPLEXE = [('Le chat dort.', 'simple', None), ('Les enfants jouent dans la cour pendant la récréation.', 'simple', None), ('Mon frère lit une bande dessinée.', 'simple', None),
+            ('Pendant les vacances d’été, toute la famille part à la mer.', 'simple', None), ('Au fond du jardin pousse un grand cerisier.', 'simple', None), ('Ma grand-mère prépare une tarte aux pommes.', 'simple', None),
+            ('Le chat dort et le chien joue.', 'complexe', 'deux verbes conjugués : dort, joue'), ('Quand il pleut, nous restons à la maison.', 'complexe', 'deux verbes conjugués : pleut, restons'),
+            ('Je pense que tu as raison.', 'complexe', None), ('Elle ouvre la porte, entre et s’assoit.', 'complexe', 'trois verbes conjugués'), ('Le film que nous avons vu était drôle.', 'complexe', None),
+            ('Il faisait nuit quand le train est arrivé.', 'complexe', None)]
+cat2('fr-p-phrase-complexe', 'francais', ['cm2'], 'fp.phrase-complexe', 'Distinguer phrase simple et phrase complexe', 'Phrase simple ou phrase complexe ?',
+     'Une phrase simple a un seul verbe conjugué ; une phrase complexe en a plusieurs.', ['cm2-f-phrase-complexe'], 'Compte les verbes conjugués : la phrase est-elle simple ou complexe ?',
+     [('simple', 'Phrase simple (un verbe conjugué)'), ('complexe', 'Phrase complexe (plusieurs verbes conjugués)')], COMPLEXE, 6)
+RIMES = [('bateau', 'gâteau'), ('ballon', 'mouton'), ('lapin', 'sapin'), ('souris', 'tapis'), ('chaussette', 'trompette'), ('hibou', 'genou'), ('soleil', 'abeille'), ('étoile', 'voile'),
+         ('fleur', 'couleur'), ('grenouille', 'citrouille'), ('lune', 'prune'), ('carotte', 'marmotte'), ('tortue', 'statue'), ('neige', 'manège')]
+pairs_gen('fr-p-rimes', 'francais', ['cp', 'ce1', 'cm1', 'cm2'], 'fp.rimes', 'Reconnaître des mots qui riment', 'Les mots qui riment', 'Associer deux mots qui se terminent par le même son : pour jouer avec les mots, en poésie.',
+          ['cp-f-code-1', 'ce1-f-decodage', 'cm1-f-poesie', 'cm2-f-poesie'], 'Associe chaque mot au mot qui rime avec lui.', RIMES, 'Mot', 'Rime avec', 5)
+
+TTX = [('Enregistrer', 'garder son texte pour le retrouver plus tard'), ('Annuler', 'revenir en arrière après une erreur'), ('Copier puis coller', 'recopier un morceau de texte ailleurs sans le retaper'),
+       ('Mettre en gras', 'rendre des lettres plus épaisses pour les faire ressortir'), ('Imprimer', 'sortir son texte sur une feuille de papier'), ('La touche Majuscule', 'écrire une lettre capitale'),
+       ('La barre d’espace', 'séparer deux mots'), ('La touche Entrée', 'aller à la ligne'), ('La touche Retour arrière', 'effacer la lettre à gauche du curseur')]
+pairs_gen('qlm-p-traitement-texte', 'qlm', ['ce1', 'ce2'], 'qlm.p.numerique', 'Utiliser un traitement de texte : saisir, mettre en forme, enregistrer', 'Le traitement de texte',
+          'Les commandes et les touches utiles pour écrire à l’ordinateur.', ['ce1-qlm-numerique', 'ce2-qlm-numerique'], 'Associe chaque commande ou touche à ce qu’elle permet de faire.', TTX, 'Commande', 'Elle sert à…', 5)
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

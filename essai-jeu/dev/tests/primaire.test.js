@@ -8,12 +8,13 @@ const { CODE_GENERATORS, generateFromCode, generatorTracks, codeGeneratorMeta } 
 const { PRIMAIRE_MATHS: MATHS, PRIMAIRE_SKILLS, PRIMARY_LEVELS } = await import(W + 'js/generators/primaire-maths.js');
 const { PRIMAIRE_MONDE, PRIMAIRE_MONDE_SKILLS } = await import(W + 'js/generators/primaire-monde.js');
 const { PRIMAIRE_PLUS, PRIMAIRE_PLUS_SKILLS } = await import(W + 'js/generators/primaire-plus.js');
-const PRIMAIRE_MATHS = [...MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS];
+const { PRIMAIRE_SAVOIRS, PRIMAIRE_SAVOIRS_SKILLS } = await import(W + 'js/generators/primaire-savoirs.js');
+const PRIMAIRE_MATHS = [...MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS];
 const { canonicalResponse } = await import(W + 'js/generators/data-kinds.js');
 const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
 const { validateExercise } = await import(W + 'js/content/validate.js');
 
-const skillIds = new Set([...readdirSync(W + 'content/skills/').filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(W + 'content/skills/' + f, 'utf8')).skills.map((s) => s.id)), ...PRIMAIRE_SKILLS.map((s) => s.id), ...PRIMAIRE_MONDE_SKILLS.map((s) => s.id), ...PRIMAIRE_PLUS_SKILLS.map((s) => s.id)]);
+const skillIds = new Set([...readdirSync(W + 'content/skills/').filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(W + 'content/skills/' + f, 'utf8')).skills.map((s) => s.id)), ...PRIMAIRE_SKILLS.map((s) => s.id), ...PRIMAIRE_MONDE_SKILLS.map((s) => s.id), ...PRIMAIRE_PLUS_SKILLS.map((s) => s.id), ...PRIMAIRE_SAVOIRS_SKILLS.map((s) => s.id)]);
 const asText = (n) => String(n).replace('.', ',');
 /** Dictée avec l'idée fausse : le mot le plus proche de `m.word` est remplacé par lui. */
 const strip = (w) => w.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[.,]/g, '');

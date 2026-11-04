@@ -16,6 +16,7 @@ import { PROBLEMES_PC_2 } from './problemes-pc-2.js';
 import { PRIMAIRE_MATHS } from './primaire-maths.js';
 import { PRIMAIRE_MONDE } from './primaire-monde.js';
 import { PRIMAIRE_PLUS } from './primaire-plus.js';
+import { PRIMAIRE_SAVOIRS } from './primaire-savoirs.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -550,7 +551,7 @@ addPc({
 /* ======================================================================= */
 
 // école primaire (CP → CM2) : rattachés aux chapitres des parcours par `chapters`
-GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS);
+GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS);
 
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 

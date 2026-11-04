@@ -27,6 +27,20 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   siècles, grandes périodes, frises du Moyen Âge à 1789 et de 1789 à nos jours, continents et océans, capitales de
   l'UE ; anglais (59 mots, avec écoute). Chaque générateur est rattaché à ses chapitres officiels : en CE1 comme en
   CM2, cinq matières ont leur quête de l'année.
+- **Savoirs du primaire, nouveau lot** (`js/generators/primaire-savoirs.js`, `content/skills/primaire-savoirs.json`) :
+  15 générateurs à questions courtes, chacun avec une explication — système solaire (planètes à ranger), Terre-Soleil-Lune
+  et saisons, digestion et circulation, chaînes alimentaires, vitesses (distance, durée), masses, volumes et
+  températures, l'eau solide et liquide, cerveau et sens, fabrication du pain et du yaourt, projet technique, famille
+  et générations, sons et lettres muettes, analyse de la phrase (sujet même inversé, COD, compléments
+  circonstanciels), et un **robot à guider sur un quadrillage** (CP-CE1 : coder un déplacement ; CM : programmes et
+  boucles « répéter »). Et 40 générateurs de données de plus (`gen_primaire.py`) : instruments de météo, météo ou climat,
+  séismes et volcans, familles d'aliments, rôles dans l'écosystème, trajectoires, objets fabriqués ou naturels, besoins,
+  objets d'hier et d'aujourd'hui, articulations, os et muscles, cinq sens, santé, tri des déchets et gestes pour la
+  planète, paysages de France, grands milieux, lieux de la commune, transports, Internet, âge industriel, cultures
+  tempérées et tropicales, contes, fables de La Fontaine, héros, auteurs, phrase simple ou complexe, rimes,
+  traitement de texte. Chapitres jouables dans la quête de l'année : sciences CM2 7 → 19 sur 21, CM1 6 → 14 sur 15,
+  CP 4 → 9 sur 9 ; histoire-géographie CE1, CE2 et CM2 complètes ; français CM1 et CM2 8 → 15 sur 20 (restent l'oral,
+  la lecture à voix haute et la production d'écrits, à faire en classe).
 - **Encore au primaire** : dictées lues par l'ordinateur (mots du CP, mots invariables du CE1, phrases du CE2, avec les
   erreurs typiques reconnues), cycles de vie et phases de la Lune à remettre dans l'ordre, journée, semaine et saisons,
   points cardinaux, symboles de la République (`js/generators/primaire-plus.js`, `emc-p-symboles`).
@@ -44,13 +58,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien}.js`, `js/generators/primaire-maths.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (57 notions et 31 générateurs du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees}.json`.
+`content/index.json` (57 notions et 31 générateurs du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (125 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (195 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
