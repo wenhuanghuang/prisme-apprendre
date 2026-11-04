@@ -17,6 +17,7 @@ import { PRIMAIRE_MATHS } from './primaire-maths.js';
 import { PRIMAIRE_MONDE } from './primaire-monde.js';
 import { PRIMAIRE_PLUS } from './primaire-plus.js';
 import { PRIMAIRE_SAVOIRS } from './primaire-savoirs.js';
+import { PRIMAIRE_LECTURE } from './primaire-lecture.js';
 import { LYCEE_MATHS } from './lycee-maths.js';
 import { LYCEE_PC } from './lycee-pc.js';
 import { LYCEE_MATHS_1T } from './lycee-maths-1t.js';
@@ -566,7 +567,7 @@ addPc({
 /* ======================================================================= */
 
 // école primaire (CP → CM2) : rattachés aux chapitres des parcours par `chapters`
-GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS);
+GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS, ...PRIMAIRE_LECTURE);
 // lycée (seconde) : rattachés aux chapitres du parcours de référence
 GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T, ...LYCEE_SVT, ...LYCEE_HG, ...LYCEE_SVT_1T, ...LYCEE_FRANCAIS, ...LYCEE_SES_NSI);
 // technologie au collège

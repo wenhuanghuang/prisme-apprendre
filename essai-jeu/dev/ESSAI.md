@@ -138,6 +138,9 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   traitement de texte. Chapitres jouables dans la quête de l'année : sciences CM2 7 → 19 sur 21, CM1 6 → 14 sur 15,
   CP 4 → 9 sur 9 ; histoire-géographie CE1, CE2 et CM2 complètes ; français CM1 et CM2 8 → 15 sur 20 (restent l'oral,
   la lecture à voix haute et la production d'écrits, à faire en classe).
+- **Lire et comprendre (CP → CM2)** (`js/generators/primaire-lecture.js`) : 18 courts textes originaux (récits et
+  documentaires) avec une question explicite ou d'inférence (« Quelle saison est-ce ? », « Pourquoi sourit-elle ? »),
+  l'indice expliqué dans la correction ; l'énoncé peut être lu à voix haute.
 - **Encore au primaire** : dictées lues par l'ordinateur (mots du CP, mots invariables du CE1, phrases du CE2, avec les
   erreurs typiques reconnues), cycles de vie et phases de la Lune à remettre dans l'ordre, journée, semaine et saisons,
   points cardinaux, symboles de la République (`js/generators/primaire-plus.js`, `emc-p-symboles`).
@@ -164,4 +167,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (449 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (453 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
