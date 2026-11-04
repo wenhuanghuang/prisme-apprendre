@@ -45,6 +45,12 @@ const MAT_Q = [
   ['Comment s’appelle la fabrication d’un objet couche par couche, à partir d’un fichier numérique ?', 'l’impression 3D (fabrication additive)', ['l’usinage', 'le moulage', 'le pliage'], 'L’imprimante 3D dépose la matière couche après couche ; l’usinage, lui, enlève de la matière.'],
   ['Quel procédé consiste à enlever de la matière avec un outil (fraise, foret) ?', 'l’usinage', ['le moulage', 'l’impression 3D', 'le collage'], 'Usiner, c’est retirer de la matière : perçage, fraisage, tournage.'],
   ['Quel est l’avantage principal d’un matériau composite comme la fibre de carbone ?', 'il est à la fois très léger et très résistant', ['il est toujours bon marché', 'il conduit bien l’électricité', 'il se recycle très facilement'], 'Les fibres apportent la résistance, la résine les maintient : vélos, raquettes, avions.'],
+  ['Le bois est un matériau…', 'd’origine naturelle (végétale) et renouvelable', ['d’origine minérale', 'fabriqué à partir du pétrole', 'métallique'], 'Il provient des arbres ; une forêt bien gérée se renouvelle.'],
+  ['La plupart des matières plastiques sont fabriquées à partir…', 'du pétrole', ['du sable', 'du bois', 'du minerai de fer'], 'Certains plastiques, dits biosourcés, sont fabriqués à partir de plantes.'],
+  ['Le verre est fabriqué principalement à partir…', 'de sable (silice) fondu', ['de pétrole', 'de bois', 'de cuivre'], 'Le verre se recycle indéfiniment sans perdre ses qualités.'],
+  ['Le moulage consiste à…', 'couler une matière liquide ou pâteuse dans un moule', ['enlever de la matière avec un outil', 'plier une tôle', 'assembler des pièces par des vis'], 'Les pièces en plastique sont souvent moulées par injection.'],
+  ['L’acier est un alliage…', 'de fer et de carbone', ['de cuivre et de zinc', 'd’aluminium et de verre', 'de bois et de plastique'], 'L’acier inoxydable contient aussi du chrome, qui l’empêche de rouiller.'],
+  ['Pourquoi trier les matériaux en fin de vie ?', 'pour les recycler et économiser les ressources', ['pour les rendre plus lourds', 'pour qu’ils polluent davantage', 'cela ne sert à rien'], 'Recycler l’aluminium demande environ 95 % d’énergie en moins que de le produire.'],
 ];
 add({
   id: 'tc-materiaux', label: 'Les matériaux : familles, propriétés, procédés', skill: 'tc.materiaux',
@@ -66,6 +72,12 @@ const ENERGY_Q = [
   ['Un panneau photovoltaïque convertit l’énergie lumineuse en énergie…', 'électrique', ['chimique', 'mécanique', 'nucléaire'], 'Les cellules photovoltaïques produisent directement un courant électrique.'],
   ['Une éolienne convertit l’énergie du vent (cinétique) en énergie…', 'électrique', ['chimique', 'lumineuse', 'thermique'], 'Le vent fait tourner les pales, qui entraînent un générateur (alternateur).'],
   ['Dans la chaîne d’énergie d’un objet, la fonction « alimenter » est assurée par…', 'la pile, la batterie ou le secteur', ['le moteur', 'le capteur', 'le microcontrôleur'], 'Chaîne d’énergie : alimenter, distribuer, convertir, transmettre.'],
+  ['Une lampe convertit principalement l’énergie électrique en énergie…', 'lumineuse (et un peu thermique)', ['chimique', 'nucléaire', 'mécanique'], 'Une lampe LED perd beaucoup moins d’énergie en chaleur qu’une ampoule à incandescence.'],
+  ['L’énergie consommée par un appareil se calcule par…', 'E = P × t (puissance × durée)', ['E = P + t', 'E = P / t', 'E = t − P'], 'Un appareil de 1 000 W allumé 2 h consomme 2 kWh.'],
+  ['Un appareil en veille…', 'consomme encore un peu d’électricité', ['ne consomme rien', 'produit de l’électricité', 'se recharge tout seul'], 'Éteindre complètement les appareils (multiprise à interrupteur) évite ce gaspillage.'],
+  ['Dans une centrale hydroélectrique, l’énergie de l’eau fait tourner…', 'une turbine reliée à un alternateur', ['un panneau solaire', 'une pile', 'un moteur thermique'], 'L’alternateur convertit l’énergie mécanique en énergie électrique.'],
+  ['Quelle source d’énergie est renouvelable ?', 'la géothermie', ['le charbon', 'le gaz naturel', 'le pétrole'], 'La chaleur du sous-sol se renouvelle à l’échelle humaine ; les énergies fossiles mettent des millions d’années à se former.'],
+  ['Isoler les murs d’une maison permet…', 'de réduire les pertes de chaleur et la consommation de chauffage', ['d’augmenter la consommation', 'de produire de l’électricité', 'de rendre la maison plus lumineuse'], 'Le toit, les murs et les fenêtres sont les principales sources de pertes.'],
 ];
 add({
   id: 'tc-energie', label: 'L’énergie : sources, formes, consommation', skill: 'tc.energie',
@@ -95,6 +107,12 @@ const INFO_Q = [
   ['Le programme d’un robot est exécuté par…', 'le microcontrôleur', ['le capteur', 'le moteur', 'la batterie'], 'Le microcontrôleur traite les informations des capteurs et commande les actionneurs.'],
   ['Une porte automatique s’ouvre quand quelqu’un approche. Quel élément détecte la personne ?', 'un détecteur de présence (capteur)', ['le moteur', 'la batterie', 'le vérin'], 'Le capteur acquiert l’information « quelqu’un approche » ; le moteur ouvre ensuite la porte.'],
   ['Un capteur « tout ou rien » donne…', 'deux états seulement : 0 ou 1', ['une infinité de valeurs', 'toujours une température', 'une image'], 'Un interrupteur ou un détecteur de fin de course est soit activé, soit non : c’est une information logique.'],
+  ['Un actionneur, dans un système automatisé,…', 'agit sur le monde extérieur (moteur, lampe, vérin)', ['mesure une grandeur', 'stocke le programme', 'fournit l’énergie'], 'Le capteur acquiert ; le microcontrôleur traite ; l’actionneur agit.'],
+  ['Dans un programme, une boucle « répéter 4 fois » sert à…', 'exécuter plusieurs fois les mêmes instructions', ['arrêter le programme', 'tester une condition une seule fois', 'effacer une variable'], 'Pour dessiner un carré : répéter 4 fois « avancer, tourner de 90° ».'],
+  ['« Si la luminosité est faible, alors allumer la lampe » est…', 'une instruction conditionnelle', ['une boucle', 'une variable', 'un capteur'], 'Si… alors… sinon : le programme choisit selon une condition.'],
+  ['Une variable, dans un programme, sert à…', 'mémoriser une valeur qui peut changer (un score, une température)', ['allumer un moteur', 'mesurer une distance', 'relier deux ordinateurs'], 'On peut la lire, la modifier, la comparer.'],
+  ['Un capteur de température donne une information…', 'analogique ou numérique, qui varie de façon continue', ['seulement 0 ou 1', 'toujours une image', 'uniquement sonore'], 'Il mesure une grandeur qui peut prendre de nombreuses valeurs, contrairement à un capteur tout ou rien.'],
+  ['Un algorithme, c’est…', 'une suite ordonnée d’instructions pour résoudre un problème', ['un composant électronique', 'un type de capteur', 'une batterie'], 'Il peut ensuite être traduit en programme (Scratch, Python…).'],
 ];
 add({
   id: 'tc-information', label: 'La chaîne d’information : capteurs, traitement, actionneurs', skill: 'tc.information',
@@ -115,6 +133,11 @@ const NET_Q = [
   ['Quel appareil relie les ordinateurs d’un même réseau local ?', 'le commutateur (switch)', ['le serveur web', 'l’imprimante', 'le capteur'], 'Le switch relie les machines du réseau local ; le routeur relie des réseaux entre eux (la box, vers Internet).'],
   ['Le rôle du DNS est de…', 'traduire un nom de domaine en adresse IP', ['protéger des virus', 'compresser les fichiers', 'allumer les ordinateurs'], 'Quand on tape un nom de site, un serveur DNS donne l’adresse IP de la machine correspondante.'],
   ['À quoi sert le protocole HTTPS ?', 'à échanger des pages web de façon chiffrée', ['à envoyer des SMS', 'à imprimer', 'à recharger une batterie'], 'Le « S » signifie sécurisé : les échanges entre le navigateur et le serveur sont chiffrés.'],
+  ['Un routeur (ou une box) sert à…', 'relier le réseau local à Internet et acheminer les données entre réseaux', ['imprimer des documents', 'stocker les mots de passe', 'refroidir les ordinateurs'], 'Le switch relie les machines d’un même réseau local ; le routeur relie des réseaux entre eux.'],
+  ['Un octet est composé de…', '8 bits', ['2 bits', '10 bits', '1 000 bits'], 'Un bit vaut 0 ou 1 ; un octet peut donc prendre 256 valeurs.'],
+  ['Quelle unité est la plus grande ?', 'le gigaoctet (Go)', ['le kilooctet (ko)', 'le mégaoctet (Mo)', 'l’octet'], 'Environ : 1 ko = 1 000 octets, 1 Mo = 1 000 ko, 1 Go = 1 000 Mo.'],
+  ['Le « cloud », c’est…', 'le stockage de fichiers sur des serveurs distants, accessibles par Internet', ['un nuage de pluie', 'un câble réseau', 'un antivirus'], 'Les fichiers sont dans des centres de données, qui consomment de l’énergie.'],
+  ['Une adresse MAC identifie…', 'la carte réseau d’un appareil', ['un site web', 'un mot de passe', 'un fichier'], 'L’adresse IP, elle, peut changer selon le réseau auquel on se connecte.'],
 ];
 add({
   id: 'tc-donnees', label: 'Données, fichiers et réseaux', skill: 'tc.donnees',
@@ -146,6 +169,12 @@ const RESP = [
   ['Quelle étape de la vie d’un smartphone pèse le plus sur l’environnement ?', 'sa fabrication', ['sa recharge', 'son transport jusqu’au magasin', 'l’envoi de SMS'], 'Extraire les métaux et fabriquer les composants représente la plus grande part de son empreinte : le garder longtemps est le meilleur geste.'],
   ['Publier la photo d’un ami sans son accord…', 'n’est pas permis : chacun a droit à son image', ['est permis si la photo est réussie', 'est permis sur les réseaux sociaux', 'est obligatoire pour les anniversaires'], 'Le droit à l’image impose de demander l’accord de la personne photographiée.'],
   ['Une licence Creative Commons « BY » oblige à…', 'citer l’auteur de l’œuvre', ['payer l’auteur', 'ne jamais partager l’œuvre', 'modifier l’œuvre'], 'BY = attribution : on peut réutiliser l’œuvre à condition de citer son auteur.'],
+  ['Pourquoi faire des mises à jour de son ordinateur ou de son téléphone ?', 'elles corrigent souvent des failles de sécurité', ['elles effacent toujours les photos', 'elles ralentissent forcément l’appareil', 'elles ne servent à rien'], 'Un appareil à jour est mieux protégé contre les attaques.'],
+  ['La double authentification, c’est…', 'confirmer sa connexion par un deuxième moyen (un code reçu, une application)', ['avoir deux mots de passe identiques', 'prêter son compte à un ami', 'se connecter deux fois de suite'], 'Même si le mot de passe est volé, le compte reste protégé.'],
+  ['Pour réduire l’impact environnemental du numérique, le plus efficace est…', 'de garder ses appareils plus longtemps et de les faire réparer', ['de changer de téléphone chaque année', 'de laisser les appareils allumés', 'de regarder les vidéos en plus haute définition'], 'L’essentiel de l’impact vient de la fabrication des appareils.'],
+  ['Avant de croire une information virale, on vérifie…', 'la source, la date et si d’autres médias fiables la confirment', ['seulement le nombre de « j’aime »', 'la couleur de l’image', 'qui l’a partagée en premier'], 'Une image peut aussi être sortie de son contexte ou retouchée.'],
+  ['Sur un réseau social, régler son profil en « privé » permet…', 'de choisir qui voit ses publications', ['de devenir invisible des services de police', 'de supprimer définitivement ses données', 'd’effacer les publications des autres'], 'Ce qui est publié peut tout de même être copié ou partagé.'],
+  ['Un « cookie » accepté sur un site peut servir à…', 'mémoriser des préférences ou suivre la navigation pour la publicité', ['réparer l’ordinateur', 'accélérer la connexion', 'recharger la batterie'], 'On peut refuser les cookies non indispensables.'],
 ];
 add({
   id: 'tc-numerique-responsable', label: 'Usages responsables du numérique', skill: 'tc.numerique-responsable',
@@ -163,6 +192,11 @@ const ANALYSE_Q = [
   ['Pour une trottinette, « les roues en polyuréthane » sont…', 'une solution technique', ['le besoin', 'une contrainte', 'une fonction d’usage'], 'La fonction est de rouler sans bruit et sans glisser ; les roues en polyuréthane sont une solution choisie pour cela.'],
   ['Une famille d’objets techniques regroupe des objets qui…', 'répondent au même besoin', ['ont la même couleur', 'coûtent le même prix', 'ont été inventés la même année'], 'Exemple : tous les objets pour s’éclairer (bougie, lampe à pétrole, ampoule, LED).'],
   ['Pourquoi l’ampoule LED a-t-elle remplacé l’ampoule à incandescence ?', 'elle consomme beaucoup moins d’énergie pour éclairer autant', ['elle est plus lourde', 'elle chauffe davantage', 'elle était plus ancienne'], 'L’incandescence perd l’essentiel de son énergie en chaleur ; la LED est bien plus efficace.'],
+  ['Le cycle de vie d’un objet comprend…', 'l’extraction des matières, la fabrication, le transport, l’utilisation et la fin de vie', ['seulement son utilisation', 'seulement sa fabrication', 'seulement son prix'], 'Chaque étape a un impact sur l’environnement.'],
+  ['Pour une lampe de bureau, « éclairer le plan de travail » est…', 'la fonction d’usage', ['une contrainte de prix', 'une solution technique', 'un matériau'], 'La fonction d’usage dit à quoi sert l’objet pour l’utilisateur.'],
+  ['Un prototype est…', 'un premier exemplaire, fabriqué pour tester une solution', ['l’objet vendu en magasin', 'le dessin du logo', 'un mode d’emploi'], 'On le teste par rapport au cahier des charges avant la fabrication en série.'],
+  ['L’écoconception d’un objet vise à…', 'réduire ses impacts sur l’environnement dès sa conception', ['le rendre plus lourd', 'augmenter sa consommation', 'le rendre impossible à réparer'], 'Matériaux recyclables, pièces démontables, faible consommation…'],
+  ['Un objet facile à réparer…', 'dure plus longtemps et produit moins de déchets', ['coûte toujours plus cher à utiliser', 'est forcément démodé', 'ne peut pas être recyclé'], 'L’indice de réparabilité est affiché sur certains appareils depuis 2021.'],
 ];
 const LINEES = [
   ['Range ces objets pour s’éclairer, du plus ancien au plus récent.', ['La bougie', 'La lampe à pétrole', 'L’ampoule à incandescence', 'La lampe LED']],

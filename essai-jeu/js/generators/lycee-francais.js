@@ -58,6 +58,13 @@ const VERS = [
   ['Une strophe de quatre vers s’appelle…', 'un quatrain', ['un tercet', 'un distique', 'un sizain'], 'Distique : 2 vers ; tercet : 3 ; quatrain : 4 ; quintil : 5 ; sizain : 6.'],
   ['Un enjambement, c’est…', 'une phrase qui se poursuit au vers suivant, sans pause', ['une rime riche', 'un vers de 12 syllabes', 'une strophe de quatre vers'], 'Le sens déborde la fin du vers ; un rejet met en valeur le mot rejeté au vers suivant.'],
   ['Le poème en prose…', 'n’a ni vers ni rimes obligatoires, mais une recherche poétique', ['est toujours un sonnet', 'est écrit en alexandrins', 'est une pièce de théâtre'], 'Baudelaire, Le Spleen de Paris ; Rimbaud, Illuminations.'],
+  ['Un octosyllabe compte…', '8 syllabes', ['6 syllabes', '10 syllabes', '12 syllabes'], 'Vers fréquent dans les chansons et les fables ; le décasyllabe en compte 10, l’alexandrin 12.'],
+  ['Des rimes disposées AABB sont…', 'plates (ou suivies)', ['croisées', 'embrassées', 'libres'], 'Deux vers qui se suivent riment ensemble.'],
+  ['Dans un vers, le « e » muet en fin de mot, devant une voyelle,…', 'ne se prononce pas : il s’élide', ['compte toujours pour une syllabe', 'se prononce deux fois', 'devient un accent'], 'Devant une consonne, à l’intérieur du vers, il se prononce et compte pour une syllabe.'],
+  ['Une diérèse consiste à…', 'prononcer en deux syllabes deux voyelles qui se suivent, comme « li-on »', ['supprimer une syllabe', 'répéter un son', 'couper le vers en deux'], 'La synérèse fait l’inverse : deux voyelles en une seule syllabe.'],
+  ['La césure d’un alexandrin classique se place…', 'après la sixième syllabe', ['après la première syllabe', 'après la dixième syllabe', 'nulle part'], 'Elle sépare deux hémistiches de six syllabes.'],
+  ['Une rime qui partage trois sons ou plus, comme « cheval » et « rival », est…', 'riche', ['pauvre', 'suffisante', 'croisée'], 'Pauvre : un son commun ; suffisante : deux ; riche : trois ou plus.'],
+  ['Le vers libre…', 'n’a ni nombre de syllabes fixe ni rimes obligatoires', ['compte toujours 12 syllabes', 'est réservé aux fables', 'rime toujours en ABAB'], 'Apollinaire et Prévert, entre autres, l’ont beaucoup employé.'],
 ];
 add({
   id: 'lf-versification', label: 'La versification', skill: 'fl.versification', chapters: ['2nde-f-poesie', '1re-f-poesie'],
@@ -78,6 +85,15 @@ const SIECLES = [
   ['Le naturalisme, avec Zola, se développe…', 'à la fin du XIXe siècle', ['au XVIe siècle', 'au début du XVIIIe siècle', 'après 1950'], 'Les Rougon-Macquart observent l’influence de l’hérédité et du milieu.'],
   ['Le surréalisme (Breton, Éluard, Aragon) naît…', 'dans les années 1920', ['au XVIIe siècle', 'au XIXe siècle', 'en 2000'], 'Le Manifeste du surréalisme d’André Breton date de 1924.'],
   ['La règle des trois unités, au théâtre classique, concerne…', 'le temps, le lieu et l’action', ['les personnages, les décors et les costumes', 'les vers, les rimes et les strophes', 'le début, le milieu et la fin'], 'Une seule action, en un seul lieu, en une journée.'],
+  ['La Pléiade (Ronsard, Du Bellay) est un groupe de poètes du…', 'XVIe siècle', ['XIIe siècle', 'XVIIIe siècle', 'XXe siècle'], 'Du Bellay publie Défense et illustration de la langue française en 1549.'],
+  ['Le réalisme (Balzac, Flaubert, Maupassant) cherche à…', 'représenter avec exactitude la société et la vie ordinaire', ['peindre des mondes merveilleux', 'explorer les rêves et l’inconscient', 'imiter les tragédies grecques'], 'Il domine le roman du XIXe siècle ; Madame Bovary paraît en 1857.'],
+  ['Le symbolisme (Verlaine, Mallarmé) se développe…', 'à la fin du XIXe siècle', ['au XVIe siècle', 'au XVIIe siècle', 'après 1950'], 'La poésie suggère plus qu’elle ne décrit ; le manifeste de Moréas date de 1886.'],
+  ['Le théâtre de l’absurde (Ionesco, Beckett) apparaît…', 'dans les années 1950', ['au XVIIe siècle', 'au XVIIIe siècle', 'au XIXe siècle'], 'La Cantatrice chauve (1950), En attendant Godot (1953).'],
+  ['L’Encyclopédie, dirigée par Diderot et d’Alembert, est une œuvre…', 'des Lumières', ['de la Renaissance', 'du romantisme', 'du surréalisme'], 'Publiée de 1751 à 1772, elle diffuse les connaissances et l’esprit critique.'],
+  ['La Chanson de Roland est…', 'une chanson de geste du Moyen Âge', ['un roman du XIXe siècle', 'une tragédie classique', 'un recueil surréaliste'], 'Écrite vers 1100, elle raconte la bataille de Roncevaux, au temps de Charlemagne.'],
+  ['La querelle des Anciens et des Modernes a lieu…', 'à la fin du XVIIe siècle', ['au XIIe siècle', 'au XIXe siècle', 'après 1950'], 'Boileau défend l’imitation des Anciens ; Perrault, les progrès des Modernes.'],
+  ['Le Nouveau Roman (Robbe-Grillet, Sarraute) remet en cause…', 'le récit traditionnel : intrigue, personnage, narrateur', ['les règles de l’alexandrin', 'la règle des trois unités', 'la forme du sonnet'], 'Il s’affirme dans les années 1950.'],
+  ['L’esthétique baroque, autour de 1600, aime…', 'le mouvement, l’illusion et l’inconstance', ['l’ordre et la mesure', 'l’observation scientifique de la société', 'l’écriture automatique'], 'L’ordre et la mesure caractérisent au contraire le classicisme.'],
 ];
 add({
   id: 'lf-oeuvres', label: 'Œuvres, auteurs et mouvements littéraires', skill: 'fl.oeuvres',
@@ -121,6 +137,12 @@ const ARG = [
   ['« Certes…, mais… » sert à…', 'concéder un point à l’adversaire pour mieux le réfuter', ['ajouter un exemple', 'conclure', 'poser une question'], 'La concession reconnaît une part de vérité avant de réfuter.'],
   ['Un argument d’autorité s’appuie sur…', 'l’avis d’une personne ou d’une institution reconnue', ['une émotion', 'une statistique inventée', 'une question rhétorique'], 'Il vaut ce que vaut l’autorité citée : on le vérifie.'],
   ['La contraction de texte consiste à…', 'résumer un texte en respectant l’ordre de ses idées, sans donner son avis', ['commenter le style', 'donner son opinion', 'recopier les phrases clés'], 'On reformule, on réduit (en général au quart), on garde l’énonciation du texte.'],
+  ['Un argument illustré par un exemple…', 'appuie une idée sur un cas précis et vérifiable', ['remplace la thèse', 'est toujours une statistique', 'sert de conclusion'], 'Un bon exemple est précis, pertinent et analysé.'],
+  ['Réfuter une thèse, c’est…', 'montrer, arguments à l’appui, qu’elle est fausse ou discutable', ['la répéter', 'la résumer', 'l’approuver sans réserve'], 'On conteste ses arguments ou on lui oppose des contre-exemples.'],
+  ['Une question rhétorique est…', 'une question qui n’attend pas de réponse et sert à affirmer', ['une question piège d’examen', 'la dernière question d’un débat', 'une question sans point'], 'Exemple : « Qui ne rêve pas d’être libre ? »'],
+  ['Dans une dissertation, la problématique est…', 'la question précise posée par le sujet, à laquelle le devoir répond', ['le résumé de l’œuvre', 'la liste des exemples', 'la conclusion'], 'Elle se formule dans l’introduction, après l’analyse des termes du sujet.'],
+  ['Un plan dialectique suit l’ordre…', 'thèse, antithèse, synthèse (ou dépassement)', ['introduction, exemple, citation', 'chronologique', 'alphabétique'], 'Il examine une position, la position contraire, puis les dépasse.'],
+  ['Un argument « ad hominem »…', 'attaque la personne plutôt que ses idées', ['s’appuie sur des chiffres', 'cite un expert', 'donne un exemple'], 'C’est un procédé fallacieux : il ne répond pas à l’argument.'],
 ];
 add({
   id: 'lf-argumentation', label: 'Argumenter : connecteurs logiques, dissertation, essai', skill: 'fl.argumentation', chapters: ['2nde-f-expression', '1re-f-lexique-expression', '2nde-f-dissertation-essai', '1re-f-dissertation'],
