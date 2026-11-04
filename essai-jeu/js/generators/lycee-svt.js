@@ -28,6 +28,11 @@ const METAB = [
   ['La respiration cellulaire consomme…', 'du glucose et du dioxygène', ['du dioxyde de carbone et de la lumière', 'de l’azote', 'uniquement de l’eau'], 'Elle rejette du CO₂ et de l’eau, et fournit de l’énergie à la cellule.'],
   ['Une enzyme est…', 'une protéine qui accélère une réaction chimique précise', ['un sucre de réserve', 'un acide gras', 'une cellule'], 'Chaque enzyme est spécifique d’une réaction (ou d’un substrat).'],
   ['La fermentation, par rapport à la respiration,…', 'se fait sans dioxygène et libère moins d’énergie', ['demande plus de dioxygène', 'libère plus d’énergie', 'produit du glucose'], 'Exemple : la fermentation lactique des muscles ou celle des levures dans le pain.'],
+  ['Les êtres humains sont hétérotrophes : ils…', 'prélèvent leur matière organique en mangeant d’autres êtres vivants', ['fabriquent leur matière organique grâce à la lumière', 'vivent sans manger', 'se nourrissent uniquement d’eau'], 'Les animaux et les champignons sont hétérotrophes.'],
+  ['Une enzyme fonctionne le mieux…', 'à une température et à un pH précis', ['à n’importe quelle température', 'uniquement à 100 °C', 'sans eau'], 'Une forte chaleur peut la dénaturer : elle perd sa forme et son activité.'],
+  ['L’amidon est…', 'une forme de réserve du glucose chez les végétaux', ['une protéine du muscle', 'une vitamine', 'un gaz'], 'L’eau iodée le colore en bleu-noir.'],
+  ['Le métabolisme d’une cellule, c’est…', 'l’ensemble des réactions chimiques qui s’y déroulent', ['sa taille', 'sa forme', 'le nombre de ses chromosomes'], 'Il dépend de l’environnement et des gènes que la cellule exprime.'],
+  ['Les levures qui font lever la pâte à pain réalisent une fermentation qui produit…', 'du dioxyde de carbone et de l’éthanol', ['du dioxygène', 'du glucose', 'de l’amidon'], 'Les bulles de CO₂ font gonfler la pâte ; l’éthanol s’évapore à la cuisson.'],
 ];
 add({
   id: 'l2svt-cellules', label: 'Cellules et métabolisme', skill: 'l2svt.cellules', chapters: ['2nde-svt-cellules', '2nde-svt-metabolisme'],
@@ -52,6 +57,9 @@ const BIODIV = [
   ['Une crise biologique, comme celle de la fin du Crétacé, correspond à…', 'la disparition massive de nombreuses espèces en peu de temps', ['l’apparition des premiers êtres vivants', 'un hiver très froid', 'la naissance des continents'], 'Il y a environ 66 millions d’années, de nombreux groupes ont disparu, dont les dinosaures non aviens.'],
   ['La sélection sexuelle explique, par exemple,…', 'la queue colorée des paons mâles', ['la couleur verte des feuilles', 'la forme des cristaux de neige', 'la taille des bactéries'], 'Les femelles choisissent plus souvent les mâles aux ornements voyants, même si ces caractères les exposent davantage.'],
   ['Une mutation est…', 'une modification de la séquence de l’ADN', ['un changement de forme d’une cellule', 'une maladie contagieuse', 'un déplacement d’animaux'], 'Les mutations, souvent dues au hasard, créent de nouveaux allèles : elles sont la source de la diversité génétique.'],
+  ['Une espèce est un ensemble d’individus…', 'qui peuvent se reproduire entre eux et avoir une descendance fertile', ['qui ont la même couleur', 'qui vivent au même endroit', 'qui ont le même âge'], 'Le cheval et l’âne donnent la mule, stérile : ce sont deux espèces différentes.'],
+  ['Les fossiles permettent…', 'de connaître des espèces disparues et de retracer l’histoire du vivant', ['de prévoir la météo', 'de fabriquer de l’ADN', 'de mesurer la vitesse de la lumière'], 'Ils montrent que la biodiversité change au cours des temps géologiques.'],
+  ['La fragmentation des habitats (routes, villes) menace la biodiversité car elle…', 'isole des populations, plus petites et plus fragiles', ['augmente toujours le nombre d’espèces', 'agrandit les forêts', 'n’a aucun effet'], 'Les corridors écologiques (trames vertes et bleues) reconnectent les milieux.'],
 ];
 add({
   id: 'l2svt-biodiversite', label: 'Biodiversité et évolution', skill: 'l2svt.biodiversite', chapters: ['2nde-svt-echelles', '2nde-svt-biodiversite-temps', '2nde-svt-forces-evolutives', '2nde-svt-communication'],
@@ -74,6 +82,12 @@ const GEO = [
   ['Une roche sédimentaire se forme…', 'par accumulation puis compaction de sédiments', ['par refroidissement d’un magma', 'par fusion d’une roche', 'dans le noyau terrestre'], 'Les couches de sédiments s’empilent ; avec le temps, elles se tassent et se cimentent.'],
   ['Comment l’être humain accélère-t-il l’érosion des sols ?', 'en déboisant et en laissant les sols nus', ['en plantant des haies', 'en couvrant les sols de végétation', 'en construisant des terrasses'], 'Sans racines ni couvert végétal, la pluie et le vent emportent la terre.'],
   ['Les barrages sur les fleuves…', 'retiennent des sédiments, qui n’atteignent plus les côtes', ['augmentent les sédiments arrivant à la mer', 'n’ont aucun effet', 'creusent les montagnes'], 'Privées de sédiments, certaines plages et certains deltas reculent.'],
+  ['Le gel fragmente les roches car…', 'l’eau qui gèle dans les fissures augmente de volume', ['la glace dissout la roche', 'le froid fait fondre la roche', 'la neige est acide'], 'En gelant, l’eau gagne environ 9 % de volume : c’est la gélifraction.'],
+  ['Le sable des plages est souvent formé de grains de…', 'quartz, un minéral très résistant à l’altération', ['sel', 'lave refroidie', 'glace'], 'Quand un granite s’altère, ses autres minéraux se transforment en argiles ; le quartz reste.'],
+  ['Plus un courant d’eau est rapide,…', 'plus il peut transporter de grosses particules', ['moins il transporte de particules', 'plus il dépose de galets', 'plus l’eau est froide'], 'Quand le courant ralentit, les particules se déposent, les plus grosses d’abord.'],
+  ['Le calcaire est une roche sédimentaire souvent formée…', 'de restes d’organismes à coquille ou à squelette calcaire', ['par refroidissement d’une lave', 'par fusion du granite', 'dans le noyau terrestre'], 'Les fossiles qu’il contient renseignent sur son milieu de dépôt.'],
+  ['Dans des couches sédimentaires non déformées,…', 'la couche du dessous est la plus ancienne', ['la couche du dessus est la plus ancienne', 'toutes les couches ont le même âge', 'la couche la plus épaisse est la plus ancienne'], 'C’est le principe de superposition : les sédiments se déposent les uns sur les autres.'],
+  ['L’extraction massive de sable dans les rivières et sur les côtes…', 'accélère l’érosion des berges et des littoraux', ['protège les plages', 'n’a aucun effet', 'fait grandir les montagnes'], 'Le sable, très utilisé pour le béton, ne se renouvelle que très lentement.'],
 ];
 add({
   id: 'l2svt-geosciences', label: 'Érosion et sédimentation', skill: 'l2svt.geosciences', chapters: ['2nde-svt-erosion', '2nde-svt-sedimentation', '2nde-svt-erosion-humain'],
@@ -94,6 +108,12 @@ const AGRO = [
   ['Un excès d’engrais azotés peut provoquer…', 'la pollution des eaux (nitrates, eutrophisation)', ['une hausse de la biodiversité des rivières', 'la disparition de la pluie', 'un sol plus riche à coup sûr'], 'Les nitrates lessivés favorisent la prolifération d’algues qui asphyxient les milieux aquatiques.'],
   ['L’humus du sol provient…', 'de la décomposition de la matière organique morte par les organismes du sol', ['de la fusion des roches', 'de la pluie', 'des engrais chimiques uniquement'], 'Vers de terre, champignons et bactéries transforment feuilles et débris en humus.'],
   ['Laquelle de ces pratiques va vers une gestion plus durable d’un agrosystème ?', 'alterner les cultures et garder des haies', ['laisser le sol nu tout l’hiver', 'multiplier les pesticides', 'cultiver toujours la même plante'], 'Rotations, couverts végétaux et haies protègent le sol et la biodiversité.'],
+  ['Dans un agrosystème, la matière organique des récoltes est produite d’abord par…', 'la photosynthèse des plantes cultivées', ['les engrais seuls', 'la respiration des animaux', 'les machines agricoles'], 'Les engrais apportent des ions minéraux ; c’est la photosynthèse qui fabrique la matière organique.'],
+  ['Produire 1 kg de viande de bœuf demande…', 'beaucoup plus de surface et d’énergie que 1 kg de céréales', ['moins de surface que 1 kg de céréales', 'aucune plante', 'exactement autant d’énergie'], 'À chaque maillon d’une chaîne alimentaire, une grande partie de l’énergie est perdue (respiration, chaleur).'],
+  ['La lutte biologique consiste à…', 'utiliser des êtres vivants, comme les coccinelles, contre les ravageurs', ['multiplier les insecticides', 'brûler les champs', 'arroser davantage'], 'Les coccinelles et leurs larves dévorent les pucerons.'],
+  ['Les légumineuses (pois, luzerne, trèfle) enrichissent le sol en…', 'azote, grâce aux bactéries de leurs racines', ['plastique', 'calcaire', 'pétrole'], 'Les bactéries de leurs nodosités fixent l’azote de l’air.'],
+  ['Le sol est une ressource…', 'qui se forme très lentement, sur des siècles et des millénaires', ['qui se reforme en une saison', 'inépuisable', 'fabriquée par l’être humain'], 'Perdre un sol par érosion ou bétonisation est presque irréversible à l’échelle humaine.'],
+  ['Le ver de terre est utile au sol car il…', 'creuse des galeries et mélange la matière organique à la terre', ['mange les racines des cultures', 'rend le sol imperméable', 'produit des engrais chimiques'], 'Ses galeries aèrent le sol et facilitent l’infiltration de l’eau.'],
 ];
 add({
   id: 'l2svt-agrosystemes', label: 'Agrosystèmes et sols', skill: 'l2svt.agrosystemes', chapters: ['2nde-svt-agrosystemes', '2nde-svt-sols', '2nde-svt-gestion-durable'],

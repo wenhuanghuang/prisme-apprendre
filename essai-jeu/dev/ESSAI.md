@@ -112,6 +112,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   de démonstration, ne compte pas). But atteint : chacun ouvre le coffre de la famille depuis son profil (+25 points,
   vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
   (`js/engine/famille.js`, `js/ui/game/family-card.js`).
+- **Banques de questions agrandies** (pour rejouer une année entière sans revoir sans cesse les mêmes questions) :
+  EMC de 8 à 23-25 questions par cycle (numéros d'urgence, symboles, commémorations, institutions, Ve République,
+  laïcité, médias), philosophie (22 citations, 18 repères), EPS, numérique au primaire, enseignement scientifique,
+  sciences de l'ingénieur, SES, NSI, SNT, géographie du lycée (21 à 22 questions par classe), SVT de la 2nde à la Tle.
 - **Associations au lycée** (`content/generators/{pc-l-unites,svt-l-organites,maths-l-derivees,hg-l-capitales,philo-l-auteurs}.json`) :
   une grandeur et son unité SI (newton, joule, watt, pascal, coulomb, volt, ampère, hertz, ohm, mole), un élément de la
   cellule et son rôle, une fonction usuelle et sa dérivée, 14 grands pays et leur capitale, 12 philosophes et une de
