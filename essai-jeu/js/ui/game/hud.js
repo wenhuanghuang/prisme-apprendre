@@ -60,6 +60,9 @@ function update() {
   if (lastProfile === pid && last) {
     const gain = g.totalXp - last.totalXp;
     if (gain > 0) floatGain(gain);
+    // trophée tout juste gagné : un petit message (deux au plus d'un coup)
+    const before = new Set((last.trophies || []).filter((t) => t.earned).map((t) => t.id));
+    g.trophies.filter((t) => t.earned && !before.has(t.id)).slice(0, 2).forEach((t, k) => setTimeout(() => toast(`🏆 Nouveau trophée : ${t.icon} ${t.label}`), 900 + k * 1500));
     if (!last.goalReached && g.goalReached) {
       toast(`🎯 Objectif du jour atteint ! Série : ${streakLabel(g.streak)} 🔥`);
       el.classList.remove('is-pop'); void el.offsetWidth; el.classList.add('is-pop');

@@ -460,6 +460,15 @@ add({'id': 'en-p-vocabulaire', 'label': 'Anglais : mes premiers mots', 'subject'
                  {'id': 'direction', 'label': 'Sens', 'values': [{'id': 'normal', 'label': 'Français → anglais'}, {'id': 'inverse', 'label': 'Anglais → français'}, {'id': 'mixte', 'label': 'Les deux, au hasard'}]}],
      'data': {'pairs': EN, 'lang': 'en-GB', 'fromLabel': 'français', 'toLabel': 'anglais'}})
 
+# ---------------- EMC ----------------
+SYM = [('La devise de la République', 'Liberté, Égalité, Fraternité'), ('L’hymne national', 'La Marseillaise'), ('La fête nationale', 'Le 14 Juillet'), ('Les couleurs du drapeau', 'Bleu, blanc, rouge'),
+       ('La figure qui représente la République', 'Marianne'), ('La durée du mandat du président de la République', 'Cinq ans'), ('Le lieu où siègent les députés', 'L’Assemblée nationale'), ('L’âge à partir duquel on peut voter', '18 ans'),
+       ('Le principe qui sépare les religions et l’État', 'La laïcité'), ('Le texte de 1789 qui proclame les droits de tous', 'La Déclaration des droits de l’homme et du citoyen')]
+skill('emc.p.symboles', 'emc', 'Connaître les symboles et les principes de la République', 'cp')
+add({'id': 'emc-p-symboles', 'label': 'Les symboles de la République', 'subject': 'emc', 'levels': ['cp', 'ce1', 'ce2', 'cm1', 'cm2'], 'skill': 'emc.p.symboles', 'kind': 'match', 'chapters': [],
+     'description': 'Associer les symboles et les principes de la République : devise, hymne, fête nationale, drapeau, Marianne, laïcité…',
+     'data': {'prompt': 'Associe chaque élément à ce qui lui correspond.', 'count': 5, 'leftTitle': 'Question', 'rightTitle': 'Réponse', 'pairs': [{'left': a, 'right': b} for a, b in SYM]}})
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

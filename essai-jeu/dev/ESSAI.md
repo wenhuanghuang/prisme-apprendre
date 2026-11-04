@@ -20,6 +20,11 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   siècles, grandes périodes, frises du Moyen Âge à 1789 et de 1789 à nos jours, continents et océans, capitales de
   l'UE ; anglais (59 mots, avec écoute). Chaque générateur est rattaché à ses chapitres officiels : en CE1 comme en
   CM2, cinq matières ont leur quête de l'année.
+- **Encore au primaire** : dictées lues par l'ordinateur (mots du CP, mots invariables du CE1, phrases du CE2, avec les
+  erreurs typiques reconnues), cycles de vie et phases de la Lune à remettre dans l'ordre, journée, semaine et saisons,
+  points cardinaux, symboles de la République (`js/generators/primaire-plus.js`, `emc-p-symboles`).
+- **Trophées annoncés** : un message « 🏆 Nouveau trophée » quand on en gagne un.
+- **Correctif** : dans « Générateurs illimités », la classe de l'élève est transmise (un CE2 n'a plus des exercices de CP).
 - **Curiosité et bonnes habitudes** : énigme du jour (une par jour, matière tournante, +10 points, série d'énigmes,
   un « Le savais-tu ? » parmi 30 curiosités vérifiées, trophées Esprit curieux / Grand curieux) ; constellation de
   l'année (une étoile par chapitre, allumée à la médaille) ; série de réussites du premier coup dans les quêtes ;

@@ -397,7 +397,8 @@ function generatorsPanel(panel, stageCleanup) {
           [['tous', 'Calculs et problèmes'], ['probleme', 'Problèmes à étapes'], ['calcul', 'Exercices courts']].map(([v, l]) => h('option', { value: v, selected: v === state.type }, l)))),
       h('p', { class: 'small muted', style: { alignSelf: 'end', gridColumn: '1 / -1' } }, `${shown.length} générateur${shown.length > 1 ? 's' : ''} : chaque exercice est nouveau, corrigé et diagnostiqué.${state.track === 'expert' ? ' Niveau expert : plusieurs étapes, cas pièges, raisonnement à justifier.' : ''}`));
     const cards = shown.map((g) => {
-      const chosen = { parcours: state.track };
+      // la classe choisie (ou celle de l'élève) : un générateur qui couvre plusieurs classes adapte ses nombres
+      const chosen = { parcours: state.track, niveau: state.level !== 'tous' ? state.level : levelId(store.profile.level) };
       const meta = store.index.skills.get(g.skill);
       const lv = masteryLevel(store.states.skills[g.skill], store.now());
       const printTen = async () => { status.textContent = await printItems(g.label, 'Exercices générés', Array.from({ length: 10 }, () => ({ kind: 'gen', meta: g, opts: { ...chosen }, seed: newSeed() }))); };
