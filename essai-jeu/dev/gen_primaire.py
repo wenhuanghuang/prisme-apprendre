@@ -673,6 +673,73 @@ TTX = [('Enregistrer', 'garder son texte pour le retrouver plus tard'), ('Annule
 pairs_gen('qlm-p-traitement-texte', 'qlm', ['ce1', 'ce2'], 'qlm.p.numerique', 'Utiliser un traitement de texte : saisir, mettre en forme, enregistrer', 'Le traitement de texte',
           'Les commandes et les touches utiles pour écrire à l’ordinateur.', ['ce1-qlm-numerique', 'ce2-qlm-numerique'], 'Associe chaque commande ou touche à ce qu’elle permet de faire.', TTX, 'Commande', 'Elle sert à…', 5)
 
+# ---------------- Lycée : frises chronologiques ----------------
+chrono('hg-l-chrono-2nde', ['2nde'], 'hg.l.chronologie-2nde', 'Situer des repères de l’Empire romain aux Lumières', 'Repères d’histoire de seconde : de Rome aux Lumières',
+       'Des dates sûres de l’Antiquité tardive au XVIIIe siècle : les ranger sur une frise, ou retrouver l’année.',
+       ['2nde-hg-h0-periodisation', '2nde-hg-h1-antiquite', '2nde-hg-h1-moyen-age', '2nde-hg-h2-atlantique', '2nde-hg-h2-renaissance', '2nde-hg-h3-france', '2nde-hg-h3-angleterre', '2nde-hg-h4-lumieres'], [
+    ('L’édit de Caracalla donne la citoyenneté romaine à presque tous les hommes libres de l’Empire', 212, 'IIIe siècle'),
+    ('Fin de l’Empire romain d’Occident', 476, 'fin du Ve siècle'),
+    ('Les croisés prennent Jérusalem', 1099, 'fin du XIe siècle'),
+    ('Les Ottomans prennent Constantinople', 1453, 'milieu du XVe siècle'),
+    ('Premier voyage de Christophe Colomb vers l’Amérique', 1492, 'fin du XVe siècle'),
+    ('Traité de Tordesillas entre l’Espagne et le Portugal', 1494, 'deux ans après le voyage de Colomb'),
+    ('Martin Luther publie ses 95 thèses', 1517, 'début du XVIe siècle'),
+    ('Fin du premier tour du monde, commencé par Magellan', 1522, 'début du XVIe siècle'),
+    ('Édit de Nantes', 1598, 'fin du XVIe siècle'),
+    ('Début du règne personnel de Louis XIV', 1661, 'XVIIe siècle'),
+    ('Habeas Corpus en Angleterre', 1679, 'fin du XVIIe siècle'),
+    ('Newton publie les Principia', 1687, 'fin du XVIIe siècle'),
+    ('Bill of Rights en Angleterre', 1689, 'fin du XVIIe siècle'),
+    ('Premier volume de l’Encyclopédie de Diderot et d’Alembert', 1751, 'milieu du XVIIIe siècle'),
+])
+chrono('hg-l-chrono-1re', ['1re'], 'hg.l.chronologie-1re', 'Situer des repères de 1789 à 1919', 'Repères d’histoire de première : de 1789 à 1919',
+       'De la Révolution à la sortie de la Première Guerre mondiale : les ranger sur une frise, ou retrouver l’année.',
+       ['1re-hg-h1-revolution', '1re-hg-h1-restauration', '1re-hg-h2-democratie', '1re-hg-h2-nouveaux-etats', '1re-hg-h3-republique', '1re-hg-h3-societe', '1re-hg-h3-colonies', '1re-hg-h4-embrasement', '1re-hg-h4-societes', '1re-hg-h4-sortir'], [
+    ('Prise de la Bastille', 1789, 'fin du XVIIIe siècle'),
+    ('Proclamation de la Première République', 1792, 'trois ans après la prise de la Bastille'),
+    ('Sacre de Napoléon Ier', 1804, 'début du XIXe siècle'),
+    ('Bataille de Waterloo', 1815, 'fin de l’Empire'),
+    ('Les Trois Glorieuses à Paris', 1830, 'XIXe siècle'),
+    ('Abolition de l’esclavage dans les colonies françaises et suffrage universel masculin', 1848, 'Deuxième République'),
+    ('Début du Second Empire', 1852, 'milieu du XIXe siècle'),
+    ('Proclamation du royaume d’Italie', 1861, 'milieu du XIXe siècle'),
+    ('Proclamation de la Troisième République', 1870, 'guerre contre la Prusse'),
+    ('Commune de Paris', 1871, 'juste après la guerre de 1870'),
+    ('Loi Ferry rendant l’école primaire obligatoire', 1882, 'années 1880'),
+    ('Début de l’affaire Dreyfus', 1894, 'fin du XIXe siècle'),
+    ('Loi de séparation des Églises et de l’État', 1905, 'début du XXe siècle'),
+    ('Début de la Première Guerre mondiale', 1914, 'début du XXe siècle'),
+    ('Bataille de Verdun', 1916, 'au milieu de la guerre'),
+    ('Armistice de la Première Guerre mondiale', 1918, 'fin de la guerre'),
+    ('Traité de Versailles', 1919, 'l’année après l’armistice'),
+])
+chrono('hg-l-chrono-tle', ['tle'], 'hg.l.chronologie-tle', 'Situer des repères de 1929 à nos jours', 'Repères d’histoire de terminale : de 1929 à nos jours',
+       'De la crise de 1929 à l’Union européenne : les ranger sur une frise, ou retrouver l’année.',
+       ['tle-hg-h1-crise-1929', 'tle-hg-h1-totalitarismes', 'tle-hg-h1-guerre', 'tle-hg-h2-ordre-mondial', 'tle-hg-h2-bipolarisation', 'tle-hg-h2-france', 'tle-hg-h3-equilibres', 'tle-hg-h3-france', 'tle-hg-h4-puissances', 'tle-hg-h4-europe', 'tle-hg-h4-republique'], [
+    ('Krach de Wall Street', 1929, 'entre-deux-guerres'),
+    ('Hitler devient chancelier', 1933, 'années 1930'),
+    ('Victoire du Front populaire', 1936, 'années 1930'),
+    ('Début de la Seconde Guerre mondiale', 1939, 'fin des années 1930'),
+    ('Appel du 18 Juin du général de Gaulle', 1940, 'début de la guerre'),
+    ('Débarquement en Normandie ; droit de vote des femmes en France', 1944, 'fin de la guerre'),
+    ('Création de l’ONU', 1945, 'fin de la guerre'),
+    ('Doctrine Truman : début de la guerre froide', 1947, 'après-guerre'),
+    ('Création de l’OTAN', 1949, 'fin des années 1940'),
+    ('Traité de Rome', 1957, 'années 1950'),
+    ('Naissance de la Cinquième République', 1958, 'fin des années 1950'),
+    ('Construction du mur de Berlin', 1961, 'années 1960'),
+    ('Indépendance de l’Algérie', 1962, 'années 1960'),
+    ('Mai 68', 1968, 'fin des années 1960'),
+    ('Premier choc pétrolier', 1973, 'années 1970'),
+    ('Loi Veil sur l’interruption volontaire de grossesse', 1975, 'années 1970'),
+    ('Abolition de la peine de mort en France', 1981, 'années 1980'),
+    ('Chute du mur de Berlin', 1989, 'fin des années 1980'),
+    ('Disparition de l’URSS', 1991, 'début des années 1990'),
+    ('Traité de Maastricht', 1992, 'début des années 1990'),
+    ('Attentats du 11 septembre aux États-Unis', 2001, 'début du XXIe siècle'),
+    ('Pièces et billets en euros', 2002, 'début du XXIe siècle'),
+])
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:
