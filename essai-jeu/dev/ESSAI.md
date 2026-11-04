@@ -119,6 +119,9 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   les accents viennent avec la lettre simple ; une lettre peut être révélée contre une couleur ; on peut écouter le mot
   (voix de l'ordinateur). Clavier à l'écran ou physique, +10 points une fois par jour, trophées « Détective des mots »
   et « Dictionnaire vivant » (`js/engine/mot.js`, `js/ui/views/mot.js`).
+- **Anglais : vocabulaire du lycée** (`content/generators/en-l-vocabulary.json`) : 65 mots des axes culturels
+  (environnement, numérique, société, travail et études, santé, voyages, arts), dans les deux sens, avec écoute et
+  faux amis signalés (stage, roman) ; dans la quête de l'année de la 2nde à la Tle, au jeu de mémoire et au mot mystère.
 - **Bonus de fin de chapitre** (quête de l'année) : un chapitre terminé propose le petit jeu qui le prolonge, déjà réglé
   sur la classe et le thème : sa frise (histoire, technologie, musique), ses associations au jeu de mémoire, le
   vocabulaire au mot mystère (langues), un calcul éclair (maths), une devinette (français). Les jeux se règlent par
@@ -234,4 +237,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (520 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (521 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

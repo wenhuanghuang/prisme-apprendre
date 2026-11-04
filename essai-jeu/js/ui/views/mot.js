@@ -22,7 +22,8 @@ const TIER = { facile: 'mots faciles', moyen: 'mots plus longs', difficile: 'ort
 /** Sources de mots d'une classe : devinettes en français, vocabulaire d'anglais et d'espagnol. */
 export function motThemes(level) {
   const have = new Set(allGenerators(store.index).map((g) => g.id));
-  const en = PRIMARY.includes(level) ? ['en-p-vocabulaire'] : level === '6e' ? ['en-p-vocabulaire', 'en-vocabulaire'] : ['en-vocabulaire'];
+  const LYCEE = ['2nde', '1re', 'tle'];
+  const en = PRIMARY.includes(level) ? ['en-p-vocabulaire'] : level === '6e' ? ['en-p-vocabulaire', 'en-vocabulaire'] : LYCEE.includes(level) && have.has('en-l-vocabulary') ? ['en-l-vocabulary'] : ['en-vocabulaire'];
   const out = [{ id: 'fr', label: `Français · devinettes (${TIER[frTier(level)]})`, lang: 'fr-FR' }];
   if (en.every((id) => have.has(id))) out.push({ id: 'en', label: 'Anglais · vocabulaire de la classe', lang: 'en-GB', sources: en, prefix: 'En anglais' });
   if (!PRIMARY.includes(level) && level !== '6e' && have.has('es-vocabulario')) out.push({ id: 'es', label: 'Espagnol · vocabulaire', lang: 'es-ES', sources: ['es-vocabulario'], prefix: 'En espagnol' });

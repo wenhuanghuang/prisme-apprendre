@@ -916,6 +916,54 @@ chrono_subject('pc-sciences-frise', 'pc', ['3e'], 'pc.histoire-sciences', 'Situe
 chrono_subject('enssci-frise', 'ens-sci', ['1re', 'tle'], 'enssci.histoire', 'Situer de grandes découvertes scientifiques dans le temps', 'Histoire des sciences : d’Ératosthène aux trous noirs',
        'De grandes découvertes à ranger dans l’ordre du temps, ou à dater.', ['ens-sci-2023-1re', 'ens-sci-2023-tle'], SCIENCES)
 
+# ---------------- Anglais : vocabulaire du lycée (environnement, numérique, société, travail, santé, voyage, arts) ----------------
+ENL = []
+ENL_THEMES = [('environnement', 'L’environnement'), ('numerique', 'Le numérique'), ('societe', 'La société et la citoyenneté'), ('travail', 'Le travail et les études'),
+              ('sante', 'La santé'), ('voyage', 'Les voyages'), ('arts', 'Les arts et la culture')]
+ENL_LABEL = dict(ENL_THEMES)
+def enl(theme, fr, ans, note=''):
+    hint = f"Thème : {ENL_LABEL[theme].lower()}. En anglais, l'article est facultatif ; en français, écris le nom avec son article.{(' ' + note) if note else ''}"
+    ENL.append({'q': fr, 'a': ans if isinstance(ans, list) else [ans], 'theme': theme, 'hint': hint})
+for fr, a in [('le réchauffement climatique', 'global warming'), ('le changement climatique', 'climate change'), ('l’effet de serre', ['greenhouse effect', 'the greenhouse effect']),
+              ('les énergies renouvelables', ['renewable energy', 'renewable energies', 'renewables']), ('la pollution', 'pollution'), ('les déchets', ['waste', 'rubbish', 'trash', 'garbage']),
+              ('le recyclage', 'recycling'), ('la sécheresse', ['drought', 'a drought', 'the drought']), ('l’inondation', ['flood', 'a flood', 'the flood', 'flooding']),
+              ('la biodiversité', 'biodiversity'), ('l’espèce menacée', ['endangered species', 'an endangered species']), ('l’empreinte carbone', ['carbon footprint', 'the carbon footprint', 'a carbon footprint'])]:
+    enl('environnement', fr, a)
+for fr, a in [('l’écran', ['screen', 'a screen', 'the screen']), ('les réseaux sociaux', ['social media', 'social networks']), ('le mot de passe', ['password', 'a password', 'the password']),
+              ('le logiciel', ['software', 'program', 'a program']), ('télécharger', ['download', 'to download']), ('l’ordinateur portable', ['laptop', 'a laptop', 'the laptop']),
+              ('l’intelligence artificielle', ['artificial intelligence', 'AI']), ('la fausse information', ['fake news', 'misinformation']), ('l’application', ['app', 'an app', 'application', 'an application']),
+              ('la vie privée', 'privacy')]:
+    enl('numerique', fr, a)
+for fr, a in [('l’égalité', 'equality'), ('les droits de l’homme', 'human rights'), ('le citoyen', ['citizen', 'a citizen', 'the citizen']), ('l’élection', ['election', 'an election', 'the election']),
+              ('le gouvernement', ['government', 'the government']), ('la manifestation', ['demonstration', 'a demonstration', 'protest', 'a protest']), ('la pauvreté', 'poverty'),
+              ('l’immigré', ['immigrant', 'an immigrant']), ('la liberté d’expression', ['freedom of speech', 'free speech', 'freedom of expression']), ('le bénévole', ['volunteer', 'a volunteer'])]:
+    enl('societe', fr, a)
+for fr, a, n in [('l’emploi', ['job', 'a job', 'the job'], ''), ('le chômage', 'unemployment', ''), ('le salaire', ['salary', 'a salary', 'wage', 'a wage', 'wages'], ''),
+                 ('l’entretien d’embauche', ['job interview', 'a job interview', 'interview', 'an interview'], ''), ('le stage', ['internship', 'an internship', 'work placement', 'a work placement'], 'Attention : « stage » en anglais désigne une scène de théâtre.'),
+                 ('l’entreprise', ['company', 'a company', 'firm', 'a firm', 'business', 'a business'], ''), ('le collègue', ['colleague', 'a colleague', 'coworker', 'a coworker'], ''),
+                 ('l’université', ['university', 'the university', 'college'], '')]:
+    enl('travail', fr, a, n)
+for fr, a in [('la santé', 'health'), ('le médecin', ['doctor', 'a doctor', 'the doctor']), ('le médicament', ['medicine', 'a medicine', 'drug', 'a drug', 'medication']),
+              ('l’hôpital', ['hospital', 'a hospital', 'the hospital']), ('le sommeil', 'sleep'), ('le stress', 'stress'), ('la maladie', ['disease', 'a disease', 'illness', 'an illness']),
+              ('le vaccin', ['vaccine', 'a vaccine', 'the vaccine'])]:
+    enl('sante', fr, a)
+for fr, a in [('le voyage', ['trip', 'a trip', 'journey', 'a journey', 'travel']), ('le billet', ['ticket', 'a ticket', 'the ticket']), ('l’aéroport', ['airport', 'the airport', 'an airport']),
+              ('le passeport', ['passport', 'a passport', 'the passport']), ('le pays', ['country', 'a country', 'the country']), ('la frontière', ['border', 'a border', 'the border']),
+              ('les bagages', ['luggage', 'baggage']), ('à l’étranger', 'abroad')]:
+    enl('voyage', fr, a)
+for fr, a, n in [('le tableau (une peinture)', ['painting', 'a painting', 'the painting'], ''), ('le roman', ['novel', 'a novel', 'the novel'], 'Faux ami : « romance » veut dire une histoire d’amour.'),
+                 ('l’écrivain', ['writer', 'a writer', 'author', 'an author'], ''), ('la pièce de théâtre', ['play', 'a play', 'the play'], ''), ('le film', ['film', 'a film', 'movie', 'a movie'], ''),
+                 ('le chanteur', ['singer', 'a singer', 'the singer'], ''), ('le musée', ['museum', 'a museum', 'the museum'], ''), ('l’exposition', ['exhibition', 'an exhibition', 'the exhibition'], ''),
+                 ('le spectacle', ['show', 'a show', 'the show', 'performance', 'a performance'], '')]:
+    enl('arts', fr, a, n)
+skill('lv.l.anglais-lexique', 'lv', 'Anglais au lycée : vocabulaire des axes culturels (environnement, numérique, société, travail, santé, voyages, arts)', '2nde')
+add({'id': 'en-l-vocabulary', 'label': 'Anglais : vocabulaire du lycée', 'subject': 'lv', 'levels': ['2nde', '1re', 'tle'], 'skill': 'lv.l.anglais-lexique', 'kind': 'vocab', 'difficulty': 2,
+     'chapters': ['lv-c4-lycee-2025-axes-2nde', 'lv-c4-lycee-2025-axes-1re', 'lv-c4-lycee-2025-axes-tle', 'lv-c4-lycee-2025-activites'],
+     'description': 'Environnement, numérique, société, travail et études, santé, voyages, arts : les mots des axes culturels du lycée, dans les deux sens, avec écoute en anglais.',
+     'options': [{'id': 'theme', 'label': 'Thème', 'values': [{'id': 'tous', 'label': 'Tous les thèmes'}] + [{'id': t, 'label': l} for t, l in ENL_THEMES]},
+                 {'id': 'direction', 'label': 'Sens', 'values': [{'id': 'normal', 'label': 'Français → anglais'}, {'id': 'inverse', 'label': 'Anglais → français'}, {'id': 'mixte', 'label': 'Les deux, au hasard'}]}],
+     'data': {'pairs': ENL, 'lang': 'en-GB', 'fromLabel': 'français', 'toLabel': 'anglais'}})
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

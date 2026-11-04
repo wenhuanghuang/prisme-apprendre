@@ -75,7 +75,7 @@ test('devinettes en français : trois niveaux, mots jouables et distincts, indic
 });
 
 test('vocabulaire d’anglais et d’espagnol : assez de mots jouables', () => {
-  for (const id of ['en-p-vocabulaire', 'en-vocabulaire', 'es-vocabulario']) {
+  for (const id of ['en-p-vocabulaire', 'en-vocabulaire', 'es-vocabulario', 'en-l-vocabulary']) {
     const pairs = JSON.parse(readFileSync(W + `content/generators/${id}.json`, 'utf8')).data.pairs;
     const ok = pairs.map((p) => M.vocabAnswer(p.a)).filter((w) => M.playable(w));
     assert.ok(ok.length >= Math.min(40, pairs.length * 0.8), `${id} : ${ok.length}/${pairs.length} mots jouables`);
@@ -90,4 +90,22 @@ test('points du mot mystère : 10, une fois par jour ; trophée', () => {
   assert.equal(c.counters.mots, 1);
   assert.equal(c.totalXp, 10);
   assert.ok(c.trophies.find((t) => t.id === 'mot-1').earned);
+});
+
+const { generateFromData, canonicalResponse, DATA_TRACKS } = await import(W + 'js/generators/data-kinds.js');
+const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
+const { validateExercise } = await import(W + 'js/content/validate.js');
+test('vocabulaire d’anglais du lycée : rattaché, tirages valides dans les deux sens', () => {
+  const ix = JSON.parse(readFileSync(W + 'content/index.json', 'utf8'));
+  const skillIds = new Set(ix.skills.map((s) => s.id));
+  const g = JSON.parse(readFileSync(W + 'content/generators/en-l-vocabulary.json', 'utf8'));
+  const chapters = new Set(JSON.parse(readFileSync(W + 'content/courses/lv-2nde.json', 'utf8')).chapters.map((c) => c.id));
+  assert.ok(g.chapters.every((c) => chapters.has(c)));
+  assert.ok(ix.generators.some((x) => x.id === g.id) && skillIds.has(g.skill));
+  assert.equal(new Set(g.data.pairs.map((p) => p.q)).size, g.data.pairs.length, 'mots français en double');
+  for (const tier of DATA_TRACKS) for (const direction of ['normal', 'inverse']) for (let seed = 1; seed <= 30; seed++) {
+    const def = generateFromData(g, seed, { parcours: tier, direction });
+    assert.deepEqual(validateExercise({ ...def, selfTest: [{ response: canonicalResponse(def), expect: 'correct' }] }, skillIds), [], `${tier} ${direction} #${seed}`);
+    assert.equal(check(instantiate(def, seed), canonicalResponse(def)).verdict, 'correct', `${tier} ${direction} #${seed} : ${def.prompt}`);
+  }
 });
