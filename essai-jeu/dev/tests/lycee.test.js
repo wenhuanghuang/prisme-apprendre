@@ -11,6 +11,7 @@ const { LYCEE_MATHS_1T } = await import(W + 'js/generators/lycee-maths-1t.js');
 const { LYCEE_PC_1T } = await import(W + 'js/generators/lycee-pc-1t.js');
 const { LYCEE_SVT } = await import(W + 'js/generators/lycee-svt.js');
 const { LYCEE_HG } = await import(W + 'js/generators/lycee-hg.js');
+const { LYCEE_SVT_1T } = await import(W + 'js/generators/lycee-svt-1t.js');
 const { canonicalResponse } = await import(W + 'js/generators/data-kinds.js');
 const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
 const { validateExercise } = await import(W + 'js/content/validate.js');
@@ -26,6 +27,7 @@ const SETS = [
   [LYCEE_PC_1T.filter((g) => g.levels[0] === '1re'), 'pc-1re', 'pc', '1re', 1],
   [LYCEE_PC_1T.filter((g) => g.levels[0] === 'tle'), 'pc-tle', 'pc', 'tle', 2],
   [LYCEE_SVT, 'svt-2nde', 'svt', '2nde', 1],
+  [LYCEE_SVT_1T.filter((g) => g.levels[0] === '1re'), 'svt-1re', 'svt', '1re', 1], [LYCEE_SVT_1T.filter((g) => g.levels[0] === 'tle'), 'svt-tle', 'svt', 'tle', 1],
   // histoire : frises (générateurs de données) ; ici, la géographie
   [LYCEE_HG.filter((g) => g.levels[0] === '2nde'), 'hg-2nde', 'hg', '2nde', 9], [LYCEE_HG.filter((g) => g.levels[0] === '1re'), 'hg-1re', 'hg', '1re', 11], [LYCEE_HG.filter((g) => g.levels[0] === 'tle'), 'hg-tle', 'hg', 'tle', 11],
 ];
