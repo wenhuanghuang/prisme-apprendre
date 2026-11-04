@@ -9,6 +9,7 @@ const { LYCEE_MATHS } = await import(W + 'js/generators/lycee-maths.js');
 const { LYCEE_PC } = await import(W + 'js/generators/lycee-pc.js');
 const { LYCEE_MATHS_1T } = await import(W + 'js/generators/lycee-maths-1t.js');
 const { LYCEE_PC_1T } = await import(W + 'js/generators/lycee-pc-1t.js');
+const { LYCEE_SVT } = await import(W + 'js/generators/lycee-svt.js');
 const { canonicalResponse } = await import(W + 'js/generators/data-kinds.js');
 const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
 const { validateExercise } = await import(W + 'js/content/validate.js');
@@ -23,6 +24,7 @@ const SETS = [
   [LYCEE_MATHS_1T.filter((g) => g.levels[0] === 'tle'), 'maths-tle', 'maths', 'tle', 3],
   [LYCEE_PC_1T.filter((g) => g.levels[0] === '1re'), 'pc-1re', 'pc', '1re', 1],
   [LYCEE_PC_1T.filter((g) => g.levels[0] === 'tle'), 'pc-tle', 'pc', 'tle', 2],
+  [LYCEE_SVT, 'svt-2nde', 'svt', '2nde', 1],
 ];
 for (const [GENS, courseId, subject, level, missing] of SETS) {
   const course = JSON.parse(readFileSync(W + `content/courses/${courseId}.json`, 'utf8'));

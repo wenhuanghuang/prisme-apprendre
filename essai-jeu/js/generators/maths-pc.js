@@ -23,6 +23,7 @@ import { LYCEE_MATHS_1T } from './lycee-maths-1t.js';
 import { COLLEGE_TECHNO } from './college-techno.js';
 import { LYCEE_PC_1T } from './lycee-pc-1t.js';
 import { COLLEGE_LANGUES } from './college-langues.js';
+import { LYCEE_SVT } from './lycee-svt.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -559,7 +560,7 @@ addPc({
 // école primaire (CP → CM2) : rattachés aux chapitres des parcours par `chapters`
 GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS);
 // lycée (seconde) : rattachés aux chapitres du parcours de référence
-GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T);
+GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T, ...LYCEE_SVT);
 // technologie au collège
 GENERATORS.push(...COLLEGE_TECHNO, ...COLLEGE_LANGUES);
 
