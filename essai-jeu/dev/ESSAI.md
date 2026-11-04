@@ -15,6 +15,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   Terminale : pH et acides forts, prédominance, titrages (stœchiométrie 1:2), cinétique, Qr et K, décroissance
   radioactive et datation, piles, capacité en mAh, Newton, chute libre, satellites, chaleur Q = m c ΔT, Archimède,
   gaz parfait, décibels, diffraction, lunette, effet Doppler, circuit RC.
+- **Anglais en 6e, en 3e et au lycée** (`js/generators/lycee-langues.js`) : en 6e, be, have got, there is / are,
+  possessifs, pluriels irréguliers ; de la 3e à la terminale, voix passive, conditionnels (dont le 3e type), pronoms
+  relatifs, should have, discours rapporté, mots de liaison à classer, verbes irréguliers, repères culturels (États-Unis,
+  Australie, Commonwealth, Martin Luther King, Nelson Mandela). Avec écoute des phrases.
 - **Musique, arts plastiques, IA et numérique** (`js/generators/arts-numerique.js`) : familles d'instruments à ranger,
   dix œuvres à associer à leur compositeur, vocabulaire (nuances, tempo, timbre, ostinato, canon, périodes) ; dix
   œuvres d'art à associer à leur artiste, mouvements, ready-made, couleurs complémentaires, perspective ; IA générative,
@@ -151,7 +155,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
@@ -160,4 +164,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (444 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (449 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

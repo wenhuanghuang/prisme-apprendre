@@ -31,6 +31,7 @@ import { LYCEE_SES_NSI } from './lycee-ses-nsi.js';
 import { EMC } from './emc.js';
 import { PHILO } from './philo.js';
 import { ARTS_NUMERIQUE } from './arts-numerique.js';
+import { LYCEE_LANGUES } from './lycee-langues.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -571,7 +572,7 @@ GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T, 
 // technologie au collège
 GENERATORS.push(...COLLEGE_TECHNO, ...COLLEGE_LANGUES);
 // EMC, du CP à la terminale
-GENERATORS.push(...EMC, ...PHILO, ...ARTS_NUMERIQUE);
+GENERATORS.push(...EMC, ...PHILO, ...ARTS_NUMERIQUE, ...LYCEE_LANGUES);
 
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 
