@@ -8,6 +8,8 @@
 import { rng } from '../core/template.js';
 
 const pick = (rand, arr) => arr[Math.floor(rand() * arr.length)];
+// 1789 ; 52 av. J.-C. ; vers 300 000 av. J.-C.
+const yearText = (e) => `${e.circa ? 'vers ' : ''}${Math.abs(e.year) >= 10000 ? String(Math.abs(e.year)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : Math.abs(e.year)}${e.year < 0 ? ' av. J.-C.' : ''}`;
 function sample(rand, arr, n) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
@@ -108,7 +110,7 @@ const KINDS = {
   /** data : { events: [{ label, year }] } ; options.mode : « frise » (ranger 4 événements) ou « date » */
   chronologie(gen, rand, seed, opts) {
     const d = gen.data;
-    const mode = opts.mode === 'date' ? 'date' : opts.mode === 'frise' ? 'frise' : rand() < 0.6 ? 'frise' : 'date';
+    const mode = d.mode === 'frise' ? 'frise' : opts.mode === 'date' ? 'date' : opts.mode === 'frise' ? 'frise' : rand() < 0.6 ? 'frise' : 'date';
     if (mode === 'date') {
       const e = pick(rand, d.events);
       return base(gen, seed, {
@@ -125,7 +127,7 @@ const KINDS = {
     return base(gen, seed, {
       type: 'order', prompt: 'Range ces événements du plus ancien au plus récent.', orderLabel: 'du plus ancien au plus récent',
       items: events.map((e, i) => ({ id: `e${i}`, label: e.label })), errorType: 'notion',
-      solution: events.map((e) => `${e.year} : ${e.label}`).join(' ; '), representation: 'visuelle',
+      solution: events.map((e) => `${yearText(e)} : ${e.label}`).join(' ; '), representation: 'visuelle',
     });
   },
 
@@ -221,7 +223,7 @@ function closeEvents(rand, events, n) {
 
 function tiered(gen, rand, seed, opts, tier) {
   const d = gen.data;
-  const short = ['conjugaison', 'vocab', 'cloze'].includes(gen.kind) || (gen.kind === 'chronologie' && opts.mode === 'date');
+  const short = ['conjugaison', 'vocab', 'cloze'].includes(gen.kind) || (gen.kind === 'chronologie' && opts.mode === 'date' && d.mode !== 'frise');
   // vocabulaire : le sens par défaut (du français vers la langue étrangère) est déjà le plus difficile
   if (short) return severalShort(gen, rand, seed, opts, PARTS[tier]);
   if (gen.kind === 'chronologie') {
@@ -235,7 +237,7 @@ function tiered(gen, rand, seed, opts, tier) {
     return base(gen, seed, {
       type: 'order', prompt: `Range ces ${events.length} événements du plus ancien au plus récent.${tier === 'expert' ? ' Attention : ils sont proches dans le temps.' : ''}`, orderLabel: 'du plus ancien au plus récent',
       items: events.map((e, i) => ({ id: `e${i}`, label: e.label })), errorType: 'notion',
-      solution: events.map((e) => `${e.year} : ${e.label}`).join(' ; '), representation: 'visuelle',
+      solution: events.map((e) => `${yearText(e)} : ${e.label}`).join(' ; '), representation: 'visuelle',
     });
   }
   // classements et associations : davantage d'éléments à traiter

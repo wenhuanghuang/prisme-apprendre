@@ -763,6 +763,70 @@ PHILO_A = [('Platon', 'La République'), ('Aristote', 'Éthique à Nicomaque'), 
 pairs_gen('philo-l-auteurs', 'philo', ['tle'], 'philo.l.auteurs', 'Associer des philosophes à leurs œuvres', 'Philosophes et œuvres',
           'Associer chaque philosophe à l’une de ses œuvres majeures.', ['philo-tle-2019-notions', 'philo-tle-2019-perspectives'], 'Associe chaque philosophe à son œuvre.', PHILO_A, 'Philosophe', 'Œuvre', 5)
 
+# ---------------- Frises : CE2, 6e, 3e (quête de l'année, frise chronologique, jeu de mémoire) ----------------
+def chrono_approx(gid, levels, sid, slabel, label, desc, chapters, events):
+    """Frise aux dates parfois approximatives (Préhistoire) : seulement « ranger sur une frise », jamais « retrouver l'année »."""
+    skill(sid, 'hg', slabel, levels[0])
+    add({'id': gid, 'label': label, 'subject': 'hg', 'levels': levels, 'skill': sid, 'kind': 'chronologie', 'chapters': chapters, 'description': desc,
+         'options': [{'id': 'mode', 'label': 'Exercice', 'values': [{'id': 'frise', 'label': 'Ranger sur une frise'}]}],
+         'data': {'mode': 'frise', 'events': [dict(label=l, year=y, hint=h, **(dict(circa=True) if c else dict())) for l, y, c, h in events]}})
+chrono_approx('hg-p-chrono-ce2', ['ce2'], 'hg.p.chronologie-ce2', 'Situer des événements et des personnages sur une frise, de la Préhistoire à nos jours', 'Grandes périodes : de la Préhistoire à nos jours',
+       'De Lascaux aux premiers pas sur la Lune : ranger des événements dans l’ordre du temps.',
+       ['ce2-hg-frise', 'ce2-hg-periodes', 'ce2-hg-personnages', 'ce2-hg-vivre-autrefois'], [
+    ('Des artistes de la Préhistoire peignent la grotte de Lascaux', -15000, True, 'Préhistoire : il y a environ 17 000 ans.'),
+    ('Invention de l’écriture en Mésopotamie', -3300, True, 'La fin de la Préhistoire et le début de l’Antiquité.'),
+    ('Construction de la grande pyramide de Khéops, en Égypte', -2560, True, 'Antiquité : il y a plus de 4 500 ans.'),
+    ('Jules César gagne la bataille d’Alésia contre Vercingétorix', -52, False, 'Antiquité, avant la naissance de Jésus-Christ (« avant J.-C. »).'),
+    ('Fin de l’Empire romain d’Occident : début du Moyen Âge', 476, False, 'Fin du Ve siècle.'),
+    ('Charlemagne est couronné empereur', 800, False, 'Une année toute ronde, au Moyen Âge.'),
+    ('Jeanne d’Arc délivre Orléans', 1429, False, 'Moyen Âge, pendant la guerre de Cent Ans.'),
+    ('Christophe Colomb arrive en Amérique', 1492, False, 'Fin du Moyen Âge, début des Temps modernes.'),
+    ('Louis XIV devient roi', 1643, False, 'Temps modernes, XVIIe siècle.'),
+    ('La prise de la Bastille, début de la Révolution française', 1789, False, 'Le début de l’époque contemporaine.'),
+    ('Napoléon Ier est sacré empereur', 1804, False, 'Début du XIXe siècle.'),
+    ('Graham Bell invente le téléphone', 1876, False, 'XIXe siècle.'),
+    ('Premier vol d’un avion à moteur, par les frères Wright', 1903, False, 'Début du XXe siècle.'),
+    ('Les premiers humains marchent sur la Lune', 1969, False, 'Deuxième moitié du XXe siècle.'),
+    ('Les pièces et billets en euros arrivent en France', 2002, False, 'Début du XXIe siècle.')])
+chrono_approx('hg6-chronologie', ['6e'], 'hg.6e.chronologie', 'Situer les grands repères de la Préhistoire et de l’Antiquité', 'Repères de 6e : de la Préhistoire à la fin de l’Antiquité',
+       'Des premiers outils à la fin de l’Empire romain : ranger les repères dans l’ordre du temps.',
+       ['6e-hg-debuts-humanite', '6e-hg-neolithique', '6e-hg-premiers-etats', '6e-hg-cites-grecques', '6e-hg-rome', '6e-hg-monotheisme', '6e-hg-empire-romain', '6e-hg-chretiens', '6e-hg-route-soie'], [
+    ('Premiers outils de pierre taillée, en Afrique', -3300000, True, 'Il y a plus de 3 millions d’années.'),
+    ('Les humains maîtrisent le feu', -400000, True, 'Il y a environ 400 000 ans.'),
+    ('Premiers Homo sapiens, en Afrique', -300000, True, 'Il y a environ 300 000 ans (fossiles du Djebel Irhoud, au Maroc).'),
+    ('Peintures de la grotte Chauvet', -34000, True, 'Il y a environ 36 000 ans.'),
+    ('Début du Néolithique au Proche-Orient : premiers villages d’agriculteurs', -10000, True, 'Il y a environ 12 000 ans.'),
+    ('Invention de l’écriture en Mésopotamie', -3300, True, 'IVe millénaire av. J.-C.'),
+    ('Code de Hammurabi, roi de Babylone', -1750, True, 'XVIIIe siècle av. J.-C.'),
+    ('Premiers Jeux olympiques à Olympie, selon la tradition', -776, False, 'VIIIe siècle av. J.-C.'),
+    ('Fondation de Rome, selon la légende', -753, False, 'VIIIe siècle av. J.-C. : Romulus et Remus.'),
+    ('Clisthène fonde la démocratie à Athènes', -508, False, 'Fin du VIe siècle av. J.-C.'),
+    ('Début de la construction du Parthénon, sous Périclès', -447, False, 'Ve siècle av. J.-C.'),
+    ('Mort d’Alexandre le Grand à Babylone', -323, False, 'IVe siècle av. J.-C.'),
+    ('Ouverture de la route de la soie sous la dynastie Han', -130, True, 'IIe siècle av. J.-C.'),
+    ('Jules César remporte la bataille d’Alésia', -52, False, 'Ier siècle av. J.-C.'),
+    ('Auguste devient le premier empereur romain', -27, False, 'Fin du Ier siècle av. J.-C.'),
+    ('Les Romains détruisent le Temple de Jérusalem', 70, False, 'Ier siècle apr. J.-C.'),
+    ('Édit de Caracalla : presque tous les hommes libres de l’Empire deviennent citoyens romains', 212, False, 'IIIe siècle.'),
+    ('Édit de Milan : Constantin autorise le christianisme', 313, False, 'Début du IVe siècle.'),
+    ('Le christianisme devient la religion officielle de l’Empire romain', 380, False, 'Fin du IVe siècle, sous Théodose.'),
+    ('Fin de l’Empire romain d’Occident', 476, False, 'Fin du Ve siècle : début du Moyen Âge.')])
+chrono('hg3-chronologie', ['3e'], 'hg.3e.chronologie', 'Situer les grands repères de 1914 à nos jours', 'Repères de 3e : de 1914 à nos jours',
+       'De la Grande Guerre à l’euro : ranger les repères, ou retrouver l’année.',
+       ['3e-hg-h1-1914', '3e-hg-h1-entre-deux-guerres', '3e-hg-h1-1939', '3e-hg-h1-vichy', '3e-hg-h2-independances', '3e-hg-h2-guerre-froide', '3e-hg-h2-europe', '3e-hg-h2-apres-1989', '3e-hg-h3-refonder', '3e-hg-h3-ve-republique', '3e-hg-h3-societe'], [
+    ('Début de la Première Guerre mondiale', 1914, 'Le 28 juillet en Europe ; la France entre en guerre début août.'),
+    ('Bataille de Verdun', 1916, 'Au milieu de la Grande Guerre.'), ('Révolution bolchevique en Russie', 1917, 'Lénine prend le pouvoir en octobre.'),
+    ('Armistice de la Première Guerre mondiale', 1918, 'Le 11 novembre.'), ('Krach de la Bourse de New York', 1929, 'Le « jeudi noir », en octobre.'),
+    ('Hitler devient chancelier en Allemagne', 1933, 'Quatre ans après le krach.'), ('Le Front populaire au pouvoir en France', 1936, 'Les premiers congés payés.'),
+    ('Début de la Seconde Guerre mondiale', 1939, 'Le 1er septembre, l’Allemagne envahit la Pologne.'), ('Appel du général de Gaulle, le 18 juin', 1940, 'L’année de la défaite française.'),
+    ('Débarquement allié en Normandie', 1944, 'Le 6 juin.'), ('Capitulation de l’Allemagne nazie', 1945, 'Le 8 mai.'),
+    ('Indépendance de l’Inde', 1947, 'Deux ans après la fin de la guerre.'), ('Traité de Rome : naissance de la Communauté économique européenne', 1957, 'Un an avant la Ve République.'),
+    ('Naissance de la Ve République', 1958, 'La Constitution est adoptée en octobre.'), ('Construction du mur de Berlin', 1961, 'En pleine guerre froide.'),
+    ('Fin de la guerre d’Algérie (accords d’Évian)', 1962, 'Au début des années 1960.'), ('La majorité passe de 21 à 18 ans en France', 1974, 'Milieu des années 1970.'),
+    ('Abolition de la peine de mort en France', 1981, 'Début des années 1980.'), ('Chute du mur de Berlin', 1989, 'Le 9 novembre, deux cents ans après la Révolution française.'),
+    ('Fin de l’URSS', 1991, 'En décembre.'), ('Traité de Maastricht : naissance de l’Union européenne', 1992, 'Signé en février.'),
+    ('Attentats du 11 septembre aux États-Unis', 2001, 'Début du XXIe siècle.'), ('L’euro devient la monnaie de tous les jours', 2002, 'Pièces et billets, le 1er janvier.')])
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

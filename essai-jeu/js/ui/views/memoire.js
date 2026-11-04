@@ -8,6 +8,7 @@ import { h, announce } from '../dom.js';
 import { store, recordGameEvent, gameProgress } from '../../app/store.js';
 import { allGenerators, produce, loadData } from '../../generators/registry.js';
 import { newMemory, flip, hideMiss, isOver, memoryStars, memoryWinners, distinctPairs, pairCount } from '../../engine/memoire.js';
+import { yearLabel } from '../../engine/frise.js';
 import { gameLevels, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
 import { dayKey } from '../../engine/game.js';
@@ -32,7 +33,7 @@ export async function pairsOf(meta, level) {
     const d = (await loadData(meta.id)).data || {};
     if (meta.kind === 'match') return shuffle((d.pairs || []).map((p) => ({ a: p.left, b: p.right })));
     if (meta.kind === 'vocab') return shuffle((d.pairs || []).map((p) => ({ a: p.q, b: Array.isArray(p.a) ? p.a[0] : p.a })));
-    if (meta.kind === 'chronologie') return shuffle((d.events || []).map((e) => ({ a: e.label, b: String(e.year) })));
+    if (meta.kind === 'chronologie') return shuffle((d.events || []).map((e) => ({ a: e.label, b: yearLabel(e) })));
     return [];
   }
   const out = [];

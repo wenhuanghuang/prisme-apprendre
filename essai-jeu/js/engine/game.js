@@ -32,6 +32,7 @@ export const XP = {
   gardien: 30, // gardien d'une période apprivoisé (révision mêlée des chapitres faits) : un coffre rare
   famille: 25, // défi de la famille réussi : le but commun de la semaine atteint (une fois par semaine)
   memoire: 10, // partie de jeu de mémoire terminée (une fois par jour)
+  frise: 10, // partie de frise chronologique terminée (une fois par jour)
 };
 
 export const TRACK_MULT = { classe: 1, approfondissement: 1.5, expert: 2 };
@@ -55,7 +56,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -108,7 +109,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -323,6 +324,7 @@ export function computeGame(attempts, gameState, now) {
     gardiens: game.events.filter((e) => e.type === 'gardien').length,
     familles: game.events.filter((e) => e.type === 'famille').length,
     memoires: game.events.filter((e) => e.type === 'memoire').length,
+    frises: game.events.filter((e) => e.type === 'frise').length,
   };
   const album = albumOf(game.events);
   counters.album = album.owned.length;

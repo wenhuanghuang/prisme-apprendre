@@ -483,3 +483,27 @@
 .mem-card[disabled]:not(.is-found) { cursor: wait; }
 .mem-recap ul { margin: 6px 0 0; padding-left: 18px; }
 @media (max-width: 640px) { .mem-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .mem-card { min-height: 92px; } .mem-card .mem-face { font-size: .82rem; } }
+
+/* Frise chronologique */
+.frise-board { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 18px; align-items: start; }
+.frise-hand { position: sticky; top: 12px; padding: 14px; border-radius: var(--radius); border: 2px dashed #f5c84c; background: color-mix(in srgb, #f5c84c 10%, var(--card)); min-height: 120px; }
+.frise-hand .eyebrow { margin: 0 0 6px; }
+.frise-card { display: block; font-weight: 600; line-height: 1.3; }
+.frise-card--hand { font-size: 1.12rem; margin: 0 0 8px; }
+.frise-hint summary { cursor: pointer; font-size: .92rem; }
+.frise-line { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 3px solid var(--rule-2); }
+.frise-item { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 8px 12px; border-radius: var(--radius); background: var(--card); border: 1.5px solid var(--rule); }
+.frise-item::before { content: ''; position: absolute; left: -26px; top: 14px; width: 11px; height: 11px; border-radius: 50%; background: #3b4cca; border: 2px solid var(--paper); }
+.frise-year { font-weight: 700; color: #3b4cca; font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 3.2em; }
+.frise-item.is-start { border-style: dashed; }
+.frise-item.is-new { border-color: var(--ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 30%, transparent); }
+.frise-item.is-missed { border-color: #e7a33e; background: color-mix(in srgb, #e7a33e 10%, var(--card)); }
+.frise-item.is-missed.is-new { box-shadow: 0 0 0 2px color-mix(in srgb, #e7a33e 35%, transparent); }
+.frise-slot-row { padding: 3px 0; }
+.frise-slot { font: inherit; font-size: .85rem; color: inherit; background: transparent; border: 1.5px dashed var(--rule-2); border-radius: 999px; padding: 2px 12px; cursor: pointer; opacity: .75; }
+.frise-slot:hover, .frise-slot:focus-visible { opacity: 1; border-color: #f5c84c; background: color-mix(in srgb, #f5c84c 15%, transparent); }
+.frise-slot:focus-visible { outline: 3px solid #f5c84c; outline-offset: 2px; }
+.frise-slot[disabled] { display: none; }
+.frise-lives { letter-spacing: 2px; }
+.frise-recap { margin: 6px 0 0; padding-left: 22px; }
+@media (max-width: 720px) { .frise-board { grid-template-columns: 1fr; } .frise-hand { position: sticky; top: 0; z-index: 2; } .frise-item { grid-template-columns: 1fr; gap: 2px; } }
