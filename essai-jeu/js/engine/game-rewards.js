@@ -72,6 +72,8 @@ export const TROPHIES = [
   { id: 'album-12', icon: '📒', label: 'Collectionneur', attests: 'Douze vignettes dans l’album de lumière.', goal: 12, value: (c) => c.album || 0 },
   { id: 'album-24', icon: '📚', label: 'Grand collectionneur', attests: 'Vingt-quatre vignettes dans l’album de lumière.', goal: 24, value: (c) => c.album || 0 },
   { id: 'album-48', icon: '🏆', label: 'Album complet', attests: 'Les quarante-huit vignettes de l’album de lumière.', goal: 48, value: (c) => c.album || 0 },
+  { id: 'album-72', icon: '🐾', label: 'Ami des bêtes', attests: 'Vingt-quatre vignettes de l’album des animaux extraordinaires.', goal: 72, value: (c) => c.album || 0 },
+  { id: 'album-96', icon: '🦄', label: 'Grand naturaliste', attests: 'Les deux albums complets : quatre-vingt-seize vignettes.', goal: 96, value: (c) => c.album || 0 },
   { id: 'niveau-5', icon: '🌟', label: 'Rayon', attests: 'Niveau 5 atteint.', goal: 5, value: (c) => c.level },
   { id: 'niveau-10', icon: '🌅', label: 'Aurore', attests: 'Niveau 10 atteint.', goal: 10, value: (c) => c.level },
 ];
@@ -90,7 +92,7 @@ export function computeTrophies(counters) {
  * ordinaire, une quête réussie ou une victoire au jeu de plateau une vignette rare. Chacune explique un phénomène
  * de lumière (la récompense apprend aussi quelque chose). Les icônes sont des émojis anciens, présents partout.
  */
-export const VIGNETTES = [
+const LUMIERE = [
   { id: 'arc-en-ciel', icon: '🌈', label: 'Arc-en-ciel', fact: 'Les gouttes de pluie dévient et décomposent la lumière du Soleil, comme un prisme : on voit l’arc en tournant le dos au Soleil.' },
   { id: 'coucher', icon: '🌅', label: 'Coucher de soleil', fact: 'Le soir, la lumière traverse beaucoup plus d’air : le bleu est diffusé en chemin, il reste surtout l’orange et le rouge.' },
   { id: 'ciel-bleu', icon: '🌤️', label: 'Ciel bleu', fact: 'L’air diffuse bien plus la lumière bleue que la rouge : c’est pour cela que le ciel paraît bleu le jour.' },
@@ -139,7 +141,65 @@ export const VIGNETTES = [
   { id: 'diamant', icon: '💎', label: 'Diamant', rare: true, fact: 'Le diamant dévie très fortement la lumière et la décompose : c’est ce qui le fait scintiller de couleurs.' },
   { id: 'calmar', icon: '🦑', label: 'Calmar des abysses', rare: true, fact: 'Certains calmars des grandes profondeurs fabriquent leur propre lumière pour se camoufler.' },
   { id: 'vitesse', icon: '💫', label: 'Vitesse de la lumière', rare: true, fact: 'La lumière parcourt environ 300 000 km chaque seconde : sept fois et demie le tour de la Terre.' },
+].map((v) => ({ ...v, album: 'lumiere' }));
+/** Deuxième album, ouvert quand l'album de lumière est complet : des animaux extraordinaires, un fait vrai chacun. */
+const ANIMAUX = [
+  ['girafe', '🦒', 'Girafe', 'Malgré son long cou, la girafe a sept vertèbres cervicales, comme nous : elles sont simplement très longues.'],
+  ['elephant', '🐘', 'Éléphant', 'Sa trompe, c’est son nez et sa lèvre supérieure réunis : elle lui sert à respirer, boire, attraper et caresser.'],
+  ['guepard', '🐆', 'Guépard', 'C’est l’animal terrestre le plus rapide : il dépasse les 100 km/h, mais seulement pendant quelques secondes.'],
+  ['abeille', '🐝', 'Abeille', 'Une abeille qui a trouvé des fleurs danse dans la ruche : sa danse indique aux autres la direction et la distance.'],
+  ['fourmi', '🐜', 'Fourmi', 'Une fourmi peut porter des objets bien plus lourds qu’elle, plusieurs dizaines de fois son poids pour certaines.'],
+  ['escargot', '🐌', 'Escargot', 'Sa langue est couverte de milliers de dents minuscules : elle râpe les feuilles comme une lime.'],
+  ['chauve-souris', '🦇', 'Chauve-souris', 'C’est le seul mammifère qui vole vraiment. Dans le noir, elle se repère à l’écho de ses cris.'],
+  ['dauphin', '🐬', 'Dauphin', 'Le dauphin dort avec une moitié du cerveau à la fois : l’autre moitié reste éveillée pour remonter respirer.'],
+  ['ours-polaire', '🐻', 'Ours polaire', 'Sous sa fourrure blanche, sa peau est noire : elle absorbe mieux la chaleur du soleil.'],
+  ['koala', '🐨', 'Koala', 'Le koala dort jusqu’à vingt heures par jour : les feuilles d’eucalyptus qu’il mange lui donnent très peu d’énergie.'],
+  ['saumon', '🐟', 'Saumon', 'Après des années en mer, le saumon remonte jusqu’à la rivière où il est né pour y pondre.'],
+  ['hirondelle', '🐦', 'Hirondelle', 'À l’automne, les hirondelles de France partent passer l’hiver en Afrique, à des milliers de kilomètres.'],
+  ['grenouille', '🐸', 'Grenouille', 'La grenouille respire avec ses poumons, mais aussi à travers sa peau, qui doit rester humide.'],
+  ['crocodile', '🐊', 'Crocodile', 'Au repos, un crocodile peut rester plus d’une heure sous l’eau sans respirer.'],
+  ['requin', '🦈', 'Requin', 'Le requin perd ses dents toute sa vie : une nouvelle rangée pousse derrière et vient les remplacer.'],
+  ['etoile-mer', '🐚', 'Étoile de mer', 'Une étoile de mer qui perd un bras peut le faire repousser.'],
+  ['mouton', '🐑', 'Mouton', 'La laine du mouton pousse sans arrêt : on le tond environ une fois par an, au printemps.'],
+  ['effraie', '🤫', 'Chouette effraie', 'Le bord de ses plumes est frangé comme un peigne : elle vole sans faire aucun bruit.'],
+  ['panda', '🐼', 'Panda géant', 'Le panda passe une grande partie de la journée à manger du bambou : il lui en faut beaucoup pour être rassasié.'],
+  ['dromadaire', '🐪', 'Dromadaire', 'Sa bosse n’est pas une réserve d’eau mais de graisse : elle l’aide à tenir longtemps sans manger.'],
+  ['kangourou', '🦘', 'Kangourou', 'À la naissance, le bébé kangourou est minuscule : il grandit plusieurs mois dans la poche de sa mère.'],
+  ['crabe', '🦀', 'Crabe', 'Quand sa carapace devient trop petite, le crabe mue : il en sort et s’en fabrique une nouvelle, plus grande.'],
+  ['zebre', '🦓', 'Zèbre', 'Il n’y a pas deux zèbres avec les mêmes rayures : chacun a son motif, comme nos empreintes digitales.'],
+  ['gecko', '🦎', 'Gecko', 'Le gecko grimpe aux vitres grâce à des millions de poils minuscules sous ses doigts.'],
+  ['monarque', '🍁', 'Papillon monarque', 'Chaque automne, des millions de monarques volent du Canada jusqu’au Mexique : des milliers de kilomètres.'],
+  ['fourmilier', '👅', 'Fourmilier', 'Sa langue collante, longue d’environ 60 cm, attrape des milliers de fourmis et de termites par jour.'],
+  ['ecureuil', '🐿️', 'Écureuil', 'L’écureuil enterre des graines pour l’hiver et en oublie : certaines deviennent de nouveaux arbres.'],
+  ['herisson', '🦔', 'Hérisson', 'En hiver, le hérisson hiberne : son cœur ralentit et il vit sur ses réserves de graisse.'],
+  ['vache', '🐄', 'Vache', 'La vache rumine : son estomac a quatre poches, et elle remâche l’herbe déjà avalée.'],
+  ['cheval', '🐴', 'Cheval', 'Le cheval peut somnoler debout : ses pattes se « verrouillent » pour qu’il ne tombe pas.'],
+  ['lion', '🦁', 'Lion', 'Le rugissement du lion s’entend à plusieurs kilomètres à la ronde.'],
+  ['tigre', '🐯', 'Tigre', 'Les rayures du tigre ne sont pas seulement sur ses poils : elles sont aussi dessinées sur sa peau.'],
+  ['loup', '🐺', 'Loup', 'Les loups vivent en meute et hurlent pour se retrouver et se parler de loin.'],
+  ['perroquet', '🦜', 'Perroquet', 'Certains perroquets imitent la voix humaine et peuvent apprendre des dizaines de mots.'],
+  ['baleine-bosse', '🐳', 'Baleine à bosse', 'Les mâles chantent sous l’eau des chants longs et compliqués, qu’ils répètent pendant des heures.'],
+  ['araignee', '🕷️', 'Araignée', 'À épaisseur égale, un fil d’araignée est aussi solide que l’acier, tout en restant élastique.'],
+  ['baleine-bleue', '🐋', 'Baleine bleue', 'C’est le plus gros animal qui ait jamais vécu, dinosaures compris : jusqu’à 30 mètres de long.', true],
+  ['ornithorynque', '🦆', 'Ornithorynque', 'C’est un mammifère qui pond des œufs ! Il a un bec de canard et une queue de castor.', true],
+  ['pieuvre', '🐙', 'Pieuvre', 'La pieuvre a trois cœurs et du sang bleu ; elle peut changer de couleur en un instant.', true],
+  ['narval', '🦄', 'Narval', 'La longue « corne » du narval est en fait une dent, qui peut dépasser deux mètres.', true],
+  ['axolotl', '🐲', 'Axolotl', 'Cet amphibien du Mexique peut faire repousser une patte entière, et même une partie de son cœur.', true],
+  ['faucon', '🦅', 'Faucon pèlerin', 'En piqué, le faucon pèlerin dépasse les 300 km/h : c’est l’animal le plus rapide du monde.', true],
+  ['tortue-luth', '🐢', 'Tortue luth', 'La plus grande des tortues marines peut plonger à plus de 1 000 mètres de profondeur.', true],
+  ['hippocampe', '🐠', 'Hippocampe', 'Chez l’hippocampe, c’est le mâle qui porte les œufs dans une poche, jusqu’à la naissance des petits.', true],
+  ['manchot', '🐧', 'Manchot empereur', 'Le mâle couve l’œuf sur ses pattes pendant tout l’hiver de l’Antarctique, sans manger.', true],
+  ['paresseux', '🦥', 'Paresseux', 'Il bouge si lentement que de petites algues vertes poussent dans sa fourrure.', true],
+  ['cameleon', '👀', 'Caméléon', 'Ses deux yeux bougent chacun de leur côté : il peut regarder devant et derrière à la fois.', true],
+  ['colibri', '🌺', 'Colibri', 'Le colibri bat des ailes si vite qu’il peut voler sur place, et même en arrière.', true],
+].map(([id, icon, label, fact, rare]) => ({ id: `a-${id}`, icon, label, fact, album: 'animaux', ...(rare ? { rare: true } : {}) }));
+
+/** Les albums, dans l'ordre : le suivant s'ouvre quand le précédent est complet. */
+export const ALBUMS = [
+  { id: 'lumiere', label: 'Album de lumière', icon: '🔆', about: 'des phénomènes de lumière' },
+  { id: 'animaux', label: 'Album des animaux extraordinaires', icon: '🐾', about: 'des animaux étonnants' },
 ];
+export const VIGNETTES = [...LUMIERE, ...ANIMAUX];
 
 /** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
 export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare', gardien: 'rare', famille: 'rare' };
@@ -161,9 +221,12 @@ export function albumOf(events) {
   const chests = (events || []).filter((e) => CHEST_EVENTS[e.type]).slice().sort((a, b) => a.ts - b.ts);
   for (const e of chests) {
     const rare = CHEST_EVENTS[e.type] === 'rare';
-    let pool = VIGNETTES.filter((v) => Boolean(v.rare) === rare && !have.has(v.id));
-    if (!pool.length) pool = VIGNETTES.filter((v) => !have.has(v.id));
-    if (!pool.length) break; // album complet
+    // l'album en cours : le premier qui n'est pas complet (le suivant ne s'ouvre qu'ensuite)
+    const album = ALBUMS.find((a) => VIGNETTES.some((v) => v.album === a.id && !have.has(v.id)));
+    if (!album) break; // tous les albums sont complets
+    const left = VIGNETTES.filter((v) => v.album === album.id && !have.has(v.id));
+    let pool = left.filter((v) => Boolean(v.rare) === rare);
+    if (!pool.length) pool = left;
     const v = pool[hashId(`${e.type}:${e.id}`) % pool.length];
     have.add(v.id);
     owned.push({ vignette: v, event: e });

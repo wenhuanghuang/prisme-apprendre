@@ -7,6 +7,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   indicatif). Chaque chapitre est une quête de 1 à 3 étapes ; terminé avec au moins 30 % des étoiles, il reçoit une
   médaille (bronze, argent ≥ 60 %, or ≥ 85 %) ; une période terminée ouvre un coffre rare ; l'année entière, un dernier
   coffre. Le jour indique la période en cours et le rythme conseillé (étapes par semaine), sans rien verrouiller.
+- **Deuxième album : les animaux extraordinaires** (48 vignettes, dont 12 rares, un fait vrai chacune : la pieuvre
+  et ses trois cœurs, le narval dont la « corne » est une dent, le colibri qui vole en arrière…). Il s'ouvre quand
+  l'album de lumière est complet ; la page « Ma progression » montre l'album en cours, replie les albums finis et
+  annonce le suivant. Trophées « Ami des bêtes » (72 vignettes) et « Grand naturaliste » (96).
 - **Défi de la famille** (page « Aujourd'hui ») : un jeu coopératif entre les profils de l'appareil. Chaque semaine,
   du lundi au dimanche, les bonnes réponses de chacun (sans la correction affichée) remplissent une barre commune,
   une couleur par enfant ; le but est de 35 par joueur actif (un profil sans réponse depuis 4 semaines, ou un profil
@@ -61,7 +65,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
 - **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25 ; une fois par
-  identifiant), album de 48 vignettes de lumière (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
+  identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
 Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs}.js`, `content/skills/maths-primaire.json`,

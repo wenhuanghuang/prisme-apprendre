@@ -3,7 +3,7 @@
  * Les vignettes sont calculées à partir des évènements du profil (albumOf) : rien n'est stocké en double.
  */
 import { h } from '../dom.js';
-import { VIGNETTES } from '../../engine/game-rewards.js';
+import { VIGNETTES, ALBUMS } from '../../engine/game-rewards.js';
 import { confetti, burstStars } from '../lesson-play/celebrate.js';
 
 const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -27,6 +27,7 @@ export function chestSvg({ rare = false, open = false } = {}) {
 export function vignetteCard(v, { isNew = false } = {}) {
   return h('div', { class: `vignette ${v.rare ? 'vignette--rare' : ''} ${isNew ? 'is-new' : ''}`, role: 'group', 'aria-label': `Vignette ${v.rare ? 'rare ' : ''}: ${v.label}. ${v.fact}` },
     isNew ? h('span', { class: 'vignette-tag' }, v.rare ? 'Nouvelle vignette rare !' : 'Nouvelle vignette !') : null,
+    isNew && v.album && v.album !== 'lumiere' && VIGNETTES.filter((x) => x.album === v.album)[0] ? h('span', { class: 'vignette-album small' }, (ALBUMS.find((a) => a.id === v.album) || {}).label || '') : null,
     h('span', { class: 'vignette-icon', 'aria-hidden': 'true' }, v.icon),
     h('strong', {}, v.label),
     h('span', { class: 'vignette-fact' }, v.fact));
@@ -40,7 +41,7 @@ export function chestReveal({ title, points, vignette, rare = false, already = f
   const chest = chestSvg({ rare });
   const prize = h('div', { class: 'chest-prize', hidden: true },
     points ? h('p', { class: 'chest-points' }, `+${points} points`) : null,
-    vignette ? vignetteCard(vignette, { isNew: true }) : already ? h('p', { class: 'small muted' }, 'Ce coffre était déjà ouvert : pas de nouvelle récompense.') : h('p', { class: 'small' }, 'Ton album est complet : bravo !'));
+    vignette ? vignetteCard(vignette, { isNew: true }) : already ? h('p', { class: 'small muted' }, 'Ce coffre était déjà ouvert : pas de nouvelle récompense.') : h('p', { class: 'small' }, 'Tous tes albums sont complets : bravo !'));
   const el = h('section', { class: `chest-reveal ${rare ? 'chest-reveal--rare' : ''}`, 'aria-live': 'polite' },
     h('h3', { tabindex: '-1' }, title), chest, prize);
   (async () => {
@@ -56,22 +57,43 @@ export function chestReveal({ title, points, vignette, rare = false, already = f
   return el;
 }
 
-/** Album de lumière (page « Ma progression ») : vignettes gagnées et cases encore vides. */
+/** Une page d'album : vignettes gagnées et cases encore vides. */
+function albumGrid(list, owned) {
+  return h('ul', { class: 'album-grid' }, list.map((v) => {
+    const o = owned.get(v.id);
+    if (!o) {
+      return h('li', { class: `album-slot is-empty ${v.rare ? 'is-rare' : ''}` },
+        h('span', { class: 'vignette-icon', 'aria-hidden': 'true' }, '?'), h('small', {}, v.rare ? 'rare ✦' : 'à gagner'), h('span', { class: 'sr-only' }, v.rare ? 'Vignette rare pas encore gagnée' : 'Vignette pas encore gagnée'));
+    }
+    return h('li', { class: `album-slot ${v.rare ? 'is-rare' : ''}` },
+      h('details', {}, h('summary', {}, h('span', { class: 'vignette-icon', 'aria-hidden': 'true' }, v.icon), h('strong', {}, v.label)), h('p', { class: 'small' }, v.fact)));
+  }));
+}
+
+/**
+ * Mes albums (page « Ma progression ») : l'album en cours ouvert, les albums complets repliés, les suivants
+ * annoncés (ils s'ouvrent quand le précédent est complet).
+ */
 export function albumSection(g) {
   const owned = new Map(((g.album && g.album.owned) || []).map((o) => [o.vignette.id, o]));
-  const n = owned.size;
+  const current = ALBUMS.find((a) => VIGNETTES.some((v) => v.album === a.id && !owned.has(v.id))) || null;
+  const pages = ALBUMS.map((a, i) => {
+    const list = VIGNETTES.filter((v) => v.album === a.id);
+    const n = list.filter((v) => owned.has(v.id)).length;
+    const done = n === list.length;
+    const locked = !done && current && current.id !== a.id && ALBUMS.indexOf(current) < i;
+    const title = `${a.icon} ${a.label} · ${n}/${list.length}`;
+    if (locked) {
+      return h('div', { class: 'album-page is-locked' }, h('h3', {}, `🔒 ${a.label}`),
+        h('p', { class: 'small muted' }, `${list.length} vignettes ${a.about} : cet album s’ouvre quand le précédent est complet.`));
+    }
+    if (done && current) return h('details', { class: 'album-page is-done' }, h('summary', {}, h('strong', {}, `✅ ${title}`), ' — album complet'), albumGrid(list, owned));
+    return h('div', { class: `album-page ${done ? 'is-done' : ''}` }, h('h3', {}, title), albumGrid(list, owned));
+  });
   return h('section', { class: 'card prog-album', id: 'album' },
-    h('h2', {}, `Mon album de lumière · ${n}/${VIGNETTES.length}`),
-    h('p', { class: 'small muted' }, 'Chaque défi relevé dans une quête ouvre un coffre et donne une vignette ; une quête réussie ou une victoire au jeu de plateau donne une vignette rare ✦. Clique sur une vignette pour lire ce qu’elle explique.'),
-    h('ul', { class: 'album-grid' }, VIGNETTES.map((v) => {
-      const o = owned.get(v.id);
-      if (!o) {
-        return h('li', { class: `album-slot is-empty ${v.rare ? 'is-rare' : ''}` },
-          h('span', { class: 'vignette-icon', 'aria-hidden': 'true' }, '?'), h('small', {}, v.rare ? 'rare ✦' : 'à gagner'), h('span', { class: 'sr-only' }, v.rare ? 'Vignette rare pas encore gagnée' : 'Vignette pas encore gagnée'));
-      }
-      return h('li', { class: `album-slot ${v.rare ? 'is-rare' : ''}` },
-        h('details', {}, h('summary', {}, h('span', { class: 'vignette-icon', 'aria-hidden': 'true' }, v.icon), h('strong', {}, v.label)), h('p', { class: 'small' }, v.fact)));
-    })));
+    h('h2', {}, `Mes albums · ${owned.size}/${VIGNETTES.length} vignettes`),
+    h('p', { class: 'small muted' }, 'Chaque défi relevé dans une quête ouvre un coffre et donne une vignette ; une quête réussie, un gardien apprivoisé, le défi de la famille ou une victoire au jeu de plateau donnent une vignette rare ✦. Clique sur une vignette pour lire ce qu’elle explique.'),
+    ...pages);
 }
 
 /** Vignettes apparues entre deux états de la progression (avant / après une récompense). */
