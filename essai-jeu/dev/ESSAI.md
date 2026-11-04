@@ -7,6 +7,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   indicatif). Chaque chapitre est une quête de 1 à 3 étapes ; terminé avec au moins 30 % des étoiles, il reçoit une
   médaille (bronze, argent ≥ 60 %, or ≥ 85 %) ; une période terminée ouvre un coffre rare ; l'année entière, un dernier
   coffre. Le jour indique la période en cours et le rythme conseillé (étapes par semaine), sans rien verrouiller.
+- **Défi de la famille** (page « Aujourd'hui ») : un jeu coopératif entre les profils de l'appareil. Chaque semaine,
+  du lundi au dimanche, les bonnes réponses de chacun (sans la correction affichée) remplissent une barre commune,
+  une couleur par enfant ; le but est de 35 par joueur actif (un profil sans réponse depuis 4 semaines, ou un profil
+  de démonstration, ne compte pas). But atteint : chacun ouvre le coffre de la famille depuis son profil (+25 points,
+  vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
+  (`js/engine/famille.js`, `js/ui/game/family-card.js`).
 - **Gardiens des périodes** (quête de l'année) : chaque période a son gardien (Feuillu le hérisson, Frimas la chouette,
   Banquise le phoque, Pétale la tortue, Solaris le dragon). Dès deux chapitres de la période terminés, on peut le défier :
   8 questions mêlées des chapitres faits (révision espacée et entrelacée) ; chaque réponse réussie sans la correction
@@ -33,7 +39,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   températures, l'eau solide et liquide, cerveau et sens, fabrication du pain et du yaourt, projet technique, famille
   et générations, sons et lettres muettes, analyse de la phrase (sujet même inversé, COD, compléments
   circonstanciels), et un **robot à guider sur un quadrillage** (CP-CE1 : coder un déplacement ; CM : programmes et
-  boucles « répéter »). Et 40 générateurs de données de plus (`gen_primaire.py`) : instruments de météo, météo ou climat,
+  boucles « répéter »). Et 41 générateurs de données de plus (`gen_primaire.py`) : instruments de météo, météo ou climat,
   séismes et volcans, familles d'aliments, rôles dans l'écosystème, trajectoires, objets fabriqués ou naturels, besoins,
   objets d'hier et d'aujourd'hui, articulations, os et muscles, cinq sens, santé, tri des déchets et gestes pour la
   planète, paysages de France, grands milieux, lieux de la commune, transports, Internet, âge industriel, cultures
@@ -54,17 +60,17 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25 ; une fois par
   identifiant), album de 48 vignettes de lumière (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (57 notions et 31 générateurs du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs}.json`.
+`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (195 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (199 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

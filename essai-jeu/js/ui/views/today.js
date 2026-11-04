@@ -8,6 +8,7 @@ import { enigmaStreak, subjectOfDay } from '../../engine/enigme.js';
 import { dayKey } from '../../engine/game.js';
 import { gameSubjects, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
+import { familyCard } from '../game/family-card.js';
 
 /** Carte de l'énigme du jour : la matière du jour, résolue ou non, et la série d'énigmes. */
 function enigmaCard() {
@@ -77,6 +78,8 @@ function continueStrip() {
 
 export function render(root) {
   const p = store.profile;
+  const familySlot = h('div', { class: 'family-slot' });
+  familyCard(familySlot).catch(() => familySlot.replaceChildren());
   const recos = recommendations(8);
   const due = dueReviews();
   const b = badges();
@@ -108,6 +111,7 @@ export function render(root) {
             h('div', { class: 'btn-row', style: { justifyContent: 'center' } }, myLessons.slice(0, 3).map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, l.title)), h('a', { class: 'btn btn--ghost btn--small', href: '#/parcours' }, 'Toutes les leçons')))),
       h('aside', { class: 'grid' },
         enigmaCard(),
+        familySlot,
         g ? h('a', { class: 'card side-card today-goal', href: '#/progression', style: { textDecoration: 'none', color: 'inherit' } },
           goalRing(g.todayXp / g.goal, 64, 8),
           h('h3', {}, g.goalReached ? '🎯 Objectif du jour atteint' : 'Objectif du jour'),
