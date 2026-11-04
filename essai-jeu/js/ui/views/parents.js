@@ -13,6 +13,7 @@ import { validateBackup } from '../../storage/backup.js';
 import { ERROR_FAMILIES } from '../../core/errors.js';
 import { KIND_UI } from './today.js';
 import { computeGame } from '../../engine/game.js';
+import { parentGamesSection } from '../game/mini-games.js';
 import { speak, voiceFor, naturalVoicesAllowed, setNaturalVoicesAllowed } from '../speech.js';
 
 let unlocked = false;
@@ -87,6 +88,7 @@ async function renderDashboard(container, profileId) {
       h('div', { class: 'kpi' }, h('b', {}, String(d.totals.delayed)), h('span', {}, 'réussites différées (mémoire)')),
       h('div', { class: 'kpi kpi--expert' }, h('b', {}, `${d.advanced.approfondissement.ok + d.advanced.expert.ok}`), h('span', {}, 'réussites facultatives ◆ ✦'))),
     h('p', { class: 'small muted parent-game' }, `Régularité : objectif du jour (${g.goal} points) atteint ${weekGoals} jour${weekGoals > 1 ? 's' : ''} sur les 7 derniers, ${weekXp} points cette semaine, série en cours : ${g.streak} jour${g.streak > 1 ? 's' : ''}, niveau ${g.level} (${g.title}). Les points récompensent l’effort régulier et la réussite autonome ; la maîtrise des notions est mesurée à part, ci-dessous.`),
+    parentGamesSection(data.states.game, now),
     h('section', { class: 'card' }, h('h2', {}, 'Exercices recommandés, et pourquoi'),
       d.recos.length ? h('ul', { class: 'err-list' }, d.recos.slice(0, 8).map((r) => h('li', {}, h('span', { class: 'chip chip--role' }, `${(KIND_UI[r.kind] || {}).icon || ''} ${(KIND_UI[r.kind] || {}).label || r.kind}`), h('span', {}, h('strong', {}, r.title), h('br'), h('span', { class: 'small muted' }, r.reasonParent))))) : h('p', { class: 'muted' }, 'Pas encore assez de traces.')),
     h('div', { class: 'grid grid--2' },

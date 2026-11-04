@@ -124,6 +124,9 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   vocabulaire au mot mystère (langues), un calcul éclair (maths), une devinette (français). Les jeux se règlent par
   l'adresse : `#/frise?classe=5e&theme=hg5-chronologie`, `#/memoire?classe=1re&theme=hg-l-capitales`,
   `#/eclair?classe=4e`, `#/mot?classe=5e&mots=es` (`bonusGame` dans `js/ui/game/mini-games.js`).
+- **Espace parents : « Les jeux cette semaine »** : chapitres terminés, gardiens, quêtes, défis, parties de plateau,
+  énigmes et jours de chaque petit jeu sur les sept derniers jours, records récents du calcul éclair, et ce que les jeux
+  font travailler (`parentGamesSection` dans `js/ui/game/mini-games.js`, appelée par `js/ui/views/parents.js`).
 - **Petits jeux du jour** (page Aujourd'hui, carte « Jouer ») : mémoire, frise, calcul éclair et mot mystère, chacun avec ce qu'il
   rapporte ou « ✓ fait aujourd'hui », et un « 🌟 jeu du jour » qui change chaque jour pour varier les plaisirs ; la page
   « Ma progression » liste les records personnels (`js/ui/game/mini-games.js`).
@@ -225,7 +228,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
 Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
-`js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today}.js`,
+`js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 

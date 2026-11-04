@@ -84,3 +84,32 @@ export function recordsSection() {
       : h('p', { class: 'small muted' }, 'Pas encore de record : lance un calcul éclair avec le chrono, puis essaie de battre ton temps.'),
     h('a', { class: 'btn btn--ghost btn--small', href: '#/eclair' }, '⚡ Calcul éclair'));
 }
+
+/* ------------------------------ Espace parents ------------------------------ */
+
+const WEEK_ROWS = [
+  ['chapitre', '🏅', 'chapitre de la quête de l’année terminé', 'chapitres de la quête de l’année terminés'], ['gardien', '🦔', 'gardien de période apprivoisé', 'gardiens de période apprivoisés'],
+  ['quete', '🗺️', 'quête libre terminée', 'quêtes libres terminées'], ['defi', '🎁', 'défi relevé', 'défis relevés'], ['plateau', '🎲', 'partie de plateau', 'parties de plateau'],
+  ['enigme', '🧩', 'énigme du jour', 'énigmes du jour'], ['memoire', '🃏', 'jour de jeu de mémoire', 'jours de jeu de mémoire'], ['frise', '⏳', 'jour de frise chronologique', 'jours de frise chronologique'],
+  ['eclair', '⚡', 'jour de calcul éclair', 'jours de calcul éclair'], ['mot', '🔤', 'jour de mot mystère', 'jours de mot mystère'],
+];
+
+/** Ce qui a été joué ces 7 derniers jours : { type → nombre }. Fonction pure. */
+export function weekGames(events, now) {
+  const since = now - 7 * 86400000;
+  const out = {};
+  for (const e of events || []) if (e.ts >= since && e.ts <= now) out[e.type] = (out[e.type] || 0) + 1;
+  return out;
+}
+
+/** Carte « Les jeux cette semaine » du tableau de bord parent. */
+export function parentGamesSection(game, now) {
+  const w = weekGames(game && game.events, now);
+  const rows = WEEK_ROWS.filter(([t]) => w[t]);
+  const recs = Object.entries((game && game.records) || {}).filter(([k]) => k.startsWith('eclair:')).sort((a, b) => b[1].at - a[1].at).slice(0, 3);
+  return h('section', { class: 'card parent-games' }, h('h2', {}, 'Les jeux cette semaine'),
+    rows.length ? h('ul', { class: 'parent-games-list' }, rows.map(([t, icon, one, many]) => h('li', {}, h('span', { 'aria-hidden': 'true' }, `${icon} `), h('strong', {}, String(w[t])), ` ${w[t] > 1 ? many : one}`)))
+      : h('p', { class: 'muted' }, 'Aucun jeu ces sept derniers jours.'),
+    recs.length ? h('p', { class: 'small' }, 'Records récents au calcul éclair : ', recs.map(([k, v]) => { const [, level, theme, count] = k.split(':'); return `${formatMs(v.ms)} (${LEVEL(level)}, ${theme === 'melange' ? 'mélange' : (ECLAIR_THEMES[theme] || { label: theme }).label.toLowerCase()}, ${count} calculs)`; }).join(' ; '), '.') : null,
+    h('p', { class: 'small muted' }, 'Les jeux reprennent les contenus de la classe : questions des chapitres, associations, frises, calcul mental, vocabulaire. Les points des petits jeux ne se gagnent qu’une fois par jour, pour encourager la variété plutôt que la répétition.'));
+}
