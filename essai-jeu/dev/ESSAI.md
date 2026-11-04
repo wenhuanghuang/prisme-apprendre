@@ -15,6 +15,14 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   tableaux croisés, lecture de programmes Python, logique. Avec les erreurs typiques reconnues (taux additionnés,
   oubli du double produit, sens de l'inégalité, range qui s'arrête avant la borne…). Un élève de seconde a donc sa
   quête de l'année (18 chapitres sur cinq périodes), ses gardiens, le jeu de plateau et l'énigme du jour.
+- **Lycée : les mathématiques de première et de terminale** (`js/generators/lycee-maths-1t.js`,
+  `content/skills/lycee-maths-1t.json`) : 16 générateurs. Première : suites arithmétiques et géométriques (terme
+  général, raison, somme, récurrence), second degré (discriminant, racines, sommet, signe), dérivation (nombre
+  dérivé, tangente, extremum, dérivées usuelles), exponentielle, trigonométrie, produit scalaire et cercle,
+  probabilités conditionnelles et espérance, listes Python. Terminale : limites de suites et récurrence, limites de
+  fonctions, continuité et convexité, dérivée d'une composée, logarithme (équations, seuil de doublement),
+  intégrales et équations différentielles, sinus et cosinus, géométrie dans l'espace, dénombrement, loi binomiale,
+  algorithmes de seuil. Toutes les classes, du CP à la terminale, ont désormais une quête de l'année en maths.
 - **Lycée : la physique-chimie de seconde** (`js/generators/lycee-pc.js`, `content/skills/lycee-pc.json`) :
   10 générateurs pour les 17 chapitres — concentration en masse et dilution, masse volumique, noyau (A, Z, N), ions,
   équations nucléaires, configuration électronique et électrons de valence, ions stables et liaisons, la mole
@@ -83,13 +91,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc}.json`.
+`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (249 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (283 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

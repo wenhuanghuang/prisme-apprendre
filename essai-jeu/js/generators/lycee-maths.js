@@ -249,7 +249,7 @@ add({
     }
     if (k === 'ordonnee') {
       const xa = nz(rand, -5, 5); const ya = m * xa + p;
-      return numeric(p, { prompt: `Une droite a pour coefficient directeur ${m} et passe par A(${xa} ; ${ya}). Quelle est son ordonnée à l’origine p (équation y = ${m}x + p) ?`, expectedSeconds: 60,
+      return numeric(p, { prompt: `Une droite a pour coefficient directeur ${m} et passe par A(${xa} ; ${ya}). Quelle est son ordonnée à l’origine p (équation y = ${neg(m)}x + p) ?`, expectedSeconds: 60,
         hints: ['Remplace x et y par les coordonnées de A dans y = mx + p, puis isole p.'], solution: `$${ya} = ${m} × ${par(xa)} + p$, donc $p = ${ya} − ${par(m * xa)} = ${p}$`, representation: 'symbolique' });
     }
     if (k === 'point') {

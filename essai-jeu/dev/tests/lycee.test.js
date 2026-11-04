@@ -7,6 +7,7 @@ const W = fileURLToPath(new URL('../../', import.meta.url));
 const { CODE_GENERATORS, generateFromCode, generatorTracks, codeGeneratorMeta } = await import(W + 'js/generators/maths-pc.js');
 const { LYCEE_MATHS } = await import(W + 'js/generators/lycee-maths.js');
 const { LYCEE_PC } = await import(W + 'js/generators/lycee-pc.js');
+const { LYCEE_MATHS_1T } = await import(W + 'js/generators/lycee-maths-1t.js');
 const { canonicalResponse } = await import(W + 'js/generators/data-kinds.js');
 const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
 const { validateExercise } = await import(W + 'js/content/validate.js');
@@ -15,22 +16,27 @@ const skillIds = new Set(readdirSync(W + 'content/skills/').filter((f) => f.ends
 const asText = (n) => String(n).replace('.', ',');
 const wrongValue = (def, m) => (def.type === 'numeric' ? asText(m.answer) + (def.unit && !def.unitOptional ? ` ${def.unit}` : '') : m.answer);
 
-for (const [GENS, courseId, subject] of [[LYCEE_MATHS, 'maths-2nde', 'maths'], [LYCEE_PC, 'pc-2nde', 'pc']]) {
+const SETS = [
+  [LYCEE_MATHS, 'maths-2nde', 'maths', '2nde', 1], [LYCEE_PC, 'pc-2nde', 'pc', '2nde', 1],
+  [LYCEE_MATHS_1T.filter((g) => g.levels[0] === '1re'), 'maths-1re', 'maths', '1re', 3],
+  [LYCEE_MATHS_1T.filter((g) => g.levels[0] === 'tle'), 'maths-tle', 'maths', 'tle', 3],
+];
+for (const [GENS, courseId, subject, level, missing] of SETS) {
   const course = JSON.parse(readFileSync(W + `content/courses/${courseId}.json`, 'utf8'));
   const chapterIds = new Set(course.chapters.map((c) => c.id));
   test(`${courseId} : générateurs enregistrés, rattachés aux chapitres du programme, presque tous couverts`, () => {
-    assert.ok(GENS.length >= 10);
+    assert.ok(GENS.length >= 7);
     for (const g of GENS) {
       assert.ok(CODE_GENERATORS.includes(g), g.id);
       assert.deepEqual(codeGeneratorMeta(g).chapters, g.chapters);
-      assert.deepEqual(g.levels, ['2nde']);
+      assert.deepEqual(g.levels, [level]);
       assert.equal(codeGeneratorMeta(g).subject, subject, g.id);
       assert.ok(skillIds.has(g.skill), `${g.id} : notion ${g.skill} inconnue`);
       for (const ch of g.chapters) assert.ok(chapterIds.has(ch), `${g.id} : chapitre ${ch} inconnu`);
     }
     const covered = new Set(GENS.flatMap((g) => g.chapters));
     const n = course.chapters.filter((c) => covered.has(c.id)).length;
-    assert.ok(n >= course.chapters.length - 1, `${n}/${course.chapters.length} chapitres couverts`);
+    assert.ok(n >= course.chapters.length - missing, `${n}/${course.chapters.length} chapitres couverts`);
   });
 
   for (const gen of GENS) {
