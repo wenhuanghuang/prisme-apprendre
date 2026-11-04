@@ -827,6 +827,41 @@ chrono('hg3-chronologie', ['3e'], 'hg.3e.chronologie', 'Situer les grands repèr
     ('Fin de l’URSS', 1991, 'En décembre.'), ('Traité de Maastricht : naissance de l’Union européenne', 1992, 'Signé en février.'),
     ('Attentats du 11 septembre aux États-Unis', 2001, 'Début du XXIe siècle.'), ('L’euro devient la monnaie de tous les jours', 2002, 'Pièces et billets, le 1er janvier.')])
 
+# ---------------- Frise des inventions (CM2 en histoire, technologie au collège) ----------------
+INVENTIONS = [
+    ('Gutenberg imprime des livres avec des caractères mobiles', 1450, True, 'Milieu du XVe siècle.'),
+    ('Blaise Pascal invente une machine à calculer, la Pascaline', 1642, False, 'XVIIe siècle.'),
+    ('James Watt perfectionne la machine à vapeur', 1769, False, 'Fin du XVIIIe siècle : le début de la révolution industrielle.'),
+    ('Premier vol habité en montgolfière', 1783, False, 'Quelques années avant la Révolution française.'),
+    ('Edward Jenner met au point le premier vaccin, contre la variole', 1796, False, 'Fin du XVIIIe siècle.'),
+    ('Alessandro Volta invente la pile électrique', 1800, False, 'Une année toute ronde.'),
+    ('Nicéphore Niépce réalise la première photographie', 1827, True, 'Début du XIXe siècle.'),
+    ('Premier message télégraphique en code Morse', 1844, False, 'Milieu du XIXe siècle.'),
+    ('Graham Bell dépose le brevet du téléphone', 1876, False, 'XIXe siècle.'),
+    ('Thomas Edison présente une ampoule électrique durable', 1879, False, 'Fin du XIXe siècle.'),
+    ('Carl Benz construit une automobile à moteur à essence', 1886, False, 'Fin du XIXe siècle.'),
+    ('Les frères Lumière présentent le cinématographe', 1895, False, 'Fin du XIXe siècle.'),
+    ('Premier vol d’un avion à moteur, par les frères Wright', 1903, False, 'Début du XXe siècle.'),
+    ('Mise en service de l’ordinateur électronique ENIAC', 1946, False, 'Juste après la Seconde Guerre mondiale.'),
+    ('Invention du transistor', 1947, False, 'Il remplace les lampes et permet de miniaturiser l’électronique.'),
+    ('Lancement de Spoutnik, le premier satellite artificiel', 1957, False, 'En pleine guerre froide.'),
+    ('Les premiers humains marchent sur la Lune', 1969, False, 'Fin des années 1960.'),
+    ('Premier microprocesseur', 1971, False, 'Début des années 1970.'),
+    ('Premier appel avec un téléphone portable', 1973, False, 'Années 1970.'),
+    ('Tim Berners-Lee propose le World Wide Web au CERN', 1989, False, 'Fin des années 1980.'),
+    ('Le premier iPhone popularise le smartphone à écran tactile', 2007, False, 'Début du XXIe siècle.'),
+]
+def chrono_subject(gid, subject, levels, sid, slabel, label, desc, chapters, events):
+    skill(sid, subject, slabel, levels[0])
+    add({'id': gid, 'label': label, 'subject': subject, 'levels': levels, 'skill': sid, 'kind': 'chronologie', 'chapters': chapters, 'description': desc,
+         'options': [{'id': 'mode', 'label': 'Exercice', 'values': [{'id': 'frise', 'label': 'Ranger sur une frise'}, {'id': 'date', 'label': 'Retrouver l’année'}]}],
+         'data': {'events': [dict(label=l, year=y, hint=h, **(dict(circa=True) if c else dict())) for l, y, c, h in events]}})
+chrono_subject('hg-p-inventions', 'hg', ['cm2'], 'hg.p.inventions', 'Situer de grandes inventions dans le temps', 'Inventions et découvertes : de l’imprimerie au smartphone',
+       'De Gutenberg à Internet : ranger les grandes inventions dans l’ordre du temps.', ['cm2-hg-energies-machines'], INVENTIONS)
+chrono_subject('tc-inventions', 'techno', ['5e', '4e', '3e'], 'tc.inventions', 'Situer l’évolution des objets techniques dans le temps', 'Inventions et objets techniques : une frise',
+       'L’évolution des objets techniques, de l’imprimerie au smartphone : ranger les inventions, ou retrouver l’année.',
+       ['t5-ch-evolution', 't4-ch-evolution', 'techno-c4-2024-theme-1'], INVENTIONS)
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

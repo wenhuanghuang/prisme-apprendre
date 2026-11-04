@@ -102,3 +102,21 @@ for (const [id, subjectLv] of [['hg-p-chrono-ce2', 'hg-ce2'], ['hg6-chronologie'
     }
   });
 }
+
+for (const [id, course] of [['hg-p-inventions', 'hg-cm2'], ['tc-inventions', 'techno-5e']]) {
+  test(`frise ${id} : chapitres, tirages ; une date approximative n’est jamais demandée`, () => {
+    const g = JSON.parse(readFileSync(W + `content/generators/${id}.json`, 'utf8'));
+    const chapters = new Set(JSON.parse(readFileSync(W + `content/courses/${course}.json`, 'utf8')).chapters.map((c) => c.id));
+    assert.ok(g.chapters.some((ch) => chapters.has(ch)), `${id} : chapitre du parcours ${course}`);
+    assert.ok(ix.generators.some((x) => x.id === id) && skillIds.has(g.skill));
+    const circa = new Set(g.data.events.filter((e) => e.circa).map((e) => e.label));
+    for (const tier of DATA_TRACKS) {
+      for (let seed = 1; seed <= 60; seed++) {
+        const def = generateFromData(g, seed, { parcours: tier, mode: seed % 2 ? 'date' : undefined });
+        if (def.type === 'numeric') assert.ok(![...circa].some((l) => def.prompt.includes(l)), `${id} #${seed} : date approximative demandée`);
+        assert.deepEqual(validateExercise({ ...def, selfTest: [{ response: canonicalResponse(def), expect: 'correct' }] }, skillIds), [], `${id} #${seed}`);
+        assert.equal(check(instantiate(def, seed), canonicalResponse(def)).verdict, 'correct', `${id} #${seed}`);
+      }
+    }
+  });
+}

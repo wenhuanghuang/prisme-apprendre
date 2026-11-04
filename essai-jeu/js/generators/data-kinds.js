@@ -112,7 +112,9 @@ const KINDS = {
     const d = gen.data;
     const mode = d.mode === 'frise' ? 'frise' : opts.mode === 'date' ? 'date' : opts.mode === 'frise' ? 'frise' : rand() < 0.6 ? 'frise' : 'date';
     if (mode === 'date') {
-      const e = pick(rand, d.events);
+      // une date approximative (« vers 1450 ») ne se demande pas : elle sert seulement à ranger
+      const exact = d.events.filter((x) => !x.circa);
+      const e = pick(rand, exact.length ? exact : d.events);
       return base(gen, seed, {
         type: 'numeric', prompt: `En quelle année : **${e.label}** ?`, answer: e.year, tolerance: 0,
         hints: [e.hint || 'Situe d’abord le siècle.'], solution: `${e.label} : ${e.year}.`, representation: 'concrete',

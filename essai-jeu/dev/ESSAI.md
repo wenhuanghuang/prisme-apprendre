@@ -113,7 +113,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
   (`js/engine/famille.js`, `js/ui/game/family-card.js`).
 - **Mot mystère** (`#/mot`, liens depuis le plateau et la page Aujourd'hui) : une série de 5 ou 8 mots à retrouver lettre
-  à lettre, avec un indice : une devinette en français (mots faciles au CP-CE1, plus longs du CE2 au CM2, orthographe
+  à lettre, avec un indice : une devinette en français (environ 40 mots par niveau : mots faciles au CP-CE1, plus longs du CE2 au CM2, orthographe
   d'usage à partir de la 6e : accueil, rythme, chrysanthème…), ou la traduction d'un mot du vocabulaire d'anglais (du CP
   à la Tle) ou d'espagnol (à partir de la 5e). Chaque lettre absente éteint l'une des sept couleurs de l'arc-en-ciel ;
   les accents viennent avec la lettre simple ; une lettre peut être révélée contre une couleur ; on peut écouter le mot
@@ -138,9 +138,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   « Voyageur du temps » et « Historien en herbe », la frise complète en récapitulatif (`js/engine/frise.js`,
   `js/ui/views/frise.js`). Toutes les frises de la classe servent : du CE2 à la terminale, et la musique au collège.
 - **Nouvelles frises** : CE2 (de Lascaux à l'euro : les grandes périodes), 6e (des premiers outils à la fin de l'Empire
-  romain), 3e (de 1914 à 2002), dans la quête de l'année, la frise et le jeu de mémoire. Les dates approximatives de la
+  romain), 3e (de 1914 à 2002), inventions et découvertes (de Gutenberg au smartphone : CM2 et technologie de la 5e à la 3e), dans la quête de l'année, la frise et le jeu de mémoire. Les dates approximatives de la
   Préhistoire (« vers 300 000 av. J.-C. ») ne servent qu'à ranger, jamais à « retrouver l'année » (`data.mode: "frise"`,
-  champ `circa` ; `js/generators/data-kinds.js` affiche les années avant J.-C. en clair).
+  champ `circa` : une date approximative n'est jamais demandée ; `js/generators/data-kinds.js` affiche les années
+  avant J.-C. en clair).
 - **Banques de questions agrandies** (pour rejouer une année entière sans revoir sans cesse les mêmes questions) :
   EMC de 8 à 23-25 questions par cycle (numéros d'urgence, symboles, commémorations, institutions, Ve République,
   laïcité, médias), philosophie (22 citations, 18 repères), EPS, numérique au primaire, enseignement scientifique,
@@ -223,4 +224,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (514 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (517 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
