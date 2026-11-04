@@ -7,6 +7,14 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   indicatif). Chaque chapitre est une quête de 1 à 3 étapes ; terminé avec au moins 30 % des étoiles, il reçoit une
   médaille (bronze, argent ≥ 60 %, or ≥ 85 %) ; une période terminée ouvre un coffre rare ; l'année entière, un dernier
   coffre. Le jour indique la période en cours et le rythme conseillé (étapes par semaine), sans rien verrouiller.
+- **Lycée : les mathématiques de seconde** (`js/generators/lycee-maths.js`, `content/skills/lycee-maths.json`) : jusqu'ici,
+  aucun exercice n'existait après la 3e. 14 générateurs rattachés aux 18 chapitres du programme de seconde :
+  intervalles et valeur absolue, arithmétique, puissances et racines carrées, identités remarquables, équations,
+  inéquations et produit nul, vecteurs dans un repère, droites, fonctions (images, antécédents, ensembles de
+  définition, carré et inverse), signe et extremums, pourcentages et évolutions, statistiques, probabilités et
+  tableaux croisés, lecture de programmes Python, logique. Avec les erreurs typiques reconnues (taux additionnés,
+  oubli du double produit, sens de l'inégalité, range qui s'arrête avant la borne…). Un élève de seconde a donc sa
+  quête de l'année (18 chapitres sur cinq périodes), ses gardiens, le jeu de plateau et l'énigme du jour.
 - **Deuxième album : les animaux extraordinaires** (48 vignettes, dont 12 rares, un fait vrai chacune : la pieuvre
   et ses trois cœurs, le narval dont la « corne » est une dent, le colibri qui vole en arrière…). Il s'ouvre quand
   l'album de lumière est complet ; la page « Ma progression » montre l'album en cours, replie les albums finis et
@@ -68,13 +76,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs}.json`.
+`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (199 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (228 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

@@ -22,7 +22,8 @@ function add(g) {
 
 /** Question à choix : une bonne réponse, des distracteurs, une explication (montrée quelle que soit la réponse). */
 export function qcm(rand, [question, good, bad, why], extra = {}) {
-  const choices = sample(rand, [{ text: good, correct: true, feedback: `Oui ! ${why}` }, ...sample(rand, bad, Math.min(3, bad.length)).map((b) => ({ text: b, correct: false, feedback: why }))]);
+  const pool = [...new Set(bad.filter((b) => b !== good))]; // jamais deux fois le même choix
+  const choices = sample(rand, [{ text: good, correct: true, feedback: `Oui ! ${why}` }, ...sample(rand, pool, Math.min(3, pool.length)).map((b) => ({ text: b, correct: false, feedback: why }))]);
   return {
     type: 'qcm', prompt: question, choices, generatedAnswer: { selected: [choices.findIndex((c) => c.correct)] },
     hints: [extra.hint || 'Lis chaque réponse et élimine d’abord celles qui sont impossibles.'], solution: `${good}. ${why}`,
