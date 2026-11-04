@@ -9,6 +9,23 @@ import { dayKey } from '../../engine/game.js';
 import { gameSubjects, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
 import { familyCard } from '../game/family-card.js';
+import { yearSummary } from '../game/year-view.js';
+
+/** Carte « Ma quête de l'année » : la matière la plus récemment jouée (sinon les maths), son prochain chapitre. */
+async function questCard(slot) {
+  const ys = await yearSummary(nearestLevel(store.profile.level));
+  if (!ys.length) { slot.replaceChildren(); return; }
+  const main = ys.slice().sort((a, b) => b.last - a.last || (a.subject === 'maths' ? -1 : b.subject === 'maths' ? 1 : 0))[0];
+  const ch = main.inProgress || (main.finished ? main.next : main.nowChapter || main.next);
+  const total = ys.reduce((s, y) => s + y.finished, 0);
+  slot.replaceChildren(h('a', { class: 'card side-card year-today', href: `#/exercices?annee=${encodeURIComponent(main.subject)}`, style: { textDecoration: 'none', color: 'inherit' } },
+    h('span', { class: 'year-today-icon', 'aria-hidden': 'true' }, SUBJECT_ICONS[main.subject] || '🗺️'),
+    h('div', {},
+      h('h3', {}, main.complete ? `Année de ${subjLabel(main.subject)} accomplie !` : 'Ma quête de l’année'),
+      h('p', { class: 'small' }, main.complete ? 'Bravo ! Tu peux rejouer les chapitres pour décrocher l’or partout.' : `${subjLabel(main.subject)} · ${main.inProgress ? 'chapitre en cours' : 'prochain chapitre'} : ${ch ? ch.title : ''}`),
+      h('p', { class: 'small muted' }, `${main.finished}/${main.chapters} chapitres en ${subjLabel(main.subject).toLowerCase()} · ${total} médaille${total > 1 ? 's' : ''} toutes matières`),
+      h('span', { class: 'btn btn--primary btn--small' }, main.inProgress ? 'Reprendre le chapitre' : main.finished ? 'Continuer mon année' : 'Commencer mon année'))));
+}
 
 /** Carte de l'énigme du jour : la matière du jour, résolue ou non, et la série d'énigmes. */
 function enigmaCard() {
@@ -79,6 +96,8 @@ function continueStrip() {
 export function render(root) {
   const p = store.profile;
   const familySlot = h('div', { class: 'family-slot' });
+  const questSlot = h('div', { class: 'family-slot' });
+  questCard(questSlot).catch(() => questSlot.replaceChildren());
   familyCard(familySlot).catch(() => familySlot.replaceChildren());
   const recos = recommendations(8);
   const due = dueReviews();
@@ -110,6 +129,7 @@ export function render(root) {
             h('p', {}, 'Pas encore assez de traces pour te conseiller : commence par une leçon de ta classe.'),
             h('div', { class: 'btn-row', style: { justifyContent: 'center' } }, myLessons.slice(0, 3).map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, l.title)), h('a', { class: 'btn btn--ghost btn--small', href: '#/parcours' }, 'Toutes les leçons')))),
       h('aside', { class: 'grid' },
+        questSlot,
         enigmaCard(),
         familySlot,
         g ? h('a', { class: 'card side-card today-goal', href: '#/progression', style: { textDecoration: 'none', color: 'inherit' } },

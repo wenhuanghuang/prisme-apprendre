@@ -34,6 +34,9 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   et ses trois cœurs, le narval dont la « corne » est une dent, le colibri qui vole en arrière…). Il s'ouvre quand
   l'album de lumière est complet ; la page « Ma progression » montre l'album en cours, replie les albums finis et
   annonce le suivant. Trophées « Ami des bêtes » (72 vignettes) et « Grand naturaliste » (96).
+- **« Ma quête de l'année » sur la page Aujourd'hui** : la matière jouée en dernier (sinon les maths), son chapitre en
+  cours ou le prochain, le nombre de médailles ; un clic ouvre directement la carte de l'année de cette matière
+  (lien `#/exercices?annee=<matière>`).
 - **Défi de la famille** (page « Aujourd'hui ») : un jeu coopératif entre les profils de l'appareil. Chaque semaine,
   du lundi au dimanche, les bonnes réponses de chacun (sans la correction affichée) remplissent une barre commune,
   une couleur par enfant ; le but est de 35 par joueur actif (un profil sans réponse depuis 4 semaines, ou un profil

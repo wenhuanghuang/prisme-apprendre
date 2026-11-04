@@ -274,7 +274,7 @@ export function playQuest(stage, q, { onNew, onPause, setStopper, save: saveTo =
 
 /* ------------------------------ Onglet ------------------------------ */
 
-export async function questPanel(panel, cleanup) {
+export async function questPanel(panel, cleanup, { subject = null } = {}) {
   const stage = h('div', { class: 'quest-stage' });
   panel.append(stage);
   let stopper = null;
@@ -319,4 +319,5 @@ export async function questPanel(panel, cleanup) {
     await yearMap(stage, { level, subject, onBack: () => home(), setStopper: (fn) => { stopper = fn; } });
   }
   await home();
+  if (subject) await openYear(homeLevel || nearestLevel(store.profile.level), subject);
 }

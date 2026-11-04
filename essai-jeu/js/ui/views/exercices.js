@@ -433,7 +433,7 @@ export async function render(root, { params }) {
     (id) => { location.hash = `#/exercices${id === 'quete' ? '' : `?onglet=${id}`}`; }, 'Espace exercices'));
   const panel = h('div', { class: 'ex-space', role: 'tabpanel' });
   root.append(panel);
-  if (tab === 'quete') await questPanel(panel, stageCleanup);
+  if (tab === 'quete') await questPanel(panel, stageCleanup, { subject: params.get('annee') });
   else if (tab === 'series') await seriesPanel(panel, stageCleanup, params);
   else generatorsPanel(panel, stageCleanup);
   return () => { if (stageCleanup.fn) stageCleanup.fn(); };

@@ -75,6 +75,29 @@ async function loadState(yearKey, level, subject) {
 }
 const saveState = (yearKey, level, subject, st) => setSetting(stateKey(yearKey, level, subject), st);
 
+/**
+ * Résumé de la quête de l'année d'une classe : pour chaque matière jouable, chapitres faits, prochain chapitre,
+ * chapitre en cours (quête commencée) et date de la dernière activité — pour la page « Aujourd'hui ».
+ */
+export async function yearSummary(level) {
+  const now = store.now();
+  const yearKey = schoolYearKey(now);
+  const clock = yearClock(calendarOf(yearKey), now);
+  const out = [];
+  for (const c of yearCourses(level)) {
+    const plan = await yearPlan(level, c.subject, clock);
+    if (!plan.some((x) => x.stages)) continue;
+    const st = await loadState(yearKey, level, c.subject);
+    const pr = yearProgress(plan, st.done, clock);
+    const last = Math.max(0, ...Object.values(st.done).map((d) => d.ts || 0), ...Object.values(st.quests).map((q) => q.createdAt || 0));
+    // chapitre en cours : la quête commencée (pas finie) la plus récente
+    const open = Object.entries(st.quests).filter(([, q]) => q && !isOver(q)).sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
+    const inProgress = open.length ? plan.find((x) => x.id === open[0][0]) || null : null;
+    out.push({ subject: c.subject, finished: pr.finished, chapters: pr.chapters, next: pr.next, nowChapter: pr.nowChapter, inProgress, last, complete: pr.complete });
+  }
+  return out;
+}
+
 /* ------------------------------ Cartes des matières ------------------------------ */
 
 /** Les matières de la classe, avec l'avancement de l'année de chacune. */
