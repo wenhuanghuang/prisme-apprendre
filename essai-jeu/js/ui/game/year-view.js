@@ -20,6 +20,7 @@ import { SUBJECT_ICONS } from '../parcours/data.js';
 import { photon } from '../photon.js';
 import { chestReveal, chestSvg, newVignettes } from './rewards-ui.js';
 import { confetti } from '../lesson-play/celebrate.js';
+import { bonusGame } from './mini-games.js';
 
 const levelId = (x) => String(x || '').toLowerCase();
 const levelLabel = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;
@@ -358,6 +359,7 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
       g ? h('div', { class: 'year-guardian is-open is-woke' }, h('span', { class: 'year-guardian-icon', 'aria-hidden': 'true' }, g.icon),
         h('p', {}, h('strong', {}, `${g.name}, ${g.what}, s’est ${agree(g, 'réveillé')} !`), ` ${g.fem ? 'Elle' : 'Il'} garde le trésor de la ${clock.periods[ch.period].short.toLowerCase()} : ${GUARDIAN_QUESTIONS} questions mêlées de tes chapitres.`),
         h('button', { type: 'button', class: 'btn btn--small', onclick: () => fightGuardian(ch.period) }, `Défier ${g.name}`)) : null,
+      (() => { const b = bonusGame(level, subject, ch); return b ? h('p', { class: 'year-bonus' }, h('span', { 'aria-hidden': 'true' }, `${b.icon} `), 'Bonus : ', h('a', { href: b.href }, b.label)) : null; })(),
       h('div', { class: 'btn-row' },
         next ? h('button', { type: 'button', class: 'btn btn--primary', onclick: () => play(next) }, `Chapitre suivant : ${next.title} →`) : null,
         h('button', { type: 'button', class: next ? 'btn btn--ghost' : 'btn btn--primary', onclick: () => showMap() }, 'Voir mon année'))));

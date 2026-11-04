@@ -6,7 +6,8 @@
 import { h } from '../dom.js';
 import { store } from '../../app/store.js';
 import { dayKey, XP } from '../../engine/game.js';
-import { ECLAIR_THEMES, formatMs } from '../../engine/eclair.js';
+import { ECLAIR_THEMES, ECLAIR_LEVELS, formatMs } from '../../engine/eclair.js';
+import { allGenerators, coversSkills } from '../../generators/registry.js';
 
 export const MINI_GAMES = [
   { id: 'memoire', icon: '🃏', label: 'Mémoire', href: '#/memoire', pitch: 'retrouve les paires (mots, dates, traductions…), seul ou à deux' },
@@ -36,6 +37,33 @@ export function miniGamesList() {
           h('small', {}, g.pitch)),
         h('span', { class: 'mini-game-state' }, done ? '✓ fait aujourd’hui' : `+${XP[g.id]} points`)));
   }));
+}
+
+// générateurs écrits en code qui produisent des associations (voir le jeu de mémoire)
+const MATCH_CODE = new Set(['lf-oeuvres', 'mus-oeuvres', 'arts-oeuvres', 'tc-donnees', 'tc-projet']);
+const LANGS = new Set(['lv', 'anglais', 'espagnol', 'allemand']);
+
+/**
+ * Le petit jeu qui prolonge un chapitre de la quête de l'année : sa frise, ses associations au jeu de mémoire,
+ * le calcul éclair en maths, le mot mystère en français et en langues. Renvoie { icon, label, href } ou null.
+ * Un générateur prolonge le chapitre s'il lui est rattaché ou s'il en couvre les notions.
+ */
+export function bonusGame(level, subject, ch) {
+  const lv = String(level || '').toLowerCase();
+  const skills = new Set((ch && ch.skills) || []);
+  const gens = allGenerators(store.index).filter((g) => g.levels.map((x) => String(x).toLowerCase()).includes(lv)
+    && ((g.chapters || []).includes(ch && ch.id) || (skills.size && coversSkills(g, skills))));
+  const q = (o) => new URLSearchParams(o).toString();
+  // en langues, le vocabulaire se joue au mot mystère (on l'écrit lettre à lettre)
+  if (LANGS.has(subject) && gens.some((g) => g.kind === 'vocab')) return { icon: '🔤', label: 'Un mot mystère avec le vocabulaire du chapitre', href: `#/mot?${q({ classe: lv, mots: gens.some((g) => g.id === 'es-vocabulario') ? 'es' : 'en' })}` };
+  const chrono = gens.find((g) => g.source !== 'code' && g.kind === 'chronologie');
+  if (chrono) return { icon: '⏳', label: 'Range les dates de ce chapitre sur une frise', href: `#/frise?${q({ classe: lv, theme: chrono.id })}` };
+  const pairs = gens.find((g) => (g.source !== 'code' && ['match', 'vocab'].includes(g.kind)) || MATCH_CODE.has(g.id));
+  if (pairs) return { icon: '🃏', label: 'Retrouve les paires de ce chapitre au jeu de mémoire', href: `#/memoire?${q({ classe: lv, theme: pairs.id })}` };
+  if (subject === 'maths' && ECLAIR_LEVELS[lv]) return { icon: '⚡', label: 'Un calcul éclair pour garder la forme', href: `#/eclair?${q({ classe: lv })}` };
+  if (subject === 'francais') return { icon: '🔤', label: 'Un mot mystère pour finir en beauté', href: `#/mot?${q({ classe: lv, mots: 'fr' })}` };
+  if (LANGS.has(subject)) return { icon: '🔤', label: 'Un mot mystère avec le vocabulaire de la classe', href: `#/mot?${q({ classe: lv, mots: gens.some((g) => g.id === 'es-vocabulario') ? 'es' : 'en' })}` };
+  return null;
 }
 
 const LEVEL = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;

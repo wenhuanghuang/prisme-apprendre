@@ -24,7 +24,7 @@ export const eclairLevels = () => gameLevels().filter((l) => ECLAIR_LEVELS[l]);
 function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = eclairLevels();
   const near = nearestLevel(store.profile.level);
-  const state = { level: prefill.level || (levels.includes(near) ? near : levels[0]), theme: prefill.theme || 'melange', count: prefill.count || 10, timer: prefill.timer ?? true };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : (levels.includes(near) ? near : levels[0]), theme: prefill.theme || 'melange', count: prefill.count || 10, timer: prefill.timer ?? true };
   const draw = () => {
     const themes = eclairThemes(state.level);
     if (state.theme !== 'melange' && !themes.some((t) => t.id === state.theme)) state.theme = 'melange';
@@ -144,7 +144,7 @@ function play(stage, setup, { onAgain, onNew }) {
   input.focus({ preventScroll: true });
 }
 
-export async function render(root) {
+export async function render(root, { params } = {}) {
   const stage = h('div', { class: 'quest-stage eclair-stage' });
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Jeux'), h('h1', {}, 'Calcul éclair'),
@@ -153,5 +153,5 @@ export async function render(root) {
   let last = null;
   const toSetup = (prefill) => setupScreen(stage, { onStart: start, prefill });
   function start(setup) { last = setup; window.scrollTo({ top: 0 }); play(stage, setup, { onAgain: () => start(last), onNew: () => toSetup(last) }); }
-  toSetup();
+  toSetup({ level: (params && params.get('classe')) || undefined, theme: (params && params.get('theme')) || undefined });
 }

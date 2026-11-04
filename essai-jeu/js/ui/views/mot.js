@@ -39,7 +39,7 @@ async function entriesOf(theme, level) {
 
 function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = gameLevels();
-  const state = { level: prefill.level || nearestLevel(store.profile.level), theme: prefill.theme || 'fr', count: prefill.count || 5 };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : nearestLevel(store.profile.level), theme: prefill.theme || 'fr', count: prefill.count || 5 };
   const err = h('p', { class: 'warn', 'aria-live': 'assertive' });
   const draw = () => {
     const themes = motThemes(state.level);
@@ -183,7 +183,7 @@ function play(stage, setup, { onAgain, onNew }) {
   start();
 }
 
-export async function render(root) {
+export async function render(root, { params } = {}) {
   const stage = h('div', { class: 'quest-stage mot-stage' });
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Jeux'), h('h1', {}, 'Mot mystère'),
@@ -197,5 +197,5 @@ export async function render(root) {
     const words = pickWords(await entriesOf(theme, last.level), last.count);
     if (words.length >= Math.min(3, last.count)) start({ ...last, words }); else toSetup(last);
   }
-  toSetup();
+  toSetup({ level: (params && params.get('classe')) || undefined, theme: (params && params.get('mots')) || undefined });
 }

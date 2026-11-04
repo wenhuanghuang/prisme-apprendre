@@ -31,7 +31,7 @@ function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = friseLevels();
   const near = nearestLevel(store.profile.level);
   const fallback = levels.includes(near) ? near : levels.find((l) => gameLevels().indexOf(l) >= gameLevels().indexOf(near)) || levels[levels.length - 1];
-  const state = { level: prefill.level || fallback, theme: prefill.theme || '', players: prefill.players || 1, size: prefill.size || 8, guest: prefill.guest || 'Invité' };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : fallback, theme: prefill.theme || '', players: prefill.players || 1, size: prefill.size || 8, guest: prefill.guest || 'Invité' };
   const err = h('p', { class: 'warn', 'aria-live': 'assertive' });
   const draw = () => {
     const themes = friseThemes(state.level);
@@ -154,7 +154,7 @@ function play(stage, setup, { onAgain, onNew }) {
   paint();
 }
 
-export async function render(root) {
+export async function render(root, { params } = {}) {
   const stage = h('div', { class: 'quest-stage frise-stage' });
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Jeux'), h('h1', {}, 'Frise chronologique'),
@@ -162,10 +162,11 @@ export async function render(root) {
     h('a', { class: 'btn', href: '#/jeu' }, h('span', { 'aria-hidden': 'true' }, '🎲 '), 'Jeu de plateau')), stage);
   let last = null;
   const toSetup = (prefill) => setupScreen(stage, { onStart: start, prefill });
+  const fromUrl = { level: (params && params.get('classe')) || undefined, theme: (params && params.get('theme')) || undefined };
   function start(setup) { last = setup; window.scrollTo({ top: 0 }); play(stage, setup, { onAgain: again, onNew: () => toSetup(last) }); }
   async function again() {
     const events = distinctEvents(await eventsOf(last.meta).catch(() => []), last.size);
     if (events.length >= Math.min(last.size, 6)) start({ ...last, events }); else toSetup(last);
   }
-  toSetup();
+  toSetup(fromUrl);
 }

@@ -49,7 +49,7 @@ export async function pairsOf(meta, level) {
 
 function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = gameLevels();
-  const state = { level: prefill.level || nearestLevel(store.profile.level), theme: prefill.theme || '', players: prefill.players || 1, size: prefill.size || 6, guest: prefill.guest || 'Invité' };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : nearestLevel(store.profile.level), theme: prefill.theme || '', players: prefill.players || 1, size: prefill.size || 6, guest: prefill.guest || 'Invité' };
   const err = h('p', { class: 'warn', 'aria-live': 'assertive' });
   const draw = () => {
     const themes = themesFor(state.level);
@@ -159,7 +159,7 @@ function play(stage, setup, { onAgain, onNew }) {
   paint();
 }
 
-export async function render(root) {
+export async function render(root, { params } = {}) {
   const stage = h('div', { class: 'quest-stage mem-stage' });
   root.append(h('div', { class: 'page-head' },
     h('div', {}, h('p', { class: 'eyebrow' }, 'Jeux'), h('h1', {}, 'Jeu de mémoire'),
@@ -167,10 +167,11 @@ export async function render(root) {
     h('a', { class: 'btn', href: '#/jeu' }, h('span', { 'aria-hidden': 'true' }, '🎲 '), 'Jeu de plateau')), stage);
   let last = null;
   const toSetup = (prefill) => setupScreen(stage, { onStart: start, prefill });
+  const fromUrl = { level: (params && params.get('classe')) || undefined, theme: (params && params.get('theme')) || undefined };
   async function start(setup) { last = setup; window.scrollTo({ top: 0 }); play(stage, setup, { onAgain: again, onNew: () => toSetup(last) }); }
   async function again() {
     const pairs = distinctPairs(await pairsOf(last.meta, last.level).catch(() => []), last.size);
     if (pairs.length >= Math.min(last.size, 5)) start({ ...last, pairs }); else toSetup(last);
   }
-  toSetup();
+  toSetup(fromUrl);
 }

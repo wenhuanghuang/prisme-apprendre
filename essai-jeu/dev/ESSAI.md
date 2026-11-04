@@ -119,6 +119,11 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   les accents viennent avec la lettre simple ; une lettre peut être révélée contre une couleur ; on peut écouter le mot
   (voix de l'ordinateur). Clavier à l'écran ou physique, +10 points une fois par jour, trophées « Détective des mots »
   et « Dictionnaire vivant » (`js/engine/mot.js`, `js/ui/views/mot.js`).
+- **Bonus de fin de chapitre** (quête de l'année) : un chapitre terminé propose le petit jeu qui le prolonge, déjà réglé
+  sur la classe et le thème : sa frise (histoire, technologie, musique), ses associations au jeu de mémoire, le
+  vocabulaire au mot mystère (langues), un calcul éclair (maths), une devinette (français). Les jeux se règlent par
+  l'adresse : `#/frise?classe=5e&theme=hg5-chronologie`, `#/memoire?classe=1re&theme=hg-l-capitales`,
+  `#/eclair?classe=4e`, `#/mot?classe=5e&mots=es` (`bonusGame` dans `js/ui/game/mini-games.js`).
 - **Petits jeux du jour** (page Aujourd'hui, carte « Jouer ») : mémoire, frise, calcul éclair et mot mystère, chacun avec ce qu'il
   rapporte ou « ✓ fait aujourd'hui », et un « 🌟 jeu du jour » qui change chaque jour pour varier les plaisirs ; la page
   « Ma progression » liste les records personnels (`js/ui/game/mini-games.js`).
