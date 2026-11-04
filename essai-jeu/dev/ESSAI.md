@@ -15,6 +15,11 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   Terminale : pH et acides forts, prédominance, titrages (stœchiométrie 1:2), cinétique, Qr et K, décroissance
   radioactive et datation, piles, capacité en mAh, Newton, chute libre, satellites, chaleur Q = m c ΔT, Archimède,
   gaz parfait, décibels, diffraction, lunette, effet Doppler, circuit RC.
+- **EMC, du CP à la terminale** (`js/generators/emc.js`, `content/skills/emc.json`) : une banque de questions expliquées
+  par cycle (règles de vie, harcèlement, numéros d'urgence, symboles ; droits de l'enfant, DDHC, laïcité, commune, vote ;
+  séparation des pouvoirs, quinquennat, majorité, libertés, recensement et JDC ; Constitution de 1958, Conseil
+  constitutionnel, CEDH, Défenseur des droits, parité, RGPD), un générateur par classe rattaché au chapitre de la
+  classe (et aux chapitres rédigés de 5e et de 4e) : chaque élève a une quête de l'année en EMC.
 - **Lycée : SES, NSI et SNT** (`js/generators/lycee-ses-nsi.js`) : calculs de SES (taux de variation, indice base 100,
   taux de chômage, valeur ajoutée, élasticité-prix) et notions (socialisation, PIB, inflation, chômage au sens du BIT,
   externalités, BCE, marché, abstention, mobilité sociale) ; NSI (binaire, hexadécimal, ASCII, dictionnaires et boucles
@@ -139,13 +144,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi}.json`.
+`content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (407 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (432 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

@@ -28,6 +28,7 @@ import { LYCEE_HG } from './lycee-hg.js';
 import { LYCEE_SVT_1T } from './lycee-svt-1t.js';
 import { LYCEE_FRANCAIS } from './lycee-francais.js';
 import { LYCEE_SES_NSI } from './lycee-ses-nsi.js';
+import { EMC } from './emc.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -567,6 +568,8 @@ GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMA
 GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T, ...LYCEE_SVT, ...LYCEE_HG, ...LYCEE_SVT_1T, ...LYCEE_FRANCAIS, ...LYCEE_SES_NSI);
 // technologie au collège
 GENERATORS.push(...COLLEGE_TECHNO, ...COLLEGE_LANGUES);
+// EMC, du CP à la terminale
+GENERATORS.push(...EMC);
 
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 
