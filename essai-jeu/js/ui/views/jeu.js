@@ -479,6 +479,7 @@ export async function render(root) {
       h('p', { class: 'muted' }, 'Lance le dé, réponds à la question de la case et fais avancer ton pion jusqu’au Prisme. Jusqu’à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.')),
     h('div', { class: 'btn-row' }, h('a', { class: 'btn', href: '#/memoire' }, h('span', { 'aria-hidden': 'true' }, '🃏 '), 'Jeu de mémoire'),
       h('a', { class: 'btn', href: '#/frise' }, h('span', { 'aria-hidden': 'true' }, '⏳ '), 'Frise chronologique'),
+      h('a', { class: 'btn', href: '#/eclair' }, h('span', { 'aria-hidden': 'true' }, '⚡ '), 'Calcul éclair'),
       h('div', { class: 'jeu-head-art', 'aria-hidden': 'true' }, die(5).el, photon('joie', 52)))), stage);
 
   const stop = () => { if (stopper) { stopper(); stopper = null; } };

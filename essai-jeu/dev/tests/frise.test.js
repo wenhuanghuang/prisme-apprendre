@@ -65,7 +65,8 @@ test('à deux : chacun son tour, pas de vies, gagnant', () => {
 });
 
 test('événements distincts : pas deux fois le même intitulé ni la même année', () => {
-  const ev = F.distinctEvents([...EV, { label: 'Bastille', year: 1790 }, { label: 'Autre', year: 1789 }, { label: '', year: 3 }, { label: 'X', year: 'abc' }], 20);
+  const ev = F.distinctEvents([...EV, { label: 'Bastille', year: 1790 }, { label: 'Autre', year: 1789 }, { label: '', year: 3 }, { label: 'X', year: 'abc' }], 20, keep);
+  assert.equal(new Set(ev.map((e) => e.label)).size, ev.length);
   assert.equal(ev.length, EV.length);
   assert.equal(new Set(ev.map((e) => e.year)).size, ev.length);
 });

@@ -112,6 +112,15 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   de démonstration, ne compte pas). But atteint : chacun ouvre le coffre de la famille depuis son profil (+25 points,
   vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
   (`js/engine/famille.js`, `js/ui/game/family-card.js`).
+- **Calcul éclair** (`#/eclair`, liens depuis le plateau et la page Aujourd'hui) : 10 ou 20 calculs mentaux de la classe,
+  l'un après l'autre, avec un pavé numérique pour les tablettes. Du CP (compléments à 10) à la terminale (coefficients
+  multiplicateurs), en passant par les tables, les divisions, ×10 et ×100, les décimaux, les fractions d'une quantité,
+  les priorités, les relatifs, les carrés, les puissances et les pourcentages ; un thème ou le mélange de la classe.
+  Un calcul raté revient trois calculs plus loin : la série se termine toujours sur des réussites. Avec le chrono, le
+  temps total devient un record personnel (par classe, thème et longueur, gardé dans le profil : `records` dans l'état
+  du jeu) ; sans le chrono, on s'entraîne tranquillement. +10 points une fois par jour, trophées « Esprit vif » et
+  « Fusée du calcul », les calculs ratés à retravailler (`js/engine/eclair.js`, `js/ui/views/eclair.js`,
+  `recordBest` dans `js/app/store.js`, `withRecord` dans `js/engine/game.js`).
 - **Frise chronologique** (`#/frise`, liens depuis le plateau et la page Aujourd'hui) : une carte est posée ; on pioche
   un événement et on le place avant, après ou entre les cartes déjà posées. Bien placé, il reste ; mal placé, il rejoint
   sa vraie place (l'année s'affiche : on apprend en jouant). Seul avec 3 vies (1 à 3 étoiles), ou à deux sur le même
@@ -188,12 +197,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10 ; une fois par
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -201,4 +210,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (490 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (506 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

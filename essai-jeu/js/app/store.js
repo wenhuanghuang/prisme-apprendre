@@ -8,7 +8,7 @@ import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } fro
 import { recommend } from '../engine/recommend.js';
 import { summarizeAttempts, computeBadges, skillBadges } from '../engine/badges.js';
 import { DEMO_PROFILES, simulateProfile } from '../engine/demo-profiles.js';
-import { computeGame, withEvent, withGoal, migrateGoals, GOALS } from '../engine/game.js';
+import { computeGame, withEvent, withGoal, withRecord, migrateGoals, GOALS } from '../engine/game.js';
 
 const listeners = new Set();
 const lessonCache = new Map();
@@ -313,6 +313,15 @@ export async function recordGameEvent(type, id) {
   if (!store.profile || !store.states) return;
   const next = withEvent(store.states.game, type, String(id), store.now());
   if (next !== store.states.game) await saveGame(next);
+}
+
+/** Temps d'une série (calcul éclair) : enregistré s'il bat le record. Renvoie l'ancien record (ou null) et s'il est battu. */
+export async function recordBest(key, ms) {
+  if (!store.profile || !store.states) return { previous: null, best: false };
+  const previous = ((store.states.game.records || {})[key] || null);
+  const next = withRecord(store.states.game, key, ms, store.now());
+  if (next !== store.states.game) { await saveGame(next); return { previous, best: true }; }
+  return { previous, best: false };
 }
 
 export async function setDailyGoal(xp) {
