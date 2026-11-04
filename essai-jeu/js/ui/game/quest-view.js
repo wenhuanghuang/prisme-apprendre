@@ -16,7 +16,8 @@ import { subjLabel } from '../views/exercices.js';
 import { mountExercise } from '../exercise.js';
 import { photon } from '../photon.js';
 import { chestReveal, chestSvg, newVignettes } from './rewards-ui.js';
-import { yearCards, yearMap } from './year-view.js';
+import { yearCards, yearMap, chapterContent } from './year-view.js';
+import { burstStars } from '../lesson-play/celebrate.js';
 
 const levelId = (x) => String(x || '').toLowerCase();
 const levelLabel = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;
@@ -27,10 +28,11 @@ const starsText = (n) => (n === null || n === undefined ? '' : '★'.repeat(n) +
 /** Chapitres d'un parcours qui ont des exercices de quête, avec leurs notions. */
 async function chaptersOf(level, subject) {
   if (!subject || subject === 'tous' || !store.catalog) return [];
-  const course = store.catalog.courses.find((c) => c.level === level && c.subject === subject);
+  const courses = store.catalog.courses.filter((c) => c.level === level && c.subject === subject);
+  const course = courses.find((c) => c.coverage !== 'reference') || courses[0];
   const data = course ? await loadCourse(course.id) : null;
-  const have = new Set(store.index.exercises.filter((e) => levelId(e.level) === level && e.subject === subject).map((e) => e.skill));
-  return ((data && data.chapters) || []).map((ch) => ({ id: ch.id, title: ch.title, skills: (ch.skills || []).filter((s) => have.has(s)) })).filter((ch) => ch.skills.length);
+  return ((data && data.chapters) || []).map((ch) => ({ id: ch.id, title: ch.title, ...chapterContent(level, subject, ch) }))
+    .filter((ch) => ch.skills.length && (ch.n || ch.hasGen));
 }
 
 /* ------------------------------ Mise en place ------------------------------ */
@@ -123,6 +125,7 @@ function trackView(q) {
  */
 export function playQuest(stage, q, { onNew, onPause, setStopper, save: saveTo = null, onFinished = null, eyebrow = null }) {
   let current = null; let stopped = false;
+  let combo = 0; // réussites du premier coup d'affilée (sans indice) : une petite flamme qui grandit
   setStopper(() => { stopped = true; if (current) { current.destroy(); current = null; } });
   const save = () => (saveTo ? saveTo(q) : setSetting(saveKey(), q)).catch(() => {});
   const track = trackView(q);
@@ -130,7 +133,8 @@ export function playQuest(stage, q, { onNew, onPause, setStopper, save: saveTo =
   const slot = h('div', { class: 'quest-slot' });
   const paintScore = () => {
     const s = questSummary(q);
-    score.replaceChildren(h('span', {}, h('b', {}, `★ ${s.stars}`), h('small', {}, `/${s.maxStars}`)), h('span', {}, '🎁 ', h('b', {}, String(s.passed)), h('small', {}, `/${s.challenges} coffres`)));
+    score.replaceChildren(h('span', {}, h('b', {}, `★ ${s.stars}`), h('small', {}, `/${s.maxStars}`)), h('span', {}, '🎁 ', h('b', {}, String(s.passed)), h('small', {}, `/${s.challenges} coffres`)),
+      combo >= 2 ? h('span', { class: `quest-combo ${combo >= 5 ? 'is-hot' : ''}`, title: 'Réussites du premier coup d’affilée' }, '🔥 ', h('b', {}, `×${combo}`)) : null);
   };
   stage.replaceChildren(
     h('div', { class: 'series-head quest-head' },
@@ -182,6 +186,11 @@ export function playQuest(stage, q, { onNew, onPause, setStopper, save: saveTo =
   async function resolve(n, stars) {
     if (stopped) return;
     if (current) { current.destroy(); current = null; }
+    combo = stars === 3 ? combo + 1 : 0;
+    if ([3, 5, 10, 15, 20].includes(combo)) {
+      setTimeout(() => burstStars(score, 3), 60);
+      announce(`Série de ${combo} réussites du premier coup !`);
+    }
     if (n.kind === 'pas') { answerStep(q, stars); save(); show(); return; }
     const res = answerChallenge(q, stars, store.now());
     save();

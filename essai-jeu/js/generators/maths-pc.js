@@ -13,6 +13,7 @@ import { PROBLEMES_MATHS } from './problemes-maths.js';
 import { PROBLEMES_MATHS_2 } from './problemes-maths-2.js';
 import { PROBLEMES_PC } from './problemes-pc.js';
 import { PROBLEMES_PC_2 } from './problemes-pc-2.js';
+import { PRIMAIRE_MATHS } from './primaire-maths.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -546,6 +547,9 @@ addPc({
 
 /* ======================================================================= */
 
+// école primaire (CP → CM2) : rattachés aux chapitres des parcours par `chapters`
+GENERATORS.push(...PRIMAIRE_MATHS);
+
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 
 /** Calculs (avec leurs variantes ◆ et ✦ de tiers.js) puis problèmes à étapes. */
@@ -621,7 +625,7 @@ export function codeGeneratorMeta(gen) {
   return {
     id: gen.id, label: gen.label, subject: gen.subject, levels: gen.levels, skill: gen.skill, skills: gen.skills || [],
     kind: gen.kind || 'calcul', description: gen.description || '', options: gen.options || [],
-    track: 'classe', tracks: generatorTracks(gen), source: 'code',
+    track: 'classe', tracks: generatorTracks(gen), source: 'code', chapters: gen.chapters || [], facts: Boolean(gen.facts),
   };
 }
 

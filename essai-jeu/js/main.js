@@ -4,6 +4,7 @@
 import { store, init, subscribe } from './app/store.js';
 import { h, clear, focusPendingTab } from './ui/dom.js';
 import { gameHud } from './ui/game/hud.js';
+import { watchBreaks } from './ui/game/pause.js';
 
 const ROUTES = [
   { re: /^\/?$/, view: () => import('./ui/views/today.js'), needsProfile: true, nav: 'today' },
@@ -15,6 +16,7 @@ const ROUTES = [
   { re: /^\/seance$/, view: () => import('./ui/views/session.js'), needsProfile: true, nav: 'today' },
   { re: /^\/exercices$/, view: () => import('./ui/views/exercices.js'), needsProfile: true, nav: 'exercices' },
   { re: /^\/jeu$/, view: () => import('./ui/views/jeu.js'), needsProfile: true, nav: 'jeu' },
+  { re: /^\/enigme$/, view: () => import('./ui/views/enigme.js'), needsProfile: true, nav: 'today' },
   { re: /^\/labo$/, view: () => import('./ui/views/labo.js'), nav: 'labo' },
   { re: /^\/carnet$/, view: () => import('./ui/views/carnet.js'), needsProfile: true, nav: 'carnet' },
   { re: /^\/progression$/, view: () => import('./ui/views/progression.js'), needsProfile: true, nav: null },
@@ -98,6 +100,7 @@ async function start() {
     return;
   }
   window.addEventListener('hashchange', route);
+  watchBreaks(); // une pause proposée après 25 minutes d'exercices sans coupure
   let lastProfile = store.profile && store.profile.id;
   subscribe(() => {
     if (store.sharedPlay) return; // jeu à plusieurs : l'en-tête garde le profil de l'appareil

@@ -7,6 +7,15 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   indicatif). Chaque chapitre est une quête de 1 à 3 étapes ; terminé avec au moins 30 % des étoiles, il reçoit une
   médaille (bronze, argent ≥ 60 %, or ≥ 85 %) ; une période terminée ouvre un coffre rare ; l'année entière, un dernier
   coffre. Le jour indique la période en cours et le rythme conseillé (étapes par semaine), sans rien verrouiller.
+- **École primaire (CP → CM2)** : 23 générateurs de mathématiques rattachés aux chapitres des parcours officiels
+  (`js/generators/primaire-maths.js`, notions dans `content/skills/maths-primaire.json`) : numération, calcul,
+  tables, grandeurs, fractions, décimaux, problèmes, géométrie, données, hasard. La quête de l'année, la quête libre,
+  le plateau, les séries et les générateurs illimités fonctionnent donc aussi au primaire (19 à 23 chapitres de maths
+  jouables par classe). Les erreurs typiques sont diagnostiquées (retenue oubliée, « 1 h = 100 min », virgules…).
+- **Curiosité et bonnes habitudes** : énigme du jour (une par jour, matière tournante, +10 points, série d'énigmes,
+  un « Le savais-tu ? » parmi 30 curiosités vérifiées, trophées Esprit curieux / Grand curieux) ; constellation de
+  l'année (une étoile par chapitre, allumée à la médaille) ; série de réussites du premier coup dans les quêtes ;
+  pause proposée après 25 minutes d'exercices sans coupure (jamais imposée).
 - **Quête libre** : un chemin linéaire au choix, un exercice par étape ; toutes les
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
@@ -15,11 +24,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,plateau}.js`, `js/ui/game/{quest-plan,quest-view,year-view,rewards-ui,board,deck,dice}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau}.js`, `js/generators/primaire-maths.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
-`js/engine/game.js`, `js/engine/game-rewards.js`, `js/ui/views/{exercices,progression,today}.js`.
+`js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
+`content/index.json` (24 notions du primaire ajoutées ; à régénérer par `npm run build` à l'intégration).
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (règles du plateau, quête, calendrier et plan de l'année, album, points).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (72 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

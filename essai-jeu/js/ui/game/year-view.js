@@ -5,7 +5,7 @@
  * un dernier coffre. La date du jour indique le rythme conseillé, sans rien verrouiller : chaque chapitre reste
  * jouable, si la classe suit un autre ordre.
  */
-import { h, announce } from '../dom.js';
+import { h, announce, esc } from '../dom.js';
 import { store, getSetting, setSetting, loadCourse, recordGameEvent, gameProgress } from '../../app/store.js';
 import { calendarOf, schoolYearKey, yearClock, planYear, yearProgress, chapterStages, medalOf, yearId, MEDAL_MIN } from '../../engine/annee.js';
 import { newQuest, questSummary, isOver, STEPS_PER_STAGE } from '../../engine/quete.js';
@@ -26,9 +26,30 @@ const fmtDate = (ms) => { const d = new Date(ms); return `${d.getDate() === 1 ? 
 
 /* ------------------------------ Données ------------------------------ */
 
-/** Parcours d'une classe qui ont des chapitres jouables. */
+/**
+ * Parcours d'une classe : un par matière, le parcours rédigé s'il existe, sinon le parcours de référence (programme
+ * officiel) — au primaire, ses chapitres sont joués avec les générateurs qui leur sont rattachés.
+ */
 function yearCourses(level) {
-  return (store.catalog ? store.catalog.courses : []).filter((c) => c.level === level && c.coverage !== 'reference');
+  const all = (store.catalog ? store.catalog.courses : []).filter((c) => c.level === level);
+  const bySubject = new Map();
+  for (const c of all) { const cur = bySubject.get(c.subject); if (!cur || (cur.coverage === 'reference' && c.coverage !== 'reference')) bySubject.set(c.subject, c); }
+  return all.filter((c) => bySubject.get(c.subject) === c);
+}
+
+/**
+ * Notions d'un chapitre et ce qu'il y a pour le jouer : exercices courts des leçons, générateurs qui couvrent ses
+ * notions ou qui lui sont rattachés (`chapters`). Un chapitre sans notions écrites prend celles de ses générateurs.
+ */
+export function chapterContent(level, subject, ch) {
+  const gens = allGenerators(store.index).filter((g) => g.subject === subject && g.levels.map(levelId).includes(level) && g.kind !== 'probleme');
+  const attached = gens.filter((g) => (g.chapters || []).includes(ch.id));
+  const skills = new Set(ch.skills && ch.skills.length ? ch.skills : attached.flatMap((g) => [g.skill, ...(g.skills || [])]));
+  const n = store.index.exercises.filter((e) => levelId(e.level) === level && e.subject === subject && (e.track || 'classe') === 'classe' && quickExercise(e) && skills.has(e.skill)).length;
+  const covering = skills.size ? gens.filter((g) => attached.includes(g) || coversSkills(g, skills)) : [];
+  // des questions de connaissance seulement (solides, figures) : un chapitre court
+  const factsOnly = covering.length > 0 && covering.every((g) => g.facts) && n < 6;
+  return { skills: [...skills], n, hasGen: covering.length > 0, factsOnly };
 }
 
 /** Chapitres de l'année d'une matière, dans l'ordre du parcours, avec leur nombre d'étapes et leur période. */
@@ -38,13 +59,9 @@ export async function yearPlan(level, subject, clock) {
   if (!data) return [];
   const unitOf = new Map();
   (data.units || []).forEach((u, i) => (u.chapters || []).forEach((id) => unitOf.set(id, { number: i + 1, title: u.title })));
-  const exercises = store.index.exercises.filter((e) => levelId(e.level) === level && e.subject === subject && (e.track || 'classe') === 'classe' && quickExercise(e));
-  const gens = allGenerators(store.index).filter((g) => g.subject === subject && g.levels.map(levelId).includes(level) && g.kind !== 'probleme');
   const chapters = (data.chapters || []).map((ch) => {
-    const skills = new Set(ch.skills || []);
-    const n = exercises.filter((e) => skills.has(e.skill)).length;
-    const hasGen = skills.size > 0 && gens.some((g) => coversSkills(g, skills));
-    return { id: ch.id, title: ch.title, skills: [...skills], unit: unitOf.get(ch.id) || null, stages: chapterStages(n, hasGen) };
+    const c = chapterContent(level, subject, ch);
+    return { id: ch.id, title: ch.title, skills: c.skills, unit: unitOf.get(ch.id) || null, stages: c.factsOnly ? 1 : chapterStages(c.n, c.hasGen) };
   });
   return planYear(chapters, clock.periods);
 }
@@ -81,6 +98,54 @@ export async function yearCards(container, { level, onOpen }) {
       h('button', { type: 'button', class: 'btn btn--primary btn--small', onclick: () => onOpen(c.subject) }, pr.complete ? 'Voir mon année' : started ? 'Continuer mon année' : 'Commencer mon année')));
   }
   container.replaceChildren(...(cards.length ? cards : [h('p', { class: 'card' }, `Pas encore de parcours avec des exercices en ${levelLabel(level)}.`)]));
+}
+
+/* ------------------------------ Constellation de l'année ------------------------------ */
+
+const MEDAL_COLORS = { or: '#f5c84c', argent: '#cfd6de', bronze: '#d9a066' };
+const starPath = (cx, cy, r) => {
+  const pts = [];
+  for (let k = 0; k < 10; k++) { const a = -Math.PI / 2 + (k * Math.PI) / 5; const rr = k % 2 ? r * 0.45 : r; pts.push(`${(cx + rr * Math.cos(a)).toFixed(1)},${(cy + rr * Math.sin(a)).toFixed(1)}`); }
+  return pts.join(' ');
+};
+function hashY(id) { let x = 7; for (const c of id) x = (x * 31 + c.codePointAt(0)) >>> 0; return x % 1000 / 1000; }
+
+/**
+ * La constellation de l'année : une étoile par chapitre, rangée dans sa période ; chaque chapitre terminé allume
+ * son étoile (couleur de sa médaille), les étoiles allumées se relient. Le pointillé marque la date du jour.
+ */
+export function constellation(plan, done, clock, nextId) {
+  const W = 900; const H = 190; const top = 22; const bottom = 34;
+  const stars = plan.filter((c) => c.stages);
+  const totalDays = clock.periods.reduce((s, p) => s + p.days, 0);
+  const bands = []; let x0 = 10;
+  for (const p of clock.periods) { const w = ((W - 20) * p.days) / totalDays; bands.push({ ...p, x: x0, w }); x0 += w; }
+  const pts = stars.map((c) => {
+    const b = bands[c.period];
+    const inBand = stars.filter((x) => x.period === c.period);
+    const k = inBand.indexOf(c);
+    return { c, x: b.x + (b.w * (k + 0.5)) / inBand.length, y: top + 8 + hashY(c.id) * (H - top - bottom - 16) };
+  });
+  const lines = pts.slice(1).map((p, k) => {
+    const a = pts[k]; const lit = done[a.c.id] && done[p.c.id];
+    return `<line x1="${a.x.toFixed(1)}" y1="${a.y.toFixed(1)}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" class="cst-line ${lit ? 'is-lit' : ''}"/>`;
+  }).join('');
+  const starsSvg = pts.map((p) => {
+    const d = done[p.c.id];
+    const medal = d ? (medalOf(d.ratio) || medalOf(MEDAL_MIN)) : null;
+    const isNext = p.c.id === nextId;
+    const title = `${p.c.title} — ${d ? medal.label : isNext ? 'prochain chapitre' : 'à venir'}`;
+    if (d) return `<g class="cst-star is-lit"><title>${esc(title)}</title><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="14" class="cst-glow"/><polygon points="${starPath(p.x, p.y, 10)}" fill="${MEDAL_COLORS[medal.id]}" class="cst-shape"/></g>`;
+    if (isNext) return `<g class="cst-star is-next"><title>${esc(title)}</title><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="12" class="cst-ring"/><polygon points="${starPath(p.x, p.y, 8)}" class="cst-shape cst-shape--next"/></g>`;
+    return `<g class="cst-star"><title>${esc(title)}</title><circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.2" class="cst-dot"/></g>`;
+  }).join('');
+  const bandSvg = bands.map((b) => `<rect x="${b.x.toFixed(1)}" y="${top}" width="${(b.w - 3).toFixed(1)}" height="${H - top - bottom}" rx="10" class="cst-band ${b.index === clock.current && clock.fraction < 1 ? 'is-now' : ''}"/><text x="${(b.x + b.w / 2).toFixed(1)}" y="${H - 12}" class="cst-label">${esc(b.short)}</text>`).join('');
+  const todayX = 10 + clock.fraction * (W - 20);
+  const today = clock.fraction > 0 && clock.fraction < 1 ? `<line x1="${todayX.toFixed(1)}" y1="${top - 6}" x2="${todayX.toFixed(1)}" y2="${H - bottom + 4}" class="cst-today"/><text x="${todayX.toFixed(1)}" y="${top - 9}" class="cst-today-label">aujourd’hui</text>` : '';
+  const lit = stars.filter((c) => done[c.id]).length;
+  const wrap = h('div', { class: 'constellation' });
+  wrap.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Constellation de l’année : ${lit} étoile${lit > 1 ? 's' : ''} allumée${lit > 1 ? 's' : ''} sur ${stars.length}">${bandSvg}${lines}${starsSvg}${today}</svg>`;
+  return wrap;
 }
 
 /* ------------------------------ Carte de l'année ------------------------------ */
@@ -155,11 +220,9 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
           h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => onBack() }, '← Toutes les matières'))),
       h('div', { class: 'card year-pace' }, photon(pr.pace === 'retard' ? 'encourage' : 'joie', 52),
         h('div', {}, h('p', {}, paceText(pr, clock, cal)),
-          h('div', { class: 'year-bar', role: 'progressbar', 'aria-valuemin': '0', 'aria-valuemax': String(pr.chapters), 'aria-valuenow': String(pr.finished), 'aria-label': 'Chapitres terminés' },
-            h('i', { style: { width: `${pr.chapters ? (pr.finished / pr.chapters) * 100 : 0}%` } }),
-            h('b', { class: 'year-bar-today', style: { left: `${clock.fraction * 100}%` }, title: 'Rythme conseillé à cette date' })),
-          h('p', { class: 'small muted' }, 'La barre montre les chapitres faits ; le repère, le rythme conseillé à cette date. Tu peux jouer les chapitres dans un autre ordre si ta classe avance autrement.'),
+          h('p', { class: 'small muted' }, 'Chaque chapitre terminé allume une étoile de ta constellation ; le pointillé montre où en est l’année. Tu peux jouer les chapitres dans un autre ordre si ta classe avance autrement.'),
           nextBtn || nowBtn ? h('div', { class: 'btn-row' }, nowBtn, nextBtn) : null)),
+      constellation(plan, st.done, clock, pr.next && pr.next.id),
       h('div', { class: 'year-periods' }, periods),
       later.length ? h('details', { class: 'card year-later' }, h('summary', {}, `${later.length} chapitre${later.length > 1 ? 's' : ''} sans exercices pour l’instant`),
         h('ul', {}, later.map((c) => h('li', { class: 'small' }, c.title)))) : null);

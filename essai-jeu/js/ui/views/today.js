@@ -4,6 +4,24 @@ import { store, recommendations, dueReviews, badges, skillLevel, gameProgress } 
 import { goalRing, streakLabel } from '../game/hud.js';
 import { coursesOf, pathOf, progressNow, subjectLabel, levelOfProfile, SUBJECT_ICONS } from '../parcours/data.js';
 import { photon, PHOTON_TIPS } from '../photon.js';
+import { enigmaStreak, subjectOfDay } from '../../engine/enigme.js';
+import { dayKey } from '../../engine/game.js';
+import { gameSubjects, nearestLevel } from '../game/deck.js';
+import { subjLabel } from './exercices.js';
+
+/** Carte de l'énigme du jour : la matière du jour, résolue ou non, et la série d'énigmes. */
+function enigmaCard() {
+  const now = store.now();
+  const st = enigmaStreak((store.states && store.states.game && store.states.game.events) || [], now);
+  const subject = subjectOfDay(dayKey(now), gameSubjects(nearestLevel(store.profile.level)));
+  if (!subject) return null;
+  return h('a', { class: `card side-card enigme-card ${st.solvedToday ? 'is-solved' : ''}`, href: '#/enigme', style: { textDecoration: 'none', color: 'inherit' } },
+    h('span', { class: 'enigme-card-icon', 'aria-hidden': 'true' }, st.solvedToday ? '✅' : '🧩'),
+    h('div', {},
+      h('h3', {}, st.solvedToday ? 'Énigme du jour résolue' : 'L’énigme du jour'),
+      h('p', { class: 'small' }, st.solvedToday ? 'Bravo ! Une nouvelle énigme arrive demain.' : `Aujourd’hui : ${subjLabel(subject)}. Un peu plus difficile que d’habitude… et un « Le savais-tu ? » à la clé.`),
+      st.streak ? h('p', { class: 'small muted' }, `Série : ${st.streak} jour${st.streak > 1 ? 's' : ''} d’énigmes`) : null));
+}
 
 export const KIND_UI = {
   resurgence: { icon: '↺', label: 'Rappel' },
@@ -89,6 +107,7 @@ export function render(root) {
             h('p', {}, 'Pas encore assez de traces pour te conseiller : commence par une leçon de ta classe.'),
             h('div', { class: 'btn-row', style: { justifyContent: 'center' } }, myLessons.slice(0, 3).map((l) => h('a', { class: 'btn btn--small', href: `#/lecon/${l.id}` }, l.title)), h('a', { class: 'btn btn--ghost btn--small', href: '#/parcours' }, 'Toutes les leçons')))),
       h('aside', { class: 'grid' },
+        enigmaCard(),
         g ? h('a', { class: 'card side-card today-goal', href: '#/progression', style: { textDecoration: 'none', color: 'inherit' } },
           goalRing(g.todayXp / g.goal, 64, 8),
           h('h3', {}, g.goalReached ? '🎯 Objectif du jour atteint' : 'Objectif du jour'),

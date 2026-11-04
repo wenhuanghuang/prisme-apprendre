@@ -107,6 +107,10 @@ function rules() {
       row('Quête terminée avec au moins la moitié des étoiles : le grand coffre et une vignette rare', `${XP.quete} points`),
       row('Partie du jeu de plateau jouée jusqu’au bout, au moins 3 bonnes réponses', `${XP.plateau} points`),
       row('Victoire au jeu de plateau (au moins 3 bonnes réponses) : une vignette rare', `+ ${XP.victoire} points`),
+      row('Chapitre de la quête de l’année terminé (une médaille, une fois par chapitre)', `${XP.chapitre} points`),
+      row('Période de l’année terminée dans une matière : un coffre rare', `${XP.periode} points`),
+      row('Année entière terminée dans une matière', `${XP.annee} points`),
+      row('Énigme du jour résolue (une par jour)', `${XP.enigme} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),
     h('p', { class: 'small muted' }, 'Refaire le même exercice le même jour rapporte de moins en moins : on progresse en variant. Les points ne remplacent pas la maîtrise des notions, suivie dans le carnet.'));
 }
