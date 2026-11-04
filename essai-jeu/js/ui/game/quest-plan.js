@@ -59,6 +59,33 @@ export function planQuest({ level, subject, skills = null, stages, rand = Math.r
   return { steps, challenges };
 }
 
+/**
+ * Révision mêlée (gardien d'une période) : des exercices de la classe pris tour à tour dans chaque chapitre
+ * (pratique entrelacée), sans doublon, du plus simple au plus exigeant dans chaque tour.
+ * @param {{ level: string, subject: string, skillSets: string[][], count: number, rand?: Function }} p
+ */
+export function planReview({ level, subject, skillSets, count, rand = Math.random }) {
+  const lv = levelId(level);
+  const sets = skillSets.filter((s) => s && s.length);
+  if (!sets.length) return [];
+  const per = Math.ceil(count / sets.length) + 1;
+  const lists = sets.map((sk) => draw({ level: lv, subjects: [subject], skills: new Set(sk), tracks: ['classe'], exclude: new Set() }, per, rand)
+    .sort((a, b) => (a.difficulty || 2) - (b.difficulty || 2)));
+  const order = lists.map((_, i) => i).sort(() => rand() - 0.5); // le premier chapitre du tour change d'une fois sur l'autre
+  const out = []; const seen = new Set();
+  for (let k = 0; out.length < count && lists.some((l) => l.length > k); k++) {
+    for (const i of order) {
+      const x = lists[i][k];
+      if (!x) continue;
+      const key = x.kind === 'lesson' ? `l:${x.id}` : `g:${x.gen}:${x.seed}`;
+      if (seen.has(key)) continue;
+      seen.add(key); out.push(x);
+      if (out.length >= count) break;
+    }
+  }
+  return out;
+}
+
 /** Nouvelle question de défi (pour retenter un défi manqué), différente de celles de la quête. */
 export function anotherChallenge(q, rand = Math.random) {
   const used = new Set([...q.steps, ...q.challenges].filter((x) => x.kind === 'lesson').map((x) => x.id));

@@ -10,7 +10,9 @@ import { store, getSetting, setSetting, loadCourse, recordGameEvent, gameProgres
 import { calendarOf, schoolYearKey, yearClock, planYear, yearProgress, chapterStages, medalOf, yearId, MEDAL_MIN } from '../../engine/annee.js';
 import { newQuest, questSummary, isOver, STEPS_PER_STAGE } from '../../engine/quete.js';
 import { allGenerators, coversSkills } from '../../generators/registry.js';
-import { planQuest } from './quest-plan.js';
+import { planQuest, planReview } from './quest-plan.js';
+import { guardianUnlock, newFight, fightState, fightPlayable, agree, GUARDIAN_QUESTIONS, GUARDIAN_HEARTS } from '../../engine/gardien.js';
+import { playGuardian, guardianOf } from './guardian-view.js';
 import { playQuest } from './quest-view.js';
 import { quickExercise } from './deck.js';
 import { subjLabel } from '../views/exercices.js';
@@ -69,7 +71,7 @@ export async function yearPlan(level, subject, clock) {
 const stateKey = (yearKey, level, subject) => `annee:${store.profile.id}:${yearKey}:${level}:${subject}`;
 async function loadState(yearKey, level, subject) {
   const s = await getSetting(stateKey(yearKey, level, subject), null).catch(() => null);
-  return s && s.version === 1 ? { done: {}, quests: {}, ...s } : { version: 1, done: {}, quests: {} };
+  return s && s.version === 1 ? { done: {}, quests: {}, fights: {}, ...s } : { version: 1, done: {}, quests: {}, fights: {} };
 }
 const saveState = (yearKey, level, subject, st) => setSetting(stateKey(yearKey, level, subject), st);
 
@@ -209,7 +211,8 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
           p.index === clock.current && clock.fraction < 1 ? h('span', { class: 'year-now' }, '📍 maintenant') : null,
           h('span', { class: `year-period-chest ${opened ? 'is-open' : ''}`, title: opened ? 'Coffre de la période ouvert' : 'Termine tous les chapitres de la période pour ouvrir ce coffre' }, chestSvg({ rare: true, open: opened }),
             h('span', { class: 'sr-only' }, opened ? 'Coffre de la période ouvert' : 'Coffre de la période fermé'))),
-        cs.length ? h('ol', { class: 'year-chapters' }, cs.map(station)) : h('p', { class: 'small muted' }, 'Pas de chapitre prévu dans cette période.'));
+        cs.length ? h('ol', { class: 'year-chapters' }, cs.map(station)) : h('p', { class: 'small muted' }, 'Pas de chapitre prévu dans cette période.'),
+        cs.length ? guardianRow(p.index, cs, events) : null);
     });
     const later = plan.filter((c) => !c.stages);
     stage.replaceChildren(
@@ -228,6 +231,53 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
         h('ul', {}, later.map((c) => h('li', { class: 'small' }, c.title)))) : null);
     const first = nowBtn || nextBtn;
     if (first) first.focus({ preventScroll: true });
+  }
+
+  /** Le gardien d'une période : verrouillé, à défier (ou défi en cours), ou apprivoisé. */
+  function guardianRow(p, cs, events) {
+    const g = guardianOf(p);
+    const u = guardianUnlock(cs, st.done);
+    const tamed = events.has(`gardien:${yid}:${p + 1}`);
+    const fight = st.fights[p] && !fightState(st.fights[p]).over ? st.fights[p] : null;
+    const icon = h('span', { class: `year-guardian-icon ${u.open ? '' : 'is-locked'}`, 'aria-hidden': 'true' }, g.icon);
+    if (!u.open) {
+      return h('div', { class: 'year-guardian is-locked' }, icon,
+        h('p', { class: 'small' }, h('strong', {}, `${g.name}, ${g.what}`), ` garde le trésor de la période. Termine ${u.need} chapitre${u.need > 1 ? 's' : ''} de la période pour le défier (${u.finished}/${u.need}).`));
+    }
+    if (tamed && !fight) {
+      return h('div', { class: 'year-guardian is-tamed' }, icon,
+        h('p', { class: 'small' }, h('strong', {}, `🏅 ${g.name} est ${agree(g, 'apprivoisé')}.`), ' Tu peux le défier encore pour réviser la période (sans nouveaux points).'),
+        h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => fightGuardian(p), 'aria-label': `Rejouer contre ${g.name}` }, 'Rejouer'));
+    }
+    const hearts = fight ? fightState(fight).hearts : 0;
+    return h('div', { class: 'year-guardian is-open' }, icon,
+      h('p', { class: 'small' }, h('strong', {}, `${g.name}, ${g.what}, t’attend !`),
+        fight ? ` Défi en cours : ${hearts} cœur${hearts > 1 ? 's' : ''} allumé${hearts > 1 ? 's' : ''} sur ${GUARDIAN_HEARTS}.` : ` ${GUARDIAN_QUESTIONS} questions mêlées des chapitres faits : allume ses ${GUARDIAN_HEARTS} cœurs pour gagner son trésor.`),
+      h('button', { type: 'button', class: 'btn btn--primary btn--small', onclick: () => fightGuardian(p) }, fight ? `Reprendre le défi` : `Défier ${g.name}`));
+  }
+
+  /** Défie (ou reprend) le gardien de la période p : questions mêlées des chapitres terminés de la période. */
+  function fightGuardian(p) {
+    let fight = st.fights[p];
+    if (!fight || fightState(fight).over) {
+      const cs = playable.filter((c) => c.period === p && st.done[c.id]);
+      const items = planReview({ level, subject, skillSets: cs.map((c) => c.skills), count: GUARDIAN_QUESTIONS });
+      if (!fightPlayable(items)) { announce('Pas assez d’exercices pour défier ce gardien.'); return; }
+      fight = newFight({ period: p, items, now: store.now() });
+      st.fights[p] = fight;
+      save();
+    }
+    window.scrollTo({ top: 0, behavior: reduced() ? 'auto' : 'smooth' });
+    const g = guardianOf(p);
+    playGuardian(stage, fight, {
+      eventId: `${yid}:${p + 1}`,
+      eyebrow: `Gardien de la ${clock.periods[p].short.toLowerCase()} · Mon année de ${subjLabel(subject)} · ${levelLabel(level)}`,
+      save: (f) => { st.fights[p] = f; return saveState(yearKey, level, subject, st); },
+      onExit: () => { if (st.fights[p] && fightState(st.fights[p]).over) { delete st.fights[p]; save(); } showMap(); },
+      onAgain: () => { delete st.fights[p]; save(); fightGuardian(p); },
+      setStopper,
+    });
+    announce(`${g.name} t’attend : ${GUARDIAN_QUESTIONS} questions.`);
   }
 
   function play(ch) {
@@ -268,6 +318,12 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
     const yearOpened = after && before && after.counters.annees > before.counters.annees;
     const next = pr.next;
     const medal = medalOf(st.done[ch.id].ratio);
+    // le gardien de la période vient de s'éveiller (juste assez de chapitres terminés, pas encore apprivoisé)
+    const perCs = ch.period !== null ? playable.filter((c) => c.period === ch.period) : [];
+    const gu = perCs.length ? guardianUnlock(perCs, st.done) : null;
+    const tamedNow = ((store.states && store.states.game && store.states.game.events) || []).some((e) => e.type === 'gardien' && e.id === `${yid}:${ch.period + 1}`);
+    const woke = !prev && gu && gu.open && gu.finished === gu.need && !tamedNow;
+    const g = woke ? guardianOf(ch.period) : null;
     stage.replaceChildren(h('section', { class: 'card year-done enter-fwd' },
       h('div', { class: 'year-done-medal', 'aria-hidden': 'true' }, m.icon),
       h('p', { class: 'eyebrow' }, 'Chapitre terminé'),
@@ -276,6 +332,9 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
       gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Chapitre déjà terminé cette année : pas de nouveaux points, mais bel entraînement !'),
       periodOpened ? chestReveal({ title: `Période ${ch.period + 1} accomplie : son coffre s’ouvre !`, points: 0, vignette: vignettes.shift() || null, rare: true }) : null,
       yearOpened ? chestReveal({ title: '🎓 Toute l’année est accomplie !', points: 0, vignette: vignettes.shift() || null, rare: true }) : null,
+      g ? h('div', { class: 'year-guardian is-open is-woke' }, h('span', { class: 'year-guardian-icon', 'aria-hidden': 'true' }, g.icon),
+        h('p', {}, h('strong', {}, `${g.name}, ${g.what}, s’est ${agree(g, 'réveillé')} !`), ` ${g.fem ? 'Elle' : 'Il'} garde le trésor de la ${clock.periods[ch.period].short.toLowerCase()} : ${GUARDIAN_QUESTIONS} questions mêlées de tes chapitres.`),
+        h('button', { type: 'button', class: 'btn btn--small', onclick: () => fightGuardian(ch.period) }, `Défier ${g.name}`)) : null,
       h('div', { class: 'btn-row' },
         next ? h('button', { type: 'button', class: 'btn btn--primary', onclick: () => play(next) }, `Chapitre suivant : ${next.title} →`) : null,
         h('button', { type: 'button', class: next ? 'btn btn--ghost' : 'btn btn--primary', onclick: () => showMap() }, 'Voir mon année'))));

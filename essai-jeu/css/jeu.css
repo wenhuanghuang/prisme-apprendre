@@ -399,3 +399,35 @@
 .pause-card ul { list-style: none; padding: 0; margin: 0; text-align: left; }
 .pause-clock { font-family: var(--font-display); font-weight: 800; font-size: 2.2rem; margin: 6px 0; font-variant-numeric: tabular-nums; }
 @media (max-width: 640px) { .pause-banner { flex-direction: column; align-items: flex-start; } }
+
+/* Gardiens des périodes */
+.year-guardian { display: flex; align-items: center; gap: 12px; margin-top: 10px; padding: 10px 12px; border-radius: var(--radius); border: 1.5px dashed var(--rule-2); background: var(--paper-2); }
+.year-guardian p { margin: 0; flex: 1; min-width: 0; }
+.year-guardian.is-open { border-style: solid; border-color: #f5c84c; background: color-mix(in srgb, #f5c84c 14%, var(--paper)); }
+.year-guardian.is-tamed { border-style: solid; border-color: color-mix(in srgb, var(--ok) 60%, transparent); background: color-mix(in srgb, var(--ok) 9%, var(--paper)); }
+.year-guardian.is-woke { margin: 14px 0; text-align: left; }
+.year-guardian-icon { flex: none; font-size: 2rem; line-height: 1; }
+.year-guardian.is-open .year-guardian-icon { animation: bob 2.4s ease-in-out infinite; }
+.year-guardian-icon.is-locked { filter: grayscale(1) brightness(.75); opacity: .6; }
+.guardian-arena { display: flex; align-items: center; gap: 18px; margin-bottom: 14px; background: linear-gradient(135deg, color-mix(in srgb, #f5c84c 18%, var(--card)), var(--card)); }
+.guardian--frimas, .guardian--banquise { background: linear-gradient(135deg, color-mix(in srgb, #7aa2ff 18%, var(--card)), var(--card)); }
+.guardian--petale { background: linear-gradient(135deg, color-mix(in srgb, #5fd3a5 20%, var(--card)), var(--card)); }
+.guardian--solaris { background: linear-gradient(135deg, color-mix(in srgb, #ff9b85 22%, var(--card)), var(--card)); }
+.guardian-creature { flex: none; display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; font-size: 3.4rem; background: var(--paper); box-shadow: var(--shadow-1, 0 2px 8px rgba(0,0,0,.08)); animation: bob 2.6s ease-in-out infinite; }
+.guardian-creature.is-happy { animation: hop .55s var(--ease); }
+.guardian-creature.is-doubt { animation: chest-shake .45s ease-in-out; }
+.guardian-creature.is-tamed { animation: starpop .8s var(--ease) both; box-shadow: 0 0 0 6px color-mix(in srgb, #f5c84c 45%, transparent); }
+.guardian-creature.is-gone { opacity: .45; transform: translateY(-6px); transition: opacity .6s, transform .6s; }
+.guardian-talk { flex: 1; min-width: 0; display: grid; gap: 6px; }
+.guardian-bubble { position: relative; margin: 0; padding: 10px 14px; border-radius: 14px; background: var(--paper); border: 1.5px solid var(--rule); font-weight: 600; }
+.guardian-bubble::before { content: ''; position: absolute; left: -9px; top: 18px; border: 8px solid transparent; border-right-color: var(--rule); border-left: 0; }
+.guardian-hearts { display: inline-flex; gap: 6px; font-size: 1.5rem; line-height: 1; }
+.guardian-hearts i { font-style: normal; color: var(--ink-3); }
+.guardian-hearts i.is-lit { color: #e8475f; animation: starpop .5s var(--ease); }
+.guardian-count { margin: 0; color: var(--ink-2); }
+@media (max-width: 640px) {
+  .guardian-arena { flex-direction: column; align-items: stretch; text-align: center; }
+  .guardian-creature { margin: 0 auto; width: 76px; height: 76px; font-size: 2.8rem; }
+  .guardian-bubble::before { display: none; }
+  .year-guardian { flex-wrap: wrap; }
+}

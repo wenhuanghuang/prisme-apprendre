@@ -111,6 +111,7 @@ function rules() {
       row('Période de l’année terminée dans une matière : un coffre rare', `${XP.periode} points`),
       row('Année entière terminée dans une matière', `${XP.annee} points`),
       row('Énigme du jour résolue (une par jour)', `${XP.enigme} points`),
+      row('Gardien d’une période apprivoisé (une fois par période et par matière) : un coffre rare', `${XP.gardien} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),
     h('p', { class: 'small muted' }, 'Refaire le même exercice le même jour rapporte de moins en moins : on progresse en variant. Les points ne remplacent pas la maîtrise des notions, suivie dans le carnet.'));
 }

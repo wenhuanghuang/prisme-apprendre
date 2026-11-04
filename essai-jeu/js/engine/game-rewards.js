@@ -63,6 +63,8 @@ export const TROPHIES = [
   { id: 'chapitre-5', icon: '🥇', label: 'Cinq chapitres', attests: 'Cinq chapitres terminés dans la quête de l’année.', goal: 5, value: (c) => c.chapitres || 0 },
   { id: 'periode-1', icon: '📅', label: 'Période accomplie', attests: 'Tous les chapitres d’une période de l’année terminés dans une matière.', goal: 1, value: (c) => c.periodes || 0 },
   { id: 'annee-1', icon: '🎓', label: 'Année accomplie', attests: 'Toute la quête de l’année terminée dans une matière.', goal: 1, value: (c) => c.annees || 0 },
+  { id: 'gardien-1', icon: '🦔', label: 'Ami des gardiens', attests: 'Un gardien de période apprivoisé : huit questions mêlées de ses chapitres, cinq cœurs allumés.', goal: 1, value: (c) => c.gardiens || 0 },
+  { id: 'gardien-5', icon: '🐉', label: 'Dompteur de dragons', attests: 'Cinq gardiens de période apprivoisés.', goal: 5, value: (c) => c.gardiens || 0 },
   { id: 'enigme-7', icon: '🧩', label: 'Esprit curieux', attests: 'Sept énigmes du jour résolues.', goal: 7, value: (c) => c.enigmes || 0 },
   { id: 'enigme-30', icon: '🔎', label: 'Grand curieux', attests: 'Trente énigmes du jour résolues.', goal: 30, value: (c) => c.enigmes || 0 },
   { id: 'album-12', icon: '📒', label: 'Collectionneur', attests: 'Douze vignettes dans l’album de lumière.', goal: 12, value: (c) => c.album || 0 },
@@ -138,7 +140,7 @@ export const VIGNETTES = [
 ];
 
 /** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
-export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare' };
+export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare', gardien: 'rare' };
 
 function hashId(s) {
   let x = 2166136261;
