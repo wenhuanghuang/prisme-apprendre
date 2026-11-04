@@ -20,6 +20,7 @@ const ROUTES = [
   { re: /^\/memoire$/, view: () => import('./ui/views/memoire.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/frise$/, view: () => import('./ui/views/frise.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/eclair$/, view: () => import('./ui/views/eclair.js'), needsProfile: true, nav: 'jeu' },
+  { re: /^\/mot$/, view: () => import('./ui/views/mot.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/labo$/, view: () => import('./ui/views/labo.js'), nav: 'labo' },
   { re: /^\/carnet$/, view: () => import('./ui/views/carnet.js'), needsProfile: true, nav: 'carnet' },
   { re: /^\/progression$/, view: () => import('./ui/views/progression.js'), needsProfile: true, nav: null },

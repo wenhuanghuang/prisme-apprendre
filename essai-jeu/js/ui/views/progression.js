@@ -117,6 +117,7 @@ function rules() {
       row('Partie de jeu de mémoire terminée (une fois par jour)', `${XP.memoire} points`),
       row('Partie de frise chronologique terminée (une fois par jour)', `${XP.frise} points`),
       row('Série de calcul éclair terminée (une fois par jour)', `${XP.eclair} points`),
+      row('Série de mots mystère terminée (une fois par jour)', `${XP.mot} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),
     h('p', { class: 'small muted' }, 'Refaire le même exercice le même jour rapporte de moins en moins : on progresse en variant. Les points ne remplacent pas la maîtrise des notions, suivie dans le carnet.'));
 }

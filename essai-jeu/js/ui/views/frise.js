@@ -87,7 +87,7 @@ function play(stage, setup, { onAgain, onNew }) {
       h('p', { class: 'eyebrow' }, f.solo ? `Carte à placer · encore ${cardsLeft(f)}` : `${f.players[f.turn].name}, à toi · encore ${cardsLeft(f)} carte${cardsLeft(f) > 1 ? 's' : ''}`),
       h('p', { class: 'frise-card frise-card--hand' }, card.label),
       card.hint ? h('details', { class: 'frise-hint' }, h('summary', {}, '💡 Un indice'), h('p', { class: 'small' }, card.hint)) : null,
-    ] : []));
+    ].filter(Boolean) : []));
     const slot = (i) => h('li', { class: 'frise-slot-row' }, h('button', {
       type: 'button', class: 'frise-slot', dataset: { slot: String(i) }, disabled: over,
       'aria-label': i === 0 ? `Placer avant : ${f.line[0].label}` : i === f.line.length ? `Placer après : ${f.line[i - 1].label}` : `Placer entre « ${f.line[i - 1].label} » et « ${f.line[i].label} »`,

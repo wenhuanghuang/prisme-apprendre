@@ -541,3 +541,28 @@
 .mini-game.is-star .mini-game-link { border-color: #f5c84c; background: color-mix(in srgb, #f5c84c 10%, var(--card)); }
 .mini-game.is-done .mini-game-state { color: var(--ok); }
 .records-list { margin: 6px 0 12px; padding-left: 4px; list-style: none; display: grid; gap: 4px; }
+
+/* Mot mystère */
+.mot-card { max-width: 680px; margin: 0 auto; text-align: center; }
+.mot-rays { display: flex; justify-content: center; gap: 6px; margin: 0 0 12px; }
+.mot-ray { width: 30px; height: 12px; border-radius: 999px; transition: opacity .3s, transform .3s; }
+.mot-ray.is-off { opacity: .15; transform: scaleY(.6); }
+.mot-clue { font-size: 1.15rem; font-weight: 700; margin: 0 0 2px; }
+.mot-extra { margin: 0 0 12px; min-height: 1.2em; }
+.mot-word { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 8px 0 10px; min-height: 2.6em; }
+.mot-letter { display: inline-grid; place-items: center; width: 1.9em; height: 2.3em; border-bottom: 3px solid var(--ink-2); font-size: clamp(1.1rem, 4.2vw, 1.6rem); font-weight: 800; text-transform: uppercase; }
+.mot-letter.is-shown { border-color: var(--ok); }
+.mot-letter.is-missed { color: var(--ko); border-color: var(--ko); }
+.mot-space { width: 1.2em; }
+.mot-sep { display: inline-grid; place-items: end center; height: 2.3em; font-size: 1.4rem; font-weight: 800; }
+.mot-status { min-height: 1.5em; font-weight: 600; margin: 6px 0 10px; }
+.mot-status.is-ok { color: var(--ok); }
+.mot-status.is-miss { color: var(--partial); }
+.mot-keys { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 6px; max-width: 520px; margin: 0 auto 12px; }
+.mot-key { font: inherit; font-weight: 800; font-size: 1.05rem; padding: 9px 0; border-radius: var(--radius); border: 1.5px solid var(--rule-2); background: var(--card); color: inherit; cursor: pointer; touch-action: manipulation; }
+.mot-key:focus-visible { outline: 3px solid #f5c84c; outline-offset: 2px; }
+.mot-key.is-hit { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+.mot-key.is-miss { opacity: .35; text-decoration: line-through; }
+.mot-key[disabled] { cursor: default; }
+.mot-tools { justify-content: center; }
+@media (max-width: 520px) { .mot-keys { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; } .mot-letter { width: 1.5em; } .mot-ray { width: 24px; } }
