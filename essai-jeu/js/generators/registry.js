@@ -21,7 +21,7 @@ export function coversSkills(meta, skills) {
   return !skills.size || skills.has(meta.skill) || (meta.skills || []).some((s) => skills.has(s));
 }
 
-async function loadData(id) {
+export async function loadData(id) {
   if (dataCache.has(id)) return dataCache.get(id);
   const r = await fetch(`content/generators/${encodeURIComponent(id)}.json`, { cache: 'no-cache' });
   if (!r.ok) throw new Error(`Générateur introuvable : ${id}`);

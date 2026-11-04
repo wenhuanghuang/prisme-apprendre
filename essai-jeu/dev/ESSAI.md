@@ -112,6 +112,11 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   de démonstration, ne compte pas). But atteint : chacun ouvre le coffre de la famille depuis son profil (+25 points,
   vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
   (`js/engine/famille.js`, `js/ui/game/family-card.js`).
+- **Jeu de mémoire** (`#/memoire`, liens depuis le plateau et la page Aujourd'hui) : 12 ou 16 cartes face cachée, des paires
+  tirées des contenus de la classe (associations, vocabulaire anglais, frises : un événement ↔ son année). Seul, en un
+  minimum d'essais (1 à 3 étoiles), ou à deux sur le même appareil (une paire = un point et on rejoue). +10 points une
+  fois par jour, trophées « Bonne mémoire » et « Mémoire d'éléphant », récapitulatif des paires à la fin
+  (`js/engine/memoire.js`, `js/ui/views/memoire.js` ; `loadData` exporté par `js/generators/registry.js`).
 - **Gardiens des périodes** (quête de l'année) : chaque période a son gardien (Feuillu le hérisson, Frimas la chouette,
   Banquise le phoque, Pétale la tortue, Solaris le dragon). Dès deux chapitres de la période terminés, on peut le défier :
   8 questions mêlées des chapitres faits (révision espacée et entrelacée) ; chaque réponse réussie sans la correction
@@ -165,12 +170,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10 ; une fois par
   identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -178,4 +183,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (475 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (480 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

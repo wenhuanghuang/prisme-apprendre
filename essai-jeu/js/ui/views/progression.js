@@ -113,6 +113,7 @@ function rules() {
       row('Énigme du jour résolue (une par jour)', `${XP.enigme} points`),
       row('Gardien d’une période apprivoisé (une fois par période et par matière) : un coffre rare', `${XP.gardien} points`),
       row('Défi de la famille réussi (le but commun de la semaine, une fois par semaine) : un coffre rare', `${XP.famille} points`),
+      row('Partie de jeu de mémoire terminée (une fois par jour)', `${XP.memoire} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),
     h('p', { class: 'small muted' }, 'Refaire le même exercice le même jour rapporte de moins en moins : on progresse en variant. Les points ne remplacent pas la maîtrise des notions, suivie dans le carnet.'));
 }

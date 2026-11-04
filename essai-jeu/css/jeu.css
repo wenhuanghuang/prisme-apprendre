@@ -462,3 +462,24 @@
 .year-today p { margin: 0 0 6px; }
 .year-today-icon { font-size: 1.8rem; line-height: 1; }
 .year-today:hover { box-shadow: var(--shadow-2); }
+
+/* Jeu de mémoire */
+.mem-setup-art { font-size: 3.2rem; line-height: 1; }
+.mem-status { min-height: 1.6em; font-weight: 600; margin: 0 0 10px; }
+.mem-score { display: flex; gap: 14px; align-items: center; font-size: .95rem; }
+.mem-player { padding: 3px 10px; border-radius: 999px; border: 1.5px solid var(--rule); }
+.mem-player.is-turn { border-color: #f5c84c; background: color-mix(in srgb, #f5c84c 18%, var(--paper)); }
+.mem-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.mem-card { position: relative; min-height: 104px; border-radius: var(--radius); border: 2px solid var(--rule-2); background: var(--card); padding: 0; cursor: pointer; perspective: 600px; font: inherit; color: inherit; }
+.mem-card .mem-face { position: absolute; inset: 0; display: grid; place-items: center; padding: 8px; border-radius: inherit; backface-visibility: hidden; transition: transform .35s var(--ease), opacity .35s; text-align: center; font-size: .92rem; line-height: 1.25; overflow-wrap: anywhere; }
+.mem-card .mem-back { background: linear-gradient(135deg, #3b4cca, #7a4cc2); color: #fff; font-size: 1.6rem; }
+.mem-card .mem-front { transform: rotateY(180deg); opacity: 0; }
+.mem-card.is-up .mem-back { transform: rotateY(180deg); opacity: 0; }
+.mem-card.is-up .mem-front { transform: none; opacity: 1; }
+.mem-card.side-b.is-up { background: color-mix(in srgb, #5fd3a5 14%, var(--card)); }
+.mem-card.side-a.is-up { background: color-mix(in srgb, #7aa2ff 12%, var(--card)); }
+.mem-card.is-found { border-color: var(--ok); box-shadow: 0 0 0 2px color-mix(in srgb, var(--ok) 30%, transparent); cursor: default; }
+.mem-card:focus-visible { outline: 3px solid #f5c84c; outline-offset: 2px; }
+.mem-card[disabled]:not(.is-found) { cursor: wait; }
+.mem-recap ul { margin: 6px 0 0; padding-left: 18px; }
+@media (max-width: 640px) { .mem-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; } .mem-card { min-height: 92px; } .mem-card .mem-face { font-size: .82rem; } }
