@@ -32,8 +32,13 @@ export function motThemes(level) {
 
 async function entriesOf(theme, level) {
   if (theme.id === 'fr') return frEntries(level);
-  const lists = await Promise.all(theme.sources.map((id) => loadData(id).then((d) => (d.data || {}).pairs || []).catch(() => [])));
-  return lists.flat().map((p) => ({ word: vocabAnswer(p.a), clue: `${theme.prefix} : ${p.q}`, lang: theme.lang, extra: p.theme ? `Thème : ${p.theme}` : '' }));
+  const lists = await Promise.all(theme.sources.map((id) => loadData(id).then((d) => {
+    // libellés des thèmes (« Le numérique » plutôt que « numerique »), d'après les options du générateur
+    const opt = (d.options || []).find((o) => o.id === 'theme');
+    const names = new Map(((opt && opt.values) || []).map((v) => [v.id, v.label]));
+    return ((d.data || {}).pairs || []).map((p) => ({ ...p, themeLabel: names.get(p.theme) || p.theme }));
+  }).catch(() => [])));
+  return lists.flat().map((p) => ({ word: vocabAnswer(p.a), clue: `${theme.prefix} : ${p.q}`, lang: theme.lang, extra: p.themeLabel ? `Thème : ${p.themeLabel.charAt(0).toLowerCase()}${p.themeLabel.slice(1)}` : '' }));
 }
 
 /* ------------------------------ Mise en place ------------------------------ */
