@@ -862,6 +862,60 @@ chrono_subject('tc-inventions', 'techno', ['5e', '4e', '3e'], 'tc.inventions', '
        'L’évolution des objets techniques, de l’imprimerie au smartphone : ranger les inventions, ou retrouver l’année.',
        ['t5-ch-evolution', 't4-ch-evolution', 'techno-c4-2024-theme-1'], INVENTIONS)
 
+# ---------------- Frises : histoire des arts (collège), histoire des sciences (3e, enseignement scientifique) ----------------
+ARTS = [
+    ('Des artistes de la Préhistoire peignent la grotte de Lascaux', -15000, True, 'Il y a environ 17 000 ans.'),
+    ('Construction de la grande pyramide de Khéops, à Gizeh', -2560, True, 'Égypte ancienne.'),
+    ('Début de la construction du Parthénon, à Athènes', -447, False, 'Ve siècle av. J.-C.'),
+    ('Broderie de la tapisserie de Bayeux', 1070, True, 'XIe siècle, après la conquête de l’Angleterre.'),
+    ('Début de la construction de Notre-Dame de Paris', 1163, False, 'XIIe siècle : l’art gothique.'),
+    ('Giotto peint les fresques de la chapelle des Scrovegni, à Padoue', 1305, True, 'Début du XIVe siècle.'),
+    ('Léonard de Vinci commence La Joconde', 1503, False, 'Renaissance, début du XVIe siècle.'),
+    ('Michel-Ange achève le plafond de la chapelle Sixtine', 1512, False, 'Renaissance.'),
+    ('Vermeer peint La Jeune Fille à la perle', 1665, True, 'XVIIe siècle.'),
+    ('Louis XIV installe la cour au château de Versailles', 1682, False, 'Fin du XVIIe siècle.'),
+    ('Delacroix peint La Liberté guidant le peuple', 1830, False, 'L’année d’une révolution à Paris.'),
+    ('Monet peint Impression, soleil levant, qui donne son nom à l’impressionnisme', 1872, False, 'Fin du XIXe siècle.'),
+    ('Van Gogh peint ses Tournesols', 1888, False, 'Un an avant l’inauguration de la tour Eiffel.'),
+    ('Inauguration de la tour Eiffel', 1889, False, 'Pour l’Exposition universelle.'),
+    ('Picasso peint Les Demoiselles d’Avignon, aux débuts du cubisme', 1907, False, 'Début du XXe siècle.'),
+    ('Marcel Duchamp présente Fontaine, un ready-made', 1917, False, 'Pendant la Première Guerre mondiale.'),
+    ('Picasso peint Guernica', 1937, False, 'Pendant la guerre d’Espagne.'),
+    ('Andy Warhol crée ses portraits de Marilyn (pop art)', 1962, False, 'Années 1960.'),
+    ('Inauguration du Centre Pompidou, à Paris', 1977, False, 'Fin des années 1970.'),
+    ('Christo emballe le Pont-Neuf, à Paris', 1985, False, 'Années 1980.'),
+    ('Inauguration de la pyramide du Louvre', 1989, False, 'Deux cents ans après la Révolution.'),
+]
+chrono_subject('arts-frise', 'arts-plastiques', ['5e', '4e', '3e'], 'arts.frise', 'Situer des œuvres et des monuments dans l’histoire des arts', 'Histoire des arts : de Lascaux à la pyramide du Louvre',
+       'Des œuvres et des monuments célèbres à ranger dans l’ordre du temps.', ['arts-plastiques-2020-cycle-4', 'arts5-ch-narration', 'arts4-ch-images', 'arts4-ch-statut-objet', 'arts4-ch-metissages'], ARTS)
+SCIENCES = [
+    ('Ératosthène estime la circonférence de la Terre', -240, True, 'IIIe siècle av. J.-C.'),
+    ('Copernic affirme que la Terre tourne autour du Soleil', 1543, False, 'Renaissance.'),
+    ('Galilée observe le ciel avec une lunette', 1609, False, 'Début du XVIIe siècle.'),
+    ('Newton publie la loi de la gravitation universelle', 1687, False, 'Fin du XVIIe siècle.'),
+    ('Lavoisier publie son Traité élémentaire de chimie : « rien ne se perd, rien ne se crée »', 1789, False, 'L’année de la Révolution française.'),
+    ('Jenner met au point le premier vaccin, contre la variole', 1796, False, 'Fin du XVIIIe siècle.'),
+    ('Volta invente la pile électrique', 1800, False, 'Une année toute ronde.'),
+    ('Darwin publie L’Origine des espèces', 1859, False, 'Milieu du XIXe siècle.'),
+    ('Mendeleïev publie sa classification périodique des éléments', 1869, False, 'Fin des années 1860.'),
+    ('Pasteur réussit la première vaccination contre la rage', 1885, False, 'Fin du XIXe siècle.'),
+    ('Marie et Pierre Curie découvrent le radium', 1898, False, 'Fin du XIXe siècle.'),
+    ('Einstein publie la relativité restreinte', 1905, False, 'Début du XXe siècle.'),
+    ('Rutherford découvre le noyau de l’atome', 1911, False, 'Début du XXe siècle.'),
+    ('Wegener propose la dérive des continents', 1912, False, 'Un an après la découverte du noyau atomique.'),
+    ('Fleming découvre la pénicilline', 1928, False, 'Fin des années 1920.'),
+    ('La structure en double hélice de l’ADN est décrite', 1953, False, 'Grâce notamment aux travaux de Rosalind Franklin.'),
+    ('Youri Gagarine, premier humain dans l’espace', 1961, False, 'En pleine guerre froide.'),
+    ('Le génome humain est entièrement séquencé', 2003, False, 'Début du XXIe siècle.'),
+    ('Découverte du boson de Higgs au CERN', 2012, False, 'Début des années 2010.'),
+    ('Première détection d’ondes gravitationnelles', 2015, False, 'Cent ans après la relativité générale.'),
+    ('Première image d’un trou noir', 2019, False, 'Fin des années 2010.'),
+]
+chrono_subject('pc-sciences-frise', 'pc', ['3e'], 'pc.histoire-sciences', 'Situer de grandes découvertes scientifiques dans le temps', 'Histoire des sciences : d’Ératosthène aux trous noirs',
+       'De grandes découvertes à ranger dans l’ordre du temps, ou à dater.', ['pc3-atome', 'pc3-poids'], SCIENCES)
+chrono_subject('enssci-frise', 'ens-sci', ['1re', 'tle'], 'enssci.histoire', 'Situer de grandes découvertes scientifiques dans le temps', 'Histoire des sciences : d’Ératosthène aux trous noirs',
+       'De grandes découvertes à ranger dans l’ordre du temps, ou à dater.', ['ens-sci-2023-1re', 'ens-sci-2023-tle'], SCIENCES)
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

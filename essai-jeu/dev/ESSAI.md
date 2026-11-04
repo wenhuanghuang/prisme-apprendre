@@ -143,7 +143,9 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   « Voyageur du temps » et « Historien en herbe », la frise complète en récapitulatif (`js/engine/frise.js`,
   `js/ui/views/frise.js`). Toutes les frises de la classe servent : du CE2 à la terminale, et la musique au collège.
 - **Nouvelles frises** : CE2 (de Lascaux à l'euro : les grandes périodes), 6e (des premiers outils à la fin de l'Empire
-  romain), 3e (de 1914 à 2002), inventions et découvertes (de Gutenberg au smartphone : CM2 et technologie de la 5e à la 3e), dans la quête de l'année, la frise et le jeu de mémoire. Les dates approximatives de la
+  romain), 3e (de 1914 à 2002), inventions et découvertes (de Gutenberg au smartphone : CM2 et technologie de la 5e à la 3e),
+  histoire des arts (de Lascaux à la pyramide du Louvre : arts plastiques de la 5e à la 3e), histoire des sciences
+  (d'Ératosthène à la première image d'un trou noir : physique-chimie en 3e, enseignement scientifique au lycée), dans la quête de l'année, la frise et le jeu de mémoire. Les dates approximatives de la
   Préhistoire (« vers 300 000 av. J.-C. ») ne servent qu'à ranger, jamais à « retrouver l'année » (`data.mode: "frise"`,
   champ `circa` : une date approximative n'est jamais demandée ; `js/generators/data-kinds.js` affiche les années
   avant J.-C. en clair).
@@ -229,4 +231,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (517 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (520 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

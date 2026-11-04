@@ -120,3 +120,18 @@ for (const [id, course] of [['hg-p-inventions', 'hg-cm2'], ['tc-inventions', 'te
     }
   });
 }
+
+for (const [id, course] of [['arts-frise', 'arts-plastiques-4e'], ['pc-sciences-frise', 'pc-3e'], ['enssci-frise', 'ens-sci-tle']]) {
+  test(`frise ${id} : rattachée, tirages valides`, () => {
+    const g = JSON.parse(readFileSync(W + `content/generators/${id}.json`, 'utf8'));
+    const chapters = new Set(JSON.parse(readFileSync(W + `content/courses/${course}.json`, 'utf8')).chapters.map((c) => c.id));
+    assert.ok(g.chapters.some((ch) => chapters.has(ch)), `${id} : chapitre du parcours ${course}`);
+    assert.ok(ix.generators.some((x) => x.id === id) && skillIds.has(g.skill));
+    assert.equal(new Set(g.data.events.map((e) => e.year)).size, g.data.events.length, 'années toutes différentes');
+    for (const tier of DATA_TRACKS) for (let seed = 1; seed <= 40; seed++) {
+      const def = generateFromData(g, seed, { parcours: tier });
+      assert.deepEqual(validateExercise({ ...def, selfTest: [{ response: canonicalResponse(def), expect: 'correct' }] }, skillIds), [], `${id} #${seed}`);
+      assert.equal(check(instantiate(def, seed), canonicalResponse(def)).verdict, 'correct', `${id} #${seed}`);
+    }
+  });
+}
