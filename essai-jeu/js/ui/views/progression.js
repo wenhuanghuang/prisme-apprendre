@@ -10,6 +10,7 @@ import { ACCESSORIES, TINTS } from '../../engine/game-rewards.js';
 import { photon } from '../photon.js';
 import { goalRing, streakLabel } from '../game/hud.js';
 import { albumSection } from '../game/rewards-ui.js';
+import { recordsSection } from '../game/mini-games.js';
 
 function hero(g) {
   return h('section', { class: 'prog-hero card' },
@@ -134,6 +135,7 @@ export function render(root, { params }) {
       wardrobe(g),
       albumSection(g),
       trophies(g),
+      recordsSection(),
       rules());
     if (rulesOpen) root.querySelector('.prog-rules').open = true;
     const again = focusKey && root.querySelector(`[data-k="${focusKey}"]`);
@@ -141,6 +143,6 @@ export function render(root, { params }) {
   };
   paint();
   const voir = params && params.get('voir');
-  if (voir === 'garde-robe' || voir === 'album') setTimeout(() => { const w = root.querySelector(`#${voir}`); if (w) w.scrollIntoView({ block: 'start' }); }, 50);
+  if (voir === 'garde-robe' || voir === 'album' || voir === 'records') setTimeout(() => { const w = root.querySelector(`#${voir}`); if (w) w.scrollIntoView({ block: 'start' }); }, 50);
   return subscribe(() => { if (root.isConnected) paint(); });
 }
