@@ -18,6 +18,7 @@ import { PRIMAIRE_MONDE } from './primaire-monde.js';
 import { PRIMAIRE_PLUS } from './primaire-plus.js';
 import { PRIMAIRE_SAVOIRS } from './primaire-savoirs.js';
 import { LYCEE_MATHS } from './lycee-maths.js';
+import { LYCEE_PC } from './lycee-pc.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -554,7 +555,7 @@ addPc({
 // école primaire (CP → CM2) : rattachés aux chapitres des parcours par `chapters`
 GENERATORS.push(...PRIMAIRE_MATHS, ...PRIMAIRE_MONDE, ...PRIMAIRE_PLUS, ...PRIMAIRE_SAVOIRS);
 // lycée (seconde) : rattachés aux chapitres du parcours de référence
-GENERATORS.push(...LYCEE_MATHS);
+GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC);
 
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 
