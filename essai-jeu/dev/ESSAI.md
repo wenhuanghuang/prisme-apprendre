@@ -12,6 +12,14 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   tables, grandeurs, fractions, décimaux, problèmes, géométrie, données, hasard. La quête de l'année, la quête libre,
   le plateau, les séries et les générateurs illimités fonctionnent donc aussi au primaire (19 à 23 chapitres de maths
   jouables par classe). Les erreurs typiques sont diagnostiquées (retenue oubliée, « 1 h = 100 min », virgules…).
+- **Primaire, toutes matières** : 31 générateurs de données (`content/generators/*-p-*.json`, fabriqués par
+  `dev/gen_primaire.py`) et 2 générateurs « temps » (`js/generators/primaire-monde.js`) : conjugaison du CP au CM2
+  (présent → passé simple et plus-que-parfait), homophones, pluriels, féminins, accord sujet-verbe, classes de mots,
+  types de phrases, contraires ; vivant/non vivant, régimes alimentaires, états de la matière, familles d'aliments,
+  conducteurs/isolants, ovipares/vivipares, sources de lumière, énergies, classification des vertébrés ; calendrier,
+  siècles, grandes périodes, frises du Moyen Âge à 1789 et de 1789 à nos jours, continents et océans, capitales de
+  l'UE ; anglais (59 mots, avec écoute). Chaque générateur est rattaché à ses chapitres officiels : en CE1 comme en
+  CM2, cinq matières ont leur quête de l'année.
 - **Curiosité et bonnes habitudes** : énigme du jour (une par jour, matière tournante, +10 points, série d'énigmes,
   un « Le savais-tu ? » parmi 30 curiosités vérifiées, trophées Esprit curieux / Grand curieux) ; constellation de
   l'année (une étoile par chapitre, allumée à la médaille) ; série de réussites du premier coup dans les quêtes ;
@@ -28,7 +36,7 @@ Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau}.js`, `js/generators/
 `js/ui/game/{quest-plan,quest-view,year-view,rewards-ui,pause,board,deck,dice}.js`, `js/ui/views/enigme.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/ui/views/{exercices,progression,today}.js`,
-`content/index.json` (24 notions du primaire ajoutées ; à régénérer par `npm run build` à l'intégration).
+`content/index.json` (57 notions et 31 générateurs du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
