@@ -112,6 +112,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   de démonstration, ne compte pas). But atteint : chacun ouvre le coffre de la famille depuis son profil (+25 points,
   vignette rare, trophées « Esprit d'équipe » et « Famille de lumière »). Avec un seul profil : « Défi de la semaine »
   (`js/engine/famille.js`, `js/ui/game/family-card.js`).
+- **Associations au lycée** (`content/generators/{pc-l-unites,svt-l-organites,maths-l-derivees,hg-l-capitales,philo-l-auteurs}.json`) :
+  une grandeur et son unité SI (newton, joule, watt, pascal, coulomb, volt, ampère, hertz, ohm, mole), un élément de la
+  cellule et son rôle, une fonction usuelle et sa dérivée, 14 grands pays et leur capitale, 12 philosophes et une de
+  leurs œuvres. Rattachées aux chapitres du lycée (quête de l'année) et jouables au jeu de mémoire de la 2nde à la Tle.
 - **Jeu de mémoire** (`#/memoire`, liens depuis le plateau et la page Aujourd'hui) : 12 ou 16 cartes face cachée, des paires
   tirées des contenus de la classe (associations, vocabulaire anglais, frises : un événement ↔ son année). Seul, en un
   minimum d'essais (1 à 3 étoiles), ou à deux sur le même appareil (une paire = un point et on rejoue). +10 points une

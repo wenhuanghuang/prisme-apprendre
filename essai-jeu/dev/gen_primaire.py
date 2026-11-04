@@ -740,6 +740,29 @@ chrono('hg-l-chrono-tle', ['tle'], 'hg.l.chronologie-tle', 'Situer des repères 
     ('Pièces et billets en euros', 2002, 'début du XXIe siècle'),
 ])
 
+# ---------------- Lycée : associations (quêtes et jeu de mémoire) ----------------
+UNITES = [('Une force', 'le newton (N)'), ('Une énergie', 'le joule (J)'), ('Une puissance', 'le watt (W)'), ('Une pression', 'le pascal (Pa)'), ('Une charge électrique', 'le coulomb (C)'),
+          ('Une tension électrique', 'le volt (V)'), ('Une intensité électrique', 'l’ampère (A)'), ('Une fréquence', 'le hertz (Hz)'), ('Une résistance', 'l’ohm (Ω)'), ('Une quantité de matière', 'la mole (mol)')]
+pairs_gen('pc-l-unites', 'pc', ['2nde', '1re', 'tle'], 'pc.l.unites', 'Associer une grandeur physique à son unité du Système international', 'Grandeurs et unités',
+          'Associer chaque grandeur à son unité du Système international.', ['2nde-pc-electricite', '2nde-pc-forces', '1re-pc-energie-electrique', '1re-pc-fluides', 'tle-pc-circuit-rc', 'tle-pc-newton'],
+          'Associe chaque grandeur à son unité.', UNITES, 'Grandeur', 'Unité', 5)
+ORGANITES = [('Le noyau', 'contient l’ADN'), ('La mitochondrie', 'siège de la respiration cellulaire'), ('Le chloroplaste', 'siège de la photosynthèse'), ('Le ribosome', 'fabrique les protéines'),
+             ('La membrane plasmique', 'contrôle les échanges avec l’extérieur'), ('La paroi', 'rigidifie la cellule végétale'), ('La vacuole', 'stocke de l’eau et des substances')]
+pairs_gen('svt-l-organites', 'svt', ['2nde'], 'svt.l.organites', 'Associer les éléments de la cellule à leur rôle', 'La cellule et ses organites',
+          'Associer chaque élément de la cellule à son rôle.', ['2nde-svt-cellules', '2nde-svt-metabolisme'], 'Associe chaque élément de la cellule à son rôle.', ORGANITES, 'Élément', 'Rôle', 5)
+DERIVEES = [('x²', '2x'), ('x³', '3x²'), ('x⁴', '4x³'), ('1/x', '−1/x²'), ('√x', '1/(2√x)'), ('e^(2x)', '2e^(2x)'), ('5x + 3', '5'), ('7 (une constante)', '0')]
+pairs_gen('maths-l-derivees', 'maths', ['1re', 'tle'], 'maths.l.derivees', 'Connaître les dérivées des fonctions usuelles', 'Fonctions et dérivées',
+          'Associer chaque fonction à sa fonction dérivée.', ['1re-m-fonction-derivee', 'tle-m-derivation'], 'Associe chaque fonction à sa dérivée.', DERIVEES, 'Fonction', 'Dérivée', 5)
+CAPITALES = [('La Chine', 'Pékin'), ('L’Inde', 'New Delhi'), ('Le Brésil', 'Brasília'), ('Les États-Unis', 'Washington'), ('Le Canada', 'Ottawa'), ('L’Australie', 'Canberra'), ('Le Japon', 'Tokyo'),
+             ('La Russie', 'Moscou'), ('Le Nigeria', 'Abuja'), ('L’Égypte', 'Le Caire'), ('Le Mexique', 'Mexico'), ('L’Argentine', 'Buenos Aires'), ('La Turquie', 'Ankara'), ('Le Maroc', 'Rabat')]
+pairs_gen('hg-l-capitales', 'hg', ['2nde', '1re', 'tle'], 'hg.l.capitales', 'Connaître les capitales de grands pays du monde', 'Grands pays du monde et leur capitale',
+          'Associer de grands pays du monde à leur capitale (souvent différente de la plus grande ville).', ['2nde-hg-g2-developpement', '2nde-hg-g3-migrations', '2nde-hg-g3-tourisme', '1re-hg-g1-metropoles', 'tle-hg-g2-integration'],
+          'Associe chaque pays à sa capitale.', CAPITALES, 'Pays', 'Capitale', 5)
+PHILO_A = [('Platon', 'La République'), ('Aristote', 'Éthique à Nicomaque'), ('Descartes', 'Discours de la méthode'), ('Pascal', 'Pensées'), ('Spinoza', 'Éthique'), ('Hobbes', 'Léviathan'),
+           ('Rousseau', 'Du contrat social'), ('Kant', 'Critique de la raison pure'), ('Montesquieu', 'De l’esprit des lois'), ('Nietzsche', 'Ainsi parlait Zarathoustra'), ('Sartre', 'L’existentialisme est un humanisme'), ('Simone de Beauvoir', 'Le Deuxième Sexe')]
+pairs_gen('philo-l-auteurs', 'philo', ['tle'], 'philo.l.auteurs', 'Associer des philosophes à leurs œuvres', 'Philosophes et œuvres',
+          'Associer chaque philosophe à l’une de ses œuvres majeures.', ['philo-tle-2019-notions', 'philo-tle-2019-perspectives'], 'Associe chaque philosophe à son œuvre.', PHILO_A, 'Philosophe', 'Œuvre', 5)
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:
