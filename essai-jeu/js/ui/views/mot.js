@@ -45,7 +45,7 @@ async function entriesOf(theme, level) {
 
 function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = gameLevels();
-  const state = { level: levels.includes(prefill.level) ? prefill.level : nearestLevel(store.profile.level), theme: prefill.theme || 'fr', count: prefill.count || 5 };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : nearestLevel(store.profile.level), theme: prefill.theme || 'fr', count: prefill.count || 5, players: prefill.players || 1, guest: prefill.guest || 'Invité' };
   const err = h('p', { class: 'warn', 'aria-live': 'assertive' });
   const draw = () => {
     const themes = motThemes(state.level);
@@ -55,11 +55,14 @@ function setupScreen(stage, { onStart, prefill = {} }) {
     stage.replaceChildren(h('section', { class: 'card mot-setup' },
       h('div', { class: 'quest-setup-head' }, h('span', { class: 'mem-setup-art', 'aria-hidden': 'true' }, '🔤'),
         h('div', {}, h('h2', {}, 'Mot mystère'),
-          h('p', {}, 'Lis l’indice et retrouve le mot, lettre après lettre. Chaque lettre qui n’est pas dans le mot éteint une couleur de l’arc-en-ciel : tu en as sept. Les accents viennent tout seuls : « E » dévoile aussi é, è et ê.'))),
+          h('p', {}, 'Lis l’indice et retrouve le mot, lettre après lettre. Chaque lettre qui n’est pas dans le mot éteint une couleur de l’arc-en-ciel : tu en as sept. Les accents viennent tout seuls : « E » dévoile aussi é, è et ê. À deux, chacun son mot, à tour de rôle : un point par mot trouvé.'))),
       h('div', { class: 'series-grid' },
         sel('Classe', state.level, levels.map((l) => [l, levelLabel(l)]), (v) => { state.level = v; draw(); }),
         sel('Mots', state.theme, themes.map((t) => [t.id, t.label]), (v) => { state.theme = v; }),
-        sel('Longueur', state.count, [[5, '5 mots'], [8, '8 mots']], (v) => { state.count = Number(v); })),
+        sel('Longueur', state.count, state.players === 2 ? [[6, '6 mots (3 chacun)'], [8, '8 mots (4 chacun)']] : [[5, '5 mots'], [8, '8 mots']], (v) => { state.count = Number(v); }),
+        sel('Joueurs', state.players, [[1, `Seul (${store.profile.pseudo})`], [2, 'À deux, sur le même appareil']], (v) => { state.players = Number(v); state.count = state.players === 2 ? (state.count === 5 ? 6 : state.count) : (state.count === 6 ? 5 : state.count); draw(); }),
+        state.players === 2 ? h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Nom du deuxième joueur'),
+          h('input', { class: 'field-input', value: state.guest, maxlength: 20, oninput: (e) => { state.guest = e.target.value || 'Invité'; } })) : null),
       err,
       h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--primary', onclick: go }, '🔤 Commencer'))));
   };
@@ -76,6 +79,9 @@ function setupScreen(stage, { onStart, prefill = {} }) {
 /* ------------------------------ Série ------------------------------ */
 
 function play(stage, setup, { onAgain, onNew }) {
+  const names = setup.players === 2 ? [store.profile.pseudo, setup.guest || 'Invité'] : [store.profile.pseudo];
+  const duo = names.length > 1;
+  const turnOf = (i) => names[i % names.length];
   const results = [];
   let index = 0;
   let w = null;
@@ -91,7 +97,8 @@ function play(stage, setup, { onAgain, onNew }) {
 
   const paintHead = () => head.replaceChildren(
     h('div', {}, h('p', { class: 'eyebrow' }, `Mot mystère · ${levelLabel(setup.level)}`), h('h2', {}, setup.themeLabel)),
-    h('div', { class: 'btn-row' }, h('span', { class: 'eclair-progress' }, `Mot ${Math.min(index + 1, setup.words.length)}/${setup.words.length}`),
+    h('div', { class: 'btn-row' }, ...(duo ? names.map((n, i) => h('span', { class: `mem-player ${i === index % names.length ? 'is-turn' : ''}` }, h('b', {}, n), ` · ${results.filter((r) => r.player === i && r.found).length}`)) : []),
+      h('span', { class: 'eclair-progress' }, `Mot ${Math.min(index + 1, setup.words.length)}/${setup.words.length}`),
       h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { detach(); onNew(); } }, 'Arrêter')));
 
   const paint = () => {
@@ -114,8 +121,9 @@ function play(stage, setup, { onAgain, onNew }) {
   };
 
   const finishWord = () => {
-    results.push({ word: w.word, clue: w.clue, found: isSolved(w), misses: w.wrong.length + w.revealed });
-    status.textContent = isSolved(w) ? `Bravo : « ${w.word} » !` : `Le mot était « ${w.word} ». Tu le retrouveras la prochaine fois !`;
+    results.push({ word: w.word, clue: w.clue, found: isSolved(w), misses: w.wrong.length + w.revealed, player: index % names.length });
+    status.textContent = isSolved(w) ? `Bravo${duo ? `, ${turnOf(index)}` : ''} : « ${w.word} » !` : `Le mot était « ${w.word} ». ${duo ? 'Pas de point pour ce mot.' : 'Tu le retrouveras la prochaine fois !'}`;
+    paintHead();
     status.className = `mot-status ${isSolved(w) ? 'is-ok' : 'is-miss'}`;
     if (isSolved(w)) burstStars(board, 3);
     paint();
@@ -147,7 +155,7 @@ function play(stage, setup, { onAgain, onNew }) {
     w = newWord(setup.words[index]);
     clue.textContent = w.clue;
     extra.textContent = w.extra || '';
-    status.textContent = ''; status.className = 'mot-status';
+    status.textContent = duo ? `${turnOf(index)}, à toi !` : ''; status.className = 'mot-status';
     paintHead(); paint();
     const k = keys.querySelector('.mot-key'); if (k) k.focus({ preventScroll: true });
   }
@@ -168,20 +176,25 @@ function play(stage, setup, { onAgain, onNew }) {
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const found = results.filter((r) => r.found).length;
     const stars = seriesStars(results);
+    const scores = names.map((n, i) => ({ name: n, found: results.filter((r) => r.player === i && r.found).length, misses: results.filter((r) => r.player === i).reduce((a, r) => a + r.misses, 0) }));
+    const best = Math.max(...scores.map((x) => x.found));
+    let winners = scores.filter((x) => x.found === best);
+    if (winners.length > 1) { const fewest = Math.min(...winners.map((x) => x.misses)); winners = winners.filter((x) => x.misses === fewest); }
     stage.replaceChildren(h('section', { class: 'card mem-end mot-end enter-fwd' },
       h('div', { class: 'jeu-turn-head' }, photon(found ? 'bravo' : 'attentif', 64),
         h('div', {}, h('p', { class: 'eyebrow' }, 'Série terminée'),
-          h('h2', { tabindex: '-1' }, `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)} · ${found}/${results.length} mot${results.length > 1 ? 's' : ''} trouvé${found > 1 ? 's' : ''}`))),
-      h('p', {}, stars === 3 ? 'Un vrai détective des mots !' : found === results.length ? 'Tous trouvés ! La prochaine fois, essaie avec moins d’erreurs.' : 'Bien joué ! Relis les mots ci-dessous : ils reviendront.'),
+          h('h2', { tabindex: '-1' }, duo ? (winners.length > 1 ? 'Égalité !' : `${winners[0].name} gagne !`) : `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)} · ${found}/${results.length} mot${results.length > 1 ? 's' : ''} trouvé${found > 1 ? 's' : ''}`))),
+      duo ? h('p', {}, `${scores.map((x) => `${x.name} : ${x.found} mot${x.found > 1 ? 's' : ''} trouvé${x.found > 1 ? 's' : ''} (${x.misses} erreur${x.misses > 1 ? 's' : ''})`).join(' · ')}${winners.length === 1 && scores.filter((x) => x.found === best).length > 1 ? ' — à égalité de mots, le moins d’erreurs l’emporte.' : ''}`) : null,
+      duo ? null : h('p', {}, stars === 3 ? 'Un vrai détective des mots !' : found === results.length ? 'Tous trouvés ! La prochaine fois, essaie avec moins d’erreurs.' : 'Bien joué ! Relis les mots ci-dessous : ils reviendront.'),
       gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points du mot mystère se gagnent une fois par jour : reviens demain !'),
       h('details', { class: 'mem-recap', open: true }, h('summary', {}, 'Les mots de la série'),
-        h('ul', {}, results.map((r) => h('li', {}, h('span', { 'aria-hidden': 'true' }, r.found ? '✓ ' : '✗ '), h('strong', {}, r.word), ` · ${r.clue}`)))),
+        h('ul', {}, results.map((r) => h('li', {}, h('span', { 'aria-hidden': 'true' }, r.found ? '✓ ' : '✗ '), h('strong', {}, r.word), ` · ${r.clue}${duo ? ` (${names[r.player]})` : ''}`)))),
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onAgain() }, 'Rejouer avec d’autres mots'),
         h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => onNew() }, 'Changer de mots'),
         h('a', { class: 'btn btn--ghost', href: '#/memoire' }, '🃏 Jeu de mémoire'))));
-    if (stars === 3) setTimeout(() => confetti(stage.firstChild, 60), 150);
-    announce(`Série terminée : ${found} mots trouvés sur ${results.length}.`);
+    if (duo || stars === 3) setTimeout(() => confetti(stage.firstChild, 60), 150);
+    announce(duo ? `${winners.map((x) => x.name).join(' et ')} ${winners.length > 1 ? 'sont à égalité' : 'gagne'}.` : `Série terminée : ${found} mots trouvés sur ${results.length}.`);
     const t = stage.querySelector('h2'); if (t) t.focus({ preventScroll: true });
   }
 

@@ -964,6 +964,36 @@ add({'id': 'en-l-vocabulary', 'label': 'Anglais : vocabulaire du lycée', 'subje
                  {'id': 'direction', 'label': 'Sens', 'values': [{'id': 'normal', 'label': 'Français → anglais'}, {'id': 'inverse', 'label': 'Anglais → français'}, {'id': 'mixte', 'label': 'Les deux, au hasard'}]}],
      'data': {'pairs': ENL, 'lang': 'en-GB', 'fromLabel': 'français', 'toLabel': 'anglais'}})
 
+# ---------------- Géographie : régions, pays et continents, métropoles, capitales de l'Union européenne ----------------
+REGIONS = [('L’Auvergne-Rhône-Alpes', 'Lyon'), ('La Bourgogne-Franche-Comté', 'Dijon'), ('La Bretagne', 'Rennes'), ('Le Centre-Val de Loire', 'Orléans'), ('La Corse', 'Ajaccio'),
+           ('Le Grand Est', 'Strasbourg'), ('Les Hauts-de-France', 'Lille'), ('L’Île-de-France', 'Paris'), ('La Normandie', 'Rouen'), ('La Nouvelle-Aquitaine', 'Bordeaux'),
+           ('L’Occitanie', 'Toulouse'), ('Les Pays de la Loire', 'Nantes'), ('La Provence-Alpes-Côte d’Azur', 'Marseille'), ('La Guadeloupe', 'Basse-Terre'), ('La Martinique', 'Fort-de-France'),
+           ('La Guyane', 'Cayenne'), ('La Réunion', 'Saint-Denis'), ('Mayotte', 'Mamoudzou')]
+pairs_gen('hg-regions', 'hg', ['cm2', '3e'], 'hg.regions', 'Connaître les régions françaises et leur chef-lieu', 'Les régions de France et leur chef-lieu',
+          'Associer chacune des 18 régions françaises (13 en métropole, 5 en outre-mer) à sa ville chef-lieu.', ['cm2-hg-ville-a-ville', 'cm2-hg-deplacer-quotidien', '3e-hg-g2-amenager', '3e-hg-g2-outre-mer'],
+          'Associe chaque région à son chef-lieu.', REGIONS, 'Région', 'Chef-lieu', 5)
+PAYS = [('La France', 'europe', None), ('L’Italie', 'europe', None), ('L’Allemagne', 'europe', None), ('L’Espagne', 'europe', None), ('La Suède', 'europe', None),
+        ('Le Maroc', 'afrique', None), ('L’Égypte', 'afrique', None), ('Le Nigeria', 'afrique', None), ('Le Kenya', 'afrique', None), ('Le Sénégal', 'afrique', None),
+        ('La Chine', 'asie', None), ('L’Inde', 'asie', None), ('Le Japon', 'asie', None), ('Le Viêt Nam', 'asie', None),
+        ('Le Brésil', 'amerique', None), ('Le Canada', 'amerique', None), ('Le Mexique', 'amerique', None), ('L’Argentine', 'amerique', None), ('Les États-Unis', 'amerique', None),
+        ('L’Australie', 'oceanie', None), ('La Nouvelle-Zélande', 'oceanie', None)]
+cat('hg-p-pays-continents', 'hg', ['ce2', 'cm1'], 'hg.p.pays-continents', 'Situer de grands pays sur leur continent', 'Pays du monde : sur quel continent ?',
+    'Ranger de grands pays du monde selon leur continent.', ['ce2-hg-globe', 'ce2-hg-vivre-ailleurs', 'cm1-hg-se-nourrir', 'cm1-hg-inegalites', 'cm1-hg-se-deplacer'],
+    'Sur quel continent se trouve chaque pays ?', [('europe', 'Europe'), ('afrique', 'Afrique'), ('asie', 'Asie'), ('amerique', 'Amérique'), ('oceanie', 'Océanie')], PAYS, 6)
+METROPOLES = [('Tokyo', 'le Japon'), ('Shanghai', 'la Chine'), ('Bombay (Mumbai)', 'l’Inde'), ('São Paulo', 'le Brésil'), ('Lagos', 'le Nigeria'), ('Le Caire', 'l’Égypte'),
+              ('New York', 'les États-Unis'), ('Mexico', 'le Mexique'), ('Istanbul', 'la Turquie'), ('Jakarta', 'l’Indonésie'), ('Moscou', 'la Russie'), ('Londres', 'le Royaume-Uni'),
+              ('Séoul', 'la Corée du Sud'), ('Karachi', 'le Pakistan'), ('Dacca', 'le Bangladesh'), ('Buenos Aires', 'l’Argentine')]
+pairs_gen('hg-metropoles', 'hg', ['4e'], 'hg.metropoles', 'Situer les grandes métropoles du monde', 'Grandes métropoles du monde et leur pays',
+          'Associer de très grandes villes du monde à leur pays.', ['g4-t1-urbanisation', 'g4-t1-connexions', 'g4-t2-migrants'],
+          'Associe chaque métropole à son pays.', METROPOLES, 'Métropole', 'Pays', 5)
+UE = [('L’Allemagne', 'Berlin'), ('L’Autriche', 'Vienne'), ('La Belgique', 'Bruxelles'), ('La Bulgarie', 'Sofia'), ('Chypre', 'Nicosie'), ('La Croatie', 'Zagreb'), ('Le Danemark', 'Copenhague'),
+      ('L’Espagne', 'Madrid'), ('L’Estonie', 'Tallinn'), ('La Finlande', 'Helsinki'), ('La France', 'Paris'), ('La Grèce', 'Athènes'), ('La Hongrie', 'Budapest'), ('L’Irlande', 'Dublin'),
+      ('L’Italie', 'Rome'), ('La Lettonie', 'Riga'), ('La Lituanie', 'Vilnius'), ('Malte', 'La Valette'), ('Les Pays-Bas', 'Amsterdam'), ('La Pologne', 'Varsovie'), ('Le Portugal', 'Lisbonne'),
+      ('La Roumanie', 'Bucarest'), ('La Slovaquie', 'Bratislava'), ('La Slovénie', 'Ljubljana'), ('La Suède', 'Stockholm'), ('La Tchéquie', 'Prague')]
+pairs_gen('hg-ue-capitales', 'hg', ['3e', 'tle'], 'hg.ue-capitales', 'Connaître les États de l’Union européenne et leur capitale', 'L’Union européenne : les États et leur capitale',
+          'Associer les États de l’Union européenne à leur capitale (le Luxembourg, dont la capitale porte le même nom, est mis à part).', ['3e-hg-g3-ue', '3e-hg-h2-europe', 'tle-hg-g3-politiques', 'tle-hg-g3-ouverture'],
+          'Associe chaque État à sa capitale.', UE, 'État', 'Capitale', 5)
+
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)
 for g in gens:

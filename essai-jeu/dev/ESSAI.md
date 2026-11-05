@@ -122,6 +122,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
 - **Anglais : vocabulaire du lycée** (`content/generators/en-l-vocabulary.json`) : 65 mots des axes culturels
   (environnement, numérique, société, travail et études, santé, voyages, arts), dans les deux sens, avec écoute et
   faux amis signalés (stage, roman) ; dans la quête de l'année de la 2nde à la Tle, au jeu de mémoire et au mot mystère.
+- **Jouer à deux, partout** : le mot mystère se joue aussi à deux (chacun son mot, à tour de rôle ; un point par mot
+  trouvé, le moins d'erreurs départage), et le calcul éclair propose un duel : les deux joueurs font exactement la même
+  série l'un après l'autre, le plus rapide gagne (le record et les points vont au profil qui joue).
+- **Géographie** : les 18 régions et leur chef-lieu (CM2, 3e), les pays et leur continent (CE2, CM1), les grandes
+  métropoles du monde et leur pays (4e), les 26 États de l'Union européenne et leur capitale (3e, Tle) ; dans la quête de
+  l'année et au jeu de mémoire (`content/generators/{hg-regions,hg-p-pays-continents,hg-metropoles,hg-ue-capitales}.json`).
 - **Bonus de fin de chapitre** (quête de l'année) : un chapitre terminé propose le petit jeu qui le prolonge, déjà réglé
   sur la classe et le thème : sa frise (histoire, technologie, musique), ses associations au jeu de mémoire, le
   vocabulaire au mot mystère (langues), un calcul éclair (maths), une devinette (français). Les jeux se règlent par
@@ -237,4 +243,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (521 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (525 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

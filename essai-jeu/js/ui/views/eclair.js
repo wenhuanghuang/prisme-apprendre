@@ -24,7 +24,7 @@ export const eclairLevels = () => gameLevels().filter((l) => ECLAIR_LEVELS[l]);
 function setupScreen(stage, { onStart, prefill = {} }) {
   const levels = eclairLevels();
   const near = nearestLevel(store.profile.level);
-  const state = { level: levels.includes(prefill.level) ? prefill.level : (levels.includes(near) ? near : levels[0]), theme: prefill.theme || 'melange', count: prefill.count || 10, timer: prefill.timer ?? true };
+  const state = { level: levels.includes(prefill.level) ? prefill.level : (levels.includes(near) ? near : levels[0]), theme: prefill.theme || 'melange', count: prefill.count || 10, timer: prefill.timer ?? true, players: prefill.players || 1, guest: prefill.guest || 'Invité' };
   const draw = () => {
     const themes = eclairThemes(state.level);
     if (state.theme !== 'melange' && !themes.some((t) => t.id === state.theme)) state.theme = 'melange';
@@ -39,17 +39,21 @@ function setupScreen(stage, { onStart, prefill = {} }) {
         sel('Classe', state.level, levels.map((l) => [l, levelLabel(l)]), (v) => { state.level = v; draw(); }),
         sel('Calculs', state.theme, [['melange', 'Mélange de la classe'], ...themes.map((t) => [t.id, t.label])], (v) => { state.theme = v; draw(); }),
         sel('Longueur', state.count, [[10, '10 calculs'], [20, '20 calculs']], (v) => { state.count = Number(v); draw(); }),
-        sel('Chrono', state.timer ? 'oui' : 'non', [['oui', 'Affiché : record à battre'], ['non', 'Caché : tranquille']], (v) => { state.timer = v === 'oui'; draw(); })),
-      h('p', { class: 'small muted eclair-record' }, state.timer ? (rec ? `🏅 Ton record pour cette série : ${formatMs(rec.ms)}` : 'Pas encore de record pour cette série : c’est le moment d’en établir un !') : 'Sans chrono : pas de record, juste de l’entraînement.'),
-      h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onStart({ ...state }) }, '⚡ C’est parti !'))));
+        sel('Joueurs', state.players, [[1, `Seul (${store.profile.pseudo})`], [2, 'Duel à deux : la même série, chacun son tour']], (v) => { state.players = Number(v); draw(); }),
+        state.players === 2 ? h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Nom du deuxième joueur'),
+          h('input', { class: 'field-input', value: state.guest, maxlength: 20, oninput: (e) => { state.guest = e.target.value || 'Invité'; } }))
+          : sel('Chrono', state.timer ? 'oui' : 'non', [['oui', 'Affiché : record à battre'], ['non', 'Caché : tranquille']], (v) => { state.timer = v === 'oui'; draw(); })),
+      h('p', { class: 'small muted eclair-record' }, state.players === 2 ? 'Duel : les deux joueurs font exactement les mêmes calculs ; le plus rapide gagne (une erreur coûte du temps, car le calcul revient).' : state.timer ? (rec ? `🏅 Ton record pour cette série : ${formatMs(rec.ms)}` : 'Pas encore de record pour cette série : c’est le moment d’en établir un !') : 'Sans chrono : pas de record, juste de l’entraînement.'),
+      h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onStart({ ...state, timer: state.players === 2 ? true : state.timer }) }, '⚡ C’est parti !'))));
   };
   draw();
 }
 
 /* ------------------------------ Série ------------------------------ */
 
-function play(stage, setup, { onAgain, onNew }) {
+function play(stage, setup, { onAgain, onNew, queue = null, player = null, onFinish = null }) {
   const e = newEclair({ level: setup.level, theme: setup.theme, count: setup.count });
+  if (queue) e.queue = queue.map((c) => ({ ...c })); // duel : la même série pour les deux joueurs
   e.startedAt = Date.now();
   const calcEl = h('p', { class: 'eclair-calc', 'aria-live': 'polite' });
   const input = h('input', { class: 'field-input eclair-input', type: 'text', inputmode: 'decimal', autocomplete: 'off', 'aria-label': 'Ta réponse', maxlength: 12 });
@@ -97,6 +101,7 @@ function play(stage, setup, { onAgain, onNew }) {
     h('button', { type: 'button', class: 'eclair-key eclair-key--ok', dataset: { key: 'ok' }, onclick: () => key('ok') }, 'Valider'));
 
   async function end() {
+    if (onFinish) { onFinish(e); return; }
     const ms = elapsedMs(e);
     const key = recordKey(setup.level, setup.theme, setup.count);
     const before = gameProgress();
@@ -129,7 +134,7 @@ function play(stage, setup, { onAgain, onNew }) {
 
   stage.replaceChildren(
     h('div', { class: 'series-head quest-head' },
-      h('div', {}, h('p', { class: 'eyebrow' }, `Calcul éclair · ${levelLabel(setup.level)}`), h('h2', {}, themeLabel(setup.theme))),
+      h('div', {}, h('p', { class: 'eyebrow' }, `Calcul éclair · ${levelLabel(setup.level)}${player ? ` · duel : ${player}` : ''}`), h('h2', {}, themeLabel(setup.theme))),
       h('div', { class: 'btn-row' }, setup.timer ? clock : null, progress, h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { stopClock(); onNew(); } }, 'Arrêter'))),
     h('div', { class: 'progress-mini eclair-bar' }, bar),
     h('section', { class: 'card eclair-card' }, calcEl,
@@ -144,6 +149,50 @@ function play(stage, setup, { onAgain, onNew }) {
   input.focus({ preventScroll: true });
 }
 
+/* ------------------------------ Duel à deux ------------------------------ */
+
+/** Les deux joueurs font la même série, l'un après l'autre ; le temps total départage (une erreur fait revenir le calcul). */
+function duel(stage, setup, { onAgain, onNew }) {
+  const names = [store.profile.pseudo, setup.guest || 'Invité'];
+  const queue = newEclair({ level: setup.level, theme: setup.theme, count: setup.count }).queue;
+  const runs = [];
+  const turn = (i) => {
+    if (i >= names.length) { duelEnd(); return; }
+    stage.replaceChildren(h('section', { class: 'card eclair-handover enter-fwd' },
+      h('div', { class: 'jeu-turn-head' }, photon(i === 0 ? 'attentif' : 'curieux', 56),
+        h('div', {}, h('p', { class: 'eyebrow' }, `Duel · manche ${i + 1}/2`), h('h2', { tabindex: '-1' }, `${names[i]}, à toi !`))),
+      h('p', {}, i === 0 ? `${setup.count} calculs, le chrono démarre dès que tu appuies. ${names[1]}, ne regarde pas l’écran !` : `${names[0]} a terminé en ${formatMs(elapsedMs(runs[0]))}. Mêmes calculs pour toi : à toi de faire mieux !`),
+      h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--primary', onclick: () => play(stage, setup, { queue, player: names[i], onNew, onFinish: (e) => { runs.push(e); turn(i + 1); } }) }, '⚡ Je commence'))));
+    const t = stage.querySelector('h2'); if (t) t.focus({ preventScroll: true });
+  };
+  async function duelEnd() {
+    const before = gameProgress();
+    // le record et les points vont au profil qui joue (le premier joueur)
+    const rec = await recordBest(recordKey(setup.level, setup.theme, setup.count), elapsedMs(runs[0])).catch(() => null);
+    await recordGameEvent('eclair', dayKey(store.now())).catch(() => {});
+    const after = gameProgress();
+    const gained = before && after ? after.totalXp - before.totalXp : 0;
+    const times = runs.map((e) => elapsedMs(e));
+    const gap = Math.abs(times[0] - times[1]);
+    // à un dixième de seconde près, le moins d'erreurs départage
+    const errs = runs.map((e) => e.errors);
+    const winner = gap >= 100 ? (times[0] < times[1] ? 0 : 1) : errs[0] !== errs[1] ? (errs[0] < errs[1] ? 0 : 1) : null;
+    stage.replaceChildren(h('section', { class: 'card mem-end eclair-end enter-fwd' },
+      h('div', { class: 'jeu-turn-head' }, photon('bravo', 64),
+        h('div', {}, h('p', { class: 'eyebrow' }, 'Fin du duel'), h('h2', { tabindex: '-1' }, winner === null ? 'Égalité parfaite !' : gap >= 100 ? `${names[winner]} gagne, avec ${formatMs(gap)} d’avance !` : `${names[winner]} gagne : même temps, moins d’erreurs !`))),
+      h('ul', { class: 'eclair-duel' }, names.map((n, i) => h('li', { class: i === winner ? 'is-winner' : '' }, h('strong', {}, n), ` : ${formatMs(times[i])} · ${runs[i].errors} erreur${runs[i].errors > 1 ? 's' : ''}`))),
+      rec && rec.best ? h('p', { class: 'eclair-verdict is-record' }, `🏅 ${rec.previous ? 'Nouveau record' : 'Premier record'} pour ${names[0]} sur cette série !`) : null,
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points pour ${names[0]}`) : h('p', { class: 'small muted' }, 'Les points du calcul éclair se gagnent une fois par jour.'),
+      h('div', { class: 'btn-row' },
+        h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onAgain() }, 'Revanche (nouvelle série)'),
+        h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => onNew() }, 'Changer de calculs'))));
+    setTimeout(() => confetti(stage.firstChild, 60), 150);
+    announce(winner === null ? 'Égalité.' : `${names[winner]} gagne le duel.`);
+    const t = stage.querySelector('h2'); if (t) t.focus({ preventScroll: true });
+  }
+  turn(0);
+}
+
 export async function render(root, { params } = {}) {
   const stage = h('div', { class: 'quest-stage eclair-stage' });
   root.append(h('div', { class: 'page-head' },
@@ -152,6 +201,10 @@ export async function render(root, { params } = {}) {
     h('a', { class: 'btn', href: '#/jeu' }, h('span', { 'aria-hidden': 'true' }, '🎲 '), 'Jeu de plateau')), stage);
   let last = null;
   const toSetup = (prefill) => setupScreen(stage, { onStart: start, prefill });
-  function start(setup) { last = setup; window.scrollTo({ top: 0 }); play(stage, setup, { onAgain: () => start(last), onNew: () => toSetup(last) }); }
+  function start(setup) {
+    last = setup; window.scrollTo({ top: 0 });
+    if (setup.players === 2) { duel(stage, setup, { onAgain: () => start(last), onNew: () => toSetup(last) }); return; }
+    play(stage, setup, { onAgain: () => start(last), onNew: () => toSetup(last) });
+  }
   toSetup({ level: (params && params.get('classe')) || undefined, theme: (params && params.get('theme')) || undefined });
 }
