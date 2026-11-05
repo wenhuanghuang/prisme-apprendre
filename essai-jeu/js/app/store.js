@@ -8,7 +8,7 @@ import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } fro
 import { recommend } from '../engine/recommend.js';
 import { summarizeAttempts, computeBadges, skillBadges } from '../engine/badges.js';
 import { DEMO_PROFILES, simulateProfile } from '../engine/demo-profiles.js';
-import { computeGame, withEvent, withGoal, withRecord, migrateGoals, GOALS } from '../engine/game.js';
+import { computeGame, withEvent, withGoal, withRecord, withScore, migrateGoals, GOALS } from '../engine/game.js';
 
 const listeners = new Set();
 const lessonCache = new Map();
@@ -320,6 +320,15 @@ export async function recordBest(key, ms) {
   if (!store.profile || !store.states) return { previous: null, best: false };
   const previous = ((store.states.game.records || {})[key] || null);
   const next = withRecord(store.states.game, key, ms, store.now());
+  if (next !== store.states.game) { await saveGame(next); return { previous, best: true }; }
+  return { previous, best: false };
+}
+
+/** Score d'une lecture (mots par minute) : enregistré s'il bat le record. */
+export async function recordBestScore(key, score) {
+  if (!store.profile || !store.states) return { previous: null, best: false };
+  const previous = ((store.states.game.records || {})[key] || null);
+  const next = withScore(store.states.game, key, score, store.now());
   if (next !== store.states.game) { await saveGame(next); return { previous, best: true }; }
   return { previous, best: false };
 }

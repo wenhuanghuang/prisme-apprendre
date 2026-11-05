@@ -20,7 +20,7 @@ import { SUBJECT_ICONS } from '../parcours/data.js';
 import { photon } from '../photon.js';
 import { chestReveal, chestSvg, newVignettes } from './rewards-ui.js';
 import { confetti } from '../lesson-play/celebrate.js';
-import { bonusGame } from './mini-games.js';
+import { bonusGame, laterActivity } from './mini-games.js';
 
 const levelId = (x) => String(x || '').toLowerCase();
 const levelLabel = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;
@@ -259,7 +259,7 @@ export async function yearMap(stage, { level, subject, onBack, setStopper }) {
       constellation(plan, st.done, clock, pr.next && pr.next.id),
       h('div', { class: 'year-periods' }, periods),
       later.length ? h('details', { class: 'card year-later' }, h('summary', {}, `${later.length} chapitre${later.length > 1 ? 's' : ''} sans exercices pour l’instant`),
-        h('ul', {}, later.map((c) => h('li', { class: 'small' }, c.title)))) : null);
+        h('ul', {}, later.map((c) => { const a = laterActivity(level, subject, c); return h('li', { class: 'small' }, c.title, a ? [' · ', h('a', { href: a.href }, `${a.icon} ${a.label}`)] : null); }))) : null);
     const first = nowBtn || nextBtn;
     if (first) first.focus({ preventScroll: true });
   }

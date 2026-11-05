@@ -129,11 +129,19 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **Lecture chronométrée** (`#/fluence`, du CP au CM2) : neuf textes originaux (trois par niveau : CP, CE1-CE2,
+  CM1-CM2), qu'on peut d'abord écouter lus par l'ordinateur. L'enfant lit à voix haute pendant une minute ; l'adulte
+  qui écoute touche les mots mal lus, puis le dernier mot atteint. Résultat : les mots correctement lus en une minute
+  (ramené à une minute si le texte est fini avant), un record par texte (« plus haut, c'est mieux » : `withScore`,
+  `recordBestScore`), +10 points une fois par jour, trophées « Lecteur à voix haute » et « Belle voix ». Proposée dans
+  les petits jeux du primaire et, dans la quête de l'année, à côté des chapitres de fluence et de lecture à voix haute
+  (`js/engine/fluence.js`, `js/ui/views/fluence.js`).
 - **Derniers chapitres vides comblés** (`js/generators/college-arts-plus.js`) : arts plastiques au collège (matières,
   gestes, dispositifs, in situ, numérique, spectateur : tous les chapitres de 5e et de 4e), éducation musicale (voix,
   polyphonie et accords, son, volume et formats audio, MAO : tous les chapitres de 5e et de 4e), cycles de vie des
   plantes et des animaux (CM2, avec des étapes à remettre dans l'ordre), la société d'ordres (seconde). Restent sans
-  exercices les chapitres de vie affective et de puberté (EVARS, laissés de côté volontairement), l'oral, et LLCER.
+  exercices les chapitres de vie affective et de puberté (EVARS, laissés de côté volontairement), l'oral, l'écriture
+  cursive et LLCER.
 - **Quête de l'année : une année par classe** : un parcours de référence qui couvre plusieurs classes (l'EMC du CP à la
   terminale, les langues du collège au lycée, la HGGSP) n'affiche plus comme « à venir » les chapitres des autres
   classes ; une année faite d'un seul chapitre de questions (l'EMC d'une classe) compte trois étapes
@@ -250,12 +258,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10, lecture chronométrée 10 ; une fois par
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -263,4 +271,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (561 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (565 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

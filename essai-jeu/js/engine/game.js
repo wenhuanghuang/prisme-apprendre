@@ -35,6 +35,7 @@ export const XP = {
   frise: 10, // partie de frise chronologique terminée (une fois par jour)
   eclair: 10, // série de calcul éclair terminée (une fois par jour)
   mot: 10, // série de mots mystère terminée (une fois par jour)
+  fluence: 10, // lecture chronométrée terminée (une fois par jour)
 };
 
 export const TRACK_MULT = { classe: 1, approfondissement: 1.5, expert: 2 };
@@ -58,7 +59,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot', 'fluence'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -111,7 +112,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot, fluence: XP.fluence }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -191,12 +192,14 @@ export function goalOn(goals, key) {
  * Nouvel objectif : un objectif plus haut s'applique tout de suite ; un objectif plus bas seulement demain
  * (baisser l'objectif le soir ne doit pas « sauver » la série du jour).
  */
-/** Records personnels (calcul éclair) : clé → { ms, at }. Au plus 200 entrées, clés courtes. */
+/** Records personnels : clé → { ms, at } (un temps : plus court, c'est mieux) ou { score, at } (plus haut, c'est mieux). Au plus 200 entrées. */
 function normalizeRecords(raw) {
   const out = {};
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return out;
   for (const [k, v] of Object.entries(raw).slice(0, 200)) {
-    if (/^[a-z0-9:-]{1,80}$/i.test(k) && v && Number.isFinite(v.ms) && v.ms > 0 && Number.isFinite(v.at)) out[k] = { ms: Math.round(v.ms), at: v.at };
+    if (!/^[a-z0-9:-]{1,80}$/i.test(k) || !v || !Number.isFinite(v.at)) continue;
+    if (Number.isFinite(v.ms) && v.ms > 0) out[k] = { ms: Math.round(v.ms), at: v.at };
+    else if (Number.isFinite(v.score) && v.score >= 0) out[k] = { score: Math.round(v.score), at: v.at };
   }
   return out;
 }
@@ -206,6 +209,13 @@ export function withRecord(game, key, ms, now) {
   const old = (game.records || {})[key];
   if (!/^[a-z0-9:-]{1,80}$/i.test(key) || !Number.isFinite(ms) || ms <= 0 || (old && old.ms <= ms)) return game;
   return { ...game, records: { ...(game.records || {}), [key]: { ms: Math.round(ms), at: now } } };
+}
+
+/** Nouveau score (lecture chronométrée : mots par minute) : renvoie le jeu inchangé s'il n'est pas meilleur. */
+export function withScore(game, key, score, now) {
+  const old = (game.records || {})[key];
+  if (!/^[a-z0-9:-]{1,80}$/i.test(key) || !Number.isFinite(score) || score < 0 || (old && Number.isFinite(old.score) && old.score >= score)) return game;
+  return { ...game, records: { ...(game.records || {}), [key]: { score: Math.round(score), at: now } } };
 }
 
 export function withGoal(game, xp, now) {
@@ -347,6 +357,7 @@ export function computeGame(attempts, gameState, now) {
     frises: game.events.filter((e) => e.type === 'frise').length,
     eclairs: game.events.filter((e) => e.type === 'eclair').length,
     mots: game.events.filter((e) => e.type === 'mot').length,
+    fluences: game.events.filter((e) => e.type === 'fluence').length,
     records: Object.keys(game.records || {}).length,
   };
   const album = albumOf(game.events);

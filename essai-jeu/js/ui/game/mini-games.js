@@ -8,18 +8,23 @@ import { store } from '../../app/store.js';
 import { dayKey, XP } from '../../engine/game.js';
 import { ECLAIR_THEMES, ECLAIR_LEVELS, formatMs } from '../../engine/eclair.js';
 import { allGenerators, coversSkills } from '../../generators/registry.js';
+import { TEXTS as FLUENCE_TEXTS } from '../../engine/fluence.js';
 
 export const MINI_GAMES = [
   { id: 'memoire', icon: '🃏', label: 'Mémoire', href: '#/memoire', pitch: 'retrouve les paires (mots, dates, traductions…), seul ou à deux' },
   { id: 'frise', icon: '⏳', label: 'Frise', href: '#/frise', pitch: 'avant ou après ? place les événements dans l’ordre du temps' },
   { id: 'eclair', icon: '⚡', label: 'Calcul éclair', href: '#/eclair', pitch: '10 calculs de ta classe, et ton record à battre' },
   { id: 'mot', icon: '🔤', label: 'Mot mystère', href: '#/mot', pitch: 'une devinette, un mot à retrouver lettre à lettre' },
+  { id: 'fluence', icon: '📖', label: 'Lecture chronométrée', href: '#/fluence', pitch: 'une minute de lecture à voix haute, avec un adulte', levels: ['cp', 'ce1', 'ce2', 'cm1', 'cm2'] },
 ];
+/** Les petits jeux d'une classe (la lecture chronométrée est réservée à l'école primaire). */
+const gamesFor = (level) => MINI_GAMES.filter((g) => !g.levels || g.levels.includes(String(level || '').toLowerCase()));
 
 /** Le jeu du jour : change chaque jour, le même pour toute la famille. */
-export function gameOfDay(day) {
+export function gameOfDay(day, level) {
+  const list = gamesFor(level);
   const n = Math.floor(Date.parse(`${day}T12:00:00Z`) / 86400000);
-  return MINI_GAMES[((n % MINI_GAMES.length) + MINI_GAMES.length) % MINI_GAMES.length];
+  return list[((n % list.length) + list.length) % list.length];
 }
 
 const playedToday = (type, day) => ((store.states && store.states.game && store.states.game.events) || []).some((e) => e.type === type && e.id === day);
@@ -27,8 +32,9 @@ const playedToday = (type, day) => ((store.states && store.states.game && store.
 /** Liste des petits jeux, avec leur état du jour. */
 export function miniGamesList() {
   const day = dayKey(store.now());
-  const star = gameOfDay(day);
-  return h('ul', { class: 'mini-games' }, MINI_GAMES.map((g) => {
+  const level = store.profile && store.profile.level;
+  const star = gameOfDay(day, level);
+  return h('ul', { class: 'mini-games' }, gamesFor(level).map((g) => {
     const done = playedToday(g.id, day);
     return h('li', { class: `mini-game ${g.id === star.id ? 'is-star' : ''} ${done ? 'is-done' : ''}` },
       h('a', { href: g.href, class: 'mini-game-link' },
@@ -66,23 +72,34 @@ export function bonusGame(level, subject, ch) {
   return null;
 }
 
+/** Pour un chapitre sans exercices corrigés : une activité à faire quand même (la lecture à voix haute). */
+export function laterActivity(level, subject, ch) {
+  const lv = String(level || '').toLowerCase();
+  if (subject === 'francais' && ['cp', 'ce1', 'ce2', 'cm1', 'cm2'].includes(lv) && /fluence|voix-haute/.test((ch && ch.id) || '')) {
+    return { icon: '📖', label: 'Lecture chronométrée', href: `#/fluence?classe=${lv}` };
+  }
+  return null;
+}
+
 const LEVEL = (id) => ((store.catalog && store.catalog.levels.find((l) => l.id === id)) || { label: id }).label;
 
-/** Records personnels (calcul éclair), du plus récent au plus ancien. */
+/** Records personnels (calcul éclair, lecture chronométrée), du plus récent au plus ancien. */
 export function recordsSection() {
   const recs = Object.entries((store.states && store.states.game && store.states.game.records) || {})
     .map(([k, v]) => { const [kind, level, theme, count] = k.split(':'); return { kind, level, theme, count, ...v }; })
-    .filter((r) => r.kind === 'eclair')
+    .filter((r) => r.kind === 'eclair' || r.kind === 'fluence')
     .sort((a, b) => b.at - a.at);
+  const when = (r) => h('small', { class: 'muted' }, ` (le ${new Date(r.at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })})`);
+  const line = (r) => (r.kind === 'fluence'
+    ? h('li', {}, h('span', { 'aria-hidden': 'true' }, '📖 '), h('strong', {}, `${r.score} mots/min`), ` · ${(FLUENCE_TEXTS.find((t) => t.id === r.level) || { title: r.level }).title}`, when(r))
+    : h('li', {}, h('span', { 'aria-hidden': 'true' }, '⚡ '), h('strong', {}, formatMs(r.ms)),
+      ` · ${r.theme === 'melange' ? 'Mélange' : (ECLAIR_THEMES[r.theme] || { label: r.theme }).label} · ${LEVEL(r.level)} · ${r.count} calculs`, when(r)));
   return h('section', { class: 'card prog-records', id: 'records' },
     h('h2', {}, `Mes records · ${recs.length}`),
-    recs.length
-      ? h('ul', { class: 'records-list' }, recs.map((r) => h('li', {},
-        h('span', { 'aria-hidden': 'true' }, '⚡ '), h('strong', {}, formatMs(r.ms)),
-        ` · ${r.theme === 'melange' ? 'Mélange' : (ECLAIR_THEMES[r.theme] || { label: r.theme }).label} · ${LEVEL(r.level)} · ${r.count} calculs`,
-        h('small', { class: 'muted' }, ` (le ${new Date(r.at).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' })})`))))
-      : h('p', { class: 'small muted' }, 'Pas encore de record : lance un calcul éclair avec le chrono, puis essaie de battre ton temps.'),
-    h('a', { class: 'btn btn--ghost btn--small', href: '#/eclair' }, '⚡ Calcul éclair'));
+    recs.length ? h('ul', { class: 'records-list' }, recs.map(line))
+      : h('p', { class: 'small muted' }, 'Pas encore de record : lance un calcul éclair avec le chrono (ou, à l’école primaire, une lecture chronométrée), puis essaie de faire mieux.'),
+    h('div', { class: 'btn-row' }, h('a', { class: 'btn btn--ghost btn--small', href: '#/eclair' }, '⚡ Calcul éclair'),
+      gamesFor(store.profile && store.profile.level).some((g) => g.id === 'fluence') ? h('a', { class: 'btn btn--ghost btn--small', href: '#/fluence' }, '📖 Lecture chronométrée') : null));
 }
 
 /* ------------------------------ Espace parents ------------------------------ */
@@ -92,6 +109,7 @@ const WEEK_ROWS = [
   ['quete', '🗺️', 'quête libre terminée', 'quêtes libres terminées'], ['defi', '🎁', 'défi relevé', 'défis relevés'], ['plateau', '🎲', 'partie de plateau', 'parties de plateau'],
   ['enigme', '🧩', 'énigme du jour', 'énigmes du jour'], ['memoire', '🃏', 'jour de jeu de mémoire', 'jours de jeu de mémoire'], ['frise', '⏳', 'jour de frise chronologique', 'jours de frise chronologique'],
   ['eclair', '⚡', 'jour de calcul éclair', 'jours de calcul éclair'], ['mot', '🔤', 'jour de mot mystère', 'jours de mot mystère'],
+  ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'],
 ];
 
 /** Ce qui a été joué ces 7 derniers jours : { type → nombre }. Fonction pure. */
@@ -107,9 +125,11 @@ export function parentGamesSection(game, now) {
   const w = weekGames(game && game.events, now);
   const rows = WEEK_ROWS.filter(([t]) => w[t]);
   const recs = Object.entries((game && game.records) || {}).filter(([k]) => k.startsWith('eclair:')).sort((a, b) => b[1].at - a[1].at).slice(0, 3);
+  const reads = Object.entries((game && game.records) || {}).filter(([k]) => k.startsWith('fluence:')).sort((a, b) => b[1].at - a[1].at).slice(0, 3);
   return h('section', { class: 'card parent-games' }, h('h2', {}, 'Les jeux cette semaine'),
     rows.length ? h('ul', { class: 'parent-games-list' }, rows.map(([t, icon, one, many]) => h('li', {}, h('span', { 'aria-hidden': 'true' }, `${icon} `), h('strong', {}, String(w[t])), ` ${w[t] > 1 ? many : one}`)))
       : h('p', { class: 'muted' }, 'Aucun jeu ces sept derniers jours.'),
     recs.length ? h('p', { class: 'small' }, 'Records récents au calcul éclair : ', recs.map(([k, v]) => { const [, level, theme, count] = k.split(':'); return `${formatMs(v.ms)} (${LEVEL(level)}, ${theme === 'melange' ? 'mélange' : (ECLAIR_THEMES[theme] || { label: theme }).label.toLowerCase()}, ${count} calculs)`; }).join(' ; '), '.') : null,
+    reads.length ? h('p', { class: 'small' }, 'Meilleures lectures chronométrées : ', reads.map(([k, v]) => `${v.score} mots bien lus par minute (« ${(FLUENCE_TEXTS.find((t) => t.id === k.split(':')[1]) || { title: k }).title} »)`).join(' ; '), '.') : null,
     h('p', { class: 'small muted' }, 'Les jeux reprennent les contenus de la classe : questions des chapitres, associations, frises, calcul mental, vocabulaire. Les points des petits jeux ne se gagnent qu’une fois par jour, pour encourager la variété plutôt que la répétition.'));
 }
