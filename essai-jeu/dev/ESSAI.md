@@ -129,6 +129,11 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **Derniers chapitres vides comblés** (`js/generators/college-arts-plus.js`) : arts plastiques au collège (matières,
+  gestes, dispositifs, in situ, numérique, spectateur : tous les chapitres de 5e et de 4e), éducation musicale (voix,
+  polyphonie et accords, son, volume et formats audio, MAO : tous les chapitres de 5e et de 4e), cycles de vie des
+  plantes et des animaux (CM2, avec des étapes à remettre dans l'ordre), la société d'ordres (seconde). Restent sans
+  exercices les chapitres de vie affective et de puberté (EVARS, laissés de côté volontairement), l'oral, et LLCER.
 - **Quête de l'année : une année par classe** : un parcours de référence qui couvre plusieurs classes (l'EMC du CP à la
   terminale, les langues du collège au lycée, la HGGSP) n'affiche plus comme « à venir » les chapitres des autres
   classes ; une année faite d'un seul chapitre de questions (l'EMC d'une classe) compte trois étapes
@@ -249,7 +254,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot}.js`, `js/generators/{lycee-options,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
 `js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
@@ -258,4 +263,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (552 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (561 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
