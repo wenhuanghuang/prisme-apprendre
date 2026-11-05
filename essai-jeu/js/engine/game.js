@@ -36,6 +36,7 @@ export const XP = {
   eclair: 10, // série de calcul éclair terminée (une fois par jour)
   mot: 10, // série de mots mystère terminée (une fois par jour)
   fluence: 10, // lecture chronométrée terminée (une fois par jour)
+  jeudujour: 5, // bonus : le jeu du jour joué (une fois par jour)
 };
 
 export const TRACK_MULT = { classe: 1, approfondissement: 1.5, expert: 2 };
@@ -59,7 +60,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot', 'fluence'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot', 'fluence', 'jeudujour'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -112,7 +113,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot, fluence: XP.fluence }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot, fluence: XP.fluence, jeudujour: XP.jeudujour }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -358,6 +359,7 @@ export function computeGame(attempts, gameState, now) {
     eclairs: game.events.filter((e) => e.type === 'eclair').length,
     mots: game.events.filter((e) => e.type === 'mot').length,
     fluences: game.events.filter((e) => e.type === 'fluence').length,
+    jeuxdujour: game.events.filter((e) => e.type === 'jeudujour').length,
     records: Object.keys(game.records || {}).length,
   };
   const album = albumOf(game.events);

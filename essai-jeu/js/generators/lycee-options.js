@@ -95,6 +95,36 @@ add({
   make(rand) { return qcm(rand, pick(rand, HLP_T)); },
 });
 
+/* ------------------------------ LLCER anglais ------------------------------ */
+
+const WORKS = [['Pride and Prejudice', 'Jane Austen'], ['Oliver Twist', 'Charles Dickens'], ['Nineteen Eighty-Four', 'George Orwell'], ['Frankenstein', 'Mary Shelley'],
+  ['The Great Gatsby', 'F. Scott Fitzgerald'], ['Of Mice and Men', 'John Steinbeck'], ['To Kill a Mockingbird', 'Harper Lee'], ['Mrs Dalloway', 'Virginia Woolf'],
+  ['Beloved', 'Toni Morrison'], ['Adventures of Huckleberry Finn', 'Mark Twain'], ['Hamlet', 'William Shakespeare'], ['Jane Eyre', 'Charlotte Brontë'],
+  ['Wuthering Heights', 'Emily Brontë'], ['The Catcher in the Rye', 'J. D. Salinger'], ['Lord of the Flies', 'William Golding'], ['The Handmaid’s Tale', 'Margaret Atwood'],
+  ['Things Fall Apart', 'Chinua Achebe'], ['Strange Case of Dr Jekyll and Mr Hyde', 'Robert Louis Stevenson'], ['Dracula', 'Bram Stoker'], ['On the Road', 'Jack Kerouac']];
+const LIT = [
+  ['A dystopia is…', 'an imagined society that is frightening or oppressive', ['a perfect society', 'a true story', 'a love poem'], 'Nineteen Eighty-Four, Brave New World and The Handmaid’s Tale are famous dystopias.'],
+  ['The Harlem Renaissance of the 1920s was…', 'a flowering of African American art, music and literature in New York', ['a period of Italian painting', 'a British political party', 'a scientific revolution'], 'Langston Hughes and Zora Neale Hurston are key figures.'],
+  ['A Shakespearean sonnet has…', '14 lines, ending with a rhyming couplet', ['3 lines', '20 lines', 'no rhymes at all'], 'Three quatrains and a final couplet: ABAB CDCD EFEF GG.'],
+  ['The English Romantic poets, such as Wordsworth and Coleridge, celebrated…', 'nature, emotion and imagination', ['factories and machines', 'strict classical rules', 'war and empire'], 'Their Lyrical Ballads (1798) is often seen as the start of English Romanticism.'],
+  ['The Victorian era is named after…', 'Queen Victoria, who reigned from 1837 to 1901', ['a famous battle', 'a novel by Dickens', 'a London street'], 'An age of industry and empire, and of the great novels of Dickens.'],
+  ['Gothic fiction typically features…', 'mystery, horror, dark castles and the supernatural', ['sunny beaches', 'sports competitions', 'scientific reports'], 'Frankenstein and Dracula are classics of the genre.'],
+  ['A “stream of consciousness” narrative…', 'follows the flow of a character’s thoughts', ['only describes landscapes', 'is written as a play', 'is always in verse'], 'Virginia Woolf and James Joyce are famous for it.'],
+  ['The Beat Generation (Kerouac, Ginsberg) was a group of…', 'American writers of the 1950s who rejected conformity', ['British kings', 'Renaissance painters', 'Roman poets'], 'On the Road (1957) by Jack Kerouac is its best-known novel.'],
+  ['An unreliable narrator is…', 'a narrator whose account cannot be fully trusted', ['a narrator who is always right', 'the author’s editor', 'a historian'], 'The reader has to read between the lines.'],
+  ['The “American Dream” is…', 'the idea that anyone can succeed through hard work', ['a famous Hollywood film', 'a type of novel', 'a law passed in 1776'], 'The Great Gatsby and Of Mice and Men both question it.'],
+  ['A soliloquy, in a play, is…', 'a speech in which a character, alone, speaks their thoughts aloud', ['a dance', 'a song for two voices', 'the list of characters'], '“To be, or not to be” in Hamlet is the most famous one.'],
+  ['Magical realism mixes…', 'realistic settings with magical or supernatural events', ['only historical facts', 'poetry and mathematics', 'comics and sport'], 'It is often associated with Latin American writers, and with Salman Rushdie or Toni Morrison in English.'],
+];
+add({
+  id: 'llcer-anglais', subject: 'llcer', levels: ['1re', 'tle'], facts: true, label: 'LLCER anglais : œuvres, auteurs et notions littéraires', skill: 'llcer.anglais',
+  chapters: ['llcer-spe-1re-tle-2019-themes'], description: 'Who wrote it? Twenty great works in English, and key literary notions (dystopia, Gothic fiction, soliloquy, stream of consciousness…).',
+  make(rand) {
+    if (rand() < 0.5) { const [w, a] = pick(rand, WORKS); return qcm(rand, [`Who wrote “${w}”?`, a, WORKS.map(([, x]) => x).filter((x) => x !== a), `“${w}” was written by ${a}.`]); }
+    return qcm(rand, pick(rand, LIT));
+  },
+});
+
 /* ------------------------------ Mathématiques expertes ------------------------------ */
 
 const ME = ['maths-expertes-tle-2019-nombres-complexes', 'maths-expertes-tle-2019-arithmetique', 'maths-expertes-tle-2019-graphes-matrices'];
@@ -210,6 +240,7 @@ export const LYCEE_OPTIONS_SKILLS = [
   ['hggsp', 'hggsp.tle', 'tle', 'HGGSP de terminale : espaces de conquête, guerre et paix, mémoires, patrimoine, environnement, connaissance'],
   ['hlp', 'hlp.1re', '1re', 'HLP de première : les pouvoirs de la parole, les représentations du monde'],
   ['hlp', 'hlp.tle', 'tle', 'HLP de terminale : la recherche de soi, l’humanité en question'],
+  ['llcer', 'llcer.anglais', '1re', 'LLCER anglais : œuvres, auteurs et notions littéraires'],
   ['maths-expertes', 'me.complexes', 'tle', 'Nombres complexes : forme algébrique, conjugué, module'],
   ['maths-expertes', 'me.arithmetique', 'tle', 'Arithmétique : division euclidienne, congruences, PGCD, nombres premiers'],
   ['maths-expertes', 'me.graphes-matrices', 'tle', 'Graphes et matrices'],

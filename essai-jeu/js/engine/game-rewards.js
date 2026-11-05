@@ -76,6 +76,7 @@ export const TROPHIES = [
   { id: 'mot-7', icon: '📖', label: 'Dictionnaire vivant', attests: 'Des séries de mots mystère terminées sept jours différents.', goal: 7, value: (c) => c.mots || 0 },
   { id: 'fluence-1', icon: '📖', label: 'Lecteur à voix haute', attests: 'Une lecture chronométrée terminée.', goal: 1, value: (c) => c.fluences || 0 },
   { id: 'fluence-7', icon: '🎙️', label: 'Belle voix', attests: 'Des lectures chronométrées sept jours différents.', goal: 7, value: (c) => c.fluences || 0 },
+  { id: 'jeudujour-7', icon: '🌟', label: 'Curieux de tout', attests: 'Le jeu du jour joué sept jours différents.', goal: 7, value: (c) => c.jeuxdujour || 0 },
   { id: 'memoire-7', icon: '🐘', label: 'Mémoire d’éléphant', attests: 'Des parties de jeu de mémoire terminées sept jours différents.', goal: 7, value: (c) => c.memoires || 0 },
   { id: 'enigme-7', icon: '🧩', label: 'Esprit curieux', attests: 'Sept énigmes du jour résolues.', goal: 7, value: (c) => c.enigmes || 0 },
   { id: 'enigme-30', icon: '🔎', label: 'Grand curieux', attests: 'Trente énigmes du jour résolues.', goal: 30, value: (c) => c.enigmes || 0 },

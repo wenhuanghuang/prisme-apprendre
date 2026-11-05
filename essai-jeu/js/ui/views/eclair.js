@@ -9,6 +9,7 @@ import { store, recordGameEvent, gameProgress, recordBest } from '../../app/stor
 import { newEclair, answer, currentCalc, isDone, elapsedMs, eclairStars, recordKey, formatMs, frNum, eclairThemes, ECLAIR_LEVELS, ECLAIR_THEMES } from '../../engine/eclair.js';
 import { gameLevels, nearestLevel } from '../game/deck.js';
 import { dayKey } from '../../engine/game.js';
+import { recordMiniGame } from '../game/mini-games.js';
 import { photon } from '../photon.js';
 import { burstStars, confetti } from '../lesson-play/celebrate.js';
 
@@ -106,7 +107,7 @@ function play(stage, setup, { onAgain, onNew, queue = null, player = null, onFin
     const key = recordKey(setup.level, setup.theme, setup.count);
     const before = gameProgress();
     const rec = setup.timer ? await recordBest(key, ms).catch(() => ({ previous: null, best: false })) : null;
-    await recordGameEvent('eclair', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('eclair').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const stars = eclairStars(e);
@@ -120,7 +121,7 @@ function play(stage, setup, { onAgain, onNew, queue = null, player = null, onFin
           : rec && rec.best ? '🏅 Premier record établi pour cette série : à toi de le battre la prochaine fois !'
             : rec && rec.previous ? `Ton record reste ${formatMs(rec.previous.ms)} : encore ${formatMs(ms - rec.previous.ms)} à gagner.` : '') : null,
       h('p', {}, e.errors === 0 ? 'Sans une erreur : bravo !' : `${e.errors} erreur${e.errors > 1 ? 's' : ''}, toutes rattrapées.`),
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points du calcul éclair se gagnent une fois par jour : reviens demain !'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points du calcul éclair se gagnent une fois par jour : reviens demain !'),
       e.misses.length ? h('details', { class: 'mem-recap', open: true }, h('summary', {}, 'À retravailler'),
         h('ul', {}, e.misses.map((c) => h('li', {}, solved(c))))) : null,
       h('div', { class: 'btn-row' },
@@ -169,7 +170,7 @@ function duel(stage, setup, { onAgain, onNew }) {
     const before = gameProgress();
     // le record et les points vont au profil qui joue (le premier joueur)
     const rec = await recordBest(recordKey(setup.level, setup.theme, setup.count), elapsedMs(runs[0])).catch(() => null);
-    await recordGameEvent('eclair', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('eclair').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const times = runs.map((e) => elapsedMs(e));
@@ -182,7 +183,7 @@ function duel(stage, setup, { onAgain, onNew }) {
         h('div', {}, h('p', { class: 'eyebrow' }, 'Fin du duel'), h('h2', { tabindex: '-1' }, winner === null ? 'Égalité parfaite !' : gap >= 100 ? `${names[winner]} gagne, avec ${formatMs(gap)} d’avance !` : `${names[winner]} gagne : même temps, moins d’erreurs !`))),
       h('ul', { class: 'eclair-duel' }, names.map((n, i) => h('li', { class: i === winner ? 'is-winner' : '' }, h('strong', {}, n), ` : ${formatMs(times[i])} · ${runs[i].errors} erreur${runs[i].errors > 1 ? 's' : ''}`))),
       rec && rec.best ? h('p', { class: 'eclair-verdict is-record' }, `🏅 ${rec.previous ? 'Nouveau record' : 'Premier record'} pour ${names[0]} sur cette série !`) : null,
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points pour ${names[0]}`) : h('p', { class: 'small muted' }, 'Les points du calcul éclair se gagnent une fois par jour.'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points pour ${names[0]}${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points du calcul éclair se gagnent une fois par jour.'),
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onAgain() }, 'Revanche (nouvelle série)'),
         h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => onNew() }, 'Changer de calculs'))));

@@ -10,6 +10,7 @@ import { allGenerators, loadData } from '../../generators/registry.js';
 import { RAYS, RAINBOW, newWord, guess, revealOne, maskOf, isSolved, isLost, isFinished, pickWords, seriesStars, vocabAnswer, frEntries, frTier } from '../../engine/mot.js';
 import { gameLevels, nearestLevel } from '../game/deck.js';
 import { dayKey } from '../../engine/game.js';
+import { recordMiniGame } from '../game/mini-games.js';
 import { photon } from '../photon.js';
 import { speak, speechAvailable } from '../speech.js';
 import { burstStars, confetti } from '../lesson-play/celebrate.js';
@@ -171,7 +172,7 @@ function play(stage, setup, { onAgain, onNew }) {
   async function end() {
     detach();
     const before = gameProgress();
-    await recordGameEvent('mot', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('mot').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const found = results.filter((r) => r.found).length;
@@ -186,7 +187,7 @@ function play(stage, setup, { onAgain, onNew }) {
           h('h2', { tabindex: '-1' }, duo ? (winners.length > 1 ? 'Égalité !' : `${winners[0].name} gagne !`) : `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)} · ${found}/${results.length} mot${results.length > 1 ? 's' : ''} trouvé${found > 1 ? 's' : ''}`))),
       duo ? h('p', {}, `${scores.map((x) => `${x.name} : ${x.found} mot${x.found > 1 ? 's' : ''} trouvé${x.found > 1 ? 's' : ''} (${x.misses} erreur${x.misses > 1 ? 's' : ''})`).join(' · ')}${winners.length === 1 && scores.filter((x) => x.found === best).length > 1 ? ' — à égalité de mots, le moins d’erreurs l’emporte.' : ''}`) : null,
       duo ? null : h('p', {}, stars === 3 ? 'Un vrai détective des mots !' : found === results.length ? 'Tous trouvés ! La prochaine fois, essaie avec moins d’erreurs.' : 'Bien joué ! Relis les mots ci-dessous : ils reviendront.'),
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points du mot mystère se gagnent une fois par jour : reviens demain !'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points du mot mystère se gagnent une fois par jour : reviens demain !'),
       h('details', { class: 'mem-recap', open: true }, h('summary', {}, 'Les mots de la série'),
         h('ul', {}, results.map((r) => h('li', {}, h('span', { 'aria-hidden': 'true' }, r.found ? '✓ ' : '✗ '), h('strong', {}, r.word), ` · ${r.clue}${duo ? ` (${names[r.player]})` : ''}`)))),
       h('div', { class: 'btn-row' },

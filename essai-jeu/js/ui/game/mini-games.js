@@ -4,7 +4,7 @@
  * varier les plaisirs, et les records personnels du calcul éclair.
  */
 import { h } from '../dom.js';
-import { store } from '../../app/store.js';
+import { store, recordGameEvent } from '../../app/store.js';
 import { dayKey, XP } from '../../engine/game.js';
 import { ECLAIR_THEMES, ECLAIR_LEVELS, formatMs } from '../../engine/eclair.js';
 import { allGenerators, coversSkills } from '../../generators/registry.js';
@@ -29,6 +29,19 @@ export function gameOfDay(day, level) {
 
 const playedToday = (type, day) => ((store.states && store.states.game && store.states.game.events) || []).some((e) => e.type === type && e.id === day);
 
+/**
+ * Enregistre une partie de petit jeu (ses points, une fois par jour) et, si c'est le jeu du jour, le bonus.
+ * @returns {Promise<boolean>} vrai si le bonus du jeu du jour vient d'être gagné
+ */
+export async function recordMiniGame(type) {
+  const day = dayKey(store.now());
+  await recordGameEvent(type, day);
+  const star = gameOfDay(day, store.profile && store.profile.level);
+  if (!star || star.id !== type || playedToday('jeudujour', day)) return false;
+  await recordGameEvent('jeudujour', day);
+  return true;
+}
+
 /** Liste des petits jeux, avec leur état du jour. */
 export function miniGamesList() {
   const day = dayKey(store.now());
@@ -41,7 +54,7 @@ export function miniGamesList() {
         h('span', { class: 'mini-game-icon', 'aria-hidden': 'true' }, g.icon),
         h('span', { class: 'mini-game-text' }, h('strong', {}, g.label), g.id === star.id ? h('span', { class: 'mini-game-star' }, ' · 🌟 jeu du jour') : null,
           h('small', {}, g.pitch)),
-        h('span', { class: 'mini-game-state' }, done ? '✓ fait aujourd’hui' : `+${XP[g.id]} points`)));
+        h('span', { class: 'mini-game-state' }, done ? '✓ fait aujourd’hui' : `+${XP[g.id] + (g.id === star.id ? XP.jeudujour : 0)} points`)));
   }));
 }
 

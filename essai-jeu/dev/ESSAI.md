@@ -129,6 +129,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **Bonus du jeu du jour** : le petit jeu mis en avant sur la page Aujourd'hui rapporte 5 points de plus (une fois par
+  jour), annoncés dans la liste (« +15 points ») et à la fin de la partie ; trophée « Curieux de tout » après sept jours
+  (`recordMiniGame` dans `js/ui/game/mini-games.js`, utilisé par les cinq petits jeux).
+- **LLCER anglais** (première et terminale) : vingt grandes œuvres de langue anglaise à attribuer et des notions
+  littéraires (dystopie, roman gothique, monologue, courant de conscience, narrateur peu fiable, rêve américain…), en
+  anglais ; la dernière spécialité du lycée qui n'avait pas d'exercices.
 - **Lecture chronométrée** (`#/fluence`, du CP au CM2) : neuf textes originaux (trois par niveau : CP, CE1-CE2,
   CM1-CM2), qu'on peut d'abord écouter lus par l'ordinateur. L'enfant lit à voix haute pendant une minute ; l'adulte
   qui écoute touche les mots mal lus, puis le dernier mot atteint. Résultat : les mots correctement lus en une minute
@@ -140,8 +146,8 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   gestes, dispositifs, in situ, numérique, spectateur : tous les chapitres de 5e et de 4e), éducation musicale (voix,
   polyphonie et accords, son, volume et formats audio, MAO : tous les chapitres de 5e et de 4e), cycles de vie des
   plantes et des animaux (CM2, avec des étapes à remettre dans l'ordre), la société d'ordres (seconde). Restent sans
-  exercices les chapitres de vie affective et de puberté (EVARS, laissés de côté volontairement), l'oral, l'écriture
-  cursive et LLCER.
+  exercices les chapitres de vie affective et de puberté (EVARS, laissés de côté volontairement), l'oral et l'écriture
+  cursive.
 - **Quête de l'année : une année par classe** : un parcours de référence qui couvre plusieurs classes (l'EMC du CP à la
   terminale, les langues du collège au lycée, la HGGSP) n'affiche plus comme « à venir » les chapitres des autres
   classes ; une année faite d'un seul chapitre de questions (l'EMC d'une classe) compte trois étapes
@@ -258,7 +264,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10, lecture chronométrée 10 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10, lecture chronométrée 10, bonus du jeu du jour 5 ; une fois par
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
@@ -271,4 +277,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (565 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (567 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

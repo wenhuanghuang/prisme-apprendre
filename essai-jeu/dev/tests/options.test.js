@@ -11,14 +11,14 @@ const { instantiate, check } = await import(W + 'js/core/checkers/index.js');
 const { validateExercise } = await import(W + 'js/content/validate.js');
 
 const skillIds = new Set(readdirSync(W + 'content/skills/').filter((f) => f.endsWith('.json')).flatMap((f) => JSON.parse(readFileSync(W + 'content/skills/' + f, 'utf8')).skills.map((s) => s.id)));
-const courses = ['hggsp-1re', 'hlp-1re', 'maths-expertes-tle', 'maths-complementaires-tle'].map((id) => JSON.parse(readFileSync(W + `content/courses/${id}.json`, 'utf8')));
+const courses = ['hggsp-1re', 'hlp-1re', 'maths-expertes-tle', 'maths-complementaires-tle', 'llcer-1re'].map((id) => JSON.parse(readFileSync(W + `content/courses/${id}.json`, 'utf8')));
 const allChapters = new Set(courses.flatMap((c) => c.chapters.map((x) => x.id)));
 const asText = (n) => String(n).replace('.', ',');
 
 test('Options du lycée : générateurs enregistrés, rattachés aux chapitres, tout couvert', () => {
   for (const g of EMC) {
     assert.ok(CODE_GENERATORS.includes(g), g.id);
-    assert.ok(['hggsp', 'hlp', 'maths-expertes', 'maths-complementaires'].includes(codeGeneratorMeta(g).subject));
+    assert.ok(['hggsp', 'hlp', 'maths-expertes', 'maths-complementaires', 'llcer'].includes(codeGeneratorMeta(g).subject));
     assert.ok(skillIds.has(g.skill), `${g.id} : notion ${g.skill} inconnue`);
     for (const ch of g.chapters) assert.ok(allChapters.has(ch), `${g.id} : chapitre ${ch} inconnu`);
   }

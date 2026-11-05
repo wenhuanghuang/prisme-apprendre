@@ -8,6 +8,7 @@ import { h, announce } from '../dom.js';
 import { store, recordGameEvent, gameProgress, recordBestScore } from '../../app/store.js';
 import { TEXTS, textsFor, tokens, scoreReading, READING_SECONDS } from '../../engine/fluence.js';
 import { dayKey } from '../../engine/game.js';
+import { recordMiniGame } from '../game/mini-games.js';
 import { photon } from '../photon.js';
 import { speak, speechAvailable, stopSpeaking } from '../speech.js';
 import { confetti } from '../lesson-play/celebrate.js';
@@ -93,7 +94,7 @@ function play(stage, setup, { onAgain, onNew }) {
   async function end(r, early) {
     const before = gameProgress();
     const rec = await recordBestScore(`fluence:${t.id}`, r.perMinute).catch(() => ({ previous: null, best: false }));
-    await recordGameEvent('fluence', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('fluence').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     stage.replaceChildren(h('section', { class: 'card mem-end fl-end enter-fwd' },
@@ -104,7 +105,7 @@ function play(stage, setup, { onAgain, onNew }) {
       rec.best ? h('p', { class: 'eclair-verdict is-record' }, rec.previous ? `🏅 Nouveau record sur ce texte ! (ancien : ${rec.previous.score})` : '🏅 Premier record sur ce texte : relis-le un autre jour pour le battre !')
         : rec.previous ? h('p', {}, `Ton record sur ce texte reste ${rec.previous.score} mots par minute.`) : null,
       h('p', { class: 'small muted' }, 'Relire plusieurs fois le même texte rend la lecture plus fluide : c’est normal de progresser à chaque fois.'),
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points de la lecture chronométrée se gagnent une fois par jour.'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points de la lecture chronométrée se gagnent une fois par jour.'),
       h('div', { class: 'btn-row' },
         h('button', { type: 'button', class: 'btn btn--primary', onclick: () => onAgain() }, 'Relire ce texte'),
         h('button', { type: 'button', class: 'btn btn--ghost', onclick: () => onNew() }, 'Choisir un autre texte'))));

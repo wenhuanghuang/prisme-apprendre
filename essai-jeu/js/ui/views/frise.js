@@ -11,6 +11,7 @@ import { newFrise, place, currentCard, cardsLeft, isOver, friseStars, friseWinne
 import { gameLevels, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
 import { dayKey } from '../../engine/game.js';
+import { recordMiniGame } from '../game/mini-games.js';
 import { photon } from '../photon.js';
 import { burstStars, confetti } from '../lesson-play/celebrate.js';
 
@@ -121,7 +122,7 @@ function play(stage, setup, { onAgain, onNew }) {
 
   async function end() {
     const before = gameProgress();
-    await recordGameEvent('frise', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('frise').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const stars = f.solo ? friseStars(f) : 0;
@@ -133,7 +134,7 @@ function play(stage, setup, { onAgain, onNew }) {
           h('h2', { tabindex: '-1' }, f.solo ? `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)} · ${f.players[0].score} carte${f.players[0].score > 1 ? 's' : ''} bien placée${f.players[0].score > 1 ? 's' : ''}` : winners.length > 1 ? 'Égalité !' : `${winners[0].name} gagne !`))),
       f.solo ? h('p', {}, stars === 3 ? 'Sans une erreur : un vrai voyageur du temps !' : done ? 'Bien joué ! Relis la frise : la prochaine fois, tu placeras encore mieux.' : 'Les vies sont épuisées, mais chaque carte a trouvé sa place : relis la frise et retente !')
         : h('p', {}, f.players.map((p) => `${p.name} : ${p.score} point${p.score > 1 ? 's' : ''}`).join(' · ')),
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points de la frise se gagnent une fois par jour : reviens demain !'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points de la frise se gagnent une fois par jour : reviens demain !'),
       h('details', { class: 'mem-recap', open: true }, h('summary', {}, 'La frise dans l’ordre'),
         h('ol', { class: 'frise-recap' }, [...f.line, ...f.deck.slice(f.current)].sort((a, b) => a.year - b.year).map((e) => h('li', {}, h('strong', {}, yearLabel(e)), ' · ', e.label)))),
       h('div', { class: 'btn-row' },

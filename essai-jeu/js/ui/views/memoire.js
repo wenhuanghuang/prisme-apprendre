@@ -12,6 +12,7 @@ import { yearLabel } from '../../engine/frise.js';
 import { gameLevels, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
 import { dayKey } from '../../engine/game.js';
+import { recordMiniGame } from '../game/mini-games.js';
 import { photon } from '../photon.js';
 import { burstStars, confetti } from '../lesson-play/celebrate.js';
 
@@ -126,7 +127,7 @@ function play(stage, setup, { onAgain, onNew }) {
 
   async function end() {
     const before = gameProgress();
-    await recordGameEvent('memoire', dayKey(store.now())).catch(() => {});
+    const star = await recordMiniGame('memoire').catch(() => false);
     const after = gameProgress();
     const gained = before && after ? after.totalXp - before.totalXp : 0;
     const solo = m.players.length === 1;
@@ -138,7 +139,7 @@ function play(stage, setup, { onAgain, onNew }) {
           h('h2', { tabindex: '-1' }, solo ? `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)} en ${m.tries} essais` : winners.length > 1 ? 'Égalité !' : `${winners[0].name} gagne !`))),
       solo ? h('p', {}, stars === 3 ? 'Mémoire d’éléphant : bravo !' : stars === 2 ? 'Très bien ! Rejoue pour faire encore moins d’essais.' : 'Bien joué ! En rejouant, tu retiendras mieux où sont les cartes.')
         : h('p', {}, m.players.map((p) => `${p.name} : ${p.pairs} paire${p.pairs > 1 ? 's' : ''}`).join(' · ')),
-      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points`) : h('p', { class: 'small muted' }, 'Les points du jeu de mémoire se gagnent une fois par jour : reviens demain !'),
+      gained > 0 ? h('p', { class: 'chest-points' }, `+${gained} points${star ? ' · 🌟 bonus du jeu du jour' : ''}`) : h('p', { class: 'small muted' }, 'Les points du jeu de mémoire se gagnent une fois par jour : reviens demain !'),
       h('details', { class: 'mem-recap', open: true }, h('summary', {}, 'Ce qu’il fallait associer'),
         h('ul', {}, setup.pairs.map((p) => h('li', {}, h('strong', {}, p.a), ' ↔ ', p.b)))),
       h('div', { class: 'btn-row' },
