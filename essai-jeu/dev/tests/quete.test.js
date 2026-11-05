@@ -68,10 +68,11 @@ test('album : une vignette par coffre, rare pour une quête ou une victoire, rep
   assert.equal(a.owned[1].vignette.rare, true);
   assert.equal(a.byEvent.get('quete:a'), a.owned[1].vignette);
   assert.deepEqual(R.albumOf([...ev].reverse()).owned.map((o) => o.vignette.id), a.owned.map((o) => o.vignette.id), 'ordre chronologique, pas l’ordre de la liste');
-  const many = Array.from({ length: 140 }, (_, i) => ({ type: i % 3 ? 'defi' : 'victoire', id: `x${i}`, ts: i }));
+  const many = Array.from({ length: 200 }, (_, i) => ({ type: i % 3 ? 'defi' : 'victoire', id: `x${i}`, ts: i }));
   const full = R.albumOf(many);
   assert.ok(full.owned.slice(0, 48).every((o) => o.vignette.album === 'lumiere'), 'l’album de lumière se remplit d’abord');
-  assert.ok(full.owned.slice(48).every((o) => o.vignette.album === 'animaux'), 'puis l’album des animaux');
+  assert.ok(full.owned.slice(48, 96).every((o) => o.vignette.album === 'animaux'), 'puis l’album des animaux');
+  assert.ok(full.owned.slice(96).every((o) => o.vignette.album === 'merveilles'), 'puis celui des merveilles du monde');
   assert.equal(full.owned.length, R.VIGNETTES.length, 'album complet, sans doublon');
   assert.equal(new Set(full.owned.map((o) => o.vignette.id)).size, R.VIGNETTES.length);
 });
@@ -134,11 +135,11 @@ test('plan de l’année : chapitres dans l’ordre, répartis sur les périodes
   assert.equal(A.yearId('2026-2027', '5e', 'maths'), '2026-2027:5e:maths');
 });
 
-test('deux albums de 48 vignettes : coffres de période et d’année = vignettes rares', () => {
-  assert.equal(R.VIGNETTES.length, 96);
-  assert.deepEqual(R.ALBUMS.map((a) => R.VIGNETTES.filter((v) => v.album === a.id).length), [48, 48]);
-  assert.deepEqual(R.ALBUMS.map((a) => R.VIGNETTES.filter((v) => v.album === a.id && v.rare).length), [12, 12]);
-  assert.equal(new Set(R.VIGNETTES.map((v) => v.icon)).size, 96, 'une icône différente pour chaque vignette');
+test('trois albums de 48 vignettes : coffres de période et d’année = vignettes rares', () => {
+  assert.equal(R.VIGNETTES.length, 144);
+  assert.deepEqual(R.ALBUMS.map((a) => R.VIGNETTES.filter((v) => v.album === a.id).length), [48, 48, 48]);
+  assert.deepEqual(R.ALBUMS.map((a) => R.VIGNETTES.filter((v) => v.album === a.id && v.rare).length), [12, 12, 12]);
+  assert.equal(new Set(R.VIGNETTES.map((v) => v.icon)).size, 144, 'une icône différente pour chaque vignette');
   const a = R.albumOf([{ type: 'periode', id: 'y:1', ts: 1 }, { type: 'annee', id: 'y', ts: 2 }, { type: 'chapitre', id: 'y:c', ts: 3 }]);
   assert.deepEqual(a.owned.map((o) => Boolean(o.vignette.rare)), [true, true], 'une médaille de chapitre ne donne pas de vignette');
   const g = G.computeGame([], { events: [{ type: 'chapitre', id: 'y:c', ts: 1 }, { type: 'periode', id: 'y:1', ts: 2 }, { type: 'annee', id: 'y', ts: 3 }] }, 10);

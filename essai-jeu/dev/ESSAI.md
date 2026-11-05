@@ -122,6 +122,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
 - **Anglais : vocabulaire du lycée** (`content/generators/en-l-vocabulary.json`) : 65 mots des axes culturels
   (environnement, numérique, société, travail et études, santé, voyages, arts), dans les deux sens, avec écoute et
   faux amis signalés (stage, roman) ; dans la quête de l'année de la 2nde à la Tle, au jeu de mémoire et au mot mystère.
+- **Troisième album : les merveilles du monde** (48 vignettes, dont 12 rares) : pyramides de Gizeh, Grande Muraille,
+  Machu Picchu, Everest, Grande Barrière de corail, tour Eiffel, viaduc de Millau, lac Baïkal, dune du Pilat…, un fait
+  vrai chacune ; il s'ouvre quand l'album des animaux est complet. Trophées « Globe-trotteur » et « Explorateur du
+  monde » (144 vignettes en tout, `js/engine/game-rewards.js`).
 - **Jouer à deux, partout** : le mot mystère se joue aussi à deux (chacun son mot, à tour de rôle ; un point par mot
   trouvé, le moins d'erreurs départage), et le calcul éclair propose un duel : les deux joueurs font exactement la même
   série l'un après l'autre, le plus rapide gagne (le record et les points vont au profil qui joue).
@@ -231,7 +235,7 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
 - **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10 ; une fois par
-  identifiant), album de 48 vignettes de lumière puis album des animaux (36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
+  identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
 Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot}.js`, `js/generators/{primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,

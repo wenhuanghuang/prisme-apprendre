@@ -82,6 +82,8 @@ export const TROPHIES = [
   { id: 'album-48', icon: '🏆', label: 'Album complet', attests: 'Les quarante-huit vignettes de l’album de lumière.', goal: 48, value: (c) => c.album || 0 },
   { id: 'album-72', icon: '🐾', label: 'Ami des bêtes', attests: 'Vingt-quatre vignettes de l’album des animaux extraordinaires.', goal: 72, value: (c) => c.album || 0 },
   { id: 'album-96', icon: '🦄', label: 'Grand naturaliste', attests: 'Les deux albums complets : quatre-vingt-seize vignettes.', goal: 96, value: (c) => c.album || 0 },
+  { id: 'album-120', icon: '🧳', label: 'Globe-trotteur', attests: 'Vingt-quatre vignettes de l’album des merveilles du monde.', goal: 120, value: (c) => c.album || 0 },
+  { id: 'album-144', icon: '🌐', label: 'Explorateur du monde', attests: 'Les trois albums complets : cent quarante-quatre vignettes.', goal: 144, value: (c) => c.album || 0 },
   { id: 'niveau-5', icon: '🌟', label: 'Rayon', attests: 'Niveau 5 atteint.', goal: 5, value: (c) => c.level },
   { id: 'niveau-10', icon: '🌅', label: 'Aurore', attests: 'Niveau 10 atteint.', goal: 10, value: (c) => c.level },
 ];
@@ -202,12 +204,65 @@ const ANIMAUX = [
   ['colibri', '🌺', 'Colibri', 'Le colibri bat des ailes si vite qu’il peut voler sur place, et même en arrière.', true],
 ].map(([id, icon, label, fact, rare]) => ({ id: `a-${id}`, icon, label, fact, album: 'animaux', ...(rare ? { rare: true } : {}) }));
 
+/** Troisième album, ouvert quand l'album des animaux est complet : des merveilles du monde, monuments et paysages. */
+const MERVEILLES = [
+  ['pyramides', '🏺', 'Pyramides de Gizeh', 'La grande pyramide de Khéops, haute d’environ 146 m à l’origine, est restée pendant près de 4 000 ans le plus haut monument construit par l’être humain.', true],
+  ['muraille', '🧱', 'Grande Muraille', 'Avec toutes ses branches, elle s’étend sur plus de 20 000 km ; contrairement à une légende, on ne la voit pas à l’œil nu depuis la Lune.', true],
+  ['machu-picchu', '⛰️', 'Machu Picchu', 'Cette cité inca perchée dans les Andes, au Pérou, a été bâtie au XVe siècle sans mortier : les pierres s’emboîtent parfaitement.', true],
+  ['taj-mahal', '🕌', 'Taj Mahal', 'Ce mausolée de marbre blanc, en Inde, a été construit au XVIIe siècle par l’empereur Shah Jahan en mémoire de son épouse.', true],
+  ['everest', '🏔️', 'Everest', 'Le plus haut sommet du monde culmine à 8 849 m, à la frontière entre le Népal et la Chine.', true],
+  ['grand-canyon', '🏞️', 'Grand Canyon', 'Le fleuve Colorado a creusé ce canyon des États-Unis en quelques millions d’années ; il atteint 1 800 m de profondeur.', true],
+  ['corail', '🪸', 'Grande Barrière de corail', 'Au large de l’Australie, c’est la plus grande structure construite par des êtres vivants : on la voit depuis l’espace.', true],
+  ['angkor', '🛕', 'Angkor Vat', 'Au Cambodge, c’est le plus grand monument religieux du monde ; il figure sur le drapeau du pays.', true],
+  ['petra', '🧭', 'Petra', 'Cette ville de Jordanie a été taillée directement dans la falaise de grès rose par les Nabatéens, il y a plus de 2 000 ans.', true],
+  ['moai', '🗿', 'Moaï de l’île de Pâques', 'Près de 900 statues géantes de pierre se dressent sur cette petite île isolée du Pacifique.', true],
+  ['victoria', '💧', 'Chutes Victoria', 'Sur le Zambèze, en Afrique, leur nuage d’embruns se voit à des kilomètres : on les surnomme « la fumée qui gronde ».', true],
+  ['uyuni', '🪞', 'Salar d’Uyuni', 'En Bolivie, ce désert de sel est si plat qu’après la pluie il devient un immense miroir du ciel.', true],
+  ['tour-eiffel', '🗼', 'Tour Eiffel', 'Construite pour l’Exposition universelle de 1889, elle grandit de quelques centimètres l’été : le fer se dilate à la chaleur.'],
+  ['colisee', '🏟️', 'Colisée', 'Cet amphithéâtre de Rome pouvait accueillir environ 50 000 spectateurs, venus voir des combats de gladiateurs.'],
+  ['liberte', '🗽', 'Statue de la Liberté', 'Offerte par la France aux États-Unis en 1886, elle tient debout grâce à une charpente intérieure conçue par Gustave Eiffel.'],
+  ['big-ben', '🕰️', 'Big Ben', 'Big Ben est le surnom de la grosse cloche de la tour de l’horloge du palais de Westminster, à Londres.'],
+  ['mont-saint-michel', '🏰', 'Mont-Saint-Michel', 'Dans sa baie, la marée monte très vite : « à la vitesse d’un cheval au galop », dit le proverbe.'],
+  ['notre-dame', '⛪', 'Notre-Dame de Paris', 'Après l’incendie de 2019, sa charpente et sa flèche ont été reconstruites ; la cathédrale a rouvert en décembre 2024.'],
+  ['sagrada', '🏗️', 'Sagrada Família', 'La basilique imaginée par Gaudí, à Barcelone, est en construction depuis 1882.'],
+  ['opera-sydney', '🎭', 'Opéra de Sydney', 'Ses toits en forme de voiles sont couverts de plus d’un million de tuiles.'],
+  ['corcovado', '🕊️', 'Christ du Corcovado', 'Au-dessus de Rio de Janeiro, au Brésil, cette statue mesure environ 30 m, sans compter son socle.'],
+  ['stonehenge', '🪨', 'Stonehenge', 'Dressées en Angleterre il y a environ 4 500 ans, ces pierres sont alignées sur le lever du Soleil au solstice d’été.'],
+  ['burj-khalifa', '🏙️', 'Burj Khalifa', 'À Dubaï, ce gratte-ciel de plus de 800 m était le plus haut du monde à son ouverture, en 2010.'],
+  ['golden-gate', '🌉', 'Golden Gate', 'Ce pont de San Francisco est peint d’une couleur orange spéciale, pour bien se voir dans le brouillard.'],
+  ['millau', '🛣️', 'Viaduc de Millau', 'Son plus haut pylône culmine à 343 m, plus haut que la tour Eiffel : c’est le pont le plus haut du monde.'],
+  ['versailles', '👑', 'Château de Versailles', 'Sa galerie des Glaces, où se tenaient les fêtes de la cour, compte 357 miroirs.'],
+  ['alhambra', '🏵️', 'Alhambra', 'Ce palais de Grenade, en Espagne, est couvert de milliers de motifs géométriques sculptés.'],
+  ['pise', '📐', 'Tour de Pise', 'Elle penche depuis sa construction, au Moyen Âge, parce que le sol est trop mou d’un côté.'],
+  ['cite-interdite', '🏯', 'Cité interdite', 'À Pékin, le palais des empereurs de Chine compte des centaines de bâtiments ; il est resté fermé au public pendant cinq siècles.'],
+  ['fuji', '🗻', 'Mont Fuji', 'Ce volcan de 3 776 m, le plus haut sommet du Japon, est toujours actif : sa dernière éruption date de 1707.'],
+  ['niagara', '💦', 'Chutes du Niagara', 'Entre le Canada et les États-Unis, plus de deux millions de litres d’eau y tombent chaque seconde.'],
+  ['amazonie', '🌳', 'Forêt amazonienne', 'La plus grande forêt tropicale du monde abrite une part immense des espèces vivantes de la planète.'],
+  ['sahara', '🐫', 'Sahara', 'Le plus grand désert chaud du monde est presque aussi vaste que les États-Unis.'],
+  ['mer-morte', '🧂', 'Mer Morte', 'Son eau est si salée qu’on y flotte sans effort ; ses rives sont les terres émergées les plus basses du globe.'],
+  ['baikal', '🧊', 'Lac Baïkal', 'Ce lac de Sibérie, profond de plus de 1 600 m, est le plus profond du monde.'],
+  ['geysir', '♨️', 'Geysir', 'Le mot « geyser » vient du Grand Geysir, en Islande, une source qui projette de l’eau bouillante dans les airs.'],
+  ['ha-long', '🛶', 'Baie d’Ha Long', 'Au Viêt Nam, la baie compte près de 2 000 îles et îlots de calcaire.'],
+  ['galapagos', '🦭', 'Îles Galápagos', 'Les animaux de ces îles du Pacifique ont aidé Charles Darwin à imaginer sa théorie de l’évolution.'],
+  ['kilimandjaro', '🌄', 'Kilimandjaro', 'Le plus haut sommet d’Afrique (5 895 m) porte des glaciers, tout près de l’équateur.'],
+  ['verdon', '🧗', 'Gorges du Verdon', 'En Provence, leurs falaises dominent jusqu’à 700 m une rivière couleur émeraude.'],
+  ['pilat', '🏖️', 'Dune du Pilat', 'En Gironde, c’est la plus haute dune d’Europe : plus de 100 m de sable.'],
+  ['pont-du-gard', '🌁', 'Pont du Gard', 'Cet aqueduc romain à trois étages, vieux de près de 2 000 ans, apportait l’eau jusqu’à Nîmes.'],
+  ['chambord', '⚜️', 'Château de Chambord', 'Son grand escalier à double vis permet à deux personnes de monter en même temps sans jamais se croiser.'],
+  ['lascaux', '🐂', 'Grotte de Lascaux', 'Ses peintures, vieilles d’environ 17 000 ans, sont si fragiles que l’on visite une copie fidèle.'],
+  ['mont-blanc', '⛷️', 'Mont Blanc', 'Le plus haut sommet des Alpes dépasse 4 800 m ; sa hauteur varie un peu avec l’épaisseur de la glace au sommet.'],
+  ['louvre', '🔷', 'Pyramide du Louvre', 'Cette pyramide de verre, inaugurée en 1989, est l’entrée du musée le plus visité du monde.'],
+  ['atomium', '⚛️', 'Atomium', 'À Bruxelles, ce monument de 1958 représente un cristal de fer agrandi des milliards de fois.'],
+  ['parthenon', '🏛️', 'Parthénon', 'Ce temple d’Athéna, sur l’Acropole d’Athènes, date du Ve siècle av. J.-C. ; il était peint de couleurs vives.'],
+].map(([id, icon, label, fact, rare]) => ({ id: `m-${id}`, icon, label, fact, album: 'merveilles', ...(rare ? { rare: true } : {}) }));
+
 /** Les albums, dans l'ordre : le suivant s'ouvre quand le précédent est complet. */
 export const ALBUMS = [
   { id: 'lumiere', label: 'Album de lumière', icon: '🔆', about: 'des phénomènes de lumière' },
   { id: 'animaux', label: 'Album des animaux extraordinaires', icon: '🐾', about: 'des animaux étonnants' },
+  { id: 'merveilles', label: 'Album des merveilles du monde', icon: '🌍', about: 'des monuments et des paysages extraordinaires' },
 ];
-export const VIGNETTES = [...LUMIERE, ...ANIMAUX];
+export const VIGNETTES = [...LUMIERE, ...ANIMAUX, ...MERVEILLES];
 
 /** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
 export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare', gardien: 'rare', famille: 'rare' };
