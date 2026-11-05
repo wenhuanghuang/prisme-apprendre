@@ -15,6 +15,7 @@ export const MINI_GAMES = [
   { id: 'frise', icon: '⏳', label: 'Frise', href: '#/frise', pitch: 'avant ou après ? place les événements dans l’ordre du temps' },
   { id: 'eclair', icon: '⚡', label: 'Calcul éclair', href: '#/eclair', pitch: '10 calculs de ta classe, et ton record à battre' },
   { id: 'mot', icon: '🔤', label: 'Mot mystère', href: '#/mot', pitch: 'une devinette, un mot à retrouver lettre à lettre' },
+  { id: 'estime', icon: '📏', label: 'Ordre de grandeur', href: '#/estime', pitch: 'combien mesure, pèse ou dure… ? estime, seul ou à deux' },
   { id: 'fluence', icon: '📖', label: 'Lecture chronométrée', href: '#/fluence', pitch: 'une minute de lecture à voix haute, avec un adulte', levels: ['cp', 'ce1', 'ce2', 'cm1', 'cm2'] },
 ];
 /** Les petits jeux d'une classe (la lecture chronométrée est réservée à l'école primaire). */
@@ -122,7 +123,7 @@ const WEEK_ROWS = [
   ['quete', '🗺️', 'quête libre terminée', 'quêtes libres terminées'], ['defi', '🎁', 'défi relevé', 'défis relevés'], ['plateau', '🎲', 'partie de plateau', 'parties de plateau'],
   ['enigme', '🧩', 'énigme du jour', 'énigmes du jour'], ['memoire', '🃏', 'jour de jeu de mémoire', 'jours de jeu de mémoire'], ['frise', '⏳', 'jour de frise chronologique', 'jours de frise chronologique'],
   ['eclair', '⚡', 'jour de calcul éclair', 'jours de calcul éclair'], ['mot', '🔤', 'jour de mot mystère', 'jours de mot mystère'],
-  ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'],
+  ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'], ['estime', '📏', 'jour d’ordre de grandeur', 'jours d’ordre de grandeur'],
 ];
 
 /** Ce qui a été joué ces 7 derniers jours : { type → nombre }. Fonction pure. */

@@ -481,6 +481,7 @@ export async function render(root) {
       h('a', { class: 'btn', href: '#/frise' }, h('span', { 'aria-hidden': 'true' }, '⏳ '), 'Frise chronologique'),
       h('a', { class: 'btn', href: '#/eclair' }, h('span', { 'aria-hidden': 'true' }, '⚡ '), 'Calcul éclair'),
       h('a', { class: 'btn', href: '#/mot' }, h('span', { 'aria-hidden': 'true' }, '🔤 '), 'Mot mystère'),
+      h('a', { class: 'btn', href: '#/estime' }, h('span', { 'aria-hidden': 'true' }, '📏 '), 'Ordre de grandeur'),
       h('div', { class: 'jeu-head-art', 'aria-hidden': 'true' }, die(5).el, photon('joie', 52)))), stage);
 
   const stop = () => { if (stopper) { stopper(); stopper = null; } };
