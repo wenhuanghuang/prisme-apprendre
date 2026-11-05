@@ -36,6 +36,7 @@ import { ARTS_NUMERIQUE } from './arts-numerique.js';
 import { LYCEE_LANGUES } from './lycee-langues.js';
 import { EPS_SCIENCES } from './eps-sciences.js';
 import { COMPLEMENTS } from './complements.js';
+import { LYCEE_OPTIONS } from './lycee-options.js';
 
 export const TRACKS = ['classe', 'approfondissement', 'expert'];
 
@@ -576,7 +577,7 @@ GENERATORS.push(...LYCEE_MATHS, ...LYCEE_PC, ...LYCEE_MATHS_1T, ...LYCEE_PC_1T, 
 // technologie au collège
 GENERATORS.push(...COLLEGE_TECHNO, ...COLLEGE_LANGUES);
 // EMC, du CP à la terminale
-GENERATORS.push(...EMC, ...PHILO, ...ARTS_NUMERIQUE, ...LYCEE_LANGUES, ...EPS_SCIENCES, ...COMPLEMENTS);
+GENERATORS.push(...EMC, ...PHILO, ...ARTS_NUMERIQUE, ...LYCEE_LANGUES, ...EPS_SCIENCES, ...COMPLEMENTS, ...LYCEE_OPTIONS);
 
 for (const p of [...PROBLEMES_MATHS, ...PROBLEMES_MATHS_2, ...PROBLEMES_PC, ...PROBLEMES_PC_2]) GENERATORS.push({ kind: 'probleme', ...p });
 

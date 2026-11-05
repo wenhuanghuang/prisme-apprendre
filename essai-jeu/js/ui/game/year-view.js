@@ -62,10 +62,17 @@ export async function yearPlan(level, subject, clock) {
   if (!data) return [];
   const unitOf = new Map();
   (data.units || []).forEach((u, i) => (u.chapters || []).forEach((id) => unitOf.set(id, { number: i + 1, title: u.title })));
+  // un parcours de référence peut couvrir plusieurs classes (EMC du CP à la terminale, langues du collège au lycée) :
+  // on écarte, s'ils n'ont rien à jouer, les chapitres dont l'identifiant désigne une autre classe (« emc-2024-ce1 »)
+  const levelIds = new Set(((store.catalog && store.catalog.levels) || []).map((l) => levelId(l.id)));
+  const otherLevel = (id) => { const last = levelId(String(id).split('-').pop()); return levelIds.has(last) && last !== level; };
   const chapters = (data.chapters || []).map((ch) => {
     const c = chapterContent(level, subject, ch);
-    return { id: ch.id, title: ch.title, skills: c.skills, unit: unitOf.get(ch.id) || null, stages: c.factsOnly ? 1 : chapterStages(c.n, c.hasGen) };
-  });
+    return { id: ch.id, title: ch.title, skills: c.skills, unit: unitOf.get(ch.id) || null, stages: c.factsOnly ? 1 : chapterStages(c.n, c.hasGen), factsOnly: c.factsOnly };
+  }).filter((c) => c.stages || !otherLevel(c.id));
+  // une année d'un seul chapitre de questions de connaissance (l'EMC d'une classe) : trois étapes plutôt qu'une
+  const playable = chapters.filter((c) => c.stages);
+  if (playable.length === 1 && playable[0].factsOnly) playable[0].stages = 3;
   return planYear(chapters, clock.periods);
 }
 
