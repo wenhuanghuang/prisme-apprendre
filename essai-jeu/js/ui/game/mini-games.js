@@ -4,7 +4,10 @@
  * varier les plaisirs, et les records personnels du calcul éclair.
  */
 import { h } from '../dom.js';
-import { store, recordGameEvent } from '../../app/store.js';
+import { store, recordGameEvent, gameProgress } from '../../app/store.js';
+import { passportOf } from '../../engine/passeport.js';
+import { chestReveal, newVignettes } from './rewards-ui.js';
+import { announce } from '../dom.js';
 import { dayKey, XP } from '../../engine/game.js';
 import { ECLAIR_THEMES, ECLAIR_LEVELS, formatMs } from '../../engine/eclair.js';
 import { allGenerators, coversSkills } from '../../generators/registry.js';
@@ -41,6 +44,33 @@ export async function recordMiniGame(type) {
   if (!star || star.id !== type || playedToday('jeudujour', day)) return false;
   await recordGameEvent('jeudujour', day);
   return true;
+}
+
+/** Le passeport des jeux de la semaine : un tampon par petit jeu différent ; complet, il ouvre un coffre rare. */
+export function passportCard() {
+  const box = h('div', { class: 'passport' });
+  const paint = () => {
+    const games = gamesFor(store.profile && store.profile.level);
+    const p = passportOf((store.states && store.states.game && store.states.game.events) || [], store.now(), games.map((g) => g.id));
+    const open = h('button', { type: 'button', class: 'btn btn--small btn--primary passport-open' }, '🎁 Ouvrir le coffre du passeport');
+    box.replaceChildren(
+      h('p', { class: 'passport-title' }, h('span', { 'aria-hidden': 'true' }, '🛂 '), h('strong', {}, 'Passeport de la semaine'), ` · ${Math.min(p.count, p.need)}/${p.need} tampons`),
+      h('ul', { class: 'passport-stamps', 'aria-label': 'Tampons de la semaine' }, games.map((g) => h('li', { class: p.stamps[g.id] ? 'is-stamped' : '', title: g.label }, h('span', { 'aria-hidden': 'true' }, g.icon), h('span', { class: 'sr-only' }, `${g.label} : ${p.stamps[g.id] ? 'tamponné' : 'pas encore'}`)))),
+      p.opened ? h('p', { class: 'small muted' }, '✅ Coffre ouvert cette semaine. Un nouveau passeport commence lundi.')
+        : p.complete ? open : h('p', { class: 'small muted' }, `Joue à ${p.need} petits jeux différents cette semaine pour ouvrir un coffre rare (+${XP.passeport} points et une vignette).`));
+    open.addEventListener('click', async () => {
+      open.disabled = true;
+      const before = gameProgress();
+      await recordGameEvent('passeport', p.week).catch(() => {});
+      const after = gameProgress();
+      const [vignette] = newVignettes(before, after);
+      const gained = before && after ? after.totalXp - before.totalXp : 0;
+      box.replaceChildren(chestReveal({ title: 'Le coffre du passeport s’ouvre !', points: gained > 0 ? gained : 0, vignette, rare: true, already: gained <= 0 }));
+      announce(`Coffre du passeport ouvert.${vignette ? ` Nouvelle vignette : ${vignette.label}.` : ''}`);
+    });
+  };
+  paint();
+  return box;
 }
 
 /** Liste des petits jeux, avec leur état du jour. */
@@ -124,6 +154,7 @@ const WEEK_ROWS = [
   ['enigme', '🧩', 'énigme du jour', 'énigmes du jour'], ['memoire', '🃏', 'jour de jeu de mémoire', 'jours de jeu de mémoire'], ['frise', '⏳', 'jour de frise chronologique', 'jours de frise chronologique'],
   ['eclair', '⚡', 'jour de calcul éclair', 'jours de calcul éclair'], ['mot', '🔤', 'jour de mot mystère', 'jours de mot mystère'],
   ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'], ['estime', '📏', 'jour d’ordre de grandeur', 'jours d’ordre de grandeur'],
+  ['passeport', '🛂', 'passeport des jeux complété', 'passeports des jeux complétés'],
 ];
 
 /** Ce qui a été joué ces 7 derniers jours : { type → nombre }. Fonction pure. */

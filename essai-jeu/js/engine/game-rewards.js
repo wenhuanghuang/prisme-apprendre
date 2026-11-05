@@ -79,6 +79,8 @@ export const TROPHIES = [
   { id: 'jeudujour-7', icon: '🌟', label: 'Curieux de tout', attests: 'Le jeu du jour joué sept jours différents.', goal: 7, value: (c) => c.jeuxdujour || 0 },
   { id: 'estime-1', icon: '📏', label: 'Bon estimateur', attests: 'Une partie d’ordre de grandeur terminée.', goal: 1, value: (c) => c.estimes || 0 },
   { id: 'estime-7', icon: '🔭', label: 'Œil de lynx', attests: 'Des parties d’ordre de grandeur terminées sept jours différents.', goal: 7, value: (c) => c.estimes || 0 },
+  { id: 'passeport-1', icon: '🛂', label: 'Passeport tamponné', attests: 'Quatre petits jeux différents joués dans la même semaine.', goal: 1, value: (c) => c.passeports || 0 },
+  { id: 'passeport-4', icon: '🧭', label: 'Grand voyageur des jeux', attests: 'Le passeport des jeux complété quatre semaines.', goal: 4, value: (c) => c.passeports || 0 },
   { id: 'memoire-7', icon: '🐘', label: 'Mémoire d’éléphant', attests: 'Des parties de jeu de mémoire terminées sept jours différents.', goal: 7, value: (c) => c.memoires || 0 },
   { id: 'enigme-7', icon: '🧩', label: 'Esprit curieux', attests: 'Sept énigmes du jour résolues.', goal: 7, value: (c) => c.enigmes || 0 },
   { id: 'enigme-30', icon: '🔎', label: 'Grand curieux', attests: 'Trente énigmes du jour résolues.', goal: 30, value: (c) => c.enigmes || 0 },
@@ -270,7 +272,7 @@ export const ALBUMS = [
 export const VIGNETTES = [...LUMIERE, ...ANIMAUX, ...MERVEILLES];
 
 /** Évènements qui ouvrent un coffre, et la sorte de vignette qu’il contient. */
-export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare', gardien: 'rare', famille: 'rare' };
+export const CHEST_EVENTS = { defi: 'ordinaire', quete: 'rare', victoire: 'rare', periode: 'rare', annee: 'rare', gardien: 'rare', famille: 'rare', passeport: 'rare' };
 
 function hashId(s) {
   let x = 2166136261;

@@ -10,7 +10,7 @@ import { gameSubjects, nearestLevel } from '../game/deck.js';
 import { subjLabel } from './exercices.js';
 import { familyCard } from '../game/family-card.js';
 import { yearSummary } from '../game/year-view.js';
-import { miniGamesList } from '../game/mini-games.js';
+import { miniGamesList, passportCard } from '../game/mini-games.js';
 
 /** Carte « Ma quête de l'année » : la matière la plus récemment jouée (sinon les maths), son prochain chapitre. */
 async function questCard(slot) {
@@ -155,7 +155,8 @@ export function render(root) {
           h('p', { class: 'small' }, h('strong', {}, 'Plateau : '), 'la course au Prisme, seul contre Photon ou à plusieurs, chacun avec les questions de sa classe.'),
           h('div', { class: 'btn-row' }, h('a', { class: 'btn btn--primary btn--small', href: '#/exercices' }, '🗺️ Partir en quête'), h('a', { class: 'btn btn--ghost btn--small', href: '#/jeu' }, '🎲 Plateau')),
           h('p', { class: 'small', style: { margin: '12px 0 4px' } }, h('strong', {}, 'Petits jeux'), ' : chacun rapporte ses points une fois par jour.'),
-          miniGamesList()),
+          miniGamesList(),
+          passportCard()),
         lastLesson ? h('div', { class: 'card side-card' }, h('h3', {}, 'Reprendre'), h('p', {}, lastLesson.title), h('a', { class: 'btn btn--small', href: `#/lecon/${lastLesson.id}` }, 'Continuer la leçon')) : null,
         h('div', { class: 'card side-card' }, h('h3', {}, 'Badges en cours'),
           h('div', { class: 'grid' }, b.thematic.filter((x) => x.value > 0).slice(0, 3).map((x) => h('div', {},
