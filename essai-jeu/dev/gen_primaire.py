@@ -453,7 +453,7 @@ for fr, a in [('la tête', ['head', 'the head']), ('la main', ['hand', 'the hand
 for fr, a in [('bonjour', ['hello', 'hi', 'good morning']), ('au revoir', ['goodbye', 'bye', 'bye-bye']), ('merci', ['thank you', 'thanks']), ('s’il te plaît', 'please'), ('oui', 'yes'), ('non', 'no')]:
     en(fr, a, 'politesse')
 skill('lv.p.anglais-lexique', 'lv', 'Anglais : premiers mots (couleurs, nombres, animaux, famille, jours, corps, politesse)', 'cp')
-add({'id': 'en-p-vocabulaire', 'label': 'Anglais : mes premiers mots', 'subject': 'lv', 'levels': ['cp', 'ce1', 'ce2', 'cm1', 'cm2'], 'skill': 'lv.p.anglais-lexique', 'kind': 'vocab', 'difficulty': 1,
+add({'id': 'en-p-vocabulaire', 'label': 'Anglais : mes premiers mots', 'subject': 'lv', 'levels': ['cp', 'ce1', 'ce2', 'cm1', 'cm2', '6e'], 'skill': 'lv.p.anglais-lexique', 'kind': 'vocab', 'difficulty': 1,
      'chapters': ['lv-c2c3-2026-ce', 'lv-c2c3-2026-co', 'lv-2020-activites'],
      'description': 'Couleurs, nombres, animaux, famille, jours de la semaine, corps et politesse, avec écoute en anglais.',
      'options': [{'id': 'theme', 'label': 'Thème', 'values': [{'id': 'tous', 'label': 'Tous les thèmes'}] + [{'id': t, 'label': l} for t, l in [('couleurs', 'Les couleurs'), ('nombres', 'Les nombres'), ('animaux', 'Les animaux'), ('famille', 'La famille'), ('jours', 'Les jours'), ('corps', 'Le corps'), ('politesse', 'Dire bonjour, merci…')]]},
@@ -993,6 +993,40 @@ UE = [('L’Allemagne', 'Berlin'), ('L’Autriche', 'Vienne'), ('La Belgique', '
 pairs_gen('hg-ue-capitales', 'hg', ['3e', 'tle'], 'hg.ue-capitales', 'Connaître les États de l’Union européenne et leur capitale', 'L’Union européenne : les États et leur capitale',
           'Associer les États de l’Union européenne à leur capitale (le Luxembourg, dont la capitale porte le même nom, est mis à part).', ['3e-hg-g3-ue', '3e-hg-h2-europe', 'tle-hg-g3-politiques', 'tle-hg-g3-ouverture'],
           'Associe chaque État à sa capitale.', UE, 'État', 'Capitale', 5)
+
+# ---------------- Associations : 6e et lycée (jeu de mémoire, quête de l'année) ----------------
+DIEUX = [('Zeus', 'Jupiter'), ('Héra', 'Junon'), ('Poséidon', 'Neptune'), ('Athéna', 'Minerve'), ('Aphrodite', 'Vénus'), ('Arès', 'Mars'),
+         ('Hermès', 'Mercure'), ('Artémis', 'Diane'), ('Héphaïstos', 'Vulcain'), ('Déméter', 'Cérès'), ('Hadès', 'Pluton'), ('Dionysos', 'Bacchus')]
+pairs_gen('hg-6e-dieux', 'hg', ['6e'], 'hg.6e.dieux', 'Connaître les dieux grecs et leurs équivalents romains', 'Dieux grecs et dieux romains',
+          'Associer chaque dieu grec à son équivalent romain.', ['6e-hg-cites-grecques', '6e-hg-rome', '6e-hg-monotheisme'],
+          'Associe chaque dieu grec au dieu romain qui lui correspond.', DIEUX, 'Dieu grec', 'Dieu romain', 5)
+DOMAINES = [('Zeus', 'roi des dieux, maître de la foudre'), ('Poséidon', 'dieu de la mer et des tremblements de terre'), ('Hadès', 'dieu des Enfers, le monde des morts'),
+            ('Athéna', 'déesse de la sagesse et de la guerre juste'), ('Aphrodite', 'déesse de l’amour et de la beauté'), ('Arès', 'dieu de la guerre violente'),
+            ('Hermès', 'messager des dieux, aux sandales ailées'), ('Héphaïstos', 'dieu du feu et de la forge'), ('Artémis', 'déesse de la chasse'),
+            ('Apollon', 'dieu des arts, de la musique et de la lumière'), ('Déméter', 'déesse des moissons et des saisons'), ('Dionysos', 'dieu de la vigne et du théâtre')]
+pairs_gen('fr-6e-dieux', 'francais', ['6e'], 'fr.6e.mythes', 'Connaître les dieux de la mythologie grecque', 'Les dieux grecs et leur domaine',
+          'Associer chaque dieu de l’Olympe à son domaine, pour lire les récits de création et les mythes.', ['6e-f-origines', '6e-f-monstres', '6e-f-aventure'],
+          'Associe chaque dieu à son domaine.', DOMAINES, 'Dieu', 'Domaine', 5)
+UNITES_P = [('1 km', '1 000 m'), ('1 m', '100 cm'), ('1 cm', '10 mm'), ('1 kg', '1 000 g'), ('1 t', '1 000 kg'), ('1 L', '100 cL'),
+            ('1 cL', '10 mL'), ('1 h', '60 min'), ('1 min', '60 s'), ('1 jour', '24 h'), ('1 dm', '10 cm'), ('1 m²', '100 dm²')]
+pairs_gen('maths-p-unites', 'maths', ['cm1', 'cm2', '6e'], 'maths.p.unites', 'Connaître les relations entre unités de mesure', 'Unités de mesure : les équivalences',
+          'Associer chaque unité à sa valeur dans une unité plus petite (longueurs, masses, contenances, durées, aires).', ['cm1-m-grandeurs', 'cm1-m-durees', 'cm2-m-aires', 'cm2-m-durees', '6e-m-durees', '6e-m-perimetres-aires'],
+          'Associe chaque unité à ce qu’elle vaut.', UNITES_P, 'Unité', 'Vaut', 5)
+ETATS = [('La fusion', 'solide → liquide'), ('La solidification', 'liquide → solide'), ('La vaporisation', 'liquide → gaz'), ('La liquéfaction (ou condensation)', 'gaz → liquide'),
+         ('La sublimation', 'solide → gaz'), ('La condensation solide', 'gaz → solide')]
+pairs_gen('st-6e-etats', 'sciences-techno', ['6e'], 'st.6e.changements-etat', 'Nommer les changements d’état de la matière', 'Les changements d’état',
+          'Associer chaque changement d’état à son passage (la glace qui fond, l’eau qui bout, la buée sur une vitre…).', ['6e-st-changements-etat'],
+          'Associe chaque changement d’état à ce qui se passe.', ETATS, 'Changement d’état', 'Passage', 5)
+MOUVEMENTS = [('Montaigne', 'l’humanisme'), ('Ronsard', 'la Pléiade'), ('Racine', 'le classicisme'), ('Voltaire', 'les Lumières'), ('Victor Hugo', 'le romantisme'),
+              ('Flaubert', 'le réalisme'), ('Zola', 'le naturalisme'), ('Mallarmé', 'le symbolisme'), ('André Breton', 'le surréalisme'), ('Ionesco', 'le théâtre de l’absurde')]
+pairs_gen('lf-l-mouvements', 'francais', ['2nde', '1re'], 'lf.l.mouvements', 'Situer un écrivain dans son mouvement littéraire', 'Écrivains et mouvements littéraires',
+          'Associer de grands écrivains au mouvement littéraire auquel on les rattache.', ['2nde-f-poesie', '2nde-f-roman', '2nde-f-theatre', '1re-f-poesie', '1re-f-roman', '1re-f-theatre', '1re-f-idees'],
+          'Associe chaque écrivain à son mouvement.', MOUVEMENTS, 'Écrivain', 'Mouvement', 5)
+SIGLES = [('HTML', 'le langage des pages web'), ('URL', 'l’adresse d’une ressource sur le Web'), ('IP', 'l’adresse d’une machine sur un réseau'), ('DNS', 'l’annuaire qui traduit les noms de domaine'),
+          ('HTTP', 'le protocole d’échange des pages web'), ('GPS', 'la localisation par satellites'), ('CSV', 'un tableau de données en texte'), ('RGPD', 'le règlement européen sur les données personnelles'),
+          ('Wi-Fi', 'une liaison réseau sans fil'), ('EXIF', 'les métadonnées d’une photo')]
+pairs_gen('snt-l-sigles', 'snt', ['2nde'], 'snt.l.sigles', 'Connaître les sigles du numérique', 'Les sigles du numérique',
+          'Associer les sigles de SNT à ce qu’ils désignent.', ['snt-2nde-2019-themes'], 'Associe chaque sigle à ce qu’il désigne.', SIGLES, 'Sigle', 'Ce que c’est', 5)
 
 # ---------------- Écriture ----------------
 os.makedirs(GEN_DIR, exist_ok=True)

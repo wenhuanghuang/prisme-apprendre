@@ -129,6 +129,10 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **Nouvelles associations** (quête de l'année et jeu de mémoire) : dieux grecs et dieux romains, les dieux de l'Olympe
+  et leur domaine (6e, histoire et français), unités de mesure et leurs équivalences (CM1, CM2, 6e), changements d'état
+  (6e), écrivains et mouvements littéraires (2nde, 1re), sigles du numérique (SNT) ; le vocabulaire d'anglais du
+  primaire sert aussi en 6e. Le jeu de mémoire passe de 3 à 8 thèmes en 6e.
 - **Passeport des jeux** (page Aujourd'hui, sous les petits jeux) : chaque semaine, un tampon par petit jeu différent
   joué ; quatre tampons ouvrent le coffre du passeport (+20 points et une vignette rare, une fois par semaine) : on
   récompense la variété plutôt que la répétition. Trophées « Passeport tamponné » et « Grand voyageur des jeux »
@@ -288,4 +292,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (572 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (579 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
