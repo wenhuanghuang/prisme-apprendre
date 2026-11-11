@@ -129,6 +129,14 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **« Le plus grand ! »** (`#/compare`, liens depuis le plateau et la page Aujourd'hui) : deux nombres ou deux calculs,
+  on touche le plus grand. Les paires suivent la classe : nombres jusqu'à 100 au CP, sommes et nombres jusqu'à 1 000 au
+  CE1, tables au CE2, décimaux qui piègent (2,5 et 2,45), fractions et pourcentages en CM et en 6e, relatifs en 5e,
+  puissances et écriture scientifique en 4e, racines en 3e, exponentielle et logarithme au lycée (jamais d'égalité).
+  Seul : 15 manches, un combo qui monte avec les bonnes réponses, et chaque erreur montre les deux valeurs. À deux,
+  en buzzer sur le même appareil : chacun ses deux boutons (ou A/Z et K/L au clavier), le premier qui a juste marque,
+  une erreur donne le point à l'autre. +10 points une fois par jour, trophées « Sens des nombres » et « Coup d'œil
+  d'aigle » (`js/engine/compare.js`, `js/ui/views/compare.js`).
 - **Comptes protégés (étape 1 : sur l'appareil)** : chaque enfant a son compte, qu'il peut protéger par un code secret,
   choisi à la création du compte ou dans « Mon compte » (`#/compte`, en cliquant sur son nom en haut à droite) : une
   suite de 4 images (pour les petits lecteurs), 4 chiffres, ou un mot de passe. Le code n'est jamais enregistré en
@@ -300,12 +308,12 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   4 étapes, un défi garde un coffre (relevé = réussi sans la correction, au plus un indice ou un 2e essai) ;
   au bout, le grand coffre (au moins la moitié des étoiles). Sauvegardée par profil, reprise au retour.
 - **Jeu de plateau** (`#/jeu`) : 1 à 4 joueurs sur le même ordinateur, chacun avec les questions de sa classe.
-- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10, lecture chronométrée 10, ordre de grandeur 10, bonus du jeu du jour 5, passeport des jeux 20 ; une fois par
+- **Récompenses** : points (défi 15, quête 40, partie 15, victoire +20, chapitre 20, période 50, année 100, gardien 30, famille 25, mémoire 10, frise 10, calcul éclair 10, mot mystère 10, lecture chronométrée 10, ordre de grandeur 10, le plus grand 10, bonus du jeu du jour 5, passeport des jeux 20 ; une fois par
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte}.js`, `js/ui/{compte-ui,auto-lock}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare}.js`, `js/ui/{compte-ui,auto-lock}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -313,4 +321,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (583 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (596 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
