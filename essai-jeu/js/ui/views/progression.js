@@ -121,6 +121,7 @@ function rules() {
       row('Lecture chronométrée à voix haute (une fois par jour)', `${XP.fluence} points`),
       row('Partie d’ordre de grandeur terminée (une fois par jour)', `${XP.estime} points`),
       row('Partie de « Le plus grand ! » terminée (une fois par jour)', `${XP.compare} points`),
+      row('Partie de « Vrai ou faux ? » terminée (une fois par jour)', `${XP.vraifaux} points`),
       row('Passeport des jeux : quatre petits jeux différents dans la semaine (une fois par semaine) : un coffre rare', `${XP.passeport} points`),
       row('Bonus : jouer au « jeu du jour » mis en avant sur la page Aujourd’hui', `+ ${XP.jeudujour} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),

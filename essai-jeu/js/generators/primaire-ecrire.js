@@ -11,13 +11,21 @@ const order = (prompt, steps, label, hint, solution) => ({
 });
 
 // phrases à l'ordre naturel unique (pas de complément déplaçable)
-const PHRASES_CP = ['Le chat boit du lait.', 'Ma sœur lit un livre.', 'Le bébé dort.', 'Papa coupe le pain.', 'Les oiseaux chantent.', 'Tom mange une pomme.', 'La maîtresse ouvre la porte.', 'Le chien court vite.'];
+const PHRASES_CP = ['Le chat boit du lait.', 'Ma sœur lit un livre.', 'Le bébé dort.', 'Papa coupe le pain.', 'Les oiseaux chantent.', 'Tom mange une pomme.', 'La maîtresse ouvre la porte.', 'Le chien court vite.',
+  'La poule pond un œuf.', 'Le lapin mange une carotte.', 'Maman lave la voiture.', 'Léo dessine un bateau.', 'La vache donne du lait.', 'Le soleil brille.',
+  'Lina range sa chambre.', 'Le poisson nage.', 'Papi plante des fleurs.', 'Le train roule.'];
 const PHRASES_CE = ['Le petit garçon regarde les étoiles.', 'Ma grand-mère prépare une tarte aux pommes.', 'Les enfants construisent une cabane en bois.', 'Le renard roux guette une poule.',
-  'Notre voisin répare son vieux vélo.', 'La fusée décolle vers la Lune.', 'Le boulanger sort les croissants du four.', 'Mon frère cherche ses chaussures.'];
+  'Notre voisin répare son vieux vélo.', 'La fusée décolle vers la Lune.', 'Le boulanger sort les croissants du four.', 'Mon frère cherche ses chaussures.',
+  'Les pompiers éteignent un grand incendie.', 'Ma tante conduit un camion rouge.', 'Les élèves visitent un musée.', 'Un écureuil cache des noisettes.',
+  'Le jardinier arrose ses tomates.', 'Ma cousine joue du violon.', 'Le pêcheur attrape un gros poisson.', 'Les hirondelles partent en Afrique.'];
 const RECITS = [
   ['Il était une fois un petit lapin qui vivait au bord de la forêt.', 'Un matin, il découvrit que sa réserve de carottes avait disparu.', 'Il chercha partout et demanda de l’aide à ses amis.', 'Le hérisson remarqua des traces qui menaient au terrier du blaireau.', 'Le blaireau rendit les carottes et tous partagèrent un grand repas.'],
   ['Léa adorait jouer au ballon dans le jardin.', 'Un jour, son ballon passa par-dessus la haie du voisin.', 'Elle sonna, mais personne ne répondit.', 'Le soir, le voisin rapporta le ballon avec un grand sourire.', 'Depuis, ils jouent souvent ensemble.'],
   ['Le roi vivait heureux dans son château.', 'Mais un dragon s’installa dans la montagne et effraya tout le royaume.', 'Plusieurs chevaliers tentèrent de le chasser, sans succès.', 'Une jeune bergère eut l’idée d’offrir au dragon une montagne de gâteaux.', 'Le dragon, rassasié et ravi, devint l’ami du royaume.'],
+  ['Chaque matin, Nino promenait son chien Biscuit au parc.', 'Un jour, Biscuit s’échappa en courant après un écureuil.', 'Nino l’appela partout et demanda aux passants s’ils l’avaient vu.', 'Enfin, il entendit un aboiement près du kiosque à musique.', 'Depuis, Nino tient toujours bien la laisse de Biscuit.'],
+  ['Dans un petit village vivait une sorcière très gentille.', 'Un soir, elle rata une potion et transforma son chat en citrouille.', 'Elle relut tous ses grimoires sans trouver la bonne formule.', 'Une vieille chouette lui souffla enfin le mot magique à l’oreille.', 'Le chat redevint chat, et la sorcière range désormais ses potions avec soin.'],
+  ['Sami et Inès préparaient le spectacle de fin d’année.', 'La veille, Inès tomba malade et perdit sa voix.', 'Sami chercha comment jouer la pièce sans elle.', 'Il eut l’idée de lui faire mimer son rôle pendant qu’il lisait le texte.', 'Le public applaudit très fort ce duo inattendu.'],
+  ['Un petit nuage voyageait tranquillement au-dessus des champs.', 'Soudain, il vit que toutes les fleurs du jardin de Lucie étaient fanées.', 'Il essaya de pleuvoir, mais il était bien trop petit.', 'Il appela ses amis les nuages, qui se rassemblèrent au-dessus du jardin.', 'Une belle pluie tomba et les fleurs se redressèrent.'],
 ];
 const ETAPES = ['situation initiale', 'élément perturbateur', 'péripéties', 'élément de résolution', 'situation finale'];
 

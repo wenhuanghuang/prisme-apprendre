@@ -9,7 +9,7 @@ import { LYCEE_MATHS } from './lycee-maths.js';
 
 const reuse = (gens, id) => { const g = gens.find((x) => x.id === id); return (rand, o, tier) => g.make(rand, o, tier); };
 
-const EN_PHRASES = ['My name is Tom.', 'I am eight years old.', 'I like apples.', 'She has got a blue bike.', 'We play football on Sunday.', 'The cat is under the table.', 'I live in a small house.', 'My favourite colour is green.'];
+const EN_PHRASES = ['My name is Tom.', 'I am eight years old.', 'I like apples.', 'She has got a blue bike.', 'We play football on Sunday.', 'The cat is under the table.', 'I live in a small house.', 'My favourite colour is green.', 'I have got a little sister.', 'He is my best friend.', 'The dog is in the garden.', 'We go to school by bus.', 'I can swim very fast.', 'My mum likes chocolate cake.', 'It is cold today.', 'They are playing in the park.'];
 const DIALOGUES = [
   ['« How are you? » — Que peux-tu répondre ?', 'I’m fine, thank you.', ['My name is Lucy.', 'I’m ten.', 'Goodbye!'], '« How are you? » demande comment tu vas.'],
   ['« What’s your name? » — Que peux-tu répondre ?', 'My name is Léo.', ['I’m fine.', 'I’m from France.', 'Yes, please.'], '« What’s your name? » demande ton prénom.'],
@@ -19,6 +19,12 @@ const DIALOGUES = [
   ['Comment dit-on « Merci » en anglais ?', 'Thank you.', ['Please.', 'Sorry.', 'Hello.'], '« Please » = s’il te plaît ; « Sorry » = pardon ; « Hello » = bonjour.'],
   ['Ton ami anglais dit « I’m hungry ». Que veut-il dire ?', 'Il a faim.', ['Il a froid.', 'Il est fatigué.', 'Il est content.'], 'hungry = qui a faim ; cold = froid ; tired = fatigué ; happy = content.'],
   ['« Can I have an apple, please? » — Que demande l’enfant ?', 'une pomme', ['une orange', 'un verre d’eau', 'un crayon'], 'apple = pomme.'],
+  ['« Do you like pizza? » — Que peux-tu répondre ?', 'Yes, I do.', ['I’m ten.', 'It’s red.', 'Goodbye!'], 'On répond « Yes, I do » ou « No, I don’t ».'],
+  ['« What colour is it? » — Que peux-tu répondre ?', 'It’s green.', ['It’s Monday.', 'I’m fine.', 'Yes, please.'], 'colour = couleur.'],
+  ['« What time is it? » — Que peux-tu répondre ?', 'It’s three o’clock.', ['It’s sunny.', 'I’m nine.', 'It’s a cat.'], 'On donne l’heure : « It’s … o’clock ».'],
+  ['« Have you got a pet? » — Que peux-tu répondre ?', 'Yes, I’ve got a dog.', ['I like blue.', 'I’m from Paris.', 'It’s Friday.'], 'pet = animal de compagnie.'],
+  ['Comment dit-on « Bonne nuit » en anglais ?', 'Good night!', ['Good morning!', 'Hello!', 'See you!'], 'Good morning = bonjour (le matin) ; See you = à bientôt.'],
+  ['Ton ami dit « I’m tired ». Que veut-il dire ?', 'Il est fatigué.', ['Il a faim.', 'Il a chaud.', 'Il est triste.'], 'tired = fatigué ; hungry = qui a faim ; hot = chaud ; sad = triste.'],
 ];
 const words = (s) => s.split(' ');
 

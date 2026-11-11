@@ -3,6 +3,7 @@
  * vie, phases de la Lune, moments de la journée et saisons), orientation sur une carte. Rattachés aux chapitres.
  */
 import { pick, sample, text } from './gen-util.js';
+import { qcm } from './primaire-savoirs.js';
 
 const LABEL = { cp: 'CP', ce1: 'CE1', ce2: 'CE2', cm1: 'CM1', cm2: 'CM2' };
 const GEN = [];
@@ -83,6 +84,10 @@ const CYCLES = [
   ['de la poule', ['L’œuf', 'Le poussin', 'La jeune poule', 'La poule adulte']],
   ['d’une plante à fleurs', ['La graine', 'La germination : la graine s’ouvre', 'La jeune plante', 'La plante en fleurs', 'Le fruit et ses graines']],
   ['de l’être humain', ['Le bébé', 'L’enfant', 'L’adolescent', 'L’adulte', 'La personne âgée']],
+  ['de la coccinelle', ['L’œuf', 'La larve', 'La nymphe', 'La coccinelle adulte']],
+  ['du moustique', ['L’œuf, posé sur l’eau', 'La larve, qui vit dans l’eau', 'La nymphe', 'Le moustique adulte, qui vole']],
+  ['du haricot', ['La graine de haricot', 'La germination', 'La jeune pousse et ses premières feuilles', 'La plante en fleurs', 'La gousse et ses graines']],
+  ['de l’abeille', ['L’œuf, dans une alvéole', 'La larve', 'La nymphe', 'L’abeille adulte']],
 ];
 add({
   id: 'qlm-p-cycles', subject: 'qlm', facts: true, label: 'Les cycles de vie', skill: 'qlm.p.cycles', levels: ['ce1', 'ce2'],
@@ -94,12 +99,22 @@ add({
   },
 });
 
+const MOON_Q = [
+  ['La Lune brille parce qu’elle…', 'renvoie la lumière du Soleil', ['produit sa propre lumière', 'est en feu', 'est couverte de volcans en éruption'], 'La Lune n’a pas de lumière à elle : elle est éclairée par le Soleil.'],
+  ['Combien de temps faut-il pour revoir la même phase de la Lune ?', 'environ un mois (29 jours et demi)', ['un jour', 'une semaine', 'un an'], 'C’est l’origine du mot « mois ».'],
+  ['Pourquoi voit-on toujours la même face de la Lune ?', 'elle tourne sur elle-même en autant de temps qu’elle tourne autour de la Terre', ['elle ne tourne pas du tout', 'l’autre face est toujours dans le noir', 'la Terre la cache'], 'Les deux mouvements durent environ 27 jours.'],
+  ['À la pleine lune, la Lune est…', 'entièrement éclairée vue de la Terre', ['invisible', 'éclairée à moitié', 'deux fois plus grosse'], 'Le Soleil, la Terre et la Lune sont presque alignés, la Terre au milieu.'],
+  ['Le premier homme à marcher sur la Lune, en 1969, s’appelle…', 'Neil Armstrong', ['Youri Gagarine', 'Thomas Pesquet', 'Christophe Colomb'], 'Gagarine fut le premier humain dans l’espace, en 1961.'],
+  ['Les marées sont surtout causées par…', 'l’attraction de la Lune (et du Soleil)', ['le vent', 'les bateaux', 'la pluie'], 'La Lune attire l’eau des océans : la mer monte et descend environ deux fois par jour.'],
+  ['Pourquoi n’y a-t-il ni vent ni pluie sur la Lune ?', 'elle n’a presque pas d’atmosphère', ['elle est trop petite pour avoir de l’eau', 'elle est trop chaude', 'il y fait toujours nuit'], 'Sans air ni vent, les traces de pas des astronautes y sont restées intactes.'],
+];
 const MOON = ['La nouvelle lune (on ne la voit pas)', 'Le premier croissant', 'Le premier quartier', 'La lune gibbeuse croissante', 'La pleine lune', 'La lune gibbeuse décroissante', 'Le dernier quartier', 'Le dernier croissant'];
 add({
-  id: 'st-p-lune', subject: 'sciences-techno', facts: true, label: 'Les phases de la Lune', skill: 'sciences-techno.p.lune', levels: ['cm1', 'cm2'],
-  description: 'Remettre dans l’ordre les phases de la Lune au cours d’un mois lunaire (environ 29 jours et demi).',
+  id: 'st-p-lune', subject: 'sciences-techno', facts: true, label: 'La Lune : ses phases et ses mystères', skill: 'sciences-techno.p.lune', levels: ['cm1', 'cm2'],
+  description: 'Remettre dans l’ordre les phases de la Lune au cours d’un mois lunaire, et comprendre pourquoi elle brille, sa face cachée, les marées.',
   chapters: ['cm1-st-lune', 'cm2-st-lumiere'],
   make(rand, lv, hard) {
+    if (rand() < 0.5) return qcm(rand, pick(rand, MOON_Q));
     const n = hard ? 6 : 4;
     const start = Math.floor(rand() * (MOON.length - n + 1));
     return { ...order(`Range ces phases de la Lune dans l’ordre où on les observe au cours d’un mois.`, MOON.slice(start, start + n), 'de la première à la dernière observée', 'Après la nouvelle lune, la partie éclairée que l’on voit grandit jusqu’à la pleine lune, puis diminue.'),
@@ -110,12 +125,16 @@ add({
 const DAY_MOMENTS = ['Le matin', 'Le midi', 'L’après-midi', 'Le soir', 'La nuit'];
 const SEASONS = ['Le printemps', 'L’été', 'L’automne', 'L’hiver'];
 const WEEK = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+const MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+const MEALS = ['Le petit-déjeuner', 'Le déjeuner', 'Le goûter', 'Le dîner'];
 add({
-  id: 'hp-ordre-temps', subject: 'hg', facts: true, label: 'Remettre le temps dans l’ordre : journée, semaine, saisons', skill: 'hg.p.calendrier', levels: ['cp', 'ce1'],
-  description: 'Ranger les moments de la journée, des jours de la semaine, les saisons.',
+  id: 'hp-ordre-temps', subject: 'hg', facts: true, label: 'Remettre le temps dans l’ordre : journée, semaine, mois, saisons', skill: 'hg.p.calendrier', levels: ['cp', 'ce1'],
+  description: 'Ranger les moments de la journée, les repas, des jours de la semaine, des mois, les saisons.',
   chapters: ['cp-hg-calendrier', 'cp-hg-jour-nuit-saisons', 'cp-hg-evenements', 'ce1-hg-rythmes', 'ce1-hg-situer-evenements'],
   make(rand) {
-    const k = pick(rand, ['jour', 'semaine', 'saisons']);
+    const k = pick(rand, ['jour', 'semaine', 'saisons', 'mois', 'repas']);
+    if (k === 'mois') { const st = Math.floor(rand() * 9); return order('Range ces mois dans l’ordre de l’année.', MONTHS.slice(st, st + 4), 'dans l’ordre de l’année', 'Récite les mois : janvier, février, mars…'); }
+    if (k === 'repas') return order('Range les repas de la journée, du matin au soir.', MEALS, 'du matin au soir', 'Le premier repas se prend au réveil.');
     if (k === 'jour') return order('Range les moments de la journée, du matin à la nuit.', DAY_MOMENTS, 'du matin à la nuit', 'La journée commence quand on se réveille.');
     if (k === 'saisons') return order('Range les saisons dans l’ordre, en commençant par le printemps.', SEASONS, 'à partir du printemps', 'Après le printemps vient la saison la plus chaude.');
     const start = Math.floor(rand() * 4);
@@ -134,6 +153,12 @@ const ORIENT = [
   ['De quel côté de l’horizon le Soleil se lève-t-il, à peu près ?', ['à l’est', 'l’est', 'est', "l'est", "à l'est"]],
   ['De quel côté de l’horizon le Soleil se couche-t-il, à peu près ?', ['à l’ouest', 'l’ouest', 'ouest', "l'ouest", "à l'ouest"]],
   ['En France, à midi, de quel côté se trouve le Soleil ?', ['au sud', 'le sud', 'sud']],
+  ['Quel point cardinal est à l’opposé de l’ouest ?', ['l’est', 'est', "l'est"]],
+  ['Quel point cardinal est à l’opposé du sud ?', ['le nord', 'nord']],
+  ['Quel instrument indique le nord grâce à une aiguille aimantée ?', ['une boussole', 'la boussole', 'boussole']],
+  ['Quelle direction se trouve entre le nord et l’est ?', ['le nord-est', 'nord-est', 'nord est']],
+  ['Quelle direction se trouve entre le sud et l’ouest ?', ['le sud-ouest', 'sud-ouest', 'sud ouest']],
+  ['La nuit, quelle étoile indique à peu près la direction du nord ?', ['l’étoile polaire', 'étoile polaire', "l'étoile polaire", 'la polaire', 'polaire']],
 ];
 add({
   id: 'hp-orientation', subject: 'hg', label: 'S’orienter : les points cardinaux', skill: 'hg.p.orientation', levels: ['ce1', 'ce2', 'cm1'], facts: true,

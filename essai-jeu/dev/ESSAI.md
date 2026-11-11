@@ -137,6 +137,27 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   en buzzer sur le même appareil : chacun ses deux boutons (ou A/Z et K/L au clavier), le premier qui a juste marque,
   une erreur donne le point à l'autre. +10 points une fois par jour, trophées « Sens des nombres » et « Coup d'œil
   d'aigle » (`js/engine/compare.js`, `js/ui/views/compare.js`).
+- **« Vrai ou faux ? »** (`#/vraifaux`, liens depuis le plateau et la page Aujourd'hui) : une question de la classe et
+  une réponse proposée, ou deux éléments qui vont peut-être ensemble (un pays et sa capitale, un mot et sa traduction,
+  une œuvre et son mouvement…) : vrai ou faux ? Les cartes viennent de toutes les banques de questions de la classe
+  (sciences, histoire-géographie, EMC, EPS, numérique, langues, et au lycée SVT, SES, philosophie, spécialités…) et des
+  associations ; on peut aussi choisir une seule matière. Une carte sur deux est vraie, les pièges sont les vrais
+  distracteurs des exercices, et les questions qui n'ont plus de sens hors de leur exercice (« d'après le texte… »,
+  « quelle affirmation est fausse ? ») sont écartées. Après chaque carte : la bonne réponse et son explication. Seul :
+  12 cartes, un combo, des « réponses éclair » (moins de 4 secondes), et « À retenir » à la fin pour les erreurs. À
+  deux, en buzzer (A/Z et K/L au clavier). +10 points une fois par jour, trophées « Détecteur de pièges » et « Esprit
+  critique » (`js/engine/vraifaux.js`, `js/ui/views/vraifaux.js`).
+- **Encore plus d'exercices** : de nouvelles questions dans les banques les plus courtes. Primaire : le système solaire
+  et les saisons, la digestion et la respiration, les mesures (règle, chronomètre, masses), les cinq sens et les
+  réflexes, d'où viennent le fromage, le beurre, le sucre, le papier et le verre, la famille (neveu, nièce, oncle),
+  l'eau (buée, nuages, évaporation, eau potable), 6 petits textes et 5 textes plus longs à comprendre, 20 phrases et
+  4 récits à remettre dans l'ordre, 4 nouveaux cycles de vie (coccinelle, moustique, haricot, abeille), les mois et
+  les repas à ranger, la boussole et les directions intermédiaires, la Lune (pourquoi elle brille, sa face cachée,
+  les marées, Neil Armstrong) en plus de ses phases, des figures (octogone, angle plat, tour complet, axes du losange)
+  et des solides (pyramide à base triangulaire, prisme hexagonal), des phrases et dialogues d'anglais. Collège et
+  lycée : le numérique et l'IA (hypertrucages, « hallucinations », mots de passe, droit à l'image, 3018, sobriété),
+  la logique (contraposée, négation de « il existe » et de « et », condition suffisante, ensembles de nombres) et les
+  modaux anglais. Correction : en seconde, « sur quel intervalle f(x) = ax est-elle positive ? » n'avait que deux choix.
 - **Comptes protégés (étape 1 : sur l'appareil)** : chaque enfant a son compte, qu'il peut protéger par un code secret,
   choisi à la création du compte ou dans « Mon compte » (`#/compte`, en cliquant sur son nom en haut à droite) : une
   suite de 4 images (pour les petits lecteurs), 4 chiffres, ou un mot de passe. Le code n'est jamais enregistré en
@@ -312,8 +333,8 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare}.js`, `js/ui/{compte-ui,auto-lock}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux}.js`, `js/ui/{compte-ui,auto-lock}.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -321,4 +342,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (596 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (602 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

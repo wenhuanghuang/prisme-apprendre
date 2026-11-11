@@ -307,7 +307,7 @@ add({
     if (k === 'affine') {
       const a = nz(rand, -5, 5); const x0 = ri(rand, -6, 6); const b = -a * x0;
       const right = `]${neg(x0)} ; +∞[`; const left = `]−∞ ; ${neg(x0)}[`;
-      return qcm(rand, [`Sur quel intervalle la fonction $f(x) = ${poly([b, a])}$ est-elle strictement positive ?`, a > 0 ? right : left, [a > 0 ? left : right, `]${neg(-x0)} ; +∞[`, `]−∞ ; ${neg(-x0)}[`].filter((c, i, arr) => arr.indexOf(c) === i && c !== (a > 0 ? right : left)),
+      return qcm(rand, [`Sur quel intervalle la fonction $f(x) = ${poly([b, a])}$ est-elle strictement positive ?`, a > 0 ? right : left, [a > 0 ? left : right, `]${neg(-x0)} ; +∞[`, `]−∞ ; ${neg(-x0)}[`, `[${neg(x0)} ; +∞[`, `]−∞ ; ${neg(x0)}]`, ']−∞ ; +∞['].filter((c, i, arr) => arr.indexOf(c) === i && c !== (a > 0 ? right : left)),
         `f s’annule en x = ${neg(x0)} ; son coefficient ${neg(a)} est ${a > 0 ? 'positif : f est croissante, positive après' : 'négatif : f est décroissante, positive avant'} ${neg(x0)}.`], { hint: 'Cherche où f s’annule, puis regarde le signe du coefficient de x.' });
     }
     if (k === 'produit') {
@@ -478,6 +478,15 @@ const LOGIC = [
   ['Le nombre 1/3 est-il un nombre décimal ?', 'non : son écriture décimale ne s’arrête jamais', ['oui, il vaut 0,33', 'oui, car c’est une fraction', 'non, car il est négatif'], '1/3 = 0,333… : il est rationnel, mais pas décimal.'],
   ['√2 appartient à…', 'ℝ, mais pas à ℚ', ['ℚ', 'ℕ', 'ℤ'], '√2 est irrationnel : on ne peut pas l’écrire comme un quotient de deux entiers.'],
   ['« x > 2 » implique-t-il « x > 1 » ?', 'oui : tout nombre plus grand que 2 est plus grand que 1', ['non', 'seulement si x est entier', 'seulement si x est négatif'], 'Si x > 2, alors x > 2 > 1 : l’implication est vraie (la réciproque, elle, est fausse : 1,5 > 1 mais 1,5 < 2).'],
+  ['Quelle est la contraposée de « Si un quadrilatère est un carré, alors c’est un rectangle » ?', 'si un quadrilatère n’est pas un rectangle, ce n’est pas un carré', ['si un quadrilatère est un rectangle, c’est un carré', 'si un quadrilatère n’est pas un carré, ce n’est pas un rectangle', 'tout rectangle est un carré'], 'La contraposée de « si P alors Q » est « si non Q alors non P » : elle est vraie exactement quand la proposition l’est.'],
+  ['Quelle est la négation de « Il existe un nombre réel dont le carré est négatif » ?', 'pour tout réel x, x² ≥ 0', ['il existe un réel dont le carré est positif', 'pour tout réel x, x² < 0', 'il existe un réel x tel que x² ≥ 0'], 'La négation de « il existe … tel que P » est « pour tout …, non P ».'],
+  ['Quelle est la négation de « x ≥ 2 et x ≤ 5 » ?', 'x < 2 ou x > 5', ['x < 2 et x > 5', 'x ≤ 2 ou x ≥ 5', 'x > 5'], 'La négation de « P et Q » est « non P ou non Q ».'],
+  ['« x² = 4 » est-elle une condition suffisante pour avoir « x = 2 » ?', 'non : x peut aussi valoir −2', ['oui, toujours', 'oui, si x est un réel', 'oui, si x² est pair'], 'x = −2 est un contre-exemple. En revanche, x = 2 suffit pour avoir x² = 4.'],
+  ['Le nombre 0,25 est-il un nombre décimal ?', 'oui : 0,25 = 25/100', ['non, car c’est une fraction', 'non, car il est plus petit que 1', 'seulement s’il est positif'], 'Un décimal s’écrit a/10ⁿ avec a entier : 0,25 = 25/10².'],
+  ['π est-il un nombre rationnel ?', 'non : π est irrationnel', ['oui, car π = 22/7', 'oui, car π = 3,14', 'oui, car c’est un nombre réel'], '22/7 et 3,14 n’en sont que des valeurs approchées.'],
+  ['Dire « |x| < 3 », c’est dire que…', 'x appartient à l’intervalle ]−3 ; 3[', ['x appartient à ]0 ; 3[', 'x < 3, sans autre condition', 'x > −3, sans autre condition'], '|x| est la distance entre x et 0 : elle est inférieure à 3.'],
+  ['Lequel de ces ensembles contient tous les autres ?', 'ℝ', ['ℕ', 'ℤ', 'ℚ'], 'ℕ ⊂ ℤ ⊂ 𝔻 ⊂ ℚ ⊂ ℝ.'],
+  ['Quelle est la réciproque de « Un nombre divisible par 4 est pair » ?', 'un nombre pair est divisible par 4 (elle est fausse : pensez à 6)', ['un nombre impair n’est pas divisible par 4', 'un nombre non divisible par 4 est impair', 'un nombre divisible par 4 est divisible par 2'], 'La réciproque échange l’hypothèse et la conclusion ; ici, 6 est un contre-exemple.'],
 ];
 add({
   id: 'l2-logique', label: 'Logique et ensembles de nombres', skill: 'l2.logique', chapters: ['2nde-m-logique', '2nde-m-reels'],

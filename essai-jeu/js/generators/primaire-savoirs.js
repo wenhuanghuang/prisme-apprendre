@@ -76,6 +76,10 @@ const ASTRES = [
   ['Quelle saison commence vers le 20 mars ?', 'le printemps', ['l’automne', 'l’été', 'l’hiver'], 'Vers le 20 mars, le jour et la nuit durent à peu près autant : c’est le printemps.'],
   ['En été, les journées sont…', 'plus longues qu’en hiver', ['plus courtes qu’en hiver', 'aussi longues qu’en hiver', 'sans nuit du tout en France'], 'En été, le Soleil se lève tôt et se couche tard : les jours sont longs.'],
   ['Qu’est-ce qu’une étoile ?', 'une boule de gaz très chaude qui produit sa lumière', ['une planète qui brille', 'un morceau de Lune', 'un avion très haut'], 'Le Soleil est l’étoile la plus proche de nous ; les autres étoiles sont si loin qu’elles paraissent minuscules.'],
+  ['Quelle est l’étoile la plus proche de la Terre ?', 'le Soleil', ['la Lune', 'l’étoile polaire', 'Mars'], 'Le Soleil est une étoile ; la Lune est un satellite, Mars une planète.'],
+  ['La nuit, en plus de la Lune, on peut voir dans le ciel…', 'des étoiles, et parfois des planètes', ['le Soleil', 'des arcs-en-ciel', 'rien du tout'], 'Les planètes comme Vénus ou Jupiter brillent sans scintiller.'],
+  ['La Lune semble changer de forme au cours du mois parce que…', 'on voit une partie plus ou moins grande de sa face éclairée', ['elle se casse puis se répare', 'les nuages la grignotent', 'elle rétrécit vraiment'], 'Ce sont les phases de la Lune : nouvelle lune, croissant, quartier, pleine lune…'],
+  ['En hiver, en France, les journées sont…', 'plus courtes qu’en été', ['plus longues qu’en été', 'éclairées jour et nuit', 'sans aucune nuit'], 'Le Soleil se lève tard et se couche tôt.'],
 ];
 add({
   id: 'hp-astres', subject: 'hg', facts: true, label: 'La Terre, le Soleil, la Lune et les saisons', skill: 'hg.p.astres', levels: ['ce1', 'ce2'],
@@ -95,6 +99,11 @@ const DIGEST = [
   ['À quoi servent les dents ?', 'à couper et broyer les aliments', ['à digérer le sucre', 'à respirer', 'à faire passer les aliments dans le sang'], 'Les incisives coupent, les canines déchirent, les molaires broient : la digestion commence dans la bouche.'],
   ['Que deviennent les restes d’aliments non digérés ?', 'ils sont rejetés sous forme d’excréments', ['ils passent tous dans le sang', 'ils restent dans l’estomac', 'ils remontent dans la bouche'], 'Ce qui n’est pas digéré traverse le gros intestin puis est rejeté.'],
   ['Quel déchet produit par nos organes est rejeté par les poumons ?', 'le dioxyde de carbone', ['le dioxygène', 'le sucre', 'le sel'], 'Le sang emporte le dioxyde de carbone jusqu’aux poumons, qui le rejettent quand on expire.'],
+  ['Pourquoi le cœur bat-il plus vite quand on court ?', 'les muscles ont besoin de plus de sang riche en dioxygène', ['il a froid', 'il se fatigue', 'on a faim'], 'On peut le sentir en posant la main sur sa poitrine, ou en prenant son pouls.'],
+  ['Quelle partie du tube digestif est la plus longue ?', 'l’intestin grêle', ['l’estomac', 'l’œsophage', 'la bouche'], 'Il mesure plusieurs mètres, replié dans le ventre.'],
+  ['Dans l’estomac, les aliments…', 'sont brassés et commencent à être transformés par des sucs digestifs', ['passent directement dans le sang', 'sont rejetés', 'se changent en air'], 'L’estomac est une poche musclée.'],
+  ['Pour rester en bonne santé, il faut…', 'manger varié, bouger et boire de l’eau', ['manger surtout des sucreries', 'ne jamais bouger', 'boire surtout des sodas'], 'Fruits et légumes, eau et activité physique sont essentiels.'],
+  ['Quand on inspire, l’air entre…', 'dans les poumons', ['dans l’estomac', 'dans le cœur', 'dans le cerveau'], 'Il passe par le nez ou la bouche, puis par la trachée.'],
 ];
 const TUBE = ['La bouche', 'L’œsophage', 'L’estomac', 'L’intestin grêle', 'Le gros intestin'];
 add({
@@ -174,6 +183,11 @@ const MASS_CP = [
   ['À quelle température l’eau se transforme-t-elle en glace ?', 'à 0 °C', ['à 20 °C', 'à 50 °C', 'à 100 °C'], 'L’eau gèle à 0 °C : en dessous, elle est solide.'],
   ['Qu’est-ce qui est le plus lourd ?', 'un vélo', ['une plume', 'une feuille de papier', 'une gomme'], 'Un vélo pèse plusieurs kilos : bien plus qu’une plume, une feuille ou une gomme.'],
   ['Qu’est-ce qui est le plus léger ?', 'une plume', ['un cartable rempli', 'une pastèque', 'un chat'], 'Une plume pèse presque rien.'],
+  ['Quel instrument sert à mesurer une longueur ?', 'la règle (ou le mètre)', ['la balance', 'le thermomètre', 'la montre'], 'On mesure les longueurs en centimètres et en mètres.'],
+  ['Quel instrument sert à mesurer une durée ?', 'le chronomètre (ou la montre)', ['la règle', 'la balance', 'le thermomètre'], 'Une durée se mesure en secondes, en minutes, en heures.'],
+  ['Lequel de ces objets est le plus lourd ?', 'un dictionnaire', ['une plume', 'une feuille de papier', 'un ballon de baudruche'], 'Plein de pages, le dictionnaire pèse bien plus lourd.'],
+  ['Sur un plateau, 3 billes ; sur l’autre, 5 billes identiques. Quel plateau descend ?', 'celui des 5 billes', ['celui des 3 billes', 'aucun des deux', 'les deux'], 'Plus il y a de billes identiques, plus c’est lourd.'],
+  ['La masse d’un objet se mesure en…', 'grammes ou kilogrammes', ['mètres', 'litres', 'degrés'], 'On pèse une lettre en grammes, un sac de pommes en kilogrammes.'],
 ];
 add({
   id: 'st-p-masses', subject: 'sciences-techno', label: 'Masses, volumes et températures', skill: 'sciences-techno.p.masses', levels: ['cp', 'cm1', 'cm2'],
@@ -223,6 +237,13 @@ const WATER = [
   ['Quand un glaçon fond, sa masse…', 'reste la même', ['augmente', 'diminue de moitié', 'disparaît'], 'Il y a toujours la même quantité d’eau : seule sa forme change.'],
   ['Que devient l’eau d’une flaque au soleil ?', 'elle s’évapore : elle part dans l’air', ['elle devient de la glace', 'elle devient du sable', 'elle se change en caillou'], 'Chauffée par le soleil, l’eau devient de la vapeur d’eau, invisible dans l’air.'],
   ['Où trouve-t-on de l’eau solide dans la nature ?', 'dans les glaciers et sur la banquise', ['dans une source', 'dans la pluie d’été', 'dans une mer chaude'], 'Les glaciers des montagnes et la banquise des pôles sont de l’eau gelée.'],
+  ['Le matin, on voit de la buée sur la vitre froide. C’est…', 'de la vapeur d’eau de l’air redevenue liquide', ['de la peinture', 'de la glace qui fond', 'de la poussière'], 'Au contact de la vitre froide, la vapeur d’eau invisible de l’air se transforme en gouttelettes.'],
+  ['Le linge mouillé sèche sur le fil parce que…', 'l’eau s’évapore dans l’air', ['l’eau devient de la glace', 'le tissu boit l’eau', 'le vent mange l’eau'], 'Le soleil et le vent accélèrent l’évaporation.'],
+  ['Les nuages sont faits…', 'de minuscules gouttes d’eau ou de cristaux de glace', ['de coton', 'de fumée', 'de sable'], 'Quand les gouttes grossissent, elles tombent : c’est la pluie.'],
+  ['À quelle température l’eau se met-elle à bouillir ?', 'à 100 °C', ['à 0 °C', 'à 37 °C', 'à 50 °C'], 'L’eau bouillante se transforme en vapeur.'],
+  ['Pour économiser l’eau, on peut…', 'fermer le robinet pendant qu’on se brosse les dents', ['laisser couler l’eau', 'prendre un très long bain chaque jour', 'arroser le jardin en plein soleil'], 'L’eau potable est précieuse : chaque geste compte.'],
+  ['L’eau du robinet que l’on peut boire s’appelle l’eau…', 'potable', ['salée', 'de mer', 'usée'], 'Elle a été nettoyée et contrôlée pour pouvoir être bue sans danger.'],
+  ['Dans la nature, l’eau de pluie…', 'coule vers les rivières et la mer, ou s’infiltre dans le sol', ['disparaît pour toujours', 'se change en sable', 'reste toujours dans les nuages'], 'C’est le cycle de l’eau : elle s’évapore, forme des nuages, retombe en pluie…'],
 ];
 const water = (id, subject, levels, chapters, skill) => add({
   id, subject, facts: true, label: 'L’eau solide et l’eau liquide', skill, levels, chapters,
@@ -243,6 +264,11 @@ const BRAIN = [
   ['Pourquoi est-il utile de revoir une leçon plusieurs jours de suite ?', 'pour mieux s’en souvenir longtemps', ['pour l’oublier plus vite', 'cela ne sert à rien', 'pour fatiguer le cerveau'], 'Chaque fois qu’on se rappelle une leçon, la mémoire la garde mieux.'],
   ['Quand on fait ses devoirs devant la télévision allumée, l’attention…', 'diminue', ['augmente', 'double', 'ne change pas'], 'Le cerveau a du mal à faire attention à deux choses à la fois.'],
   ['Le goût, c’est le sens…', 'de la langue', ['du nez seulement', 'des oreilles', 'des yeux'], 'La langue sent le sucré, le salé, l’acide et l’amer ; le nez aide beaucoup à reconnaître les saveurs.'],
+  ['Quand on touche quelque chose de brûlant, on retire vite la main grâce…', 'aux nerfs, qui transmettent le message très vite', ['à l’estomac', 'aux cheveux', 'au hasard'], 'Le message part de la main et revient aussitôt vers les muscles du bras.'],
+  ['Combien a-t-on de sens ?', 'cinq : la vue, l’ouïe, l’odorat, le goût et le toucher', ['deux', 'trois', 'dix'], 'Chaque sens a son organe : les yeux, les oreilles, le nez, la langue, la peau.'],
+  ['Avec quels organes entend-on les sons ?', 'les oreilles', ['les yeux', 'le nez', 'la langue'], 'L’ouïe est le sens des oreilles.'],
+  ['Pour protéger ses oreilles des bruits trop forts, on peut…', 'baisser le volume et porter des protections', ['monter le son au maximum', 'coller l’oreille contre l’enceinte', 'ne rien faire'], 'Des bruits trop forts peuvent abîmer l’audition pour toujours.'],
+  ['Pour protéger ses yeux, il ne faut jamais…', 'regarder le Soleil en face', ['lire un livre', 'regarder la Lune', 'porter des lunettes de soleil'], 'Même avec des lunettes de soleil, regarder le Soleil peut brûler l’œil.'],
 ];
 add({
   id: 'st-p-cerveau', subject: 'sciences-techno', facts: true, label: 'Le cerveau, les sens et la mémoire', skill: 'sciences-techno.p.cerveau', levels: ['cm1'],
@@ -261,6 +287,11 @@ const MAKE = [
   ['Qui transforme le lait en yaourt ?', 'des ferments : de minuscules bactéries', ['le sucre', 'le froid du réfrigérateur', 'la lumière'], 'Les bactéries des ferments transforment le sucre du lait : il s’épaissit et devient acide.'],
   ['Pourquoi la pâte à pain gonfle-t-elle ?', 'la levure produit un gaz qui fait des bulles', ['le sel la fait gonfler', 'le four la gonfle d’air', 'l’eau la fait exploser'], 'La levure est un champignon microscopique : elle produit du dioxyde de carbone, qui forme les trous de la mie.'],
   ['D’où vient la farine du pain ?', 'des grains de blé moulus', ['du lait', 'des pommes de terre', 'du sucre'], 'Au moulin, on écrase les grains de blé pour obtenir la farine.'],
+  ['D’où vient le fromage ?', 'du lait, que l’on fait cailler puis affiner', ['du blé', 'des œufs', 'de la farine'], 'Selon les fromages, il faut souvent près de 10 litres de lait pour un kilo.'],
+  ['Comment fabrique-t-on le beurre ?', 'en battant la crème du lait', ['en faisant bouillir de l’eau', 'en écrasant des olives', 'en mélangeant du sucre et du sel'], 'En battant la crème, les gouttelettes de matière grasse se collent entre elles.'],
+  ['En France, le sucre est surtout fabriqué à partir…', 'de la betterave sucrière', ['du sel de mer', 'du blé', 'des pommes de terre'], 'Dans d’autres pays, on le tire de la canne à sucre.'],
+  ['Le papier est fabriqué principalement à partir…', 'du bois et de vieux papiers recyclés', ['du plastique', 'du sable', 'du métal'], 'Les fibres sont réduites en pâte, puis pressées et séchées.'],
+  ['Le verre est fabriqué en faisant fondre…', 'du sable', ['du bois', 'de la laine', 'du papier'], 'Chauffé à très haute température, le sable devient liquide ; on le façonne avant qu’il refroidisse.'],
 ];
 add({
   id: 'st-p-fabriquer', subject: 'sciences-techno', facts: true, label: 'Fabriquer : aliments, maquettes, cycle de vie d’un objet', skill: 'sciences-techno.p.fabriquer', levels: ['cm2'],
@@ -287,6 +318,10 @@ const FAMILY = [
   ['Les parents de mes parents sont mes…', 'grands-parents', ['arrière-grands-parents', 'oncles et tantes', 'cousins'], 'Ils appartiennent à la génération d’avant celle de mes parents.'],
   ['La mère de ma grand-mère est mon…', 'arrière-grand-mère', ['grand-mère', 'tante', 'cousine'], 'Moi, mes parents, mes grands-parents, mes arrière-grands-parents : quatre générations.'],
   ['Moi, mes parents et mes grands-parents : combien de générations ?', 'trois', ['deux', 'quatre', 'une'], 'Une génération : les personnes nées à peu près à la même époque dans une famille.'],
+  ['La fille de ma sœur est ma…', 'nièce', ['cousine', 'tante', 'fille'], 'Les enfants de mes frères et sœurs sont mes neveux et nièces.'],
+  ['Le fils de mon frère est mon…', 'neveu', ['cousin', 'oncle', 'fils'], 'Moi, je suis son oncle ou sa tante.'],
+  ['Le mari de ma tante est mon…', 'oncle', ['cousin', 'grand-père', 'neveu'], 'Un oncle peut être le frère d’un parent, ou le mari d’une tante.'],
+  ['Les frères et sœurs de mes parents sont mes…', 'oncles et tantes', ['cousins', 'grands-parents', 'neveux'], 'Leurs enfants sont mes cousins et cousines.'],
 ];
 const MY_LIFE = { cp: ['Ma naissance', 'Mes premiers pas', 'Mon entrée à l’école maternelle', 'Mon entrée au CP'], ce1: ['Ma naissance', 'Mes premiers pas', 'Mon entrée à l’école maternelle', 'Mon entrée au CP', 'Mon entrée au CE1'] };
 add({

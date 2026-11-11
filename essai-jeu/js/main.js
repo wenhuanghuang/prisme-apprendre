@@ -25,6 +25,7 @@ const ROUTES = [
   { re: /^\/fluence$/, view: () => import('./ui/views/fluence.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/estime$/, view: () => import('./ui/views/estime.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/compare$/, view: () => import('./ui/views/compare.js'), needsProfile: true, nav: 'jeu' },
+  { re: /^\/vraifaux$/, view: () => import('./ui/views/vraifaux.js'), needsProfile: true, nav: 'jeu' },
   { re: /^\/labo$/, view: () => import('./ui/views/labo.js'), nav: 'labo' },
   { re: /^\/carnet$/, view: () => import('./ui/views/carnet.js'), needsProfile: true, nav: 'carnet' },
   { re: /^\/progression$/, view: () => import('./ui/views/progression.js'), needsProfile: true, nav: null },

@@ -39,6 +39,7 @@ export const XP = {
   jeudujour: 5, // bonus : le jeu du jour joué (une fois par jour)
   estime: 10, // partie d'ordre de grandeur terminée (une fois par jour)
   compare: 10, // partie de « Le plus grand ! » terminée (une fois par jour)
+  vraifaux: 10, // partie de « Vrai ou faux ? » terminée (une fois par jour)
   passeport: 20, // passeport des jeux complet : quatre petits jeux différents dans la semaine (une fois par semaine)
 };
 
@@ -63,7 +64,7 @@ const LEGACY_START = '2000-01-01'; // « depuis toujours » : l'ancien défaut, 
 export const GOALS_VERSION = 3; // 2 : première conversion (corrigée par la 3)
 export const MAX_JOKERS = 2;
 export const JOKER_EVERY = 7; // un joker gagné tous les 7 jours d'objectif atteint d'affilée
-const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot', 'fluence', 'jeudujour', 'estime', 'passeport', 'compare'];
+const EVENT_TYPES = ['lecon', 'experience', 'bilan', 'defi', 'quete', 'plateau', 'victoire', 'chapitre', 'periode', 'annee', 'enigme', 'gardien', 'famille', 'memoire', 'frise', 'eclair', 'mot', 'fluence', 'jeudujour', 'estime', 'passeport', 'compare', 'vraifaux'];
 
 /* ------------------------------ Jours (heure locale) ------------------------------ */
 
@@ -116,7 +117,7 @@ export function attemptXp(a, repeats = 0) {
   return Math.round(xp * factor);
 }
 
-export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot, fluence: XP.fluence, jeudujour: XP.jeudujour, estime: XP.estime, passeport: XP.passeport, compare: XP.compare }[type] || 0);
+export const eventXp = (type) => ({ lecon: XP.lesson, experience: XP.experience, bilan: XP.bilan, defi: XP.defi, quete: XP.quete, plateau: XP.plateau, victoire: XP.victoire, chapitre: XP.chapitre, periode: XP.periode, annee: XP.annee, enigme: XP.enigme, gardien: XP.gardien, famille: XP.famille, memoire: XP.memoire, frise: XP.frise, eclair: XP.eclair, mot: XP.mot, fluence: XP.fluence, jeudujour: XP.jeudujour, estime: XP.estime, passeport: XP.passeport, compare: XP.compare, vraifaux: XP.vraifaux }[type] || 0);
 
 /**
  * Points de niveau : passer du niveau n au niveau n + 1 demande 150 + 100 × (n − 1) points, soit un peu plus
@@ -366,6 +367,7 @@ export function computeGame(attempts, gameState, now) {
     estimes: game.events.filter((e) => e.type === 'estime').length,
     passeports: game.events.filter((e) => e.type === 'passeport').length,
     compares: game.events.filter((e) => e.type === 'compare').length,
+    vraifaux: game.events.filter((e) => e.type === 'vraifaux').length,
     records: Object.keys(game.records || {}).length,
   };
   const album = albumOf(game.events);

@@ -754,6 +754,8 @@ const SOLIDS = [
   { name: 'un pavé droit', faces: 6, aretes: 12, sommets: 8, from: 1 },
   { name: 'une pyramide à base carrée', faces: 5, aretes: 8, sommets: 5, from: 1 },
   { name: 'un prisme à base triangulaire', faces: 5, aretes: 9, sommets: 6, from: 3 },
+  { name: 'une pyramide à base triangulaire', faces: 4, aretes: 6, sommets: 4, from: 2 },
+  { name: 'un prisme à base hexagonale', faces: 8, aretes: 18, sommets: 12, from: 3 },
 ];
 add({
   id: 'mp-solides', label: 'Les solides', skill: 'mp.solides', levels: PRIMARY_LEVELS, facts: true,
@@ -806,6 +808,15 @@ add({
       { q: 'Combien d’angles droits faut-il pour faire un tour complet ?', a: 4, from: 3, hint: 'Tourne d’un quart de tour, quatre fois.' },
       { q: 'Deux droites perpendiculaires forment combien d’angles droits ?', a: 4, from: 3, hint: 'Regarde les quatre angles autour du point où elles se coupent.' },
       { q: 'Combien de diagonales a un carré ?', a: 2, from: 1, hint: 'Une diagonale relie deux sommets opposés.' },
+      { q: 'Combien de côtés a un octogone ?', a: 8, from: 2, hint: '« octo » veut dire huit.' },
+      { q: 'Combien de côtés a un quadrilatère ?', a: 4, from: 1, hint: '« quadri » veut dire quatre.' },
+      { q: 'Combien d’angles droits a un carré ?', a: 4, from: 1, hint: 'Vérifie chaque coin avec l’équerre.' },
+      { q: 'Combien de sommets a un hexagone ?', a: 6, from: 2, hint: 'Autant de sommets que de côtés.' },
+      { q: 'Combien de côtés de même longueur a un triangle équilatéral ?', a: 3, from: 2, hint: '« équi » veut dire égal.' },
+      { q: 'Combien d’axes de symétrie a un losange qui n’est pas un carré ?', a: 2, from: 3, hint: 'Ses diagonales sont ses axes : plie selon chacune.' },
+      { q: 'Combien mesure un angle plat, en degrés ?', a: 180, from: 3, unit: '°', hint: 'Un angle plat fait un demi-tour : deux angles droits.' },
+      { q: 'Combien de degrés fait un tour complet ?', a: 360, from: 3, unit: '°', hint: 'Quatre angles droits de 90°.' },
+      { q: 'Combien de rayons d’un cercle mis bout à bout font son diamètre ?', a: 2, from: 3, hint: 'Le diamètre traverse le cercle en passant par le centre.' },
     ];
     const items = pool.filter((x) => x.from <= i && (!hard || x.from >= Math.max(0, i - 1)));
     const it = pick(rand, items.length ? items : pool.filter((x) => x.from <= i));

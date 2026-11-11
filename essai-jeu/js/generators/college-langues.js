@@ -101,6 +101,14 @@ const MODALS = [
   ['Look at those black clouds! It ___ rain.', 'is going to', ['will', 'must', 'should'], 'Une prévision fondée sur un indice visible : be going to.'],
   ['I think people ___ live on Mars one day.', 'will', ['are going to', 'must', 'should'], 'Une prédiction, une opinion sur l’avenir : will.'],
   ['If it rains tomorrow, we ___ stay at home.', 'will', ['would', 'are', 'did'], 'If + présent, will + base verbale (condition réaliste).'],
+  ['Students ___ run in the corridors: it’s dangerous!', 'mustn’t', ['don’t have to', 'can', 'will'], 'Une interdiction : mustn’t.'],
+  ['I ___ speak three languages: French, English and Spanish.', 'can', ['must', 'should', 'mustn’t'], 'Une capacité : can.'],
+  ['It’s very cold outside. You ___ take a coat.', 'should', ['mustn’t', 'can’t', 'don’t have to'], 'Un conseil : should.'],
+  ['Penguins ___ fly, but they are excellent swimmers.', 'can’t', ['mustn’t', 'don’t have to', 'shouldn’t'], 'Une incapacité : can’t.'],
+  ['You ___ pay to visit the museum: it’s free on Sundays.', 'don’t have to', ['mustn’t', 'can’t', 'shouldn’t'], 'Ce n’est pas obligatoire : don’t have to.'],
+  ['In the future, robots ___ probably do many jobs.', 'will', ['must', 'mustn’t', 'should'], 'Une prédiction sur l’avenir : will.'],
+  ['___ I open the window, please? It’s hot in here.', 'Can', ['Do', 'Am', 'Have'], 'Demander la permission : Can I… ? (ou May I… ?)'],
+  ['We have bought the tickets: we ___ visit London next summer.', 'are going to', ['mustn’t', 'can’t', 'should'], 'Un projet déjà décidé : be going to.'],
 ];
 add({
   id: 'en-c-modaux', label: 'Anglais : modaux et futur (can, must, should, will, going to)', skill: 'lv.c.en-modaux', chapters: ['en5-ch-projets-regles', 'en4-ch-modaux', 'en4-ch-futur', 'en5-ch-interaction', 'en4-ch-dialoguer'],

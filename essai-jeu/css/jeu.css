@@ -640,3 +640,32 @@ button.cmp-card:hover { transform: translateY(-2px); border-color: #f5c84c; }
 .cmp-buzz { font: inherit; font-weight: 800; padding: 14px 18px; border-radius: 999px; border: 2px solid var(--ink); background: var(--paper); color: inherit; cursor: pointer; touch-action: manipulation; }
 .cmp-buzz:active { transform: scale(.95); }
 @media (max-width: 520px) { .cmp-cards { gap: 8px; } .cmp-buzz { padding: 12px 10px; font-size: .9rem; } }
+
+/* « Vrai ou faux ? » */
+.vf-board { max-width: 760px; margin: 0 auto; text-align: center; }
+.vf-card { padding: 18px 16px; border-radius: 18px; border: 2px solid var(--rule-2); background: var(--paper); transition: border-color .15s, background .15s; }
+.vf-card.is-true { border-color: var(--ok); }
+.vf-card.is-false { border-color: var(--ko); }
+.vf-q { font-size: clamp(1.05rem, 3.4vw, 1.3rem); font-weight: 700; margin: 6px 0 12px; }
+.vf-prop { display: inline-flex; flex-direction: column; gap: 4px; padding: 10px 18px; border-radius: 14px; background: color-mix(in srgb, #f5c84c 22%, var(--card)); font-size: clamp(1.05rem, 3.6vw, 1.35rem); max-width: 100%; }
+.vf-prop-label, .vf-chip-title { font-size: .78rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); font-weight: 700; }
+.vf-pair { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.vf-chip { display: flex; flex-direction: column; gap: 4px; padding: 10px 16px; border-radius: 14px; background: color-mix(in srgb, #3b4cca 10%, var(--card)); font-size: clamp(1rem, 3.4vw, 1.25rem); min-width: 8em; max-width: 100%; }
+.vf-link { font-size: 1.6rem; color: var(--ink-3); }
+.vf-answers { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0 8px; }
+.vf-answers:empty { display: none; }
+.vf-btn { font: inherit; font-size: clamp(1.2rem, 4.6vw, 1.6rem); font-weight: 800; padding: 18px 8px; border-radius: 18px; border: 2px solid; cursor: pointer; touch-action: manipulation; transition: transform .15s; }
+.vf-btn--vrai { border-color: var(--ok); background: var(--ok-bg); color: inherit; }
+.vf-btn--faux { border-color: var(--ko); background: var(--ko-bg); color: inherit; }
+.vf-btn:hover:not(:disabled) { transform: translateY(-2px); }
+.vf-btn:disabled, .vf-buzz:disabled { opacity: .55; cursor: default; }
+.vf-buzz.is-true { border-color: var(--ok); }
+.vf-buzz.is-false { border-color: var(--ko); }
+.vf-feedback { min-height: 1.5em; margin: 10px 0; text-align: left; }
+.vf-feedback:empty { display: none; }
+.vf-feedback.is-right, .vf-feedback.is-wrong { padding: 12px 14px; border-radius: 14px; }
+.vf-feedback.is-right { background: var(--ok-bg); }
+.vf-feedback.is-wrong { background: var(--ko-bg); }
+.vf-feedback p { margin: 0 0 8px; }
+.vf-feedback-title { font-weight: 800; }
+@media (max-width: 520px) { .vf-answers { gap: 8px; } .vf-link { transform: rotate(90deg); } .vf-pair { flex-direction: column; } }
