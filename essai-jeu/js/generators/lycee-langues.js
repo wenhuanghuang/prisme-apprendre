@@ -39,6 +39,13 @@ const BASES = [
   ['One child, two ___.', 'children', 'Pluriel irrégulier : child → children.', [['childs', 'Pluriel irrégulier : children.']]],
   ['One mouse, two ___.', 'mice', 'Pluriel irrégulier : mouse → mice.', [['mouses', 'Pluriel irrégulier : mice.']]],
   ['One tooth, two ___.', 'teeth', 'Pluriel irrégulier : tooth → teeth (et foot → feet).', [['tooths', 'Pluriel irrégulier : teeth.']]],
+  ['We ___ (be) best friends.', 'are', 'be : we / you / they are.', [['is', 'Sujet pluriel (we) : « are ».'], ['am', '« am » ne s’emploie qu’avec « I ».']]],
+  ['It ___ (be) cold today.', 'is', 'be : he / she / it is.', [['are', 'Sujet singulier (it) : « is ».']]],
+  ['I ___ (have got) a cat and a dog.', 'have got', 'have got : I / you / we / they have got.', [['has got', 'Avec « I », on dit « I have got ».']]],
+  ['Look at ___ house! (notre maison)', 'our', 'my, your, his, her, its, our, their.', [['us', '« us » est un pronom complément ; pour la possession : our.']]],
+  ['One man, two ___.', 'men', 'Pluriel irrégulier : man → men, woman → women.', [['mans', 'Pluriel irrégulier : men.']]],
+  ['One foot, two ___.', 'feet', 'Pluriel irrégulier : foot → feet.', [['foots', 'Pluriel irrégulier : feet.']]],
+  ['The children are playing with ___ ball. (leur ballon)', 'their', 'their : à eux, à elles.', [['there', '« there » veut dire « là » ; la possession : their.']]],
 ];
 add({
   id: 'en-6e-bases', levels: ['6e'], facts: true, label: 'Anglais (6e) : be, have got, there is, possessifs, pluriels', skill: 'lv.6e.en-bases', chapters: ['lv-c4-lycee-2025-activites'],

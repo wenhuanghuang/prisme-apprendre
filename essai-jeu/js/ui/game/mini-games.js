@@ -21,6 +21,7 @@ export const MINI_GAMES = [
   { id: 'estime', icon: '📏', label: 'Ordre de grandeur', href: '#/estime', pitch: 'combien mesure, pèse ou dure… ? estime, seul ou à deux' },
   { id: 'compare', icon: '⚖️', label: 'Le plus grand !', href: '#/compare', pitch: 'deux nombres, touche le plus grand : en série ou en buzzer à deux' },
   { id: 'vraifaux', icon: '🕵️', label: 'Vrai ou faux ?', href: '#/vraifaux', pitch: 'une question, une réponse proposée : démasque les pièges' },
+  { id: 'boutique', icon: '🏪', label: 'La boutique', href: '#/boutique', pitch: 'paie juste et rends la monnaie, en pièces et en billets', levels: ['cp', 'ce1', 'ce2', 'cm1', 'cm2', '6e'] },
   { id: 'fluence', icon: '📖', label: 'Lecture chronométrée', href: '#/fluence', pitch: 'une minute de lecture à voix haute, avec un adulte', levels: ['cp', 'ce1', 'ce2', 'cm1', 'cm2'] },
 ];
 /** Les petits jeux d'une classe (la lecture chronométrée est réservée à l'école primaire). */
@@ -155,7 +156,7 @@ const WEEK_ROWS = [
   ['quete', '🗺️', 'quête libre terminée', 'quêtes libres terminées'], ['defi', '🎁', 'défi relevé', 'défis relevés'], ['plateau', '🎲', 'partie de plateau', 'parties de plateau'],
   ['enigme', '🧩', 'énigme du jour', 'énigmes du jour'], ['memoire', '🃏', 'jour de jeu de mémoire', 'jours de jeu de mémoire'], ['frise', '⏳', 'jour de frise chronologique', 'jours de frise chronologique'],
   ['eclair', '⚡', 'jour de calcul éclair', 'jours de calcul éclair'], ['mot', '🔤', 'jour de mot mystère', 'jours de mot mystère'],
-  ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'], ['estime', '📏', 'jour d’ordre de grandeur', 'jours d’ordre de grandeur'], ['compare', '⚖️', 'jour de « Le plus grand ! »', 'jours de « Le plus grand ! »'], ['vraifaux', '🕵️', 'jour de « Vrai ou faux ? »', 'jours de « Vrai ou faux ? »'],
+  ['fluence', '📖', 'jour de lecture chronométrée', 'jours de lecture chronométrée'], ['estime', '📏', 'jour d’ordre de grandeur', 'jours d’ordre de grandeur'], ['compare', '⚖️', 'jour de « Le plus grand ! »', 'jours de « Le plus grand ! »'], ['vraifaux', '🕵️', 'jour de « Vrai ou faux ? »', 'jours de « Vrai ou faux ? »'], ['boutique', '🏪', 'jour de boutique', 'jours de boutique'],
   ['passeport', '🛂', 'passeport des jeux complété', 'passeports des jeux complétés'],
 ];
 

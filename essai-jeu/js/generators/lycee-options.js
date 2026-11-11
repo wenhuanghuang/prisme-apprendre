@@ -31,6 +31,12 @@ const HGGSP_1 = [
   ['Le Concordat de 1801, signé par Bonaparte et le pape,…', 'reconnaît le catholicisme comme la religion de la majorité des Français', ['interdit toute religion', 'sépare les Églises et l’État', 'impose le protestantisme'], 'Il s’applique encore en Alsace-Moselle, allemande en 1905 lors de la loi de séparation.'],
   ['Une théocratie est un régime où…', 'le pouvoir politique se réclame directement de la religion', ['le peuple élit librement ses représentants', 'l’armée gouverne seule', 'il n’y a pas de lois'], 'L’Iran, depuis la révolution de 1979, en est un exemple.'],
   ['Une frontière « naturelle » est une idée qui consiste à…', 'faire suivre à une frontière un relief ou un fleuve', ['supprimer toutes les frontières', 'tracer une frontière en ligne droite', 'interdire les voyages'], 'Les frontières restent des constructions politiques, même quand elles suivent les Pyrénées ou le Rhin.'],
+  ['La Déclaration des droits de l’homme et du citoyen date de…', '1789', ['1848', '1905', '1958'], 'Elle est adoptée le 26 août 1789.'],
+  ['En France, le suffrage universel masculin est établi en…', '1848', ['1789', '1944', '1958'], 'Les femmes obtiennent le droit de vote en 1944 et votent pour la première fois en 1945.'],
+  ['La loi de séparation des Églises et de l’État date de…', '1905', ['1789', '1881', '1958'], 'La République ne reconnaît, ne salarie ni ne subventionne aucun culte.'],
+  ['L’espace Schengen permet…', 'de franchir les frontières intérieures sans contrôle systématique', ['d’utiliser l’euro partout', 'de voter dans tous les pays membres', 'de supprimer les frontières extérieures'], 'Il réunit la plupart des pays de l’Union européenne et quelques autres.'],
+  ['Pour ne pas relayer une fausse information, il faut d’abord…', 'vérifier la source et la croiser avec d’autres médias', ['la partager vite', 'ne lire que le titre', 'se fier au nombre de vues'], 'Des rubriques de vérification des faits s’en font une spécialité.'],
+  ['Les cinq membres permanents du Conseil de sécurité de l’ONU sont…', 'les États-Unis, la Russie, la Chine, le Royaume-Uni et la France', ['les États-Unis, l’Allemagne, le Japon, l’Inde et le Brésil', 'la France, l’Italie, l’Espagne, l’Allemagne et le Royaume-Uni', 'la Chine, l’Inde, la Russie, le Brésil et l’Afrique du Sud'], 'Chacun dispose d’un droit de veto.'],
 ];
 const HGGSP_T = [
   ['Le traité de l’espace de 1967 interdit…', 'toute appropriation nationale de la Lune et des corps célestes', ['les satellites', 'les vols habités', 'les télescopes'], 'L’espace y est déclaré « apanage de l’humanité tout entière ».'],
@@ -45,6 +51,12 @@ const HGGSP_T = [
   ['Le premier parc national au monde, créé en 1872, est…', 'Yellowstone, aux États-Unis', ['la Vanoise', 'le Serengeti', 'le parc Kruger'], 'La Vanoise, premier parc national français, date de 1963.'],
   ['Le GIEC est…', 'un groupe d’experts qui évalue l’état des connaissances sur le climat', ['une entreprise pétrolière', 'une association de défense des animaux', 'un parti politique'], 'Créé en 1988, il publie des rapports de référence.'],
   ['Internet est issu d’ARPANET, un réseau…', 'créé à la fin des années 1960 pour la recherche américaine, financé par la défense', ['inventé au XIXe siècle', 'créé en 2010 par un réseau social', 'conçu par l’Unesco'], 'Les premières liaisons datent de 1969.'],
+  ['Le premier être humain dans l’espace, en 1961, est…', 'Youri Gagarine', ['Neil Armstrong', 'Thomas Pesquet', 'John Glenn'], 'Il fait le tour de la Terre en 108 minutes.'],
+  ['L’Organisation des Nations unies est fondée en…', '1945', ['1919', '1989', '1957'], 'Sa charte est signée à San Francisco ; elle succède à la Société des Nations.'],
+  ['La convention de Montego Bay (1982) définit…', 'le droit de la mer et les zones économiques exclusives', ['les frontières de l’espace', 'les règles d’Internet', 'le statut de la Lune'], 'Une zone économique exclusive s’étend jusqu’à 200 milles marins des côtes.'],
+  ['Le traité sur l’Antarctique (1959) réserve ce continent…', 'à des activités pacifiques et scientifiques', ['à l’exploitation minière', 'aux bases militaires', 'à un seul pays'], 'Les revendications territoriales y sont gelées.'],
+  ['Le protocole de Kyoto (1997) visait à…', 'réduire les émissions de gaz à effet de serre', ['interdire les armes nucléaires', 'protéger les baleines', 'réguler Internet'], 'Il fixait des objectifs chiffrés aux pays industrialisés.'],
+  ['La Cour pénale internationale, à La Haye, juge…', 'des personnes accusées de génocide, de crimes contre l’humanité ou de crimes de guerre', ['des litiges entre entreprises', 'des États pour leurs dettes', 'des affaires de vol'], 'Créée par le statut de Rome (1998), elle fonctionne depuis 2002.'],
 ];
 add({
   id: 'hggsp-1re', subject: 'hggsp', levels: ['1re'], facts: true, label: 'HGGSP (première) : démocratie, puissances, frontières, information, religions', skill: 'hggsp.1re',
@@ -70,6 +82,12 @@ const HLP_1 = [
   ['L’idée d’un homme naturellement bon, que la société corrompt, est au cœur…', 'du Discours sur l’origine de l’inégalité de Rousseau', ['du Léviathan de Hobbes', 'des Pensées de Pascal', 'du Prince de Machiavel'], 'L’expression « bon sauvage » n’est pas de Rousseau, mais l’idée de bonté naturelle l’est.'],
   ['Descartes écrit le Discours de la méthode (1637) en français pour…', 'être lu par tous ceux qui ont du bon sens, pas seulement par les savants', ['plaire au roi d’Espagne', 'être chanté', 'interdire le latin'], 'Il s’ouvre sur : « Le bon sens est la chose du monde la mieux partagée. »'],
   ['Une utopie est…', 'la description d’une société idéale imaginaire', ['un récit historique exact', 'un dictionnaire', 'une loi'], 'Le mot vient de L’Utopie de Thomas More (1516).'],
+  ['Selon Aristote, les trois moyens de persuader sont…', 'l’ethos, le pathos et le logos', ['la thèse, l’antithèse et la synthèse', 'le sujet, le verbe et le complément', 'l’exorde, la conclusion et la morale'], 'Le caractère de l’orateur (ethos), les émotions du public (pathos) et les arguments (logos).'],
+  ['Cicéron est surtout célèbre comme…', 'un grand orateur et avocat romain', ['un empereur romain', 'un philosophe grec', 'un poète du Moyen Âge'], 'Ses discours, comme les Catilinaires, restent des modèles d’éloquence.'],
+  ['L’Utopie (1516), qui a donné son nom au genre, est de…', 'Thomas More', ['Rabelais', 'Voltaire', 'Jules Verne'], 'Le mot vient du grec : le « lieu de nulle part ».'],
+  ['Dans les Lettres persanes, Montesquieu fait écrire deux Persans pour…', 'critiquer la société française à travers un regard étranger', ['raconter un voyage réel', 'faire l’éloge du roi', 'décrire la Perse avec exactitude'], 'Le regard faussement naïf de l’étranger rend visibles les absurdités.'],
+  ['La controverse de Valladolid (1550-1551) porte sur…', 'la manière de traiter les Amérindiens', ['la forme de la Terre', 'la langue de la messe', 'le prix des épices'], 'Las Casas y défend les Indiens contre Sepúlveda.'],
+  ['Galilée est condamné en 1633 pour avoir défendu…', 'l’idée que la Terre tourne autour du Soleil', ['l’idée que la Terre est plate', 'la vaccination', 'la théorie de l’évolution'], 'L’héliocentrisme contredisait la lecture officielle de l’époque.'],
 ];
 const HLP_T = [
   ['Les Confessions, qui s’ouvrent sur « Je forme une entreprise qui n’eut jamais d’exemple », sont de…', 'Rousseau', ['Montaigne', 'Proust', 'Voltaire'], 'Il veut s’y montrer « dans toute la vérité de la nature ».'],
@@ -83,6 +101,12 @@ const HLP_T = [
   ['« Je suis moi-même la matière de mon livre » : c’est ce qu’écrit…', 'Montaigne, dans l’avis au lecteur des Essais', ['Pascal, dans les Pensées', 'Descartes, dans les Méditations', 'Rabelais, dans Gargantua'], 'Les Essais paraissent à partir de 1580.'],
   ['« L’homme n’est ni ange ni bête, et le malheur veut que qui veut faire l’ange fait la bête » est de…', 'Pascal', ['Voltaire', 'Rousseau', 'Diderot'], 'Pensées.'],
   ['L’anthropocène désigne…', 'une époque où les activités humaines transforment la planète entière', ['une période de la Préhistoire', 'une maladie', 'un mouvement littéraire'], 'Le terme a été popularisé en 2000 par le chimiste Paul Crutzen.'],
+  ['« Connais-toi toi-même », maxime inscrite à Delphes, est associée à…', 'Socrate', ['Descartes', 'Napoléon', 'Victor Hugo'], 'Pour Socrate, la philosophie commence par l’examen de soi.'],
+  ['Dans Les Rêveries du promeneur solitaire, Rousseau…', 'médite sur lui-même au fil de ses promenades', ['raconte une guerre', 'décrit une machine', 'rédige un manuel d’économie'], 'C’est son dernier livre, resté inachevé.'],
+  ['1984, roman d’un État qui surveille tout, est de…', 'George Orwell', ['Aldous Huxley', 'Jules Verne', 'Ray Bradbury'], '« Big Brother vous regarde. »'],
+  ['La Nuit, récit de la déportation à Auschwitz, est d’…', 'Elie Wiesel', ['Primo Levi', 'Victor Hugo', 'Albert Camus'], 'Le livre paraît en France en 1958.'],
+  ['Le transhumanisme désigne…', 'le projet d’améliorer l’être humain par les techniques', ['l’étude des fossiles humains', 'le respect des traditions', 'un mouvement de peinture'], 'Il pose la question de ce qui définit l’humain.'],
+  ['Pour Pascal, l’homme est « un roseau pensant » parce qu’il est…', 'fragile, mais grand par sa pensée', ['solide comme un arbre', 'incapable de penser', 'plus fort que l’univers'], '« L’homme n’est qu’un roseau, le plus faible de la nature ; mais c’est un roseau pensant. »'],
 ];
 add({
   id: 'hlp-1re', subject: 'hlp', levels: ['1re'], facts: true, label: 'HLP (première) : les pouvoirs de la parole, les représentations du monde', skill: 'hlp.1re',

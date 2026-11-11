@@ -82,6 +82,12 @@ const CYCLES_Q = [
   ['Lequel de ces animaux est vivipare ?', 'le lapin', ['la poule', 'la tortue', 'le papillon'], 'Ses petits se développent dans le ventre de leur mère.'],
   ['Au début de sa vie, le têtard respire…', 'dans l’eau, grâce à des branchies', ['seulement avec des poumons', 'par les oreilles', 'sans dioxygène'], 'La grenouille adulte respire avec des poumons et par sa peau.'],
   ['Une plante annuelle, comme le tournesol,…', 'fait son cycle complet en une seule année', ['vit des centaines d’années', 'ne fait jamais de graines', 'pousse uniquement en hiver'], 'Un arbre, lui, vit de nombreuses années et refleurit chaque printemps.'],
+  ['Les insectes qui aident à polliniser les fleurs, comme l’abeille, sont appelés…', 'des pollinisateurs', ['des prédateurs', 'des décomposeurs', 'des parasites'], 'Sans eux, beaucoup de plantes ne donneraient pas de fruits.'],
+  ['Une graine contient…', 'une future plante et des réserves de nourriture', ['seulement de l’eau', 'des œufs d’insectes', 'du pollen'], 'Les réserves nourrissent la jeune plante avant qu’elle ait des feuilles.'],
+  ['Pour germer, une graine a surtout besoin…', 'd’eau, d’air et d’une température douce', ['de lumière très forte et de sel', 'd’engrais uniquement', 'd’être dans le noir et au froid'], 'La lumière devient nécessaire ensuite, pour la jeune plante.'],
+  ['Chez les mammifères, les petits se nourrissent d’abord…', 'du lait de leur mère', ['de graines', 'd’insectes', 'de plancton'], 'Les mammifères allaitent leurs petits.'],
+  ['Le fraisier peut aussi se reproduire sans graines, grâce…', 'à ses stolons, des tiges qui rampent et prennent racine', ['à ses épines', 'à ses fleurs fanées', 'au vent'], 'C’est une reproduction asexuée : les nouveaux plants sont identiques.'],
+  ['La durée de vie d’un éphémère adulte (un insecte) est…', 'de quelques heures à quelques jours', ['de dix ans', 'd’un siècle', 'de plusieurs mois'], 'Sa larve, elle, vit longtemps dans l’eau.'],
 ];
 const CYCLES_O = [
   ['Range les étapes de la vie d’une plante à fleurs.', ['La graine', 'La germination', 'La jeune plante', 'La floraison', 'Le fruit et ses graines']],
@@ -113,6 +119,12 @@ const ORDRES = [
   ['Au XVIIIe siècle, les salons, souvent tenus par des femmes comme Mme Geoffrin, sont…', 'des lieux de discussion où circulent les idées des Lumières', ['des tribunaux', 'des écoles militaires', 'des marchés'], 'Nobles et bourgeois cultivés s’y rencontrent.'],
   ['La révocation de l’édit de Nantes (1685) pousse…', 'de nombreux protestants à quitter le royaume', ['les nobles à renoncer à leurs privilèges', 'le clergé à se marier', 'le roi à abdiquer'], 'Environ 200 000 protestants partent vers les pays voisins.'],
   ['À la fin du XVIIIe siècle, Sieyès demande : « Qu’est-ce que le tiers état ? » et répond…', '« Tout »', ['« Rien du tout, et c’est bien ainsi »', '« Le clergé »', '« Le roi »'], 'Dans ce pamphlet de 1789, il ajoute qu’il n’a été « rien » jusqu’ici et demande à devenir « quelque chose ».'],
+  ['La taille était…', 'un impôt direct payé surtout par le tiers état', ['un impôt sur le sel', 'une taxe sur les livres', 'un don volontaire au roi'], 'Le clergé et la noblesse en étaient exemptés.'],
+  ['La corvée royale obligeait les paysans à…', 'travailler gratuitement à l’entretien des routes', ['servir à la cour', 'payer la dîme deux fois', 'quitter leur village'], 'Elle est très impopulaire à la fin du XVIIIe siècle.'],
+  ['La « noblesse de robe » désigne…', 'les nobles qui doivent leur titre à une charge de justice ou de finances', ['les nobles les plus anciens', 'les chevaliers du Moyen Âge', 'les officiers de marine'], 'On l’oppose à la noblesse d’épée, issue de la tradition militaire.'],
+  ['Louis XIV fait de Versailles…', 'le lieu où il réunit et surveille la haute noblesse', ['une forteresse militaire', 'une université', 'un port de commerce'], 'L’étiquette règle chaque geste de la journée du roi et des courtisans.'],
+  ['Les cahiers de doléances (1789) sont…', 'des listes de plaintes et de vœux rédigées dans tout le royaume', ['des registres d’impôts', 'des journaux intimes de nobles', 'des livres de prières'], 'Ils sont rédigés pour la réunion des états généraux.'],
+  ['Les états généraux de 1789 réunissent…', 'des députés des trois ordres', ['seulement les nobles', 'les ministres du roi', 'les maires des villes'], 'Le roi les convoque pour trouver de l’argent ; le tiers état s’y proclame Assemblée nationale.'],
 ];
 add({
   id: 'hg-l-societe-ordres', subject: 'hg', levels: ['2nde'], label: 'La société d’ordres : tensions, mutations et crispations', skill: 'hg.l.societe-ordres',

@@ -158,6 +158,23 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   lycée : le numérique et l'IA (hypertrucages, « hallucinations », mots de passe, droit à l'image, 3018, sobriété),
   la logique (contraposée, négation de « il existe » et de « et », condition suffisante, ensembles de nombres) et les
   modaux anglais. Correction : en seconde, « sur quel intervalle f(x) = ax est-elle positive ? » n'avait que deux choix.
+- **« La boutique »** (`#/boutique`, du CP à la 6e, liens depuis le plateau et la page Aujourd'hui) : on tient une
+  boutique, huit clients passent. On touche les pièces et les billets du porte-monnaie (dessinés en euros : cuivre,
+  or, bimétal, billets de couleur) pour les poser sur le comptoir, on les touche sur le comptoir pour les reprendre,
+  puis on paie. Les prix suivent la classe : euros ronds jusqu'à 20 € au CP, jusqu'à 60 € au CE1, avec 50 c et
+  10 c au CE2, puis tous les centimes ; à partir du CE2, des clients paient avec un billet et il faut **rendre la
+  monnaie**. Au CP et au CE1, le total du comptoir s'affiche ; ensuite il faut compter (bouton « Voir le total »).
+  Trop ou pas assez : on sait de combien, et on réessaie ; après trois essais, la solution s'affiche avec les pièces.
+  Payer avec le moins de pièces possible donne un « paiement malin ». Seul, ou à deux en servant un client chacun son
+  tour (un point du premier coup, un de plus si c'est malin). +10 points une fois par jour, trophées « Petit
+  commerçant » et « As de la monnaie » (`js/engine/boutique.js`, `js/ui/views/boutique.js`).
+- **Encore des questions** : philosophie (HLP) en première (Aristote et la persuasion, Cicéron, l'Utopie, les Lettres
+  persanes, Valladolid, Galilée) et en terminale (« Connais-toi toi-même », Rousseau, 1984, Elie Wiesel,
+  transhumanisme, Pascal) ; HGGSP (1789, 1848, 1905, Schengen, vérifier une information, Conseil de sécurité ; Gagarine,
+  ONU, droit de la mer, Antarctique, Kyoto, Cour pénale internationale) ; la société d'ordres en seconde (taille,
+  corvée, noblesse de robe, Versailles, cahiers de doléances, états généraux) ; cycles de vie en CM2 (pollinisateurs,
+  graine, germination, allaitement, stolons du fraisier, éphémère) ; anglais de 6e (be, have got, our, their,
+  pluriels irréguliers).
 - **Comptes protégés (étape 1 : sur l'appareil)** : chaque enfant a son compte, qu'il peut protéger par un code secret,
   choisi à la création du compte ou dans « Mon compte » (`#/compte`, en cliquant sur son nom en haut à droite) : une
   suite de 4 images (pour les petits lecteurs), 4 chiffres, ou un mot de passe. Le code n'est jamais enregistré en
@@ -343,8 +360,8 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux,sync}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux}.js`, `js/ui/{compte-ui,auto-lock}.js`, `js/storage/transfer.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux,sync,boutique}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux,boutique}.js`, `js/ui/{compte-ui,auto-lock}.js`, `js/storage/transfer.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -352,4 +369,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (607 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (616 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
