@@ -65,6 +65,12 @@ const VERS = [
   ['La césure d’un alexandrin classique se place…', 'après la sixième syllabe', ['après la première syllabe', 'après la dixième syllabe', 'nulle part'], 'Elle sépare deux hémistiches de six syllabes.'],
   ['Une rime qui partage trois sons ou plus, comme « cheval » et « rival », est…', 'riche', ['pauvre', 'suffisante', 'croisée'], 'Pauvre : un son commun ; suffisante : deux ; riche : trois ou plus.'],
   ['Le vers libre…', 'n’a ni nombre de syllabes fixe ni rimes obligatoires', ['compte toujours 12 syllabes', 'est réservé aux fables', 'rime toujours en ABAB'], 'Apollinaire et Prévert, entre autres, l’ont beaucoup employé.'],
+  ['Une synérèse consiste à…', 'prononcer en une seule syllabe deux voyelles qui se suivent', ['couper un vers en deux', 'répéter un son consonne', 'supprimer une rime'], 'C’est l’inverse de la diérèse.'],
+  ['Une allitération est…', 'la répétition d’un même son consonne', ['la répétition d’un même son voyelle', 'une rime pauvre', 'un vers de huit syllabes'], '« Pour qui sont ces serpents qui sifflent sur vos têtes ? » (Racine).'],
+  ['Une assonance est…', 'la répétition d’un même son voyelle', ['la répétition d’un même son consonne', 'une rime riche', 'un poème sans titre'], '« Tout m’afflige et me nuit et conspire à me nuire » (Racine) fait entendre le son [i].'],
+  ['Un décasyllabe compte…', '10 syllabes', ['8 syllabes', '12 syllabes', '6 syllabes'], 'C’est le vers de la Chanson de Roland.'],
+  ['Un rejet, c’est…', 'un élément bref renvoyé au début du vers suivant, et ainsi mis en valeur', ['un vers sans rime', 'une strophe de trois vers', 'une rime féminine'], 'Il accompagne un enjambement.'],
+  ['Une rime féminine se termine par…', 'un « e » muet', ['une consonne sonore', 'un accent aigu', 'le son « on »'], '« rose » et « chose » ; les autres rimes sont dites masculines.'],
 ];
 add({
   id: 'lf-versification', label: 'La versification', skill: 'fl.versification', chapters: ['2nde-f-poesie', '1re-f-poesie'],

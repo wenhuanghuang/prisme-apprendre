@@ -201,6 +201,12 @@ const INDEF = [
   ['Ayer (yo) ___ (tener) un examen.', 'tuve', 'tener → tuve, tuviste, tuvo… (irrégulier, sans accent).'],
   ['¿Qué ___ (hacer) tú el domingo?', 'hiciste', 'hacer → hice, hiciste, hizo…'],
   ['La semana pasada mis amigos ___ (estar) en Madrid.', 'estuvieron', 'estar → estuve, estuviste, estuvo, estuvimos, estuvisteis, estuvieron.'],
+  ['Ayer (tú) ___ (llegar) tarde a clase.', 'llegaste', 'Verbes en -ar : -é, -aste, -ó, -amos, -asteis, -aron.'],
+  ['El domingo pasado (ella) ___ (escribir) una carta.', 'escribió', 'Verbes en -er / -ir : -í, -iste, -ió, -imos, -isteis, -ieron.'],
+  ['Ayer (nosotros) ___ (ver) una película.', 'vimos', 'ver → vi, viste, vio, vimos, visteis, vieron (sans accent).'],
+  ['En 1492 Colón ___ (llegar) a América.', 'llegó', 'Action datée et terminée : pretérito indefinido.'],
+  ['Anoche (yo) no ___ (poder) dormir.', 'pude', 'poder → pude, pudiste, pudo, pudimos, pudisteis, pudieron (irrégulier).'],
+  ['El mes pasado mis padres ___ (comprar) un coche.', 'compraron', 'Verbes en -ar, 3e personne du pluriel : -aron.'],
 ];
 const IMPERF = [
   ['De pequeño, (yo) ___ (jugar) en el parque.', 'jugaba', 'Imparfait des verbes en -ar : -aba, -abas, -aba, -ábamos, -abais, -aban.'],
@@ -208,6 +214,11 @@ const IMPERF = [
   ['Cuando era niño, (yo) ___ (ser) muy tímido.', 'era', 'ser à l’imparfait : era, eras, era, éramos, erais, eran.'],
   ['Todos los veranos (nosotros) ___ (ir) a la playa.', 'íbamos', 'ir à l’imparfait : iba, ibas, iba, íbamos, ibais, iban.'],
   ['En el pueblo ___ (haber) una fuente.', 'había', 'haber (hay) à l’imparfait : había.'],
+  ['Antes (nosotros) ___ (vivir) cerca del mar.', 'vivíamos', 'Imparfait des verbes en -er / -ir : -ía, -ías, -ía, -íamos, -íais, -ían.'],
+  ['Cuando era pequeña, (ella) ___ (tener) un perro.', 'tenía', 'tener à l’imparfait : tenía, tenías, tenía…'],
+  ['Antes, todos los días, (yo) ___ (tomar) el autobús.', 'tomaba', 'Habitude dans le passé : imparfait en -aba.'],
+  ['De niños, mis primos ___ (ver) dibujos animados.', 'veían', 'ver à l’imparfait : veía, veías, veía, veíamos, veíais, veían.'],
+  ['Antes la ciudad ___ (ser) más pequeña.', 'era', 'ser à l’imparfait : era, eras, era, éramos, erais, eran.'],
 ];
 add({
   id: 'es-c-pasado', label: 'Espagnol : raconter et décrire au passé', skill: 'lv.c.es-pasado', chapters: ['es4-ch-pasado', 'es4-ch-imparfait', 'es5-ch-imaginaire', 'es4-ch-rencontres'],
@@ -225,6 +236,11 @@ const FUTUR = [
   ['Los alumnos están ___ (comer) en el comedor.', ['comiendo'], 'estar + gérondif : -er / -ir → -iendo.'],
   ['Para aprobar, ___ que estudiar. (il faut, en général)', ['hay'], 'hay que + infinitif : obligation générale (il faut).'],
   ['(Yo) ___ que hacer los deberes. (je dois)', ['tengo'], 'tener que + infinitif : obligation personnelle (je dois).'],
+  ['Mañana (ellos) ___ jugar al fútbol. (aller + infinitif)', ['van a'], 'ir a + infinitif : van a jugar.'],
+  ['¿(Tú) ___ venir a mi fiesta? (aller + infinitif)', ['vas a'], 'ir a + infinitif : vas a venir.'],
+  ['Ahora (yo) estoy ___ (escribir) un mensaje.', ['escribiendo'], 'estar + gérondif : -er / -ir → -iendo.'],
+  ['Los niños están ___ (jugar) en el patio.', ['jugando'], 'estar + gérondif : -ar → -ando.'],
+  ['Mi hermana ___ que trabajar el sábado. (elle doit)', ['tiene'], 'tener que + infinitif : obligation personnelle.'],
 ];
 const MEX = [
   ['Quelle est la capitale du Mexique ?', 'Mexico (Ciudad de México)', ['Guadalajara', 'Cancún', 'Monterrey'], 'Mexico est construite sur le site de Tenochtitlan, l’ancienne capitale aztèque.'],
@@ -233,6 +249,11 @@ const MEX = [
   ['Dans combien de pays environ l’espagnol est-il langue officielle ?', 'une vingtaine', ['trois', 'cinquante', 'un seul'], 'Une vingtaine de pays, surtout en Amérique latine, plus l’Espagne et la Guinée équatoriale.'],
   ['Comment dit-on 15 h 30 en espagnol ?', 'Son las tres y media.', ['Es la tres y media.', 'Son las quince menos media.', 'Está las tres y media.'], '« Son las… » (pluriel) sauf pour une heure : « Es la una ». En Espagne, on déjeune souvent vers 14 h.'],
   ['Dans « canción », la syllabe accentuée est…', 'la dernière (-ción)', ['la première (can-)', 'aucune', 'toutes les deux'], 'L’accent écrit indique la syllabe tonique : can-CIÓN.'],
+  ['Les Mayas ont bâti leurs cités…', 'dans le sud du Mexique et en Amérique centrale', ['en Espagne', 'au Chili', 'en Argentine'], 'Chichén Itzá, au Yucatán, en est un exemple célèbre.'],
+  ['Tenochtitlan, la capitale des Aztèques, se trouvait…', 'à l’emplacement de l’actuelle Mexico', ['à Madrid', 'à Lima', 'à Buenos Aires'], 'Elle était construite sur un lac.'],
+  ['Comment dit-on « bon anniversaire » en espagnol ?', '¡Feliz cumpleaños!', ['¡Buenas noches!', '¡Feliz Navidad!', '¡Buen provecho!'], '« ¡Buen provecho! » veut dire « bon appétit ».'],
+  ['Le tango est une danse née…', 'en Argentine et en Uruguay', ['au Mexique', 'en Espagne', 'à Cuba'], 'Il apparaît à la fin du XIXe siècle, autour du Río de la Plata.'],
+  ['Le flamenco est une tradition…', 'd’Andalousie, dans le sud de l’Espagne', ['du Mexique', 'de Catalogne', 'du Pérou'], 'Chant, guitare et danse : il est inscrit au patrimoine immatériel de l’Unesco.'],
 ];
 add({
   id: 'es-c-projets-culture', label: 'Espagnol : futur proche, gérondif, obligation ; le Mexique', skill: 'lv.c.es-projets', chapters: ['es5-ch-outils', 'es4-ch-projets', 'es5-ch-mexique', 'es5-ch-langues', 'es5-ch-prononciation', 'es4-ch-langages', 'es4-ch-ecole-societe', 'es4-ch-voyages', 'es4-ch-dialoguer'],

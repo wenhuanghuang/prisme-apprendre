@@ -90,6 +90,11 @@ const IMMU = [
   ['La sélection clonale, c’est…', 'la multiplication des seuls lymphocytes qui reconnaissent l’antigène présent', ['la destruction de tous les lymphocytes', 'la copie de l’ADN des virus', 'la fabrication des globules rouges'], 'Ces clones se différencient en cellules effectrices et en cellules mémoire.'],
   ['Une forte couverture vaccinale protège aussi les personnes non vaccinées car…', 'le pathogène circule beaucoup moins dans la population', ['elle rend les antibiotiques inutiles', 'elle supprime l’immunité innée', 'les vaccinés transmettent leurs anticorps'], 'C’est l’immunité collective.'],
   ['Lors de l’inflammation, les mastocytes libèrent…', 'des médiateurs chimiques comme l’histamine', ['des anticorps', 'de l’insuline', 'de l’ADN'], 'Ces médiateurs dilatent les vaisseaux et attirent les cellules immunitaires.'],
+  ['Une maladie auto-immune survient quand…', 'le système immunitaire attaque des cellules de son propre organisme', ['un virus résiste aux antibiotiques', 'on manque de vitamines', 'un vaccin a été mal conservé'], 'C’est le cas du diabète de type 1.'],
+  ['Le VIH, responsable du sida, détruit surtout…', 'les lymphocytes T CD4', ['les globules rouges', 'les plaquettes', 'les neurones'], 'Sans T CD4, la réponse adaptative n’est plus coordonnée.'],
+  ['Être séropositif pour un pathogène, c’est…', 'avoir dans le sang des anticorps dirigés contre lui', ['ne plus avoir de globules blancs', 'être allergique au pollen', 'avoir une forte fièvre'], 'Cela montre que l’organisme a déjà rencontré ce pathogène.'],
+  ['Une allergie est…', 'une réaction immunitaire excessive contre une substance habituellement inoffensive', ['une infection bactérienne', 'un manque d’anticorps', 'une maladie génétique rare'], 'Pollens, acariens ou certains aliments peuvent être des allergènes.'],
+  ['Parmi les cellules de l’immunité innée qui pratiquent la phagocytose, on trouve…', 'les macrophages', ['les globules rouges', 'les neurones', 'les plaquettes'], 'Ces phagocytes agissent dès les premières heures d’une infection.'],
 ];
 add('1re', {
   id: 'l1svt-immunite', label: 'Immunité innée et adaptative', skill: 'l1svt.immunite', chapters: ['1re-svt-immunite-innee', '1re-svt-immunite-adaptative', '1re-svt-immunite-sante'],
@@ -165,6 +170,11 @@ const PLANTES = [
   ['La dispersion des graines peut être assurée…', 'par le vent, l’eau ou les animaux', ['uniquement par les humains', 'par la photosynthèse', 'par les racines'], 'Les fruits charnus mangés par les animaux dispersent les graines loin de la plante mère.'],
   ['Chez le blé, la domestication a sélectionné…', 'des épis qui ne se cassent pas et gardent leurs grains', ['des grains plus petits', 'des plantes toxiques', 'des épis qui dispersent leurs grains au vent'], 'Les premiers agriculteurs ont ressemé les grains des plantes les plus faciles à récolter.'],
   ['La cellulose forme…', 'la paroi des cellules végétales', ['le noyau', 'les chloroplastes', 'l’ADN'], 'C’est la molécule organique la plus abondante sur Terre.'],
+  ['La photosynthèse a lieu dans…', 'les chloroplastes', ['les mitochondries', 'le noyau', 'les poils absorbants'], 'Les chloroplastes contiennent la chlorophylle, qui capte l’énergie lumineuse.'],
+  ['Une plante ne peut pas se déplacer : face à la sécheresse, elle peut par exemple…', 'fermer ses stomates pour limiter la perte d’eau', ['partir vers une zone humide', 'hiberner comme un animal', 'arrêter définitivement de respirer'], 'Ses réponses passent par des changements de fonctionnement et de développement.'],
+  ['La lignine…', 'rigidifie les parois de certaines cellules, comme celles du bois', ['transporte la sève', 'capte la lumière', 'attire les pollinisateurs'], 'Elle permet aux arbres de grandir en hauteur.'],
+  ['La pollinisation par le vent s’appelle…', 'l’anémogamie', ['l’entomogamie', 'la photosynthèse', 'la germination'], 'La pollinisation par les insectes s’appelle l’entomogamie.'],
+  ['Les feuilles offrent une très grande surface d’échange avec l’air grâce…', 'à leur forme aplatie et à leur grand nombre', ['à leur couleur verte', 'à leurs épines', 'à leurs racines'], 'Un grand arbre porte des centaines de mètres carrés de feuilles.'],
 ];
 add('tle', {
   id: 'ltsvt-plantes', label: 'La plante, productrice et domestiquée', skill: 'ltsvt.plantes', chapters: ['tle-svt-plantes', 'tle-svt-plante-matiere', 'tle-svt-plante-reproduction', 'tle-svt-domestication'],

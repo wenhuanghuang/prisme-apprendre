@@ -123,6 +123,7 @@ function rules() {
       row('Partie de « Le plus grand ! » terminée (une fois par jour)', `${XP.compare} points`),
       row('Partie de « Vrai ou faux ? » terminée (une fois par jour)', `${XP.vraifaux} points`),
       row('Journée de « La boutique » terminée, du CP à la 6e (une fois par jour)', `${XP.boutique} points`),
+      row('Série de « La cible » terminée, du CE1 à la terminale (une fois par jour)', `${XP.cible} points`),
       row('Passeport des jeux : quatre petits jeux différents dans la semaine (une fois par semaine) : un coffre rare', `${XP.passeport} points`),
       row('Bonus : jouer au « jeu du jour » mis en avant sur la page Aujourd’hui', `+ ${XP.jeudujour} points`),
       row('Essai manqué ou correction affichée', `${XP.effort} point`))),

@@ -248,7 +248,7 @@ const WATER = [
 const water = (id, subject, levels, chapters, skill) => add({
   id, subject, facts: true, label: 'L’eau solide et l’eau liquide', skill, levels, chapters,
   description: 'La glace, la neige, la pluie ; geler à 0 °C, fondre, s’évaporer ; le volume et la masse qui changent… ou pas.',
-  make(rand, lv) { return qcm(rand, pick(rand, lv === 'cp' ? WATER.slice(0, 4).concat([WATER[6], WATER[7]]) : WATER)); },
+  make(rand, lv) { return qcm(rand, pick(rand, lv === 'cp' ? WATER.filter((_, k) => ![4, 5, 8, 11].includes(k)) : WATER)); },
 });
 water('st-p-eau-cp', 'sciences-techno', ['cp'], ['cp-st-eau'], 'sciences-techno.p.eau');
 water('qlm-p-eau', 'qlm', ['ce1'], ['ce1-qlm-eau'], 'qlm.p.eau');

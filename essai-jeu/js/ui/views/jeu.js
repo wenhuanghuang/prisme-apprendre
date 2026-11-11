@@ -508,6 +508,7 @@ export async function render(root) {
       h('a', { class: 'btn', href: '#/compare' }, h('span', { 'aria-hidden': 'true' }, '⚖️ '), 'Le plus grand !'),
       h('a', { class: 'btn', href: '#/vraifaux' }, h('span', { 'aria-hidden': 'true' }, '🕵️ '), 'Vrai ou faux ?'),
       h('a', { class: 'btn', href: '#/boutique' }, h('span', { 'aria-hidden': 'true' }, '🏪 '), 'La boutique'),
+      h('a', { class: 'btn', href: '#/cible' }, h('span', { 'aria-hidden': 'true' }, '🎯 '), 'La cible'),
       h('div', { class: 'jeu-head-art', 'aria-hidden': 'true' }, die(5).el, photon('joie', 52)))), stage);
 
   const stop = () => { if (stopper) { stopper(); stopper = null; } };

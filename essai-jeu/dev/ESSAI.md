@@ -175,6 +175,23 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   corvée, noblesse de robe, Versailles, cahiers de doléances, états généraux) ; cycles de vie en CM2 (pollinisateurs,
   graine, germination, allaitement, stolons du fraisier, éphémère) ; anglais de 6e (be, have got, our, their,
   pluriels irréguliers).
+- **« La cible »** (`#/cible`, du CE1 à la terminale) : des nombres et une cible. On touche un nombre, une opération,
+  puis un autre nombre : le résultat remplace les deux, et on continue jusqu'à tomber pile (pas besoin d'utiliser tous
+  les nombres). On reste dans les entiers positifs : une soustraction qui donnerait zéro ou un négatif, une division
+  qui ne tombe pas juste sont refusées avec une explication. Chaque cible est fabriquée à partir des nombres tirés,
+  donc toujours atteignable, et une solution est montrée si on s'arrête avant. Selon la classe : 3 nombres et + − au
+  CE1 (cibles de 11 à 40), 4 nombres et × au CE2, 5 nombres et ÷ en CM, 6 nombres (dont 25, 50, 75, 100) et des cibles
+  jusqu'à 999 à partir de la 6e, au moins 4 étapes au lycée. Dans le mille : 3 points, à 2 près : 2, à 10 près : 1.
+  « Annuler », « Recommencer », « Mes calculs » garde la trace des étapes. Seul : 5 cibles ; à deux : 6 cibles, une
+  chacun son tour. +10 points une fois par jour, trophées « Dans le mille » et « Archer des nombres »
+  (`js/engine/cible.js`, `js/ui/views/cible.js`).
+- **Toujours plus de questions** : l'eau au CP (11 questions au lieu de 6), les figures au CP (sommets du rectangle et
+  du cercle, côtés de plusieurs figures), 3 nouveaux récits à remettre dans l'ordre ; espagnol en 5e-4e (passé simple
+  et imparfait, futur proche, gérondif, Mayas, Aztèques, tango, flamenco) ; SVT en seconde (résistance aux
+  antibiotiques, virus, microbiote, pandémie), en première (auto-immunité, VIH, séropositivité, allergies,
+  macrophages) et en terminale (chloroplastes, stomates, lignine, pollinisation) ; technologie (droit à l'oubli,
+  pièces jointes, reconditionné, empreinte numérique) ; versification (synérèse, allitération, assonance, décasyllabe,
+  rejet, rime féminine).
 - **Comptes protégés (étape 1 : sur l'appareil)** : chaque enfant a son compte, qu'il peut protéger par un code secret,
   choisi à la création du compte ou dans « Mon compte » (`#/compte`, en cliquant sur son nom en haut à droite) : une
   suite de 4 images (pour les petits lecteurs), 4 chiffres, ou un mot de passe. Le code n'est jamais enregistré en
@@ -360,8 +377,8 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux,sync,boutique}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux,boutique}.js`, `js/ui/{compte-ui,auto-lock}.js`, `js/storage/transfer.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux,sync,boutique,cible}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux,boutique,cible}.js`, `js/ui/{compte-ui,auto-lock}.js`, `js/storage/transfer.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -369,4 +386,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (616 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (629 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

@@ -175,6 +175,10 @@ const RESP = [
   ['Avant de croire une information virale, on vérifie…', 'la source, la date et si d’autres médias fiables la confirment', ['seulement le nombre de « j’aime »', 'la couleur de l’image', 'qui l’a partagée en premier'], 'Une image peut aussi être sortie de son contexte ou retouchée.'],
   ['Sur un réseau social, régler son profil en « privé » permet…', 'de choisir qui voit ses publications', ['de devenir invisible des services de police', 'de supprimer définitivement ses données', 'd’effacer les publications des autres'], 'Ce qui est publié peut tout de même être copié ou partagé.'],
   ['Un « cookie » accepté sur un site peut servir à…', 'mémoriser des préférences ou suivre la navigation pour la publicité', ['réparer l’ordinateur', 'accélérer la connexion', 'recharger la batterie'], 'On peut refuser les cookies non indispensables.'],
+  ['Le « droit à l’oubli » permet de demander…', 'l’effacement ou le déréférencement de données personnelles', ['un nouveau téléphone', 'un mot de passe plus court', 'la fermeture d’un site entier'], 'Il est prévu par le RGPD, le règlement européen sur les données personnelles.'],
+  ['Une pièce jointe inattendue, reçue d’un inconnu, peut…', 'contenir un logiciel malveillant', ['réparer l’ordinateur', 'accélérer Internet', 'protéger le mot de passe'], 'On ne l’ouvre pas : on la supprime ou on la signale.'],
+  ['Faire réparer ou acheter reconditionné un téléphone plutôt que neuf…', 'réduit les déchets et l’extraction de métaux', ['consomme plus que d’en fabriquer un neuf', 'n’a aucun effet', 'est interdit en France'], 'La fabrication est l’étape qui pèse le plus sur l’environnement.'],
+  ['L’empreinte numérique, c’est…', 'l’ensemble des traces que l’on laisse en ligne', ['la marque du doigt sur l’écran', 'la taille d’un fichier', 'le prix d’un forfait'], 'Messages, photos, commentaires, recherches : elles peuvent rester longtemps.'],
 ];
 add({
   id: 'tc-numerique-responsable', label: 'Usages responsables du numérique', skill: 'tc.numerique-responsable',
