@@ -9,6 +9,7 @@ import { watchBreaks } from './ui/game/pause.js';
 const ROUTES = [
   { re: /^\/?$/, view: () => import('./ui/views/today.js'), needsProfile: true, nav: 'today' },
   { re: /^\/profils$/, view: () => import('./ui/views/welcome.js'), nav: null },
+  { re: /^\/compte$/, view: () => import('./ui/views/compte.js'), needsProfile: true, nav: null },
   { re: /^\/carte(?:\/([\w-]+))?$/, view: () => import('./ui/views/map.js'), needsProfile: true, nav: 'map' },
   { re: /^\/parcours(?:\/([\w-]+))?$/, view: () => import('./ui/views/parcours.js'), needsProfile: true, nav: 'parcours' },
   { re: /^\/parcours\/([\w-]+)\/bilan\/([\w-]+)$/, view: () => import('./ui/views/bilan.js'), needsProfile: true, nav: 'parcours' },
@@ -63,9 +64,9 @@ function renderNav(active) {
   if (store.profile) {
     who.append(
       gameHud(),
-      h('a', { href: '#/profils', class: 'who-link', style: { display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'inherit' }, 'aria-label': `Profil ${store.profile.pseudo}, changer de profil` },
+      h('a', { href: '#/compte', class: 'who-link', style: { display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'inherit' }, 'aria-label': `Mon compte : ${store.profile.pseudo}${store.profile.secret ? ', protégé par un code' : ''}` },
         h('span', { class: 'avatar', style: { background: store.profile.color } }, store.profile.symbol),
-        h('span', {}, h('span', { class: 'who-name' }, store.profile.pseudo), h('br'), h('span', { class: 'who-level' }, `${store.profile.level}${store.profile.demo ? ' · fictif' : ''}`))));
+        h('span', {}, h('span', { class: 'who-name' }, `${store.profile.secret ? '🔒 ' : ''}${store.profile.pseudo}`), h('br'), h('span', { class: 'who-level' }, `${store.profile.level}${store.profile.demo ? ' · fictif' : ''}`))));
   } else {
     who.append(h('a', { href: '#/profils', class: 'btn btn--small' }, 'Choisir un profil'));
   }
@@ -106,6 +107,7 @@ async function start() {
     return;
   }
   window.addEventListener('hashchange', route);
+  import('./ui/auto-lock.js').then((m) => m.startAutoLock()).catch(() => {}); // comptes protégés : verrouillage après inactivité
   watchBreaks(); // une pause proposée après 25 minutes d'exercices sans coupure
   let lastProfile = store.profile && store.profile.id;
   subscribe(() => {

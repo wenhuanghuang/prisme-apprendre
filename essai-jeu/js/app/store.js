@@ -3,6 +3,7 @@
  * le profil (tentatives, validations, sauvegardes). Les vues lisent le store et s'abonnent aux changements.
  */
 import * as db from '../storage/db.js';
+import { checkSecret, cleanSecret, lockDelay } from '../engine/compte.js';
 import { buildBackup, validateBackup } from '../storage/backup.js';
 import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } from '../engine/mastery.js';
 import { recommend } from '../engine/recommend.js';
@@ -57,12 +58,15 @@ export async function init() {
   store.persistent = await db.isPersistent();
   store.profiles = (await db.all('profiles')).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
   const lastId = localStorageGet('prisme:last-profile');
+  // un compte protégé par un code ne se rouvre tout seul que dans l'onglet où il a été déverrouillé
   if (lastId && store.profiles.some((p) => p.id === lastId)) await selectProfile(lastId, { silent: true });
   store.ready = true;
   emit();
 }
 
 function localStorageGet(k) { try { return localStorage.getItem(k); } catch { return null; } }
+function sessionGet(k) { try { return sessionStorage.getItem(k); } catch { return null; } }
+function sessionSet(k, v) { try { if (v === null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch { /* ignoré */ } }
 function localStorageSet(k, v) { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch { /* ignoré */ } }
 
 export async function loadLesson(id) {
@@ -91,12 +95,13 @@ export async function loadExercise(exerciseId) {
 
 const PSEUDO_RE = /^[\p{L}\p{N} _'’-]{1,24}$/u;
 
-export async function createProfile({ pseudo, symbol, color, level }) {
+export async function createProfile({ pseudo, symbol, color, level, secret = null }) {
   const clean = String(pseudo || '').trim();
   if (!PSEUDO_RE.test(clean)) throw new Error('Choisis un pseudo de 1 à 24 caractères (lettres, chiffres, espaces, tirets).');
   const id = `p-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
-  const profile = { id, pseudo: clean, symbol, color, level, createdAt: store.now(), demo: false };
+  const profile = { id, pseudo: clean, symbol, color, level, createdAt: store.now(), demo: false, ...(cleanSecret(secret) ? { secret: cleanSecret(secret) } : {}) };
   await db.put('profiles', profile);
+  sessionSet(UNLOCK_KEY, id);
   await db.put('states', { profileId: id, skills: {}, lessons: {} });
   store.profiles = [...store.profiles, profile];
   await selectProfile(id);
@@ -119,7 +124,9 @@ export async function updateProfile(changes) {
 
 export async function selectProfile(id, opts = {}) {
   const profile = store.profiles.find((p) => p.id === id);
-  if (!profile) return;
+  if (!profile) return false;
+  if (profile.secret && !opts.unlocked && !isUnlocked(id)) return false; // compte protégé : il faut son code
+  sessionSet(UNLOCK_KEY, id);
   store.profile = profile;
   store.states = normalizeStates(await db.get('states', id), id);
   store.attempts = (await db.byProfile('attempts', id)).sort((a, b) => a.ts - b.ts);
@@ -128,11 +135,13 @@ export async function selectProfile(id, opts = {}) {
   if (game !== store.states.game) { store.states = { ...store.states, game }; await db.put('states', store.states); }
   localStorageSet('prisme:last-profile', id);
   if (!opts.silent) emit();
+  return true;
 }
 
 export function logout() {
   store.profile = null; store.states = null; store.attempts = []; store.submissions = [];
   localStorageSet('prisme:last-profile', null);
+  sessionSet(UNLOCK_KEY, null);
   emit();
 }
 
@@ -444,6 +453,58 @@ export async function importBackup(obj, choices) {
   if (store.profile) await selectProfile(store.profile.id, { silent: true });
   emit();
   return { restored, errors: v.errors };
+}
+
+/* ------------------------------ Comptes protégés ------------------------------ */
+
+const UNLOCK_KEY = 'prisme:unlocked';
+export const isProtected = (p) => Boolean(p && p.secret);
+/** Le compte a été ouvert avec son code dans cet onglet (fermer l'onglet ou se déconnecter le reverrouille). */
+export const isUnlocked = (id) => sessionGet(UNLOCK_KEY) === id;
+
+const failKey = (id) => `prisme:echecs:${id}`;
+function failures(id) { try { const r = JSON.parse(sessionGet(failKey(id)) || 'null'); return r && Number.isFinite(r.n) ? r : { n: 0, until: 0 }; } catch { return { n: 0, until: 0 }; } }
+
+/**
+ * Ouvre un compte protégé avec son code. Après cinq erreurs, il faut patienter (30 s, puis davantage).
+ * @returns {Promise<{ ok: boolean, wait?: number }>} wait : millisecondes à attendre avant un nouvel essai
+ */
+export async function unlockProfile(id, value) {
+  const profile = store.profiles.find((p) => p.id === id);
+  if (!profile) return { ok: false };
+  const f = failures(id);
+  const now = Date.now();
+  if (f.until > now) return { ok: false, wait: f.until - now };
+  if (await checkSecret(profile.secret, value)) {
+    sessionSet(failKey(id), null);
+    await selectProfile(id, { unlocked: true });
+    return { ok: true };
+  }
+  const n = f.n + 1;
+  const wait = lockDelay(n);
+  sessionSet(failKey(id), JSON.stringify({ n, until: wait ? now + wait : 0 }));
+  return { ok: false, wait };
+}
+
+/** Pose, change ou retire (secret = null) le code d'un profil. */
+export async function setProfileSecret(id, secret) {
+  const profile = store.profiles.find((p) => p.id === id);
+  if (!profile) return;
+  const { secret: _old, ...rest } = profile;
+  const clean = cleanSecret(secret);
+  const next = clean ? { ...rest, secret: clean } : rest;
+  await db.put('profiles', next);
+  store.profiles = store.profiles.map((p) => (p.id === id ? next : p));
+  if (store.profile && store.profile.id === id) store.profile = next;
+  emit();
+}
+
+/** Change son propre code : il faut d'abord donner le code actuel (s'il y en a un). */
+export async function changeMySecret(current, secret) {
+  if (!store.profile) return false;
+  if (store.profile.secret && !(await checkSecret(store.profile.secret, current))) return false;
+  await setProfileSecret(store.profile.id, secret);
+  return true;
 }
 
 /* ------------------------------ Code parent ------------------------------ */

@@ -6,6 +6,8 @@
  * La partie est sauvegardée après chaque action et peut être reprise.
  */
 import { h, announce } from '../dom.js';
+import { checkSecret } from '../../engine/compte.js';
+import { secretInput } from '../compte-ui.js';
 import { store, getSetting, setSetting, playerContext, activeContext, useContext, keepContext, refreshViews, gameProgress, recordGameEvent } from '../../app/store.js';
 import { vignetteCard, newVignettes } from '../game/rewards-ui.js';
 import { normalizeStates } from '../../engine/mastery.js';
@@ -46,6 +48,23 @@ export function distinctPawns(players) {
     colors.add(q.color); symbols.add(q.symbol);
     return q;
   });
+}
+
+/** Demande le code d'un compte protégé avant de l'ajouter à la partie. */
+function askCode(prof, host, onOk) {
+  const msg = h('p', { class: 'warn', 'aria-live': 'assertive' });
+  let field = null;
+  const check = async () => {
+    if (await checkSecret(prof.secret, field.getValue())) { box.remove(); onOk(); return; }
+    msg.textContent = 'Ce n’est pas le bon code.'; field.reset(); field.focus();
+  };
+  field = secretInput(prof.secret.kind, { label: `Code secret de ${prof.pseudo}`, onComplete: check });
+  const box = h('div', { class: 'card jeu-code' }, h('p', {}, h('strong', {}, `${prof.pseudo}, `), 'tape ton code secret pour jouer avec ton compte :'), field.el, msg,
+    h('div', { class: 'btn-row' }, prof.secret.kind === 'motdepasse' ? h('button', { type: 'button', class: 'btn btn--small btn--primary', onclick: check }, 'Valider') : null,
+      h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => box.remove() }, 'Annuler')));
+  const old = host.querySelector('.jeu-code'); if (old) old.remove();
+  host.append(box);
+  field.focus();
 }
 
 function fromProfile(prof) {
@@ -115,8 +134,12 @@ function setupScreen(stage, { onStart, prefill }) {
         state.players.length < 4 ? h('div', { class: 'jeu-add' },
           h('p', { class: 'small muted' }, 'Ajouter un joueur (4 au plus) :'),
           h('div', { class: 'btn-row' },
-            others.map((pr) => h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { state.players.push(fromProfile(pr)); draw(); } },
-              h('span', { class: 'avatar avatar--s', style: { background: pr.color }, 'aria-hidden': 'true' }, pr.symbol), `+ ${pr.pseudo}${pr.demo ? ' (fictif)' : ''}`)),
+            others.map((pr) => h('button', { type: 'button', class: 'btn btn--ghost btn--small', dataset: { id: pr.id }, onclick: (ev) => {
+              // un compte protégé ne rejoint la partie qu'avec son code : la partie écrit dans sa progression
+              if (!pr.secret) { state.players.push(fromProfile(pr)); draw(); return; }
+              askCode(pr, ev.currentTarget.closest('.jeu-add'), () => { state.players.push(fromProfile(pr)); draw(); });
+            } },
+              h('span', { class: 'avatar avatar--s', style: { background: pr.color }, 'aria-hidden': 'true' }, pr.symbol), `+ ${pr.secret ? '🔒 ' : ''}${pr.pseudo}${pr.demo ? ' (fictif)' : ''}`)),
             h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { addGuest(); draw(); } }, '+ Invité'),
             hasPhoton ? null : h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: () => { state.players.push({ kind: 'photon', name: 'Photon', ...PHOTON_LOOK, photonLevel: 'malin' }); draw(); } },
               photon('joie', 22), '+ Photon (l’ordinateur)'))) : null,

@@ -1,6 +1,8 @@
 /** Accueil : choisir ou créer un profil (pseudo uniquement), ou charger les élèves fictifs de démonstration. */
 import { h } from '../dom.js';
 import { store, createProfile, selectProfile, loadDemoProfiles } from '../../app/store.js';
+import { makeSecret } from '../../engine/compte.js';
+import { secretChooser, unlockPanel } from '../compte-ui.js';
 
 export const LEVELS = ['CP', 'CE1', 'CE2', 'CM1', 'CM2', '6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'];
 const SYMBOLS = ['◆', '★', '⚡', '●', '▲', '✦', '☄', '◎', '✳', '♞', '☀', '❄'];
@@ -22,6 +24,8 @@ export function render(root) {
   let level = '5e'; let symbol = SYMBOLS[0]; let color = COLORS[0];
   const err = h('p', { class: 'warn', 'aria-live': 'assertive' });
   const pseudo = h('input', { id: 'pseudo', class: 'field-input', maxlength: 24, autocomplete: 'off', placeholder: 'ex. Comète, Kepler, Pixel…' });
+  // un compte par enfant : un code secret (images, chiffres ou mot de passe) évite qu'un autre ouvre le sien
+  const chooser = secretChooser({ allowNone: true, initial: null });
 
   const pick = (items, current, onPick, render) => {
     const grp = h('div', { class: 'picker', role: 'group' });
@@ -42,7 +46,10 @@ export function render(root) {
     e.preventDefault();
     err.textContent = '';
     try {
-      await createProfile({ pseudo: pseudo.value, symbol, color, level });
+      const c = chooser.get();
+      if (c.error) { err.textContent = c.error; return; }
+      const secret = c.kind ? await makeSecret(c.kind, c.value) : null;
+      await createProfile({ pseudo: pseudo.value, symbol, color, level, secret });
       location.hash = '#/';
     } catch (ex) { err.textContent = ex.message; pseudo.focus(); }
   } },
@@ -52,14 +59,22 @@ export function render(root) {
   h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Ton symbole'), pick(SYMBOLS, symbol, (v) => { symbol = v; }, { text: (v) => v, label: (v) => `Symbole ${v}` })),
   h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Ta couleur'), pick(COLORS, color, (v) => { color = v; }, { text: () => '', label: (v) => `Couleur ${v}`, style: (v) => ({ background: v }) })),
   h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Ta classe en 2026-2027'), levels),
+  h('div', { class: 'field' }, h('span', { class: 'field-label' }, 'Ton code secret'), h('span', { class: 'muted small' }, 'Conseillé si plusieurs enfants utilisent cet appareil : chacun son compte, que personne d’autre ne peut ouvrir.'), chooser.el),
   err,
   h('button', { class: 'btn btn--primary', type: 'submit' }, 'Créer mon profil →'));
 
   const existing = store.profiles.filter((p) => !p.demo);
   const demos = store.profiles.filter((p) => p.demo);
+  const loginZone = h('div', {});
+  const open = async (p) => {
+    if (await selectProfile(p.id)) { location.hash = '#/'; return; }
+    // compte protégé : son écran de connexion
+    loginZone.replaceChildren(unlockPanel(p, { onDone: () => { location.hash = '#/'; }, onCancel: () => loginZone.replaceChildren() }));
+    loginZone.scrollIntoView({ block: 'nearest' });
+  };
   const list = (profiles) => h('div', { class: 'profile-list' }, profiles.map((p) => h('button', {
-    type: 'button', class: 'profile-btn', onclick: async () => { await selectProfile(p.id); location.hash = '#/'; },
-  }, h('span', { class: 'avatar', style: { background: p.color } }, p.symbol), h('span', {}, h('strong', {}, p.pseudo), h('br'), h('span', { class: 'muted small' }, p.level)), p.demo ? h('span', { class: 'chip chip--track-expert tag' }, 'fictif') : null)));
+    type: 'button', class: 'profile-btn', dataset: { id: p.id }, onclick: () => open(p),
+  }, h('span', { class: 'avatar', style: { background: p.color } }, p.symbol), h('span', {}, h('strong', {}, `${p.secret ? '🔒 ' : ''}${p.pseudo}`), h('br'), h('span', { class: 'muted small' }, p.level)), p.demo ? h('span', { class: 'chip chip--track-expert tag' }, 'fictif') : null)));
 
   root.append(h('div', { class: 'welcome' },
     h('section', {},
@@ -68,10 +83,11 @@ export function render(root) {
       h('p', { class: 'lede' }, 'Des laboratoires, des calculs vérifiés étape par étape, des problèmes à plusieurs méthodes, et un guide qui repère précisément ce qui coince — pour proposer le bon exercice au bon moment, en expliquant pourquoi.'),
       prismHero(),
       h('div', { class: 'privacy' }, h('span', { 'aria-hidden': 'true' }, '🔒'), h('span', {}, store.persistent
-        ? 'Tout reste sur cet ordinateur : aucun compte, aucun envoi de données. Chaque enfant peut avoir son profil ; les parents peuvent exporter, restaurer ou effacer les données.'
+        ? 'Tout reste sur cet ordinateur, aucun envoi de données. Chaque enfant a son compte, qu’il peut protéger par un code secret ; les parents peuvent exporter, restaurer ou effacer les données.'
         : 'Attention : le stockage local est bloqué par ce navigateur (navigation privée ?). Rien ne sera conservé après fermeture.'))),
     h('section', {},
       existing.length ? h('div', { class: 'card', style: { marginBottom: '16px' } }, h('h2', {}, 'Qui travaille aujourd’hui ?'), list(existing)) : null,
+      loginZone,
       form,
       h('div', { class: 'card', style: { marginTop: '16px' } },
         h('h3', {}, 'Découvrir avec des élèves fictifs'),

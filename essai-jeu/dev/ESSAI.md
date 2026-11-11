@@ -129,6 +129,27 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   matrices, avec idées fausses diagnostiquées : i² = −1, module, quotient et reste, PGCD et PPCM, produit terme à terme,
   somme des degrés) et mathématiques complémentaires (suites, exponentielle, dérivation, logarithme, intégrales, loi
   binomiale). Chacune a maintenant sa quête de l'année.
+- **Comptes protégés (étape 1 : sur l'appareil)** : chaque enfant a son compte, qu'il peut protéger par un code secret,
+  choisi à la création du compte ou dans « Mon compte » (`#/compte`, en cliquant sur son nom en haut à droite) : une
+  suite de 4 images (pour les petits lecteurs), 4 chiffres, ou un mot de passe. Le code n'est jamais enregistré en
+  clair : seule une empreinte PBKDF2-SHA-256 salée (100 000 itérations) est gardée avec le profil, et suit la
+  sauvegarde. Écran de connexion au choix du profil ; après cinq erreurs, il faut patienter (30 s, puis davantage) ;
+  « Me déconnecter » ; verrouillage automatique après 20 minutes sans activité ; un compte protégé ne se rouvre tout
+  seul que dans l'onglet où il a été déverrouillé. Au jeu de plateau, ajouter le compte protégé d'un autre enfant
+  demande son code. Dans l'espace Parents, rubrique « Comptes » : qui est protégé, et « Effacer le code » pour un enfant
+  qui l'a oublié. Ce n'est pas un coffre-fort (les données restent lisibles par qui a accès à l'ordinateur), mais une
+  vraie séparation des comptes au quotidien (`js/engine/compte.js`, `js/ui/compte-ui.js`, `js/ui/views/compte.js`,
+  `js/ui/auto-lock.js` ; `unlockProfile`, `setProfileSecret`, `changeMySecret` dans `js/app/store.js`).
+- **Comptes en ligne (étape 2, à décider)** : retrouver sa progression sur tous les appareils (maison, école) demande un
+  serveur. Ce qui est prêt : chaque profil a un identifiant stable, la sauvegarde contient tout un profil (empreinte du
+  code comprise) et peut servir de format d'échange, et les évènements du jeu ont des identifiants uniques, ce qui rend
+  la fusion de deux appareils simple. Ce qu'il faut choisir : l'hébergement (en France ou dans l'Union européenne :
+  serveur de l'établissement ou de la collectivité, hébergeur, ou base de données gérée) ; la connexion (un compte
+  parent par e-mail qui crée les comptes de ses enfants, connexion par l'ENT ou ÉduConnect pour l'école) ; le cadre
+  RGPD (consentement des parents pour les moins de 15 ans, données réduites au minimum : pseudo, pas de nom réel,
+  durée de conservation, droit à l'effacement, mots de passe hachés côté serveur, HTTPS). Fonctionnement proposé :
+  l'application reste utilisable hors ligne, et envoie puis récupère les nouvelles réponses et les nouveaux évènements
+  à chaque connexion.
 - **Nouvelles associations** (quête de l'année et jeu de mémoire) : dieux grecs et dieux romains, les dieux de l'Olympe
   et leur domaine (6e, histoire et français), unités de mesure et leurs équivalences (CM1, CM2, 6e), changements d'état
   (6e), écrivains et mouvements littéraires (2nde, 1re), sigles du numérique (SNT) ; le vocabulaire d'anglais du
@@ -283,13 +304,13 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime}.js`,
-`js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/ui/exercise.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte}.js`, `js/ui/{compte-ui,auto-lock}.js`,
+`js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
 Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en excluant `sw.js`, `precache.json`, `dev/`).
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (579 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (583 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

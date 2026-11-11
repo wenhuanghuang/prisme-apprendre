@@ -5,6 +5,7 @@
  */
 import { hashString } from '../core/template.js';
 import { normalizeStates } from '../engine/mastery.js';
+import { cleanSecret } from '../engine/compte.js';
 
 export const BACKUP_FORMAT = 'prisme-sauvegarde';
 export const BACKUP_VERSION = 1;
@@ -38,7 +39,7 @@ export function validateBackup(obj) {
     if (p.attempts && !Array.isArray(p.attempts)) { errors.push(`Profil ${prof.pseudo} : historique invalide.`); continue; }
     const LEVELS = ['CP', 'CE1', 'CE2', 'CM1', 'CM2', '6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'];
     profiles.push({
-      profile: { id: String(prof.id).slice(0, 64), pseudo: prof.pseudo, symbol: String(prof.symbol || '◆').slice(0, 2), color: /^#[0-9a-f]{6}$/i.test(prof.color || '') ? prof.color : '#3b4cca', level: LEVELS.includes(prof.level) ? prof.level : '5e', createdAt: Number.isFinite(prof.createdAt) ? prof.createdAt : null, demo: Boolean(prof.demo) },
+      profile: { id: String(prof.id).slice(0, 64), pseudo: prof.pseudo, symbol: String(prof.symbol || '◆').slice(0, 2), color: /^#[0-9a-f]{6}$/i.test(prof.color || '') ? prof.color : '#3b4cca', level: LEVELS.includes(prof.level) ? prof.level : '5e', createdAt: Number.isFinite(prof.createdAt) ? prof.createdAt : null, demo: Boolean(prof.demo), ...(cleanSecret(prof.secret) ? { secret: cleanSecret(prof.secret) } : {}) },
       // chaque état est reconstruit champ par champ : un fichier abîmé ne peut pas casser l'application
       states: normalizeStates(p.states, prof.id),
       attempts: (p.attempts || []).filter((a) => a && typeof a === 'object' && Number.isFinite(a.ts) && typeof a.skill === 'string')

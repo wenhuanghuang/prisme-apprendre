@@ -5,8 +5,9 @@
 import { h, tabs, pct, relDays, richText, fill } from '../dom.js';
 import {
   store, profileData, validateSubmission, exportBackup, importBackup, deleteProfile, wipeEverything,
-  hasParentPin, setParentPin, checkParentPin, removeParentPin, loadDemoProfiles,
+  hasParentPin, setParentPin, checkParentPin, removeParentPin, loadDemoProfiles, setProfileSecret,
 } from '../../app/store.js';
+import { SECRET_KINDS } from '../../engine/compte.js';
 import { computeDashboard } from '../../engine/dashboard.js';
 import { LEVELS as MASTERY, DAY } from '../../engine/mastery.js';
 import { validateBackup } from '../../storage/backup.js';
@@ -181,6 +182,17 @@ async function voiceSection() {
     status);
 }
 
+/** Les comptes des enfants : qui est protégé par un code, et effacer le code d'un enfant qui l'a oublié. */
+function accountsSection(rerender) {
+  const kids = store.profiles.filter((p) => !p.demo);
+  return h('section', { class: 'card parent-accounts' }, h('h2', {}, 'Comptes'),
+    h('p', { class: 'small muted' }, 'Chaque enfant peut protéger son compte par un code secret (images, chiffres ou mot de passe), choisi à la création du compte ou dans « Mon compte ». S’il l’oublie, effacez-le ici : il en choisira un nouveau.'),
+    kids.length ? h('ul', { class: 'parent-accounts-list' }, kids.map((p) => h('li', {},
+      h('span', {}, h('strong', {}, p.pseudo), ` · ${p.level} · `, p.secret ? `🔒 ${SECRET_KINDS[p.secret.kind].label.toLowerCase()}` : '🔓 sans code'),
+      p.secret ? h('button', { type: 'button', class: 'btn btn--ghost btn--small', onclick: async () => { if (confirm(`Effacer le code secret de « ${p.pseudo} » ? Son compte s’ouvrira sans code jusqu’à ce qu’il en choisisse un nouveau.`)) { await setProfileSecret(p.id, null); rerender(); } } }, 'Effacer le code') : null)))
+      : h('p', { class: 'small' }, 'Aucun compte pour l’instant.'));
+}
+
 async function pinSection(rerender) {
   const has = await hasParentPin();
   const input = h('input', { class: 'field-input', type: 'password', inputmode: 'numeric', autocomplete: 'new-password', maxlength: 8, style: { maxWidth: '160px' }, 'aria-label': 'Nouveau code parent' });
@@ -215,7 +227,7 @@ export async function render(root) {
     root.append(tabBar, dash);
     await dashboardFor(dash, current);
   }
-  root.append(h('div', { class: 'grid', style: { marginTop: '24px' } }, dataSection(rerender), await voiceSection(), await pinSection(rerender)));
+  root.append(h('div', { class: 'grid', style: { marginTop: '24px' } }, accountsSection(rerender), dataSection(rerender), await voiceSection(), await pinSection(rerender)));
   return relock;
 }
 
