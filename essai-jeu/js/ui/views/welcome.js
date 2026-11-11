@@ -2,7 +2,7 @@
 import { h } from '../dom.js';
 import { store, createProfile, selectProfile, loadDemoProfiles } from '../../app/store.js';
 import { makeSecret } from '../../engine/compte.js';
-import { secretChooser, unlockPanel } from '../compte-ui.js';
+import { secretChooser, unlockPanel, receivePanel } from '../compte-ui.js';
 
 export const LEVELS = ['CP', 'CE1', 'CE2', 'CM1', 'CM2', '6e', '5e', '4e', '3e', '2nde', '1re', 'Tle'];
 const SYMBOLS = ['◆', '★', '⚡', '●', '▲', '✦', '☄', '◎', '✳', '♞', '☀', '❄'];
@@ -83,12 +83,16 @@ export function render(root) {
       h('p', { class: 'lede' }, 'Des laboratoires, des calculs vérifiés étape par étape, des problèmes à plusieurs méthodes, et un guide qui repère précisément ce qui coince — pour proposer le bon exercice au bon moment, en expliquant pourquoi.'),
       prismHero(),
       h('div', { class: 'privacy' }, h('span', { 'aria-hidden': 'true' }, '🔒'), h('span', {}, store.persistent
-        ? 'Tout reste sur cet ordinateur, aucun envoi de données. Chaque enfant a son compte, qu’il peut protéger par un code secret ; les parents peuvent exporter, restaurer ou effacer les données.'
+        ? 'Tout reste sur cet appareil, aucun envoi de données. Chaque enfant a son compte, qu’il peut protéger par un code secret et emporter sur un autre appareil (fichier chiffré) ; les parents peuvent exporter, restaurer ou effacer les données.'
         : 'Attention : le stockage local est bloqué par ce navigateur (navigation privée ?). Rien ne sera conservé après fermeture.'))),
     h('section', {},
       existing.length ? h('div', { class: 'card', style: { marginBottom: '16px' } }, h('h2', {}, 'Qui travaille aujourd’hui ?'), list(existing)) : null,
       loginZone,
       form,
+      h('details', { class: 'card transfer-welcome', style: { marginTop: '16px' } },
+        h('summary', {}, h('strong', {}, '📲 J’ai déjà un compte sur un autre appareil')),
+        h('p', { class: 'small muted' }, 'Sur l’autre appareil, va dans « Mon compte » → « Emporter mon compte » : tu obtiens un fichier et un code. Choisis ce fichier ici et tape le code. Si ton compte est déjà sur cet appareil, les deux sont réunis.'),
+        receivePanel({ onDone: async (r) => { await selectProfile(r.id, { unlocked: true }); location.hash = '#/'; } })),
       h('div', { class: 'card', style: { marginTop: '16px' } },
         h('h3', {}, 'Découvrir avec des élèves fictifs'),
         h('p', { class: 'muted small' }, 'Cinq profils fictifs dont l’historique est simulé par le vrai moteur : idéal pour voir le diagnostic et le tableau de bord parent.'),

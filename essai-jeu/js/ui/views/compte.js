@@ -5,7 +5,7 @@
 import { h, announce } from '../dom.js';
 import { store, changeMySecret, logout, updateProfile } from '../../app/store.js';
 import { makeSecret, SECRET_KINDS, AUTO_LOCK_MINUTES } from '../../engine/compte.js';
-import { secretInput, secretChooser } from '../compte-ui.js';
+import { secretInput, secretChooser, devicesSection } from '../compte-ui.js';
 import { LEVELS } from './welcome.js';
 
 export function render(root) {
@@ -41,7 +41,8 @@ export function render(root) {
           announce(msg.textContent);
           draw();
         } }, 'Enregistrer')), msg),
-      h('p', { class: 'small muted' }, 'Ton compte et ta progression restent sur cet appareil. Un adulte peut en faire une sauvegarde dans l’espace Parents, pour les retrouver sur un autre appareil.'));
+      devicesSection(prof),
+      h('p', { class: 'small muted' }, 'Ton compte et ta progression restent sur cet appareil : rien n’est envoyé sur Internet. Un adulte peut aussi sauvegarder tous les profils dans l’espace Parents.'));
   };
   if (!p) { location.hash = '#/profils'; return; }
   draw();

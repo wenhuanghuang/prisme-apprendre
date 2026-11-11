@@ -125,7 +125,10 @@ async function start() {
 /** Hors connexion + mises à jour : une nouvelle version s'installe en arrière-plan, puis on propose de recharger. */
 async function setupServiceWorker() {
   let reloading = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => { if (!reloading) { reloading = true; location.reload(); } });
+  // recharger seulement quand une nouvelle version remplace l'ancienne, jamais à la toute première visite
+  // (sinon la page se rechargerait une seconde après l'arrivée, en effaçant ce que l'on commence à taper)
+  const hadController = Boolean(navigator.serviceWorker.controller);
+  navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController && !reloading) { reloading = true; location.reload(); } });
   try {
     const reg = await navigator.serviceWorker.register('sw.js');
     const offer = (worker) => {

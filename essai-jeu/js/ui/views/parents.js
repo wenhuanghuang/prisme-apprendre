@@ -138,6 +138,7 @@ function dataSection(rerender) {
     const f = e.target.files[0]; if (!f) return;
     let obj;
     try { obj = JSON.parse(await f.text()); } catch { msg.textContent = 'Fichier illisible (JSON attendu).'; return; }
+    if (obj && obj.format === 'prisme-compte') { msg.textContent = `C’est le fichier de compte${obj.pseudo ? ` de ${obj.pseudo}` : ''}, chiffré : ouvrez-le depuis la page des profils, « J’ai déjà un compte sur un autre appareil », avec son code de transfert.`; return; }
     const v = validateBackup(obj);
     if (!v.profiles.length) { msg.textContent = v.errors.join(' '); return; }
     const choices = {};

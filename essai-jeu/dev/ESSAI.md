@@ -169,16 +169,26 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   qui l'a oublié. Ce n'est pas un coffre-fort (les données restent lisibles par qui a accès à l'ordinateur), mais une
   vraie séparation des comptes au quotidien (`js/engine/compte.js`, `js/ui/compte-ui.js`, `js/ui/views/compte.js`,
   `js/ui/auto-lock.js` ; `unlockProfile`, `setProfileSecret`, `changeMySecret` dans `js/app/store.js`).
-- **Comptes en ligne (étape 2, à décider)** : retrouver sa progression sur tous les appareils (maison, école) demande un
-  serveur. Ce qui est prêt : chaque profil a un identifiant stable, la sauvegarde contient tout un profil (empreinte du
-  code comprise) et peut servir de format d'échange, et les évènements du jeu ont des identifiants uniques, ce qui rend
-  la fusion de deux appareils simple. Ce qu'il faut choisir : l'hébergement (en France ou dans l'Union européenne :
-  serveur de l'établissement ou de la collectivité, hébergeur, ou base de données gérée) ; la connexion (un compte
-  parent par e-mail qui crée les comptes de ses enfants, connexion par l'ENT ou ÉduConnect pour l'école) ; le cadre
-  RGPD (consentement des parents pour les moins de 15 ans, données réduites au minimum : pseudo, pas de nom réel,
-  durée de conservation, droit à l'effacement, mots de passe hachés côté serveur, HTTPS). Fonctionnement proposé :
-  l'application reste utilisable hors ligne, et envoie puis récupère les nouvelles réponses et les nouveaux évènements
-  à chaque connexion.
+- **Comptes sur plusieurs appareils (étape 2, sans serveur ni nuage)** : choix retenu, rester sur l'hébergement
+  actuel (GitHub Pages, gratuit, des fichiers statiques) : aucun serveur, aucune base de données en ligne, aucune donnée
+  d'enfant hors des appareils de la famille. Pour retrouver sa progression sur un autre appareil (tablette à la maison,
+  ordinateur chez un grand-parent…) : « Mon compte » → « Emporter mon compte » télécharge un fichier `.prisme` et
+  affiche un code de transfert de 12 caractères (une seule fois, jamais enregistré). Le fichier est compressé puis
+  chiffré (AES-GCM 256 bits, clé tirée du code par PBKDF2-SHA-256, 200 000 itérations) : on peut l'envoyer par
+  courriel, clé USB ou messagerie, il est illisible sans le code (seul le pseudo reste visible, pour reconnaître le
+  fichier). Sur l'autre appareil : page des profils → « J'ai déjà un compte sur un autre appareil », ou, si le compte y
+  est déjà, « Mon compte » → « Récupérer ». Les deux appareils sont **fusionnés**, pas écrasés : exercices, leçons,
+  réussites du jeu (coffres, quêtes, petits jeux, vignettes) et réponses rédigées sont réunis sans doublon, chaque notion
+  garde son état le plus récent, chaque record le meilleur ; le pseudo, la classe et l'avatar viennent de l'appareil
+  utilisé en dernier, et un code secret n'est jamais perdu en fusionnant. On peut faire l'aller-retour aussi souvent
+  qu'on veut (refusionner ne change rien). « Mon compte » refuse le fichier d'un autre enfant ; l'espace Parents
+  reconnaît un fichier de compte et explique où l'ouvrir (`js/engine/sync.js`, `js/storage/transfer.js`,
+  `exportAccount`/`importAccount` dans `js/app/store.js`, `sendPanel`/`receivePanel` dans `js/ui/compte-ui.js`).
+  Si un jour une synchronisation automatique est souhaitée, elle demandera un serveur (et le cadre RGPD : consentement
+  des parents avant 15 ans, données minimales) ; le format d'échange et la fusion sont déjà prêts.
+- **Correction** : à la toute première visite, la page se rechargeait une seconde après l'arrivée (prise en main par le
+  service worker), ce qui pouvait effacer un pseudo ou un code en cours de saisie. Elle ne recharge plus que pour
+  installer une nouvelle version.
 - **Nouvelles associations** (quête de l'année et jeu de mémoire) : dieux grecs et dieux romains, les dieux de l'Olympe
   et leur domaine (6e, histoire et français), unités de mesure et leurs équivalences (CM1, CM2, 6e), changements d'état
   (6e), écrivains et mouvements littéraires (2nde, 1re), sigles du numérique (SNT) ; le vocabulaire d'anglais du
@@ -333,8 +343,8 @@ Ce dossier `essai-jeu/` est la version en ligne du 12 octobre (v0.4, à la racin
   identifiant), album de 48 vignettes de lumière, puis album des animaux, puis album des merveilles du monde (chacun : 36 ordinaires dans les coffres de défi, 12 rares pour une quête, une
   période, une année ou une victoire), 11 trophées.
 
-Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
-`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux}.js`, `js/ui/{compte-ui,auto-lock}.js`,
+Fichiers ajoutés : `js/engine/{quete,annee,enigme,plateau,gardien,famille,memoire,frise,eclair,mot,fluence,estime,passeport,compte,compare,vraifaux,sync}.js`, `js/generators/{lycee-options,college-arts-plus,primaire-maths,primaire-monde,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc,philo,arts-numerique,lycee-langues,eps-sciences,complements}.js`, `content/skills/maths-primaire.json`,
+`js/ui/game/{quest-plan,quest-view,year-view,guardian-view,family-card,rewards-ui,mini-games,pause,board,deck,dice}.js`, `js/ui/views/{enigme,memoire,frise,eclair,mot,fluence,estime,compte,compare,vraifaux}.js`, `js/ui/{compte-ui,auto-lock}.js`, `js/storage/transfer.js`,
 `js/ui/views/jeu.js`, `css/jeu.css`. Fichiers modifiés : `index.html`, `js/main.js`, `js/app/store.js`, `js/storage/backup.js`, `js/ui/views/welcome.js`, `js/ui/exercise.js`,
 `js/engine/game.js`, `js/engine/game-rewards.js`, `js/generators/maths-pc.js`, `js/generators/data-kinds.js`, `js/ui/views/{exercices,progression,today,parents}.js`,
 `content/index.json` (les notions et les générateurs de données du primaire ajoutés ; à régénérer par `npm run build` à l'intégration), `content/skills/{maths-primaire,hg-primaire,primaire-donnees,primaire-plus,primaire-savoirs,lycee-maths,lycee-pc,lycee-maths-1t,lycee-pc-1t,college-techno,college-langues,lycee-svt,lycee-hg,lycee-svt-1t,lycee-francais,lycee-ses-nsi,emc}.json`.
@@ -342,4 +352,4 @@ Différence exacte avec la racine : `git diff --no-index <racine> essai-jeu` (en
 
 `sw.js` de l'essai ne met rien en cache (le cache hors connexion appartient à l'application principale).
 
-Tests : `node --test essai-jeu/dev/tests/*.test.js` (602 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).
+Tests : `node --test essai-jeu/dev/tests/*.test.js` (607 tests : plateau, quête, année, album, points, énigme, pauses, et les générateurs du primaire — 60 tirages par classe et par niveau, bonne réponse acceptée, erreurs typiques diagnostiquées).

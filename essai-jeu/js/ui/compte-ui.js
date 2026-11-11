@@ -4,7 +4,8 @@
  */
 import { h, announce } from './dom.js';
 import { PICTOS, PICTO_NAMES, SECRET_KINDS, IMAGES_LENGTH, normalizeSecret } from '../engine/compte.js';
-import { unlockProfile } from '../app/store.js';
+import { store, unlockProfile, exportAccount, importAccount } from '../app/store.js';
+import { TRANSFER_EXT, isAccountFile } from '../storage/transfer.js';
 
 /**
  * Champ de saisie d'un code. getValue() renvoie la valeur brute ; onComplete est appelé quand le code est complet
@@ -94,4 +95,85 @@ export function unlockPanel(profile, { onDone, onCancel }) {
   if (profile.secret.kind === 'motdepasse') panel.querySelector('input').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } });
   setTimeout(() => field.focus(), 0);
   return panel;
+}
+
+/* ------------------------------ Passer d'un appareil à l'autre ------------------------------ */
+
+function downloadJson(name, obj) {
+  const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
+  const a = h('a', { href: URL.createObjectURL(blob), download: name });
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+const slug = (s) => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'compte';
+
+/** Emporter son compte : télécharge le fichier chiffré et affiche (une seule fois) son code de transfert. */
+export function sendPanel(profile) {
+  const out = h('div', { class: 'transfer-out', 'aria-live': 'polite' });
+  const btn = h('button', { type: 'button', class: 'btn btn--primary transfer-send', onclick: async () => {
+    btn.disabled = true; out.textContent = 'Je prépare ton fichier…';
+    try {
+      const { file, code } = await exportAccount(profile.id);
+      downloadJson(`prisme-compte-${slug(profile.pseudo)}-${new Date().toISOString().slice(0, 10)}${TRANSFER_EXT}`, file);
+      out.replaceChildren(
+        h('p', {}, 'Ton fichier est téléchargé. Voici son code de transfert :'),
+        h('p', { class: 'transfer-code', 'aria-label': `Code de transfert : ${code.split('').join(' ')}` }, code),
+        h('p', { class: 'small' }, 'Note-le bien : il ne s’affichera plus. Envoie le fichier sur l’autre appareil (courriel, clé USB, messagerie…), puis là-bas, ouvre Prisme : « J’ai déjà un compte sur un autre appareil » (ou « Mon compte » → « Récupérer »), choisis le fichier et tape ce code.'),
+        h('p', { class: 'small muted' }, 'Sans ce code, personne ne peut ouvrir le fichier.'));
+      announce('Fichier téléchargé. Note le code de transfert affiché.');
+    } catch (e) { out.textContent = `Impossible de préparer le fichier : ${e.message}`; }
+    btn.disabled = false;
+  } }, '📤 Emporter mon compte');
+  return h('div', { class: 'transfer-block' }, h('div', { class: 'btn-row' }, btn), out);
+}
+
+/**
+ * Recevoir un compte : un fichier .prisme et son code. Avec onlyId, seulement ce compte-là (pour le mettre à jour).
+ * onDone(result) est appelé après un import réussi.
+ */
+export function receivePanel({ onlyId = null, onDone = () => {}, label = '📥 Recevoir' } = {}) {
+  const msg = h('p', { class: 'transfer-msg', 'aria-live': 'assertive' });
+  let obj = null;
+  const fileInput = h('input', { type: 'file', class: 'transfer-file', accept: `${TRANSFER_EXT},application/json,.json`, onchange: async (e) => {
+    obj = null; msg.textContent = '';
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    try { obj = JSON.parse(await f.text()); } catch { msg.textContent = 'Ce fichier est illisible.'; return; }
+    if (!isAccountFile(obj)) {
+      msg.textContent = obj && obj.format === 'prisme-sauvegarde' ? 'C’est une sauvegarde complète : un adulte peut la restaurer dans l’espace Parents.' : 'Ce n’est pas un fichier de compte Prisme.';
+      obj = null; return;
+    }
+    msg.textContent = obj.pseudo ? `Compte de ${obj.pseudo}. Tape maintenant son code de transfert.` : 'Tape maintenant le code de transfert.';
+    codeInput.focus();
+  } });
+  const codeInput = h('input', { class: 'field-input transfer-codein', autocomplete: 'off', autocapitalize: 'characters', spellcheck: 'false', maxlength: 20, placeholder: 'XXXX-XXXX-XXXX', 'aria-label': 'Code de transfert',
+    onkeydown: (e) => { if (e.key === 'Enter') { e.preventDefault(); go(); } } });
+  let busy = false;
+  async function go() {
+    if (busy) return;
+    if (!obj) { msg.textContent = 'Choisis d’abord le fichier de ton compte.'; return; }
+    busy = true; msg.textContent = 'J’ouvre le fichier…';
+    const r = await importAccount(obj, codeInput.value, { onlyId });
+    busy = false;
+    if (!r.ok) { msg.textContent = r.error; return; }
+    const what = r.merged
+      ? `C’est fait, ${r.pseudo} ! Depuis l’autre appareil : ${r.added.attempts} exercice${r.added.attempts > 1 ? 's' : ''} et ${r.added.events} réussite${r.added.events > 1 ? 's' : ''} du jeu en plus. Rien n’a été perdu.`
+      : `Bienvenue, ${r.pseudo} : ton compte est maintenant aussi sur cet appareil.`;
+    msg.textContent = what; announce(what);
+    onDone(r);
+  }
+  return h('div', { class: 'transfer-block transfer-in' },
+    h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Le fichier de ton compte (.prisme)'), fileInput),
+    h('label', { class: 'field' }, h('span', { class: 'field-label' }, 'Son code de transfert'), codeInput),
+    h('div', { class: 'btn-row' }, h('button', { type: 'button', class: 'btn btn--primary transfer-receive', onclick: go }, label)), msg);
+}
+
+/** Tout ce qui sert à passer d'un appareil à l'autre, pour la page « Mon compte ». */
+export function devicesSection(profile, { onChange = () => {} } = {}) {
+  return h('section', { class: 'card compte-card compte-devices' },
+    h('h2', {}, 'Mes autres appareils'),
+    h('p', {}, 'Tu travailles sur deux appareils (une tablette à la maison, un ordinateur chez un grand-parent…) ? Emporte ton compte de l’un à l’autre : ce que tu as fait des deux côtés est réuni, rien n’est perdu. Pas besoin de compte en ligne : le fichier est chiffré et ne s’ouvre qu’avec son code.'),
+    h('h3', {}, 'Emporter mon compte'), sendPanel(profile),
+    h('h3', {}, 'Récupérer ce que j’ai fait sur un autre appareil'),
+    receivePanel({ onlyId: profile.id, label: '📥 Récupérer', onDone: onChange }));
 }

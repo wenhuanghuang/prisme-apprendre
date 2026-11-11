@@ -5,6 +5,8 @@
 import * as db from '../storage/db.js';
 import { checkSecret, cleanSecret, lockDelay } from '../engine/compte.js';
 import { buildBackup, validateBackup } from '../storage/backup.js';
+import { packAccount, unpackAccount, newTransferCode } from '../storage/transfer.js';
+import { mergeAccounts } from '../engine/sync.js';
 import { applyAttempt, emptySkillState, masteryLevel, normalizeStates, DAY } from '../engine/mastery.js';
 import { recommend } from '../engine/recommend.js';
 import { summarizeAttempts, computeBadges, skillBadges } from '../engine/badges.js';
@@ -453,6 +455,57 @@ export async function importBackup(obj, choices) {
   if (store.profile) await selectProfile(store.profile.id, { silent: true });
   emit();
   return { restored, errors: v.errors };
+}
+
+/* ------------------------------ Passer d'un appareil à l'autre ------------------------------ */
+
+/**
+ * Emporte un compte sur un autre appareil : renvoie le fichier chiffré et son code de transfert (à afficher une
+ * seule fois, jamais enregistré).
+ */
+export async function exportAccount(id) {
+  const backup = await exportBackup([id]);
+  if (!backup.profiles.length) throw new Error('Compte introuvable.');
+  const code = newTransferCode();
+  const file = await packAccount(backup, code, { pseudo: backup.profiles[0].profile.pseudo });
+  return { file, code };
+}
+
+async function writeAccount(acc) {
+  await db.deleteProfileData(acc.profile.id);
+  await db.put('profiles', acc.profile);
+  await db.put('states', { ...acc.states, profileId: acc.profile.id });
+  for (const a of acc.attempts) { const { id, ...rest } = a; await db.put('attempts', { ...rest, profileId: acc.profile.id }); }
+  for (const sub of acc.submissions) await db.put('submissions', { ...sub, profileId: acc.profile.id });
+}
+
+/**
+ * Reçoit un compte venu d'un autre appareil. S'il existe déjà ici, les deux sont fusionnés (rien n'est perdu
+ * d'un côté ni de l'autre) ; sinon, il est ajouté. Avec `onlyId`, refuse le compte de quelqu'un d'autre.
+ * @returns {Promise<{ ok: boolean, error?: string, pseudo?: string, merged?: boolean, added?: object, id?: string }>}
+ */
+export async function importAccount(file, code, { onlyId = null } = {}) {
+  const r = await unpackAccount(file, code);
+  if (!r.ok) return r;
+  const v = validateBackup(r.backup);
+  if (v.profiles.length !== 1) return { ok: false, error: 'Ce fichier ne contient pas un compte lisible.' };
+  const incoming = v.profiles[0];
+  const id = incoming.profile.id;
+  if (onlyId && id !== onlyId) return { ok: false, error: `Ce fichier contient le compte de ${incoming.profile.pseudo}, pas le tien. Pour l’ajouter, utilise « J’ai déjà un compte sur un autre appareil » sur la page des profils.` };
+  const exists = store.profiles.some((p) => p.id === id);
+  let acc = incoming; let added = { attempts: incoming.attempts.length, events: incoming.states.game.events.length };
+  if (exists) {
+    const local = (await exportBackup([id])).profiles[0];
+    const m = mergeAccounts(validateBackup(buildBackup([local])).profiles[0], incoming);
+    acc = m.account; added = m.added;
+    acc = { ...acc, states: normalizeStates(acc.states, id) };
+  }
+  await writeAccount(acc);
+  store.profiles = (await db.all('profiles')).sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0));
+  if (store.profile && store.profile.id === id) await selectProfile(id, { silent: true, unlocked: true });
+  else if (!store.profile) await selectProfile(id, { silent: true, unlocked: true });
+  emit();
+  return { ok: true, pseudo: acc.profile.pseudo, merged: exists, added, id };
 }
 
 /* ------------------------------ Comptes protégés ------------------------------ */
